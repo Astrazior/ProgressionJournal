@@ -8,16 +8,18 @@ UI: {
 	Close: Close
 	UseCurrentStage: Sync with world
 	InventoryButtonTooltip: Open Progression Journal
-	OverviewTab: All items
+	OverviewTab: Equipment
 	PresetsTab: Builds
 	StageSelectorTitle: Progress stage
 	ClassSelectorTitle: Class selection
 	LegendTitle: Recommendation types
-	OverviewHeadline: Items for the selected stage
+	OverviewHeadline: Current stage equipment
 	OverviewDescription: All manually rated items for this class at the selected stage.
 	PresetsHeadline: Ready builds
 	PresetsDescription: Quick presets with armor, accessories, and weapons.
 	PresetSubtitle: Prebuilt loadout for players who do not want to assemble one manually.
+	ClassPageTitle: Choose a class
+	ClassPageDescription: Pick the class first, then open the items and build pages for the current stage.
 	StageProgress: Stage {0} of {1}
 	StageMatchesWorld: Matches the world.
 	StageDiffersFromWorld: World: {0}
@@ -28,13 +30,21 @@ UI: {
 	TierLegendNotRecommended: usually skip
 	TierLegendUseless: outdated
 	EntryContains: Includes: {0}
-	EntrySingleItem: Main item for this slot.
+	EntrySingleItem: Single item
+	EntrySetCount: Set: {0}
 	PresetsEmptyState: No presets exist for this class and stage yet.
 	Weapons: Weapons
 	ArmorLabel: Armor
 	Accessories: Accessories
 	None: None
 	EmptyState: No guide entries exist for this class and stage yet.
+
+	ClassDescriptions: {
+		Melee: Close range and durability
+		Ranged: Distance and steady damage
+		Magic: Mana, spells, and burst
+		Summoner: Minions, whips, and support
+	}
 }
 
 Classes: {

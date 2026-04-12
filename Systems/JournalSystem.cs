@@ -32,6 +32,8 @@ public sealed class JournalSystem : ModSystem
 
 	public bool ShowingPresets { get; private set; }
 
+	public bool SelectingClass { get; private set; } = true;
+
 	public CombatClass SelectedClass { get; private set; } = CombatClass.Melee;
 
 	public ProgressionStageId SelectedStage { get; private set; } = ProgressionStageCatalog.GetCurrentStageId();
@@ -119,7 +121,9 @@ public sealed class JournalSystem : ModSystem
 		}
 
 		Visible = true;
+		SelectingClass = true;
 		ShowingPresets = false;
+		_journalState?.ResetLayout();
 		_journalInterface?.SetState(_journalState);
 		RefreshView();
 	}
@@ -144,11 +148,15 @@ public sealed class JournalSystem : ModSystem
 
 	public void SelectClass(CombatClass combatClass)
 	{
-		if (SelectedClass == combatClass) {
-			return;
-		}
-
 		SelectedClass = combatClass;
+		SelectingClass = false;
+		ShowingPresets = false;
+		RefreshView();
+	}
+
+	public void ShowClassSelection()
+	{
+		SelectingClass = true;
 		RefreshView();
 	}
 
@@ -160,12 +168,14 @@ public sealed class JournalSystem : ModSystem
 
 	public void ShowOverviewTab()
 	{
+		SelectingClass = false;
 		ShowingPresets = false;
 		RefreshView();
 	}
 
 	public void ShowPresetsTab()
 	{
+		SelectingClass = false;
 		ShowingPresets = true;
 		RefreshView();
 	}
@@ -176,7 +186,7 @@ public sealed class JournalSystem : ModSystem
 			return;
 		}
 
-		_journalState?.Refresh(SelectedClass, SelectedStage, ShowingPresets);
+		_journalState?.Refresh(SelectedClass, SelectedStage, SelectingClass, ShowingPresets);
 	}
 
 	private bool DrawJournalInterface()
