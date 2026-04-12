@@ -27,10 +27,9 @@ public sealed class JournalButtonUIState : UIState
 		_button.UpdatePlacement();
 		base.Update(gameTime);
 
-		if (_button.IsMouseHovering) {
-			Main.LocalPlayer.mouseInterface = true;
-			Main.blockMouse = true;
-		}
+		if (!_button.IsMouseHovering) return;
+		Main.LocalPlayer.mouseInterface = true;
+		Main.blockMouse = true;
 	}
 
 	private sealed class JournalButton : UIPanel

@@ -15,6 +15,14 @@ namespace ProgressionJournal.UI;
 
 public sealed class JournalUIState : UIState
 {
+	private const int EntriesPerRow = 6;
+	private const float SlotPitch = 56f;
+	private const float BlockHorizontalPadding = 14f;
+	private const float BlockVerticalPadding = 12f;
+	private const float BlockTitleHeight = 28f;
+	private const float RowHeight = 56f;
+	private const float RowSpacing = 6f;
+
 	private static readonly CombatClass[] ClassOrder =
 	[
 		CombatClass.Melee,
@@ -275,7 +283,7 @@ public sealed class JournalUIState : UIState
 			var panel = CreateClassSelectionButton(capturedClass, selectedClass == capturedClass, buttonHeight);
 			panel.Left.Set(index % 2 == 0 ? 0f : 12f, index % 2 == 0 ? 0f : buttonWidth);
 			panel.Top.Set(top, 0f);
-			panel.Width.Set(index % 2 == 0 ? -6f : -6f, buttonWidth);
+			panel.Width.Set(-6f, buttonWidth);
 			panel.OnLeftClick += (_, _) => JournalSystem.SelectClass(capturedClass);
 			_classSelectionContainer.Append(panel);
 
@@ -293,16 +301,22 @@ public sealed class JournalUIState : UIState
 			return;
 		}
 
-		foreach (var tier in GetTierOrder()) {
-			var tierEntries = entries.Where(entry => entry.Evaluation.Tier == tier).ToArray();
-			if (tierEntries.Length == 0) {
-				continue;
-			}
+		var recommendedTiers = new[] { RecommendationTier.Recommended, RecommendationTier.Situational };
+		if (HasEntriesForAnyTier(entries, recommendedTiers)) {
+			_entryList.Add(CreateRecommendationBlock(
+				Language.GetTextValue("Mods.ProgressionJournal.UI.RecommendedBlock"),
+				GetEntriesForTiers(entries, recommendedTiers),
+				new Color(26, 48, 37),
+				new Color(108, 176, 128)));
+		}
 
-			_entryList.Add(CreateSectionHeader(Language.GetTextValue($"Mods.ProgressionJournal.Tiers.{tier}")));
-			foreach (var row in ChunkEntries(tierEntries, 10)) {
-				_entryList.Add(CreateSlotRow(row));
-			}
+		var notRecommendedTiers = new[] { RecommendationTier.NotRecommended, RecommendationTier.Useless };
+		if (HasEntriesForAnyTier(entries, notRecommendedTiers)) {
+			_entryList.Add(CreateRecommendationBlock(
+				Language.GetTextValue("Mods.ProgressionJournal.UI.NotRecommendedBlock"),
+				GetEntriesForTiers(entries, notRecommendedTiers),
+				new Color(52, 34, 34),
+				new Color(176, 116, 116)));
 		}
 	}
 
@@ -318,14 +332,6 @@ public sealed class JournalUIState : UIState
 		}
 	}
 
-	private static RecommendationTier[] GetTierOrder() =>
-	[
-		RecommendationTier.Recommended,
-		RecommendationTier.Situational,
-		RecommendationTier.NotRecommended,
-		RecommendationTier.Useless
-	];
-
 	private static IEnumerable<JournalStageEntry[]> ChunkEntries(JournalStageEntry[] entries, int chunkSize)
 	{
 		for (int i = 0; i < entries.Length; i += chunkSize) {
@@ -334,6 +340,21 @@ public sealed class JournalUIState : UIState
 			Array.Copy(entries, i, chunk, 0, length);
 			yield return chunk;
 		}
+	}
+
+	private static bool HasEntriesForAnyTier(IReadOnlyList<JournalStageEntry> entries, RecommendationTier[] tiers)
+	{
+		return entries.Any(entry => tiers.Contains(entry.Evaluation.Tier));
+	}
+
+	private static JournalStageEntry[] GetEntriesForTiers(IReadOnlyList<JournalStageEntry> entries, RecommendationTier[] tiers)
+	{
+		return entries
+			.Where(entry => tiers.Contains(entry.Evaluation.Tier))
+			.OrderBy(entry => Array.IndexOf(tiers, entry.Evaluation.Tier))
+			.ThenBy(entry => entry.Entry.Category)
+			.ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
+			.ToArray();
 	}
 
 	private static UIPanel CreateClassSelectionButton(CombatClass combatClass, bool active, float height)
@@ -384,19 +405,61 @@ public sealed class JournalUIState : UIState
 		return header;
 	}
 
+	private static UIPanel CreateRecommendationBlock(
+		string title,
+		IReadOnlyList<JournalStageEntry> entries,
+		Color backgroundColor,
+		Color borderColor)
+	{
+		var block = CreatePanel();
+		block.Width.Set(0f, 1f);
+		block.SetPadding(0f);
+		block.BackgroundColor = backgroundColor;
+		block.BorderColor = borderColor;
+
+		float top = BlockVerticalPadding;
+
+		var titleText = new UIText(title, 0.5f, true);
+		titleText.Left.Set(BlockHorizontalPadding, 0f);
+		titleText.Top.Set(top, 0f);
+		titleText.TextColor = new Color(235, 239, 242);
+		block.Append(titleText);
+		top += BlockTitleHeight;
+
+		foreach (var rowEntries in ChunkEntries(entries.ToArray(), EntriesPerRow)) {
+			var row = CreateSlotRow(rowEntries);
+			row.Left.Set(BlockHorizontalPadding, 0f);
+			row.Top.Set(top, 0f);
+			block.Append(row);
+			top += RowHeight + RowSpacing;
+		}
+
+		block.Height.Set(top + 4f, 0f);
+		return block;
+	}
+
 	private static UIElement CreateSlotRow(JournalStageEntry[] entries)
 	{
 		var row = new UIElement();
-		row.Width.Set(0f, 1f);
-		row.Height.Set(48f, 0f);
+		row.Width.Set(GetRowWidth(entries.Length), 0f);
+		row.Height.Set(RowHeight, 0f);
 
 		for (int index = 0; index < entries.Length; index++) {
 			var slot = new JournalEntrySlot(entries[index]);
-			slot.Left.Set(index * 48f, 0f);
+			slot.Left.Set(index * SlotPitch, 0f);
 			row.Append(slot);
 		}
 
 		return row;
+	}
+
+	private static float GetRowWidth(int entryCount)
+	{
+		if (entryCount <= 0) {
+			return 0f;
+		}
+
+		return JournalEntrySlot.WidthPixels + ((entryCount - 1) * SlotPitch);
 	}
 
 	private static string TrimForUi(string text, int maxLength)

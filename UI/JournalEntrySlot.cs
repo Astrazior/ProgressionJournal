@@ -1,7 +1,7 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ProgressionJournal.Data;
+using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.UI;
@@ -10,51 +10,47 @@ namespace ProgressionJournal.UI;
 
 public sealed class JournalEntrySlot : UIElement
 {
+	public static float WidthPixels => TextureAssets.InventoryBack9.Width();
+
 	private readonly JournalStageEntry _entry;
+	private Item _item;
 
 	public JournalEntrySlot(JournalStageEntry entry)
 	{
 		_entry = entry;
-		Width.Set(44f, 0f);
-		Height.Set(44f, 0f);
+		_item = new Item(entry.Entry.RepresentativeItemId);
+		Width.Set(WidthPixels, 0f);
+		Height.Set(TextureAssets.InventoryBack9.Height(), 0f);
 	}
 
 	protected override void DrawSelf(SpriteBatch spriteBatch)
 	{
 		base.DrawSelf(spriteBatch);
 
-		var dimensions = GetDimensions().ToRectangle();
-		var slotTexture = TextureAssets.InventoryBack.Value;
-		var slotColor = GetSlotColor(_entry.Evaluation.Tier);
-		spriteBatch.Draw(slotTexture, new Vector2(dimensions.X, dimensions.Y), slotColor);
-
 		Main.instance.LoadItem(_entry.Entry.RepresentativeItemId);
-		var itemTexture = TextureAssets.Item[_entry.Entry.RepresentativeItemId].Value;
-		var scale = MathF.Min(28f / itemTexture.Width, 28f / itemTexture.Height);
-		var position = new Vector2(dimensions.X + dimensions.Width * 0.5f, dimensions.Y + dimensions.Height * 0.5f);
 
-		spriteBatch.Draw(
-			itemTexture,
-			position,
-			null,
-			Color.White,
-			0f,
-			itemTexture.Size() * 0.5f,
-			scale,
-			SpriteEffects.None,
-			0f);
+		Rectangle inner = GetInnerDimensions().ToRectangle();
+		float oldScale = Main.inventoryScale;
+		var oldBack9 = TextureAssets.InventoryBack9;
+		TextureAssets.InventoryBack9 = GetSlotTexture(_entry.Evaluation.Tier);
+
+		Main.inventoryScale = 1f;
+		ItemSlot.Draw(spriteBatch, ref _item, ItemSlot.Context.TrashItem, inner.TopLeft());
+
+		TextureAssets.InventoryBack9 = oldBack9;
+		Main.inventoryScale = oldScale;
 
 		if (IsMouseHovering) {
 			Main.hoverItemName = _entry.Entry.GetDisplayName();
 		}
 	}
 
-	private static Color GetSlotColor(RecommendationTier tier) => tier switch
+	private static Asset<Texture2D> GetSlotTexture(RecommendationTier tier) => tier switch
 	{
-		RecommendationTier.Recommended => new Color(130, 210, 150),
-		RecommendationTier.Situational => new Color(214, 191, 103),
-		RecommendationTier.NotRecommended => new Color(222, 148, 98),
-		RecommendationTier.Useless => new Color(214, 110, 110),
-		_ => Color.White
+		RecommendationTier.Recommended => TextureAssets.InventoryBack3,
+		RecommendationTier.Situational => TextureAssets.InventoryBack8,
+		RecommendationTier.NotRecommended => TextureAssets.InventoryBack13,
+		RecommendationTier.Useless => TextureAssets.InventoryBack11,
+		_ => TextureAssets.InventoryBack9
 	};
 }
