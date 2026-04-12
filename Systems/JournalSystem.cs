@@ -142,6 +142,16 @@ public sealed class JournalSystem : ModSystem
 		RefreshView();
 	}
 
+	public void SelectClass(CombatClass combatClass)
+	{
+		if (SelectedClass == combatClass) {
+			return;
+		}
+
+		SelectedClass = combatClass;
+		RefreshView();
+	}
+
 	public void CycleStage(int direction)
 	{
 		SelectedStage = Cycle(StageOrder, SelectedStage, direction);

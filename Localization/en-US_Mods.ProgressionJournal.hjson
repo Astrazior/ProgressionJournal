@@ -1,56 +1,72 @@
 # This file will automatically update with entries for new content after a build and reload.
 
-Mods: {
-	ProgressionJournal: {
-		UI: {
-			Title: Progression Journal
-			Stage: Stage
-			Class: Class
-			Close: Close
-			UseCurrentStage: Sync with world
-			InventoryButtonTooltip: Open Progression Journal
-			OverviewTab: Overview
-			PresetsTab: Presets
-			PresetsEmptyState: No presets exist for this class and stage yet.
-			Weapons: Weapons
-			ArmorLabel: Armor
-			Accessories: Accessories
-			None: None
-			EmptyState: No guide entries exist for this class and stage yet.
-		}
+UI: {
+	Title: Progression Journal
+	Subtitle: Static equipment guide for every stage and class
+	Stage: Stage
+	Class: Class
+	Close: Close
+	UseCurrentStage: Sync with world
+	InventoryButtonTooltip: Open Progression Journal
+	OverviewTab: All items
+	PresetsTab: Builds
+	StageSelectorTitle: Progress stage
+	ClassSelectorTitle: Class selection
+	LegendTitle: Recommendation types
+	OverviewHeadline: Items for the selected stage
+	OverviewDescription: All manually rated items for this class at the selected stage.
+	PresetsHeadline: Ready builds
+	PresetsDescription: Quick presets with armor, accessories, and weapons.
+	PresetSubtitle: Prebuilt loadout for players who do not want to assemble one manually.
+	StageProgress: Stage {0} of {1}
+	StageMatchesWorld: Matches the world.
+	StageDiffersFromWorld: World: {0}
+	EntriesCount: Entries: {0}
+	PresetsCount: Builds: {0}
+	TierLegendRecommended: core picks
+	TierLegendSituational: niche use
+	TierLegendNotRecommended: usually skip
+	TierLegendUseless: outdated
+	EntryContains: Includes: {0}
+	EntrySingleItem: Main item for this slot.
+	PresetsEmptyState: No presets exist for this class and stage yet.
+	Weapons: Weapons
+	ArmorLabel: Armor
+	Accessories: Accessories
+	None: None
+	EmptyState: No guide entries exist for this class and stage yet.
+}
 
-		Classes: {
-			Melee: Melee
-			Ranged: Ranged
-			Magic: Magic
-			Summoner: Summoner
-		}
+Classes: {
+	Melee: Melee
+	Ranged: Ranged
+	Magic: Magic
+	Summoner: Summoner
+}
 
-		Stages: {
-			PreBoss: Pre-boss
-			PostEyeOfCthulhu: Post Eye of Cthulhu
-			PostWorldEvil: Post world evil
-			PostSkeletron: Post Skeletron
-			HardmodeEntry: Hardmode entry
-			PostMechBosses: Post mech bosses
-			PostPlantera: Post Plantera
-			PostGolem: Post Golem
-			PostMoonLord: Post Moon Lord
-		}
+Stages: {
+	PreBoss: Pre-boss
+	PostEyeOfCthulhu: Post Eye of Cthulhu
+	PostWorldEvil: Post world evil
+	PostSkeletron: Post Skeletron
+	HardmodeEntry: Hardmode entry
+	PostMechBosses: Post mech bosses
+	PostPlantera: Post Plantera
+	PostGolem: Post Golem
+	PostMoonLord: Post Moon Lord
+}
 
-		Categories: {
-			Weapon: Weapon
-			Armor: Armor
-			Accessory: Accessory
-		}
+Categories: {
+	Weapon: Weapon
+	Armor: Armor
+	Accessory: Accessory
+}
 
-		Tiers: {
-			Recommended: Recommended
-			Situational: Situational
-			NotRecommended: Not recommended
-			Useless: Useless
-		}
-	}
+Tiers: {
+	Recommended: Recommended
+	Situational: Situational
+	NotRecommended: Not recommended
+	Useless: Useless
 }
 
 "Keybinds.Toggle Progression Journal.DisplayName": Toggle Progression Journal

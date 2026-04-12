@@ -1,56 +1,72 @@
 # This file will automatically update with entries for new content after a build and reload.
 
-Mods: {
-	ProgressionJournal: {
-		UI: {
-			Title: Журнал прогрессии
-			Stage: Стадия
-			Class: Класс
-			Close: Закрыть
-			UseCurrentStage: Текущая стадия мира
-			InventoryButtonTooltip: Открыть Progression Journal
-			OverviewTab: Список
-			PresetsTab: Пресеты
-			PresetsEmptyState: Для этой стадии и класса пресеты пока не заполнены.
-			Weapons: Оружие
-			ArmorLabel: Броня
-			Accessories: Аксессуары
-			None: Ничего
-			EmptyState: Для этого класса и этой стадии записи пока не заполнены.
-		}
-
-		Classes: {
-			Melee: Воин
-			Ranged: Стрелок
-			Magic: Маг
-			Summoner: Призыватель
-		}
-
-		Stages: {
-			PreBoss: До боссов
-			PostEyeOfCthulhu: После Глаза Ктулху
-			PostWorldEvil: После мирового зла
-			PostSkeletron: После Скелетрона
-			HardmodeEntry: Начало хардмода
-			PostMechBosses: После мех-боссов
-			PostPlantera: После Плантеры
-			PostGolem: После Голема
-			PostMoonLord: После Лунного лорда
-		}
-
-		Categories: {
-			Weapon: Оружие
-			Armor: Броня
-			Accessory: Аксессуар
-		}
-
-		Tiers: {
-			Recommended: Рекомендуемое
-			Situational: Ситуативное
-			NotRecommended: Нерекомендуемое
-			Useless: Бесполезное
-		}
-	}
+UI: {
+	Title: Журнал прогрессии
+	Subtitle: Статичный гайд по экипировке для каждого этапа и класса
+	Stage: Стадия
+	Class: Класс
+	Close: Закрыть
+	UseCurrentStage: Синхронизировать с миром
+	InventoryButtonTooltip: Открыть журнал прогрессии
+	OverviewTab: Все предметы
+	PresetsTab: Сборки
+	StageSelectorTitle: Этап прохождения
+	ClassSelectorTitle: Выбор класса
+	LegendTitle: Типы рекомендаций
+	OverviewHeadline: Предметы для выбранного этапа
+	OverviewDescription: Все вручную оцененные предметы для этого класса на текущем этапе.
+	PresetsHeadline: Готовые сборки
+	PresetsDescription: Быстрые пресеты брони, аксессуаров и оружия.
+	PresetSubtitle: Готовый набор для тех, кто не хочет собирать билд вручную.
+	StageProgress: Этап {0} из {1}
+	StageMatchesWorld: Совпадает с миром.
+	StageDiffersFromWorld: Мир: {0}
+	EntriesCount: Записей: {0}
+	PresetsCount: Сборок: {0}
+	TierLegendRecommended: основа билда
+	TierLegendSituational: под задачу
+	TierLegendNotRecommended: редко стоит брать
+	TierLegendUseless: уже устарело
+	EntryContains: Содержит: {0}
+	EntrySingleItem: Основной предмет для этого слота.
+	PresetsEmptyState: Для этой стадии и класса пресеты пока не заполнены.
+	Weapons: Оружие
+	ArmorLabel: Броня
+	Accessories: Аксессуары
+	None: Ничего
+	EmptyState: Для этого класса и этой стадии записи пока не заполнены.
 }
 
-"Keybinds.Toggle Progression Journal.DisplayName": Открыть Progression Journal
+Classes: {
+	Melee: Воин
+	Ranged: Стрелок
+	Magic: Маг
+	Summoner: Призыватель
+}
+
+Stages: {
+	PreBoss: До боссов
+	PostEyeOfCthulhu: После Глаза Ктулху
+	PostWorldEvil: После мирового зла
+	PostSkeletron: После Скелетрона
+	HardmodeEntry: Начало хардмода
+	PostMechBosses: После мех-боссов
+	PostPlantera: После Плантеры
+	PostGolem: После Голема
+	PostMoonLord: После Лунного лорда
+}
+
+Categories: {
+	Weapon: Оружие
+	Armor: Броня
+	Accessory: Аксессуар
+}
+
+Tiers: {
+	Recommended: Рекомендуемое
+	Situational: Ситуативное
+	NotRecommended: Нерекомендуемое
+	Useless: Бесполезное
+}
+
+"Keybinds.Toggle Progression Journal.DisplayName": Открыть журнал прогрессии
