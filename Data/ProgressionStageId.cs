@@ -7,8 +7,10 @@ public enum ProgressionStageId
 	PostWorldEvil,
 	PostSkeletron,
 	HardmodeEntry,
-	PostMechBosses,
+	PostOneMechBoss,
+	PostThreeMechBosses,
 	PostPlantera,
 	PostGolem,
+	PostCelestialPillars,
 	PostMoonLord
 }

@@ -34,6 +34,9 @@ public sealed class JournalUIState : UIState
 	private const float SyncTabWidth = 210f;
 	private const float CloseTabWidth = 112f;
 	private const float ActionTabHeight = 32f;
+	private const float MinSingleColumnStageButtonHeight = 40f;
+	private const float StageButtonGap = 6f;
+	private const float StageButtonColumnGap = 8f;
 
 	private static readonly CombatClass[] ClassOrder =
 	[
@@ -118,7 +121,7 @@ public sealed class JournalUIState : UIState
 
 		foreach (var stage in ProgressionStageCatalog.All) {
 			var button = _stageButtons[stage.Id];
-			button.SetText(TrimForUi(Language.GetTextValue(stage.LocalizationKey), 28));
+			button.SetText(TrimForUi(Language.GetTextValue(stage.LocalizationKey), GetStageButtonMaxTextLength()));
 			StyleStageButton(button, stage.Id == stageId);
 		}
 
@@ -219,7 +222,7 @@ public sealed class JournalUIState : UIState
 
 		foreach (var stage in ProgressionStageCatalog.All) {
 			var capturedStage = stage.Id;
-			var button = CreateButton(string.Empty, 0f, 44f, () => JournalSystem.SelectStage(capturedStage), 0.78f);
+			var button = CreateButton(string.Empty, 0f, 44f, () => JournalSystem.SelectStage(capturedStage), 0.9f);
 			button.Left.Set(0f, 0f);
 			button.Width.Set(0f, 1f);
 			_stageListContainer.Append(button);
@@ -246,19 +249,19 @@ public sealed class JournalUIState : UIState
 		const float tabGap = 12f;
 		float widthOffset = -2f * tabGap / 3f;
 
-		_classButton = CreateButton(string.Empty, 0f, 34f, () => JournalSystem.ShowClassSelection(), 0.72f);
+		_classButton = CreateButton(string.Empty, 0f, 34f, () => JournalSystem.ShowClassSelection(), 0.92f);
 		_classButton.Left.Set(0f, 0f);
 		_classButton.Top.Set(2f, 0f);
 		_classButton.Width.Set(widthOffset, 1f / 3f);
 		_contentTabsPanel.Append(_classButton);
 
-		_overviewTabButton = CreateButton(string.Empty, 0f, 34f, () => JournalSystem.ShowOverviewTab(), 0.72f);
+		_overviewTabButton = CreateButton(string.Empty, 0f, 34f, () => JournalSystem.ShowOverviewTab(), 0.92f);
 		_overviewTabButton.Left.Set(tabGap / 3f, 1f / 3f);
 		_overviewTabButton.Top.Set(2f, 0f);
 		_overviewTabButton.Width.Set(widthOffset, 1f / 3f);
 		_contentTabsPanel.Append(_overviewTabButton);
 
-		_presetsTabButton = CreateButton(string.Empty, 0f, 34f, () => JournalSystem.ShowPresetsTab(), 0.72f);
+		_presetsTabButton = CreateButton(string.Empty, 0f, 34f, () => JournalSystem.ShowPresetsTab(), 0.92f);
 		_presetsTabButton.Left.Set(tabGap * 2f / 3f, 2f / 3f);
 		_presetsTabButton.Top.Set(2f, 0f);
 		_presetsTabButton.Width.Set(widthOffset, 1f / 3f);
@@ -559,24 +562,43 @@ public sealed class JournalUIState : UIState
 		}
 
 		float availableHeight = _stageListContainer.GetInnerDimensions().Height;
+		float availableWidth = _stageListContainer.GetInnerDimensions().Width;
 		if (availableHeight <= 0f) {
 			return;
 		}
 
-		const float gap = 6f;
-		float buttonHeight = (availableHeight - gap * (StageOrder.Length - 1)) / StageOrder.Length;
-		buttonHeight = MathF.Max(44f, buttonHeight);
+		int columns = GetStageButtonColumnCount(availableHeight);
+		int rows = (int)MathF.Ceiling(StageOrder.Length / (float)columns);
+		float buttonHeight = (availableHeight - StageButtonGap * (rows - 1)) / rows;
+		float buttonWidth = columns == 1
+			? availableWidth
+			: (availableWidth - StageButtonColumnGap * (columns - 1)) / columns;
 
-		float top = 0f;
-		foreach (var stageId in StageOrder) {
+		for (int index = 0; index < StageOrder.Length; index++) {
+			var stageId = StageOrder[index];
 			var button = _stageButtons[stageId];
-			button.Top.Set(top, 0f);
+			int row = index / columns;
+			int column = index % columns;
+			bool isTrailingSingleButton = columns > 1 && StageOrder.Length % columns != 0 && index == StageOrder.Length - 1;
+			float top = row * (buttonHeight + StageButtonGap);
+			float left = isTrailingSingleButton ? 0f : column * (buttonWidth + StageButtonColumnGap);
+
+			button.Left.Set(left, 0f);
 			button.Height.Set(buttonHeight, 0f);
-			top += buttonHeight + gap;
+			button.Top.Set(top, 0f);
+			button.Width.Set(isTrailingSingleButton ? availableWidth : buttonWidth, 0f);
 		}
 
 		_stageListContainer.Recalculate();
 	}
+
+	private static int GetStageButtonColumnCount(float availableHeight)
+	{
+		float singleColumnButtonHeight = (availableHeight - StageButtonGap * (StageOrder.Length - 1)) / StageOrder.Length;
+		return singleColumnButtonHeight >= MinSingleColumnStageButtonHeight ? 1 : 2;
+	}
+
+	private static int GetStageButtonMaxTextLength() => StageOrder.Length > 9 ? 18 : 28;
 
 	private void SwitchContentMode(bool selectingClass)
 	{

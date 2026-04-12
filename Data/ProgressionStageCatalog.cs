@@ -13,18 +13,25 @@ public static class ProgressionStageCatalog
 		new (ProgressionStageId.PostWorldEvil, "Mods.ProgressionJournal.Stages.PostWorldEvil", static () => NPC.downedBoss2),
 		new (ProgressionStageId.PostSkeletron, "Mods.ProgressionJournal.Stages.PostSkeletron", static () => NPC.downedBoss3),
 		new (ProgressionStageId.HardmodeEntry, "Mods.ProgressionJournal.Stages.HardmodeEntry", static () => Main.hardMode),
-		new (ProgressionStageId.PostMechBosses, "Mods.ProgressionJournal.Stages.PostMechBosses", static () => NPC.downedMechBossAny),
+		new (ProgressionStageId.PostOneMechBoss, "Mods.ProgressionJournal.Stages.PostOneMechBoss", static () => NPC.downedMechBossAny),
+		new (ProgressionStageId.PostThreeMechBosses, "Mods.ProgressionJournal.Stages.PostThreeMechBosses", static () => NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3),
 		new (ProgressionStageId.PostPlantera, "Mods.ProgressionJournal.Stages.PostPlantera", static () => NPC.downedPlantBoss),
 		new (ProgressionStageId.PostGolem, "Mods.ProgressionJournal.Stages.PostGolem", static () => NPC.downedGolemBoss),
+		new (ProgressionStageId.PostCelestialPillars, "Mods.ProgressionJournal.Stages.PostCelestialPillars", static () => NPC.downedAncientCultist),
 		new (ProgressionStageId.PostMoonLord, "Mods.ProgressionJournal.Stages.PostMoonLord", static () => NPC.downedMoonlord)
 	];
 
 	private static readonly Dictionary<ProgressionStageId, ProgressionStage> StagesById =
 		OrderedStages.ToDictionary(stage => stage.Id);
+	private static readonly Dictionary<ProgressionStageId, int> StageOrderIndices =
+		OrderedStages.Select((stage, index) => new KeyValuePair<ProgressionStageId, int>(stage.Id, index))
+			.ToDictionary(pair => pair.Key, pair => pair.Value);
 
 	public static IReadOnlyList<ProgressionStage> All => OrderedStages;
 
 	public static ProgressionStage Get(ProgressionStageId stageId) => StagesById[stageId];
+
+	public static int GetStageOrderIndex(ProgressionStageId stageId) => StageOrderIndices[stageId];
 
 	public static ProgressionStageId GetCurrentStageId()
 	{
@@ -33,10 +40,7 @@ public static class ProgressionStageCatalog
 		foreach (var stage in OrderedStages) {
 			if (stage.IsUnlocked()) {
 				current = stage;
-				continue;
 			}
-
-			break;
 		}
 
 		return current.Id;

@@ -14,12 +14,14 @@ public sealed class JournalEntry
 		JournalItemCategory category,
 		CombatClass classes,
 		IEnumerable<int> itemIds,
-		IEnumerable<StageEvaluation> evaluations)
+		IEnumerable<StageEvaluation> evaluations,
+		OptionalBossRequirementId? optionalBossRequirement = null)
 	{
 		Key = key;
 		Category = category;
 		Classes = classes;
 		ItemIds = itemIds.Distinct().ToArray();
+		OptionalBossRequirement = optionalBossRequirement;
 
 		if (ItemIds.Count == 0) {
 			throw new ArgumentException("A journal entry must contain at least one item id.", nameof(itemIds));
@@ -39,11 +41,54 @@ public sealed class JournalEntry
 
 	public int RepresentativeItemId { get; }
 
+	public OptionalBossRequirementId? OptionalBossRequirement { get; }
+
+	public bool HasOptionalBossRequirement => OptionalBossRequirement.HasValue;
+
 	public bool AppliesToClass(CombatClass combatClass) => (Classes & combatClass) != 0;
 
-	public bool TryGetEvaluation(ProgressionStageId stageId, out StageEvaluation evaluation) => _evaluations.TryGetValue(stageId, out evaluation!);
+	public bool TryGetEvaluation(ProgressionStageId stageId, out StageEvaluation evaluation)
+	{
+		if (_evaluations.TryGetValue(stageId, out evaluation!)) {
+			return true;
+		}
 
-	public StageEvaluation GetEvaluation(ProgressionStageId stageId) => _evaluations[stageId];
+		int targetIndex = ProgressionStageCatalog.GetStageOrderIndex(stageId);
+		StageEvaluation? nearestPreviousEvaluation = null;
+		int nearestPreviousIndex = -1;
+		bool hasLaterEvaluation = false;
+
+		foreach (var pair in _evaluations) {
+			int evaluationIndex = ProgressionStageCatalog.GetStageOrderIndex(pair.Key);
+
+			if (evaluationIndex < targetIndex && evaluationIndex > nearestPreviousIndex) {
+				nearestPreviousEvaluation = pair.Value;
+				nearestPreviousIndex = evaluationIndex;
+				continue;
+			}
+
+			if (evaluationIndex > targetIndex) {
+				hasLaterEvaluation = true;
+			}
+		}
+
+		if (nearestPreviousEvaluation is not null && hasLaterEvaluation) {
+			evaluation = nearestPreviousEvaluation;
+			return true;
+		}
+
+		evaluation = null!;
+		return false;
+	}
+
+	public StageEvaluation GetEvaluation(ProgressionStageId stageId)
+	{
+		if (TryGetEvaluation(stageId, out var evaluation)) {
+			return evaluation;
+		}
+
+		throw new KeyNotFoundException($"No evaluation exists for stage '{stageId}' in entry '{Key}'.");
+	}
 
 	public string GetDisplayName() => string.Join(" / ", ItemIds.Select(Lang.GetItemNameValue));
 }

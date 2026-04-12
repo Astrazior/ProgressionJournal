@@ -47,10 +47,10 @@ public static class JournalRepository
 
 			Entry("nightsEdge", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.NightsEdge,
 				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Situational)),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Situational)),
 
 			Entry("excalibur", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Excalibur,
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Recommended),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
 
 			Entry("terraBlade", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.TerraBlade,
@@ -71,10 +71,10 @@ public static class JournalRepository
 			Entry("moltenFury", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.MoltenFury,
 				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Situational)),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Situational)),
 
 			Entry("megashark", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.Megashark,
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Recommended),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.PostGolem, RecommendationTier.Situational)),
 
@@ -96,10 +96,10 @@ public static class JournalRepository
 			Entry("demonScythe", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.DemonScythe,
 				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Situational)),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Situational)),
 
 			Entry("meteorStaff", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.MeteorStaff,
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Recommended),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.PostGolem, RecommendationTier.Situational)),
 
@@ -120,14 +120,14 @@ public static class JournalRepository
 
 			Entry("impStaff", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.ImpStaff,
 				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Situational)),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Situational)),
 
 			Entry("sanguineStaff", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.SanguineStaff,
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Recommended),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
 
 			Entry("opticStaff", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.OpticStaff,
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Recommended),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.PostGolem, RecommendationTier.Situational)),
 
@@ -150,12 +150,12 @@ public static class JournalRepository
 
 			Entry("obsidianShield", JournalItemCategory.Accessory, CombatClass.All, ItemID.ObsidianShield,
 				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Recommended),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
 
 			Entry("leafWings", JournalItemCategory.Accessory, CombatClass.All, ItemID.LeafWings,
 				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Recommended),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
 
 			Entry("ankhShield", JournalItemCategory.Accessory, CombatClass.All, ItemID.AnkhShield,
@@ -177,6 +177,7 @@ public static class JournalRepository
 
 			Set("beeArmor", JournalItemCategory.Armor, CombatClass.Summoner,
 				ItemID.BeeHeadgear, ItemID.BeeBreastplate, ItemID.BeeGreaves,
+				OptionalBossRequirementId.QueenBee,
 				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Situational)),
@@ -185,37 +186,37 @@ public static class JournalRepository
 				ItemID.NecroHelmet, ItemID.NecroBreastplate, ItemID.NecroGreaves,
 				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Situational)),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Situational)),
 
 			Set("moltenArmor", JournalItemCategory.Armor, CombatClass.Melee,
 				ItemID.MoltenHelmet, ItemID.MoltenBreastplate, ItemID.MoltenGreaves,
 				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Situational)),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Situational)),
 
 			Set("spiderArmor", JournalItemCategory.Armor, CombatClass.Summoner,
 				ItemID.SpiderMask, ItemID.SpiderBreastplate, ItemID.SpiderGreaves,
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Recommended),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
 
 			Set("hallowedMeleeArmor", JournalItemCategory.Armor, CombatClass.Melee,
 				ItemID.HallowedHelmet, ItemID.HallowedPlateMail, ItemID.HallowedGreaves,
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Recommended),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
 
 			Set("hallowedRangedArmor", JournalItemCategory.Armor, CombatClass.Ranged,
 				ItemID.HallowedMask, ItemID.HallowedPlateMail, ItemID.HallowedGreaves,
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Recommended),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
 
 			Set("hallowedMagicArmor", JournalItemCategory.Armor, CombatClass.Magic,
 				ItemID.HallowedHeadgear, ItemID.HallowedPlateMail, ItemID.HallowedGreaves,
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Recommended),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
 
 			Set("hallowedSummonerArmor", JournalItemCategory.Armor, CombatClass.Summoner,
 				ItemID.HallowedHood, ItemID.HallowedPlateMail, ItemID.HallowedGreaves,
-				Eval(ProgressionStageId.PostMechBosses, RecommendationTier.Recommended),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
 				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
 
 			Set("turtleArmor", JournalItemCategory.Armor, CombatClass.Melee,
@@ -261,9 +262,25 @@ public static class JournalRepository
 		return Array.Empty<JournalPreset>();
 	}
 
-	private static JournalEntry Entry(string key, JournalItemCategory category, CombatClass classes, int itemId, params StageEvaluation[] evaluations)
+	private static JournalEntry Entry(
+		string key,
+		JournalItemCategory category,
+		CombatClass classes,
+		int itemId,
+		params StageEvaluation[] evaluations)
 	{
 		return new JournalEntry(key, category, classes, [itemId], evaluations);
+	}
+
+	private static JournalEntry Entry(
+		string key,
+		JournalItemCategory category,
+		CombatClass classes,
+		int itemId,
+		OptionalBossRequirementId optionalBossRequirement,
+		params StageEvaluation[] evaluations)
+	{
+		return new JournalEntry(key, category, classes, [itemId], evaluations, optionalBossRequirement);
 	}
 
 	private static JournalEntry Set(
@@ -276,6 +293,19 @@ public static class JournalRepository
 		params StageEvaluation[] evaluations)
 	{
 		return new JournalEntry(key, category, classes, [firstItemId, secondItemId, thirdItemId], evaluations);
+	}
+
+	private static JournalEntry Set(
+		string key,
+		JournalItemCategory category,
+		CombatClass classes,
+		int firstItemId,
+		int secondItemId,
+		int thirdItemId,
+		OptionalBossRequirementId optionalBossRequirement,
+		params StageEvaluation[] evaluations)
+	{
+		return new JournalEntry(key, category, classes, [firstItemId, secondItemId, thirdItemId], evaluations, optionalBossRequirement);
 	}
 
 	private static StageEvaluation Eval(ProgressionStageId stageId, RecommendationTier tier)
