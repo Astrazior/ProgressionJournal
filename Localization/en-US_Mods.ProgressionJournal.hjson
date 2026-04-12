@@ -1,0 +1,49 @@
+# This file will automatically update with entries for new content after a build and reload.
+
+Mods: {
+	ProgressionJournal: {
+		UI: {
+			Title: Progression Journal
+			Stage: Stage
+			Class: Class
+			Close: Close
+			UseCurrentStage: Sync with world
+			InventoryButtonTooltip: Open Progression Journal
+			EmptyState: No guide entries exist for this class and stage yet.
+		}
+
+		Classes: {
+			Melee: Melee
+			Ranged: Ranged
+			Magic: Magic
+			Summoner: Summoner
+		}
+
+		Stages: {
+			PreBoss: Pre-boss
+			PostEyeOfCthulhu: Post Eye of Cthulhu
+			PostWorldEvil: Post world evil
+			PostSkeletron: Post Skeletron
+			HardmodeEntry: Hardmode entry
+			PostMechBosses: Post mech bosses
+			PostPlantera: Post Plantera
+			PostGolem: Post Golem
+			PostMoonLord: Post Moon Lord
+		}
+
+		Categories: {
+			Weapon: Weapon
+			Armor: Armor
+			Accessory: Accessory
+		}
+
+		Tiers: {
+			Recommended: Recommended
+			Situational: Situational
+			NotRecommended: Not recommended
+			Useless: Useless
+		}
+	}
+}
+
+"Keybinds.Toggle Progression Journal.DisplayName": Toggle Progression Journal
