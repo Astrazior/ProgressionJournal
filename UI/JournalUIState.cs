@@ -15,8 +15,8 @@ namespace ProgressionJournal.UI;
 
 public sealed class JournalUIState : UIState
 {
-	private const int EntriesPerRow = 6;
-	private const float SlotPitch = 56f;
+	private const int EntrySlotsPerRow = 6;
+	private const float EntrySpacing = 4f;
 	private const float BlockHorizontalPadding = 14f;
 	private const float BlockVerticalPadding = 12f;
 	private const float BlockTitleHeight = 28f;
@@ -333,13 +333,26 @@ public sealed class JournalUIState : UIState
 		}
 	}
 
-	private static IEnumerable<JournalStageEntry[]> ChunkEntries(JournalStageEntry[] entries, int chunkSize)
+	private static IEnumerable<JournalStageEntry[]> ChunkEntries(IReadOnlyList<JournalStageEntry> entries, int maxSlotsPerRow)
 	{
-		for (int i = 0; i < entries.Length; i += chunkSize) {
-			int length = Math.Min(chunkSize, entries.Length - i);
-			var chunk = new JournalStageEntry[length];
-			Array.Copy(entries, i, chunk, 0, length);
-			yield return chunk;
+		var row = new List<JournalStageEntry>();
+		int occupiedSlots = 0;
+
+		foreach (var entry in entries) {
+			int entrySlots = Math.Max(1, entry.Entry.ItemIds.Count);
+
+			if (row.Count > 0 && occupiedSlots + entrySlots > maxSlotsPerRow) {
+				yield return row.ToArray();
+				row.Clear();
+				occupiedSlots = 0;
+			}
+
+			row.Add(entry);
+			occupiedSlots += entrySlots;
+		}
+
+		if (row.Count > 0) {
+			yield return row.ToArray();
 		}
 	}
 
@@ -427,7 +440,7 @@ public sealed class JournalUIState : UIState
 		block.Append(titleText);
 		top += BlockTitleHeight;
 
-		foreach (var rowEntries in ChunkEntries(entries.ToArray(), EntriesPerRow)) {
+		foreach (var rowEntries in ChunkEntries(entries, EntrySlotsPerRow)) {
 			var row = CreateSlotRow(rowEntries);
 			row.Left.Set(BlockHorizontalPadding, 0f);
 			row.Top.Set(top, 0f);
@@ -442,25 +455,38 @@ public sealed class JournalUIState : UIState
 	private static UIElement CreateSlotRow(JournalStageEntry[] entries)
 	{
 		var row = new UIElement();
-		row.Width.Set(GetRowWidth(entries.Length), 0f);
+		row.Width.Set(GetRowWidth(entries), 0f);
 		row.Height.Set(RowHeight, 0f);
+
+		float left = 0f;
 
 		for (int index = 0; index < entries.Length; index++) {
 			var slot = new JournalEntrySlot(entries[index]);
-			slot.Left.Set(index * SlotPitch, 0f);
+			slot.Left.Set(left, 0f);
 			row.Append(slot);
+			left += JournalEntrySlot.GetVisualWidth(entries[index].Entry.ItemIds.Count) + EntrySpacing;
 		}
 
 		return row;
 	}
 
-	private static float GetRowWidth(int entryCount)
+	private static float GetRowWidth(IReadOnlyList<JournalStageEntry> entries)
 	{
-		if (entryCount <= 0) {
+		if (entries.Count <= 0) {
 			return 0f;
 		}
 
-		return JournalEntrySlot.WidthPixels + ((entryCount - 1) * SlotPitch);
+		float totalWidth = 0f;
+
+		for (int index = 0; index < entries.Count; index++) {
+			totalWidth += JournalEntrySlot.GetVisualWidth(entries[index].Entry.ItemIds.Count);
+
+			if (index < entries.Count - 1) {
+				totalWidth += EntrySpacing;
+			}
+		}
+
+		return totalWidth;
 	}
 
 	private static string TrimForUi(string text, int maxLength)
