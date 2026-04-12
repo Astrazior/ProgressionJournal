@@ -16,18 +16,36 @@ public sealed class JournalEntry
 		IEnumerable<int> itemIds,
 		IEnumerable<StageEvaluation> evaluations,
 		OptionalBossRequirementId? optionalBossRequirement = null)
+		: this(
+			key,
+			category,
+			classes,
+			itemIds.Select(itemId => new JournalItemGroup([itemId])),
+			evaluations,
+			optionalBossRequirement)
+	{
+	}
+
+	public JournalEntry(
+		string key,
+		JournalItemCategory category,
+		CombatClass classes,
+		IEnumerable<JournalItemGroup> itemGroups,
+		IEnumerable<StageEvaluation> evaluations,
+		OptionalBossRequirementId? optionalBossRequirement = null)
 	{
 		Key = key;
 		Category = category;
 		Classes = classes;
-		ItemIds = itemIds.Distinct().ToArray();
+		ItemGroups = itemGroups.ToArray();
 		OptionalBossRequirement = optionalBossRequirement;
 
-		if (ItemIds.Count == 0) {
-			throw new ArgumentException("A journal entry must contain at least one item id.", nameof(itemIds));
+		if (ItemGroups.Count == 0) {
+			throw new ArgumentException("A journal entry must contain at least one item group.", nameof(itemGroups));
 		}
 
-		RepresentativeItemId = ItemIds[0];
+		ItemIds = ItemGroups.SelectMany(group => group.ItemIds).ToArray();
+		RepresentativeItemId = ItemGroups[0].RepresentativeItemId;
 		_evaluations = evaluations.ToDictionary(evaluation => evaluation.StageId);
 	}
 
@@ -36,6 +54,8 @@ public sealed class JournalEntry
 	public JournalItemCategory Category { get; }
 
 	public CombatClass Classes { get; }
+
+	public IReadOnlyList<JournalItemGroup> ItemGroups { get; }
 
 	public IReadOnlyList<int> ItemIds { get; }
 
@@ -90,5 +110,5 @@ public sealed class JournalEntry
 		throw new KeyNotFoundException($"No evaluation exists for stage '{stageId}' in entry '{Key}'.");
 	}
 
-	public string GetDisplayName() => string.Join(" / ", ItemIds.Select(Lang.GetItemNameValue));
+	public string GetDisplayName() => string.Join(" + ", ItemGroups.Select(group => group.GetDisplayName()));
 }

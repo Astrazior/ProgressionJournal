@@ -22,6 +22,7 @@ public sealed class JournalUIState : UIState
 	private const float BlockTitleHeight = 28f;
 	private const float RowHeight = 56f;
 	private const float RowSpacing = 6f;
+	private const float CategorySpacing = 8f;
 	private const float OuterPadding = 12f;
 	private const float PanelGap = 12f;
 	private const float HeaderHeight = 72f;
@@ -48,6 +49,13 @@ public sealed class JournalUIState : UIState
 
 	private static readonly ProgressionStageId[] StageOrder =
 		ProgressionStageCatalog.All.Select(stage => stage.Id).ToArray();
+
+	private static readonly JournalItemCategory[] EntryCategoryOrder =
+	[
+		JournalItemCategory.Weapon,
+		JournalItemCategory.Armor,
+		JournalItemCategory.Accessory
+	];
 
 	private readonly Dictionary<ProgressionStageId, JournalTextButton> _stageButtons = new();
 	private UIPanel _root = null!;
@@ -338,23 +346,33 @@ public sealed class JournalUIState : UIState
 			return;
 		}
 
-		var recommendedTiers = new[] { RecommendationTier.Recommended, RecommendationTier.Situational };
-		if (HasEntriesForAnyTier(entries, recommendedTiers)) {
-			_entryList.Add(CreateRecommendationBlock(
-				Language.GetTextValue("Mods.ProgressionJournal.UI.RecommendedBlock"),
-				GetEntriesForTiers(entries, recommendedTiers),
-				new Color(26, 48, 37),
-				new Color(108, 176, 128)));
-		}
+		AppendTierBlock(
+			entries,
+			RecommendationTier.Recommended,
+			"Mods.ProgressionJournal.UI.RecommendedBlock",
+			new Color(22, 56, 33),
+			new Color(90, 196, 116));
 
-		var notRecommendedTiers = new[] { RecommendationTier.NotRecommended, RecommendationTier.Useless };
-		if (HasEntriesForAnyTier(entries, notRecommendedTiers)) {
-			_entryList.Add(CreateRecommendationBlock(
-				Language.GetTextValue("Mods.ProgressionJournal.UI.NotRecommendedBlock"),
-				GetEntriesForTiers(entries, notRecommendedTiers),
-				new Color(52, 34, 34),
-				new Color(176, 116, 116)));
-		}
+		AppendTierBlock(
+			entries,
+			RecommendationTier.Additional,
+			"Mods.ProgressionJournal.UI.AdditionalBlock",
+			new Color(44, 54, 26),
+			new Color(190, 178, 94));
+
+		AppendTierBlock(
+			entries,
+			RecommendationTier.NotRecommended,
+			"Mods.ProgressionJournal.UI.NotRecommendedBlock",
+			new Color(64, 34, 48),
+			new Color(205, 116, 160));
+
+		AppendTierBlock(
+			entries,
+			RecommendationTier.Useless,
+			"Mods.ProgressionJournal.UI.UselessBlock",
+			new Color(76, 22, 22),
+			new Color(228, 72, 72));
 	}
 
 	private void AppendPresets(IReadOnlyList<JournalPreset> presets)
@@ -375,7 +393,7 @@ public sealed class JournalUIState : UIState
 		int occupiedSlots = 0;
 
 		foreach (var entry in entries) {
-			int entrySlots = Math.Max(1, entry.Entry.ItemIds.Count);
+			int entrySlots = Math.Max(1, entry.Entry.ItemGroups.Count);
 
 			if (row.Count > 0 && occupiedSlots + entrySlots > maxSlotsPerRow) {
 				yield return row.ToArray();
@@ -397,14 +415,73 @@ public sealed class JournalUIState : UIState
 		return entries.Any(entry => tiers.Contains(entry.Evaluation.Tier));
 	}
 
+	private void AppendTierBlock(
+		IReadOnlyList<JournalStageEntry> entries,
+		RecommendationTier tier,
+		string titleKey,
+		Color backgroundColor,
+		Color borderColor)
+	{
+		var tiers = new[] { tier };
+		if (!HasEntriesForAnyTier(entries, tiers)) {
+			return;
+		}
+
+		_entryList.Add(CreateRecommendationBlock(
+			Language.GetTextValue(titleKey),
+			GetEntriesForTiers(entries, tiers),
+			backgroundColor,
+			borderColor));
+	}
+
 	private static JournalStageEntry[] GetEntriesForTiers(IReadOnlyList<JournalStageEntry> entries, RecommendationTier[] tiers)
 	{
 		return entries
 			.Where(entry => tiers.Contains(entry.Evaluation.Tier))
 			.OrderBy(entry => Array.IndexOf(tiers, entry.Evaluation.Tier))
 			.ThenBy(entry => entry.Entry.Category)
+			.ThenByDescending(GetCategoryStrength)
 			.ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
 			.ToArray();
+	}
+
+	private static int GetCategoryStrength(JournalStageEntry entry) => entry.Entry.Category switch
+	{
+		JournalItemCategory.Weapon => GetWeaponStrength(entry),
+		JournalItemCategory.Armor => GetArmorStrength(entry),
+		_ => 0
+	};
+
+	private static int GetWeaponStrength(JournalStageEntry entry)
+	{
+		int bestDamage = 0;
+
+		foreach (var itemId in entry.Entry.ItemIds) {
+			var item = new Item();
+			item.SetDefaults(itemId);
+			bestDamage = Math.Max(bestDamage, item.damage);
+		}
+
+		return bestDamage;
+	}
+
+	private static int GetArmorStrength(JournalStageEntry entry)
+	{
+		int totalDefense = 0;
+
+		foreach (var group in entry.Entry.ItemGroups) {
+			int bestDefenseInGroup = 0;
+
+			foreach (var itemId in group.ItemIds) {
+				var item = new Item();
+				item.SetDefaults(itemId);
+				bestDefenseInGroup = Math.Max(bestDefenseInGroup, item.defense);
+			}
+
+			totalDefense += bestDefenseInGroup;
+		}
+
+		return totalDefense;
 	}
 
 	private static UIPanel CreateClassSelectionButton(CombatClass combatClass, bool active, float height)
@@ -497,12 +574,25 @@ public sealed class JournalUIState : UIState
 		block.Append(titleText);
 		top += BlockTitleHeight;
 
-		foreach (var rowEntries in ChunkEntries(entries, EntrySlotsPerRow)) {
-			var row = CreateSlotRow(rowEntries);
-			row.Left.Set(BlockHorizontalPadding, 0f);
-			row.Top.Set(top, 0f);
-			block.Append(row);
-			top += RowHeight + RowSpacing;
+		foreach (var category in EntryCategoryOrder) {
+			var categoryEntries = entries.Where(entry => entry.Entry.Category == category).ToArray();
+			if (categoryEntries.Length == 0) {
+				continue;
+			}
+
+			foreach (var rowEntries in ChunkEntries(categoryEntries, EntrySlotsPerRow)) {
+				var row = CreateSlotRow(rowEntries);
+				row.Left.Set(BlockHorizontalPadding, 0f);
+				row.Top.Set(top, 0f);
+				block.Append(row);
+				top += RowHeight + RowSpacing;
+			}
+
+			top += CategorySpacing;
+		}
+
+		if (top >= CategorySpacing) {
+			top -= CategorySpacing;
 		}
 
 		block.Height.Set(top + 4f, 0f);
@@ -521,7 +611,7 @@ public sealed class JournalUIState : UIState
 			var slot = new JournalEntrySlot(entries[index]);
 			slot.Left.Set(left, 0f);
 			row.Append(slot);
-			left += JournalEntrySlot.GetVisualWidth(entries[index].Entry.ItemIds.Count) + EntrySpacing;
+			left += JournalEntrySlot.GetVisualWidth(entries[index].Entry.ItemGroups.Count) + EntrySpacing;
 		}
 
 		return row;
@@ -536,7 +626,7 @@ public sealed class JournalUIState : UIState
 		float totalWidth = 0f;
 
 		for (int index = 0; index < entries.Count; index++) {
-			totalWidth += JournalEntrySlot.GetVisualWidth(entries[index].Entry.ItemIds.Count);
+			totalWidth += JournalEntrySlot.GetVisualWidth(entries[index].Entry.ItemGroups.Count);
 
 			if (index < entries.Count - 1) {
 				totalWidth += EntrySpacing;

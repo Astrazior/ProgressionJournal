@@ -32,228 +32,247 @@ public static class JournalRepository
 	{
 		return
 		[
-			Entry("woodenSword", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.WoodenSword,
+			Entry("woodenSwordsPreBoss", JournalItemCategory.Weapon, CombatClass.Melee,
+				Group(ItemID.WoodenSword, ItemID.BorealWoodSword, ItemID.RichMahoganySword, ItemID.PalmWoodSword, ItemID.EbonwoodSword, ItemID.ShadewoodSword, ItemID.AshWoodSword),
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
-			Entry("platinumBroadsword", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.PlatinumBroadsword,
-				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostEyeOfCthulhu, RecommendationTier.Situational),
-				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.NotRecommended)),
+			Entry("goldOrPlatinumBroadsword", JournalItemCategory.Weapon, CombatClass.Melee,
+				Group(ItemID.GoldBroadsword, ItemID.PlatinumBroadsword),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-			Entry("bladeOfGrass", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.BladeofGrass,
-				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Situational)),
+			Entry("bladeOfGrassPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.BladeofGrass,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
-			Entry("nightsEdge", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.NightsEdge,
-				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Situational)),
+			Entry("starfuryPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Starfury,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
-			Entry("excalibur", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Excalibur,
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
+			Entry("thunderSpearPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.ThunderSpear,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
-			Entry("terraBlade", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.TerraBlade,
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Situational)),
+			Entry("thornChakramPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.ThornChakram,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
-			Entry("goldBow", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.GoldBow,
-				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostEyeOfCthulhu, RecommendationTier.Situational),
-				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.NotRecommended)),
+			Entry("trimarangPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Trimarang,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
-			Entry("minishark", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.Minishark,
-				Eval(ProgressionStageId.PostEyeOfCthulhu, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Situational)),
+			Entry("amazonPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.JungleYoyo,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
-			Entry("moltenFury", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.MoltenFury,
-				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Situational)),
+			Entry("enchantedSwordPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.EnchantedSword,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
-			Entry("megashark", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.Megashark,
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostGolem, RecommendationTier.Situational)),
+			Entry("iceBladePreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.IceBlade,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
-			Entry("chlorophyteShotbow", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.ChlorophyteShotbow,
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Situational)),
+			Entry("rottedForkOrBallOHurtPreBoss", JournalItemCategory.Weapon, CombatClass.Melee,
+				Group(ItemID.TheRottedFork, ItemID.BallOHurt),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
-			Entry("diamondStaff", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.DiamondStaff,
-				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostEyeOfCthulhu, RecommendationTier.Situational),
-				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.NotRecommended)),
+			Entry("tentacleSpikePreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.TentacleSpike,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-			Entry("spaceGun", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.SpaceGun,
-				Eval(ProgressionStageId.PostEyeOfCthulhu, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Situational)),
+			Entry("batBatPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.BatBat,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-			Entry("demonScythe", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.DemonScythe,
-				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Situational)),
+			Entry("gladiusPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Gladius,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-			Entry("meteorStaff", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.MeteorStaff,
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostGolem, RecommendationTier.Situational)),
+			Entry("tridentPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Trident,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-			Entry("spectreStaff", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.SpectreStaff,
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Situational)),
+			Entry("terragrimPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Terragrim,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-			Entry("flinxStaff", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.FlinxStaff,
-				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostEyeOfCthulhu, RecommendationTier.Situational),
-				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.NotRecommended)),
+			Entry("iceBoomerangPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.IceBoomerang,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
-			Entry("thornWhip", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.ThornWhip,
-				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Situational)),
+			Entry("enchantedBoomerangPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.EnchantedBoomerang,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
-			Entry("impStaff", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.ImpStaff,
-				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Situational)),
+			Entry("shroomerangPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Shroomerang,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
-			Entry("sanguineStaff", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.SanguineStaff,
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
+			Entry("macePreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Mace,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-			Entry("opticStaff", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.OpticStaff,
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostGolem, RecommendationTier.Situational)),
+			Entry("flamingMacePreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.FlamingMace,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-			Entry("xenoStaff", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.XenoStaff,
-				Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Situational)),
+			Entry("rallyPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Rally,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-			Entry("hermesBoots", JournalItemCategory.Accessory, CombatClass.All, ItemID.HermesBoots,
-				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostEyeOfCthulhu, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Situational),
-				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
+			Entry("copperOrTinShortswordPreBoss", JournalItemCategory.Weapon, CombatClass.Melee,
+				Group(ItemID.CopperShortsword, ItemID.TinShortsword),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
-			Entry("cloudInBottle", JournalItemCategory.Accessory, CombatClass.All, ItemID.CloudinaBottle,
-				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostEyeOfCthulhu, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Situational),
-				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.NotRecommended)),
+			Entry("goldOrPlatinumShortswordPreBoss", JournalItemCategory.Weapon, CombatClass.Melee,
+				Group(ItemID.GoldShortsword, ItemID.PlatinumShortsword),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
-			Entry("obsidianShield", JournalItemCategory.Accessory, CombatClass.All, ItemID.ObsidianShield,
-				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
+			Entry("ironOrLeadShortswordPreBoss", JournalItemCategory.Weapon, CombatClass.Melee,
+				Group(ItemID.IronShortsword, ItemID.LeadShortsword),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
-			Entry("leafWings", JournalItemCategory.Accessory, CombatClass.All, ItemID.LeafWings,
-				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
+			Entry("silverOrTungstenShortswordPreBoss", JournalItemCategory.Weapon, CombatClass.Melee,
+				Group(ItemID.SilverShortsword, ItemID.TungstenShortsword),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
-			Entry("ankhShield", JournalItemCategory.Accessory, CombatClass.All, ItemID.AnkhShield,
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Situational)),
+			Entry("copperOrTinBroadswordPreBoss", JournalItemCategory.Weapon, CombatClass.Melee,
+				Group(ItemID.CopperBroadsword, ItemID.TinBroadsword),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
-			Set("jungleArmor", JournalItemCategory.Armor, CombatClass.Magic,
-				ItemID.JungleHat, ItemID.JungleShirt, ItemID.JunglePants,
-				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostEyeOfCthulhu, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Situational)),
+			Entry("ironOrLeadBroadswordPreBoss", JournalItemCategory.Weapon, CombatClass.Melee,
+				Group(ItemID.IronBroadsword, ItemID.LeadBroadsword),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
-			Set("fossilArmor", JournalItemCategory.Armor, CombatClass.Ranged,
-				ItemID.FossilHelm, ItemID.FossilShirt, ItemID.FossilPants,
-				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostEyeOfCthulhu, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Situational)),
+			Entry("silverOrTungstenBroadswordPreBoss", JournalItemCategory.Weapon, CombatClass.Melee,
+				Group(ItemID.SilverBroadsword, ItemID.TungstenBroadsword),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
-			Set("beeArmor", JournalItemCategory.Armor, CombatClass.Summoner,
-				ItemID.BeeHeadgear, ItemID.BeeBreastplate, ItemID.BeeGreaves,
-				OptionalBossRequirementId.QueenBee,
-				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Situational)),
+			Entry("cactusSwordPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.CactusSword,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
-			Set("necroArmor", JournalItemCategory.Armor, CombatClass.Ranged,
-				ItemID.NecroHelmet, ItemID.NecroBreastplate, ItemID.NecroGreaves,
-				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Situational)),
+			Entry("spearPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Spear,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
-			Set("moltenArmor", JournalItemCategory.Armor, CombatClass.Melee,
-				ItemID.MoltenHelmet, ItemID.MoltenBreastplate, ItemID.MoltenGreaves,
-				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Situational)),
+			Entry("swordfishPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Swordfish,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
-			Set("spiderArmor", JournalItemCategory.Armor, CombatClass.Summoner,
-				ItemID.SpiderMask, ItemID.SpiderBreastplate, ItemID.SpiderGreaves,
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
+			Entry("katanaPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Katana,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-			Set("hallowedMeleeArmor", JournalItemCategory.Armor, CombatClass.Melee,
-				ItemID.HallowedHelmet, ItemID.HallowedPlateMail, ItemID.HallowedGreaves,
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
+			Entry("exoticScimitarPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.DyeTradersScimitar,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-			Set("hallowedRangedArmor", JournalItemCategory.Armor, CombatClass.Ranged,
-				ItemID.HallowedMask, ItemID.HallowedPlateMail, ItemID.HallowedGreaves,
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
+			Entry("purpleClubberfishPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.PurpleClubberfish,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
-			Set("hallowedMagicArmor", JournalItemCategory.Armor, CombatClass.Magic,
-				ItemID.HallowedHeadgear, ItemID.HallowedPlateMail, ItemID.HallowedGreaves,
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
+			Entry("boneSwordPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.BoneSword,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-			Set("hallowedSummonerArmor", JournalItemCategory.Armor, CombatClass.Summoner,
-				ItemID.HallowedHood, ItemID.HallowedPlateMail, ItemID.HallowedGreaves,
-				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Situational)),
+			Entry("falconBladePreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.FalconBlade,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
-			Set("turtleArmor", JournalItemCategory.Armor, CombatClass.Melee,
-				ItemID.TurtleHelmet, ItemID.TurtleScaleMail, ItemID.TurtleLeggings,
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Situational)),
+			Entry("zombieArmPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.ZombieArm,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
-			Set("shroomiteArmor", JournalItemCategory.Armor, CombatClass.Ranged,
-				ItemID.ShroomiteMask, ItemID.ShroomiteBreastplate, ItemID.ShroomiteLeggings,
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Situational)),
+			Entry("mandibleBladePreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.AntlionClaw,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
-			Set("spectreArmor", JournalItemCategory.Armor, CombatClass.Magic,
-				ItemID.SpectreHood, ItemID.SpectreRobe, ItemID.SpectrePants,
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Situational)),
+			Entry("stylishScissorsPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.StylistKilLaKillScissorsIWish,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
-			Set("tikiArmor", JournalItemCategory.Armor, CombatClass.Summoner,
-				ItemID.TikiMask, ItemID.TikiShirt, ItemID.TikiPants,
-				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended),
-				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Situational)),
+			Entry("hermesBoots", JournalItemCategory.Accessory, CombatClass.Melee,
+				Group(ItemID.HermesBoots, ItemID.FlurryBoots, ItemID.SailfishBoots, ItemID.SandBoots),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
-			Entry("solarEruption", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.SolarEruption,
-				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Recommended)),
+			Entry("sharkToothNecklacePreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.SharkToothNecklace,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
-			Entry("phantasm", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.Phantasm,
-				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Recommended)),
+			Entry("panicNecklacePreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.PanicNecklace,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
-			Entry("nebulaBlaze", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.NebulaBlaze,
-				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Recommended)),
+			Entry("sandstormOrBlizzardBottlePreBoss", JournalItemCategory.Accessory, CombatClass.Melee,
+				Group(ItemID.SandstorminaBottle, ItemID.BlizzardinaBottle),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
-			Entry("stardustDragonStaff", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.StardustDragonStaff,
-				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Recommended))
+			Entry("feralClawsPreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.FeralClaws,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
+
+			Entry("bandOfRegenerationPreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.BandofRegeneration,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
+
+			Entry("fledglingWingsPreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.CreativeWings,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
+
+			Entry("ankletOfTheWindPreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.AnkletoftheWind,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
+
+			Entry("cloudInBottle", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.CloudinaBottle,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Entry("luckyHorseshoePreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.LuckyHorseshoe,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Entry("agletPreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.Aglet,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Entry("flyingCarpetPreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.FlyingCarpet,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Entry("shinyRedBalloonPreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.ShinyRedBalloon,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Entry("shacklePreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.Shackle,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Entry("frogLegPreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.FrogLeg,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Entry("climbingClawsPreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.ClimbingClaws,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Entry("shoeSpikesPreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.ShoeSpikes,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Entry("flipperPreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.Flipper,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
+
+			Entry("breathingReedPreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.BreathingReed,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
+
+			Entry("umbrellaPreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.Umbrella,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
+
+			Set("goldOrPlatinumArmor", JournalItemCategory.Armor, CombatClass.Melee,
+				Group(ItemID.GoldHelmet, ItemID.PlatinumHelmet),
+				Group(ItemID.GoldChainmail, ItemID.PlatinumChainmail),
+				Group(ItemID.GoldGreaves, ItemID.PlatinumGreaves),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
+
+			Set("gladiatorArmorPreBoss", JournalItemCategory.Armor, CombatClass.Melee,
+				ItemID.GladiatorHelmet, ItemID.GladiatorBreastplate, ItemID.GladiatorLeggings,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
+
+			Entry("giPreBoss", JournalItemCategory.Armor, CombatClass.Melee, ItemID.Gi,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Set("silverOrTungstenArmorPreBoss", JournalItemCategory.Armor, CombatClass.Melee,
+				Group(ItemID.SilverHelmet, ItemID.TungstenHelmet),
+				Group(ItemID.SilverChainmail, ItemID.TungstenChainmail),
+				Group(ItemID.SilverGreaves, ItemID.TungstenGreaves),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Set("ironOrLeadArmorPreBoss", JournalItemCategory.Armor, CombatClass.Melee,
+				Group(ItemID.IronHelmet, ItemID.LeadHelmet),
+				Group(ItemID.IronChainmail, ItemID.LeadChainmail),
+				Group(ItemID.IronGreaves, ItemID.LeadGreaves),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Set("cactusArmorPreBoss", JournalItemCategory.Armor, CombatClass.Melee,
+				ItemID.CactusHelmet, ItemID.CactusBreastplate, ItemID.CactusLeggings,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Set("copperOrTinArmorPreBoss", JournalItemCategory.Armor, CombatClass.Melee,
+				Group(ItemID.CopperHelmet, ItemID.TinHelmet),
+				Group(ItemID.CopperChainmail, ItemID.TinChainmail),
+				Group(ItemID.CopperGreaves, ItemID.TinGreaves),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Set("snowOrPinkSnowArmorPreBoss", JournalItemCategory.Armor, CombatClass.Melee,
+				Group(803, 978),
+				Group(804, 979),
+				Group(805, 980),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
+
+			new JournalEntry("rainArmorPreBoss", JournalItemCategory.Armor, CombatClass.Melee, [ItemID.RainHat, ItemID.RainCoat],
+				[Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)]),
+
+			Set("earlyWoodArmorPreBoss", JournalItemCategory.Armor, CombatClass.Melee,
+				Group(ItemID.WoodHelmet, ItemID.BorealWoodHelmet, ItemID.RichMahoganyHelmet, ItemID.PalmWoodHelmet, ItemID.EbonwoodHelmet, ItemID.ShadewoodHelmet, ItemID.AshWoodHelmet),
+				Group(ItemID.WoodBreastplate, ItemID.BorealWoodBreastplate, ItemID.RichMahoganyBreastplate, ItemID.PalmWoodBreastplate, ItemID.EbonwoodBreastplate, ItemID.ShadewoodBreastplate, ItemID.AshWoodBreastplate),
+				Group(ItemID.WoodGreaves, ItemID.BorealWoodGreaves, ItemID.RichMahoganyGreaves, ItemID.PalmWoodGreaves, ItemID.EbonwoodGreaves, ItemID.ShadewoodGreaves, ItemID.AshWoodGreaves),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless))
 		];
 	}
 
@@ -266,10 +285,31 @@ public static class JournalRepository
 		string key,
 		JournalItemCategory category,
 		CombatClass classes,
+		JournalItemGroup itemGroup,
+		params StageEvaluation[] evaluations)
+	{
+		return new JournalEntry(key, category, classes, [itemGroup], evaluations);
+	}
+
+	private static JournalEntry Entry(
+		string key,
+		JournalItemCategory category,
+		CombatClass classes,
 		int itemId,
 		params StageEvaluation[] evaluations)
 	{
 		return new JournalEntry(key, category, classes, [itemId], evaluations);
+	}
+
+	private static JournalEntry Entry(
+		string key,
+		JournalItemCategory category,
+		CombatClass classes,
+		JournalItemGroup itemGroup,
+		OptionalBossRequirementId optionalBossRequirement,
+		params StageEvaluation[] evaluations)
+	{
+		return new JournalEntry(key, category, classes, [itemGroup], evaluations, optionalBossRequirement);
 	}
 
 	private static JournalEntry Entry(
@@ -287,12 +327,37 @@ public static class JournalRepository
 		string key,
 		JournalItemCategory category,
 		CombatClass classes,
+		JournalItemGroup firstGroup,
+		JournalItemGroup secondGroup,
+		JournalItemGroup thirdGroup,
+		params StageEvaluation[] evaluations)
+	{
+		return new JournalEntry(key, category, classes, [firstGroup, secondGroup, thirdGroup], evaluations);
+	}
+
+	private static JournalEntry Set(
+		string key,
+		JournalItemCategory category,
+		CombatClass classes,
 		int firstItemId,
 		int secondItemId,
 		int thirdItemId,
 		params StageEvaluation[] evaluations)
 	{
 		return new JournalEntry(key, category, classes, [firstItemId, secondItemId, thirdItemId], evaluations);
+	}
+
+	private static JournalEntry Set(
+		string key,
+		JournalItemCategory category,
+		CombatClass classes,
+		JournalItemGroup firstGroup,
+		JournalItemGroup secondGroup,
+		JournalItemGroup thirdGroup,
+		OptionalBossRequirementId optionalBossRequirement,
+		params StageEvaluation[] evaluations)
+	{
+		return new JournalEntry(key, category, classes, [firstGroup, secondGroup, thirdGroup], evaluations, optionalBossRequirement);
 	}
 
 	private static JournalEntry Set(
@@ -313,12 +378,18 @@ public static class JournalRepository
 		return new StageEvaluation(stageId, tier);
 	}
 
+	private static JournalItemGroup Group(params int[] itemIds)
+	{
+		return new JournalItemGroup(itemIds);
+	}
+
 	private static int GetTierOrder(RecommendationTier tier) => tier switch
 	{
 		RecommendationTier.Recommended => 0,
-		RecommendationTier.Situational => 1,
+		RecommendationTier.Additional => 1,
 		RecommendationTier.NotRecommended => 2,
 		RecommendationTier.Useless => 3,
 		_ => int.MaxValue
 	};
 }
+

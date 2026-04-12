@@ -12,19 +12,23 @@ namespace ProgressionJournal.UI;
 
 public sealed class JournalEntrySlot : UIElement
 {
+	private const int AlternativeCycleTicks = 90;
 	public static float WidthPixels => TextureAssets.InventoryBack9.Width();
 	public static float SlotStep => WidthPixels + 4f;
 	private static readonly Color OptionalBossBorderColor = new(224, 196, 112);
 	private static readonly Color OptionalBossAccentColor = new(255, 232, 156);
+	private static readonly Color AlternativeAccentColor = new(162, 214, 255);
 
 	private readonly JournalStageEntry _entry;
-	private readonly Item[] _items;
+	private readonly Item[][] _itemGroups;
 
 	public JournalEntrySlot(JournalStageEntry entry)
 	{
 		_entry = entry;
-		_items = entry.Entry.ItemIds.Select(CreateItem).ToArray();
-		Width.Set(GetVisualWidth(_items.Length), 0f);
+		_itemGroups = entry.Entry.ItemGroups
+			.Select(group => group.ItemIds.Select(CreateItem).ToArray())
+			.ToArray();
+		Width.Set(GetVisualWidth(_itemGroups.Length), 0f);
 		Height.Set(TextureAssets.InventoryBack9.Height(), 0f);
 	}
 
@@ -39,10 +43,15 @@ public sealed class JournalEntrySlot : UIElement
 
 		Main.inventoryScale = 1f;
 
-		for (int index = 0; index < _items.Length; index++) {
-			Main.instance.LoadItem(_items[index].type);
+		for (int index = 0; index < _itemGroups.Length; index++) {
+			var displayItem = GetDisplayedItem(index);
+			Main.instance.LoadItem(displayItem.type);
 			Vector2 slotPosition = inner.TopLeft() + new Vector2(index * SlotStep, 0f);
-			ItemSlot.Draw(spriteBatch, ref _items[index], ItemSlot.Context.TrashItem, slotPosition);
+			ItemSlot.Draw(spriteBatch, ref displayItem, ItemSlot.Context.TrashItem, slotPosition);
+
+			if (_entry.Entry.ItemGroups[index].HasAlternatives) {
+				DrawAlternativeMarker(spriteBatch, slotPosition);
+			}
 		}
 
 		if (_entry.Entry.HasOptionalBossRequirement) {
@@ -57,14 +66,14 @@ public sealed class JournalEntrySlot : UIElement
 			int hoveredIndex = GetHoveredItemIndex(inner);
 
 			if (hoveredIndex >= 0) {
-				var hoverItem = _items[hoveredIndex].Clone();
-				string hoverName = hoverItem.Name;
+				var hoverItem = GetDisplayedItem(hoveredIndex).Clone();
+				string hoverName = _entry.Entry.ItemGroups[hoveredIndex].GetDisplayName();
 
 				if (_entry.Entry.OptionalBossRequirement is { } requirementId) {
 					hoverName = $"{hoverName} * {GetOptionalBossRequirementText(requirementId)}";
-					hoverItem.SetNameOverride(hoverName);
 				}
 
+				hoverItem.SetNameOverride(hoverName);
 				Main.HoverItem = hoverItem;
 				Main.hoverItemName = hoverName;
 			}
@@ -85,7 +94,7 @@ public sealed class JournalEntrySlot : UIElement
 
 	private int GetHoveredItemIndex(Rectangle inner)
 	{
-		for (int index = 0; index < _items.Length; index++) {
+		for (int index = 0; index < _itemGroups.Length; index++) {
 			var slotRectangle = new Rectangle(
 				inner.X + (int)(index * SlotStep),
 				inner.Y,
@@ -103,7 +112,7 @@ public sealed class JournalEntrySlot : UIElement
 	private static Asset<Texture2D> GetSlotTexture(RecommendationTier tier) => tier switch
 	{
 		RecommendationTier.Recommended => TextureAssets.InventoryBack3,
-		RecommendationTier.Situational => TextureAssets.InventoryBack8,
+		RecommendationTier.Additional => TextureAssets.InventoryBack8,
 		RecommendationTier.NotRecommended => TextureAssets.InventoryBack13,
 		RecommendationTier.Useless => TextureAssets.InventoryBack11,
 		_ => TextureAssets.InventoryBack9
@@ -114,6 +123,22 @@ public sealed class JournalEntrySlot : UIElement
 		var item = new Item();
 		item.SetDefaults(itemId);
 		return item;
+	}
+
+	private Item GetDisplayedItem(int groupIndex)
+	{
+		var groupItems = _itemGroups[groupIndex];
+		if (groupItems.Length == 1) {
+			return groupItems[0].Clone();
+		}
+
+		int cycleIndex = GetAlternativeCycleIndex() % groupItems.Length;
+		return groupItems[cycleIndex].Clone();
+	}
+
+	private static int GetAlternativeCycleIndex()
+	{
+		return (int)(Main.GameUpdateCount / AlternativeCycleTicks);
 	}
 
 	private string GetEntryHoverName()
@@ -153,4 +178,19 @@ public sealed class JournalEntrySlot : UIElement
 			Vector2.Zero,
 			0.72f);
 	}
+
+	private static void DrawAlternativeMarker(SpriteBatch spriteBatch, Vector2 slotPosition)
+	{
+		Utils.DrawBorderStringFourWay(
+			spriteBatch,
+			FontAssets.MouseText.Value,
+			"/",
+			slotPosition.X + WidthPixels - 11f,
+			slotPosition.Y - 2f,
+			AlternativeAccentColor,
+			Color.Black,
+			Vector2.Zero,
+			0.64f);
+	}
 }
+

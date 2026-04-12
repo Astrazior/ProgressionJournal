@@ -3,7 +3,8 @@ namespace ProgressionJournal.Data;
 public enum RecommendationTier
 {
 	Recommended,
-	Situational,
+	Additional,
 	NotRecommended,
 	Useless
 }
+
