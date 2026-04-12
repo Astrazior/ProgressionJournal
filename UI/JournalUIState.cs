@@ -58,6 +58,8 @@ public sealed class JournalUIState : UIState
 	{
 		_root = new UIPanel();
 		_root.SetPadding(0f);
+		_root.HAlign = 0.5f;
+		_root.VAlign = 0.5f;
 		_root.BackgroundColor = new Color(12, 20, 30) * 0.98f;
 		_root.BorderColor = new Color(78, 101, 124);
 		Append(_root);
@@ -109,21 +111,23 @@ public sealed class JournalUIState : UIState
 			_contentTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.ClassPageTitle"));
 			_contentDescription.SetText(string.Empty);
 			PopulateClassSelection(combatClass);
-			return;
 		}
-
-		if (showingPresets) {
+		else if (showingPresets) {
 			var presets = JournalRepository.GetPresets(stageId, combatClass);
 			_contentTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsHeadline"));
 			_contentDescription.SetText(string.Empty);
 			AppendPresets(presets);
-			return;
+		}
+		else {
+			var entries = JournalRepository.GetEntries(stageId, combatClass);
+			_contentTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewHeadline"));
+			_contentDescription.SetText(string.Empty);
+			AppendEntries(entries);
 		}
 
-		var entries = JournalRepository.GetEntries(stageId, combatClass);
-		_contentTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewHeadline"));
-		_contentDescription.SetText(string.Empty);
-		AppendEntries(entries);
+		// UIText and dynamic child trees need an explicit layout pass, otherwise the first
+		// frame can use stale geometry and the window appears to jump on the next refresh.
+		Recalculate();
 	}
 
 	public void ResetLayout()
@@ -139,13 +143,10 @@ public sealed class JournalUIState : UIState
 
 		var width = MathF.Min(760f, Main.screenWidth - 48f);
 		var height = MathF.Min(620f, Main.screenHeight - 48f);
-		var left = Main.playerInventory
-			? MathF.Max(Main.screenWidth - width - 24f, 16f)
-			: (Main.screenWidth - width) * 0.5f;
-		var top = MathF.Max(20f, (Main.screenHeight - height) * 0.5f);
+		var topOffset = Main.screenHeight >= 720 ? -8f : 0f;
 
-		_root.Left.Set(left, 0f);
-		_root.Top.Set(top, 0f);
+		_root.Left.Set(0f, 0f);
+		_root.Top.Set(topOffset, 0f);
 		_root.Width.Set(width, 0f);
 		_root.Height.Set(height, 0f);
 		_root.Recalculate();

@@ -120,6 +120,7 @@ public sealed class JournalSystem : ModSystem
 			SelectedStage = ProgressionStageCatalog.GetCurrentStageId();
 		}
 
+		CloseConflictingInterfaces();
 		Visible = true;
 		SelectingClass = true;
 		ShowingPresets = false;
@@ -199,6 +200,16 @@ public sealed class JournalSystem : ModSystem
 	{
 		_buttonInterface?.Draw(Main.spriteBatch, new GameTime());
 		return true;
+	}
+
+	private static void CloseConflictingInterfaces()
+	{
+		Main.playerInventory = false;
+		Main.editChest = false;
+		Main.npcChatText = string.Empty;
+		Main.InGuideCraftMenu = false;
+		Main.InReforgeMenu = false;
+		Main.recBigList = false;
 	}
 
 	private static bool ShouldDrawJournalButton => !Main.gameMenu && Main.playerInventory;
