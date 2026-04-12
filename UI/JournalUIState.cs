@@ -22,6 +22,18 @@ public sealed class JournalUIState : UIState
 	private const float BlockTitleHeight = 28f;
 	private const float RowHeight = 56f;
 	private const float RowSpacing = 6f;
+	private const float OuterPadding = 12f;
+	private const float PanelGap = 12f;
+	private const float HeaderHeight = 72f;
+	private const float HeaderTitleTop = 18f;
+	private const float HeaderTabsTop = -12f;
+	private const float HeaderTabsLeft = 18f;
+	private const float HeaderTabsGap = 8f;
+	private const float StagePanelWidth = 248f;
+	private const float TopTabsHeight = 40f;
+	private const float SyncTabWidth = 210f;
+	private const float CloseTabWidth = 112f;
+	private const float ActionTabHeight = 32f;
 
 	private static readonly CombatClass[] ClassOrder =
 	[
@@ -31,22 +43,25 @@ public sealed class JournalUIState : UIState
 		CombatClass.Summoner
 	];
 
+	private static readonly ProgressionStageId[] StageOrder =
+		ProgressionStageCatalog.All.Select(stage => stage.Id).ToArray();
+
+	private readonly Dictionary<ProgressionStageId, JournalTextButton> _stageButtons = new();
 	private UIPanel _root = null!;
-	private UIPanel _headerPanel = null!;
-	private UIPanel _controlsPanel = null!;
+	private UIPanel _stagePanel = null!;
+	private UIPanel _mainPanel = null!;
+	private UIElement _contentTabsPanel = null!;
 	private UIPanel _contentPanel = null!;
 	private UIText _title = null!;
-	private UIText _subtitle = null!;
+	private UIText _stagePanelTitle = null!;
 	private JournalTextButton _syncButton = null!;
 	private JournalTextButton _closeButton = null!;
-	private JournalTextButton _previousStageButton = null!;
-	private JournalTextButton _nextStageButton = null!;
 	private JournalTextButton _classButton = null!;
 	private JournalTextButton _overviewTabButton = null!;
 	private JournalTextButton _presetsTabButton = null!;
-	private UIText _stageLabel = null!;
 	private UIText _contentTitle = null!;
 	private UIText _contentDescription = null!;
+	private UIElement _stageListContainer = null!;
 	private UIElement _classSelectionContainer = null!;
 	private UIList _entryList = null!;
 	private UIScrollbar _scrollbar = null!;
@@ -65,8 +80,8 @@ public sealed class JournalUIState : UIState
 		Append(_root);
 
 		InitializeHeader();
-		InitializeControls();
-		InitializeContent();
+		InitializeStagePanel();
+		InitializeMainPanel();
 	}
 
 	public override void Update(GameTime gameTime)
@@ -87,21 +102,25 @@ public sealed class JournalUIState : UIState
 	{
 		EnsureLayout();
 
-		string className = Language.GetTextValue($"Mods.ProgressionJournal.Classes.{combatClass}");
-		string stageName = TrimForUi(Language.GetTextValue(ProgressionStageCatalog.Get(stageId).LocalizationKey), 18);
-
 		_title.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Title"));
-		_subtitle.SetText(string.Empty);
 		_syncButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.UseCurrentStage"));
 		_closeButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Close"));
-		_stageLabel.SetText(stageName);
-		_classButton.SetText($"{Language.GetTextValue("Mods.ProgressionJournal.UI.Class")}: {className}");
+		_stagePanelTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.StageSelectorTitle"));
+		_classButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Class"));
 		_overviewTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewTab"));
 		_presetsTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsTab"));
 
+		StyleHeaderButton(_syncButton, stageId == ProgressionStageCatalog.GetCurrentStageId(), false);
+		StyleHeaderButton(_closeButton, false, true);
 		StyleTabButton(_classButton, selectingClass);
 		StyleTabButton(_overviewTabButton, !selectingClass && !showingPresets);
 		StyleTabButton(_presetsTabButton, !selectingClass && showingPresets);
+
+		foreach (var stage in ProgressionStageCatalog.All) {
+			var button = _stageButtons[stage.Id];
+			button.SetText(TrimForUi(Language.GetTextValue(stage.LocalizationKey), 28));
+			StyleStageButton(button, stage.Id == stageId);
+		}
 
 		_entryList.Clear();
 		_classSelectionContainer.RemoveAllChildren();
@@ -120,13 +139,13 @@ public sealed class JournalUIState : UIState
 		}
 		else {
 			var entries = JournalRepository.GetEntries(stageId, combatClass);
-			_contentTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewHeadline"));
+			string className = Language.GetTextValue($"Mods.ProgressionJournal.Classes.{combatClass}");
+			string stageName = Language.GetTextValue(ProgressionStageCatalog.Get(stageId).LocalizationKey);
+			_contentTitle.SetText($"{className} • {stageName}");
 			_contentDescription.SetText(string.Empty);
 			AppendEntries(entries);
 		}
 
-		// UIText and dynamic child trees need an explicit layout pass, otherwise the first
-		// frame can use stale geometry and the window appears to jump on the next refresh.
 		Recalculate();
 	}
 
@@ -141,8 +160,8 @@ public sealed class JournalUIState : UIState
 			return;
 		}
 
-		var width = MathF.Min(760f, Main.screenWidth - 48f);
-		var height = MathF.Min(620f, Main.screenHeight - 48f);
+		var width = MathF.Min(1040f, Main.screenWidth - 32f);
+		var height = MathF.Min(680f, Main.screenHeight - 48f);
 		var topOffset = Main.screenHeight >= 720 ? -8f : 0f;
 
 		_root.Left.Set(0f, 0f);
@@ -150,6 +169,7 @@ public sealed class JournalUIState : UIState
 		_root.Width.Set(width, 0f);
 		_root.Height.Set(height, 0f);
 		_root.Recalculate();
+		LayoutStageButtons();
 		_layoutInitialized = true;
 		_layoutScreenWidth = Main.screenWidth;
 		_layoutScreenHeight = Main.screenHeight;
@@ -157,86 +177,99 @@ public sealed class JournalUIState : UIState
 
 	private void InitializeHeader()
 	{
-		_headerPanel = CreatePanel();
-		_headerPanel.Left.Set(12f, 0f);
-		_headerPanel.Top.Set(12f, 0f);
-		_headerPanel.Width.Set(-24f, 1f);
-		_headerPanel.Height.Set(68f, 0f);
-		_root.Append(_headerPanel);
+		_syncButton = CreateButton(string.Empty, SyncTabWidth, ActionTabHeight, () => JournalSystem.SyncStageWithWorld(), 0.52f);
+		_syncButton.Left.Set(HeaderTabsLeft, 0f);
+		_syncButton.Top.Set(HeaderTabsTop, 0f);
+		_root.Append(_syncButton);
 
-		_title = new UIText(string.Empty, 0.72f, true);
-		_title.Left.Set(14f, 0f);
-		_title.VAlign = 0.5f;
-		_headerPanel.Append(_title);
+		_closeButton = CreateButton(string.Empty, CloseTabWidth, ActionTabHeight, () => JournalSystem.HideView(), 0.52f);
+		_closeButton.Left.Set(-(CloseTabWidth + HeaderTabsLeft), 1f);
+		_closeButton.Top.Set(HeaderTabsTop, 0f);
+		_root.Append(_closeButton);
 
-		_subtitle = new UIText(string.Empty, 0.36f);
-		_subtitle.Left.Set(14f, 0f);
-		_subtitle.Top.Set(34f, 0f);
-		_subtitle.TextColor = new Color(198, 214, 229);
-		_headerPanel.Append(_subtitle);
-
-		_syncButton = CreateButton(string.Empty, 138f, 32f, () => JournalSystem.SyncStageWithWorld(), 0.56f);
-		_syncButton.Left.Set(-250f, 1f);
-		_syncButton.Top.Set(16f, 0f);
-		_headerPanel.Append(_syncButton);
-
-		_closeButton = CreateButton(string.Empty, 102f, 32f, () => JournalSystem.HideView(), 0.56f);
-		_closeButton.Left.Set(-108f, 1f);
-		_closeButton.Top.Set(16f, 0f);
-		_closeButton.BackgroundColor = new Color(76, 48, 48);
-		_closeButton.BorderColor = new Color(152, 94, 94);
-		_headerPanel.Append(_closeButton);
+		_title = new UIText(string.Empty, 0.82f, true) {
+			HAlign = 0.5f,
+			VAlign = 0f
+		};
+		_title.Top.Set(HeaderTitleTop, 0f);
+		_title.TextColor = new Color(236, 240, 245);
+		_root.Append(_title);
 	}
 
-	private void InitializeControls()
+	private void InitializeStagePanel()
 	{
-		_controlsPanel = CreatePanel();
-		_controlsPanel.Left.Set(12f, 0f);
-		_controlsPanel.Top.Set(88f, 0f);
-		_controlsPanel.Width.Set(-24f, 1f);
-		_controlsPanel.Height.Set(74f, 0f);
-		_root.Append(_controlsPanel);
+		_stagePanel = CreatePanel();
+		_stagePanel.Left.Set(OuterPadding, 0f);
+		_stagePanel.Top.Set(HeaderHeight + OuterPadding, 0f);
+		_stagePanel.Width.Set(StagePanelWidth, 0f);
+		_stagePanel.Height.Set(-(HeaderHeight + OuterPadding * 2f), 1f);
+		_root.Append(_stagePanel);
 
-		_previousStageButton = CreateButton("<", 34f, 30f, () => JournalSystem.CycleStage(-1), 0.66f);
-		_previousStageButton.Left.Set(10f, 0f);
-		_previousStageButton.Top.Set(7f, 0f);
-		_controlsPanel.Append(_previousStageButton);
+		_stagePanelTitle = new UIText(string.Empty, 0.52f, true);
+		_stagePanelTitle.Left.Set(14f, 0f);
+		_stagePanelTitle.Top.Set(12f, 0f);
+		_stagePanel.Append(_stagePanelTitle);
 
-		_stageLabel = new UIText(string.Empty, 0.5f, true);
-		_stageLabel.Left.Set(48f, 0f);
-		_stageLabel.Top.Set(10f, 0f);
-		_stageLabel.Width.Set(280f, 0f);
-		_controlsPanel.Append(_stageLabel);
+		_stageListContainer = new UIElement();
+		_stageListContainer.Left.Set(12f, 0f);
+		_stageListContainer.Top.Set(40f, 0f);
+		_stageListContainer.Width.Set(-24f, 1f);
+		_stageListContainer.Height.Set(-52f, 1f);
+		_stagePanel.Append(_stageListContainer);
 
-		_nextStageButton = CreateButton(">", 34f, 30f, () => JournalSystem.CycleStage(1), 0.66f);
-		_nextStageButton.Left.Set(336f, 0f);
-		_nextStageButton.Top.Set(7f, 0f);
-		_controlsPanel.Append(_nextStageButton);
-
-		_classButton = CreateButton(string.Empty, 150f, 30f, () => JournalSystem.ShowClassSelection(), 0.58f);
-		_classButton.Left.Set(10f, 0f);
-		_classButton.Top.Set(39f, 0f);
-		_controlsPanel.Append(_classButton);
-
-		_overviewTabButton = CreateButton(string.Empty, 122f, 30f, () => JournalSystem.ShowOverviewTab(), 0.58f);
-		_overviewTabButton.Left.Set(170f, 0f);
-		_overviewTabButton.Top.Set(39f, 0f);
-		_controlsPanel.Append(_overviewTabButton);
-
-		_presetsTabButton = CreateButton(string.Empty, 108f, 30f, () => JournalSystem.ShowPresetsTab(), 0.58f);
-		_presetsTabButton.Left.Set(302f, 0f);
-		_presetsTabButton.Top.Set(39f, 0f);
-		_controlsPanel.Append(_presetsTabButton);
+		foreach (var stage in ProgressionStageCatalog.All) {
+			var capturedStage = stage.Id;
+			var button = CreateButton(string.Empty, 0f, 44f, () => JournalSystem.SelectStage(capturedStage), 0.78f);
+			button.Left.Set(0f, 0f);
+			button.Width.Set(0f, 1f);
+			_stageListContainer.Append(button);
+			_stageButtons[capturedStage] = button;
+		}
 	}
 
-	private void InitializeContent()
+	private void InitializeMainPanel()
 	{
+		_mainPanel = CreatePanel();
+		_mainPanel.Left.Set(OuterPadding + StagePanelWidth + PanelGap, 0f);
+		_mainPanel.Top.Set(HeaderHeight + OuterPadding, 0f);
+		_mainPanel.Width.Set(-(OuterPadding * 2f + StagePanelWidth + PanelGap), 1f);
+		_mainPanel.Height.Set(-(HeaderHeight + OuterPadding * 2f), 1f);
+		_root.Append(_mainPanel);
+
+		_contentTabsPanel = new UIElement();
+		_contentTabsPanel.Left.Set(12f, 0f);
+		_contentTabsPanel.Top.Set(12f, 0f);
+		_contentTabsPanel.Width.Set(-24f, 1f);
+		_contentTabsPanel.Height.Set(TopTabsHeight, 0f);
+		_mainPanel.Append(_contentTabsPanel);
+
+		const float tabGap = 12f;
+		float widthOffset = -2f * tabGap / 3f;
+
+		_classButton = CreateButton(string.Empty, 0f, 34f, () => JournalSystem.ShowClassSelection(), 0.72f);
+		_classButton.Left.Set(0f, 0f);
+		_classButton.Top.Set(2f, 0f);
+		_classButton.Width.Set(widthOffset, 1f / 3f);
+		_contentTabsPanel.Append(_classButton);
+
+		_overviewTabButton = CreateButton(string.Empty, 0f, 34f, () => JournalSystem.ShowOverviewTab(), 0.72f);
+		_overviewTabButton.Left.Set(tabGap / 3f, 1f / 3f);
+		_overviewTabButton.Top.Set(2f, 0f);
+		_overviewTabButton.Width.Set(widthOffset, 1f / 3f);
+		_contentTabsPanel.Append(_overviewTabButton);
+
+		_presetsTabButton = CreateButton(string.Empty, 0f, 34f, () => JournalSystem.ShowPresetsTab(), 0.72f);
+		_presetsTabButton.Left.Set(tabGap * 2f / 3f, 2f / 3f);
+		_presetsTabButton.Top.Set(2f, 0f);
+		_presetsTabButton.Width.Set(widthOffset, 1f / 3f);
+		_contentTabsPanel.Append(_presetsTabButton);
+
 		_contentPanel = CreatePanel();
 		_contentPanel.Left.Set(12f, 0f);
-		_contentPanel.Top.Set(170f, 0f);
+		_contentPanel.Top.Set(12f + TopTabsHeight + 10f, 0f);
 		_contentPanel.Width.Set(-24f, 1f);
-		_contentPanel.Height.Set(-182f, 1f);
-		_root.Append(_contentPanel);
+		_contentPanel.Height.Set(-(TopTabsHeight + 34f), 1f);
+		_mainPanel.Append(_contentPanel);
 
 		_contentTitle = new UIText(string.Empty, 0.48f, true);
 		_contentTitle.Left.Set(14f, 0f);
@@ -245,29 +278,29 @@ public sealed class JournalUIState : UIState
 
 		_contentDescription = new UIText(string.Empty, 0.38f);
 		_contentDescription.Left.Set(14f, 0f);
-		_contentDescription.Top.Set(36f, 0f);
+		_contentDescription.Top.Set(34f, 0f);
 		_contentDescription.TextColor = new Color(198, 214, 229);
 		_contentPanel.Append(_contentDescription);
 
 		_classSelectionContainer = new UIElement();
 		_classSelectionContainer.Left.Set(14f, 0f);
-		_classSelectionContainer.Top.Set(68f, 0f);
+		_classSelectionContainer.Top.Set(52f, 0f);
 		_classSelectionContainer.Width.Set(-28f, 1f);
-		_classSelectionContainer.Height.Set(-82f, 1f);
+		_classSelectionContainer.Height.Set(-66f, 1f);
 		_contentPanel.Append(_classSelectionContainer);
 
 		_entryList = new UIList();
 		_entryList.Left.Set(14f, 0f);
-		_entryList.Top.Set(68f, 0f);
+		_entryList.Top.Set(52f, 0f);
 		_entryList.Width.Set(-38f, 1f);
-		_entryList.Height.Set(-82f, 1f);
+		_entryList.Height.Set(-66f, 1f);
 		_entryList.ListPadding = 6f;
 		_contentPanel.Append(_entryList);
 
 		_scrollbar = new UIScrollbar();
 		_scrollbar.Left.Set(-18f, 1f);
-		_scrollbar.Top.Set(68f, 0f);
-		_scrollbar.Height.Set(-82f, 1f);
+		_scrollbar.Top.Set(52f, 0f);
+		_scrollbar.Height.Set(-66f, 1f);
 		_contentPanel.Append(_scrollbar);
 		_entryList.SetScrollbar(_scrollbar);
 	}
@@ -403,6 +436,27 @@ public sealed class JournalUIState : UIState
 		return button;
 	}
 
+	private static void StyleHeaderButton(JournalTextButton button, bool active, bool danger)
+	{
+		if (danger) {
+			button.BackgroundColor = new Color(52, 39, 44);
+			button.BorderColor = new Color(98, 76, 84);
+			button.SetTextColor(new Color(234, 224, 228));
+			return;
+		}
+
+		button.BackgroundColor = active ? new Color(49, 78, 67) : new Color(31, 44, 58);
+		button.BorderColor = active ? new Color(100, 149, 127) : new Color(79, 100, 122);
+		button.SetTextColor(new Color(224, 230, 236));
+	}
+
+	private static void StyleStageButton(JournalTextButton button, bool active)
+	{
+		button.BackgroundColor = active ? new Color(60, 88, 114) : new Color(29, 42, 58);
+		button.BorderColor = active ? new Color(156, 196, 230) : new Color(88, 115, 142);
+		button.SetTextColor(new Color(226, 233, 240));
+	}
+
 	private static void StyleTabButton(JournalTextButton button, bool active)
 	{
 		button.BackgroundColor = active ? new Color(58, 100, 71) : new Color(38, 54, 73);
@@ -496,6 +550,32 @@ public sealed class JournalUIState : UIState
 		}
 
 		return text[..(maxLength - 3)].TrimEnd() + "...";
+	}
+
+	private void LayoutStageButtons()
+	{
+		if (_stageButtons.Count == 0) {
+			return;
+		}
+
+		float availableHeight = _stageListContainer.GetInnerDimensions().Height;
+		if (availableHeight <= 0f) {
+			return;
+		}
+
+		const float gap = 6f;
+		float buttonHeight = (availableHeight - gap * (StageOrder.Length - 1)) / StageOrder.Length;
+		buttonHeight = MathF.Max(44f, buttonHeight);
+
+		float top = 0f;
+		foreach (var stageId in StageOrder) {
+			var button = _stageButtons[stageId];
+			button.Top.Set(top, 0f);
+			button.Height.Set(buttonHeight, 0f);
+			top += buttonHeight + gap;
+		}
+
+		_stageListContainer.Recalculate();
 	}
 
 	private void SwitchContentMode(bool selectingClass)

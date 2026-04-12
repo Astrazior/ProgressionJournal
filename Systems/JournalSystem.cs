@@ -167,6 +167,12 @@ public sealed class JournalSystem : ModSystem
 		RefreshView();
 	}
 
+	public void SelectStage(ProgressionStageId stageId)
+	{
+		SelectedStage = stageId;
+		RefreshView();
+	}
+
 	public void ShowOverviewTab()
 	{
 		SelectingClass = false;
