@@ -6,5 +6,6 @@ public enum OptionalBossRequirementId
 	QueenBee,
 	Deerclops,
 	QueenSlime,
-	EmpressOfLight
+	EmpressOfLight,
+	DukeFishron
 }

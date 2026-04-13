@@ -441,9 +441,17 @@ public sealed class JournalUIState : UIState
 			.OrderBy(entry => Array.IndexOf(tiers, entry.Evaluation.Tier))
 			.ThenBy(entry => entry.Entry.Category)
 			.ThenByDescending(GetCategoryStrength)
+			.ThenBy(entry => GetEntryDisplayOrderOverride(entry.Entry.Key))
 			.ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
 			.ToArray();
 	}
+
+	private static int GetEntryDisplayOrderOverride(string entryKey) => entryKey switch
+	{
+		"sandstormOrBlizzardBottlePreBoss" => 0,
+		"balloonBundlesPreBoss" => 1,
+		_ => int.MaxValue
+	};
 
 	private static int GetCategoryStrength(JournalStageEntry entry) => entry.Entry.Category switch
 	{
