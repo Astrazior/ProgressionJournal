@@ -77,9 +77,6 @@ public sealed class JournalEntrySlot : UIElement
 				Main.HoverItem = hoverItem;
 				Main.hoverItemName = hoverName;
 			}
-			else {
-				Main.hoverItemName = GetEntryHoverName();
-			}
 		}
 	}
 
@@ -139,14 +136,6 @@ public sealed class JournalEntrySlot : UIElement
 	private static int GetAlternativeCycleIndex()
 	{
 		return (int)(Main.GameUpdateCount / AlternativeCycleTicks);
-	}
-
-	private string GetEntryHoverName()
-	{
-		string displayName = _entry.Entry.GetDisplayName();
-		return _entry.Entry.OptionalBossRequirement is { } requirementId
-			? $"{displayName} * {GetOptionalBossRequirementText(requirementId)}"
-			: displayName;
 	}
 
 	private static string GetOptionalBossRequirementText(OptionalBossRequirementId requirementId)
