@@ -54,7 +54,8 @@ public sealed class JournalUIState : UIState
 	[
 		JournalItemCategory.Weapon,
 		JournalItemCategory.Armor,
-		JournalItemCategory.Accessory
+		JournalItemCategory.Accessory,
+		JournalItemCategory.ClassSpecific
 	];
 
 	private readonly Dictionary<ProgressionStageId, JournalTextButton> _stageButtons = new();
@@ -457,6 +458,7 @@ public sealed class JournalUIState : UIState
 	{
 		JournalItemCategory.Weapon => GetWeaponStrength(entry),
 		JournalItemCategory.Armor => GetArmorStrength(entry),
+		JournalItemCategory.ClassSpecific => 0,
 		_ => 0
 	};
 

@@ -4,5 +4,6 @@ public enum JournalItemCategory
 {
 	Weapon,
 	Armor,
-	Accessory
+	Accessory,
+	ClassSpecific
 }
