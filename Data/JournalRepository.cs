@@ -233,6 +233,84 @@ public static class JournalRepository
 			Entry("stylishScissorsPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.StylistKilLaKillScissorsIWish,
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
+			Entry("woodenBowsPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged,
+				Group(ItemID.WoodenBow, ItemID.BorealWoodBow, ItemID.RichMahoganyBow, ItemID.PalmWoodBow, ItemID.EbonwoodBow, ItemID.ShadewoodBow, ItemID.AshWoodBow),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
+
+			Entry("copperOrTinBowsPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged,
+				Group(ItemID.CopperBow, ItemID.TinBow),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
+
+			Entry("ironOrLeadBowsPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged,
+				Group(ItemID.IronBow, ItemID.LeadBow),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
+
+			Entry("silverOrTungstenBowsPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged,
+				Group(ItemID.SilverBow, ItemID.TungstenBow),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
+
+			Entry("goldOrPlatinumBowsPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged,
+				Group(ItemID.GoldBow, ItemID.PlatinumBow),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Entry("demonOrTendonBowPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged,
+				Group(ItemID.DemonBow, ItemID.TendonBow),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Entry("bloodRainBowPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.BloodRainBow,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
+
+			Entry("blowpipePreBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.Blowpipe,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
+
+			Entry("minisharkPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.Minishark,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
+
+			Entry("boomstickPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.Boomstick,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Entry("revolverPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.Revolver,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Entry("flintlockPistolPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.FlintlockPistol,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Entry("undertakerPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.TheUndertaker,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Entry("snowballCannonPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.SnowballCannon,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Entry("harpoonPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.Harpoon,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Entry("musketPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.Musket,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Entry("sandgunPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.Sandgun,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
+
+			Entry("grenadePreBoss", JournalItemCategory.Weapon, CombatClass.Ranged,
+				Group(ItemID.Grenade, ItemID.StickyGrenade, ItemID.BouncyGrenade),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Entry("molotovCocktailPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.MolotovCocktail,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Entry("throwingWeaponsPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged,
+				Group(ItemID.Shuriken, ItemID.ThrowingKnife, ItemID.PoisonedKnife, ItemID.SpikyBall, ItemID.Snowball, ItemID.Javelin),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Entry("boneJavelinPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.BoneJavelin,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Entry("frostDaggerfishPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.FrostDaggerfish,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Entry("paperAirplanesPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged,
+				Group(ItemID.PaperAirplaneA, ItemID.PaperAirplaneB),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
+
 			Entry("shieldOfCthulhuPostEye", JournalItemCategory.Accessory, CombatClass.All, ItemID.EoCShield,
 				Eval(ProgressionStageId.PostEyeOfCthulhu, RecommendationTier.Recommended)),
 
@@ -301,7 +379,7 @@ public static class JournalRepository
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
 			Entry("sandstormOrBlizzardBottlePreBoss", JournalItemCategory.Accessory, CombatClass.All,
-				Group(ItemID.SandstorminaBottle, ItemID.BlizzardinaBottle),
+				Group(ItemID.SandstorminaBottle, ItemID.BlizzardinaBottle, ItemID.SharkronBalloon),
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
 			Entry("balloonBundlesPreBoss", JournalItemCategory.Accessory, CombatClass.All,
@@ -317,14 +395,14 @@ public static class JournalRepository
 			Entry("bezoarPreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.Bezoar,
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
-			Entry("obsidianRosePreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.ObsidianRose,
+			Entry("obsidianRosePreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.ObsidianRose,
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
 			Entry("lavaCharmOrMoltenCharmPreBoss", JournalItemCategory.Accessory, CombatClass.All,
 				Group(ItemID.LavaCharm, ItemID.MoltenCharm),
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
-			Entry("obsidianSkullLinePreBoss", JournalItemCategory.Accessory, CombatClass.Melee,
+			Entry("obsidianSkullLinePreBoss", JournalItemCategory.Accessory, CombatClass.All,
 				Group(ItemID.ObsidianSkull, ItemID.ObsidianSkullRose, ItemID.MoltenSkullRose),
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
@@ -365,6 +443,9 @@ public static class JournalRepository
 			Entry("shinyRedBalloonPreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.ShinyRedBalloon,
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
+			Entry("balloonPufferfishPreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.BalloonPufferfish,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
 			Entry("shacklePreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.Shackle,
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
@@ -389,19 +470,10 @@ public static class JournalRepository
 			Entry("tigerClimbingGearPreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.TigerClimbingGear,
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-			Entry("flipperPreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.Flipper,
+			Entry("breathingReedPreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.BreathingReed,
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
-			Entry("floatingTubePreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.FloatingTube,
-				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
-
-			Entry("portableStoolPreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.PortableStool,
-				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
-
-			Entry("breathingReedPreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.BreathingReed,
-				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
-
-			Entry("umbrellaPreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.Umbrella,
+			Entry("umbrellaPreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.Umbrella,
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
 			Set("moltenArmorPostWorldEvil", JournalItemCategory.Armor, CombatClass.Melee,
@@ -420,7 +492,13 @@ public static class JournalRepository
 				Group(ItemID.GoldGreaves, ItemID.PlatinumGreaves),
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
-			Set("ancientShadowArmorPreBoss", JournalItemCategory.Armor, CombatClass.Melee,
+			Set("goldOrPlatinumArmorRangedPreBoss", JournalItemCategory.Armor, CombatClass.Ranged,
+				Group(ItemID.GoldHelmet, ItemID.PlatinumHelmet),
+				Group(ItemID.GoldChainmail, ItemID.PlatinumChainmail),
+				Group(ItemID.GoldGreaves, ItemID.PlatinumGreaves),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Set("ancientShadowArmorPreBoss", JournalItemCategory.Armor, CombatClass.All,
 				ItemID.AncientShadowHelmet, ItemID.AncientShadowScalemail, ItemID.AncientShadowGreaves,
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
@@ -428,6 +506,15 @@ public static class JournalRepository
 				ItemID.NinjaHood, ItemID.NinjaShirt, ItemID.NinjaPants,
 				OptionalBossRequirementId.KingSlime,
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
+
+			Set("fossilArmorPreBoss", JournalItemCategory.Armor, CombatClass.Ranged,
+				ItemID.FossilHelm, ItemID.FossilShirt, ItemID.FossilPants,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
+
+			Set("ninjaArmorRangedPreBoss", JournalItemCategory.Armor, CombatClass.Ranged,
+				ItemID.NinjaHood, ItemID.NinjaShirt, ItemID.NinjaPants,
+				OptionalBossRequirementId.KingSlime,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
 			Set("gladiatorArmorPreBoss", JournalItemCategory.Armor, CombatClass.Melee,
 				ItemID.GladiatorHelmet, ItemID.GladiatorBreastplate, ItemID.GladiatorLeggings,
