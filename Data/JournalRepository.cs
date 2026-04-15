@@ -1090,6 +1090,9 @@ public static class JournalRepository
 			Entry("stakeLauncherPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.StakeLauncher,
 				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
+			Entry("piranhaGunPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.PiranhaGun,
+				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Additional)),
+
 			Entry("venusMagnumPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.VenusMagnum,
 				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Additional)),
 
