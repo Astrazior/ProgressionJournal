@@ -5,7 +5,6 @@ using ProgressionJournal.Data;
 using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
-using Terraria.Localization;
 using Terraria.UI;
 
 namespace ProgressionJournal.UI;
@@ -15,8 +14,6 @@ public sealed class JournalEntrySlot : UIElement
 	private const int AlternativeCycleTicks = 90;
 	public static float WidthPixels => TextureAssets.InventoryBack9.Width();
 	public static float SlotStep => WidthPixels + 4f;
-	private static readonly Color OptionalBossBorderColor = new(224, 196, 112);
-	private static readonly Color OptionalBossAccentColor = new(255, 232, 156);
 	private static readonly Color AlternativeAccentColor = new(162, 214, 255);
 
 	private readonly JournalStageEntry _entry;
@@ -54,11 +51,6 @@ public sealed class JournalEntrySlot : UIElement
 			}
 		}
 
-		if (_entry.Entry.HasOptionalBossRequirement) {
-			DrawOptionalBossFrame(spriteBatch, inner);
-			DrawOptionalBossMarker(spriteBatch, inner);
-		}
-
 		TextureAssets.InventoryBack9 = oldBack9;
 		Main.inventoryScale = oldScale;
 
@@ -68,11 +60,6 @@ public sealed class JournalEntrySlot : UIElement
 			if (hoveredIndex >= 0) {
 				var hoverItem = GetDisplayedItem(hoveredIndex).Clone();
 				string hoverName = _entry.Entry.ItemGroups[hoveredIndex].GetDisplayName();
-
-				if (_entry.Entry.OptionalBossRequirement is { } requirementId) {
-					hoverName = $"{hoverName} * {GetOptionalBossRequirementText(requirementId)}";
-				}
-
 				hoverItem.SetNameOverride(hoverName);
 				Main.HoverItem = hoverItem;
 				Main.hoverItemName = hoverName;
@@ -136,36 +123,6 @@ public sealed class JournalEntrySlot : UIElement
 	private static int GetAlternativeCycleIndex()
 	{
 		return (int)(Main.GameUpdateCount / AlternativeCycleTicks);
-	}
-
-	private static string GetOptionalBossRequirementText(OptionalBossRequirementId requirementId)
-	{
-		return Language.GetTextValue($"Mods.ProgressionJournal.OptionalBosses.{requirementId}");
-	}
-
-	private static void DrawOptionalBossFrame(SpriteBatch spriteBatch, Rectangle inner)
-	{
-		var pixel = TextureAssets.MagicPixel.Value;
-		const int thickness = 2;
-
-		spriteBatch.Draw(pixel, new Rectangle(inner.Left - 2, inner.Top - 2, inner.Width + 4, thickness), OptionalBossBorderColor);
-		spriteBatch.Draw(pixel, new Rectangle(inner.Left - 2, inner.Bottom, inner.Width + 4, thickness), OptionalBossBorderColor);
-		spriteBatch.Draw(pixel, new Rectangle(inner.Left - 2, inner.Top - 2, thickness, inner.Height + 4), OptionalBossBorderColor);
-		spriteBatch.Draw(pixel, new Rectangle(inner.Right, inner.Top - 2, thickness, inner.Height + 4), OptionalBossBorderColor);
-	}
-
-	private static void DrawOptionalBossMarker(SpriteBatch spriteBatch, Rectangle inner)
-	{
-		Utils.DrawBorderStringFourWay(
-			spriteBatch,
-			FontAssets.MouseText.Value,
-			"*",
-			inner.X + 3f,
-			inner.Y - 2f,
-			OptionalBossAccentColor,
-			Color.Black,
-			Vector2.Zero,
-			0.72f);
 	}
 
 	private static void DrawAlternativeMarker(SpriteBatch spriteBatch, Vector2 slotPosition)

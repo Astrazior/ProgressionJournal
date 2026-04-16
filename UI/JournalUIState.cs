@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using ProgressionJournal.Data;
 using ProgressionJournal.Systems;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -30,7 +31,7 @@ public sealed class JournalUIState : UIState
 	private const float HeaderTabsTop = -12f;
 	private const float HeaderTabsLeft = 18f;
 	private const float HeaderTabsGap = 8f;
-	private const float StagePanelWidth = 248f;
+	private const float StagePanelWidth = 300f;
 	private const float TopTabsHeight = 40f;
 	private const float SyncTabWidth = 210f;
 	private const float CloseTabWidth = 112f;
@@ -38,6 +39,10 @@ public sealed class JournalUIState : UIState
 	private const float MinSingleColumnStageButtonHeight = 40f;
 	private const float StageButtonGap = 6f;
 	private const float StageButtonColumnGap = 8f;
+	private const float StageButtonTextScale = 0.9f;
+	private const float MinStageButtonTextScale = 0.76f;
+	private const float StageButtonTextScaleStep = 0.02f;
+	private const float StageButtonTextHorizontalPadding = 10f;
 
 	private static readonly CombatClass[] ClassOrder =
 	[
@@ -130,7 +135,7 @@ public sealed class JournalUIState : UIState
 
 		foreach (var stage in ProgressionStageCatalog.All) {
 			var button = _stageButtons[stage.Id];
-			button.SetText(TrimForUi(Language.GetTextValue(stage.LocalizationKey), GetStageButtonMaxTextLength()));
+			ApplyStageButtonText(button, Language.GetTextValue(stage.LocalizationKey));
 			StyleStageButton(button, stage.Id == stageId);
 		}
 
@@ -231,7 +236,7 @@ public sealed class JournalUIState : UIState
 
 		foreach (var stage in ProgressionStageCatalog.All) {
 			var capturedStage = stage.Id;
-			var button = CreateButton(string.Empty, 0f, 44f, () => JournalSystem.SelectStage(capturedStage), 0.9f);
+			var button = CreateButton(string.Empty, 0f, 44f, () => JournalSystem.SelectStage(capturedStage), StageButtonTextScale);
 			button.Left.Set(0f, 0f);
 			button.Width.Set(0f, 1f);
 			_stageListContainer.Append(button);
@@ -655,15 +660,6 @@ public sealed class JournalUIState : UIState
 		return totalWidth;
 	}
 
-	private static string TrimForUi(string text, int maxLength)
-	{
-		if (string.IsNullOrWhiteSpace(text) || text.Length <= maxLength) {
-			return text;
-		}
-
-		return text[..(maxLength - 3)].TrimEnd() + "...";
-	}
-
 	private void LayoutStageButtons()
 	{
 		if (_stageButtons.Count == 0) {
@@ -707,7 +703,52 @@ public sealed class JournalUIState : UIState
 		return singleColumnButtonHeight >= MinSingleColumnStageButtonHeight ? 1 : 2;
 	}
 
-	private static int GetStageButtonMaxTextLength() => StageOrder.Length > 9 ? 18 : 28;
+	private static void ApplyStageButtonText(JournalTextButton button, string text)
+	{
+		float availableWidth = button.GetInnerDimensions().Width - StageButtonTextHorizontalPadding * 2f;
+		if (availableWidth <= 0f) {
+			button.SetText(text, StageButtonTextScale);
+			return;
+		}
+
+		float textScale = StageButtonTextScale;
+		while (textScale > MinStageButtonTextScale && GetScaledTextWidth(text, textScale) > availableWidth) {
+			textScale -= StageButtonTextScaleStep;
+		}
+
+		if (GetScaledTextWidth(text, textScale) <= availableWidth) {
+			button.SetText(text, textScale);
+			return;
+		}
+
+		button.SetText(TrimToPixelWidth(text, availableWidth, MinStageButtonTextScale), MinStageButtonTextScale);
+	}
+
+	private static string TrimToPixelWidth(string text, float maxWidth, float textScale)
+	{
+		if (string.IsNullOrWhiteSpace(text)) {
+			return text;
+		}
+
+		if (GetScaledTextWidth(text, textScale) <= maxWidth) {
+			return text;
+		}
+
+		const string ellipsis = "...";
+		for (int length = text.Length - 1; length > 0; length--) {
+			string candidate = text[..length].TrimEnd() + ellipsis;
+			if (GetScaledTextWidth(candidate, textScale) <= maxWidth) {
+				return candidate;
+			}
+		}
+
+		return ellipsis;
+	}
+
+	private static float GetScaledTextWidth(string text, float textScale)
+	{
+		return FontAssets.MouseText.Value.MeasureString(text).X * textScale;
+	}
 
 	private void SwitchContentMode(bool selectingClass)
 	{

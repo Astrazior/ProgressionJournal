@@ -14,15 +14,13 @@ public sealed class JournalEntry
 		JournalItemCategory category,
 		CombatClass classes,
 		IEnumerable<int> itemIds,
-		IEnumerable<StageEvaluation> evaluations,
-		OptionalBossRequirementId? optionalBossRequirement = null)
+		IEnumerable<StageEvaluation> evaluations)
 		: this(
 			key,
 			category,
 			classes,
 			itemIds.Select(itemId => new JournalItemGroup([itemId])),
-			evaluations,
-			optionalBossRequirement)
+			evaluations)
 	{
 	}
 
@@ -31,14 +29,12 @@ public sealed class JournalEntry
 		JournalItemCategory category,
 		CombatClass classes,
 		IEnumerable<JournalItemGroup> itemGroups,
-		IEnumerable<StageEvaluation> evaluations,
-		OptionalBossRequirementId? optionalBossRequirement = null)
+		IEnumerable<StageEvaluation> evaluations)
 	{
 		Key = key;
 		Category = category;
 		Classes = classes;
 		ItemGroups = itemGroups.ToArray();
-		OptionalBossRequirement = optionalBossRequirement;
 
 		if (ItemGroups.Count == 0) {
 			throw new ArgumentException("A journal entry must contain at least one item group.", nameof(itemGroups));
@@ -60,10 +56,6 @@ public sealed class JournalEntry
 	public IReadOnlyList<int> ItemIds { get; }
 
 	public int RepresentativeItemId { get; }
-
-	public OptionalBossRequirementId? OptionalBossRequirement { get; }
-
-	public bool HasOptionalBossRequirement => OptionalBossRequirement.HasValue;
 
 	public bool AppliesToClass(CombatClass combatClass) => (Classes & combatClass) != 0;
 
