@@ -19,13 +19,11 @@ public sealed class JournalStageButton : UIPanel
 	}
 
 	private UIText _label;
-	private readonly Action _onClick;
 	private float _textScale;
 	private readonly List<(HeadTextureKind Kind, int Slot)> _headSlots = [];
 
 	public JournalStageButton(Action onClick)
 	{
-		_onClick = onClick;
 		_textScale = DefaultTextScale;
 		SetPadding(0f);
 		BackgroundColor = new Color(29, 42, 58);
@@ -34,7 +32,7 @@ public sealed class JournalStageButton : UIPanel
 		_label = CreateLabel(string.Empty);
 		Append(_label);
 
-		OnLeftClick += (_, _) => _onClick();
+		OnLeftClick += (_, _) => onClick();
 	}
 
 	public void SetTextDisplay(string text, float textScale)

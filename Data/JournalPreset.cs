@@ -36,11 +36,10 @@ public sealed class JournalPreset(
 
 	public string GetAccessoriesText() => FormatItems(AccessoryIds);
 
-	private static string FormatItems(IEnumerable<int> itemIds)
+	private static string FormatItems(IReadOnlyList<int> itemIds)
 	{
-		var ids = itemIds.ToArray();
-		return ids.Length == 0
+		return itemIds.Count == 0
 			? Language.GetTextValue("Mods.ProgressionJournal.UI.None")
-			: string.Join(", ", ids.Select(Lang.GetItemNameValue));
+			: string.Join(", ", itemIds.Select(Lang.GetItemNameValue));
 	}
 }

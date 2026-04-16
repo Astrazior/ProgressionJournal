@@ -410,10 +410,8 @@ public sealed class JournalUIState : UIState
 		}
 	}
 
-	private static bool HasEntriesForAnyTier(IReadOnlyList<JournalStageEntry> entries, RecommendationTier[] tiers)
-	{
-		return entries.Any(entry => tiers.Contains(entry.Evaluation.Tier));
-	}
+	private static bool HasEntriesForTier(IReadOnlyList<JournalStageEntry> entries, RecommendationTier tier) =>
+		entries.Any(entry => entry.Evaluation.Tier == tier);
 
 	private void AppendTierBlock(
 		IReadOnlyList<JournalStageEntry> entries,
@@ -422,24 +420,22 @@ public sealed class JournalUIState : UIState
 		Color backgroundColor,
 		Color borderColor)
 	{
-		var tiers = new[] { tier };
-		if (!HasEntriesForAnyTier(entries, tiers)) {
+		if (!HasEntriesForTier(entries, tier)) {
 			return;
 		}
 
 		_entryList.Add(CreateRecommendationBlock(
 			Language.GetTextValue(titleKey),
-			GetEntriesForTiers(entries, tiers),
+			GetEntriesForTier(entries, tier),
 			backgroundColor,
 			borderColor));
 	}
 
-	private static JournalStageEntry[] GetEntriesForTiers(IReadOnlyList<JournalStageEntry> entries, RecommendationTier[] tiers)
+	private static JournalStageEntry[] GetEntriesForTier(IReadOnlyList<JournalStageEntry> entries, RecommendationTier tier)
 	{
 		return entries
-			.Where(entry => tiers.Contains(entry.Evaluation.Tier))
-			.OrderBy(entry => Array.IndexOf(tiers, entry.Evaluation.Tier))
-			.ThenBy(entry => GetCategoryOrder(entry.Entry.Category))
+			.Where(entry => entry.Evaluation.Tier == tier)
+			.OrderBy(entry => GetCategoryOrder(entry.Entry.Category))
 			.ThenByDescending(GetCategoryStrength)
 			.ThenBy(entry => GetEntryDisplayOrderOverride(entry.Entry.Key))
 			.ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
@@ -467,6 +463,7 @@ public sealed class JournalUIState : UIState
 		JournalItemCategory.Weapon => GetWeaponStrength(entry),
 		JournalItemCategory.Armor => GetArmorStrength(entry),
 		JournalItemCategory.ClassSpecific => 0,
+		JournalItemCategory.Accessory => 0,
 		_ => 0
 	};
 
@@ -683,17 +680,8 @@ public sealed class JournalUIState : UIState
 			return 0f;
 		}
 
-		float totalWidth = 0f;
-
-		for (int index = 0; index < entries.Count; index++) {
-			totalWidth += JournalEntrySlot.GetVisualWidth(entries[index].Entry.ItemGroups.Count);
-
-			if (index < entries.Count - 1) {
-				totalWidth += EntrySpacing;
-			}
-		}
-
-		return totalWidth;
+		return entries.Sum(entry => JournalEntrySlot.GetVisualWidth(entry.Entry.ItemGroups.Count))
+			+ EntrySpacing * (entries.Count - 1);
 	}
 
 	private static Color GetCategoryHeaderBackgroundColor(JournalItemCategory category) => category switch

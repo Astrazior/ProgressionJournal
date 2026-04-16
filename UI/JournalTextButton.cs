@@ -7,12 +7,10 @@ namespace ProgressionJournal.UI;
 public sealed class JournalTextButton : UIPanel
 {
 	private UIText _label;
-	private readonly Action _onClick;
 	private float _textScale;
 
 	public JournalTextButton(string text, float textScale, Action onClick)
 	{
-		_onClick = onClick;
 		_textScale = textScale;
 		SetPadding(0f);
 		BackgroundColor = new Color(38, 54, 73);
@@ -21,7 +19,7 @@ public sealed class JournalTextButton : UIPanel
 		_label = CreateLabel(text);
 		Append(_label);
 
-		OnLeftClick += (_, _) => _onClick();
+		OnLeftClick += (_, _) => onClick();
 	}
 
 	public void SetText(string text) => _label.SetText(text);
