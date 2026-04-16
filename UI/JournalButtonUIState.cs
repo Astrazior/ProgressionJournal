@@ -2,10 +2,8 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ProgressionJournal.Systems;
+using ReLogic.Content;
 using Terraria;
-using Terraria.GameContent;
-using Terraria.GameContent.UI.Elements;
-using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -32,25 +30,23 @@ public sealed class JournalButtonUIState : UIState
 		Main.blockMouse = true;
 	}
 
-	private sealed class JournalButton : UIPanel
+	private sealed class JournalButton : UIElement
 	{
 		private const float ButtonSize = 34f;
 		private const float AccessorySlotStep = 47f;
 		private const float HorizontalSpacing = 8f;
 		private const float VerticalSpacing = 6f;
-		private static readonly Color BaseBackgroundColor = new(33, 44, 57);
-		private static readonly Color HoverBackgroundColor = new(50, 73, 96);
-		private static readonly Color ActiveBackgroundColor = new(67, 89, 54);
-		private static readonly Color BaseBorderColor = new(104, 130, 158);
-		private static readonly Color HoverBorderColor = new(170, 208, 240);
-		private static readonly Color ActiveBorderColor = new(165, 214, 124);
+		private static readonly Asset<Texture2D> IconTexture =
+			ModContent.Request<Texture2D>("ProgressionJournal/Assets/UI/JournalButtonIcon");
+		private static readonly Color HoverGlowColor = new(170, 208, 240);
+		private static readonly Color ActiveGlowColor = new(165, 214, 124);
+		private static readonly Color ShadowColor = new(10, 12, 20);
 
 		public JournalButton()
 		{
 			Width.Set(ButtonSize, 0f);
 			Height.Set(ButtonSize, 0f);
-			SetPadding(0f);
-			OnLeftClick += (_, _) => JournalSystem.ToggleView(syncStage: true);
+			OnLeftClick += (_, _) => JournalSystem.ToggleView();
 		}
 
 		public void UpdatePlacement()
@@ -68,8 +64,6 @@ public sealed class JournalButtonUIState : UIState
 
 			Left.Set(MathF.Round(x), 0f);
 			Top.Set(MathF.Round(y), 0f);
-			BackgroundColor = GetBackgroundColor();
-			BorderColor = GetBorderColor();
 			Recalculate();
 		}
 
@@ -77,36 +71,34 @@ public sealed class JournalButtonUIState : UIState
 		{
 			base.DrawSelf(spriteBatch);
 
-			var dimensions = GetInnerDimensions();
-			var icon = TextureAssets.Item[ItemID.Book].Value;
-			var scale = MathF.Min((dimensions.Width - 8f) / icon.Width, (dimensions.Height - 8f) / icon.Height);
-			var drawPosition = dimensions.Center() - icon.Size() * scale * 0.5f;
+			var dimensions = GetDimensions();
+			var icon = IconTexture.Value;
+			float scale = MathF.Min((dimensions.Width - 2f) / icon.Width, (dimensions.Height - 2f) / icon.Height);
+			float pulseScale = JournalSystem.Visible ? 1.06f : IsMouseHovering ? 1.02f : 1f;
+			Vector2 origin = icon.Size() * 0.5f;
+			Vector2 center = dimensions.Center();
+			Color glowColor = JournalSystem.Visible
+				? ActiveGlowColor
+				: IsMouseHovering
+					? HoverGlowColor
+					: Color.Transparent;
 
-			spriteBatch.Draw(icon, drawPosition, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+			if (glowColor != Color.Transparent) {
+				float glowScale = scale * (pulseScale + 0.08f);
+				spriteBatch.Draw(icon, center + new Vector2(-1f, 0f), null, glowColor * 0.22f, 0f, origin, glowScale, SpriteEffects.None, 0f);
+				spriteBatch.Draw(icon, center + new Vector2(1f, 0f), null, glowColor * 0.22f, 0f, origin, glowScale, SpriteEffects.None, 0f);
+				spriteBatch.Draw(icon, center + new Vector2(0f, -1f), null, glowColor * 0.22f, 0f, origin, glowScale, SpriteEffects.None, 0f);
+				spriteBatch.Draw(icon, center + new Vector2(0f, 1f), null, glowColor * 0.22f, 0f, origin, glowScale, SpriteEffects.None, 0f);
+			}
+
+			spriteBatch.Draw(icon, center + new Vector2(1f, 2f), null, ShadowColor * 0.55f, 0f, origin, scale * pulseScale, SpriteEffects.None, 0f);
+			spriteBatch.Draw(icon, center, null, Color.White, 0f, origin, scale * pulseScale, SpriteEffects.None, 0f);
 
 			if (!IsMouseHovering) {
 				return;
 			}
 
 			Main.hoverItemName = Language.GetTextValue("Mods.ProgressionJournal.UI.InventoryButtonTooltip");
-		}
-
-		private Color GetBackgroundColor()
-		{
-			if (JournalSystem.Visible) {
-				return ActiveBackgroundColor;
-			}
-
-			return IsMouseHovering ? HoverBackgroundColor : BaseBackgroundColor;
-		}
-
-		private Color GetBorderColor()
-		{
-			if (JournalSystem.Visible) {
-				return ActiveBorderColor;
-			}
-
-			return IsMouseHovering ? HoverBorderColor : BaseBorderColor;
 		}
 
 		private static JournalSystem JournalSystem => ModContent.GetInstance<JournalSystem>();

@@ -33,10 +33,8 @@ public sealed class JournalUIState : UIState
 	private const float HeaderTitleTop = 18f;
 	private const float HeaderTabsTop = -12f;
 	private const float HeaderTabsLeft = 18f;
-	private const float HeaderTabsGap = 8f;
 	private const float StagePanelWidth = 300f;
 	private const float TopTabsHeight = 40f;
-	private const float SyncTabWidth = 210f;
 	private const float CloseTabWidth = 112f;
 	private const float ActionTabHeight = 32f;
 	private const float MinSingleColumnStageButtonHeight = 40f;
@@ -74,7 +72,6 @@ public sealed class JournalUIState : UIState
 	private UIPanel _contentPanel = null!;
 	private UIText _title = null!;
 	private UIText _stagePanelTitle = null!;
-	private JournalTextButton _syncButton = null!;
 	private JournalTextButton _closeButton = null!;
 	private JournalTextButton _classButton = null!;
 	private JournalTextButton _overviewTabButton = null!;
@@ -123,14 +120,12 @@ public sealed class JournalUIState : UIState
 		EnsureLayout();
 
 		_title.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Title"));
-		_syncButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.UseCurrentStage"));
 		_closeButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Close"));
 		_stagePanelTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.StageSelectorTitle"));
 		_classButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Class"));
 		_overviewTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewTab"));
 		_presetsTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsTab"));
 
-		StyleHeaderButton(_syncButton, stageId == ProgressionStageCatalog.GetCurrentStageId(), false);
 		StyleHeaderButton(_closeButton, false, true);
 		StyleTabButton(_classButton, selectingClass);
 		StyleTabButton(_overviewTabButton, !selectingClass && !showingPresets);
@@ -197,11 +192,6 @@ public sealed class JournalUIState : UIState
 
 	private void InitializeHeader()
 	{
-		_syncButton = CreateButton(string.Empty, SyncTabWidth, ActionTabHeight, () => JournalSystem.SyncStageWithWorld(), 0.52f);
-		_syncButton.Left.Set(HeaderTabsLeft, 0f);
-		_syncButton.Top.Set(HeaderTabsTop, 0f);
-		_root.Append(_syncButton);
-
 		_closeButton = CreateButton(string.Empty, CloseTabWidth, ActionTabHeight, () => JournalSystem.HideView(), 0.52f);
 		_closeButton.Left.Set(-(CloseTabWidth + HeaderTabsLeft), 1f);
 		_closeButton.Top.Set(HeaderTabsTop, 0f);

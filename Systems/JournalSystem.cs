@@ -100,26 +100,22 @@ public sealed class JournalSystem : ModSystem
 		}
 
 		if (ProgressionJournal.ToggleJournalKeybind?.JustPressed == true) {
-			ToggleView(syncStage: true);
+			ToggleView();
 		}
 	}
 
-	public void ToggleView(bool syncStage = false)
+	public void ToggleView()
 	{
 		if (Visible) {
 			HideView();
 			return;
 		}
 
-		ShowView(syncStage);
+		ShowView();
 	}
 
-	public void ShowView(bool syncStage = false)
+	public void ShowView()
 	{
-		if (syncStage) {
-			SelectedStage = ProgressionStageCatalog.GetCurrentStageId();
-		}
-
 		CloseConflictingInterfaces();
 		Visible = true;
 		SelectingClass = true;
@@ -133,12 +129,6 @@ public sealed class JournalSystem : ModSystem
 	{
 		Visible = false;
 		_journalInterface?.SetState(null);
-	}
-
-	public void SyncStageWithWorld()
-	{
-		SelectedStage = ProgressionStageCatalog.GetCurrentStageId();
-		RefreshView();
 	}
 
 	public void CycleClass(int direction)
