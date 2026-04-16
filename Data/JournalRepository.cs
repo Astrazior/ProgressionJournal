@@ -421,6 +421,127 @@ public static class JournalRepository
 			Entry("moonlordArrowPostMoonLord", JournalItemCategory.ClassSpecific, CombatClass.Ranged, ItemID.MoonlordArrow,
 				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Recommended)),
 
+			Entry("leatherWhipPreBoss", JournalItemCategory.ClassSpecific, CombatClass.Summoner, ItemID.BlandWhip,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Entry("snapthornPreBoss", JournalItemCategory.ClassSpecific, CombatClass.Summoner, ItemID.ThornWhip,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
+
+			Entry("spinalTapPostSkeletron", JournalItemCategory.ClassSpecific, CombatClass.Summoner, ItemID.BoneWhip,
+				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Recommended)),
+
+			Entry("firecrackerHardmodeEntry", JournalItemCategory.ClassSpecific, CombatClass.Summoner, ItemID.FireWhip,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
+
+			Entry("coolWhipHardmodeEntry", JournalItemCategory.ClassSpecific, CombatClass.Summoner, ItemID.CoolWhip,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
+
+			Entry("durendalPostOneMechBoss", JournalItemCategory.ClassSpecific, CombatClass.Summoner, ItemID.SwordWhip,
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended)),
+
+			Entry("darkHarvestPostPlantera", JournalItemCategory.ClassSpecific, CombatClass.Summoner, ItemID.ScytheWhip,
+				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Additional)),
+
+			Entry("morningStarPostPlantera", JournalItemCategory.ClassSpecific, CombatClass.Summoner, ItemID.MaceWhip,
+				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
+
+			Entry("kaleidoscopePostPlantera", JournalItemCategory.ClassSpecific, CombatClass.Summoner, ItemID.RainbowWhip,
+				OptionalBossRequirementId.EmpressOfLight,
+				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
+
+			Entry("abigailsFlowerPreBoss", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.AbigailsFlower,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
+
+			Entry("finchStaffPreBoss", JournalItemCategory.Weapon, CombatClass.Summoner, 4281,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Entry("flinxStaffPreBoss", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.FlinxStaff,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Entry("slimeStaffPreBoss", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.SlimeStaff,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Entry("vampireFrogStaffPreBoss", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.VampireFrogStaff,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
+
+			Entry("hornetStaffPostWorldEvil", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.HornetStaff,
+				OptionalBossRequirementId.QueenBee,
+				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Additional)),
+
+			Entry("impStaffPostWorldEvil", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.ImpStaff,
+				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Recommended)),
+
+			Entry("houndiusShootiusPostSkeletron", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.HoundiusShootius,
+				OptionalBossRequirementId.Deerclops,
+				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Additional)),
+
+			Entry("earlySentryWandsPreBoss", JournalItemCategory.Weapon, CombatClass.Summoner,
+				Group(ItemID.DD2LightningAuraT1Popper, ItemID.DD2FlameburstTowerT1Popper, ItemID.DD2BallistraTowerT1Popper, ItemID.DD2ExplosiveTrapT1Popper),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
+			Entry("queenSpiderStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.QueenSpiderStaff,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
+
+			Entry("spiderStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.SpiderStaff,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
+
+			Entry("sanguineStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.SanguineStaff,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
+
+			Entry("pirateStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.PirateStaff,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
+
+			Entry("bladeStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.Smolstar,
+				OptionalBossRequirementId.QueenSlime,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
+
+			Entry("opticStaffPostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.OpticStaff,
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended)),
+
+			Entry("dd2SentryTier2PostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Summoner,
+				Group(ItemID.DD2LightningAuraT2Popper, ItemID.DD2FlameburstTowerT2Popper, ItemID.DD2BallistraTowerT2Popper, ItemID.DD2ExplosiveTrapT2Popper),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended)),
+
+			Entry("pygmyStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.PygmyStaff,
+				Eval(ProgressionStageId.PostPlantera, RecommendationTier.NotRecommended)),
+
+			Entry("staffOfTheFrostHydraPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.StaffoftheFrostHydra,
+				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
+
+			Entry("desertTigerStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.StormTigerStaff,
+				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
+
+			Entry("deadlySphereStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.DeadlySphereStaff,
+				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
+
+			Entry("ravenStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.RavenStaff,
+				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Useless)),
+
+			Entry("tempestStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.TempestStaff,
+				OptionalBossRequirementId.DukeFishron,
+				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
+
+			Entry("xenoStaffPostGolem", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.XenoStaff,
+				Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)),
+
+			Entry("dd2SentryTier3PostGolem", JournalItemCategory.Weapon, CombatClass.Summoner,
+				Group(ItemID.DD2LightningAuraT3Popper, ItemID.DD2FlameburstTowerT3Popper, ItemID.DD2BallistraTowerT3Popper, ItemID.DD2ExplosiveTrapT3Popper),
+				Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)),
+
+			Entry("stardustCellOrDragonStaffPostCelestialPillars", JournalItemCategory.Weapon, CombatClass.Summoner,
+				Group(ItemID.StardustCellStaff, ItemID.StardustDragonStaff),
+				Eval(ProgressionStageId.PostCelestialPillars, RecommendationTier.Recommended)),
+
+			Entry("lunarPortalStaffPostMoonLord", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.MoonlordTurretStaff,
+				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Recommended)),
+
+			Entry("rainbowCrystalStaffPostMoonLord", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.RainbowCrystalStaff,
+				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Recommended)),
+
+			Entry("terraprismaPostMoonLord", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.EmpressBlade,
+				OptionalBossRequirementId.EmpressOfLight,
+				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Recommended)),
+
 			Entry("starCannonPostWorldEvil", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.StarCannon,
 				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Additional)),
 
@@ -920,6 +1041,18 @@ public static class JournalRepository
 
 			Set("meteorArmorPostWorldEvil", JournalItemCategory.Armor, CombatClass.Magic,
 				ItemID.MeteorHelmet, ItemID.MeteorSuit, ItemID.MeteorLeggings,
+				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Recommended)),
+
+			Entry("flinxFurCoatPreBoss", JournalItemCategory.Armor, CombatClass.Summoner, ItemID.FlinxFurCoat,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+			Set("obsidianArmorPostWorldEvil", JournalItemCategory.Armor, CombatClass.Summoner,
+				ItemID.ObsidianHelm, ItemID.ObsidianShirt, ItemID.ObsidianPants,
+				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Recommended)),
+
+			Set("beeArmorPostWorldEvil", JournalItemCategory.Armor, CombatClass.Summoner,
+				ItemID.BeeHeadgear, ItemID.BeeBreastplate, ItemID.BeeGreaves,
+				OptionalBossRequirementId.QueenBee,
 				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Recommended)),
 
 			Set("ancientShadowArmorPreBoss", JournalItemCategory.Armor, CombatClass.All,
@@ -1620,6 +1753,64 @@ public static class JournalRepository
 
 			Set("nebulaArmorPostMoonLord", JournalItemCategory.Armor, CombatClass.Magic,
 				ItemID.NebulaHelmet, ItemID.NebulaBreastplate, ItemID.NebulaLeggings,
+				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Recommended)),
+
+			Set("cobaltOrPalladiumArmorSummonerHardmodeEntry", JournalItemCategory.Armor, CombatClass.Summoner,
+				Group(ItemID.CobaltHelmet, ItemID.CobaltMask, ItemID.CobaltHat, ItemID.PalladiumHelmet, ItemID.PalladiumMask, ItemID.PalladiumHeadgear),
+				Group(ItemID.CobaltBreastplate, ItemID.PalladiumBreastplate),
+				Group(ItemID.CobaltLeggings, ItemID.PalladiumLeggings),
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
+
+			Set("mythrilOrOrichalcumArmorSummonerHardmodeEntry", JournalItemCategory.Armor, CombatClass.Summoner,
+				Group(ItemID.MythrilHelmet, ItemID.MythrilHood, ItemID.OrichalcumHelmet, ItemID.OrichalcumMask, ItemID.OrichalcumHeadgear),
+				Group(ItemID.MythrilChainmail, ItemID.OrichalcumBreastplate),
+				Group(ItemID.MythrilGreaves, ItemID.OrichalcumLeggings),
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
+
+			Set("adamantiteOrTitaniumArmorSummonerHardmodeEntry", JournalItemCategory.Armor, CombatClass.Summoner,
+				Group(ItemID.AdamantiteHelmet, ItemID.AdamantiteMask, ItemID.AdamantiteHeadgear, ItemID.TitaniumHelmet, ItemID.TitaniumMask, ItemID.TitaniumHeadgear),
+				Group(ItemID.AdamantiteBreastplate, ItemID.TitaniumBreastplate),
+				Group(ItemID.AdamantiteLeggings, ItemID.TitaniumLeggings),
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
+
+			Set("forbiddenArmorSummonerHardmodeEntry", JournalItemCategory.Armor, CombatClass.Summoner,
+				3776, 3777, 3778,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
+
+			Set("spiderArmorHardmodeEntry", JournalItemCategory.Armor, CombatClass.Summoner,
+				ItemID.SpiderMask, ItemID.SpiderBreastplate, ItemID.SpiderGreaves,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
+
+			new JournalEntry("dd2ArmorPostOneMechBoss", JournalItemCategory.Armor, CombatClass.Summoner,
+				[
+					Group(ItemID.ApprenticeHat, ItemID.MonkBrows, ItemID.HuntressWig, ItemID.SquireGreatHelm),
+					Group(ItemID.ApprenticeRobe, ItemID.MonkShirt, ItemID.HuntressJerkin, ItemID.SquirePlating),
+					Group(ItemID.ApprenticeTrousers, ItemID.MonkPants, ItemID.HuntressPants, ItemID.SquireGreaves)
+				],
+				[Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Additional)]),
+
+			Set("hallowedArmorSummonerPostOneMechBoss", JournalItemCategory.Armor, CombatClass.Summoner,
+				ItemID.HallowedHood, ItemID.HallowedPlateMail, ItemID.HallowedGreaves,
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended)),
+
+			Set("tikiArmorPostPlantera", JournalItemCategory.Armor, CombatClass.Summoner,
+				ItemID.TikiMask, ItemID.TikiShirt, ItemID.TikiPants,
+				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
+
+			Set("spookyArmorPostPlantera", JournalItemCategory.Armor, CombatClass.Summoner,
+				ItemID.SpookyHelmet, ItemID.SpookyBreastplate, ItemID.SpookyLeggings,
+				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
+
+			new JournalEntry("dd2ArmorPostGolem", JournalItemCategory.Armor, CombatClass.Summoner,
+				[
+					Group(ItemID.ApprenticeAltHead, ItemID.MonkAltHead, ItemID.HuntressAltHead, ItemID.SquireAltHead),
+					Group(ItemID.ApprenticeAltShirt, ItemID.MonkAltShirt, ItemID.HuntressAltShirt, ItemID.SquireAltShirt),
+					Group(ItemID.ApprenticeAltPants, ItemID.MonkAltPants, ItemID.HuntressAltPants, ItemID.SquireAltPants)
+				],
+				[Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)]),
+
+			Set("stardustArmorPostMoonLord", JournalItemCategory.Armor, CombatClass.Summoner,
+				ItemID.StardustHelmet, ItemID.StardustBreastplate, ItemID.StardustLeggings,
 				Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Recommended)),
 
 			Set("palladiumArmorHardmodeEntry", JournalItemCategory.Armor, CombatClass.Melee,
