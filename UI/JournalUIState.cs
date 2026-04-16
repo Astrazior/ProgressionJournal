@@ -53,9 +53,9 @@ public sealed class JournalUIState : UIState
 	private static readonly JournalItemCategory[] EntryCategoryOrder =
 	[
 		JournalItemCategory.Weapon,
+		JournalItemCategory.ClassSpecific,
 		JournalItemCategory.Armor,
-		JournalItemCategory.Accessory,
-		JournalItemCategory.ClassSpecific
+		JournalItemCategory.Accessory
 	];
 
 	private readonly Dictionary<ProgressionStageId, JournalTextButton> _stageButtons = new();
@@ -440,7 +440,7 @@ public sealed class JournalUIState : UIState
 		return entries
 			.Where(entry => tiers.Contains(entry.Evaluation.Tier))
 			.OrderBy(entry => Array.IndexOf(tiers, entry.Evaluation.Tier))
-			.ThenBy(entry => entry.Entry.Category)
+			.ThenBy(entry => GetCategoryOrder(entry.Entry.Category))
 			.ThenByDescending(GetCategoryStrength)
 			.ThenBy(entry => GetEntryDisplayOrderOverride(entry.Entry.Key))
 			.ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
@@ -451,6 +451,15 @@ public sealed class JournalUIState : UIState
 	{
 		"sandstormOrBlizzardBottlePreBoss" => 0,
 		"balloonBundlesPreBoss" => 1,
+		_ => int.MaxValue
+	};
+
+	private static int GetCategoryOrder(JournalItemCategory category) => category switch
+	{
+		JournalItemCategory.Weapon => 0,
+		JournalItemCategory.ClassSpecific => 1,
+		JournalItemCategory.Armor => 2,
+		JournalItemCategory.Accessory => 3,
 		_ => int.MaxValue
 	};
 

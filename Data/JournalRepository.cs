@@ -16,7 +16,7 @@ public static class JournalRepository
 			.Where(entry => entry.AppliesToClass(combatClass) && entry.TryGetEvaluation(stageId, out _))
 			.Select(entry => new JournalStageEntry(entry, entry.GetEvaluation(stageId)))
 			.OrderBy(entry => GetTierOrder(entry.Evaluation.Tier))
-			.ThenBy(entry => entry.Entry.Category)
+			.ThenBy(entry => GetCategoryOrder(entry.Entry.Category))
 			.ThenBy(entry => GetDisplayOrderOverride(stageId, entry.Entry.Key))
 			.ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
 			.ToArray();
@@ -2091,4 +2091,13 @@ public static class JournalRepository
 
 		return int.MaxValue;
 	}
+
+	private static int GetCategoryOrder(JournalItemCategory category) => category switch
+	{
+		JournalItemCategory.Weapon => 0,
+		JournalItemCategory.ClassSpecific => 1,
+		JournalItemCategory.Armor => 2,
+		JournalItemCategory.Accessory => 3,
+		_ => int.MaxValue
+	};
 }
