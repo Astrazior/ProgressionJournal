@@ -41,7 +41,7 @@ public sealed class JournalTextButton : UIPanel
 
 	private UIText CreateLabel(string text)
 	{
-		var label = new UIText(text, _textScale, false) {
+		var label = new UIText(text, _textScale) {
 			HAlign = 0.5f,
 			VAlign = 0.5f
 		};

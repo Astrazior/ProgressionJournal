@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 
@@ -21,6 +22,7 @@ public sealed class JournalStageButton : UIPanel
 	private UIText _label;
 	private float _textScale;
 	private readonly List<(HeadTextureKind Kind, int Slot)> _headSlots = [];
+	private string _tooltipText = string.Empty;
 
 	public JournalStageButton(Action onClick)
 	{
@@ -50,6 +52,11 @@ public sealed class JournalStageButton : UIPanel
 		_label.SetText(text);
 	}
 
+	public void SetTooltip(string tooltipText)
+	{
+		_tooltipText = tooltipText;
+	}
+
 	public void SetBossHeadDisplay(params int[] bossHeadSlots)
 	{
 		_headSlots.Clear();
@@ -76,6 +83,10 @@ public sealed class JournalStageButton : UIPanel
 	protected override void DrawSelf(SpriteBatch spriteBatch)
 	{
 		base.DrawSelf(spriteBatch);
+
+		if (IsMouseHovering && !string.IsNullOrWhiteSpace(_tooltipText)) {
+			Main.hoverItemName = _tooltipText;
+		}
 
 		if (_headSlots.Count == 0) {
 			return;
@@ -117,11 +128,11 @@ public sealed class JournalStageButton : UIPanel
 
 	private UIText CreateLabel(string text)
 	{
-		var label = new UIText(text, _textScale, false) {
+		var label = new UIText(text, _textScale) {
 			HAlign = 0.5f,
-			VAlign = 0.5f
+			VAlign = 0.5f,
+			TextColor = new Color(226, 233, 240)
 		};
-		label.TextColor = new Color(226, 233, 240);
 		return label;
 	}
 

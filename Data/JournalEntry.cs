@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.ID;
 
 namespace ProgressionJournal.Data;
 
@@ -42,6 +43,7 @@ public sealed class JournalEntry
 
 		ItemIds = ItemGroups.SelectMany(group => group.ItemIds).ToArray();
 		RepresentativeItemId = ItemGroups[0].RepresentativeItemId;
+		CategoryStrength = ComputeCategoryStrength(category, ItemGroups, ItemIds);
 		_evaluations = evaluations.ToDictionary(evaluation => evaluation.StageId);
 	}
 
@@ -56,6 +58,8 @@ public sealed class JournalEntry
 	public IReadOnlyList<int> ItemIds { get; }
 
 	public int RepresentativeItemId { get; }
+
+	public int CategoryStrength { get; }
 
 	public bool AppliesToClass(CombatClass combatClass) => (Classes & combatClass) != 0;
 
@@ -103,4 +107,46 @@ public sealed class JournalEntry
 	}
 
 	public string GetDisplayName() => string.Join(" + ", ItemGroups.Select(group => group.GetDisplayName()));
+
+	private static int ComputeCategoryStrength(
+		JournalItemCategory category,
+		IReadOnlyList<JournalItemGroup> itemGroups,
+		IReadOnlyList<int> itemIds) => category switch
+	{
+		JournalItemCategory.Weapon => GetWeaponStrength(itemIds),
+		JournalItemCategory.Armor => GetArmorStrength(itemGroups),
+		_ => 0
+	};
+
+	private static int GetWeaponStrength(IReadOnlyList<int> itemIds)
+	{
+		int bestDamage = 0;
+
+		foreach (int itemId in itemIds) {
+			if (ContentSamples.ItemsByType.TryGetValue(itemId, out Item? item) && item is not null) {
+				bestDamage = Math.Max(bestDamage, item.damage);
+			}
+		}
+
+		return bestDamage;
+	}
+
+	private static int GetArmorStrength(IReadOnlyList<JournalItemGroup> itemGroups)
+	{
+		int totalDefense = 0;
+
+		foreach (var group in itemGroups) {
+			int bestDefenseInGroup = 0;
+
+			foreach (int itemId in group.ItemIds) {
+				if (ContentSamples.ItemsByType.TryGetValue(itemId, out Item? item) && item is not null) {
+					bestDefenseInGroup = Math.Max(bestDefenseInGroup, item.defense);
+				}
+			}
+
+			totalDefense += bestDefenseInGroup;
+		}
+
+		return totalDefense;
+	}
 }

@@ -15,7 +15,7 @@ using Terraria.UI;
 
 namespace ProgressionJournal.UI;
 
-public sealed class JournalUIState : UIState
+public sealed class JournalUiState : UIState
 {
 	private const int EntrySlotsPerRow = 6;
 	private const float EntrySpacing = 4f;
@@ -216,8 +216,9 @@ public sealed class JournalUIState : UIState
 		_stagePanel.Height.Set(-(HeaderHeight + OuterPadding * 2f), 1f);
 		_root.Append(_stagePanel);
 
-		_stagePanelTitle = new UIText(string.Empty, 0.52f, true);
-		_stagePanelTitle.Left.Set(14f, 0f);
+		_stagePanelTitle = new UIText(string.Empty, 0.52f, true) {
+			HAlign = 0.5f
+		};
 		_stagePanelTitle.Top.Set(12f, 0f);
 		_stagePanel.Append(_stagePanelTitle);
 
@@ -460,44 +461,9 @@ public sealed class JournalUIState : UIState
 
 	private static int GetCategoryStrength(JournalStageEntry entry) => entry.Entry.Category switch
 	{
-		JournalItemCategory.Weapon => GetWeaponStrength(entry),
-		JournalItemCategory.Armor => GetArmorStrength(entry),
-		JournalItemCategory.ClassSpecific => 0,
-		JournalItemCategory.Accessory => 0,
+		JournalItemCategory.Weapon or JournalItemCategory.Armor => entry.Entry.CategoryStrength,
 		_ => 0
 	};
-
-	private static int GetWeaponStrength(JournalStageEntry entry)
-	{
-		int bestDamage = 0;
-
-		foreach (var itemId in entry.Entry.ItemIds) {
-			var item = new Item();
-			item.SetDefaults(itemId);
-			bestDamage = Math.Max(bestDamage, item.damage);
-		}
-
-		return bestDamage;
-	}
-
-	private static int GetArmorStrength(JournalStageEntry entry)
-	{
-		int totalDefense = 0;
-
-		foreach (var group in entry.Entry.ItemGroups) {
-			int bestDefenseInGroup = 0;
-
-			foreach (var itemId in group.ItemIds) {
-				var item = new Item();
-				item.SetDefaults(itemId);
-				bestDefenseInGroup = Math.Max(bestDefenseInGroup, item.defense);
-			}
-
-			totalDefense += bestDefenseInGroup;
-		}
-
-		return totalDefense;
-	}
 
 	private static UIPanel CreateClassSelectionButton(CombatClass combatClass, bool active, float height)
 	{
@@ -664,11 +630,12 @@ public sealed class JournalUIState : UIState
 
 		float left = 0f;
 
-		for (int index = 0; index < entries.Length; index++) {
-			var slot = new JournalEntrySlot(entries[index]);
+		foreach (var t in entries)
+		{
+			var slot = new JournalEntrySlot(t);
 			slot.Left.Set(left, 0f);
 			row.Append(slot);
-			left += JournalEntrySlot.GetVisualWidth(entries[index].Entry.ItemGroups.Count) + EntrySpacing;
+			left += JournalEntrySlot.GetVisualWidth(t.Entry.ItemGroups.Count) + EntrySpacing;
 		}
 
 		return row;
@@ -757,6 +724,7 @@ public sealed class JournalUIState : UIState
 	private static void ApplyStageButtonContent(JournalStageButton button, ProgressionStage stage)
 	{
 		string stageName = Language.GetTextValue(stage.LocalizationKey);
+		button.SetTooltip(stageName);
 
 		switch (stage.Id) {
 			case ProgressionStageId.PreBoss:

@@ -6,17 +6,8 @@ using Terraria.UI;
 
 namespace ProgressionJournal.UI;
 
-public sealed class JournalRecommendationHeader : UIElement
+public sealed class JournalRecommendationHeader(string title, Color accentColor) : UIElement
 {
-	private readonly string _title;
-	private readonly Color _accentColor;
-
-	public JournalRecommendationHeader(string title, Color accentColor)
-	{
-		_title = title;
-		_accentColor = accentColor;
-	}
-
 	protected override void DrawSelf(SpriteBatch spriteBatch)
 	{
 		base.DrawSelf(spriteBatch);
@@ -31,7 +22,7 @@ public sealed class JournalRecommendationHeader : UIElement
 		const int accentWidth = 10;
 		const int accentHeight = 4;
 
-		Vector2 titleSize = font.MeasureString(_title) * textScale;
+		Vector2 titleSize = font.MeasureString(title) * textScale;
 		float centerX = dimensions.X + dimensions.Width * 0.5f;
 		float centerY = dimensions.Y + dimensions.Height * 0.5f;
 		float rightEdge = dimensions.X + dimensions.Width;
@@ -43,18 +34,18 @@ public sealed class JournalRecommendationHeader : UIElement
 		int secondaryLineY = lineY + 5;
 		int accentY = lineY - 1;
 
-		DrawSegment(spriteBatch, pixel, dimensions.X + sideInset, leftEnd, lineY, mainLineThickness, _accentColor * 0.9f);
-		DrawSegment(spriteBatch, pixel, rightStart, rightEdge - sideInset, lineY, mainLineThickness, _accentColor * 0.9f);
-		DrawSegment(spriteBatch, pixel, dimensions.X + sideInset + 12f, leftEnd - 8f, secondaryLineY, 1, _accentColor * 0.34f);
-		DrawSegment(spriteBatch, pixel, rightStart + 8f, rightEdge - sideInset - 12f, secondaryLineY, 1, _accentColor * 0.34f);
+		DrawSegment(spriteBatch, pixel, dimensions.X + sideInset, leftEnd, lineY, mainLineThickness, accentColor * 0.9f);
+		DrawSegment(spriteBatch, pixel, rightStart, rightEdge - sideInset, lineY, mainLineThickness, accentColor * 0.9f);
+		DrawSegment(spriteBatch, pixel, dimensions.X + sideInset + 12f, leftEnd - 8f, secondaryLineY, 1, accentColor * 0.34f);
+		DrawSegment(spriteBatch, pixel, rightStart + 8f, rightEdge - sideInset - 12f, secondaryLineY, 1, accentColor * 0.34f);
 
-		DrawAccent(spriteBatch, pixel, leftEnd - accentWidth, accentY, accentWidth, accentHeight, _accentColor);
-		DrawAccent(spriteBatch, pixel, rightStart, accentY, accentWidth, accentHeight, _accentColor);
+		DrawAccent(spriteBatch, pixel, leftEnd - accentWidth, accentY, accentWidth, accentHeight, accentColor);
+		DrawAccent(spriteBatch, pixel, rightStart, accentY, accentWidth, accentHeight, accentColor);
 
 		Utils.DrawBorderStringFourWay(
 			spriteBatch,
 			font,
-			_title,
+			title,
 			textX,
 			textY,
 			new Color(241, 244, 247),

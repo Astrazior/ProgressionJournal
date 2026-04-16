@@ -24,9 +24,9 @@ public sealed class JournalSystem : ModSystem
 		ProgressionStageCatalog.All.Select(stage => stage.Id).ToArray();
 
 	private UserInterface? _journalInterface;
-	private JournalUIState? _journalState;
+	private JournalUiState? _journalState;
 	private UserInterface? _buttonInterface;
-	private JournalButtonUIState? _buttonState;
+	private JournalButtonUiState? _buttonState;
 
 	public bool Visible { get; private set; }
 
@@ -45,11 +45,11 @@ public sealed class JournalSystem : ModSystem
 		}
 
 		_journalInterface = new UserInterface();
-		_journalState = new JournalUIState();
+		_journalState = new JournalUiState();
 		_journalState.Activate();
 
 		_buttonInterface = new UserInterface();
-		_buttonState = new JournalButtonUIState();
+		_buttonState = new JournalButtonUiState();
 		_buttonState.Activate();
 		_buttonInterface.SetState(_buttonState);
 	}

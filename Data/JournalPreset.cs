@@ -5,7 +5,7 @@ using Terraria.Localization;
 
 namespace ProgressionJournal.Data;
 
-public sealed class JournalPreset(
+public abstract class JournalPreset(
 	string key,
 	CombatClass combatClass,
 	ProgressionStageId stageId,

@@ -10,7 +10,7 @@ using Terraria.UI;
 
 namespace ProgressionJournal.UI;
 
-public sealed class JournalButtonUIState : UIState
+public sealed class JournalButtonUiState : UIState
 {
 	private JournalButton _button = null!;
 
