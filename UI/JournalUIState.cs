@@ -20,10 +20,13 @@ public sealed class JournalUIState : UIState
 	private const float EntrySpacing = 4f;
 	private const float BlockHorizontalPadding = 14f;
 	private const float BlockVerticalPadding = 12f;
-	private const float BlockTitleHeight = 28f;
 	private const float RowHeight = 56f;
 	private const float RowSpacing = 6f;
-	private const float CategorySpacing = 8f;
+	private const float CategorySpacing = 12f;
+	private const float CategoryHeaderHeight = 26f;
+	private const float CategoryHeaderBottomSpacing = 8f;
+	private const float RecommendationHeaderHeight = 34f;
+	private const float RecommendationHeaderBottomSpacing = 12f;
 	private const float OuterPadding = 12f;
 	private const float PanelGap = 12f;
 	private const float HeaderHeight = 72f;
@@ -591,18 +594,28 @@ public sealed class JournalUIState : UIState
 
 		float top = BlockVerticalPadding;
 
-		var titleText = new UIText(title, 0.5f, true);
-		titleText.Left.Set(BlockHorizontalPadding, 0f);
-		titleText.Top.Set(top, 0f);
-		titleText.TextColor = new Color(235, 239, 242);
-		block.Append(titleText);
-		top += BlockTitleHeight;
+		var header = CreateRecommendationHeader(title, borderColor);
+		header.Left.Set(BlockHorizontalPadding, 0f);
+		header.Top.Set(top, 0f);
+		block.Append(header);
+		top += RecommendationHeaderHeight + RecommendationHeaderBottomSpacing;
 
+		bool hasAnyCategory = false;
 		foreach (var category in EntryCategoryOrder) {
 			var categoryEntries = entries.Where(entry => entry.Entry.Category == category).ToArray();
 			if (categoryEntries.Length == 0) {
 				continue;
 			}
+
+			if (hasAnyCategory) {
+				top += CategorySpacing;
+			}
+
+			var categoryHeader = CreateCategoryHeader(category);
+			categoryHeader.Left.Set(BlockHorizontalPadding, 0f);
+			categoryHeader.Top.Set(top, 0f);
+			block.Append(categoryHeader);
+			top += CategoryHeaderHeight + CategoryHeaderBottomSpacing;
 
 			foreach (var rowEntries in ChunkEntries(categoryEntries, EntrySlotsPerRow)) {
 				var row = CreateSlotRow(rowEntries);
@@ -612,15 +625,40 @@ public sealed class JournalUIState : UIState
 				top += RowHeight + RowSpacing;
 			}
 
-			top += CategorySpacing;
+			hasAnyCategory = true;
 		}
 
-		if (top >= CategorySpacing) {
-			top -= CategorySpacing;
+		if (hasAnyCategory && top >= RowSpacing) {
+			top -= RowSpacing;
 		}
 
 		block.Height.Set(top + 4f, 0f);
 		return block;
+	}
+
+	private static UIPanel CreateCategoryHeader(JournalItemCategory category)
+	{
+		var header = CreatePanel();
+		header.Width.Set(-(BlockHorizontalPadding * 2f), 1f);
+		header.Height.Set(CategoryHeaderHeight, 0f);
+		header.BackgroundColor = GetCategoryHeaderBackgroundColor(category);
+		header.BorderColor = GetCategoryHeaderBorderColor(category);
+
+		var label = new UIText(Language.GetTextValue($"Mods.ProgressionJournal.Categories.{category}"), 0.38f, true);
+		label.Left.Set(10f, 0f);
+		label.VAlign = 0.5f;
+		label.TextColor = GetCategoryHeaderTextColor(category);
+		header.Append(label);
+
+		return header;
+	}
+
+	private static UIElement CreateRecommendationHeader(string title, Color borderColor)
+	{
+		var header = new JournalRecommendationHeader(title, borderColor);
+		header.Width.Set(-(BlockHorizontalPadding * 2f), 1f);
+		header.Height.Set(RecommendationHeaderHeight, 0f);
+		return header;
 	}
 
 	private static UIElement CreateSlotRow(JournalStageEntry[] entries)
@@ -659,6 +697,33 @@ public sealed class JournalUIState : UIState
 
 		return totalWidth;
 	}
+
+	private static Color GetCategoryHeaderBackgroundColor(JournalItemCategory category) => category switch
+	{
+		JournalItemCategory.Weapon => new Color(61, 49, 31),
+		JournalItemCategory.ClassSpecific => new Color(34, 61, 61),
+		JournalItemCategory.Armor => new Color(42, 54, 74),
+		JournalItemCategory.Accessory => new Color(57, 44, 68),
+		_ => new Color(40, 48, 58)
+	};
+
+	private static Color GetCategoryHeaderBorderColor(JournalItemCategory category) => category switch
+	{
+		JournalItemCategory.Weapon => new Color(196, 162, 88),
+		JournalItemCategory.ClassSpecific => new Color(104, 194, 196),
+		JournalItemCategory.Armor => new Color(134, 166, 214),
+		JournalItemCategory.Accessory => new Color(182, 136, 204),
+		_ => new Color(120, 136, 152)
+	};
+
+	private static Color GetCategoryHeaderTextColor(JournalItemCategory category) => category switch
+	{
+		JournalItemCategory.Weapon => new Color(244, 226, 178),
+		JournalItemCategory.ClassSpecific => new Color(200, 242, 244),
+		JournalItemCategory.Armor => new Color(216, 229, 246),
+		JournalItemCategory.Accessory => new Color(236, 216, 246),
+		_ => new Color(230, 235, 240)
+	};
 
 	private void LayoutStageButtons()
 	{
