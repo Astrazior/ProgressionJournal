@@ -36,7 +36,7 @@ public sealed class JournalUiState : UIState
 	private const float HeaderTabsLeft = 18f;
 	private const float StagePanelWidth = 300f;
 	private const float TopTabsHeight = 40f;
-	private const float CloseTabWidth = 112f;
+	private const float CloseTabWidth = 72f;
 	private const float ActionTabHeight = 32f;
 	private const float MinSingleColumnStageButtonHeight = 40f;
 	private const float StageButtonGap = 6f;
@@ -121,7 +121,7 @@ public sealed class JournalUiState : UIState
 		EnsureLayout();
 
 		_title.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Title"));
-		_closeButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Close"));
+		_closeButton.SetText("Esc");
 		_stagePanelTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.StageSelectorTitle"));
 		_classButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Class"));
 		_overviewTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewTab"));
@@ -135,6 +135,7 @@ public sealed class JournalUiState : UIState
 		foreach (var stage in ProgressionStageCatalog.All) {
 			var button = _stageButtons[stage.Id];
 			ApplyStageButtonContent(button, stage);
+			button.SetCompleted(IsCompletedStage(stage.Id));
 			StyleStageButton(button, stage.Id == stageId);
 		}
 
@@ -193,7 +194,7 @@ public sealed class JournalUiState : UIState
 
 	private void InitializeHeader()
 	{
-		_closeButton = CreateButton(string.Empty, CloseTabWidth, ActionTabHeight, () => JournalSystem.HideView(), 0.52f);
+		_closeButton = CreateButton(string.Empty, CloseTabWidth, ActionTabHeight, () => JournalSystem.HideView(), 1f);
 		_closeButton.Left.Set(-(CloseTabWidth + HeaderTabsLeft), 1f);
 		_closeButton.Top.Set(HeaderTabsTop, 0f);
 		_root.Append(_closeButton);
@@ -811,6 +812,11 @@ public sealed class JournalUiState : UIState
 	};
 
 	private static int GetBossHeadSlot(int npcType) => NPCID.Sets.BossHeadTextures[npcType];
+
+	private static bool IsCompletedStage(ProgressionStageId stageId)
+	{
+		return ProgressionStageCatalog.Get(stageId).IsUnlocked();
+	}
 
 	private static int GetFirstDownedMechBossNpcType()
 	{

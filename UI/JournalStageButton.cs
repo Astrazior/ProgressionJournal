@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ModLoader;
 
 namespace ProgressionJournal.UI;
 
@@ -13,6 +15,8 @@ public sealed class JournalStageButton : UIPanel
 	private const float DefaultTextScale = 0.9f;
 	private const float IconPadding = 6f;
 	private const float IconOverlap = 10f;
+	private static readonly Asset<Texture2D> CompletedMarkerTexture =
+		ModContent.Request<Texture2D>("ProgressionJournal/Assets/UI/StageCompletedCheck");
 	private enum HeadTextureKind
 	{
 		Boss,
@@ -23,6 +27,7 @@ public sealed class JournalStageButton : UIPanel
 	private float _textScale;
 	private readonly List<(HeadTextureKind Kind, int Slot)> _headSlots = [];
 	private string _tooltipText = string.Empty;
+	private bool _isCompleted;
 
 	public JournalStageButton(Action onClick)
 	{
@@ -57,6 +62,11 @@ public sealed class JournalStageButton : UIPanel
 		_tooltipText = tooltipText;
 	}
 
+	public void SetCompleted(bool isCompleted)
+	{
+		_isCompleted = isCompleted;
+	}
+
 	public void SetBossHeadDisplay(params int[] bossHeadSlots)
 	{
 		_headSlots.Clear();
@@ -86,6 +96,10 @@ public sealed class JournalStageButton : UIPanel
 
 		if (IsMouseHovering && !string.IsNullOrWhiteSpace(_tooltipText)) {
 			Main.hoverItemName = _tooltipText;
+		}
+
+		if (_isCompleted) {
+			DrawCompletedMarker(spriteBatch);
 		}
 
 		if (_headSlots.Count == 0) {
@@ -156,5 +170,13 @@ public sealed class JournalStageButton : UIPanel
 
 		texture = null!;
 		return false;
+	}
+
+	private void DrawCompletedMarker(SpriteBatch spriteBatch)
+	{
+		var dimensions = GetDimensions();
+		Texture2D texture = CompletedMarkerTexture.Value;
+		Vector2 position = new(dimensions.X + dimensions.Width - 16f, dimensions.Y + 6f);
+		spriteBatch.Draw(texture, position, Color.White);
 	}
 }

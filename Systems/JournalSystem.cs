@@ -118,7 +118,7 @@ public sealed class JournalSystem : ModSystem
 	{
 		CloseConflictingInterfaces();
 		Visible = true;
-		SelectingClass = true;
+		SelectingClass = false;
 		ShowingPresets = false;
 		_journalState?.ResetLayout();
 		_journalInterface?.SetState(_journalState);
