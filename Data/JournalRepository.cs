@@ -105,6 +105,9 @@ public static class JournalRepository
 				OptionalBossRequirementId.Deerclops,
 				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Useless)),
 
+			Entry("tragicUmbrellaPostSkeletron", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.TragicUmbrella,
+				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Useless)),
+
 			Entry("bladeOfGrassPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.BladeofGrass,
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
@@ -826,6 +829,10 @@ public static class JournalRepository
 				OptionalBossRequirementId.QueenBee,
 				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Useless)),
 
+			Entry("pygmyNecklacePostWorldEvil", JournalItemCategory.Accessory, CombatClass.Summoner, ItemID.PygmyNecklace,
+				OptionalBossRequirementId.QueenBee,
+				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Recommended)),
+
 			Entry("cobaltShieldPostSkeletron", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.CobaltShield,
 				Eval(ProgressionStageId.PostSkeletron, RecommendationTier.Additional)),
 
@@ -903,6 +910,13 @@ public static class JournalRepository
 
 			Entry("feralClawsPreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.FeralClaws,
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
+
+			Entry("feralClawsSummonerPreBoss", JournalItemCategory.Accessory, CombatClass.Summoner, ItemID.FeralClaws,
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
+
+			Entry("apprenticeScarfOrSquireShieldPreBoss", JournalItemCategory.Accessory, CombatClass.Summoner,
+				Group(ItemID.ApprenticeScarf, ItemID.SquireShield),
+				Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
 			Entry("magmaStonePreBoss", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.MagmaStone,
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
@@ -995,7 +1009,7 @@ public static class JournalRepository
 				ItemID.MoltenHelmet, ItemID.MoltenBreastplate, ItemID.MoltenGreaves,
 				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Recommended)),
 
-			Set("shadowOrCrimsonArmorPostWorldEvil", JournalItemCategory.Armor, CombatClass.Melee,
+			Set("shadowOrCrimsonArmorPostWorldEvil", JournalItemCategory.Armor, CombatClass.All,
 				Group(ItemID.ShadowHelmet, ItemID.CrimsonHelmet),
 				Group(ItemID.ShadowScalemail, ItemID.CrimsonScalemail),
 				Group(ItemID.ShadowGreaves, ItemID.CrimsonGreaves),
@@ -1032,11 +1046,9 @@ public static class JournalRepository
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
 			Set("jungleArmorPreBoss", JournalItemCategory.Armor, CombatClass.Magic,
-				ItemID.JungleHat, ItemID.JungleShirt, ItemID.JunglePants,
-				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
-
-			Set("ancientCobaltArmorPreBoss", JournalItemCategory.Armor, CombatClass.Magic,
-				ItemID.AncientCobaltHelmet, ItemID.AncientCobaltBreastplate, ItemID.AncientCobaltLeggings,
+				Group(ItemID.JungleHat, ItemID.AncientCobaltHelmet),
+				Group(ItemID.JungleShirt, ItemID.AncientCobaltBreastplate),
+				Group(ItemID.JunglePants, ItemID.AncientCobaltLeggings),
 				Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
 			Set("meteorArmorPostWorldEvil", JournalItemCategory.Armor, CombatClass.Magic,
@@ -1133,6 +1145,9 @@ public static class JournalRepository
 			Entry("classyCaneHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.TaxCollectorsStickOfDoom,
 				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
 
+			Entry("arkhalisHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Arkhalis,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
+
 			Entry("hardmodeOreSwordsHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee,
 				Group(ItemID.CobaltSword, ItemID.PalladiumSword, ItemID.OrichalcumSword, ItemID.MythrilSword, ItemID.TitaniumSword, ItemID.AdamantiteSword),
 				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
@@ -1199,7 +1214,8 @@ public static class JournalRepository
 			Entry("chlorophytePartisanPostThreeMechBosses", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.ChlorophytePartisan,
 				Eval(ProgressionStageId.PostThreeMechBosses, RecommendationTier.NotRecommended)),
 
-			Entry("chlorophyteClaymorePostThreeMechBosses", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.ChlorophyteClaymore,
+			Entry("chlorophyteClaymorePostThreeMechBosses", JournalItemCategory.Weapon, CombatClass.Melee,
+				Group(ItemID.ChlorophyteClaymore, ItemID.ChlorophyteSaber),
 				Eval(ProgressionStageId.PostThreeMechBosses, RecommendationTier.Useless)),
 
 			Entry("deathSicklePostThreeMechBosses", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.DeathSickle,
@@ -1273,6 +1289,12 @@ public static class JournalRepository
 			Entry("sporeSacPostPlantera", JournalItemCategory.Accessory, CombatClass.All, ItemID.SporeSac,
 				Eval(ProgressionStageId.PostPlantera, RecommendationTier.NotRecommended)),
 
+			Entry("herculesBeetlePostPlantera", JournalItemCategory.Accessory, CombatClass.Summoner, ItemID.HerculesBeetle,
+				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
+
+			Entry("papyrusScarabPostPlantera", JournalItemCategory.Accessory, CombatClass.Summoner, ItemID.PapyrusScarab,
+				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
+
 			Entry("paladinsShieldPostPlantera", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.PaladinsShield,
 				Eval(ProgressionStageId.PostPlantera, RecommendationTier.Additional)),
 
@@ -1333,6 +1355,18 @@ public static class JournalRepository
 
 			Entry("destroyerEmblemPostGolem", JournalItemCategory.Accessory, CombatClass.All, ItemID.DestroyerEmblem,
 				Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)),
+
+			Entry("eyeOfTheGolemMeleePostGolem", JournalItemCategory.Accessory, CombatClass.Melee, ItemID.EyeoftheGolem,
+				Eval(ProgressionStageId.PostGolem, RecommendationTier.Additional)),
+
+			Entry("eyeOfTheGolemRangedPostGolem", JournalItemCategory.Accessory, CombatClass.Ranged, ItemID.EyeoftheGolem,
+				Eval(ProgressionStageId.PostGolem, RecommendationTier.Additional)),
+
+			Entry("eyeOfTheGolemMagicPostGolem", JournalItemCategory.Accessory, CombatClass.Magic, ItemID.EyeoftheGolem,
+				Eval(ProgressionStageId.PostGolem, RecommendationTier.Additional)),
+
+			Entry("eyeOfTheGolemSummonerPostGolem", JournalItemCategory.Accessory, CombatClass.Summoner, ItemID.EyeoftheGolem,
+				Eval(ProgressionStageId.PostGolem, RecommendationTier.Useless)),
 
 			Entry("scopeLinePostPlantera", JournalItemCategory.Accessory, CombatClass.Ranged,
 				Group(ItemID.RifleScope, ItemID.SniperScope, ItemID.ReconScope),
@@ -1457,6 +1491,30 @@ public static class JournalRepository
 			Entry("frozenTurtleShellMagicHardmodeEntry", JournalItemCategory.Accessory, CombatClass.Magic, ItemID.FrozenTurtleShell,
 				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
 
+			Entry("titanGloveSummonerHardmodeEntry", JournalItemCategory.Accessory, CombatClass.Summoner, ItemID.TitanGlove,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
+
+			Entry("berserkerGloveSummonerHardmodeEntry", JournalItemCategory.Accessory, CombatClass.Summoner, ItemID.BerserkerGlove,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
+
+			Entry("powerGloveSummonerHardmodeEntry", JournalItemCategory.Accessory, CombatClass.Summoner, ItemID.PowerGlove,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
+
+			Entry("mechanicalGloveSummonerHardmodeEntry", JournalItemCategory.Accessory, CombatClass.Summoner, ItemID.MechanicalGlove,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
+
+			Entry("fireGauntletSummonerHardmodeEntry", JournalItemCategory.Accessory, CombatClass.Summoner, ItemID.FireGauntlet,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
+
+			Entry("putridScentSummonerHardmodeEntry", JournalItemCategory.Accessory, CombatClass.Summoner, ItemID.PutridScent,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
+
+			Entry("frozenTurtleShellSummonerHardmodeEntry", JournalItemCategory.Accessory, CombatClass.Summoner, ItemID.FrozenTurtleShell,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
+
+			Entry("hiveBackpackSummonerHardmodeEntry", JournalItemCategory.Accessory, CombatClass.Summoner, ItemID.HiveBackpack,
+				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
+
 			Entry("starCloakOrBeeCloakHardmodeEntry", JournalItemCategory.Accessory, CombatClass.All,
 				Group(ItemID.StarCloak, ItemID.BeeCloak),
 				Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
@@ -1503,6 +1561,10 @@ public static class JournalRepository
 			Entry("hivePackPostWorldEvil", JournalItemCategory.Accessory, CombatClass.Magic, ItemID.HiveBackpack,
 				OptionalBossRequirementId.QueenBee,
 				Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Recommended)),
+
+			Entry("huntressBucklerOrMonkBeltPostOneMechBoss", JournalItemCategory.Accessory, CombatClass.Summoner,
+				Group(ItemID.HuntressBuckler, ItemID.MonkBelt),
+				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Useless)),
 
 			Entry("moonStonePostOneMechBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.MoonStone,
 				Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended)),
