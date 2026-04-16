@@ -8,6 +8,7 @@ using ProgressionJournal.Systems;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -64,7 +65,7 @@ public sealed class JournalUIState : UIState
 		JournalItemCategory.Accessory
 	];
 
-	private readonly Dictionary<ProgressionStageId, JournalTextButton> _stageButtons = new();
+	private readonly Dictionary<ProgressionStageId, JournalStageButton> _stageButtons = new();
 	private UIPanel _root = null!;
 	private UIPanel _stagePanel = null!;
 	private UIPanel _mainPanel = null!;
@@ -133,7 +134,7 @@ public sealed class JournalUIState : UIState
 
 		foreach (var stage in ProgressionStageCatalog.All) {
 			var button = _stageButtons[stage.Id];
-			ApplyStageButtonText(button, Language.GetTextValue(stage.LocalizationKey));
+			ApplyStageButtonContent(button, stage);
 			StyleStageButton(button, stage.Id == stageId);
 		}
 
@@ -229,7 +230,7 @@ public sealed class JournalUIState : UIState
 
 		foreach (var stage in ProgressionStageCatalog.All) {
 			var capturedStage = stage.Id;
-			var button = CreateButton(string.Empty, 0f, 44f, () => JournalSystem.SelectStage(capturedStage), StageButtonTextScale);
+			var button = CreateStageButton(() => JournalSystem.SelectStage(capturedStage));
 			button.Left.Set(0f, 0f);
 			button.Width.Set(0f, 1f);
 			_stageListContainer.Append(button);
@@ -533,6 +534,13 @@ public sealed class JournalUIState : UIState
 		return button;
 	}
 
+	private static JournalStageButton CreateStageButton(Action onClick)
+	{
+		var button = new JournalStageButton(onClick);
+		button.Height.Set(44f, 0f);
+		return button;
+	}
+
 	private static void StyleHeaderButton(JournalTextButton button, bool active, bool danger)
 	{
 		if (danger) {
@@ -547,7 +555,7 @@ public sealed class JournalUIState : UIState
 		button.SetTextColor(new Color(224, 230, 236));
 	}
 
-	private static void StyleStageButton(JournalTextButton button, bool active)
+	private static void StyleStageButton(JournalStageButton button, bool active)
 	{
 		button.BackgroundColor = active ? new Color(60, 88, 114) : new Color(29, 42, 58);
 		button.BorderColor = active ? new Color(156, 196, 230) : new Color(88, 115, 142);
@@ -758,11 +766,45 @@ public sealed class JournalUIState : UIState
 		return singleColumnButtonHeight >= MinSingleColumnStageButtonHeight ? 1 : 2;
 	}
 
-	private static void ApplyStageButtonText(JournalTextButton button, string text)
+	private static void ApplyStageButtonContent(JournalStageButton button, ProgressionStage stage)
+	{
+		string stageName = Language.GetTextValue(stage.LocalizationKey);
+
+		switch (stage.Id) {
+			case ProgressionStageId.PreBoss:
+				button.SetNpcHeadDisplay(NPC.TypeToDefaultHeadIndex(NPCID.Guide));
+				return;
+
+			case ProgressionStageId.PostThreeMechBosses:
+				button.SetBossHeadDisplay(
+					GetBossHeadSlot(NPCID.TheDestroyer),
+					GetBossHeadSlot(NPCID.Retinazer),
+					GetBossHeadSlot(NPCID.SkeletronPrime));
+				return;
+
+			case ProgressionStageId.PostCelestialPillars:
+				button.SetBossHeadDisplay(
+					GetBossHeadSlot(NPCID.LunarTowerSolar),
+					GetBossHeadSlot(NPCID.LunarTowerVortex),
+					GetBossHeadSlot(NPCID.LunarTowerNebula),
+					GetBossHeadSlot(NPCID.LunarTowerStardust));
+				return;
+		}
+
+		int? bossHeadSlot = GetStageBossHeadSlot(stage.Id);
+		if (bossHeadSlot.HasValue) {
+			button.SetBossHeadDisplay(bossHeadSlot.Value);
+			return;
+		}
+
+		ApplyStageButtonText(button, stageName);
+	}
+
+	private static void ApplyStageButtonText(JournalStageButton button, string text)
 	{
 		float availableWidth = button.GetInnerDimensions().Width - StageButtonTextHorizontalPadding * 2f;
 		if (availableWidth <= 0f) {
-			button.SetText(text, StageButtonTextScale);
+			button.SetTextDisplay(text, StageButtonTextScale);
 			return;
 		}
 
@@ -772,11 +814,63 @@ public sealed class JournalUIState : UIState
 		}
 
 		if (GetScaledTextWidth(text, textScale) <= availableWidth) {
-			button.SetText(text, textScale);
+			button.SetTextDisplay(text, textScale);
 			return;
 		}
 
-		button.SetText(TrimToPixelWidth(text, availableWidth, MinStageButtonTextScale), MinStageButtonTextScale);
+		button.SetTextDisplay(TrimToPixelWidth(text, availableWidth, MinStageButtonTextScale), MinStageButtonTextScale);
+	}
+
+	private static int? GetStageBossHeadSlot(ProgressionStageId stageId)
+	{
+		int? npcType = GetStageBossNpcType(stageId);
+		if (!npcType.HasValue) {
+			return null;
+		}
+
+		int headSlot = GetBossHeadSlot(npcType.Value);
+		return headSlot >= 0 ? headSlot : null;
+	}
+
+	private static int? GetStageBossNpcType(ProgressionStageId stageId) => stageId switch
+	{
+		ProgressionStageId.PreBoss => null,
+		ProgressionStageId.PostKingSlime => NPCID.KingSlime,
+		ProgressionStageId.PostEyeOfCthulhu => NPCID.EyeofCthulhu,
+		ProgressionStageId.PostWorldEvil => WorldGen.crimson ? NPCID.BrainofCthulhu : NPCID.EaterofWorldsHead,
+		ProgressionStageId.PostQueenBee => NPCID.QueenBee,
+		ProgressionStageId.PostSkeletron => NPCID.SkeletronHead,
+		ProgressionStageId.PostDeerclops => NPCID.Deerclops,
+		ProgressionStageId.HardmodeEntry => NPCID.WallofFlesh,
+		ProgressionStageId.PostQueenSlime => NPCID.QueenSlimeBoss,
+		ProgressionStageId.PostOneMechBoss => GetFirstDownedMechBossNpcType(),
+		ProgressionStageId.PostThreeMechBosses => null,
+		ProgressionStageId.PostPlantera => NPCID.Plantera,
+		ProgressionStageId.PostDukeFishron => NPCID.DukeFishron,
+		ProgressionStageId.PostEmpressOfLight => NPCID.HallowBoss,
+		ProgressionStageId.PostGolem => NPCID.GolemHead,
+		ProgressionStageId.PostCelestialPillars => null,
+		ProgressionStageId.PostMoonLord => NPCID.MoonLordHead,
+		_ => null
+	};
+
+	private static int GetBossHeadSlot(int npcType) => NPCID.Sets.BossHeadTextures[npcType];
+
+	private static int GetFirstDownedMechBossNpcType()
+	{
+		if (NPC.downedMechBoss1) {
+			return NPCID.TheDestroyer;
+		}
+
+		if (NPC.downedMechBoss2) {
+			return NPCID.Retinazer;
+		}
+
+		if (NPC.downedMechBoss3) {
+			return NPCID.SkeletronPrime;
+		}
+
+		return NPCID.TheDestroyer;
 	}
 
 	private static string TrimToPixelWidth(string text, float maxWidth, float textScale)
