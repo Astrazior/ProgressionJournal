@@ -25,7 +25,7 @@ public sealed class JournalUIState : UIState
 	private const float CategorySpacing = 12f;
 	private const float CategoryHeaderHeight = 26f;
 	private const float CategoryHeaderBottomSpacing = 8f;
-	private const float RecommendationHeaderHeight = 34f;
+	private const float RecommendationHeaderHeight = 40f;
 	private const float RecommendationHeaderBottomSpacing = 12f;
 	private const float OuterPadding = 12f;
 	private const float PanelGap = 12f;
