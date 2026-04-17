@@ -8,7 +8,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.Controls;
 
 public sealed class JournalInventoryButton : UIElement
 {
@@ -77,3 +77,4 @@ public sealed class JournalInventoryButton : UIElement
 
     private static JournalSystem JournalSystem => ModContent.GetInstance<JournalSystem>();
 }
+

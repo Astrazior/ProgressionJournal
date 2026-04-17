@@ -2,13 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using ProgressionJournal.Data;
-using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Localization;
 using Terraria.UI;
 
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.Composition;
 
 public static class JournalContentBuilder
 {
@@ -170,7 +168,7 @@ public static class JournalContentBuilder
         }
     }
 
-    private static UIElement CreateCategoryHeader(JournalItemCategory category)
+    private static JournalCategoryHeader CreateCategoryHeader(JournalItemCategory category)
     {
         var palette = JournalUiTheme.GetCategoryStyle(category);
         var header = new JournalCategoryHeader(
@@ -184,7 +182,7 @@ public static class JournalContentBuilder
         return header;
     }
 
-    private static UIElement CreateRecommendationHeader(string title, Color borderColor)
+    private static JournalRecommendationHeader CreateRecommendationHeader(string title, Color borderColor)
     {
         var header = new JournalRecommendationHeader(title, borderColor);
         header.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
@@ -234,3 +232,4 @@ public static class JournalContentBuilder
         _ => 6f
     };
 }
+

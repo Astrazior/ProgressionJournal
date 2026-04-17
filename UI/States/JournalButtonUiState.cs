@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.UI;
 
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.States;
 
 public sealed class JournalButtonUiState : UIState
 {
@@ -28,3 +28,4 @@ public sealed class JournalButtonUiState : UIState
         Main.blockMouse = true;
     }
 }
+

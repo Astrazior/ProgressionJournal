@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 
-namespace ProgressionJournal.Data;
+namespace ProgressionJournal.Data.Catalogs;
 
 public static class ProgressionStageCatalog
 {
@@ -52,3 +52,4 @@ public static class ProgressionStageCatalog
 		return current.Id;
 	}
 }
+

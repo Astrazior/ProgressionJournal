@@ -1,4 +1,4 @@
-namespace ProgressionJournal.Data;
+namespace ProgressionJournal.Data.Enums;
 
 public enum JournalItemCategory
 {
@@ -7,3 +7,4 @@ public enum JournalItemCategory
 	Accessory,
 	ClassSpecific
 }
+

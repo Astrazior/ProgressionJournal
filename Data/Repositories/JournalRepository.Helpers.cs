@@ -1,4 +1,4 @@
-namespace ProgressionJournal.Data;
+namespace ProgressionJournal.Data.Repositories;
 
 public static partial class JournalRepository
 {
@@ -56,3 +56,4 @@ public static partial class JournalRepository
         return new JournalItemGroup(itemIds);
     }
 }
+

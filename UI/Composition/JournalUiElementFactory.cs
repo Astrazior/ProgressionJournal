@@ -1,7 +1,7 @@
 using System;
 using Terraria.GameContent.UI.Elements;
 
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.Composition;
 
 public static class JournalUiElementFactory
 {
@@ -38,3 +38,4 @@ public static class JournalUiElementFactory
         return header;
     }
 }
+

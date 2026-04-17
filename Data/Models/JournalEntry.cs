@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Terraria;
 using Terraria.ID;
 
-namespace ProgressionJournal.Data;
+namespace ProgressionJournal.Data.Models;
 
 public sealed class JournalEntry
 {
@@ -116,10 +115,10 @@ public sealed class JournalEntry
 
 	private static int GetWeaponStrength(IReadOnlyList<int> itemIds)
 	{
-		int bestDamage = 0;
+		var bestDamage = 0;
 
-		foreach (int itemId in itemIds) {
-			if (ContentSamples.ItemsByType.TryGetValue(itemId, out Item? item) && item is not null) {
+		foreach (var itemId in itemIds) {
+			if (ContentSamples.ItemsByType.TryGetValue(itemId, out var item) && item is not null) {
 				bestDamage = Math.Max(bestDamage, item.damage);
 			}
 		}
@@ -129,13 +128,13 @@ public sealed class JournalEntry
 
 	private static int GetArmorStrength(IReadOnlyList<JournalItemGroup> itemGroups)
 	{
-		int totalDefense = 0;
+		var totalDefense = 0;
 
 		foreach (var group in itemGroups) {
-			int bestDefenseInGroup = 0;
+			var bestDefenseInGroup = 0;
 
-			foreach (int itemId in group.ItemIds) {
-				if (ContentSamples.ItemsByType.TryGetValue(itemId, out Item? item) && item is not null) {
+			foreach (var itemId in group.ItemIds) {
+				if (ContentSamples.ItemsByType.TryGetValue(itemId, out var item) && item is not null) {
 					bestDefenseInGroup = Math.Max(bestDefenseInGroup, item.defense);
 				}
 			}
@@ -146,3 +145,4 @@ public sealed class JournalEntry
 		return totalDefense;
 	}
 }
+

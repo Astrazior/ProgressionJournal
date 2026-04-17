@@ -1,4 +1,4 @@
-namespace ProgressionJournal.Data;
+namespace ProgressionJournal.Data.Catalogs;
 
 public enum ProgressionStageId
 {
@@ -20,3 +20,4 @@ public enum ProgressionStageId
 	PostCelestialPillars,
 	PostMoonLord
 }
+

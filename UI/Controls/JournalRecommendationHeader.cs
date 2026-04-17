@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.UI;
 
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.Controls;
 
 public sealed class JournalRecommendationHeader(string title, Color accentColor) : UIElement
 {
@@ -33,3 +33,4 @@ public sealed class JournalRecommendationHeader(string title, Color accentColor)
             textScale);
     }
 }
+

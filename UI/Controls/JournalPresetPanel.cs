@@ -1,9 +1,8 @@
 using Microsoft.Xna.Framework;
-using ProgressionJournal.Data;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Localization;
 
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.Controls;
 
 public sealed class JournalPresetPanel : UIPanel
 {
@@ -36,3 +35,4 @@ public sealed class JournalPresetPanel : UIPanel
         return text;
     }
 }
+

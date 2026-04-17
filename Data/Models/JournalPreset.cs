@@ -3,7 +3,7 @@ using System.Linq;
 using Terraria;
 using Terraria.Localization;
 
-namespace ProgressionJournal.Data;
+namespace ProgressionJournal.Data.Models;
 
 public abstract class JournalPreset(
 	string key,
@@ -43,3 +43,4 @@ public abstract class JournalPreset(
 			: string.Join(", ", itemIds.Select(Lang.GetItemNameValue));
 	}
 }
+

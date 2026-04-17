@@ -8,7 +8,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.Controls;
 
 public sealed class JournalStageButton : UIPanel
 {
@@ -181,10 +181,11 @@ public sealed class JournalStageButton : UIPanel
             case HeadTextureKind.Town when head.Slot >= 0 && head.Slot < TextureAssets.NpcHead.Length:
                 texture = TextureAssets.NpcHead[head.Slot].Value;
                 return true;
-        }
 
-        texture = null!;
-        return false;
+            default:
+                texture = null!;
+                return false;
+        }
     }
 
     private void DrawCompletedMarker(SpriteBatch spriteBatch)
@@ -195,3 +196,4 @@ public sealed class JournalStageButton : UIPanel
         spriteBatch.Draw(texture, position, Color.White);
     }
 }
+

@@ -1,6 +1,6 @@
 using Terraria;
 
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.Utilities;
 
 public static class JournalItemUtilities
 {
@@ -11,3 +11,4 @@ public static class JournalItemUtilities
         return item;
     }
 }
+

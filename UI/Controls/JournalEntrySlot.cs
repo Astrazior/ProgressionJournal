@@ -1,13 +1,12 @@
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ProgressionJournal.Data;
 using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.UI;
 
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.Controls;
 
 public sealed class JournalEntrySlot : UIElement
 {
@@ -46,22 +45,29 @@ public sealed class JournalEntrySlot : UIElement
         base.DrawSelf(spriteBatch);
 
         var inner = GetInnerDimensions().ToRectangle();
-        for (var index = 0; index < _itemGroups.Length; index++)
+        var oldScale = Main.inventoryScale;
+
+        try
         {
-            var displayItem = GetDisplayedItem(index);
-            Main.instance.LoadItem(displayItem.type);
+            Main.inventoryScale = 1f;
 
-            var slotPosition = inner.TopLeft() + new Vector2(index * SlotStep, 0f);
-            var slotTexture = GetSlotTexture(_entry.Evaluation.Tier);
-            DrawSlotBackground(spriteBatch, slotPosition, slotTexture);
-
-            var itemCenter = slotPosition + new Vector2(slotTexture.Value.Width * 0.5f, slotTexture.Value.Height * 0.5f);
-            ItemSlot.DrawItemIcon(displayItem, ItemSlot.Context.TrashItem, spriteBatch, itemCenter, 1f, WidthPixels, Color.White);
-
-            if (_entry.Entry.ItemGroups[index].HasAlternatives)
+            for (var index = 0; index < _itemGroups.Length; index++)
             {
-                DrawAlternativeMarker(spriteBatch, slotPosition);
+                var displayItem = GetDisplayedItem(index);
+                Main.instance.LoadItem(displayItem.type);
+
+                var slotPosition = inner.TopLeft() + new Vector2(index * SlotStep, 0f);
+                DrawVanillaSlot(spriteBatch, ref displayItem, slotPosition);
+
+                if (_entry.Entry.ItemGroups[index].HasAlternatives)
+                {
+                    DrawAlternativeMarker(spriteBatch, slotPosition);
+                }
             }
+        }
+        finally
+        {
+            Main.inventoryScale = oldScale;
         }
 
         if (!IsMouseHovering)
@@ -127,9 +133,19 @@ public sealed class JournalEntrySlot : UIElement
         return (int)(Main.GameUpdateCount / AlternativeCycleTicks);
     }
 
-    private static void DrawSlotBackground(SpriteBatch spriteBatch, Vector2 position, Asset<Texture2D> slotTexture)
+    private void DrawVanillaSlot(SpriteBatch spriteBatch, ref Item displayItem, Vector2 slotPosition)
     {
-        spriteBatch.Draw(slotTexture.Value, position, Color.White);
+        var previousTexture = TextureAssets.InventoryBack9;
+
+        try
+        {
+            TextureAssets.InventoryBack9 = GetSlotTexture(_entry.Evaluation.Tier);
+            ItemSlot.Draw(spriteBatch, ref displayItem, ItemSlot.Context.TrashItem, slotPosition);
+        }
+        finally
+        {
+            TextureAssets.InventoryBack9 = previousTexture;
+        }
     }
 
     private static void DrawAlternativeMarker(SpriteBatch spriteBatch, Vector2 slotPosition)
@@ -146,3 +162,4 @@ public sealed class JournalEntrySlot : UIElement
             0.64f);
     }
 }
+

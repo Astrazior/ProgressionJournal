@@ -1,9 +1,8 @@
 using Microsoft.Xna.Framework;
-using ProgressionJournal.Data;
 using Terraria;
 using Terraria.ID;
 
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.Utilities;
 
 public static class JournalPreviewPlayerFactory
 {
@@ -75,3 +74,4 @@ public static class JournalPreviewPlayerFactory
         preview.bodyFrame.Y = preview.mount.BodyFrame * preview.bodyFrame.Height;
     }
 }
+

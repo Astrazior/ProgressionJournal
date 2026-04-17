@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using ProgressionJournal.Data;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.UI;
 
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.Composition;
 
 public static class JournalStageButtonPresenter
 {
@@ -75,26 +73,29 @@ public static class JournalStageButtonPresenter
         var stageName = Language.GetTextValue(stage.LocalizationKey);
         button.SetTooltip(stageName);
 
-        switch (stage.Id)
+        if (stage.Id == ProgressionStageId.PreBoss)
         {
-            case ProgressionStageId.PreBoss:
-                button.SetNpcHeadDisplay(NPC.TypeToDefaultHeadIndex(NPCID.Guide));
-                return;
+            button.SetNpcHeadDisplay(NPC.TypeToDefaultHeadIndex(NPCID.Guide));
+            return;
+        }
 
-            case ProgressionStageId.PostThreeMechBosses:
-                button.SetBossHeadDisplay(
-                    GetBossHeadSlot(NPCID.TheDestroyer),
-                    GetBossHeadSlot(NPCID.Retinazer),
-                    GetBossHeadSlot(NPCID.SkeletronPrime));
-                return;
+        if (stage.Id == ProgressionStageId.PostThreeMechBosses)
+        {
+            button.SetBossHeadDisplay(
+                GetBossHeadSlot(NPCID.TheDestroyer),
+                GetBossHeadSlot(NPCID.Retinazer),
+                GetBossHeadSlot(NPCID.SkeletronPrime));
+            return;
+        }
 
-            case ProgressionStageId.PostCelestialPillars:
-                button.SetBossHeadDisplay(
-                    GetBossHeadSlot(NPCID.LunarTowerSolar),
-                    GetBossHeadSlot(NPCID.LunarTowerVortex),
-                    GetBossHeadSlot(NPCID.LunarTowerNebula),
-                    GetBossHeadSlot(NPCID.LunarTowerStardust));
-                return;
+        if (stage.Id == ProgressionStageId.PostCelestialPillars)
+        {
+            button.SetBossHeadDisplay(
+                GetBossHeadSlot(NPCID.LunarTowerSolar),
+                GetBossHeadSlot(NPCID.LunarTowerVortex),
+                GetBossHeadSlot(NPCID.LunarTowerNebula),
+                GetBossHeadSlot(NPCID.LunarTowerStardust));
+            return;
         }
 
         var bossHeadSlot = GetStageBossHeadSlot(stage.Id);
@@ -187,11 +188,7 @@ public static class JournalStageButtonPresenter
             return NPCID.Retinazer;
         }
 
-        if (NPC.downedMechBoss3)
-        {
-            return NPCID.SkeletronPrime;
-        }
-
-        return NPCID.TheDestroyer;
+        return NPC.downedMechBoss3 ? NPCID.SkeletronPrime : NPCID.TheDestroyer;
     }
 }
+

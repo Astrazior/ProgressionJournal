@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ProgressionJournal.Data;
+namespace ProgressionJournal.Data.Repositories;
 
 public static partial class JournalRepository
 {
@@ -28,9 +28,9 @@ public static partial class JournalRepository
             .ToArray();
     }
 
-    private static IReadOnlyList<JournalEntry> BuildEntries()
+    private static List<JournalEntry> BuildEntries()
     {
-        var entries = new List<JournalEntry>();
+        List<JournalEntry> entries = [];
         AddWeaponEntries(entries);
         AddClassSpecificEntries(entries);
         AddArmorEntries(entries);
@@ -38,5 +38,6 @@ public static partial class JournalRepository
         return entries;
     }
 
-    private static IReadOnlyList<JournalPreset> BuildPresets() => Array.Empty<JournalPreset>();
+    private static IReadOnlyList<JournalPreset> BuildPresets() => [];
 }
+

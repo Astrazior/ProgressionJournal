@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using ProgressionJournal.Data;
 using ProgressionJournal.Systems;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -10,7 +9,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.States;
 
 public sealed class JournalUiState : UIState
 {
@@ -258,7 +257,7 @@ public sealed class JournalUiState : UIState
         _contentTabsPanel.Height.Set(JournalUiMetrics.TopTabsHeight, 0f);
         _mainPanel.Append(_contentTabsPanel);
 
-        var widthOffset = -2f * JournalUiMetrics.TopTabsGap / 3f;
+        const float widthOffset = -2f * JournalUiMetrics.TopTabsGap / 3f;
 
         _classButton = JournalUiElementFactory.CreateTextButton(string.Empty, 0f, JournalUiMetrics.TopTabsButtonHeight, () => JournalSystem.ShowClassSelection(), 0.92f);
         _classButton.Left.Set(0f, 0f);
@@ -408,3 +407,4 @@ public sealed class JournalUiState : UIState
 
     private static JournalSystem JournalSystem => ModContent.GetInstance<JournalSystem>();
 }
+

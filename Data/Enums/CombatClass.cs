@@ -1,6 +1,6 @@
 using System;
 
-namespace ProgressionJournal.Data;
+namespace ProgressionJournal.Data.Enums;
 
 [Flags]
 public enum CombatClass
@@ -12,3 +12,4 @@ public enum CombatClass
 	Summoner = 1 << 3,
 	All = Melee | Ranged | Magic | Summoner
 }
+

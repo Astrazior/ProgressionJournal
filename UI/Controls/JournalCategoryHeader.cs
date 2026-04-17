@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.UI;
 
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.Controls;
 
 public enum JournalCategoryHeaderStyle
 {
@@ -40,7 +40,7 @@ public sealed class JournalCategoryHeader : UIElement
         var dimensions = GetDimensions();
         var pixel = TextureAssets.MagicPixel.Value;
         var font = FontAssets.MouseText.Value;
-        Vector2 titleSize = font.MeasureString(_title) * TextScale;
+        var titleSize = font.MeasureString(_title) * TextScale;
 
         switch (_style)
         {
@@ -54,30 +54,30 @@ public sealed class JournalCategoryHeader : UIElement
 
             case JournalCategoryHeaderStyle.InlineRule:
             default:
-                DrawInlineRule(spriteBatch, pixel, font, dimensions, titleSize);
+                DrawInlineRule(spriteBatch, font, dimensions, titleSize);
                 return;
         }
     }
 
-    private void DrawInlineRule(SpriteBatch spriteBatch, Texture2D pixel, DynamicSpriteFont font, CalculatedStyle dimensions, Vector2 titleSize)
+    private void DrawInlineRule(SpriteBatch spriteBatch, DynamicSpriteFont font, CalculatedStyle dimensions, Vector2 titleSize)
     {
-        float textX = dimensions.X + LeftPadding;
-        float textY = dimensions.Y + (dimensions.Height - titleSize.Y) * 0.5f - 1f;
+        var textX = dimensions.X + LeftPadding;
+        var textY = dimensions.Y + (dimensions.Height - titleSize.Y) * 0.5f - 1f;
         DrawText(spriteBatch, font, textX, textY);
     }
 
     private void DrawAccentTag(SpriteBatch spriteBatch, Texture2D pixel, DynamicSpriteFont font, CalculatedStyle dimensions, Vector2 titleSize)
     {
-        float centerY = dimensions.Y + dimensions.Height * 0.5f;
-        float tagX = dimensions.X + LeftPadding;
-        float tagY = centerY - titleSize.Y * 0.5f - 4f;
-        float tagWidth = titleSize.X + 18f;
-        float tagHeight = titleSize.Y + 8f;
-        float textX = tagX + 9f;
-        float textY = tagY + 4f - 1f;
-        float lineStart = tagX + tagWidth + 12f;
-        float lineEnd = dimensions.X + dimensions.Width - RightPadding;
-        int lineY = (int)(centerY + 1f);
+        var centerY = dimensions.Y + dimensions.Height * 0.5f;
+        var tagX = dimensions.X + LeftPadding;
+        var tagY = centerY - titleSize.Y * 0.5f - 4f;
+        var tagWidth = titleSize.X + 18f;
+        var tagHeight = titleSize.Y + 8f;
+        var textX = tagX + 9f;
+        var textY = tagY + 4f - 1f;
+        var lineStart = tagX + tagWidth + 12f;
+        var lineEnd = dimensions.X + dimensions.Width - RightPadding;
+        var lineY = (int)(centerY + 1f);
 
         DrawRectangle(spriteBatch, pixel, tagX, tagY, tagWidth, tagHeight, _accentColor * 0.16f);
         DrawRectangle(spriteBatch, pixel, tagX, tagY, 4f, tagHeight, _accentColor * 0.92f);
@@ -89,14 +89,14 @@ public sealed class JournalCategoryHeader : UIElement
 
     private void DrawSideRail(SpriteBatch spriteBatch, Texture2D pixel, DynamicSpriteFont font, CalculatedStyle dimensions, Vector2 titleSize)
     {
-        float centerY = dimensions.Y + dimensions.Height * 0.5f;
-        float railX = dimensions.X + LeftPadding;
-        float railY = dimensions.Y + 2f;
-        float railHeight = dimensions.Height - 4f;
-        float textX = railX + 12f;
-        float textY = dimensions.Y + (dimensions.Height - titleSize.Y) * 0.5f - 1f;
-        float underlineEnd = textX + titleSize.X + 2f;
-        int underlineY = (int)(centerY + titleSize.Y * 0.5f) + 1;
+        var centerY = dimensions.Y + dimensions.Height * 0.5f;
+        var railX = dimensions.X + LeftPadding;
+        var railY = dimensions.Y + 2f;
+        var railHeight = dimensions.Height - 4f;
+        var textX = railX + 12f;
+        var textY = dimensions.Y + (dimensions.Height - titleSize.Y) * 0.5f - 1f;
+        var underlineEnd = textX + titleSize.X + 2f;
+        var underlineY = (int)(centerY + titleSize.Y * 0.5f) + 1;
 
         DrawRectangle(spriteBatch, pixel, railX, railY, 4f, railHeight, _accentColor);
         DrawRectangle(spriteBatch, pixel, railX, railY, 12f, 1f, _accentColor * 0.48f);
@@ -121,7 +121,7 @@ public sealed class JournalCategoryHeader : UIElement
 
     private static void DrawSegment(SpriteBatch spriteBatch, Texture2D pixel, float startX, float endX, int y, int thickness, Color color)
     {
-        int width = (int)(endX - startX);
+        var width = (int)(endX - startX);
         if (width <= 0 || thickness <= 0)
         {
             return;
@@ -140,3 +140,4 @@ public sealed class JournalCategoryHeader : UIElement
         spriteBatch.Draw(pixel, new Rectangle((int)x, (int)y, (int)width, (int)height), color);
     }
 }
+

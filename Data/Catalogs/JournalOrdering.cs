@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ProgressionJournal.Data;
+namespace ProgressionJournal.Data.Catalogs;
 
 public static class JournalOrdering
 {
@@ -58,3 +58,4 @@ public static class JournalOrdering
         return int.MaxValue;
     }
 }
+

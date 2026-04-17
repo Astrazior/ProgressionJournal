@@ -1,12 +1,10 @@
 using Microsoft.Xna.Framework;
-using ProgressionJournal.Data;
-
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.Styling;
 
 public static class JournalUiTheme
 {
     // Switch between InlineRule, AccentTag, and SideRail to compare category treatments in-game.
-    public const JournalCategoryHeaderStyle CategoryHeaderStyle = JournalCategoryHeaderStyle.InlineRule;
+    public static readonly JournalCategoryHeaderStyle CategoryHeaderStyle = JournalCategoryHeaderStyle.InlineRule;
 
     public static readonly Color RootBackground = new(12, 20, 30);
     public static readonly Color RootBorder = new(78, 101, 124);
@@ -32,12 +30,7 @@ public static class JournalUiTheme
 
     public static JournalButtonStyle GetHeaderButtonStyle(bool danger)
     {
-        if (danger)
-        {
-            return new JournalButtonStyle(new Color(52, 39, 44), new Color(98, 76, 84), new Color(234, 224, 228));
-        }
-
-        return new JournalButtonStyle(new Color(31, 44, 58), new Color(79, 100, 122), new Color(224, 230, 236));
+        return danger ? new JournalButtonStyle(new Color(52, 39, 44), new Color(98, 76, 84), new Color(234, 224, 228)) : new JournalButtonStyle(new Color(31, 44, 58), new Color(79, 100, 122), new Color(224, 230, 236));
     }
 
     public static JournalButtonStyle GetTabButtonStyle(bool active)
@@ -114,3 +107,4 @@ public readonly record struct JournalPanelStyle(Color Background, Color Border);
 public readonly record struct JournalCategoryStyle(Color Border, Color Text);
 
 public readonly record struct JournalClassPalette(Color Background, Color Border, Color Accent, Color Text);
+

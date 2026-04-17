@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 
-namespace ProgressionJournal.Data;
+namespace ProgressionJournal.Data.Models;
 
 public sealed class JournalItemGroup
 {
@@ -26,3 +26,4 @@ public sealed class JournalItemGroup
 
 	public string GetDisplayName() => string.Join(" / ", ItemIds.Select(Lang.GetItemNameValue));
 }
+

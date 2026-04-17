@@ -1,4 +1,4 @@
-namespace ProgressionJournal.Data;
+namespace ProgressionJournal.Data.Models;
 
 public sealed class JournalStageEntry(JournalEntry entry, StageEvaluation evaluation)
 {
@@ -6,3 +6,4 @@ public sealed class JournalStageEntry(JournalEntry entry, StageEvaluation evalua
 
 	public StageEvaluation Evaluation { get; } = evaluation;
 }
+

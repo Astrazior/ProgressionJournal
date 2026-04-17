@@ -1,11 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ProgressionJournal.Data;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Localization;
 
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.Controls;
 
 public sealed class JournalClassButton : UIPanel
 {
@@ -66,3 +65,4 @@ public sealed class JournalClassButton : UIPanel
         _title.TextColor = Color.Lerp(palette.Text * 0.88f, Color.White, _selected ? 0.82f : IsMouseHovering ? 0.35f : 0f);
     }
 }
+

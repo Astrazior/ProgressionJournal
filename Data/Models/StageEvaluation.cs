@@ -1,4 +1,4 @@
-namespace ProgressionJournal.Data;
+namespace ProgressionJournal.Data.Models;
 
 public sealed class StageEvaluation(ProgressionStageId stageId, RecommendationTier tier, string? noteKey = null)
 {
@@ -8,3 +8,4 @@ public sealed class StageEvaluation(ProgressionStageId stageId, RecommendationTi
 
 	public string? NoteKey { get; } = noteKey;
 }
+

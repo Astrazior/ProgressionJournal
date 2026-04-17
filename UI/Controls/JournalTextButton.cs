@@ -2,7 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.UI.Elements;
 
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.Controls;
 
 public sealed class JournalTextButton : UIPanel
 {
@@ -39,3 +39,4 @@ public sealed class JournalTextButton : UIPanel
         };
     }
 }
+

@@ -1,6 +1,6 @@
 using System;
 
-namespace ProgressionJournal.Data;
+namespace ProgressionJournal.Data.Catalogs;
 
 public sealed class ProgressionStage(ProgressionStageId id, string localizationKey, Func<bool> unlockCondition)
 {
@@ -12,3 +12,4 @@ public sealed class ProgressionStage(ProgressionStageId id, string localizationK
 
 	public bool IsUnlocked() => UnlockCondition();
 }
+

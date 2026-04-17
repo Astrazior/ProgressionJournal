@@ -1,4 +1,4 @@
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.Styling;
 
 public static class JournalUiMetrics
 {
@@ -72,3 +72,4 @@ public static class JournalUiMetrics
     public const float InventoryButtonHorizontalSpacing = 8f;
     public const float InventoryButtonVerticalSpacing = 6f;
 }
+

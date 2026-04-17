@@ -1,6 +1,6 @@
 using Terraria.GameContent;
 
-namespace ProgressionJournal.UI;
+namespace ProgressionJournal.UI.Utilities;
 
 public static class JournalTextUtilities
 {
@@ -40,3 +40,4 @@ public static class JournalTextUtilities
         return FontAssets.MouseText.Value.MeasureString(text).X * textScale;
     }
 }
+

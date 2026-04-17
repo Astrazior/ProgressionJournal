@@ -1,4 +1,4 @@
-namespace ProgressionJournal.Data;
+namespace ProgressionJournal.Data.Enums;
 
 public enum RecommendationTier
 {
@@ -7,4 +7,5 @@ public enum RecommendationTier
 	NotRecommended,
 	Useless
 }
+
 

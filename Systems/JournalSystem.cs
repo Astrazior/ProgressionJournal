@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using ProgressionJournal.Data;
-using ProgressionJournal.UI;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -64,7 +62,7 @@ public sealed class JournalSystem : ModSystem
     {
         if (ShouldDrawJournalButton && _buttonInterface is not null)
         {
-            int inventoryIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
+            var inventoryIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
 
             if (inventoryIndex >= 0)
             {
