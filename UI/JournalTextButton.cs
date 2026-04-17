@@ -30,9 +30,9 @@ public sealed class JournalTextButton : UIPanel
 	{
 		var label = new UIText(text, _textScale) {
 			HAlign = 0.5f,
-			VAlign = 0.5f
+			VAlign = 0.5f,
+			TextColor = new Color(226, 233, 240)
 		};
-		label.TextColor = new Color(226, 233, 240);
 		return label;
 	}
 }
