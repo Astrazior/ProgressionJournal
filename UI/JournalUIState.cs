@@ -23,11 +23,10 @@ public sealed class JournalUiState : UIState
 	private const float BlockVerticalPadding = 12f;
 	private const float RowHeight = 56f;
 	private const float RowSpacing = 6f;
-	private const float CategorySpacing = 12f;
-	private const float CategoryHeaderHeight = 26f;
-	private const float CategoryHeaderBottomSpacing = 8f;
-	private const float RecommendationHeaderHeight = 40f;
-	private const float RecommendationHeaderBottomSpacing = 12f;
+	private const float CategorySpacing = 8f;
+	private const float CategoryContentIndent = 2f;
+	private const float RecommendationHeaderHeight = 28f;
+	private const float RecommendationHeaderBottomSpacing = 8f;
 	private const float OuterPadding = 12f;
 	private const float PanelGap = 12f;
 	private const float HeaderHeight = 72f;
@@ -45,6 +44,8 @@ public sealed class JournalUiState : UIState
 	private const float MinStageButtonTextScale = 0.76f;
 	private const float StageButtonTextScaleStep = 0.02f;
 	private const float StageButtonTextHorizontalPadding = 10f;
+	// Switch between InlineRule, AccentTag, and SideRail to compare category treatments in-game.
+	private const JournalCategoryHeaderStyle ActiveCategoryHeaderStyle = JournalCategoryHeaderStyle.InlineRule;
 
 	private static readonly CombatClass[] ClassOrder =
 	[
@@ -566,11 +567,11 @@ public sealed class JournalUiState : UIState
 			categoryHeader.Left.Set(BlockHorizontalPadding, 0f);
 			categoryHeader.Top.Set(top, 0f);
 			block.Append(categoryHeader);
-			top += CategoryHeaderHeight + CategoryHeaderBottomSpacing;
+			top += GetCategoryHeaderHeight() + GetCategoryHeaderBottomSpacing();
 
 			foreach (var rowEntries in ChunkEntries(categoryEntries, EntrySlotsPerRow)) {
 				var row = CreateSlotRow(rowEntries);
-				row.Left.Set(BlockHorizontalPadding, 0f);
+				row.Left.Set(BlockHorizontalPadding + CategoryContentIndent, 0f);
 				row.Top.Set(top, 0f);
 				block.Append(row);
 				top += RowHeight + RowSpacing;
@@ -587,20 +588,16 @@ public sealed class JournalUiState : UIState
 		return block;
 	}
 
-	private static UIPanel CreateCategoryHeader(JournalItemCategory category)
+	private static UIElement CreateCategoryHeader(JournalItemCategory category)
 	{
-		var header = CreatePanel();
+		var header = new JournalCategoryHeader(
+			Language.GetTextValue($"Mods.ProgressionJournal.Categories.{category}"),
+			GetCategoryHeaderBorderColor(category),
+			GetCategoryHeaderTextColor(category),
+			ActiveCategoryHeaderStyle);
+
 		header.Width.Set(-(BlockHorizontalPadding * 2f), 1f);
-		header.Height.Set(CategoryHeaderHeight, 0f);
-		header.BackgroundColor = GetCategoryHeaderBackgroundColor(category);
-		header.BorderColor = GetCategoryHeaderBorderColor(category);
-
-		var label = new UIText(Language.GetTextValue($"Mods.ProgressionJournal.Categories.{category}"), 0.38f, true);
-		label.Left.Set(10f, 0f);
-		label.VAlign = 0.5f;
-		label.TextColor = GetCategoryHeaderTextColor(category);
-		header.Append(label);
-
+		header.Height.Set(GetCategoryHeaderHeight(), 0f);
 		return header;
 	}
 
@@ -641,13 +638,17 @@ public sealed class JournalUiState : UIState
 			+ EntrySpacing * (entries.Count - 1);
 	}
 
-	private static Color GetCategoryHeaderBackgroundColor(JournalItemCategory category) => category switch
+	private static float GetCategoryHeaderHeight() => ActiveCategoryHeaderStyle switch
 	{
-		JournalItemCategory.Weapon => new Color(61, 49, 31),
-		JournalItemCategory.ClassSpecific => new Color(34, 61, 61),
-		JournalItemCategory.Armor => new Color(42, 54, 74),
-		JournalItemCategory.Accessory => new Color(57, 44, 68),
-		_ => new Color(40, 48, 58)
+		JournalCategoryHeaderStyle.AccentTag => 24f,
+		JournalCategoryHeaderStyle.SideRail => 22f,
+		_ => 20f
+	};
+
+	private static float GetCategoryHeaderBottomSpacing() => ActiveCategoryHeaderStyle switch
+	{
+		JournalCategoryHeaderStyle.AccentTag => 7f,
+		_ => 6f
 	};
 
 	private static Color GetCategoryHeaderBorderColor(JournalItemCategory category) => category switch
