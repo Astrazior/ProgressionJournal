@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ProgressionJournal.Data;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
@@ -13,9 +12,6 @@ namespace ProgressionJournal.UI;
 public sealed class JournalClassButton : UIPanel
 {
 	private const float TitleTop = 10f;
-	private const float AccentInset = 14f;
-	private const int AccentThickness = 3;
-	private const int BaseLineThickness = 2;
 
 	private readonly CombatClass _combatClass;
 	private readonly UIText _title;
@@ -58,10 +54,6 @@ public sealed class JournalClassButton : UIPanel
 		ApplyVisualState();
 		base.DrawSelf(spriteBatch);
 
-		var dimensions = GetInnerDimensions();
-		DrawAccent(spriteBatch, dimensions);
-		DrawBaseLine(spriteBatch, dimensions);
-
 		if (IsMouseHovering) {
 			Main.hoverItemName = Language.GetTextValue($"Mods.ProgressionJournal.Classes.{_combatClass}");
 		}
@@ -75,35 +67,6 @@ public sealed class JournalClassButton : UIPanel
 		BackgroundColor = Color.Lerp(background, accent * 0.2f, emphasis);
 		BorderColor = Color.Lerp(border, accent, _selected ? 0.9f : IsMouseHovering ? 0.55f : 0.18f);
 		_title.TextColor = Color.Lerp(text * 0.88f, Color.White, _selected ? 0.82f : IsMouseHovering ? 0.35f : 0f);
-	}
-
-	private void DrawAccent(SpriteBatch spriteBatch, CalculatedStyle dimensions)
-	{
-		Color accent = GetPalette(_combatClass).Accent;
-		float accentAlpha = _selected ? 1f : IsMouseHovering ? 0.72f : 0.4f;
-		var pixel = TextureAssets.MagicPixel.Value;
-		int width = (int)(dimensions.Width - AccentInset * 2f);
-		if (width <= 0) {
-			return;
-		}
-
-		int x = (int)(dimensions.X + AccentInset);
-		int y = (int)(dimensions.Y + 32f);
-		spriteBatch.Draw(pixel, new Rectangle(x, y, width, AccentThickness), accent * accentAlpha);
-	}
-
-	private void DrawBaseLine(SpriteBatch spriteBatch, CalculatedStyle dimensions)
-	{
-		Color accent = GetPalette(_combatClass).Accent;
-		var pixel = TextureAssets.MagicPixel.Value;
-		int width = (int)(dimensions.Width - 42f);
-		if (width <= 0) {
-			return;
-		}
-
-		int x = (int)(dimensions.X + (dimensions.Width - width) * 0.5f);
-		int y = (int)(dimensions.Y + dimensions.Height - 18f);
-		spriteBatch.Draw(pixel, new Rectangle(x, y, width, BaseLineThickness), accent * 0.45f);
 	}
 
 	private static Player CreatePreviewPlayer(CombatClass combatClass)
@@ -135,14 +98,23 @@ public sealed class JournalClassButton : UIPanel
 		}
 
 		preview.hideMisc[0] = true;
-		preview.mount.SetMount(0, preview);
 
 		int[] armor = GetArmorItemIds(combatClass);
 		for (int index = 0; index < armor.Length; index++) {
 			preview.armor[index] = CreateItem(armor[index]);
 		}
 
+		// Reset cloned mount/sitting state so the preview pose comes from the selected mount itself.
+		preview.mount.Reset();
+		preview.sitting.SitUp(preview, false);
+		preview.sitting.isSitting = false;
+		preview.sitting.offsetForSeat = Vector2.Zero;
+		preview.sitting.sittingIndex = 0;
+
+		preview.mount.SetMount(GetMountId(combatClass), preview);
+		preview.mount.UpdateFrame(preview, GetMountPreviewState(preview), preview.velocity);
 		preview.PlayerFrame();
+		ApplyMountBodyPose(preview);
 		return preview;
 	}
 
@@ -161,6 +133,26 @@ public sealed class JournalClassButton : UIPanel
 		CombatClass.Summoner => [ItemID.StardustHelmet, ItemID.StardustBreastplate, ItemID.StardustLeggings],
 		_ => [ItemID.SolarFlareHelmet, ItemID.SolarFlareBreastplate, ItemID.SolarFlareLeggings]
 	};
+
+	private static int GetMountId(CombatClass combatClass) => combatClass switch
+	{
+		CombatClass.Melee => MountID.DarkHorse,
+		CombatClass.Ranged => MountID.Unicorn,
+		CombatClass.Magic => MountID.WitchBroom,
+		CombatClass.Summoner => MountID.DarkMageBook,
+		_ => MountID.DarkHorse
+	};
+
+	private static int GetMountPreviewState(Player preview)
+	{
+		return preview.mount.CanFly() ? Mount.FrameFlying : Mount.FrameRunning;
+	}
+
+	private static void ApplyMountBodyPose(Player preview)
+	{
+		preview.bodyFrame.X = 0;
+		preview.bodyFrame.Y = preview.mount.BodyFrame * preview.bodyFrame.Height;
+	}
 
 	private static (Color Background, Color Border, Color Accent, Color Text) GetPalette(CombatClass combatClass) => combatClass switch
 	{
