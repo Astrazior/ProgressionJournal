@@ -284,8 +284,9 @@ public sealed class JournalUiState : UIState
 		_contentPanel.Height.Set(-(TopTabsHeight + 34f), 1f);
 		_mainPanel.Append(_contentPanel);
 
-		_contentTitle = new UIText(string.Empty, 0.48f, true);
-		_contentTitle.Left.Set(14f, 0f);
+		_contentTitle = new UIText(string.Empty, 0.48f, true) {
+			HAlign = 0.5f
+		};
 		_contentTitle.Top.Set(10f, 0f);
 		_contentPanel.Append(_contentTitle);
 
@@ -473,9 +474,10 @@ public sealed class JournalUiState : UIState
 		panel.BackgroundColor = active ? new Color(49, 82, 61) : new Color(26, 38, 52);
 		panel.BorderColor = active ? new Color(128, 192, 146) : new Color(88, 115, 142);
 
-		var title = new UIText(Language.GetTextValue($"Mods.ProgressionJournal.Classes.{combatClass}"), 0.5f, true);
-		title.Left.Set(14f, 0f);
-		title.VAlign = 0.5f;
+		var title = new UIText(Language.GetTextValue($"Mods.ProgressionJournal.Classes.{combatClass}"), 0.5f, true) {
+			HAlign = 0.5f,
+			VAlign = 0.5f
+		};
 		panel.Append(title);
 
 		return panel;
