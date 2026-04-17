@@ -322,14 +322,15 @@ public sealed class JournalUiState : UIState
 	private void PopulateClassSelection(CombatClass selectedClass)
 	{
 		float buttonWidth = 0.5f;
-		float buttonHeight = 58f;
+		float buttonHeight = 176f;
+		const float buttonGap = 12f;
 		float top = 0f;
 		int index = 0;
 
 		foreach (var combatClass in ClassOrder) {
 			var capturedClass = combatClass;
-			var panel = CreateClassSelectionButton(capturedClass, selectedClass == capturedClass, buttonHeight);
-			panel.Left.Set(index % 2 == 0 ? 0f : 12f, index % 2 == 0 ? 0f : buttonWidth);
+			var panel = new JournalClassButton(capturedClass, selectedClass == capturedClass, buttonHeight);
+			panel.Left.Set(index % 2 == 0 ? 0f : buttonGap, index % 2 == 0 ? 0f : buttonWidth);
 			panel.Top.Set(top, 0f);
 			panel.Width.Set(-6f, buttonWidth);
 			panel.OnLeftClick += (_, _) => JournalSystem.SelectClass(capturedClass);
@@ -337,7 +338,7 @@ public sealed class JournalUiState : UIState
 
 			index++;
 			if (index % 2 == 0) {
-				top += buttonHeight + 12f;
+				top += buttonHeight + buttonGap;
 			}
 		}
 	}
@@ -466,22 +467,6 @@ public sealed class JournalUiState : UIState
 		JournalItemCategory.Weapon or JournalItemCategory.Armor => entry.Entry.CategoryStrength,
 		_ => 0
 	};
-
-	private static UIPanel CreateClassSelectionButton(CombatClass combatClass, bool active, float height)
-	{
-		var panel = CreatePanel();
-		panel.Height.Set(height, 0f);
-		panel.BackgroundColor = active ? new Color(49, 82, 61) : new Color(26, 38, 52);
-		panel.BorderColor = active ? new Color(128, 192, 146) : new Color(88, 115, 142);
-
-		var title = new UIText(Language.GetTextValue($"Mods.ProgressionJournal.Classes.{combatClass}"), 0.5f, true) {
-			HAlign = 0.5f,
-			VAlign = 0.5f
-		};
-		panel.Append(title);
-
-		return panel;
-	}
 
 	private static UIPanel CreatePanel()
 	{
