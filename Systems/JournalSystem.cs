@@ -34,6 +34,8 @@ public sealed class JournalSystem : ModSystem
 
 	public bool SelectingClass { get; private set; } = true;
 
+	public bool HasSelectedClass { get; private set; }
+
 	public CombatClass SelectedClass { get; private set; } = CombatClass.Melee;
 
 	public ProgressionStageId SelectedStage { get; private set; } = ProgressionStageCatalog.GetCurrentStageId();
@@ -118,7 +120,7 @@ public sealed class JournalSystem : ModSystem
 	{
 		CloseConflictingInterfaces();
 		Visible = true;
-		SelectingClass = false;
+		SelectingClass = !HasSelectedClass;
 		ShowingPresets = false;
 		_journalState?.ResetLayout();
 		_journalInterface?.SetState(_journalState);
@@ -140,6 +142,7 @@ public sealed class JournalSystem : ModSystem
 	public void SelectClass(CombatClass combatClass)
 	{
 		SelectedClass = combatClass;
+		HasSelectedClass = true;
 		SelectingClass = false;
 		ShowingPresets = false;
 		RefreshView();
@@ -183,7 +186,7 @@ public sealed class JournalSystem : ModSystem
 			return;
 		}
 
-		_journalState?.Refresh(SelectedClass, SelectedStage, SelectingClass, ShowingPresets);
+		_journalState?.Refresh(SelectedClass, SelectedStage, SelectingClass, ShowingPresets, HasSelectedClass);
 	}
 
 	private bool DrawJournalInterface()

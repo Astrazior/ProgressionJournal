@@ -116,8 +116,10 @@ public sealed class JournalUiState : UIState
 		}
 	}
 
-	public void Refresh(CombatClass combatClass, ProgressionStageId stageId, bool selectingClass, bool showingPresets)
+	public void Refresh(CombatClass combatClass, ProgressionStageId stageId, bool selectingClass, bool showingPresets, bool hasSelectedClass)
 	{
+		ApplyNavigationLayout(hasSelectedClass);
+		ApplyContentLayout();
 		EnsureLayout();
 
 		_title.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Title"));
@@ -668,7 +670,7 @@ public sealed class JournalUiState : UIState
 
 	private void LayoutStageButtons()
 	{
-		if (_stageButtons.Count == 0) {
+		if (_stageButtons.Count == 0 || _stagePanel.Parent is null) {
 			return;
 		}
 
@@ -877,6 +879,48 @@ public sealed class JournalUiState : UIState
 		if (_scrollbar.Parent is null) {
 			_contentPanel.Append(_scrollbar);
 		}
+	}
+
+	private void ApplyNavigationLayout(bool hasSelectedClass)
+	{
+		if (hasSelectedClass) {
+			if (_stagePanel.Parent is null) {
+				_root.Append(_stagePanel);
+				_layoutInitialized = false;
+			}
+
+			if (_contentTabsPanel.Parent is null) {
+				_mainPanel.Append(_contentTabsPanel);
+				_layoutInitialized = false;
+			}
+
+			_mainPanel.Left.Set(OuterPadding + StagePanelWidth + PanelGap, 0f);
+			_mainPanel.Width.Set(-(OuterPadding * 2f + StagePanelWidth + PanelGap), 1f);
+			_contentPanel.Top.Set(12f + TopTabsHeight + 10f, 0f);
+			_contentPanel.Height.Set(-(TopTabsHeight + 34f), 1f);
+			return;
+		}
+
+		if (_stagePanel.Parent is not null) {
+			_root.RemoveChild(_stagePanel);
+			_layoutInitialized = false;
+		}
+
+		if (_contentTabsPanel.Parent is not null) {
+			_mainPanel.RemoveChild(_contentTabsPanel);
+			_layoutInitialized = false;
+		}
+
+		_mainPanel.Left.Set(OuterPadding, 0f);
+		_mainPanel.Width.Set(-(OuterPadding * 2f), 1f);
+		_contentPanel.Top.Set(12f, 0f);
+		_contentPanel.Height.Set(-24f, 1f);
+	}
+
+	private void ApplyContentLayout()
+	{
+		_classSelectionContainer.Top.Set(52f, 0f);
+		_classSelectionContainer.Height.Set(-66f, 1f);
 	}
 
 	private static JournalSystem JournalSystem => ModContent.GetInstance<JournalSystem>();
