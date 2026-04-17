@@ -51,6 +51,7 @@ public sealed class JournalCategoryHeader : UIElement
 				DrawSideRail(spriteBatch, pixel, font, dimensions, titleSize);
 				return;
 
+			case JournalCategoryHeaderStyle.InlineRule:
 			default:
 				DrawInlineRule(spriteBatch, pixel, font, dimensions, titleSize);
 				return;
@@ -93,14 +94,13 @@ public sealed class JournalCategoryHeader : UIElement
 		float railHeight = dimensions.Height - 4f;
 		float textX = railX + 12f;
 		float textY = dimensions.Y + (dimensions.Height - titleSize.Y) * 0.5f - 1f;
-		float underlineStart = textX;
 		float underlineEnd = textX + titleSize.X + 2f;
 		int underlineY = (int)(centerY + titleSize.Y * 0.5f) + 1;
 
 		DrawRectangle(spriteBatch, pixel, railX, railY, 4f, railHeight, _accentColor);
 		DrawRectangle(spriteBatch, pixel, railX, railY, 12f, 1f, _accentColor * 0.48f);
 		DrawRectangle(spriteBatch, pixel, railX, railY + railHeight - 1f, 12f, 1f, _accentColor * 0.28f);
-		DrawSegment(spriteBatch, pixel, underlineStart, underlineEnd, underlineY, 1, _accentColor * 0.34f);
+		DrawSegment(spriteBatch, pixel, textX, underlineEnd, underlineY, 1, _accentColor * 0.34f);
 		DrawText(spriteBatch, font, textX, textY);
 	}
 
