@@ -14,7 +14,6 @@ public sealed class JournalClassButton : UIPanel
 
 	private readonly CombatClass _combatClass;
 	private readonly UIText _title;
-	private readonly UICharacter _characterPreview;
 	private bool _selected;
 
 	public JournalClassButton(CombatClass combatClass, bool selected, float height)
@@ -31,13 +30,13 @@ public sealed class JournalClassButton : UIPanel
 		_title.Top.Set(TitleTop, 0f);
 		Append(_title);
 
-		_characterPreview = new UICharacter(CreatePreviewPlayer(combatClass), false, false, 1.42f);
-		_characterPreview.Width.Set(102f, 0f);
-		_characterPreview.Height.Set(112f, 0f);
-		_characterPreview.HAlign = 0.5f;
-		_characterPreview.Top.Set(38f, 0f);
-		_characterPreview.IgnoresMouseInteraction = true;
-		Append(_characterPreview);
+		var characterPreview = new UICharacter(CreatePreviewPlayer(combatClass), false, false, 1.42f);
+		characterPreview.Width.Set(102f, 0f);
+		characterPreview.Height.Set(112f, 0f);
+		characterPreview.HAlign = 0.5f;
+		characterPreview.Top.Set(38f, 0f);
+		characterPreview.IgnoresMouseInteraction = true;
+		Append(characterPreview);
 
 		ApplyVisualState();
 	}
@@ -102,13 +101,6 @@ public sealed class JournalClassButton : UIPanel
 		for (int index = 0; index < armor.Length; index++) {
 			preview.armor[index] = CreateItem(armor[index]);
 		}
-
-		// Reset cloned mount/sitting state so the preview pose comes from the selected mount itself.
-		preview.mount.Reset();
-		preview.sitting.SitUp(preview, false);
-		preview.sitting.isSitting = false;
-		preview.sitting.offsetForSeat = Vector2.Zero;
-		preview.sitting.sittingIndex = 0;
 
 		preview.mount.SetMount(GetMountId(combatClass), preview);
 		preview.mount.UpdateFrame(preview, GetMountPreviewState(preview), preview.velocity);
