@@ -99,11 +99,7 @@ public sealed class JournalEntry
 
 	public StageEvaluation GetEvaluation(ProgressionStageId stageId)
 	{
-		if (TryGetEvaluation(stageId, out var evaluation)) {
-			return evaluation;
-		}
-
-		throw new KeyNotFoundException($"No evaluation exists for stage '{stageId}' in entry '{Key}'.");
+		return TryGetEvaluation(stageId, out var evaluation) ? evaluation : throw new KeyNotFoundException($"No evaluation exists for stage '{stageId}' in entry '{Key}'.");
 	}
 
 	public string GetDisplayName() => string.Join(" + ", ItemGroups.Select(group => group.GetDisplayName()));

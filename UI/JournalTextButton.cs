@@ -24,19 +24,6 @@ public sealed class JournalTextButton : UIPanel
 
 	public void SetText(string text) => _label.SetText(text);
 
-	public void SetText(string text, float textScale)
-	{
-		if (Math.Abs(_textScale - textScale) < 0.001f) {
-			_label.SetText(text);
-			return;
-		}
-
-		_textScale = textScale;
-		RemoveChild(_label);
-		_label = CreateLabel(text);
-		Append(_label);
-	}
-
 	public void SetTextColor(Color color) => _label.TextColor = color;
 
 	private UIText CreateLabel(string text)

@@ -257,7 +257,7 @@ public sealed class JournalUiState : UIState
 		_mainPanel.Append(_contentTabsPanel);
 
 		const float tabGap = 12f;
-		float widthOffset = -2f * tabGap / 3f;
+		const float widthOffset = -2f * tabGap / 3f;
 
 		_classButton = CreateButton(string.Empty, 0f, 34f, () => JournalSystem.ShowClassSelection(), 0.92f);
 		_classButton.Left.Set(0f, 0f);

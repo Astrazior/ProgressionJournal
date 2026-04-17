@@ -54,17 +54,15 @@ public sealed class JournalEntrySlot : UIElement
 		TextureAssets.InventoryBack9 = oldBack9;
 		Main.inventoryScale = oldScale;
 
-		if (IsMouseHovering) {
-			int hoveredIndex = GetHoveredItemIndex(inner);
+		if (!IsMouseHovering) return;
+		int hoveredIndex = GetHoveredItemIndex(inner);
 
-			if (hoveredIndex >= 0) {
-				var hoverItem = GetDisplayedItem(hoveredIndex).Clone();
-				string hoverName = _entry.Entry.ItemGroups[hoveredIndex].GetDisplayName();
-				hoverItem.SetNameOverride(hoverName);
-				Main.HoverItem = hoverItem;
-				Main.hoverItemName = hoverName;
-			}
-		}
+		if (hoveredIndex < 0) return;
+		var hoverItem = GetDisplayedItem(hoveredIndex).Clone();
+		string hoverName = _entry.Entry.ItemGroups[hoveredIndex].GetDisplayName();
+		hoverItem.SetNameOverride(hoverName);
+		Main.HoverItem = hoverItem;
+		Main.hoverItemName = hoverName;
 	}
 
 	public static float GetVisualWidth(int itemCount)
