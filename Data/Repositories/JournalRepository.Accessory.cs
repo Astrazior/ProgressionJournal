@@ -93,7 +93,7 @@ public static partial class JournalRepository
                             Group(ItemID.AmphibianBoots, ItemID.FairyBoots),
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
-            Entry("sharkToothNecklacePreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.SharkToothNecklace,
+            EventEntry("sharkToothNecklacePreBoss", JournalItemCategory.Accessory, CombatClass.All, JournalEventCategory.BloodMoon, ItemID.SharkToothNecklace,
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
             Entry("panicNecklacePreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.PanicNecklace,
@@ -113,7 +113,7 @@ public static partial class JournalRepository
             Entry("feralClawsSummonerPreBoss", JournalItemCategory.Accessory, CombatClass.Summoner, ItemID.FeralClaws,
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
-            Entry("apprenticeScarfOrSquireShieldPreBoss", JournalItemCategory.Accessory, CombatClass.Summoner,
+            EventEntry("apprenticeScarfOrSquireShieldPreBoss", JournalItemCategory.Accessory, CombatClass.Summoner, JournalEventCategory.OldOnesArmy,
                             Group(ItemID.ApprenticeScarf, ItemID.SquireShield),
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
@@ -398,14 +398,14 @@ public static partial class JournalRepository
             Entry("hivePackPostWorldEvil", JournalItemCategory.Accessory, CombatClass.Magic, ItemID.HiveBackpack,
                             Eval(ProgressionStageId.PostQueenBee, RecommendationTier.Recommended)),
 
-            Entry("huntressBucklerOrMonkBeltPostOneMechBoss", JournalItemCategory.Accessory, CombatClass.Summoner,
+            EventEntry("huntressBucklerOrMonkBeltPostOneMechBoss", JournalItemCategory.Accessory, CombatClass.Summoner, JournalEventCategory.OldOnesArmy,
                             Group(ItemID.HuntressBuckler, ItemID.MonkBelt),
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Useless)),
 
-            Entry("moonStonePostOneMechBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.MoonStone,
+            EventEntry("moonStonePostOneMechBoss", JournalItemCategory.Accessory, CombatClass.All, JournalEventCategory.SolarEclipse, ItemID.MoonStone,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended)),
 
-            Entry("neptunesShellPostOneMechBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.NeptunesShell,
+            EventEntry("neptunesShellPostOneMechBoss", JournalItemCategory.Accessory, CombatClass.All, JournalEventCategory.SolarEclipse, ItemID.NeptunesShell,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Additional)),
 
             Entry("moonShellPostOneMechBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.MoonShell,

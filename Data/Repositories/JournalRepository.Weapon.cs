@@ -296,7 +296,7 @@ public static partial class JournalRepository
             Entry("slimeStaffPreBoss", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.SlimeStaff,
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-            Entry("vampireFrogStaffPreBoss", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.VampireFrogStaff,
+            EventEntry("vampireFrogStaffPreBoss", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.BloodMoon, ItemID.VampireFrogStaff,
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
             Entry("hornetStaffPostWorldEvil", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.HornetStaff,
@@ -308,7 +308,7 @@ public static partial class JournalRepository
             Entry("houndiusShootiusPostSkeletron", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.HoundiusShootius,
                             Eval(ProgressionStageId.PostDeerclops, RecommendationTier.Additional)),
 
-            Entry("earlySentryWandsPreBoss", JournalItemCategory.Weapon, CombatClass.Summoner,
+            EventEntry("earlySentryWandsPreBoss", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.OldOnesArmy,
                             Group(ItemID.DD2LightningAuraT1Popper, ItemID.DD2FlameburstTowerT1Popper, ItemID.DD2BallistraTowerT1Popper, ItemID.DD2ExplosiveTrapT1Popper),
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
@@ -318,10 +318,10 @@ public static partial class JournalRepository
             Entry("spiderStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.SpiderStaff,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
 
-            Entry("sanguineStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.SanguineStaff,
+            EventEntry("sanguineStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.BloodMoon, ItemID.SanguineStaff,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
 
-            Entry("pirateStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.PirateStaff,
+            EventEntry("pirateStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.PirateInvasion, ItemID.PirateStaff,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
 
             Entry("bladeStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.Smolstar,
@@ -330,32 +330,32 @@ public static partial class JournalRepository
             Entry("opticStaffPostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.OpticStaff,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended)),
 
-            Entry("dd2SentryTier2PostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Summoner,
+            EventEntry("dd2SentryTier2PostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.OldOnesArmy,
                             Group(ItemID.DD2LightningAuraT2Popper, ItemID.DD2FlameburstTowerT2Popper, ItemID.DD2BallistraTowerT2Popper, ItemID.DD2ExplosiveTrapT2Popper),
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended)),
 
             Entry("pygmyStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.PygmyStaff,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.NotRecommended)),
 
-            Entry("staffOfTheFrostHydraPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.StaffoftheFrostHydra,
+            EventEntry("staffOfTheFrostHydraPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.FrostMoon, ItemID.StaffoftheFrostHydra,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
             Entry("desertTigerStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.StormTigerStaff,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
-            Entry("deadlySphereStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.DeadlySphereStaff,
+            EventEntry("deadlySphereStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.SolarEclipse, ItemID.DeadlySphereStaff,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
-            Entry("ravenStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.RavenStaff,
+            EventEntry("ravenStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.PumpkinMoon, ItemID.RavenStaff,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Useless)),
 
             Entry("tempestStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.TempestStaff,
                             Eval(ProgressionStageId.PostDukeFishron, RecommendationTier.Recommended)),
 
-            Entry("xenoStaffPostGolem", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.XenoStaff,
+            EventEntry("xenoStaffPostGolem", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.MartianMadness, ItemID.XenoStaff,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)),
 
-            Entry("dd2SentryTier3PostGolem", JournalItemCategory.Weapon, CombatClass.Summoner,
+            EventEntry("dd2SentryTier3PostGolem", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.OldOnesArmy,
                             Group(ItemID.DD2LightningAuraT3Popper, ItemID.DD2FlameburstTowerT3Popper, ItemID.DD2BallistraTowerT3Popper, ItemID.DD2ExplosiveTrapT3Popper),
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)),
 
@@ -519,13 +519,13 @@ public static partial class JournalRepository
             Entry("spectreStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.SpectreStaff,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Additional)),
 
-            Entry("batScepterPostPlantera", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.BatScepter,
+            EventEntry("batScepterPostPlantera", JournalItemCategory.Weapon, CombatClass.Magic, JournalEventCategory.PumpkinMoon, ItemID.BatScepter,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
-            Entry("razorpinePostPlantera", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.Razorpine,
+            EventEntry("razorpinePostPlantera", JournalItemCategory.Weapon, CombatClass.Magic, JournalEventCategory.FrostMoon, ItemID.Razorpine,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
-            Entry("blizzardStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.BlizzardStaff,
+            EventEntry("blizzardStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Magic, JournalEventCategory.FrostMoon, ItemID.BlizzardStaff,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Additional)),
 
             Entry("resonanceScepterPostPlantera", JournalItemCategory.Weapon, CombatClass.Magic, 5065,
@@ -540,7 +540,7 @@ public static partial class JournalRepository
             Entry("staffOfEarthPostGolem", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.StaffofEarth,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Useless)),
 
-            Entry("betsysWrathPostGolem", JournalItemCategory.Weapon, CombatClass.Magic, 3870,
+            EventEntry("betsysWrathPostGolem", JournalItemCategory.Weapon, CombatClass.Magic, JournalEventCategory.OldOnesArmy, 3870,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.NotRecommended)),
 
             Entry("laserRifleHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.LaserRifle,
@@ -568,10 +568,10 @@ public static partial class JournalRepository
             Entry("spiritFlameHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.SpiritFlame,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
 
-            Entry("shadowflameHexDollHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.ShadowFlameHexDoll,
+            EventEntry("shadowflameHexDollHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, JournalEventCategory.GoblinArmy, ItemID.ShadowFlameHexDoll,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
 
-            Entry("bloodThornHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, 4270,
+            EventEntry("bloodThornHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, JournalEventCategory.BloodMoon, 4270,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
 
             Entry("magicalHarpPostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.MagicalHarp,
@@ -601,10 +601,10 @@ public static partial class JournalRepository
             Entry("heatRayPostGolem", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.HeatRay,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Additional)),
 
-            Entry("laserMachinegunPostGolem", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.LaserMachinegun,
+            EventEntry("laserMachinegunPostGolem", JournalItemCategory.Weapon, CombatClass.Magic, JournalEventCategory.MartianMadness, ItemID.LaserMachinegun,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.NotRecommended)),
 
-            Entry("chargedBlasterCannonPostGolem", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.ChargedBlasterCannon,
+            EventEntry("chargedBlasterCannonPostGolem", JournalItemCategory.Weapon, CombatClass.Magic, JournalEventCategory.MartianMadness, ItemID.ChargedBlasterCannon,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)),
 
             Entry("nebulaArcanumPostCelestialPillars", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.NebulaArcanum,
@@ -667,13 +667,13 @@ public static partial class JournalRepository
             Entry("code2PostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Code2,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.NotRecommended)),
 
-            Entry("brandOfTheInfernoPostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Melee, 3823,
+            EventEntry("brandOfTheInfernoPostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.OldOnesArmy, 3823,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.NotRecommended)),
 
             Entry("lightDiscPostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.LightDisc,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended)),
 
-            Entry("ghastlyGlaivePostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Melee, 3836,
+            EventEntry("ghastlyGlaivePostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.OldOnesArmy, 3836,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended)),
 
             Entry("yeletsPostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Yelets,
@@ -688,7 +688,7 @@ public static partial class JournalRepository
             Entry("hallowJoustingLancePostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.HallowJoustingLance,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Useless)),
 
-            Entry("sleepyOctopodPostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Melee, 3835,
+            EventEntry("sleepyOctopodPostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.OldOnesArmy, 3835,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Useless)),
 
             Entry("trueExcaliburPostThreeMechBosses", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.TrueExcalibur,
@@ -704,20 +704,20 @@ public static partial class JournalRepository
                             Group(ItemID.ChlorophyteClaymore, ItemID.ChlorophyteSaber),
                             Eval(ProgressionStageId.PostThreeMechBosses, RecommendationTier.Useless)),
 
-            Entry("deathSicklePostThreeMechBosses", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.DeathSickle,
+            EventEntry("deathSicklePostThreeMechBosses", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.SolarEclipse, ItemID.DeathSickle,
                             Eval(ProgressionStageId.PostThreeMechBosses, RecommendationTier.Additional)),
 
             Entry("terraBladePostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.TerraBlade,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
-            Entry("theHorsemansBladePostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.TheHorsemansBlade,
+            EventEntry("theHorsemansBladePostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.PumpkinMoon, ItemID.TheHorsemansBlade,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
             Entry("vampireKnivesOrScourgeOfTheCorruptorPostPlantera", JournalItemCategory.Weapon, CombatClass.Melee,
                             Group(ItemID.VampireKnives, ItemID.ScourgeoftheCorruptor),
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
-            Entry("northPolePostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.NorthPole,
+            EventEntry("northPolePostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.FrostMoon, ItemID.NorthPole,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Additional)),
 
             Entry("piercingStarlightPostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.PiercingStarlight,
@@ -729,10 +729,10 @@ public static partial class JournalRepository
             Entry("krakenPostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Kraken,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Additional)),
 
-            Entry("christmasTreeSwordPostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.ChristmasTreeSword,
+            EventEntry("christmasTreeSwordPostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.FrostMoon, ItemID.ChristmasTreeSword,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Additional)),
 
-            Entry("theEyeOfCthulhuPostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.TheEyeOfCthulhu,
+            EventEntry("theEyeOfCthulhuPostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.SolarEclipse, ItemID.TheEyeOfCthulhu,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.NotRecommended)),
 
             Entry("paladinsHammerPostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.PaladinsHammer,
@@ -750,28 +750,28 @@ public static partial class JournalRepository
             Entry("shadowJoustingLancePostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.ShadowJoustingLance,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Useless)),
 
-            Entry("psychoKnifePostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.PsychoKnife,
+            EventEntry("psychoKnifePostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.SolarEclipse, ItemID.PsychoKnife,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Useless)),
 
-            Entry("butchersChainsawPostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.ButchersChainsaw,
+            EventEntry("butchersChainsawPostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.SolarEclipse, ItemID.ButchersChainsaw,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Useless)),
 
             Entry("theAxePostPlantera", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.TheAxe,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Useless)),
 
-            Entry("flyingDragonPostGolem", JournalItemCategory.Weapon, CombatClass.Melee, 3827,
+            EventEntry("flyingDragonPostGolem", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.OldOnesArmy, 3827,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)),
 
             Entry("possessedHatchetPostGolem", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.PossessedHatchet,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Useless)),
 
-            Entry("influxWaverPostGolem", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.InfluxWaver,
+            EventEntry("influxWaverPostGolem", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.MartianMadness, ItemID.InfluxWaver,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.NotRecommended)),
 
             Entry("golemFistPostGolem", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.GolemFist,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Useless)),
 
-            Entry("skyDragonsFuryPostGolem", JournalItemCategory.Weapon, CombatClass.Melee, 3858,
+            EventEntry("skyDragonsFuryPostGolem", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.OldOnesArmy, 3858,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Useless)),
 
             Entry("dayBreakPostCelestialPillars", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.DayBreak,
@@ -804,7 +804,7 @@ public static partial class JournalRepository
             Entry("obsidianSwordfishHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.ObsidianSwordfish,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
 
-            Entry("cutlassHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Cutlass,
+            EventEntry("cutlassHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.PirateInvasion, ItemID.Cutlass,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
 
             Entry("hamBatHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.HamBat,
@@ -817,10 +817,10 @@ public static partial class JournalRepository
             Entry("sergeantUnitedShieldHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.BouncingShield,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
 
-            Entry("dripplerCripplerHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.DripplerFlail,
+            EventEntry("dripplerCripplerHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.BloodMoon, ItemID.DripplerFlail,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
 
-            Entry("bladetongueHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Bladetongue,
+            EventEntry("bladetongueHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.BloodMoon, ItemID.Bladetongue,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
 
             Entry("flyingKnifeHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.FlyingKnife,
@@ -835,7 +835,7 @@ public static partial class JournalRepository
             Entry("beamSwordHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.BeamSword,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
 
-            Entry("shadowFlameKnifeHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.ShadowFlameKnife,
+            EventEntry("shadowFlameKnifeHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.GoblinArmy, ItemID.ShadowFlameKnife,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
 
             Entry("daoofPowHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.DaoofPow,
@@ -844,7 +844,7 @@ public static partial class JournalRepository
             Entry("anchorHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Anchor,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
 
-            Entry("koCannonHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.KOCannon,
+            EventEntry("koCannonHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.BloodMoon, ItemID.KOCannon,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
 
             Entry("daedalusStormbowHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.DaedalusStormbow,
@@ -853,7 +853,7 @@ public static partial class JournalRepository
             Entry("marrowHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.Marrow,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
 
-            Entry("shadowFlameBowHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.ShadowFlameBow,
+            EventEntry("shadowFlameBowHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.GoblinArmy, ItemID.ShadowFlameBow,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
 
             Entry("iceBowHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.IceBow,
@@ -872,10 +872,10 @@ public static partial class JournalRepository
                             Group(ItemID.DartRifle, ItemID.DartPistol),
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
 
-            Entry("toxikarpHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.Toxikarp,
+            EventEntry("toxikarpHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.BloodMoon, ItemID.Toxikarp,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
 
-            Entry("coinGunHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.CoinGun,
+            EventEntry("coinGunHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.PirateInvasion, ItemID.CoinGun,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
 
             Entry("pearlwoodBowHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.PearlwoodBow,
@@ -899,7 +899,7 @@ public static partial class JournalRepository
                             Group(ItemID.AdamantiteRepeater, ItemID.TitaniumRepeater),
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
 
-            Entry("dd2PhoenixBowPostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.DD2PhoenixBow,
+            EventEntry("dd2PhoenixBowPostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.OldOnesArmy, ItemID.DD2PhoenixBow,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended)),
 
             Entry("hallowedRepeaterPostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.HallowedRepeater,
@@ -926,7 +926,7 @@ public static partial class JournalRepository
             Entry("eventidePostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.FairyQueenRangedItem,
                             Eval(ProgressionStageId.PostEmpressOfLight, RecommendationTier.Recommended)),
 
-            Entry("stakeLauncherPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.StakeLauncher,
+            EventEntry("stakeLauncherPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.PumpkinMoon, ItemID.StakeLauncher,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
             Entry("piranhaGunPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.PiranhaGun,
@@ -941,13 +941,13 @@ public static partial class JournalRepository
             Entry("sniperRiflePostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.SniperRifle,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.NotRecommended)),
 
-            Entry("candyCornRiflePostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.CandyCornRifle,
+            EventEntry("candyCornRiflePostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.PumpkinMoon, ItemID.CandyCornRifle,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.NotRecommended)),
 
-            Entry("chainGunPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.ChainGun,
+            EventEntry("chainGunPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.FrostMoon, ItemID.ChainGun,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
-            Entry("elfMelterPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.ElfMelter,
+            EventEntry("elfMelterPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.FrostMoon, ItemID.ElfMelter,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
             Entry("grenadeLauncherPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.GrenadeLauncher,
@@ -959,25 +959,25 @@ public static partial class JournalRepository
             Entry("rocketLauncherPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.RocketLauncher,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.NotRecommended)),
 
-            Entry("nailGunPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.NailGun,
+            EventEntry("nailGunPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.SolarEclipse, ItemID.NailGun,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.NotRecommended)),
 
-            Entry("jackOLanternLauncherPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.JackOLanternLauncher,
+            EventEntry("jackOLanternLauncherPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.PumpkinMoon, ItemID.JackOLanternLauncher,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.NotRecommended)),
 
-            Entry("snowmanCannonPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.SnowmanCannon,
+            EventEntry("snowmanCannonPostPlantera", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.FrostMoon, ItemID.SnowmanCannon,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
-            Entry("dd2BetsyBowPostGolem", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.DD2BetsyBow,
+            EventEntry("dd2BetsyBowPostGolem", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.OldOnesArmy, ItemID.DD2BetsyBow,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Additional)),
 
-            Entry("xenopopperPostGolem", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.Xenopopper,
+            EventEntry("xenopopperPostGolem", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.MartianMadness, ItemID.Xenopopper,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.NotRecommended)),
 
             Entry("styngerPostGolem", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.Stynger,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Useless)),
 
-            Entry("electrosphereLauncherPostGolem", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.ElectrosphereLauncher,
+            EventEntry("electrosphereLauncherPostGolem", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.MartianMadness, ItemID.ElectrosphereLauncher,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Additional)),
 
             Entry("fireworksLauncherPostGolem", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.FireworksLauncher,

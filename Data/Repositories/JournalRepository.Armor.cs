@@ -156,7 +156,7 @@ public static partial class JournalRepository
                             ItemID.FrostHelmet, ItemID.FrostBreastplate, ItemID.FrostLeggings,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
 
-            Set("huntressArmorPostOneMechBoss", JournalItemCategory.Armor, CombatClass.Ranged,
+            EventSet("huntressArmorPostOneMechBoss", JournalItemCategory.Armor, CombatClass.Ranged, JournalEventCategory.OldOnesArmy,
                             ItemID.HuntressWig, ItemID.HuntressJerkin, ItemID.HuntressPants,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Additional)),
 
@@ -186,7 +186,7 @@ public static partial class JournalRepository
                             3776, 3777, 3778,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
 
-            Set("apprenticeArmorPostOneMechBoss", JournalItemCategory.Armor, CombatClass.Magic,
+            EventSet("apprenticeArmorPostOneMechBoss", JournalItemCategory.Armor, CombatClass.Magic, JournalEventCategory.OldOnesArmy,
                             ItemID.ApprenticeHat, ItemID.ApprenticeRobe, ItemID.ApprenticeTrousers,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Additional)),
 
@@ -204,7 +204,7 @@ public static partial class JournalRepository
                             Group(ItemID.SpectrePants),
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
-            Set("darkArtistArmorPostGolem", JournalItemCategory.Armor, CombatClass.Magic,
+            EventSet("darkArtistArmorPostGolem", JournalItemCategory.Armor, CombatClass.Magic, JournalEventCategory.OldOnesArmy,
                             ItemID.ApprenticeAltHead, ItemID.ApprenticeAltShirt, ItemID.ApprenticeAltPants,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)),
 
@@ -244,7 +244,8 @@ public static partial class JournalRepository
                                 Group(ItemID.ApprenticeRobe, ItemID.MonkShirt, ItemID.HuntressJerkin, ItemID.SquirePlating),
                                 Group(ItemID.ApprenticeTrousers, ItemID.MonkPants, ItemID.HuntressPants, ItemID.SquireGreaves)
                             ],
-                            [Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Additional)]),
+                            [Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Additional)],
+                            JournalEventCategory.OldOnesArmy),
 
             Set("hallowedArmorSummonerPostOneMechBoss", JournalItemCategory.Armor, CombatClass.Summoner,
                             ItemID.HallowedHood, ItemID.HallowedPlateMail, ItemID.HallowedGreaves,
@@ -254,7 +255,7 @@ public static partial class JournalRepository
                             ItemID.TikiMask, ItemID.TikiShirt, ItemID.TikiPants,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
-            Set("spookyArmorPostPlantera", JournalItemCategory.Armor, CombatClass.Summoner,
+            EventSet("spookyArmorPostPlantera", JournalItemCategory.Armor, CombatClass.Summoner, JournalEventCategory.PumpkinMoon,
                             ItemID.SpookyHelmet, ItemID.SpookyBreastplate, ItemID.SpookyLeggings,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
@@ -264,7 +265,8 @@ public static partial class JournalRepository
                                 Group(ItemID.ApprenticeAltShirt, ItemID.MonkAltShirt, ItemID.HuntressAltShirt, ItemID.SquireAltShirt),
                                 Group(ItemID.ApprenticeAltPants, ItemID.MonkAltPants, ItemID.HuntressAltPants, ItemID.SquireAltPants)
                             ],
-                            [Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)]),
+                            [Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)],
+                            JournalEventCategory.OldOnesArmy),
 
             Set("stardustArmorPostMoonLord", JournalItemCategory.Armor, CombatClass.Summoner,
                             ItemID.StardustHelmet, ItemID.StardustBreastplate, ItemID.StardustLeggings,
@@ -308,11 +310,11 @@ public static partial class JournalRepository
                             ItemID.HallowedMask, ItemID.HallowedPlateMail, ItemID.HallowedGreaves,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended)),
 
-            Set("monkArmorPostOneMechBoss", JournalItemCategory.Armor, CombatClass.Melee,
+            EventSet("monkArmorPostOneMechBoss", JournalItemCategory.Armor, CombatClass.Melee, JournalEventCategory.OldOnesArmy,
                             ItemID.MonkBrows, ItemID.MonkShirt, ItemID.MonkPants,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Additional)),
 
-            Set("squireArmorPostOneMechBoss", JournalItemCategory.Armor, CombatClass.Melee,
+            EventSet("squireArmorPostOneMechBoss", JournalItemCategory.Armor, CombatClass.Melee, JournalEventCategory.OldOnesArmy,
                             ItemID.SquireGreatHelm, ItemID.SquirePlating, ItemID.SquireGreaves,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Additional)),
 
@@ -332,11 +334,11 @@ public static partial class JournalRepository
                             Group(ItemID.BeetleHelmet), Group(ItemID.BeetleScaleMail, ItemID.BeetleShell), Group(ItemID.BeetleLeggings),
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)),
 
-            Set("redRidingArmorPostGolem", JournalItemCategory.Armor, CombatClass.Ranged,
+            EventSet("redRidingArmorPostGolem", JournalItemCategory.Armor, CombatClass.Ranged, JournalEventCategory.OldOnesArmy,
                             ItemID.HuntressAltHead, ItemID.HuntressAltShirt, ItemID.HuntressAltPants,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Additional)),
 
-            Set("valhallaKnightArmorPostGolem", JournalItemCategory.Armor, CombatClass.Melee,
+            EventSet("valhallaKnightArmorPostGolem", JournalItemCategory.Armor, CombatClass.Melee, JournalEventCategory.OldOnesArmy,
                             Group(3871), Group(3872), Group(3873),
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)),
 

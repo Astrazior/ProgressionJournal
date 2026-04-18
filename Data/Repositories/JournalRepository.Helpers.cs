@@ -12,6 +12,17 @@ public static partial class JournalRepository
         return new JournalEntry(key, category, classes, [itemGroup], evaluations);
     }
 
+    private static JournalEntry EventEntry(
+        string key,
+        JournalItemCategory category,
+        CombatClass classes,
+        JournalEventCategory eventCategory,
+        JournalItemGroup itemGroup,
+        params StageEvaluation[] evaluations)
+    {
+        return new JournalEntry(key, category, classes, [itemGroup], evaluations, eventCategory);
+    }
+
     private static JournalEntry Entry(
         string key,
         JournalItemCategory category,
@@ -20,6 +31,17 @@ public static partial class JournalRepository
         params StageEvaluation[] evaluations)
     {
         return new JournalEntry(key, category, classes, [itemId], evaluations);
+    }
+
+    private static JournalEntry EventEntry(
+        string key,
+        JournalItemCategory category,
+        CombatClass classes,
+        JournalEventCategory eventCategory,
+        int itemId,
+        params StageEvaluation[] evaluations)
+    {
+        return new JournalEntry(key, category, classes, [itemId], evaluations, eventCategory);
     }
 
     private static JournalEntry Set(
@@ -34,6 +56,19 @@ public static partial class JournalRepository
         return new JournalEntry(key, category, classes, [firstGroup, secondGroup, thirdGroup], evaluations);
     }
 
+    private static JournalEntry EventSet(
+        string key,
+        JournalItemCategory category,
+        CombatClass classes,
+        JournalEventCategory eventCategory,
+        JournalItemGroup firstGroup,
+        JournalItemGroup secondGroup,
+        JournalItemGroup thirdGroup,
+        params StageEvaluation[] evaluations)
+    {
+        return new JournalEntry(key, category, classes, [firstGroup, secondGroup, thirdGroup], evaluations, eventCategory);
+    }
+
     private static JournalEntry Set(
         string key,
         JournalItemCategory category,
@@ -44,6 +79,19 @@ public static partial class JournalRepository
         params StageEvaluation[] evaluations)
     {
         return new JournalEntry(key, category, classes, [firstItemId, secondItemId, thirdItemId], evaluations);
+    }
+
+    private static JournalEntry EventSet(
+        string key,
+        JournalItemCategory category,
+        CombatClass classes,
+        JournalEventCategory eventCategory,
+        int firstItemId,
+        int secondItemId,
+        int thirdItemId,
+        params StageEvaluation[] evaluations)
+    {
+        return new JournalEntry(key, category, classes, [firstItemId, secondItemId, thirdItemId], evaluations, eventCategory);
     }
 
     private static StageEvaluation Eval(ProgressionStageId stageId, RecommendationTier tier)

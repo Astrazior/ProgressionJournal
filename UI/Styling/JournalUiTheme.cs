@@ -20,6 +20,11 @@ public static class JournalUiTheme
     public static readonly Color InventoryButtonActiveGlow = new(165, 214, 124);
     public static readonly Color InventoryButtonShadow = new(10, 12, 20);
     public static readonly Color EntryAlternativeMarker = new(162, 214, 255);
+    public static readonly Color EventEntryOutline = new(228, 196, 84);
+    public static readonly Color EventEntryOutlineBright = new(255, 236, 154);
+    public static readonly Color EventEntryOutlineShadow = new(96, 72, 24);
+    public static readonly Color EventBadgeBackground = new(27, 33, 43, 230);
+    public static readonly Color EventBadgeBorder = new(234, 214, 124);
 
     public static float RootBackgroundOpacity => 0.98f;
 
