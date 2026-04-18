@@ -45,6 +45,11 @@ public static class JournalUiTheme
             : GetDefaultTextButtonStyle();
     }
 
+    public static JournalButtonStyle GetOverlayActionButtonStyle()
+    {
+        return new JournalButtonStyle(new Color(29, 42, 58), new Color(112, 148, 182), new Color(226, 233, 240));
+    }
+
     public static JournalButtonStyle GetStageButtonStyle(bool active)
     {
         return active

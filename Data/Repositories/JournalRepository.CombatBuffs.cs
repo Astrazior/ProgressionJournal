@@ -11,14 +11,38 @@ public static partial class JournalRepository
     private static readonly JournalBuffCategory[] CombatBuffCategoryOrder =
     [
         JournalBuffCategory.Station,
+        JournalBuffCategory.Passive,
         JournalBuffCategory.Potion,
-        JournalBuffCategory.Food
+        JournalBuffCategory.Food,
+        JournalBuffCategory.Flask
     ];
 
     public static IReadOnlyList<JournalCombatBuffEntry> GetCombatBuffEntries(ProgressionStageId stageId, CombatClass combatClass)
     {
         return CombatBuffEntries.Value
             .Where(entry => entry.AppliesToClass(combatClass) && entry.AppliesToStage(stageId))
+            .OrderBy(entry => GetCombatBuffCategoryOrder(entry.Category))
+            .ThenByDescending(entry => entry.IsClassSpecific)
+            .ToArray();
+    }
+
+    public static IReadOnlyList<JournalCombatBuffEntry> GetPersistentCombatBuffEntries(ProgressionStageId stageId, CombatClass combatClass)
+    {
+        return CombatBuffEntries.Value
+            .Where(entry => entry.AppliesToClass(combatClass)
+                && entry.AppliesToStage(stageId)
+                && (entry.Category == JournalBuffCategory.Station || entry.Category == JournalBuffCategory.Passive))
+            .OrderBy(entry => GetCombatBuffCategoryOrder(entry.Category))
+            .ThenByDescending(entry => entry.IsClassSpecific)
+            .ToArray();
+    }
+
+    public static IReadOnlyList<JournalCombatBuffEntry> GetConsumableCombatBuffEntries(ProgressionStageId stageId, CombatClass combatClass)
+    {
+        return CombatBuffEntries.Value
+            .Where(entry => entry.AppliesToClass(combatClass)
+                && entry.AppliesToStage(stageId)
+                && (entry.Category == JournalBuffCategory.Potion || entry.Category == JournalBuffCategory.Food || entry.Category == JournalBuffCategory.Flask))
             .OrderBy(entry => GetCombatBuffCategoryOrder(entry.Category))
             .ThenByDescending(entry => entry.IsClassSpecific)
             .ToArray();
@@ -41,9 +65,9 @@ public static partial class JournalRepository
     {
         return
         [
-            Buff("campfire", JournalBuffCategory.Station, CombatClass.All, ItemID.Campfire, ProgressionStageId.PreBoss),
-            Buff("heartLantern", JournalBuffCategory.Station, CombatClass.All, ItemID.HeartLantern, ProgressionStageId.PreBoss),
-            Buff("sunflower", JournalBuffCategory.Station, CombatClass.All, ItemID.Sunflower, ProgressionStageId.PreBoss),
+            Buff("campfire", JournalBuffCategory.Passive, CombatClass.All, ItemID.Campfire, ProgressionStageId.PreBoss),
+            Buff("heartLantern", JournalBuffCategory.Passive, CombatClass.All, ItemID.HeartLantern, ProgressionStageId.PreBoss),
+            Buff("sunflower", JournalBuffCategory.Passive, CombatClass.All, ItemID.Sunflower, ProgressionStageId.PreBoss),
             Buff("sharpeningStation", JournalBuffCategory.Station, CombatClass.Melee, ItemID.SharpeningStation, ProgressionStageId.PostWorldEvil),
             Buff("ammoBox", JournalBuffCategory.Station, CombatClass.Ranged, ItemID.AmmoBox, ProgressionStageId.PostEyeOfCthulhu),
             Buff("bewitchingTable", JournalBuffCategory.Station, CombatClass.Summoner, ItemID.BewitchingTable, ProgressionStageId.PostSkeletron),

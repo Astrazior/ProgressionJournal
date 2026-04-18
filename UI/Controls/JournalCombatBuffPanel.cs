@@ -8,15 +8,21 @@ namespace ProgressionJournal.UI.Controls;
 
 public sealed class JournalCombatBuffPanel : UIPanel
 {
-    private static readonly JournalBuffCategory[] SectionOrder =
-    [
-        JournalBuffCategory.Station,
-        JournalBuffCategory.Potion,
-        JournalBuffCategory.Food
-    ];
+    private readonly IReadOnlyList<JournalBuffCategory> _sectionOrder;
+    private readonly string _titleLocalizationKey;
+    private readonly bool _showTitle;
+    private readonly bool _autoHeight;
 
-    public JournalCombatBuffPanel()
+    public JournalCombatBuffPanel(
+        IReadOnlyList<JournalBuffCategory> sectionOrder,
+        string titleLocalizationKey,
+        bool showTitle = true,
+        bool autoHeight = false)
     {
+        _sectionOrder = sectionOrder;
+        _titleLocalizationKey = titleLocalizationKey;
+        _showTitle = showTitle;
+        _autoHeight = autoHeight;
         SetPadding(0f);
         BackgroundColor = JournalUiTheme.PresetPanelBackground;
         BorderColor = JournalUiTheme.PresetPanelBorder;
@@ -31,23 +37,31 @@ public sealed class JournalCombatBuffPanel : UIPanel
 
         if (!HasEntries)
         {
+            if (_autoHeight)
+            {
+                Height.Set(0f, 0f);
+            }
+
             return;
         }
 
         var top = JournalUiMetrics.BlockVerticalPadding;
         var contentLeft = JournalUiMetrics.BlockHorizontalPadding + JournalUiMetrics.CategoryContentIndent;
 
-        var title = new UIText(Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffsTitle"), 0.48f, true)
+        if (_showTitle)
         {
-            HAlign = 0.5f
-        };
-        title.Top.Set(top, 0f);
-        title.TextColor = JournalUiTheme.SectionHeaderText;
-        Append(title);
-        top += JournalUiMetrics.RecommendationHeaderHeight + JournalUiMetrics.RecommendationHeaderBottomSpacing;
+            var title = new UIText(Language.GetTextValue(_titleLocalizationKey), 0.48f, true)
+            {
+                HAlign = 0.5f
+            };
+            title.Top.Set(top, 0f);
+            title.TextColor = JournalUiTheme.SectionHeaderText;
+            Append(title);
+            top += JournalUiMetrics.RecommendationHeaderHeight + JournalUiMetrics.RecommendationHeaderBottomSpacing;
+        }
 
         var hasAnyCategory = false;
-        foreach (var category in SectionOrder)
+        foreach (var category in _sectionOrder)
         {
             var categoryEntries = entries.Where(entry => entry.Category == category).ToArray();
             if (categoryEntries.Length == 0)
@@ -78,13 +92,20 @@ public sealed class JournalCombatBuffPanel : UIPanel
             top -= JournalUiMetrics.RowSpacing;
             hasAnyCategory = true;
         }
+
+        if (_autoHeight)
+        {
+            Height.Set(top + 4f, 0f);
+        }
     }
 
     private static string GetCategoryTitle(JournalBuffCategory category) => category switch
     {
         JournalBuffCategory.Station => Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffStations"),
+        JournalBuffCategory.Passive => Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffPassive"),
         JournalBuffCategory.Potion => Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffPotions"),
         JournalBuffCategory.Food => Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffFood"),
+        JournalBuffCategory.Flask => Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffFlasks"),
         _ => string.Empty
     };
 

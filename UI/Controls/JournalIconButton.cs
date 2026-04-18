@@ -12,6 +12,9 @@ public sealed class JournalIconButton : JournalHoverPanel
 
     private readonly Asset<Texture2D> _iconTexture;
     private readonly float _iconScale;
+    private string? _hoverText;
+    private bool _showChrome;
+    private JournalButtonStyle _chromeStyle = JournalUiTheme.GetDefaultTextButtonStyle();
 
     public JournalIconButton(Asset<Texture2D> iconTexture, float iconScale, Action onClick)
     {
@@ -28,8 +31,30 @@ public sealed class JournalIconButton : JournalHoverPanel
         BorderColor = Color.Transparent;
     }
 
+    public void SetHoverText(string hoverText)
+    {
+        _hoverText = hoverText;
+    }
+
+    public void EnableChrome(JournalButtonStyle style)
+    {
+        _showChrome = true;
+        _chromeStyle = style;
+    }
+
     protected override void DrawSelf(SpriteBatch spriteBatch)
     {
+        if (_showChrome)
+        {
+            BackgroundColor = IsMouseHovering
+                ? Color.Lerp(_chromeStyle.Background, Color.White, 0.14f)
+                : _chromeStyle.Background;
+            BorderColor = IsMouseHovering
+                ? Color.Lerp(_chromeStyle.Border, Color.White, 0.28f)
+                : _chromeStyle.Border;
+            base.DrawSelf(spriteBatch);
+        }
+
         var dimensions = GetDimensions().ToRectangle();
         var texture = _iconTexture.Value;
         var availableWidth = Math.Max(1f, dimensions.Width - IconPadding * 2f);
@@ -60,5 +85,10 @@ public sealed class JournalIconButton : JournalHoverPanel
             scale,
             SpriteEffects.None,
             0f);
+
+        if (IsMouseHovering && !string.IsNullOrWhiteSpace(_hoverText))
+        {
+            Main.hoverItemName = _hoverText;
+        }
     }
 }
