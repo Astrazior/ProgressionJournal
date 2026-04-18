@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Xna.Framework;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Localization;
 using Terraria.UI;
@@ -95,7 +94,7 @@ public static class JournalContentBuilder
 
         var top = JournalUiMetrics.BlockVerticalPadding;
 
-        var header = CreateRecommendationHeader(title, palette.Border);
+        var header = CreateRecommendationHeader(title);
         header.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
         header.Top.Set(top, 0f);
         block.Append(header);
@@ -182,9 +181,9 @@ public static class JournalContentBuilder
         return header;
     }
 
-    private static JournalRecommendationHeader CreateRecommendationHeader(string title, Color borderColor)
+    private static JournalRecommendationHeader CreateRecommendationHeader(string title)
     {
-        var header = new JournalRecommendationHeader(title, borderColor);
+        var header = new JournalRecommendationHeader(title);
         header.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
         header.Height.Set(JournalUiMetrics.RecommendationHeaderHeight, 0f);
         return header;

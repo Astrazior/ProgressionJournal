@@ -8,6 +8,7 @@ public static partial class JournalRepository
 {
     private static readonly Lazy<IReadOnlyList<JournalEntry>> Entries = new(BuildEntries);
     private static readonly Lazy<IReadOnlyList<JournalPreset>> Presets = new(BuildPresets);
+    private static readonly Lazy<IReadOnlyList<JournalCombatBuffEntry>> CombatBuffEntries = new(BuildCombatBuffEntries);
 
     public static IReadOnlyList<JournalStageEntry> GetEntries(ProgressionStageId stageId, CombatClass combatClass)
     {

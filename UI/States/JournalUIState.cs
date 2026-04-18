@@ -33,6 +33,7 @@ public sealed class JournalUiState : UIState
     private UIElement _classSelectionContainer = null!;
     private UIList _entryList = null!;
     private UIScrollbar _scrollbar = null!;
+    private JournalCombatBuffPanel _combatBuffPanel = null!;
     private bool _layoutInitialized;
     private int _layoutScreenWidth;
     private int _layoutScreenHeight;
@@ -71,7 +72,7 @@ public sealed class JournalUiState : UIState
     public void Refresh(CombatClass combatClass, ProgressionStageId stageId, bool selectingClass, bool showingPresets, bool hasSelectedClass)
     {
         ApplyNavigationLayout(hasSelectedClass);
-        ApplyContentLayout();
+        ApplyContentLayout(selectingClass, showingPresets);
         EnsureLayout();
         UpdateStaticText();
         UpdateNavigationStyles(selectingClass, showingPresets);
@@ -109,6 +110,8 @@ public sealed class JournalUiState : UIState
         var stageName = Language.GetTextValue(ProgressionStageCatalog.Get(stageId).LocalizationKey);
         SetContentHeader($"{className} • {stageName}");
         JournalContentBuilder.PopulateEntries(_entryList, stageId, JournalRepository.GetEntries(stageId, combatClass));
+        _combatBuffPanel.SetEntries(JournalRepository.GetCombatBuffEntries(stageId, combatClass));
+        ApplyContentLayout(selectingClass, showingPresets);
     }
 
     private void SetContentHeader(string title)
@@ -227,6 +230,12 @@ public sealed class JournalUiState : UIState
         _contentDescription.TextColor = JournalUiTheme.ContentDescriptionText;
         _contentPanel.Append(_contentDescription);
 
+        _combatBuffPanel = new JournalCombatBuffPanel();
+        _combatBuffPanel.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
+        _combatBuffPanel.Width.Set(JournalUiMetrics.CombatBuffPanelWidth, 0f);
+        _combatBuffPanel.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
+        _contentPanel.Append(_combatBuffPanel);
+
         _classSelectionContainer = new UIElement();
         _classSelectionContainer.Left.Set(JournalUiMetrics.ContentBodyLeft, 0f);
         _classSelectionContainer.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
@@ -243,6 +252,7 @@ public sealed class JournalUiState : UIState
         _contentPanel.Append(_entryList);
 
         _scrollbar = new UIScrollbar();
+        _scrollbar.Width.Set(JournalUiMetrics.ScrollbarWidth, 0f);
         _scrollbar.Left.Set(-JournalUiMetrics.ScrollbarOffset, 1f);
         _scrollbar.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
         _scrollbar.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
@@ -400,10 +410,36 @@ public sealed class JournalUiState : UIState
         _contentPanel.Height.Set(-24f, 1f);
     }
 
-    private void ApplyContentLayout()
+    private void ApplyContentLayout(bool selectingClass, bool showingPresets)
     {
         _classSelectionContainer.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
         _classSelectionContainer.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
+
+        var showCombatBuffs = !selectingClass && !showingPresets && _combatBuffPanel.HasEntries;
+        if (showCombatBuffs)
+        {
+            _entryList.Width.Set(-(JournalUiMetrics.EntryListWidthInset + JournalUiMetrics.CombatBuffPanelWidth + JournalUiMetrics.ContentColumnGap + JournalUiMetrics.CombatBuffPanelRightInset), 1f);
+            _scrollbar.Left.Set(-(JournalUiMetrics.CombatBuffPanelWidth
+                + JournalUiMetrics.CombatBuffPanelRightInset
+                + JournalUiMetrics.EntryListWidthInset * 0.5f
+                + JournalUiMetrics.ScrollbarWidth * 0.5f), 1f);
+            _combatBuffPanel.Left.Set(-(JournalUiMetrics.CombatBuffPanelWidth + JournalUiMetrics.CombatBuffPanelRightInset), 1f);
+
+            if (_combatBuffPanel.Parent is null)
+            {
+                _contentPanel.Append(_combatBuffPanel);
+            }
+
+            return;
+        }
+
+        _entryList.Width.Set(-JournalUiMetrics.EntryListWidthInset, 1f);
+        _scrollbar.Left.Set(-JournalUiMetrics.ScrollbarOffset, 1f);
+
+        if (_combatBuffPanel.Parent is not null)
+        {
+            _contentPanel.RemoveChild(_combatBuffPanel);
+        }
     }
 
     private static JournalSystem JournalSystem => ModContent.GetInstance<JournalSystem>();

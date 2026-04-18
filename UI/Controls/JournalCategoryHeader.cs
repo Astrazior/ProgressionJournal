@@ -17,7 +17,7 @@ public enum JournalCategoryHeaderStyle
 public sealed class JournalCategoryHeader : UIElement
 {
     private const float TextScale = 0.76f;
-    private const float LeftPadding = 10f;
+    private const float LeftPadding = 2f;
     private const float RightPadding = 12f;
     private readonly string _title;
     private readonly Color _accentColor;

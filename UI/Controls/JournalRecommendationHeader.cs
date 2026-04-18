@@ -6,7 +6,7 @@ using Terraria.UI;
 
 namespace ProgressionJournal.UI.Controls;
 
-public sealed class JournalRecommendationHeader(string title, Color accentColor) : UIElement
+public sealed class JournalRecommendationHeader(string title) : UIElement
 {
     protected override void DrawSelf(SpriteBatch spriteBatch)
     {
@@ -14,7 +14,7 @@ public sealed class JournalRecommendationHeader(string title, Color accentColor)
 
         var dimensions = GetInnerDimensions();
         var font = FontAssets.MouseText.Value;
-        const float textScale = 1.06f;
+        const float textScale = 1.18f;
 
         var titleSize = font.MeasureString(title) * textScale;
         var centerX = dimensions.X + dimensions.Width * 0.5f;
@@ -27,7 +27,7 @@ public sealed class JournalRecommendationHeader(string title, Color accentColor)
             title,
             textX,
             textY,
-            JournalUiTheme.GetRecommendationHeaderTextColor(accentColor),
+            JournalUiTheme.SectionHeaderText,
             Color.Black * 0.7f,
             Vector2.Zero,
             textScale);

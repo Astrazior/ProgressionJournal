@@ -12,7 +12,7 @@ public static class JournalUiTheme
     public static readonly Color PanelBorder = new(88, 115, 142);
     public static readonly Color RootTitleText = new(236, 240, 245);
     public static readonly Color ContentDescriptionText = new(198, 214, 229);
-    public static readonly Color SectionHeaderText = new(240, 220, 140);
+    public static readonly Color SectionHeaderText = new(248, 204, 15);
     public static readonly Color PresetPanelBackground = new(24, 43, 58);
     public static readonly Color PresetPanelBorder = new(104, 138, 168);
     public static readonly Color PresetPanelText = new(220, 228, 236);
@@ -63,11 +63,11 @@ public static class JournalUiTheme
 
     public static JournalCategoryStyle GetCategoryStyle(JournalItemCategory category) => category switch
     {
-        JournalItemCategory.Weapon => new JournalCategoryStyle(new Color(196, 162, 88), new Color(244, 226, 178)),
-        JournalItemCategory.ClassSpecific => new JournalCategoryStyle(new Color(104, 194, 196), new Color(200, 242, 244)),
-        JournalItemCategory.Armor => new JournalCategoryStyle(new Color(134, 166, 214), new Color(216, 229, 246)),
-        JournalItemCategory.Accessory => new JournalCategoryStyle(new Color(182, 136, 204), new Color(236, 216, 246)),
-        _ => new JournalCategoryStyle(new Color(120, 136, 152), new Color(230, 235, 240))
+        JournalItemCategory.Weapon => new JournalCategoryStyle(new Color(196, 162, 88), RootTitleText),
+        JournalItemCategory.ClassSpecific => new JournalCategoryStyle(new Color(104, 194, 196), RootTitleText),
+        JournalItemCategory.Armor => new JournalCategoryStyle(new Color(134, 166, 214), RootTitleText),
+        JournalItemCategory.Accessory => new JournalCategoryStyle(new Color(182, 136, 204), RootTitleText),
+        _ => new JournalCategoryStyle(new Color(120, 136, 152), RootTitleText)
     };
 
     public static JournalClassPalette GetClassPalette(CombatClass combatClass) => combatClass switch
@@ -99,10 +99,6 @@ public static class JournalUiTheme
             new Color(226, 233, 240))
     };
 
-    public static Color GetRecommendationHeaderTextColor(Color accentColor)
-    {
-        return Color.Lerp(new Color(241, 244, 247), accentColor, 0.18f);
-    }
 }
 
 public readonly record struct JournalButtonStyle(Color Background, Color Border, Color Text);
