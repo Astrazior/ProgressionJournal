@@ -42,12 +42,14 @@ public static class JournalUiMetrics
     public const float CombatBuffPanelWidth = 252f;
     public const float CombatBuffPanelRightInset = 12f;
     public const float CombatBuffButtonSize = 26f;
-    public const float CombatBuffButtonTopOffset = 8f;
+    public const float CombatBuffButtonTopOffset = 34f;
     public const float CombatBuffOverlayWidth = 560f;
     public const float CombatBuffOverlayHeight = 430f;
     public const float CombatBuffOverlayInset = 14f;
     public const float CombatBuffOverlayTitleTop = 12f;
-    public const float CombatBuffOverlayCloseTop = 8f;
+    public const float CombatBuffOverlayCloseSize = 28f;
+    public const float CombatBuffOverlayCloseInset = 2f;
+    public const float CombatBuffOverlayCloseTop = 2f;
     public const float CombatBuffOverlayContentTop = 46f;
     public const float CombatBuffOverlayContentBottomInset = 16f;
     public const float ScrollbarOffset = 18f;

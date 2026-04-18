@@ -4,7 +4,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using ProgressionJournal.Systems;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -14,7 +16,6 @@ namespace ProgressionJournal.UI.States;
 public sealed class JournalUiState : UIState
 {
     private const string BestiarySearchCancelTexturePath = "Images/UI/SearchCancel";
-    private const string BestiarySortingTexturePath = "Images/UI/Bestiary/Button_Sorting";
     private static readonly JournalBuffCategory[] PersistentBuffCategories =
     [
         JournalBuffCategory.Station,
@@ -48,7 +49,6 @@ public sealed class JournalUiState : UIState
     private JournalIconButton _combatBuffsButton = null!;
     private JournalCombatBuffPanel _combatBuffPanel = null!;
     private UIElement _combatBuffOverlay = null!;
-    private JournalDimOverlay _combatBuffOverlayBackdrop = null!;
     private UIPanel _combatBuffOverlayPanel = null!;
     private UIText _combatBuffOverlayTitle = null!;
     private JournalIconButton _combatBuffOverlayCloseButton = null!;
@@ -281,13 +281,12 @@ public sealed class JournalUiState : UIState
         _contentPanel.Append(_combatBuffPanel);
 
         _combatBuffsButton = JournalUiElementFactory.CreateIconButton(
-            BestiarySortingTexturePath,
+            TextureAssets.Item[ItemID.HealingPotion],
             JournalUiMetrics.CombatBuffButtonSize,
             JournalUiMetrics.CombatBuffButtonSize,
             ToggleCombatBuffOverlay,
-            0.9f);
+            0.8f);
         _combatBuffsButton.EnableChrome(JournalUiTheme.GetOverlayActionButtonStyle());
-        _combatBuffsButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.CombatConsumablesTooltip"));
         _contentPanel.Append(_combatBuffsButton);
 
         _classSelectionContainer = new UIElement();
@@ -353,6 +352,7 @@ public sealed class JournalUiState : UIState
         _classButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Class"));
         _overviewTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewTab"));
         _presetsTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsTab"));
+        _combatBuffsButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.CombatConsumablesTooltip"));
     }
 
     private void UpdateNavigationStyles(bool selectingClass, bool showingPresets)
@@ -483,6 +483,11 @@ public sealed class JournalUiState : UIState
             {
                 _contentPanel.Append(_combatBuffsButton);
             }
+            else
+            {
+                _contentPanel.RemoveChild(_combatBuffsButton);
+                _contentPanel.Append(_combatBuffsButton);
+            }
         }
         else if (_combatBuffsButton.Parent is not null)
         {
@@ -522,8 +527,7 @@ public sealed class JournalUiState : UIState
         _combatBuffOverlay.Width.Set(0f, 1f);
         _combatBuffOverlay.Height.Set(0f, 1f);
 
-        _combatBuffOverlayBackdrop = new JournalDimOverlay(HideCombatBuffOverlay);
-        _combatBuffOverlay.Append(_combatBuffOverlayBackdrop);
+        _combatBuffOverlay.Append(new JournalDimOverlay(HideCombatBuffOverlay));
 
         _combatBuffOverlayPanel = JournalUiElementFactory.CreatePanel();
         _combatBuffOverlayPanel.Width.Set(JournalUiMetrics.CombatBuffOverlayWidth, 0f);
@@ -542,11 +546,13 @@ public sealed class JournalUiState : UIState
 
         _combatBuffOverlayCloseButton = JournalUiElementFactory.CreateIconButton(
             BestiarySearchCancelTexturePath,
-            JournalUiMetrics.CloseTabWidth,
-            JournalUiMetrics.ActionTabHeight,
+            JournalUiMetrics.CombatBuffOverlayCloseSize,
+            JournalUiMetrics.CombatBuffOverlayCloseSize,
             HideCombatBuffOverlay,
+            0.82f);
+        _combatBuffOverlayCloseButton.Left.Set(
+            -(JournalUiMetrics.CombatBuffOverlayCloseSize + JournalUiMetrics.CombatBuffOverlayCloseInset),
             1f);
-        _combatBuffOverlayCloseButton.Left.Set(-JournalUiMetrics.CloseTabWidth - 6f, 1f);
         _combatBuffOverlayCloseButton.Top.Set(JournalUiMetrics.CombatBuffOverlayCloseTop, 0f);
         _combatBuffOverlayPanel.Append(_combatBuffOverlayCloseButton);
 

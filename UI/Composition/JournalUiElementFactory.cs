@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 
@@ -27,6 +28,14 @@ public static class JournalUiElementFactory
     public static JournalIconButton CreateIconButton(string texturePath, float width, float height, Action onClick, float iconScale = 1f)
     {
         var button = new JournalIconButton(Main.Assets.Request<Texture2D>(texturePath), iconScale, onClick);
+        button.Width.Set(width, 0f);
+        button.Height.Set(height, 0f);
+        return button;
+    }
+
+    public static JournalIconButton CreateIconButton(Asset<Texture2D> texture, float width, float height, Action onClick, float iconScale = 1f)
+    {
+        var button = new JournalIconButton(texture, iconScale, onClick);
         button.Width.Set(width, 0f);
         button.Height.Set(height, 0f);
         return button;

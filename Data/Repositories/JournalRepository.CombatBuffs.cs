@@ -65,14 +65,20 @@ public static partial class JournalRepository
     {
         return
         [
-            Buff("campfire", JournalBuffCategory.Passive, CombatClass.All, ItemID.Campfire, ProgressionStageId.PreBoss),
-            Buff("heartLantern", JournalBuffCategory.Passive, CombatClass.All, ItemID.HeartLantern, ProgressionStageId.PreBoss),
+            Buff("warTable", JournalBuffCategory.Station, CombatClass.All, ItemID.WarTable, ProgressionStageId.PreBoss),
+            ClassSpecificBuff("sharpeningStation", JournalBuffCategory.Station, CombatClass.Melee | CombatClass.Summoner, ItemID.SharpeningStation, ProgressionStageId.PreBoss),
+            ClassSpecificBuff("ammoBox", JournalBuffCategory.Station, CombatClass.Ranged, ItemID.AmmoBox, ProgressionStageId.PreBoss),
+            Buff("bewitchingTable", JournalBuffCategory.Station, CombatClass.All, ItemID.BewitchingTable, ProgressionStageId.PostSkeletron),
+            ClassSpecificBuff("crystalBall", JournalBuffCategory.Station, CombatClass.Magic, ItemID.CrystalBall, ProgressionStageId.HardmodeEntry),
+            Buff("sliceOfCake", JournalBuffCategory.Station, CombatClass.All, ItemID.SliceOfCake, ProgressionStageId.PostWorldEvil),
+
             Buff("sunflower", JournalBuffCategory.Passive, CombatClass.All, ItemID.Sunflower, ProgressionStageId.PreBoss),
-            Buff("sharpeningStation", JournalBuffCategory.Station, CombatClass.Melee, ItemID.SharpeningStation, ProgressionStageId.PostWorldEvil),
-            Buff("ammoBox", JournalBuffCategory.Station, CombatClass.Ranged, ItemID.AmmoBox, ProgressionStageId.PostEyeOfCthulhu),
-            Buff("bewitchingTable", JournalBuffCategory.Station, CombatClass.Summoner, ItemID.BewitchingTable, ProgressionStageId.PostSkeletron),
-            Buff("crystalBall", JournalBuffCategory.Station, CombatClass.Magic, ItemID.CrystalBall, ProgressionStageId.HardmodeEntry),
-            Buff("warTable", JournalBuffCategory.Station, CombatClass.Summoner, ItemID.WarTable, ProgressionStageId.PostOneMechBoss),
+            Buff("heartLantern", JournalBuffCategory.Passive, CombatClass.All, ItemID.HeartLantern, ProgressionStageId.PreBoss),
+            Buff("gardenGnome", JournalBuffCategory.Passive, CombatClass.All, ItemID.GardenGnome, ProgressionStageId.PreBoss),
+            Buff("campfire", JournalBuffCategory.Passive, CombatClass.All, ItemID.Campfire, ProgressionStageId.PreBoss),
+            Buff("enemyBanner", JournalBuffCategory.Passive, CombatClass.All, ItemID.ZombieBanner, ProgressionStageId.PreBoss),
+            Buff("bastStatue", JournalBuffCategory.Passive, CombatClass.All, ItemID.CatBast, ProgressionStageId.PreBoss),
+            ClassSpecificBuff("starInABottle", JournalBuffCategory.Passive, CombatClass.Magic, ItemID.StarinaBottle, ProgressionStageId.PreBoss),
 
             Buff("ironskinPotion", JournalBuffCategory.Potion, CombatClass.All, ItemID.IronskinPotion, ProgressionStageId.PreBoss),
             Buff("regenerationPotion", JournalBuffCategory.Potion, CombatClass.All, ItemID.RegenerationPotion, ProgressionStageId.PreBoss),
