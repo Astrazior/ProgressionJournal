@@ -6,7 +6,7 @@ using Terraria.Localization;
 
 namespace ProgressionJournal.UI.Controls;
 
-public sealed class JournalClassButton : UIPanel
+public sealed class JournalClassButton : JournalHoverPanel
 {
     private readonly CombatClass _combatClass;
     private readonly UIText _title;

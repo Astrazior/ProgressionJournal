@@ -2,8 +2,10 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ProgressionJournal.Systems;
+using Terraria.Audio;
 using ReLogic.Content;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -73,6 +75,12 @@ public sealed class JournalInventoryButton : UIElement
         {
             Main.hoverItemName = Language.GetTextValue("Mods.ProgressionJournal.UI.InventoryButtonTooltip");
         }
+    }
+
+    public override void MouseOver(UIMouseEvent evt)
+    {
+        base.MouseOver(evt);
+        SoundEngine.PlaySound(SoundID.MenuTick);
     }
 
     private static JournalSystem JournalSystem => ModContent.GetInstance<JournalSystem>();

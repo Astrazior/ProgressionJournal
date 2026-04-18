@@ -234,7 +234,7 @@ public sealed class JournalUiState : UIState
         _classSelectionContainer.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
         _contentPanel.Append(_classSelectionContainer);
 
-        _entryList = new UIList();
+        _entryList = [];
         _entryList.Left.Set(JournalUiMetrics.ContentBodyLeft, 0f);
         _entryList.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
         _entryList.Width.Set(-JournalUiMetrics.EntryListWidthInset, 1f);

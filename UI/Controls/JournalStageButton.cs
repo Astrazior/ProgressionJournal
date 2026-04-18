@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace ProgressionJournal.UI.Controls;
 
-public sealed class JournalStageButton : UIPanel
+public sealed class JournalStageButton : JournalHoverPanel
 {
     private const float DefaultTextScale = 0.9f;
     private const float IconPadding = 6f;
@@ -25,6 +25,7 @@ public sealed class JournalStageButton : UIPanel
     private string _tooltipText = string.Empty;
     private bool _isCompleted;
     private Color _textColor;
+    private JournalButtonStyle _style;
 
     private enum HeadTextureKind
     {
@@ -91,6 +92,7 @@ public sealed class JournalStageButton : UIPanel
 
     public void SetStyle(JournalButtonStyle style)
     {
+        _style = style;
         BackgroundColor = style.Background;
         BorderColor = style.Border;
         SetTextColor(style.Text);
@@ -98,6 +100,16 @@ public sealed class JournalStageButton : UIPanel
 
     protected override void DrawSelf(SpriteBatch spriteBatch)
     {
+        BackgroundColor = IsMouseHovering
+            ? Color.Lerp(_style.Background, Color.White, 0.12f)
+            : _style.Background;
+        BorderColor = IsMouseHovering
+            ? Color.Lerp(_style.Border, Color.White, 0.24f)
+            : _style.Border;
+        SetTextColor(IsMouseHovering
+            ? Color.Lerp(_style.Text, Color.White, 0.16f)
+            : _style.Text);
+
         base.DrawSelf(spriteBatch);
 
         if (IsMouseHovering && !string.IsNullOrWhiteSpace(_tooltipText))
@@ -159,7 +171,6 @@ public sealed class JournalStageButton : UIPanel
         _textColor = color;
         _label.TextColor = color;
     }
-
     private UIText CreateLabel(string text)
     {
         return new UIText(text, _textScale)
@@ -193,7 +204,7 @@ public sealed class JournalStageButton : UIPanel
         var dimensions = GetDimensions();
         var texture = CompletedMarkerTexture.Value;
         var position = new Vector2(dimensions.X + dimensions.Width - 16f, dimensions.Y + 6f);
-        spriteBatch.Draw(texture, position, Color.White);
+        spriteBatch.Draw(texture, position, IsMouseHovering ? Color.White : Color.White * 0.92f);
     }
 }
 
