@@ -820,7 +820,7 @@ public static partial class JournalRepository
             EventEntry("dripplerCripplerHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.BloodMoon, ItemID.DripplerFlail,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
 
-            EventEntry("bladetongueHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.BloodMoon, ItemID.Bladetongue,
+            Entry("bladetongueHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Bladetongue,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
 
             Entry("flyingKnifeHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.FlyingKnife,

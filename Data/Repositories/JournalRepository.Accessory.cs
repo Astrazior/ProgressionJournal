@@ -350,7 +350,7 @@ public static partial class JournalRepository
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
 
             Entry("hiveBackpackSummonerHardmodeEntry", JournalItemCategory.Accessory, CombatClass.Summoner, ItemID.HiveBackpack,
-                            Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
+                            Eval(ProgressionStageId.PostQueenBee, RecommendationTier.Recommended)),
 
             Entry("starCloakOrBeeCloakHardmodeEntry", JournalItemCategory.Accessory, CombatClass.All,
                             Group(ItemID.StarCloak, ItemID.BeeCloak),

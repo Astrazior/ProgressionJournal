@@ -213,22 +213,22 @@ public static partial class JournalRepository
                             Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Recommended)),
 
             Set("cobaltOrPalladiumArmorSummonerHardmodeEntry", JournalItemCategory.Armor, CombatClass.Summoner,
-                            Group(ItemID.CobaltHelmet, ItemID.CobaltMask, ItemID.CobaltHat, ItemID.PalladiumHelmet, ItemID.PalladiumMask, ItemID.PalladiumHeadgear),
+                            Group(ItemID.CobaltHelmet, ItemID.PalladiumMask),
                             Group(ItemID.CobaltBreastplate, ItemID.PalladiumBreastplate),
                             Group(ItemID.CobaltLeggings, ItemID.PalladiumLeggings),
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
 
             Set("mythrilOrOrichalcumArmorSummonerHardmodeEntry", JournalItemCategory.Armor, CombatClass.Summoner,
-                            Group(ItemID.MythrilHelmet, ItemID.MythrilHood, ItemID.OrichalcumHelmet, ItemID.OrichalcumMask, ItemID.OrichalcumHeadgear),
+                            Group(ItemID.MythrilHelmet, ItemID.OrichalcumMask),
                             Group(ItemID.MythrilChainmail, ItemID.OrichalcumBreastplate),
                             Group(ItemID.MythrilGreaves, ItemID.OrichalcumLeggings),
-                            Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
+                            Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
 
             Set("adamantiteOrTitaniumArmorSummonerHardmodeEntry", JournalItemCategory.Armor, CombatClass.Summoner,
-                            Group(ItemID.AdamantiteHelmet, ItemID.AdamantiteMask, ItemID.AdamantiteHeadgear, ItemID.TitaniumHelmet, ItemID.TitaniumMask, ItemID.TitaniumHeadgear),
+                            Group(ItemID.AdamantiteHelmet, ItemID.TitaniumMask),
                             Group(ItemID.AdamantiteBreastplate, ItemID.TitaniumBreastplate),
                             Group(ItemID.AdamantiteLeggings, ItemID.TitaniumLeggings),
-                            Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
+                            Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
 
             Set("forbiddenArmorSummonerHardmodeEntry", JournalItemCategory.Armor, CombatClass.Summoner,
                             3776, 3777, 3778,
