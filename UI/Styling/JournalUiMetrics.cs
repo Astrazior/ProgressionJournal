@@ -25,8 +25,8 @@ public static class JournalUiMetrics
     public const float TopTabsGap = 12f;
     public const float TopTabsButtonHeight = 34f;
     public const float TopTabsButtonTop = 2f;
-    public const float CloseTabWidth = 72f;
-    public const float ActionTabHeight = 32f;
+    public const float CloseTabWidth = 42f;
+    public const float ActionTabHeight = 42f;
     public const float ContentInset = 12f;
     public const float ContentPanelTopOffset = 10f;
     public const float ContentTitleTop = 10f;

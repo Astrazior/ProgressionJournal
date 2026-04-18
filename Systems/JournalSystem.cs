@@ -78,7 +78,7 @@ public sealed class JournalSystem : ModSystem
             return;
         }
 
-        int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
+        var mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
         if (mouseTextIndex < 0)
         {
             mouseTextIndex = layers.Count;

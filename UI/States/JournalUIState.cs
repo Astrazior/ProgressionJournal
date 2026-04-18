@@ -13,6 +13,8 @@ namespace ProgressionJournal.UI.States;
 
 public sealed class JournalUiState : UIState
 {
+    private const string BestiarySearchCancelTexturePath = "Images/UI/SearchCancel";
+
     private readonly Dictionary<ProgressionStageId, JournalStageButton> _stageButtons = new();
     private UIPanel _root = null!;
     private UIPanel _stagePanel = null!;
@@ -21,7 +23,7 @@ public sealed class JournalUiState : UIState
     private UIPanel _contentPanel = null!;
     private UIText _title = null!;
     private UIText _stagePanelTitle = null!;
-    private JournalTextButton _closeButton = null!;
+    private JournalIconButton _closeButton = null!;
     private JournalTextButton _classButton = null!;
     private JournalTextButton _overviewTabButton = null!;
     private JournalTextButton _presetsTabButton = null!;
@@ -140,14 +142,14 @@ public sealed class JournalUiState : UIState
 
     private void InitializeHeader()
     {
-        _closeButton = JournalUiElementFactory.CreateTextButton(
-            string.Empty,
+        _closeButton = JournalUiElementFactory.CreateIconButton(
+            BestiarySearchCancelTexturePath,
             JournalUiMetrics.CloseTabWidth,
             JournalUiMetrics.ActionTabHeight,
             () => JournalSystem.HideView(),
-            1f);
-        _closeButton.Left.Set(-(JournalUiMetrics.CloseTabWidth + JournalUiMetrics.HeaderTabsLeft), 1f);
-        _closeButton.Top.Set(JournalUiMetrics.HeaderTabsTop, 0f);
+            1.12f);
+        _closeButton.Left.Set(-JournalUiMetrics.CloseTabWidth, 1f);
+        _closeButton.Top.Set(0f, 0f);
         _root.Append(_closeButton);
 
         _title = new UIText(string.Empty, 0.82f, true)
@@ -281,7 +283,6 @@ public sealed class JournalUiState : UIState
     private void UpdateStaticText()
     {
         _title.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Title"));
-        _closeButton.SetText("Esc");
         _stagePanelTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.StageSelectorTitle"));
         _classButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Class"));
         _overviewTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewTab"));

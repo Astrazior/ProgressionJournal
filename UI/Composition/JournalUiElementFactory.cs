@@ -1,4 +1,6 @@
 using System;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.GameContent.UI.Elements;
 
 namespace ProgressionJournal.UI.Composition;
@@ -17,6 +19,14 @@ public static class JournalUiElementFactory
     public static JournalTextButton CreateTextButton(string text, float width, float height, Action onClick, float textScale = 0.48f)
     {
         var button = new JournalTextButton(text, textScale, onClick);
+        button.Width.Set(width, 0f);
+        button.Height.Set(height, 0f);
+        return button;
+    }
+
+    public static JournalIconButton CreateIconButton(string texturePath, float width, float height, Action onClick, float iconScale = 1f)
+    {
+        var button = new JournalIconButton(Main.Assets.Request<Texture2D>(texturePath), iconScale, onClick);
         button.Width.Set(width, 0f);
         button.Height.Set(height, 0f);
         return button;

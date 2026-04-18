@@ -14,9 +14,9 @@ public sealed class JournalEntrySlot : UIElement
     private const string BestiaryFilterIconTexturePath = "Images/UI/Bestiary/Icon_Tags_Shadow";
     private const int BestiaryFilterIconColumns = 16;
     private const int BestiaryFilterIconRows = 5;
-    private const int EventBadgeSize = 16;
+    private const int EventBadgeSize = 18;
     private const int EventBadgePadding = 2;
-    private const int EventBadgeInnerPadding = 2;
+    private const int EventBadgeInnerPadding = 1;
 
     private readonly JournalStageEntry _entry;
     private readonly Item[][] _itemGroups;
@@ -210,8 +210,8 @@ public sealed class JournalEntrySlot : UIElement
 
         var texture = TextureAssets.MagicPixel.Value;
         var badgeRectangle = new Rectangle(
-            (int)slotPosition.X + EventBadgePadding,
-            (int)slotPosition.Y + EventBadgePadding,
+            (int)slotPosition.X + (int)WidthPixels - EventBadgeSize - EventBadgePadding,
+            (int)slotPosition.Y + TextureAssets.InventoryBack9.Height() - EventBadgeSize - EventBadgePadding,
             EventBadgeSize,
             EventBadgeSize);
 
