@@ -274,8 +274,11 @@ public static partial class JournalRepository
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
             Entry("throwingWeaponsPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged,
-                            Group(ItemID.Shuriken, ItemID.ThrowingKnife, ItemID.BoneDagger, ItemID.PoisonedKnife, ItemID.SpikyBall, ItemID.Snowball, ItemID.Javelin, ItemID.MolotovCocktail, ItemID.FrostDaggerfish),
+                            Group(ItemID.Shuriken, ItemID.ThrowingKnife, ItemID.BoneDagger, ItemID.PoisonedKnife, ItemID.Snowball, ItemID.Javelin, ItemID.MolotovCocktail, ItemID.FrostDaggerfish),
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
+
+            SupportEntry("spikyBallPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.SpikyBall,
+                            Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
             Entry("boneJavelinPreBoss", JournalItemCategory.Weapon, CombatClass.Ranged, ItemID.BoneJavelin,
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
@@ -531,7 +534,7 @@ public static partial class JournalRepository
             Entry("resonanceScepterPostPlantera", JournalItemCategory.Weapon, CombatClass.Magic, 5065,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Additional)),
 
-            Entry("rainbowGunPostPlantera", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.RainbowGun,
+            SupportEntry("rainbowGunPostPlantera", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.RainbowGun,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Additional)),
 
             SupportEntry("magnetSpherePostPlantera", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.MagnetSphere,
@@ -568,7 +571,7 @@ public static partial class JournalRepository
             Entry("spiritFlameHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.SpiritFlame,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
 
-            EventEntry("shadowflameHexDollHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, JournalEventCategory.GoblinArmy, ItemID.ShadowFlameHexDoll,
+            EventSupportEntry("shadowflameHexDollHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, JournalEventCategory.GoblinArmy, ItemID.ShadowFlameHexDoll,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
 
             EventEntry("bloodThornHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, JournalEventCategory.BloodMoon, 4270,

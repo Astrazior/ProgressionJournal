@@ -140,7 +140,7 @@ public static partial class JournalRepository
             Entry("durendalPostOneMechBoss", JournalItemCategory.ClassSpecific, CombatClass.Summoner, ItemID.SwordWhip,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended)),
 
-            Entry("darkHarvestPostPlantera", JournalItemCategory.ClassSpecific, CombatClass.Summoner, ItemID.ScytheWhip,
+            SupportEntry("darkHarvestPostPlantera", JournalItemCategory.ClassSpecific, CombatClass.Summoner, ItemID.ScytheWhip,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Additional)),
 
             Entry("morningStarPostPlantera", JournalItemCategory.ClassSpecific, CombatClass.Summoner, ItemID.MaceWhip,
