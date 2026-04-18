@@ -38,9 +38,11 @@ public sealed class JournalTextButton : JournalHoverPanel
         BackgroundColor = IsMouseHovering
             ? Color.Lerp(_style.Background, Color.White, 0.14f)
             : _style.Background;
-        BorderColor = IsMouseHovering
-            ? Color.Lerp(_style.Border, Color.White, 0.28f)
-            : _style.Border;
+        BorderColor = _style.Border == Color.Transparent
+            ? Color.Transparent
+            : IsMouseHovering
+                ? Color.Lerp(_style.Border, Color.White, 0.28f)
+                : _style.Border;
         _label.TextColor = IsMouseHovering
             ? Color.Lerp(_style.Text, Color.White, 0.18f)
             : _style.Text;

@@ -117,60 +117,50 @@ public sealed class JournalCombatBuffPanel : UIPanel
     {
         const float totalWidth = JournalUiMetrics.CombatBuffOverlayWidth - JournalUiMetrics.CombatBuffOverlayInset * 2f;
         const float columnWidth = (totalWidth - JournalUiMetrics.ConsumableOverlayColumnGap) * 0.5f;
-        var top = 0f;
+        var leftTop = 0f;
+        var rightTop = 0f;
 
-        var basicHeight = AppendCategorySection(
+        leftTop = AppendConsumableColumnSection(
             entries,
             JournalBuffCategory.Basic,
             0f,
-            top,
+            leftTop,
             columnWidth,
             JournalUiMetrics.ConsumableOverlayColumnSlots);
 
-        var potionHeight = AppendCategorySection(
+        rightTop = AppendConsumableColumnSection(
             entries,
             JournalBuffCategory.Potion,
             columnWidth + JournalUiMetrics.ConsumableOverlayColumnGap,
-            top,
+            rightTop,
             columnWidth,
             JournalUiMetrics.ConsumableOverlayColumnSlots);
 
-        top += System.MathF.Max(basicHeight, potionHeight);
-
-        var foodHeight = AppendCategorySection(
+        leftTop = AppendConsumableColumnSection(
             entries,
             JournalBuffCategory.Food,
             0f,
-            top + JournalUiMetrics.BuffSectionSpacing,
+            leftTop,
             columnWidth,
             JournalUiMetrics.ConsumableOverlayColumnSlots);
 
-        var eternalHeight = AppendCategorySection(
+        rightTop = AppendConsumableColumnSection(
             entries,
             JournalBuffCategory.Eternal,
             columnWidth + JournalUiMetrics.ConsumableOverlayColumnGap,
-            top + JournalUiMetrics.BuffSectionSpacing,
+            rightTop,
             columnWidth,
             JournalUiMetrics.ConsumableOverlayColumnSlots);
 
-        var lowerRowHeight = System.MathF.Max(foodHeight, eternalHeight);
-        if (lowerRowHeight > 0f)
-        {
-            top += JournalUiMetrics.BuffSectionSpacing + lowerRowHeight;
-        }
-
-        var flaskHeight = AppendCategorySection(
+        leftTop = AppendConsumableColumnSection(
             entries,
             JournalBuffCategory.Flask,
             0f,
-            top + JournalUiMetrics.BuffSectionSpacing,
-            totalWidth,
-            JournalUiMetrics.ConsumableOverlayWideRowSlots);
+            leftTop,
+            columnWidth,
+            JournalUiMetrics.ConsumableOverlayColumnSlots);
 
-        if (flaskHeight > 0f)
-        {
-            top += JournalUiMetrics.BuffSectionSpacing + flaskHeight;
-        }
+        var top = System.MathF.Max(leftTop, rightTop);
 
         if (_autoHeight)
         {
@@ -178,6 +168,23 @@ public sealed class JournalCombatBuffPanel : UIPanel
         }
 
         ContentHeight = top + 4f;
+    }
+
+    private float AppendConsumableColumnSection(
+        IReadOnlyList<JournalCombatBuffEntry> allEntries,
+        JournalBuffCategory category,
+        float left,
+        float top,
+        float width,
+        int maxSlotsPerRow)
+    {
+        var sectionHeight = AppendCategorySection(allEntries, category, left, top, width, maxSlotsPerRow);
+        if (sectionHeight <= 0f)
+        {
+            return top;
+        }
+
+        return top + sectionHeight + JournalUiMetrics.BuffSectionSpacing;
     }
 
     private float AppendCategorySection(

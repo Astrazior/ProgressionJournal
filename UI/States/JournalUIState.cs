@@ -35,8 +35,7 @@ public sealed class JournalUiState : UIState
     private UIPanel _stagePanel = null!;
     private UIPanel _mainPanel = null!;
     private UIElement _contentTabsPanel = null!;
-    private UIPanel _contentPanel = null!;
-    private UIText _title = null!;
+    private UIElement _contentPanel = null!;
     private UIText _stagePanelTitle = null!;
     private JournalIconButton _closeButton = null!;
     private JournalTextButton _classButton = null!;
@@ -199,14 +198,7 @@ public sealed class JournalUiState : UIState
         _closeButton.Top.Set(0f, 0f);
         _root.Append(_closeButton);
 
-        _title = new UIText(string.Empty, 0.82f, true)
-        {
-            HAlign = 0.5f,
-            VAlign = 0f,
-            TextColor = JournalUiTheme.RootTitleText
-        };
-        _title.Top.Set(JournalUiMetrics.HeaderTitleTop, 0f);
-        _root.Append(_title);
+        InitializeContentTabs();
     }
 
     private void InitializeStagePanel()
@@ -252,13 +244,11 @@ public sealed class JournalUiState : UIState
         _mainPanel.Height.Set(-(JournalUiMetrics.HeaderHeight + JournalUiMetrics.OuterPadding * 2f), 1f);
         _root.Append(_mainPanel);
 
-        InitializeContentTabs();
-
-        _contentPanel = JournalUiElementFactory.CreatePanel();
+        _contentPanel = new UIElement();
         _contentPanel.Left.Set(JournalUiMetrics.ContentInset, 0f);
-        _contentPanel.Top.Set(JournalUiMetrics.ContentInset + JournalUiMetrics.TopTabsHeight + JournalUiMetrics.ContentPanelTopOffset, 0f);
+        _contentPanel.Top.Set(JournalUiMetrics.ContentInset, 0f);
         _contentPanel.Width.Set(-JournalUiMetrics.ContentInset * 2f, 1f);
-        _contentPanel.Height.Set(-(JournalUiMetrics.TopTabsHeight + 34f), 1f);
+        _contentPanel.Height.Set(-(JournalUiMetrics.ContentInset * 2f), 1f);
         _mainPanel.Append(_contentPanel);
 
         _contentTitle = new UIText(string.Empty, JournalUiMetrics.ContentTitleScale, true)
@@ -319,11 +309,11 @@ public sealed class JournalUiState : UIState
     private void InitializeContentTabs()
     {
         _contentTabsPanel = new UIElement();
-        _contentTabsPanel.Left.Set(JournalUiMetrics.ContentInset, 0f);
-        _contentTabsPanel.Top.Set(JournalUiMetrics.ContentInset, 0f);
-        _contentTabsPanel.Width.Set(-JournalUiMetrics.ContentInset * 2f, 1f);
+        _contentTabsPanel.Left.Set(JournalUiMetrics.HeaderTabsLeft, 0f);
+        _contentTabsPanel.Top.Set(JournalUiMetrics.HeaderTabsTop, 0f);
+        _contentTabsPanel.Width.Set(-(JournalUiMetrics.HeaderTabsLeft + JournalUiMetrics.HeaderTabsRightInset), 1f);
         _contentTabsPanel.Height.Set(JournalUiMetrics.TopTabsHeight, 0f);
-        _mainPanel.Append(_contentTabsPanel);
+        _root.Append(_contentTabsPanel);
 
         const float widthOffset = -2f * JournalUiMetrics.TopTabsGap / 3f;
 
@@ -348,7 +338,6 @@ public sealed class JournalUiState : UIState
 
     private void UpdateStaticText()
     {
-        _title.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Title"));
         _stagePanelTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.StageSelectorTitle"));
         _classButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Class"));
         _overviewTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewTab"));
@@ -439,14 +428,14 @@ public sealed class JournalUiState : UIState
 
             if (_contentTabsPanel.Parent is null)
             {
-                _mainPanel.Append(_contentTabsPanel);
+                _root.Append(_contentTabsPanel);
                 _layoutInitialized = false;
             }
 
             _mainPanel.Left.Set(JournalUiMetrics.OuterPadding + JournalUiMetrics.StagePanelWidth + JournalUiMetrics.PanelGap, 0f);
             _mainPanel.Width.Set(-(JournalUiMetrics.OuterPadding * 2f + JournalUiMetrics.StagePanelWidth + JournalUiMetrics.PanelGap), 1f);
-            _contentPanel.Top.Set(JournalUiMetrics.ContentInset + JournalUiMetrics.TopTabsHeight + JournalUiMetrics.ContentPanelTopOffset, 0f);
-            _contentPanel.Height.Set(-(JournalUiMetrics.TopTabsHeight + 34f), 1f);
+            _contentPanel.Top.Set(JournalUiMetrics.ContentInset, 0f);
+            _contentPanel.Height.Set(-(JournalUiMetrics.ContentInset * 2f), 1f);
             return;
         }
 
@@ -458,14 +447,14 @@ public sealed class JournalUiState : UIState
 
         if (_contentTabsPanel.Parent is not null)
         {
-            _mainPanel.RemoveChild(_contentTabsPanel);
+            _root.RemoveChild(_contentTabsPanel);
             _layoutInitialized = false;
         }
 
         _mainPanel.Left.Set(JournalUiMetrics.OuterPadding, 0f);
         _mainPanel.Width.Set(-(JournalUiMetrics.OuterPadding * 2f), 1f);
         _contentPanel.Top.Set(JournalUiMetrics.ContentInset, 0f);
-        _contentPanel.Height.Set(-24f, 1f);
+        _contentPanel.Height.Set(-(JournalUiMetrics.ContentInset * 2f), 1f);
     }
 
     private void ApplyContentLayout(bool selectingClass, bool showingPresets)

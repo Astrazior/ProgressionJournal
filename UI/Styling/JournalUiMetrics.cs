@@ -11,9 +11,9 @@ public static class JournalUiMetrics
     public const float OuterPadding = 12f;
     public const float PanelGap = 12f;
     public const float HeaderHeight = 72f;
-    public const float HeaderTitleTop = 18f;
-    public const float HeaderTabsTop = -12f;
+    public const float HeaderTabsTop = 18f;
     public const float HeaderTabsLeft = 18f;
+    public const float HeaderTabsRightInset = 60f;
     public const float StagePanelWidth = 300f;
     public const float StagePanelTitleTop = 12f;
     public const float StagePanelTitleScale = 0.52f;
@@ -24,11 +24,10 @@ public static class JournalUiMetrics
     public const float TopTabsHeight = 40f;
     public const float TopTabsGap = 12f;
     public const float TopTabsButtonHeight = 34f;
-    public const float TopTabsButtonTop = 2f;
+    public const float TopTabsButtonTop = 0f;
     public const float CloseTabWidth = 42f;
     public const float ActionTabHeight = 42f;
     public const float ContentInset = 12f;
-    public const float ContentPanelTopOffset = 10f;
     public const float ContentTitleTop = 10f;
     public const float ContentTitleScale = 0.48f;
     public const float ContentDescriptionLeft = 14f;
@@ -55,7 +54,6 @@ public static class JournalUiMetrics
     public const float CombatBuffOverlayContentBottomInset = 16f;
     public const float ConsumableOverlayColumnGap = 18f;
     public const int ConsumableOverlayColumnSlots = 6;
-    public const int ConsumableOverlayWideRowSlots = 12;
     public const float ScrollbarOffset = 18f;
     public const float ScrollbarWidth = 20f;
     public const float EntryListWidthInset = 38f;

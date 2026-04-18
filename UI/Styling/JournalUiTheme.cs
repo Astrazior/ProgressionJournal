@@ -41,8 +41,8 @@ public static class JournalUiTheme
     public static JournalButtonStyle GetTabButtonStyle(bool active)
     {
         return active
-            ? new JournalButtonStyle(new Color(58, 100, 71), new Color(130, 194, 149), new Color(226, 233, 240))
-            : GetDefaultTextButtonStyle();
+            ? new JournalButtonStyle(new Color(48, 86, 61), Color.Transparent, new Color(236, 242, 247))
+            : new JournalButtonStyle(RootBackground, Color.Transparent, new Color(205, 215, 226));
     }
 
     public static JournalButtonStyle GetOverlayActionButtonStyle()
