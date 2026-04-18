@@ -23,7 +23,9 @@ public sealed class JournalUiState : UIState
     ];
     private static readonly JournalBuffCategory[] ConsumableBuffCategories =
     [
+        JournalBuffCategory.Basic,
         JournalBuffCategory.Potion,
+        JournalBuffCategory.Eternal,
         JournalBuffCategory.Food,
         JournalBuffCategory.Flask
     ];
@@ -46,14 +48,12 @@ public sealed class JournalUiState : UIState
     private UIElement _classSelectionContainer = null!;
     private UIList _entryList = null!;
     private UIScrollbar _scrollbar = null!;
-    private JournalIconButton _combatBuffsButton = null!;
+    private JournalIconTextButton _combatBuffsButton = null!;
     private JournalCombatBuffPanel _combatBuffPanel = null!;
     private UIElement _combatBuffOverlay = null!;
     private UIPanel _combatBuffOverlayPanel = null!;
     private UIText _combatBuffOverlayTitle = null!;
     private JournalIconButton _combatBuffOverlayCloseButton = null!;
-    private UIList _combatBuffOverlayList = null!;
-    private UIScrollbar _combatBuffOverlayScrollbar = null!;
     private JournalCombatBuffPanel _combatBuffOverlayContent = null!;
     private bool _showingAllCombatBuffs;
     private bool _hasAvailableCombatBuffs;
@@ -86,16 +86,14 @@ public sealed class JournalUiState : UIState
             Main.blockMouse = true;
         }
 
-        if (Main.keyState.IsKeyDown(Keys.Escape) && Main.oldKeyState.IsKeyUp(Keys.Escape))
+        if (!Main.keyState.IsKeyDown(Keys.Escape) || !Main.oldKeyState.IsKeyUp(Keys.Escape)) return;
+        if (_showingAllCombatBuffs)
         {
-            if (_showingAllCombatBuffs)
-            {
-                HideCombatBuffOverlay();
-                return;
-            }
-
-            JournalSystem.HideView();
+            HideCombatBuffOverlay();
+            return;
         }
+
+        JournalSystem.HideView();
     }
 
     public void Refresh(CombatClass combatClass, ProgressionStageId stageId, bool selectingClass, bool showingPresets, bool hasSelectedClass)
@@ -122,7 +120,7 @@ public sealed class JournalUiState : UIState
         SwitchContentMode(selectingClass);
         _hasAvailableCombatBuffs = false;
         _combatBuffPanel.SetEntries([]);
-        _combatBuffOverlayList.Clear();
+        _combatBuffOverlayContent.SetEntries([]);
 
         if (selectingClass)
         {
@@ -136,7 +134,9 @@ public sealed class JournalUiState : UIState
         {
             HideCombatBuffOverlay();
             SetContentHeader(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsHeadline"));
-            JournalContentBuilder.PopulatePresets(_entryList, JournalRepository.GetPresets(stageId, combatClass));
+            JournalContentBuilder.PopulateDevelopmentNotice(
+                _entryList,
+                Language.GetTextValue("Mods.ProgressionJournal.UI.InDevelopment"));
             return;
         }
 
@@ -280,13 +280,14 @@ public sealed class JournalUiState : UIState
         _combatBuffPanel.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
         _contentPanel.Append(_combatBuffPanel);
 
-        _combatBuffsButton = JournalUiElementFactory.CreateIconButton(
+        _combatBuffsButton = JournalUiElementFactory.CreateIconTextButton(
             TextureAssets.Item[ItemID.HealingPotion],
-            JournalUiMetrics.CombatBuffButtonSize,
-            JournalUiMetrics.CombatBuffButtonSize,
+            string.Empty,
+            JournalUiMetrics.CombatBuffButtonWidth,
+            JournalUiMetrics.CombatBuffButtonHeight,
             ToggleCombatBuffOverlay,
-            0.8f);
-        _combatBuffsButton.EnableChrome(JournalUiTheme.GetOverlayActionButtonStyle());
+            0.90f);
+        _combatBuffsButton.SetStyle(JournalUiTheme.GetOverlayActionButtonStyle());
         _contentPanel.Append(_combatBuffsButton);
 
         _classSelectionContainer = new UIElement();
@@ -352,7 +353,8 @@ public sealed class JournalUiState : UIState
         _classButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Class"));
         _overviewTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewTab"));
         _presetsTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsTab"));
-        _combatBuffsButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.CombatConsumablesTooltip"));
+        var combatConsumablesText = Language.GetTextValue("Mods.ProgressionJournal.UI.CombatConsumablesButton");
+        _combatBuffsButton.SetText(combatConsumablesText);
     }
 
     private void UpdateNavigationStyles(bool selectingClass, bool showingPresets)
@@ -471,29 +473,6 @@ public sealed class JournalUiState : UIState
         _classSelectionContainer.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
         _classSelectionContainer.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
 
-        var showCombatBuffButton = !selectingClass && !showingPresets && _hasAvailableCombatBuffs;
-        _combatBuffsButton.Left.Set(
-            -(JournalUiMetrics.CombatBuffPanelRightInset + JournalUiMetrics.CombatBuffButtonSize),
-            1f);
-        _combatBuffsButton.Top.Set(JournalUiMetrics.ContentBodyTop - JournalUiMetrics.CombatBuffButtonTopOffset, 0f);
-
-        if (showCombatBuffButton)
-        {
-            if (_combatBuffsButton.Parent is null)
-            {
-                _contentPanel.Append(_combatBuffsButton);
-            }
-            else
-            {
-                _contentPanel.RemoveChild(_combatBuffsButton);
-                _contentPanel.Append(_combatBuffsButton);
-            }
-        }
-        else if (_combatBuffsButton.Parent is not null)
-        {
-            _contentPanel.RemoveChild(_combatBuffsButton);
-        }
-
         var showCombatBuffs = !selectingClass && !showingPresets && _combatBuffPanel.HasEntries;
         if (showCombatBuffs)
         {
@@ -508,16 +487,42 @@ public sealed class JournalUiState : UIState
             {
                 _contentPanel.Append(_combatBuffPanel);
             }
+        }
+        else
+        {
+            _entryList.Width.Set(-JournalUiMetrics.EntryListWidthInset, 1f);
+            _scrollbar.Left.Set(-JournalUiMetrics.ScrollbarOffset, 1f);
 
-            return;
+            if (_combatBuffPanel.Parent is not null)
+            {
+                _contentPanel.RemoveChild(_combatBuffPanel);
+            }
         }
 
-        _entryList.Width.Set(-JournalUiMetrics.EntryListWidthInset, 1f);
-        _scrollbar.Left.Set(-JournalUiMetrics.ScrollbarOffset, 1f);
+        var showCombatBuffButton = showCombatBuffs && _hasAvailableCombatBuffs;
+        _combatBuffsButton.Left.Set(
+            -(JournalUiMetrics.CombatBuffPanelRightInset
+                + JournalUiMetrics.CombatBuffPanelWidth * 0.5f
+                + JournalUiMetrics.CombatBuffButtonWidth * 0.5f),
+            1f);
+        _combatBuffsButton.Top.Set(
+            -(JournalUiMetrics.ContentBodyBottomInset
+                + JournalUiMetrics.CombatBuffButtonHeight
+                + JournalUiMetrics.CombatBuffButtonBottomInset),
+            1f);
 
-        if (_combatBuffPanel.Parent is not null)
+        if (showCombatBuffButton)
         {
-            _contentPanel.RemoveChild(_combatBuffPanel);
+            if (_combatBuffsButton.Parent is not null)
+            {
+                _contentPanel.RemoveChild(_combatBuffsButton);
+            }
+
+            _contentPanel.Append(_combatBuffsButton);
+        }
+        else if (_combatBuffsButton.Parent is not null)
+        {
+            _contentPanel.RemoveChild(_combatBuffsButton);
         }
     }
 
@@ -556,30 +561,21 @@ public sealed class JournalUiState : UIState
         _combatBuffOverlayCloseButton.Top.Set(JournalUiMetrics.CombatBuffOverlayCloseTop, 0f);
         _combatBuffOverlayPanel.Append(_combatBuffOverlayCloseButton);
 
-        _combatBuffOverlayList = [];
-        _combatBuffOverlayList.Top.Set(JournalUiMetrics.CombatBuffOverlayContentTop, 0f);
-        _combatBuffOverlayList.Left.Set(JournalUiMetrics.CombatBuffOverlayInset, 0f);
-        _combatBuffOverlayList.Width.Set(-(JournalUiMetrics.CombatBuffOverlayInset * 2f + JournalUiMetrics.ScrollbarWidth), 1f);
-        _combatBuffOverlayList.Height.Set(-(JournalUiMetrics.CombatBuffOverlayContentTop + JournalUiMetrics.CombatBuffOverlayContentBottomInset), 1f);
-        _combatBuffOverlayList.ListPadding = 0f;
-        _combatBuffOverlayList.ManualSortMethod = static _ => { };
-        _combatBuffOverlayPanel.Append(_combatBuffOverlayList);
-
-        _combatBuffOverlayScrollbar = new UIScrollbar();
-        _combatBuffOverlayScrollbar.Width.Set(JournalUiMetrics.ScrollbarWidth, 0f);
-        _combatBuffOverlayScrollbar.Left.Set(-(JournalUiMetrics.CombatBuffOverlayInset + JournalUiMetrics.ScrollbarWidth), 1f);
-        _combatBuffOverlayScrollbar.Top.Set(JournalUiMetrics.CombatBuffOverlayContentTop, 0f);
-        _combatBuffOverlayScrollbar.Height.Set(-(JournalUiMetrics.CombatBuffOverlayContentTop + JournalUiMetrics.CombatBuffOverlayContentBottomInset), 1f);
-        _combatBuffOverlayPanel.Append(_combatBuffOverlayScrollbar);
-        _combatBuffOverlayList.SetScrollbar(_combatBuffOverlayScrollbar);
-
-        _combatBuffOverlayContent = new JournalCombatBuffPanel(ConsumableBuffCategories, "Mods.ProgressionJournal.UI.CombatConsumablesTitle", showTitle: false, autoHeight: true);
-        _combatBuffOverlayContent.Width.Set(0f, 1f);
+        _combatBuffOverlayContent = new JournalCombatBuffPanel(
+            ConsumableBuffCategories,
+            "Mods.ProgressionJournal.UI.CombatConsumablesTitle",
+            showTitle: false,
+            autoHeight: false,
+            useConsumableOverlayLayout: true);
+        _combatBuffOverlayContent.Left.Set(JournalUiMetrics.CombatBuffOverlayInset, 0f);
+        _combatBuffOverlayContent.Top.Set(JournalUiMetrics.CombatBuffOverlayContentTop, 0f);
+        _combatBuffOverlayContent.Width.Set(-(JournalUiMetrics.CombatBuffOverlayInset * 2f), 1f);
+        _combatBuffOverlayContent.Height.Set(-(JournalUiMetrics.CombatBuffOverlayContentTop + JournalUiMetrics.CombatBuffOverlayContentBottomInset), 1f);
+        _combatBuffOverlayPanel.Append(_combatBuffOverlayContent);
     }
 
     private void PopulateCombatBuffOverlay(IReadOnlyList<JournalCombatBuffEntry> entries)
     {
-        _combatBuffOverlayList.Clear();
         _combatBuffOverlayContent.SetEntries(entries);
 
         if (entries.Count == 0)
@@ -587,7 +583,13 @@ public sealed class JournalUiState : UIState
             return;
         }
 
-        _combatBuffOverlayList.Add(_combatBuffOverlayContent);
+        var targetHeight = JournalUiMetrics.CombatBuffOverlayContentTop
+            + _combatBuffOverlayContent.ContentHeight
+            + JournalUiMetrics.CombatBuffOverlayContentBottomInset;
+        _combatBuffOverlayPanel.Height.Set(
+            MathF.Min(JournalUiMetrics.CombatBuffOverlayHeight, targetHeight),
+            0f);
+
         _combatBuffOverlayTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.CombatConsumablesTitle"));
     }
 
@@ -629,4 +631,3 @@ public sealed class JournalUiState : UIState
 
     private static JournalSystem JournalSystem => ModContent.GetInstance<JournalSystem>();
 }
-

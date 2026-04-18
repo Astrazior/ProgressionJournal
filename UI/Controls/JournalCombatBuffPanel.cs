@@ -12,17 +12,20 @@ public sealed class JournalCombatBuffPanel : UIPanel
     private readonly string _titleLocalizationKey;
     private readonly bool _showTitle;
     private readonly bool _autoHeight;
+    private readonly bool _useConsumableOverlayLayout;
 
     public JournalCombatBuffPanel(
         IReadOnlyList<JournalBuffCategory> sectionOrder,
         string titleLocalizationKey,
         bool showTitle = true,
-        bool autoHeight = false)
+        bool autoHeight = false,
+        bool useConsumableOverlayLayout = false)
     {
         _sectionOrder = sectionOrder;
         _titleLocalizationKey = titleLocalizationKey;
         _showTitle = showTitle;
         _autoHeight = autoHeight;
+        _useConsumableOverlayLayout = useConsumableOverlayLayout;
         SetPadding(0f);
         BackgroundColor = JournalUiTheme.PresetPanelBackground;
         BorderColor = JournalUiTheme.PresetPanelBorder;
@@ -30,10 +33,13 @@ public sealed class JournalCombatBuffPanel : UIPanel
 
     public bool HasEntries { get; private set; }
 
+    public float ContentHeight { get; private set; }
+
     public void SetEntries(IReadOnlyList<JournalCombatBuffEntry> entries)
     {
         RemoveAllChildren();
         HasEntries = entries.Count > 0;
+        ContentHeight = 0f;
 
         if (!HasEntries)
         {
@@ -45,8 +51,14 @@ public sealed class JournalCombatBuffPanel : UIPanel
             return;
         }
 
+        if (_useConsumableOverlayLayout)
+        {
+            SetConsumableOverlayEntries(entries);
+            return;
+        }
+
         var top = JournalUiMetrics.BlockVerticalPadding;
-        var contentLeft = JournalUiMetrics.BlockHorizontalPadding + JournalUiMetrics.CategoryContentIndent;
+        const float contentLeft = JournalUiMetrics.BlockHorizontalPadding + JournalUiMetrics.CategoryContentIndent;
 
         if (_showTitle)
         {
@@ -97,19 +109,124 @@ public sealed class JournalCombatBuffPanel : UIPanel
         {
             Height.Set(top + 4f, 0f);
         }
+
+        ContentHeight = top + 4f;
+    }
+
+    private void SetConsumableOverlayEntries(IReadOnlyList<JournalCombatBuffEntry> entries)
+    {
+        const float totalWidth = JournalUiMetrics.CombatBuffOverlayWidth - JournalUiMetrics.CombatBuffOverlayInset * 2f;
+        const float columnWidth = (totalWidth - JournalUiMetrics.ConsumableOverlayColumnGap) * 0.5f;
+        var top = 0f;
+
+        var basicHeight = AppendCategorySection(
+            entries,
+            JournalBuffCategory.Basic,
+            0f,
+            top,
+            columnWidth,
+            JournalUiMetrics.ConsumableOverlayColumnSlots);
+
+        var potionHeight = AppendCategorySection(
+            entries,
+            JournalBuffCategory.Potion,
+            columnWidth + JournalUiMetrics.ConsumableOverlayColumnGap,
+            top,
+            columnWidth,
+            JournalUiMetrics.ConsumableOverlayColumnSlots);
+
+        top += System.MathF.Max(basicHeight, potionHeight);
+
+        var foodHeight = AppendCategorySection(
+            entries,
+            JournalBuffCategory.Food,
+            0f,
+            top + JournalUiMetrics.BuffSectionSpacing,
+            columnWidth,
+            JournalUiMetrics.ConsumableOverlayColumnSlots);
+
+        var eternalHeight = AppendCategorySection(
+            entries,
+            JournalBuffCategory.Eternal,
+            columnWidth + JournalUiMetrics.ConsumableOverlayColumnGap,
+            top + JournalUiMetrics.BuffSectionSpacing,
+            columnWidth,
+            JournalUiMetrics.ConsumableOverlayColumnSlots);
+
+        var lowerRowHeight = System.MathF.Max(foodHeight, eternalHeight);
+        if (lowerRowHeight > 0f)
+        {
+            top += JournalUiMetrics.BuffSectionSpacing + lowerRowHeight;
+        }
+
+        var flaskHeight = AppendCategorySection(
+            entries,
+            JournalBuffCategory.Flask,
+            0f,
+            top + JournalUiMetrics.BuffSectionSpacing,
+            totalWidth,
+            JournalUiMetrics.ConsumableOverlayWideRowSlots);
+
+        if (flaskHeight > 0f)
+        {
+            top += JournalUiMetrics.BuffSectionSpacing + flaskHeight;
+        }
+
+        if (_autoHeight)
+        {
+            Height.Set(top + 4f, 0f);
+        }
+
+        ContentHeight = top + 4f;
+    }
+
+    private float AppendCategorySection(
+        IReadOnlyList<JournalCombatBuffEntry> allEntries,
+        JournalBuffCategory category,
+        float left,
+        float top,
+        float width,
+        int maxSlotsPerRow)
+    {
+        var categoryEntries = allEntries.Where(entry => entry.Category == category).ToArray();
+        if (categoryEntries.Length == 0)
+        {
+            return 0f;
+        }
+
+        var startTop = top;
+        var header = CreateCategoryHeader(category, width);
+        header.Left.Set(left, 0f);
+        header.Top.Set(top, 0f);
+        Append(header);
+        top += GetCategoryHeaderHeight() + GetCategoryHeaderBottomSpacing();
+
+        foreach (var rowEntries in ChunkEntries(categoryEntries, maxSlotsPerRow))
+        {
+            var row = CreateSlotRow(rowEntries);
+            row.Left.Set(left + JournalUiMetrics.CategoryContentIndent, 0f);
+            row.Top.Set(top, 0f);
+            Append(row);
+            top += JournalUiMetrics.RowHeight + JournalUiMetrics.RowSpacing;
+        }
+
+        top -= JournalUiMetrics.RowSpacing;
+        return top - startTop;
     }
 
     private static string GetCategoryTitle(JournalBuffCategory category) => category switch
     {
         JournalBuffCategory.Station => Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffStations"),
         JournalBuffCategory.Passive => Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffPassive"),
+        JournalBuffCategory.Basic => Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffBasic"),
         JournalBuffCategory.Potion => Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffPotions"),
+        JournalBuffCategory.Eternal => Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffEternal"),
         JournalBuffCategory.Food => Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffFood"),
         JournalBuffCategory.Flask => Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffFlasks"),
         _ => string.Empty
     };
 
-    private static JournalCategoryHeader CreateCategoryHeader(JournalBuffCategory category)
+    private static JournalCategoryHeader CreateCategoryHeader(JournalBuffCategory category, float? width = null)
     {
         var header = new JournalCategoryHeader(
             GetCategoryTitle(category),
@@ -117,7 +234,15 @@ public sealed class JournalCombatBuffPanel : UIPanel
             JournalUiTheme.RootTitleText,
             JournalUiTheme.CategoryHeaderStyle);
 
-        header.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
+        if (width is { } fixedWidth)
+        {
+            header.Width.Set(fixedWidth, 0f);
+        }
+        else
+        {
+            header.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
+        }
+
         header.Height.Set(GetCategoryHeaderHeight(), 0f);
         return header;
     }
@@ -160,7 +285,7 @@ public sealed class JournalCombatBuffPanel : UIPanel
             var slot = new JournalBuffSlot(entry);
             slot.Left.Set(left, 0f);
             row.Append(slot);
-            left += JournalBuffSlot.GetVisualWidth(entry.ItemGroups.Count) + JournalUiMetrics.EntrySpacing;
+            left += JournalBuffSlot.GetVisualWidth(entry) + JournalUiMetrics.EntrySpacing;
         }
 
         return row;
@@ -173,7 +298,7 @@ public sealed class JournalCombatBuffPanel : UIPanel
             return 0f;
         }
 
-        return entries.Sum(entry => JournalBuffSlot.GetVisualWidth(entry.ItemGroups.Count))
+        return entries.Sum(JournalBuffSlot.GetVisualWidth)
             + JournalUiMetrics.EntrySpacing * (entries.Count - 1);
     }
 

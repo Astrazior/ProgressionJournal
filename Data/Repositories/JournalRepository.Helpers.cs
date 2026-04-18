@@ -145,5 +145,15 @@ public static partial class JournalRepository
     {
         return new JournalItemGroup(itemIds);
     }
+
+    private static JournalItemGroup NamedGroup(string displayNameLocalizationKey, params int[] itemIds)
+    {
+        return new JournalItemGroup(itemIds, displayNameLocalizationKey);
+    }
+
+    private static JournalItemGroup NamedBuffGroup(string displayNameLocalizationKey, int displayBuffId, params int[] itemIds)
+    {
+        return new JournalItemGroup(itemIds, displayNameLocalizationKey, displayBuffId);
+    }
 }
 

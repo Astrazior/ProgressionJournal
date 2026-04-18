@@ -19,6 +19,7 @@ public sealed class JournalCategoryHeader : UIElement
     private const float TextScale = 0.76f;
     private const float LeftPadding = 2f;
     private const float RightPadding = 12f;
+    private const float TextVerticalOffset = 1f;
     private readonly string _title;
     private readonly Color _accentColor;
     private readonly Color _textColor;
@@ -62,7 +63,7 @@ public sealed class JournalCategoryHeader : UIElement
     private void DrawInlineRule(SpriteBatch spriteBatch, DynamicSpriteFont font, CalculatedStyle dimensions, Vector2 titleSize)
     {
         var textX = dimensions.X + LeftPadding;
-        var textY = dimensions.Y + (dimensions.Height - titleSize.Y) * 0.5f - 1f;
+        var textY = dimensions.Y + (dimensions.Height - titleSize.Y) * 0.5f + TextVerticalOffset;
         DrawText(spriteBatch, font, textX, textY);
     }
 
@@ -74,7 +75,7 @@ public sealed class JournalCategoryHeader : UIElement
         var tagWidth = titleSize.X + 18f;
         var tagHeight = titleSize.Y + 8f;
         var textX = tagX + 9f;
-        var textY = tagY + 4f - 1f;
+        var textY = tagY + 4f + TextVerticalOffset;
         var lineStart = tagX + tagWidth + 12f;
         var lineEnd = dimensions.X + dimensions.Width - RightPadding;
         var lineY = (int)(centerY + 1f);
@@ -94,7 +95,7 @@ public sealed class JournalCategoryHeader : UIElement
         var railY = dimensions.Y + 2f;
         var railHeight = dimensions.Height - 4f;
         var textX = railX + 12f;
-        var textY = dimensions.Y + (dimensions.Height - titleSize.Y) * 0.5f - 1f;
+        var textY = dimensions.Y + (dimensions.Height - titleSize.Y) * 0.5f + TextVerticalOffset;
         var underlineEnd = textX + titleSize.X + 2f;
         var underlineY = (int)(centerY + titleSize.Y * 0.5f) + 1;
 

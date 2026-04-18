@@ -4,7 +4,9 @@ public enum JournalBuffCategory
 {
     Station,
     Passive,
+    Basic,
     Potion,
+    Eternal,
     Food,
     Flask
 }

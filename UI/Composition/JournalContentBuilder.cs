@@ -52,6 +52,23 @@ public static class JournalContentBuilder
         }
     }
 
+    public static void PopulateDevelopmentNotice(UIList entryList, string text)
+    {
+        var container = new UIElement();
+        container.Width.Set(0f, 1f);
+        container.Height.Set(320f, 0f);
+
+        var notice = new UIText(text, 0.9f, true)
+        {
+            HAlign = 0.5f,
+            VAlign = 0.5f,
+            TextColor = JournalUiTheme.RootTitleText
+        };
+        container.Append(notice);
+
+        entryList.Add(container);
+    }
+
     private static string GetTierTitle(RecommendationTier tier) => tier switch
     {
         RecommendationTier.Recommended => Language.GetTextValue("Mods.ProgressionJournal.UI.RecommendedBlock"),

@@ -41,6 +41,14 @@ public static class JournalUiElementFactory
         return button;
     }
 
+    public static JournalIconTextButton CreateIconTextButton(Asset<Texture2D> texture, string text, float width, float height, Action onClick, float textScale = 0.4f)
+    {
+        var button = new JournalIconTextButton(texture, text, textScale, onClick);
+        button.Width.Set(width, 0f);
+        button.Height.Set(height, 0f);
+        return button;
+    }
+
     public static JournalStageButton CreateStageButton(Action onClick)
     {
         var button = new JournalStageButton(onClick);
