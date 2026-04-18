@@ -1,9 +1,11 @@
 using System.Linq;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.Localization;
 using Terraria.UI;
 
 namespace ProgressionJournal.UI.Controls;
@@ -12,16 +14,20 @@ public sealed class JournalEntrySlot : UIElement
 {
     private const int AlternativeCycleTicks = 90;
     private const string BestiaryFilterIconTexturePath = "Images/UI/Bestiary/Icon_Tags_Shadow";
+    private const string BestiarySupportIconTexturePath = "Images/UI/Bestiary/Icon_Rank_Light";
     private const int BestiaryFilterIconColumns = 16;
     private const int BestiaryFilterIconRows = 5;
     private const int EventBadgeSize = 18;
     private const int EventBadgePadding = 2;
     private const int EventBadgeInnerPadding = 1;
+    private const int SupportIconSize = 12;
+    private const int SupportIconPadding = 3;
 
     private readonly JournalStageEntry _entry;
     private readonly Item[][] _itemGroups;
     private readonly int? _eventBadgeFrame;
     private readonly string? _eventLabel;
+    private readonly string? _supportLabel;
 
     public JournalEntrySlot(JournalStageEntry entry)
     {
@@ -35,13 +41,18 @@ public sealed class JournalEntrySlot : UIElement
             _eventLabel = eventCategory.GetDisplayName();
         }
 
+        if (entry.Entry.IsSupportWeapon)
+        {
+            _supportLabel = Language.GetTextValue("Mods.ProgressionJournal.UI.SupportWeaponTag");
+        }
+
         Width.Set(GetVisualWidth(_itemGroups.Length), 0f);
         Height.Set(TextureAssets.InventoryBack9.Height(), 0f);
     }
 
-    public static float WidthPixels => TextureAssets.InventoryBack9.Width();
+    private static float WidthPixels => TextureAssets.InventoryBack9.Width();
 
-    public static float SlotStep => WidthPixels + 4f;
+    private static float SlotStep => WidthPixels + 4f;
 
     public static float GetVisualWidth(int itemCount)
     {
@@ -72,7 +83,8 @@ public sealed class JournalEntrySlot : UIElement
 
                 var slotPosition = inner.TopLeft() + new Vector2(index * SlotStep, 0f);
                 DrawVanillaSlot(spriteBatch, ref displayItem, slotPosition);
-                DrawEventOutline(spriteBatch, slotPosition, hoveredIndex == index);
+                DrawSpecialOutline(spriteBatch, slotPosition, hoveredIndex == index);
+                DrawSupportBadge(spriteBatch, slotPosition);
                 DrawEventBadge(spriteBatch, slotPosition);
 
                 if (_entry.Entry.ItemGroups[index].HasAlternatives)
@@ -98,9 +110,21 @@ public sealed class JournalEntrySlot : UIElement
 
         var hoverItem = GetDisplayedItem(hoveredIndex).Clone();
         var hoverName = _entry.Entry.ItemGroups[hoveredIndex].GetDisplayName();
+        var tagLabels = new List<string>(2);
+
         if (!string.IsNullOrWhiteSpace(_eventLabel))
         {
-            hoverName = $"{hoverName} [{_eventLabel}]";
+            tagLabels.Add(_eventLabel);
+        }
+
+        if (!string.IsNullOrWhiteSpace(_supportLabel))
+        {
+            tagLabels.Add(_supportLabel);
+        }
+
+        if (tagLabels.Count > 0)
+        {
+            hoverName = $"{hoverName} [{string.Join(", ", tagLabels)}]";
         }
 
         hoverItem.SetNameOverride(hoverName);
@@ -182,23 +206,52 @@ public sealed class JournalEntrySlot : UIElement
             0.64f);
     }
 
-    private void DrawEventOutline(SpriteBatch spriteBatch, Vector2 slotPosition, bool isHovered)
+    private void DrawSpecialOutline(SpriteBatch spriteBatch, Vector2 slotPosition, bool isHovered)
     {
-        if (_entry.Entry.EventCategory is null)
+        if (_entry.Entry.EventCategory is not null)
         {
+            DrawOutline(
+                spriteBatch,
+                slotPosition,
+                isHovered ? JournalUiTheme.EventEntryOutlineBright : JournalUiTheme.EventEntryOutline,
+                JournalUiTheme.EventEntryOutlineShadow);
             return;
         }
 
+        if (!_entry.Entry.IsSupportWeapon)
+        {
+            return;
+        }
+    }
+
+    private static void DrawOutline(SpriteBatch spriteBatch, Vector2 slotPosition, Color outerColor, Color shadowColor)
+    {
         var rectangle = new Rectangle((int)slotPosition.X, (int)slotPosition.Y, (int)WidthPixels, TextureAssets.InventoryBack9.Height());
         var texture = TextureAssets.MagicPixel.Value;
-        var outerColor = isHovered ? JournalUiTheme.EventEntryOutlineBright : JournalUiTheme.EventEntryOutline;
         var innerColor = Color.Lerp(outerColor, Color.White, 0.35f);
 
-        DrawRectangleOutline(spriteBatch, texture, rectangle, JournalUiTheme.EventEntryOutlineShadow);
+        DrawRectangleOutline(spriteBatch, texture, rectangle, shadowColor);
         rectangle.Inflate(-1, -1);
         DrawRectangleOutline(spriteBatch, texture, rectangle, outerColor);
         rectangle.Inflate(-1, -1);
         DrawRectangleOutline(spriteBatch, texture, rectangle, innerColor);
+    }
+
+    private void DrawSupportBadge(SpriteBatch spriteBatch, Vector2 slotPosition)
+    {
+        if (!_entry.Entry.IsSupportWeapon)
+        {
+            return;
+        }
+
+        var texture = Main.Assets.Request<Texture2D>(BestiarySupportIconTexturePath).Value;
+        var iconRectangle = new Rectangle(
+            (int)slotPosition.X + SupportIconPadding,
+            (int)slotPosition.Y + SupportIconPadding,
+            SupportIconSize,
+            SupportIconSize);
+
+        spriteBatch.Draw(texture, iconRectangle, Color.White);
     }
 
     private void DrawEventBadge(SpriteBatch spriteBatch, Vector2 slotPosition)
@@ -220,7 +273,7 @@ public sealed class JournalEntrySlot : UIElement
 
         var itemTexture = Main.Assets.Request<Texture2D>(BestiaryFilterIconTexturePath).Value;
         var sourceRectangle = GetBestiaryFilterSourceRectangle(itemTexture, _eventBadgeFrame.Value);
-        var maxIconSize = EventBadgeSize - EventBadgeInnerPadding * 2;
+        const int maxIconSize = EventBadgeSize - EventBadgeInnerPadding * 2;
         var scale = System.MathF.Min(maxIconSize / (float)sourceRectangle.Width, maxIconSize / (float)sourceRectangle.Height);
         var drawPosition = new Vector2(badgeRectangle.Center.X, badgeRectangle.Center.Y);
 

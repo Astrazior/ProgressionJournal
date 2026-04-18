@@ -23,6 +23,27 @@ public static partial class JournalRepository
         return new JournalEntry(key, category, classes, [itemGroup], evaluations, eventCategory);
     }
 
+    private static JournalEntry SupportEntry(
+        string key,
+        JournalItemCategory category,
+        CombatClass classes,
+        JournalItemGroup itemGroup,
+        params StageEvaluation[] evaluations)
+    {
+        return new JournalEntry(key, category, classes, [itemGroup], evaluations, isSupportWeapon: true);
+    }
+
+    private static JournalEntry EventSupportEntry(
+        string key,
+        JournalItemCategory category,
+        CombatClass classes,
+        JournalEventCategory eventCategory,
+        JournalItemGroup itemGroup,
+        params StageEvaluation[] evaluations)
+    {
+        return new JournalEntry(key, category, classes, [itemGroup], evaluations, eventCategory, true);
+    }
+
     private static JournalEntry Entry(
         string key,
         JournalItemCategory category,
@@ -42,6 +63,27 @@ public static partial class JournalRepository
         params StageEvaluation[] evaluations)
     {
         return new JournalEntry(key, category, classes, [itemId], evaluations, eventCategory);
+    }
+
+    private static JournalEntry SupportEntry(
+        string key,
+        JournalItemCategory category,
+        CombatClass classes,
+        int itemId,
+        params StageEvaluation[] evaluations)
+    {
+        return new JournalEntry(key, category, classes, [itemId], evaluations, isSupportWeapon: true);
+    }
+
+    private static JournalEntry EventSupportEntry(
+        string key,
+        JournalItemCategory category,
+        CombatClass classes,
+        JournalEventCategory eventCategory,
+        int itemId,
+        params StageEvaluation[] evaluations)
+    {
+        return new JournalEntry(key, category, classes, [itemId], evaluations, eventCategory, true);
     }
 
     private static JournalEntry Set(

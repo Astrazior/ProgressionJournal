@@ -15,14 +15,16 @@ public sealed class JournalEntry
 		CombatClass classes,
 		IEnumerable<int> itemIds,
 		IEnumerable<StageEvaluation> evaluations,
-		JournalEventCategory? eventCategory = null)
+		JournalEventCategory? eventCategory = null,
+		bool isSupportWeapon = false)
 		: this(
 			key,
 			category,
 			classes,
 			itemIds.Select(itemId => new JournalItemGroup([itemId])),
 			evaluations,
-			eventCategory)
+			eventCategory,
+			isSupportWeapon)
 	{
 	}
 
@@ -32,12 +34,14 @@ public sealed class JournalEntry
 		CombatClass classes,
 		IEnumerable<JournalItemGroup> itemGroups,
 		IEnumerable<StageEvaluation> evaluations,
-		JournalEventCategory? eventCategory = null)
+		JournalEventCategory? eventCategory = null,
+		bool isSupportWeapon = false)
 	{
 		Key = key;
 		Category = category;
 		Classes = classes;
 		EventCategory = eventCategory;
+		IsSupportWeapon = isSupportWeapon;
 		ItemGroups = itemGroups.ToArray();
 
 		if (ItemGroups.Count == 0) {
@@ -57,6 +61,8 @@ public sealed class JournalEntry
 	public CombatClass Classes { get; }
 
 	public JournalEventCategory? EventCategory { get; }
+
+	public bool IsSupportWeapon { get; }
 
 	public IReadOnlyList<JournalItemGroup> ItemGroups { get; }
 

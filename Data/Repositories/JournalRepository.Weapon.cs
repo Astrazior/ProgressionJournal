@@ -305,14 +305,14 @@ public static partial class JournalRepository
             Entry("impStaffPostWorldEvil", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.ImpStaff,
                             Eval(ProgressionStageId.PostWorldEvil, RecommendationTier.Recommended)),
 
-            Entry("houndiusShootiusPostSkeletron", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.HoundiusShootius,
+            SupportEntry("houndiusShootiusPostSkeletron", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.HoundiusShootius,
                             Eval(ProgressionStageId.PostDeerclops, RecommendationTier.Additional)),
 
-            EventEntry("earlySentryWandsPreBoss", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.OldOnesArmy,
+            EventSupportEntry("earlySentryWandsPreBoss", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.OldOnesArmy,
                             Group(ItemID.DD2LightningAuraT1Popper, ItemID.DD2FlameburstTowerT1Popper, ItemID.DD2BallistraTowerT1Popper, ItemID.DD2ExplosiveTrapT1Popper),
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
-            Entry("queenSpiderStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.QueenSpiderStaff,
+            SupportEntry("queenSpiderStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.QueenSpiderStaff,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
 
             Entry("spiderStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.SpiderStaff,
@@ -330,14 +330,14 @@ public static partial class JournalRepository
             Entry("opticStaffPostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.OpticStaff,
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended)),
 
-            EventEntry("dd2SentryTier2PostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.OldOnesArmy,
+            EventSupportEntry("dd2SentryTier2PostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.OldOnesArmy,
                             Group(ItemID.DD2LightningAuraT2Popper, ItemID.DD2FlameburstTowerT2Popper, ItemID.DD2BallistraTowerT2Popper, ItemID.DD2ExplosiveTrapT2Popper),
                             Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Recommended)),
 
             Entry("pygmyStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.PygmyStaff,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.NotRecommended)),
 
-            EventEntry("staffOfTheFrostHydraPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.FrostMoon, ItemID.StaffoftheFrostHydra,
+            EventSupportEntry("staffOfTheFrostHydraPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.FrostMoon, ItemID.StaffoftheFrostHydra,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
             Entry("desertTigerStaffPostPlantera", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.StormTigerStaff,
@@ -355,7 +355,7 @@ public static partial class JournalRepository
             EventEntry("xenoStaffPostGolem", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.MartianMadness, ItemID.XenoStaff,
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)),
 
-            EventEntry("dd2SentryTier3PostGolem", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.OldOnesArmy,
+            EventSupportEntry("dd2SentryTier3PostGolem", JournalItemCategory.Weapon, CombatClass.Summoner, JournalEventCategory.OldOnesArmy,
                             Group(ItemID.DD2LightningAuraT3Popper, ItemID.DD2FlameburstTowerT3Popper, ItemID.DD2BallistraTowerT3Popper, ItemID.DD2ExplosiveTrapT3Popper),
                             Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)),
 
@@ -363,10 +363,10 @@ public static partial class JournalRepository
                             Group(ItemID.StardustCellStaff, ItemID.StardustDragonStaff),
                             Eval(ProgressionStageId.PostCelestialPillars, RecommendationTier.Recommended)),
 
-            Entry("lunarPortalStaffPostMoonLord", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.MoonlordTurretStaff,
+            SupportEntry("lunarPortalStaffPostMoonLord", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.MoonlordTurretStaff,
                             Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Recommended)),
 
-            Entry("rainbowCrystalStaffPostMoonLord", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.RainbowCrystalStaff,
+            SupportEntry("rainbowCrystalStaffPostMoonLord", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.RainbowCrystalStaff,
                             Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Recommended)),
 
             Entry("terraprismaPostMoonLord", JournalItemCategory.Weapon, CombatClass.Summoner, ItemID.EmpressBlade,
@@ -432,7 +432,7 @@ public static partial class JournalRepository
             Entry("demonScythePreBoss", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.DemonScythe,
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
-            Entry("crimsonRodPreBoss", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.CrimsonRod,
+            SupportEntry("crimsonRodPreBoss", JournalItemCategory.Weapon, CombatClass.All, ItemID.CrimsonRod,
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Recommended)),
 
             Entry("beeGunPostWorldEvil", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.BeeGun,
@@ -489,10 +489,10 @@ public static partial class JournalRepository
             Entry("flowerOfFrostHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.FlowerofFrost,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
 
-            Entry("clingerStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.ClingerStaff,
+            SupportEntry("clingerStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.All, ItemID.ClingerStaff,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
 
-            Entry("nimbusRodHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.NimbusRod,
+            SupportEntry("nimbusRodHardmodeEntry", JournalItemCategory.Weapon, CombatClass.All, ItemID.NimbusRod,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
 
             Entry("unholyTridentPostOneMechBoss", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.UnholyTrident,
@@ -534,7 +534,7 @@ public static partial class JournalRepository
             Entry("rainbowGunPostPlantera", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.RainbowGun,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Additional)),
 
-            Entry("magnetSpherePostPlantera", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.MagnetSphere,
+            SupportEntry("magnetSpherePostPlantera", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.MagnetSphere,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
             Entry("staffOfEarthPostGolem", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.StaffofEarth,
