@@ -118,11 +118,13 @@ public static class JournalItemSourceResolver
                 static shop => shop.ActiveEntries.Select(entry => new { shop, entry }))
             .Where(pair => pair.entry.Item is not null && !pair.entry.Item.IsAir && pair.entry.Item.type == itemId)
             .Select(pair => new JournalShopSource(
+                pair.shop.NpcType,
                 GetNpcName(pair.shop.NpcType),
                 pair.shop.Name,
                 EnumerateConditions(pair.entry.Conditions).Select(GetConditionDescription)))
             .GroupBy(static shop => new
             {
+                shop.NpcType,
                 shop.NpcName,
                 shop.ShopName,
                 Conditions = string.Join('\n', shop.Conditions)

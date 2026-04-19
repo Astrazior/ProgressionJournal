@@ -241,8 +241,7 @@ public sealed class JournalUiState : UIState
 
         if (recipe.Conditions.Count > 0)
         {
-            top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemConditions", top + 4f);
-            top = AppendTextLines(panel, recipe.Conditions, top);
+            top = AppendConditionContent(panel, recipe.Conditions, top + 6f);
         }
 
         panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
@@ -254,9 +253,19 @@ public sealed class JournalUiState : UIState
         var panel = JournalUiElementFactory.CreatePanel();
         panel.Width.Set(0f, 1f);
 
+        var top = JournalUiMetrics.BlockVerticalPadding;
+        if (JournalAcquisitionVisuals.TryCreateSourceToken(drop, out var sourceToken))
+        {
+            top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemSource", top);
+            top = AppendTokenRows(panel, [sourceToken], top);
+        }
+        else
+        {
+            top = AppendTextLines(panel, [$"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSource")}: {drop.SourceName}"], top);
+        }
+
         var lines = new List<string>
         {
-            $"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSource")}: {drop.SourceName}",
             $"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemChance")}: {FormatDropRate(drop.DropRate)}"
         };
 
@@ -265,18 +274,11 @@ public sealed class JournalUiState : UIState
             lines.Add($"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemStack")}: {FormatStackRange(drop.StackMin, drop.StackMax)}");
         }
 
-        if (drop.SourceItemId is { } sourceItemId)
-        {
-            lines.Add($"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemFromItem")}: {Lang.GetItemNameValue(sourceItemId)}");
-        }
-
-        var top = JournalUiMetrics.BlockVerticalPadding;
-        top = AppendTextLines(panel, lines, top);
+        top = AppendTextLines(panel, lines, top + 8f);
 
         if (drop.Conditions.Count > 0)
         {
-            top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemConditions", top + 4f);
-            top = AppendTextLines(panel, drop.Conditions, top);
+            top = AppendConditionContent(panel, drop.Conditions, top + 6f);
         }
 
         panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
@@ -288,23 +290,24 @@ public sealed class JournalUiState : UIState
         var panel = JournalUiElementFactory.CreatePanel();
         panel.Width.Set(0f, 1f);
 
-        var lines = new List<string>
-        {
-            $"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSource")}: {shop.NpcName}"
-        };
+        var top = JournalUiMetrics.BlockVerticalPadding;
+        top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemSource", top);
+        top = AppendTokenRows(panel, [JournalAcquisitionVisuals.CreateSourceToken(shop)], top);
 
+        var lines = new List<string>();
         if (!shop.ShopName.Equals("Shop", StringComparison.OrdinalIgnoreCase))
         {
             lines.Add($"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemShopName")}: {shop.ShopName}");
         }
 
-        var top = JournalUiMetrics.BlockVerticalPadding;
-        top = AppendTextLines(panel, lines, top);
+        if (lines.Count > 0)
+        {
+            top = AppendTextLines(panel, lines, top + 8f);
+        }
 
         if (shop.Conditions.Count > 0)
         {
-            top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemConditions", top + 4f);
-            top = AppendTextLines(panel, shop.Conditions, top);
+            top = AppendConditionContent(panel, shop.Conditions, top + 6f);
         }
 
         panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
@@ -387,6 +390,86 @@ public sealed class JournalUiState : UIState
         }
 
         return top;
+    }
+
+    private float AppendConditionContent(UIElement parent, IReadOnlyList<string> conditions, float top)
+    {
+        var visuals = JournalAcquisitionVisuals.SplitConditions(conditions);
+
+        if (visuals.Tokens.Count > 0)
+        {
+            top = AppendTokenRows(parent, visuals.Tokens, top);
+        }
+
+        if (visuals.RemainingText.Count > 0)
+        {
+            top = AppendTextLines(parent, visuals.RemainingText, visuals.Tokens.Count > 0 ? top + 2f : top);
+        }
+
+        return top;
+    }
+
+    private float AppendTokenRows(UIElement parent, IReadOnlyList<JournalSourceTokenData> tokens, float top)
+    {
+        if (tokens.Count == 0)
+        {
+            return top;
+        }
+
+        var left = JournalUiMetrics.BlockHorizontalPadding;
+        var maxWidth = GetSourceTextMaxWidth();
+        var spacing = 6f;
+        var rows = new List<List<JournalSourceTokenData>>();
+        var currentRow = new List<JournalSourceTokenData>();
+        var currentRowWidth = 0f;
+
+        foreach (var tokenData in tokens)
+        {
+            var tokenWidth = JournalSourceToken.GetTokenSize(tokenData);
+            var projectedWidth = currentRow.Count == 0
+                ? tokenWidth
+                : currentRowWidth + spacing + tokenWidth;
+
+            if (currentRow.Count > 0 && projectedWidth > maxWidth)
+            {
+                rows.Add(currentRow);
+                currentRow = [];
+                currentRowWidth = 0f;
+            }
+
+            currentRow.Add(tokenData);
+            currentRowWidth = currentRow.Count == 1
+                ? tokenWidth
+                : currentRowWidth + spacing + tokenWidth;
+        }
+
+        if (currentRow.Count > 0)
+        {
+            rows.Add(currentRow);
+        }
+
+        var rowTop = top;
+        foreach (var row in rows)
+        {
+            var rowWidth = row.Sum(static token => JournalSourceToken.GetTokenSize(token)) + spacing * (row.Count - 1);
+            var currentX = left + MathF.Max(0f, (maxWidth - rowWidth) * 0.5f);
+            var rowHeight = 0f;
+
+            foreach (var tokenData in row)
+            {
+                var tokenSize = JournalSourceToken.GetTokenSize(tokenData);
+                var token = new JournalSourceToken(tokenData);
+                token.Left.Set(currentX, 0f);
+                token.Top.Set(rowTop, 0f);
+                parent.Append(token);
+                currentX += tokenSize + spacing;
+                rowHeight = MathF.Max(rowHeight, tokenSize);
+            }
+
+            rowTop += rowHeight + spacing;
+        }
+
+        return rowTop - spacing;
     }
 
     private static IEnumerable<Item[]> ChunkItems(IReadOnlyList<Item> items, int chunkSize)
