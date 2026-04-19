@@ -190,7 +190,7 @@ public sealed class JournalSystem : ModSystem
             return;
         }
 
-        ShowingCombatBuffsPage = direction > 0 ? !ShowingCombatBuffsPage : !ShowingCombatBuffsPage;
+        ShowingCombatBuffsPage = !ShowingCombatBuffsPage;
         RefreshView();
     }
 

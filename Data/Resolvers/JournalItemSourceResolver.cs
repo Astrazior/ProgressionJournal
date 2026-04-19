@@ -136,7 +136,7 @@ public static class JournalItemSourceResolver
 
     private static void AppendDropSources(
         ICollection<JournalDropSource> drops,
-        List<IItemDropRule> rules,
+        List<IItemDropRule>? rules,
         int targetItemId,
         string sourceName,
         int? sourceNpcType,

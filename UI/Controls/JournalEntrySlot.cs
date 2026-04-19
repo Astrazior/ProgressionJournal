@@ -235,12 +235,6 @@ public sealed class JournalEntrySlot : UIElement
                 slotPosition,
                 isHovered ? JournalUiTheme.EventEntryOutlineBright : JournalUiTheme.EventEntryOutline,
                 JournalUiTheme.EventEntryOutlineShadow);
-            return;
-        }
-
-        if (!_entry.Entry.IsSupportWeapon)
-        {
-            return;
         }
     }
 
@@ -294,7 +288,7 @@ public sealed class JournalEntrySlot : UIElement
         var itemTexture = Main.Assets.Request<Texture2D>(BestiaryFilterIconTexturePath).Value;
         var sourceRectangle = GetBestiaryFilterSourceRectangle(itemTexture, _eventBadgeFrame.Value);
         const int maxIconSize = EventBadgeSize - EventBadgeInnerPadding * 2;
-        var scale = System.MathF.Min(maxIconSize / (float)sourceRectangle.Width, maxIconSize / (float)sourceRectangle.Height);
+        var scale = MathF.Min(maxIconSize / (float)sourceRectangle.Width, maxIconSize / (float)sourceRectangle.Height);
         var drawPosition = new Vector2(badgeRectangle.Center.X, badgeRectangle.Center.Y);
 
         spriteBatch.Draw(

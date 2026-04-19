@@ -185,7 +185,7 @@ public sealed class JournalBuffSlot : UIElement
     private static void DrawBuffSlot(SpriteBatch spriteBatch, Vector2 slotPosition, int buffId)
     {
         var texture = TextureAssets.Buff[buffId].Value;
-        var scale = System.MathF.Min(BuffIconSize / texture.Width, BuffIconSize / texture.Height);
+        var scale = MathF.Min(BuffIconSize / texture.Width, BuffIconSize / texture.Height);
         var position = slotPosition + new Vector2(BuffIconSize * 0.5f, BuffIconSize * 0.5f);
 
         spriteBatch.Draw(

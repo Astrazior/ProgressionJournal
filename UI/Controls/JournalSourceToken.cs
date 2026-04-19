@@ -88,6 +88,8 @@ public sealed class JournalSourceToken : UIElement
             case JournalSourceTokenKind.Texture:
                 DrawTextureIcon(spriteBatch, inner);
                 break;
+            default:
+                throw new InvalidOperationException($"Unsupported {nameof(JournalSourceTokenKind)} value: {_data.Kind}");
         }
 
         if (!IsMouseHovering || string.IsNullOrWhiteSpace(_data.HoverText))
@@ -201,6 +203,10 @@ public sealed class JournalSourceToken : UIElement
 
     private static void DrawTexture(SpriteBatch spriteBatch, Texture2D texture, Rectangle sourceRectangle, Rectangle inner, bool anchorBottom)
     {
+        if (sourceRectangle.Width <= 0 || sourceRectangle.Height <= 0)
+        {
+            return;
+        }
         var scale = MathF.Min(inner.Width / (float)sourceRectangle.Width, inner.Height / (float)sourceRectangle.Height);
         var position = anchorBottom
             ? new Vector2(inner.Center.X, inner.Bottom)
