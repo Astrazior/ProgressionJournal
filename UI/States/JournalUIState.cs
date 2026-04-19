@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using ProgressionJournal.Systems;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
@@ -983,7 +982,7 @@ public sealed class JournalUiState : UIState
             _sourcePanel.Width.Set(sourceWidth, 0f);
             _entryList.Width.Set(-(JournalUiMetrics.EntryListWidthInset + sourceWidth + JournalUiMetrics.ContentColumnGap), 1f);
             _scrollbar.Left.Set(-(sourceWidth
-                + JournalUiMetrics.ContentColumnGap * 1.25f
+                + JournalUiMetrics.ContentColumnGap * 1.33f
                 + JournalUiMetrics.ScrollbarWidth * 0.5f), 1f);
             _sourcePanel.Left.Set(-sourceWidth, 1f);
 
