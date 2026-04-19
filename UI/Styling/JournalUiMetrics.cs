@@ -30,6 +30,11 @@ public static class JournalUiMetrics
     public const float ContentInset = 12f;
     public const float ContentTitleTop = 10f;
     public const float ContentTitleScale = 0.48f;
+    public const float ContentPageNavTop = 27f;
+    public const float ContentPageButtonSize = 24f;
+    public const float ContentPageButtonOffset = 56f;
+    public const float ContentPageLabelTop = 32f;
+    public const float ContentPageLabelScale = 0.38f;
     public const float ContentDescriptionLeft = 14f;
     public const float ContentDescriptionTop = 34f;
     public const float ContentDescriptionScale = 0.38f;
@@ -40,10 +45,9 @@ public static class JournalUiMetrics
     public const float ContentColumnGap = 14f;
     public const float AcquisitionPanelWidth = 304f;
     public const float AcquisitionPanelMinWidth = 196f;
-    public const float AcquisitionPanelHeaderTop = 10f;
-    public const float AcquisitionPanelPreviewTop = 36f;
-    public const float AcquisitionPanelNameTop = 94f;
-    public const float AcquisitionPanelContentTop = 118f;
+    public const float AcquisitionPanelPreviewTop = 20f;
+    public const float AcquisitionPanelNameTop = 78f;
+    public const float AcquisitionPanelContentTop = 102f;
     public const float AcquisitionPanelInset = 14f;
     public const float EntryListMinWidth = 336f;
     public const float AcquisitionPanelTitleScale = 0.44f;
@@ -106,4 +110,3 @@ public static class JournalUiMetrics
     public const float InventoryButtonHorizontalSpacing = 8f;
     public const float InventoryButtonVerticalSpacing = 6f;
 }
-

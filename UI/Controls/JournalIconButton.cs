@@ -12,14 +12,16 @@ public sealed class JournalIconButton : JournalHoverPanel
 
     private readonly Asset<Texture2D> _iconTexture;
     private readonly float _iconScale;
+    private readonly float _iconRotation;
     private string? _hoverText;
     private bool _showChrome;
     private JournalButtonStyle _chromeStyle = JournalUiTheme.GetDefaultTextButtonStyle();
 
-    public JournalIconButton(Asset<Texture2D> iconTexture, float iconScale, Action onClick)
+    public JournalIconButton(Asset<Texture2D> iconTexture, float iconScale, Action onClick, float iconRotation = 0f)
     {
         _iconTexture = iconTexture;
         _iconScale = iconScale;
+        _iconRotation = iconRotation;
         SetPadding(0f);
         SetStyle(JournalUiTheme.GetDefaultTextButtonStyle());
         OnLeftClick += (_, _) => onClick();
@@ -65,23 +67,25 @@ public sealed class JournalIconButton : JournalHoverPanel
             var glowScale = scale * 1.08f;
             var glowColor = Color.White * 0.2f;
             var center = dimensions.Center.ToVector2();
+            var origin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
 
-            spriteBatch.Draw(texture, center + new Vector2(-1f, 0f), null, glowColor, 0f, new Vector2(texture.Width * 0.5f, texture.Height * 0.5f), glowScale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(texture, center + new Vector2(1f, 0f), null, glowColor, 0f, new Vector2(texture.Width * 0.5f, texture.Height * 0.5f), glowScale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(texture, center + new Vector2(0f, -1f), null, glowColor, 0f, new Vector2(texture.Width * 0.5f, texture.Height * 0.5f), glowScale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(texture, center + new Vector2(0f, 1f), null, glowColor, 0f, new Vector2(texture.Width * 0.5f, texture.Height * 0.5f), glowScale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, center + new Vector2(-1f, 0f), null, glowColor, _iconRotation, origin, glowScale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, center + new Vector2(1f, 0f), null, glowColor, _iconRotation, origin, glowScale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, center + new Vector2(0f, -1f), null, glowColor, _iconRotation, origin, glowScale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, center + new Vector2(0f, 1f), null, glowColor, _iconRotation, origin, glowScale, SpriteEffects.None, 0f);
             scale *= 1.04f;
         }
 
         var drawColor = IsMouseHovering ? Color.White : Color.White * 0.95f;
+        var drawOrigin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
 
         spriteBatch.Draw(
             texture,
             dimensions.Center.ToVector2(),
             null,
             drawColor,
-            0f,
-            new Vector2(texture.Width * 0.5f, texture.Height * 0.5f),
+            _iconRotation,
+            drawOrigin,
             scale,
             SpriteEffects.None,
             0f);

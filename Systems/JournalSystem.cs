@@ -21,6 +21,8 @@ public sealed class JournalSystem : ModSystem
 
     public bool ShowingPresets { get; private set; }
 
+    public bool ShowingCombatBuffsPage { get; private set; }
+
     public bool SelectingClass { get; private set; } = true;
 
     public bool HasSelectedClass { get; private set; }
@@ -181,6 +183,17 @@ public sealed class JournalSystem : ModSystem
         RefreshView();
     }
 
+    public void CycleOverviewPage(int direction)
+    {
+        if (SelectingClass || ShowingPresets)
+        {
+            return;
+        }
+
+        ShowingCombatBuffsPage = direction > 0 ? !ShowingCombatBuffsPage : !ShowingCombatBuffsPage;
+        RefreshView();
+    }
+
     public void SelectItem(int itemId)
     {
         if (itemId <= ItemID.None)
@@ -210,7 +223,14 @@ public sealed class JournalSystem : ModSystem
             return;
         }
 
-        _journalState?.Refresh(SelectedClass, SelectedStage, SelectingClass, ShowingPresets, HasSelectedClass, SelectedItemId);
+        _journalState?.Refresh(
+            SelectedClass,
+            SelectedStage,
+            SelectingClass,
+            ShowingPresets,
+            ShowingCombatBuffsPage,
+            HasSelectedClass,
+            SelectedItemId);
     }
 
     private bool DrawJournalInterface()

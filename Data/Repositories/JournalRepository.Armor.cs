@@ -348,6 +348,10 @@ public static partial class JournalRepository
                             Group(ItemID.ShroomiteLeggings),
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
+            Set("pumpkinArmorPreBoss", JournalItemCategory.Armor, CombatClass.All,
+                            ItemID.PumpkinHelmet, ItemID.PumpkinBreastplate, ItemID.PumpkinLeggings,
+                            Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
+
             Set("vortexArmorPostMoonLord", JournalItemCategory.Armor, CombatClass.Ranged,
                             ItemID.VortexHelmet, ItemID.VortexBreastplate, ItemID.VortexLeggings,
                             Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Recommended)),

@@ -25,17 +25,17 @@ public static class JournalUiElementFactory
         return button;
     }
 
-    public static JournalIconButton CreateIconButton(string texturePath, float width, float height, Action onClick, float iconScale = 1f)
+    public static JournalIconButton CreateIconButton(string texturePath, float width, float height, Action onClick, float iconScale = 1f, float iconRotation = 0f)
     {
-        var button = new JournalIconButton(Main.Assets.Request<Texture2D>(texturePath), iconScale, onClick);
+        var button = new JournalIconButton(Main.Assets.Request<Texture2D>(texturePath), iconScale, onClick, iconRotation);
         button.Width.Set(width, 0f);
         button.Height.Set(height, 0f);
         return button;
     }
 
-    public static JournalIconButton CreateIconButton(Asset<Texture2D> texture, float width, float height, Action onClick, float iconScale = 1f)
+    public static JournalIconButton CreateIconButton(Asset<Texture2D> texture, float width, float height, Action onClick, float iconScale = 1f, float iconRotation = 0f)
     {
-        var button = new JournalIconButton(texture, iconScale, onClick);
+        var button = new JournalIconButton(texture, iconScale, onClick, iconRotation);
         button.Width.Set(width, 0f);
         button.Height.Set(height, 0f);
         return button;

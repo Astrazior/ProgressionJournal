@@ -83,7 +83,6 @@ public static partial class JournalRepository
             Buff("heartLantern", JournalBuffCategory.Passive, CombatClass.All, ItemID.HeartLantern, ProgressionStageId.PreBoss),
             Buff("gardenGnome", JournalBuffCategory.Passive, CombatClass.All, ItemID.GardenGnome, ProgressionStageId.PreBoss),
             Buff("campfire", JournalBuffCategory.Passive, CombatClass.All, ItemID.Campfire, ProgressionStageId.PreBoss),
-            Buff("enemyBanner", JournalBuffCategory.Passive, CombatClass.All, ItemID.ZombieBanner, ProgressionStageId.PreBoss),
             Buff("bastStatue", JournalBuffCategory.Passive, CombatClass.All, ItemID.CatBast, ProgressionStageId.PreBoss),
             ClassSpecificBuff("starInABottle", JournalBuffCategory.Passive, CombatClass.Magic, ItemID.StarinaBottle, ProgressionStageId.PreBoss),
 

@@ -59,6 +59,7 @@ public static class JournalContentBuilder
         var buffPanel = new JournalCombatBuffPanel(
             CombatBuffSectionOrder,
             "Mods.ProgressionJournal.UI.CombatBuffsTitle",
+            showTitle: false,
             autoHeight: true,
             onItemSelected: onItemSelected);
         buffPanel.Width.Set(0f, 1f);

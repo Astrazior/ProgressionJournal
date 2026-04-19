@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using ProgressionJournal.Systems;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
@@ -16,6 +17,8 @@ namespace ProgressionJournal.UI.States;
 public sealed class JournalUiState : UIState
 {
     private const string BestiarySearchCancelTexturePath = "Images/UI/SearchCancel";
+    private const string BestiaryBackButtonTexturePath = "Images/UI/Bestiary/Button_Back";
+    private const string BestiaryForwardButtonTexturePath = "Images/UI/Bestiary/Button_Forward";
 
     private readonly Dictionary<ProgressionStageId, JournalStageButton> _stageButtons = new();
     private UIPanel _root = null!;
@@ -35,7 +38,6 @@ public sealed class JournalUiState : UIState
     private UIList _entryList = null!;
     private UIScrollbar _scrollbar = null!;
     private UIPanel _sourcePanel = null!;
-    private UIText _sourcePanelTitle = null!;
     private JournalIconButton _sourceClearButton = null!;
     private UIElement _sourcePreviewContainer = null!;
     private UIText _sourceItemName = null!;
@@ -83,16 +85,17 @@ public sealed class JournalUiState : UIState
         ProgressionStageId stageId,
         bool selectingClass,
         bool showingPresets,
+        bool showingCombatBuffsPage,
         bool hasSelectedClass,
         int selectedItemId)
     {
         ApplyNavigationLayout(hasSelectedClass);
-        ApplyContentLayout(selectingClass, showingPresets);
         EnsureLayout();
+        ApplyContentLayout(selectingClass, showingPresets);
         UpdateStaticText();
         UpdateNavigationStyles(selectingClass, showingPresets);
         JournalStageButtonPresenter.Refresh(_stageButtons, stageId);
-        RefreshContent(combatClass, stageId, selectingClass, showingPresets, selectedItemId);
+        RefreshContent(combatClass, stageId, selectingClass, showingPresets, showingCombatBuffsPage, selectedItemId);
         Recalculate();
     }
 
@@ -106,6 +109,7 @@ public sealed class JournalUiState : UIState
         ProgressionStageId stageId,
         bool selectingClass,
         bool showingPresets,
+        bool showingCombatBuffsPage,
         int selectedItemId)
     {
         _entryList.Clear();
@@ -135,23 +139,29 @@ public sealed class JournalUiState : UIState
         var className = Language.GetTextValue($"Mods.ProgressionJournal.Classes.{combatClass}");
         var stageName = Language.GetTextValue(ProgressionStageCatalog.Get(stageId).LocalizationKey);
         SetContentHeader($"{className} • {stageName}");
+        _entryList.Add(CreateOverviewPageSwitcherBlock(showingCombatBuffsPage));
 
-        JournalContentBuilder.PopulateCombatBuffs(
-            _entryList,
-            JournalRepository.GetCombatBuffEntries(stageId, combatClass),
-            JournalSystem.SelectItem);
-        JournalContentBuilder.PopulateEntries(
-            _entryList,
-            stageId,
-            JournalRepository.GetEntries(stageId, combatClass),
-            JournalSystem.SelectItem);
+        if (showingCombatBuffsPage)
+        {
+            JournalContentBuilder.PopulateCombatBuffs(
+                _entryList,
+                JournalRepository.GetCombatBuffEntries(stageId, combatClass),
+                JournalSystem.SelectItem);
+        }
+        else
+        {
+            JournalContentBuilder.PopulateEntries(
+                _entryList,
+                stageId,
+                JournalRepository.GetEntries(stageId, combatClass),
+                JournalSystem.SelectItem);
+        }
 
         RefreshAcquisitionPanel(selectedItemId);
     }
 
     private void RefreshAcquisitionPanel(int selectedItemId)
     {
-        _sourcePanelTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemPanelTitle"));
         _sourceClearButton.SetStyle(JournalUiTheme.GetHeaderButtonStyle(danger: true));
         _sourceClearButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemClearTooltip"));
 
@@ -575,6 +585,54 @@ public sealed class JournalUiState : UIState
         _contentDescription.SetText(string.Empty);
     }
 
+    private UIElement CreateOverviewPageSwitcherBlock(bool showingCombatBuffsPage)
+    {
+        var panel = JournalUiElementFactory.CreatePanel();
+        panel.Width.Set(0f, 1f);
+        panel.Height.Set(40f, 0f);
+
+        var currentPageLabel = Language.GetTextValue(
+            showingCombatBuffsPage
+                ? "Mods.ProgressionJournal.UI.CombatBuffsTitle"
+                : "Mods.ProgressionJournal.UI.OverviewTab");
+        var targetPageLabel = Language.GetTextValue(
+            showingCombatBuffsPage
+                ? "Mods.ProgressionJournal.UI.OverviewTab"
+                : "Mods.ProgressionJournal.UI.CombatBuffsTitle");
+
+        var previousButton = JournalUiElementFactory.CreateIconButton(
+            BestiaryBackButtonTexturePath,
+            22f,
+            22f,
+            () => JournalSystem.CycleOverviewPage(-1),
+            0.95f);
+        previousButton.Left.Set(JournalUiMetrics.BlockHorizontalPadding + 6f, 0f);
+        previousButton.Top.Set(9f, 0f);
+        previousButton.SetHoverText(targetPageLabel);
+        panel.Append(previousButton);
+
+        var nextButton = JournalUiElementFactory.CreateIconButton(
+            BestiaryForwardButtonTexturePath,
+            22f,
+            22f,
+            () => JournalSystem.CycleOverviewPage(1),
+            0.95f);
+        nextButton.Left.Set(-(JournalUiMetrics.BlockHorizontalPadding + 28f), 1f);
+        nextButton.Top.Set(9f, 0f);
+        nextButton.SetHoverText(targetPageLabel);
+        panel.Append(nextButton);
+
+        var label = new UIText(currentPageLabel, JournalUiMetrics.ContentPageLabelScale, true)
+        {
+            HAlign = 0.5f,
+            VAlign = 0.5f,
+            TextColor = JournalUiTheme.ContentDescriptionText
+        };
+        panel.Append(label);
+
+        return panel;
+    }
+
     private void EnsureLayout()
     {
         if (_layoutInitialized && _layoutScreenWidth == Main.screenWidth && _layoutScreenHeight == Main.screenHeight)
@@ -708,15 +766,6 @@ public sealed class JournalUiState : UIState
         _sourcePanel.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
         _sourcePanel.Width.Set(JournalUiMetrics.AcquisitionPanelWidth, 0f);
         _sourcePanel.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
-
-        _sourcePanelTitle = new UIText(string.Empty, JournalUiMetrics.AcquisitionPanelTitleScale, true)
-        {
-            HAlign = 0.5f,
-            TextColor = JournalUiTheme.SectionHeaderText
-        };
-        _sourcePanelTitle.Width.Set(-52f, 1f);
-        _sourcePanelTitle.Top.Set(JournalUiMetrics.AcquisitionPanelHeaderTop, 0f);
-        _sourcePanel.Append(_sourcePanelTitle);
 
         _sourceClearButton = JournalUiElementFactory.CreateIconButton(
             BestiarySearchCancelTexturePath,
@@ -934,8 +983,7 @@ public sealed class JournalUiState : UIState
             _sourcePanel.Width.Set(sourceWidth, 0f);
             _entryList.Width.Set(-(JournalUiMetrics.EntryListWidthInset + sourceWidth + JournalUiMetrics.ContentColumnGap), 1f);
             _scrollbar.Left.Set(-(sourceWidth
-                + JournalUiMetrics.ContentColumnGap
-                + JournalUiMetrics.EntryListWidthInset * 0.5f
+                + JournalUiMetrics.ContentColumnGap * 1.25f
                 + JournalUiMetrics.ScrollbarWidth * 0.5f), 1f);
             _sourcePanel.Left.Set(-sourceWidth, 1f);
 
