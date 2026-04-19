@@ -193,9 +193,9 @@ public sealed class JournalUiState : UIState
         if (info.Drops.Count > 0)
         {
             AddSourceSectionHeader("Mods.ProgressionJournal.UI.SelectedItemDrops");
-            foreach (var drop in info.Drops)
+            foreach (var dropCard in CreateDropSourceCards(info.Drops))
             {
-                _sourceList.Add(CreateDropSourceCard(drop));
+                _sourceList.Add(dropCard);
             }
         }
 
@@ -258,6 +258,15 @@ public sealed class JournalUiState : UIState
         {
             top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemSource", top);
             top = AppendTokenRows(panel, [sourceToken], top);
+
+            if (drop.SourceNpcType is { } sourceNpcType)
+            {
+                var npcLocationTokens = JournalAcquisitionVisuals.GetNpcLocationTokens(sourceNpcType);
+                if (npcLocationTokens.Count > 0)
+                {
+                    top = AppendTokenRows(panel, npcLocationTokens, top + 6f);
+                }
+            }
         }
         else
         {
@@ -279,6 +288,46 @@ public sealed class JournalUiState : UIState
         if (drop.Conditions.Count > 0)
         {
             top = AppendConditionContent(panel, drop.Conditions, top + 6f);
+        }
+
+        panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
+        return panel;
+    }
+
+    private UIElement CreateGroupedNpcDropSourceCard(
+        IReadOnlyList<JournalDropSource> drops,
+        IReadOnlyList<JournalSourceTokenData> commonLocationTokens)
+    {
+        var panel = JournalUiElementFactory.CreatePanel();
+        panel.Width.Set(0f, 1f);
+
+        var representativeDrop = drops[0];
+        var top = JournalUiMetrics.BlockVerticalPadding;
+        top = AppendTextLines(
+            panel,
+            [$"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSource")}: {Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemFromAnyEnemy")}"],
+            top);
+
+        if (commonLocationTokens.Count > 0)
+        {
+            top = AppendTokenRows(panel, commonLocationTokens, top + 6f);
+        }
+
+        var lines = new List<string>
+        {
+            $"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemChance")}: {FormatDropRate(representativeDrop.DropRate)}"
+        };
+
+        if (representativeDrop.StackMax > 1 || representativeDrop.StackMin > 1)
+        {
+            lines.Add($"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemStack")}: {FormatStackRange(representativeDrop.StackMin, representativeDrop.StackMax)}");
+        }
+
+        top = AppendTextLines(panel, lines, top + 8f);
+
+        if (representativeDrop.Conditions.Count > 0)
+        {
+            top = AppendConditionContent(panel, representativeDrop.Conditions, top + 6f);
         }
 
         panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
@@ -316,20 +365,19 @@ public sealed class JournalUiState : UIState
 
     private static UIElement CreateSourceNotice(string text)
     {
-        const float noticeScale = 0.44f;
-        const float noticeLineHeight = 18f;
+        const float noticeLineHeight = 24f;
 
         var container = new UIElement();
         container.Width.Set(0f, 1f);
         var wrappedLines = JournalTextUtilities.WrapToPixelWidth(
             text,
             JournalUiMetrics.AcquisitionPanelMinWidth - JournalUiMetrics.AcquisitionPanelInset * 2f,
-            noticeScale);
+            JournalUiMetrics.AcquisitionPanelNoticeScale);
         var top = 10f;
 
         foreach (var line in wrappedLines)
         {
-            var notice = new UIText(line, noticeScale)
+            var notice = new UIText(line, JournalUiMetrics.AcquisitionPanelNoticeScale)
             {
                 TextColor = JournalUiTheme.ContentDescriptionText
             };
@@ -390,6 +438,37 @@ public sealed class JournalUiState : UIState
         }
 
         return top;
+    }
+
+    private IEnumerable<UIElement> CreateDropSourceCards(IReadOnlyList<JournalDropSource> drops)
+    {
+        foreach (var group in drops.GroupBy(drop => new
+                 {
+                     IsNpcSource = drop.SourceNpcType.HasValue,
+                     drop.SourceItemId,
+                     DropRate = NormalizeDropRateForGrouping(drop.DropRate),
+                     drop.StackMin,
+                     drop.StackMax,
+                     Conditions = CreateConditionGroupSignature(drop.Conditions)
+                 }))
+        {
+            var groupedDrops = group.ToArray();
+
+            if (group.Key.IsNpcSource && groupedDrops.Length > 1)
+            {
+                var commonLocationTokens = JournalAcquisitionVisuals.GetCommonNpcLocationTokens(
+                    groupedDrops
+                        .Select(static drop => drop.SourceNpcType)
+                        .OfType<int>());
+                yield return CreateGroupedNpcDropSourceCard(groupedDrops, commonLocationTokens);
+                continue;
+            }
+
+            foreach (var drop in groupedDrops)
+            {
+                yield return CreateDropSourceCard(drop);
+            }
+        }
     }
 
     private float AppendConditionContent(UIElement parent, IReadOnlyList<string> conditions, float top)
@@ -470,6 +549,21 @@ public sealed class JournalUiState : UIState
         }
 
         return rowTop - spacing;
+    }
+
+    private static string CreateConditionGroupSignature(IReadOnlyList<string> conditions)
+    {
+        return string.Join(
+            '\n',
+            conditions
+                .Where(static condition => !string.IsNullOrWhiteSpace(condition))
+                .Select(static condition => string.Join(' ', condition.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries)))
+                .OrderBy(static condition => condition, StringComparer.CurrentCultureIgnoreCase));
+    }
+
+    private static float NormalizeDropRateForGrouping(float dropRate)
+    {
+        return MathF.Round(dropRate, 6, MidpointRounding.AwayFromZero);
     }
 
     private static IEnumerable<Item[]> ChunkItems(IReadOnlyList<Item> items, int chunkSize)
