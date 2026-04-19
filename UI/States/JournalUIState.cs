@@ -313,28 +313,31 @@ public sealed class JournalUiState : UIState
 
     private static UIElement CreateSourceNotice(string text)
     {
+        const float noticeScale = 0.44f;
+        const float noticeLineHeight = 18f;
+
         var container = new UIElement();
         container.Width.Set(0f, 1f);
         var wrappedLines = JournalTextUtilities.WrapToPixelWidth(
             text,
             JournalUiMetrics.AcquisitionPanelMinWidth - JournalUiMetrics.AcquisitionPanelInset * 2f,
-            JournalUiMetrics.AcquisitionPanelNoticeScale);
-        var top = 12f;
+            noticeScale);
+        var top = 10f;
 
         foreach (var line in wrappedLines)
         {
-            var notice = new UIText(line, JournalUiMetrics.AcquisitionPanelNoticeScale, true)
+            var notice = new UIText(line, noticeScale)
             {
-                HAlign = 0.5f,
                 TextColor = JournalUiTheme.ContentDescriptionText
             };
+            notice.Left.Set(JournalUiMetrics.AcquisitionPanelInset, 0f);
             notice.Top.Set(top, 0f);
-            notice.Width.Set(-24f, 1f);
+            notice.Width.Set(-(JournalUiMetrics.AcquisitionPanelInset * 2f), 1f);
             container.Append(notice);
-            top += JournalUiMetrics.AcquisitionPanelTextLineHeight + 1f;
+            top += noticeLineHeight;
         }
 
-        container.Height.Set(top + 10f, 0f);
+        container.Height.Set(top + 8f, 0f);
         return container;
     }
 

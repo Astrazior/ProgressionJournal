@@ -146,11 +146,12 @@ public static class JournalItemSourceResolver
         }
 
         var reportedDrops = new List<DropRateInfo>();
+        var ratesInfo = new DropRateInfoChainFeed(1f);
         foreach (var rule in rules)
         {
             try
             {
-                rule.ReportDroprates(reportedDrops, default);
+                rule.ReportDroprates(reportedDrops, ratesInfo);
             }
             catch
             {
