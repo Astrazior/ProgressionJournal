@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -27,6 +28,8 @@ public sealed class JournalSystem : ModSystem
     public CombatClass SelectedClass { get; private set; } = CombatClass.Melee;
 
     public ProgressionStageId SelectedStage { get; private set; } = ProgressionStageCatalog.GetCurrentStageId();
+
+    public int SelectedItemId { get; private set; }
 
     public override void Load()
     {
@@ -178,6 +181,28 @@ public sealed class JournalSystem : ModSystem
         RefreshView();
     }
 
+    public void SelectItem(int itemId)
+    {
+        if (itemId <= ItemID.None)
+        {
+            return;
+        }
+
+        SelectedItemId = itemId;
+        RefreshView();
+    }
+
+    public void ClearSelectedItem()
+    {
+        if (SelectedItemId == ItemID.None)
+        {
+            return;
+        }
+
+        SelectedItemId = ItemID.None;
+        RefreshView();
+    }
+
     public void RefreshView()
     {
         if (!Visible)
@@ -185,7 +210,7 @@ public sealed class JournalSystem : ModSystem
             return;
         }
 
-        _journalState?.Refresh(SelectedClass, SelectedStage, SelectingClass, ShowingPresets, HasSelectedClass);
+        _journalState?.Refresh(SelectedClass, SelectedStage, SelectingClass, ShowingPresets, HasSelectedClass, SelectedItemId);
     }
 
     private bool DrawJournalInterface()

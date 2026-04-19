@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,10 +21,12 @@ public sealed class JournalBuffSlot : UIElement
     private readonly JournalCombatBuffEntry _entry;
     private readonly Item[][] _itemGroups;
     private readonly string? _classSpecificLabel;
+    private readonly Action<int>? _onItemSelected;
 
-    public JournalBuffSlot(JournalCombatBuffEntry entry)
+    public JournalBuffSlot(JournalCombatBuffEntry entry, Action<int>? onItemSelected = null)
     {
         _entry = entry;
+        _onItemSelected = onItemSelected;
         _itemGroups = entry.ItemGroups
             .Select(group => group.ItemIds.Select(JournalItemUtilities.CreateItem).ToArray())
             .ToArray();
@@ -35,6 +38,7 @@ public sealed class JournalBuffSlot : UIElement
 
         Width.Set(GetVisualWidth(entry), 0f);
         Height.Set(TextureAssets.InventoryBack9.Height(), 0f);
+        OnLeftClick += HandleLeftClick;
     }
 
     private static float WidthPixels => TextureAssets.InventoryBack9.Width();
@@ -146,6 +150,22 @@ public sealed class JournalBuffSlot : UIElement
 
         var cycleIndex = (int)(Main.GameUpdateCount / AlternativeCycleTicks) % groupItems.Length;
         return groupItems[cycleIndex].Clone();
+    }
+
+    private void HandleLeftClick(UIMouseEvent evt, UIElement listeningElement)
+    {
+        if (_onItemSelected is null)
+        {
+            return;
+        }
+
+        var hoveredIndex = GetHoveredItemIndex(GetInnerDimensions().ToRectangle());
+        if (hoveredIndex < 0)
+        {
+            return;
+        }
+
+        _onItemSelected(GetDisplayedItem(hoveredIndex).type);
     }
 
     private void DrawSlot(SpriteBatch spriteBatch, int groupIndex, Vector2 slotPosition)

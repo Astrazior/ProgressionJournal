@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent.UI.Elements;
@@ -13,19 +14,22 @@ public sealed class JournalCombatBuffPanel : UIPanel
     private readonly bool _showTitle;
     private readonly bool _autoHeight;
     private readonly bool _useConsumableOverlayLayout;
+    private readonly Action<int>? _onItemSelected;
 
     public JournalCombatBuffPanel(
         IReadOnlyList<JournalBuffCategory> sectionOrder,
         string titleLocalizationKey,
         bool showTitle = true,
         bool autoHeight = false,
-        bool useConsumableOverlayLayout = false)
+        bool useConsumableOverlayLayout = false,
+        Action<int>? onItemSelected = null)
     {
         _sectionOrder = sectionOrder;
         _titleLocalizationKey = titleLocalizationKey;
         _showTitle = showTitle;
         _autoHeight = autoHeight;
         _useConsumableOverlayLayout = useConsumableOverlayLayout;
+        _onItemSelected = onItemSelected;
         SetPadding(0f);
         BackgroundColor = JournalUiTheme.PresetPanelBackground;
         BorderColor = JournalUiTheme.PresetPanelBorder;
@@ -280,7 +284,7 @@ public sealed class JournalCombatBuffPanel : UIPanel
         }
     }
 
-    private static UIElement CreateSlotRow(IReadOnlyList<JournalCombatBuffEntry> entries)
+    private UIElement CreateSlotRow(IReadOnlyList<JournalCombatBuffEntry> entries)
     {
         var row = new UIElement();
         row.Width.Set(GetRowWidth(entries), 0f);
@@ -289,7 +293,7 @@ public sealed class JournalCombatBuffPanel : UIPanel
         var left = 0f;
         foreach (var entry in entries)
         {
-            var slot = new JournalBuffSlot(entry);
+            var slot = new JournalBuffSlot(entry, _onItemSelected);
             slot.Left.Set(left, 0f);
             row.Append(slot);
             left += JournalBuffSlot.GetVisualWidth(entry) + JournalUiMetrics.EntrySpacing;

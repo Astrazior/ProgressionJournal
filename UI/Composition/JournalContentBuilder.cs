@@ -9,6 +9,17 @@ namespace ProgressionJournal.UI.Composition;
 
 public static class JournalContentBuilder
 {
+    private static readonly JournalBuffCategory[] CombatBuffSectionOrder =
+    [
+        JournalBuffCategory.Station,
+        JournalBuffCategory.Passive,
+        JournalBuffCategory.Basic,
+        JournalBuffCategory.Potion,
+        JournalBuffCategory.Eternal,
+        JournalBuffCategory.Food,
+        JournalBuffCategory.Flask
+    ];
+
     private static readonly RecommendationTier[] TierOrder =
     [
         RecommendationTier.Recommended,
@@ -17,7 +28,7 @@ public static class JournalContentBuilder
         RecommendationTier.Useless
     ];
 
-    public static void PopulateEntries(UIList entryList, ProgressionStageId stageId, IReadOnlyList<JournalStageEntry> entries)
+    public static void PopulateEntries(UIList entryList, ProgressionStageId stageId, IReadOnlyList<JournalStageEntry> entries, Action<int>? onItemSelected = null)
     {
         if (entries.Count == 0)
         {
@@ -34,8 +45,25 @@ public static class JournalContentBuilder
             }
 
             var palette = JournalUiTheme.GetRecommendationBlockStyle(tier);
-            entryList.Add(CreateRecommendationBlock(GetTierTitle(tier), tierEntries, palette));
+            entryList.Add(CreateRecommendationBlock(GetTierTitle(tier), tierEntries, palette, onItemSelected));
         }
+    }
+
+    public static void PopulateCombatBuffs(UIList entryList, IReadOnlyList<JournalCombatBuffEntry> combatBuffEntries, Action<int>? onItemSelected = null)
+    {
+        if (combatBuffEntries.Count == 0)
+        {
+            return;
+        }
+
+        var buffPanel = new JournalCombatBuffPanel(
+            CombatBuffSectionOrder,
+            "Mods.ProgressionJournal.UI.CombatBuffsTitle",
+            autoHeight: true,
+            onItemSelected: onItemSelected);
+        buffPanel.Width.Set(0f, 1f);
+        buffPanel.SetEntries(combatBuffEntries);
+        entryList.Add(buffPanel);
     }
 
     public static void PopulatePresets(UIList entryList, IReadOnlyList<JournalPreset> presets)
@@ -101,7 +129,8 @@ public static class JournalContentBuilder
     private static UIPanel CreateRecommendationBlock(
         string title,
         IReadOnlyList<JournalStageEntry> entries,
-        JournalPanelStyle palette)
+        JournalPanelStyle palette,
+        Action<int>? onItemSelected)
     {
         var block = JournalUiElementFactory.CreatePanel();
         block.Width.Set(0f, 1f);
@@ -139,7 +168,7 @@ public static class JournalContentBuilder
 
             foreach (var rowEntries in ChunkEntries(categoryEntries, JournalUiMetrics.EntrySlotsPerRow))
             {
-                var row = CreateSlotRow(rowEntries);
+                var row = CreateSlotRow(rowEntries, onItemSelected);
                 row.Left.Set(JournalUiMetrics.BlockHorizontalPadding + JournalUiMetrics.CategoryContentIndent, 0f);
                 row.Top.Set(top, 0f);
                 block.Append(row);
@@ -206,7 +235,7 @@ public static class JournalContentBuilder
         return header;
     }
 
-    private static UIElement CreateSlotRow(JournalStageEntry[] entries)
+    private static UIElement CreateSlotRow(JournalStageEntry[] entries, Action<int>? onItemSelected)
     {
         var row = new UIElement();
         row.Width.Set(GetRowWidth(entries), 0f);
@@ -215,7 +244,7 @@ public static class JournalContentBuilder
         var left = 0f;
         foreach (var entry in entries)
         {
-            var slot = new JournalEntrySlot(entry);
+            var slot = new JournalEntrySlot(entry, onItemSelected);
             slot.Left.Set(left, 0f);
             row.Append(slot);
             left += JournalEntrySlot.GetVisualWidth(entry.Entry.ItemGroups.Count) + JournalUiMetrics.EntrySpacing;

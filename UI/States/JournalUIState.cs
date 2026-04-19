@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using ProgressionJournal.Systems;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
@@ -16,19 +16,6 @@ namespace ProgressionJournal.UI.States;
 public sealed class JournalUiState : UIState
 {
     private const string BestiarySearchCancelTexturePath = "Images/UI/SearchCancel";
-    private static readonly JournalBuffCategory[] PersistentBuffCategories =
-    [
-        JournalBuffCategory.Station,
-        JournalBuffCategory.Passive
-    ];
-    private static readonly JournalBuffCategory[] ConsumableBuffCategories =
-    [
-        JournalBuffCategory.Basic,
-        JournalBuffCategory.Potion,
-        JournalBuffCategory.Eternal,
-        JournalBuffCategory.Food,
-        JournalBuffCategory.Flask
-    ];
 
     private readonly Dictionary<ProgressionStageId, JournalStageButton> _stageButtons = new();
     private UIPanel _root = null!;
@@ -47,15 +34,13 @@ public sealed class JournalUiState : UIState
     private UIElement _classSelectionContainer = null!;
     private UIList _entryList = null!;
     private UIScrollbar _scrollbar = null!;
-    private JournalIconTextButton _combatBuffsButton = null!;
-    private JournalCombatBuffPanel _combatBuffPanel = null!;
-    private UIElement _combatBuffOverlay = null!;
-    private UIPanel _combatBuffOverlayPanel = null!;
-    private UIText _combatBuffOverlayTitle = null!;
-    private JournalIconButton _combatBuffOverlayCloseButton = null!;
-    private JournalCombatBuffPanel _combatBuffOverlayContent = null!;
-    private bool _showingAllCombatBuffs;
-    private bool _hasAvailableCombatBuffs;
+    private UIPanel _sourcePanel = null!;
+    private UIText _sourcePanelTitle = null!;
+    private JournalIconButton _sourceClearButton = null!;
+    private UIElement _sourcePreviewContainer = null!;
+    private UIText _sourceItemName = null!;
+    private UIList _sourceList = null!;
+    private UIScrollbar _sourceScrollbar = null!;
     private bool _layoutInitialized;
     private int _layoutScreenWidth;
     private int _layoutScreenHeight;
@@ -85,17 +70,21 @@ public sealed class JournalUiState : UIState
             Main.blockMouse = true;
         }
 
-        if (!Main.keyState.IsKeyDown(Keys.Escape) || !Main.oldKeyState.IsKeyUp(Keys.Escape)) return;
-        if (_showingAllCombatBuffs)
+        if (!Main.keyState.IsKeyDown(Keys.Escape) || !Main.oldKeyState.IsKeyUp(Keys.Escape))
         {
-            HideCombatBuffOverlay();
             return;
         }
 
         JournalSystem.HideView();
     }
 
-    public void Refresh(CombatClass combatClass, ProgressionStageId stageId, bool selectingClass, bool showingPresets, bool hasSelectedClass)
+    public void Refresh(
+        CombatClass combatClass,
+        ProgressionStageId stageId,
+        bool selectingClass,
+        bool showingPresets,
+        bool hasSelectedClass,
+        int selectedItemId)
     {
         ApplyNavigationLayout(hasSelectedClass);
         ApplyContentLayout(selectingClass, showingPresets);
@@ -103,7 +92,7 @@ public sealed class JournalUiState : UIState
         UpdateStaticText();
         UpdateNavigationStyles(selectingClass, showingPresets);
         JournalStageButtonPresenter.Refresh(_stageButtons, stageId);
-        RefreshContent(combatClass, stageId, selectingClass, showingPresets);
+        RefreshContent(combatClass, stageId, selectingClass, showingPresets, selectedItemId);
         Recalculate();
     }
 
@@ -112,49 +101,345 @@ public sealed class JournalUiState : UIState
         _layoutInitialized = false;
     }
 
-    private void RefreshContent(CombatClass combatClass, ProgressionStageId stageId, bool selectingClass, bool showingPresets)
+    private void RefreshContent(
+        CombatClass combatClass,
+        ProgressionStageId stageId,
+        bool selectingClass,
+        bool showingPresets,
+        int selectedItemId)
     {
         _entryList.Clear();
         _classSelectionContainer.RemoveAllChildren();
+        _sourceList.Clear();
+        _sourcePreviewContainer.RemoveAllChildren();
         SwitchContentMode(selectingClass);
-        _hasAvailableCombatBuffs = false;
-        _combatBuffPanel.SetEntries([]);
-        _combatBuffOverlayContent.SetEntries([]);
 
         if (selectingClass)
         {
-            HideCombatBuffOverlay();
             SetContentHeader(Language.GetTextValue("Mods.ProgressionJournal.UI.ClassPageTitle"));
             PopulateClassSelection(combatClass);
+            ClearAcquisitionPanel();
             return;
         }
 
         if (showingPresets)
         {
-            HideCombatBuffOverlay();
             SetContentHeader(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsHeadline"));
             JournalContentBuilder.PopulateDevelopmentNotice(
                 _entryList,
                 Language.GetTextValue("Mods.ProgressionJournal.UI.InDevelopment"));
+            ClearAcquisitionPanel();
             return;
         }
 
         var className = Language.GetTextValue($"Mods.ProgressionJournal.Classes.{combatClass}");
         var stageName = Language.GetTextValue(ProgressionStageCatalog.Get(stageId).LocalizationKey);
         SetContentHeader($"{className} • {stageName}");
-        JournalContentBuilder.PopulateEntries(_entryList, stageId, JournalRepository.GetEntries(stageId, combatClass));
-        var persistentCombatBuffs = JournalRepository.GetPersistentCombatBuffEntries(stageId, combatClass);
-        var consumableCombatBuffs = JournalRepository.GetConsumableCombatBuffEntries(stageId, combatClass);
-        _hasAvailableCombatBuffs = consumableCombatBuffs.Count > 0;
-        _combatBuffPanel.SetEntries(persistentCombatBuffs);
-        PopulateCombatBuffOverlay(consumableCombatBuffs);
 
-        if (!_hasAvailableCombatBuffs)
+        JournalContentBuilder.PopulateCombatBuffs(
+            _entryList,
+            JournalRepository.GetCombatBuffEntries(stageId, combatClass),
+            JournalSystem.SelectItem);
+        JournalContentBuilder.PopulateEntries(
+            _entryList,
+            stageId,
+            JournalRepository.GetEntries(stageId, combatClass),
+            JournalSystem.SelectItem);
+
+        RefreshAcquisitionPanel(selectedItemId);
+    }
+
+    private void RefreshAcquisitionPanel(int selectedItemId)
+    {
+        _sourcePanelTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemPanelTitle"));
+        _sourceClearButton.SetStyle(JournalUiTheme.GetHeaderButtonStyle(danger: true));
+        _sourceClearButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemClearTooltip"));
+
+        if (selectedItemId <= ItemID.None)
         {
-            HideCombatBuffOverlay();
+            ClearAcquisitionPanel();
+            return;
         }
 
-        ApplyContentLayout(selectingClass, showingPresets);
+        var selectedItem = JournalItemUtilities.CreateItem(selectedItemId);
+        var previewStrip = new JournalItemStrip([selectedItem])
+        {
+            HAlign = 0.5f
+        };
+        previewStrip.Top.Set(0f, 0f);
+        _sourcePreviewContainer.Append(previewStrip);
+        var itemNameMaxWidth = MathF.Max(80f, _sourcePanel.GetDimensions().Width - JournalUiMetrics.AcquisitionPanelInset * 2f - 18f);
+        _sourceItemName.SetText(JournalTextUtilities.TrimToPixelWidth(
+            Lang.GetItemNameValue(selectedItemId),
+            itemNameMaxWidth,
+            JournalUiMetrics.AcquisitionPanelItemNameScale));
+
+        var info = JournalItemSourceResolver.GetInfo(selectedItemId);
+        if (!info.HasAnySources)
+        {
+            _sourceList.Add(CreateSourceNotice(Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemNoData")));
+            return;
+        }
+
+        if (info.Recipes.Count > 0)
+        {
+            AddSourceSectionHeader("Mods.ProgressionJournal.UI.SelectedItemCrafts");
+            foreach (var recipe in info.Recipes)
+            {
+                _sourceList.Add(CreateRecipeSourceCard(recipe));
+            }
+        }
+
+        if (info.Drops.Count > 0)
+        {
+            AddSourceSectionHeader("Mods.ProgressionJournal.UI.SelectedItemDrops");
+            foreach (var drop in info.Drops)
+            {
+                _sourceList.Add(CreateDropSourceCard(drop));
+            }
+        }
+
+        if (info.Shops.Count > 0)
+        {
+            AddSourceSectionHeader("Mods.ProgressionJournal.UI.SelectedItemShops");
+            foreach (var shop in info.Shops)
+            {
+                _sourceList.Add(CreateShopSourceCard(shop));
+            }
+        }
+    }
+
+    private void ClearAcquisitionPanel()
+    {
+        _sourcePreviewContainer.RemoveAllChildren();
+        _sourceItemName.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemEmpty"));
+        _sourceList.Clear();
+        _sourceList.Add(CreateSourceNotice(Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSelectPrompt")));
+    }
+
+    private void AddSourceSectionHeader(string localizationKey)
+    {
+        var header = JournalUiElementFactory.CreateSectionHeader(Language.GetTextValue(localizationKey));
+        header.Width.Set(0f, 1f);
+        _sourceList.Add(header);
+    }
+
+    private UIElement CreateRecipeSourceCard(JournalRecipeSource recipe)
+    {
+        var panel = JournalUiElementFactory.CreatePanel();
+        panel.Width.Set(0f, 1f);
+
+        var top = JournalUiMetrics.BlockVerticalPadding;
+        top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemIngredients", top);
+        top = AppendItemRows(panel, recipe.Ingredients, top);
+
+        if (recipe.Stations.Count > 0)
+        {
+            top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemStations", top + 4f);
+            top = AppendItemRows(panel, recipe.Stations, top);
+        }
+
+        if (recipe.Conditions.Count > 0)
+        {
+            top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemConditions", top + 4f);
+            top = AppendTextLines(panel, recipe.Conditions, top);
+        }
+
+        panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
+        return panel;
+    }
+
+    private UIElement CreateDropSourceCard(JournalDropSource drop)
+    {
+        var panel = JournalUiElementFactory.CreatePanel();
+        panel.Width.Set(0f, 1f);
+
+        var lines = new List<string>
+        {
+            $"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSource")}: {drop.SourceName}",
+            $"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemChance")}: {FormatDropRate(drop.DropRate)}"
+        };
+
+        if (drop.StackMax > 1 || drop.StackMin > 1)
+        {
+            lines.Add($"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemStack")}: {FormatStackRange(drop.StackMin, drop.StackMax)}");
+        }
+
+        if (drop.SourceItemId is { } sourceItemId)
+        {
+            lines.Add($"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemFromItem")}: {Lang.GetItemNameValue(sourceItemId)}");
+        }
+
+        var top = JournalUiMetrics.BlockVerticalPadding;
+        top = AppendTextLines(panel, lines, top);
+
+        if (drop.Conditions.Count > 0)
+        {
+            top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemConditions", top + 4f);
+            top = AppendTextLines(panel, drop.Conditions, top);
+        }
+
+        panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
+        return panel;
+    }
+
+    private UIElement CreateShopSourceCard(JournalShopSource shop)
+    {
+        var panel = JournalUiElementFactory.CreatePanel();
+        panel.Width.Set(0f, 1f);
+
+        var lines = new List<string>
+        {
+            $"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSource")}: {shop.NpcName}"
+        };
+
+        if (!shop.ShopName.Equals("Shop", StringComparison.OrdinalIgnoreCase))
+        {
+            lines.Add($"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemShopName")}: {shop.ShopName}");
+        }
+
+        var top = JournalUiMetrics.BlockVerticalPadding;
+        top = AppendTextLines(panel, lines, top);
+
+        if (shop.Conditions.Count > 0)
+        {
+            top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemConditions", top + 4f);
+            top = AppendTextLines(panel, shop.Conditions, top);
+        }
+
+        panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
+        return panel;
+    }
+
+    private static UIElement CreateSourceNotice(string text)
+    {
+        var container = new UIElement();
+        container.Width.Set(0f, 1f);
+        var wrappedLines = JournalTextUtilities.WrapToPixelWidth(
+            text,
+            JournalUiMetrics.AcquisitionPanelMinWidth - JournalUiMetrics.AcquisitionPanelInset * 2f,
+            JournalUiMetrics.AcquisitionPanelNoticeScale);
+        var top = 12f;
+
+        foreach (var line in wrappedLines)
+        {
+            var notice = new UIText(line, JournalUiMetrics.AcquisitionPanelNoticeScale, true)
+            {
+                HAlign = 0.5f,
+                TextColor = JournalUiTheme.ContentDescriptionText
+            };
+            notice.Top.Set(top, 0f);
+            notice.Width.Set(-24f, 1f);
+            container.Append(notice);
+            top += JournalUiMetrics.AcquisitionPanelTextLineHeight + 1f;
+        }
+
+        container.Height.Set(top + 10f, 0f);
+        return container;
+    }
+
+    private static float AppendDetailLabel(UIElement parent, string localizationKey, float top)
+    {
+        var label = new UIText(Language.GetTextValue(localizationKey), JournalUiMetrics.AcquisitionPanelLabelScale, true);
+        label.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
+        label.Top.Set(top, 0f);
+        label.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
+        label.TextColor = JournalUiTheme.SectionHeaderText;
+        parent.Append(label);
+        return top + JournalUiMetrics.AcquisitionPanelTextLineHeight;
+    }
+
+    private float AppendTextLines(UIElement parent, IEnumerable<string> lines, float top)
+    {
+        var maxWidth = GetSourceTextMaxWidth();
+
+        foreach (var line in lines.Where(static line => !string.IsNullOrWhiteSpace(line)))
+        {
+            var wrappedLines = JournalTextUtilities.WrapToPixelWidth(line, maxWidth, JournalUiMetrics.AcquisitionPanelTextScale);
+
+            foreach (var wrappedLine in wrappedLines)
+            {
+                var text = new UIText(wrappedLine, JournalUiMetrics.AcquisitionPanelTextScale);
+                text.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
+                text.Top.Set(top, 0f);
+                text.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
+                text.TextColor = JournalUiTheme.ContentDescriptionText;
+                parent.Append(text);
+                top += JournalUiMetrics.AcquisitionPanelTextLineHeight;
+            }
+        }
+
+        return top;
+    }
+
+    private float AppendItemRows(UIElement parent, IReadOnlyList<Item> items, float top)
+    {
+        foreach (var rowItems in ChunkItems(items, GetSourcePanelItemSlotsPerRow()))
+        {
+            var strip = new JournalItemStrip(rowItems);
+            strip.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
+            strip.Top.Set(top, 0f);
+            parent.Append(strip);
+            top += JournalUiMetrics.RowHeight;
+        }
+
+        return top;
+    }
+
+    private static IEnumerable<Item[]> ChunkItems(IReadOnlyList<Item> items, int chunkSize)
+    {
+        for (var index = 0; index < items.Count; index += chunkSize)
+        {
+            var count = Math.Min(chunkSize, items.Count - index);
+            var chunk = new Item[count];
+            for (var offset = 0; offset < count; offset++)
+            {
+                chunk[offset] = items[index + offset].Clone();
+            }
+
+            yield return chunk;
+        }
+    }
+
+    private static string FormatDropRate(float dropRate)
+    {
+        if (dropRate <= 0f)
+        {
+            return "0%";
+        }
+
+        return $"{dropRate * 100f:0.##}%";
+    }
+
+    private static string FormatStackRange(int stackMin, int stackMax)
+    {
+        return stackMin == stackMax ? stackMin.ToString() : $"{stackMin}-{stackMax}";
+    }
+
+    private float GetSourceTextMaxWidth()
+    {
+        var sourceWidth = _sourceList.GetDimensions().Width;
+        if (sourceWidth <= 0f)
+        {
+            sourceWidth = JournalUiMetrics.AcquisitionPanelMinWidth - JournalUiMetrics.ScrollbarWidth - 8f;
+        }
+
+        return MathF.Max(80f, sourceWidth - JournalUiMetrics.BlockHorizontalPadding * 2f);
+    }
+
+    private int GetSourcePanelItemSlotsPerRow()
+    {
+        var maxWidth = GetSourceTextMaxWidth();
+
+        for (var slots = 4; slots >= 1; slots--)
+        {
+            if (JournalItemStrip.GetVisualWidth(slots) <= maxWidth)
+            {
+                return slots;
+            }
+        }
+
+        return 1;
     }
 
     private void SetContentHeader(string title)
@@ -264,22 +549,6 @@ public sealed class JournalUiState : UIState
         _contentDescription.TextColor = JournalUiTheme.ContentDescriptionText;
         _contentPanel.Append(_contentDescription);
 
-        _combatBuffPanel = new JournalCombatBuffPanel(PersistentBuffCategories, "Mods.ProgressionJournal.UI.CombatBuffsTitle");
-        _combatBuffPanel.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
-        _combatBuffPanel.Width.Set(JournalUiMetrics.CombatBuffPanelWidth, 0f);
-        _combatBuffPanel.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
-        _contentPanel.Append(_combatBuffPanel);
-
-        _combatBuffsButton = JournalUiElementFactory.CreateIconTextButton(
-            TextureAssets.Item[ItemID.HealingPotion],
-            string.Empty,
-            JournalUiMetrics.CombatBuffButtonWidth,
-            JournalUiMetrics.CombatBuffButtonHeight,
-            ToggleCombatBuffOverlay,
-            0.90f);
-        _combatBuffsButton.SetStyle(JournalUiTheme.GetOverlayActionButtonStyle());
-        _contentPanel.Append(_combatBuffsButton);
-
         _classSelectionContainer = new UIElement();
         _classSelectionContainer.Left.Set(JournalUiMetrics.ContentBodyLeft, 0f);
         _classSelectionContainer.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
@@ -303,7 +572,66 @@ public sealed class JournalUiState : UIState
         _contentPanel.Append(_scrollbar);
         _entryList.SetScrollbar(_scrollbar);
 
-        InitializeCombatBuffOverlay();
+        InitializeAcquisitionPanel();
+    }
+
+    private void InitializeAcquisitionPanel()
+    {
+        _sourcePanel = JournalUiElementFactory.CreatePanel();
+        _sourcePanel.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
+        _sourcePanel.Width.Set(JournalUiMetrics.AcquisitionPanelWidth, 0f);
+        _sourcePanel.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
+
+        _sourcePanelTitle = new UIText(string.Empty, JournalUiMetrics.AcquisitionPanelTitleScale, true)
+        {
+            HAlign = 0.5f,
+            TextColor = JournalUiTheme.SectionHeaderText
+        };
+        _sourcePanelTitle.Width.Set(-52f, 1f);
+        _sourcePanelTitle.Top.Set(JournalUiMetrics.AcquisitionPanelHeaderTop, 0f);
+        _sourcePanel.Append(_sourcePanelTitle);
+
+        _sourceClearButton = JournalUiElementFactory.CreateIconButton(
+            BestiarySearchCancelTexturePath,
+            24f,
+            24f,
+            () => JournalSystem.ClearSelectedItem(),
+            0.72f);
+        _sourceClearButton.Left.Set(-30f, 1f);
+        _sourceClearButton.Top.Set(6f, 0f);
+        _sourcePanel.Append(_sourceClearButton);
+
+        _sourcePreviewContainer = new UIElement();
+        _sourcePreviewContainer.Left.Set(JournalUiMetrics.AcquisitionPanelInset, 0f);
+        _sourcePreviewContainer.Top.Set(JournalUiMetrics.AcquisitionPanelPreviewTop, 0f);
+        _sourcePreviewContainer.Width.Set(-(JournalUiMetrics.AcquisitionPanelInset * 2f), 1f);
+        _sourcePreviewContainer.Height.Set(40f, 0f);
+        _sourcePanel.Append(_sourcePreviewContainer);
+
+        _sourceItemName = new UIText(string.Empty, JournalUiMetrics.AcquisitionPanelItemNameScale, true)
+        {
+            HAlign = 0.5f,
+            TextColor = JournalUiTheme.RootTitleText
+        };
+        _sourceItemName.Width.Set(-(JournalUiMetrics.AcquisitionPanelInset * 2f), 1f);
+        _sourceItemName.Top.Set(JournalUiMetrics.AcquisitionPanelNameTop, 0f);
+        _sourcePanel.Append(_sourceItemName);
+
+        _sourceList = [];
+        _sourceList.Left.Set(JournalUiMetrics.AcquisitionPanelInset, 0f);
+        _sourceList.Top.Set(JournalUiMetrics.AcquisitionPanelContentTop, 0f);
+        _sourceList.Width.Set(-(JournalUiMetrics.AcquisitionPanelInset * 2f + JournalUiMetrics.ScrollbarWidth + 4f), 1f);
+        _sourceList.Height.Set(-(JournalUiMetrics.AcquisitionPanelContentTop + JournalUiMetrics.AcquisitionPanelInset), 1f);
+        _sourceList.ListPadding = JournalUiMetrics.EntryListPadding;
+        _sourcePanel.Append(_sourceList);
+
+        _sourceScrollbar = new UIScrollbar();
+        _sourceScrollbar.Width.Set(JournalUiMetrics.ScrollbarWidth, 0f);
+        _sourceScrollbar.Left.Set(-(JournalUiMetrics.ScrollbarWidth + 4f), 1f);
+        _sourceScrollbar.Top.Set(JournalUiMetrics.AcquisitionPanelContentTop, 0f);
+        _sourceScrollbar.Height.Set(-(JournalUiMetrics.AcquisitionPanelContentTop + JournalUiMetrics.AcquisitionPanelInset), 1f);
+        _sourcePanel.Append(_sourceScrollbar);
+        _sourceList.SetScrollbar(_sourceScrollbar);
     }
 
     private void InitializeContentTabs()
@@ -342,8 +670,6 @@ public sealed class JournalUiState : UIState
         _classButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Class"));
         _overviewTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewTab"));
         _presetsTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsTab"));
-        var combatConsumablesText = Language.GetTextValue("Mods.ProgressionJournal.UI.CombatConsumablesButton");
-        _combatBuffsButton.SetText(combatConsumablesText);
     }
 
     private void UpdateNavigationStyles(bool selectingClass, bool showingPresets)
@@ -462,19 +788,33 @@ public sealed class JournalUiState : UIState
         _classSelectionContainer.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
         _classSelectionContainer.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
 
-        var showCombatBuffs = !selectingClass && !showingPresets && _combatBuffPanel.HasEntries;
-        if (showCombatBuffs)
+        var showSourcePanel = !selectingClass && !showingPresets;
+        if (showSourcePanel)
         {
-            _entryList.Width.Set(-(JournalUiMetrics.EntryListWidthInset + JournalUiMetrics.CombatBuffPanelWidth + JournalUiMetrics.ContentColumnGap + JournalUiMetrics.CombatBuffPanelRightInset), 1f);
-            _scrollbar.Left.Set(-(JournalUiMetrics.CombatBuffPanelWidth
-                + JournalUiMetrics.CombatBuffPanelRightInset
+            var contentWidth = MathF.Max(
+                0f,
+                _contentPanel.GetDimensions().Width - JournalUiMetrics.ContentBodyLeft - JournalUiMetrics.EntryListWidthInset);
+            var sourceWidth = MathF.Min(JournalUiMetrics.AcquisitionPanelWidth, contentWidth * 0.38f);
+            sourceWidth = MathF.Max(JournalUiMetrics.AcquisitionPanelMinWidth, sourceWidth);
+
+            if (contentWidth - sourceWidth - JournalUiMetrics.ContentColumnGap < JournalUiMetrics.EntryListMinWidth)
+            {
+                sourceWidth = MathF.Max(
+                    JournalUiMetrics.AcquisitionPanelMinWidth,
+                    contentWidth - JournalUiMetrics.ContentColumnGap - JournalUiMetrics.EntryListMinWidth);
+            }
+
+            _sourcePanel.Width.Set(sourceWidth, 0f);
+            _entryList.Width.Set(-(JournalUiMetrics.EntryListWidthInset + sourceWidth + JournalUiMetrics.ContentColumnGap), 1f);
+            _scrollbar.Left.Set(-(sourceWidth
+                + JournalUiMetrics.ContentColumnGap
                 + JournalUiMetrics.EntryListWidthInset * 0.5f
                 + JournalUiMetrics.ScrollbarWidth * 0.5f), 1f);
-            _combatBuffPanel.Left.Set(-(JournalUiMetrics.CombatBuffPanelWidth + JournalUiMetrics.CombatBuffPanelRightInset), 1f);
+            _sourcePanel.Left.Set(-sourceWidth, 1f);
 
-            if (_combatBuffPanel.Parent is null)
+            if (_sourcePanel.Parent is null)
             {
-                _contentPanel.Append(_combatBuffPanel);
+                _contentPanel.Append(_sourcePanel);
             }
         }
         else
@@ -482,139 +822,10 @@ public sealed class JournalUiState : UIState
             _entryList.Width.Set(-JournalUiMetrics.EntryListWidthInset, 1f);
             _scrollbar.Left.Set(-JournalUiMetrics.ScrollbarOffset, 1f);
 
-            if (_combatBuffPanel.Parent is not null)
+            if (_sourcePanel.Parent is not null)
             {
-                _contentPanel.RemoveChild(_combatBuffPanel);
+                _contentPanel.RemoveChild(_sourcePanel);
             }
-        }
-
-        var showCombatBuffButton = showCombatBuffs && _hasAvailableCombatBuffs;
-        _combatBuffsButton.Left.Set(
-            -(JournalUiMetrics.CombatBuffPanelRightInset
-                + JournalUiMetrics.CombatBuffPanelWidth * 0.5f
-                + JournalUiMetrics.CombatBuffButtonWidth * 0.5f),
-            1f);
-        _combatBuffsButton.Top.Set(
-            -(JournalUiMetrics.ContentBodyBottomInset
-                + JournalUiMetrics.CombatBuffButtonHeight
-                + JournalUiMetrics.CombatBuffButtonBottomInset),
-            1f);
-
-        if (showCombatBuffButton)
-        {
-            if (_combatBuffsButton.Parent is not null)
-            {
-                _contentPanel.RemoveChild(_combatBuffsButton);
-            }
-
-            _contentPanel.Append(_combatBuffsButton);
-        }
-        else if (_combatBuffsButton.Parent is not null)
-        {
-            _contentPanel.RemoveChild(_combatBuffsButton);
-        }
-    }
-
-    private void InitializeCombatBuffOverlay()
-    {
-        _combatBuffOverlay = new UIElement();
-        _combatBuffOverlay.Width.Set(0f, 1f);
-        _combatBuffOverlay.Height.Set(0f, 1f);
-
-        _combatBuffOverlay.Append(new JournalDimOverlay(HideCombatBuffOverlay));
-
-        _combatBuffOverlayPanel = JournalUiElementFactory.CreatePanel();
-        _combatBuffOverlayPanel.Width.Set(JournalUiMetrics.CombatBuffOverlayWidth, 0f);
-        _combatBuffOverlayPanel.Height.Set(JournalUiMetrics.CombatBuffOverlayHeight, 0f);
-        _combatBuffOverlayPanel.HAlign = 0.5f;
-        _combatBuffOverlayPanel.VAlign = 0.5f;
-        _combatBuffOverlay.Append(_combatBuffOverlayPanel);
-
-        _combatBuffOverlayTitle = new UIText(string.Empty, 0.5f, true)
-        {
-            HAlign = 0.5f,
-            TextColor = JournalUiTheme.SectionHeaderText
-        };
-        _combatBuffOverlayTitle.Top.Set(JournalUiMetrics.CombatBuffOverlayTitleTop, 0f);
-        _combatBuffOverlayPanel.Append(_combatBuffOverlayTitle);
-
-        _combatBuffOverlayCloseButton = JournalUiElementFactory.CreateIconButton(
-            BestiarySearchCancelTexturePath,
-            JournalUiMetrics.CombatBuffOverlayCloseSize,
-            JournalUiMetrics.CombatBuffOverlayCloseSize,
-            HideCombatBuffOverlay,
-            0.82f);
-        _combatBuffOverlayCloseButton.Left.Set(
-            -(JournalUiMetrics.CombatBuffOverlayCloseSize + JournalUiMetrics.CombatBuffOverlayCloseInset),
-            1f);
-        _combatBuffOverlayCloseButton.Top.Set(JournalUiMetrics.CombatBuffOverlayCloseTop, 0f);
-        _combatBuffOverlayPanel.Append(_combatBuffOverlayCloseButton);
-
-        _combatBuffOverlayContent = new JournalCombatBuffPanel(
-            ConsumableBuffCategories,
-            "Mods.ProgressionJournal.UI.CombatConsumablesTitle",
-            showTitle: false,
-            autoHeight: false,
-            useConsumableOverlayLayout: true);
-        _combatBuffOverlayContent.Left.Set(JournalUiMetrics.CombatBuffOverlayInset, 0f);
-        _combatBuffOverlayContent.Top.Set(JournalUiMetrics.CombatBuffOverlayContentTop, 0f);
-        _combatBuffOverlayContent.Width.Set(-(JournalUiMetrics.CombatBuffOverlayInset * 2f), 1f);
-        _combatBuffOverlayContent.Height.Set(-(JournalUiMetrics.CombatBuffOverlayContentTop + JournalUiMetrics.CombatBuffOverlayContentBottomInset), 1f);
-        _combatBuffOverlayPanel.Append(_combatBuffOverlayContent);
-    }
-
-    private void PopulateCombatBuffOverlay(IReadOnlyList<JournalCombatBuffEntry> entries)
-    {
-        _combatBuffOverlayContent.SetEntries(entries);
-
-        if (entries.Count == 0)
-        {
-            return;
-        }
-
-        var targetHeight = JournalUiMetrics.CombatBuffOverlayContentTop
-            + _combatBuffOverlayContent.ContentHeight
-            + JournalUiMetrics.CombatBuffOverlayContentBottomInset;
-        _combatBuffOverlayPanel.Height.Set(
-            MathF.Min(JournalUiMetrics.CombatBuffOverlayHeight, targetHeight),
-            0f);
-
-        _combatBuffOverlayTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.CombatConsumablesTitle"));
-    }
-
-    private void ToggleCombatBuffOverlay()
-    {
-        if (_showingAllCombatBuffs)
-        {
-            HideCombatBuffOverlay();
-            return;
-        }
-
-        ShowCombatBuffOverlay();
-    }
-
-    private void ShowCombatBuffOverlay()
-    {
-        if (!_hasAvailableCombatBuffs)
-        {
-            return;
-        }
-
-        if (_combatBuffOverlay.Parent is null)
-        {
-            _root.Append(_combatBuffOverlay);
-        }
-
-        _showingAllCombatBuffs = true;
-    }
-
-    private void HideCombatBuffOverlay()
-    {
-        _showingAllCombatBuffs = false;
-
-        if (_combatBuffOverlay.Parent is not null)
-        {
-            _root.RemoveChild(_combatBuffOverlay);
         }
     }
 

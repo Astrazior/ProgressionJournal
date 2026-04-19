@@ -2,7 +2,7 @@ namespace ProgressionJournal.UI.Styling;
 
 public static class JournalUiMetrics
 {
-    public const float RootMaxWidth = 1040f;
+    public const float RootMaxWidth = 1160f;
     public const float RootMaxHeight = 680f;
     public const float RootHorizontalMargin = 32f;
     public const float RootVerticalMargin = 48f;
@@ -38,6 +38,20 @@ public static class JournalUiMetrics
     public const float ContentBodyHorizontalInset = 28f;
     public const float ContentBodyBottomInset = 66f;
     public const float ContentColumnGap = 14f;
+    public const float AcquisitionPanelWidth = 304f;
+    public const float AcquisitionPanelMinWidth = 196f;
+    public const float AcquisitionPanelHeaderTop = 10f;
+    public const float AcquisitionPanelPreviewTop = 36f;
+    public const float AcquisitionPanelNameTop = 80f;
+    public const float AcquisitionPanelContentTop = 118f;
+    public const float AcquisitionPanelInset = 14f;
+    public const float EntryListMinWidth = 336f;
+    public const float AcquisitionPanelTitleScale = 0.44f;
+    public const float AcquisitionPanelItemNameScale = 0.52f;
+    public const float AcquisitionPanelLabelScale = 0.38f;
+    public const float AcquisitionPanelTextScale = 0.38f;
+    public const float AcquisitionPanelNoticeScale = 0.42f;
+    public const float AcquisitionPanelTextLineHeight = 16f;
     public const float CombatBuffPanelWidth = 252f;
     public const float CombatBuffPanelRightInset = 12f;
     public const float CombatBuffButtonWidth = 208f;

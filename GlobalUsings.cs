@@ -1,6 +1,7 @@
 global using ProgressionJournal.Data.Catalogs;
 global using ProgressionJournal.Data.Enums;
 global using ProgressionJournal.Data.Models;
+global using ProgressionJournal.Data.Resolvers;
 global using ProgressionJournal.Data.Repositories;
 global using ProgressionJournal.UI.Composition;
 global using ProgressionJournal.UI.Controls;
