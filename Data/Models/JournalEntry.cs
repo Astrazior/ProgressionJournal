@@ -80,13 +80,13 @@ public sealed class JournalEntry
 			return true;
 		}
 
-		int targetIndex = ProgressionStageCatalog.GetStageOrderIndex(stageId);
+		var targetIndex = ProgressionStageCatalog.GetStageOrderIndex(stageId);
 		StageEvaluation? nearestPreviousEvaluation = null;
-		int nearestPreviousIndex = -1;
-		bool hasLaterEvaluation = false;
+		var nearestPreviousIndex = -1;
+		var hasLaterEvaluation = false;
 
 		foreach (var pair in _evaluations) {
-			int evaluationIndex = ProgressionStageCatalog.GetStageOrderIndex(pair.Key);
+			var evaluationIndex = ProgressionStageCatalog.GetStageOrderIndex(pair.Key);
 
 			if (evaluationIndex < targetIndex && evaluationIndex > nearestPreviousIndex) {
 				nearestPreviousEvaluation = pair.Value;
