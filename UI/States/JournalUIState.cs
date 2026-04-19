@@ -297,46 +297,6 @@ public sealed class JournalUiState : UIState
         return panel;
     }
 
-    private UIElement CreateGroupedNpcDropSourceCard(
-        IReadOnlyList<JournalDropSource> drops,
-        IReadOnlyList<JournalSourceTokenData> commonLocationTokens)
-    {
-        var panel = JournalUiElementFactory.CreatePanel();
-        panel.Width.Set(0f, 1f);
-
-        var representativeDrop = drops[0];
-        var top = JournalUiMetrics.BlockVerticalPadding;
-        top = AppendTextLines(
-            panel,
-            [$"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSource")}: {Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemFromAnyEnemy")}"],
-            top);
-
-        if (commonLocationTokens.Count > 0)
-        {
-            top = AppendTokenRows(panel, commonLocationTokens, top + 6f);
-        }
-
-        var lines = new List<string>
-        {
-            $"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemChance")}: {FormatDropRate(representativeDrop.DropRate)}"
-        };
-
-        if (representativeDrop.StackMax > 1 || representativeDrop.StackMin > 1)
-        {
-            lines.Add($"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemStack")}: {FormatStackRange(representativeDrop.StackMin, representativeDrop.StackMax)}");
-        }
-
-        top = AppendTextLines(panel, lines, top + 8f);
-
-        if (representativeDrop.Conditions.Count > 0)
-        {
-            top = AppendConditionContent(panel, representativeDrop.Conditions, top + 6f);
-        }
-
-        panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
-        return panel;
-    }
-
     private UIElement CreateShopSourceCard(JournalShopSource shop)
     {
         var panel = JournalUiElementFactory.CreatePanel();
@@ -445,32 +405,11 @@ public sealed class JournalUiState : UIState
 
     private IEnumerable<UIElement> CreateDropSourceCards(IReadOnlyList<JournalDropSource> drops)
     {
-        foreach (var group in drops.GroupBy(drop => new
-                 {
-                     IsNpcSource = drop.SourceNpcType.HasValue,
-                     drop.SourceItemId,
-                     DropRate = NormalizeDropRateForGrouping(drop.DropRate),
-                     drop.StackMin,
-                     drop.StackMax,
-                     Conditions = CreateConditionGroupSignature(drop.Conditions)
-                 }))
+        foreach (var drop in drops
+                     .OrderByDescending(static source => source.DropRate)
+                     .ThenBy(static source => source.SourceName, StringComparer.CurrentCultureIgnoreCase))
         {
-            var groupedDrops = group.ToArray();
-
-            if (group.Key.IsNpcSource && groupedDrops.Length > 1)
-            {
-                var commonLocationTokens = JournalAcquisitionVisuals.GetCommonNpcLocationTokens(
-                    groupedDrops
-                        .Select(static drop => drop.SourceNpcType)
-                        .OfType<int>());
-                yield return CreateGroupedNpcDropSourceCard(groupedDrops, commonLocationTokens);
-                continue;
-            }
-
-            foreach (var drop in groupedDrops)
-            {
-                yield return CreateDropSourceCard(drop);
-            }
+            yield return CreateDropSourceCard(drop);
         }
     }
 
@@ -572,11 +511,6 @@ public sealed class JournalUiState : UIState
                 .Where(static condition => !string.IsNullOrWhiteSpace(condition))
                 .Select(static condition => string.Join(' ', condition.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries)))
                 .OrderBy(static condition => condition, StringComparer.CurrentCultureIgnoreCase));
-    }
-
-    private static float NormalizeDropRateForGrouping(float dropRate)
-    {
-        return MathF.Round(dropRate, 6, MidpointRounding.AwayFromZero);
     }
 
     private static IEnumerable<Item[]> ChunkItems(IReadOnlyList<Item> items, int chunkSize)

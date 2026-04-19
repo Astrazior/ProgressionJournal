@@ -2,7 +2,6 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.Achievements;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.UI;
@@ -27,6 +26,7 @@ public sealed class JournalSourceToken : UIElement
 {
     private const string AchievementTexturePrefix = "achievement:";
     private const string AchievementsTexturePath = "Images/UI/Achievements";
+    private const int AchievementIconSize = 64;
     private const string BestiaryFilterIconTexturePath = "Images/UI/Bestiary/Icon_Tags_Shadow";
     private const int BestiaryFilterIconColumns = 16;
     private const int BestiaryFilterIconRows = 5;
@@ -181,69 +181,22 @@ public sealed class JournalSourceToken : UIElement
             return Rectangle.Empty;
         }
 
-        var cellSize = GetAchievementCellSize(texture, GetAchievementIconCount());
-        if (cellSize <= 0)
+        if (texture.Width < AchievementIconSize || texture.Height < AchievementIconSize)
         {
             return Rectangle.Empty;
         }
 
-        var columns = texture.Width / cellSize;
+        var columns = texture.Width / AchievementIconSize;
         if (columns <= 0)
         {
             return Rectangle.Empty;
         }
 
         return new Rectangle(
-            (iconIndex % columns) * cellSize,
-            (iconIndex / columns) * cellSize,
-            cellSize,
-            cellSize);
-    }
-
-    private static int GetAchievementCellSize(Texture2D texture, int iconCount)
-    {
-        var gcd = GreatestCommonDivisor(texture.Width, texture.Height);
-        var bestCellSize = 0;
-
-        for (var divisor = 1; divisor <= gcd; divisor++)
-        {
-            if (gcd % divisor != 0)
-            {
-                continue;
-            }
-
-            var columns = texture.Width / divisor;
-            var rows = texture.Height / divisor;
-            if (columns * rows < iconCount)
-            {
-                continue;
-            }
-
-            bestCellSize = divisor;
-        }
-
-        return bestCellSize;
-    }
-
-    private static int GetAchievementIconCount()
-    {
-        var countField = typeof(AchievementManager).GetField("DefaultAchievementCount", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
-        if (countField?.GetValue(null) is int count && count > 0)
-        {
-            return count;
-        }
-
-        return 128;
-    }
-
-    private static int GreatestCommonDivisor(int left, int right)
-    {
-        while (right != 0)
-        {
-            (left, right) = (right, left % right);
-        }
-
-        return Math.Abs(left);
+            (iconIndex % columns) * AchievementIconSize,
+            (iconIndex / columns) * AchievementIconSize,
+            AchievementIconSize,
+            AchievementIconSize);
     }
 
     private static void DrawTexture(SpriteBatch spriteBatch, Texture2D texture, Rectangle sourceRectangle, Rectangle inner, bool anchorBottom)
