@@ -30,7 +30,7 @@ public static class JournalItemSourceResolver
         return info;
     }
 
-    private static IReadOnlyList<JournalRecipeSource> BuildRecipes(int itemId)
+    private static List<JournalRecipeSource> BuildRecipes(int itemId)
     {
         var recipes = new List<JournalRecipeSource>();
 
@@ -62,7 +62,7 @@ public static class JournalItemSourceResolver
         return recipes;
     }
 
-    private static IReadOnlyList<JournalDropSource> BuildDrops(int itemId)
+    private static JournalDropSource[] BuildDrops(int itemId)
     {
         var drops = new List<JournalDropSource>();
 
@@ -111,7 +111,7 @@ public static class JournalItemSourceResolver
             .ToArray();
     }
 
-    private static IReadOnlyList<JournalShopSource> BuildShops(int itemId)
+    private static JournalShopSource[] BuildShops(int itemId)
     {
         return NPCShopDatabase.AllShops
             .SelectMany(
@@ -135,7 +135,7 @@ public static class JournalItemSourceResolver
     }
 
     private static void AppendDropSources(
-        ICollection<JournalDropSource> drops,
+        List<JournalDropSource> drops,
         List<IItemDropRule>? rules,
         int targetItemId,
         string sourceName,
@@ -161,6 +161,7 @@ public static class JournalItemSourceResolver
             }
         }
 
+        // ReSharper disable once LoopCanBeConvertedToQuery
         foreach (var drop in reportedDrops)
         {
             if (drop.itemId != targetItemId)
@@ -190,6 +191,7 @@ public static class JournalItemSourceResolver
         Item? exactMatch = null;
         Item? fallbackMatch = null;
 
+        // ReSharper disable once LoopCanBeConvertedToQuery
         foreach (var sample in ContentSamples.ItemsByType.Values)
         {
             if (sample is null || sample.IsAir || sample.createTile != tileId)
@@ -235,14 +237,12 @@ public static class JournalItemSourceResolver
 
     private static string GetConditionDescription(object? condition)
     {
-        if (condition is null)
+        switch (condition)
         {
-            return string.Empty;
-        }
-
-        if (condition is IProvideItemConditionDescription itemConditionDescription)
-        {
-            return itemConditionDescription.GetConditionDescription();
+            case null:
+                return string.Empty;
+            case IProvideItemConditionDescription itemConditionDescription:
+                return itemConditionDescription.GetConditionDescription();
         }
 
         var descriptionProperty = condition.GetType().GetProperty("Description", BindingFlags.Public | BindingFlags.Instance);
