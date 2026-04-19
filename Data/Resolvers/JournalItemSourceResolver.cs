@@ -47,9 +47,9 @@ public static class JournalItemSourceResolver
                 .Select(static ingredient => ingredient.Clone())
                 .ToArray();
             var stations = recipe.requiredTile
-                .Select(ResolveStationItem)
-                .Where(static station => station is not null)
-                .Select(static station => station!.Clone())
+                .SelectMany(ResolveStationItems)
+                .GroupBy(static station => station.type)
+                .Select(static group => group.First().Clone())
                 .ToArray();
             var conditions = recipe.Conditions
                 .Select(GetConditionDescription)
@@ -209,6 +209,22 @@ public static class JournalItemSourceResolver
         var resolved = exactMatch ?? fallbackMatch;
         StationItemCache[tileId] = resolved?.Clone();
         return resolved;
+    }
+
+    private static IEnumerable<Item> ResolveStationItems(int tileId)
+    {
+        if (tileId == TileID.Bottles)
+        {
+            yield return JournalItemUtilities.CreateItem(ItemID.Bottle);
+            yield return JournalItemUtilities.CreateItem(ItemID.AlchemyTable);
+            yield break;
+        }
+
+        var stationItem = ResolveStationItem(tileId);
+        if (stationItem is not null)
+        {
+            yield return stationItem;
+        }
     }
 
     private static string GetNpcName(int npcType)
