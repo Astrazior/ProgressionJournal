@@ -254,9 +254,12 @@ public sealed class JournalUiState : UIState
         panel.Width.Set(0f, 1f);
 
         var top = JournalUiMetrics.BlockVerticalPadding;
+        var sourceLabelKey = drop.SourceItemId.HasValue
+            ? "Mods.ProgressionJournal.UI.SelectedItemFromItem"
+            : "Mods.ProgressionJournal.UI.SelectedItemSource";
         if (JournalAcquisitionVisuals.TryCreateSourceToken(drop, out var sourceToken))
         {
-            top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemSource", top);
+            top = AppendDetailLabel(panel, sourceLabelKey, top);
             top = AppendTokenRows(panel, [sourceToken], top);
 
             if (drop.SourceNpcType is { } sourceNpcType)
@@ -270,7 +273,7 @@ public sealed class JournalUiState : UIState
         }
         else
         {
-            top = AppendTextLines(panel, [$"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSource")}: {drop.SourceName}"], top);
+            top = AppendTextLines(panel, [$"{Language.GetTextValue(sourceLabelKey)}: {drop.SourceName}"], top);
         }
 
         var lines = new List<string>
@@ -340,7 +343,7 @@ public sealed class JournalUiState : UIState
         panel.Width.Set(0f, 1f);
 
         var top = JournalUiMetrics.BlockVerticalPadding;
-        top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemSource", top);
+        top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemTrade", top);
         top = AppendTokenRows(panel, [JournalAcquisitionVisuals.CreateSourceToken(shop)], top);
 
         var lines = new List<string>();
@@ -482,10 +485,20 @@ public sealed class JournalUiState : UIState
 
         if (visuals.RemainingText.Count > 0)
         {
-            top = AppendTextLines(parent, visuals.RemainingText, visuals.Tokens.Count > 0 ? top + 2f : top);
+            top = AppendConditionTextList(parent, visuals.RemainingText, visuals.Tokens.Count > 0 ? top + 2f : top);
         }
 
         return top;
+    }
+
+    private float AppendConditionTextList(UIElement parent, IReadOnlyList<string> conditions, float top)
+    {
+        if (conditions.Count == 0)
+        {
+            return top;
+        }
+
+        return AppendTextLines(parent, [string.Join(" • ", conditions)], top);
     }
 
     private float AppendTokenRows(UIElement parent, IReadOnlyList<JournalSourceTokenData> tokens, float top)

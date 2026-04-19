@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Achievements;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.UI;
@@ -12,13 +13,20 @@ public enum JournalSourceTokenKind
 {
     Item,
     Npc,
-    Bestiary
+    Bestiary,
+    Texture
 }
 
-public readonly record struct JournalSourceTokenData(JournalSourceTokenKind Kind, int Value, string HoverText);
+public readonly record struct JournalSourceTokenData(
+    JournalSourceTokenKind Kind,
+    int Value,
+    string HoverText,
+    string? TexturePath = null);
 
 public sealed class JournalSourceToken : UIElement
 {
+    private const string AchievementTexturePrefix = "achievement:";
+    private const string AchievementsTexturePath = "Images/UI/Achievements";
     private const string BestiaryFilterIconTexturePath = "Images/UI/Bestiary/Icon_Tags_Shadow";
     private const int BestiaryFilterIconColumns = 16;
     private const int BestiaryFilterIconRows = 5;
@@ -77,6 +85,9 @@ public sealed class JournalSourceToken : UIElement
             case JournalSourceTokenKind.Bestiary:
                 DrawBestiaryIcon(spriteBatch, inner);
                 break;
+            case JournalSourceTokenKind.Texture:
+                DrawTextureIcon(spriteBatch, inner);
+                break;
         }
 
         if (!IsMouseHovering || string.IsNullOrWhiteSpace(_data.HoverText))
@@ -126,6 +137,113 @@ public sealed class JournalSourceToken : UIElement
         var iconTexture = Main.Assets.Request<Texture2D>(BestiaryFilterIconTexturePath).Value;
         var sourceRectangle = GetBestiaryFilterSourceRectangle(iconTexture, _data.Value);
         DrawTexture(spriteBatch, iconTexture, sourceRectangle, inner, anchorBottom: false);
+    }
+
+    private void DrawTextureIcon(SpriteBatch spriteBatch, Rectangle inner)
+    {
+        if (string.IsNullOrWhiteSpace(_data.TexturePath))
+        {
+            return;
+        }
+
+        if (_data.TexturePath.StartsWith(AchievementTexturePrefix, StringComparison.Ordinal))
+        {
+            DrawAchievementIcon(spriteBatch, inner, _data.TexturePath[AchievementTexturePrefix.Length..]);
+            return;
+        }
+
+        var iconTexture = Main.Assets.Request<Texture2D>(_data.TexturePath).Value;
+        DrawTexture(spriteBatch, iconTexture, iconTexture.Bounds, inner, anchorBottom: false);
+    }
+
+    private static void DrawAchievementIcon(SpriteBatch spriteBatch, Rectangle inner, string achievementId)
+    {
+        if (string.IsNullOrWhiteSpace(achievementId))
+        {
+            return;
+        }
+
+        var iconTexture = Main.Assets.Request<Texture2D>(AchievementsTexturePath).Value;
+        var sourceRectangle = GetAchievementSourceRectangle(iconTexture, achievementId);
+        if (sourceRectangle.Width <= 0 || sourceRectangle.Height <= 0)
+        {
+            return;
+        }
+
+        DrawTexture(spriteBatch, iconTexture, sourceRectangle, inner, anchorBottom: false);
+    }
+
+    private static Rectangle GetAchievementSourceRectangle(Texture2D texture, string achievementId)
+    {
+        var iconIndex = Main.Achievements.GetIconIndex(achievementId);
+        if (iconIndex < 0)
+        {
+            return Rectangle.Empty;
+        }
+
+        var cellSize = GetAchievementCellSize(texture, GetAchievementIconCount());
+        if (cellSize <= 0)
+        {
+            return Rectangle.Empty;
+        }
+
+        var columns = texture.Width / cellSize;
+        if (columns <= 0)
+        {
+            return Rectangle.Empty;
+        }
+
+        return new Rectangle(
+            (iconIndex % columns) * cellSize,
+            (iconIndex / columns) * cellSize,
+            cellSize,
+            cellSize);
+    }
+
+    private static int GetAchievementCellSize(Texture2D texture, int iconCount)
+    {
+        var gcd = GreatestCommonDivisor(texture.Width, texture.Height);
+        var bestCellSize = 0;
+
+        for (var divisor = 1; divisor <= gcd; divisor++)
+        {
+            if (gcd % divisor != 0)
+            {
+                continue;
+            }
+
+            var columns = texture.Width / divisor;
+            var rows = texture.Height / divisor;
+            if (columns * rows < iconCount)
+            {
+                continue;
+            }
+
+            bestCellSize = divisor;
+        }
+
+        return bestCellSize;
+    }
+
+    private static int GetAchievementIconCount()
+    {
+        var countField = typeof(AchievementManager).GetField("DefaultAchievementCount", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+        if (countField?.GetValue(null) is int count && count > 0)
+        {
+            return count;
+        }
+
+        return 128;
+    }
+
+    private static int GreatestCommonDivisor(int left, int right)
+    {
+        while (right != 0)
+        {
+            (left, right) = (right, left % right);
+        }
+
+        return Math.Abs(left);
     }
 
     private static void DrawTexture(SpriteBatch spriteBatch, Texture2D texture, Rectangle sourceRectangle, Rectangle inner, bool anchorBottom)

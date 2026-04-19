@@ -12,6 +12,9 @@ public readonly record struct JournalConditionVisuals(
 
 public static class JournalAcquisitionVisuals
 {
+    private const string MoonTexturePathPrefix = "Images/Moon_";
+    private const string HardmodeTexturePath = "achievement:ITS_HARD";
+
     private static readonly HashSet<int> BestiaryLocationFrames =
     [
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
@@ -81,6 +84,18 @@ public static class JournalAcquisitionVisuals
         ["Bestiary_Biomes.NebulaPillar"] = 58,
         ["Bestiary_Biomes.StardustPillar"] = 59
     };
+
+    private static readonly (int TextureIndex, string[] Keywords)[] MoonPhaseTokens =
+    [
+        (0, ["full moon", "полнолуние", "полная луна"]),
+        (1, ["waning gibbous", "убывающая луна", "убывающий месяц"]),
+        (2, ["third quarter", "last quarter", "последняя четверть", "третья четверть"]),
+        (3, ["waning crescent", "старый месяц", "убывающий серп"]),
+        (4, ["new moon", "новолуние", "новая луна"]),
+        (5, ["waxing crescent", "растущий серп", "молодой месяц"]),
+        (6, ["first quarter", "первая четверть"]),
+        (7, ["waxing gibbous", "растущая луна"])
+    ];
 
     public static bool TryCreateSourceToken(JournalDropSource drop, out JournalSourceTokenData token)
     {
@@ -180,6 +195,8 @@ public static class JournalAcquisitionVisuals
         var normalized = condition.Trim().ToLowerInvariant();
         var countBefore = tokens.Count;
 
+        AddHardmodeToken(normalized, condition, tokens);
+        AddMoonPhaseToken(normalized, condition, tokens);
         AddCombinedBiomeTokens(normalized, condition, tokens);
 
         AddIfMatch(tokens, normalized, condition, 55, "old one");
@@ -212,6 +229,38 @@ public static class JournalAcquisitionVisuals
 
         AddBiomeToken(tokens, normalized, condition);
         return tokens.Count > countBefore;
+    }
+
+    private static void AddHardmodeToken(string normalized, string condition, ICollection<JournalSourceTokenData> tokens)
+    {
+        if (!ContainsAny(normalized, "hardmode", "hard mode", "хардмод"))
+        {
+            return;
+        }
+
+        tokens.Add(new JournalSourceTokenData(
+            JournalSourceTokenKind.Texture,
+            0,
+            condition,
+            HardmodeTexturePath));
+    }
+
+    private static void AddMoonPhaseToken(string normalized, string condition, ICollection<JournalSourceTokenData> tokens)
+    {
+        foreach (var (textureIndex, keywords) in MoonPhaseTokens)
+        {
+            if (!keywords.Any(normalized.Contains))
+            {
+                continue;
+            }
+
+            tokens.Add(new JournalSourceTokenData(
+                JournalSourceTokenKind.Texture,
+                textureIndex,
+                condition,
+                $"{MoonTexturePathPrefix}{textureIndex}"));
+            return;
+        }
     }
 
     private static void AddCombinedBiomeTokens(string normalized, string condition, ICollection<JournalSourceTokenData> tokens)
