@@ -9,20 +9,39 @@ namespace ProgressionJournal.UI.Composition;
 
 public static class JournalStageButtonPresenter
 {
-    public static void Refresh(IReadOnlyDictionary<ProgressionStageId, JournalStageButton> buttons, ProgressionStageId selectedStage)
+    public static void Refresh(
+        IReadOnlyDictionary<ProgressionStageId, JournalStageButton> buttons,
+        ProgressionStageId selectedStage,
+        bool progressionModeEnabled)
     {
         foreach (var stage in ProgressionStageCatalog.All)
         {
             var button = buttons[stage.Id];
-            ApplyContent(button, stage);
+            var isAvailable = ProgressionStageCatalog.IsAvailable(stage.Id, progressionModeEnabled);
+
+            if (isAvailable)
+            {
+                ApplyContent(button, stage);
+                button.SetTooltip(Language.GetTextValue(stage.LocalizationKey));
+            }
+            else
+            {
+                button.SetLockedDisplay();
+                button.SetTooltip(Language.GetTextValue("Mods.ProgressionJournal.UI.LockedStageTooltip"));
+            }
+
+            button.SetInteractable(isAvailable);
             button.SetCompleted(stage.IsUnlocked());
             button.SetStyle(JournalUiTheme.GetStageButtonStyle(stage.Id == selectedStage));
         }
     }
 
-    public static void Layout(IReadOnlyDictionary<ProgressionStageId, JournalStageButton> buttons, UIElement container)
+    public static void Layout(
+        IReadOnlyDictionary<ProgressionStageId, JournalStageButton> buttons,
+        UIElement container,
+        IReadOnlyList<ProgressionStageId> stageOrder)
     {
-        if (buttons.Count == 0 || container.Parent is null)
+        if (buttons.Count == 0 || stageOrder.Count == 0 || container.Parent is null)
         {
             return;
         }
@@ -35,7 +54,6 @@ public static class JournalStageButtonPresenter
             return;
         }
 
-        var stageOrder = JournalOrdering.StageSelection;
         var columns = GetColumnCount(availableHeight, stageOrder.Count);
         var rows = (int)MathF.Ceiling(stageOrder.Count / (float)columns);
         var buttonHeight = (availableHeight - JournalUiMetrics.StageButtonGap * (rows - 1)) / rows;
@@ -71,7 +89,6 @@ public static class JournalStageButtonPresenter
     private static void ApplyContent(JournalStageButton button, ProgressionStage stage)
     {
         var stageName = Language.GetTextValue(stage.LocalizationKey);
-        button.SetTooltip(stageName);
 
         if (stage.Id == ProgressionStageId.PreBoss)
         {

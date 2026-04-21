@@ -31,6 +31,8 @@ public sealed class JournalSystem : ModSystem
 
     public ProgressionStageId SelectedStage { get; private set; } = ProgressionStageCatalog.GetCurrentStageId();
 
+    public bool ProgressionModeEnabled { get; private set; } = true;
+
     public int SelectedItemId { get; private set; }
 
     public override void Load()
@@ -125,6 +127,7 @@ public sealed class JournalSystem : ModSystem
         Visible = true;
         SelectingClass = !HasSelectedClass;
         ShowingPresets = false;
+        CoerceSelectedStage();
         _journalInterface?.SetState(_journalState);
         RefreshView();
     }
@@ -158,13 +161,25 @@ public sealed class JournalSystem : ModSystem
 
     public void CycleStage(int direction)
     {
-        SelectedStage = Cycle(StageOrder, SelectedStage, direction);
+        SelectedStage = Cycle(GetAvailableStageOrder(), SelectedStage, direction);
         RefreshView();
     }
 
     public void SelectStage(ProgressionStageId stageId)
     {
+        if (!ProgressionStageCatalog.IsAvailable(stageId, ProgressionModeEnabled))
+        {
+            return;
+        }
+
         SelectedStage = stageId;
+        RefreshView();
+    }
+
+    public void ToggleProgressionMode()
+    {
+        ProgressionModeEnabled = !ProgressionModeEnabled;
+        CoerceSelectedStage();
         RefreshView();
     }
 
@@ -228,6 +243,7 @@ public sealed class JournalSystem : ModSystem
             SelectingClass,
             ShowingPresets,
             ShowingCombatBuffsPage,
+            ProgressionModeEnabled,
             HasSelectedClass,
             SelectedItemId);
     }
@@ -262,6 +278,21 @@ public sealed class JournalSystem : ModSystem
     }
 
     private static bool ShouldDrawJournalButton => !Main.gameMenu && Main.playerInventory;
+
+    private IReadOnlyList<ProgressionStageId> GetAvailableStageOrder()
+    {
+        return ProgressionModeEnabled ? ProgressionStageCatalog.GetAvailableStageIds(true) : StageOrder;
+    }
+
+    private void CoerceSelectedStage()
+    {
+        if (ProgressionStageCatalog.IsAvailable(SelectedStage, ProgressionModeEnabled))
+        {
+            return;
+        }
+
+        SelectedStage = ProgressionStageCatalog.GetCurrentStageId();
+    }
 
     private static T Cycle<T>(IReadOnlyList<T> values, T current, int direction)
     {

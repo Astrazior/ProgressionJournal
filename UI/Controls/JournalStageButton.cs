@@ -18,12 +18,16 @@ public sealed class JournalStageButton : JournalHoverPanel
 
     private static readonly Asset<Texture2D> CompletedMarkerTexture =
         ModContent.Request<Texture2D>("ProgressionJournal/Assets/UI/StageCompletedCheck");
+    private static readonly Asset<Texture2D> LockedMarkerTexture =
+        Main.Assets.Request<Texture2D>("Images/UI/Bestiary/Icon_Locked");
 
     private readonly List<(HeadTextureKind Kind, int Slot)> _headSlots = [];
     private UIText _label;
     private float _textScale;
     private string _tooltipText = string.Empty;
     private bool _isCompleted;
+    private bool _isInteractable = true;
+    private bool _showLockedMarker;
     private Color _textColor;
     private JournalButtonStyle _style;
 
@@ -43,7 +47,13 @@ public sealed class JournalStageButton : JournalHoverPanel
         Append(_label);
         SetStyle(JournalUiTheme.GetStageButtonStyle(active: false));
 
-        OnLeftClick += (_, _) => onClick();
+        OnLeftClick += (_, _) =>
+        {
+            if (_isInteractable)
+            {
+                onClick();
+            }
+        };
     }
 
     public void SetTextDisplay(string text, float textScale)
@@ -72,8 +82,14 @@ public sealed class JournalStageButton : JournalHoverPanel
         _isCompleted = isCompleted;
     }
 
+    public void SetInteractable(bool isInteractable)
+    {
+        _isInteractable = isInteractable;
+    }
+
     public void SetBossHeadDisplay(params int[] bossHeadSlots)
     {
+        _showLockedMarker = false;
         _headSlots.Clear();
         foreach (var bossHeadSlot in bossHeadSlots)
         {
@@ -85,8 +101,16 @@ public sealed class JournalStageButton : JournalHoverPanel
 
     public void SetNpcHeadDisplay(int npcHeadSlot)
     {
+        _showLockedMarker = false;
         _headSlots.Clear();
         _headSlots.Add((HeadTextureKind.Town, npcHeadSlot));
+        _label.SetText(string.Empty);
+    }
+
+    public void SetLockedDisplay()
+    {
+        _showLockedMarker = true;
+        _headSlots.Clear();
         _label.SetText(string.Empty);
     }
 
@@ -100,13 +124,15 @@ public sealed class JournalStageButton : JournalHoverPanel
 
     protected override void DrawSelf(SpriteBatch spriteBatch)
     {
-        BackgroundColor = IsMouseHovering
+        var canHighlight = _isInteractable && IsMouseHovering;
+
+        BackgroundColor = canHighlight
             ? Color.Lerp(_style.Background, Color.White, 0.12f)
             : _style.Background;
-        BorderColor = IsMouseHovering
+        BorderColor = canHighlight
             ? Color.Lerp(_style.Border, Color.White, 0.24f)
             : _style.Border;
-        SetTextColor(IsMouseHovering
+        SetTextColor(canHighlight
             ? Color.Lerp(_style.Text, Color.White, 0.16f)
             : _style.Text);
 
@@ -124,6 +150,11 @@ public sealed class JournalStageButton : JournalHoverPanel
 
         if (_headSlots.Count == 0)
         {
+            if (_showLockedMarker)
+            {
+                DrawLockedMarker(spriteBatch);
+            }
+
             return;
         }
 
@@ -144,7 +175,7 @@ public sealed class JournalStageButton : JournalHoverPanel
         var totalWidth = slotWidth * _headSlots.Count - IconOverlap * (_headSlots.Count - 1);
         var startX = dimensions.Center().X - totalWidth * 0.5f + slotWidth * 0.5f;
         var shadowColor = new Color(10, 12, 20) * 0.55f;
-        var iconColor = IsMouseHovering ? Color.White : new Color(235, 240, 245);
+        var iconColor = canHighlight ? Color.White : new Color(235, 240, 245);
 
         for (var index = 0; index < _headSlots.Count; index++)
         {
@@ -205,6 +236,23 @@ public sealed class JournalStageButton : JournalHoverPanel
         var texture = CompletedMarkerTexture.Value;
         var position = new Vector2(dimensions.X + dimensions.Width - 16f, dimensions.Y + 6f);
         spriteBatch.Draw(texture, position, IsMouseHovering ? Color.White : Color.White * 0.92f);
+    }
+
+    private void DrawLockedMarker(SpriteBatch spriteBatch)
+    {
+        var dimensions = GetInnerDimensions();
+        var texture = LockedMarkerTexture.Value;
+        var maxWidth = Math.Max(1f, dimensions.Width - IconPadding * 2f);
+        var maxHeight = Math.Max(1f, dimensions.Height - IconPadding * 2f);
+        var scale = MathF.Min(maxWidth / texture.Width, maxHeight / texture.Height);
+        scale = MathF.Min(scale, 1.1f);
+
+        var center = dimensions.Center();
+        var position = new Vector2(center.X, center.Y);
+        var origin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
+        var drawColor = _isInteractable && IsMouseHovering ? Color.White : new Color(235, 240, 245);
+
+        spriteBatch.Draw(texture, position, null, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
     }
 }
 

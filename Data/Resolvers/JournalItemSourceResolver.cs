@@ -161,7 +161,7 @@ public static class JournalItemSourceResolver
             }
         }
 
-        // ReSharper disable once LoopCanBeConvertedToQuery
+        // LoopCanBeConvertedToQuery
         foreach (var drop in reportedDrops)
         {
             if (drop.itemId != targetItemId)

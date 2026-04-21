@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.GameContent.UI.Elements;
 
 namespace ProgressionJournal.UI.Controls;
@@ -10,6 +11,7 @@ public sealed class JournalTextButton : JournalHoverPanel
     private readonly float _textScale;
     private readonly UIText _label;
     private JournalButtonStyle _style;
+    private string? _hoverText;
 
     public JournalTextButton(string text, float textScale, Action onClick)
     {
@@ -24,6 +26,8 @@ public sealed class JournalTextButton : JournalHoverPanel
     }
 
     public void SetText(string text) => _label.SetText(text);
+
+    public void SetHoverText(string hoverText) => _hoverText = hoverText;
 
     public void SetStyle(JournalButtonStyle style)
     {
@@ -48,7 +52,13 @@ public sealed class JournalTextButton : JournalHoverPanel
             : _style.Text;
 
         base.DrawSelf(spriteBatch);
+
+        if (IsMouseHovering && !string.IsNullOrWhiteSpace(_hoverText))
+        {
+            Main.hoverItemName = _hoverText;
+        }
     }
+
     private UIText CreateLabel(string text)
     {
         return new UIText(text, _textScale)

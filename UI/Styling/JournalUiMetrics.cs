@@ -17,6 +17,9 @@ public static class JournalUiMetrics
     public const float StagePanelWidth = 300f;
     public const float StagePanelTitleTop = 12f;
     public const float StagePanelTitleScale = 0.52f;
+    public const float StageProgressionToggleTop = 10f;
+    public const float StageProgressionToggleSize = 22f;
+    public const float StageProgressionToggleRightInset = 10f;
     public const float StageListLeft = 12f;
     public const float StageListTop = 40f;
     public const float StageListHorizontalInset = 24f;

@@ -10,7 +10,7 @@ public sealed class JournalIconButton : JournalHoverPanel
 {
     private const float IconPadding = 2f;
 
-    private readonly Asset<Texture2D> _iconTexture;
+    private Asset<Texture2D> _iconTexture;
     private readonly float _iconScale;
     private readonly float _iconRotation;
     private string? _hoverText;
@@ -36,6 +36,11 @@ public sealed class JournalIconButton : JournalHoverPanel
     public void SetHoverText(string hoverText)
     {
         _hoverText = hoverText;
+    }
+
+    public void SetIcon(Asset<Texture2D> iconTexture)
+    {
+        _iconTexture = iconTexture;
     }
 
     public void EnableChrome(JournalButtonStyle style)

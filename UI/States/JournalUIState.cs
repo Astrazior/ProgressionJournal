@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ProgressionJournal.Systems;
 using Terraria;
@@ -26,6 +27,7 @@ public sealed class JournalUiState : UIState
     private UIElement _contentTabsPanel = null!;
     private UIElement _contentPanel = null!;
     private UIText _stagePanelTitle = null!;
+    private JournalTextButton _progressionModeToggleButton = null!;
     private JournalIconButton _closeButton = null!;
     private JournalTextButton _classButton = null!;
     private JournalTextButton _overviewTabButton = null!;
@@ -84,15 +86,16 @@ public sealed class JournalUiState : UIState
         bool selectingClass,
         bool showingPresets,
         bool showingCombatBuffsPage,
+        bool progressionModeEnabled,
         bool hasSelectedClass,
         int selectedItemId)
     {
         ApplyNavigationLayout(hasSelectedClass);
         EnsureLayout();
         ApplyContentLayout(selectingClass, showingPresets);
-        UpdateStaticText();
+        UpdateStaticText(progressionModeEnabled);
         UpdateNavigationStyles(selectingClass, showingPresets);
-        JournalStageButtonPresenter.Refresh(_stageButtons, stageId);
+        JournalStageButtonPresenter.Refresh(_stageButtons, stageId, progressionModeEnabled);
         RefreshContent(combatClass, stageId, selectingClass, showingPresets, showingCombatBuffsPage, selectedItemId);
         Recalculate();
     }
@@ -654,7 +657,7 @@ public sealed class JournalUiState : UIState
 
         _root.Recalculate();
 
-        JournalStageButtonPresenter.Layout(_stageButtons, _stageListContainer);
+        JournalStageButtonPresenter.Layout(_stageButtons, _stageListContainer, JournalOrdering.StageSelection);
         _layoutInitialized = true;
         _layoutScreenWidth = Main.screenWidth;
         _layoutScreenHeight = Main.screenHeight;
@@ -691,6 +694,16 @@ public sealed class JournalUiState : UIState
         };
         _stagePanelTitle.Top.Set(JournalUiMetrics.StagePanelTitleTop, 0f);
         _stagePanel.Append(_stagePanelTitle);
+
+        _progressionModeToggleButton = JournalUiElementFactory.CreateTextButton(
+            string.Empty,
+            JournalUiMetrics.StageProgressionToggleSize,
+            JournalUiMetrics.StageProgressionToggleSize,
+            () => JournalSystem.ToggleProgressionMode(),
+            0.75f);
+        _progressionModeToggleButton.Left.Set(-(JournalUiMetrics.StageProgressionToggleRightInset + JournalUiMetrics.StageProgressionToggleSize), 1f);
+        _progressionModeToggleButton.Top.Set(JournalUiMetrics.StageProgressionToggleTop, 0f);
+        _stagePanel.Append(_progressionModeToggleButton);
 
         _stageListContainer = new UIElement();
         _root.AddDragTarget(_stageListContainer);
@@ -854,9 +867,11 @@ public sealed class JournalUiState : UIState
         _contentTabsPanel.Append(_presetsTabButton);
     }
 
-    private void UpdateStaticText()
+    private void UpdateStaticText(bool progressionModeEnabled)
     {
         _stagePanelTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.StageSelectorTitle"));
+        _progressionModeToggleButton.SetText(progressionModeEnabled ? "x" : "✓");
+        _progressionModeToggleButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProgressionModeToggleTooltip"));
         _classButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Class"));
         _overviewTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewTab"));
         _presetsTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsTab"));
@@ -865,6 +880,7 @@ public sealed class JournalUiState : UIState
     private void UpdateNavigationStyles(bool selectingClass, bool showingPresets)
     {
         _closeButton.SetStyle(JournalUiTheme.GetHeaderButtonStyle(danger: true));
+        _progressionModeToggleButton.SetStyle(JournalUiTheme.GetDefaultTextButtonStyle());
         _classButton.SetStyle(JournalUiTheme.GetTabButtonStyle(selectingClass));
         _overviewTabButton.SetStyle(JournalUiTheme.GetTabButtonStyle(!selectingClass && !showingPresets));
         _presetsTabButton.SetStyle(JournalUiTheme.GetTabButtonStyle(!selectingClass && showingPresets));

@@ -39,6 +39,18 @@ public static class ProgressionStageCatalog
 
 	public static int GetStageOrderIndex(ProgressionStageId stageId) => StageOrderIndices[stageId];
 
+	public static bool IsAvailable(ProgressionStageId stageId, bool progressionModeEnabled)
+	{
+		return !progressionModeEnabled || Get(stageId).IsUnlocked();
+	}
+
+	public static IReadOnlyList<ProgressionStageId> GetAvailableStageIds(bool progressionModeEnabled)
+	{
+		return progressionModeEnabled
+			? OrderedStages.Where(static stage => stage.IsUnlocked()).Select(static stage => stage.Id).ToArray()
+			: OrderedStages.Select(static stage => stage.Id).ToArray();
+	}
+
 	public static ProgressionStageId GetCurrentStageId()
 	{
 		var current = OrderedStages[0];
