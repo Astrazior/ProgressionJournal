@@ -96,6 +96,8 @@ public static class JournalAcquisitionVisuals
         (6, ["first quarter", "первая четверть"]),
         (7, ["waxing gibbous", "растущая луна"])
     ];
+    private static readonly Dictionary<int, JournalSourceTokenData[]> NpcBestiaryTokenCache = new();
+    private static readonly Dictionary<int, JournalSourceTokenData[]> NpcLocationTokenCache = new();
 
     public static bool TryCreateSourceToken(JournalDropSource drop, out JournalSourceTokenData token)
     {
@@ -122,13 +124,18 @@ public static class JournalAcquisitionVisuals
 
     public static IReadOnlyList<JournalSourceTokenData> GetNpcBestiaryTokens(int npcType)
     {
+        if (NpcBestiaryTokenCache.TryGetValue(npcType, out var cachedTokens))
+        {
+            return cachedTokens;
+        }
+
         var bestiaryEntry = BestiaryDatabaseNPCsPopulator.FindEntryByNPCID(npcType);
         if (bestiaryEntry is null)
         {
             return [];
         }
 
-        return bestiaryEntry.Info
+        var tokens = bestiaryEntry.Info
             .OfType<FilterProviderInfoElement>()
             .Select(static element => element.GetDisplayNameKey())
             .Distinct()
@@ -136,14 +143,23 @@ public static class JournalAcquisitionVisuals
             .Where(static token => token.HasValue)
             .Select(static token => token!.Value)
             .ToArray();
+        NpcBestiaryTokenCache[npcType] = tokens;
+        return tokens;
     }
 
     public static IReadOnlyList<JournalSourceTokenData> GetNpcLocationTokens(int npcType)
     {
-        return GetNpcBestiaryTokens(npcType)
+        if (NpcLocationTokenCache.TryGetValue(npcType, out var cachedTokens))
+        {
+            return cachedTokens;
+        }
+
+        var tokens = GetNpcBestiaryTokens(npcType)
             .Where(static token => IsLocationFrame(token.Value))
             .OrderBy(static token => token.Value)
             .ToArray();
+        NpcLocationTokenCache[npcType] = tokens;
+        return tokens;
     }
 
     public static IReadOnlyList<JournalSourceTokenData> GetCommonNpcLocationTokens(IEnumerable<int> npcTypes)

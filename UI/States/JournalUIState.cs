@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ProgressionJournal.Systems;
 using Terraria;
@@ -21,6 +20,7 @@ public sealed class JournalUiState : UIState
     private const string BestiaryForwardButtonTexturePath = "Images/UI/Bestiary/Button_Forward";
 
     private readonly Dictionary<ProgressionStageId, JournalStageButton> _stageButtons = new();
+    private readonly Dictionary<int, CachedAcquisitionView> _acquisitionViewCache = new();
     private JournalDraggablePanel _root = null!;
     private UIPanel _stagePanel = null!;
     private UIPanel _mainPanel = null!;
@@ -48,6 +48,8 @@ public sealed class JournalUiState : UIState
     private int _layoutScreenWidth;
     private int _layoutScreenHeight;
     private bool _windowPositionInitialized;
+
+    private sealed record CachedAcquisitionView(UIElement PreviewElement, IReadOnlyList<UIElement> Entries);
 
     public override void OnInitialize()
     {
@@ -104,6 +106,7 @@ public sealed class JournalUiState : UIState
     {
         _layoutInitialized = false;
         _windowPositionInitialized = false;
+        _acquisitionViewCache.Clear();
         _root.ResetDragState();
     }
 
@@ -167,6 +170,8 @@ public sealed class JournalUiState : UIState
     {
         _sourceClearButton.SetStyle(JournalUiTheme.GetHeaderButtonStyle(danger: true));
         _sourceClearButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemClearTooltip"));
+        _sourcePreviewContainer.RemoveAllChildren();
+        _sourceList.Clear();
 
         if (selectedItemId <= ItemID.None)
         {
@@ -175,51 +180,57 @@ public sealed class JournalUiState : UIState
         }
 
         var selectedItem = JournalItemUtilities.CreateItem(selectedItemId);
-        var previewStrip = new JournalItemStrip([selectedItem])
-        {
-            HAlign = 0.5f
-        };
-        previewStrip.Top.Set(0f, 0f);
-        _sourcePreviewContainer.Append(previewStrip);
         var itemNameMaxWidth = MathF.Max(80f, _sourcePanel.GetDimensions().Width - JournalUiMetrics.AcquisitionPanelInset * 2f - 18f);
         _sourceItemName.SetText(JournalTextUtilities.TrimToPixelWidth(
             Lang.GetItemNameValue(selectedItemId),
             itemNameMaxWidth,
             JournalUiMetrics.AcquisitionPanelItemNameScale));
 
+        if (_acquisitionViewCache.TryGetValue(selectedItemId, out var cachedView))
+        {
+            _sourcePreviewContainer.Append(cachedView.PreviewElement);
+            AddEntriesToSourceList(cachedView.Entries);
+            return;
+        }
+
+        var previewStrip = new JournalItemStrip([selectedItem])
+        {
+            HAlign = 0.5f
+        };
+        previewStrip.Top.Set(0f, 0f);
+        _sourcePreviewContainer.Append(previewStrip);
+
         var info = JournalItemSourceResolver.GetInfo(selectedItemId);
+        var builtEntries = new List<UIElement>();
         if (!info.HasAnySources)
         {
-            _sourceList.Add(CreateSourceNotice(Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemNoData")));
+            var notice = CreateSourceNotice(Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemNoData"));
+            _sourceList.Add(notice);
+            _acquisitionViewCache[selectedItemId] = new CachedAcquisitionView(previewStrip, [notice]);
             return;
         }
 
         if (info.Recipes.Count > 0)
         {
-            AddSourceSectionHeader("Mods.ProgressionJournal.UI.SelectedItemCrafts");
-            foreach (var recipe in info.Recipes)
-            {
-                _sourceList.Add(CreateRecipeSourceCard(recipe));
-            }
+            builtEntries.Add(CreateSourceSectionHeader("Mods.ProgressionJournal.UI.SelectedItemCrafts"));
+            builtEntries.AddRange(info.Recipes.Select(CreateRecipeSourceCard));
         }
 
         if (info.Drops.Count > 0)
         {
-            AddSourceSectionHeader("Mods.ProgressionJournal.UI.SelectedItemDrops");
-            foreach (var dropCard in CreateDropSourceCards(info.Drops))
-            {
-                _sourceList.Add(dropCard);
-            }
+            builtEntries.Add(CreateSourceSectionHeader("Mods.ProgressionJournal.UI.SelectedItemDrops"));
+            builtEntries.AddRange(CreateDropSourceCards(info.Drops));
         }
 
         if (info.Shops.Count > 0)
         {
-            AddSourceSectionHeader("Mods.ProgressionJournal.UI.SelectedItemShops");
-            foreach (var shop in info.Shops)
-            {
-                _sourceList.Add(CreateShopSourceCard(shop));
-            }
+            builtEntries.Add(CreateSourceSectionHeader("Mods.ProgressionJournal.UI.SelectedItemShops"));
+            builtEntries.AddRange(info.Shops.Select(CreateShopSourceCard));
         }
+
+        AddEntriesToSourceList(builtEntries);
+
+        _acquisitionViewCache[selectedItemId] = new CachedAcquisitionView(previewStrip, builtEntries);
     }
 
     private void ClearAcquisitionPanel()
@@ -230,14 +241,14 @@ public sealed class JournalUiState : UIState
         _sourceList.Add(CreateSourceNotice(Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSelectPrompt")));
     }
 
-    private void AddSourceSectionHeader(string localizationKey)
+    private static UIText CreateSourceSectionHeader(string localizationKey)
     {
         var header = JournalUiElementFactory.CreateSectionHeader(Language.GetTextValue(localizationKey));
         header.Width.Set(0f, 1f);
-        _sourceList.Add(header);
+        return header;
     }
 
-    private UIElement CreateRecipeSourceCard(JournalRecipeSource recipe)
+    private UIPanel CreateRecipeSourceCard(JournalRecipeSource recipe)
     {
         var panel = JournalUiElementFactory.CreatePanel();
         panel.Width.Set(0f, 1f);
@@ -261,7 +272,7 @@ public sealed class JournalUiState : UIState
         return panel;
     }
 
-    private UIElement CreateDropSourceCard(JournalDropSource drop)
+    private UIPanel CreateDropSourceCard(JournalDropSource drop)
     {
         var panel = JournalUiElementFactory.CreatePanel();
         panel.Width.Set(0f, 1f);
@@ -310,7 +321,52 @@ public sealed class JournalUiState : UIState
         return panel;
     }
 
-    private UIElement CreateShopSourceCard(JournalShopSource shop)
+    private UIPanel CreateAggregatedNpcDropSourceCard(IReadOnlyList<JournalDropSource> drops)
+    {
+        var panel = JournalUiElementFactory.CreatePanel();
+        panel.Width.Set(0f, 1f);
+
+        var top = JournalUiMetrics.BlockVerticalPadding;
+        top = AppendTextLines(
+            panel,
+            [$"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSource")}: {Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemFromAnyEnemy")}"],
+            top);
+
+        var npcTypes = drops
+            .Select(static drop => drop.SourceNpcType)
+            .Where(static npcType => npcType.HasValue)
+            .Select(static npcType => npcType!.Value)
+            .Distinct()
+            .ToArray();
+        var commonLocationTokens = JournalAcquisitionVisuals.GetCommonNpcLocationTokens(npcTypes);
+        if (commonLocationTokens.Count > 0)
+        {
+            top = AppendTokenRows(panel, commonLocationTokens, top + 6f);
+        }
+
+        var primaryDrop = drops[0];
+        var lines = new List<string>
+        {
+            $"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemChance")}: {FormatDropRate(primaryDrop.DropRate)}"
+        };
+
+        if (primaryDrop.StackMax > 1 || primaryDrop.StackMin > 1)
+        {
+            lines.Add($"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemStack")}: {FormatStackRange(primaryDrop.StackMin, primaryDrop.StackMax)}");
+        }
+
+        top = AppendTextLines(panel, lines, top + 8f);
+
+        if (primaryDrop.Conditions.Count > 0)
+        {
+            top = AppendConditionContent(panel, primaryDrop.Conditions, top + 6f);
+        }
+
+        panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
+        return panel;
+    }
+
+    private UIPanel CreateShopSourceCard(JournalShopSource shop)
     {
         var panel = JournalUiElementFactory.CreatePanel();
         panel.Width.Set(0f, 1f);
@@ -418,12 +474,33 @@ public sealed class JournalUiState : UIState
 
     private IEnumerable<UIElement> CreateDropSourceCards(IReadOnlyList<JournalDropSource> drops)
     {
-        foreach (var drop in drops
-                     .OrderByDescending(static source => source.DropRate)
-                     .ThenBy(static source => source.SourceName, StringComparer.CurrentCultureIgnoreCase))
-        {
-            yield return CreateDropSourceCard(drop);
-        }
+        return GroupDropSourcesForDisplay(drops)
+            .Select(group => group.Count > 1 && group.All(static drop => drop is { SourceNpcType: not null, SourceItemId: null })
+                ? (UIElement)CreateAggregatedNpcDropSourceCard(group)
+                : CreateDropSourceCard(group[0]));
+    }
+
+    private static IReadOnlyList<JournalDropSource>[] GroupDropSourcesForDisplay(IReadOnlyList<JournalDropSource> drops)
+    {
+        return drops
+            .OrderByDescending(static source => source.DropRate)
+            .ThenBy(static source => source.SourceName, StringComparer.CurrentCultureIgnoreCase)
+            .GroupBy(static drop => new
+            {
+                drop.DropRate,
+                drop.StackMin,
+                drop.StackMax,
+                Conditions = CreateConditionGroupSignature(drop.Conditions),
+                IsNpcSource = drop is { SourceNpcType: not null, SourceItemId: null }
+            })
+            .Select(static group =>
+            {
+                var groupedDrops = group.ToArray();
+                return groupedDrops.Length >= 4 && group.Key.IsNpcSource
+                    ? (IReadOnlyList<JournalDropSource>)groupedDrops
+                    : [groupedDrops[0]];
+            })
+            .ToArray();
     }
 
     private float AppendConditionContent(UIElement parent, IReadOnlyList<string> conditions, float top)
@@ -445,12 +522,7 @@ public sealed class JournalUiState : UIState
 
     private float AppendConditionTextList(UIElement parent, IReadOnlyList<string> conditions, float top)
     {
-        if (conditions.Count == 0)
-        {
-            return top;
-        }
-
-        return AppendTextLines(parent, [string.Join(" • ", conditions)], top);
+        return conditions.Count == 0 ? top : AppendTextLines(parent, [string.Join(" • ", conditions)], top);
     }
 
     private float AppendTokenRows(UIElement parent, IReadOnlyList<JournalSourceTokenData> tokens, float top)
@@ -460,9 +532,9 @@ public sealed class JournalUiState : UIState
             return top;
         }
 
-        var left = JournalUiMetrics.BlockHorizontalPadding;
+        const float left = JournalUiMetrics.BlockHorizontalPadding;
         var maxWidth = GetSourceTextMaxWidth();
-        var spacing = 6f;
+        const float spacing = 6f;
         var rows = new List<List<JournalSourceTokenData>>();
         var currentRow = new List<JournalSourceTokenData>();
         var currentRowWidth = 0f;
@@ -543,12 +615,7 @@ public sealed class JournalUiState : UIState
 
     private static string FormatDropRate(float dropRate)
     {
-        if (dropRate <= 0f)
-        {
-            return "0%";
-        }
-
-        return $"{dropRate * 100f:0.##}%";
+        return dropRate <= 0f ? "0%" : $"{dropRate * 100f:0.##}%";
     }
 
     private static string FormatStackRange(int stackMin, int stackMax)
@@ -588,7 +655,7 @@ public sealed class JournalUiState : UIState
         _contentDescription.SetText(string.Empty);
     }
 
-    private UIElement CreateOverviewPageSwitcherBlock(bool showingCombatBuffsPage)
+    private static UIPanel CreateOverviewPageSwitcherBlock(bool showingCombatBuffsPage)
     {
         var panel = JournalUiElementFactory.CreatePanel();
         panel.Width.Set(0f, 1f);
@@ -634,6 +701,14 @@ public sealed class JournalUiState : UIState
         panel.Append(label);
 
         return panel;
+    }
+
+    private void AddEntriesToSourceList(IEnumerable<UIElement> entries)
+    {
+        foreach (var entry in entries)
+        {
+            _sourceList.Add(entry);
+        }
     }
 
     private void EnsureLayout()
