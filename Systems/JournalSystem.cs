@@ -125,7 +125,6 @@ public sealed class JournalSystem : ModSystem
         Visible = true;
         SelectingClass = !HasSelectedClass;
         ShowingPresets = false;
-        _journalState?.ResetLayout();
         _journalInterface?.SetState(_journalState);
         RefreshView();
     }
@@ -231,6 +230,13 @@ public sealed class JournalSystem : ModSystem
             ShowingCombatBuffsPage,
             HasSelectedClass,
             SelectedItemId);
+    }
+
+    public override void OnWorldUnload()
+    {
+        Visible = false;
+        _journalInterface?.SetState(null);
+        _journalState?.ResetLayout();
     }
 
     private bool DrawJournalInterface()

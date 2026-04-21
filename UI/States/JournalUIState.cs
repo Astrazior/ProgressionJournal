@@ -20,7 +20,7 @@ public sealed class JournalUiState : UIState
     private const string BestiaryForwardButtonTexturePath = "Images/UI/Bestiary/Button_Forward";
 
     private readonly Dictionary<ProgressionStageId, JournalStageButton> _stageButtons = new();
-    private UIPanel _root = null!;
+    private JournalDraggablePanel _root = null!;
     private UIPanel _stagePanel = null!;
     private UIPanel _mainPanel = null!;
     private UIElement _contentTabsPanel = null!;
@@ -45,13 +45,12 @@ public sealed class JournalUiState : UIState
     private bool _layoutInitialized;
     private int _layoutScreenWidth;
     private int _layoutScreenHeight;
+    private bool _windowPositionInitialized;
 
     public override void OnInitialize()
     {
-        _root = new UIPanel();
+        _root = new JournalDraggablePanel();
         _root.SetPadding(0f);
-        _root.HAlign = 0.5f;
-        _root.VAlign = 0.5f;
         _root.BackgroundColor = JournalUiTheme.RootBackground * JournalUiTheme.RootBackgroundOpacity;
         _root.BorderColor = JournalUiTheme.RootBorder;
         Append(_root);
@@ -101,6 +100,8 @@ public sealed class JournalUiState : UIState
     public void ResetLayout()
     {
         _layoutInitialized = false;
+        _windowPositionInitialized = false;
+        _root.ResetDragState();
     }
 
     private void RefreshContent(
@@ -641,12 +642,16 @@ public sealed class JournalUiState : UIState
 
         var width = MathF.Min(JournalUiMetrics.RootMaxWidth, Main.screenWidth - JournalUiMetrics.RootHorizontalMargin);
         var height = MathF.Min(JournalUiMetrics.RootMaxHeight, Main.screenHeight - JournalUiMetrics.RootVerticalMargin);
-        var topOffset = Main.screenHeight >= JournalUiMetrics.LargeScreenThreshold ? JournalUiMetrics.LargeScreenTopOffset : 0f;
-
-        _root.Left.Set(0f, 0f);
-        _root.Top.Set(topOffset, 0f);
         _root.Width.Set(width, 0f);
         _root.Height.Set(height, 0f);
+        if (!_windowPositionInitialized)
+        {
+            var defaultPosition = GetDefaultWindowPosition(width, height);
+            _root.Left.Set(defaultPosition.X, 0f);
+            _root.Top.Set(defaultPosition.Y, 0f);
+            _windowPositionInitialized = true;
+        }
+
         _root.Recalculate();
 
         JournalStageButtonPresenter.Layout(_stageButtons, _stageListContainer);
@@ -673,6 +678,7 @@ public sealed class JournalUiState : UIState
     private void InitializeStagePanel()
     {
         _stagePanel = JournalUiElementFactory.CreatePanel();
+        _root.AddDragTarget(_stagePanel);
         _stagePanel.Left.Set(JournalUiMetrics.OuterPadding, 0f);
         _stagePanel.Top.Set(JournalUiMetrics.HeaderHeight + JournalUiMetrics.OuterPadding, 0f);
         _stagePanel.Width.Set(JournalUiMetrics.StagePanelWidth, 0f);
@@ -687,6 +693,7 @@ public sealed class JournalUiState : UIState
         _stagePanel.Append(_stagePanelTitle);
 
         _stageListContainer = new UIElement();
+        _root.AddDragTarget(_stageListContainer);
         _stageListContainer.Left.Set(JournalUiMetrics.StageListLeft, 0f);
         _stageListContainer.Top.Set(JournalUiMetrics.StageListTop, 0f);
         _stageListContainer.Width.Set(-JournalUiMetrics.StageListHorizontalInset, 1f);
@@ -707,6 +714,7 @@ public sealed class JournalUiState : UIState
     private void InitializeMainPanel()
     {
         _mainPanel = JournalUiElementFactory.CreatePanel();
+        _root.AddDragTarget(_mainPanel);
         _mainPanel.Left.Set(JournalUiMetrics.OuterPadding + JournalUiMetrics.StagePanelWidth + JournalUiMetrics.PanelGap, 0f);
         _mainPanel.Top.Set(JournalUiMetrics.HeaderHeight + JournalUiMetrics.OuterPadding, 0f);
         _mainPanel.Width.Set(-(JournalUiMetrics.OuterPadding * 2f + JournalUiMetrics.StagePanelWidth + JournalUiMetrics.PanelGap), 1f);
@@ -714,6 +722,7 @@ public sealed class JournalUiState : UIState
         _root.Append(_mainPanel);
 
         _contentPanel = new UIElement();
+        _root.AddDragTarget(_contentPanel);
         _contentPanel.Left.Set(JournalUiMetrics.ContentInset, 0f);
         _contentPanel.Top.Set(JournalUiMetrics.ContentInset, 0f);
         _contentPanel.Width.Set(-JournalUiMetrics.ContentInset * 2f, 1f);
@@ -734,6 +743,7 @@ public sealed class JournalUiState : UIState
         _contentPanel.Append(_contentDescription);
 
         _classSelectionContainer = new UIElement();
+        _root.AddDragTarget(_classSelectionContainer);
         _classSelectionContainer.Left.Set(JournalUiMetrics.ContentBodyLeft, 0f);
         _classSelectionContainer.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
         _classSelectionContainer.Width.Set(-JournalUiMetrics.ContentBodyHorizontalInset, 1f);
@@ -741,6 +751,7 @@ public sealed class JournalUiState : UIState
         _contentPanel.Append(_classSelectionContainer);
 
         _entryList = [];
+        _root.AddDragTarget(_entryList);
         _entryList.Left.Set(JournalUiMetrics.ContentBodyLeft, 0f);
         _entryList.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
         _entryList.Width.Set(-JournalUiMetrics.EntryListWidthInset, 1f);
@@ -762,6 +773,7 @@ public sealed class JournalUiState : UIState
     private void InitializeAcquisitionPanel()
     {
         _sourcePanel = JournalUiElementFactory.CreatePanel();
+        _root.AddDragTarget(_sourcePanel);
         _sourcePanel.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
         _sourcePanel.Width.Set(JournalUiMetrics.AcquisitionPanelWidth, 0f);
         _sourcePanel.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
@@ -777,6 +789,7 @@ public sealed class JournalUiState : UIState
         _sourcePanel.Append(_sourceClearButton);
 
         _sourcePreviewContainer = new UIElement();
+        _root.AddDragTarget(_sourcePreviewContainer);
         _sourcePreviewContainer.Left.Set(JournalUiMetrics.AcquisitionPanelInset, 0f);
         _sourcePreviewContainer.Top.Set(JournalUiMetrics.AcquisitionPanelPreviewTop, 0f);
         _sourcePreviewContainer.Width.Set(-(JournalUiMetrics.AcquisitionPanelInset * 2f), 1f);
@@ -793,6 +806,7 @@ public sealed class JournalUiState : UIState
         _sourcePanel.Append(_sourceItemName);
 
         _sourceList = [];
+        _root.AddDragTarget(_sourceList);
         _sourceList.Left.Set(JournalUiMetrics.AcquisitionPanelInset, 0f);
         _sourceList.Top.Set(JournalUiMetrics.AcquisitionPanelContentTop, 0f);
         _sourceList.Width.Set(-(JournalUiMetrics.AcquisitionPanelInset * 2f + JournalUiMetrics.ScrollbarWidth + 4f), 1f);
@@ -812,6 +826,7 @@ public sealed class JournalUiState : UIState
     private void InitializeContentTabs()
     {
         _contentTabsPanel = new UIElement();
+        _root.AddDragTarget(_contentTabsPanel);
         _contentTabsPanel.Left.Set(JournalUiMetrics.HeaderTabsLeft, 0f);
         _contentTabsPanel.Top.Set(JournalUiMetrics.HeaderTabsTop, 0f);
         _contentTabsPanel.Width.Set(-(JournalUiMetrics.HeaderTabsLeft + JournalUiMetrics.HeaderTabsRightInset), 1f);
@@ -1001,6 +1016,14 @@ public sealed class JournalUiState : UIState
                 _contentPanel.RemoveChild(_sourcePanel);
             }
         }
+    }
+
+    private static Vector2 GetDefaultWindowPosition(float width, float height)
+    {
+        var topOffset = Main.screenHeight >= JournalUiMetrics.LargeScreenThreshold ? JournalUiMetrics.LargeScreenTopOffset : 0f;
+        return new Vector2(
+            (Main.screenWidth - width) * 0.5f,
+            (Main.screenHeight - height) * 0.5f + topOffset);
     }
 
     private static JournalSystem JournalSystem => ModContent.GetInstance<JournalSystem>();
