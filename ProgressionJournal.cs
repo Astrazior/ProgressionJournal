@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using ProgressionJournal.Api;
 
 namespace ProgressionJournal;
 
@@ -20,7 +21,13 @@ public sealed class ProgressionJournal : Mod
 
 	public override void Unload()
 	{
+		JournalRepository.ClearExternalContent();
 		ToggleJournalKeybind = null;
 		Instance = null;
+	}
+
+	public override object? Call(params object[] args)
+	{
+		return ProgressionJournalApi.HandleCall(args);
 	}
 }

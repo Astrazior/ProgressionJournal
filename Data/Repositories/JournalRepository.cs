@@ -9,6 +9,7 @@ public static partial class JournalRepository
     private static readonly Lazy<IReadOnlyList<JournalEntry>> Entries = new(BuildEntries);
     private static readonly Lazy<IReadOnlyList<JournalPreset>> Presets = new(BuildPresets);
     private static readonly Lazy<IReadOnlyList<JournalCombatBuffEntry>> CombatBuffEntries = new(BuildCombatBuffEntries);
+    private static readonly List<JournalEntry> ExternalEntries = [];
 
     public static IReadOnlyList<JournalStageEntry> GetEntries(ProgressionStageId stageId, CombatClass combatClass)
     {
@@ -36,9 +37,32 @@ public static partial class JournalRepository
         AddClassSpecificEntries(entries);
         AddArmorEntries(entries);
         AddAccessoryEntries(entries);
+        entries.AddRange(ExternalEntries);
         return entries;
     }
 
     private static IReadOnlyList<JournalPreset> BuildPresets() => [];
+
+    public static void RegisterExternalEntry(JournalEntry entry)
+    {
+        ArgumentNullException.ThrowIfNull(entry);
+
+        if (Entries.IsValueCreated)
+        {
+            throw new InvalidOperationException("External journal entries must be registered before the repository is initialized. Register them in Mod.PostSetupContent or ModSystem.PostSetupContent.");
+        }
+
+        if (ExternalEntries.Any(existing => string.Equals(existing.Key, entry.Key, StringComparison.OrdinalIgnoreCase)))
+        {
+            throw new InvalidOperationException($"An external journal entry with key '{entry.Key}' is already registered.");
+        }
+
+        ExternalEntries.Add(entry);
+    }
+
+    internal static void ClearExternalContent()
+    {
+        ExternalEntries.Clear();
+    }
 }
 

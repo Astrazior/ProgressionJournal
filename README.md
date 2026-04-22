@@ -23,6 +23,47 @@ https://steamcommunity.com/sharedfiles/filedetails?id=3710545729
 
 Open tModLoader and use `Workshop -> Develop Mods -> Build + Reload`.
 
+## API
+
+External mods can register additional journal entries through `Mod.Call`.
+
+- `GetApiVersion`
+- `RegisterEntry`
+
+Register external entries in `PostSetupContent`.
+
+`RegisterEntry` arguments:
+
+1. `key`
+2. `category`
+3. `classes`
+4. `itemGroups`
+5. `evaluations`
+6. optional `eventCategory`
+7. optional `isSupportWeapon`
+
+Enums can be passed as enum values, names, or integers.
+
+Example:
+
+```csharp
+public override void PostSetupContent()
+{
+    if (!ModLoader.TryGetMod("ProgressionJournal", out Mod journal))
+    {
+        return;
+    }
+
+    journal.Call(
+        "RegisterEntry",
+        "ExampleMod.ExampleBlade",
+        "Weapon",
+        "Melee",
+        new[] { ItemType<Items.Weapons.ExampleBlade>() },
+        new object[] { new object[] { "EyeOfCthulhu", "Core" } });
+}
+```
+
 ## License
 
 MIT. See `LICENSE`.
