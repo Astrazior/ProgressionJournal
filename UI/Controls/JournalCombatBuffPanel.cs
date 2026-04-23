@@ -13,7 +13,7 @@ public sealed class JournalCombatBuffPanel : UIPanel
     private readonly string _titleLocalizationKey;
     private readonly bool _showTitle;
     private readonly bool _autoHeight;
-    private readonly bool _useConsumableOverlayLayout;
+    private readonly int _slotsPerRow;
     private readonly Action<int>? _onItemSelected;
 
     public JournalCombatBuffPanel(
@@ -21,14 +21,14 @@ public sealed class JournalCombatBuffPanel : UIPanel
         string titleLocalizationKey,
         bool showTitle = true,
         bool autoHeight = false,
-        bool useConsumableOverlayLayout = false,
+        int slotsPerRow = JournalUiMetrics.BuffSlotsPerRow,
         Action<int>? onItemSelected = null)
     {
         _sectionOrder = sectionOrder;
         _titleLocalizationKey = titleLocalizationKey;
         _showTitle = showTitle;
         _autoHeight = autoHeight;
-        _useConsumableOverlayLayout = useConsumableOverlayLayout;
+        _slotsPerRow = Math.Max(1, slotsPerRow);
         _onItemSelected = onItemSelected;
         SetPadding(0f);
         BackgroundColor = JournalUiTheme.PresetPanelBackground;
@@ -52,12 +52,6 @@ public sealed class JournalCombatBuffPanel : UIPanel
                 Height.Set(0f, 0f);
             }
 
-            return;
-        }
-
-        if (_useConsumableOverlayLayout)
-        {
-            SetConsumableOverlayEntries(entries);
             return;
         }
 
@@ -96,7 +90,7 @@ public sealed class JournalCombatBuffPanel : UIPanel
             Append(header);
             top += GetCategoryHeaderHeight() + GetCategoryHeaderBottomSpacing();
 
-            foreach (var rowEntries in ChunkEntries(categoryEntries, JournalUiMetrics.BuffSlotsPerRow))
+            foreach (var rowEntries in ChunkEntries(categoryEntries, _slotsPerRow))
             {
                 var row = CreateSlotRow(rowEntries);
                 row.Left.Set(contentLeft, 0f);
@@ -116,115 +110,6 @@ public sealed class JournalCombatBuffPanel : UIPanel
 
         ContentHeight = top + 4f;
     }
-
-    private void SetConsumableOverlayEntries(IReadOnlyList<JournalCombatBuffEntry> entries)
-    {
-        const float totalWidth = JournalUiMetrics.CombatBuffOverlayWidth - JournalUiMetrics.CombatBuffOverlayInset * 2f;
-        const float columnWidth = (totalWidth - JournalUiMetrics.ConsumableOverlayColumnGap) * 0.5f;
-        var leftTop = 0f;
-        var rightTop = 0f;
-
-        leftTop = AppendConsumableColumnSection(
-            entries,
-            JournalBuffCategory.Basic,
-            0f,
-            leftTop,
-            columnWidth,
-            JournalUiMetrics.ConsumableOverlayColumnSlots);
-
-        rightTop = AppendConsumableColumnSection(
-            entries,
-            JournalBuffCategory.Potion,
-            columnWidth + JournalUiMetrics.ConsumableOverlayColumnGap,
-            rightTop,
-            columnWidth,
-            JournalUiMetrics.ConsumableOverlayColumnSlots);
-
-        leftTop = AppendConsumableColumnSection(
-            entries,
-            JournalBuffCategory.Food,
-            0f,
-            leftTop,
-            columnWidth,
-            JournalUiMetrics.ConsumableOverlayColumnSlots);
-
-        rightTop = AppendConsumableColumnSection(
-            entries,
-            JournalBuffCategory.Eternal,
-            columnWidth + JournalUiMetrics.ConsumableOverlayColumnGap,
-            rightTop,
-            columnWidth,
-            JournalUiMetrics.ConsumableOverlayColumnSlots);
-
-        leftTop = AppendConsumableColumnSection(
-            entries,
-            JournalBuffCategory.Flask,
-            0f,
-            leftTop,
-            columnWidth,
-            JournalUiMetrics.ConsumableOverlayColumnSlots);
-
-        var top = System.MathF.Max(leftTop, rightTop);
-
-        if (_autoHeight)
-        {
-            Height.Set(top + 4f, 0f);
-        }
-
-        ContentHeight = top + 4f;
-    }
-
-    private float AppendConsumableColumnSection(
-        IReadOnlyList<JournalCombatBuffEntry> allEntries,
-        JournalBuffCategory category,
-        float left,
-        float top,
-        float width,
-        int maxSlotsPerRow)
-    {
-        var sectionHeight = AppendCategorySection(allEntries, category, left, top, width, maxSlotsPerRow);
-        if (sectionHeight <= 0f)
-        {
-            return top;
-        }
-
-        return top + sectionHeight + JournalUiMetrics.BuffSectionSpacing;
-    }
-
-    private float AppendCategorySection(
-        IReadOnlyList<JournalCombatBuffEntry> allEntries,
-        JournalBuffCategory category,
-        float left,
-        float top,
-        float width,
-        int maxSlotsPerRow)
-    {
-        var categoryEntries = allEntries.Where(entry => entry.Category == category).ToArray();
-        if (categoryEntries.Length == 0)
-        {
-            return 0f;
-        }
-
-        var startTop = top;
-        var header = CreateCategoryHeader(category, width);
-        header.Left.Set(left, 0f);
-        header.Top.Set(top, 0f);
-        Append(header);
-        top += GetCategoryHeaderHeight() + GetCategoryHeaderBottomSpacing();
-
-        foreach (var rowEntries in ChunkEntries(categoryEntries, maxSlotsPerRow))
-        {
-            var row = CreateSlotRow(rowEntries);
-            row.Left.Set(left + JournalUiMetrics.CategoryContentIndent, 0f);
-            row.Top.Set(top, 0f);
-            Append(row);
-            top += JournalUiMetrics.RowHeight + JournalUiMetrics.RowSpacing;
-        }
-
-        top -= JournalUiMetrics.RowSpacing;
-        return top - startTop;
-    }
-
     private static string GetCategoryTitle(JournalBuffCategory category) => category switch
     {
         JournalBuffCategory.Station => Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffStations"),
@@ -237,23 +122,14 @@ public sealed class JournalCombatBuffPanel : UIPanel
         _ => string.Empty
     };
 
-    private static JournalCategoryHeader CreateCategoryHeader(JournalBuffCategory category, float? width = null)
+    private static JournalCategoryHeader CreateCategoryHeader(JournalBuffCategory category)
     {
         var header = new JournalCategoryHeader(
             GetCategoryTitle(category),
             JournalUiTheme.PanelBorder,
             JournalUiTheme.RootTitleText,
             JournalUiTheme.CategoryHeaderStyle);
-
-        if (width is { } fixedWidth)
-        {
-            header.Width.Set(fixedWidth, 0f);
-        }
-        else
-        {
-            header.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
-        }
-
+        header.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
         header.Height.Set(GetCategoryHeaderHeight(), 0f);
         return header;
     }

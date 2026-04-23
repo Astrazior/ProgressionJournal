@@ -28,33 +28,6 @@ public static partial class JournalRepository
             .ToArray();
     }
 
-    public static IReadOnlyList<JournalCombatBuffEntry> GetPersistentCombatBuffEntries(ProgressionStageId stageId, CombatClass combatClass)
-    {
-        return CombatBuffEntries.Value
-            .Where(entry => entry.AppliesToClass(combatClass)
-                && entry.AppliesToStage(stageId)
-                && entry.Category is JournalBuffCategory.Station or JournalBuffCategory.Passive)
-            .OrderBy(entry => GetCombatBuffCategoryOrder(entry.Category))
-            .ThenByDescending(entry => entry.IsClassSpecific)
-            .ToArray();
-    }
-
-    public static IReadOnlyList<JournalCombatBuffEntry> GetConsumableCombatBuffEntries(ProgressionStageId stageId, CombatClass combatClass)
-    {
-        return CombatBuffEntries.Value
-            .Where(entry => entry.AppliesToClass(combatClass)
-                && entry.AppliesToStage(stageId)
-                && (entry.Category == JournalBuffCategory.Basic
-                    || entry.Category == JournalBuffCategory.Potion
-                    || entry.Category == JournalBuffCategory.Eternal
-                    || entry.Category == JournalBuffCategory.Food
-                    || entry.Category == JournalBuffCategory.Flask))
-            .GroupBy(entry => entry.Category)
-            .OrderBy(group => GetCombatBuffCategoryOrder(group.Key))
-            .SelectMany(group => group.Key == JournalBuffCategory.Food ? group : group.Reverse())
-            .ToArray();
-    }
-
     private static int GetCombatBuffCategoryOrder(JournalBuffCategory category)
     {
         for (var index = 0; index < CombatBuffCategoryOrder.Length; index++)

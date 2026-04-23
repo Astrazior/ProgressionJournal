@@ -44,6 +44,12 @@ public sealed class JournalUiState : UIState
     private UIText _sourceItemName = null!;
     private UIList _sourceList = null!;
     private UIScrollbar _sourceScrollbar = null!;
+    private JournalDimOverlay _buildPickerOverlay = null!;
+    private UIPanel _buildPickerPanel = null!;
+    private UIText _buildPickerTitle = null!;
+    private JournalIconButton _buildPickerCloseButton = null!;
+    private UIList _buildPickerList = null!;
+    private UIScrollbar _buildPickerScrollbar = null!;
     private bool _layoutInitialized;
     private int _layoutScreenWidth;
     private int _layoutScreenHeight;
@@ -62,6 +68,7 @@ public sealed class JournalUiState : UIState
         InitializeHeader();
         InitializeStagePanel();
         InitializeMainPanel();
+        InitializeBuildPickerOverlay();
     }
 
     public override void Update(GameTime gameTime)
@@ -99,6 +106,7 @@ public sealed class JournalUiState : UIState
         UpdateNavigationStyles(selectingClass, showingPresets);
         JournalStageButtonPresenter.Refresh(_stageButtons, stageId, progressionModeEnabled);
         RefreshContent(combatClass, stageId, selectingClass, showingPresets, showingCombatBuffsPage, selectedItemId);
+        RefreshBuildPickerOverlay(combatClass, stageId, showingPresets);
         Recalculate();
     }
 
@@ -108,6 +116,7 @@ public sealed class JournalUiState : UIState
         _windowPositionInitialized = false;
         _acquisitionViewCache.Clear();
         _root.ResetDragState();
+        HideBuildPickerOverlay();
     }
 
     private void RefreshContent(
@@ -134,10 +143,15 @@ public sealed class JournalUiState : UIState
 
         if (showingPresets)
         {
-            SetContentHeader(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsHeadline"));
-            JournalContentBuilder.PopulateDevelopmentNotice(
+            var presetClassName = Language.GetTextValue($"Mods.ProgressionJournal.Classes.{combatClass}");
+            var presetStageName = Language.GetTextValue(ProgressionStageCatalog.Get(stageId).LocalizationKey);
+            SetContentHeader($"{presetClassName} • {presetStageName}");
+            JournalContentBuilder.PopulateBuildPlanner(
                 _entryList,
-                Language.GetTextValue("Mods.ProgressionJournal.UI.InDevelopment"));
+                stageId,
+                combatClass,
+                JournalSystem.GetSelectedBuildItem,
+                JournalSystem.OpenBuildSlot);
             ClearAcquisitionPanel();
             return;
         }
@@ -711,6 +725,96 @@ public sealed class JournalUiState : UIState
         }
     }
 
+    private void RefreshBuildPickerOverlay(CombatClass combatClass, ProgressionStageId stageId, bool showingPresets)
+    {
+        if (!showingPresets || JournalSystem.ActiveBuildSlotKey is not { } slotKey)
+        {
+            HideBuildPickerOverlay();
+            return;
+        }
+
+        if (_buildPickerOverlay.Parent is null)
+        {
+            _root.Append(_buildPickerOverlay);
+        }
+
+        if (_buildPickerPanel.Parent is null)
+        {
+            _root.Append(_buildPickerPanel);
+        }
+
+        var rootDimensions = _root.GetDimensions();
+        var panelWidth = MathF.Min(JournalUiMetrics.BuildPickerWidth, rootDimensions.Width - 48f);
+        var panelHeight = MathF.Min(JournalUiMetrics.BuildPickerHeight, rootDimensions.Height - 48f);
+        _buildPickerPanel.Width.Set(panelWidth, 0f);
+        _buildPickerPanel.Height.Set(panelHeight, 0f);
+        _buildPickerPanel.Left.Set((rootDimensions.Width - panelWidth) * 0.5f, 0f);
+        _buildPickerPanel.Top.Set((rootDimensions.Height - panelHeight) * 0.5f, 0f);
+
+        _buildPickerTitle.SetText(JournalBuildPlannerCatalog.GetSlotDisplayName(slotKey, combatClass));
+        _buildPickerList.Clear();
+
+        var candidates = JournalRepository.GetBuildCandidates(
+            stageId,
+            combatClass,
+            slotKey,
+            JournalSystem.GetBlockedBuildItemIds(slotKey));
+        if (candidates.Count == 0)
+        {
+            _buildPickerList.Add(CreateSourceNotice(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerEmpty")));
+            return;
+        }
+
+        var selectedItemId = JournalSystem.GetSelectedBuildItem(slotKey);
+        foreach (var candidate in candidates)
+        {
+            _buildPickerList.Add(CreateBuildCandidateCard(candidate, selectedItemId));
+        }
+    }
+
+    private void HideBuildPickerOverlay()
+    {
+        if (_buildPickerOverlay.Parent is not null)
+        {
+            _root.RemoveChild(_buildPickerOverlay);
+        }
+
+        if (_buildPickerPanel.Parent is not null)
+        {
+            _root.RemoveChild(_buildPickerPanel);
+        }
+    }
+
+    private UIPanel CreateBuildCandidateCard(JournalBuildCandidate candidate, int selectedItemId)
+    {
+        var panel = JournalUiElementFactory.CreatePanel();
+        panel.Width.Set(0f, 1f);
+        panel.Height.Set(JournalUiMetrics.BuildCandidateHeight, 0f);
+        if (candidate.ItemId == selectedItemId)
+        {
+            panel.BorderColor = JournalUiTheme.SectionHeaderText;
+        }
+
+        panel.OnLeftClick += (_, _) => JournalSystem.SelectActiveBuildItem(candidate.ItemId);
+
+        var preview = new JournalItemStrip([JournalItemUtilities.CreateItem(candidate.ItemId)]);
+        preview.Left.Set(14f, 0f);
+        preview.Top.Set(14f, 0f);
+        panel.Append(preview);
+
+        var title = new UIText(
+            JournalTextUtilities.TrimToCharacterCount(Lang.GetItemNameValue(candidate.ItemId), 48),
+            JournalUiMetrics.BuildPickerItemTitleScale,
+            true);
+        title.Left.Set(28f, 0f);
+        title.Top.Set(-12f, 0.5f);
+        title.HAlign = 0.5f;
+        title.TextColor = JournalUiTheme.RootTitleText;
+        panel.Append(title);
+
+        return panel;
+    }
+
     private void EnsureLayout()
     {
         if (_layoutInitialized && _layoutScreenWidth == Main.screenWidth && _layoutScreenHeight == Main.screenHeight)
@@ -909,6 +1013,50 @@ public sealed class JournalUiState : UIState
         _sourceScrollbar.Height.Set(-(JournalUiMetrics.AcquisitionPanelContentTop + JournalUiMetrics.AcquisitionPanelInset), 1f);
         _sourcePanel.Append(_sourceScrollbar);
         _sourceList.SetScrollbar(_sourceScrollbar);
+    }
+
+    private void InitializeBuildPickerOverlay()
+    {
+        _buildPickerOverlay = new JournalDimOverlay(() => JournalSystem.CloseBuildSlotPicker());
+
+        _buildPickerPanel = JournalUiElementFactory.CreatePanel();
+        _buildPickerPanel.SetPadding(0f);
+        _buildPickerPanel.BackgroundColor = JournalUiTheme.RootBackground * JournalUiTheme.RootBackgroundOpacity;
+        _buildPickerPanel.BorderColor = JournalUiTheme.RootBorder;
+
+        _buildPickerTitle = new UIText(string.Empty, JournalUiMetrics.BuildPickerTitleScale, true)
+        {
+            HAlign = 0.5f,
+            TextColor = JournalUiTheme.RootTitleText
+        };
+        _buildPickerTitle.Top.Set(JournalUiMetrics.BuildPickerHeaderTop, 0f);
+        _buildPickerPanel.Append(_buildPickerTitle);
+
+        _buildPickerCloseButton = JournalUiElementFactory.CreateIconButton(
+            BestiarySearchCancelTexturePath,
+            24f,
+            24f,
+            () => JournalSystem.CloseBuildSlotPicker(),
+            0.8f);
+        _buildPickerCloseButton.Left.Set(-34f, 1f);
+        _buildPickerCloseButton.Top.Set(8f, 0f);
+        _buildPickerPanel.Append(_buildPickerCloseButton);
+
+        _buildPickerList = [];
+        _buildPickerList.Left.Set(JournalUiMetrics.BuildPickerInset, 0f);
+        _buildPickerList.Top.Set(JournalUiMetrics.BuildPickerListTop, 0f);
+        _buildPickerList.Width.Set(-(JournalUiMetrics.BuildPickerInset * 2f + JournalUiMetrics.ScrollbarWidth + 4f), 1f);
+        _buildPickerList.Height.Set(-(JournalUiMetrics.BuildPickerListTop + JournalUiMetrics.BuildPickerListBottomInset), 1f);
+        _buildPickerList.ListPadding = JournalUiMetrics.EntryListPadding;
+        _buildPickerPanel.Append(_buildPickerList);
+
+        _buildPickerScrollbar = new UIScrollbar();
+        _buildPickerScrollbar.Width.Set(JournalUiMetrics.ScrollbarWidth, 0f);
+        _buildPickerScrollbar.Left.Set(-(JournalUiMetrics.ScrollbarWidth + JournalUiMetrics.BuildPickerInset), 1f);
+        _buildPickerScrollbar.Top.Set(JournalUiMetrics.BuildPickerListTop, 0f);
+        _buildPickerScrollbar.Height.Set(-(JournalUiMetrics.BuildPickerListTop + JournalUiMetrics.BuildPickerListBottomInset), 1f);
+        _buildPickerPanel.Append(_buildPickerScrollbar);
+        _buildPickerList.SetScrollbar(_buildPickerScrollbar);
     }
 
     private void InitializeContentTabs()

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -34,6 +35,10 @@ public sealed class JournalSystem : ModSystem
     public bool ProgressionModeEnabled { get; private set; } = true;
 
     public int SelectedItemId { get; private set; }
+
+    public string? ActiveBuildSlotKey { get; private set; }
+
+    private readonly Dictionary<string, int> _buildSelections = new();
 
     public override void Load()
     {
@@ -127,6 +132,7 @@ public sealed class JournalSystem : ModSystem
         Visible = true;
         SelectingClass = !HasSelectedClass;
         ShowingPresets = false;
+        ActiveBuildSlotKey = null;
         CoerceSelectedStage();
         _journalInterface?.SetState(_journalState);
         RefreshView();
@@ -135,6 +141,7 @@ public sealed class JournalSystem : ModSystem
     public void HideView()
     {
         Visible = false;
+        ActiveBuildSlotKey = null;
         _journalInterface?.SetState(null);
     }
 
@@ -150,6 +157,8 @@ public sealed class JournalSystem : ModSystem
         HasSelectedClass = true;
         SelectingClass = false;
         ShowingPresets = false;
+        ActiveBuildSlotKey = null;
+        CoerceBuildSelections();
         RefreshView();
     }
 
@@ -173,6 +182,8 @@ public sealed class JournalSystem : ModSystem
         }
 
         SelectedStage = stageId;
+        ActiveBuildSlotKey = null;
+        CoerceBuildSelections();
         RefreshView();
     }
 
@@ -180,6 +191,8 @@ public sealed class JournalSystem : ModSystem
     {
         ProgressionModeEnabled = !ProgressionModeEnabled;
         CoerceSelectedStage();
+        ActiveBuildSlotKey = null;
+        CoerceBuildSelections();
         RefreshView();
     }
 
@@ -187,6 +200,7 @@ public sealed class JournalSystem : ModSystem
     {
         SelectingClass = false;
         ShowingPresets = false;
+        ActiveBuildSlotKey = null;
         RefreshView();
     }
 
@@ -237,6 +251,8 @@ public sealed class JournalSystem : ModSystem
             return;
         }
 
+        CoerceBuildSelections();
+
         _journalState?.Refresh(
             SelectedClass,
             SelectedStage,
@@ -248,9 +264,78 @@ public sealed class JournalSystem : ModSystem
             SelectedItemId);
     }
 
+    public void OpenBuildSlot(string slotKey)
+    {
+        ActiveBuildSlotKey = slotKey;
+        RefreshView();
+    }
+
+    public void CloseBuildSlotPicker()
+    {
+        if (ActiveBuildSlotKey is null)
+        {
+            return;
+        }
+
+        ActiveBuildSlotKey = null;
+        RefreshView();
+    }
+
+    public void SelectActiveBuildItem(int itemId)
+    {
+        if (ActiveBuildSlotKey is null || itemId <= ItemID.None)
+        {
+            return;
+        }
+
+        _buildSelections[ActiveBuildSlotKey] = itemId;
+        ActiveBuildSlotKey = null;
+        RefreshView();
+    }
+
+    public void ClearBuildItem(string slotKey)
+    {
+        if (!_buildSelections.Remove(slotKey))
+        {
+            return;
+        }
+
+        if (string.Equals(ActiveBuildSlotKey, slotKey, System.StringComparison.OrdinalIgnoreCase))
+        {
+            ActiveBuildSlotKey = null;
+        }
+
+        RefreshView();
+    }
+
+    public int GetSelectedBuildItem(string slotKey)
+    {
+        return _buildSelections.GetValueOrDefault(slotKey, ItemID.None);
+    }
+
+    public IReadOnlySet<int> GetBlockedBuildItemIds(string slotKey)
+    {
+        if (!JournalBuildPlannerCatalog.TryGetSlotKind(slotKey, out var slotKind)
+            || slotKind != JournalBuildSlotKind.Accessory)
+        {
+            return EmptyBlockedItemIds;
+        }
+
+        var blockedItemIds = _buildSelections
+            .Where(pair => !string.Equals(pair.Key, slotKey, System.StringComparison.OrdinalIgnoreCase)
+                && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out var pairSlotKind)
+                && pairSlotKind == JournalBuildSlotKind.Accessory)
+            .Select(static pair => pair.Value)
+            .ToHashSet();
+
+        return blockedItemIds.Count == 0 ? EmptyBlockedItemIds : blockedItemIds;
+    }
+
     public override void OnWorldUnload()
     {
         Visible = false;
+        ActiveBuildSlotKey = null;
+        _buildSelections.Clear();
         _journalInterface?.SetState(null);
         _journalState?.ResetLayout();
     }
@@ -293,6 +378,26 @@ public sealed class JournalSystem : ModSystem
 
         SelectedStage = ProgressionStageCatalog.GetCurrentStageId();
     }
+
+    private void CoerceBuildSelections()
+    {
+        if (!HasSelectedClass || _buildSelections.Count == 0)
+        {
+            return;
+        }
+
+        var invalidSelections = _buildSelections
+            .Where(pair => !JournalRepository.IsBuildSelectionValid(SelectedStage, SelectedClass, pair.Key, pair.Value))
+            .Select(static pair => pair.Key)
+            .ToArray();
+
+        foreach (var slotKey in invalidSelections)
+        {
+            _buildSelections.Remove(slotKey);
+        }
+    }
+
+    private static readonly IReadOnlySet<int> EmptyBlockedItemIds = new HashSet<int>();
 
     private static T Cycle<T>(IReadOnlyList<T> values, T current, int direction)
     {

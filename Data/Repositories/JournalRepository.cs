@@ -7,7 +7,6 @@ namespace ProgressionJournal.Data.Repositories;
 public static partial class JournalRepository
 {
     private static readonly Lazy<IReadOnlyList<JournalEntry>> Entries = new(BuildEntries);
-    private static readonly Lazy<IReadOnlyList<JournalPreset>> Presets = new(BuildPresets);
     private static readonly Lazy<IReadOnlyList<JournalCombatBuffEntry>> CombatBuffEntries = new(BuildCombatBuffEntries);
     private static readonly List<JournalEntry> ExternalEntries = [];
 
@@ -23,13 +22,6 @@ public static partial class JournalRepository
             .ToArray();
     }
 
-    public static IReadOnlyList<JournalPreset> GetPresets(ProgressionStageId stageId, CombatClass combatClass)
-    {
-        return Presets.Value
-            .Where(preset => preset.StageId == stageId && preset.CombatClass == combatClass)
-            .ToArray();
-    }
-
     private static List<JournalEntry> BuildEntries()
     {
         List<JournalEntry> entries = [];
@@ -40,8 +32,6 @@ public static partial class JournalRepository
         entries.AddRange(ExternalEntries);
         return entries;
     }
-
-    private static IReadOnlyList<JournalPreset> BuildPresets() => [];
 
     public static void RegisterExternalEntry(JournalEntry entry)
     {
