@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework;
 using ProgressionJournal.Systems;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -86,28 +88,9 @@ public static class JournalContentBuilder
         CombatClass combatClass,
         IReadOnlyList<JournalSavedBuild> builds)
     {
-        for (var index = 0; index < builds.Count; index += 2)
+        foreach (var build in builds)
         {
-            var rowBuilds = builds.Skip(index).Take(2).ToArray();
-            var row = new UIElement();
-            row.Width.Set(0f, 1f);
-
-            var cards = rowBuilds
-                .Select(build => CreateSavedBuildCard(build, stageId, combatClass))
-                .ToArray();
-
-            var rowHeight = cards.Max(card => card.Height.Pixels);
-            row.Height.Set(rowHeight, 0f);
-
-            for (var cardIndex = 0; cardIndex < cards.Length; cardIndex++)
-            {
-                var card = cards[cardIndex];
-                card.Left.Set(cardIndex == 0 ? 0f : 6f, cardIndex == 0 ? 0f : 0.5f);
-                card.Width.Set(-6f, 0.5f);
-                row.Append(card);
-            }
-
-            entryList.Add(row);
+            entryList.Add(CreateSavedBuildCard(build, stageId, combatClass));
         }
     }
 
@@ -384,49 +367,197 @@ public static class JournalContentBuilder
         var card = JournalUiElementFactory.CreatePanel();
         card.SetPadding(0f);
         card.Width.Set(0f, 1f);
-        card.BackgroundColor = JournalUiTheme.PanelBackground;
-        card.BorderColor = JournalUiTheme.PanelBorder;
+        var palette = JournalUiTheme.GetClassPalette(combatClass);
+        card.BackgroundColor = Color.Lerp(JournalUiTheme.PanelBackground, palette.Background, 0.48f);
+        card.BorderColor = Color.Lerp(JournalUiTheme.PanelBorder, palette.Border, 0.72f);
 
         var top = JournalUiMetrics.BlockVerticalPadding;
         var title = new UIText(build.Name, JournalUiMetrics.BuildPanelHeaderScale, true)
         {
-            TextColor = JournalUiTheme.RootTitleText
+            TextColor = Color.Lerp(palette.Text, Color.White, 0.22f)
         };
         title.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
         title.Top.Set(top, 0f);
-        title.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
+        title.Width.Set(-112f, 1f);
         card.Append(title);
-        top += 30f;
 
-        var equipmentPanel = CreateBuildEquipmentPanel(
-            stageId,
-            combatClass,
-            build.GetSelectedItemId,
-            IgnoreBuildSlotAction,
-            IgnoreBuildSlotAction);
-        equipmentPanel.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
-        equipmentPanel.Top.Set(top, 0f);
-        equipmentPanel.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
-        card.Append(equipmentPanel);
-        top += equipmentPanel.Height.Pixels + 8f;
+        AppendSavedBuildActions(card, build);
+        top += 34f;
 
-        var consumablesPanel = CreateBuildConsumablesPanel(
-            combatClass,
-            build.GetSelectedItemId,
-            IgnoreBuildSlotAction,
-            IgnoreBuildSlotAction);
-        consumablesPanel.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
-        consumablesPanel.Top.Set(top, 0f);
-        consumablesPanel.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
-        card.Append(consumablesPanel);
-        top += consumablesPanel.Height.Pixels;
+        var previewBottom = AppendSavedBuildCharacterPreview(card, build, stageId, top, palette);
+        var equipmentBottom = AppendSavedBuildEquipmentSummary(card, build, stageId, top);
+        var consumablesBottom = AppendSavedBuildConsumablesSummary(card, build, top);
+        top = MathF.Max(previewBottom, MathF.Max(equipmentBottom, consumablesBottom));
 
         card.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
         return card;
     }
 
-    private static void IgnoreBuildSlotAction(string _)
+    private static void AppendSavedBuildActions(UIElement card, JournalSavedBuild build)
     {
+        var favoriteButton = JournalBuildActionButton.CreateFavorite(
+            build.IsFavorite,
+            () => JournalSystem.ToggleSavedBuildFavorite(build));
+        favoriteButton.Left.Set(-78f, 1f);
+        favoriteButton.Top.Set(7f, 0f);
+        favoriteButton.SetHoverText(build.IsFavorite
+            ? Language.GetTextValue("Mods.ProgressionJournal.UI.BuildFavoriteActiveTooltip")
+            : Language.GetTextValue("Mods.ProgressionJournal.UI.BuildFavoriteTooltip"));
+        card.Append(favoriteButton);
+
+        var deleteButton = JournalBuildActionButton.CreateTrash(() => JournalSystem.DeleteSavedBuild(build));
+        deleteButton.Left.Set(-40f, 1f);
+        deleteButton.Top.Set(7f, 0f);
+        deleteButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildDeleteTooltip"));
+        card.Append(deleteButton);
+    }
+
+    private static float AppendSavedBuildCharacterPreview(
+        UIElement card,
+        JournalSavedBuild build,
+        ProgressionStageId stageId,
+        float top,
+        JournalClassPalette palette)
+    {
+        const float previewWidth = 126f;
+        const float previewHeight = 178f;
+
+        var previewPanel = JournalUiElementFactory.CreatePanel();
+        previewPanel.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
+        previewPanel.Top.Set(top, 0f);
+        previewPanel.Width.Set(previewWidth, 0f);
+        previewPanel.Height.Set(previewHeight, 0f);
+        previewPanel.BackgroundColor = Color.Lerp(JournalUiTheme.RootBackground, palette.Background, 0.56f);
+        previewPanel.BorderColor = Color.Lerp(palette.Border, palette.Accent, 0.42f);
+        card.Append(previewPanel);
+
+        var characterPreview = new UICharacter(JournalPreviewPlayerFactory.CreateSavedBuildPreview(build, stageId), false, false, 1.18f);
+        characterPreview.Width.Set(104f, 0f);
+        characterPreview.Height.Set(146f, 0f);
+        characterPreview.HAlign = 0.5f;
+        characterPreview.Top.Set(18f, 0f);
+        characterPreview.IgnoresMouseInteraction = true;
+        previewPanel.Append(characterPreview);
+
+        return top + previewHeight;
+    }
+
+    private static float AppendSavedBuildEquipmentSummary(
+        UIElement card,
+        JournalSavedBuild build,
+        ProgressionStageId stageId,
+        float top)
+    {
+        const float columnLeft = 164f;
+        const int maxSlotsPerRow = 5;
+
+        top = AppendSavedBuildSection(
+            card,
+            Language.GetTextValue("Mods.ProgressionJournal.UI.Weapons"),
+            GetSelectedItems(
+                build,
+                JournalBuildPlannerCatalog.PrimaryWeaponSlotKey,
+                JournalBuildPlannerCatalog.SupportWeaponSlotKey,
+                JournalBuildPlannerCatalog.ClassSpecificSlotKey),
+            columnLeft,
+            top,
+            maxSlotsPerRow);
+
+        top = AppendSavedBuildSection(
+            card,
+            Language.GetTextValue("Mods.ProgressionJournal.UI.ArmorLabel"),
+            GetSelectedItems(
+                build,
+                JournalBuildPlannerCatalog.ArmorHeadSlotKey,
+                JournalBuildPlannerCatalog.ArmorBodySlotKey,
+                JournalBuildPlannerCatalog.ArmorLegsSlotKey),
+            columnLeft,
+            top,
+            maxSlotsPerRow);
+
+        var accessoryItems = Enumerable.Range(1, JournalBuildPlannerCatalog.GetAccessorySlotCount(stageId))
+            .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetAccessorySlotKey(slotIndex)))
+            .Where(static itemId => itemId > ItemID.None)
+            .ToArray();
+
+        return AppendSavedBuildSection(
+            card,
+            Language.GetTextValue("Mods.ProgressionJournal.UI.Accessories"),
+            accessoryItems,
+            columnLeft,
+            top,
+            maxSlotsPerRow);
+    }
+
+    private static float AppendSavedBuildConsumablesSummary(UIElement card, JournalSavedBuild build, float top)
+    {
+        const float columnLeft = 482f;
+        const int maxSlotsPerRow = 4;
+
+        var consumableItems = Enumerable.Range(1, JournalBuildPlannerCatalog.PotionSlotCount)
+            .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetPotionSlotKey(slotIndex)))
+            .Concat(Enumerable.Range(1, JournalBuildPlannerCatalog.FoodSlotCount)
+                .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetFoodSlotKey(slotIndex))))
+            .Concat(Enumerable.Range(1, JournalBuildPlannerCatalog.PermanentBonusSlotCount)
+                .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetPermanentBonusSlotKey(slotIndex))))
+            .Where(static itemId => itemId > ItemID.None)
+            .ToArray();
+
+        return AppendSavedBuildSection(
+            card,
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildConsumablesTitle"),
+            consumableItems,
+            columnLeft,
+            top,
+            maxSlotsPerRow);
+    }
+
+    private static float AppendSavedBuildSection(
+        UIElement card,
+        string title,
+        IReadOnlyList<int> itemIds,
+        float left,
+        float top,
+        int maxSlotsPerRow)
+    {
+        if (itemIds.Count == 0)
+        {
+            return top;
+        }
+
+        var titleElement = new UIText(title, JournalUiMetrics.BuildSectionTitleScale, true)
+        {
+            TextColor = JournalUiTheme.SectionHeaderText
+        };
+        titleElement.Left.Set(left, 0f);
+        titleElement.Top.Set(top, 0f);
+        card.Append(titleElement);
+        top += 22f;
+
+        for (var index = 0; index < itemIds.Count; index += maxSlotsPerRow)
+        {
+            var rowItems = itemIds
+                .Skip(index)
+                .Take(maxSlotsPerRow)
+                .Select(JournalItemUtilities.CreateItem)
+                .ToArray();
+
+            var strip = new JournalItemStrip(rowItems);
+            strip.Left.Set(left, 0f);
+            strip.Top.Set(top, 0f);
+            card.Append(strip);
+            top += JournalUiMetrics.BuildSlotSize + 5f;
+        }
+
+        return top + 5f;
+    }
+
+    private static int[] GetSelectedItems(JournalSavedBuild build, params string[] slotKeys)
+    {
+        return slotKeys
+            .Select(build.GetSelectedItemId)
+            .Where(static itemId => itemId > ItemID.None)
+            .ToArray();
     }
 
     private static JournalStageEntry[] GetEntriesForTier(

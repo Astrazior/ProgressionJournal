@@ -37,12 +37,80 @@ public static class JournalPreviewPlayerFactory
         return preview;
     }
 
+    public static Player CreateSavedBuildPreview(JournalSavedBuild build, ProgressionStageId stageId)
+    {
+        var preview = Main.LocalPlayer.SerializedClone();
+        preview.dead = false;
+        preview.isDisplayDollOrInanimate = true;
+        preview.direction = 1;
+        preview.gravDir = 1f;
+        preview.velocity = Vector2.Zero;
+        preview.itemAnimation = 0;
+        preview.itemTime = 0;
+        preview.selectedItem = 0;
+
+        ResetItems(preview.inventory);
+        ResetItems(preview.armor);
+        ResetItems(preview.miscEquips);
+        ResetItems(preview.miscDyes);
+        ResetItems(preview.dye);
+        preview.hideMisc[0] = true;
+
+        SetArmor(preview, 0, build.GetSelectedItemId(JournalBuildPlannerCatalog.ArmorHeadSlotKey));
+        SetArmor(preview, 1, build.GetSelectedItemId(JournalBuildPlannerCatalog.ArmorBodySlotKey));
+        SetArmor(preview, 2, build.GetSelectedItemId(JournalBuildPlannerCatalog.ArmorLegsSlotKey));
+
+        var accessorySlot = 3;
+        for (var slotIndex = 1; slotIndex <= JournalBuildPlannerCatalog.GetAccessorySlotCount(stageId); slotIndex++)
+        {
+            var itemId = build.GetSelectedItemId(JournalBuildPlannerCatalog.GetAccessorySlotKey(slotIndex));
+            if (itemId <= ItemID.None)
+            {
+                continue;
+            }
+
+            SetArmor(preview, accessorySlot, itemId);
+            accessorySlot++;
+        }
+
+        var heldItemId = GetPreviewHeldItemId(build);
+        if (heldItemId > ItemID.None)
+        {
+            preview.inventory[0] = JournalItemUtilities.CreateItem(heldItemId);
+        }
+
+        preview.PlayerFrame();
+        return preview;
+    }
+
     private static void ResetItems(Item[] items)
     {
         for (var index = 0; index < items.Length; index++)
         {
             items[index] = new Item();
         }
+    }
+
+    private static void SetArmor(Player preview, int armorIndex, int itemId)
+    {
+        if (itemId <= ItemID.None || armorIndex < 0 || armorIndex >= preview.armor.Length)
+        {
+            return;
+        }
+
+        preview.armor[armorIndex] = JournalItemUtilities.CreateItem(itemId);
+    }
+
+    private static int GetPreviewHeldItemId(JournalSavedBuild build)
+    {
+        var primaryWeapon = build.GetSelectedItemId(JournalBuildPlannerCatalog.PrimaryWeaponSlotKey);
+        if (primaryWeapon > ItemID.None)
+        {
+            return primaryWeapon;
+        }
+
+        var supportWeapon = build.GetSelectedItemId(JournalBuildPlannerCatalog.SupportWeaponSlotKey);
+        return supportWeapon > ItemID.None ? supportWeapon : build.GetSelectedItemId(JournalBuildPlannerCatalog.ClassSpecificSlotKey);
     }
 
     private static int[] GetArmorItemIds(CombatClass combatClass) => combatClass switch

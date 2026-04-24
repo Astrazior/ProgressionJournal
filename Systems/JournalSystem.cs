@@ -421,6 +421,26 @@ public sealed class JournalSystem : ModSystem
         return JournalBuildStorage.GetBuilds(stageId, combatClass);
     }
 
+    public void DeleteSavedBuild(JournalSavedBuild build)
+    {
+        if (!JournalBuildStorage.DeleteBuild(build))
+        {
+            return;
+        }
+
+        RefreshView();
+    }
+
+    public void ToggleSavedBuildFavorite(JournalSavedBuild build)
+    {
+        if (!JournalBuildStorage.SetFavorite(build, !build.IsFavorite))
+        {
+            return;
+        }
+
+        RefreshView();
+    }
+
     public IReadOnlySet<int> GetHighlightedBuildItemIds(string slotKey)
     {
         if (!JournalBuildPlannerCatalog.TryGetSlotKind(slotKey, out var slotKind))

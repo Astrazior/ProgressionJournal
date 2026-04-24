@@ -28,7 +28,9 @@ public static class JournalBuildStorage
 
         return _cachedBuilds!
             .Where(build => build.StageId == stageId && build.CombatClass == combatClass)
-            .OrderBy(build => build.Name, StringComparer.CurrentCultureIgnoreCase)
+            .OrderByDescending(build => build.IsFavorite)
+            .ThenByDescending(build => build.FavoriteSortKey)
+            .ThenBy(build => build.Name, StringComparer.CurrentCultureIgnoreCase)
             .ToArray();
     }
 
@@ -68,6 +70,8 @@ public static class JournalBuildStorage
                 Name = name.Trim(),
                 CombatClass = combatClass.ToString(),
                 StageId = stageId.ToString(),
+                IsFavorite = false,
+                FavoriteSortKey = 0L,
                 SelectedItems = normalizedSelections
             };
 
@@ -81,6 +85,54 @@ public static class JournalBuildStorage
         {
             LogWarning("Failed to save build json.", exception);
             errorMessage = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveFailed");
+            return false;
+        }
+    }
+
+    public static bool DeleteBuild(JournalSavedBuild build)
+    {
+        try
+        {
+            if (!TryGetSafeBuildPath(build.SourcePath, out var filePath) || !File.Exists(filePath))
+            {
+                return false;
+            }
+
+            File.Delete(filePath);
+            Reload();
+            return true;
+        }
+        catch (Exception exception)
+        {
+            LogWarning($"Failed to delete build json from '{build.SourcePath}'.", exception);
+            return false;
+        }
+    }
+
+    public static bool SetFavorite(JournalSavedBuild build, bool isFavorite)
+    {
+        try
+        {
+            if (!TryGetSafeBuildPath(build.SourcePath, out var filePath))
+            {
+                return false;
+            }
+
+            var document = JsonSerializer.Deserialize<JournalBuildDocument>(File.ReadAllText(filePath), SerializerOptions);
+            if (document is null)
+            {
+                return false;
+            }
+
+            document.IsFavorite = isFavorite;
+            document.FavoriteSortKey = isFavorite ? DateTime.UtcNow.Ticks : 0L;
+            File.WriteAllText(filePath, JsonSerializer.Serialize(document, SerializerOptions), Encoding.UTF8);
+            Reload();
+            return true;
+        }
+        catch (Exception exception)
+        {
+            LogWarning($"Failed to update build favorite state for '{build.SourcePath}'.", exception);
             return false;
         }
     }
@@ -121,7 +173,6 @@ public static class JournalBuildStorage
                 || string.IsNullOrWhiteSpace(document.Name)
                 || string.IsNullOrWhiteSpace(document.CombatClass)
                 || string.IsNullOrWhiteSpace(document.StageId)
-                || document.SelectedItems is null
                 || document.SelectedItems.Count == 0
                 || !Enum.TryParse(document.CombatClass, ignoreCase: true, out CombatClass combatClass)
                 || !Enum.TryParse(document.StageId, ignoreCase: true, out ProgressionStageId stageId))
@@ -142,7 +193,14 @@ public static class JournalBuildStorage
                 return false;
             }
 
-            build = new JournalSavedBuild(document.Name.Trim(), combatClass, stageId, selectedItems, filePath);
+            build = new JournalSavedBuild(
+                document.Name.Trim(),
+                combatClass,
+                stageId,
+                selectedItems,
+                document.IsFavorite,
+                document.FavoriteSortKey,
+                filePath);
             return true;
         }
         catch (Exception exception)
@@ -155,6 +213,27 @@ public static class JournalBuildStorage
     private static string GetBuildDirectoryPath()
     {
         return Path.Combine(Main.SavePath, "Mods", nameof(ProgressionJournal), BuildDirectoryName);
+    }
+
+    private static bool TryGetSafeBuildPath(string sourcePath, out string filePath)
+    {
+        filePath = string.Empty;
+
+        if (string.IsNullOrWhiteSpace(sourcePath))
+        {
+            return false;
+        }
+
+        var directoryPath = Path.GetFullPath(GetBuildDirectoryPath());
+        var candidatePath = Path.GetFullPath(sourcePath);
+        if (!candidatePath.StartsWith(directoryPath + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase)
+            || !string.Equals(Path.GetExtension(candidatePath), FileExtension, StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        filePath = candidatePath;
+        return true;
     }
 
     private static string GetUniqueBuildFilePath(string buildName)
@@ -206,14 +285,18 @@ public static class JournalBuildStorage
 
     private sealed class JournalBuildDocument
     {
-        public int Version { get; init; }
+        public int Version { get; set; }
 
-        public string Name { get; init; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
 
-        public string CombatClass { get; init; } = string.Empty;
+        public string CombatClass { get; set; } = string.Empty;
 
-        public string StageId { get; init; } = string.Empty;
+        public string StageId { get; set; } = string.Empty;
 
-        public Dictionary<string, int> SelectedItems { get; init; } = [];
+        public bool IsFavorite { get; set; }
+
+        public long FavoriteSortKey { get; set; }
+
+        public Dictionary<string, int> SelectedItems { get; set; } = [];
     }
 }

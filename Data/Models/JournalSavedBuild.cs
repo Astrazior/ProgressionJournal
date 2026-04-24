@@ -9,6 +9,8 @@ public sealed class JournalSavedBuild(
     CombatClass combatClass,
     ProgressionStageId stageId,
     IReadOnlyDictionary<string, int> selectedItems,
+    bool isFavorite,
+    long favoriteSortKey,
     string sourcePath)
 {
     public string Name { get; } = name;
@@ -18,6 +20,10 @@ public sealed class JournalSavedBuild(
     public ProgressionStageId StageId { get; } = stageId;
 
     public string SourcePath { get; } = sourcePath;
+
+    public bool IsFavorite { get; } = isFavorite;
+
+    public long FavoriteSortKey { get; } = favoriteSortKey;
 
     public IReadOnlyDictionary<string, int> SelectedItems { get; } = new Dictionary<string, int>(selectedItems, StringComparer.OrdinalIgnoreCase);
 
