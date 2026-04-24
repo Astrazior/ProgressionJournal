@@ -18,6 +18,7 @@ public sealed class JournalUiState : UIState
     private const string BestiarySearchCancelTexturePath = "Images/UI/SearchCancel";
     private const string BestiaryBackButtonTexturePath = "Images/UI/Bestiary/Button_Back";
     private const string BestiaryForwardButtonTexturePath = "Images/UI/Bestiary/Button_Forward";
+    private const string CraftingWindowToggleTexturePath = "Images/UI/Craft_Toggle_0";
 
     private readonly Dictionary<ProgressionStageId, JournalStageButton> _stageButtons = new();
     private readonly Dictionary<int, CachedAcquisitionView> _acquisitionViewCache = new();
@@ -34,6 +35,7 @@ public sealed class JournalUiState : UIState
     private JournalTextButton _presetsTabButton = null!;
     private UIText _contentTitle = null!;
     private UIText _contentDescription = null!;
+    private JournalIconButton _buildBuilderButton = null!;
     private UIElement _stageListContainer = null!;
     private UIElement _classSelectionContainer = null!;
     private UIList _entryList = null!;
@@ -94,6 +96,7 @@ public sealed class JournalUiState : UIState
         ProgressionStageId stageId,
         bool selectingClass,
         bool showingPresets,
+        bool showingBuildBuilder,
         bool showingCombatBuffsPage,
         bool progressionModeEnabled,
         bool hasSelectedClass,
@@ -102,11 +105,12 @@ public sealed class JournalUiState : UIState
         ApplyNavigationLayout(hasSelectedClass);
         EnsureLayout();
         ApplyContentLayout(selectingClass, showingPresets);
+        RefreshBuildBuilderButton(selectingClass, showingPresets, showingBuildBuilder);
         UpdateStaticText(progressionModeEnabled);
         UpdateNavigationStyles(selectingClass, showingPresets);
         JournalStageButtonPresenter.Refresh(_stageButtons, stageId, progressionModeEnabled);
-        RefreshContent(combatClass, stageId, selectingClass, showingPresets, showingCombatBuffsPage, selectedItemId);
-        RefreshBuildPickerOverlay(combatClass, stageId, showingPresets);
+        RefreshContent(combatClass, stageId, selectingClass, showingPresets, showingBuildBuilder, showingCombatBuffsPage, selectedItemId);
+        RefreshBuildPickerOverlay(combatClass, stageId, showingPresets, showingBuildBuilder);
         Recalculate();
     }
 
@@ -124,6 +128,7 @@ public sealed class JournalUiState : UIState
         ProgressionStageId stageId,
         bool selectingClass,
         bool showingPresets,
+        bool showingBuildBuilder,
         bool showingCombatBuffsPage,
         int selectedItemId)
     {
@@ -146,12 +151,21 @@ public sealed class JournalUiState : UIState
             var presetClassName = Language.GetTextValue($"Mods.ProgressionJournal.Classes.{combatClass}");
             var presetStageName = Language.GetTextValue(ProgressionStageCatalog.Get(stageId).LocalizationKey);
             SetContentHeader($"{presetClassName} • {presetStageName}");
-            JournalContentBuilder.PopulateBuildPlanner(
-                _entryList,
-                stageId,
-                combatClass,
-                JournalSystem.GetSelectedBuildItem,
-                JournalSystem.OpenBuildSlot);
+
+            if (showingBuildBuilder)
+            {
+                JournalContentBuilder.PopulateBuildPlanner(
+                    _entryList,
+                    stageId,
+                    combatClass,
+                    JournalSystem.GetSelectedBuildItem,
+                    JournalSystem.OpenBuildSlot);
+            }
+            else
+            {
+                _entryList.Add(CreateSourceNotice(Language.GetTextValue("Mods.ProgressionJournal.UI.ReadyBuildsEmpty")));
+            }
+
             ClearAcquisitionPanel();
             return;
         }
@@ -725,9 +739,9 @@ public sealed class JournalUiState : UIState
         }
     }
 
-    private void RefreshBuildPickerOverlay(CombatClass combatClass, ProgressionStageId stageId, bool showingPresets)
+    private void RefreshBuildPickerOverlay(CombatClass combatClass, ProgressionStageId stageId, bool showingPresets, bool showingBuildBuilder)
     {
-        if (!showingPresets || JournalSystem.ActiveBuildSlotKey is not { } slotKey)
+        if (!showingPresets || !showingBuildBuilder || JournalSystem.ActiveBuildSlotKey is not { } slotKey)
         {
             HideBuildPickerOverlay();
             return;
@@ -948,6 +962,16 @@ public sealed class JournalUiState : UIState
         _contentTitle.Top.Set(JournalUiMetrics.ContentTitleTop, 0f);
         _contentPanel.Append(_contentTitle);
 
+        _buildBuilderButton = JournalUiElementFactory.CreateIconButton(
+            CraftingWindowToggleTexturePath,
+            30f,
+            30f,
+            () => JournalSystem.ShowBuildBuilderPage(),
+            0.9f);
+        _buildBuilderButton.Left.Set(-38f, 1f);
+        _buildBuilderButton.Top.Set(8f, 0f);
+        _buildBuilderButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildBuilderTab"));
+
         _contentDescription = new UIText(string.Empty, JournalUiMetrics.ContentDescriptionScale);
         _contentDescription.Left.Set(JournalUiMetrics.ContentDescriptionLeft, 0f);
         _contentDescription.Top.Set(JournalUiMetrics.ContentDescriptionTop, 0f);
@@ -980,6 +1004,25 @@ public sealed class JournalUiState : UIState
         _entryList.SetScrollbar(_scrollbar);
 
         InitializeAcquisitionPanel();
+    }
+
+    private void RefreshBuildBuilderButton(bool selectingClass, bool showingPresets, bool showingBuildBuilder)
+    {
+        var showButton = !selectingClass && showingPresets && !showingBuildBuilder;
+        if (showButton)
+        {
+            if (_buildBuilderButton.Parent is null)
+            {
+                _contentPanel.Append(_buildBuilderButton);
+            }
+
+            return;
+        }
+
+        if (_buildBuilderButton.Parent is not null)
+        {
+            _contentPanel.RemoveChild(_buildBuilderButton);
+        }
     }
 
     private void InitializeAcquisitionPanel()
@@ -1115,6 +1158,7 @@ public sealed class JournalUiState : UIState
         _stagePanelTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.StageSelectorTitle"));
         _progressionModeToggleButton.SetText(progressionModeEnabled ? "x" : "✓");
         _progressionModeToggleButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProgressionModeToggleTooltip"));
+        _buildBuilderButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildBuilderTab"));
         _classButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Class"));
         _overviewTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewTab"));
         _presetsTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsTab"));

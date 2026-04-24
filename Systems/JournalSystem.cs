@@ -22,6 +22,8 @@ public sealed class JournalSystem : ModSystem
 
     public bool ShowingPresets { get; private set; }
 
+    public bool ShowingBuildBuilder { get; private set; }
+
     public bool ShowingCombatBuffsPage { get; private set; }
 
     public bool SelectingClass { get; private set; } = true;
@@ -132,6 +134,7 @@ public sealed class JournalSystem : ModSystem
         Visible = true;
         SelectingClass = !HasSelectedClass;
         ShowingPresets = false;
+        ShowingBuildBuilder = false;
         ActiveBuildSlotKey = null;
         CoerceSelectedStage();
         _journalInterface?.SetState(_journalState);
@@ -157,6 +160,7 @@ public sealed class JournalSystem : ModSystem
         HasSelectedClass = true;
         SelectingClass = false;
         ShowingPresets = false;
+        ShowingBuildBuilder = false;
         ActiveBuildSlotKey = null;
         CoerceBuildSelections();
         RefreshView();
@@ -165,6 +169,8 @@ public sealed class JournalSystem : ModSystem
     public void ShowClassSelection()
     {
         SelectingClass = true;
+        ShowingBuildBuilder = false;
+        ActiveBuildSlotKey = null;
         RefreshView();
     }
 
@@ -200,6 +206,7 @@ public sealed class JournalSystem : ModSystem
     {
         SelectingClass = false;
         ShowingPresets = false;
+        ShowingBuildBuilder = false;
         ActiveBuildSlotKey = null;
         RefreshView();
     }
@@ -208,6 +215,16 @@ public sealed class JournalSystem : ModSystem
     {
         SelectingClass = false;
         ShowingPresets = true;
+        ShowingBuildBuilder = false;
+        ActiveBuildSlotKey = null;
+        RefreshView();
+    }
+
+    public void ShowBuildBuilderPage()
+    {
+        SelectingClass = false;
+        ShowingPresets = true;
+        ShowingBuildBuilder = true;
         RefreshView();
     }
 
@@ -258,6 +275,7 @@ public sealed class JournalSystem : ModSystem
             SelectedStage,
             SelectingClass,
             ShowingPresets,
+            ShowingBuildBuilder,
             ShowingCombatBuffsPage,
             ProgressionModeEnabled,
             HasSelectedClass,
