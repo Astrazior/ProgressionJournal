@@ -9,7 +9,6 @@ namespace ProgressionJournal.UI.Controls;
 
 public sealed class JournalTextInput : UIElement
 {
-    private string _currentText = string.Empty;
     private bool _focused;
     private int _textBlinkerCount;
     private int _textBlinkerState;
@@ -23,9 +22,9 @@ public sealed class JournalTextInput : UIElement
 
     public string HintText { get; set; }
 
-    public int MaxLength { get; set; } = 64;
+    public int MaxLength { get; } = 64;
 
-    public string CurrentString => _currentText;
+    public string CurrentString { get; private set; } = string.Empty;
 
     public bool Focused
     {
@@ -52,7 +51,7 @@ public sealed class JournalTextInput : UIElement
         }
     }
 
-    public void SetText(string text)
+    public void SetText(string? text)
     {
         var normalizedText = text ?? string.Empty;
         if (normalizedText.Length > MaxLength)
@@ -60,7 +59,7 @@ public sealed class JournalTextInput : UIElement
             normalizedText = normalizedText[..MaxLength];
         }
 
-        _currentText = normalizedText;
+        CurrentString = normalizedText;
     }
 
     public override void LeftClick(UIMouseEvent evt)
@@ -90,15 +89,15 @@ public sealed class JournalTextInput : UIElement
             PlayerInput.WritingText = true;
             Main.instance.HandleIME();
 
-            var newText = Main.GetInputText(_currentText);
+            var newText = Main.GetInputText(CurrentString);
             if (newText.Length > MaxLength)
             {
                 newText = newText[..MaxLength];
             }
 
-            if (!newText.Equals(_currentText))
+            if (!newText.Equals(CurrentString))
             {
-                _currentText = newText;
+                CurrentString = newText;
             }
 
             if (JustPressed(Keys.Tab))
@@ -113,14 +112,14 @@ public sealed class JournalTextInput : UIElement
             }
         }
 
-        var displayText = _currentText;
+        var displayText = CurrentString;
         if (_textBlinkerState == 1 && _focused)
         {
             displayText += "|";
         }
 
         var dimensions = GetDimensions();
-        if (_currentText.Length == 0 && !_focused)
+        if (CurrentString.Length == 0 && !_focused)
         {
             Utils.DrawBorderString(spriteBatch, HintText, new Vector2(dimensions.X, dimensions.Y), Color.Gray);
             return;

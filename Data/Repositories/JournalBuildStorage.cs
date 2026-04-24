@@ -90,7 +90,7 @@ public static class JournalBuildStorage
         _cachedBuilds ??= LoadBuilds();
     }
 
-    private static IReadOnlyList<JournalSavedBuild> LoadBuilds()
+    private static List<JournalSavedBuild> LoadBuilds()
     {
         var directoryPath = GetBuildDirectoryPath();
         if (!Directory.Exists(directoryPath))
@@ -121,6 +121,7 @@ public static class JournalBuildStorage
                 || string.IsNullOrWhiteSpace(document.Name)
                 || string.IsNullOrWhiteSpace(document.CombatClass)
                 || string.IsNullOrWhiteSpace(document.StageId)
+                || document.SelectedItems is null
                 || document.SelectedItems.Count == 0
                 || !Enum.TryParse(document.CombatClass, ignoreCase: true, out CombatClass combatClass)
                 || !Enum.TryParse(document.StageId, ignoreCase: true, out ProgressionStageId stageId))
@@ -205,14 +206,14 @@ public static class JournalBuildStorage
 
     private sealed class JournalBuildDocument
     {
-        public int Version { get; set; }
+        public int Version { get; init; }
 
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; init; } = string.Empty;
 
-        public string CombatClass { get; set; } = string.Empty;
+        public string CombatClass { get; init; } = string.Empty;
 
-        public string StageId { get; set; } = string.Empty;
+        public string StageId { get; init; } = string.Empty;
 
-        public Dictionary<string, int> SelectedItems { get; set; } = [];
+        public Dictionary<string, int> SelectedItems { get; init; } = [];
     }
 }
