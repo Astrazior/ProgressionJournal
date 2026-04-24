@@ -6,6 +6,8 @@ namespace ProgressionJournal;
 
 public sealed class ProgressionJournal : Mod
 {
+	internal const string ToggleJournalKeybindName = "ToggleProgressionJournal";
+
 	public static ProgressionJournal? Instance { get; private set; }
 
 	internal static ModKeybind? ToggleJournalKeybind { get; private set; }
@@ -15,7 +17,7 @@ public sealed class ProgressionJournal : Mod
 		Instance = this;
 
 		if (!Main.dedServ) {
-			ToggleJournalKeybind = KeybindLoader.RegisterKeybind(this, "Toggle Progression Journal", "P");
+			ToggleJournalKeybind = KeybindLoader.RegisterKeybind(this, ToggleJournalKeybindName, "P");
 		}
 	}
 
