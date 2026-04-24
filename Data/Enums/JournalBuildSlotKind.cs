@@ -10,6 +10,5 @@ public enum JournalBuildSlotKind
     ArmorLegs,
     Accessory,
     Potion,
-    Food,
-    PermanentBonus
+    Food
 }

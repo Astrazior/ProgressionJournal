@@ -41,8 +41,8 @@ public static partial class JournalRepository
 
         return slotKind switch
         {
-            JournalBuildSlotKind.Potion or JournalBuildSlotKind.Food or JournalBuildSlotKind.PermanentBonus
-                => BuildBuffCandidates(stageId, combatClass, slotKind),
+            JournalBuildSlotKind.Food => BuildFoodCandidates(),
+            JournalBuildSlotKind.Potion => BuildBuffCandidates(stageId, combatClass, slotKind),
             _ => BuildEquipmentCandidates(stageId, combatClass, slotKind)
         };
     }
@@ -143,6 +143,35 @@ public static partial class JournalRepository
             .ToArray();
     }
 
+    private static IReadOnlyList<JournalBuildCandidate> BuildFoodCandidates()
+    {
+        return ContentSamples.ItemsByType.Values
+            .Where(IsFoodBuffItem)
+            .GroupBy(static item => item.type)
+            .Select(static group => group.First())
+            .OrderBy(static item => GetFoodBuffSortOrder(item.buffType))
+            .ThenBy(static item => Lang.GetItemNameValue(item.type), StringComparer.CurrentCultureIgnoreCase)
+            .Select(static item => new JournalBuildCandidate(item.type))
+            .ToArray();
+    }
+
+    private static bool IsFoodBuffItem(Item item)
+    {
+        return item is { IsAir: false, consumable: true }
+            && item.buffType is BuffID.WellFed or BuffID.WellFed2 or BuffID.WellFed3;
+    }
+
+    private static int GetFoodBuffSortOrder(int buffType)
+    {
+        return buffType switch
+        {
+            BuffID.WellFed3 => 0,
+            BuffID.WellFed2 => 1,
+            BuffID.WellFed => 2,
+            _ => 3
+        };
+    }
+
     private static IEnumerable<int> GetBuildEquipmentItemIds(JournalEntry entry, JournalBuildSlotKind slotKind)
     {
         return slotKind switch
@@ -211,7 +240,6 @@ public static partial class JournalRepository
         {
             JournalBuildSlotKind.Potion => buffEntry.Category is JournalBuffCategory.Basic or JournalBuffCategory.Potion or JournalBuffCategory.Flask,
             JournalBuildSlotKind.Food => buffEntry.Category == JournalBuffCategory.Food,
-            JournalBuildSlotKind.PermanentBonus => buffEntry.Category is JournalBuffCategory.Station or JournalBuffCategory.Passive or JournalBuffCategory.Eternal,
             _ => false
         };
     }

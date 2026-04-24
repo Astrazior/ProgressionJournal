@@ -843,7 +843,7 @@ public sealed class JournalUiState : UIState
 
         if (dialogOpened)
         {
-            _buildSaveNameInput.SetText(string.Empty);
+            _buildSaveNameInput.SetText(JournalSystem.EditingBuildName ?? string.Empty);
             _buildSaveNameInput.Focused = true;
             _buildSaveMessage.SetText(string.Empty);
         }

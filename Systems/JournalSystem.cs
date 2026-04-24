@@ -43,7 +43,11 @@ public sealed class JournalSystem : ModSystem
 
     public string? ActiveBuildSlotKey { get; private set; }
 
+    public string? EditingBuildName => _editingBuild?.Name;
+
     private readonly Dictionary<string, int> _buildSelections = new();
+
+    private JournalSavedBuild? _editingBuild;
 
     public override void Load()
     {
@@ -140,6 +144,7 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildBuilder = false;
         ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
+        _editingBuild = null;
         JournalBuildStorage.Reload();
         CoerceSelectedStage();
         _journalInterface?.SetState(_journalState);
@@ -151,6 +156,7 @@ public sealed class JournalSystem : ModSystem
         Visible = false;
         ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
+        _editingBuild = null;
         _journalInterface?.SetState(null);
     }
 
@@ -169,6 +175,7 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildBuilder = false;
         ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
+        _editingBuild = null;
         CoerceBuildSelections();
         RefreshView();
     }
@@ -179,6 +186,7 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildBuilder = false;
         ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
+        _editingBuild = null;
         RefreshView();
     }
 
@@ -198,6 +206,7 @@ public sealed class JournalSystem : ModSystem
         SelectedStage = stageId;
         ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
+        _editingBuild = null;
         CoerceBuildSelections();
         RefreshView();
     }
@@ -208,6 +217,7 @@ public sealed class JournalSystem : ModSystem
         CoerceSelectedStage();
         ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
+        _editingBuild = null;
         CoerceBuildSelections();
         RefreshView();
     }
@@ -219,6 +229,7 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildBuilder = false;
         ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
+        _editingBuild = null;
         RefreshView();
     }
 
@@ -229,6 +240,7 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildBuilder = false;
         ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
+        _editingBuild = null;
         JournalBuildStorage.Reload();
         RefreshView();
     }
@@ -240,6 +252,29 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildBuilder = true;
         ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
+        _editingBuild = null;
+        RefreshView();
+    }
+
+    public void EditSavedBuild(JournalSavedBuild build)
+    {
+        SelectedClass = build.CombatClass;
+        SelectedStage = build.StageId;
+        HasSelectedClass = true;
+        SelectingClass = false;
+        ShowingPresets = true;
+        ShowingBuildBuilder = true;
+        ShowingBuildSaveDialog = false;
+        ActiveBuildSlotKey = null;
+        _editingBuild = build;
+        _buildSelections.Clear();
+
+        foreach (var selection in build.SelectedItems.Where(static pair => pair.Value > ItemID.None))
+        {
+            _buildSelections[selection.Key] = selection.Value;
+        }
+
+        CoerceBuildSelections();
         RefreshView();
     }
 
@@ -383,12 +418,17 @@ public sealed class JournalSystem : ModSystem
                 static pair => pair.Value,
                 System.StringComparer.OrdinalIgnoreCase);
 
-        if (!JournalBuildStorage.SaveBuild(trimmedName, SelectedClass, SelectedStage, selectedItems, out errorMessage))
+        var saved = _editingBuild is { } editingBuild
+            ? JournalBuildStorage.UpdateBuild(editingBuild, trimmedName, SelectedClass, SelectedStage, selectedItems, out errorMessage)
+            : JournalBuildStorage.SaveBuild(trimmedName, SelectedClass, SelectedStage, selectedItems, out errorMessage);
+
+        if (!saved)
         {
             return false;
         }
 
         _buildSelections.Clear();
+        _editingBuild = null;
         ShowingBuildBuilder = false;
         ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
@@ -489,6 +529,7 @@ public sealed class JournalSystem : ModSystem
         Visible = false;
         ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
+        _editingBuild = null;
         _buildSelections.Clear();
         _journalInterface?.SetState(null);
         _journalState?.ResetLayout();

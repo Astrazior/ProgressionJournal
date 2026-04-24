@@ -89,6 +89,57 @@ public static class JournalBuildStorage
         }
     }
 
+    public static bool UpdateBuild(
+        JournalSavedBuild build,
+        string name,
+        CombatClass combatClass,
+        ProgressionStageId stageId,
+        IReadOnlyDictionary<string, int> selectedItems,
+        out string errorMessage)
+    {
+        try
+        {
+            if (!TryGetSafeBuildPath(build.SourcePath, out var filePath) || !File.Exists(filePath))
+            {
+                errorMessage = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveFailed");
+                return false;
+            }
+
+            var normalizedSelections = selectedItems
+                .Where(static pair => pair.Value > 0
+                    && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
+                .ToDictionary(
+                    static pair => pair.Key,
+                    static pair => pair.Value,
+                    StringComparer.OrdinalIgnoreCase);
+
+            if (normalizedSelections.Count == 0)
+            {
+                errorMessage = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveNoItems");
+                return false;
+            }
+
+            var document = JsonSerializer.Deserialize<JournalBuildDocument>(File.ReadAllText(filePath), SerializerOptions)
+                ?? new JournalBuildDocument();
+            document.Version = 1;
+            document.Name = name.Trim();
+            document.CombatClass = combatClass.ToString();
+            document.StageId = stageId.ToString();
+            document.SelectedItems = normalizedSelections;
+
+            File.WriteAllText(filePath, JsonSerializer.Serialize(document, SerializerOptions), Encoding.UTF8);
+            Reload();
+            errorMessage = string.Empty;
+            return true;
+        }
+        catch (Exception exception)
+        {
+            LogWarning($"Failed to update build json at '{build.SourcePath}'.", exception);
+            errorMessage = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveFailed");
+            return false;
+        }
+    }
+
     public static bool DeleteBuild(JournalSavedBuild build)
     {
         try

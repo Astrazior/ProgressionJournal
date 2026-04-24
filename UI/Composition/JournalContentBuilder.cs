@@ -208,42 +208,34 @@ public static class JournalContentBuilder
         top += 24f;
 
         top = AppendBuildHeader(panel, Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSlotPotion"), top);
-        var potionKeys = Enumerable.Range(1, JournalBuildPlannerCatalog.PotionSlotCount)
-            .Select(JournalBuildPlannerCatalog.GetPotionSlotKey)
-            .ToArray();
-        AppendEquipmentGrid(
+        top += AppendExpandableEquipmentGrid(
             panel,
             combatClass,
-            potionKeys,
+            JournalBuildPlannerCatalog.GetPotionSlotKey,
+            JournalBuildPlannerCatalog.PotionSlotCount,
+            minVisibleSlots: 1,
             4,
             JournalUiMetrics.BlockHorizontalPadding,
             top,
             getSelectedItemId,
             onSlotClick,
-            onSlotRightClick);
-        top += GetGridHeight(potionKeys.Length, 4) + 10f;
+            onSlotRightClick,
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildAddPotionSlotTooltip")) + 10f;
 
         top = AppendBuildHeader(panel, Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSlotFood"), top);
-        var foodKeys = Enumerable.Range(1, JournalBuildPlannerCatalog.FoodSlotCount)
-            .Select(JournalBuildPlannerCatalog.GetFoodSlotKey)
-            .ToArray();
-        top = AppendEquipmentRow(panel, combatClass, foodKeys, top, getSelectedItemId, onSlotClick, onSlotRightClick);
-
-        top = AppendBuildHeader(panel, Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSlotPermanentBonus"), top);
-        var permanentKeys = Enumerable.Range(1, JournalBuildPlannerCatalog.PermanentBonusSlotCount)
-            .Select(JournalBuildPlannerCatalog.GetPermanentBonusSlotKey)
-            .ToArray();
-        AppendEquipmentGrid(
+        top += AppendExpandableEquipmentGrid(
             panel,
             combatClass,
-            permanentKeys,
-            3,
+            JournalBuildPlannerCatalog.GetFoodSlotKey,
+            JournalBuildPlannerCatalog.FoodSlotCount,
+            minVisibleSlots: 1,
+            4,
             JournalUiMetrics.BlockHorizontalPadding,
             top,
             getSelectedItemId,
             onSlotClick,
-            onSlotRightClick);
-        top += GetGridHeight(permanentKeys.Length, 3);
+            onSlotRightClick,
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildAddFoodAlternativeTooltip"));
 
         panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
         return panel;
@@ -325,6 +317,77 @@ public static class JournalContentBuilder
         }
     }
 
+    private static float AppendExpandableEquipmentGrid(
+        UIElement panel,
+        CombatClass combatClass,
+        Func<int, string> getSlotKey,
+        int maxSlotCount,
+        int minVisibleSlots,
+        int columns,
+        float left,
+        float top,
+        Func<string, int> getSelectedItemId,
+        Action<string> onSlotClick,
+        Action<string> onSlotRightClick,
+        string addSlotHoverText)
+    {
+        var visibleSlotCount = GetVisibleExpandableSlotCount(getSlotKey, maxSlotCount, minVisibleSlots, getSelectedItemId);
+        var visualSlotCount = visibleSlotCount + (visibleSlotCount < maxSlotCount ? 1 : 0);
+
+        for (var index = 0; index < visibleSlotCount; index++)
+        {
+            var slotKey = getSlotKey(index + 1);
+            AppendGridElement(
+                panel,
+                CreateBuildSlot(slotKey, combatClass, getSelectedItemId, onSlotClick, onSlotRightClick),
+                index,
+                columns,
+                left,
+                top);
+        }
+
+        if (visibleSlotCount < maxSlotCount)
+        {
+            var addSlotKey = getSlotKey(visibleSlotCount + 1);
+            AppendGridElement(
+                panel,
+                CreateBuildAddSlot(addSlotHoverText, () => onSlotClick(addSlotKey)),
+                visibleSlotCount,
+                columns,
+                left,
+                top);
+        }
+
+        return GetGridHeight(visualSlotCount, columns);
+    }
+
+    private static void AppendGridElement(UIElement panel, UIElement element, int index, int columns, float left, float top)
+    {
+        var column = index % columns;
+        var row = index / columns;
+        element.Left.Set(left + column * (JournalUiMetrics.BuildSlotSize + JournalUiMetrics.BuildSlotGap), 0f);
+        element.Top.Set(top + row * (JournalUiMetrics.BuildSlotSize + JournalUiMetrics.BuildSlotGap), 0f);
+        panel.Append(element);
+    }
+
+    private static int GetVisibleExpandableSlotCount(
+        Func<int, string> getSlotKey,
+        int maxSlotCount,
+        int minVisibleSlots,
+        Func<string, int> getSelectedItemId)
+    {
+        var visibleSlotCount = Math.Clamp(minVisibleSlots, 0, maxSlotCount);
+        for (var slotIndex = maxSlotCount; slotIndex > visibleSlotCount; slotIndex--)
+        {
+            if (getSelectedItemId(getSlotKey(slotIndex)) > ItemID.None)
+            {
+                return slotIndex;
+            }
+        }
+
+        return visibleSlotCount;
+    }
+
     private static JournalBuildEquipmentSlot CreateBuildSlot(
         string slotKey,
         CombatClass combatClass,
@@ -338,6 +401,16 @@ public static class JournalContentBuilder
             () => getSelectedItemId(slotKey),
             () => onSlotClick(slotKey),
             () => onSlotRightClick(slotKey));
+    }
+
+    private static JournalBuildEquipmentSlot CreateBuildAddSlot(string hoverText, Action onClick)
+    {
+        return new JournalBuildEquipmentSlot(
+            "+",
+            hoverText,
+            static () => ItemID.None,
+            onClick,
+            static () => { });
     }
 
     private static UIText CreateBuildSectionLabel(string text)
@@ -378,7 +451,7 @@ public static class JournalContentBuilder
         };
         title.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
         title.Top.Set(top, 0f);
-        title.Width.Set(-112f, 1f);
+        title.Width.Set(-150f, 1f);
         card.Append(title);
 
         AppendSavedBuildActions(card, build);
@@ -395,6 +468,12 @@ public static class JournalContentBuilder
 
     private static void AppendSavedBuildActions(UIElement card, JournalSavedBuild build)
     {
+        var editButton = JournalBuildActionButton.CreateEdit(() => JournalSystem.EditSavedBuild(build));
+        editButton.Left.Set(-116f, 1f);
+        editButton.Top.Set(7f, 0f);
+        editButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildEditTooltip"));
+        card.Append(editButton);
+
         var favoriteButton = JournalBuildActionButton.CreateFavorite(
             build.IsFavorite,
             () => JournalSystem.ToggleSavedBuildFavorite(build));
@@ -498,8 +577,6 @@ public static class JournalContentBuilder
             .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetPotionSlotKey(slotIndex)))
             .Concat(Enumerable.Range(1, JournalBuildPlannerCatalog.FoodSlotCount)
                 .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetFoodSlotKey(slotIndex))))
-            .Concat(Enumerable.Range(1, JournalBuildPlannerCatalog.PermanentBonusSlotCount)
-                .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetPermanentBonusSlotKey(slotIndex))))
             .Where(static itemId => itemId > ItemID.None)
             .ToArray();
 

@@ -13,8 +13,7 @@ public static class JournalBuildPlannerCatalog
     public const string ArmorLegsSlotKey = "armor_legs";
 
     public const int PotionSlotCount = 8;
-    public const int FoodSlotCount = 3;
-    public const int PermanentBonusSlotCount = 6;
+    public const int FoodSlotCount = 8;
 
     public static int GetAccessorySlotCount(ProgressionStageId stageId)
     {
@@ -28,8 +27,6 @@ public static class JournalBuildPlannerCatalog
     public static string GetPotionSlotKey(int slotIndex) => $"potion_{slotIndex}";
 
     public static string GetFoodSlotKey(int slotIndex) => $"food_{slotIndex}";
-
-    public static string GetPermanentBonusSlotKey(int slotIndex) => $"permanent_{slotIndex}";
 
     public static bool TryGetSlotKind(string slotKey, out JournalBuildSlotKind slotKind)
     {
@@ -87,12 +84,6 @@ public static class JournalBuildPlannerCatalog
             return true;
         }
 
-        if (slotKey.StartsWith("permanent_", StringComparison.OrdinalIgnoreCase))
-        {
-            slotKind = JournalBuildSlotKind.PermanentBonus;
-            return true;
-        }
-
         slotKind = default;
         return false;
     }
@@ -101,8 +92,7 @@ public static class JournalBuildPlannerCatalog
     {
         return slotKind is JournalBuildSlotKind.Accessory
             or JournalBuildSlotKind.Potion
-            or JournalBuildSlotKind.Food
-            or JournalBuildSlotKind.PermanentBonus;
+            or JournalBuildSlotKind.Food;
     }
 
     public static string GetSlotDisplayName(string slotKey, CombatClass combatClass)
@@ -118,8 +108,9 @@ public static class JournalBuildPlannerCatalog
                 JournalBuildSlotKind.ArmorLegs => Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSlotArmorLegs"),
                 JournalBuildSlotKind.Accessory => Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSlotAccessory"),
                 JournalBuildSlotKind.Potion => Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSlotPotion"),
-                JournalBuildSlotKind.Food => Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSlotFood"),
-                JournalBuildSlotKind.PermanentBonus => Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSlotPermanentBonus"),
+                JournalBuildSlotKind.Food => TryExtractSlotIndex(slotKey) <= 1
+                    ? Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSlotFood")
+                    : Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSlotFoodAlternative"),
                 _ => slotKey
             }
             : slotKey;
@@ -144,8 +135,7 @@ public static class JournalBuildPlannerCatalog
                 JournalBuildSlotKind.ArmorLegs => "L",
                 JournalBuildSlotKind.Accessory => $"A{TryExtractSlotIndex(slotKey)}",
                 JournalBuildSlotKind.Potion => $"P{TryExtractSlotIndex(slotKey)}",
-                JournalBuildSlotKind.Food => $"F{TryExtractSlotIndex(slotKey)}",
-                JournalBuildSlotKind.PermanentBonus => $"B{TryExtractSlotIndex(slotKey)}",
+                JournalBuildSlotKind.Food => TryExtractSlotIndex(slotKey) <= 1 ? "F" : $"F{TryExtractSlotIndex(slotKey)}",
                 _ => "?"
             }
             : "?";

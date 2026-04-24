@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.UI;
 
 namespace ProgressionJournal.UI.Controls;
@@ -15,7 +16,7 @@ public sealed class JournalBuildActionButton : JournalHoverPanel
 
     private readonly Action _onClick;
     private readonly ButtonKind _kind;
-    private readonly Asset<Texture2D>? _favoriteTexture;
+    private readonly Asset<Texture2D>? _iconTexture;
     private readonly Color _iconColor;
     private readonly Color _hoverIconColor;
     private string? _hoverText;
@@ -40,7 +41,7 @@ public sealed class JournalBuildActionButton : JournalHoverPanel
 
         if (kind == ButtonKind.Favorite)
         {
-            _favoriteTexture = Main.Assets.Request<Texture2D>(FavoriteIconTexturePath);
+            _iconTexture = Main.Assets.Request<Texture2D>(FavoriteIconTexturePath);
         }
     }
 
@@ -62,6 +63,15 @@ public sealed class JournalBuildActionButton : JournalHoverPanel
             new Color(255, 164, 164));
     }
 
+    public static JournalBuildActionButton CreateEdit(Action onClick)
+    {
+        return new JournalBuildActionButton(
+            ButtonKind.Edit,
+            onClick,
+            Color.White,
+            Color.White);
+    }
+
     public void SetHoverText(string hoverText)
     {
         _hoverText = hoverText;
@@ -80,9 +90,7 @@ public sealed class JournalBuildActionButton : JournalHoverPanel
     private void DrawIcon(SpriteBatch spriteBatch)
     {
         var dimensions = GetDimensions().ToRectangle();
-        var texture = _kind == ButtonKind.Trash
-            ? TextureAssets.Trash.Value
-            : _favoriteTexture!.Value;
+        var texture = GetIconTexture();
         var availableSize = MathF.Max(1f, MathF.Min(dimensions.Width, dimensions.Height) - Padding * 2f);
         var scale = MathF.Min(availableSize / texture.Width, availableSize / texture.Height);
         if (IsMouseHovering)
@@ -102,9 +110,26 @@ public sealed class JournalBuildActionButton : JournalHoverPanel
             0f);
     }
 
+    private Texture2D GetIconTexture()
+    {
+        if (_kind == ButtonKind.Trash)
+        {
+            return TextureAssets.Trash.Value;
+        }
+
+        if (_kind == ButtonKind.Edit)
+        {
+            Main.instance.LoadItem(ItemID.Wrench);
+            return TextureAssets.Item[ItemID.Wrench].Value;
+        }
+
+        return _iconTexture!.Value;
+    }
+
     private enum ButtonKind
     {
         Favorite,
+        Edit,
         Trash
     }
 }
