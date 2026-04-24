@@ -36,6 +36,7 @@ public sealed class JournalUiState : UIState
     private JournalTextButton _presetsTabButton = null!;
     private UIText _contentTitle = null!;
     private UIText _contentDescription = null!;
+    private JournalIconButton _buildImportButton = null!;
     private JournalIconButton _buildBuilderButton = null!;
     private JournalIconButton _buildBackButton = null!;
     private JournalIconButton _buildSaveButton = null!;
@@ -1054,6 +1055,16 @@ public sealed class JournalUiState : UIState
         _contentTitle.Top.Set(JournalUiMetrics.ContentTitleTop, 0f);
         _contentPanel.Append(_contentTitle);
 
+        _buildImportButton = JournalUiElementFactory.CreateIconButton(
+            TextureAssets.Camera[6],
+            30f,
+            30f,
+            () => JournalSystem.ImportSavedBuilds(),
+            0.9f);
+        _buildImportButton.Left.Set(-76f, 1f);
+        _buildImportButton.Top.Set(8f, 0f);
+        _buildImportButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildImportTooltip"));
+
         _buildBuilderButton = JournalUiElementFactory.CreateIconButton(
             CraftingWindowToggleTexturePath,
             30f,
@@ -1074,7 +1085,6 @@ public sealed class JournalUiState : UIState
         _buildBackButton.Top.Set(8f, 0f);
         _buildBackButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildBackTooltip"));
 
-        Main.instance.LoadItem(ItemID.Book);
         _buildSaveButton = JournalUiElementFactory.CreateIconButton(
             TextureAssets.Item[ItemID.Book],
             30f,
@@ -1121,6 +1131,7 @@ public sealed class JournalUiState : UIState
 
     private void RefreshBuildActionButtons(bool selectingClass, bool showingPresets, bool showingBuildBuilder)
     {
+        ToggleContentButton(_buildImportButton, !selectingClass && showingPresets && !showingBuildBuilder);
         ToggleContentButton(_buildBuilderButton, !selectingClass && showingPresets && !showingBuildBuilder);
         ToggleContentButton(_buildBackButton, !selectingClass && showingPresets && showingBuildBuilder);
         ToggleContentButton(_buildSaveButton, !selectingClass && showingPresets && showingBuildBuilder);
@@ -1343,6 +1354,7 @@ public sealed class JournalUiState : UIState
         _progressionModeToggleButton.SetText(progressionModeEnabled ? "x" : "✓");
         _progressionModeToggleButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProgressionModeToggleTooltip"));
         _buildBuilderButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildBuilderTab"));
+        _buildImportButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildImportTooltip"));
         _buildBackButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildBackTooltip"));
         _buildSaveButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveTooltip"));
         _buildSaveTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveDialogTitle"));

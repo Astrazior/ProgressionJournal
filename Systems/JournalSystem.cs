@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -478,6 +479,39 @@ public sealed class JournalSystem : ModSystem
             return;
         }
 
+        RefreshView();
+    }
+
+    public void ExportSavedBuild(JournalSavedBuild build)
+    {
+        if (!JournalFileDialog.TryShowSaveBuildDialog(out var exportPath))
+        {
+            return;
+        }
+
+        if (JournalBuildStorage.ExportBuild(build, exportPath))
+        {
+            Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildExported", Path.GetFileName(exportPath)), Color.LightGreen);
+            return;
+        }
+
+        Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildExportFailed"), Color.OrangeRed);
+    }
+
+    public void ImportSavedBuilds()
+    {
+        if (!JournalFileDialog.TryShowOpenBuildDialog(out var importPath))
+        {
+            return;
+        }
+
+        if (!JournalBuildStorage.ImportBuild(importPath, out var importedName))
+        {
+            Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildImportFailed"), Color.OrangeRed);
+            return;
+        }
+
+        Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildImported", importedName), Color.LightGreen);
         RefreshView();
     }
 

@@ -473,10 +473,16 @@ public static class JournalContentBuilder
     private static void AppendSavedBuildActions(UIElement card, JournalSavedBuild build)
     {
         var editButton = JournalBuildActionButton.CreateEdit(() => JournalSystem.EditSavedBuild(build));
-        editButton.Left.Set(-116f, 1f);
+        editButton.Left.Set(-154f, 1f);
         editButton.Top.Set(7f, 0f);
         editButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildEditTooltip"));
         card.Append(editButton);
+
+        var exportButton = JournalBuildActionButton.CreateExport(() => JournalSystem.ExportSavedBuild(build));
+        exportButton.Left.Set(-116f, 1f);
+        exportButton.Top.Set(7f, 0f);
+        exportButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildExportTooltip"));
+        card.Append(exportButton);
 
         var favoriteButton = JournalBuildActionButton.CreateFavorite(
             build.IsFavorite,

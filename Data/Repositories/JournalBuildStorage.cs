@@ -12,6 +12,7 @@ namespace ProgressionJournal.Data.Repositories;
 public static class JournalBuildStorage
 {
     private const string BuildDirectoryName = "Builds";
+    private const string BuildFormat = "ProgressionJournalBuild";
     private const string FileExtension = ".json";
 
     private static readonly JsonSerializerOptions SerializerOptions = new()
@@ -66,6 +67,7 @@ public static class JournalBuildStorage
 
             var document = new JournalBuildDocument
             {
+                Format = BuildFormat,
                 Version = 1,
                 Name = name.Trim(),
                 CombatClass = combatClass.ToString(),
@@ -122,6 +124,7 @@ public static class JournalBuildStorage
             var document = JsonSerializer.Deserialize<JournalBuildDocument>(File.ReadAllText(filePath), SerializerOptions)
                 ?? new JournalBuildDocument();
             document.Version = 1;
+            document.Format = BuildFormat;
             document.Name = name.Trim();
             document.CombatClass = combatClass.ToString();
             document.StageId = stageId.ToString();
@@ -156,6 +159,79 @@ public static class JournalBuildStorage
         catch (Exception exception)
         {
             LogWarning($"Failed to delete build json from '{build.SourcePath}'.", exception);
+            return false;
+        }
+    }
+
+    public static bool ExportBuild(JournalSavedBuild build, string exportPath)
+    {
+        if (string.IsNullOrWhiteSpace(exportPath))
+        {
+            return false;
+        }
+
+        try
+        {
+            if (!TryGetSafeBuildPath(build.SourcePath, out var filePath) || !File.Exists(filePath))
+            {
+                return false;
+            }
+
+            var document = JsonSerializer.Deserialize<JournalBuildDocument>(File.ReadAllText(filePath), SerializerOptions);
+            if (document is null)
+            {
+                return false;
+            }
+
+            document.Format = BuildFormat;
+            document.IsFavorite = false;
+            document.FavoriteSortKey = 0L;
+
+            var directoryPath = Path.GetDirectoryName(Path.GetFullPath(exportPath));
+            if (!string.IsNullOrWhiteSpace(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            File.WriteAllText(exportPath, JsonSerializer.Serialize(document, SerializerOptions), Encoding.UTF8);
+            return true;
+        }
+        catch (Exception exception)
+        {
+            LogWarning($"Failed to export build json from '{build.SourcePath}'.", exception);
+            return false;
+        }
+    }
+
+    public static bool ImportBuild(string filePath, out string importedName)
+    {
+        importedName = string.Empty;
+
+        try
+        {
+            Directory.CreateDirectory(GetBuildDirectoryPath());
+
+            if (!TryReadBuildDocument(filePath, out var document, out _, out _, out var selectedItems))
+            {
+                return false;
+            }
+
+            document.Format = BuildFormat;
+            document.Version = 1;
+            document.Name = document.Name.Trim();
+            document.IsFavorite = false;
+            document.FavoriteSortKey = 0L;
+            document.SelectedItems = selectedItems;
+
+            var destinationPath = GetUniqueBuildFilePath(document.Name);
+            File.WriteAllText(destinationPath, JsonSerializer.Serialize(document, SerializerOptions), Encoding.UTF8);
+            importedName = document.Name;
+            Reload();
+            return true;
+        }
+        catch (Exception exception)
+        {
+            LogWarning($"Failed to import build json from '{filePath}'.", exception);
             return false;
         }
     }
@@ -263,8 +339,10 @@ public static class JournalBuildStorage
 
     private static string GetBuildDirectoryPath()
     {
-        return Path.Combine(Main.SavePath, "Mods", nameof(ProgressionJournal), BuildDirectoryName);
+        return Path.Combine(GetRootDirectoryPath(), BuildDirectoryName);
     }
+
+    private static string GetRootDirectoryPath() => Path.Combine(Main.SavePath, "Mods", nameof(ProgressionJournal));
 
     private static bool TryGetSafeBuildPath(string sourcePath, out string filePath)
     {
@@ -334,8 +412,56 @@ public static class JournalBuildStorage
         }
     }
 
+    private static bool TryReadBuildDocument(
+        string filePath,
+        out JournalBuildDocument document,
+        out CombatClass combatClass,
+        out ProgressionStageId stageId,
+        out Dictionary<string, int> selectedItems)
+    {
+        document = null!;
+        combatClass = default;
+        stageId = default;
+        selectedItems = [];
+
+        try
+        {
+            document = JsonSerializer.Deserialize<JournalBuildDocument>(File.ReadAllText(filePath), SerializerOptions)
+                ?? new JournalBuildDocument();
+
+            if ((!string.IsNullOrWhiteSpace(document.Format)
+                    && !string.Equals(document.Format, BuildFormat, StringComparison.OrdinalIgnoreCase))
+                || string.IsNullOrWhiteSpace(document.Name)
+                || string.IsNullOrWhiteSpace(document.CombatClass)
+                || string.IsNullOrWhiteSpace(document.StageId)
+                || document.SelectedItems.Count == 0
+                || !Enum.TryParse(document.CombatClass, ignoreCase: true, out combatClass)
+                || !Enum.TryParse(document.StageId, ignoreCase: true, out stageId))
+            {
+                return false;
+            }
+
+            selectedItems = document.SelectedItems
+                .Where(static pair => pair.Value > 0
+                    && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
+                .ToDictionary(
+                    static pair => pair.Key,
+                    static pair => pair.Value,
+                    StringComparer.OrdinalIgnoreCase);
+
+            return selectedItems.Count > 0;
+        }
+        catch (Exception exception)
+        {
+            LogWarning($"Failed to read build json from '{filePath}'.", exception);
+            return false;
+        }
+    }
+
     private sealed class JournalBuildDocument
     {
+        public string Format { get; set; } = BuildFormat;
+
         public int Version { get; set; }
 
         public string Name { get; set; } = string.Empty;

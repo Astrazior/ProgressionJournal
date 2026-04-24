@@ -5,13 +5,13 @@ using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.UI;
 
 namespace ProgressionJournal.UI.Controls;
 
 public sealed class JournalBuildActionButton : JournalHoverPanel
 {
     private const string FavoriteIconTexturePath = "Images/UI/Bestiary/Icon_Rank_Light";
+    private const string ExportIconTexturePath = "Images/UI/IconQuickload";
     private const float Padding = 2f;
 
     private readonly Action _onClick;
@@ -43,6 +43,10 @@ public sealed class JournalBuildActionButton : JournalHoverPanel
         {
             _iconTexture = Main.Assets.Request<Texture2D>(FavoriteIconTexturePath);
         }
+        else if (kind == ButtonKind.Export)
+        {
+            _iconTexture = Main.Assets.Request<Texture2D>(ExportIconTexturePath);
+        }
     }
 
     public static JournalBuildActionButton CreateFavorite(bool active, Action onClick)
@@ -67,6 +71,15 @@ public sealed class JournalBuildActionButton : JournalHoverPanel
     {
         return new JournalBuildActionButton(
             ButtonKind.Edit,
+            onClick,
+            Color.White,
+            Color.White);
+    }
+
+    public static JournalBuildActionButton CreateExport(Action onClick)
+    {
+        return new JournalBuildActionButton(
+            ButtonKind.Export,
             onClick,
             Color.White,
             Color.White);
@@ -117,19 +130,20 @@ public sealed class JournalBuildActionButton : JournalHoverPanel
             return TextureAssets.Trash.Value;
         }
 
-        if (_kind == ButtonKind.Edit)
+        if (_kind != ButtonKind.Edit)
         {
-            Main.instance.LoadItem(ItemID.Wrench);
-            return TextureAssets.Item[ItemID.Wrench].Value;
+            return _iconTexture!.Value;
         }
 
-        return _iconTexture!.Value;
+        Main.instance.LoadItem(ItemID.Wrench);
+        return TextureAssets.Item[ItemID.Wrench].Value;
     }
 
     private enum ButtonKind
     {
         Favorite,
         Edit,
+        Export,
         Trash
     }
 }
