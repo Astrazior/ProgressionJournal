@@ -13,6 +13,9 @@ namespace ProgressionJournal.UI.Composition;
 
 public static class JournalContentBuilder
 {
+    private const float SavedBuildPreviewWidth = 126f;
+    private const float SavedBuildPreviewHeight = 178f;
+
     private static readonly JournalBuffCategory[] CombatBuffSectionOrder =
     [
         JournalBuffCategory.Station,
@@ -445,13 +448,14 @@ public static class JournalContentBuilder
         card.BorderColor = Color.Lerp(JournalUiTheme.PanelBorder, palette.Border, 0.72f);
 
         var top = JournalUiMetrics.BlockVerticalPadding;
-        var title = new UIText(build.Name, JournalUiMetrics.BuildPanelHeaderScale, true)
+        const float titleScale = JournalUiMetrics.BuildPanelHeaderScale;
+        var title = new UIText(JournalTextUtilities.TrimToPixelWidth(build.Name, SavedBuildPreviewWidth, titleScale), titleScale, true)
         {
             TextColor = Color.Lerp(palette.Text, Color.White, 0.22f)
         };
         title.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
         title.Top.Set(top, 0f);
-        title.Width.Set(-150f, 1f);
+        title.Width.Set(SavedBuildPreviewWidth, 0f);
         card.Append(title);
 
         AppendSavedBuildActions(card, build);
@@ -498,14 +502,11 @@ public static class JournalContentBuilder
         float top,
         JournalClassPalette palette)
     {
-        const float previewWidth = 126f;
-        const float previewHeight = 178f;
-
         var previewPanel = JournalUiElementFactory.CreatePanel();
         previewPanel.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
         previewPanel.Top.Set(top, 0f);
-        previewPanel.Width.Set(previewWidth, 0f);
-        previewPanel.Height.Set(previewHeight, 0f);
+        previewPanel.Width.Set(SavedBuildPreviewWidth, 0f);
+        previewPanel.Height.Set(SavedBuildPreviewHeight, 0f);
         previewPanel.BackgroundColor = Color.Lerp(JournalUiTheme.RootBackground, palette.Background, 0.56f);
         previewPanel.BorderColor = Color.Lerp(palette.Border, palette.Accent, 0.42f);
         card.Append(previewPanel);
@@ -523,7 +524,7 @@ public static class JournalContentBuilder
         characterPreview.IgnoresMouseInteraction = true;
         previewPanel.Append(characterPreview);
 
-        return top + previewHeight;
+        return top + SavedBuildPreviewHeight;
     }
 
     private static float AppendSavedBuildEquipmentSummary(
@@ -578,17 +579,28 @@ public static class JournalContentBuilder
         const float columnLeft = 482f;
         const int maxSlotsPerRow = 4;
 
-        var consumableItems = Enumerable.Range(1, JournalBuildPlannerCatalog.PotionSlotCount)
+        var potionItems = Enumerable.Range(1, JournalBuildPlannerCatalog.PotionSlotCount)
             .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetPotionSlotKey(slotIndex)))
-            .Concat(Enumerable.Range(1, JournalBuildPlannerCatalog.FoodSlotCount)
-                .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetFoodSlotKey(slotIndex))))
             .Where(static itemId => itemId > ItemID.None)
             .ToArray();
 
+        var foodItems = Enumerable.Range(1, JournalBuildPlannerCatalog.FoodSlotCount)
+            .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetFoodSlotKey(slotIndex)))
+            .Where(static itemId => itemId > ItemID.None)
+            .ToArray();
+
+        top = AppendSavedBuildSection(
+            card,
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSlotPotion"),
+            potionItems,
+            columnLeft,
+            top,
+            maxSlotsPerRow);
+
         return AppendSavedBuildSection(
             card,
-            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildConsumablesTitle"),
-            consumableItems,
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSlotFood"),
+            foodItems,
             columnLeft,
             top,
             maxSlotsPerRow);
