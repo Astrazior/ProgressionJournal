@@ -757,18 +757,20 @@ public sealed class JournalUiState : UIState
         var candidates = JournalRepository.GetBuildCandidates(
             stageId,
             combatClass,
-            slotKey,
-            JournalSystem.GetBlockedBuildItemIds(slotKey));
+            slotKey);
         if (candidates.Count == 0)
         {
             _buildPickerList.Add(CreateSourceNotice(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerEmpty")));
             return;
         }
 
-        var selectedItemId = JournalSystem.GetSelectedBuildItem(slotKey);
-        foreach (var candidate in candidates)
+        var highlightedItemIds = JournalSystem.GetHighlightedBuildItemIds(slotKey);
+        var blockedItemIds = JournalSystem.GetBlockedBuildItemIds(slotKey);
+        var slotsPerRow = GetBuildPickerSlotsPerRow(panelWidth);
+        for (var index = 0; index < candidates.Count; index += slotsPerRow)
         {
-            _buildPickerList.Add(CreateBuildCandidateCard(candidate, selectedItemId));
+            var rowCandidates = candidates.Skip(index).Take(slotsPerRow).ToArray();
+            _buildPickerList.Add(CreateBuildCandidateRow(rowCandidates, highlightedItemIds, blockedItemIds));
         }
     }
 
@@ -785,34 +787,52 @@ public sealed class JournalUiState : UIState
         }
     }
 
-    private UIPanel CreateBuildCandidateCard(JournalBuildCandidate candidate, int selectedItemId)
+    private static UIElement CreateBuildCandidateRow(
+        IReadOnlyList<JournalBuildCandidate> candidates,
+        IReadOnlySet<int> highlightedItemIds,
+        IReadOnlySet<int> blockedItemIds)
     {
-        var panel = JournalUiElementFactory.CreatePanel();
-        panel.Width.Set(0f, 1f);
-        panel.Height.Set(JournalUiMetrics.BuildCandidateHeight, 0f);
-        if (candidate.ItemId == selectedItemId)
+        var items = candidates
+            .Select(static candidate => JournalItemUtilities.CreateItem(candidate.ItemId))
+            .ToArray();
+        var row = new UIElement
         {
-            panel.BorderColor = JournalUiTheme.SectionHeaderText;
+            HAlign = 0.5f
+        };
+        row.Width.Set(GetBuildCandidateRowWidth(candidates.Count), 0f);
+        row.Height.Set(JournalUiMetrics.BuildSlotSize, 0f);
+
+        var left = 0f;
+        for (var index = 0; index < candidates.Count; index++)
+        {
+            var index1 = index;
+            var slot = new JournalBuildCandidateSlot(
+                items[index],
+                highlightedItemIds.Contains(candidates[index].ItemId),
+                blockedItemIds.Contains(candidates[index].ItemId),
+                () => JournalSystem.SelectActiveBuildItem(candidates[index1].ItemId));
+            slot.Left.Set(left, 0f);
+            row.Append(slot);
+            left += JournalUiMetrics.BuildSlotSize + JournalUiMetrics.BuildSlotGap;
         }
 
-        panel.OnLeftClick += (_, _) => JournalSystem.SelectActiveBuildItem(candidate.ItemId);
+        return row;
+    }
 
-        var preview = new JournalItemStrip([JournalItemUtilities.CreateItem(candidate.ItemId)]);
-        preview.Left.Set(14f, 0f);
-        preview.Top.Set(14f, 0f);
-        panel.Append(preview);
+    private static int GetBuildPickerSlotsPerRow(float panelWidth)
+    {
+        var availableWidth = panelWidth - (JournalUiMetrics.BuildPickerInset * 2f + JournalUiMetrics.ScrollbarWidth + 4f);
+        return Math.Max(1, (int)((availableWidth + JournalUiMetrics.BuildSlotGap) / (JournalUiMetrics.BuildSlotSize + JournalUiMetrics.BuildSlotGap)));
+    }
 
-        var title = new UIText(
-            JournalTextUtilities.TrimToCharacterCount(Lang.GetItemNameValue(candidate.ItemId), 48),
-            JournalUiMetrics.BuildPickerItemTitleScale,
-            true);
-        title.Left.Set(28f, 0f);
-        title.Top.Set(-12f, 0.5f);
-        title.HAlign = 0.5f;
-        title.TextColor = JournalUiTheme.RootTitleText;
-        panel.Append(title);
+    private static float GetBuildCandidateRowWidth(int slotCount)
+    {
+        if (slotCount <= 0)
+        {
+            return 0f;
+        }
 
-        return panel;
+        return slotCount * JournalUiMetrics.BuildSlotSize + (slotCount - 1) * JournalUiMetrics.BuildSlotGap;
     }
 
     private void EnsureLayout()

@@ -97,6 +97,14 @@ public static class JournalBuildPlannerCatalog
         return false;
     }
 
+    public static bool DisallowsDuplicateSelections(JournalBuildSlotKind slotKind)
+    {
+        return slotKind is JournalBuildSlotKind.Accessory
+            or JournalBuildSlotKind.Potion
+            or JournalBuildSlotKind.Food
+            or JournalBuildSlotKind.PermanentBonus;
+    }
+
     public static string GetSlotDisplayName(string slotKey, CombatClass combatClass)
     {
         return TryGetSlotKind(slotKey, out var slotKind)

@@ -32,29 +32,19 @@ public static partial class JournalRepository
     public static IReadOnlyList<JournalBuildCandidate> GetBuildCandidates(
         ProgressionStageId stageId,
         CombatClass combatClass,
-        string slotKey,
-        IReadOnlySet<int>? excludedItemIds = null)
+        string slotKey)
     {
         if (!JournalBuildPlannerCatalog.TryGetSlotKind(slotKey, out var slotKind))
         {
             return [];
         }
 
-        var candidates = slotKind switch
+        return slotKind switch
         {
             JournalBuildSlotKind.Potion or JournalBuildSlotKind.Food or JournalBuildSlotKind.PermanentBonus
                 => BuildBuffCandidates(stageId, combatClass, slotKind),
             _ => BuildEquipmentCandidates(stageId, combatClass, slotKind)
         };
-
-        if (excludedItemIds is null || excludedItemIds.Count == 0)
-        {
-            return candidates;
-        }
-
-        return candidates
-            .Where(candidate => !excludedItemIds.Contains(candidate.ItemId))
-            .ToArray();
     }
 
     public static bool IsBuildSelectionValid(

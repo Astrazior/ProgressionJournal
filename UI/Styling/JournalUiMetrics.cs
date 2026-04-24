@@ -59,14 +59,12 @@ public static class JournalUiMetrics
     public const float BuildSectionTitleScale = 0.44f;
     public const float BuildPanelHeaderScale = 0.46f;
     public const float BuildPickerTitleScale = 0.62f;
-    public const float BuildPickerItemTitleScale = 0.56f;
     public const float BuildPickerWidth = 700f;
     public const float BuildPickerHeight = 620f;
     public const float BuildPickerInset = 18f;
     public const float BuildPickerHeaderTop = 10f;
     public const float BuildPickerListTop = 82f;
     public const float BuildPickerListBottomInset = 18f;
-    public const float BuildCandidateHeight = 86f;
     public const float ScrollbarOffset = 18f;
     public const float ScrollbarWidth = 20f;
     public const float EntryListWidthInset = 38f;

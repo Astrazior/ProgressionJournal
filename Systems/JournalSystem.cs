@@ -288,6 +288,11 @@ public sealed class JournalSystem : ModSystem
             return;
         }
 
+        if (GetBlockedBuildItemIds(ActiveBuildSlotKey).Contains(itemId))
+        {
+            return;
+        }
+
         _buildSelections[ActiveBuildSlotKey] = itemId;
         ActiveBuildSlotKey = null;
         RefreshView();
@@ -313,18 +318,43 @@ public sealed class JournalSystem : ModSystem
         return _buildSelections.GetValueOrDefault(slotKey, ItemID.None);
     }
 
+    public IReadOnlySet<int> GetHighlightedBuildItemIds(string slotKey)
+    {
+        if (!JournalBuildPlannerCatalog.TryGetSlotKind(slotKey, out var slotKind))
+        {
+            return EmptyBlockedItemIds;
+        }
+
+        if (!JournalBuildPlannerCatalog.DisallowsDuplicateSelections(slotKind))
+        {
+            return _buildSelections.TryGetValue(slotKey, out var itemId) && itemId > ItemID.None
+                ? new HashSet<int> { itemId }
+                : EmptyBlockedItemIds;
+        }
+
+        var highlightedItemIds = _buildSelections
+            .Where(pair => pair.Value > ItemID.None
+                && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out var pairSlotKind)
+                && pairSlotKind == slotKind)
+            .Select(static pair => pair.Value)
+            .ToHashSet();
+
+        return highlightedItemIds.Count == 0 ? EmptyBlockedItemIds : highlightedItemIds;
+    }
+
     public IReadOnlySet<int> GetBlockedBuildItemIds(string slotKey)
     {
         if (!JournalBuildPlannerCatalog.TryGetSlotKind(slotKey, out var slotKind)
-            || slotKind != JournalBuildSlotKind.Accessory)
+            || !JournalBuildPlannerCatalog.DisallowsDuplicateSelections(slotKind))
         {
             return EmptyBlockedItemIds;
         }
 
         var blockedItemIds = _buildSelections
             .Where(pair => !string.Equals(pair.Key, slotKey, System.StringComparison.OrdinalIgnoreCase)
+                && pair.Value > ItemID.None
                 && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out var pairSlotKind)
-                && pairSlotKind == JournalBuildSlotKind.Accessory)
+                && pairSlotKind == slotKind)
             .Select(static pair => pair.Value)
             .ToHashSet();
 
@@ -395,9 +425,33 @@ public sealed class JournalSystem : ModSystem
         {
             _buildSelections.Remove(slotKey);
         }
+
+        RemoveDuplicateBuildSelections();
     }
 
     private static readonly IReadOnlySet<int> EmptyBlockedItemIds = new HashSet<int>();
+
+    private void RemoveDuplicateBuildSelections()
+    {
+        var duplicateSelectionKeys = _buildSelections
+            .Where(pair => JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out var slotKind)
+                && JournalBuildPlannerCatalog.DisallowsDuplicateSelections(slotKind))
+            .GroupBy(pair => new
+            {
+                SlotKind = JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out var slotKind) ? slotKind : default,
+                pair.Value
+            })
+            .SelectMany(static group => group
+                .OrderBy(static pair => pair.Key, System.StringComparer.OrdinalIgnoreCase)
+                .Skip(1)
+                .Select(static pair => pair.Key))
+            .ToArray();
+
+        foreach (var slotKey in duplicateSelectionKeys)
+        {
+            _buildSelections.Remove(slotKey);
+        }
+    }
 
     private static T Cycle<T>(IReadOnlyList<T> values, T current, int direction)
     {
