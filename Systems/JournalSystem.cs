@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -25,6 +26,8 @@ public sealed class JournalSystem : ModSystem
     public bool ShowingBuildBuilder { get; private set; }
 
     public bool ShowingCombatBuffsPage { get; private set; }
+
+    public bool ShowingBuildSaveDialog { get; private set; }
 
     public bool SelectingClass { get; private set; } = true;
 
@@ -135,7 +138,9 @@ public sealed class JournalSystem : ModSystem
         SelectingClass = !HasSelectedClass;
         ShowingPresets = false;
         ShowingBuildBuilder = false;
+        ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
+        JournalBuildStorage.Reload();
         CoerceSelectedStage();
         _journalInterface?.SetState(_journalState);
         RefreshView();
@@ -144,6 +149,7 @@ public sealed class JournalSystem : ModSystem
     public void HideView()
     {
         Visible = false;
+        ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
         _journalInterface?.SetState(null);
     }
@@ -161,6 +167,7 @@ public sealed class JournalSystem : ModSystem
         SelectingClass = false;
         ShowingPresets = false;
         ShowingBuildBuilder = false;
+        ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
         CoerceBuildSelections();
         RefreshView();
@@ -170,6 +177,7 @@ public sealed class JournalSystem : ModSystem
     {
         SelectingClass = true;
         ShowingBuildBuilder = false;
+        ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
         RefreshView();
     }
@@ -188,6 +196,7 @@ public sealed class JournalSystem : ModSystem
         }
 
         SelectedStage = stageId;
+        ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
         CoerceBuildSelections();
         RefreshView();
@@ -197,6 +206,7 @@ public sealed class JournalSystem : ModSystem
     {
         ProgressionModeEnabled = !ProgressionModeEnabled;
         CoerceSelectedStage();
+        ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
         CoerceBuildSelections();
         RefreshView();
@@ -207,6 +217,7 @@ public sealed class JournalSystem : ModSystem
         SelectingClass = false;
         ShowingPresets = false;
         ShowingBuildBuilder = false;
+        ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
         RefreshView();
     }
@@ -216,7 +227,9 @@ public sealed class JournalSystem : ModSystem
         SelectingClass = false;
         ShowingPresets = true;
         ShowingBuildBuilder = false;
+        ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
+        JournalBuildStorage.Reload();
         RefreshView();
     }
 
@@ -225,6 +238,8 @@ public sealed class JournalSystem : ModSystem
         SelectingClass = false;
         ShowingPresets = true;
         ShowingBuildBuilder = true;
+        ShowingBuildSaveDialog = false;
+        ActiveBuildSlotKey = null;
         RefreshView();
     }
 
@@ -284,6 +299,11 @@ public sealed class JournalSystem : ModSystem
 
     public void OpenBuildSlot(string slotKey)
     {
+        if (ShowingBuildSaveDialog)
+        {
+            return;
+        }
+
         ActiveBuildSlotKey = slotKey;
         RefreshView();
     }
@@ -296,6 +316,29 @@ public sealed class JournalSystem : ModSystem
         }
 
         ActiveBuildSlotKey = null;
+        RefreshView();
+    }
+
+    public void OpenBuildSaveDialog()
+    {
+        if (!ShowingPresets || !ShowingBuildBuilder)
+        {
+            return;
+        }
+
+        ShowingBuildSaveDialog = true;
+        ActiveBuildSlotKey = null;
+        RefreshView();
+    }
+
+    public void CloseBuildSaveDialog()
+    {
+        if (!ShowingBuildSaveDialog)
+        {
+            return;
+        }
+
+        ShowingBuildSaveDialog = false;
         RefreshView();
     }
 
@@ -316,6 +359,43 @@ public sealed class JournalSystem : ModSystem
         RefreshView();
     }
 
+    public bool TrySaveCurrentBuild(string name, out string errorMessage)
+    {
+        CoerceBuildSelections();
+
+        if (!ShowingBuildBuilder)
+        {
+            errorMessage = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveFailed");
+            return false;
+        }
+
+        var trimmedName = name.Trim();
+        if (string.IsNullOrWhiteSpace(trimmedName))
+        {
+            errorMessage = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveNameRequired");
+            return false;
+        }
+
+        var selectedItems = _buildSelections
+            .Where(static pair => pair.Value > ItemID.None)
+            .ToDictionary(
+                static pair => pair.Key,
+                static pair => pair.Value,
+                System.StringComparer.OrdinalIgnoreCase);
+
+        if (!JournalBuildStorage.SaveBuild(trimmedName, SelectedClass, SelectedStage, selectedItems, out errorMessage))
+        {
+            return false;
+        }
+
+        _buildSelections.Clear();
+        ShowingBuildBuilder = false;
+        ShowingBuildSaveDialog = false;
+        ActiveBuildSlotKey = null;
+        RefreshView();
+        return true;
+    }
+
     public void ClearBuildItem(string slotKey)
     {
         if (!_buildSelections.Remove(slotKey))
@@ -334,6 +414,11 @@ public sealed class JournalSystem : ModSystem
     public int GetSelectedBuildItem(string slotKey)
     {
         return _buildSelections.GetValueOrDefault(slotKey, ItemID.None);
+    }
+
+    public IReadOnlyList<JournalSavedBuild> GetSavedBuilds(ProgressionStageId stageId, CombatClass combatClass)
+    {
+        return JournalBuildStorage.GetBuilds(stageId, combatClass);
     }
 
     public IReadOnlySet<int> GetHighlightedBuildItemIds(string slotKey)
@@ -382,6 +467,7 @@ public sealed class JournalSystem : ModSystem
     public override void OnWorldUnload()
     {
         Visible = false;
+        ShowingBuildSaveDialog = false;
         ActiveBuildSlotKey = null;
         _buildSelections.Clear();
         _journalInterface?.SetState(null);

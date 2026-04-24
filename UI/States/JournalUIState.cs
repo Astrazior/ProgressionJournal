@@ -36,6 +36,7 @@ public sealed class JournalUiState : UIState
     private UIText _contentTitle = null!;
     private UIText _contentDescription = null!;
     private JournalIconButton _buildBuilderButton = null!;
+    private JournalTextButton _buildSaveButton = null!;
     private UIElement _stageListContainer = null!;
     private UIElement _classSelectionContainer = null!;
     private UIList _entryList = null!;
@@ -52,6 +53,13 @@ public sealed class JournalUiState : UIState
     private JournalIconButton _buildPickerCloseButton = null!;
     private UIList _buildPickerList = null!;
     private UIScrollbar _buildPickerScrollbar = null!;
+    private JournalDimOverlay _buildSaveOverlay = null!;
+    private UIPanel _buildSavePanel = null!;
+    private UIText _buildSaveTitle = null!;
+    private JournalTextInput _buildSaveNameInput = null!;
+    private UIText _buildSaveMessage = null!;
+    private JournalTextButton _buildSaveConfirmButton = null!;
+    private JournalTextButton _buildSaveCancelButton = null!;
     private bool _layoutInitialized;
     private int _layoutScreenWidth;
     private int _layoutScreenHeight;
@@ -71,6 +79,7 @@ public sealed class JournalUiState : UIState
         InitializeStagePanel();
         InitializeMainPanel();
         InitializeBuildPickerOverlay();
+        InitializeBuildSaveOverlay();
     }
 
     public override void Update(GameTime gameTime)
@@ -85,6 +94,18 @@ public sealed class JournalUiState : UIState
 
         if (!Main.keyState.IsKeyDown(Keys.Escape) || !Main.oldKeyState.IsKeyUp(Keys.Escape))
         {
+            return;
+        }
+
+        if (JournalSystem.ShowingBuildSaveDialog)
+        {
+            JournalSystem.CloseBuildSaveDialog();
+            return;
+        }
+
+        if (JournalSystem.ActiveBuildSlotKey is not null)
+        {
+            JournalSystem.CloseBuildSlotPicker();
             return;
         }
 
@@ -105,12 +126,13 @@ public sealed class JournalUiState : UIState
         ApplyNavigationLayout(hasSelectedClass);
         EnsureLayout();
         ApplyContentLayout(selectingClass, showingPresets);
-        RefreshBuildBuilderButton(selectingClass, showingPresets, showingBuildBuilder);
+        RefreshBuildActionButtons(selectingClass, showingPresets, showingBuildBuilder);
         UpdateStaticText(progressionModeEnabled);
         UpdateNavigationStyles(selectingClass, showingPresets);
         JournalStageButtonPresenter.Refresh(_stageButtons, stageId, progressionModeEnabled);
         RefreshContent(combatClass, stageId, selectingClass, showingPresets, showingBuildBuilder, showingCombatBuffsPage, selectedItemId);
         RefreshBuildPickerOverlay(combatClass, stageId, showingPresets, showingBuildBuilder);
+        RefreshBuildSaveOverlay(showingPresets, showingBuildBuilder);
         Recalculate();
     }
 
@@ -121,6 +143,7 @@ public sealed class JournalUiState : UIState
         _acquisitionViewCache.Clear();
         _root.ResetDragState();
         HideBuildPickerOverlay();
+        HideBuildSaveOverlay(clearInput: true);
     }
 
     private void RefreshContent(
@@ -151,6 +174,8 @@ public sealed class JournalUiState : UIState
             var presetClassName = Language.GetTextValue($"Mods.ProgressionJournal.Classes.{combatClass}");
             var presetStageName = Language.GetTextValue(ProgressionStageCatalog.Get(stageId).LocalizationKey);
             SetContentHeader($"{presetClassName} • {presetStageName}");
+            var savedBuilds = JournalSystem.GetSavedBuilds(stageId, combatClass);
+            SetContentDescription(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsCount", savedBuilds.Count), 0.76f);
 
             if (showingBuildBuilder)
             {
@@ -161,9 +186,13 @@ public sealed class JournalUiState : UIState
                     JournalSystem.GetSelectedBuildItem,
                     JournalSystem.OpenBuildSlot);
             }
+            else if (savedBuilds.Count > 0)
+            {
+                JournalContentBuilder.PopulateSavedBuilds(_entryList, stageId, combatClass, savedBuilds);
+            }
             else
             {
-                _entryList.Add(CreateSourceNotice(Language.GetTextValue("Mods.ProgressionJournal.UI.ReadyBuildsEmpty")));
+                _entryList.Add(CreateSourceNotice(Language.GetTextValue("Mods.ProgressionJournal.UI.SavedBuildsEmpty")));
             }
 
             ClearAcquisitionPanel();
@@ -683,6 +712,11 @@ public sealed class JournalUiState : UIState
         _contentDescription.SetText(string.Empty);
     }
 
+    private void SetContentDescription(string text, float textScale = JournalUiMetrics.ContentDescriptionScale)
+    {
+        _contentDescription.SetText(text, textScale, false);
+    }
+
     private static UIPanel CreateOverviewPageSwitcherBlock(bool showingCombatBuffsPage)
     {
         var panel = JournalUiElementFactory.CreatePanel();
@@ -741,7 +775,7 @@ public sealed class JournalUiState : UIState
 
     private void RefreshBuildPickerOverlay(CombatClass combatClass, ProgressionStageId stageId, bool showingPresets, bool showingBuildBuilder)
     {
-        if (!showingPresets || !showingBuildBuilder || JournalSystem.ActiveBuildSlotKey is not { } slotKey)
+        if (!showingPresets || !showingBuildBuilder || JournalSystem.ShowingBuildSaveDialog || JournalSystem.ActiveBuildSlotKey is not { } slotKey)
         {
             HideBuildPickerOverlay();
             return;
@@ -788,6 +822,41 @@ public sealed class JournalUiState : UIState
         }
     }
 
+    private void RefreshBuildSaveOverlay(bool showingPresets, bool showingBuildBuilder)
+    {
+        if (!showingPresets || !showingBuildBuilder || !JournalSystem.ShowingBuildSaveDialog)
+        {
+            HideBuildSaveOverlay(clearInput: true);
+            return;
+        }
+
+        var dialogOpened = _buildSavePanel.Parent is null;
+        if (_buildSaveOverlay.Parent is null)
+        {
+            _root.Append(_buildSaveOverlay);
+        }
+
+        if (_buildSavePanel.Parent is null)
+        {
+            _root.Append(_buildSavePanel);
+        }
+
+        if (dialogOpened)
+        {
+            _buildSaveNameInput.SetText(string.Empty);
+            _buildSaveNameInput.Focused = true;
+            _buildSaveMessage.SetText(string.Empty);
+        }
+
+        var rootDimensions = _root.GetDimensions();
+        var panelWidth = MathF.Min(440f, rootDimensions.Width - 48f);
+        const float panelHeight = 210f;
+        _buildSavePanel.Width.Set(panelWidth, 0f);
+        _buildSavePanel.Height.Set(panelHeight, 0f);
+        _buildSavePanel.Left.Set((rootDimensions.Width - panelWidth) * 0.5f, 0f);
+        _buildSavePanel.Top.Set((rootDimensions.Height - panelHeight) * 0.5f, 0f);
+    }
+
     private void HideBuildPickerOverlay()
     {
         if (_buildPickerOverlay.Parent is not null)
@@ -798,6 +867,27 @@ public sealed class JournalUiState : UIState
         if (_buildPickerPanel.Parent is not null)
         {
             _root.RemoveChild(_buildPickerPanel);
+        }
+    }
+
+    private void HideBuildSaveOverlay(bool clearInput)
+    {
+        _buildSaveNameInput.Focused = false;
+
+        if (_buildSaveOverlay.Parent is not null)
+        {
+            _root.RemoveChild(_buildSaveOverlay);
+        }
+
+        if (_buildSavePanel.Parent is not null)
+        {
+            _root.RemoveChild(_buildSavePanel);
+        }
+
+        if (clearInput)
+        {
+            _buildSaveNameInput.SetText(string.Empty);
+            _buildSaveMessage.SetText(string.Empty);
         }
     }
 
@@ -972,6 +1062,17 @@ public sealed class JournalUiState : UIState
         _buildBuilderButton.Top.Set(8f, 0f);
         _buildBuilderButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildBuilderTab"));
 
+        _buildSaveButton = JournalUiElementFactory.CreateTextButton(
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveButton"),
+            196f,
+            30f,
+            () => JournalSystem.OpenBuildSaveDialog(),
+            0.88f);
+        _buildSaveButton.Left.Set(-242f, 1f);
+        _buildSaveButton.Top.Set(8f, 0f);
+        _buildSaveButton.SetStyle(JournalUiTheme.GetOverlayActionButtonStyle());
+        _buildSaveButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveTooltip"));
+
         _contentDescription = new UIText(string.Empty, JournalUiMetrics.ContentDescriptionScale);
         _contentDescription.Left.Set(JournalUiMetrics.ContentDescriptionLeft, 0f);
         _contentDescription.Top.Set(JournalUiMetrics.ContentDescriptionTop, 0f);
@@ -1006,22 +1107,27 @@ public sealed class JournalUiState : UIState
         InitializeAcquisitionPanel();
     }
 
-    private void RefreshBuildBuilderButton(bool selectingClass, bool showingPresets, bool showingBuildBuilder)
+    private void RefreshBuildActionButtons(bool selectingClass, bool showingPresets, bool showingBuildBuilder)
     {
-        var showButton = !selectingClass && showingPresets && !showingBuildBuilder;
-        if (showButton)
+        ToggleContentButton(_buildBuilderButton, !selectingClass && showingPresets && !showingBuildBuilder);
+        ToggleContentButton(_buildSaveButton, !selectingClass && showingPresets && showingBuildBuilder);
+    }
+
+    private void ToggleContentButton(UIElement element, bool visible)
+    {
+        if (visible)
         {
-            if (_buildBuilderButton.Parent is null)
+            if (element.Parent is null)
             {
-                _contentPanel.Append(_buildBuilderButton);
+                _contentPanel.Append(element);
             }
 
             return;
         }
 
-        if (_buildBuilderButton.Parent is not null)
+        if (element.Parent is not null)
         {
-            _contentPanel.RemoveChild(_buildBuilderButton);
+            _contentPanel.RemoveChild(element);
         }
     }
 
@@ -1122,6 +1228,71 @@ public sealed class JournalUiState : UIState
         _buildPickerList.SetScrollbar(_buildPickerScrollbar);
     }
 
+    private void InitializeBuildSaveOverlay()
+    {
+        _buildSaveOverlay = new JournalDimOverlay(() => JournalSystem.CloseBuildSaveDialog());
+
+        _buildSavePanel = JournalUiElementFactory.CreatePanel();
+        _buildSavePanel.SetPadding(0f);
+        _buildSavePanel.BackgroundColor = JournalUiTheme.RootBackground * JournalUiTheme.RootBackgroundOpacity;
+        _buildSavePanel.BorderColor = JournalUiTheme.RootBorder;
+
+        _buildSaveTitle = new UIText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveDialogTitle"), 0.58f, true)
+        {
+            HAlign = 0.5f,
+            TextColor = JournalUiTheme.RootTitleText
+        };
+        _buildSaveTitle.Top.Set(14f, 0f);
+        _buildSavePanel.Append(_buildSaveTitle);
+
+        var inputBackground = JournalUiElementFactory.CreatePanel();
+        inputBackground.Left.Set(24f, 0f);
+        inputBackground.Top.Set(62f, 0f);
+        inputBackground.Width.Set(-48f, 1f);
+        inputBackground.Height.Set(42f, 0f);
+        _buildSavePanel.Append(inputBackground);
+
+        _buildSaveNameInput = new JournalTextInput(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveDialogHint"));
+        _buildSaveNameInput.Left.Set(12f, 0f);
+        _buildSaveNameInput.Top.Set(10f, 0f);
+        _buildSaveNameInput.Width.Set(-24f, 1f);
+        _buildSaveNameInput.Height.Set(20f, 0f);
+        inputBackground.Append(_buildSaveNameInput);
+
+        _buildSaveMessage = new UIText(string.Empty, 0.78f)
+        {
+            TextColor = new Color(224, 146, 146)
+        };
+        _buildSaveMessage.Left.Set(24f, 0f);
+        _buildSaveMessage.Top.Set(112f, 0f);
+        _buildSaveMessage.Width.Set(-48f, 1f);
+        _buildSavePanel.Append(_buildSaveMessage);
+
+        _buildSaveCancelButton = JournalUiElementFactory.CreateTextButton(
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveCancel"),
+            0f,
+            32f,
+            () => JournalSystem.CloseBuildSaveDialog(),
+            0.88f);
+        _buildSaveCancelButton.Left.Set(24f, 0f);
+        _buildSaveCancelButton.Top.Set(-50f, 1f);
+        _buildSaveCancelButton.Width.Set(-18f, 0.5f);
+        _buildSaveCancelButton.SetStyle(JournalUiTheme.GetDefaultTextButtonStyle());
+        _buildSavePanel.Append(_buildSaveCancelButton);
+
+        _buildSaveConfirmButton = JournalUiElementFactory.CreateTextButton(
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveConfirm"),
+            0f,
+            32f,
+            SaveBuildFromDialog,
+            0.88f);
+        _buildSaveConfirmButton.Left.Set(6f, 0.5f);
+        _buildSaveConfirmButton.Top.Set(-50f, 1f);
+        _buildSaveConfirmButton.Width.Set(-30f, 0.5f);
+        _buildSaveConfirmButton.SetStyle(JournalUiTheme.GetOverlayActionButtonStyle());
+        _buildSavePanel.Append(_buildSaveConfirmButton);
+    }
+
     private void InitializeContentTabs()
     {
         _contentTabsPanel = new UIElement();
@@ -1159,6 +1330,12 @@ public sealed class JournalUiState : UIState
         _progressionModeToggleButton.SetText(progressionModeEnabled ? "x" : "✓");
         _progressionModeToggleButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProgressionModeToggleTooltip"));
         _buildBuilderButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildBuilderTab"));
+        _buildSaveButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveButton"));
+        _buildSaveButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveTooltip"));
+        _buildSaveTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveDialogTitle"));
+        _buildSaveNameInput.HintText = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveDialogHint");
+        _buildSaveCancelButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveCancel"));
+        _buildSaveConfirmButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveConfirm"));
         _classButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Class"));
         _overviewTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewTab"));
         _presetsTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsTab"));
@@ -1327,6 +1504,18 @@ public sealed class JournalUiState : UIState
         return new Vector2(
             (Main.screenWidth - width) * 0.5f,
             (Main.screenHeight - height) * 0.5f + topOffset);
+    }
+
+    private void SaveBuildFromDialog()
+    {
+        if (JournalSystem.TrySaveCurrentBuild(_buildSaveNameInput.CurrentString, out var errorMessage))
+        {
+            _buildSaveMessage.SetText(string.Empty);
+            return;
+        }
+
+        _buildSaveMessage.SetText(errorMessage);
+        _buildSaveNameInput.Focused = true;
     }
 
     private static JournalSystem JournalSystem => ModContent.GetInstance<JournalSystem>();
