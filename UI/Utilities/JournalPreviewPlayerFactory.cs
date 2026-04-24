@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using ProgressionJournal.Systems;
 using Terraria;
 using Terraria.ID;
 
@@ -34,6 +35,7 @@ public static class JournalPreviewPlayerFactory
         preview.mount.UpdateFrame(preview, GetMountPreviewState(preview), preview.velocity);
         preview.PlayerFrame();
         ApplyMountBodyPose(preview);
+        ConfigurePreviewDraw(preview);
         return preview;
     }
 
@@ -80,6 +82,7 @@ public static class JournalPreviewPlayerFactory
         }
 
         preview.PlayerFrame();
+        ConfigurePreviewDraw(preview);
         return preview;
     }
 
@@ -141,5 +144,11 @@ public static class JournalPreviewPlayerFactory
         preview.bodyFrame.X = 0;
         preview.bodyFrame.Y = preview.mount.BodyFrame * preview.bodyFrame.Height;
     }
-}
 
+    private static void ConfigurePreviewDraw(Player preview)
+    {
+        var drawPlayer = preview.GetModPlayer<JournalPreviewDrawPlayer>();
+        drawPlayer.ForceFullBright = true;
+        drawPlayer.ShadeOpacity = 0f;
+    }
+}

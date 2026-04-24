@@ -510,7 +510,12 @@ public static class JournalContentBuilder
         previewPanel.BorderColor = Color.Lerp(palette.Border, palette.Accent, 0.42f);
         card.Append(previewPanel);
 
-        var characterPreview = new UICharacter(JournalPreviewPlayerFactory.CreateSavedBuildPreview(build, stageId), false, false, 1.18f);
+        var characterPreview = new JournalSavedBuildCharacterPreview(
+            JournalPreviewPlayerFactory.CreateSavedBuildPreview(build, stageId),
+            () => card.IsMouseHovering,
+            1.18f,
+            1f,
+            0f);
         characterPreview.Width.Set(104f, 0f);
         characterPreview.Height.Set(146f, 0f);
         characterPreview.HAlign = 0.5f;
