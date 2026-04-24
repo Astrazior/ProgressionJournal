@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using ProgressionJournal.Systems;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
@@ -36,7 +37,8 @@ public sealed class JournalUiState : UIState
     private UIText _contentTitle = null!;
     private UIText _contentDescription = null!;
     private JournalIconButton _buildBuilderButton = null!;
-    private JournalTextButton _buildSaveButton = null!;
+    private JournalIconButton _buildBackButton = null!;
+    private JournalIconButton _buildSaveButton = null!;
     private UIElement _stageListContainer = null!;
     private UIElement _classSelectionContainer = null!;
     private UIList _entryList = null!;
@@ -1062,15 +1064,25 @@ public sealed class JournalUiState : UIState
         _buildBuilderButton.Top.Set(8f, 0f);
         _buildBuilderButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildBuilderTab"));
 
-        _buildSaveButton = JournalUiElementFactory.CreateTextButton(
-            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveButton"),
-            196f,
+        _buildBackButton = JournalUiElementFactory.CreateIconButton(
+            BestiaryBackButtonTexturePath,
+            30f,
+            30f,
+            () => JournalSystem.ShowPresetsTab(),
+            0.9f);
+        _buildBackButton.Left.Set(-76f, 1f);
+        _buildBackButton.Top.Set(8f, 0f);
+        _buildBackButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildBackTooltip"));
+
+        Main.instance.LoadItem(ItemID.Book);
+        _buildSaveButton = JournalUiElementFactory.CreateIconButton(
+            TextureAssets.Item[ItemID.Book],
+            30f,
             30f,
             () => JournalSystem.OpenBuildSaveDialog(),
-            0.88f);
-        _buildSaveButton.Left.Set(-242f, 1f);
+            0.9f);
+        _buildSaveButton.Left.Set(-38f, 1f);
         _buildSaveButton.Top.Set(8f, 0f);
-        _buildSaveButton.SetStyle(JournalUiTheme.GetOverlayActionButtonStyle());
         _buildSaveButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveTooltip"));
 
         _contentDescription = new UIText(string.Empty, JournalUiMetrics.ContentDescriptionScale);
@@ -1110,6 +1122,7 @@ public sealed class JournalUiState : UIState
     private void RefreshBuildActionButtons(bool selectingClass, bool showingPresets, bool showingBuildBuilder)
     {
         ToggleContentButton(_buildBuilderButton, !selectingClass && showingPresets && !showingBuildBuilder);
+        ToggleContentButton(_buildBackButton, !selectingClass && showingPresets && showingBuildBuilder);
         ToggleContentButton(_buildSaveButton, !selectingClass && showingPresets && showingBuildBuilder);
     }
 
@@ -1330,7 +1343,7 @@ public sealed class JournalUiState : UIState
         _progressionModeToggleButton.SetText(progressionModeEnabled ? "x" : "✓");
         _progressionModeToggleButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProgressionModeToggleTooltip"));
         _buildBuilderButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildBuilderTab"));
-        _buildSaveButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveButton"));
+        _buildBackButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildBackTooltip"));
         _buildSaveButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveTooltip"));
         _buildSaveTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveDialogTitle"));
         _buildSaveNameInput.HintText = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveDialogHint");
