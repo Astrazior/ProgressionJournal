@@ -93,7 +93,7 @@ public static class JournalContentBuilder
     {
         foreach (var build in builds)
         {
-            entryList.Add(CreateSavedBuildCard(build, stageId, combatClass));
+            entryList.Add(CreateSavedBuildCard(build, stageId, combatClass, entryList));
         }
     }
 
@@ -438,7 +438,8 @@ public static class JournalContentBuilder
     private static UIPanel CreateSavedBuildCard(
         JournalSavedBuild build,
         ProgressionStageId stageId,
-        CombatClass combatClass)
+        CombatClass combatClass,
+        UIElement focusContainer)
     {
         var card = JournalUiElementFactory.CreatePanel();
         card.SetPadding(0f);
@@ -461,7 +462,7 @@ public static class JournalContentBuilder
         AppendSavedBuildActions(card, build);
         top += 34f;
 
-        var previewBottom = AppendSavedBuildCharacterPreview(card, build, stageId, top, palette);
+        var previewBottom = AppendSavedBuildCharacterPreview(card, build, stageId, top, palette, focusContainer);
         var equipmentBottom = AppendSavedBuildEquipmentSummary(card, build, stageId, top);
         var consumablesBottom = AppendSavedBuildConsumablesSummary(card, build, top);
         top = MathF.Max(previewBottom, MathF.Max(equipmentBottom, consumablesBottom));
@@ -506,7 +507,8 @@ public static class JournalContentBuilder
         JournalSavedBuild build,
         ProgressionStageId stageId,
         float top,
-        JournalClassPalette palette)
+        JournalClassPalette palette,
+        UIElement focusContainer)
     {
         var previewPanel = JournalUiElementFactory.CreatePanel();
         previewPanel.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
@@ -519,10 +521,8 @@ public static class JournalContentBuilder
 
         var characterPreview = new JournalSavedBuildCharacterPreview(
             JournalPreviewPlayerFactory.CreateSavedBuildPreview(build, stageId),
-            () => card.IsMouseHovering,
-            1.18f,
-            1f,
-            0f);
+            () => GetSavedBuildShadeOpacity(card, focusContainer),
+            1.18f);
         characterPreview.Width.Set(104f, 0f);
         characterPreview.Height.Set(146f, 0f);
         characterPreview.HAlign = 0.5f;
@@ -531,6 +531,24 @@ public static class JournalContentBuilder
         previewPanel.Append(characterPreview);
 
         return top + SavedBuildPreviewHeight;
+    }
+
+    private static float GetSavedBuildShadeOpacity(UIElement card, UIElement focusContainer)
+    {
+        var cardDimensions = card.GetDimensions();
+        var focusDimensions = focusContainer.GetDimensions();
+        if (cardDimensions.Height <= 0f || focusDimensions.Height <= 0f)
+        {
+            return 1f;
+        }
+
+        var cardCenterY = cardDimensions.Y + cardDimensions.Height * 0.5f;
+        var focusCenterY = focusDimensions.Y + focusDimensions.Height * 0.5f;
+        var centerDistance = MathF.Abs(cardCenterY - focusCenterY);
+        var centerBand = cardDimensions.Height * 0.18f;
+        var fadeDistance = MathF.Max(140f, focusDimensions.Height * 0.38f);
+        var normalizedDistance = MathHelper.Clamp((centerDistance - centerBand) / fadeDistance, 0f, 1f);
+        return MathHelper.SmoothStep(0f, 1f, normalizedDistance);
     }
 
     private static float AppendSavedBuildEquipmentSummary(

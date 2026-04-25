@@ -7,30 +7,17 @@ using Terraria.GameContent.UI.Elements;
 
 namespace ProgressionJournal.UI.Controls;
 
-public sealed class JournalSavedBuildCharacterPreview : UICharacter
+public sealed class JournalSavedBuildCharacterPreview(
+    Player previewPlayer,
+    Func<float> getShadeOpacity,
+    float characterScale)
+    : UICharacter(previewPlayer, false, false, characterScale)
 {
-    private readonly JournalPreviewDrawPlayer _previewDrawPlayer;
-    private readonly Func<bool> _isFocused;
-    private readonly float _idleShadeOpacity;
-    private readonly float _focusedShadeOpacity;
-
-    public JournalSavedBuildCharacterPreview(
-        Player previewPlayer,
-        Func<bool> isFocused,
-        float characterScale,
-        float idleShadeOpacity,
-        float focusedShadeOpacity)
-        : base(previewPlayer, false, false, characterScale)
-    {
-        _previewDrawPlayer = previewPlayer.GetModPlayer<JournalPreviewDrawPlayer>();
-        _isFocused = isFocused;
-        _idleShadeOpacity = MathHelper.Clamp(idleShadeOpacity, 0f, 1f);
-        _focusedShadeOpacity = MathHelper.Clamp(focusedShadeOpacity, 0f, 1f);
-    }
+    private readonly JournalPreviewDrawPlayer _previewDrawPlayer = previewPlayer.GetModPlayer<JournalPreviewDrawPlayer>();
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        _previewDrawPlayer.ShadeOpacity = _isFocused() ? _focusedShadeOpacity : _idleShadeOpacity;
+        _previewDrawPlayer.ShadeOpacity = MathHelper.Clamp(getShadeOpacity(), 0f, 1f);
         base.Draw(spriteBatch);
     }
 }

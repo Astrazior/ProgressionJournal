@@ -1107,10 +1107,8 @@ public sealed class JournalUiState : UIState
 
         var characterPreview = new JournalSavedBuildCharacterPreview(
             JournalPreviewPlayerFactory.CreateSavedBuildPreview(build, build.StageId),
-            static () => false,
-            1.18f,
-            0f,
-            0f);
+            static () => 0f,
+            1.18f);
         characterPreview.Width.Set(118f, 0f);
         characterPreview.Height.Set(152f, 0f);
         characterPreview.HAlign = 0.5f;
@@ -1359,7 +1357,7 @@ public sealed class JournalUiState : UIState
         _classSelectionContainer.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
         _contentPanel.Append(_classSelectionContainer);
 
-        _entryList = [];
+        _entryList = new JournalSmoothScrollList();
         _root.AddDragTarget(_entryList);
         _entryList.Left.Set(JournalUiMetrics.ContentBodyLeft, 0f);
         _entryList.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
@@ -1440,7 +1438,7 @@ public sealed class JournalUiState : UIState
         _sourceItemName.Top.Set(JournalUiMetrics.AcquisitionPanelNameTop, 0f);
         _sourcePanel.Append(_sourceItemName);
 
-        _sourceList = [];
+        _sourceList = new JournalSmoothScrollList();
         _root.AddDragTarget(_sourceList);
         _sourceList.Left.Set(JournalUiMetrics.AcquisitionPanelInset, 0f);
         _sourceList.Top.Set(JournalUiMetrics.AcquisitionPanelContentTop, 0f);
@@ -1485,7 +1483,7 @@ public sealed class JournalUiState : UIState
         _buildPickerCloseButton.Top.Set(8f, 0f);
         _buildPickerPanel.Append(_buildPickerCloseButton);
 
-        _buildPickerList = [];
+        _buildPickerList = new JournalSmoothScrollList();
         _buildPickerList.Left.Set(JournalUiMetrics.BuildPickerInset, 0f);
         _buildPickerList.Top.Set(JournalUiMetrics.BuildPickerListTop, 0f);
         _buildPickerList.Width.Set(-(JournalUiMetrics.BuildPickerInset * 2f + JournalUiMetrics.ScrollbarWidth + 4f), 1f);
@@ -1644,7 +1642,7 @@ public sealed class JournalUiState : UIState
         _sharedBuildCloseIconButton.Top.Set(8f, 0f);
         _sharedBuildPanel.Append(_sharedBuildCloseIconButton);
 
-        _sharedBuildList = [];
+        _sharedBuildList = new JournalSmoothScrollList();
         _sharedBuildList.Left.Set(18f, 0f);
         _sharedBuildList.Top.Set(78f, 0f);
         _sharedBuildList.Width.Set(-(18f * 2f + JournalUiMetrics.ScrollbarWidth + 4f), 1f);
