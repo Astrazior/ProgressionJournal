@@ -191,7 +191,7 @@ public static class JournalItemSourceResolver
         Item? exactMatch = null;
         Item? fallbackMatch = null;
 
-        // ReSharper disable once LoopCanBeConvertedToQuery
+        // LoopCanBeConvertedToQuery
         foreach (var sample in ContentSamples.ItemsByType.Values)
         {
             if (sample is null || sample.IsAir || sample.createTile != tileId)

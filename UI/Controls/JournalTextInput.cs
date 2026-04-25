@@ -40,14 +40,10 @@ public sealed class JournalTextInput : UIElement
             if (_focused)
             {
                 Main.clrInput();
-                _textBlinkerCount = 0;
-                _textBlinkerState = 0;
             }
-            else
-            {
-                _textBlinkerCount = 0;
-                _textBlinkerState = 0;
-            }
+
+            _textBlinkerCount = 0;
+            _textBlinkerState = 0;
         }
     }
 

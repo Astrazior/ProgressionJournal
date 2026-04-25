@@ -14,7 +14,6 @@ public sealed class JournalBuildActionButton : JournalHoverPanel
     private const string ExportIconTexturePath = "Images/UI/IconQuickload";
     private const float Padding = 2f;
 
-    private readonly Action _onClick;
     private readonly ButtonKind _kind;
     private readonly Asset<Texture2D>? _iconTexture;
     private readonly Color _iconColor;
@@ -28,7 +27,7 @@ public sealed class JournalBuildActionButton : JournalHoverPanel
         Color hoverIconColor)
     {
         _kind = kind;
-        _onClick = onClick;
+        var onClick1 = onClick;
         _iconColor = iconColor;
         _hoverIconColor = hoverIconColor;
 
@@ -37,7 +36,7 @@ public sealed class JournalBuildActionButton : JournalHoverPanel
         Height.Set(30f, 0f);
         BackgroundColor = Color.Transparent;
         BorderColor = Color.Transparent;
-        OnLeftClick += (_, _) => _onClick();
+        OnLeftClick += (_, _) => onClick1();
 
         if (kind == ButtonKind.Favorite)
         {

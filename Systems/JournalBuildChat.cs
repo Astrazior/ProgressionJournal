@@ -15,7 +15,7 @@ namespace ProgressionJournal.Systems;
 
 public static class JournalBuildChat
 {
-    public const byte ShareBuildPacket = 1;
+    private const byte ShareBuildPacket = 1;
 
     private const string BuildTagName = "pjb";
     private const string JournalIconTexturePath = "ProgressionJournal/Assets/UI/JournalButtonIcon";
@@ -62,7 +62,7 @@ public static class JournalBuildChat
             return;
         }
 
-        var playerName = whoAmI >= 0 && whoAmI < Main.maxPlayers
+        var playerName = whoAmI is >= 0 and < Main.maxPlayers
             ? Main.player[whoAmI].name
             : string.Empty;
         var message = CreateChatMessage(playerName, buildName, payload);
@@ -114,7 +114,7 @@ public static class JournalBuildChat
         private readonly string _payload;
 
         public BuildSnippet(string text, string payload)
-            : base(text, new Color(255, 231, 132), 1f)
+            : base(text, new Color(255, 231, 132))
         {
             _label = text;
             _payload = payload;

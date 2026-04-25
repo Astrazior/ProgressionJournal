@@ -281,13 +281,11 @@ public static class JournalAcquisitionVisuals
 
     private static void AddCombinedBiomeTokens(string normalized, string condition, ICollection<JournalSourceTokenData> tokens)
     {
-        if (normalized.Contains("crimson") && normalized.Contains("corruption"))
-        {
-            var crimsonFrame = normalized.Contains("underground") ? 13 : 12;
-            var corruptionFrame = normalized.Contains("underground") ? 8 : 7;
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, crimsonFrame, condition));
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, corruptionFrame, condition));
-        }
+        if (!normalized.Contains("crimson") || !normalized.Contains("corruption")) return;
+        var crimsonFrame = normalized.Contains("underground") ? 13 : 12;
+        var corruptionFrame = normalized.Contains("underground") ? 8 : 7;
+        tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, crimsonFrame, condition));
+        tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, corruptionFrame, condition));
     }
 
     private static void AddBiomeToken(ICollection<JournalSourceTokenData> tokens, string normalized, string condition)

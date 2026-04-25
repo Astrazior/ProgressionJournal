@@ -9,7 +9,7 @@ internal static class ProgressionJournalApi
 {
     public const int Version = 1;
 
-    public static object? HandleCall(object[] args)
+    public static object HandleCall(object[] args)
     {
         if (args.Length == 0 || args[0] is not string command || string.IsNullOrWhiteSpace(command))
         {
@@ -31,13 +31,13 @@ internal static class ProgressionJournalApi
             throw new ArgumentException("RegisterEntry expects 5 to 7 arguments after the command: key, category, classes, itemGroups, evaluations, [eventCategory], [isSupportWeapon].", nameof(args));
         }
 
-        string key = RequireString(args[1], "key");
-        JournalItemCategory category = ParseEnum<JournalItemCategory>(args[2], "category");
-        CombatClass classes = ParseFlagsEnum<CombatClass>(args[3], "classes");
-        IReadOnlyList<JournalItemGroup> itemGroups = ParseItemGroups(args[4], "itemGroups");
-        IReadOnlyList<StageEvaluation> evaluations = ParseEvaluations(args[5], "evaluations");
-        JournalEventCategory? eventCategory = args.Length >= 7 ? ParseNullableEnum<JournalEventCategory>(args[6], "eventCategory") : null;
-        bool isSupportWeapon = args.Length >= 8 && ParseBool(args[7], "isSupportWeapon");
+        var key = RequireString(args[1], "key");
+        var category = ParseEnum<JournalItemCategory>(args[2], "category");
+        var classes = ParseFlagsEnum<CombatClass>(args[3], "classes");
+        var itemGroups = ParseItemGroups(args[4], "itemGroups");
+        var evaluations = ParseEvaluations(args[5], "evaluations");
+        var eventCategory = args.Length >= 7 ? ParseNullableEnum<JournalEventCategory>(args[6], "eventCategory") : null;
+        var isSupportWeapon = args.Length >= 8 && ParseBool(args[7], "isSupportWeapon");
 
         JournalRepository.RegisterExternalEntry(
             new JournalEntry(key, category, classes, itemGroups, evaluations, eventCategory, isSupportWeapon));
@@ -60,24 +60,22 @@ internal static class ProgressionJournalApi
         return value switch
         {
             bool result => result,
-            string text when bool.TryParse(text, out bool result) => result,
+            string text when bool.TryParse(text, out var result) => result,
             _ => throw new ArgumentException($"Argument '{argumentName}' must be a boolean.")
         };
     }
 
     private static TEnum ParseEnum<TEnum>(object value, string argumentName) where TEnum : struct, Enum
     {
-        if (value is TEnum typed)
+        switch (value)
         {
-            return typed;
+            case TEnum typed:
+                return typed;
+            case string text when Enum.TryParse(text, true, out TEnum parsedFromString):
+                return parsedFromString;
         }
 
-        if (value is string text && Enum.TryParse(text, true, out TEnum parsedFromString))
-        {
-            return parsedFromString;
-        }
-
-        if (TryConvertToInt32(value, out int numericValue))
+        if (TryConvertToInt32(value, out var numericValue))
         {
             return (TEnum)Enum.ToObject(typeof(TEnum), numericValue);
         }
@@ -87,21 +85,23 @@ internal static class ProgressionJournalApi
 
     private static TEnum ParseFlagsEnum<TEnum>(object value, string argumentName) where TEnum : struct, Enum
     {
-        if (value is TEnum typed)
+        switch (value)
         {
-            return typed;
-        }
-
-        if (value is string text)
-        {
-            string normalized = text.Replace("|", ",", StringComparison.Ordinal);
-            if (Enum.TryParse(normalized, true, out TEnum parsedFromString))
+            case TEnum typed:
+                return typed;
+            case string text:
             {
-                return parsedFromString;
+                var normalized = text.Replace("|", ",", StringComparison.Ordinal);
+                if (Enum.TryParse(normalized, true, out TEnum parsedFromString))
+                {
+                    return parsedFromString;
+                }
+
+                break;
             }
         }
 
-        if (TryConvertToInt32(value, out int numericValue))
+        if (TryConvertToInt32(value, out var numericValue))
         {
             return (TEnum)Enum.ToObject(typeof(TEnum), numericValue);
         }
@@ -111,17 +111,14 @@ internal static class ProgressionJournalApi
 
     private static TEnum? ParseNullableEnum<TEnum>(object? value, string argumentName) where TEnum : struct, Enum
     {
-        if (value is null)
+        switch (value)
         {
-            return null;
+            case null:
+            case string text when string.IsNullOrWhiteSpace(text):
+                return null;
         }
 
-        if (value is string text && string.IsNullOrWhiteSpace(text))
-        {
-            return null;
-        }
-
-        if (TryConvertToInt32(value, out int numericValue) && numericValue < 0)
+        if (TryConvertToInt32(value, out var numericValue) && numericValue < 0)
         {
             return null;
         }
@@ -129,17 +126,17 @@ internal static class ProgressionJournalApi
         return ParseEnum<TEnum>(value, argumentName);
     }
 
-    private static IReadOnlyList<JournalItemGroup> ParseItemGroups(object value, string argumentName)
+    private static List<JournalItemGroup> ParseItemGroups(object value, string argumentName)
     {
-        if (TryParseIntSequence(value, out int[] singleGroup))
+        if (TryParseIntSequence(value, out var singleGroup))
         {
             return [new JournalItemGroup(singleGroup)];
         }
 
         List<JournalItemGroup> groups = [];
-        foreach (object element in EnumerateObjects(value, argumentName))
+        foreach (var element in EnumerateObjects(value, argumentName))
         {
-            if (!TryParseIntSequence(element, out int[] itemIds))
+            if (!TryParseIntSequence(element, out var itemIds))
             {
                 throw new ArgumentException($"Argument '{argumentName}' must be an int[] or int[][].");
             }
@@ -147,37 +144,31 @@ internal static class ProgressionJournalApi
             groups.Add(new JournalItemGroup(itemIds));
         }
 
-        if (groups.Count == 0)
-        {
-            throw new ArgumentException($"Argument '{argumentName}' must contain at least one item group.");
-        }
-
-        return groups;
+        return groups.Count == 0
+            ? throw new ArgumentException($"Argument '{argumentName}' must contain at least one item group.")
+            : groups;
     }
 
-    private static IReadOnlyList<StageEvaluation> ParseEvaluations(object value, string argumentName)
+    private static List<StageEvaluation> ParseEvaluations(object value, string argumentName)
     {
         List<StageEvaluation> evaluations = [];
 
-        foreach (object pairValue in EnumerateObjects(value, argumentName))
+        foreach (var pairValue in EnumerateObjects(value, argumentName))
         {
-            object[] pair = EnumerateObjects(pairValue, argumentName).ToArray();
+            var pair = EnumerateObjects(pairValue, argumentName).ToArray();
             if (pair.Length != 2)
             {
                 throw new ArgumentException($"Each evaluation in '{argumentName}' must contain exactly two values: stageId and tier.");
             }
 
-            ProgressionStageId stageId = ParseEnum<ProgressionStageId>(pair[0], "stageId");
-            RecommendationTier tier = ParseEnum<RecommendationTier>(pair[1], "tier");
+            var stageId = ParseEnum<ProgressionStageId>(pair[0], "stageId");
+            var tier = ParseEnum<RecommendationTier>(pair[1], "tier");
             evaluations.Add(new StageEvaluation(stageId, tier));
         }
 
-        if (evaluations.Count == 0)
-        {
-            throw new ArgumentException($"Argument '{argumentName}' must contain at least one evaluation.");
-        }
-
-        return evaluations;
+        return evaluations.Count == 0
+            ? throw new ArgumentException($"Argument '{argumentName}' must contain at least one evaluation.")
+            : evaluations;
     }
 
     private static IEnumerable<object> EnumerateObjects(object value, string argumentName)
@@ -187,7 +178,7 @@ internal static class ProgressionJournalApi
             throw new ArgumentException($"Argument '{argumentName}' must be an enumerable value.");
         }
 
-        foreach (object? element in enumerable)
+        foreach (var element in enumerable)
         {
             if (element is null)
             {
@@ -208,9 +199,9 @@ internal static class ProgressionJournalApi
         }
 
         List<int> items = [];
-        foreach (object? element in enumerable)
+        foreach (var element in enumerable)
         {
-            if (element is null || !TryConvertToInt32(element, out int parsed))
+            if (element is null || !TryConvertToInt32(element, out var parsed))
             {
                 values = [];
                 return false;
@@ -236,12 +227,12 @@ internal static class ProgressionJournalApi
             switch (value)
             {
                 case null:
-                    result = default;
+                    result = 0;
                     return false;
                 case int intValue:
                     result = intValue;
                     return true;
-                case long longValue when longValue is >= int.MinValue and <= int.MaxValue:
+                case long longValue and >= int.MinValue and <= int.MaxValue:
                     result = (int)longValue;
                     return true;
                 case short shortValue:
@@ -253,13 +244,13 @@ internal static class ProgressionJournalApi
                 case sbyte sbyteValue:
                     result = sbyteValue;
                     return true;
-                case uint uintValue when uintValue <= int.MaxValue:
+                case uint uintValue and <= int.MaxValue:
                     result = (int)uintValue;
                     return true;
                 case ushort ushortValue:
                     result = ushortValue;
                     return true;
-                case string text when int.TryParse(text, out int parsedText):
+                case string text when int.TryParse(text, out var parsedText):
                     result = parsedText;
                     return true;
                 default:
@@ -269,7 +260,7 @@ internal static class ProgressionJournalApi
         }
         catch
         {
-            result = default;
+            result = 0;
             return false;
         }
     }

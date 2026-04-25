@@ -35,7 +35,13 @@ public static class JournalBuildStorage
     {
         EnsureLoaded();
 
-        return _cachedBuilds!
+        var builds = _cachedBuilds;
+        if (builds is null)
+        {
+            return [];
+        }
+
+        return builds
             .Where(build => build.StageId == stageId && build.CombatClass == combatClass)
             .OrderByDescending(build => build.IsFavorite)
             .ThenByDescending(build => build.FavoriteSortKey)
@@ -59,31 +65,18 @@ public static class JournalBuildStorage
         {
             Directory.CreateDirectory(GetBuildDirectoryPath());
 
-            var itemReferences = CreateItemReferences(selectedItems);
-            var normalizedSelections = GetLoadedSelectedItems(itemReferences);
+            var document = CreateDocument(name, combatClass, stageId, selectedItems);
 
-            if (normalizedSelections.Count == 0)
+            if (document.SelectedItems.Count == 0)
             {
                 errorMessage = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveNoItems");
                 return false;
             }
 
-            var document = new JournalBuildDocument
-            {
-                Format = BuildFormat,
-                Version = 2,
-                Name = name.Trim(),
-                CombatClass = combatClass.ToString(),
-                StageId = stageId.ToString(),
-                IsFavorite = false,
-                FavoriteSortKey = 0L,
-                SelectedItems = normalizedSelections,
-                SelectedItemRefs = CreateItemReferenceDocuments(itemReferences)
-            };
-
             var filePath = GetUniqueBuildFilePath(document.Name);
             File.WriteAllText(filePath, JsonSerializer.Serialize(document, SerializerOptions), Encoding.UTF8);
             Reload();
+
             errorMessage = string.Empty;
             return true;
         }
@@ -122,6 +115,7 @@ public static class JournalBuildStorage
 
             var document = JsonSerializer.Deserialize<JournalBuildDocument>(File.ReadAllText(filePath), SerializerOptions)
                 ?? new JournalBuildDocument();
+
             document.Version = 2;
             document.Format = BuildFormat;
             document.Name = name.Trim();
@@ -132,6 +126,7 @@ public static class JournalBuildStorage
 
             File.WriteAllText(filePath, JsonSerializer.Serialize(document, SerializerOptions), Encoding.UTF8);
             Reload();
+
             errorMessage = string.Empty;
             return true;
         }
@@ -182,12 +177,12 @@ public static class JournalBuildStorage
             {
                 return false;
             }
-            NormalizeDocumentCollections(document);
 
             document.Format = BuildFormat;
             document.Version = 2;
             document.IsFavorite = false;
             document.FavoriteSortKey = 0L;
+
             var itemReferences = ReadItemReferences(document);
             document.SelectedItems = GetLoadedSelectedItems(itemReferences);
             document.SelectedItemRefs = CreateItemReferenceDocuments(itemReferences);
@@ -251,6 +246,7 @@ public static class JournalBuildStorage
                 isFavorite: false,
                 favoriteSortKey: 0L,
                 sourcePath: string.Empty);
+
             return true;
         }
         catch (Exception exception)
@@ -268,7 +264,7 @@ public static class JournalBuildStorage
         {
             Directory.CreateDirectory(GetBuildDirectoryPath());
 
-            if (!TryReadBuildDocument(filePath, out var document, out _, out _, out var itemReferences))
+            if (!TryReadBuildDocument(filePath, out var document, out var itemReferences))
             {
                 return false;
             }
@@ -283,6 +279,7 @@ public static class JournalBuildStorage
 
             var destinationPath = GetUniqueBuildFilePath(document.Name);
             File.WriteAllText(destinationPath, JsonSerializer.Serialize(document, SerializerOptions), Encoding.UTF8);
+
             importedName = document.Name;
             Reload();
             return true;
@@ -305,6 +302,7 @@ public static class JournalBuildStorage
             var document = CreateDocument(build.Name, build.CombatClass, build.StageId, build.ItemReferences);
             var destinationPath = GetUniqueBuildFilePath(document.Name);
             File.WriteAllText(destinationPath, JsonSerializer.Serialize(document, SerializerOptions), Encoding.UTF8);
+
             importedName = document.Name;
             Reload();
             return true;
@@ -330,10 +328,10 @@ public static class JournalBuildStorage
             {
                 return false;
             }
-            NormalizeDocumentCollections(document);
 
             document.IsFavorite = isFavorite;
             document.FavoriteSortKey = isFavorite ? DateTime.UtcNow.Ticks : 0L;
+
             File.WriteAllText(filePath, JsonSerializer.Serialize(document, SerializerOptions), Encoding.UTF8);
             Reload();
             return true;
@@ -377,10 +375,6 @@ public static class JournalBuildStorage
         try
         {
             var document = JsonSerializer.Deserialize<JournalBuildDocument>(File.ReadAllText(filePath), SerializerOptions);
-            if (document is not null)
-            {
-                NormalizeDocumentCollections(document);
-            }
             if (document is null
                 || string.IsNullOrWhiteSpace(document.Name)
                 || string.IsNullOrWhiteSpace(document.CombatClass)
@@ -393,7 +387,6 @@ public static class JournalBuildStorage
             }
 
             var selectedItems = ReadItemReferences(document);
-
             if (selectedItems.Count == 0)
             {
                 return false;
@@ -407,6 +400,7 @@ public static class JournalBuildStorage
                 document.IsFavorite,
                 document.FavoriteSortKey,
                 filePath);
+
             return true;
         }
         catch (Exception exception)
@@ -421,7 +415,10 @@ public static class JournalBuildStorage
         return Path.Combine(GetRootDirectoryPath(), BuildDirectoryName);
     }
 
-    private static string GetRootDirectoryPath() => Path.Combine(Main.SavePath, "Mods", nameof(ProgressionJournal));
+    private static string GetRootDirectoryPath()
+    {
+        return Path.Combine(Main.SavePath, "Mods", nameof(ProgressionJournal));
+    }
 
     private static bool TryGetSafeBuildPath(string sourcePath, out string filePath)
     {
@@ -434,6 +431,7 @@ public static class JournalBuildStorage
 
         var directoryPath = Path.GetFullPath(GetBuildDirectoryPath());
         var candidatePath = Path.GetFullPath(sourcePath);
+
         if (!candidatePath.StartsWith(directoryPath + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase)
             || !string.Equals(Path.GetExtension(candidatePath), FileExtension, StringComparison.OrdinalIgnoreCase))
         {
@@ -465,6 +463,7 @@ public static class JournalBuildStorage
     private static string SlugifyFileName(string buildName)
     {
         var builder = new StringBuilder(buildName.Length);
+
         foreach (var character in buildName.Trim())
         {
             if (char.IsLetterOrDigit(character))
@@ -525,18 +524,19 @@ public static class JournalBuildStorage
     private static bool TryReadBuildDocument(
         string filePath,
         out JournalBuildDocument document,
-        out CombatClass combatClass,
-        out ProgressionStageId stageId,
         out Dictionary<string, JournalSavedBuildItemReference> selectedItems)
     {
         document = null!;
-        combatClass = default;
-        stageId = default;
         selectedItems = [];
 
         try
         {
-            return TryReadBuildDocumentFromJson(File.ReadAllText(filePath), out document, out combatClass, out stageId, out selectedItems);
+            return TryReadBuildDocumentFromJson(
+                File.ReadAllText(filePath),
+                out document,
+                out _,
+                out _,
+                out selectedItems);
         }
         catch (Exception exception)
         {
@@ -554,7 +554,7 @@ public static class JournalBuildStorage
     {
         document = JsonSerializer.Deserialize<JournalBuildDocument>(json, SerializerOptions)
             ?? new JournalBuildDocument();
-        NormalizeDocumentCollections(document);
+
         combatClass = default;
         stageId = default;
         selectedItems = [];
@@ -572,11 +572,11 @@ public static class JournalBuildStorage
         }
 
         selectedItems = ReadItemReferences(document);
-
         return selectedItems.Count > 0;
     }
 
-    private static Dictionary<string, JournalSavedBuildItemReference> CreateItemReferences(IReadOnlyDictionary<string, int> selectedItems)
+    private static Dictionary<string, JournalSavedBuildItemReference> CreateItemReferences(
+        IReadOnlyDictionary<string, int> selectedItems)
     {
         return selectedItems
             .Where(static pair => pair.Value > ItemID.None
@@ -593,12 +593,6 @@ public static class JournalBuildStorage
                 StringComparer.OrdinalIgnoreCase);
     }
 
-    private static void NormalizeDocumentCollections(JournalBuildDocument document)
-    {
-        document.SelectedItems ??= [];
-        document.SelectedItemRefs ??= [];
-    }
-
     private static JournalSavedBuildItemReference? CreateItemReference(int itemId)
     {
         if (!JournalItemUtilities.TryCreateItem(itemId, out var item))
@@ -610,10 +604,12 @@ public static class JournalBuildStorage
         var modName = modItem?.Mod.Name ?? string.Empty;
         var itemName = modItem?.Name ?? string.Empty;
         var displayName = item.HoverName;
+
         return new JournalSavedBuildItemReference(item.type, modName, itemName, displayName);
     }
 
-    private static Dictionary<string, int> GetLoadedSelectedItems(IReadOnlyDictionary<string, JournalSavedBuildItemReference> itemReferences)
+    private static Dictionary<string, int> GetLoadedSelectedItems(
+        IReadOnlyDictionary<string, JournalSavedBuildItemReference> itemReferences)
     {
         return itemReferences
             .Where(static pair => pair.Value.IsLoaded
@@ -680,12 +676,15 @@ public static class JournalBuildStorage
 
     private static JournalSavedBuildItemReference? ResolveItemReference(JournalBuildItemDocument document)
     {
-        var modName = document.Mod?.Trim() ?? string.Empty;
-        var itemName = document.Name?.Trim() ?? string.Empty;
-        var displayName = document.DisplayName?.Trim() ?? string.Empty;
+        var modName = document.Mod.Trim();
+        var itemName = document.Name.Trim();
+        var displayName = document.DisplayName.Trim();
 
         if (string.IsNullOrWhiteSpace(modName) || string.IsNullOrWhiteSpace(itemName))
+        {
             return CreateItemReference(document.Type);
+        }
+
         if (ModContent.TryFind<ModItem>(modName, itemName, out var modItem)
             && CreateItemReference(modItem.Type) is { } resolved)
         {
@@ -699,7 +698,6 @@ public static class JournalBuildStorage
             string.IsNullOrWhiteSpace(displayName)
                 ? Language.GetTextValue("Mods.ProgressionJournal.UI.BuildUnloadedItem")
                 : displayName);
-
     }
 
     private static string ToBase64Url(byte[] bytes)
@@ -715,39 +713,87 @@ public static class JournalBuildStorage
         var base64 = payload
             .Replace('-', '+')
             .Replace('_', '/');
+
         var padding = (4 - base64.Length % 4) % 4;
         return Convert.FromBase64String(base64.PadRight(base64.Length + padding, '='));
     }
 
     private sealed class JournalBuildDocument
     {
-        public string Format { get; set; } = BuildFormat;
+        private string? _format = BuildFormat;
+        private string? _name = string.Empty;
+        private string? _combatClass = string.Empty;
+        private string? _stageId = string.Empty;
+        private Dictionary<string, int>? _selectedItems = [];
+        private Dictionary<string, JournalBuildItemDocument>? _selectedItemRefs = [];
+
+        public string Format
+        {
+            get => _format ?? string.Empty;
+            set => _format = value;
+        }
 
         public int Version { get; set; }
 
-        public string Name { get; set; } = string.Empty;
+        public string Name
+        {
+            get => _name ?? string.Empty;
+            set => _name = value;
+        }
 
-        public string CombatClass { get; set; } = string.Empty;
+        public string CombatClass
+        {
+            get => _combatClass ?? string.Empty;
+            set => _combatClass = value;
+        }
 
-        public string StageId { get; set; } = string.Empty;
+        public string StageId
+        {
+            get => _stageId ?? string.Empty;
+            set => _stageId = value;
+        }
 
         public bool IsFavorite { get; set; }
 
         public long FavoriteSortKey { get; set; }
 
-        public Dictionary<string, int> SelectedItems { get; set; } = [];
+        public Dictionary<string, int> SelectedItems
+        {
+            get => _selectedItems ?? [];
+            set => _selectedItems = value;
+        }
 
-        public Dictionary<string, JournalBuildItemDocument> SelectedItemRefs { get; set; } = [];
+        public Dictionary<string, JournalBuildItemDocument> SelectedItemRefs
+        {
+            get => _selectedItemRefs ?? [];
+            set => _selectedItemRefs = value;
+        }
     }
 
     private sealed class JournalBuildItemDocument
     {
-        public int Type { get; set; }
+        private readonly string? _mod = string.Empty;
+        private readonly string? _name = string.Empty;
+        private readonly string? _displayName = string.Empty;
 
-        public string Mod { get; set; } = string.Empty;
+        public int Type { get; init; }
 
-        public string Name { get; set; } = string.Empty;
+        public string Mod
+        {
+            get => _mod ?? string.Empty;
+            init => _mod = value;
+        }
 
-        public string DisplayName { get; set; } = string.Empty;
+        public string Name
+        {
+            get => _name ?? string.Empty;
+            init => _name = value;
+        }
+
+        public string DisplayName
+        {
+            get => _displayName ?? string.Empty;
+            init => _displayName = value;
+        }
     }
 }

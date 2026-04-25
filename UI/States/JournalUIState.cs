@@ -29,7 +29,7 @@ public sealed class JournalUiState : UIState
     private const string BuildPickerMagicIconTexturePath = "Images/Mana";
     private const int BuildPickerVanillaIconItemId = ItemID.Book;
     private const int BuildPickerModsIconItemId = ItemID.Wrench;
-    private const int BuildPickerMeleeIconItemId = ItemID.TerraBlade;
+    private const int BuildPickerMeleeIconItemId = ItemID.WoodenSword;
     private const int BuildPickerMenuMaxColumns = 6;
     private const float BuildPickerMenuPadding = 5f;
     private const float BuildPickerMenuButtonSize = 40f;
@@ -1562,12 +1562,7 @@ public sealed class JournalUiState : UIState
             return BuildPickerDamageFilter.Magic;
         }
 
-        if (item.CountsAsClass(DamageClass.Summon))
-        {
-            return BuildPickerDamageFilter.Summon;
-        }
-
-        return BuildPickerDamageFilter.Other;
+        return item.CountsAsClass(DamageClass.Summon) ? BuildPickerDamageFilter.Summon : BuildPickerDamageFilter.Other;
     }
 
     private JournalBuildCandidateGroup? GetSelectedBuildPickerModGroup(CombatClass combatClass, string slotKey)

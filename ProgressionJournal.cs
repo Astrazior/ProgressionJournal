@@ -18,10 +18,9 @@ public sealed class ProgressionJournal : Mod
 	{
 		Instance = this;
 
-		if (!Main.dedServ) {
-			ToggleJournalKeybind = KeybindLoader.RegisterKeybind(this, ToggleJournalKeybindName, "P");
-			JournalBuildChat.RegisterTags();
-		}
+		if (Main.dedServ) return;
+		ToggleJournalKeybind = KeybindLoader.RegisterKeybind(this, ToggleJournalKeybindName, "P");
+		JournalBuildChat.RegisterTags();
 	}
 
 	public override void Unload()
@@ -31,7 +30,7 @@ public sealed class ProgressionJournal : Mod
 		Instance = null;
 	}
 
-	public override object? Call(params object[] args)
+	public override object Call(params object[] args)
 	{
 		return ProgressionJournalApi.HandleCall(args);
 	}
