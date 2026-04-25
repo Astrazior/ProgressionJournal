@@ -88,7 +88,9 @@ public sealed class JournalBuildCandidateSlot : UIElement
             hoverItem.SetNameOverride($"{hoverItem.HoverName} ({Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerAlreadySelected")})");
         }
 
-        ItemSlot.OverrideHover(ref hoverItem, ItemSlot.Context.InventoryItem);
+        Main.HoverItem = hoverItem;
+        Main.hoverItemName = hoverItem.HoverName;
+        Main.mouseText = true;
     }
 
     private static Item[] CreateDisplayItems()
