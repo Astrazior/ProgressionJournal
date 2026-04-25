@@ -55,6 +55,11 @@ public sealed class JournalBuildCandidateSlot : UIElement
 
         try
         {
+            if (!JournalItemUtilities.IsValidItemId(displayItem.type))
+            {
+                return;
+            }
+
             Main.instance.LoadItem(displayItem.type);
             Main.inventoryScale = _visualScale;
             if (_selected)

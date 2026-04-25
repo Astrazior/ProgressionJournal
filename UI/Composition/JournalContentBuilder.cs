@@ -349,17 +349,15 @@ public static class JournalContentBuilder
                 top);
         }
 
-        if (visibleSlotCount < maxSlotCount)
-        {
-            var addSlotKey = getSlotKey(visibleSlotCount + 1);
-            AppendGridElement(
-                panel,
-                CreateBuildAddSlot(addSlotHoverText, () => onSlotClick(addSlotKey)),
-                visibleSlotCount,
-                columns,
-                left,
-                top);
-        }
+        if (visibleSlotCount >= maxSlotCount) return GetGridHeight(visualSlotCount, columns);
+        var addSlotKey = getSlotKey(visibleSlotCount + 1);
+        AppendGridElement(
+            panel,
+            CreateBuildAddSlot(addSlotHoverText, () => onSlotClick(addSlotKey)),
+            visibleSlotCount,
+            columns,
+            left,
+            top);
 
         return GetGridHeight(visualSlotCount, columns);
     }
@@ -585,8 +583,9 @@ public static class JournalContentBuilder
             maxSlotsPerRow);
 
         var accessoryItems = Enumerable.Range(1, JournalBuildPlannerCatalog.GetAccessorySlotCount(stageId))
-            .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetAccessorySlotKey(slotIndex)))
-            .Where(static itemId => itemId > ItemID.None)
+            .Select(slotIndex => build.GetSelectedItemReference(JournalBuildPlannerCatalog.GetAccessorySlotKey(slotIndex)))
+            .Where(static itemReference => itemReference is not null)
+            .Select(static itemReference => itemReference!)
             .ToArray();
 
         return AppendSavedBuildSection(
@@ -604,13 +603,15 @@ public static class JournalContentBuilder
         const int maxSlotsPerRow = 4;
 
         var potionItems = Enumerable.Range(1, JournalBuildPlannerCatalog.PotionSlotCount)
-            .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetPotionSlotKey(slotIndex)))
-            .Where(static itemId => itemId > ItemID.None)
+            .Select(slotIndex => build.GetSelectedItemReference(JournalBuildPlannerCatalog.GetPotionSlotKey(slotIndex)))
+            .Where(static itemReference => itemReference is not null)
+            .Select(static itemReference => itemReference!)
             .ToArray();
 
         var foodItems = Enumerable.Range(1, JournalBuildPlannerCatalog.FoodSlotCount)
-            .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetFoodSlotKey(slotIndex)))
-            .Where(static itemId => itemId > ItemID.None)
+            .Select(slotIndex => build.GetSelectedItemReference(JournalBuildPlannerCatalog.GetFoodSlotKey(slotIndex)))
+            .Where(static itemReference => itemReference is not null)
+            .Select(static itemReference => itemReference!)
             .ToArray();
 
         top = AppendSavedBuildSection(
@@ -633,12 +634,12 @@ public static class JournalContentBuilder
     private static float AppendSavedBuildSection(
         UIElement card,
         string title,
-        IReadOnlyList<int> itemIds,
+        IReadOnlyList<JournalSavedBuildItemReference> itemReferences,
         float left,
         float top,
         int maxSlotsPerRow)
     {
-        if (itemIds.Count == 0)
+        if (itemReferences.Count == 0)
         {
             return top;
         }
@@ -652,12 +653,11 @@ public static class JournalContentBuilder
         card.Append(titleElement);
         top += 22f;
 
-        for (var index = 0; index < itemIds.Count; index += maxSlotsPerRow)
+        for (var index = 0; index < itemReferences.Count; index += maxSlotsPerRow)
         {
-            var rowItems = itemIds
+            var rowItems = itemReferences
                 .Skip(index)
                 .Take(maxSlotsPerRow)
-                .Select(JournalItemUtilities.CreateItem)
                 .ToArray();
 
             var strip = new JournalItemStrip(rowItems);
@@ -670,11 +670,12 @@ public static class JournalContentBuilder
         return top + 5f;
     }
 
-    private static int[] GetSelectedItems(JournalSavedBuild build, params string[] slotKeys)
+    private static JournalSavedBuildItemReference[] GetSelectedItems(JournalSavedBuild build, params string[] slotKeys)
     {
         return slotKeys
-            .Select(build.GetSelectedItemId)
-            .Where(static itemId => itemId > ItemID.None)
+            .Select(build.GetSelectedItemReference)
+            .Where(static itemReference => itemReference is not null)
+            .Select(static itemReference => itemReference!)
             .ToArray();
     }
 

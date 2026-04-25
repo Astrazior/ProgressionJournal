@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.Localization;
 using Terraria.UI;
 
 namespace ProgressionJournal.UI.Controls;
@@ -12,11 +14,20 @@ public sealed class JournalItemStrip : UIElement
 {
     private const float SlotSpacing = 4f;
 
-    private readonly Item[] _items;
+    private readonly JournalSavedBuildItemReference[] _items;
 
     public JournalItemStrip(IEnumerable<Item> items)
+        : this(items.Select(static item => new JournalSavedBuildItemReference(
+            item.type,
+            item.ModItem?.Mod.Name ?? string.Empty,
+            item.ModItem?.Name ?? string.Empty,
+            item.HoverName)))
     {
-        _items = items.Select(static item => item.Clone()).ToArray();
+    }
+
+    public JournalItemStrip(IEnumerable<JournalSavedBuildItemReference> items)
+    {
+        _items = items.ToArray();
         Width.Set(GetVisualWidth(_items.Length), 0f);
         Height.Set(TextureAssets.InventoryBack9.Height(), 0f);
     }
@@ -51,11 +62,15 @@ public sealed class JournalItemStrip : UIElement
 
             for (var index = 0; index < _items.Length; index++)
             {
-                var item = _items[index].Clone();
-                Main.instance.LoadItem(item.type);
-
                 var position = GetInnerDimensions().ToRectangle().TopLeft() + new Vector2(index * (SlotWidth + SlotSpacing), 0f);
-                ItemSlot.Draw(spriteBatch, ref item, ItemSlot.Context.TrashItem, position);
+                if (_items[index].IsLoaded && JournalItemUtilities.TryCreateItem(_items[index].Type, out var item))
+                {
+                    Main.instance.LoadItem(item.type);
+                    ItemSlot.Draw(spriteBatch, ref item, ItemSlot.Context.TrashItem, position);
+                    continue;
+                }
+
+                DrawUnloadedSlot(spriteBatch, position);
             }
         }
         finally
@@ -68,9 +83,16 @@ public sealed class JournalItemStrip : UIElement
             return;
         }
 
-        var hoverItem = _items[hoveredIndex].Clone();
-        Main.HoverItem = hoverItem;
-        Main.hoverItemName = hoverItem.HoverName;
+        if (_items[hoveredIndex].IsLoaded && JournalItemUtilities.TryCreateItem(_items[hoveredIndex].Type, out var hoverItem))
+        {
+            Main.HoverItem = hoverItem;
+            Main.hoverItemName = hoverItem.HoverName;
+            return;
+        }
+
+        Main.HoverItem = new Item();
+        Main.hoverItemName = GetUnloadedHoverText(_items[hoveredIndex]);
+        Main.mouseText = true;
     }
 
     private int GetHoveredItemIndex(Rectangle inner)
@@ -90,5 +112,31 @@ public sealed class JournalItemStrip : UIElement
         }
 
         return -1;
+    }
+
+    private static void DrawUnloadedSlot(SpriteBatch spriteBatch, Vector2 position)
+    {
+        var rectangle = new Rectangle((int)position.X, (int)position.Y, (int)SlotWidth, TextureAssets.InventoryBack9.Height());
+        spriteBatch.Draw(TextureAssets.InventoryBack9.Value, rectangle, Color.White * 0.72f);
+
+        Utils.DrawBorderStringFourWay(
+            spriteBatch,
+            FontAssets.MouseText.Value,
+            "?",
+            position.X + SlotWidth * 0.5f - 5f,
+            position.Y + rectangle.Height * 0.5f - 11f,
+            JournalUiTheme.SectionHeaderText,
+            Color.Black,
+            Vector2.Zero,
+            0.9f);
+    }
+
+    private static string GetUnloadedHoverText(JournalSavedBuildItemReference itemReference)
+    {
+        var displayName = string.IsNullOrWhiteSpace(itemReference.DisplayName)
+            ? Language.GetTextValue("Mods.ProgressionJournal.UI.BuildUnloadedItem")
+            : itemReference.DisplayName;
+
+        return string.Equals(displayName, Language.GetTextValue("Mods.ProgressionJournal.UI.BuildUnloadedItem"), System.StringComparison.OrdinalIgnoreCase) ? displayName : Language.GetTextValue("Mods.ProgressionJournal.UI.BuildUnloadedItemTooltip", displayName);
     }
 }

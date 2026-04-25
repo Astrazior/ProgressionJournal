@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using System.Linq;
 using Terraria.ID;
 
 namespace ProgressionJournal.Data.Models;
@@ -8,7 +9,7 @@ public sealed class JournalSavedBuild(
     string name,
     CombatClass combatClass,
     ProgressionStageId stageId,
-    IReadOnlyDictionary<string, int> selectedItems,
+    IReadOnlyDictionary<string, JournalSavedBuildItemReference> selectedItems,
     bool isFavorite,
     long favoriteSortKey,
     string sourcePath)
@@ -25,10 +26,22 @@ public sealed class JournalSavedBuild(
 
     public long FavoriteSortKey { get; } = favoriteSortKey;
 
-    public IReadOnlyDictionary<string, int> SelectedItems { get; } = new Dictionary<string, int>(selectedItems, StringComparer.OrdinalIgnoreCase);
+    public IReadOnlyDictionary<string, JournalSavedBuildItemReference> ItemReferences { get; } = new Dictionary<string, JournalSavedBuildItemReference>(selectedItems, StringComparer.OrdinalIgnoreCase);
+
+    public IReadOnlyDictionary<string, int> SelectedItems { get; } = selectedItems
+        .Where(static pair => pair.Value.IsLoaded)
+        .ToDictionary(
+            static pair => pair.Key,
+            static pair => pair.Value.Type,
+            StringComparer.OrdinalIgnoreCase);
 
     public int GetSelectedItemId(string slotKey)
     {
         return SelectedItems.GetValueOrDefault(slotKey, ItemID.None);
+    }
+
+    public JournalSavedBuildItemReference? GetSelectedItemReference(string slotKey)
+    {
+        return ItemReferences.GetValueOrDefault(slotKey);
     }
 }

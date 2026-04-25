@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ProgressionJournal.Data.Repositories;
 
@@ -57,13 +59,8 @@ public static class JournalBuildStorage
         {
             Directory.CreateDirectory(GetBuildDirectoryPath());
 
-            var normalizedSelections = selectedItems
-                .Where(static pair => pair.Value > 0
-                    && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
-                .ToDictionary(
-                    static pair => pair.Key,
-                    static pair => pair.Value,
-                    StringComparer.OrdinalIgnoreCase);
+            var itemReferences = CreateItemReferences(selectedItems);
+            var normalizedSelections = GetLoadedSelectedItems(itemReferences);
 
             if (normalizedSelections.Count == 0)
             {
@@ -74,13 +71,14 @@ public static class JournalBuildStorage
             var document = new JournalBuildDocument
             {
                 Format = BuildFormat,
-                Version = 1,
+                Version = 2,
                 Name = name.Trim(),
                 CombatClass = combatClass.ToString(),
                 StageId = stageId.ToString(),
                 IsFavorite = false,
                 FavoriteSortKey = 0L,
-                SelectedItems = normalizedSelections
+                SelectedItems = normalizedSelections,
+                SelectedItemRefs = CreateItemReferenceDocuments(itemReferences)
             };
 
             var filePath = GetUniqueBuildFilePath(document.Name);
@@ -113,13 +111,8 @@ public static class JournalBuildStorage
                 return false;
             }
 
-            var normalizedSelections = selectedItems
-                .Where(static pair => pair.Value > 0
-                    && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
-                .ToDictionary(
-                    static pair => pair.Key,
-                    static pair => pair.Value,
-                    StringComparer.OrdinalIgnoreCase);
+            var itemReferences = CreateItemReferences(selectedItems);
+            var normalizedSelections = GetLoadedSelectedItems(itemReferences);
 
             if (normalizedSelections.Count == 0)
             {
@@ -129,12 +122,13 @@ public static class JournalBuildStorage
 
             var document = JsonSerializer.Deserialize<JournalBuildDocument>(File.ReadAllText(filePath), SerializerOptions)
                 ?? new JournalBuildDocument();
-            document.Version = 1;
+            document.Version = 2;
             document.Format = BuildFormat;
             document.Name = name.Trim();
             document.CombatClass = combatClass.ToString();
             document.StageId = stageId.ToString();
             document.SelectedItems = normalizedSelections;
+            document.SelectedItemRefs = CreateItemReferenceDocuments(itemReferences);
 
             File.WriteAllText(filePath, JsonSerializer.Serialize(document, SerializerOptions), Encoding.UTF8);
             Reload();
@@ -188,10 +182,15 @@ public static class JournalBuildStorage
             {
                 return false;
             }
+            NormalizeDocumentCollections(document);
 
             document.Format = BuildFormat;
+            document.Version = 2;
             document.IsFavorite = false;
             document.FavoriteSortKey = 0L;
+            var itemReferences = ReadItemReferences(document);
+            document.SelectedItems = GetLoadedSelectedItems(itemReferences);
+            document.SelectedItemRefs = CreateItemReferenceDocuments(itemReferences);
 
             var directoryPath = Path.GetDirectoryName(Path.GetFullPath(exportPath));
             if (!string.IsNullOrWhiteSpace(directoryPath))
@@ -215,7 +214,7 @@ public static class JournalBuildStorage
 
         try
         {
-            var document = CreateDocument(build.Name, build.CombatClass, build.StageId, build.SelectedItems);
+            var document = CreateDocument(build.Name, build.CombatClass, build.StageId, build.ItemReferences);
             var json = JsonSerializer.Serialize(document, CompactSerializerOptions);
             payload = ToBase64Url(Encoding.UTF8.GetBytes(json));
             return true;
@@ -239,7 +238,7 @@ public static class JournalBuildStorage
                     out var document,
                     out var combatClass,
                     out var stageId,
-                    out var selectedItems))
+                    out var itemReferences))
             {
                 return false;
             }
@@ -248,7 +247,7 @@ public static class JournalBuildStorage
                 document.Name.Trim(),
                 combatClass,
                 stageId,
-                selectedItems,
+                itemReferences,
                 isFavorite: false,
                 favoriteSortKey: 0L,
                 sourcePath: string.Empty);
@@ -269,17 +268,18 @@ public static class JournalBuildStorage
         {
             Directory.CreateDirectory(GetBuildDirectoryPath());
 
-            if (!TryReadBuildDocument(filePath, out var document, out _, out _, out var selectedItems))
+            if (!TryReadBuildDocument(filePath, out var document, out _, out _, out var itemReferences))
             {
                 return false;
             }
 
             document.Format = BuildFormat;
-            document.Version = 1;
+            document.Version = 2;
             document.Name = document.Name.Trim();
             document.IsFavorite = false;
             document.FavoriteSortKey = 0L;
-            document.SelectedItems = selectedItems;
+            document.SelectedItems = GetLoadedSelectedItems(itemReferences);
+            document.SelectedItemRefs = CreateItemReferenceDocuments(itemReferences);
 
             var destinationPath = GetUniqueBuildFilePath(document.Name);
             File.WriteAllText(destinationPath, JsonSerializer.Serialize(document, SerializerOptions), Encoding.UTF8);
@@ -302,7 +302,7 @@ public static class JournalBuildStorage
         {
             Directory.CreateDirectory(GetBuildDirectoryPath());
 
-            var document = CreateDocument(build.Name, build.CombatClass, build.StageId, build.SelectedItems);
+            var document = CreateDocument(build.Name, build.CombatClass, build.StageId, build.ItemReferences);
             var destinationPath = GetUniqueBuildFilePath(document.Name);
             File.WriteAllText(destinationPath, JsonSerializer.Serialize(document, SerializerOptions), Encoding.UTF8);
             importedName = document.Name;
@@ -330,6 +330,7 @@ public static class JournalBuildStorage
             {
                 return false;
             }
+            NormalizeDocumentCollections(document);
 
             document.IsFavorite = isFavorite;
             document.FavoriteSortKey = isFavorite ? DateTime.UtcNow.Ticks : 0L;
@@ -376,24 +377,22 @@ public static class JournalBuildStorage
         try
         {
             var document = JsonSerializer.Deserialize<JournalBuildDocument>(File.ReadAllText(filePath), SerializerOptions);
+            if (document is not null)
+            {
+                NormalizeDocumentCollections(document);
+            }
             if (document is null
                 || string.IsNullOrWhiteSpace(document.Name)
                 || string.IsNullOrWhiteSpace(document.CombatClass)
                 || string.IsNullOrWhiteSpace(document.StageId)
-                || document.SelectedItems.Count == 0
+                || (document.SelectedItems.Count == 0 && document.SelectedItemRefs.Count == 0)
                 || !Enum.TryParse(document.CombatClass, ignoreCase: true, out CombatClass combatClass)
                 || !Enum.TryParse(document.StageId, ignoreCase: true, out ProgressionStageId stageId))
             {
                 return false;
             }
 
-            var selectedItems = document.SelectedItems
-                .Where(static pair => pair.Value > 0
-                    && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
-                .ToDictionary(
-                    static pair => pair.Key,
-                    static pair => pair.Value,
-                    StringComparer.OrdinalIgnoreCase);
+            var selectedItems = ReadItemReferences(document);
 
             if (selectedItems.Count == 0)
             {
@@ -490,24 +489,28 @@ public static class JournalBuildStorage
         ProgressionStageId stageId,
         IReadOnlyDictionary<string, int> selectedItems)
     {
-        var normalizedSelections = selectedItems
-            .Where(static pair => pair.Value > 0
-                && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
-            .ToDictionary(
-                static pair => pair.Key,
-                static pair => pair.Value,
-                StringComparer.OrdinalIgnoreCase);
+        return CreateDocument(name, combatClass, stageId, CreateItemReferences(selectedItems));
+    }
+
+    private static JournalBuildDocument CreateDocument(
+        string name,
+        CombatClass combatClass,
+        ProgressionStageId stageId,
+        IReadOnlyDictionary<string, JournalSavedBuildItemReference> itemReferences)
+    {
+        var normalizedSelections = GetLoadedSelectedItems(itemReferences);
 
         return new JournalBuildDocument
         {
             Format = BuildFormat,
-            Version = 1,
+            Version = 2,
             Name = name.Trim(),
             CombatClass = combatClass.ToString(),
             StageId = stageId.ToString(),
             IsFavorite = false,
             FavoriteSortKey = 0L,
-            SelectedItems = normalizedSelections
+            SelectedItems = normalizedSelections,
+            SelectedItemRefs = CreateItemReferenceDocuments(itemReferences)
         };
     }
 
@@ -524,7 +527,7 @@ public static class JournalBuildStorage
         out JournalBuildDocument document,
         out CombatClass combatClass,
         out ProgressionStageId stageId,
-        out Dictionary<string, int> selectedItems)
+        out Dictionary<string, JournalSavedBuildItemReference> selectedItems)
     {
         document = null!;
         combatClass = default;
@@ -547,10 +550,11 @@ public static class JournalBuildStorage
         out JournalBuildDocument document,
         out CombatClass combatClass,
         out ProgressionStageId stageId,
-        out Dictionary<string, int> selectedItems)
+        out Dictionary<string, JournalSavedBuildItemReference> selectedItems)
     {
         document = JsonSerializer.Deserialize<JournalBuildDocument>(json, SerializerOptions)
             ?? new JournalBuildDocument();
+        NormalizeDocumentCollections(document);
         combatClass = default;
         stageId = default;
         selectedItems = [];
@@ -560,22 +564,142 @@ public static class JournalBuildStorage
             || string.IsNullOrWhiteSpace(document.Name)
             || string.IsNullOrWhiteSpace(document.CombatClass)
             || string.IsNullOrWhiteSpace(document.StageId)
-            || document.SelectedItems.Count == 0
+            || (document.SelectedItems.Count == 0 && document.SelectedItemRefs.Count == 0)
             || !Enum.TryParse(document.CombatClass, ignoreCase: true, out combatClass)
             || !Enum.TryParse(document.StageId, ignoreCase: true, out stageId))
         {
             return false;
         }
 
-        selectedItems = document.SelectedItems
-            .Where(static pair => pair.Value > 0
+        selectedItems = ReadItemReferences(document);
+
+        return selectedItems.Count > 0;
+    }
+
+    private static Dictionary<string, JournalSavedBuildItemReference> CreateItemReferences(IReadOnlyDictionary<string, int> selectedItems)
+    {
+        return selectedItems
+            .Where(static pair => pair.Value > ItemID.None
+                && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
+            .Select(static pair => new
+            {
+                pair.Key,
+                Reference = CreateItemReference(pair.Value)
+            })
+            .Where(static pair => pair.Reference is not null)
+            .ToDictionary(
+                static pair => pair.Key,
+                static pair => pair.Reference!,
+                StringComparer.OrdinalIgnoreCase);
+    }
+
+    private static void NormalizeDocumentCollections(JournalBuildDocument document)
+    {
+        document.SelectedItems ??= [];
+        document.SelectedItemRefs ??= [];
+    }
+
+    private static JournalSavedBuildItemReference? CreateItemReference(int itemId)
+    {
+        if (!JournalItemUtilities.TryCreateItem(itemId, out var item))
+        {
+            return null;
+        }
+
+        var modItem = item.ModItem;
+        var modName = modItem?.Mod.Name ?? string.Empty;
+        var itemName = modItem?.Name ?? string.Empty;
+        var displayName = item.HoverName;
+        return new JournalSavedBuildItemReference(item.type, modName, itemName, displayName);
+    }
+
+    private static Dictionary<string, int> GetLoadedSelectedItems(IReadOnlyDictionary<string, JournalSavedBuildItemReference> itemReferences)
+    {
+        return itemReferences
+            .Where(static pair => pair.Value.IsLoaded
                 && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
             .ToDictionary(
                 static pair => pair.Key,
-                static pair => pair.Value,
+                static pair => pair.Value.Type,
                 StringComparer.OrdinalIgnoreCase);
+    }
 
-        return selectedItems.Count > 0;
+    private static Dictionary<string, JournalBuildItemDocument> CreateItemReferenceDocuments(
+        IReadOnlyDictionary<string, JournalSavedBuildItemReference> itemReferences)
+    {
+        return itemReferences
+            .Where(static pair => JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
+            .ToDictionary(
+                static pair => pair.Key,
+                static pair => new JournalBuildItemDocument
+                {
+                    Type = pair.Value.Type,
+                    Mod = pair.Value.ModName,
+                    Name = pair.Value.ItemName,
+                    DisplayName = pair.Value.DisplayName
+                },
+                StringComparer.OrdinalIgnoreCase);
+    }
+
+    private static Dictionary<string, JournalSavedBuildItemReference> ReadItemReferences(JournalBuildDocument document)
+    {
+        if (document.SelectedItemRefs.Count > 0)
+        {
+            return document.SelectedItemRefs
+                .Where(static pair => JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
+                .Select(static pair => new
+                {
+                    pair.Key,
+                    Reference = ResolveItemReference(pair.Value)
+                })
+                .Where(static pair => pair.Reference is not null)
+                .ToDictionary(
+                    static pair => pair.Key,
+                    static pair => pair.Reference!,
+                    StringComparer.OrdinalIgnoreCase);
+        }
+
+        return document.SelectedItems
+            .Where(static pair => pair.Value > ItemID.None
+                && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
+            .Select(static pair => new
+            {
+                pair.Key,
+                Reference = CreateItemReference(pair.Value)
+                    ?? new JournalSavedBuildItemReference(
+                        ItemID.None,
+                        string.Empty,
+                        string.Empty,
+                        Language.GetTextValue("Mods.ProgressionJournal.UI.BuildUnloadedItem"))
+            })
+            .ToDictionary(
+                static pair => pair.Key,
+                static pair => pair.Reference,
+                StringComparer.OrdinalIgnoreCase);
+    }
+
+    private static JournalSavedBuildItemReference? ResolveItemReference(JournalBuildItemDocument document)
+    {
+        var modName = document.Mod?.Trim() ?? string.Empty;
+        var itemName = document.Name?.Trim() ?? string.Empty;
+        var displayName = document.DisplayName?.Trim() ?? string.Empty;
+
+        if (string.IsNullOrWhiteSpace(modName) || string.IsNullOrWhiteSpace(itemName))
+            return CreateItemReference(document.Type);
+        if (ModContent.TryFind<ModItem>(modName, itemName, out var modItem)
+            && CreateItemReference(modItem.Type) is { } resolved)
+        {
+            return resolved;
+        }
+
+        return new JournalSavedBuildItemReference(
+            ItemID.None,
+            modName,
+            itemName,
+            string.IsNullOrWhiteSpace(displayName)
+                ? Language.GetTextValue("Mods.ProgressionJournal.UI.BuildUnloadedItem")
+                : displayName);
+
     }
 
     private static string ToBase64Url(byte[] bytes)
@@ -612,5 +736,18 @@ public static class JournalBuildStorage
         public long FavoriteSortKey { get; set; }
 
         public Dictionary<string, int> SelectedItems { get; set; } = [];
+
+        public Dictionary<string, JournalBuildItemDocument> SelectedItemRefs { get; set; } = [];
+    }
+
+    private sealed class JournalBuildItemDocument
+    {
+        public int Type { get; set; }
+
+        public string Mod { get; set; } = string.Empty;
+
+        public string Name { get; set; } = string.Empty;
+
+        public string DisplayName { get; set; } = string.Empty;
     }
 }

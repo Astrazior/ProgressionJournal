@@ -99,7 +99,14 @@ public sealed class JournalSourceToken : UIElement
 
         if (_data.Kind == JournalSourceTokenKind.Item)
         {
-            var hoverItem = JournalItemUtilities.CreateItem(_data.Value);
+            if (!JournalItemUtilities.TryCreateItem(_data.Value, out var hoverItem))
+            {
+                Main.HoverItem = new Item();
+                Main.hoverItemName = _data.HoverText;
+                Main.mouseText = true;
+                return;
+            }
+
             Main.HoverItem = hoverItem;
             Main.hoverItemName = hoverItem.HoverName;
             return;
@@ -110,7 +117,11 @@ public sealed class JournalSourceToken : UIElement
 
     private void DrawItem(SpriteBatch spriteBatch, Rectangle inner)
     {
-        var item = JournalItemUtilities.CreateItem(_data.Value);
+        if (!JournalItemUtilities.TryCreateItem(_data.Value, out var item))
+        {
+            return;
+        }
+
         Main.instance.LoadItem(item.type);
 
         var itemTexture = TextureAssets.Item[item.type].Value;
@@ -178,12 +189,7 @@ public sealed class JournalSourceToken : UIElement
     private static Rectangle GetAchievementSourceRectangle(Texture2D texture, string achievementId)
     {
         var iconIndex = Main.Achievements.GetIconIndex(achievementId);
-        if (iconIndex < 0)
-        {
-            return Rectangle.Empty;
-        }
-
-        if (texture.Width < AchievementIconSize || texture.Height < AchievementIconSize)
+        if (iconIndex < 0 || texture.Width < AchievementIconSize || texture.Height < AchievementIconSize)
         {
             return Rectangle.Empty;
         }

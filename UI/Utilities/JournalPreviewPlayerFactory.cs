@@ -76,9 +76,9 @@ public static class JournalPreviewPlayerFactory
         }
 
         var heldItemId = GetPreviewHeldItemId(build);
-        if (heldItemId > ItemID.None)
+        if (JournalItemUtilities.TryCreateItem(heldItemId, out var heldItem))
         {
-            preview.inventory[0] = JournalItemUtilities.CreateItem(heldItemId);
+            preview.inventory[0] = heldItem;
         }
 
         preview.PlayerFrame();
@@ -96,12 +96,14 @@ public static class JournalPreviewPlayerFactory
 
     private static void SetArmor(Player preview, int armorIndex, int itemId)
     {
-        if (itemId <= ItemID.None || armorIndex < 0 || armorIndex >= preview.armor.Length)
+        if (armorIndex < 0
+            || armorIndex >= preview.armor.Length
+            || !JournalItemUtilities.TryCreateItem(itemId, out var item))
         {
             return;
         }
 
-        preview.armor[armorIndex] = JournalItemUtilities.CreateItem(itemId);
+        preview.armor[armorIndex] = item;
     }
 
     private static int GetPreviewHeldItemId(JournalSavedBuild build)

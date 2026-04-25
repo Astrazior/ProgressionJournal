@@ -83,8 +83,12 @@ public sealed class JournalEntrySlot : UIElement
             for (var index = 0; index < _itemGroups.Length; index++)
             {
                 var displayItem = GetDisplayedItem(index);
-                Main.instance.LoadItem(displayItem.type);
+                if (displayItem.IsAir || !JournalItemUtilities.IsValidItemId(displayItem.type))
+                {
+                    continue;
+                }
 
+                Main.instance.LoadItem(displayItem.type);
                 var slotPosition = inner.TopLeft() + new Vector2(index * SlotStep, 0f);
                 DrawVanillaSlot(spriteBatch, ref displayItem, slotPosition);
                 DrawSpecialOutline(spriteBatch, slotPosition, hoveredIndex == index);

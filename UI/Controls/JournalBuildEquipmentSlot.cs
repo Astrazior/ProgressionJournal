@@ -42,9 +42,8 @@ public sealed class JournalBuildEquipmentSlot : UIElement
         {
             Main.inventoryScale = 1f;
 
-            if (itemId > ItemID.None)
+            if (JournalItemUtilities.TryCreateItem(itemId, out var item))
             {
-                var item = JournalItemUtilities.CreateItem(itemId);
                 Main.instance.LoadItem(item.type);
                 ItemSlot.Draw(spriteBatch, ref item, ItemSlot.Context.TrashItem, dimensions.TopLeft());
             }
@@ -73,9 +72,8 @@ public sealed class JournalBuildEquipmentSlot : UIElement
             return;
         }
 
-        if (itemId > ItemID.None)
+        if (JournalItemUtilities.TryCreateItem(itemId, out var hoverItem))
         {
-            var hoverItem = JournalItemUtilities.CreateItem(itemId);
             Main.HoverItem = hoverItem;
             Main.hoverItemName = hoverItem.HoverName;
         }

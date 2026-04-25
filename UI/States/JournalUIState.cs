@@ -313,7 +313,12 @@ public sealed class JournalUiState : UIState
             return;
         }
 
-        var selectedItem = JournalItemUtilities.CreateItem(selectedItemId);
+        if (!JournalItemUtilities.TryCreateItem(selectedItemId, out var selectedItem))
+        {
+            ClearAcquisitionPanel();
+            return;
+        }
+
         var itemNameMaxWidth = MathF.Max(80f, _sourcePanel.GetDimensions().Width - JournalUiMetrics.AcquisitionPanelInset * 2f - 18f);
         _sourceItemName.SetText(JournalTextUtilities.TrimToPixelWidth(
             Lang.GetItemNameValue(selectedItemId),
@@ -1488,20 +1493,23 @@ public sealed class JournalUiState : UIState
         AddSharedBuildSection(
             Language.GetTextValue("Mods.ProgressionJournal.UI.Accessories"),
             Enumerable.Range(1, JournalBuildPlannerCatalog.GetAccessorySlotCount(build.StageId))
-                .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetAccessorySlotKey(slotIndex)))
-                .Where(static itemId => itemId > ItemID.None)
+                .Select(slotIndex => build.GetSelectedItemReference(JournalBuildPlannerCatalog.GetAccessorySlotKey(slotIndex)))
+                .Where(static itemReference => itemReference is not null)
+                .Select(static itemReference => itemReference!)
                 .ToArray());
         AddSharedBuildSection(
             Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSlotPotion"),
             Enumerable.Range(1, JournalBuildPlannerCatalog.PotionSlotCount)
-                .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetPotionSlotKey(slotIndex)))
-                .Where(static itemId => itemId > ItemID.None)
+                .Select(slotIndex => build.GetSelectedItemReference(JournalBuildPlannerCatalog.GetPotionSlotKey(slotIndex)))
+                .Where(static itemReference => itemReference is not null)
+                .Select(static itemReference => itemReference!)
                 .ToArray());
         AddSharedBuildSection(
             Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSlotFood"),
             Enumerable.Range(1, JournalBuildPlannerCatalog.FoodSlotCount)
-                .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetFoodSlotKey(slotIndex)))
-                .Where(static itemId => itemId > ItemID.None)
+                .Select(slotIndex => build.GetSelectedItemReference(JournalBuildPlannerCatalog.GetFoodSlotKey(slotIndex)))
+                .Where(static itemReference => itemReference is not null)
+                .Select(static itemReference => itemReference!)
                 .ToArray());
     }
 
@@ -1602,7 +1610,7 @@ public sealed class JournalUiState : UIState
         return row;
     }
 
-    private UIElement CreateSharedBuildPreview(JournalSavedBuild build)
+    private static UIElement CreateSharedBuildPreview(JournalSavedBuild build)
     {
         var container = new UIElement();
         container.Width.Set(0f, 1f);
@@ -1630,17 +1638,17 @@ public sealed class JournalUiState : UIState
         return container;
     }
 
-    private void AddSharedBuildSection(string title, IReadOnlyList<int> itemIds)
+    private void AddSharedBuildSection(string title, IReadOnlyList<JournalSavedBuildItemReference> itemReferences)
     {
-        if (itemIds.Count == 0)
+        if (itemReferences.Count == 0)
         {
             return;
         }
 
-        _sharedBuildList.Add(CreateSharedBuildSection(title, itemIds));
+        _sharedBuildList.Add(CreateSharedBuildSection(title, itemReferences));
     }
 
-    private static UIElement CreateSharedBuildSection(string title, IReadOnlyList<int> itemIds)
+    private static UIElement CreateSharedBuildSection(string title, IReadOnlyList<JournalSavedBuildItemReference> itemReferences)
     {
         const int itemsPerRow = 8;
 
@@ -1659,12 +1667,11 @@ public sealed class JournalUiState : UIState
         panel.Append(titleElement);
         top += 26f;
 
-        for (var index = 0; index < itemIds.Count; index += itemsPerRow)
+        for (var index = 0; index < itemReferences.Count; index += itemsPerRow)
         {
-            var rowItems = itemIds
+            var rowItems = itemReferences
                 .Skip(index)
                 .Take(itemsPerRow)
-                .Select(JournalItemUtilities.CreateItem)
                 .ToArray();
             var strip = new JournalItemStrip(rowItems);
             strip.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
@@ -1677,11 +1684,12 @@ public sealed class JournalUiState : UIState
         return panel;
     }
 
-    private static int[] GetSelectedItems(JournalSavedBuild build, params string[] slotKeys)
+    private static JournalSavedBuildItemReference[] GetSelectedItems(JournalSavedBuild build, params string[] slotKeys)
     {
         return slotKeys
-            .Select(build.GetSelectedItemId)
-            .Where(static itemId => itemId > ItemID.None)
+            .Select(build.GetSelectedItemReference)
+            .Where(static itemReference => itemReference is not null)
+            .Select(static itemReference => itemReference!)
             .ToArray();
     }
 
