@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ProgressionJournal.Systems;
 using Terraria;
@@ -11,6 +12,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
+using static ProgressionJournal.Data.Repositories.JournalRepository;
 
 namespace ProgressionJournal.UI.States;
 
@@ -54,11 +56,11 @@ public sealed class JournalUiState : UIState
     private UIPanel _buildPickerPanel = null!;
     private UIText _buildPickerTitle = null!;
     private JournalIconButton _buildPickerCloseButton = null!;
-    private JournalTextButton _buildPickerGuideTabButton = null!;
-    private JournalTextButton _buildPickerModTabButton = null!;
-    private JournalBuildFilterIconButton _buildPickerModFilterButton = null!;
-    private JournalBuildFilterIconButton _buildPickerPowerSortButton = null!;
-    private UIText _buildPickerFilterSummary = null!;
+    private JournalBuildFilterIconButton _buildPickerFilterButton = null!;
+    private JournalBuildFilterIconButton _buildPickerSortButton = null!;
+    private UIPanel _buildPickerFilterMenuPanel = null!;
+    private UIPanel _buildPickerSortMenuPanel = null!;
+    private UIPanel _buildPickerSearchBackground = null!;
     private JournalTextInput _buildPickerSearchInput = null!;
     private UIList _buildPickerList = null!;
     private UIScrollbar _buildPickerScrollbar = null!;
@@ -92,6 +94,8 @@ public sealed class JournalUiState : UIState
     private string? _activeBuildPickerSlotKey;
     private string? _selectedBuildPickerModName;
     private string _appliedBuildPickerSearchText = string.Empty;
+    private bool _buildPickerFilterMenuOpen;
+    private bool _buildPickerSortMenuOpen;
 
     private sealed record CachedAcquisitionView(UIElement PreviewElement, IReadOnlyList<UIElement> Entries);
 
@@ -167,6 +171,13 @@ public sealed class JournalUiState : UIState
 
         if (JournalSystem.ActiveBuildSlotKey is not null)
         {
+            if (_buildPickerFilterMenuOpen || _buildPickerSortMenuOpen)
+            {
+                HideBuildPickerMenus();
+                JournalSystem.RefreshView();
+                return;
+            }
+
             JournalSystem.CloseBuildSlotPicker();
             return;
         }
@@ -274,7 +285,7 @@ public sealed class JournalUiState : UIState
         {
             JournalContentBuilder.PopulateCombatBuffs(
                 _entryList,
-                JournalRepository.GetCombatBuffEntries(stageId, combatClass),
+                GetCombatBuffEntries(stageId, combatClass),
                 JournalSystem.SelectItem);
         }
         else
@@ -282,7 +293,7 @@ public sealed class JournalUiState : UIState
             JournalContentBuilder.PopulateEntries(
                 _entryList,
                 stageId,
-                JournalRepository.GetEntries(stageId, combatClass),
+                GetEntries(stageId, combatClass),
                 JournalSystem.SelectItem);
         }
 
@@ -869,6 +880,7 @@ public sealed class JournalUiState : UIState
         _buildPickerPanel.Height.Set(panelHeight, 0f);
         _buildPickerPanel.Left.Set((rootDimensions.Width - panelWidth) * 0.5f, 0f);
         _buildPickerPanel.Top.Set((rootDimensions.Height - panelHeight) * 0.5f, 0f);
+        ApplyBuildPickerToolbarLayout(panelWidth);
 
         if (!string.Equals(_activeBuildPickerSlotKey, slotKey, StringComparison.OrdinalIgnoreCase))
         {
@@ -896,7 +908,7 @@ public sealed class JournalUiState : UIState
 
     private void PopulateGuideBuildPicker(ProgressionStageId stageId, CombatClass combatClass, string slotKey, float panelWidth)
     {
-        var candidates = JournalRepository.GetBuildCandidates(
+        var candidates = GetBuildCandidates(
                 stageId,
                 combatClass,
                 slotKey)
@@ -921,7 +933,7 @@ public sealed class JournalUiState : UIState
 
     private void PopulateModBuildPicker(CombatClass combatClass, string slotKey, float panelWidth)
     {
-        var groups = JournalRepository.GetModBuildCandidateGroups(combatClass, slotKey)
+        var groups = GetModBuildCandidateGroups(combatClass, slotKey)
             .Select(FilterBuildCandidateGroup)
             .Where(static group => group.Candidates.Count > 0)
             .ToArray();
@@ -949,74 +961,294 @@ public sealed class JournalUiState : UIState
 
     private void RefreshBuildPickerControls(CombatClass combatClass, string slotKey)
     {
-        _buildPickerGuideTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerGuideTab"));
-        _buildPickerModTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerModTab"));
-        _buildPickerModFilterButton.SetActive(_activeBuildPickerTab == BuildPickerTab.Mods && _selectedBuildPickerModName is not null);
-        _buildPickerPowerSortButton.SetActive(_buildPickerPowerSort != BuildPickerPowerSort.None);
-        _buildPickerFilterSummary.SetText(GetBuildPickerFilterSummary(combatClass, slotKey));
+        var selectedModGroup = GetSelectedBuildPickerModGroup(combatClass, slotKey);
+
+        _buildPickerFilterButton.SetActive(_buildPickerFilterMenuOpen || _activeBuildPickerTab == BuildPickerTab.Mods);
+        _buildPickerSortButton.SetActive(_buildPickerSortMenuOpen || _buildPickerPowerSort != BuildPickerPowerSort.None);
+
+        ApplyBuildPickerModIcon(_buildPickerFilterButton, selectedModGroup);
+        _buildPickerSortButton.SetIconTexture(null);
+        _buildPickerSortButton.SetItemIcon(0);
+
         _buildPickerSearchInput.HintText = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerSearchHint");
-        _buildPickerGuideTabButton.SetStyle(JournalUiTheme.GetTabButtonStyle(_activeBuildPickerTab == BuildPickerTab.Vanilla));
-        _buildPickerModTabButton.SetStyle(JournalUiTheme.GetTabButtonStyle(_activeBuildPickerTab == BuildPickerTab.Mods));
-        _buildPickerModFilterButton.SetHoverText(
-            $"{Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerModFilterTooltip")}: {GetBuildPickerModFilterText(combatClass, slotKey)}");
-        _buildPickerPowerSortButton.SetHoverText(
-            $"{Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerPowerSortTooltip")}: {GetBuildPickerPowerSortText()}");
+        _buildPickerFilterButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerFilterMenuTooltip"));
+        _buildPickerSortButton.SetHoverText(GetBuildPickerSortMenuTooltip());
+
+        RefreshBuildPickerMenuPanels(combatClass, slotKey);
     }
 
-    private void SetBuildPickerTab(BuildPickerTab tab)
+    private string GetBuildPickerSortMenuTooltip()
     {
-        if (_activeBuildPickerTab == tab)
+        return _buildPickerPowerSort switch
         {
-            return;
-        }
-
-        _activeBuildPickerTab = tab;
-        _selectedBuildPickerModName = null;
-        JournalSystem.RefreshView();
-    }
-
-    private void CycleBuildPickerModFilter()
-    {
-        if (_activeBuildPickerTab != BuildPickerTab.Mods || _activeBuildPickerSlotKey is null)
-        {
-            return;
-        }
-
-        var modNames = JournalRepository.GetModBuildCandidateGroups(JournalSystem.SelectedClass, _activeBuildPickerSlotKey)
-            .Select(static group => group.Title)
-            .ToArray();
-        if (modNames.Length == 0)
-        {
-            _selectedBuildPickerModName = null;
-            return;
-        }
-
-        if (_selectedBuildPickerModName is null)
-        {
-            _selectedBuildPickerModName = modNames[0];
-        }
-        else
-        {
-            var currentIndex = Array.FindIndex(
-                modNames,
-                modName => string.Equals(modName, _selectedBuildPickerModName, StringComparison.CurrentCultureIgnoreCase));
-            _selectedBuildPickerModName = currentIndex >= 0 && currentIndex < modNames.Length - 1
-                ? modNames[currentIndex + 1]
-                : null;
-        }
-
-        JournalSystem.RefreshView();
-    }
-
-    private void CycleBuildPickerPowerSort()
-    {
-        _buildPickerPowerSort = _buildPickerPowerSort switch
-        {
-            BuildPickerPowerSort.None => BuildPickerPowerSort.Descending,
-            BuildPickerPowerSort.Descending => BuildPickerPowerSort.Ascending,
-            _ => BuildPickerPowerSort.None
+            BuildPickerPowerSort.Descending => Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerPowerDescTooltip"),
+            BuildPickerPowerSort.Ascending => Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerPowerAscTooltip"),
+            _ => Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerSortMenuTooltip")
         };
+    }
+
+    private void ToggleBuildPickerFilterMenu()
+    {
+        if (_activeBuildPickerSlotKey is null)
+        {
+            return;
+        }
+
+        _buildPickerFilterMenuOpen = !_buildPickerFilterMenuOpen;
+        if (_buildPickerFilterMenuOpen)
+        {
+            _buildPickerSortMenuOpen = false;
+        }
+
         JournalSystem.RefreshView();
+    }
+
+    private void ToggleBuildPickerSortMenu()
+    {
+        if (_activeBuildPickerSlotKey is null)
+        {
+            return;
+        }
+
+        _buildPickerSortMenuOpen = !_buildPickerSortMenuOpen;
+        if (_buildPickerSortMenuOpen)
+        {
+            _buildPickerFilterMenuOpen = false;
+        }
+
+        JournalSystem.RefreshView();
+    }
+
+    private void RefreshBuildPickerMenuPanels(CombatClass combatClass, string slotKey)
+    {
+        if (_buildPickerFilterMenuPanel.Parent is not null)
+        {
+            _buildPickerPanel.RemoveChild(_buildPickerFilterMenuPanel);
+        }
+
+        if (_buildPickerSortMenuPanel.Parent is not null)
+        {
+            _buildPickerPanel.RemoveChild(_buildPickerSortMenuPanel);
+        }
+
+        if (_buildPickerFilterMenuOpen)
+        {
+            RebuildBuildPickerFilterMenu(combatClass, slotKey);
+            _buildPickerPanel.Append(_buildPickerFilterMenuPanel);
+        }
+
+        if (_buildPickerSortMenuOpen)
+        {
+            RebuildBuildPickerSortMenu();
+            _buildPickerPanel.Append(_buildPickerSortMenuPanel);
+        }
+    }
+
+    private void RebuildBuildPickerFilterMenu(CombatClass combatClass, string slotKey)
+    {
+        _buildPickerFilterMenuPanel.RemoveAllChildren();
+
+        var groups = GetModBuildCandidateGroups(combatClass, slotKey).ToArray();
+        var buttonCount = 3 + groups.Length;
+        ApplyBuildPickerIconMenuLayout(_buildPickerFilterMenuPanel, buttonCount, alignRight: false);
+
+        var index = 0;
+        AddBuildPickerMenuButton(
+            _buildPickerFilterMenuPanel,
+            index++,
+            new JournalBuildFilterIconButton("guide", SelectBuildPickerGuideFilter),
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerGuideTab"),
+            _activeBuildPickerTab == BuildPickerTab.Vanilla);
+
+        AddBuildPickerMenuButton(
+            _buildPickerFilterMenuPanel,
+            index++,
+            new JournalBuildFilterIconButton("mods", SelectBuildPickerAllModsFilter),
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerModTab"),
+            _activeBuildPickerTab == BuildPickerTab.Mods && _selectedBuildPickerModName is null);
+
+        foreach (var group in groups)
+        {
+            var modName = group.Title;
+            var button = new JournalBuildFilterIconButton("mods", () => SelectBuildPickerModFilter(modName));
+            ApplyBuildPickerModIcon(button, group);
+            AddBuildPickerMenuButton(
+                _buildPickerFilterMenuPanel,
+                index++,
+                button,
+                group.Title,
+                _activeBuildPickerTab == BuildPickerTab.Mods
+                    && string.Equals(_selectedBuildPickerModName, group.Title, StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        AddBuildPickerMenuButton(
+            _buildPickerFilterMenuPanel,
+            index,
+            new JournalBuildFilterIconButton("reset", ResetBuildPickerFilters),
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerFilterResetTooltip"),
+            HasBuildPickerFilters());
+    }
+
+    private void RebuildBuildPickerSortMenu()
+    {
+        _buildPickerSortMenuPanel.RemoveAllChildren();
+        ApplyBuildPickerIconMenuLayout(_buildPickerSortMenuPanel, 3, alignRight: true);
+
+        AddBuildPickerMenuButton(
+            _buildPickerSortMenuPanel,
+            0,
+            new JournalBuildFilterIconButton("sort_desc", () => SetBuildPickerPowerSort(BuildPickerPowerSort.Descending)),
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerPowerDescTooltip"),
+            _buildPickerPowerSort == BuildPickerPowerSort.Descending);
+
+        AddBuildPickerMenuButton(
+            _buildPickerSortMenuPanel,
+            1,
+            new JournalBuildFilterIconButton("sort_asc", () => SetBuildPickerPowerSort(BuildPickerPowerSort.Ascending)),
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerPowerAscTooltip"),
+            _buildPickerPowerSort == BuildPickerPowerSort.Ascending);
+
+        AddBuildPickerMenuButton(
+            _buildPickerSortMenuPanel,
+            2,
+            new JournalBuildFilterIconButton("reset", ResetBuildPickerPowerSort),
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerSortResetTooltip"),
+            _buildPickerPowerSort != BuildPickerPowerSort.None);
+    }
+
+    private static void ApplyBuildPickerIconMenuLayout(UIPanel panel, int buttonCount, bool alignRight)
+    {
+        const int maxColumns = 6;
+        const float padding = 6f;
+        const float buttonSize = 34f;
+        const float gap = 6f;
+
+        var columns = Math.Max(1, Math.Min(maxColumns, buttonCount));
+        var rows = Math.Max(1, (int)Math.Ceiling(buttonCount / (float)maxColumns));
+        var width = padding * 2f + columns * buttonSize + (columns - 1) * gap;
+        if (alignRight)
+        {
+            panel.Left.Set(-(JournalUiMetrics.BuildPickerInset + width), 1f);
+        }
+
+        panel.Width.Set(width, 0f);
+        panel.Height.Set(padding * 2f + rows * buttonSize + (rows - 1) * gap, 0f);
+    }
+
+    private static void AddBuildPickerMenuButton(
+        UIPanel panel,
+        int index,
+        JournalBuildFilterIconButton button,
+        string hoverText,
+        bool active)
+    {
+        const int maxColumns = 6;
+        const float padding = 6f;
+        const float buttonSize = 34f;
+        const float gap = 6f;
+
+        var column = index % maxColumns;
+        var row = index / maxColumns;
+        button.Left.Set(padding + column * (buttonSize + gap), 0f);
+        button.Top.Set(padding + row * (buttonSize + gap), 0f);
+        button.Width.Set(buttonSize, 0f);
+        button.Height.Set(buttonSize, 0f);
+        button.SetHoverText(hoverText);
+        button.SetActive(active);
+        panel.Append(button);
+    }
+
+    private void ApplyBuildPickerToolbarLayout(float panelWidth)
+    {
+        const float buttonSize = 34f;
+        const float buttonGap = 4f;
+        const float searchSortGap = 12f;
+
+        var firstSlotLeft = GetBuildPickerFirstSlotLeft(panelWidth);
+        var filterButtonLeft = MathF.Max(0f, firstSlotLeft - buttonSize - buttonGap);
+        var sortButtonLeft = -(JournalUiMetrics.BuildPickerInset + buttonSize);
+        var searchRightInset = JournalUiMetrics.BuildPickerInset + buttonSize + searchSortGap;
+
+        _buildPickerFilterButton.Left.Set(filterButtonLeft, 0f);
+        _buildPickerFilterMenuPanel.Left.Set(filterButtonLeft, 0f);
+
+        _buildPickerSortButton.Left.Set(sortButtonLeft, 1f);
+        _buildPickerSortMenuPanel.Left.Set(sortButtonLeft, 1f);
+
+        _buildPickerSearchBackground.Left.Set(firstSlotLeft, 0f);
+        _buildPickerSearchBackground.Width.Set(-(firstSlotLeft + searchRightInset), 1f);
+    }
+
+    private void HideBuildPickerMenus()
+    {
+        _buildPickerFilterMenuOpen = false;
+        _buildPickerSortMenuOpen = false;
+
+        if (_buildPickerFilterMenuPanel.Parent is not null)
+        {
+            _buildPickerPanel.RemoveChild(_buildPickerFilterMenuPanel);
+        }
+
+        if (_buildPickerSortMenuPanel.Parent is not null)
+        {
+            _buildPickerPanel.RemoveChild(_buildPickerSortMenuPanel);
+        }
+    }
+
+    private void SelectBuildPickerGuideFilter()
+    {
+        _activeBuildPickerTab = BuildPickerTab.Vanilla;
+        _selectedBuildPickerModName = null;
+        HideBuildPickerMenus();
+        JournalSystem.RefreshView();
+    }
+
+    private void SelectBuildPickerAllModsFilter()
+    {
+        _activeBuildPickerTab = BuildPickerTab.Mods;
+        _selectedBuildPickerModName = null;
+        HideBuildPickerMenus();
+        JournalSystem.RefreshView();
+    }
+
+    private void SelectBuildPickerModFilter(string modName)
+    {
+        _activeBuildPickerTab = BuildPickerTab.Mods;
+        _selectedBuildPickerModName = modName;
+        HideBuildPickerMenus();
+        JournalSystem.RefreshView();
+    }
+
+    private void SetBuildPickerPowerSort(BuildPickerPowerSort sort)
+    {
+        _buildPickerPowerSort = sort;
+        HideBuildPickerMenus();
+        JournalSystem.RefreshView();
+    }
+
+    private void ResetBuildPickerPowerSort()
+    {
+        _buildPickerPowerSort = BuildPickerPowerSort.None;
+        HideBuildPickerMenus();
+        JournalSystem.RefreshView();
+    }
+
+    private void ResetBuildPickerFilters()
+    {
+        _activeBuildPickerTab = BuildPickerTab.Vanilla;
+        _selectedBuildPickerModName = null;
+        _buildPickerPowerSort = BuildPickerPowerSort.None;
+        _buildPickerSearchInput.SetText(string.Empty);
+        HideBuildPickerMenus();
+        JournalSystem.RefreshView();
+    }
+
+    private bool HasBuildPickerFilters()
+    {
+        return _activeBuildPickerTab != BuildPickerTab.Vanilla
+            || _selectedBuildPickerModName is not null
+            || _buildPickerPowerSort != BuildPickerPowerSort.None
+            || !string.IsNullOrWhiteSpace(_buildPickerSearchInput.CurrentString);
     }
 
     private JournalBuildCandidateGroup FilterBuildCandidateGroup(JournalBuildCandidateGroup group)
@@ -1024,7 +1256,7 @@ public sealed class JournalUiState : UIState
         if (_selectedBuildPickerModName is not null
             && !string.Equals(group.Title, _selectedBuildPickerModName, StringComparison.CurrentCultureIgnoreCase))
         {
-            return new JournalBuildCandidateGroup(group.Title, []);
+            return new JournalBuildCandidateGroup(group.Title, [], group.IconItemId);
         }
 
         var searchText = _buildPickerSearchInput.CurrentString.Trim();
@@ -1036,7 +1268,8 @@ public sealed class JournalUiState : UIState
 
         return new JournalBuildCandidateGroup(
             group.Title,
-            group.Candidates.Where(MatchesBuildPickerSearch).ToArray());
+            group.Candidates.Where(MatchesBuildPickerSearch).ToArray(),
+            group.IconItemId);
     }
 
     private bool MatchesBuildPickerSearch(JournalBuildCandidate candidate)
@@ -1075,42 +1308,59 @@ public sealed class JournalUiState : UIState
             : item.damage;
     }
 
-    private string GetBuildPickerModFilterText(CombatClass combatClass, string slotKey)
+    private JournalBuildCandidateGroup? GetSelectedBuildPickerModGroup(CombatClass combatClass, string slotKey)
     {
-        var allText = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerAllMods");
-        if (_activeBuildPickerTab != BuildPickerTab.Mods)
+        if (_activeBuildPickerTab != BuildPickerTab.Mods || _selectedBuildPickerModName is null)
         {
-            return allText;
+            return null;
         }
 
-        var modNames = JournalRepository.GetModBuildCandidateGroups(combatClass, slotKey)
-            .Select(static group => group.Title)
-            .ToArray();
-        if (_selectedBuildPickerModName is not null
-            && modNames.Any(modName => string.Equals(modName, _selectedBuildPickerModName, StringComparison.CurrentCultureIgnoreCase)))
+        return GetModBuildCandidateGroups(combatClass, slotKey)
+            .FirstOrDefault(group => string.Equals(group.Title, _selectedBuildPickerModName, StringComparison.CurrentCultureIgnoreCase));
+    }
+
+    private static void ApplyBuildPickerModIcon(JournalBuildFilterIconButton button, JournalBuildCandidateGroup? group)
+    {
+        button.SetIconTexture(null);
+        button.SetItemIcon(0);
+
+        if (group is null)
         {
-            return JournalTextUtilities.TrimToPixelWidth(_selectedBuildPickerModName, 132f, 0.66f);
+            return;
         }
 
-        _selectedBuildPickerModName = null;
-        return allText;
-    }
-
-    private string GetBuildPickerPowerSortText()
-    {
-        return _buildPickerPowerSort switch
+        if (TryGetBuildPickerModIcon(group, out var iconTexture))
         {
-            BuildPickerPowerSort.Descending => Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerPowerDesc"),
-            BuildPickerPowerSort.Ascending => Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerPowerAsc"),
-            _ => Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerSortByMod")
-        };
+            button.SetIconTexture(iconTexture);
+            return;
+        }
+
+        button.SetItemIcon(group.IconItemId);
     }
 
-    private string GetBuildPickerFilterSummary(CombatClass combatClass, string slotKey)
+    private static bool TryGetBuildPickerModIcon(JournalBuildCandidateGroup group, out Texture2D? texture)
     {
-        var source = GetBuildPickerModFilterText(combatClass, slotKey);
-        var sort = GetBuildPickerPowerSortText();
-        return JournalTextUtilities.TrimToPixelWidth($"{source}  |  {sort}", 200f, 0.7f);
+        texture = null;
+        if (group.IconItemId <= 0)
+        {
+            return false;
+        }
+
+        var item = JournalItemUtilities.CreateItem(group.IconItemId);
+        var mod = item.ModItem?.Mod;
+        if (mod is null)
+        {
+            return false;
+        }
+
+        if (!mod.RequestAssetIfExists<Texture2D>("icon", out var iconAsset)
+            && !mod.RequestAssetIfExists("Icon", out iconAsset))
+        {
+            return false;
+        }
+
+        texture = iconAsset.Value;
+        return true;
     }
 
     private string GetBuildPickerEmptyText()
@@ -1257,6 +1507,8 @@ public sealed class JournalUiState : UIState
 
     private void HideBuildPickerOverlay()
     {
+        HideBuildPickerMenus();
+
         if (_buildPickerOverlay.Parent is not null)
         {
             _root.RemoveChild(_buildPickerOverlay);
@@ -1285,11 +1537,9 @@ public sealed class JournalUiState : UIState
             _root.RemoveChild(_buildSavePanel);
         }
 
-        if (clearInput)
-        {
-            _buildSaveNameInput.SetText(string.Empty);
-            _buildSaveMessage.SetText(string.Empty);
-        }
+        if (!clearInput) return;
+        _buildSaveNameInput.SetText(string.Empty);
+        _buildSaveMessage.SetText(string.Empty);
     }
 
     private void HideBuildExportOverlay()
@@ -1439,6 +1689,13 @@ public sealed class JournalUiState : UIState
     {
         var availableWidth = panelWidth - (JournalUiMetrics.BuildPickerInset * 2f + JournalUiMetrics.ScrollbarWidth + 4f);
         return Math.Max(1, (int)((availableWidth + JournalUiMetrics.BuildSlotGap) / (JournalUiMetrics.BuildSlotSize + JournalUiMetrics.BuildSlotGap)));
+    }
+
+    private static float GetBuildPickerFirstSlotLeft(float panelWidth)
+    {
+        var availableWidth = panelWidth - (JournalUiMetrics.BuildPickerInset * 2f + JournalUiMetrics.ScrollbarWidth + 4f);
+        var rowWidth = GetBuildCandidateRowWidth(GetBuildPickerSlotsPerRow(panelWidth));
+        return JournalUiMetrics.BuildPickerInset + MathF.Max(0f, (availableWidth - rowWidth) * 0.5f);
     }
 
     private static float GetBuildCandidateRowWidth(int slotCount)
@@ -1719,6 +1976,11 @@ public sealed class JournalUiState : UIState
 
     private void InitializeBuildPickerOverlay()
     {
+        const float filterButtonSize = 34f;
+        const float filterButtonGap = 8f;
+        const float filterButtonLeft = 4f;
+        const float sortButtonLeft = -(JournalUiMetrics.BuildPickerInset + filterButtonSize);
+
         _buildPickerOverlay = new JournalDimOverlay(() => JournalSystem.CloseBuildSlotPicker());
 
         _buildPickerPanel = JournalUiElementFactory.CreatePanel();
@@ -1744,64 +2006,47 @@ public sealed class JournalUiState : UIState
         _buildPickerCloseButton.Top.Set(8f, 0f);
         _buildPickerPanel.Append(_buildPickerCloseButton);
 
-        _buildPickerGuideTabButton = JournalUiElementFactory.CreateTextButton(
-            string.Empty,
-            0f,
-            30f,
-            () => SetBuildPickerTab(BuildPickerTab.Vanilla),
-            0.86f);
-        _buildPickerGuideTabButton.Left.Set(JournalUiMetrics.BuildPickerInset, 0f);
-        _buildPickerGuideTabButton.Top.Set(44f, 0f);
-        _buildPickerGuideTabButton.Width.Set(124f, 0f);
-        _buildPickerPanel.Append(_buildPickerGuideTabButton);
+        _buildPickerFilterButton = new JournalBuildFilterIconButton("filter", ToggleBuildPickerFilterMenu);
+        _buildPickerFilterButton.Left.Set(filterButtonLeft, 0f);
+        _buildPickerFilterButton.Top.Set(84f, 0f);
+        _buildPickerFilterButton.Width.Set(filterButtonSize, 0f);
+        _buildPickerFilterButton.Height.Set(filterButtonSize, 0f);
+        _buildPickerPanel.Append(_buildPickerFilterButton);
 
-        _buildPickerModTabButton = JournalUiElementFactory.CreateTextButton(
-            string.Empty,
-            0f,
-            30f,
-            () => SetBuildPickerTab(BuildPickerTab.Mods),
-            0.86f);
-        _buildPickerModTabButton.Left.Set(JournalUiMetrics.BuildPickerInset + 130f, 0f);
-        _buildPickerModTabButton.Top.Set(44f, 0f);
-        _buildPickerModTabButton.Width.Set(124f, 0f);
-        _buildPickerPanel.Append(_buildPickerModTabButton);
+        _buildPickerSortButton = new JournalBuildFilterIconButton("sort", ToggleBuildPickerSortMenu);
+        _buildPickerSortButton.Left.Set(sortButtonLeft, 1f);
+        _buildPickerSortButton.Top.Set(84f, 0f);
+        _buildPickerSortButton.Width.Set(filterButtonSize, 0f);
+        _buildPickerSortButton.Height.Set(filterButtonSize, 0f);
+        _buildPickerPanel.Append(_buildPickerSortButton);
 
-        _buildPickerModFilterButton = new JournalBuildFilterIconButton("filter", CycleBuildPickerModFilter);
-        _buildPickerModFilterButton.Left.Set(JournalUiMetrics.BuildPickerInset, 0f);
-        _buildPickerModFilterButton.Top.Set(80f, 0f);
-        _buildPickerModFilterButton.Width.Set(30f, 0f);
-        _buildPickerModFilterButton.Height.Set(30f, 0f);
-        _buildPickerPanel.Append(_buildPickerModFilterButton);
+        _buildPickerFilterMenuPanel = JournalUiElementFactory.CreatePanel();
+        _buildPickerFilterMenuPanel.SetPadding(0f);
+        _buildPickerFilterMenuPanel.Left.Set(filterButtonLeft, 0f);
+        _buildPickerFilterMenuPanel.Top.Set(122f, 0f);
+        _buildPickerFilterMenuPanel.BackgroundColor = JournalUiTheme.RootBackground * 0.96f;
+        _buildPickerFilterMenuPanel.BorderColor = Color.Transparent;
 
-        _buildPickerPowerSortButton = new JournalBuildFilterIconButton("sort", CycleBuildPickerPowerSort);
-        _buildPickerPowerSortButton.Left.Set(JournalUiMetrics.BuildPickerInset + 36f, 0f);
-        _buildPickerPowerSortButton.Top.Set(80f, 0f);
-        _buildPickerPowerSortButton.Width.Set(30f, 0f);
-        _buildPickerPowerSortButton.Height.Set(30f, 0f);
-        _buildPickerPanel.Append(_buildPickerPowerSortButton);
+        _buildPickerSortMenuPanel = JournalUiElementFactory.CreatePanel();
+        _buildPickerSortMenuPanel.SetPadding(0f);
+        _buildPickerSortMenuPanel.Left.Set(sortButtonLeft, 1f);
+        _buildPickerSortMenuPanel.Top.Set(122f, 0f);
+        _buildPickerSortMenuPanel.BackgroundColor = JournalUiTheme.RootBackground * 0.96f;
+        _buildPickerSortMenuPanel.BorderColor = Color.Transparent;
 
-        _buildPickerFilterSummary = new UIText(string.Empty, 0.7f)
-        {
-            TextColor = JournalUiTheme.ContentDescriptionText
-        };
-        _buildPickerFilterSummary.Left.Set(JournalUiMetrics.BuildPickerInset + 76f, 0f);
-        _buildPickerFilterSummary.Top.Set(86f, 0f);
-        _buildPickerFilterSummary.Width.Set(206f, 0f);
-        _buildPickerPanel.Append(_buildPickerFilterSummary);
-
-        var searchBackground = JournalUiElementFactory.CreatePanel();
-        searchBackground.Left.Set(JournalUiMetrics.BuildPickerInset + 292f, 0f);
-        searchBackground.Top.Set(78f, 0f);
-        searchBackground.Width.Set(-(JournalUiMetrics.BuildPickerInset * 2f + 292f), 1f);
-        searchBackground.Height.Set(34f, 0f);
-        _buildPickerPanel.Append(searchBackground);
+        _buildPickerSearchBackground = JournalUiElementFactory.CreatePanel();
+        _buildPickerSearchBackground.Left.Set(JournalUiMetrics.BuildPickerInset, 0f);
+        _buildPickerSearchBackground.Top.Set(83f, 0f);
+        _buildPickerSearchBackground.Width.Set(-(JournalUiMetrics.BuildPickerInset * 2f + filterButtonSize + filterButtonGap), 1f);
+        _buildPickerSearchBackground.Height.Set(34f, 0f);
+        _buildPickerPanel.Append(_buildPickerSearchBackground);
 
         _buildPickerSearchInput = new JournalTextInput(string.Empty);
         _buildPickerSearchInput.Left.Set(10f, 0f);
         _buildPickerSearchInput.Top.Set(7f, 0f);
         _buildPickerSearchInput.Width.Set(-20f, 1f);
         _buildPickerSearchInput.Height.Set(20f, 0f);
-        searchBackground.Append(_buildPickerSearchInput);
+        _buildPickerSearchBackground.Append(_buildPickerSearchInput);
 
         _buildPickerList = new JournalSmoothScrollList();
         _buildPickerList.Left.Set(JournalUiMetrics.BuildPickerInset, 0f);

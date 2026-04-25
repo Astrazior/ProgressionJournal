@@ -76,14 +76,21 @@ public static partial class JournalRepository
             .Where(item => IsModBuildCandidate(combatClass, slotKind, item))
             .GroupBy(static item => item.ModItem!.Mod.DisplayNameClean)
             .OrderBy(static group => group.Key, StringComparer.CurrentCultureIgnoreCase)
-            .Select(static group => new JournalBuildCandidateGroup(
-                group.Key,
-                group
+            .Select(static group =>
+            {
+                var uniqueItems = group
                     .GroupBy(static item => item.type)
                     .Select(static itemGroup => itemGroup.First())
                     .OrderBy(static item => Lang.GetItemNameValue(item.type), StringComparer.CurrentCultureIgnoreCase)
-                    .Select(static item => new JournalBuildCandidate(item.type))
-                    .ToArray()))
+                    .ToArray();
+
+                return new JournalBuildCandidateGroup(
+                    group.Key,
+                    uniqueItems
+                        .Select(static item => new JournalBuildCandidate(item.type))
+                        .ToArray(),
+                    uniqueItems.Length > 0 ? uniqueItems[0].type : 0);
+            })
             .Where(static group => group.Candidates.Count > 0)
             .ToArray();
     }
