@@ -30,6 +30,12 @@ public sealed class JournalSystem : ModSystem
 
     public bool ShowingBuildSaveDialog { get; private set; }
 
+    public bool ShowingBuildExportDialog { get; private set; }
+
+    public bool ShowingSharedBuildPreview => SharedBuildPreview is not null;
+
+    public JournalSavedBuild? SharedBuildPreview { get; private set; }
+
     public bool SelectingClass { get; private set; } = true;
 
     public bool HasSelectedClass { get; private set; }
@@ -49,6 +55,8 @@ public sealed class JournalSystem : ModSystem
     private readonly Dictionary<string, int> _buildSelections = new();
 
     private JournalSavedBuild? _editingBuild;
+
+    private JournalSavedBuild? _exportingBuild;
 
     public override void Load()
     {
@@ -144,8 +152,11 @@ public sealed class JournalSystem : ModSystem
         ShowingPresets = false;
         ShowingBuildBuilder = false;
         ShowingBuildSaveDialog = false;
+        ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
         _editingBuild = null;
+        _exportingBuild = null;
+        SharedBuildPreview = null;
         JournalBuildStorage.Reload();
         CoerceSelectedStage();
         _journalInterface?.SetState(_journalState);
@@ -156,8 +167,11 @@ public sealed class JournalSystem : ModSystem
     {
         Visible = false;
         ShowingBuildSaveDialog = false;
+        ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
         _editingBuild = null;
+        _exportingBuild = null;
+        SharedBuildPreview = null;
         _journalInterface?.SetState(null);
     }
 
@@ -175,8 +189,10 @@ public sealed class JournalSystem : ModSystem
         ShowingPresets = false;
         ShowingBuildBuilder = false;
         ShowingBuildSaveDialog = false;
+        ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
         _editingBuild = null;
+        _exportingBuild = null;
         CoerceBuildSelections();
         RefreshView();
     }
@@ -186,8 +202,10 @@ public sealed class JournalSystem : ModSystem
         SelectingClass = true;
         ShowingBuildBuilder = false;
         ShowingBuildSaveDialog = false;
+        ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
         _editingBuild = null;
+        _exportingBuild = null;
         RefreshView();
     }
 
@@ -206,8 +224,10 @@ public sealed class JournalSystem : ModSystem
 
         SelectedStage = stageId;
         ShowingBuildSaveDialog = false;
+        ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
         _editingBuild = null;
+        _exportingBuild = null;
         CoerceBuildSelections();
         RefreshView();
     }
@@ -217,8 +237,10 @@ public sealed class JournalSystem : ModSystem
         ProgressionModeEnabled = !ProgressionModeEnabled;
         CoerceSelectedStage();
         ShowingBuildSaveDialog = false;
+        ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
         _editingBuild = null;
+        _exportingBuild = null;
         CoerceBuildSelections();
         RefreshView();
     }
@@ -229,8 +251,10 @@ public sealed class JournalSystem : ModSystem
         ShowingPresets = false;
         ShowingBuildBuilder = false;
         ShowingBuildSaveDialog = false;
+        ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
         _editingBuild = null;
+        _exportingBuild = null;
         RefreshView();
     }
 
@@ -240,8 +264,10 @@ public sealed class JournalSystem : ModSystem
         ShowingPresets = true;
         ShowingBuildBuilder = false;
         ShowingBuildSaveDialog = false;
+        ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
         _editingBuild = null;
+        _exportingBuild = null;
         JournalBuildStorage.Reload();
         RefreshView();
     }
@@ -252,8 +278,10 @@ public sealed class JournalSystem : ModSystem
         ShowingPresets = true;
         ShowingBuildBuilder = true;
         ShowingBuildSaveDialog = false;
+        ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
         _editingBuild = null;
+        _exportingBuild = null;
         RefreshView();
     }
 
@@ -266,8 +294,10 @@ public sealed class JournalSystem : ModSystem
         ShowingPresets = true;
         ShowingBuildBuilder = true;
         ShowingBuildSaveDialog = false;
+        ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
         _editingBuild = build;
+        _exportingBuild = null;
         _buildSelections.Clear();
 
         foreach (var selection in build.SelectedItems.Where(static pair => pair.Value > ItemID.None))
@@ -363,7 +393,9 @@ public sealed class JournalSystem : ModSystem
         }
 
         ShowingBuildSaveDialog = true;
+        ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
+        _exportingBuild = null;
         RefreshView();
     }
 
@@ -375,6 +407,18 @@ public sealed class JournalSystem : ModSystem
         }
 
         ShowingBuildSaveDialog = false;
+        RefreshView();
+    }
+
+    public void CloseBuildExportDialog()
+    {
+        if (!ShowingBuildExportDialog)
+        {
+            return;
+        }
+
+        ShowingBuildExportDialog = false;
+        _exportingBuild = null;
         RefreshView();
     }
 
@@ -432,6 +476,7 @@ public sealed class JournalSystem : ModSystem
         _editingBuild = null;
         ShowingBuildBuilder = false;
         ShowingBuildSaveDialog = false;
+        ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
         RefreshView();
         return true;
@@ -484,10 +529,28 @@ public sealed class JournalSystem : ModSystem
 
     public void ExportSavedBuild(JournalSavedBuild build)
     {
+        _exportingBuild = build;
+        ShowingBuildExportDialog = true;
+        ShowingBuildSaveDialog = false;
+        ActiveBuildSlotKey = null;
+        RefreshView();
+    }
+
+    public void ExportSelectedBuildToFile()
+    {
+        if (_exportingBuild is not { } build)
+        {
+            return;
+        }
+
         if (!JournalFileDialog.TryShowSaveBuildDialog(out var exportPath))
         {
             return;
         }
+
+        ShowingBuildExportDialog = false;
+        _exportingBuild = null;
+        RefreshView();
 
         if (JournalBuildStorage.ExportBuild(build, exportPath))
         {
@@ -496,6 +559,26 @@ public sealed class JournalSystem : ModSystem
         }
 
         Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildExportFailed"), Color.OrangeRed);
+    }
+
+    public void ExportSelectedBuildToChat()
+    {
+        if (_exportingBuild is not { } build)
+        {
+            return;
+        }
+
+        ShowingBuildExportDialog = false;
+        _exportingBuild = null;
+        RefreshView();
+
+        if (!JournalBuildStorage.TryExportBuildPayload(build, out var payload))
+        {
+            Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildExportFailed"), Color.OrangeRed);
+            return;
+        }
+
+        JournalBuildChat.ShareBuild(build.Name, payload);
     }
 
     public void ImportSavedBuilds()
@@ -512,6 +595,63 @@ public sealed class JournalSystem : ModSystem
         }
 
         Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildImported", importedName), Color.LightGreen);
+        RefreshView();
+    }
+
+    public void ShowSharedBuildPreview(string payload)
+    {
+        if (!JournalBuildStorage.TryReadBuildPayload(payload, out var build))
+        {
+            Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSharedInvalid"), Color.OrangeRed);
+            return;
+        }
+
+        CloseActiveChatInput();
+
+        if (!Visible)
+        {
+            ShowView();
+        }
+
+        SelectedClass = build.CombatClass;
+        SelectedStage = build.StageId;
+        HasSelectedClass = true;
+        SelectingClass = false;
+        ShowingPresets = true;
+        ShowingBuildBuilder = false;
+        SharedBuildPreview = build;
+        ShowingBuildSaveDialog = false;
+        ShowingBuildExportDialog = false;
+        ActiveBuildSlotKey = null;
+        RefreshView();
+    }
+
+    public void CloseSharedBuildPreview()
+    {
+        if (SharedBuildPreview is null)
+        {
+            return;
+        }
+
+        SharedBuildPreview = null;
+        RefreshView();
+    }
+
+    public void ImportSharedBuildPreview()
+    {
+        if (SharedBuildPreview is not { } build)
+        {
+            return;
+        }
+
+        if (!JournalBuildStorage.ImportBuild(build, out var importedName))
+        {
+            Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildImportFailed"), Color.OrangeRed);
+            return;
+        }
+
+        Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildImported", importedName), Color.LightGreen);
+        SharedBuildPreview = null;
         RefreshView();
     }
 
@@ -562,8 +702,11 @@ public sealed class JournalSystem : ModSystem
     {
         Visible = false;
         ShowingBuildSaveDialog = false;
+        ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
         _editingBuild = null;
+        _exportingBuild = null;
+        SharedBuildPreview = null;
         _buildSelections.Clear();
         _journalInterface?.SetState(null);
         _journalState?.ResetLayout();
@@ -589,6 +732,13 @@ public sealed class JournalSystem : ModSystem
         Main.InGuideCraftMenu = false;
         Main.InReforgeMenu = false;
         Main.recBigList = false;
+    }
+
+    private static void CloseActiveChatInput()
+    {
+        Main.drawingPlayerChat = false;
+        Main.chatText = string.Empty;
+        Main.chatRelease = false;
     }
 
     private static bool ShouldDrawJournalButton => !Main.gameMenu && Main.playerInventory;

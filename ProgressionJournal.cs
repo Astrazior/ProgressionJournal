@@ -1,6 +1,8 @@
 using Terraria;
 using Terraria.ModLoader;
 using ProgressionJournal.Api;
+using ProgressionJournal.Systems;
+using System.IO;
 
 namespace ProgressionJournal;
 
@@ -18,6 +20,7 @@ public sealed class ProgressionJournal : Mod
 
 		if (!Main.dedServ) {
 			ToggleJournalKeybind = KeybindLoader.RegisterKeybind(this, ToggleJournalKeybindName, "P");
+			JournalBuildChat.RegisterTags();
 		}
 	}
 
@@ -31,5 +34,10 @@ public sealed class ProgressionJournal : Mod
 	public override object? Call(params object[] args)
 	{
 		return ProgressionJournalApi.HandleCall(args);
+	}
+
+	public override void HandlePacket(BinaryReader reader, int whoAmI)
+	{
+		JournalBuildChat.HandlePacket(reader, whoAmI);
 	}
 }

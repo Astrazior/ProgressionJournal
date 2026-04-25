@@ -63,6 +63,20 @@ public sealed class JournalUiState : UIState
     private UIText _buildSaveMessage = null!;
     private JournalTextButton _buildSaveConfirmButton = null!;
     private JournalTextButton _buildSaveCancelButton = null!;
+    private JournalDimOverlay _buildExportOverlay = null!;
+    private UIPanel _buildExportPanel = null!;
+    private JournalIconButton _buildExportFileButton = null!;
+    private JournalIconButton _buildExportChatButton = null!;
+    private JournalIconButton _buildExportCloseButton = null!;
+    private JournalDimOverlay _sharedBuildOverlay = null!;
+    private UIPanel _sharedBuildPanel = null!;
+    private UIText _sharedBuildTitle = null!;
+    private UIText _sharedBuildMeta = null!;
+    private JournalIconButton _sharedBuildCloseIconButton = null!;
+    private UIList _sharedBuildList = null!;
+    private UIScrollbar _sharedBuildScrollbar = null!;
+    private JournalTextButton _sharedBuildAddButton = null!;
+    private JournalTextButton _sharedBuildCloseButton = null!;
     private bool _layoutInitialized;
     private int _layoutScreenWidth;
     private int _layoutScreenHeight;
@@ -83,6 +97,8 @@ public sealed class JournalUiState : UIState
         InitializeMainPanel();
         InitializeBuildPickerOverlay();
         InitializeBuildSaveOverlay();
+        InitializeBuildExportOverlay();
+        InitializeSharedBuildOverlay();
     }
 
     public override void Update(GameTime gameTime)
@@ -97,6 +113,18 @@ public sealed class JournalUiState : UIState
 
         if (!Main.keyState.IsKeyDown(Keys.Escape) || !Main.oldKeyState.IsKeyUp(Keys.Escape))
         {
+            return;
+        }
+
+        if (JournalSystem.ShowingSharedBuildPreview)
+        {
+            JournalSystem.CloseSharedBuildPreview();
+            return;
+        }
+
+        if (JournalSystem.ShowingBuildExportDialog)
+        {
+            JournalSystem.CloseBuildExportDialog();
             return;
         }
 
@@ -136,6 +164,8 @@ public sealed class JournalUiState : UIState
         RefreshContent(combatClass, stageId, selectingClass, showingPresets, showingBuildBuilder, showingCombatBuffsPage, selectedItemId);
         RefreshBuildPickerOverlay(combatClass, stageId, showingPresets, showingBuildBuilder);
         RefreshBuildSaveOverlay(showingPresets, showingBuildBuilder);
+        RefreshBuildExportOverlay(showingPresets, showingBuildBuilder);
+        RefreshSharedBuildPreviewOverlay();
         Recalculate();
     }
 
@@ -147,6 +177,8 @@ public sealed class JournalUiState : UIState
         _root.ResetDragState();
         HideBuildPickerOverlay();
         HideBuildSaveOverlay(clearInput: true);
+        HideBuildExportOverlay();
+        HideSharedBuildPreviewOverlay();
     }
 
     private void RefreshContent(
@@ -778,7 +810,12 @@ public sealed class JournalUiState : UIState
 
     private void RefreshBuildPickerOverlay(CombatClass combatClass, ProgressionStageId stageId, bool showingPresets, bool showingBuildBuilder)
     {
-        if (!showingPresets || !showingBuildBuilder || JournalSystem.ShowingBuildSaveDialog || JournalSystem.ActiveBuildSlotKey is not { } slotKey)
+        if (!showingPresets
+            || !showingBuildBuilder
+            || JournalSystem.ShowingBuildSaveDialog
+            || JournalSystem.ShowingBuildExportDialog
+            || JournalSystem.ShowingSharedBuildPreview
+            || JournalSystem.ActiveBuildSlotKey is not { } slotKey)
         {
             HideBuildPickerOverlay();
             return;
@@ -827,7 +864,11 @@ public sealed class JournalUiState : UIState
 
     private void RefreshBuildSaveOverlay(bool showingPresets, bool showingBuildBuilder)
     {
-        if (!showingPresets || !showingBuildBuilder || !JournalSystem.ShowingBuildSaveDialog)
+        if (!showingPresets
+            || !showingBuildBuilder
+            || JournalSystem.ShowingBuildExportDialog
+            || JournalSystem.ShowingSharedBuildPreview
+            || !JournalSystem.ShowingBuildSaveDialog)
         {
             HideBuildSaveOverlay(clearInput: true);
             return;
@@ -858,6 +899,102 @@ public sealed class JournalUiState : UIState
         _buildSavePanel.Height.Set(panelHeight, 0f);
         _buildSavePanel.Left.Set((rootDimensions.Width - panelWidth) * 0.5f, 0f);
         _buildSavePanel.Top.Set((rootDimensions.Height - panelHeight) * 0.5f, 0f);
+    }
+
+    private void RefreshBuildExportOverlay(bool showingPresets, bool showingBuildBuilder)
+    {
+        if (!showingPresets || showingBuildBuilder || JournalSystem.ShowingSharedBuildPreview || !JournalSystem.ShowingBuildExportDialog)
+        {
+            HideBuildExportOverlay();
+            return;
+        }
+
+        if (_buildExportOverlay.Parent is null)
+        {
+            _root.Append(_buildExportOverlay);
+        }
+
+        if (_buildExportPanel.Parent is null)
+        {
+            _root.Append(_buildExportPanel);
+        }
+
+        var rootDimensions = _root.GetDimensions();
+        const float panelWidth = 156f;
+        const float panelHeight = 92f;
+        _buildExportPanel.Width.Set(panelWidth, 0f);
+        _buildExportPanel.Height.Set(panelHeight, 0f);
+        _buildExportPanel.Left.Set((rootDimensions.Width - panelWidth) * 0.5f, 0f);
+        _buildExportPanel.Top.Set((rootDimensions.Height - panelHeight) * 0.5f, 0f);
+    }
+
+    private void RefreshSharedBuildPreviewOverlay()
+    {
+        if (JournalSystem.SharedBuildPreview is not { } build)
+        {
+            HideSharedBuildPreviewOverlay();
+            return;
+        }
+
+        if (_sharedBuildOverlay.Parent is null)
+        {
+            _root.Append(_sharedBuildOverlay);
+        }
+
+        if (_sharedBuildPanel.Parent is null)
+        {
+            _root.Append(_sharedBuildPanel);
+        }
+
+        var rootDimensions = _root.GetDimensions();
+        var panelWidth = MathF.Min(720f, rootDimensions.Width - 48f);
+        var panelHeight = MathF.Min(560f, rootDimensions.Height - 48f);
+        _sharedBuildPanel.Width.Set(panelWidth, 0f);
+        _sharedBuildPanel.Height.Set(panelHeight, 0f);
+        _sharedBuildPanel.Left.Set((rootDimensions.Width - panelWidth) * 0.5f, 0f);
+        _sharedBuildPanel.Top.Set((rootDimensions.Height - panelHeight) * 0.5f, 0f);
+
+        _sharedBuildTitle.SetText(JournalTextUtilities.TrimToPixelWidth(
+            build.Name,
+            panelWidth - 96f,
+            JournalUiMetrics.BuildPickerTitleScale));
+        _sharedBuildMeta.SetText(
+            $"{Language.GetTextValue($"Mods.ProgressionJournal.Classes.{build.CombatClass}")} • {Language.GetTextValue(ProgressionStageCatalog.Get(build.StageId).LocalizationKey)}");
+
+        _sharedBuildList.Clear();
+        _sharedBuildList.Add(CreateSharedBuildPreview(build));
+        AddSharedBuildSection(
+            Language.GetTextValue("Mods.ProgressionJournal.UI.Weapons"),
+            GetSelectedItems(
+                build,
+                JournalBuildPlannerCatalog.PrimaryWeaponSlotKey,
+                JournalBuildPlannerCatalog.SupportWeaponSlotKey,
+                JournalBuildPlannerCatalog.ClassSpecificSlotKey));
+        AddSharedBuildSection(
+            Language.GetTextValue("Mods.ProgressionJournal.UI.ArmorLabel"),
+            GetSelectedItems(
+                build,
+                JournalBuildPlannerCatalog.ArmorHeadSlotKey,
+                JournalBuildPlannerCatalog.ArmorBodySlotKey,
+                JournalBuildPlannerCatalog.ArmorLegsSlotKey));
+        AddSharedBuildSection(
+            Language.GetTextValue("Mods.ProgressionJournal.UI.Accessories"),
+            Enumerable.Range(1, JournalBuildPlannerCatalog.GetAccessorySlotCount(build.StageId))
+                .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetAccessorySlotKey(slotIndex)))
+                .Where(static itemId => itemId > ItemID.None)
+                .ToArray());
+        AddSharedBuildSection(
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSlotPotion"),
+            Enumerable.Range(1, JournalBuildPlannerCatalog.PotionSlotCount)
+                .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetPotionSlotKey(slotIndex)))
+                .Where(static itemId => itemId > ItemID.None)
+                .ToArray());
+        AddSharedBuildSection(
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSlotFood"),
+            Enumerable.Range(1, JournalBuildPlannerCatalog.FoodSlotCount)
+                .Select(slotIndex => build.GetSelectedItemId(JournalBuildPlannerCatalog.GetFoodSlotKey(slotIndex)))
+                .Where(static itemId => itemId > ItemID.None)
+                .ToArray());
     }
 
     private void HideBuildPickerOverlay()
@@ -894,6 +1031,34 @@ public sealed class JournalUiState : UIState
         }
     }
 
+    private void HideBuildExportOverlay()
+    {
+        if (_buildExportOverlay.Parent is not null)
+        {
+            _root.RemoveChild(_buildExportOverlay);
+        }
+
+        if (_buildExportPanel.Parent is not null)
+        {
+            _root.RemoveChild(_buildExportPanel);
+        }
+    }
+
+    private void HideSharedBuildPreviewOverlay()
+    {
+        if (_sharedBuildOverlay.Parent is not null)
+        {
+            _root.RemoveChild(_sharedBuildOverlay);
+        }
+
+        if (_sharedBuildPanel.Parent is not null)
+        {
+            _root.RemoveChild(_sharedBuildPanel);
+        }
+
+        _sharedBuildList.Clear();
+    }
+
     private static UIElement CreateBuildCandidateRow(
         IReadOnlyList<JournalBuildCandidate> candidates,
         IReadOnlySet<int> highlightedItemIds,
@@ -924,6 +1089,91 @@ public sealed class JournalUiState : UIState
         }
 
         return row;
+    }
+
+    private UIElement CreateSharedBuildPreview(JournalSavedBuild build)
+    {
+        var container = new UIElement();
+        container.Width.Set(0f, 1f);
+        container.Height.Set(194f, 0f);
+
+        var previewPanel = JournalUiElementFactory.CreatePanel();
+        previewPanel.Width.Set(148f, 0f);
+        previewPanel.Height.Set(184f, 0f);
+        previewPanel.HAlign = 0.5f;
+        previewPanel.BackgroundColor = JournalUiTheme.PresetPanelBackground;
+        previewPanel.BorderColor = JournalUiTheme.PresetPanelBorder;
+        container.Append(previewPanel);
+
+        var characterPreview = new JournalSavedBuildCharacterPreview(
+            JournalPreviewPlayerFactory.CreateSavedBuildPreview(build, build.StageId),
+            static () => false,
+            1.18f,
+            0f,
+            0f);
+        characterPreview.Width.Set(118f, 0f);
+        characterPreview.Height.Set(152f, 0f);
+        characterPreview.HAlign = 0.5f;
+        characterPreview.Top.Set(18f, 0f);
+        characterPreview.IgnoresMouseInteraction = true;
+        previewPanel.Append(characterPreview);
+
+        return container;
+    }
+
+    private void AddSharedBuildSection(string title, IReadOnlyList<int> itemIds)
+    {
+        if (itemIds.Count == 0)
+        {
+            return;
+        }
+
+        _sharedBuildList.Add(CreateSharedBuildSection(title, itemIds));
+    }
+
+    private static UIElement CreateSharedBuildSection(string title, IReadOnlyList<int> itemIds)
+    {
+        const int itemsPerRow = 8;
+
+        var panel = JournalUiElementFactory.CreatePanel();
+        panel.Width.Set(0f, 1f);
+        panel.BackgroundColor = JournalUiTheme.PresetPanelBackground;
+        panel.BorderColor = JournalUiTheme.PresetPanelBorder;
+
+        var top = JournalUiMetrics.BlockVerticalPadding;
+        var titleElement = new UIText(title, JournalUiMetrics.BuildPanelHeaderScale, true)
+        {
+            TextColor = JournalUiTheme.SectionHeaderText
+        };
+        titleElement.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
+        titleElement.Top.Set(top, 0f);
+        panel.Append(titleElement);
+        top += 26f;
+
+        for (var index = 0; index < itemIds.Count; index += itemsPerRow)
+        {
+            var rowItems = itemIds
+                .Skip(index)
+                .Take(itemsPerRow)
+                .Select(JournalItemUtilities.CreateItem)
+                .ToArray();
+            var strip = new JournalItemStrip(rowItems);
+            strip.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
+            strip.Top.Set(top, 0f);
+            panel.Append(strip);
+            top += JournalUiMetrics.BuildSlotSize + 6f;
+        }
+
+        panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding - 6f, 0f);
+        return panel;
+    }
+
+    private static int[] GetSelectedItems(JournalSavedBuild build, params string[] slotKeys)
+    {
+        return slotKeys
+            .Select(build.GetSelectedItemId)
+            .Where(static itemId => itemId > ItemID.None)
+            .ToArray();
     }
 
     private static int GetBuildPickerSlotsPerRow(float panelWidth)
@@ -1317,6 +1567,124 @@ public sealed class JournalUiState : UIState
         _buildSavePanel.Append(_buildSaveConfirmButton);
     }
 
+    private void InitializeBuildExportOverlay()
+    {
+        _buildExportOverlay = new JournalDimOverlay(() => JournalSystem.CloseBuildExportDialog());
+
+        _buildExportPanel = JournalUiElementFactory.CreatePanel();
+        _buildExportPanel.SetPadding(0f);
+        _buildExportPanel.BackgroundColor = JournalUiTheme.RootBackground * JournalUiTheme.RootBackgroundOpacity;
+        _buildExportPanel.BorderColor = JournalUiTheme.RootBorder;
+
+        _buildExportCloseButton = JournalUiElementFactory.CreateIconButton(
+            BestiarySearchCancelTexturePath,
+            24f,
+            24f,
+            () => JournalSystem.CloseBuildExportDialog(),
+            0.8f);
+        _buildExportCloseButton.Left.Set(-30f, 1f);
+        _buildExportCloseButton.Top.Set(6f, 0f);
+        _buildExportPanel.Append(_buildExportCloseButton);
+
+        _buildExportFileButton = JournalUiElementFactory.CreateIconButton(
+            TextureAssets.Camera[6],
+            46f,
+            46f,
+            () => JournalSystem.ExportSelectedBuildToFile(),
+            0.78f);
+        _buildExportFileButton.Left.Set(24f, 0f);
+        _buildExportFileButton.Top.Set(32f, 0f);
+        _buildExportFileButton.EnableChrome(JournalUiTheme.GetDefaultTextButtonStyle());
+        _buildExportPanel.Append(_buildExportFileButton);
+
+        _buildExportChatButton = JournalUiElementFactory.CreateIconButton(
+            TextureAssets.Chat,
+            46f,
+            46f,
+            () => JournalSystem.ExportSelectedBuildToChat(),
+            0.82f);
+        _buildExportChatButton.Left.Set(86f, 0f);
+        _buildExportChatButton.Top.Set(32f, 0f);
+        _buildExportChatButton.EnableChrome(JournalUiTheme.GetDefaultTextButtonStyle());
+        _buildExportPanel.Append(_buildExportChatButton);
+    }
+
+    private void InitializeSharedBuildOverlay()
+    {
+        _sharedBuildOverlay = new JournalDimOverlay(() => JournalSystem.CloseSharedBuildPreview());
+
+        _sharedBuildPanel = JournalUiElementFactory.CreatePanel();
+        _sharedBuildPanel.SetPadding(0f);
+        _sharedBuildPanel.BackgroundColor = JournalUiTheme.RootBackground * JournalUiTheme.RootBackgroundOpacity;
+        _sharedBuildPanel.BorderColor = JournalUiTheme.RootBorder;
+
+        _sharedBuildTitle = new UIText(string.Empty, JournalUiMetrics.BuildPickerTitleScale, true)
+        {
+            HAlign = 0.5f,
+            TextColor = JournalUiTheme.RootTitleText
+        };
+        _sharedBuildTitle.Top.Set(14f, 0f);
+        _sharedBuildPanel.Append(_sharedBuildTitle);
+
+        _sharedBuildMeta = new UIText(string.Empty, 0.72f)
+        {
+            HAlign = 0.5f,
+            TextColor = JournalUiTheme.ContentDescriptionText
+        };
+        _sharedBuildMeta.Top.Set(42f, 0f);
+        _sharedBuildPanel.Append(_sharedBuildMeta);
+
+        _sharedBuildCloseIconButton = JournalUiElementFactory.CreateIconButton(
+            BestiarySearchCancelTexturePath,
+            24f,
+            24f,
+            () => JournalSystem.CloseSharedBuildPreview(),
+            0.8f);
+        _sharedBuildCloseIconButton.Left.Set(-34f, 1f);
+        _sharedBuildCloseIconButton.Top.Set(8f, 0f);
+        _sharedBuildPanel.Append(_sharedBuildCloseIconButton);
+
+        _sharedBuildList = [];
+        _sharedBuildList.Left.Set(18f, 0f);
+        _sharedBuildList.Top.Set(78f, 0f);
+        _sharedBuildList.Width.Set(-(18f * 2f + JournalUiMetrics.ScrollbarWidth + 4f), 1f);
+        _sharedBuildList.Height.Set(-142f, 1f);
+        _sharedBuildList.ListPadding = JournalUiMetrics.EntryListPadding;
+        _sharedBuildPanel.Append(_sharedBuildList);
+
+        _sharedBuildScrollbar = new UIScrollbar();
+        _sharedBuildScrollbar.Width.Set(JournalUiMetrics.ScrollbarWidth, 0f);
+        _sharedBuildScrollbar.Left.Set(-(JournalUiMetrics.ScrollbarWidth + 18f), 1f);
+        _sharedBuildScrollbar.Top.Set(78f, 0f);
+        _sharedBuildScrollbar.Height.Set(-142f, 1f);
+        _sharedBuildPanel.Append(_sharedBuildScrollbar);
+        _sharedBuildList.SetScrollbar(_sharedBuildScrollbar);
+
+        _sharedBuildCloseButton = JournalUiElementFactory.CreateTextButton(
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveCancel"),
+            0f,
+            32f,
+            () => JournalSystem.CloseSharedBuildPreview(),
+            0.88f);
+        _sharedBuildCloseButton.Left.Set(24f, 0f);
+        _sharedBuildCloseButton.Top.Set(-50f, 1f);
+        _sharedBuildCloseButton.Width.Set(-18f, 0.5f);
+        _sharedBuildCloseButton.SetStyle(JournalUiTheme.GetDefaultTextButtonStyle());
+        _sharedBuildPanel.Append(_sharedBuildCloseButton);
+
+        _sharedBuildAddButton = JournalUiElementFactory.CreateTextButton(
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSharedAdd"),
+            0f,
+            32f,
+            () => JournalSystem.ImportSharedBuildPreview(),
+            0.88f);
+        _sharedBuildAddButton.Left.Set(6f, 0.5f);
+        _sharedBuildAddButton.Top.Set(-50f, 1f);
+        _sharedBuildAddButton.Width.Set(-30f, 0.5f);
+        _sharedBuildAddButton.SetStyle(JournalUiTheme.GetOverlayActionButtonStyle());
+        _sharedBuildPanel.Append(_sharedBuildAddButton);
+    }
+
     private void InitializeContentTabs()
     {
         _contentTabsPanel = new UIElement();
@@ -1361,6 +1729,10 @@ public sealed class JournalUiState : UIState
         _buildSaveNameInput.HintText = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveDialogHint");
         _buildSaveCancelButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveCancel"));
         _buildSaveConfirmButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveConfirm"));
+        _buildExportFileButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildExportFileTooltip"));
+        _buildExportChatButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildExportChatTooltip"));
+        _sharedBuildCloseButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveCancel"));
+        _sharedBuildAddButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSharedAdd"));
         _classButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Class"));
         _overviewTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewTab"));
         _presetsTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsTab"));

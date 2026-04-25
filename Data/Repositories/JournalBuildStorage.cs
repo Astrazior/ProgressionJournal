@@ -21,6 +21,12 @@ public static class JournalBuildStorage
         WriteIndented = true
     };
 
+    private static readonly JsonSerializerOptions CompactSerializerOptions = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        WriteIndented = false
+    };
+
     private static IReadOnlyList<JournalSavedBuild>? _cachedBuilds;
 
     public static IReadOnlyList<JournalSavedBuild> GetBuilds(ProgressionStageId stageId, CombatClass combatClass)
@@ -203,6 +209,58 @@ public static class JournalBuildStorage
         }
     }
 
+    public static bool TryExportBuildPayload(JournalSavedBuild build, out string payload)
+    {
+        payload = string.Empty;
+
+        try
+        {
+            var document = CreateDocument(build.Name, build.CombatClass, build.StageId, build.SelectedItems);
+            var json = JsonSerializer.Serialize(document, CompactSerializerOptions);
+            payload = ToBase64Url(Encoding.UTF8.GetBytes(json));
+            return true;
+        }
+        catch (Exception exception)
+        {
+            LogWarning($"Failed to create build chat payload for '{build.SourcePath}'.", exception);
+            return false;
+        }
+    }
+
+    public static bool TryReadBuildPayload(string payload, out JournalSavedBuild build)
+    {
+        build = null!;
+
+        try
+        {
+            if (string.IsNullOrWhiteSpace(payload)
+                || !TryReadBuildDocumentFromJson(
+                    Encoding.UTF8.GetString(FromBase64Url(payload)),
+                    out var document,
+                    out var combatClass,
+                    out var stageId,
+                    out var selectedItems))
+            {
+                return false;
+            }
+
+            build = new JournalSavedBuild(
+                document.Name.Trim(),
+                combatClass,
+                stageId,
+                selectedItems,
+                isFavorite: false,
+                favoriteSortKey: 0L,
+                sourcePath: string.Empty);
+            return true;
+        }
+        catch (Exception exception)
+        {
+            LogWarning("Failed to read build chat payload.", exception);
+            return false;
+        }
+    }
+
     public static bool ImportBuild(string filePath, out string importedName)
     {
         importedName = string.Empty;
@@ -232,6 +290,28 @@ public static class JournalBuildStorage
         catch (Exception exception)
         {
             LogWarning($"Failed to import build json from '{filePath}'.", exception);
+            return false;
+        }
+    }
+
+    public static bool ImportBuild(JournalSavedBuild build, out string importedName)
+    {
+        importedName = string.Empty;
+
+        try
+        {
+            Directory.CreateDirectory(GetBuildDirectoryPath());
+
+            var document = CreateDocument(build.Name, build.CombatClass, build.StageId, build.SelectedItems);
+            var destinationPath = GetUniqueBuildFilePath(document.Name);
+            File.WriteAllText(destinationPath, JsonSerializer.Serialize(document, SerializerOptions), Encoding.UTF8);
+            importedName = document.Name;
+            Reload();
+            return true;
+        }
+        catch (Exception exception)
+        {
+            LogWarning($"Failed to import shared build '{build.Name}'.", exception);
             return false;
         }
     }
@@ -404,6 +484,33 @@ public static class JournalBuildStorage
         return builder.Length == 0 ? "build" : builder.ToString().Trim('_');
     }
 
+    private static JournalBuildDocument CreateDocument(
+        string name,
+        CombatClass combatClass,
+        ProgressionStageId stageId,
+        IReadOnlyDictionary<string, int> selectedItems)
+    {
+        var normalizedSelections = selectedItems
+            .Where(static pair => pair.Value > 0
+                && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
+            .ToDictionary(
+                static pair => pair.Key,
+                static pair => pair.Value,
+                StringComparer.OrdinalIgnoreCase);
+
+        return new JournalBuildDocument
+        {
+            Format = BuildFormat,
+            Version = 1,
+            Name = name.Trim(),
+            CombatClass = combatClass.ToString(),
+            StageId = stageId.ToString(),
+            IsFavorite = false,
+            FavoriteSortKey = 0L,
+            SelectedItems = normalizedSelections
+        };
+    }
+
     private static void LogWarning(string message, Exception exception)
     {
         if (ProgressionJournal.Instance?.Logger is { } logger)
@@ -426,36 +533,66 @@ public static class JournalBuildStorage
 
         try
         {
-            document = JsonSerializer.Deserialize<JournalBuildDocument>(File.ReadAllText(filePath), SerializerOptions)
-                ?? new JournalBuildDocument();
-
-            if ((!string.IsNullOrWhiteSpace(document.Format)
-                    && !string.Equals(document.Format, BuildFormat, StringComparison.OrdinalIgnoreCase))
-                || string.IsNullOrWhiteSpace(document.Name)
-                || string.IsNullOrWhiteSpace(document.CombatClass)
-                || string.IsNullOrWhiteSpace(document.StageId)
-                || document.SelectedItems.Count == 0
-                || !Enum.TryParse(document.CombatClass, ignoreCase: true, out combatClass)
-                || !Enum.TryParse(document.StageId, ignoreCase: true, out stageId))
-            {
-                return false;
-            }
-
-            selectedItems = document.SelectedItems
-                .Where(static pair => pair.Value > 0
-                    && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
-                .ToDictionary(
-                    static pair => pair.Key,
-                    static pair => pair.Value,
-                    StringComparer.OrdinalIgnoreCase);
-
-            return selectedItems.Count > 0;
+            return TryReadBuildDocumentFromJson(File.ReadAllText(filePath), out document, out combatClass, out stageId, out selectedItems);
         }
         catch (Exception exception)
         {
             LogWarning($"Failed to read build json from '{filePath}'.", exception);
             return false;
         }
+    }
+
+    private static bool TryReadBuildDocumentFromJson(
+        string json,
+        out JournalBuildDocument document,
+        out CombatClass combatClass,
+        out ProgressionStageId stageId,
+        out Dictionary<string, int> selectedItems)
+    {
+        document = JsonSerializer.Deserialize<JournalBuildDocument>(json, SerializerOptions)
+            ?? new JournalBuildDocument();
+        combatClass = default;
+        stageId = default;
+        selectedItems = [];
+
+        if ((!string.IsNullOrWhiteSpace(document.Format)
+                && !string.Equals(document.Format, BuildFormat, StringComparison.OrdinalIgnoreCase))
+            || string.IsNullOrWhiteSpace(document.Name)
+            || string.IsNullOrWhiteSpace(document.CombatClass)
+            || string.IsNullOrWhiteSpace(document.StageId)
+            || document.SelectedItems.Count == 0
+            || !Enum.TryParse(document.CombatClass, ignoreCase: true, out combatClass)
+            || !Enum.TryParse(document.StageId, ignoreCase: true, out stageId))
+        {
+            return false;
+        }
+
+        selectedItems = document.SelectedItems
+            .Where(static pair => pair.Value > 0
+                && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
+            .ToDictionary(
+                static pair => pair.Key,
+                static pair => pair.Value,
+                StringComparer.OrdinalIgnoreCase);
+
+        return selectedItems.Count > 0;
+    }
+
+    private static string ToBase64Url(byte[] bytes)
+    {
+        return Convert.ToBase64String(bytes)
+            .TrimEnd('=')
+            .Replace('+', '-')
+            .Replace('/', '_');
+    }
+
+    private static byte[] FromBase64Url(string payload)
+    {
+        var base64 = payload
+            .Replace('-', '+')
+            .Replace('_', '/');
+        var padding = (4 - base64.Length % 4) % 4;
+        return Convert.FromBase64String(base64.PadRight(base64.Length + padding, '='));
     }
 
     private sealed class JournalBuildDocument
