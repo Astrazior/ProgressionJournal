@@ -63,7 +63,7 @@ public static class JournalUiMetrics
     public const float BuildPickerHeight = 620f;
     public const float BuildPickerInset = 18f;
     public const float BuildPickerHeaderTop = 10f;
-    public const float BuildPickerListTop = 82f;
+    public const float BuildPickerListTop = 126f;
     public const float BuildPickerListBottomInset = 18f;
     public const float ScrollbarOffset = 18f;
     public const float ScrollbarWidth = 20f;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ProgressionJournal.Data.Repositories;
 
@@ -53,7 +54,38 @@ public static partial class JournalRepository
         string slotKey,
         int itemId)
     {
-        return GetBuildCandidates(stageId, combatClass, slotKey).Any(candidate => candidate.ItemId == itemId);
+        if (!JournalBuildPlannerCatalog.TryGetSlotKind(slotKey, out var slotKind))
+        {
+            return false;
+        }
+
+        return GetBuildCandidates(stageId, combatClass, slotKey).Any(candidate => candidate.ItemId == itemId)
+            || IsValidModBuildCandidate(combatClass, slotKind, itemId);
+    }
+
+    public static IReadOnlyList<JournalBuildCandidateGroup> GetModBuildCandidateGroups(
+        CombatClass combatClass,
+        string slotKey)
+    {
+        if (!JournalBuildPlannerCatalog.TryGetSlotKind(slotKey, out var slotKind))
+        {
+            return [];
+        }
+
+        return ContentSamples.ItemsByType.Values
+            .Where(item => IsModBuildCandidate(combatClass, slotKind, item))
+            .GroupBy(static item => item.ModItem!.Mod.DisplayNameClean)
+            .OrderBy(static group => group.Key, StringComparer.CurrentCultureIgnoreCase)
+            .Select(static group => new JournalBuildCandidateGroup(
+                group.Key,
+                group
+                    .GroupBy(static item => item.type)
+                    .Select(static itemGroup => itemGroup.First())
+                    .OrderBy(static item => Lang.GetItemNameValue(item.type), StringComparer.CurrentCultureIgnoreCase)
+                    .Select(static item => new JournalBuildCandidate(item.type))
+                    .ToArray()))
+            .Where(static group => group.Candidates.Count > 0)
+            .ToArray();
     }
 
     private static IReadOnlyList<JournalBuildCandidate> BuildEquipmentCandidates(
@@ -157,8 +189,7 @@ public static partial class JournalRepository
 
     private static bool IsFoodBuffItem(Item item)
     {
-        return item is { IsAir: false, consumable: true }
-            && item.buffType is BuffID.WellFed or BuffID.WellFed2 or BuffID.WellFed3;
+        return item is { IsAir: false, consumable: true, buffType: BuffID.WellFed or BuffID.WellFed2 or BuffID.WellFed3 };
     }
 
     private static int GetFoodBuffSortOrder(int buffType)
@@ -176,11 +207,11 @@ public static partial class JournalRepository
     {
         return slotKind switch
         {
-            JournalBuildSlotKind.PrimaryWeapon when entry.Category == JournalItemCategory.Weapon && !entry.IsSupportWeapon
+            JournalBuildSlotKind.PrimaryWeapon when entry is { Category: JournalItemCategory.Weapon, IsSupportWeapon: false }
                 => entry.ItemGroups.SelectMany(static group => group.ItemIds),
             JournalBuildSlotKind.SupportWeapon when entry.IsSupportWeapon
                 => entry.ItemGroups.SelectMany(static group => group.ItemIds),
-            JournalBuildSlotKind.ClassSpecific when entry.Category == JournalItemCategory.ClassSpecific && !entry.IsSupportWeapon
+            JournalBuildSlotKind.ClassSpecific when entry is { Category: JournalItemCategory.ClassSpecific, IsSupportWeapon: false }
                 => entry.ItemGroups.SelectMany(static group => group.ItemIds),
             JournalBuildSlotKind.Accessory when entry.Category == JournalItemCategory.Accessory
                 => entry.ItemGroups.SelectMany(static group => group.ItemIds),
@@ -228,8 +259,8 @@ public static partial class JournalRepository
         return slotKind switch
         {
             JournalBuildSlotKind.ArmorHead => item.headSlot >= 0,
-            JournalBuildSlotKind.ArmorBody => item.bodySlot >= 0 && item.headSlot < 0,
-            JournalBuildSlotKind.ArmorLegs => item.legSlot >= 0 && item.headSlot < 0 && item.bodySlot < 0,
+            JournalBuildSlotKind.ArmorBody => item is { bodySlot: >= 0, headSlot: < 0 },
+            JournalBuildSlotKind.ArmorLegs => item is { legSlot: >= 0, headSlot: < 0, bodySlot: < 0 },
             _ => false
         };
     }
@@ -242,5 +273,54 @@ public static partial class JournalRepository
             JournalBuildSlotKind.Food => buffEntry.Category == JournalBuffCategory.Food,
             _ => false
         };
+    }
+
+    private static bool IsValidModBuildCandidate(CombatClass combatClass, JournalBuildSlotKind slotKind, int itemId)
+    {
+        return ContentSamples.ItemsByType.TryGetValue(itemId, out var item)
+            && IsModBuildCandidate(combatClass, slotKind, item);
+    }
+
+    private static bool IsModBuildCandidate(CombatClass combatClass, JournalBuildSlotKind slotKind, Item item)
+    {
+        if (item.type <= ItemID.None || item.IsAir || item.ModItem is null)
+        {
+            return false;
+        }
+
+        return slotKind switch
+        {
+            JournalBuildSlotKind.PrimaryWeapon or JournalBuildSlotKind.SupportWeapon => IsWeaponItem(item),
+            JournalBuildSlotKind.ClassSpecific => IsClassSpecificModItem(combatClass, item),
+            JournalBuildSlotKind.ArmorHead => item.headSlot >= 0,
+            JournalBuildSlotKind.ArmorBody => item is { bodySlot: >= 0, headSlot: < 0 },
+            JournalBuildSlotKind.ArmorLegs => item is { legSlot: >= 0, headSlot: < 0, bodySlot: < 0 },
+            JournalBuildSlotKind.Accessory => item.accessory,
+            JournalBuildSlotKind.Potion => IsBuffConsumable(item) && !IsFoodBuffItem(item),
+            JournalBuildSlotKind.Food => IsFoodBuffItem(item),
+            _ => false
+        };
+    }
+
+    private static bool IsClassSpecificModItem(CombatClass combatClass, Item item)
+    {
+        return combatClass switch
+        {
+            CombatClass.Ranged => item.ammo > AmmoID.None || item.useAmmo > AmmoID.None,
+            CombatClass.Summoner => IsWeaponItem(item) && item.CountsAsClass(DamageClass.Summon),
+            CombatClass.Magic => IsWeaponItem(item) && (item.CountsAsClass(DamageClass.Magic) || item.mana > 0),
+            CombatClass.Melee => IsWeaponItem(item) && item.CountsAsClass(DamageClass.Melee),
+            _ => IsWeaponItem(item)
+        };
+    }
+
+    private static bool IsWeaponItem(Item item)
+    {
+        return item is { damage: > 0, accessory: false, headSlot: < 0, bodySlot: < 0, legSlot: < 0 };
+    }
+
+    private static bool IsBuffConsumable(Item item)
+    {
+        return item is { consumable: true, buffType: > 0 };
     }
 }
