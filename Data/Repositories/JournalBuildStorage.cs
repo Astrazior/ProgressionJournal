@@ -8,6 +8,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Default;
+using Terraria.ModLoader.IO;
 
 namespace ProgressionJournal.Data.Repositories;
 
@@ -67,7 +69,7 @@ public static class JournalBuildStorage
 
             var document = CreateDocument(name, combatClass, stageId, selectedItems);
 
-            if (document.SelectedItems.Count == 0)
+            if (document.SelectedItemRefs.Count == 0)
             {
                 errorMessage = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveNoItems");
                 return false;
@@ -107,7 +109,7 @@ public static class JournalBuildStorage
             var itemReferences = CreateItemReferences(selectedItems);
             var normalizedSelections = GetLoadedSelectedItems(itemReferences);
 
-            if (normalizedSelections.Count == 0)
+            if (itemReferences.Count == 0)
             {
                 errorMessage = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveNoItems");
                 return false;
@@ -209,7 +211,12 @@ public static class JournalBuildStorage
 
         try
         {
-            var document = CreateDocument(build.Name, build.CombatClass, build.StageId, build.ItemReferences);
+            var document = CreateDocument(
+                build.Name,
+                build.CombatClass,
+                build.StageId,
+                build.ItemReferences,
+                includeItemData: false);
             var json = JsonSerializer.Serialize(document, CompactSerializerOptions);
             payload = ToBase64Url(Encoding.UTF8.GetBytes(json));
             return true;
@@ -486,16 +493,23 @@ public static class JournalBuildStorage
         string name,
         CombatClass combatClass,
         ProgressionStageId stageId,
-        IReadOnlyDictionary<string, int> selectedItems)
+        IReadOnlyDictionary<string, int> selectedItems,
+        bool includeItemData = true)
     {
-        return CreateDocument(name, combatClass, stageId, CreateItemReferences(selectedItems));
+        return CreateDocument(
+            name,
+            combatClass,
+            stageId,
+            CreateItemReferences(selectedItems),
+            includeItemData);
     }
 
     private static JournalBuildDocument CreateDocument(
         string name,
         CombatClass combatClass,
         ProgressionStageId stageId,
-        IReadOnlyDictionary<string, JournalSavedBuildItemReference> itemReferences)
+        IReadOnlyDictionary<string, JournalSavedBuildItemReference> itemReferences,
+        bool includeItemData = true)
     {
         var normalizedSelections = GetLoadedSelectedItems(itemReferences);
 
@@ -509,7 +523,7 @@ public static class JournalBuildStorage
             IsFavorite = false,
             FavoriteSortKey = 0L,
             SelectedItems = normalizedSelections,
-            SelectedItemRefs = CreateItemReferenceDocuments(itemReferences)
+            SelectedItemRefs = CreateItemReferenceDocuments(itemReferences, includeItemData)
         };
     }
 
@@ -604,8 +618,23 @@ public static class JournalBuildStorage
         var modName = modItem?.Mod.Name ?? string.Empty;
         var itemName = modItem?.Name ?? string.Empty;
         var displayName = item.HoverName;
+        var itemData = string.Empty;
 
-        return new JournalSavedBuildItemReference(item.type, modName, itemName, displayName);
+        try
+        {
+            itemData = ItemIO.ToBase64(item);
+        }
+        catch (Exception exception)
+        {
+            LogWarning($"Failed to serialize item '{displayName}'.", exception);
+        }
+
+        return new JournalSavedBuildItemReference(
+            item.type,
+            modName,
+            itemName,
+            displayName,
+            itemData);
     }
 
     private static Dictionary<string, int> GetLoadedSelectedItems(
@@ -621,18 +650,20 @@ public static class JournalBuildStorage
     }
 
     private static Dictionary<string, JournalBuildItemDocument> CreateItemReferenceDocuments(
-        IReadOnlyDictionary<string, JournalSavedBuildItemReference> itemReferences)
+        IReadOnlyDictionary<string, JournalSavedBuildItemReference> itemReferences,
+        bool includeItemData = true)
     {
         return itemReferences
             .Where(static pair => JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
             .ToDictionary(
                 static pair => pair.Key,
-                static pair => new JournalBuildItemDocument
+                pair => new JournalBuildItemDocument
                 {
                     Type = pair.Value.Type,
                     Mod = pair.Value.ModName,
                     Name = pair.Value.ItemName,
-                    DisplayName = pair.Value.DisplayName
+                    DisplayName = pair.Value.DisplayName,
+                    ItemData = includeItemData ? pair.Value.ItemData : string.Empty
                 },
                 StringComparer.OrdinalIgnoreCase);
     }
@@ -657,47 +688,144 @@ public static class JournalBuildStorage
 
         return document.SelectedItems
             .Where(static pair => pair.Value > ItemID.None
-                && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
+                                  && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out _))
             .Select(static pair => new
             {
                 pair.Key,
-                Reference = CreateItemReference(pair.Value)
-                    ?? new JournalSavedBuildItemReference(
-                        ItemID.None,
-                        string.Empty,
-                        string.Empty,
-                        Language.GetTextValue("Mods.ProgressionJournal.UI.BuildUnloadedItem"))
+                Reference = ResolveLegacyItemReference(pair.Value)
             })
+            .Where(static pair => pair.Reference is not null)
             .ToDictionary(
                 static pair => pair.Key,
-                static pair => pair.Reference,
+                static pair => pair.Reference!,
                 StringComparer.OrdinalIgnoreCase);
+    }
+    private static JournalSavedBuildItemReference? ResolveLegacyItemReference(int itemId)
+    {
+        if (itemId <= ItemID.None)
+        {
+            return null;
+        }
+        
+        if (itemId >= ItemID.Count)
+        {
+            return new JournalSavedBuildItemReference(
+                ItemID.None,
+                string.Empty,
+                string.Empty,
+                Language.GetTextValue("Mods.ProgressionJournal.UI.BuildUnloadedItem"));
+        }
+
+        return CreateItemReference(itemId)
+               ?? new JournalSavedBuildItemReference(
+                   ItemID.None,
+                   string.Empty,
+                   string.Empty,
+                   Language.GetTextValue("Mods.ProgressionJournal.UI.BuildUnloadedItem"));
     }
 
     private static JournalSavedBuildItemReference? ResolveItemReference(JournalBuildItemDocument document)
     {
+        var itemData = document.ItemData.Trim();
+
+        if (!string.IsNullOrWhiteSpace(itemData)
+            && TryResolveItemReferenceFromItemData(itemData, document, out var itemDataReference))
+        {
+            return itemDataReference;
+        }
+
         var modName = document.Mod.Trim();
         var itemName = document.Name.Trim();
         var displayName = document.DisplayName.Trim();
-
-        if (string.IsNullOrWhiteSpace(modName) || string.IsNullOrWhiteSpace(itemName))
+        
+        if (string.IsNullOrWhiteSpace(modName) && string.IsNullOrWhiteSpace(itemName))
         {
-            return CreateItemReference(document.Type);
-        }
+            if (document.Type > ItemID.None && document.Type < ItemID.Count)
+            {
+                return CreateItemReference(document.Type);
+            }
 
-        if (ModContent.TryFind<ModItem>(modName, itemName, out var modItem)
+            return CreateUnloadedItemReference(modName, itemName, displayName, itemData);
+        }
+        
+        if (ModContent.TryFind(modName, itemName, out ModItem modItem)
             && CreateItemReference(modItem.Type) is { } resolved)
         {
             return resolved;
         }
 
+        return CreateUnloadedItemReference(modName, itemName, displayName, itemData);
+    }
+    
+    private static bool TryResolveItemReferenceFromItemData(
+        string itemData,
+        JournalBuildItemDocument document,
+        out JournalSavedBuildItemReference? reference)
+    {
+        reference = null;
+
+        try
+        {
+            var item = ItemIO.FromBase64(itemData);
+
+            if (item.IsAir)
+            {
+                return false;
+            }
+
+            if (item.ModItem is UnloadedItem unloadedItem)
+            {
+                var modName = string.IsNullOrWhiteSpace(unloadedItem.ModName)
+                    ? document.Mod.Trim()
+                    : unloadedItem.ModName;
+
+                var itemName = string.IsNullOrWhiteSpace(unloadedItem.ItemName)
+                    ? document.Name.Trim()
+                    : unloadedItem.ItemName;
+
+                var displayName = document.DisplayName.Trim();
+
+                reference = CreateUnloadedItemReference(
+                    modName,
+                    itemName,
+                    displayName,
+                    itemData);
+
+                return true;
+            }
+
+            var modItem = item.ModItem;
+
+            reference = new JournalSavedBuildItemReference(
+                item.type,
+                modItem?.Mod.Name ?? string.Empty,
+                modItem?.Name ?? string.Empty,
+                item.HoverName,
+                itemData);
+
+            return true;
+        }
+        catch (Exception exception)
+        {
+            LogWarning("Failed to deserialize saved build item data.", exception);
+            return false;
+        }
+    }
+
+    private static JournalSavedBuildItemReference CreateUnloadedItemReference(
+        string modName,
+        string itemName,
+        string displayName,
+        string itemData = "")
+    {
         return new JournalSavedBuildItemReference(
             ItemID.None,
             modName,
             itemName,
             string.IsNullOrWhiteSpace(displayName)
                 ? Language.GetTextValue("Mods.ProgressionJournal.UI.BuildUnloadedItem")
-                : displayName);
+                : displayName,
+            itemData);
     }
 
     private static string ToBase64Url(byte[] bytes)
@@ -775,6 +903,8 @@ public static class JournalBuildStorage
         private readonly string? _mod = string.Empty;
         private readonly string? _name = string.Empty;
         private readonly string? _displayName = string.Empty;
+        private readonly string? _itemData = string.Empty;
+        public string ItemData { get => _itemData ?? string.Empty; init => _itemData = value; }
 
         public int Type { get; init; }
 
