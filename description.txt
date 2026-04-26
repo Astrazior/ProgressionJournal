@@ -1,2 +1,47 @@
-Client-side progression journal with stage-by-stage equipment recommendations for every class.
-Клиентский журнал прогрессии с рекомендациями по экипировке для каждого этапа и класса.
+[h1]Progression Journal[/h1]
+
+[b]A client-side progression helper for Terraria/tModLoader.[/b]
+
+This mod adds an in-game journal with manually curated equipment recommendations for each class at every stage of progression.
+It is designed as a quick reference during gameplay, so you do not have to open the wiki every few minutes.
+
+[h2]Features[/h2]
+[list]
+[*]Equipment recommendations for melee, ranged, magic, and summoner at each progression stage
+[*]Separate rating tiers: strong, usable, weak, and very weak
+[*]Combat buffs page with stations, passives, potions, food, flasks, and permanent upgrades
+[*]Item acquisition panel: drops, shops, recipes, crafting stations, and conditions
+[*]Visual condition icons for events, moon phases, and other progression checks
+[*]Fully usable in-game through a dedicated journal interface
+[*]Custom build system with saving, import, and export support
+[*]Build sharing through JSON format or directly through the in-game chat
+[*]Support for items from other mods in custom builds
+[*]Search and filtering tools for easier build setup
+[/list]
+
+[h2]Build System[/h2]
+
+Starting with version [b]2.0.0[/b], the mod includes a full build system. You can now create your own custom character builds, adjust them to your playstyle, and share them directly with other players.
+
+[img]https://i.imgur.com/PV7pm66.gif[/img]
+
+The build system allows you to create your own custom character builds: choose equipment, accessories, weapons, consumables, and other elements for a specific class or playstyle.
+
+Builds can be shared in two ways:
+[list]
+[*]through JSON format for import and export;
+[*]directly through the in-game chat.
+[/list]
+
+The system supports items from other mods, but there are important limitations: modded classes are not currently supported, and builds are not separated by progression stages. These limitations are partially mitigated by the search and filtering system, which makes it easier to find the items you need and assemble builds manually.
+
+[h2]Important[/h2]
+[list]
+[*]This is a [b]client-side[/b] mod
+[*]The server does not need to install it
+[*]It does not change vanilla progression balance; it works as a reference tool
+[*][b]Calamity, Thorium, and other mods that add new equipment or classes are not supported and will not be supported by me personally, because I have not played these mods and cannot objectively place their items within progression. Experienced users are free to make add-ons for this mod, but I am not responsible for their functionality, balance, or recommendation accuracy.[/b]
+[/list]
+
+[h1]Links[/h1]
+[url=https://github.com/Astrazior/ProgressionJournal]GitHub[/url]
