@@ -122,14 +122,33 @@ public sealed class JournalSystem : ModSystem
 
     public override void PostUpdateInput()
     {
-        if (Main.dedServ)
+        if (Main.dedServ || ProgressionJournal.IsUnloading)
         {
             return;
         }
 
-        if (ProgressionJournal.ToggleJournalKeybind?.JustPressed == true)
+        if (IsToggleJournalKeybindJustPressed())
         {
             ToggleView();
+        }
+    }
+
+    private static bool IsToggleJournalKeybindJustPressed()
+    {
+        var keybind = ProgressionJournal.ToggleJournalKeybind;
+        if (keybind is null)
+        {
+            return false;
+        }
+
+        try
+        {
+            return keybind.JustPressed;
+        }
+        catch (KeyNotFoundException)
+        {
+            // Can happen after hot-unloading the mod through tools like ModReloader.
+            return false;
         }
     }
 

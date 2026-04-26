@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Reflection;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -14,12 +16,40 @@ namespace ProgressionJournal.Systems;
 
 public static class JournalBuildChat
 {
+    private static bool _unloaded;
     private const string BuildTagName = "pjb";
     private const string JournalIconTexturePath = "ProgressionJournal/Assets/UI/JournalButtonIcon";
 
     public static void RegisterTags()
     {
+        _unloaded = false;
         ChatManager.Register<BuildTagHandler>(BuildTagName);
+    }
+    
+    public static void Unload()
+    {
+        _unloaded = true;
+        TryUnregisterChatTag();
+    }
+    
+    private static void TryUnregisterChatTag()
+    {
+        try
+        {
+            var handlersField = typeof(ChatManager).GetField(
+                "_handlers",
+                BindingFlags.Static | BindingFlags.NonPublic);
+
+            if (handlersField?.GetValue(null) is IDictionary handlers)
+            {
+                handlers.Remove(BuildTagName);
+            }
+        }
+        catch (Exception exception)
+        {
+            ProgressionJournal.Instance?.Logger.Debug(
+                $"Failed to unregister ProgressionJournal chat tag '{BuildTagName}': {exception}");
+        }
     }
 
     public static void ShareBuild(string buildName, string payload)
@@ -74,6 +104,11 @@ public static class JournalBuildChat
     {
         public TextSnippet Parse(string text, Color baseColor = default, string? options = null)
         {
+            if (_unloaded || ProgressionJournal.Instance is null)
+            {
+                return new TextSnippet(text, baseColor);
+            }
+
             return new BuildSnippet(text, options ?? string.Empty);
         }
     }
@@ -152,7 +187,20 @@ public static class JournalBuildChat
 
         public override void OnClick()
         {
-            ModContent.GetInstance<JournalSystem>().ShowSharedBuildPreview(_payload);
+            if (_unloaded || ProgressionJournal.Instance is null)
+            {
+                return;
+            }
+
+            try
+            {
+                ModContent.GetInstance<JournalSystem>().ShowSharedBuildPreview(_payload);
+            }
+            catch (Exception exception)
+            {
+                ProgressionJournal.Instance.Logger.Debug(
+                    $"Failed to open shared build preview: {exception}");
+            }
         }
 
         public override void OnHover()

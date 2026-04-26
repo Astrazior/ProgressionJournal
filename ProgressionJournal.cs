@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.ModLoader;
 using ProgressionJournal.Api;
 using ProgressionJournal.Systems;
-using System.IO;
 
 namespace ProgressionJournal;
 
@@ -14,8 +13,11 @@ public sealed class ProgressionJournal : Mod
 
 	internal static ModKeybind? ToggleJournalKeybind { get; private set; }
 
+	internal static bool IsUnloading { get; private set; }
+
 	public override void Load()
 	{
+		IsUnloading = false;
 		Instance = this;
 
 		if (Main.dedServ) return;
@@ -25,6 +27,10 @@ public sealed class ProgressionJournal : Mod
 
 	public override void Unload()
 	{
+		IsUnloading = true;
+
+		JournalBuildChat.Unload();
+
 		JournalRepository.ClearExternalContent();
 		ToggleJournalKeybind = null;
 		Instance = null;
