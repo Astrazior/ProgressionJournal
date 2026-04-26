@@ -34,9 +34,4 @@ public sealed class ProgressionJournal : Mod
 	{
 		return ProgressionJournalApi.HandleCall(args);
 	}
-
-	public override void HandlePacket(BinaryReader reader, int whoAmI)
-	{
-		JournalBuildChat.HandlePacket(reader, whoAmI);
-	}
 }

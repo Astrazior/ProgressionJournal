@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -15,8 +14,6 @@ namespace ProgressionJournal.Systems;
 
 public static class JournalBuildChat
 {
-    private const byte ShareBuildPacket = 1;
-
     private const string BuildTagName = "pjb";
     private const string JournalIconTexturePath = "ProgressionJournal/Assets/UI/JournalButtonIcon";
 
@@ -27,61 +24,41 @@ public static class JournalBuildChat
 
     public static void ShareBuild(string buildName, string payload)
     {
-        var message = CreateChatMessage(Main.LocalPlayer.name, buildName, payload);
-
-        if (Main.netMode == NetmodeID.SinglePlayer)
-        {
-            Main.NewText(message, new Color(144, 213, 255));
-            return;
-        }
-
-        if (Main.netMode != NetmodeID.MultiplayerClient || ProgressionJournal.Instance is not { } mod)
-        {
-            return;
-        }
-
-        var packet = mod.GetPacket();
-        packet.Write(ShareBuildPacket);
-        packet.Write(buildName);
-        packet.Write(payload);
-        packet.Send();
-    }
-
-    public static void HandlePacket(BinaryReader reader, int whoAmI)
-    {
-        var packetType = reader.ReadByte();
-        if (packetType != ShareBuildPacket || Main.netMode != NetmodeID.Server)
-        {
-            return;
-        }
-
-        var buildName = reader.ReadString();
-        var payload = reader.ReadString();
         if (!JournalBuildStorage.TryReadBuildPayload(payload, out _))
         {
+            Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildExportFailed"), Color.OrangeRed);
             return;
         }
 
-        var playerName = whoAmI is >= 0 and < Main.maxPlayers
-            ? Main.player[whoAmI].name
-            : string.Empty;
-        var message = CreateChatMessage(playerName, buildName, payload);
-        ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(message), new Color(144, 213, 255));
+        var message = CreateChatMessage(buildName, payload);
+
+        switch (Main.netMode)
+        {
+            case NetmodeID.SinglePlayer:
+                Main.NewText(message, new Color(144, 213, 255));
+                break;
+
+            case NetmodeID.MultiplayerClient:
+                ChatHelper.SendChatMessageFromClient(new ChatMessage(message));
+                break;
+        }
     }
 
-    private static string CreateChatMessage(string playerName, string buildName, string payload)
+    private static string CreateChatMessage(string buildName, string payload)
     {
-        var safePlayerName = SanitizeVisibleText(playerName);
         var safeBuildName = SanitizeVisibleText(buildName);
-        if (string.IsNullOrWhiteSpace(safePlayerName))
-        {
-            safePlayerName = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSharedUnknownPlayer");
-        }
 
-        var sharedLabel = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSharedChatLabel", safeBuildName);
+        var sharedLabel = Language.GetTextValue(
+            "Mods.ProgressionJournal.UI.BuildSharedChatLabel",
+            safeBuildName
+        );
+
         var buildTag = $"[{BuildTagName}/{payload}:{sharedLabel}]";
 
-        return Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSharedChatMessage", safePlayerName, buildTag);
+        return Language.GetTextValue(
+            "Mods.ProgressionJournal.UI.BuildSharedChatMessage",
+            buildTag
+        );
     }
 
     private static string SanitizeVisibleText(string text)
