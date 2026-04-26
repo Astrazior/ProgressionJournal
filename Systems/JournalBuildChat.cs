@@ -25,13 +25,17 @@ public static class JournalBuildChat
         _unloaded = false;
         ChatManager.Register<BuildTagHandler>(BuildTagName);
     }
-    
+
     public static void Unload()
     {
         _unloaded = true;
+
         TryUnregisterChatTag();
+        TryClearChatHistory();
+
+        BuildSnippet.ClearCachedAssets();
     }
-    
+
     private static void TryUnregisterChatTag()
     {
         try
@@ -113,14 +117,29 @@ public static class JournalBuildChat
         }
     }
 
+    private static void TryClearChatHistory()
+    {
+        try
+        {
+            Main.chatMonitor.Clear();
+        }
+        catch (Exception exception)
+        {
+            ProgressionJournal.Instance?.Logger.Debug(
+                $"Failed to clear chat history after unloading ProgressionJournal: {exception}");
+        }
+    }
+
     private sealed class BuildSnippet : TextSnippet
     {
         private const float IconSize = 20f;
         private const float IconGap = 5f;
         private const float ButtonHorizontalPadding = 6f;
 
-        private static readonly Asset<Texture2D> JournalIconTexture =
-            ModContent.Request<Texture2D>(JournalIconTexturePath);
+        private static Asset<Texture2D>? _journalIconTexture;
+
+        private static Asset<Texture2D> JournalIconTexture =>
+            _journalIconTexture ??= ModContent.Request<Texture2D>(JournalIconTexturePath);
 
         private readonly string _label;
         private readonly string _payload;
@@ -130,8 +149,14 @@ public static class JournalBuildChat
         {
             _label = text;
             _payload = payload;
+
             CheckForHover = true;
             DeleteWhole = true;
+        }
+
+        public static void ClearCachedAssets()
+        {
+            _journalIconTexture = null;
         }
 
         public override bool UniqueDraw(
@@ -143,8 +168,32 @@ public static class JournalBuildChat
             float scale = 1f)
         {
             var font = FontAssets.MouseText.Value;
+            var drawColor = new Color(255, 231, 132);
+
+            if (_unloaded || ProgressionJournal.Instance is null)
+            {
+                size = font.MeasureString(_label) * scale;
+
+                if (!justCheckingString)
+                {
+                    Utils.DrawBorderStringFourWay(
+                        spriteBatch,
+                        font,
+                        _label,
+                        position.X,
+                        position.Y,
+                        drawColor,
+                        Color.Black * 0.72f,
+                        Vector2.Zero,
+                        scale);
+                }
+
+                return true;
+            }
+
             var textSize = font.MeasureString(_label) * scale;
             var iconSize = IconSize * scale;
+
             size = new Vector2(
                 ButtonHorizontalPadding * 2f * scale + iconSize + IconGap * scale + textSize.X,
                 MathF.Max(iconSize, textSize.Y));
@@ -156,9 +205,14 @@ public static class JournalBuildChat
 
             var iconTexture = JournalIconTexture.Value;
             var iconScale = MathF.Min(iconSize / iconTexture.Width, iconSize / iconTexture.Height);
-            var iconPosition = position + new Vector2(ButtonHorizontalPadding * scale, (size.Y - iconSize) * 0.5f);
-            var textPosition = position + new Vector2(ButtonHorizontalPadding * scale + iconSize + IconGap * scale, (size.Y - textSize.Y) * 0.5f);
-            var drawColor = new Color(255, 231, 132);
+
+            var iconPosition = position + new Vector2(
+                ButtonHorizontalPadding * scale,
+                (size.Y - iconSize) * 0.5f);
+
+            var textPosition = position + new Vector2(
+                ButtonHorizontalPadding * scale + iconSize + IconGap * scale,
+                (size.Y - textSize.Y) * 0.5f);
 
             spriteBatch.Draw(
                 iconTexture,
@@ -205,6 +259,11 @@ public static class JournalBuildChat
 
         public override void OnHover()
         {
+            if (_unloaded || ProgressionJournal.Instance is null)
+            {
+                return;
+            }
+
             Main.hoverItemName = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSharedOpenTooltip");
         }
     }

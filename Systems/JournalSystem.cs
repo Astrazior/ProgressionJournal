@@ -74,6 +74,37 @@ public sealed class JournalSystem : ModSystem
         _buttonState.Activate();
         _buttonInterface.SetState(_buttonState);
     }
+    
+    public override void Unload()
+    {
+        Visible = false;
+        ShowingPresets = false;
+        ShowingBuildBuilder = false;
+        ShowingCombatBuffsPage = false;
+        ShowingBuildSaveDialog = false;
+        ShowingBuildExportDialog = false;
+        SelectingClass = true;
+        HasSelectedClass = false;
+
+        ActiveBuildSlotKey = null;
+        _editingBuild = null;
+        _exportingBuild = null;
+        SharedBuildPreview = null;
+        SelectedItemId = ItemID.None;
+
+        _buildSelections.Clear();
+
+        _journalInterface?.SetState(null);
+        _buttonInterface?.SetState(null);
+
+        _journalState?.RemoveAllChildren();
+        _buttonState?.RemoveAllChildren();
+
+        _journalInterface = null;
+        _journalState = null;
+        _buttonInterface = null;
+        _buttonState = null;
+    }
 
     public override void UpdateUI(GameTime gameTime)
     {
@@ -118,38 +149,6 @@ public sealed class JournalSystem : ModSystem
             "ProgressionJournal: Journal Window",
             DrawJournalInterface,
             InterfaceScaleType.UI));
-    }
-
-    public override void PostUpdateInput()
-    {
-        if (Main.dedServ || ProgressionJournal.IsUnloading)
-        {
-            return;
-        }
-
-        if (IsToggleJournalKeybindJustPressed())
-        {
-            ToggleView();
-        }
-    }
-
-    private static bool IsToggleJournalKeybindJustPressed()
-    {
-        var keybind = ProgressionJournal.ToggleJournalKeybind;
-        if (keybind is null)
-        {
-            return false;
-        }
-
-        try
-        {
-            return keybind.JustPressed;
-        }
-        catch (KeyNotFoundException)
-        {
-            // Can happen after hot-unloading the mod through tools like ModReloader.
-            return false;
-        }
     }
 
     public void ToggleView()
