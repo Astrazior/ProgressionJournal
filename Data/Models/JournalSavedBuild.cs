@@ -7,8 +7,9 @@ namespace ProgressionJournal.Data.Models;
 
 public sealed class JournalSavedBuild(
     string name,
-    CombatClass combatClass,
-    ProgressionStageId stageId,
+    string profileId,
+    string classId,
+    string stageId,
     IReadOnlyDictionary<string, JournalSavedBuildItemReference> selectedItems,
     bool isFavorite,
     long favoriteSortKey,
@@ -16,9 +17,13 @@ public sealed class JournalSavedBuild(
 {
     public string Name { get; } = name;
 
-    public CombatClass CombatClass { get; } = combatClass;
+    public string ProfileId { get; } = profileId;
 
-    public ProgressionStageId StageId { get; } = stageId;
+    public string ClassId { get; } = classId;
+
+    public string StageId { get; } = stageId;
+
+    public CombatClass CombatClass => JournalClassIds.ToLegacy(ClassId);
 
     public string SourcePath { get; } = sourcePath;
 

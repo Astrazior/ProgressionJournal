@@ -30,6 +30,7 @@ public static class JournalOrdering
         RecommendationTier.Additional => 1,
         RecommendationTier.NotRecommended => 2,
         RecommendationTier.Useless => 3,
+        RecommendationTier.FromGuide => 4,
         _ => int.MaxValue
     };
 

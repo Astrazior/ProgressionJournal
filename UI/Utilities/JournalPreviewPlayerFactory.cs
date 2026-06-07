@@ -39,7 +39,7 @@ public static class JournalPreviewPlayerFactory
         return preview;
     }
 
-    public static Player CreateSavedBuildPreview(JournalSavedBuild build, ProgressionStageId stageId)
+    public static Player CreateSavedBuildPreview(JournalSavedBuild build, string profileId, string stageId)
     {
         var preview = Main.LocalPlayer.SerializedClone();
         preview.dead = false;
@@ -63,7 +63,7 @@ public static class JournalPreviewPlayerFactory
         SetArmor(preview, 2, build.GetSelectedItemId(JournalBuildPlannerCatalog.ArmorLegsSlotKey));
 
         var accessorySlot = 3;
-        for (var slotIndex = 1; slotIndex <= JournalBuildPlannerCatalog.GetAccessorySlotCount(stageId); slotIndex++)
+        for (var slotIndex = 1; slotIndex <= JournalBuildPlannerCatalog.GetAccessorySlotCount(profileId, stageId); slotIndex++)
         {
             var itemId = build.GetSelectedItemId(JournalBuildPlannerCatalog.GetAccessorySlotKey(slotIndex));
             if (itemId <= ItemID.None)
@@ -84,6 +84,11 @@ public static class JournalPreviewPlayerFactory
         preview.PlayerFrame();
         ConfigurePreviewDraw(preview);
         return preview;
+    }
+
+    public static Player CreateSavedBuildPreview(JournalSavedBuild build, ProgressionStageId stageId)
+    {
+        return CreateSavedBuildPreview(build, JournalProfileIds.Vanilla, JournalStageIds.FromLegacy(stageId));
     }
 
     private static void ResetItems(Item[] items)

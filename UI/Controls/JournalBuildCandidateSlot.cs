@@ -18,7 +18,12 @@ public sealed class JournalBuildCandidateSlot : UIElement
     private readonly Item[] _displayItems = CreateDisplayItems();
     private float _visualScale = 1f;
 
-    public JournalBuildCandidateSlot(Item item, bool selected, bool disabled, Action onClick)
+    public JournalBuildCandidateSlot(
+        Item item,
+        bool selected,
+        bool disabled,
+        Action onClick,
+        Action? onRightClick = null)
     {
         _item = item.Clone();
         _selected = selected;
@@ -30,6 +35,13 @@ public sealed class JournalBuildCandidateSlot : UIElement
             if (!_disabled)
             {
                 onClick();
+            }
+        };
+        OnRightClick += (_, _) =>
+        {
+            if (!_disabled)
+            {
+                onRightClick?.Invoke();
             }
         };
     }

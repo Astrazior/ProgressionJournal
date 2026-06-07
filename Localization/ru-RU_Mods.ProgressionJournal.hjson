@@ -2,7 +2,7 @@
 
 UI: {
 	Title: Журнал Прогрессии
-	Subtitle: Статичный гайд по экипировке для каждого этапа и класса
+	Subtitle: Гайд по экипировке с выбираемыми профилями прогрессии
 	Stage: Стадия
 	Class: Класс
 	InventoryButtonTooltip: Открыть журнал прогрессии
@@ -12,6 +12,7 @@ UI: {
 	StageSelectorTitle: Этап прохождения
 	ProgressionModeToggleTooltip: Переключить режим прогрессии. Когда он включен, закрытые стадии остаются в списке как неизведанные.
 	LockedStageTooltip: Неизведанная стадия. Победите босса этой стадии, чтобы открыть ее.
+	StageConditionUnresolved: Условие открытия не найдено, поэтому стадия остаётся доступной.
 	ClassSelectorTitle: Выбор класса
 	LegendTitle: Типы рекомендаций
 	OverviewHeadline: Экипировка текущего этапа
@@ -20,6 +21,37 @@ UI: {
 	AdditionalBlock: Используемое
 	NotRecommendedBlock: Слабое
 	UselessBlock: Очень слабое
+	FromGuideBlock: Из гайда
+	ProfileManagerTooltip: Выбрать или отредактировать профиль прогрессии
+	ProfileManagerTitle: Профили прогрессии
+	ProfileEditorTitle: Редактор профиля
+	ProfileNew: Новый
+	ProfileEdit: Копия / Правка
+	ProfileImport: Импорт
+	ProfileExport: Экспорт
+	ProfileClose: Закрыть
+	ProfileSave: Сохранить
+	ProfileCancel: Отмена
+	ProfileSaved: Профиль сохранён.
+	ProfileImported: Профиль импортирован: {0}
+	ProfileExported: Профиль экспортирован: {0}
+	ProfileDelete: Удалить профиль
+	ProfileDeleteConfirmTooltip: Нажмите ещё раз для удаления
+	ProfileDeleteConfirm: Нажмите корзину ещё раз, чтобы удалить профиль «{0}».
+	ProfileDeleted: Профиль удалён: {0}
+	ProfileReadOnlySuffix: " [встроенный]"
+	ProfileVersionWarning: "[другая версия]"
+	ProfileNameHint: Название профиля
+	ProfileClassLabel: Класс
+	ProfileStageLabel: Стадия
+	ProfileNewClassHint: Название нового класса
+	ProfileNewStageHint: Название новой стадии
+	ProfileItemsMode: Предметы
+	ProfileBossesMode: Боссы
+	ProfileItemSearchHint: Поиск загруженных предметов
+	ProfileBossSearchHint: Поиск загруженных боссов
+	ProfileAlwaysAvailable: Всегда доступна
+	ProfileEditorHint: ЛКМ добавляет или обновляет предмет. ПКМ удаляет его из выбранного класса и стадии.
 	PresetsHeadline: Конструктор билда
 	ClassPageTitle: Выбор класса
 	StageProgress: Этап {0} из {1}
@@ -184,6 +216,7 @@ Tiers: {
 	Additional: Рабочее
 	NotRecommended: Слабое
 	Useless: Очень слабое
+	FromGuide: Из гайда
 }
 
 Keybinds.ToggleProgressionJournal.DisplayName: Открыть журнал прогрессии

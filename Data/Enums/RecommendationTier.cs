@@ -5,7 +5,8 @@ public enum RecommendationTier
 	Recommended,
 	Additional,
 	NotRecommended,
-	Useless
+	Useless,
+	FromGuide
 }
 
 

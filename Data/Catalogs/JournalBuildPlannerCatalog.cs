@@ -22,6 +22,18 @@ public static class JournalBuildPlannerCatalog
         return currentIndex >= hardmodeIndex ? 6 : 5;
     }
 
+    public static int GetAccessorySlotCount(string profileId, string stageId)
+    {
+        if (JournalProfileRegistry.TryGet(profileId, out var profile))
+        {
+            return Math.Clamp(profile.GetStage(stageId).AccessorySlots, 0, 7);
+        }
+
+        return JournalStageIds.TryToLegacy(stageId, out var legacyStage)
+            ? GetAccessorySlotCount(legacyStage)
+            : 5;
+    }
+
     public static string GetAccessorySlotKey(int slotIndex) => $"accessory_{slotIndex}";
 
     public static string GetPotionSlotKey(int slotIndex) => $"potion_{slotIndex}";

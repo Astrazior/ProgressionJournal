@@ -12,15 +12,43 @@ public static partial class JournalRepository
 
     public static IReadOnlyList<JournalStageEntry> GetEntries(ProgressionStageId stageId, CombatClass combatClass)
     {
-        return Entries.Value
-            .Where(entry => entry.AppliesToClass(combatClass) && entry.TryGetEvaluation(stageId, out _))
-            .Select(entry => new JournalStageEntry(entry, entry.GetEvaluation(stageId)))
+        return GetEntries(
+            JournalProfileIds.Vanilla,
+            JournalStageIds.FromLegacy(stageId),
+            JournalClassIds.FromLegacy(combatClass));
+    }
+
+    public static IReadOnlyList<JournalStageEntry> GetEntries(string profileId, string stageId, string classId)
+    {
+        if (!JournalProfileRegistry.TryGet(profileId, out var profile))
+        {
+            if (!JournalProfileRegistry.IsLoaded
+                && string.Equals(profileId, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase))
+            {
+                return Entries.Value
+                    .Where(entry => entry.AppliesToClass(classId) && entry.TryGetEvaluation(profileId, stageId, out _))
+                    .Select(entry => new JournalStageEntry(entry, entry.GetEvaluation(profileId, stageId)))
+                    .OrderBy(entry => JournalOrdering.GetTierOrder(entry.Evaluation.Tier))
+                    .ThenBy(entry => JournalOrdering.GetCategoryOrder(entry.Entry.Category))
+                    .ThenBy(entry => GetDisplayOrderOverride(profileId, stageId, entry.Entry.Key))
+                    .ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
+                    .ToArray();
+            }
+
+            profile = JournalProfileRegistry.Active;
+        }
+
+        return profile.Entries
+            .Where(entry => entry.AppliesToClass(classId) && entry.TryGetEvaluation(profile.Id, stageId, out _))
+            .Select(entry => new JournalStageEntry(entry, entry.GetEvaluation(profile.Id, stageId)))
             .OrderBy(entry => JournalOrdering.GetTierOrder(entry.Evaluation.Tier))
             .ThenBy(entry => JournalOrdering.GetCategoryOrder(entry.Entry.Category))
-            .ThenBy(entry => JournalOrdering.GetStageEntryDisplayOrderOverride(stageId, entry.Entry.Key))
+            .ThenBy(entry => GetDisplayOrderOverride(profile.Id, stageId, entry.Entry.Key))
             .ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
             .ToArray();
     }
+
+    public static IReadOnlyList<JournalEntry> GetAllVanillaEntries() => Entries.Value;
 
     private static List<JournalEntry> BuildEntries()
     {
@@ -37,22 +65,33 @@ public static partial class JournalRepository
     {
         ArgumentNullException.ThrowIfNull(entry);
 
-        if (Entries.IsValueCreated)
-        {
-            throw new InvalidOperationException("External journal entries must be registered before the repository is initialized. Register them in Mod.PostSetupContent or ModSystem.PostSetupContent.");
-        }
-
         if (ExternalEntries.Any(existing => string.Equals(existing.Key, entry.Key, StringComparison.OrdinalIgnoreCase)))
         {
             throw new InvalidOperationException($"An external journal entry with key '{entry.Key}' is already registered.");
         }
 
         ExternalEntries.Add(entry);
+
+        if (Entries.IsValueCreated)
+        {
+            var currentEntries = JournalProfileRegistry.TryGet(JournalProfileIds.Vanilla, out var vanillaProfile)
+                ? vanillaProfile.Entries
+                : Entries.Value;
+            JournalProfileRegistry.RefreshVanillaProfile(currentEntries.Concat([entry]).ToArray());
+        }
     }
 
     internal static void ClearExternalContent()
     {
         ExternalEntries.Clear();
+    }
+
+    private static int GetDisplayOrderOverride(string profileId, string stageId, string entryKey)
+    {
+        return string.Equals(profileId, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase)
+            && JournalStageIds.TryToLegacy(stageId, out var legacyStage)
+                ? JournalOrdering.GetStageEntryDisplayOrderOverride(legacyStage, entryKey)
+                : int.MaxValue;
     }
 }
 

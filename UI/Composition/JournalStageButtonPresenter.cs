@@ -10,19 +10,26 @@ namespace ProgressionJournal.UI.Composition;
 public static class JournalStageButtonPresenter
 {
     public static void Refresh(
-        IReadOnlyDictionary<ProgressionStageId, JournalStageButton> buttons,
-        ProgressionStageId selectedStage,
+        JournalProfile profile,
+        IReadOnlyDictionary<string, JournalStageButton> buttons,
+        string selectedStage,
         bool progressionModeEnabled)
     {
-        foreach (var stage in ProgressionStageCatalog.All)
+        foreach (var stage in profile.Stages)
         {
             var button = buttons[stage.Id];
-            var isAvailable = ProgressionStageCatalog.IsAvailable(stage.Id, progressionModeEnabled);
+            var unlocked = JournalProfileUnlockRegistry.IsUnlocked(stage, out var conditionResolved);
+            var isAvailable = !progressionModeEnabled || unlocked || !conditionResolved;
 
             if (isAvailable)
             {
-                ApplyContent(button, stage);
-                button.SetTooltip(Language.GetTextValue(stage.LocalizationKey));
+                ApplyContent(button, profile, stage);
+                var tooltip = GetStageName(profile, stage);
+                if (!conditionResolved)
+                {
+                    tooltip = $"{tooltip}\n{Language.GetTextValue("Mods.ProgressionJournal.UI.StageConditionUnresolved")}";
+                }
+                button.SetTooltip(tooltip);
             }
             else
             {
@@ -31,15 +38,16 @@ public static class JournalStageButtonPresenter
             }
 
             button.SetInteractable(isAvailable);
-            button.SetCompleted(stage.IsUnlocked());
-            button.SetStyle(JournalUiTheme.GetStageButtonStyle(stage.Id == selectedStage));
+            button.SetCompleted(unlocked);
+            button.SetStyle(JournalUiTheme.GetStageButtonStyle(
+                string.Equals(stage.Id, selectedStage, StringComparison.OrdinalIgnoreCase)));
         }
     }
 
     public static void Layout(
-        IReadOnlyDictionary<ProgressionStageId, JournalStageButton> buttons,
+        IReadOnlyDictionary<string, JournalStageButton> buttons,
         UIElement container,
-        IReadOnlyList<ProgressionStageId> stageOrder)
+        IReadOnlyList<string> stageOrder)
     {
         if (buttons.Count == 0 || stageOrder.Count == 0 || container.Parent is null)
         {
@@ -86,17 +94,37 @@ public static class JournalStageButtonPresenter
         return singleColumnButtonHeight >= JournalUiMetrics.MinSingleColumnStageButtonHeight ? 1 : 2;
     }
 
-    private static void ApplyContent(JournalStageButton button, ProgressionStage stage)
+    private static void ApplyContent(
+        JournalStageButton button,
+        JournalProfile profile,
+        JournalProfileStageDocument stage)
     {
-        var stageName = Language.GetTextValue(stage.LocalizationKey);
+        var stageName = GetStageName(profile, stage);
 
-        if (stage.Id == ProgressionStageId.PreBoss)
+        if (!string.Equals(profile.Id, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase)
+            || !JournalStageIds.TryToLegacy(stage.Id, out var legacyStageId))
+        {
+            if (TryGetConfiguredNpcType(stage, out var npcType))
+            {
+                var headSlot = GetBossHeadSlot(npcType);
+                if (headSlot >= 0)
+                {
+                    button.SetBossHeadDisplay(headSlot);
+                    return;
+                }
+            }
+
+            ApplyText(button, stageName);
+            return;
+        }
+
+        if (legacyStageId == ProgressionStageId.PreBoss)
         {
             button.SetNpcHeadDisplay(NPC.TypeToDefaultHeadIndex(NPCID.Guide));
             return;
         }
 
-        if (stage.Id == ProgressionStageId.PostThreeMechBosses)
+        if (legacyStageId == ProgressionStageId.PostThreeMechBosses)
         {
             button.SetBossHeadDisplay(
                 GetBossHeadSlot(NPCID.TheDestroyer),
@@ -105,7 +133,7 @@ public static class JournalStageButtonPresenter
             return;
         }
 
-        if (stage.Id == ProgressionStageId.PostCelestialPillars)
+        if (legacyStageId == ProgressionStageId.PostCelestialPillars)
         {
             button.SetBossHeadDisplay(
                 GetBossHeadSlot(NPCID.LunarTowerSolar),
@@ -115,7 +143,7 @@ public static class JournalStageButtonPresenter
             return;
         }
 
-        var bossHeadSlot = GetStageBossHeadSlot(stage.Id);
+        var bossHeadSlot = GetStageBossHeadSlot(legacyStageId);
         if (bossHeadSlot.HasValue)
         {
             button.SetBossHeadDisplay(bossHeadSlot.Value);
@@ -123,6 +151,34 @@ public static class JournalStageButtonPresenter
         }
 
         ApplyText(button, stageName);
+    }
+
+    private static string GetStageName(JournalProfile profile, JournalProfileStageDocument stage)
+    {
+        return JournalProfileText.GetStageName(profile, stage.Id);
+    }
+
+    private static bool TryGetConfiguredNpcType(JournalProfileStageDocument stage, out int npcType)
+    {
+        npcType = -1;
+        var modName = string.IsNullOrWhiteSpace(stage.IconMod) ? stage.Unlock.Mod : stage.IconMod;
+        var npcName = string.IsNullOrWhiteSpace(stage.IconNpc) ? stage.Unlock.Npc : stage.IconNpc;
+
+        if (string.Equals(modName, "Terraria", StringComparison.OrdinalIgnoreCase)
+            && int.TryParse(npcName, out npcType))
+        {
+            return true;
+        }
+
+        if (!string.IsNullOrWhiteSpace(modName)
+            && !string.IsNullOrWhiteSpace(npcName)
+            && Terraria.ModLoader.ModContent.TryFind(modName, npcName, out Terraria.ModLoader.ModNPC modNpc))
+        {
+            npcType = modNpc.Type;
+            return true;
+        }
+
+        return false;
     }
 
     private static void ApplyText(JournalStageButton button, string text)

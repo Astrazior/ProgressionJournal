@@ -11,17 +11,17 @@ public static partial class JournalRepository
 {
     private sealed class BuildCandidateAccumulator(
         int itemId,
-        ProgressionStageId availableFromStageId,
-        ProgressionStageId lastRelevantStageId,
+        string availableFromStageId,
+        string lastRelevantStageId,
         RecommendationTier? tier,
         int sortStrength,
         bool isClassSpecific)
     {
         public int ItemId { get; } = itemId;
 
-        public ProgressionStageId AvailableFromStageId { get; } = availableFromStageId;
+        public string AvailableFromStageId { get; } = availableFromStageId;
 
-        public ProgressionStageId LastRelevantStageId { get; set; } = lastRelevantStageId;
+        public string LastRelevantStageId { get; set; } = lastRelevantStageId;
 
         public RecommendationTier? Tier { get; set; } = tier;
 
@@ -35,6 +35,19 @@ public static partial class JournalRepository
         CombatClass combatClass,
         string slotKey)
     {
+        return GetBuildCandidates(
+            JournalProfileIds.Vanilla,
+            JournalStageIds.FromLegacy(stageId),
+            JournalClassIds.FromLegacy(combatClass),
+            slotKey);
+    }
+
+    public static IReadOnlyList<JournalBuildCandidate> GetBuildCandidates(
+        string profileId,
+        string stageId,
+        string classId,
+        string slotKey)
+    {
         if (!JournalBuildPlannerCatalog.TryGetSlotKind(slotKey, out var slotKind))
         {
             return [];
@@ -43,8 +56,8 @@ public static partial class JournalRepository
         return slotKind switch
         {
             JournalBuildSlotKind.Food => BuildFoodCandidates(),
-            JournalBuildSlotKind.Potion => BuildBuffCandidates(stageId, combatClass, slotKind),
-            _ => BuildEquipmentCandidates(stageId, combatClass, slotKind)
+            JournalBuildSlotKind.Potion => BuildBuffCandidates(profileId, stageId, classId, slotKind),
+            _ => BuildEquipmentCandidates(profileId, stageId, classId, slotKind)
         };
     }
 
@@ -54,17 +67,43 @@ public static partial class JournalRepository
         string slotKey,
         int itemId)
     {
+        return IsBuildSelectionValid(
+            JournalProfileIds.Vanilla,
+            JournalStageIds.FromLegacy(stageId),
+            JournalClassIds.FromLegacy(combatClass),
+            slotKey,
+            itemId);
+    }
+
+    public static bool IsBuildSelectionValid(
+        string profileId,
+        string stageId,
+        string classId,
+        string slotKey,
+        int itemId)
+    {
         if (!JournalBuildPlannerCatalog.TryGetSlotKind(slotKey, out var slotKind))
         {
             return false;
         }
 
-        return GetBuildCandidates(stageId, combatClass, slotKey).Any(candidate => candidate.ItemId == itemId)
-            || IsValidModBuildCandidate(combatClass, slotKind, itemId);
+        return GetBuildCandidates(profileId, stageId, classId, slotKey).Any(candidate => candidate.ItemId == itemId)
+            || IsValidModBuildCandidate(profileId, classId, slotKind, itemId);
     }
 
     public static IReadOnlyList<JournalBuildCandidateGroup> GetModBuildCandidateGroups(
         CombatClass combatClass,
+        string slotKey)
+    {
+        return GetModBuildCandidateGroups(
+            JournalProfileIds.Vanilla,
+            JournalClassIds.FromLegacy(combatClass),
+            slotKey);
+    }
+
+    public static IReadOnlyList<JournalBuildCandidateGroup> GetModBuildCandidateGroups(
+        string profileId,
+        string classId,
         string slotKey)
     {
         if (!JournalBuildPlannerCatalog.TryGetSlotKind(slotKey, out var slotKind))
@@ -73,7 +112,7 @@ public static partial class JournalRepository
         }
 
         return ContentSamples.ItemsByType.Values
-            .Where(item => IsModBuildCandidate(combatClass, slotKind, item))
+            .Where(item => IsModBuildCandidate(profileId, classId, slotKind, item))
             .GroupBy(static item => item.ModItem!.Mod.DisplayNameClean)
             .OrderBy(static group => group.Key, StringComparer.CurrentCultureIgnoreCase)
             .Select(static group =>
@@ -96,22 +135,26 @@ public static partial class JournalRepository
     }
 
     private static IReadOnlyList<JournalBuildCandidate> BuildEquipmentCandidates(
-        ProgressionStageId stageId,
-        CombatClass combatClass,
+        string profileId,
+        string stageId,
+        string classId,
         JournalBuildSlotKind slotKind)
     {
-        var targetIndex = ProgressionStageCatalog.GetStageOrderIndex(stageId);
+        var profile = JournalProfileRegistry.TryGet(profileId, out var registeredProfile)
+            ? registeredProfile
+            : JournalProfileRegistry.Active;
+        var targetIndex = profile.GetStageIndex(stageId);
         Dictionary<int, BuildCandidateAccumulator> candidates = new();
 
-        foreach (var progressionStage in ProgressionStageCatalog.All)
+        foreach (var progressionStage in profile.Stages)
         {
             var currentStageId = progressionStage.Id;
-            if (ProgressionStageCatalog.GetStageOrderIndex(currentStageId) > targetIndex)
+            if (profile.GetStageIndex(currentStageId) > targetIndex)
             {
                 break;
             }
 
-            foreach (var stageEntry in GetEntries(currentStageId, combatClass))
+            foreach (var stageEntry in GetEntries(profile.Id, currentStageId, classId))
             {
                 foreach (var itemId in GetBuildEquipmentItemIds(stageEntry.Entry, slotKind))
                 {
@@ -136,7 +179,7 @@ public static partial class JournalRepository
 
         return candidates.Values
             .OrderBy(candidate => candidate.Tier is { } tier ? JournalOrdering.GetTierOrder(tier) : int.MaxValue)
-            .ThenByDescending(candidate => ProgressionStageCatalog.GetStageOrderIndex(candidate.LastRelevantStageId))
+            .ThenByDescending(candidate => profile.GetStageIndex(candidate.LastRelevantStageId))
             .ThenByDescending(candidate => candidate.SortStrength)
             .ThenBy(candidate => Lang.GetItemNameValue(candidate.ItemId), StringComparer.CurrentCultureIgnoreCase)
             .Select(static candidate => new JournalBuildCandidate(candidate.ItemId))
@@ -144,13 +187,21 @@ public static partial class JournalRepository
     }
 
     private static IReadOnlyList<JournalBuildCandidate> BuildBuffCandidates(
-        ProgressionStageId stageId,
-        CombatClass combatClass,
+        string profileId,
+        string stageId,
+        string classId,
         JournalBuildSlotKind slotKind)
     {
         Dictionary<int, BuildCandidateAccumulator> candidates = new();
 
-        foreach (var buffEntry in GetCombatBuffEntries(stageId, combatClass))
+        if (!string.Equals(profileId, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase)
+            || !JournalStageIds.TryToLegacy(stageId, out var legacyStage))
+        {
+            return [];
+        }
+
+        var legacyClass = JournalClassIds.ToLegacy(classId);
+        foreach (var buffEntry in GetCombatBuffEntries(legacyStage, legacyClass))
         {
             if (!MatchesBuildBuffSlot(buffEntry, slotKind))
             {
@@ -166,7 +217,7 @@ public static partial class JournalRepository
 
                 candidates[itemId] = new BuildCandidateAccumulator(
                     itemId,
-                    buffEntry.AvailableFrom,
+                    JournalStageIds.FromLegacy(buffEntry.AvailableFrom),
                     stageId,
                     tier: null,
                     sortStrength: GetCombatBuffCategoryOrder(buffEntry.Category),
@@ -282,13 +333,13 @@ public static partial class JournalRepository
         };
     }
 
-    private static bool IsValidModBuildCandidate(CombatClass combatClass, JournalBuildSlotKind slotKind, int itemId)
+    private static bool IsValidModBuildCandidate(string profileId, string classId, JournalBuildSlotKind slotKind, int itemId)
     {
         return ContentSamples.ItemsByType.TryGetValue(itemId, out var item)
-            && IsModBuildCandidate(combatClass, slotKind, item);
+            && IsModBuildCandidate(profileId, classId, slotKind, item);
     }
 
-    private static bool IsModBuildCandidate(CombatClass combatClass, JournalBuildSlotKind slotKind, Item item)
+    private static bool IsModBuildCandidate(string profileId, string classId, JournalBuildSlotKind slotKind, Item item)
     {
         if (item.type <= ItemID.None || item.IsAir || item.ModItem is null)
         {
@@ -298,7 +349,7 @@ public static partial class JournalRepository
         return slotKind switch
         {
             JournalBuildSlotKind.PrimaryWeapon or JournalBuildSlotKind.SupportWeapon => IsWeaponItem(item),
-            JournalBuildSlotKind.ClassSpecific => IsClassSpecificModItem(combatClass, item),
+            JournalBuildSlotKind.ClassSpecific => IsClassSpecificModItem(profileId, classId, item),
             JournalBuildSlotKind.ArmorHead => item.headSlot >= 0,
             JournalBuildSlotKind.ArmorBody => item is { bodySlot: >= 0, headSlot: < 0 },
             JournalBuildSlotKind.ArmorLegs => item is { legSlot: >= 0, headSlot: < 0, bodySlot: < 0 },
@@ -309,8 +360,20 @@ public static partial class JournalRepository
         };
     }
 
-    private static bool IsClassSpecificModItem(CombatClass combatClass, Item item)
+    private static bool IsClassSpecificModItem(string profileId, string classId, Item item)
     {
+        if (JournalProfileRegistry.TryGet(profileId, out var profile))
+        {
+            var classDefinition = profile.GetClass(classId);
+            var damageClassTypeName = item.DamageType.GetType().Name;
+            if (classDefinition.DamageClassNames.Any(
+                name => string.Equals(name, damageClassTypeName, StringComparison.OrdinalIgnoreCase)))
+            {
+                return IsWeaponItem(item);
+            }
+        }
+
+        var combatClass = JournalClassIds.ToLegacy(classId);
         return combatClass switch
         {
             CombatClass.Ranged => item.ammo > AmmoID.None || item.useAmmo > AmmoID.None,

@@ -24,6 +24,9 @@ public static class JournalUiMetrics
     public const float StageListTop = 40f;
     public const float StageListHorizontalInset = 24f;
     public const float StageListBottomInset = 52f;
+    public const float ProfileButtonHeight = 36f;
+    public const float ProfileButtonOverlap = 2f;
+    public const float ProfileButtonTextScale = 0.82f;
     public const float TopTabsHeight = 40f;
     public const float TopTabsGap = 12f;
     public const float TopTabsButtonHeight = 34f;

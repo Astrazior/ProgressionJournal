@@ -63,6 +63,7 @@ public static class JournalUiTheme
         RecommendationTier.Additional => new JournalPanelStyle(new Color(44, 54, 26), new Color(190, 178, 94)),
         RecommendationTier.NotRecommended => new JournalPanelStyle(new Color(64, 34, 48), new Color(205, 116, 160)),
         RecommendationTier.Useless => new JournalPanelStyle(new Color(76, 22, 22), new Color(228, 72, 72)),
+        RecommendationTier.FromGuide => new JournalPanelStyle(new Color(28, 47, 66), new Color(102, 164, 214)),
         _ => new JournalPanelStyle(PanelBackground, PanelBorder)
     };
 

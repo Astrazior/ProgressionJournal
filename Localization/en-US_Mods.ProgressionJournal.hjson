@@ -2,7 +2,7 @@
 
 UI: {
 	Title: Progression Journal
-	Subtitle: Static equipment guide for every stage and class
+	Subtitle: Equipment guide with selectable progression profiles
 	Stage: Stage
 	Class: Class
 	InventoryButtonTooltip: Open Progression Journal
@@ -12,6 +12,7 @@ UI: {
 	StageSelectorTitle: Progress stage
 	ProgressionModeToggleTooltip: Toggle progression mode. When enabled, locked stages remain in the list as unknown entries.
 	LockedStageTooltip: Unknown stage. Defeat the boss of this stage to unlock it..
+	StageConditionUnresolved: Unlock condition is unavailable; this stage remains accessible.
 	ClassSelectorTitle: Class selection
 	LegendTitle: Recommendation types
 	OverviewHeadline: Current stage equipment
@@ -20,6 +21,37 @@ UI: {
 	AdditionalBlock: Usable
 	NotRecommendedBlock: Weak
 	UselessBlock: Very weak
+	FromGuideBlock: From guide
+	ProfileManagerTooltip: Select or edit a progression profile
+	ProfileManagerTitle: Progression profiles
+	ProfileEditorTitle: Profile editor
+	ProfileNew: New
+	ProfileEdit: Copy / Edit
+	ProfileImport: Import
+	ProfileExport: Export
+	ProfileClose: Close
+	ProfileSave: Save
+	ProfileCancel: Cancel
+	ProfileSaved: Profile saved.
+	ProfileImported: Profile imported: {0}
+	ProfileExported: Profile exported: {0}
+	ProfileDelete: Delete profile
+	ProfileDeleteConfirmTooltip: Click again to delete
+	ProfileDeleteConfirm: Click the trash icon again to delete profile "{0}".
+	ProfileDeleted: Profile deleted: {0}
+	ProfileReadOnlySuffix: " [built-in]"
+	ProfileVersionWarning: "[version differs]"
+	ProfileNameHint: Profile name
+	ProfileClassLabel: Class
+	ProfileStageLabel: Stage
+	ProfileNewClassHint: New class name
+	ProfileNewStageHint: New stage name
+	ProfileItemsMode: Items
+	ProfileBossesMode: Bosses
+	ProfileItemSearchHint: Search loaded items
+	ProfileBossSearchHint: Search loaded bosses
+	ProfileAlwaysAvailable: Always available
+	ProfileEditorHint: Left-click an item to add/update it. Right-click it to remove it from the selected class and stage.
 	PresetsHeadline: Build planner
 	ClassPageTitle: Choose a class
 	StageProgress: Stage {0} of {1}
@@ -184,6 +216,7 @@ Tiers: {
 	Additional: Usable
 	NotRecommended: Weak
 	Useless: Very weak
+	FromGuide: From guide
 }
 
 Keybinds.ToggleProgressionJournal.DisplayName: Toggle Progression Journal

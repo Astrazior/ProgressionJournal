@@ -7,7 +7,8 @@ namespace ProgressionJournal.Data.Models;
 
 public sealed class JournalEntry
 {
-	private readonly Dictionary<ProgressionStageId, StageEvaluation> _evaluations;
+	private readonly Dictionary<string, StageEvaluation> _evaluations;
+	private readonly HashSet<string> _classIds;
 
 	public JournalEntry(
 		string key,
@@ -20,7 +21,7 @@ public sealed class JournalEntry
 		: this(
 			key,
 			category,
-			classes,
+			JournalClassIds.FromLegacyFlags(classes),
 			itemIds.Select(itemId => new JournalItemGroup([itemId])),
 			evaluations,
 			eventCategory,
@@ -36,10 +37,30 @@ public sealed class JournalEntry
 		IEnumerable<StageEvaluation> evaluations,
 		JournalEventCategory? eventCategory = null,
 		bool isSupportWeapon = false)
+		: this(
+			key,
+			category,
+			JournalClassIds.FromLegacyFlags(classes),
+			itemGroups,
+			evaluations,
+			eventCategory,
+			isSupportWeapon)
+	{
+	}
+
+	public JournalEntry(
+		string key,
+		JournalItemCategory category,
+		IEnumerable<string> classIds,
+		IEnumerable<JournalItemGroup> itemGroups,
+		IEnumerable<StageEvaluation> evaluations,
+		JournalEventCategory? eventCategory = null,
+		bool isSupportWeapon = false)
 	{
 		Key = key;
 		Category = category;
-		Classes = classes;
+		_classIds = classIds.ToHashSet(StringComparer.OrdinalIgnoreCase);
+		Classes = GetLegacyClasses(_classIds);
 		EventCategory = eventCategory;
 		IsSupportWeapon = isSupportWeapon;
 		ItemGroups = itemGroups.ToArray();
@@ -51,7 +72,7 @@ public sealed class JournalEntry
 		ItemIds = ItemGroups.SelectMany(group => group.ItemIds).ToArray();
 		RepresentativeItemId = ItemGroups[0].RepresentativeItemId;
 		CategoryStrength = ComputeCategoryStrength(category, ItemGroups, ItemIds);
-		_evaluations = evaluations.ToDictionary(evaluation => evaluation.StageId);
+		_evaluations = evaluations.ToDictionary(evaluation => evaluation.StageId, StringComparer.OrdinalIgnoreCase);
 	}
 
 	public string Key { get; }
@@ -59,6 +80,8 @@ public sealed class JournalEntry
 	public JournalItemCategory Category { get; }
 
 	public CombatClass Classes { get; }
+
+	public IReadOnlySet<string> ClassIds => _classIds;
 
 	public JournalEventCategory? EventCategory { get; }
 
@@ -74,19 +97,34 @@ public sealed class JournalEntry
 
 	public bool AppliesToClass(CombatClass combatClass) => (Classes & combatClass) != 0;
 
+	public bool AppliesToClass(string classId) => _classIds.Contains(classId);
+
 	public bool TryGetEvaluation(ProgressionStageId stageId, out StageEvaluation evaluation)
+	{
+		return TryGetEvaluation(
+			JournalProfileIds.Vanilla,
+			JournalStageIds.FromLegacy(stageId),
+			out evaluation);
+	}
+
+	public bool TryGetEvaluation(string profileId, string stageId, out StageEvaluation evaluation)
 	{
 		if (_evaluations.TryGetValue(stageId, out evaluation!)) {
 			return true;
 		}
 
-		var targetIndex = ProgressionStageCatalog.GetStageOrderIndex(stageId);
+		var hasProfile = JournalProfileRegistry.TryGet(profileId, out var profile);
+		var targetIndex = hasProfile
+			? profile.GetStageIndex(stageId)
+			: GetLegacyStageIndex(stageId);
 		StageEvaluation? nearestPreviousEvaluation = null;
 		var nearestPreviousIndex = -1;
 		var hasLaterEvaluation = false;
 
 		foreach (var pair in _evaluations) {
-			var evaluationIndex = ProgressionStageCatalog.GetStageOrderIndex(pair.Key);
+			var evaluationIndex = hasProfile
+				? profile.GetStageIndex(pair.Key)
+				: GetLegacyStageIndex(pair.Key);
 
 			if (evaluationIndex < targetIndex && evaluationIndex > nearestPreviousIndex) {
 				nearestPreviousEvaluation = pair.Value;
@@ -111,6 +149,13 @@ public sealed class JournalEntry
 	public StageEvaluation GetEvaluation(ProgressionStageId stageId)
 	{
 		return TryGetEvaluation(stageId, out var evaluation) ? evaluation : throw new KeyNotFoundException($"No evaluation exists for stage '{stageId}' in entry '{Key}'.");
+	}
+
+	public StageEvaluation GetEvaluation(string profileId, string stageId)
+	{
+		return TryGetEvaluation(profileId, stageId, out var evaluation)
+			? evaluation
+			: throw new KeyNotFoundException($"No evaluation exists for stage '{stageId}' in entry '{Key}'.");
 	}
 
 	public string GetDisplayName() => string.Join(" + ", ItemGroups.Select(group => group.GetDisplayName()));
@@ -155,6 +200,25 @@ public sealed class JournalEntry
 		}
 
 		return totalDefense;
+	}
+
+	private static CombatClass GetLegacyClasses(IEnumerable<string> classIds)
+	{
+		var classes = CombatClass.None;
+
+		foreach (var classId in classIds)
+		{
+			classes |= JournalClassIds.ToLegacy(classId);
+		}
+
+		return classes;
+	}
+
+	private static int GetLegacyStageIndex(string stageId)
+	{
+		return JournalStageIds.TryToLegacy(stageId, out var legacyStage)
+			? ProgressionStageCatalog.GetStageOrderIndex(legacyStage)
+			: 0;
 	}
 }
 

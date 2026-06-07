@@ -33,7 +33,7 @@ public static class JournalBuildStorage
 
     private static IReadOnlyList<JournalSavedBuild>? _cachedBuilds;
 
-    public static IReadOnlyList<JournalSavedBuild> GetBuilds(ProgressionStageId stageId, CombatClass combatClass)
+    public static IReadOnlyList<JournalSavedBuild> GetBuilds(string profileId, string stageId, string classId)
     {
         EnsureLoaded();
 
@@ -44,11 +44,21 @@ public static class JournalBuildStorage
         }
 
         return builds
-            .Where(build => build.StageId == stageId && build.CombatClass == combatClass)
+            .Where(build => string.Equals(build.ProfileId, profileId, StringComparison.OrdinalIgnoreCase)
+                && string.Equals(build.StageId, stageId, StringComparison.OrdinalIgnoreCase)
+                && string.Equals(build.ClassId, classId, StringComparison.OrdinalIgnoreCase))
             .OrderByDescending(build => build.IsFavorite)
             .ThenByDescending(build => build.FavoriteSortKey)
             .ThenBy(build => build.Name, StringComparer.CurrentCultureIgnoreCase)
             .ToArray();
+    }
+
+    public static IReadOnlyList<JournalSavedBuild> GetBuilds(ProgressionStageId stageId, CombatClass combatClass)
+    {
+        return GetBuilds(
+            JournalProfileIds.Vanilla,
+            JournalStageIds.FromLegacy(stageId),
+            JournalClassIds.FromLegacy(combatClass));
     }
 
     public static void Reload()
@@ -58,8 +68,9 @@ public static class JournalBuildStorage
 
     public static bool SaveBuild(
         string name,
-        CombatClass combatClass,
-        ProgressionStageId stageId,
+        string profileId,
+        string classId,
+        string stageId,
         IReadOnlyDictionary<string, int> selectedItems,
         out string errorMessage)
     {
@@ -67,7 +78,7 @@ public static class JournalBuildStorage
         {
             Directory.CreateDirectory(GetBuildDirectoryPath());
 
-            var document = CreateDocument(name, combatClass, stageId, selectedItems);
+            var document = CreateDocument(name, profileId, classId, stageId, selectedItems);
 
             if (document.SelectedItemRefs.Count == 0)
             {
@@ -90,11 +101,28 @@ public static class JournalBuildStorage
         }
     }
 
-    public static bool UpdateBuild(
-        JournalSavedBuild build,
+    public static bool SaveBuild(
         string name,
         CombatClass combatClass,
         ProgressionStageId stageId,
+        IReadOnlyDictionary<string, int> selectedItems,
+        out string errorMessage)
+    {
+        return SaveBuild(
+            name,
+            JournalProfileIds.Vanilla,
+            JournalClassIds.FromLegacy(combatClass),
+            JournalStageIds.FromLegacy(stageId),
+            selectedItems,
+            out errorMessage);
+    }
+
+    public static bool UpdateBuild(
+        JournalSavedBuild build,
+        string name,
+        string profileId,
+        string classId,
+        string stageId,
         IReadOnlyDictionary<string, int> selectedItems,
         out string errorMessage)
     {
@@ -118,11 +146,13 @@ public static class JournalBuildStorage
             var document = JsonSerializer.Deserialize<JournalBuildDocument>(File.ReadAllText(filePath), SerializerOptions)
                 ?? new JournalBuildDocument();
 
-            document.Version = 2;
+            document.Version = 3;
             document.Format = BuildFormat;
             document.Name = name.Trim();
-            document.CombatClass = combatClass.ToString();
-            document.StageId = stageId.ToString();
+            document.ProfileId = profileId;
+            document.ClassId = classId;
+            document.CombatClass = string.Empty;
+            document.StageId = stageId;
             document.SelectedItems = normalizedSelections;
             document.SelectedItemRefs = CreateItemReferenceDocuments(itemReferences);
 
@@ -138,6 +168,24 @@ public static class JournalBuildStorage
             errorMessage = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildSaveFailed");
             return false;
         }
+    }
+
+    public static bool UpdateBuild(
+        JournalSavedBuild build,
+        string name,
+        CombatClass combatClass,
+        ProgressionStageId stageId,
+        IReadOnlyDictionary<string, int> selectedItems,
+        out string errorMessage)
+    {
+        return UpdateBuild(
+            build,
+            name,
+            JournalProfileIds.Vanilla,
+            JournalClassIds.FromLegacy(combatClass),
+            JournalStageIds.FromLegacy(stageId),
+            selectedItems,
+            out errorMessage);
     }
 
     public static bool DeleteBuild(JournalSavedBuild build)
@@ -181,7 +229,11 @@ public static class JournalBuildStorage
             }
 
             document.Format = BuildFormat;
-            document.Version = 2;
+            document.Version = 3;
+            document.ProfileId = build.ProfileId;
+            document.ClassId = build.ClassId;
+            document.CombatClass = string.Empty;
+            document.StageId = build.StageId;
             document.IsFavorite = false;
             document.FavoriteSortKey = 0L;
 
@@ -213,7 +265,8 @@ public static class JournalBuildStorage
         {
             var document = CreateDocument(
                 build.Name,
-                build.CombatClass,
+                build.ProfileId,
+                build.ClassId,
                 build.StageId,
                 build.ItemReferences,
                 includeItemData: false);
@@ -238,7 +291,8 @@ public static class JournalBuildStorage
                 || !TryReadBuildDocumentFromJson(
                     Encoding.UTF8.GetString(FromBase64Url(payload)),
                     out var document,
-                    out var combatClass,
+                    out var profileId,
+                    out var classId,
                     out var stageId,
                     out var itemReferences))
             {
@@ -247,7 +301,8 @@ public static class JournalBuildStorage
 
             build = new JournalSavedBuild(
                 document.Name.Trim(),
-                combatClass,
+                profileId,
+                classId,
                 stageId,
                 itemReferences,
                 isFavorite: false,
@@ -277,7 +332,15 @@ public static class JournalBuildStorage
             }
 
             document.Format = BuildFormat;
-            document.Version = 2;
+            document.Version = 3;
+            if (!TryResolveBuildIdentity(document, out var profileId, out var classId, out var stageId))
+            {
+                return false;
+            }
+            document.ProfileId = profileId;
+            document.ClassId = classId;
+            document.CombatClass = string.Empty;
+            document.StageId = stageId;
             document.Name = document.Name.Trim();
             document.IsFavorite = false;
             document.FavoriteSortKey = 0L;
@@ -306,7 +369,7 @@ public static class JournalBuildStorage
         {
             Directory.CreateDirectory(GetBuildDirectoryPath());
 
-            var document = CreateDocument(build.Name, build.CombatClass, build.StageId, build.ItemReferences);
+            var document = CreateDocument(build.Name, build.ProfileId, build.ClassId, build.StageId, build.ItemReferences);
             var destinationPath = GetUniqueBuildFilePath(document.Name);
             File.WriteAllText(destinationPath, JsonSerializer.Serialize(document, SerializerOptions), Encoding.UTF8);
 
@@ -384,11 +447,9 @@ public static class JournalBuildStorage
             var document = JsonSerializer.Deserialize<JournalBuildDocument>(File.ReadAllText(filePath), SerializerOptions);
             if (document is null
                 || string.IsNullOrWhiteSpace(document.Name)
-                || string.IsNullOrWhiteSpace(document.CombatClass)
                 || string.IsNullOrWhiteSpace(document.StageId)
                 || (document.SelectedItems.Count == 0 && document.SelectedItemRefs.Count == 0)
-                || !Enum.TryParse(document.CombatClass, ignoreCase: true, out CombatClass combatClass)
-                || !Enum.TryParse(document.StageId, ignoreCase: true, out ProgressionStageId stageId))
+                || !TryResolveBuildIdentity(document, out var profileId, out var classId, out var stageId))
             {
                 return false;
             }
@@ -401,7 +462,8 @@ public static class JournalBuildStorage
 
             build = new JournalSavedBuild(
                 document.Name.Trim(),
-                combatClass,
+                profileId,
+                classId,
                 stageId,
                 selectedItems,
                 document.IsFavorite,
@@ -491,14 +553,16 @@ public static class JournalBuildStorage
 
     private static JournalBuildDocument CreateDocument(
         string name,
-        CombatClass combatClass,
-        ProgressionStageId stageId,
+        string profileId,
+        string classId,
+        string stageId,
         IReadOnlyDictionary<string, int> selectedItems,
         bool includeItemData = true)
     {
         return CreateDocument(
             name,
-            combatClass,
+            profileId,
+            classId,
             stageId,
             CreateItemReferences(selectedItems),
             includeItemData);
@@ -506,8 +570,9 @@ public static class JournalBuildStorage
 
     private static JournalBuildDocument CreateDocument(
         string name,
-        CombatClass combatClass,
-        ProgressionStageId stageId,
+        string profileId,
+        string classId,
+        string stageId,
         IReadOnlyDictionary<string, JournalSavedBuildItemReference> itemReferences,
         bool includeItemData = true)
     {
@@ -516,10 +581,11 @@ public static class JournalBuildStorage
         return new JournalBuildDocument
         {
             Format = BuildFormat,
-            Version = 2,
+            Version = 3,
             Name = name.Trim(),
-            CombatClass = combatClass.ToString(),
-            StageId = stageId.ToString(),
+            ProfileId = profileId,
+            ClassId = classId,
+            StageId = stageId,
             IsFavorite = false,
             FavoriteSortKey = 0L,
             SelectedItems = normalizedSelections,
@@ -550,6 +616,7 @@ public static class JournalBuildStorage
                 out document,
                 out _,
                 out _,
+                out _,
                 out selectedItems);
         }
         catch (Exception exception)
@@ -562,31 +629,54 @@ public static class JournalBuildStorage
     private static bool TryReadBuildDocumentFromJson(
         string json,
         out JournalBuildDocument document,
-        out CombatClass combatClass,
-        out ProgressionStageId stageId,
+        out string profileId,
+        out string classId,
+        out string stageId,
         out Dictionary<string, JournalSavedBuildItemReference> selectedItems)
     {
         document = JsonSerializer.Deserialize<JournalBuildDocument>(json, SerializerOptions)
             ?? new JournalBuildDocument();
 
-        combatClass = default;
-        stageId = default;
+        profileId = string.Empty;
+        classId = string.Empty;
+        stageId = string.Empty;
         selectedItems = [];
 
         if ((!string.IsNullOrWhiteSpace(document.Format)
                 && !string.Equals(document.Format, BuildFormat, StringComparison.OrdinalIgnoreCase))
             || string.IsNullOrWhiteSpace(document.Name)
-            || string.IsNullOrWhiteSpace(document.CombatClass)
             || string.IsNullOrWhiteSpace(document.StageId)
             || (document.SelectedItems.Count == 0 && document.SelectedItemRefs.Count == 0)
-            || !Enum.TryParse(document.CombatClass, ignoreCase: true, out combatClass)
-            || !Enum.TryParse(document.StageId, ignoreCase: true, out stageId))
+            || !TryResolveBuildIdentity(document, out profileId, out classId, out stageId))
         {
             return false;
         }
 
         selectedItems = ReadItemReferences(document);
         return selectedItems.Count > 0;
+    }
+
+    private static bool TryResolveBuildIdentity(
+        JournalBuildDocument document,
+        out string profileId,
+        out string classId,
+        out string stageId)
+    {
+        profileId = string.IsNullOrWhiteSpace(document.ProfileId)
+            ? JournalProfileIds.Vanilla
+            : document.ProfileId.Trim();
+        classId = document.ClassId.Trim();
+        stageId = document.StageId.Trim();
+
+        if (string.IsNullOrWhiteSpace(classId)
+            && Enum.TryParse(document.CombatClass, ignoreCase: true, out CombatClass legacyClass))
+        {
+            classId = JournalClassIds.FromLegacy(legacyClass);
+        }
+
+        return !string.IsNullOrWhiteSpace(profileId)
+            && !string.IsNullOrWhiteSpace(classId)
+            && !string.IsNullOrWhiteSpace(stageId);
     }
 
     private static Dictionary<string, JournalSavedBuildItemReference> CreateItemReferences(
@@ -850,6 +940,8 @@ public static class JournalBuildStorage
     {
         private string? _format = BuildFormat;
         private string? _name = string.Empty;
+        private string? _profileId = string.Empty;
+        private string? _classId = string.Empty;
         private string? _combatClass = string.Empty;
         private string? _stageId = string.Empty;
         private Dictionary<string, int>? _selectedItems = [];
@@ -867,6 +959,18 @@ public static class JournalBuildStorage
         {
             get => _name ?? string.Empty;
             set => _name = value;
+        }
+
+        public string ProfileId
+        {
+            get => _profileId ?? string.Empty;
+            set => _profileId = value;
+        }
+
+        public string ClassId
+        {
+            get => _classId ?? string.Empty;
+            set => _classId = value;
         }
 
         public string CombatClass

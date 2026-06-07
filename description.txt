@@ -17,6 +17,9 @@ It is designed as a quick reference during gameplay, so you do not have to open 
 [*]Build sharing through JSON format or directly through the in-game chat
 [*]Support for items from other mods in custom builds
 [*]Search and filtering tools for easier build setup
+[*]Progression profiles with custom classes, stages, unlock conditions, and ratings
+[*]Profile import and export through JSON files
+[*]Bundled Calamity Wiki profile when Calamity is installed
 [/list]
 
 [h2]Build System[/h2]
@@ -33,14 +36,24 @@ Builds can be shared in two ways:
 [*]directly through the in-game chat.
 [/list]
 
-The system supports items from other mods, but there are important limitations: modded classes are not currently supported, and builds are not separated by progression stages. These limitations are partially mitigated by the search and filtering system, which makes it easier to find the items you need and assemble builds manually.
+Builds are attached to the active progression profile, class, and stage. Profiles can define modded classes such as Rogue and can be copied and edited in-game.
+
+[h2]Mod support[/h2]
+
+Progression Journal uses profiles instead of pretending that item statistics alone can determine balance.
+Built-in wiki profiles provide a neutral [i]From guide[/i] list, while players can copy them and assign their own tiers, stages, and boss unlock conditions.
+
+The Calamity profile is generated from the structured class setup pages on the official Calamity Wiki and is shown only while Calamity is installed. It is a snapshot of the guide, not a claim that every item in the mod has been objectively ranked.
+
+Other mods can provide profile JSON through the public API, and profiles can also be shared as files.
 
 [h2]Important[/h2]
 [list]
 [*]This is a [b]client-side[/b] mod
 [*]The server does not need to install it
 [*]It does not change vanilla progression balance; it works as a reference tool
-[*][b]Calamity, Thorium, and other mods that add new equipment or classes are not supported and will not be supported by me personally, because I have not played these mods and cannot objectively place their items within progression. Experienced users are free to make add-ons for this mod, but I am not responsible for their functionality, balance, or recommendation accuracy.[/b]
+[*]Wiki and community profiles may be incomplete or become outdated after another mod updates
+[*]The profile author is responsible for balance and recommendation accuracy
 [/list]
 
 [h1]Links[/h1]

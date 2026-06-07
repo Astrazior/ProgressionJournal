@@ -7,7 +7,7 @@ namespace ProgressionJournal.Api;
 
 internal static class ProgressionJournalApi
 {
-    public const int Version = 1;
+    public const int Version = 2;
 
     public static object HandleCall(object[] args)
     {
@@ -20,8 +20,48 @@ internal static class ProgressionJournalApi
         {
             "GetApiVersion" => Version,
             "RegisterEntry" => RegisterEntry(args),
+            "RegisterProfileJson" => RegisterProfileJson(args),
+            "RegisterUnlockCondition" => RegisterUnlockCondition(args),
             _ => throw new ArgumentException($"Unknown ProgressionJournal.Call command '{command}'.", nameof(args))
         };
+    }
+
+    private static bool RegisterProfileJson(object[] args)
+    {
+        if (args.Length is < 2 or > 3)
+        {
+            throw new ArgumentException(
+                "RegisterProfileJson expects 1 or 2 arguments after the command: json, [sourceName].",
+                nameof(args));
+        }
+
+        var json = RequireString(args[1], "json");
+        var sourceName = args.Length >= 3 ? RequireString(args[2], "sourceName") : "Mod.Call";
+        if (!JournalProfileRegistry.RegisterJson(json, sourceName, out var error))
+        {
+            throw new ArgumentException($"Invalid journal profile: {error}", nameof(args));
+        }
+
+        return true;
+    }
+
+    private static bool RegisterUnlockCondition(object[] args)
+    {
+        if (args.Length != 3)
+        {
+            throw new ArgumentException(
+                "RegisterUnlockCondition expects 2 arguments after the command: key, Func<bool>.",
+                nameof(args));
+        }
+
+        var key = RequireString(args[1], "key");
+        if (args[2] is not Func<bool> condition)
+        {
+            throw new ArgumentException("Argument 'condition' must be a Func<bool>.");
+        }
+
+        JournalProfileUnlockRegistry.Register(key, condition);
+        return true;
     }
 
     private static bool RegisterEntry(object[] args)

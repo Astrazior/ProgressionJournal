@@ -32,10 +32,16 @@ public static class JournalContentBuilder
         RecommendationTier.Recommended,
         RecommendationTier.Additional,
         RecommendationTier.NotRecommended,
-        RecommendationTier.Useless
+        RecommendationTier.Useless,
+        RecommendationTier.FromGuide
     ];
 
-    public static void PopulateEntries(UIList entryList, ProgressionStageId stageId, IReadOnlyList<JournalStageEntry> entries, Action<int>? onItemSelected = null)
+    public static void PopulateEntries(
+        UIList entryList,
+        string profileId,
+        string stageId,
+        IReadOnlyList<JournalStageEntry> entries,
+        Action<int>? onItemSelected = null)
     {
         if (entries.Count == 0)
         {
@@ -45,7 +51,7 @@ public static class JournalContentBuilder
 
         foreach (var tier in TierOrder)
         {
-            var tierEntries = GetEntriesForTier(entries, stageId, tier);
+            var tierEntries = GetEntriesForTier(entries, profileId, stageId, tier);
             if (tierEntries.Length == 0)
             {
                 continue;
@@ -76,24 +82,28 @@ public static class JournalContentBuilder
 
     public static void PopulateBuildPlanner(
         UIList entryList,
-        ProgressionStageId stageId,
-        CombatClass combatClass,
+        string profileId,
+        string stageId,
+        string classId,
         Func<string, int> getSelectedItemId,
         Action<string> onSlotClick)
     {
-        entryList.Add(CreateBuildEquipmentPanel(stageId, combatClass, getSelectedItemId, onSlotClick, JournalSystem.ClearBuildItem));
-        entryList.Add(CreateBuildConsumablesPanel(combatClass, getSelectedItemId, onSlotClick, JournalSystem.ClearBuildItem));
+        var visualClass = JournalClassIds.ToLegacy(classId);
+        entryList.Add(CreateBuildEquipmentPanel(profileId, stageId, visualClass, getSelectedItemId, onSlotClick, JournalSystem.ClearBuildItem));
+        entryList.Add(CreateBuildConsumablesPanel(visualClass, getSelectedItemId, onSlotClick, JournalSystem.ClearBuildItem));
     }
 
     public static void PopulateSavedBuilds(
         UIList entryList,
-        ProgressionStageId stageId,
-        CombatClass combatClass,
+        string profileId,
+        string stageId,
+        string classId,
         IReadOnlyList<JournalSavedBuild> builds)
     {
+        var visualClass = JournalClassIds.ToLegacy(classId);
         foreach (var build in builds)
         {
-            entryList.Add(CreateSavedBuildCard(build, stageId, combatClass, entryList));
+            entryList.Add(CreateSavedBuildCard(build, profileId, stageId, visualClass, entryList));
         }
     }
 
@@ -103,11 +113,13 @@ public static class JournalContentBuilder
         RecommendationTier.Additional => Language.GetTextValue("Mods.ProgressionJournal.UI.AdditionalBlock"),
         RecommendationTier.NotRecommended => Language.GetTextValue("Mods.ProgressionJournal.UI.NotRecommendedBlock"),
         RecommendationTier.Useless => Language.GetTextValue("Mods.ProgressionJournal.UI.UselessBlock"),
+        RecommendationTier.FromGuide => Language.GetTextValue("Mods.ProgressionJournal.UI.FromGuideBlock"),
         _ => string.Empty
     };
 
     private static UIPanel CreateBuildEquipmentPanel(
-        ProgressionStageId stageId,
+        string profileId,
+        string stageId,
         CombatClass combatClass,
         Func<string, int> getSelectedItemId,
         Action<string> onSlotClick,
@@ -169,7 +181,7 @@ public static class JournalContentBuilder
             onSlotClick,
             onSlotRightClick);
 
-        var accessoryKeys = Enumerable.Range(1, JournalBuildPlannerCatalog.GetAccessorySlotCount(stageId))
+        var accessoryKeys = Enumerable.Range(1, JournalBuildPlannerCatalog.GetAccessorySlotCount(profileId, stageId))
             .Select(JournalBuildPlannerCatalog.GetAccessorySlotKey)
             .ToArray();
         AppendEquipmentGrid(
@@ -435,7 +447,8 @@ public static class JournalContentBuilder
 
     private static UIPanel CreateSavedBuildCard(
         JournalSavedBuild build,
-        ProgressionStageId stageId,
+        string profileId,
+        string stageId,
         CombatClass combatClass,
         UIElement focusContainer)
     {
@@ -460,8 +473,8 @@ public static class JournalContentBuilder
         AppendSavedBuildActions(card, build);
         top += 34f;
 
-        var previewBottom = AppendSavedBuildCharacterPreview(card, build, stageId, top, palette, focusContainer);
-        var equipmentBottom = AppendSavedBuildEquipmentSummary(card, build, stageId, top);
+        var previewBottom = AppendSavedBuildCharacterPreview(card, build, profileId, stageId, top, palette, focusContainer);
+        var equipmentBottom = AppendSavedBuildEquipmentSummary(card, build, profileId, stageId, top);
         var consumablesBottom = AppendSavedBuildConsumablesSummary(card, build, top);
         top = MathF.Max(previewBottom, MathF.Max(equipmentBottom, consumablesBottom));
 
@@ -503,7 +516,8 @@ public static class JournalContentBuilder
     private static float AppendSavedBuildCharacterPreview(
         UIElement card,
         JournalSavedBuild build,
-        ProgressionStageId stageId,
+        string profileId,
+        string stageId,
         float top,
         JournalClassPalette palette,
         UIElement focusContainer)
@@ -518,7 +532,7 @@ public static class JournalContentBuilder
         card.Append(previewPanel);
 
         var characterPreview = new JournalSavedBuildCharacterPreview(
-            JournalPreviewPlayerFactory.CreateSavedBuildPreview(build, stageId),
+            JournalPreviewPlayerFactory.CreateSavedBuildPreview(build, profileId, stageId),
             () => GetSavedBuildShadeOpacity(card, focusContainer),
             1.18f);
         characterPreview.Width.Set(104f, 0f);
@@ -552,7 +566,8 @@ public static class JournalContentBuilder
     private static float AppendSavedBuildEquipmentSummary(
         UIElement card,
         JournalSavedBuild build,
-        ProgressionStageId stageId,
+        string profileId,
+        string stageId,
         float top)
     {
         const float columnLeft = 164f;
@@ -582,7 +597,7 @@ public static class JournalContentBuilder
             top,
             maxSlotsPerRow);
 
-        var accessoryItems = Enumerable.Range(1, JournalBuildPlannerCatalog.GetAccessorySlotCount(stageId))
+        var accessoryItems = Enumerable.Range(1, JournalBuildPlannerCatalog.GetAccessorySlotCount(profileId, stageId))
             .Select(slotIndex => build.GetSelectedItemReference(JournalBuildPlannerCatalog.GetAccessorySlotKey(slotIndex)))
             .Where(static itemReference => itemReference is not null)
             .Select(static itemReference => itemReference!)
@@ -681,16 +696,25 @@ public static class JournalContentBuilder
 
     private static JournalStageEntry[] GetEntriesForTier(
         IReadOnlyList<JournalStageEntry> entries,
-        ProgressionStageId stageId,
+        string profileId,
+        string stageId,
         RecommendationTier tier)
     {
         return entries
             .Where(entry => entry.Evaluation.Tier == tier)
             .OrderBy(entry => JournalOrdering.GetCategoryOrder(entry.Entry.Category))
             .ThenByDescending(GetCategoryStrength)
-            .ThenBy(entry => JournalOrdering.GetStageEntryDisplayOrderOverride(stageId, entry.Entry.Key))
+            .ThenBy(entry => GetStageEntryDisplayOrder(profileId, stageId, entry.Entry.Key))
             .ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
             .ToArray();
+    }
+
+    private static int GetStageEntryDisplayOrder(string profileId, string stageId, string entryKey)
+    {
+        return string.Equals(profileId, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase)
+            && JournalStageIds.TryToLegacy(stageId, out var legacyStage)
+                ? JournalOrdering.GetStageEntryDisplayOrderOverride(legacyStage, entryKey)
+                : int.MaxValue;
     }
 
     private static int GetCategoryStrength(JournalStageEntry entry) => entry.Entry.Category switch
@@ -852,4 +876,3 @@ public static class JournalContentBuilder
 
     private static JournalSystem JournalSystem => ModContent.GetInstance<JournalSystem>();
 }
-

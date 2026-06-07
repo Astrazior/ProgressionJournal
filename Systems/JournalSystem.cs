@@ -12,9 +12,6 @@ namespace ProgressionJournal.Systems;
 
 public sealed class JournalSystem : ModSystem
 {
-    private static readonly IReadOnlyList<CombatClass> ClassOrder = JournalOrdering.ClassSelection;
-    private static readonly IReadOnlyList<ProgressionStageId> StageOrder = JournalOrdering.StageSelection;
-
     private UserInterface? _journalInterface;
     private JournalUiState? _journalState;
     private UserInterface? _buttonInterface;
@@ -34,15 +31,29 @@ public sealed class JournalSystem : ModSystem
 
     public bool ShowingSharedBuildPreview => SharedBuildPreview is not null;
 
+    public bool ShowingProfileManager { get; private set; }
+
+    public JournalProfileEditorSession? ProfileEditor { get; private set; }
+
+    public string? PendingProfileDeleteId { get; private set; }
+
     public JournalSavedBuild? SharedBuildPreview { get; private set; }
 
     public bool SelectingClass { get; private set; } = true;
 
     public bool HasSelectedClass { get; private set; }
 
-    public CombatClass SelectedClass { get; private set; } = CombatClass.Melee;
+    public string SelectedProfileId => JournalProfileRegistry.Active.Id;
 
-    public ProgressionStageId SelectedStage { get; private set; } = ProgressionStageCatalog.GetCurrentStageId();
+    public string SelectedClassId { get; private set; } = JournalClassIds.Melee;
+
+    public string SelectedStageId { get; private set; } = JournalStageIds.FromLegacy(ProgressionStageCatalog.GetCurrentStageId());
+
+    public CombatClass SelectedClass => JournalClassIds.ToLegacy(SelectedClassId);
+
+    public ProgressionStageId SelectedStage => JournalStageIds.TryToLegacy(SelectedStageId, out var stageId)
+        ? stageId
+        : ProgressionStageId.PreBoss;
 
     public bool ProgressionModeEnabled { get; private set; } = true;
 
@@ -83,6 +94,7 @@ public sealed class JournalSystem : ModSystem
         ShowingCombatBuffsPage = false;
         ShowingBuildSaveDialog = false;
         ShowingBuildExportDialog = false;
+        ShowingProfileManager = false;
         SelectingClass = true;
         HasSelectedClass = false;
 
@@ -90,6 +102,8 @@ public sealed class JournalSystem : ModSystem
         _editingBuild = null;
         _exportingBuild = null;
         SharedBuildPreview = null;
+        ProfileEditor = null;
+        PendingProfileDeleteId = null;
         SelectedItemId = ItemID.None;
 
         _buildSelections.Clear();
@@ -171,10 +185,12 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildBuilder = false;
         ShowingBuildSaveDialog = false;
         ShowingBuildExportDialog = false;
+        ShowingProfileManager = false;
         ActiveBuildSlotKey = null;
         _editingBuild = null;
         _exportingBuild = null;
         SharedBuildPreview = null;
+        ProfileEditor = null;
         JournalBuildStorage.Reload();
         CoerceSelectedStage();
         _journalInterface?.SetState(_journalState);
@@ -190,18 +206,31 @@ public sealed class JournalSystem : ModSystem
         _editingBuild = null;
         _exportingBuild = null;
         SharedBuildPreview = null;
+        ShowingProfileManager = false;
+        ProfileEditor = null;
         _journalInterface?.SetState(null);
     }
 
     public void CycleClass(int direction)
     {
-        SelectedClass = Cycle(ClassOrder, SelectedClass, direction);
+        var classOrder = JournalProfileRegistry.Active.Classes.Select(static value => value.Id).ToArray();
+        SelectedClassId = Cycle(classOrder, SelectedClassId, direction);
         RefreshView();
     }
 
     public void SelectClass(CombatClass combatClass)
     {
-        SelectedClass = combatClass;
+        SelectClass(JournalClassIds.FromLegacy(combatClass));
+    }
+
+    public void SelectClass(string classId)
+    {
+        if (!JournalProfileRegistry.Active.Classes.Any(value => string.Equals(value.Id, classId, StringComparison.OrdinalIgnoreCase)))
+        {
+            return;
+        }
+
+        SelectedClassId = classId;
         HasSelectedClass = true;
         SelectingClass = false;
         ShowingPresets = false;
@@ -229,18 +258,25 @@ public sealed class JournalSystem : ModSystem
 
     public void CycleStage(int direction)
     {
-        SelectedStage = Cycle(GetAvailableStageOrder(), SelectedStage, direction);
+        SelectedStageId = Cycle(GetAvailableStageOrder(), SelectedStageId, direction);
         RefreshView();
     }
 
     public void SelectStage(ProgressionStageId stageId)
     {
-        if (!ProgressionStageCatalog.IsAvailable(stageId, ProgressionModeEnabled))
+        SelectStage(JournalStageIds.FromLegacy(stageId));
+    }
+
+    public void SelectStage(string stageId)
+    {
+        var stage = JournalProfileRegistry.Active.Stages.FirstOrDefault(
+            value => string.Equals(value.Id, stageId, StringComparison.OrdinalIgnoreCase));
+        if (stage is null || !IsStageAvailable(stage))
         {
             return;
         }
 
-        SelectedStage = stageId;
+        SelectedStageId = stageId;
         ShowingBuildSaveDialog = false;
         ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
@@ -263,6 +299,181 @@ public sealed class JournalSystem : ModSystem
         RefreshView();
     }
 
+    public void SelectProfile(string profileId)
+    {
+        PendingProfileDeleteId = null;
+        if (!JournalProfileRegistry.Select(profileId))
+        {
+            return;
+        }
+
+        SelectedClassId = JournalProfileRegistry.Active.Classes[0].Id;
+        SelectedStageId = GetCurrentStageId();
+        HasSelectedClass = false;
+        SelectingClass = true;
+        ShowingPresets = false;
+        ShowingBuildBuilder = false;
+        ShowingCombatBuffsPage = false;
+        ActiveBuildSlotKey = null;
+        _editingBuild = null;
+        _exportingBuild = null;
+        _buildSelections.Clear();
+        _journalState?.ResetProfileNavigation();
+        RefreshView();
+    }
+
+    public void OpenProfileManager()
+    {
+        ShowingProfileManager = true;
+        ProfileEditor = null;
+        ShowingBuildSaveDialog = false;
+        ShowingBuildExportDialog = false;
+        ActiveBuildSlotKey = null;
+        RefreshView();
+    }
+
+    public void CloseProfileManager()
+    {
+        ShowingProfileManager = false;
+        ProfileEditor = null;
+        PendingProfileDeleteId = null;
+        RefreshView();
+    }
+
+    public void BeginNewProfile()
+    {
+        ShowingProfileManager = true;
+        ProfileEditor = JournalProfileEditorSession.CreateNew();
+        RefreshView();
+    }
+
+    public void BeginEditActiveProfile()
+    {
+        var active = JournalProfileRegistry.Active;
+        if (active.IsReadOnly)
+        {
+            if (!JournalProfileStorage.CreateEditableCopy(active, out var copy, out var error) || copy is null)
+            {
+                Main.NewText(error, Color.OrangeRed);
+                return;
+            }
+
+            JournalProfileRegistry.Register(copy);
+            JournalProfileRegistry.Select(copy.Id);
+            active = copy;
+        }
+
+        ShowingProfileManager = true;
+        ProfileEditor = JournalProfileEditorSession.FromProfile(active);
+        RefreshView();
+    }
+
+    public void SaveProfileEditor()
+    {
+        if (ProfileEditor is null)
+        {
+            return;
+        }
+
+        if (!ProfileEditor.Save(out var profile, out var error) || profile is null)
+        {
+            Main.NewText(error, Color.OrangeRed);
+            return;
+        }
+
+        JournalProfileRegistry.ReloadUserProfiles();
+        JournalProfileRegistry.Select(profile.Id);
+        SelectedClassId = profile.Classes[0].Id;
+        SelectedStageId = profile.Stages[0].Id;
+        ProfileEditor = null;
+        HasSelectedClass = false;
+        SelectingClass = true;
+        _journalState?.ResetProfileNavigation();
+        Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileSaved"), Color.LightGreen);
+        RefreshView();
+    }
+
+    public void ImportProfile()
+    {
+        if (!JournalFileDialog.TryShowOpenProfileDialog(out var path))
+        {
+            return;
+        }
+
+        if (!JournalProfileStorage.Import(path, out var profile, out var error) || profile is null)
+        {
+            Main.NewText(error, Color.OrangeRed);
+            return;
+        }
+
+        JournalProfileRegistry.ReloadUserProfiles();
+        JournalProfileRegistry.Select(profile.Id);
+        SelectedClassId = profile.Classes[0].Id;
+        SelectedStageId = profile.Stages[0].Id;
+        _journalState?.ResetProfileNavigation();
+        Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileImported", profile.Name), Color.LightGreen);
+        RefreshView();
+    }
+
+    public void ExportActiveProfile()
+    {
+        var profile = JournalProfileRegistry.Active;
+        if (!JournalFileDialog.TryShowSaveProfileDialog(profile.Name, out var path))
+        {
+            return;
+        }
+
+        if (JournalProfileStorage.Export(profile, path, out var error))
+        {
+            Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileExported", Path.GetFileName(path)), Color.LightGreen);
+            return;
+        }
+
+        Main.NewText(error, Color.OrangeRed);
+    }
+
+    public void DeleteProfile(string profileId)
+    {
+        if (!JournalProfileRegistry.TryGet(profileId, out var profile) || profile.IsBuiltIn)
+        {
+            return;
+        }
+
+        if (!string.Equals(PendingProfileDeleteId, profileId, StringComparison.OrdinalIgnoreCase))
+        {
+            PendingProfileDeleteId = profileId;
+            Main.NewText(
+                Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileDeleteConfirm", profile.Name),
+                Color.Orange);
+            RefreshView();
+            return;
+        }
+
+        PendingProfileDeleteId = null;
+        if (!JournalProfileStorage.Delete(profile, out var error))
+        {
+            Main.NewText(error, Color.OrangeRed);
+            RefreshView();
+            return;
+        }
+
+        JournalProfileRegistry.ReloadUserProfiles();
+        JournalProfileRegistry.Select(JournalProfileRegistry.Active.Id);
+        SelectedClassId = JournalProfileRegistry.Active.Classes[0].Id;
+        SelectedStageId = GetCurrentStageId();
+        HasSelectedClass = false;
+        SelectingClass = true;
+        ShowingPresets = false;
+        ShowingBuildBuilder = false;
+        ShowingCombatBuffsPage = false;
+        _buildSelections.Clear();
+        _journalState?.ResetProfileNavigation();
+        Main.NewText(
+            Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileDeleted", profile.Name),
+            Color.LightGreen);
+        RefreshView();
+    }
+
     public void ShowOverviewTab()
     {
         SelectingClass = false;
@@ -270,6 +481,8 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildBuilder = false;
         ShowingBuildSaveDialog = false;
         ShowingBuildExportDialog = false;
+        ShowingProfileManager = false;
+        ProfileEditor = null;
         ActiveBuildSlotKey = null;
         _editingBuild = null;
         _exportingBuild = null;
@@ -305,8 +518,13 @@ public sealed class JournalSystem : ModSystem
 
     public void EditSavedBuild(JournalSavedBuild build)
     {
-        SelectedClass = build.CombatClass;
-        SelectedStage = build.StageId;
+        if (!JournalProfileRegistry.Select(build.ProfileId))
+        {
+            return;
+        }
+
+        SelectedClassId = build.ClassId;
+        SelectedStageId = build.StageId;
         HasSelectedClass = true;
         SelectingClass = false;
         ShowingPresets = true;
@@ -329,7 +547,9 @@ public sealed class JournalSystem : ModSystem
 
     public void CycleOverviewPage(int direction)
     {
-        if (SelectingClass || ShowingPresets)
+        if (SelectingClass
+            || ShowingPresets
+            || !string.Equals(SelectedProfileId, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase))
         {
             return;
         }
@@ -370,8 +590,9 @@ public sealed class JournalSystem : ModSystem
         CoerceBuildSelections();
 
         _journalState?.Refresh(
-            SelectedClass,
-            SelectedStage,
+            SelectedProfileId,
+            SelectedClassId,
+            SelectedStageId,
             SelectingClass,
             ShowingPresets,
             ShowingBuildBuilder,
@@ -482,8 +703,8 @@ public sealed class JournalSystem : ModSystem
                 System.StringComparer.OrdinalIgnoreCase);
 
         var saved = _editingBuild is { } editingBuild
-            ? JournalBuildStorage.UpdateBuild(editingBuild, trimmedName, SelectedClass, SelectedStage, selectedItems, out errorMessage)
-            : JournalBuildStorage.SaveBuild(trimmedName, SelectedClass, SelectedStage, selectedItems, out errorMessage);
+            ? JournalBuildStorage.UpdateBuild(editingBuild, trimmedName, SelectedProfileId, SelectedClassId, SelectedStageId, selectedItems, out errorMessage)
+            : JournalBuildStorage.SaveBuild(trimmedName, SelectedProfileId, SelectedClassId, SelectedStageId, selectedItems, out errorMessage);
 
         if (!saved)
         {
@@ -520,9 +741,9 @@ public sealed class JournalSystem : ModSystem
         return _buildSelections.GetValueOrDefault(slotKey, ItemID.None);
     }
 
-    public IReadOnlyList<JournalSavedBuild> GetSavedBuilds(ProgressionStageId stageId, CombatClass combatClass)
+    public IReadOnlyList<JournalSavedBuild> GetSavedBuilds(string profileId, string stageId, string classId)
     {
-        return JournalBuildStorage.GetBuilds(stageId, combatClass);
+        return JournalBuildStorage.GetBuilds(profileId, stageId, classId);
     }
 
     public void DeleteSavedBuild(JournalSavedBuild build)
@@ -631,8 +852,14 @@ public sealed class JournalSystem : ModSystem
             ShowView();
         }
 
-        SelectedClass = build.CombatClass;
-        SelectedStage = build.StageId;
+        if (!JournalProfileRegistry.Select(build.ProfileId))
+        {
+            Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildImportFailed"), Color.OrangeRed);
+            return;
+        }
+
+        SelectedClassId = build.ClassId;
+        SelectedStageId = build.StageId;
         HasSelectedClass = true;
         SelectingClass = false;
         ShowingPresets = true;
@@ -761,19 +988,23 @@ public sealed class JournalSystem : ModSystem
 
     private static bool ShouldDrawJournalButton => !Main.gameMenu && Main.playerInventory;
 
-    private IReadOnlyList<ProgressionStageId> GetAvailableStageOrder()
+    private IReadOnlyList<string> GetAvailableStageOrder()
     {
-        return ProgressionModeEnabled ? ProgressionStageCatalog.GetAvailableStageIds(true) : StageOrder;
+        return ProgressionModeEnabled
+            ? JournalProfileRegistry.Active.Stages.Where(IsStageAvailable).Select(static value => value.Id).ToArray()
+            : JournalProfileRegistry.Active.Stages.Select(static value => value.Id).ToArray();
     }
 
     private void CoerceSelectedStage()
     {
-        if (ProgressionStageCatalog.IsAvailable(SelectedStage, ProgressionModeEnabled))
+        var selected = JournalProfileRegistry.Active.Stages.FirstOrDefault(
+            value => string.Equals(value.Id, SelectedStageId, StringComparison.OrdinalIgnoreCase));
+        if (selected is not null && IsStageAvailable(selected))
         {
             return;
         }
 
-        SelectedStage = ProgressionStageCatalog.GetCurrentStageId();
+        SelectedStageId = GetCurrentStageId();
     }
 
     private void CoerceBuildSelections()
@@ -784,7 +1015,12 @@ public sealed class JournalSystem : ModSystem
         }
 
         var invalidSelections = _buildSelections
-            .Where(pair => !JournalRepository.IsBuildSelectionValid(SelectedStage, SelectedClass, pair.Key, pair.Value))
+            .Where(pair => !JournalRepository.IsBuildSelectionValid(
+                SelectedProfileId,
+                SelectedStageId,
+                SelectedClassId,
+                pair.Key,
+                pair.Value))
             .Select(static pair => pair.Key)
             .ToArray();
 
@@ -840,5 +1076,25 @@ public sealed class JournalSystem : ModSystem
         }
 
         return 0;
+    }
+
+    private bool IsStageAvailable(JournalProfileStageDocument stage)
+    {
+        return !ProgressionModeEnabled || JournalProfileUnlockRegistry.IsUnlocked(stage, out _);
+    }
+
+    private static string GetCurrentStageId()
+    {
+        var current = JournalProfileRegistry.Active.Stages[0].Id;
+
+        foreach (var stage in JournalProfileRegistry.Active.Stages)
+        {
+            if (JournalProfileUnlockRegistry.IsUnlocked(stage, out _))
+            {
+                current = stage.Id;
+            }
+        }
+
+        return current;
     }
 }

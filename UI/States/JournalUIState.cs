@@ -36,7 +36,8 @@ public sealed class JournalUiState : UIState
     private const float BuildPickerMenuGap = 5f;
     private static readonly Rectangle BuildPickerBestiaryButtonIconSourceRectangle = new(4, 4, 22, 22);
 
-    private readonly Dictionary<ProgressionStageId, JournalStageButton> _stageButtons = new();
+    private readonly Dictionary<string, JournalStageButton> _stageButtons =
+        new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<int, CachedAcquisitionView> _acquisitionViewCache = new();
     private JournalDraggablePanel _root = null!;
     private UIPanel _stagePanel = null!;
@@ -45,6 +46,7 @@ public sealed class JournalUiState : UIState
     private UIElement _contentPanel = null!;
     private UIText _stagePanelTitle = null!;
     private JournalTextButton _progressionModeToggleButton = null!;
+    private JournalIconTextButton _profileButton = null!;
     private JournalIconButton _closeButton = null!;
     private JournalTextButton _classButton = null!;
     private JournalTextButton _overviewTabButton = null!;
@@ -98,6 +100,8 @@ public sealed class JournalUiState : UIState
     private UIScrollbar _sharedBuildScrollbar = null!;
     private JournalTextButton _sharedBuildAddButton = null!;
     private JournalTextButton _sharedBuildCloseButton = null!;
+    private JournalDimOverlay _profileManagerOverlay = null!;
+    private JournalProfileManagerPanel _profileManagerPanel = null!;
     private bool _layoutInitialized;
     private int _layoutScreenWidth;
     private int _layoutScreenHeight;
@@ -110,6 +114,7 @@ public sealed class JournalUiState : UIState
     private string _appliedBuildPickerSearchText = string.Empty;
     private bool _buildPickerFilterMenuOpen;
     private bool _buildPickerSortMenuOpen;
+    private string _renderedProfileId = string.Empty;
 
     private sealed record CachedAcquisitionView(UIElement PreviewElement, IReadOnlyList<UIElement> Entries);
 
@@ -142,6 +147,7 @@ public sealed class JournalUiState : UIState
         _root.SetPadding(0f);
         _root.BackgroundColor = JournalUiTheme.RootBackground * JournalUiTheme.RootBackgroundOpacity;
         _root.BorderColor = JournalUiTheme.RootBorder;
+        _root.PositionChanged += PositionProfileButton;
         Append(_root);
 
         InitializeHeader();
@@ -151,13 +157,15 @@ public sealed class JournalUiState : UIState
         InitializeBuildSaveOverlay();
         InitializeBuildExportOverlay();
         InitializeSharedBuildOverlay();
+        InitializeProfileManagerOverlay();
     }
 
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
 
-        if (_root.ContainsPoint(Main.MouseScreen))
+        if (_root.ContainsPoint(Main.MouseScreen)
+            || (_profileButton.Parent is not null && _profileButton.ContainsPoint(Main.MouseScreen)))
         {
             Main.LocalPlayer.mouseInterface = true;
             Main.blockMouse = true;
@@ -178,6 +186,12 @@ public sealed class JournalUiState : UIState
         if (JournalSystem.ShowingSharedBuildPreview)
         {
             JournalSystem.CloseSharedBuildPreview();
+            return;
+        }
+
+        if (JournalSystem.ShowingProfileManager)
+        {
+            JournalSystem.CloseProfileManager();
             return;
         }
 
@@ -210,8 +224,9 @@ public sealed class JournalUiState : UIState
     }
 
     public void Refresh(
-        CombatClass combatClass,
-        ProgressionStageId stageId,
+        string profileId,
+        string classId,
+        string stageId,
         bool selectingClass,
         bool showingPresets,
         bool showingBuildBuilder,
@@ -220,18 +235,24 @@ public sealed class JournalUiState : UIState
         bool hasSelectedClass,
         int selectedItemId)
     {
+        var profile = JournalProfileRegistry.TryGet(profileId, out var registeredProfile)
+            ? registeredProfile
+            : JournalProfileRegistry.Active;
+        EnsureProfileNavigation(profile);
         ApplyNavigationLayout(hasSelectedClass);
         EnsureLayout();
         ApplyContentLayout(selectingClass, showingPresets);
         RefreshBuildActionButtons(selectingClass, showingPresets, showingBuildBuilder);
         UpdateStaticText(progressionModeEnabled);
         UpdateNavigationStyles(selectingClass, showingPresets);
-        JournalStageButtonPresenter.Refresh(_stageButtons, stageId, progressionModeEnabled);
-        RefreshContent(combatClass, stageId, selectingClass, showingPresets, showingBuildBuilder, showingCombatBuffsPage, selectedItemId);
-        RefreshBuildPickerOverlay(combatClass, stageId, showingPresets, showingBuildBuilder);
+        JournalStageButtonPresenter.Refresh(profile, _stageButtons, stageId, progressionModeEnabled);
+        RefreshContent(profile, classId, stageId, selectingClass, showingPresets, showingBuildBuilder, showingCombatBuffsPage, selectedItemId);
+        RefreshBuildPickerOverlay(profile.Id, classId, stageId, showingPresets, showingBuildBuilder);
         RefreshBuildSaveOverlay(showingPresets, showingBuildBuilder);
         RefreshBuildExportOverlay(showingPresets, showingBuildBuilder);
         RefreshSharedBuildPreviewOverlay();
+        RefreshProfileManagerOverlay();
+        RefreshProfileButtonVisibility();
         Recalculate();
     }
 
@@ -245,11 +266,19 @@ public sealed class JournalUiState : UIState
         HideBuildSaveOverlay(clearInput: true);
         HideBuildExportOverlay();
         HideSharedBuildPreviewOverlay();
+        HideProfileManagerOverlay();
+    }
+
+    public void ResetProfileNavigation()
+    {
+        _renderedProfileId = string.Empty;
+        _layoutInitialized = false;
     }
 
     private void RefreshContent(
-        CombatClass combatClass,
-        ProgressionStageId stageId,
+        JournalProfile profile,
+        string classId,
+        string stageId,
         bool selectingClass,
         bool showingPresets,
         bool showingBuildBuilder,
@@ -265,31 +294,32 @@ public sealed class JournalUiState : UIState
         if (selectingClass)
         {
             SetContentHeader(Language.GetTextValue("Mods.ProgressionJournal.UI.ClassPageTitle"));
-            PopulateClassSelection(combatClass);
+            PopulateClassSelection(profile, classId);
             ClearAcquisitionPanel();
             return;
         }
 
         if (showingPresets)
         {
-            var presetClassName = Language.GetTextValue($"Mods.ProgressionJournal.Classes.{combatClass}");
-            var presetStageName = Language.GetTextValue(ProgressionStageCatalog.Get(stageId).LocalizationKey);
+            var presetClassName = JournalProfileText.GetClassName(profile, classId);
+            var presetStageName = JournalProfileText.GetStageName(profile, stageId);
             SetContentHeader($"{presetClassName} • {presetStageName}");
-            var savedBuilds = JournalSystem.GetSavedBuilds(stageId, combatClass);
+            var savedBuilds = JournalSystem.GetSavedBuilds(profile.Id, stageId, classId);
             SetContentDescription(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsCount", savedBuilds.Count), 0.76f);
 
             if (showingBuildBuilder)
             {
                 JournalContentBuilder.PopulateBuildPlanner(
                     _entryList,
+                    profile.Id,
                     stageId,
-                    combatClass,
+                    classId,
                     JournalSystem.GetSelectedBuildItem,
                     JournalSystem.OpenBuildSlot);
             }
             else if (savedBuilds.Count > 0)
             {
-                JournalContentBuilder.PopulateSavedBuilds(_entryList, stageId, combatClass, savedBuilds);
+                JournalContentBuilder.PopulateSavedBuilds(_entryList, profile.Id, stageId, classId, savedBuilds);
             }
             else
             {
@@ -300,24 +330,30 @@ public sealed class JournalUiState : UIState
             return;
         }
 
-        var className = Language.GetTextValue($"Mods.ProgressionJournal.Classes.{combatClass}");
-        var stageName = Language.GetTextValue(ProgressionStageCatalog.Get(stageId).LocalizationKey);
+        var className = JournalProfileText.GetClassName(profile, classId);
+        var stageName = JournalProfileText.GetStageName(profile, stageId);
         SetContentHeader($"{className} • {stageName}");
-        _entryList.Add(CreateOverviewPageSwitcherBlock(showingCombatBuffsPage));
+        if (string.Equals(profile.Id, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase))
+        {
+            _entryList.Add(CreateOverviewPageSwitcherBlock(showingCombatBuffsPage));
+        }
 
-        if (showingCombatBuffsPage)
+        if (showingCombatBuffsPage
+            && string.Equals(profile.Id, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase)
+            && JournalStageIds.TryToLegacy(stageId, out var legacyStage))
         {
             JournalContentBuilder.PopulateCombatBuffs(
                 _entryList,
-                GetCombatBuffEntries(stageId, combatClass),
+                GetCombatBuffEntries(legacyStage, JournalClassIds.ToLegacy(classId)),
                 JournalSystem.SelectItem);
         }
         else
         {
             JournalContentBuilder.PopulateEntries(
                 _entryList,
+                profile.Id,
                 stageId,
-                GetEntries(stageId, combatClass),
+                GetEntries(profile.Id, stageId, classId),
                 JournalSystem.SelectItem);
         }
 
@@ -879,7 +915,12 @@ public sealed class JournalUiState : UIState
         }
     }
 
-    private void RefreshBuildPickerOverlay(CombatClass combatClass, ProgressionStageId stageId, bool showingPresets, bool showingBuildBuilder)
+    private void RefreshBuildPickerOverlay(
+        string profileId,
+        string classId,
+        string stageId,
+        bool showingPresets,
+        bool showingBuildBuilder)
     {
         if (!showingPresets
             || !showingBuildBuilder
@@ -922,25 +963,32 @@ public sealed class JournalUiState : UIState
             _appliedBuildPickerSearchText = string.Empty;
         }
 
-        _buildPickerTitle.SetText(JournalBuildPlannerCatalog.GetSlotDisplayName(slotKey, combatClass));
-        RefreshBuildPickerControls(combatClass, slotKey);
+        var visualClass = JournalClassIds.ToLegacy(classId);
+        _buildPickerTitle.SetText(JournalBuildPlannerCatalog.GetSlotDisplayName(slotKey, visualClass));
+        RefreshBuildPickerControls(profileId, classId, slotKey);
         _buildPickerList.Clear();
         _appliedBuildPickerSearchText = _buildPickerSearchInput.CurrentString;
 
         if (_activeBuildPickerTab == BuildPickerTab.Mods)
         {
-            PopulateModBuildPicker(combatClass, slotKey, panelWidth);
+            PopulateModBuildPicker(profileId, classId, slotKey, panelWidth);
             return;
         }
 
-        PopulateGuideBuildPicker(stageId, combatClass, slotKey, panelWidth);
+        PopulateGuideBuildPicker(profileId, stageId, classId, slotKey, panelWidth);
     }
 
-    private void PopulateGuideBuildPicker(ProgressionStageId stageId, CombatClass combatClass, string slotKey, float panelWidth)
+    private void PopulateGuideBuildPicker(
+        string profileId,
+        string stageId,
+        string classId,
+        string slotKey,
+        float panelWidth)
     {
         var candidates = GetBuildCandidates(
+                profileId,
                 stageId,
-                combatClass,
+                classId,
                 slotKey)
             .Where(MatchesBuildPickerSearch)
             .Where(MatchesBuildPickerDamageFilter)
@@ -962,9 +1010,9 @@ public sealed class JournalUiState : UIState
         }
     }
 
-    private void PopulateModBuildPicker(CombatClass combatClass, string slotKey, float panelWidth)
+    private void PopulateModBuildPicker(string profileId, string classId, string slotKey, float panelWidth)
     {
-        var groups = GetModBuildCandidateGroups(combatClass, slotKey)
+        var groups = GetModBuildCandidateGroups(profileId, classId, slotKey)
             .Select(FilterBuildCandidateGroup)
             .Where(static group => group.Candidates.Count > 0)
             .ToArray();
@@ -991,9 +1039,9 @@ public sealed class JournalUiState : UIState
         }
     }
 
-    private void RefreshBuildPickerControls(CombatClass combatClass, string slotKey)
+    private void RefreshBuildPickerControls(string profileId, string classId, string slotKey)
     {
-        var selectedModGroup = GetSelectedBuildPickerModGroup(combatClass, slotKey);
+        var selectedModGroup = GetSelectedBuildPickerModGroup(profileId, classId, slotKey);
 
         _buildPickerFilterButton.SetActive(_buildPickerFilterMenuOpen
             || _activeBuildPickerTab == BuildPickerTab.Mods
@@ -1021,7 +1069,7 @@ public sealed class JournalUiState : UIState
         _buildPickerFilterButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerFilterMenuTooltip"));
         _buildPickerSortButton.SetHoverText(GetBuildPickerSortMenuTooltip());
 
-        RefreshBuildPickerMenuPanels(combatClass, slotKey);
+        RefreshBuildPickerMenuPanels(profileId, classId, slotKey);
     }
 
     private string GetBuildPickerSortMenuTooltip()
@@ -1066,7 +1114,7 @@ public sealed class JournalUiState : UIState
         JournalSystem.RefreshView();
     }
 
-    private void RefreshBuildPickerMenuPanels(CombatClass combatClass, string slotKey)
+    private void RefreshBuildPickerMenuPanels(string profileId, string classId, string slotKey)
     {
         if (_buildPickerFilterMenuPanel.Parent is not null)
         {
@@ -1080,7 +1128,7 @@ public sealed class JournalUiState : UIState
 
         if (_buildPickerFilterMenuOpen)
         {
-            RebuildBuildPickerFilterMenu(combatClass, slotKey);
+            RebuildBuildPickerFilterMenu(profileId, classId, slotKey);
             _buildPickerPanel.Append(_buildPickerFilterMenuPanel);
         }
 
@@ -1091,11 +1139,11 @@ public sealed class JournalUiState : UIState
         }
     }
 
-    private void RebuildBuildPickerFilterMenu(CombatClass combatClass, string slotKey)
+    private void RebuildBuildPickerFilterMenu(string profileId, string classId, string slotKey)
     {
         _buildPickerFilterMenuPanel.RemoveAllChildren();
 
-        var groups = GetModBuildCandidateGroups(combatClass, slotKey).ToArray();
+        var groups = GetModBuildCandidateGroups(profileId, classId, slotKey).ToArray();
         var showDamageFilters = CanUseBuildPickerDamageFilters(slotKey);
         var sourceButtonCount = 3 + groups.Length;
         if (showDamageFilters)
@@ -1565,14 +1613,14 @@ public sealed class JournalUiState : UIState
         return item.CountsAsClass(DamageClass.Summon) ? BuildPickerDamageFilter.Summon : BuildPickerDamageFilter.Other;
     }
 
-    private JournalBuildCandidateGroup? GetSelectedBuildPickerModGroup(CombatClass combatClass, string slotKey)
+    private JournalBuildCandidateGroup? GetSelectedBuildPickerModGroup(string profileId, string classId, string slotKey)
     {
         if (_activeBuildPickerTab != BuildPickerTab.Mods || _selectedBuildPickerModName is null)
         {
             return null;
         }
 
-        return GetModBuildCandidateGroups(combatClass, slotKey)
+        return GetModBuildCandidateGroups(profileId, classId, slotKey)
             .FirstOrDefault(group => string.Equals(group.Title, _selectedBuildPickerModName, StringComparison.CurrentCultureIgnoreCase));
     }
 
@@ -1723,8 +1771,11 @@ public sealed class JournalUiState : UIState
             build.Name,
             panelWidth - 96f,
             JournalUiMetrics.BuildPickerTitleScale));
+        var buildProfile = JournalProfileRegistry.TryGet(build.ProfileId, out var registeredBuildProfile)
+            ? registeredBuildProfile
+            : JournalProfileRegistry.Active;
         _sharedBuildMeta.SetText(
-            $"{Language.GetTextValue($"Mods.ProgressionJournal.Classes.{build.CombatClass}")} • {Language.GetTextValue(ProgressionStageCatalog.Get(build.StageId).LocalizationKey)}");
+            $"{JournalProfileText.GetClassName(buildProfile, build.ClassId)} • {JournalProfileText.GetStageName(buildProfile, build.StageId)}");
 
         _sharedBuildList.Clear();
         _sharedBuildList.Add(CreateSharedBuildPreview(build));
@@ -1744,7 +1795,7 @@ public sealed class JournalUiState : UIState
                 JournalBuildPlannerCatalog.ArmorLegsSlotKey));
         AddSharedBuildSection(
             Language.GetTextValue("Mods.ProgressionJournal.UI.Accessories"),
-            Enumerable.Range(1, JournalBuildPlannerCatalog.GetAccessorySlotCount(build.StageId))
+            Enumerable.Range(1, JournalBuildPlannerCatalog.GetAccessorySlotCount(build.ProfileId, build.StageId))
                 .Select(slotIndex => build.GetSelectedItemReference(JournalBuildPlannerCatalog.GetAccessorySlotKey(slotIndex)))
                 .Where(static itemReference => itemReference is not null)
                 .Select(static itemReference => itemReference!)
@@ -1877,7 +1928,7 @@ public sealed class JournalUiState : UIState
         container.Append(previewPanel);
 
         var characterPreview = new JournalSavedBuildCharacterPreview(
-            JournalPreviewPlayerFactory.CreateSavedBuildPreview(build, build.StageId),
+            JournalPreviewPlayerFactory.CreateSavedBuildPreview(build, build.ProfileId, build.StageId),
             static () => 0f,
             1.18f);
         characterPreview.Width.Set(118f, 0f);
@@ -1976,7 +2027,9 @@ public sealed class JournalUiState : UIState
         }
 
         var width = MathF.Min(JournalUiMetrics.RootMaxWidth, Main.screenWidth - JournalUiMetrics.RootHorizontalMargin);
-        var height = MathF.Min(JournalUiMetrics.RootMaxHeight, Main.screenHeight - JournalUiMetrics.RootVerticalMargin);
+        var height = MathF.Min(
+            JournalUiMetrics.RootMaxHeight,
+            Main.screenHeight - JournalUiMetrics.RootVerticalMargin - JournalUiMetrics.ProfileButtonHeight);
         _root.Width.Set(width, 0f);
         _root.Height.Set(height, 0f);
         if (!_windowPositionInitialized)
@@ -1988,8 +2041,12 @@ public sealed class JournalUiState : UIState
         }
 
         _root.Recalculate();
+        PositionProfileButton();
 
-        JournalStageButtonPresenter.Layout(_stageButtons, _stageListContainer, JournalOrdering.StageSelection);
+        JournalStageButtonPresenter.Layout(
+            _stageButtons,
+            _stageListContainer,
+            JournalProfileRegistry.Active.Stages.Select(static value => value.Id).ToArray());
         _layoutInitialized = true;
         _layoutScreenWidth = Main.screenWidth;
         _layoutScreenHeight = Main.screenHeight;
@@ -2045,15 +2102,14 @@ public sealed class JournalUiState : UIState
         _stageListContainer.Height.Set(-JournalUiMetrics.StageListBottomInset, 1f);
         _stagePanel.Append(_stageListContainer);
 
-        foreach (var stage in ProgressionStageCatalog.All)
-        {
-            var capturedStage = stage.Id;
-            var button = JournalUiElementFactory.CreateStageButton(() => JournalSystem.SelectStage(capturedStage));
-            button.Left.Set(0f, 0f);
-            button.Width.Set(0f, 1f);
-            _stageListContainer.Append(button);
-            _stageButtons[capturedStage] = button;
-        }
+        _profileButton = JournalUiElementFactory.CreateIconTextButton(
+            TextureAssets.Item[ItemID.Book],
+            string.Empty,
+            JournalUiMetrics.StagePanelWidth,
+            JournalUiMetrics.ProfileButtonHeight,
+            () => JournalSystem.OpenProfileManager(),
+            JournalUiMetrics.ProfileButtonTextScale);
+        Append(_profileButton);
     }
 
     private void InitializeMainPanel()
@@ -2514,6 +2570,93 @@ public sealed class JournalUiState : UIState
         _sharedBuildPanel.Append(_sharedBuildAddButton);
     }
 
+    private void InitializeProfileManagerOverlay()
+    {
+        _profileManagerOverlay = new JournalDimOverlay(() => JournalSystem.CloseProfileManager());
+        _profileManagerPanel = new JournalProfileManagerPanel();
+    }
+
+    private void RefreshProfileManagerOverlay()
+    {
+        if (!JournalSystem.ShowingProfileManager)
+        {
+            HideProfileManagerOverlay();
+            return;
+        }
+
+        if (_profileManagerOverlay.Parent is null)
+        {
+            _root.Append(_profileManagerOverlay);
+        }
+
+        if (_profileManagerPanel.Parent is null)
+        {
+            _root.Append(_profileManagerPanel);
+        }
+
+        var rootDimensions = _root.GetDimensions();
+        var width = MathF.Min(900f, rootDimensions.Width - 40f);
+        var height = MathF.Min(620f, rootDimensions.Height - 40f);
+        _profileManagerPanel.Width.Set(width, 0f);
+        _profileManagerPanel.Height.Set(height, 0f);
+        _profileManagerPanel.Left.Set((rootDimensions.Width - width) * 0.5f, 0f);
+        _profileManagerPanel.Top.Set((rootDimensions.Height - height) * 0.5f, 0f);
+        _profileManagerPanel.Refresh(JournalSystem);
+    }
+
+    private void HideProfileManagerOverlay()
+    {
+        if (_profileManagerOverlay.Parent is not null)
+        {
+            _root.RemoveChild(_profileManagerOverlay);
+        }
+
+        if (_profileManagerPanel.Parent is not null)
+        {
+            _root.RemoveChild(_profileManagerPanel);
+        }
+    }
+
+    private void RefreshProfileButtonVisibility()
+    {
+        var visible = !JournalSystem.ShowingProfileManager
+            && !JournalSystem.ShowingBuildSaveDialog
+            && !JournalSystem.ShowingBuildExportDialog
+            && !JournalSystem.ShowingSharedBuildPreview
+            && JournalSystem.ActiveBuildSlotKey is null;
+
+        if (visible)
+        {
+            if (_profileButton.Parent is null)
+            {
+                Append(_profileButton);
+            }
+
+            PositionProfileButton();
+            return;
+        }
+
+        if (_profileButton.Parent is not null)
+        {
+            RemoveChild(_profileButton);
+        }
+    }
+
+    private void PositionProfileButton()
+    {
+        if (_profileButton is null)
+        {
+            return;
+        }
+
+        var rootDimensions = _root.GetDimensions();
+        _profileButton.Left.Set(rootDimensions.X + JournalUiMetrics.OuterPadding, 0f);
+        _profileButton.Top.Set(
+            rootDimensions.Y + rootDimensions.Height - JournalUiMetrics.ProfileButtonOverlap,
+            0f);
+        _profileButton.Recalculate();
+    }
+
     private void InitializeContentTabs()
     {
         _contentTabsPanel = new UIElement();
@@ -2565,31 +2708,38 @@ public sealed class JournalUiState : UIState
         _classButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Class"));
         _overviewTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewTab"));
         _presetsTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsTab"));
+        _profileButton.SetText(JournalProfileRegistry.Active.Name);
+        _profileButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileManagerTooltip"));
     }
 
     private void UpdateNavigationStyles(bool selectingClass, bool showingPresets)
     {
         _closeButton.SetStyle(JournalUiTheme.GetHeaderButtonStyle(danger: true));
         _progressionModeToggleButton.SetStyle(JournalUiTheme.GetDefaultTextButtonStyle());
+        _profileButton.SetStyle(JournalUiTheme.GetDefaultTextButtonStyle());
         _classButton.SetStyle(JournalUiTheme.GetTabButtonStyle(selectingClass));
         _overviewTabButton.SetStyle(JournalUiTheme.GetTabButtonStyle(!selectingClass && !showingPresets));
         _presetsTabButton.SetStyle(JournalUiTheme.GetTabButtonStyle(!selectingClass && showingPresets));
     }
 
-    private void PopulateClassSelection(CombatClass selectedClass)
+    private void PopulateClassSelection(JournalProfile profile, string selectedClassId)
     {
         var top = 0f;
         var index = 0;
 
-        foreach (var combatClass in JournalOrdering.ClassSelection)
+        foreach (var classDefinition in profile.Classes)
         {
-            var capturedClass = combatClass;
-            var panel = new JournalClassButton(capturedClass, selectedClass == capturedClass, JournalUiMetrics.ClassSelectionButtonHeight);
+            var capturedClassId = classDefinition.Id;
+            var panel = new JournalClassButton(
+                profile,
+                classDefinition,
+                string.Equals(selectedClassId, capturedClassId, StringComparison.OrdinalIgnoreCase),
+                JournalUiMetrics.ClassSelectionButtonHeight);
             var isLeftColumn = index % 2 == 0;
             panel.Left.Set(isLeftColumn ? 0f : JournalUiMetrics.ClassSelectionButtonGap, isLeftColumn ? 0f : JournalUiMetrics.ClassSelectionButtonWidth);
             panel.Top.Set(top, 0f);
             panel.Width.Set(-6f, JournalUiMetrics.ClassSelectionButtonWidth);
-            panel.OnLeftClick += (_, _) => JournalSystem.SelectClass(capturedClass);
+            panel.OnLeftClick += (_, _) => JournalSystem.SelectClass(capturedClassId);
             _classSelectionContainer.Append(panel);
 
             index++;
@@ -2598,6 +2748,31 @@ public sealed class JournalUiState : UIState
                 top += JournalUiMetrics.ClassSelectionButtonHeight + JournalUiMetrics.ClassSelectionButtonGap;
             }
         }
+    }
+
+    private void EnsureProfileNavigation(JournalProfile profile)
+    {
+        if (string.Equals(_renderedProfileId, profile.Id, StringComparison.OrdinalIgnoreCase)
+            && _stageButtons.Count == profile.Stages.Count)
+        {
+            return;
+        }
+
+        _renderedProfileId = profile.Id;
+        _stageButtons.Clear();
+        _stageListContainer.RemoveAllChildren();
+
+        foreach (var stage in profile.Stages)
+        {
+            var capturedStageId = stage.Id;
+            var button = JournalUiElementFactory.CreateStageButton(() => JournalSystem.SelectStage(capturedStageId));
+            button.Left.Set(0f, 0f);
+            button.Width.Set(0f, 1f);
+            _stageListContainer.Append(button);
+            _stageButtons[capturedStageId] = button;
+        }
+
+        _layoutInitialized = false;
     }
 
     private void SwitchContentMode(bool selectingClass)
@@ -2727,9 +2902,10 @@ public sealed class JournalUiState : UIState
     private static Vector2 GetDefaultWindowPosition(float width, float height)
     {
         var topOffset = Main.screenHeight >= JournalUiMetrics.LargeScreenThreshold ? JournalUiMetrics.LargeScreenTopOffset : 0f;
+        var totalHeight = height + JournalUiMetrics.ProfileButtonHeight - JournalUiMetrics.ProfileButtonOverlap;
         return new Vector2(
             (Main.screenWidth - width) * 0.5f,
-            (Main.screenHeight - height) * 0.5f + topOffset);
+            (Main.screenHeight - totalHeight) * 0.5f + topOffset);
     }
 
     private void SaveBuildFromDialog()

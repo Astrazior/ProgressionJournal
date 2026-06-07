@@ -13,6 +13,8 @@ public sealed class JournalDraggablePanel : UIPanel
     private Vector2 _dragOffset;
     private bool _dragging;
 
+    public event System.Action? PositionChanged;
+
     public void AddDragTarget(UIElement element)
     {
         _dragTargets.Add(element);
@@ -43,6 +45,7 @@ public sealed class JournalDraggablePanel : UIPanel
             Left.Set(Main.MouseScreen.X - _dragOffset.X, 0f);
             Top.Set(Main.MouseScreen.Y - _dragOffset.Y, 0f);
             Recalculate();
+            PositionChanged?.Invoke();
         }
 
         base.DrawSelf(spriteBatch);
