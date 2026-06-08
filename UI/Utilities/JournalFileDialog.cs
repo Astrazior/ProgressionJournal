@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 using Terraria.Utilities.FileBrowser;
 
 namespace ProgressionJournal.UI.Utilities;

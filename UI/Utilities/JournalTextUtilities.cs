@@ -42,7 +42,7 @@ public static class JournalTextUtilities
             return [text];
         }
 
-        var words = text.Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
+        var words = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         if (words.Length == 0)
         {
             return [TrimToPixelWidth(text, maxWidth, textScale)];

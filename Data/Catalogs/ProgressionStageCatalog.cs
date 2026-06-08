@@ -1,12 +1,10 @@
-using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 
 namespace ProgressionJournal.Data.Catalogs;
 
 public static class ProgressionStageCatalog
 {
-	private static readonly IReadOnlyList<ProgressionStage> OrderedStages =
+	public static IReadOnlyList<ProgressionStage> All { get; } =
 	[
 		new (ProgressionStageId.PreBoss, "Mods.ProgressionJournal.Stages.PreBoss", static () => true),
 		new (ProgressionStageId.PostKingSlime, "Mods.ProgressionJournal.Stages.PostKingSlime", static () => NPC.downedSlimeKing),
@@ -28,12 +26,10 @@ public static class ProgressionStageCatalog
 	];
 
 	private static readonly Dictionary<ProgressionStageId, ProgressionStage> StagesById =
-		OrderedStages.ToDictionary(stage => stage.Id);
+		All.ToDictionary(stage => stage.Id);
 	private static readonly Dictionary<ProgressionStageId, int> StageOrderIndices =
-		OrderedStages.Select((stage, index) => new KeyValuePair<ProgressionStageId, int>(stage.Id, index))
+		All.Select((stage, index) => new KeyValuePair<ProgressionStageId, int>(stage.Id, index))
 			.ToDictionary(pair => pair.Key, pair => pair.Value);
-
-	public static IReadOnlyList<ProgressionStage> All => OrderedStages;
 
 	public static ProgressionStage Get(ProgressionStageId stageId) => StagesById[stageId];
 
@@ -47,15 +43,15 @@ public static class ProgressionStageCatalog
 	public static IReadOnlyList<ProgressionStageId> GetAvailableStageIds(bool progressionModeEnabled)
 	{
 		return progressionModeEnabled
-			? OrderedStages.Where(static stage => stage.IsUnlocked()).Select(static stage => stage.Id).ToArray()
-			: OrderedStages.Select(static stage => stage.Id).ToArray();
+			? All.Where(static stage => stage.IsUnlocked()).Select(static stage => stage.Id).ToArray()
+			: All.Select(static stage => stage.Id).ToArray();
 	}
 
 	public static ProgressionStageId GetCurrentStageId()
 	{
-		var current = OrderedStages[0];
+		var current = All[0];
 
-		foreach (var stage in OrderedStages) {
+		foreach (var stage in All) {
 			if (stage.IsUnlocked()) {
 				current = stage;
 			}
@@ -64,4 +60,3 @@ public static class ProgressionStageCatalog
 		return current.Id;
 	}
 }
-

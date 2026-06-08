@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Terraria.ID;
 
 namespace ProgressionJournal.Data.Repositories;

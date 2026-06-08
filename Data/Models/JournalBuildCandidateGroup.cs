@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace ProgressionJournal.Data.Models;
 
 public sealed class JournalBuildCandidateGroup(

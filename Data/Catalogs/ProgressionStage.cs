@@ -1,5 +1,3 @@
-using System;
-
 namespace ProgressionJournal.Data.Catalogs;
 
 public sealed class ProgressionStage(ProgressionStageId id, string localizationKey, Func<bool> unlockCondition)

@@ -1,4 +1,3 @@
-using System;
 using Terraria.Localization;
 
 namespace ProgressionJournal.Data.Catalogs;
@@ -15,7 +14,7 @@ public static class JournalBuildPlannerCatalog
     public const int PotionSlotCount = 8;
     public const int FoodSlotCount = 8;
 
-    public static int GetAccessorySlotCount(ProgressionStageId stageId)
+    private static int GetAccessorySlotCount(ProgressionStageId stageId)
     {
         var hardmodeIndex = ProgressionStageCatalog.GetStageOrderIndex(ProgressionStageId.HardmodeEntry);
         var currentIndex = ProgressionStageCatalog.GetStageOrderIndex(stageId);

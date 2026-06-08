@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -13,7 +12,7 @@ public sealed class JournalDraggablePanel : UIPanel
     private Vector2 _dragOffset;
     private bool _dragging;
 
-    public event System.Action? PositionChanged;
+    public event Action? PositionChanged;
 
     public void AddDragTarget(UIElement element)
     {

@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System;
-using System.Linq;
 using Terraria.ID;
 
 namespace ProgressionJournal.Data.Models;

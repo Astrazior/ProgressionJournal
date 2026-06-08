@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -698,7 +695,7 @@ public sealed class JournalSystem : ModSystem
             .ToDictionary(
                 static pair => pair.Key,
                 static pair => pair.Value,
-                System.StringComparer.OrdinalIgnoreCase);
+                StringComparer.OrdinalIgnoreCase);
 
         var saved = _editingBuild is { } editingBuild
             ? JournalBuildStorage.UpdateBuild(editingBuild, trimmedName, SelectedProfileId, SelectedClassId, SelectedStageId, selectedItems, out errorMessage)
@@ -726,7 +723,7 @@ public sealed class JournalSystem : ModSystem
             return;
         }
 
-        if (string.Equals(ActiveBuildSlotKey, slotKey, System.StringComparison.OrdinalIgnoreCase))
+        if (string.Equals(ActiveBuildSlotKey, slotKey, StringComparison.OrdinalIgnoreCase))
         {
             ActiveBuildSlotKey = null;
         }
@@ -931,7 +928,7 @@ public sealed class JournalSystem : ModSystem
         }
 
         var blockedItemIds = _buildSelections
-            .Where(pair => !string.Equals(pair.Key, slotKey, System.StringComparison.OrdinalIgnoreCase)
+            .Where(pair => !string.Equals(pair.Key, slotKey, StringComparison.OrdinalIgnoreCase)
                 && pair.Value > ItemID.None
                 && JournalBuildPlannerCatalog.TryGetSlotKind(pair.Key, out var pairSlotKind)
                 && pairSlotKind == slotKind)
@@ -1043,7 +1040,7 @@ public sealed class JournalSystem : ModSystem
                 pair.Value
             })
             .SelectMany(static group => group
-                .OrderBy(static pair => pair.Key, System.StringComparer.OrdinalIgnoreCase)
+                .OrderBy(static pair => pair.Key, StringComparer.OrdinalIgnoreCase)
                 .Skip(1)
                 .Select(static pair => pair.Key))
             .ToArray();

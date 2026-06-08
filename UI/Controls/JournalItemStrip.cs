@@ -1,10 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.Localization;
 using Terraria.UI;
 
@@ -153,6 +150,6 @@ public sealed class JournalItemStrip : UIElement
             ? Language.GetTextValue("Mods.ProgressionJournal.UI.BuildUnloadedItem")
             : itemReference.DisplayName;
 
-        return string.Equals(displayName, Language.GetTextValue("Mods.ProgressionJournal.UI.BuildUnloadedItem"), System.StringComparison.OrdinalIgnoreCase) ? displayName : Language.GetTextValue("Mods.ProgressionJournal.UI.BuildUnloadedItemTooltip", displayName);
+        return string.Equals(displayName, Language.GetTextValue("Mods.ProgressionJournal.UI.BuildUnloadedItem"), StringComparison.OrdinalIgnoreCase) ? displayName : Language.GetTextValue("Mods.ProgressionJournal.UI.BuildUnloadedItemTooltip", displayName);
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;

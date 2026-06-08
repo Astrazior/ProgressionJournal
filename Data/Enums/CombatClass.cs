@@ -1,5 +1,3 @@
-using System;
-
 namespace ProgressionJournal.Data.Enums;
 
 [Flags]

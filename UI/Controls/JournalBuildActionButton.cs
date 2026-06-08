@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -38,14 +37,12 @@ public sealed class JournalBuildActionButton : JournalHoverPanel
         BorderColor = Color.Transparent;
         OnLeftClick += (_, _) => onClick1();
 
-        if (kind == ButtonKind.Favorite)
+        _iconTexture = kind switch
         {
-            _iconTexture = Main.Assets.Request<Texture2D>(FavoriteIconTexturePath);
-        }
-        else if (kind == ButtonKind.Export)
-        {
-            _iconTexture = Main.Assets.Request<Texture2D>(ExportIconTexturePath);
-        }
+            ButtonKind.Favorite => Main.Assets.Request<Texture2D>(FavoriteIconTexturePath),
+            ButtonKind.Export => Main.Assets.Request<Texture2D>(ExportIconTexturePath),
+            _ => _iconTexture
+        };
     }
 
     public static JournalBuildActionButton CreateFavorite(bool active, Action onClick)

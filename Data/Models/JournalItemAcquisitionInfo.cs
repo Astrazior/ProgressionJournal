@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-
 namespace ProgressionJournal.Data.Models;
 
 public sealed class JournalItemAcquisitionInfo(

@@ -647,7 +647,7 @@ public sealed class JournalProfileManagerPanel : UIPanel
         var search = _searchInput.CurrentString.Trim();
         _appliedSearch = _searchInput.CurrentString;
         var items = ContentSamples.ItemsByType.Values
-            .Where(static item => item is not null && !item.IsAir && item.type > ItemID.None)
+            .Where(static item => item is { IsAir: false, type: > ItemID.None })
             .Where(item => string.IsNullOrWhiteSpace(search)
                 || item.HoverName.Contains(search, StringComparison.CurrentCultureIgnoreCase)
                 || (item.ModItem?.Mod.DisplayNameClean?.Contains(search, StringComparison.CurrentCultureIgnoreCase) ?? false))
@@ -759,16 +759,16 @@ public sealed class JournalProfileManagerPanel : UIPanel
         for (var index = 0; index < eventValues.Length; index++)
         {
             var eventCategory = eventValues[index];
-            var captured = eventCategory;
+            var row = index / 3;
             AddPanelButton(
                 panel,
                 eventCategory.GetDisplayName(),
                 20f + (index % 3) * 218f,
-                150f + (index / 3) * 40f,
+                150f + row * 40f,
                 208f,
                 () =>
                 {
-                    editor.SetItemEvent(_selectedItemId, captured, string.Empty);
+                    editor.SetItemEvent(_selectedItemId, eventCategory, string.Empty);
                     system.RefreshView();
                 },
                 entry.EventCategory == eventCategory);

@@ -12,6 +12,8 @@ public sealed class JournalConditionAlertIcon : UIElement
     private const int EmoteTextureIndex = 48;
     private const int EmoteColumns = 8;
     private const int EmoteFrames = 2;
+    private const int AlertEmoteColumn = 6;
+    private const int AlertEmoteRow = 1;
 
     public JournalConditionAlertIcon()
     {
@@ -24,13 +26,12 @@ public sealed class JournalConditionAlertIcon : UIElement
         base.DrawSelf(spriteBatch);
 
         var texture = TextureAssets.Extra[EmoteTextureIndex].Value;
-        var emoteId = EmoteID.EmotionAlert;
         var animationFrame = (int)(Main.GameUpdateCount / 24 % EmoteFrames);
         var sourceRectangle = texture.Frame(
             EmoteColumns,
             EmoteBubble.EMOTE_SHEET_VERTICAL_FRAMES,
-            emoteId * EmoteFrames % EmoteColumns + animationFrame,
-            1 + emoteId / (EmoteColumns / EmoteFrames));
+            AlertEmoteColumn + animationFrame,
+            AlertEmoteRow);
         var bounds = GetDimensions().ToRectangle();
         var scale = MathF.Min(
             bounds.Width / (float)sourceRectangle.Width,

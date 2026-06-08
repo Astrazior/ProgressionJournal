@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-
 namespace ProgressionJournal.Data.Catalogs;
 
 public static class JournalOrdering
