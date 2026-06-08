@@ -96,10 +96,6 @@ public static class JournalUiMetrics
     public const float StageButtonDefaultHeight = 44f;
     public const float StageButtonGap = 6f;
     public const float StageButtonColumnGap = 8f;
-    public const float StageButtonTextScale = 0.9f;
-    public const float MinStageButtonTextScale = 0.76f;
-    public const float StageButtonTextScaleStep = 0.02f;
-    public const float StageButtonTextHorizontalPadding = 10f;
     public const float InventoryButtonSize = 34f;
     public const float InventoryButtonAccessorySlotStep = 47f;
     public const float InventoryButtonHorizontalSpacing = 8f;

@@ -110,8 +110,6 @@ public static class JournalStageButtonPresenter
         JournalProfile profile,
         JournalProfileStageDocument stage)
     {
-        var stageName = GetStageName(profile, stage);
-
         if (!string.Equals(profile.Id, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase)
             || !JournalStageIds.TryToLegacy(stage.Id, out var legacyStageId))
         {
@@ -131,7 +129,7 @@ public static class JournalStageButtonPresenter
                 }
             }
 
-            ApplyText(button, stageName);
+            button.SetNpcHeadDisplay(NPC.TypeToDefaultHeadIndex(NPCID.Guide));
             return;
         }
 
@@ -167,39 +165,12 @@ public static class JournalStageButtonPresenter
             return;
         }
 
-        ApplyText(button, stageName);
+        button.SetNpcHeadDisplay(NPC.TypeToDefaultHeadIndex(NPCID.Guide));
     }
 
     private static string GetStageName(JournalProfile profile, JournalProfileStageDocument stage)
     {
         return JournalProfileText.GetStageName(profile, stage.Id);
-    }
-
-    private static void ApplyText(JournalStageButton button, string text)
-    {
-        var availableWidth = button.GetInnerDimensions().Width - JournalUiMetrics.StageButtonTextHorizontalPadding * 2f;
-        if (availableWidth <= 0f)
-        {
-            button.SetTextDisplay(text, JournalUiMetrics.StageButtonTextScale);
-            return;
-        }
-
-        var textScale = JournalUiMetrics.StageButtonTextScale;
-        while (textScale > JournalUiMetrics.MinStageButtonTextScale &&
-               JournalTextUtilities.MeasureMouseTextWidth(text, textScale) > availableWidth)
-        {
-            textScale -= JournalUiMetrics.StageButtonTextScaleStep;
-        }
-
-        if (JournalTextUtilities.MeasureMouseTextWidth(text, textScale) <= availableWidth)
-        {
-            button.SetTextDisplay(text, textScale);
-            return;
-        }
-
-        button.SetTextDisplay(
-            JournalTextUtilities.TrimToPixelWidth(text, availableWidth, JournalUiMetrics.MinStageButtonTextScale),
-            JournalUiMetrics.MinStageButtonTextScale);
     }
 
     private static int? GetStageBossHeadSlot(ProgressionStageId stageId)

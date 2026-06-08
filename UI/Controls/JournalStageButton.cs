@@ -3,14 +3,12 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
-using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 
 namespace ProgressionJournal.UI.Controls;
 
 public sealed class JournalStageButton : JournalHoverPanel
 {
-    private const float DefaultTextScale = 0.9f;
     private const float IconPadding = 6f;
     private const float IconOverlap = 10f;
 
@@ -20,13 +18,10 @@ public sealed class JournalStageButton : JournalHoverPanel
         Main.Assets.Request<Texture2D>("Images/UI/Bestiary/Icon_Locked");
 
     private readonly List<(HeadTextureKind Kind, int Slot)> _headSlots = [];
-    private UIText _label;
-    private float _textScale;
     private string _tooltipText = string.Empty;
     private bool _isCompleted;
     private bool _isInteractable = true;
     private bool _showLockedMarker;
-    private Color _textColor;
     private JournalButtonStyle _style;
 
     private enum HeadTextureKind
@@ -37,12 +32,7 @@ public sealed class JournalStageButton : JournalHoverPanel
 
     public JournalStageButton(Action onClick)
     {
-        _textScale = DefaultTextScale;
-        _textColor = JournalUiTheme.GetStageButtonStyle(active: false).Text;
         SetPadding(0f);
-
-        _label = CreateLabel(string.Empty);
-        Append(_label);
         SetStyle(JournalUiTheme.GetStageButtonStyle(active: false));
 
         OnLeftClick += (_, _) =>
@@ -52,23 +42,6 @@ public sealed class JournalStageButton : JournalHoverPanel
                 onClick();
             }
         };
-    }
-
-    public void SetTextDisplay(string text, float textScale)
-    {
-        _showLockedMarker = false;
-        _headSlots.Clear();
-
-        if (Math.Abs(_textScale - textScale) >= 0.001f)
-        {
-            _textScale = textScale;
-            RemoveChild(_label);
-            _label = CreateLabel(text);
-            Append(_label);
-            return;
-        }
-
-        _label.SetText(text);
     }
 
     public void SetTooltip(string tooltipText)
@@ -94,8 +67,6 @@ public sealed class JournalStageButton : JournalHoverPanel
         {
             _headSlots.Add((HeadTextureKind.Boss, bossHeadSlot));
         }
-
-        _label.SetText(string.Empty);
     }
 
     public void SetNpcHeadDisplay(int npcHeadSlot)
@@ -103,14 +74,12 @@ public sealed class JournalStageButton : JournalHoverPanel
         _showLockedMarker = false;
         _headSlots.Clear();
         _headSlots.Add((HeadTextureKind.Town, npcHeadSlot));
-        _label.SetText(string.Empty);
     }
 
     public void SetLockedDisplay()
     {
         _showLockedMarker = true;
         _headSlots.Clear();
-        _label.SetText(string.Empty);
     }
 
     public void SetStyle(JournalButtonStyle style)
@@ -118,7 +87,6 @@ public sealed class JournalStageButton : JournalHoverPanel
         _style = style;
         BackgroundColor = style.Background;
         BorderColor = style.Border;
-        SetTextColor(style.Text);
     }
 
     protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -131,9 +99,6 @@ public sealed class JournalStageButton : JournalHoverPanel
         BorderColor = canHighlight
             ? Color.Lerp(_style.Border, Color.White, 0.24f)
             : _style.Border;
-        SetTextColor(canHighlight
-            ? Color.Lerp(_style.Text, Color.White, 0.16f)
-            : _style.Text);
 
         base.DrawSelf(spriteBatch);
 
@@ -196,21 +161,6 @@ public sealed class JournalStageButton : JournalHoverPanel
         }
     }
 
-    private void SetTextColor(Color color)
-    {
-        _textColor = color;
-        _label.TextColor = color;
-    }
-    private UIText CreateLabel(string text)
-    {
-        return new UIText(text, _textScale)
-        {
-            HAlign = 0.5f,
-            VAlign = 0.5f,
-            TextColor = _textColor
-        };
-    }
-
     private static bool TryGetHeadTexture((HeadTextureKind Kind, int Slot) head, out Texture2D texture)
     {
         switch (head.Kind)
@@ -254,4 +204,3 @@ public sealed class JournalStageButton : JournalHoverPanel
         spriteBatch.Draw(texture, position, null, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
     }
 }
-

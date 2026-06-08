@@ -26,16 +26,28 @@ public static class JournalStageIconCatalog
             ["pre-moonlord"] = NPCID.MoonLordHead,
             ["pre-provi"] = NPCID.MoonLordHead
         };
-    private static readonly Dictionary<string, string> CalamityStageAliases =
+    private static readonly Dictionary<string, string> CalamityStageNpcNames =
         new(StringComparer.OrdinalIgnoreCase)
         {
+            ["pre-evil1"] = "DesertScourgeHead",
+            ["pre-evil2"] = "Crabulon",
+            ["pre-skeletron"] = "HiveMind",
+            ["pre-wof"] = "SlimeGodCore",
+            ["pre-mech"] = "Cryogen",
+            ["post-mech1"] = "AquaticScourgeHead",
+            ["post-mech2"] = "BrimstoneElemental",
+            ["pre-plantera"] = "CalamitasClone",
+            ["pre-golem"] = "Leviathan",
+            ["post-golem"] = "RavagerBody",
+            ["pre-lunar"] = "PlaguebringerGoliath",
+            ["pre-moonlord"] = "AstrumDeusHead",
             ["pre-polter"] = "Providence",
             ["pre-dog"] = "Polterghast",
-            ["pre-yharon"] = "Devourer of Gods",
+            ["pre-yharon"] = "DevourerofGodsHead",
             ["pre-scal-exo"] = "Yharon",
-            ["pre-scal"] = "Supreme Calamitas",
-            ["pre-exo"] = "Ares",
-            ["endgame"] = "Supreme Calamitas"
+            ["pre-scal"] = "AresBody",
+            ["pre-exo"] = "SupremeCalamitas",
+            ["endgame"] = "PrimordialWyrmHead"
         };
 
     public static IReadOnlyList<JournalStageIconCandidate> GetCandidates(string search)
@@ -66,22 +78,14 @@ public static class JournalStageIconCatalog
             return true;
         }
 
-        var stageName = JournalProfileText.GetStageName(profile, stage.Id);
-        var candidates = GetCandidates(string.Empty);
-        if (CalamityStageAliases.TryGetValue(stage.Id, out var alias))
+        if (string.Equals(profile.Id, JournalProfileIds.CalamityWiki, StringComparison.OrdinalIgnoreCase))
         {
-            var normalizedAlias = Normalize(alias);
-            var aliasCandidate = candidates.FirstOrDefault(candidate =>
-                string.Equals(candidate.ModName, "CalamityMod", StringComparison.OrdinalIgnoreCase)
-                && (Normalize(candidate.DisplayName).Contains(normalizedAlias, StringComparison.Ordinal)
-                    || Normalize(candidate.InternalName).Contains(normalizedAlias, StringComparison.Ordinal)));
-            if (aliasCandidate is not null)
-            {
-                npcType = aliasCandidate.NpcType;
-                return true;
-            }
+            npcType = ResolveCalamityStage(stage.Id);
+            return true;
         }
 
+        var stageName = JournalProfileText.GetStageName(profile, stage.Id);
+        var candidates = GetCandidates(string.Empty);
         var target = NormalizeStageName(stageName);
         var best = candidates
             .Select(candidate => new
@@ -113,11 +117,49 @@ public static class JournalStageIconCatalog
         return false;
     }
 
+    private static int ResolveCalamityStage(string stageId)
+    {
+        var vanillaNpcType = stageId.ToLowerInvariant() switch
+        {
+            "pre-boss" => NPCID.Guide,
+            "pre-provi" => NPCID.MoonLordHead,
+            _ => -1
+        };
+        if (vanillaNpcType >= 0)
+        {
+            return vanillaNpcType;
+        }
+
+        if (CalamityStageNpcNames.TryGetValue(stageId, out var npcName))
+        {
+            if (stageId.Equals("pre-skeletron", StringComparison.OrdinalIgnoreCase) && WorldGen.crimson)
+            {
+                npcName = "PerforatorHive";
+            }
+
+            if (ModContent.TryFind("CalamityMod", npcName, out ModNPC modNpc)
+                && GetBossHeadSlot(modNpc.Type) >= 0)
+            {
+                return modNpc.Type;
+            }
+        }
+
+        return NPCID.Guide;
+    }
+
     public static int GetBossHeadSlot(int npcType)
     {
-        return npcType >= 0 && npcType < NPCID.Sets.BossHeadTextures.Length
+        var headSlot = npcType >= 0 && npcType < NPCID.Sets.BossHeadTextures.Length
             ? NPCID.Sets.BossHeadTextures[npcType]
             : -1;
+        if (npcType < 0 || headSlot >= 0 || NPCLoader.GetNPC(npcType) is not { } modNpc) return headSlot;
+        headSlot = ModContent.GetModBossHeadSlot($"{modNpc.Texture}_Head_Boss");
+        if (headSlot < 0)
+        {
+            modNpc.BossHeadSlot(ref headSlot);
+        }
+
+        return headSlot;
     }
 
     private static JournalStageIconCandidate? CreateCandidate(int npcType)
