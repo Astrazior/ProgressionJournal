@@ -73,6 +73,9 @@ public static class JournalUiTheme
         JournalItemCategory.ClassSpecific => new JournalCategoryStyle(new Color(104, 194, 196), RootTitleText),
         JournalItemCategory.Armor => new JournalCategoryStyle(new Color(134, 166, 214), RootTitleText),
         JournalItemCategory.Accessory => new JournalCategoryStyle(new Color(182, 136, 204), RootTitleText),
+        JournalItemCategory.Buff => new JournalCategoryStyle(new Color(112, 204, 132), RootTitleText),
+        JournalItemCategory.Ammunition => new JournalCategoryStyle(new Color(214, 176, 104), RootTitleText),
+        JournalItemCategory.Support => new JournalCategoryStyle(new Color(104, 188, 210), RootTitleText),
         _ => new JournalCategoryStyle(new Color(120, 136, 152), RootTitleText)
     };
 

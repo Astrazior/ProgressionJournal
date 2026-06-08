@@ -163,6 +163,9 @@ public static class JournalContentBuilder
         JournalItemCategory.ClassSpecific => ItemID.FallenStar,
         JournalItemCategory.Armor => ItemID.IronHelmet,
         JournalItemCategory.Accessory => ItemID.Shackle,
+        JournalItemCategory.Buff => ItemID.IronskinPotion,
+        JournalItemCategory.Ammunition => ItemID.MusketBall,
+        JournalItemCategory.Support => ItemID.BewitchingTable,
         _ => ItemID.Book
     };
 

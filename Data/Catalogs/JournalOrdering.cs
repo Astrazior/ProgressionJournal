@@ -19,9 +19,12 @@ public static class JournalOrdering
     public static IReadOnlyList<JournalItemCategory> EntryCategories { get; } =
     [
         JournalItemCategory.Weapon,
-        JournalItemCategory.ClassSpecific,
         JournalItemCategory.Armor,
-        JournalItemCategory.Accessory
+        JournalItemCategory.Accessory,
+        JournalItemCategory.Ammunition,
+        JournalItemCategory.Support,
+        JournalItemCategory.ClassSpecific,
+        JournalItemCategory.Buff
     ];
 
     public static int GetTierOrder(RecommendationTier tier) => tier switch
@@ -37,9 +40,12 @@ public static class JournalOrdering
     public static int GetCategoryOrder(JournalItemCategory category) => category switch
     {
         JournalItemCategory.Weapon => 0,
-        JournalItemCategory.ClassSpecific => 1,
-        JournalItemCategory.Armor => 2,
-        JournalItemCategory.Accessory => 3,
+        JournalItemCategory.Armor => 1,
+        JournalItemCategory.Accessory => 2,
+        JournalItemCategory.Ammunition => 3,
+        JournalItemCategory.Support => 4,
+        JournalItemCategory.ClassSpecific => 5,
+        JournalItemCategory.Buff => 6,
         _ => int.MaxValue
     };
 

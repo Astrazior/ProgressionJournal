@@ -5,6 +5,9 @@ public enum JournalItemCategory
 	Weapon,
 	Armor,
 	Accessory,
-	ClassSpecific
+	ClassSpecific,
+	Buff,
+	Ammunition,
+	Support
 }
 

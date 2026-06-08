@@ -34,11 +34,13 @@ const report = {
     revisionId: page.revisionId,
   })),
   assumedVanillaItems: [],
+  ambiguousArmorHelmets: [],
   skippedRows: [],
 };
 
 const entries = [];
 const entryKeys = new Set();
+const entrySignatures = new Set();
 
 for (const row of parsedRows) {
   const category = mapCategory(row.itemType);
@@ -47,15 +49,23 @@ for (const row of parsedRows) {
     continue;
   }
 
+  const classes = mapClassIds(row.classId);
   const itemGroups = [];
   for (const wikiName of row.itemNames) {
     const resolved = resolveWikiItem(wikiName, itemIndex, armorSetIndex);
     if (resolved.kind === "armor-set") {
       const slotGroups = new Map();
-      for (const reference of resolved.references) {
+      const selectedReferences = selectArmorReferences(
+        resolved.references,
+        classes,
+        row,
+        wikiName,
+        report,
+      );
+      for (const reference of selectedReferences) {
         const slot = reference.slot;
         if (!slotGroups.has(slot)) slotGroups.set(slot, []);
-        const { slot: _, ...storedReference } = reference;
+        const { slot: _, classIds: __, ...storedReference } = reference;
         slotGroups.get(slot).push(storedReference);
       }
       for (const references of [...slotGroups.entries()]
@@ -83,11 +93,24 @@ for (const row of parsedRows) {
       .map(reference => `${reference.mod}-${reference.item}`)
       .join("-")}`,
   );
+  const signature = JSON.stringify({
+    category,
+    classes: [...classes].sort(),
+    stageId: row.stageId,
+    itemGroups: itemGroups.map(group => group
+      .map(reference => `${reference.mod}/${reference.item}`.toLowerCase())
+      .sort()),
+  });
+  if (entrySignatures.has(signature)) {
+    continue;
+  }
+  entrySignatures.add(signature);
+
   const key = uniqueKey(baseKey, entryKeys);
   entries.push({
     key,
     category,
-    classes: mapClassIds(row.classId),
+    classes,
     itemGroups,
     evaluations: [{ stageId: row.stageId, tier: "FromGuide" }],
     isSupportWeapon: /support|whip|sentry/i.test(row.itemType),
@@ -127,6 +150,7 @@ fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
 
 console.log(`Wrote ${entries.length} entries to ${outputPath}`);
 console.log(`Assumed vanilla item names: ${report.assumedVanillaItems.length}`);
+console.log(`Ambiguous armor helmet selections: ${report.ambiguousArmorHelmets.length}`);
 console.log(`Skipped rows: ${report.skippedRows.length}`);
 
 function validateProfile(profile) {
@@ -331,6 +355,9 @@ function buildArmorSetIndex(root, internalNames) {
         )].map(match => ({
           slot: { Head: 0, Body: 1, Legs: 2 }[match[1]],
           item: match[2],
+          classIds: match[1] === "Head"
+            ? detectArmorClassIds(match[2], extractClassBody(source, match[2]))
+            : [],
         }));
       })
       .filter(piece => internalNames.has(normalizeName(piece.item)))
@@ -347,17 +374,13 @@ function buildArmorSetIndex(root, internalNames) {
 function resolveWikiItem(wikiName, itemIndex, armorSetIndex) {
   const normalized = normalizeName(wikiName);
   const armorPieces = armorSetIndex.get(normalized);
-  const inferredArmorPieces = armorPieces ?? [...armorSetIndex.entries()]
-    .find(([key]) => {
-      const setName = key.replace(/armor$/, "");
-      return setName.length >= 4 && normalized.includes(setName);
-    })?.[1];
-  if (inferredArmorPieces) {
+  if (armorPieces) {
     return {
       kind: "armor-set",
-      references: inferredArmorPieces.map(piece => ({
+      references: armorPieces.map(piece => ({
         ...createReference("CalamityMod", piece.item, wikiName),
         slot: piece.slot,
+        classIds: piece.classIds,
       })),
     };
   }
@@ -378,6 +401,24 @@ function resolveWikiItem(wikiName, itemIndex, armorSetIndex) {
     };
   }
 
+  if (/armor|armour|set/i.test(wikiName)) {
+    const inferredArmorPieces = [...armorSetIndex.entries()]
+      .find(([key]) => {
+        const setName = key.replace(/armor$/, "");
+        return setName.length >= 4 && normalized.includes(setName);
+      })?.[1];
+    if (inferredArmorPieces) {
+      return {
+        kind: "armor-set",
+        references: inferredArmorPieces.map(piece => ({
+          ...createReference("CalamityMod", piece.item, wikiName),
+          slot: piece.slot,
+          classIds: piece.classIds,
+        })),
+      };
+    }
+  }
+
   return {
     kind: "assumed-vanilla",
     references: [createReference("Terraria", wikiName, wikiName)],
@@ -386,6 +427,79 @@ function resolveWikiItem(wikiName, itemIndex, armorSetIndex) {
 
 function createReference(mod, item, displayName) {
   return { mod, item, displayName };
+}
+
+function selectArmorReferences(references, classes, row, wikiName, report) {
+  const headReferences = references.filter(reference => reference.slot === 0);
+  if (headReferences.length <= 1 || classes.length !== 1) {
+    return references;
+  }
+
+  const classId = classes[0];
+  const matchingHeads = headReferences
+    .filter(reference => reference.classIds.includes(classId));
+  if (matchingHeads.length > 0) {
+    return references.filter(reference => reference.slot !== 0
+      || matchingHeads.includes(reference));
+  }
+
+  report.ambiguousArmorHelmets.push({
+    classId,
+    stageId: row.stageId,
+    wikiName,
+    candidates: headReferences.map(reference => ({
+      item: reference.item,
+      detectedClasses: reference.classIds,
+    })),
+  });
+  return references;
+}
+
+function detectArmorClassIds(itemName, source) {
+  const nameSignals = {
+    melee: /melee|warrior/i,
+    ranged: /ranged|ranger/i,
+    magic: /magic|mage/i,
+    summoner: /summon/i,
+    rogue: /rogue|stealth/i,
+  };
+  const nameMatches = Object.entries(nameSignals)
+    .filter(([, pattern]) => pattern.test(itemName))
+    .map(([classId]) => classId);
+  if (nameMatches.length > 0) {
+    return nameMatches;
+  }
+
+  const sourceSignals = {
+    melee: /MeleeDamageClass|DamageClass\.Melee|\bmelee(?:Damage|Crit|Speed)\b/i,
+    ranged: /RangedDamageClass|DamageClass\.Ranged|\branged(?:Damage|Crit)\b/i,
+    magic: /MagicDamageClass|DamageClass\.Magic|\bmagic(?:Damage|Crit)\b/i,
+    summoner: /SummonDamageClass|DamageClass\.Summon|\bsummon(?:Damage|Crit)\b|maxMinions/i,
+    rogue: /RogueDamageClass|\brogue(?:Damage|Crit|Velocity)\b|stealth/i,
+  };
+  return Object.entries(sourceSignals)
+    .filter(([, pattern]) => pattern.test(source))
+    .map(([classId]) => classId);
+}
+
+function extractClassBody(source, className) {
+  const classMatch = new RegExp(`\\bclass\\s+${className}\\b`).exec(source);
+  if (!classMatch) return "";
+
+  const openingBrace = source.indexOf("{", classMatch.index);
+  if (openingBrace < 0) return "";
+
+  let depth = 0;
+  for (let index = openingBrace; index < source.length; index++) {
+    if (source[index] === "{") depth++;
+    if (source[index] === "}") {
+      depth--;
+      if (depth === 0) {
+        return source.slice(openingBrace, index + 1);
+      }
+    }
+  }
+  return source.slice(openingBrace);
 }
 
 function buildClasses(rows) {
@@ -530,7 +644,10 @@ function mapClassIds(value) {
 function mapCategory(value) {
   if (/^armor$/i.test(value)) return "Armor";
   if (/^accessor/i.test(value)) return "Accessory";
-  if (/ammo|buff|mount|hook|tool|support/i.test(value)) return "ClassSpecific";
+  if (/^buff/i.test(value)) return "Buff";
+  if (/^ammo$/i.test(value)) return "Ammunition";
+  if (/^support$/i.test(value)) return "Support";
+  if (/mount|hook|tool/i.test(value)) return "ClassSpecific";
   if (/weapon|minion|sentr/i.test(value)) return "Weapon";
   return null;
 }
