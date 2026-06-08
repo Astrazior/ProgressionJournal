@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -446,16 +443,27 @@ public sealed class JournalUiState : UIState
         _sourceList.Add(CreateSourceNotice(Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSelectPrompt")));
     }
 
-    private static UIText CreateSourceSectionHeader(string localizationKey)
+    private static UIElement CreateSourceSectionHeader(string localizationKey)
     {
-        var header = JournalUiElementFactory.CreateSectionHeader(Language.GetTextValue(localizationKey));
+        var (iconItemId, accent) = localizationKey switch
+        {
+            "Mods.ProgressionJournal.UI.SelectedItemCrafts" => (ItemID.WorkBench, new Color(220, 174, 92)),
+            "Mods.ProgressionJournal.UI.SelectedItemDrops" => (ItemID.Gel, new Color(205, 116, 118)),
+            "Mods.ProgressionJournal.UI.SelectedItemShops" => (ItemID.GoldCoin, new Color(232, 198, 92)),
+            "Mods.ProgressionJournal.UI.SelectedItemFishing" => (ItemID.GoldenFishingRod, new Color(92, 176, 218)),
+            _ => (ItemID.Book, JournalUiTheme.PanelBorder)
+        };
+        var header = new JournalSourceSectionHeader(
+            Language.GetTextValue(localizationKey),
+            iconItemId,
+            accent);
         header.Width.Set(0f, 1f);
         return header;
     }
 
     private UIPanel CreateRecipeSourceCard(JournalRecipeSource recipe)
     {
-        var panel = JournalUiElementFactory.CreatePanel();
+        var panel = CreateSourceCard(new Color(220, 174, 92));
         panel.Width.Set(0f, 1f);
 
         var top = JournalUiMetrics.BlockVerticalPadding;
@@ -479,7 +487,7 @@ public sealed class JournalUiState : UIState
 
     private UIPanel CreateDropSourceCard(JournalDropSource drop)
     {
-        var panel = JournalUiElementFactory.CreatePanel();
+        var panel = CreateSourceCard(new Color(205, 116, 118));
         panel.Width.Set(0f, 1f);
 
         var top = JournalUiMetrics.BlockVerticalPadding;
@@ -528,7 +536,7 @@ public sealed class JournalUiState : UIState
 
     private UIPanel CreateAggregatedNpcDropSourceCard(IReadOnlyList<JournalDropSource> drops)
     {
-        var panel = JournalUiElementFactory.CreatePanel();
+        var panel = CreateSourceCard(new Color(205, 116, 118));
         panel.Width.Set(0f, 1f);
 
         var top = JournalUiMetrics.BlockVerticalPadding;
@@ -573,7 +581,7 @@ public sealed class JournalUiState : UIState
 
     private UIPanel CreateShopSourceCard(JournalShopSource shop)
     {
-        var panel = JournalUiElementFactory.CreatePanel();
+        var panel = CreateSourceCard(new Color(232, 198, 92));
         panel.Width.Set(0f, 1f);
 
         var top = JournalUiMetrics.BlockVerticalPadding;
@@ -602,7 +610,7 @@ public sealed class JournalUiState : UIState
 
     private UIPanel CreateFishingSourceCard(JournalFishingSource fishingSource)
     {
-        var panel = JournalUiElementFactory.CreatePanel();
+        var panel = CreateSourceCard(new Color(92, 176, 218));
         panel.Width.Set(0f, 1f);
 
         var top = JournalUiMetrics.BlockVerticalPadding;
@@ -618,6 +626,11 @@ public sealed class JournalUiState : UIState
 
         panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
         return panel;
+    }
+
+    private static JournalSourceCard CreateSourceCard(Color accent)
+    {
+        return new JournalSourceCard(accent);
     }
 
     private static UIElement CreateSourceNotice(string text)
@@ -731,34 +744,96 @@ public sealed class JournalUiState : UIState
     private float AppendConditionContent(UIElement parent, IReadOnlyList<string> conditions, float top)
     {
         var visuals = JournalAcquisitionVisuals.SplitConditions(conditions);
+        var area = new JournalConditionPanel();
+        area.Left.Set(10f, 0f);
+        area.Top.Set(top, 0f);
+        area.Width.Set(-20f, 1f);
+
+        var alertIcon = new JournalConditionAlertIcon
+        {
+            HAlign = 0.5f
+        };
+        alertIcon.Top.Set(8f, 0f);
+        area.Append(alertIcon);
+
+        var contentTop = 54f;
+        var contentWidth = MathF.Max(50f, GetSourceTextMaxWidth() - 20f);
 
         if (visuals.Tokens.Count > 0)
         {
-            top = AppendTokenRows(parent, visuals.Tokens, top);
+            contentTop = AppendTokenRows(
+                area,
+                visuals.Tokens,
+                contentTop,
+                10f,
+                contentWidth);
         }
 
         if (visuals.RemainingText.Count > 0)
         {
-            top = AppendConditionTextList(parent, visuals.RemainingText, visuals.Tokens.Count > 0 ? top + 2f : top);
+            contentTop = AppendConditionTextList(
+                area,
+                visuals.RemainingText,
+                visuals.Tokens.Count > 0 ? contentTop + 3f : contentTop,
+                contentWidth);
+        }
+
+        area.Height.Set(contentTop + 10f, 0f);
+        parent.Append(area);
+        return top + area.Height.Pixels;
+    }
+
+    private float AppendConditionTextList(
+        UIElement parent,
+        IReadOnlyList<string> conditions,
+        float top,
+        float maxWidth)
+    {
+        if (conditions.Count == 0)
+        {
+            return top;
+        }
+
+        foreach (var line in JournalTextUtilities.WrapToPixelWidth(
+                     string.Join(" • ", conditions),
+                     maxWidth,
+                     JournalUiMetrics.AcquisitionPanelTextScale))
+        {
+            var text = new UIText(line, JournalUiMetrics.AcquisitionPanelTextScale)
+            {
+                HAlign = 0.5f,
+                TextColor = new Color(238, 204, 94)
+            };
+            text.Top.Set(top, 0f);
+            parent.Append(text);
+            top += JournalUiMetrics.AcquisitionPanelTextLineHeight;
         }
 
         return top;
     }
 
-    private float AppendConditionTextList(UIElement parent, IReadOnlyList<string> conditions, float top)
+    private float AppendTokenRows(UIElement parent, IReadOnlyList<JournalSourceTokenData> tokens, float top)
     {
-        return conditions.Count == 0 ? top : AppendTextLines(parent, [string.Join(" • ", conditions)], top);
+        return AppendTokenRows(
+            parent,
+            tokens,
+            top,
+            JournalUiMetrics.BlockHorizontalPadding,
+            GetSourceTextMaxWidth());
     }
 
-    private float AppendTokenRows(UIElement parent, IReadOnlyList<JournalSourceTokenData> tokens, float top)
+    private static float AppendTokenRows(
+        UIElement parent,
+        IReadOnlyList<JournalSourceTokenData> tokens,
+        float top,
+        float left,
+        float maxWidth)
     {
         if (tokens.Count == 0)
         {
             return top;
         }
 
-        const float left = JournalUiMetrics.BlockHorizontalPadding;
-        var maxWidth = GetSourceTextMaxWidth();
         const float spacing = 6f;
         var rows = new List<List<JournalSourceTokenData>>();
         var currentRow = new List<JournalSourceTokenData>();
@@ -2656,11 +2731,7 @@ public sealed class JournalUiState : UIState
 
     private void RefreshProfileButtonVisibility()
     {
-        var visible = !JournalSystem.ShowingProfileManager
-            && !JournalSystem.ShowingBuildSaveDialog
-            && !JournalSystem.ShowingBuildExportDialog
-            && !JournalSystem.ShowingSharedBuildPreview
-            && JournalSystem.ActiveBuildSlotKey is null;
+        var visible = JournalSystem is { ShowingProfileManager: false, ShowingBuildSaveDialog: false, ShowingBuildExportDialog: false, ShowingSharedBuildPreview: false, ActiveBuildSlotKey: null };
 
         if (visible)
         {
@@ -2681,11 +2752,6 @@ public sealed class JournalUiState : UIState
 
     private void PositionProfileButton()
     {
-        if (_profileButton is null)
-        {
-            return;
-        }
-
         var rootDimensions = _root.GetDimensions();
         _profileButton.Left.Set(rootDimensions.X + JournalUiMetrics.OuterPadding, 0f);
         _profileButton.Top.Set(

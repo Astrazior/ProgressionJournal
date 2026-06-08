@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.Localization;
@@ -189,8 +187,14 @@ public static class JournalAcquisitionVisuals
         var tokens = new List<JournalSourceTokenData>();
         var remainingText = new List<string>();
 
-        foreach (var condition in conditions.Where(static condition => !string.IsNullOrWhiteSpace(condition)))
+        foreach (var rawCondition in conditions.Where(static condition => !string.IsNullOrWhiteSpace(condition)))
         {
+            var condition = RemoveRedundantItemPrefix(rawCondition);
+            if (string.IsNullOrWhiteSpace(condition))
+            {
+                continue;
+            }
+
             if (TryCreateConditionTokens(condition, tokens))
             {
                 continue;
@@ -204,6 +208,26 @@ public static class JournalAcquisitionVisuals
                 .Distinct()
                 .ToArray(),
             remainingText.ToArray());
+    }
+
+    private static string RemoveRedundantItemPrefix(string condition)
+    {
+        var separatorIndex = condition.IndexOf(':');
+        if (separatorIndex < 0)
+        {
+            return condition;
+        }
+
+        var label = condition[..separatorIndex].Trim();
+        if (!label.Equals("Предмет", StringComparison.OrdinalIgnoreCase)
+            && !label.Equals("Предметы", StringComparison.OrdinalIgnoreCase)
+            && !label.Equals("Item", StringComparison.OrdinalIgnoreCase)
+            && !label.Equals("Items", StringComparison.OrdinalIgnoreCase))
+        {
+            return condition;
+        }
+
+        return condition[(separatorIndex + 1)..].TrimStart();
     }
 
     private static bool TryCreateConditionTokens(string condition, ICollection<JournalSourceTokenData> tokens)

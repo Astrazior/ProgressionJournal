@@ -1,21 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
 using Terraria.GameContent;
 
 namespace ProgressionJournal.UI.Utilities;
 
 public static class JournalTextUtilities
 {
-    public static string TrimToCharacterCount(string text, int maxLength)
-    {
-        if (string.IsNullOrWhiteSpace(text) || text.Length <= maxLength)
-        {
-            return text;
-        }
-
-        return text[..(maxLength - 3)].TrimEnd() + "...";
-    }
-
     public static string TrimToPixelWidth(string text, float maxWidth, float textScale)
     {
         if (string.IsNullOrWhiteSpace(text) || MeasureMouseTextWidth(text, textScale) <= maxWidth)
@@ -90,4 +78,3 @@ public static class JournalTextUtilities
         return lines.Where(static line => !string.IsNullOrWhiteSpace(line)).ToArray();
     }
 }
-
