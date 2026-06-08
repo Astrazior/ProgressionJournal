@@ -427,6 +427,12 @@ public sealed class JournalUiState : UIState
             builtEntries.AddRange(info.Shops.Select(CreateShopSourceCard));
         }
 
+        if (info.FishingSources.Count > 0)
+        {
+            builtEntries.Add(CreateSourceSectionHeader("Mods.ProgressionJournal.UI.SelectedItemFishing"));
+            builtEntries.AddRange(info.FishingSources.Select(CreateFishingSourceCard));
+        }
+
         AddEntriesToSourceList(builtEntries);
 
         _acquisitionViewCache[selectedItemId] = new CachedAcquisitionView(previewStrip, builtEntries);
@@ -588,6 +594,26 @@ public sealed class JournalUiState : UIState
         if (shop.Conditions.Count > 0)
         {
             top = AppendConditionContent(panel, shop.Conditions, top + 6f);
+        }
+
+        panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
+        return panel;
+    }
+
+    private UIPanel CreateFishingSourceCard(JournalFishingSource fishingSource)
+    {
+        var panel = JournalUiElementFactory.CreatePanel();
+        panel.Width.Set(0f, 1f);
+
+        var top = JournalUiMetrics.BlockVerticalPadding;
+        top = AppendTextLines(
+            panel,
+            [Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemFishingMethod")],
+            top);
+
+        if (fishingSource.Conditions.Count > 0)
+        {
+            top = AppendConditionContent(panel, fishingSource.Conditions, top + 6f);
         }
 
         panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);

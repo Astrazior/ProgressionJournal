@@ -25,7 +25,8 @@ public static class JournalItemSourceResolver
             itemId,
             BuildRecipes(itemId),
             BuildDrops(itemId),
-            BuildShops(itemId));
+            BuildShops(itemId),
+            JournalFishingSourceResolver.FindSources(itemId));
         Cache[itemId] = info;
         return info;
     }

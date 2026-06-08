@@ -15,19 +15,33 @@ public sealed class JournalItemStrip : UIElement
     private const float SlotSpacing = 4f;
 
     private readonly JournalSavedBuildItemReference[] _items;
+    private readonly int[] _stacks;
 
     public JournalItemStrip(IEnumerable<Item> items)
-        : this(items.Select(static item => new JournalSavedBuildItemReference(
-            item.type,
-            item.ModItem?.Mod.Name ?? string.Empty,
-            item.ModItem?.Name ?? string.Empty,
-            item.HoverName)))
     {
+        var itemArray = items.ToArray();
+        _items = itemArray
+            .Select(static item => new JournalSavedBuildItemReference(
+                item.type,
+                item.ModItem?.Mod.Name ?? string.Empty,
+                item.ModItem?.Name ?? string.Empty,
+                item.HoverName))
+            .ToArray();
+        _stacks = itemArray
+            .Select(static item => item.stack)
+            .ToArray();
+        SetSize();
     }
 
     public JournalItemStrip(IEnumerable<JournalSavedBuildItemReference> items)
     {
         _items = items.ToArray();
+        _stacks = Enumerable.Repeat(1, _items.Length).ToArray();
+        SetSize();
+    }
+
+    private void SetSize()
+    {
         Width.Set(GetVisualWidth(_items.Length), 0f);
         Height.Set(TextureAssets.InventoryBack9.Height(), 0f);
     }
@@ -65,6 +79,7 @@ public sealed class JournalItemStrip : UIElement
                 var position = GetInnerDimensions().ToRectangle().TopLeft() + new Vector2(index * (SlotWidth + SlotSpacing), 0f);
                 if (_items[index].IsLoaded && JournalItemUtilities.TryCreateItem(_items[index].Type, out var item))
                 {
+                    item.stack = _stacks[index];
                     Main.instance.LoadItem(item.type);
                     ItemSlot.Draw(spriteBatch, ref item, ItemSlot.Context.TrashItem, position);
                     continue;
@@ -85,6 +100,7 @@ public sealed class JournalItemStrip : UIElement
 
         if (_items[hoveredIndex].IsLoaded && JournalItemUtilities.TryCreateItem(_items[hoveredIndex].Type, out var hoverItem))
         {
+            hoverItem.stack = _stacks[hoveredIndex];
             Main.HoverItem = hoverItem;
             Main.hoverItemName = hoverItem.HoverName;
             return;
