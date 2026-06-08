@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using ProgressionJournal.Systems;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
@@ -79,6 +80,91 @@ public static class JournalContentBuilder
         buffPanel.SetEntries(combatBuffEntries);
         entryList.Add(buffPanel);
     }
+
+    public static UIPanel CreateEditableRecommendationBlock(
+        RecommendationTier tier,
+        IReadOnlyList<JournalStageEntry> entries,
+        Action<JournalItemCategory> onAddCategory,
+        Action<int> onItemSelected)
+    {
+        var palette = JournalUiTheme.GetRecommendationBlockStyle(tier);
+        var block = JournalUiElementFactory.CreatePanel();
+        block.Width.Set(0f, 1f);
+        block.SetPadding(0f);
+        block.BackgroundColor = palette.Background;
+        block.BorderColor = palette.Border;
+
+        var top = JournalUiMetrics.BlockVerticalPadding;
+        var header = CreateRecommendationHeader(GetTierTitle(tier));
+        header.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
+        header.Top.Set(top, 0f);
+        block.Append(header);
+        top += JournalUiMetrics.RecommendationHeaderHeight + 4f;
+
+        var buttonWidthPercent = 1f / 4f;
+        for (var index = 0; index < JournalOrdering.EntryCategories.Count; index++)
+        {
+            var category = JournalOrdering.EntryCategories[index];
+            var capturedCategory = category;
+            var button = JournalUiElementFactory.CreateIconButton(
+                TextureAssets.Item[GetEditorCategoryIconItem(category)],
+                30f,
+                30f,
+                () => onAddCategory(capturedCategory),
+                0.72f);
+            button.Left.Set(-15f, buttonWidthPercent * index + buttonWidthPercent * 0.5f);
+            button.Top.Set(top, 0f);
+            button.SetHoverText(
+                $"+ {Language.GetTextValue($"Mods.ProgressionJournal.Categories.{category}")}");
+            block.Append(button);
+        }
+
+        top += 38f;
+        var hasAnyCategory = false;
+        foreach (var category in JournalOrdering.EntryCategories)
+        {
+            var categoryEntries = entries.Where(entry => entry.Entry.Category == category).ToArray();
+            if (categoryEntries.Length == 0)
+            {
+                continue;
+            }
+
+            if (hasAnyCategory)
+            {
+                top += JournalUiMetrics.CategorySpacing;
+            }
+
+            var categoryHeader = CreateCategoryHeader(category);
+            categoryHeader.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
+            categoryHeader.Top.Set(top, 0f);
+            block.Append(categoryHeader);
+            top += GetCategoryHeaderHeight() + GetCategoryHeaderBottomSpacing();
+
+            foreach (var rowEntries in ChunkEntries(categoryEntries, JournalUiMetrics.EntrySlotsPerRow))
+            {
+                var row = CreateSlotRow(rowEntries, onItemSelected);
+                row.Left.Set(JournalUiMetrics.BlockHorizontalPadding + JournalUiMetrics.CategoryContentIndent, 0f);
+                row.Top.Set(top, 0f);
+                block.Append(row);
+                top += JournalUiMetrics.RowHeight + JournalUiMetrics.RowSpacing;
+            }
+
+            top -= JournalUiMetrics.RowSpacing;
+            hasAnyCategory = true;
+        }
+
+        block.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
+        return block;
+    }
+
+    private static int GetEditorCategoryIconItem(JournalItemCategory category) => category switch
+    {
+        JournalItemCategory.Weapon => ItemID.WoodenSword,
+        JournalItemCategory.ClassSpecific => ItemID.FallenStar,
+        JournalItemCategory.Armor => ItemID.IronHelmet,
+        JournalItemCategory.Accessory => ItemID.Shackle,
+        _ => ItemID.Book
+    };
 
     public static void PopulateBuildPlanner(
         UIList entryList,

@@ -23,13 +23,25 @@ public static class JournalClassIds
         _ => Melee
     };
 
-    public static CombatClass ToLegacy(string classId) => classId.ToLowerInvariant() switch
+    public static CombatClass ToLegacy(string classId)
     {
-        Ranged => CombatClass.Ranged,
-        Magic => CombatClass.Magic,
-        Summoner => CombatClass.Summoner,
-        _ => CombatClass.Melee
-    };
+        return TryToLegacy(classId, out var combatClass)
+            ? combatClass
+            : CombatClass.Melee;
+    }
+
+    public static bool TryToLegacy(string classId, out CombatClass combatClass)
+    {
+        combatClass = classId.ToLowerInvariant() switch
+        {
+            Melee => CombatClass.Melee,
+            Ranged => CombatClass.Ranged,
+            Magic => CombatClass.Magic,
+            Summoner => CombatClass.Summoner,
+            _ => CombatClass.None
+        };
+        return combatClass != CombatClass.None;
+    }
 
     public static IReadOnlyList<string> FromLegacyFlags(CombatClass classes)
     {

@@ -365,9 +365,10 @@ public static partial class JournalRepository
         if (JournalProfileRegistry.TryGet(profileId, out var profile))
         {
             var classDefinition = profile.GetClass(classId);
-            var damageClassTypeName = item.DamageType.GetType().Name;
+            var damageClassType = item.DamageType.GetType();
             if (classDefinition.DamageClassNames.Any(
-                name => string.Equals(name, damageClassTypeName, StringComparison.OrdinalIgnoreCase)))
+                name => string.Equals(name, damageClassType.Name, StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(name, damageClassType.FullName, StringComparison.OrdinalIgnoreCase)))
             {
                 return IsWeaponItem(item);
             }

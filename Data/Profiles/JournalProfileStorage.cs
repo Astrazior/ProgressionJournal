@@ -10,7 +10,7 @@ namespace ProgressionJournal.Data.Profiles;
 public static class JournalProfileStorage
 {
     public const string ProfileFormat = "ProgressionJournalProfile";
-    public const int CurrentVersion = 1;
+    public const int CurrentVersion = 2;
     public const string FileExtension = ".pjprofile.json";
 
     private const string ProfileDirectoryName = "Profiles";
@@ -79,9 +79,11 @@ public static class JournalProfileStorage
             }
 
             var entries = ResolveEntries(document);
+            var combatBuffEntries = ResolveCombatBuffEntries(document);
             profile = new JournalProfile(
                 document,
                 entries,
+                combatBuffEntries,
                 sourcePath,
                 isBuiltIn,
                 HasVersionMismatch(document));
@@ -286,7 +288,7 @@ public static class JournalProfileStorage
                 .ToList()
         };
 
-        return new JournalProfile(document, entries, "builtin:vanilla", isBuiltIn: true, hasVersionMismatch: false);
+        return new JournalProfile(document, entries, [], "builtin:vanilla", isBuiltIn: true, hasVersionMismatch: false);
     }
 
     public static string Serialize(JournalProfileDocument document)
@@ -332,9 +334,10 @@ public static class JournalProfileStorage
 
         if (HasDuplicates(document.Classes.Select(static value => value.Id))
             || HasDuplicates(document.Stages.Select(static value => value.Id))
-            || HasDuplicates(document.Entries.Select(static value => value.Key)))
+            || HasDuplicates(document.Entries.Select(static value => value.Key))
+            || HasDuplicates(document.CombatBuffs.Select(static value => value.Key)))
         {
-            error = "Class, stage, and entry ids must be unique.";
+            error = "Class, stage, entry, and combat buff ids must be unique.";
             return false;
         }
 
@@ -369,6 +372,21 @@ public static class JournalProfileStorage
             }
         }
 
+        foreach (var buff in document.CombatBuffs)
+        {
+            if (string.IsNullOrWhiteSpace(buff.Key)
+                || !classIds.Contains(buff.ClassId)
+                || !stageIds.Contains(buff.StageId)
+                || buff.ItemGroups.Count == 0
+                || buff.ItemGroups.Any(static group => group.Count == 0)
+                || buff.ItemGroups.SelectMany(static group => group).Any(static reference =>
+                    string.IsNullOrWhiteSpace(reference.Mod) || string.IsNullOrWhiteSpace(reference.Item)))
+            {
+                error = $"Combat buff '{buff.Key}' is invalid.";
+                return false;
+            }
+        }
+
         error = string.Empty;
         return true;
     }
@@ -399,7 +417,39 @@ public static class JournalProfileStorage
                 entryDocument.Classes,
                 groups,
                 entryDocument.Evaluations.Select(static value => new StageEvaluation(value.StageId, value.Tier)),
-                isSupportWeapon: entryDocument.IsSupportWeapon));
+                entryDocument.EventCategory,
+                entryDocument.IsSupportWeapon,
+                entryDocument.CustomEventName));
+        }
+
+        return result;
+    }
+
+    private static IReadOnlyList<JournalCombatBuffEntry> ResolveCombatBuffEntries(JournalProfileDocument document)
+    {
+        List<JournalCombatBuffEntry> result = [];
+
+        foreach (var buffDocument in document.CombatBuffs)
+        {
+            var groups = buffDocument.ItemGroups
+                .Select(group => group
+                    .Select(TryResolveItem)
+                    .Where(static itemId => itemId > ItemID.None)
+                    .ToArray())
+                .Where(static group => group.Length > 0)
+                .Select(static group => new JournalItemGroup(group))
+                .ToArray();
+            if (groups.Length == 0)
+            {
+                continue;
+            }
+
+            result.Add(new JournalCombatBuffEntry(
+                buffDocument.Key,
+                buffDocument.Category,
+                [buffDocument.ClassId],
+                groups,
+                buffDocument.StageId));
         }
 
         return result;

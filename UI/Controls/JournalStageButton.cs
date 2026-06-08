@@ -58,6 +58,7 @@ public sealed class JournalStageButton : JournalHoverPanel
 
     public void SetTextDisplay(string text, float textScale)
     {
+        _showLockedMarker = false;
         _headSlots.Clear();
 
         if (Math.Abs(_textScale - textScale) >= 0.001f)

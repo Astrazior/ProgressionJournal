@@ -28,6 +28,28 @@ public static partial class JournalRepository
             .ToArray();
     }
 
+    public static IReadOnlyList<JournalCombatBuffEntry> GetCombatBuffEntries(
+        string profileId,
+        string stageId,
+        string classId)
+    {
+        if (!JournalProfileRegistry.TryGet(profileId, out var profile)
+            || string.Equals(profile.Id, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase))
+        {
+            if (!JournalStageIds.TryToLegacy(stageId, out var legacyStage))
+            {
+                return [];
+            }
+
+            return GetCombatBuffEntries(legacyStage, JournalClassIds.ToLegacy(classId));
+        }
+
+        return profile.CombatBuffEntries
+            .Where(entry => entry.AppliesToClass(classId) && entry.AppliesToStage(stageId))
+            .OrderBy(entry => GetCombatBuffCategoryOrder(entry.Category))
+            .ToArray();
+    }
+
     private static int GetCombatBuffCategoryOrder(JournalBuffCategory category)
     {
         for (var index = 0; index < CombatBuffCategoryOrder.Length; index++)

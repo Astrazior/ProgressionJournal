@@ -55,13 +55,15 @@ public sealed class JournalEntry
 		IEnumerable<JournalItemGroup> itemGroups,
 		IEnumerable<StageEvaluation> evaluations,
 		JournalEventCategory? eventCategory = null,
-		bool isSupportWeapon = false)
+		bool isSupportWeapon = false,
+		string? customEventName = null)
 	{
 		Key = key;
 		Category = category;
 		_classIds = classIds.ToHashSet(StringComparer.OrdinalIgnoreCase);
 		Classes = GetLegacyClasses(_classIds);
 		EventCategory = eventCategory;
+		CustomEventName = customEventName?.Trim() ?? string.Empty;
 		IsSupportWeapon = isSupportWeapon;
 		ItemGroups = itemGroups.ToArray();
 
@@ -84,6 +86,8 @@ public sealed class JournalEntry
 	public IReadOnlySet<string> ClassIds => _classIds;
 
 	public JournalEventCategory? EventCategory { get; }
+
+	public string CustomEventName { get; }
 
 	public bool IsSupportWeapon { get; }
 

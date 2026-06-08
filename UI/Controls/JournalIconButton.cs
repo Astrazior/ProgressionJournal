@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
+using Terraria.GameContent;
 
 namespace ProgressionJournal.UI.Controls;
 
@@ -15,6 +16,7 @@ public sealed class JournalIconButton : JournalHoverPanel
     private readonly float _iconRotation;
     private string? _hoverText;
     private bool _showChrome;
+    private string _badgeText = string.Empty;
     private JournalButtonStyle _chromeStyle = JournalUiTheme.GetDefaultTextButtonStyle();
 
     public JournalIconButton(Asset<Texture2D> iconTexture, float iconScale, Action onClick, float iconRotation = 0f)
@@ -47,6 +49,11 @@ public sealed class JournalIconButton : JournalHoverPanel
     {
         _showChrome = true;
         _chromeStyle = style;
+    }
+
+    public void SetBadgeText(string text)
+    {
+        _badgeText = text;
     }
 
     protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -94,6 +101,20 @@ public sealed class JournalIconButton : JournalHoverPanel
             scale,
             SpriteEffects.None,
             0f);
+
+        if (!string.IsNullOrWhiteSpace(_badgeText))
+        {
+            Utils.DrawBorderStringFourWay(
+                spriteBatch,
+                FontAssets.MouseText.Value,
+                _badgeText,
+                dimensions.Right - 9f,
+                dimensions.Bottom - 13f,
+                Color.White,
+                Color.Black,
+                Vector2.Zero,
+                0.62f);
+        }
 
         if (IsMouseHovering && !string.IsNullOrWhiteSpace(_hoverText))
         {

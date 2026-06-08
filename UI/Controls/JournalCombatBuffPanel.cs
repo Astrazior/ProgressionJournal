@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent.UI.Elements;
+using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.UI;
 
@@ -15,6 +17,7 @@ public sealed class JournalCombatBuffPanel : UIPanel
     private readonly bool _autoHeight;
     private readonly int _slotsPerRow;
     private readonly Action<int>? _onItemSelected;
+    private readonly Action<JournalBuffCategory>? _onAddCategory;
 
     public JournalCombatBuffPanel(
         IReadOnlyList<JournalBuffCategory> sectionOrder,
@@ -22,7 +25,8 @@ public sealed class JournalCombatBuffPanel : UIPanel
         bool showTitle = true,
         bool autoHeight = false,
         int slotsPerRow = JournalUiMetrics.BuffSlotsPerRow,
-        Action<int>? onItemSelected = null)
+        Action<int>? onItemSelected = null,
+        Action<JournalBuffCategory>? onAddCategory = null)
     {
         _sectionOrder = sectionOrder;
         _titleLocalizationKey = titleLocalizationKey;
@@ -30,6 +34,7 @@ public sealed class JournalCombatBuffPanel : UIPanel
         _autoHeight = autoHeight;
         _slotsPerRow = Math.Max(1, slotsPerRow);
         _onItemSelected = onItemSelected;
+        _onAddCategory = onAddCategory;
         SetPadding(0f);
         BackgroundColor = JournalUiTheme.PresetPanelBackground;
         BorderColor = JournalUiTheme.PresetPanelBorder;
@@ -42,7 +47,7 @@ public sealed class JournalCombatBuffPanel : UIPanel
     public void SetEntries(IReadOnlyList<JournalCombatBuffEntry> entries)
     {
         RemoveAllChildren();
-        HasEntries = entries.Count > 0;
+        HasEntries = entries.Count > 0 || _onAddCategory is not null;
         ContentHeight = 0f;
 
         if (!HasEntries)
@@ -74,7 +79,7 @@ public sealed class JournalCombatBuffPanel : UIPanel
         foreach (var category in _sectionOrder)
         {
             var categoryEntries = entries.Where(entry => entry.Category == category).ToArray();
-            if (categoryEntries.Length == 0)
+            if (categoryEntries.Length == 0 && _onAddCategory is null)
             {
                 continue;
             }
@@ -88,6 +93,22 @@ public sealed class JournalCombatBuffPanel : UIPanel
             header.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
             header.Top.Set(top, 0f);
             Append(header);
+
+            if (_onAddCategory is not null)
+            {
+                var capturedCategory = category;
+                var addButton = JournalUiElementFactory.CreateIconButton(
+                    TextureAssets.Item[GetCategoryIconItem(category)],
+                    30f,
+                    24f,
+                    () => _onAddCategory(capturedCategory),
+                    0.68f);
+                addButton.Left.Set(-JournalUiMetrics.BlockHorizontalPadding - 30f, 1f);
+                addButton.Top.Set(top - 2f, 0f);
+                addButton.SetHoverText(GetCategoryTitle(category));
+                Append(addButton);
+            }
+
             top += GetCategoryHeaderHeight() + GetCategoryHeaderBottomSpacing();
 
             foreach (var rowEntries in ChunkEntries(categoryEntries, _slotsPerRow))
@@ -120,6 +141,18 @@ public sealed class JournalCombatBuffPanel : UIPanel
         JournalBuffCategory.Food => Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffFood"),
         JournalBuffCategory.Flask => Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffFlasks"),
         _ => string.Empty
+    };
+
+    private static int GetCategoryIconItem(JournalBuffCategory category) => category switch
+    {
+        JournalBuffCategory.Station => ItemID.Campfire,
+        JournalBuffCategory.Passive => ItemID.HeartLantern,
+        JournalBuffCategory.Basic => ItemID.HealingPotion,
+        JournalBuffCategory.Potion => ItemID.IronskinPotion,
+        JournalBuffCategory.Eternal => ItemID.LifeCrystal,
+        JournalBuffCategory.Food => ItemID.ApplePie,
+        JournalBuffCategory.Flask => ItemID.FlaskofFire,
+        _ => ItemID.BottledWater
     };
 
     private static JournalCategoryHeader CreateCategoryHeader(JournalBuffCategory category)

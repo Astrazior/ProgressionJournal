@@ -3,6 +3,7 @@ namespace ProgressionJournal.Data.Profiles;
 public sealed class JournalProfile(
     JournalProfileDocument document,
     IReadOnlyList<JournalEntry> entries,
+    IReadOnlyList<JournalCombatBuffEntry> combatBuffEntries,
     string sourcePath,
     bool isBuiltIn,
     bool hasVersionMismatch)
@@ -33,6 +34,8 @@ public sealed class JournalProfile(
     public IReadOnlyList<JournalProfileStageDocument> Stages => Document.Stages;
 
     public IReadOnlyList<JournalEntry> Entries { get; } = entries;
+
+    public IReadOnlyList<JournalCombatBuffEntry> CombatBuffEntries { get; } = combatBuffEntries;
 
     public JournalProfileClassDocument GetClass(string classId)
     {

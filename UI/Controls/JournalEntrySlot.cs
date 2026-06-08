@@ -28,6 +28,7 @@ public sealed class JournalEntrySlot : UIElement
     private readonly Item[][] _itemGroups;
     private readonly int? _eventBadgeFrame;
     private readonly string? _eventLabel;
+    private readonly bool _hasCustomEvent;
     private readonly string? _supportLabel;
     private readonly Action<int>? _onItemSelected;
 
@@ -42,6 +43,11 @@ public sealed class JournalEntrySlot : UIElement
         {
             _eventBadgeFrame = eventCategory.GetBestiaryFilterFrame();
             _eventLabel = eventCategory.GetDisplayName();
+        }
+        else if (!string.IsNullOrWhiteSpace(entry.Entry.CustomEventName))
+        {
+            _eventLabel = entry.Entry.CustomEventName;
+            _hasCustomEvent = true;
         }
 
         if (entry.Entry.IsSupportWeapon)
@@ -232,7 +238,7 @@ public sealed class JournalEntrySlot : UIElement
 
     private void DrawSpecialOutline(SpriteBatch spriteBatch, Vector2 slotPosition, bool isHovered)
     {
-        if (_entry.Entry.EventCategory is not null)
+        if (_entry.Entry.EventCategory is not null || _hasCustomEvent)
         {
             DrawOutline(
                 spriteBatch,
@@ -274,7 +280,7 @@ public sealed class JournalEntrySlot : UIElement
 
     private void DrawEventBadge(SpriteBatch spriteBatch, Vector2 slotPosition)
     {
-        if (_eventBadgeFrame is null)
+        if (_eventBadgeFrame is null && !_hasCustomEvent)
         {
             return;
         }
@@ -289,22 +295,37 @@ public sealed class JournalEntrySlot : UIElement
         spriteBatch.Draw(texture, badgeRectangle, JournalUiTheme.EventBadgeBackground);
         DrawRectangleOutline(spriteBatch, texture, badgeRectangle, JournalUiTheme.EventBadgeBorder);
 
-        var itemTexture = Main.Assets.Request<Texture2D>(BestiaryFilterIconTexturePath).Value;
-        var sourceRectangle = GetBestiaryFilterSourceRectangle(itemTexture, _eventBadgeFrame.Value);
-        const int maxIconSize = EventBadgeSize - EventBadgeInnerPadding * 2;
-        var scale = MathF.Min(maxIconSize / (float)sourceRectangle.Width, maxIconSize / (float)sourceRectangle.Height);
-        var drawPosition = new Vector2(badgeRectangle.Center.X, badgeRectangle.Center.Y);
+        if (_eventBadgeFrame is { } frame)
+        {
+            var itemTexture = Main.Assets.Request<Texture2D>(BestiaryFilterIconTexturePath).Value;
+            var sourceRectangle = GetBestiaryFilterSourceRectangle(itemTexture, frame);
+            const int maxIconSize = EventBadgeSize - EventBadgeInnerPadding * 2;
+            var scale = MathF.Min(maxIconSize / (float)sourceRectangle.Width, maxIconSize / (float)sourceRectangle.Height);
+            var drawPosition = new Vector2(badgeRectangle.Center.X, badgeRectangle.Center.Y);
 
-        spriteBatch.Draw(
-            itemTexture,
-            drawPosition,
-            sourceRectangle,
-            Color.White,
-            0f,
-            sourceRectangle.Size() * 0.5f,
-            scale,
-            SpriteEffects.None,
-            0f);
+            spriteBatch.Draw(
+                itemTexture,
+                drawPosition,
+                sourceRectangle,
+                Color.White,
+                0f,
+                sourceRectangle.Size() * 0.5f,
+                scale,
+                SpriteEffects.None,
+                0f);
+            return;
+        }
+
+        Utils.DrawBorderStringFourWay(
+            spriteBatch,
+            FontAssets.MouseText.Value,
+            "E",
+            badgeRectangle.X + 5f,
+            badgeRectangle.Y + 1f,
+            JournalUiTheme.EventBadgeBorder,
+            Color.Black,
+            Vector2.Zero,
+            0.52f);
     }
 
     private static Rectangle GetBestiaryFilterSourceRectangle(Texture2D texture, int frame)

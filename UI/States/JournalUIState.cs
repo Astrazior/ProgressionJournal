@@ -58,7 +58,8 @@ public sealed class JournalUiState : UIState
     private JournalIconButton _buildBackButton = null!;
     private JournalIconButton _buildSaveButton = null!;
     private UIElement _stageListContainer = null!;
-    private UIElement _classSelectionContainer = null!;
+    private UIList _classSelectionContainer = null!;
+    private UIScrollbar _classSelectionScrollbar = null!;
     private UIList _entryList = null!;
     private UIScrollbar _scrollbar = null!;
     private UIPanel _sourcePanel = null!;
@@ -286,7 +287,7 @@ public sealed class JournalUiState : UIState
         int selectedItemId)
     {
         _entryList.Clear();
-        _classSelectionContainer.RemoveAllChildren();
+        _classSelectionContainer.Clear();
         _sourceList.Clear();
         _sourcePreviewContainer.RemoveAllChildren();
         SwitchContentMode(selectingClass);
@@ -333,18 +334,17 @@ public sealed class JournalUiState : UIState
         var className = JournalProfileText.GetClassName(profile, classId);
         var stageName = JournalProfileText.GetStageName(profile, stageId);
         SetContentHeader($"{className} • {stageName}");
-        if (string.Equals(profile.Id, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase))
+        var combatBuffEntries = GetCombatBuffEntries(profile.Id, stageId, classId);
+        if (combatBuffEntries.Count > 0)
         {
             _entryList.Add(CreateOverviewPageSwitcherBlock(showingCombatBuffsPage));
         }
 
-        if (showingCombatBuffsPage
-            && string.Equals(profile.Id, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase)
-            && JournalStageIds.TryToLegacy(stageId, out var legacyStage))
+        if (showingCombatBuffsPage && combatBuffEntries.Count > 0)
         {
             JournalContentBuilder.PopulateCombatBuffs(
                 _entryList,
-                GetCombatBuffEntries(legacyStage, JournalClassIds.ToLegacy(classId)),
+                combatBuffEntries,
                 JournalSystem.SelectItem);
         }
         else
@@ -2183,13 +2183,24 @@ public sealed class JournalUiState : UIState
         _contentDescription.TextColor = JournalUiTheme.ContentDescriptionText;
         _contentPanel.Append(_contentDescription);
 
-        _classSelectionContainer = new UIElement();
+        _classSelectionContainer = new JournalSmoothScrollList
+        {
+            ListPadding = JournalUiMetrics.ClassSelectionButtonGap
+        };
         _root.AddDragTarget(_classSelectionContainer);
         _classSelectionContainer.Left.Set(JournalUiMetrics.ContentBodyLeft, 0f);
         _classSelectionContainer.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
-        _classSelectionContainer.Width.Set(-JournalUiMetrics.ContentBodyHorizontalInset, 1f);
+        _classSelectionContainer.Width.Set(-JournalUiMetrics.EntryListWidthInset, 1f);
         _classSelectionContainer.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
         _contentPanel.Append(_classSelectionContainer);
+
+        _classSelectionScrollbar = new UIScrollbar();
+        _classSelectionScrollbar.Width.Set(JournalUiMetrics.ScrollbarWidth, 0f);
+        _classSelectionScrollbar.Left.Set(-JournalUiMetrics.ScrollbarOffset, 1f);
+        _classSelectionScrollbar.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
+        _classSelectionScrollbar.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
+        _contentPanel.Append(_classSelectionScrollbar);
+        _classSelectionContainer.SetScrollbar(_classSelectionScrollbar);
 
         _entryList = new JournalSmoothScrollList();
         _root.AddDragTarget(_entryList);
@@ -2724,29 +2735,33 @@ public sealed class JournalUiState : UIState
 
     private void PopulateClassSelection(JournalProfile profile, string selectedClassId)
     {
-        var top = 0f;
-        var index = 0;
-
-        foreach (var classDefinition in profile.Classes)
+        for (var rowIndex = 0; rowIndex < profile.Classes.Count; rowIndex += 2)
         {
-            var capturedClassId = classDefinition.Id;
-            var panel = new JournalClassButton(
-                profile,
-                classDefinition,
-                string.Equals(selectedClassId, capturedClassId, StringComparison.OrdinalIgnoreCase),
-                JournalUiMetrics.ClassSelectionButtonHeight);
-            var isLeftColumn = index % 2 == 0;
-            panel.Left.Set(isLeftColumn ? 0f : JournalUiMetrics.ClassSelectionButtonGap, isLeftColumn ? 0f : JournalUiMetrics.ClassSelectionButtonWidth);
-            panel.Top.Set(top, 0f);
-            panel.Width.Set(-6f, JournalUiMetrics.ClassSelectionButtonWidth);
-            panel.OnLeftClick += (_, _) => JournalSystem.SelectClass(capturedClassId);
-            _classSelectionContainer.Append(panel);
+            var row = new UIElement();
+            row.Width.Set(0f, 1f);
+            row.Height.Set(JournalUiMetrics.ClassSelectionButtonHeight, 0f);
 
-            index++;
-            if (index % 2 == 0)
+            var rowClasses = profile.Classes.Skip(rowIndex).Take(2).ToArray();
+            for (var column = 0; column < rowClasses.Length; column++)
             {
-                top += JournalUiMetrics.ClassSelectionButtonHeight + JournalUiMetrics.ClassSelectionButtonGap;
+                var classDefinition = rowClasses[column];
+                var capturedClassId = classDefinition.Id;
+                var panel = new JournalClassButton(
+                    profile,
+                    classDefinition,
+                    string.Equals(selectedClassId, capturedClassId, StringComparison.OrdinalIgnoreCase),
+                    JournalUiMetrics.ClassSelectionButtonHeight);
+                panel.Left.Set(
+                    column == 0 ? 0f : JournalUiMetrics.ClassSelectionButtonGap * 0.5f,
+                    column == 0 ? 0f : JournalUiMetrics.ClassSelectionButtonWidth);
+                panel.Width.Set(
+                    -JournalUiMetrics.ClassSelectionButtonGap * 0.5f,
+                    JournalUiMetrics.ClassSelectionButtonWidth);
+                panel.OnLeftClick += (_, _) => JournalSystem.SelectClass(capturedClassId);
+                row.Append(panel);
             }
+
+            _classSelectionContainer.Add(row);
         }
     }
 
@@ -2794,12 +2809,22 @@ public sealed class JournalUiState : UIState
                 _contentPanel.Append(_classSelectionContainer);
             }
 
+            if (_classSelectionScrollbar.Parent is null)
+            {
+                _contentPanel.Append(_classSelectionScrollbar);
+            }
+
             return;
         }
 
         if (_classSelectionContainer.Parent is not null)
         {
             _contentPanel.RemoveChild(_classSelectionContainer);
+        }
+
+        if (_classSelectionScrollbar.Parent is not null)
+        {
+            _contentPanel.RemoveChild(_classSelectionScrollbar);
         }
 
         if (_entryList.Parent is null)
@@ -2858,6 +2883,8 @@ public sealed class JournalUiState : UIState
     {
         _classSelectionContainer.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
         _classSelectionContainer.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
+        _classSelectionScrollbar.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
+        _classSelectionScrollbar.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
 
         var showSourcePanel = !selectingClass && !showingPresets;
         if (showSourcePanel)

@@ -547,9 +547,7 @@ public sealed class JournalSystem : ModSystem
 
     public void CycleOverviewPage(int direction)
     {
-        if (SelectingClass
-            || ShowingPresets
-            || !string.Equals(SelectedProfileId, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase))
+        if (SelectingClass || ShowingPresets)
         {
             return;
         }

@@ -9,6 +9,19 @@ namespace ProgressionJournal.UI.Composition;
 
 public static class JournalStageButtonPresenter
 {
+    public static void RefreshEditorButton(
+        JournalProfile profile,
+        JournalProfileStageDocument stage,
+        JournalStageButton button,
+        bool selected)
+    {
+        ApplyContent(button, profile, stage);
+        button.SetTooltip(GetStageName(profile, stage));
+        button.SetInteractable(true);
+        button.SetCompleted(false);
+        button.SetStyle(JournalUiTheme.GetStageButtonStyle(selected));
+    }
+
     public static void Refresh(
         JournalProfile profile,
         IReadOnlyDictionary<string, JournalStageButton> buttons,
@@ -104,9 +117,15 @@ public static class JournalStageButtonPresenter
         if (!string.Equals(profile.Id, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase)
             || !JournalStageIds.TryToLegacy(stage.Id, out var legacyStageId))
         {
-            if (TryGetConfiguredNpcType(stage, out var npcType))
+            if (JournalStageIconCatalog.TryResolve(profile, stage, out var npcType))
             {
-                var headSlot = GetBossHeadSlot(npcType);
+                if (npcType == NPCID.Guide)
+                {
+                    button.SetNpcHeadDisplay(NPC.TypeToDefaultHeadIndex(NPCID.Guide));
+                    return;
+                }
+
+                var headSlot = JournalStageIconCatalog.GetBossHeadSlot(npcType);
                 if (headSlot >= 0)
                 {
                     button.SetBossHeadDisplay(headSlot);
@@ -156,29 +175,6 @@ public static class JournalStageButtonPresenter
     private static string GetStageName(JournalProfile profile, JournalProfileStageDocument stage)
     {
         return JournalProfileText.GetStageName(profile, stage.Id);
-    }
-
-    private static bool TryGetConfiguredNpcType(JournalProfileStageDocument stage, out int npcType)
-    {
-        npcType = -1;
-        var modName = string.IsNullOrWhiteSpace(stage.IconMod) ? stage.Unlock.Mod : stage.IconMod;
-        var npcName = string.IsNullOrWhiteSpace(stage.IconNpc) ? stage.Unlock.Npc : stage.IconNpc;
-
-        if (string.Equals(modName, "Terraria", StringComparison.OrdinalIgnoreCase)
-            && int.TryParse(npcName, out npcType))
-        {
-            return true;
-        }
-
-        if (!string.IsNullOrWhiteSpace(modName)
-            && !string.IsNullOrWhiteSpace(npcName)
-            && Terraria.ModLoader.ModContent.TryFind(modName, npcName, out Terraria.ModLoader.ModNPC modNpc))
-        {
-            npcType = modNpc.Type;
-            return true;
-        }
-
-        return false;
     }
 
     private static void ApplyText(JournalStageButton button, string text)

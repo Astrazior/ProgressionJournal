@@ -7,6 +7,41 @@ namespace ProgressionJournal.UI.Utilities;
 
 public static class JournalPreviewPlayerFactory
 {
+    public static Player CreateNeutral()
+    {
+        var preview = Main.LocalPlayer.SerializedClone();
+        preview.dead = false;
+        preview.isDisplayDollOrInanimate = true;
+        preview.direction = 1;
+        preview.gravDir = 1f;
+        preview.velocity = Vector2.Zero;
+        preview.itemAnimation = 0;
+        preview.itemTime = 0;
+        preview.selectedItem = 0;
+
+        ResetItems(preview.armor);
+        ResetItems(preview.miscEquips);
+        ResetItems(preview.miscDyes);
+        ResetItems(preview.dye);
+        preview.hideMisc[0] = true;
+        preview.mount.Dismount(preview);
+
+        var armor = new[]
+        {
+            ItemID.CrystalNinjaHelmet,
+            ItemID.CrystalNinjaChestplate,
+            ItemID.CrystalNinjaLeggings
+        };
+        for (var index = 0; index < armor.Length; index++)
+        {
+            preview.armor[index] = JournalItemUtilities.CreateItem(armor[index]);
+        }
+
+        preview.PlayerFrame();
+        ConfigurePreviewDraw(preview);
+        return preview;
+    }
+
     public static Player Create(CombatClass combatClass)
     {
         var preview = Main.LocalPlayer.SerializedClone();

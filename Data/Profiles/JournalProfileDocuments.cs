@@ -31,6 +31,8 @@ public sealed class JournalProfileDocument
     public List<JournalProfileStageDocument> Stages { get; set; } = [];
 
     public List<JournalProfileEntryDocument> Entries { get; set; } = [];
+
+    public List<JournalProfileCombatBuffDocument> CombatBuffs { get; set; } = [];
 }
 
 public sealed class JournalRequiredModDocument
@@ -93,6 +95,11 @@ public sealed class JournalProfileEntryDocument
     public List<JournalProfileEvaluationDocument> Evaluations { get; set; } = [];
 
     public bool IsSupportWeapon { get; set; }
+
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public JournalEventCategory? EventCategory { get; set; }
+
+    public string CustomEventName { get; set; } = string.Empty;
 }
 
 public sealed class JournalProfileEvaluationDocument
@@ -110,4 +117,18 @@ public sealed class JournalItemReferenceDocument
     public string Item { get; set; } = string.Empty;
 
     public string DisplayName { get; set; } = string.Empty;
+}
+
+public sealed class JournalProfileCombatBuffDocument
+{
+    public string Key { get; set; } = string.Empty;
+
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public JournalBuffCategory Category { get; set; }
+
+    public string ClassId { get; set; } = string.Empty;
+
+    public string StageId { get; set; } = string.Empty;
+
+    public List<List<JournalItemReferenceDocument>> ItemGroups { get; set; } = [];
 }

@@ -17,20 +17,57 @@ public sealed class JournalProfileManagerPanel : UIPanel
     private const string CloseIconTexturePath = "Images/UI/SearchCancel";
     private const string BackIconTexturePath = "Images/UI/Bestiary/Button_Back";
     private const string ExportIconTexturePath = "Images/UI/IconQuickload";
-    private const float ProfileListTextScale = 0.78f;
-    private const float CompactButtonTextScale = 0.66f;
-    private const float EditorLabelScale = 0.68f;
-    private const float EditorHintScale = 0.64f;
+    private const string SortAscendingIconTexturePath = "Images/UI/Sort_0";
+    private const string SortDescendingIconTexturePath = "Images/UI/Sort_1";
+    private const string LockedIconTexturePath = "Images/UI/Bestiary/Icon_Locked";
+    private const string AutoIconTexturePath = "Images/UI/Bestiary/Button_Sorting";
+    private const float CompactTextScale = 0.66f;
+    private const int LiveNameApplyDelayTicks = 8;
 
-    private readonly UIList _list;
-    private readonly UIScrollbar _scrollbar;
-    private readonly JournalTextInput _profileNameInput;
-    private readonly JournalTextInput _classNameInput;
-    private readonly JournalTextInput _stageNameInput;
-    private readonly JournalTextInput _searchInput;
+    private readonly UIList _stageList;
+    private readonly UIScrollbar _stageScrollbar;
+    private readonly UIList _contentList;
+    private readonly UIScrollbar _contentScrollbar;
+    private readonly UIList _pickerList;
+    private readonly UIScrollbar _pickerScrollbar;
+    private readonly JournalTextInput _profileNameInput = new(string.Empty);
+    private readonly JournalTextInput _classNameInput = new(string.Empty);
+    private readonly JournalTextInput _customClassInput = new(string.Empty);
+    private readonly JournalTextInput _stageNameInput = new(string.Empty);
+    private readonly JournalTextInput _searchInput = new(string.Empty);
+    private readonly JournalTextInput _customEventInput = new(string.Empty);
+
+    private string _loadedProfileId = string.Empty;
+    private string _loadedClassId = string.Empty;
+    private string _loadedStageId = string.Empty;
     private string _appliedSearch = string.Empty;
-    private string _loadedEditorProfileId = string.Empty;
-    private bool _showBosses;
+    private string _observedProfileName = string.Empty;
+    private string _observedClassName = string.Empty;
+    private string _observedStageName = string.Empty;
+    private int _liveNameApplyDelay;
+    private EditorPage _page;
+    private EditorOverlay _overlay;
+    private JournalItemCategory _pickerItemCategory;
+    private RecommendationTier _pickerTier;
+    private JournalBuffCategory _pickerBuffCategory;
+    private int _selectedItemId;
+    private int _loadedPropertyItemId;
+
+    private enum EditorPage
+    {
+        Recommendations,
+        CombatBuffs
+    }
+
+    private enum EditorOverlay
+    {
+        None,
+        ItemPicker,
+        ClassPicker,
+        StageIconPicker,
+        StageUnlockPicker,
+        ItemProperties
+    }
 
     public JournalProfileManagerPanel()
     {
@@ -38,71 +75,88 @@ public sealed class JournalProfileManagerPanel : UIPanel
         BackgroundColor = JournalUiTheme.RootBackground * JournalUiTheme.RootBackgroundOpacity;
         BorderColor = JournalUiTheme.RootBorder;
 
-        _profileNameInput = new JournalTextInput(string.Empty);
-        _classNameInput = new JournalTextInput(string.Empty);
-        _stageNameInput = new JournalTextInput(string.Empty);
-        _searchInput = new JournalTextInput(string.Empty);
         Main.instance.LoadItem(ItemID.Book);
         Main.instance.LoadItem(ItemID.Wrench);
 
-        _list = new JournalSmoothScrollList
-        {
-            ListPadding = 6f
-        };
-        _list.Left.Set(20f, 0f);
-        _list.Width.Set(-62f, 1f);
-        _list.Top.Set(112f, 0f);
-        _list.Height.Set(-132f, 1f);
-        Append(_list);
+        _stageList = new JournalSmoothScrollList { ListPadding = 6f };
+        _stageScrollbar = new UIScrollbar();
+        _stageList.SetScrollbar(_stageScrollbar);
 
-        _scrollbar = new UIScrollbar();
-        _scrollbar.Left.Set(-32f, 1f);
-        _scrollbar.Top.Set(112f, 0f);
-        _scrollbar.Width.Set(20f, 0f);
-        _scrollbar.Height.Set(-132f, 1f);
-        Append(_scrollbar);
-        _list.SetScrollbar(_scrollbar);
+        _contentList = new JournalSmoothScrollList { ListPadding = 10f };
+        _contentScrollbar = new UIScrollbar();
+        _contentList.SetScrollbar(_contentScrollbar);
+
+        _pickerList = new JournalSmoothScrollList { ListPadding = 6f };
+        _pickerScrollbar = new UIScrollbar();
+        _pickerList.SetScrollbar(_pickerScrollbar);
     }
 
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-
+        var system = ModContent.GetInstance<JournalSystem>();
         if (!string.Equals(_searchInput.CurrentString, _appliedSearch, StringComparison.CurrentCulture))
         {
-            ModContent.GetInstance<JournalSystem>().RefreshView();
+            system.RefreshView();
         }
+
+        if (system.ProfileEditor is not { } editor)
+        {
+            return;
+        }
+
+        var namesChanged =
+            !string.Equals(_profileNameInput.CurrentString, _observedProfileName, StringComparison.CurrentCulture)
+            || !string.Equals(_classNameInput.CurrentString, _observedClassName, StringComparison.CurrentCulture)
+            || !string.Equals(_stageNameInput.CurrentString, _observedStageName, StringComparison.CurrentCulture);
+        if (namesChanged)
+        {
+            _observedProfileName = _profileNameInput.CurrentString;
+            _observedClassName = _classNameInput.CurrentString;
+            _observedStageName = _stageNameInput.CurrentString;
+            _liveNameApplyDelay = LiveNameApplyDelayTicks;
+            return;
+        }
+
+        if (_liveNameApplyDelay <= 0 || --_liveNameApplyDelay > 0)
+        {
+            return;
+        }
+
+        editor.SetName(_profileNameInput.CurrentString);
+        editor.RenameSelectedClass(_classNameInput.CurrentString);
+        editor.RenameSelectedStage(_stageNameInput.CurrentString);
+        system.RefreshView();
     }
 
     public void Refresh(JournalSystem system)
     {
-        RemoveTransientChildren();
-        _list.Clear();
+        RemoveAllChildren();
+        _stageList.Clear();
+        _contentList.Clear();
+        _pickerList.Clear();
 
-        if (system.ProfileEditor is { } editor)
+        if (system.ProfileEditor is not { } editor)
         {
-            RefreshEditor(system, editor);
+            _loadedProfileId = string.Empty;
+            RefreshProfileList(system);
             return;
         }
 
-        _loadedEditorProfileId = string.Empty;
-        RefreshProfileList(system);
+        SyncEditorInputs(editor);
+        RefreshEditor(system, editor);
     }
 
     private void RefreshProfileList(JournalSystem system)
     {
-        _list.Top.Set(112f, 0f);
-        _list.Height.Set(-132f, 1f);
-        _scrollbar.Top.Set(112f, 0f);
-        _scrollbar.Height.Set(-132f, 1f);
-
         AddTitle(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileManagerTitle"));
         AddTopIconButton(TextureAssets.Item[ItemID.Book], Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileNew"), 20f, system.BeginNewProfile);
         AddTopIconButton(TextureAssets.Item[ItemID.Wrench], Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileEdit"), 66f, system.BeginEditActiveProfile);
         AddTopIconButton(TextureAssets.Camera[6], Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileImport"), 112f, system.ImportProfile);
         AddTopIconButton(ExportIconTexturePath, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileExport"), 158f, system.ExportActiveProfile);
-        AddTopIconButton(CloseIconTexturePath, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileClose"), -44f, system.CloseProfileManager, alignRight: true);
+        AddTopIconButton(CloseIconTexturePath, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileClose"), -44f, system.CloseProfileManager, true);
 
+        ConfigureList(_contentList, _contentScrollbar, 20f, 112f, -62f, -132f);
         foreach (var profile in JournalProfileRegistry.All)
         {
             var suffix = profile.IsReadOnly
@@ -120,7 +174,7 @@ public sealed class JournalProfileManagerPanel : UIPanel
                 0f,
                 48f,
                 () => system.SelectProfile(profile.Id),
-                ProfileListTextScale);
+                0.78f);
             button.Width.Set(profile.IsBuiltIn ? 0f : -40f, 1f);
             button.SetStyle(JournalUiTheme.GetTabButtonStyle(
                 string.Equals(profile.Id, JournalProfileRegistry.Active.Id, StringComparison.OrdinalIgnoreCase)));
@@ -128,160 +182,470 @@ public sealed class JournalProfileManagerPanel : UIPanel
 
             if (!profile.IsBuiltIn)
             {
-                var deleteArmed = string.Equals(
-                    system.PendingProfileDeleteId,
-                    profile.Id,
-                    StringComparison.OrdinalIgnoreCase);
                 var deleteButton = JournalBuildActionButton.CreateTrash(() => system.DeleteProfile(profile.Id));
                 deleteButton.Left.Set(-34f, 1f);
                 deleteButton.Top.Set(9f, 0f);
-                deleteButton.SetHoverText(Language.GetTextValue(
-                    deleteArmed
-                        ? "Mods.ProgressionJournal.UI.ProfileDeleteConfirmTooltip"
-                        : "Mods.ProgressionJournal.UI.ProfileDelete"));
                 row.Append(deleteButton);
             }
 
-            _list.Add(row);
+            _contentList.Add(row);
         }
     }
 
     private void RefreshEditor(JournalSystem system, JournalProfileEditorSession editor)
     {
-        if (!string.Equals(_loadedEditorProfileId, editor.Document.Id, StringComparison.OrdinalIgnoreCase))
-        {
-            _loadedEditorProfileId = editor.Document.Id;
-            _profileNameInput.SetText(editor.Document.Name);
-            _classNameInput.SetText(string.Empty);
-            _stageNameInput.SetText(string.Empty);
-            _searchInput.SetText(string.Empty);
-        }
-
         AddTitle(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileEditorTitle"));
-        AddTopIconButton(TextureAssets.Item[ItemID.Book], Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileSave"), 20f, () =>
+        if (editor.Document.Classes.Count > 0)
         {
-            editor.SetName(_profileNameInput.CurrentString);
-            system.SaveProfileEditor();
-        });
-        AddTopIconButton(BackIconTexturePath, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileCancel"), -44f, system.CloseProfileManager, alignRight: true);
-
-        AddInputBackground(_profileNameInput, 20f, 96f, 280f, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileNameHint"));
-
-        var selectedClass = editor.Document.Classes.First(value =>
-            string.Equals(value.Id, editor.SelectedClassId, StringComparison.OrdinalIgnoreCase));
-        AddCompactButton("<", 320f, 96f, () => { editor.CycleClass(-1); system.RefreshView(); });
-        AddLabel(
-            JournalTextUtilities.TrimToPixelWidth(
-                $"{Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileClassLabel")}: {selectedClass.Name}",
-                180f,
-                EditorLabelScale),
-            362f,
-            104f,
-            EditorLabelScale);
-        AddCompactButton(">", 548f, 96f, () => { editor.CycleClass(1); system.RefreshView(); });
-        AddInputBackground(_classNameInput, 590f, 96f, 170f, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileNewClassHint"));
-        AddCompactButton("+", 768f, 96f, () =>
-        {
-            editor.AddClass(_classNameInput.CurrentString);
-            _classNameInput.SetText(string.Empty);
-            system.RefreshView();
-        });
-        AddCompactButton("-", 810f, 96f, () => { editor.RemoveSelectedClass(); system.RefreshView(); });
-
-        var selectedStage = editor.Document.Stages.First(value =>
-            string.Equals(value.Id, editor.SelectedStageId, StringComparison.OrdinalIgnoreCase));
-        AddCompactButton("<", 20f, 140f, () => { editor.CycleStage(-1); system.RefreshView(); });
-        AddLabel(
-            JournalTextUtilities.TrimToPixelWidth(
-                $"{Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileStageLabel")}: {selectedStage.Name}",
-                196f,
-                EditorLabelScale),
-            62f,
-            148f,
-            EditorLabelScale);
-        AddCompactButton(">", 270f, 140f, () => { editor.CycleStage(1); system.RefreshView(); });
-        AddInputBackground(_stageNameInput, 312f, 140f, 190f, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileNewStageHint"));
-        AddCompactButton("+", 510f, 140f, () =>
-        {
-            editor.AddStage(_stageNameInput.CurrentString);
-            _stageNameInput.SetText(string.Empty);
-            system.RefreshView();
-        });
-        AddCompactButton("-", 552f, 140f, () => { editor.RemoveSelectedStage(); system.RefreshView(); });
-        AddCompactButton("↑", 594f, 140f, () => { editor.MoveSelectedStage(-1); system.RefreshView(); });
-        AddCompactButton("↓", 636f, 140f, () => { editor.MoveSelectedStage(1); system.RefreshView(); });
-        AddCompactButton($"A: {selectedStage.AccessorySlots}", 678f, 140f, () =>
-        {
-            editor.SetSelectedStageAccessorySlots(selectedStage.AccessorySlots >= 7 ? 0 : selectedStage.AccessorySlots + 1);
-            system.RefreshView();
-        }, width: 90f);
-
-        _list.Top.Set(272f, 0f);
-        _list.Height.Set(-292f, 1f);
-        _scrollbar.Top.Set(272f, 0f);
-        _scrollbar.Height.Set(-292f, 1f);
-
-        AddCompactButton(
-            _showBosses
-                ? Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileItemsMode")
-                : Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileBossesMode"),
-            20f,
-            188f,
-            () =>
+            AddTopIconButton(TextureAssets.Item[ItemID.Book], Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileSave"), 20f, () =>
             {
-                _showBosses = !_showBosses;
-                _searchInput.SetText(string.Empty);
+                editor.SetName(_profileNameInput.CurrentString);
+                system.SaveProfileEditor();
+            });
+        }
+
+        AddTopIconButton(BackIconTexturePath, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileCancel"), -44f, system.CloseProfileManager, true);
+        AddCenteredInputBackground(_profileNameInput, 52f, 280f, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileNameHint"));
+        if (!string.IsNullOrWhiteSpace(editor.SelectedClassId))
+        {
+            AddInputBackground(_classNameInput, 20f, 100f, 140f, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileClassLabel"));
+            var deleteClassButton = JournalBuildActionButton.CreateTrash(() =>
+            {
+                editor.RemoveSelectedClass();
                 system.RefreshView();
-            },
-            width: 132f);
-        AddInputBackground(
-            _searchInput,
-            162f,
-            188f,
-            300f,
-            _showBosses
-                ? Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileBossSearchHint")
-                : Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileItemSearchHint"));
-
-        if (_showBosses)
-        {
-            AddCompactButton(
-                Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileAlwaysAvailable"),
-                472f,
-                188f,
-                () => { editor.SetSelectedStageAlwaysAvailable(); system.RefreshView(); },
-                width: 154f);
-            PopulateBossResults(system, editor);
+            });
+            deleteClassButton.Left.Set(166f, 0f);
+            deleteClassButton.Top.Set(103f, 0f);
+            deleteClassButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileRemoveClass"));
+            Append(deleteClassButton);
         }
-        else
-        {
-            AddCompactButton(
-                editor.SelectedCategory.ToString(),
-                472f,
-                188f,
-                () => { editor.CycleCategory(1); system.RefreshView(); },
-                width: 154f);
-            AddCompactButton(
-                GetTierName(editor.SelectedTier),
-                636f,
-                188f,
-                () => { editor.CycleTier(1); system.RefreshView(); },
-                width: 180f);
-            PopulateItemResults(system, editor);
-        }
+        AddClassTabs(system, editor);
+        AddStageColumn(system, editor);
+        AddEditorContent(system, editor);
 
-        AddLabel(
-            Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileEditorHint"),
-            20f,
-            238f,
-            EditorHintScale);
+        if (_overlay != EditorOverlay.None)
+        {
+            AddEditorOverlay(system, editor);
+        }
     }
 
-    private void PopulateItemResults(JournalSystem system, JournalProfileEditorSession editor)
+    private void AddClassTabs(JournalSystem system, JournalProfileEditorSession editor)
     {
+        var classes = editor.Document.Classes;
+        var selectedIndex = classes.FindIndex(value =>
+            string.Equals(value.Id, editor.SelectedClassId, StringComparison.OrdinalIgnoreCase));
+        var tabsLeft = string.IsNullOrWhiteSpace(editor.SelectedClassId) ? 20f : 204f;
+        var maxVisibleClasses = string.IsNullOrWhiteSpace(editor.SelectedClassId) ? 6 : 4;
+        var firstIndex = Math.Max(0, Math.Min(selectedIndex - 2, Math.Max(0, classes.Count - maxVisibleClasses)));
+        for (var index = firstIndex; index < Math.Min(classes.Count, firstIndex + maxVisibleClasses); index++)
+        {
+            var definition = classes[index];
+            var capturedId = definition.Id;
+            var button = JournalUiElementFactory.CreateTextButton(
+                JournalTextUtilities.TrimToPixelWidth(definition.Name, 100f, 0.68f),
+                108f,
+                34f,
+                () =>
+                {
+                    editor.SelectClass(capturedId);
+                    _overlay = EditorOverlay.None;
+                    system.RefreshView();
+                },
+                0.68f);
+            button.Left.Set(tabsLeft + (index - firstIndex) * 114f, 0f);
+            button.Top.Set(100f, 0f);
+            button.SetStyle(JournalUiTheme.GetTabButtonStyle(
+                string.Equals(definition.Id, editor.SelectedClassId, StringComparison.OrdinalIgnoreCase)));
+            Append(button);
+        }
+
+        AddMainIconButton(
+            TextureAssets.Item[ItemID.Wrench],
+            Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileAddClassTooltip"),
+            tabsLeft + Math.Min(classes.Count, maxVisibleClasses) * 114f + 4f,
+            101f,
+            () =>
+            {
+                _overlay = EditorOverlay.ClassPicker;
+                _searchInput.SetText(string.Empty);
+                _customClassInput.SetText(string.Empty);
+                system.RefreshView();
+            });
+
+        if (classes.Count == 0)
+        {
+            AddLabel(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileNoClass"), 62f, 108f, 0.72f);
+        }
+    }
+
+    private void AddStageColumn(JournalSystem system, JournalProfileEditorSession editor)
+    {
+        var panel = JournalUiElementFactory.CreatePanel();
+        panel.Left.Set(20f, 0f);
+        panel.Top.Set(148f, 0f);
+        panel.Width.Set(220f, 0f);
+        panel.Height.Set(-168f, 1f);
+        Append(panel);
+
+        var title = new UIText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileStagesTitle"), 0.5f, true)
+        {
+            HAlign = 0.5f,
+            TextColor = JournalUiTheme.SectionHeaderText
+        };
+        title.Top.Set(10f, 0f);
+        panel.Append(title);
+
+        _stageList.Left.Set(10f, 0f);
+        _stageList.Top.Set(38f, 0f);
+        _stageList.Width.Set(-40f, 1f);
+        _stageList.Height.Set(-190f, 1f);
+        panel.Append(_stageList);
+        _stageScrollbar.Left.Set(-26f, 1f);
+        _stageScrollbar.Top.Set(38f, 0f);
+        _stageScrollbar.Width.Set(18f, 0f);
+        _stageScrollbar.Height.Set(-190f, 1f);
+        panel.Append(_stageScrollbar);
+
+        foreach (var stage in editor.Document.Stages)
+        {
+            var capturedId = stage.Id;
+            var button = JournalUiElementFactory.CreateStageButton(() =>
+            {
+                editor.SelectStage(capturedId);
+                _overlay = EditorOverlay.None;
+                system.RefreshView();
+            });
+            button.Width.Set(0f, 1f);
+            button.Height.Set(38f, 0f);
+            var previewProfile = new JournalProfile(editor.Document, [], [], "editor", false, false);
+            JournalStageButtonPresenter.RefreshEditorButton(
+                previewProfile,
+                stage,
+                button,
+                string.Equals(stage.Id, editor.SelectedStageId, StringComparison.OrdinalIgnoreCase));
+            _stageList.Add(button);
+        }
+
+        var addStageRow = new UIElement();
+        addStageRow.Width.Set(0f, 1f);
+        addStageRow.Height.Set(36f, 0f);
+        var addStage = JournalUiElementFactory.CreateIconButton(
+            TextureAssets.Item[ItemID.Book],
+            32f,
+            32f,
+            () =>
+            {
+                editor.AddStage(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileDefaultStageName"));
+                system.RefreshView();
+            },
+            0.72f);
+        addStage.HAlign = 0.5f;
+        addStage.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileAddStageTooltip"));
+        addStageRow.Append(addStage);
+        _stageList.Add(addStageRow);
+
+        AddStageSettings(panel, system, editor);
+    }
+
+    private void AddStageSettings(UIElement panel, JournalSystem system, JournalProfileEditorSession editor)
+    {
+        AddInputBackground(panel, _stageNameInput, 10f, -134f, -20f, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileStageLabel"), relativeWidth: true);
+        AddPanelIconButton(panel, SortAscendingIconTexturePath, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileMoveStageUp"), 10f, -92f, () =>
+        {
+            editor.MoveSelectedStage(-1);
+            system.RefreshView();
+        });
+        AddPanelIconButton(panel, SortDescendingIconTexturePath, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileMoveStageDown"), 44f, -92f, () =>
+        {
+            editor.MoveSelectedStage(1);
+            system.RefreshView();
+        });
+        AddPanelTrashButton(panel, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileDeleteStage"), 78f, -92f, () =>
+        {
+            editor.RemoveSelectedStage();
+            system.RefreshView();
+        });
+
+        var stage = editor.Document.Stages.First(value =>
+            string.Equals(value.Id, editor.SelectedStageId, StringComparison.OrdinalIgnoreCase));
+        var accessoryButton = AddPanelIconButton(
+            panel,
+            TextureAssets.Item[ItemID.DemonHeart],
+            Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileAccessorySlotsTooltip", stage.AccessorySlots),
+            112f,
+            -92f,
+            () =>
+            {
+                editor.SetSelectedStageAccessorySlots(stage.AccessorySlots >= 7 ? 0 : stage.AccessorySlots + 1);
+                system.RefreshView();
+            });
+        accessoryButton.SetBadgeText(stage.AccessorySlots.ToString());
+        AddPanelIconButton(panel, TextureAssets.Item[ItemID.GoldenKey], Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileAlwaysAvailableTooltip"), 146f, -92f, () =>
+        {
+            editor.SetSelectedStageAlwaysAvailable();
+            system.RefreshView();
+        });
+        AddPanelIconButton(panel, LockedIconTexturePath, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileChooseUnlockConditionTooltip"), 180f, -92f, () =>
+        {
+            _overlay = EditorOverlay.StageUnlockPicker;
+            _searchInput.SetText(string.Empty);
+            system.RefreshView();
+        });
+        AddPanelIconButton(panel, AutoIconTexturePath, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileAutoStageIconTooltip"), 10f, -52f, () =>
+        {
+            editor.ClearSelectedStageIcon();
+            system.RefreshView();
+        });
+        AddPanelIconButton(panel, TextureAssets.Camera[6], Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileChooseStageIconTooltip"), 44f, -52f, () =>
+        {
+            _overlay = EditorOverlay.StageIconPicker;
+            _searchInput.SetText(string.Empty);
+            system.RefreshView();
+        });
+    }
+
+    private void AddEditorContent(JournalSystem system, JournalProfileEditorSession editor)
+    {
+        var panel = JournalUiElementFactory.CreatePanel();
+        panel.Left.Set(252f, 0f);
+        panel.Top.Set(148f, 0f);
+        panel.Width.Set(-272f, 1f);
+        panel.Height.Set(-168f, 1f);
+        Append(panel);
+
+        AddPanelButton(
+            panel,
+            Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewTab"),
+            10f,
+            10f,
+            150f,
+            () => { _page = EditorPage.Recommendations; system.RefreshView(); },
+            _page == EditorPage.Recommendations);
+        AddPanelButton(
+            panel,
+            Language.GetTextValue("Mods.ProgressionJournal.UI.CombatBuffsTitle"),
+            166f,
+            10f,
+            150f,
+            () => { _page = EditorPage.CombatBuffs; system.RefreshView(); },
+            _page == EditorPage.CombatBuffs);
+
+        _contentList.Left.Set(10f, 0f);
+        _contentList.Top.Set(54f, 0f);
+        _contentList.Width.Set(-42f, 1f);
+        _contentList.Height.Set(-64f, 1f);
+        panel.Append(_contentList);
+        _contentScrollbar.Left.Set(-26f, 1f);
+        _contentScrollbar.Top.Set(54f, 0f);
+        _contentScrollbar.Width.Set(18f, 0f);
+        _contentScrollbar.Height.Set(-64f, 1f);
+        panel.Append(_contentScrollbar);
+
+        if (string.IsNullOrWhiteSpace(editor.SelectedClassId))
+        {
+            _contentList.Add(JournalUiElementFactory.CreateSectionHeader(
+                Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileAddClassPrompt")));
+            return;
+        }
+
+        if (_page == EditorPage.CombatBuffs)
+        {
+            AddCombatBuffEditor(system, editor);
+            return;
+        }
+
+        var entries = editor.GetSelectedEntries();
+        foreach (var tier in new[]
+        {
+            RecommendationTier.Recommended,
+            RecommendationTier.Additional,
+            RecommendationTier.NotRecommended,
+            RecommendationTier.Useless
+        })
+        {
+            var capturedTier = tier;
+            _contentList.Add(JournalContentBuilder.CreateEditableRecommendationBlock(
+                tier,
+                entries.Where(value => value.Evaluation.Tier == tier).ToArray(),
+                category =>
+                {
+                    _pickerTier = capturedTier;
+                    _pickerItemCategory = category;
+                    _overlay = EditorOverlay.ItemPicker;
+                    _searchInput.SetText(string.Empty);
+                    system.RefreshView();
+                },
+                itemId =>
+                {
+                    _selectedItemId = itemId;
+                    _overlay = EditorOverlay.ItemProperties;
+                    system.RefreshView();
+                }));
+        }
+    }
+
+    private void AddCombatBuffEditor(JournalSystem system, JournalProfileEditorSession editor)
+    {
+        var panel = new JournalCombatBuffPanel(
+            Enum.GetValues<JournalBuffCategory>(),
+            "Mods.ProgressionJournal.UI.CombatBuffsTitle",
+            showTitle: false,
+            autoHeight: true,
+            slotsPerRow: 6,
+            onItemSelected: itemId =>
+            {
+                editor.RemoveCombatBuff(itemId);
+                system.RefreshView();
+            },
+            onAddCategory: category =>
+            {
+                _pickerBuffCategory = category;
+                _overlay = EditorOverlay.ItemPicker;
+                _searchInput.SetText(string.Empty);
+                system.RefreshView();
+            });
+        panel.Width.Set(0f, 1f);
+        panel.SetEntries(editor.GetSelectedCombatBuffEntries());
+        _contentList.Add(panel);
+    }
+
+    private void AddEditorOverlay(JournalSystem system, JournalProfileEditorSession editor)
+    {
+        var shade = new JournalDimOverlay(() =>
+        {
+            _overlay = EditorOverlay.None;
+            system.RefreshView();
+        });
+        Append(shade);
+
+        var panel = JournalUiElementFactory.CreatePanel();
+        panel.Left.Set(70f, 0f);
+        panel.Top.Set(62f, 0f);
+        panel.Width.Set(-140f, 1f);
+        panel.Height.Set(-92f, 1f);
+        Append(panel);
+
+        var closeButton = JournalUiElementFactory.CreateIconButton(CloseIconTexturePath, 32f, 32f, () =>
+        {
+            _overlay = EditorOverlay.None;
+            system.RefreshView();
+        }, 0.82f);
+        closeButton.Left.Set(-42f, 1f);
+        closeButton.Top.Set(10f, 0f);
+        closeButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileClose"));
+        panel.Append(closeButton);
+
+        switch (_overlay)
+        {
+            case EditorOverlay.ClassPicker:
+                PopulateClassPicker(panel, system, editor);
+                break;
+            case EditorOverlay.StageIconPicker:
+            case EditorOverlay.StageUnlockPicker:
+                PopulateNpcPicker(panel, system, editor);
+                break;
+            case EditorOverlay.ItemProperties:
+                PopulateItemProperties(panel, system, editor);
+                break;
+            default:
+                PopulateItemPicker(panel, system, editor);
+                break;
+        }
+    }
+
+    private void PopulateClassPicker(UIElement panel, JournalSystem system, JournalProfileEditorSession editor)
+    {
+        AddOverlayTitle(panel, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileClassCatalog"));
+        AddInputBackground(panel, _searchInput, 20f, 52f, 340f, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileSearchClasses"));
+        AddInputBackground(panel, _customClassInput, 372f, 52f, 220f, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileCustomClass"));
+        AddPanelIconButton(panel, TextureAssets.Item[ItemID.Wrench], Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileCreateClass"), 602f, 55f, () =>
+        {
+            editor.AddClass(_customClassInput.CurrentString);
+            _customClassInput.SetText(string.Empty);
+            _overlay = EditorOverlay.None;
+            system.RefreshView();
+        });
+
+        ConfigurePickerList(panel, 100f);
         var search = _searchInput.CurrentString.Trim();
         _appliedSearch = _searchInput.CurrentString;
+        foreach (var candidate in JournalDamageClassCatalog.GetCandidates().Where(value =>
+            string.IsNullOrWhiteSpace(search)
+            || value.DisplayName.Contains(search, StringComparison.CurrentCultureIgnoreCase)
+            || value.SourceName.Contains(search, StringComparison.CurrentCultureIgnoreCase)))
+        {
+            var captured = candidate;
+            var exists = editor.Document.Classes.Any(value =>
+                string.Equals(value.Id, candidate.Id, StringComparison.OrdinalIgnoreCase)
+                || value.DamageClassNames.Intersect(candidate.DamageClassNames, StringComparer.OrdinalIgnoreCase).Any());
+            var button = JournalUiElementFactory.CreateTextButton(
+                $"{candidate.DisplayName} ({candidate.SourceName})",
+                0f,
+                40f,
+                () =>
+                {
+                    editor.AddClass(captured.Id, captured.DisplayName, captured.DamageClassNames);
+                    _overlay = EditorOverlay.None;
+                    system.RefreshView();
+                },
+                0.72f);
+            button.Width.Set(0f, 1f);
+            button.SetStyle(JournalUiTheme.GetTabButtonStyle(exists));
+            _pickerList.Add(button);
+        }
+    }
 
+    private void PopulateNpcPicker(UIElement panel, JournalSystem system, JournalProfileEditorSession editor)
+    {
+        AddOverlayTitle(panel, Language.GetTextValue(
+            _overlay == EditorOverlay.StageIconPicker
+                ? "Mods.ProgressionJournal.UI.ProfileChooseStageIcon"
+                : "Mods.ProgressionJournal.UI.ProfileChooseUnlockBoss"));
+        AddInputBackground(panel, _searchInput, 20f, 52f, 500f, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileBossSearchHint"));
+        ConfigurePickerList(panel, 100f);
+
+        var search = _searchInput.CurrentString;
+        _appliedSearch = search;
+        foreach (var candidate in JournalStageIconCatalog.GetCandidates(search))
+        {
+            var captured = candidate;
+            var button = JournalUiElementFactory.CreateIconTextButton(
+                TextureAssets.NpcHeadBoss[candidate.HeadSlot],
+                $"{candidate.DisplayName} ({candidate.ModDisplayName})",
+                0f,
+                44f,
+                () =>
+                {
+                    if (_overlay == EditorOverlay.StageIconPicker)
+                    {
+                        editor.SetSelectedStageIcon(captured.ModName, captured.InternalName);
+                    }
+                    else
+                    {
+                        editor.SetSelectedStageUnlockBoss(captured.ModName, captured.InternalName);
+                    }
+
+                    _overlay = EditorOverlay.None;
+                    system.RefreshView();
+                },
+                0.72f);
+            button.Width.Set(0f, 1f);
+            _pickerList.Add(button);
+        }
+    }
+
+    private void PopulateItemPicker(UIElement panel, JournalSystem system, JournalProfileEditorSession editor)
+    {
+        var isBuff = _page == EditorPage.CombatBuffs;
+        var title = isBuff
+            ? GetBuffCategoryName(_pickerBuffCategory)
+            : $"{GetTierName(_pickerTier)} · {Language.GetTextValue($"Mods.ProgressionJournal.Categories.{_pickerItemCategory}")}";
+        AddOverlayTitle(panel, title);
+        AddInputBackground(panel, _searchInput, 20f, 52f, 500f, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileItemSearchHint"));
+        ConfigurePickerList(panel, 100f);
+
+        var search = _searchInput.CurrentString.Trim();
+        _appliedSearch = _searchInput.CurrentString;
         var items = ContentSamples.ItemsByType.Values
             .Where(static item => item is not null && !item.IsAir && item.type > ItemID.None)
             .Where(item => string.IsNullOrWhiteSpace(search)
@@ -291,82 +655,222 @@ public sealed class JournalProfileManagerPanel : UIPanel
             .Select(static group => group.First())
             .OrderBy(static item => item.ModItem?.Mod.DisplayNameClean ?? "Terraria", StringComparer.CurrentCultureIgnoreCase)
             .ThenBy(static item => item.HoverName, StringComparer.CurrentCultureIgnoreCase)
-            .Take(240)
+            .Take(300)
             .ToArray();
 
-        const int columns = 10;
+        const int columns = 11;
         for (var index = 0; index < items.Length; index += columns)
         {
             var row = new UIElement();
             row.Width.Set(0f, 1f);
             row.Height.Set(JournalUiMetrics.BuildSlotSize, 0f);
-
             var rowItems = items.Skip(index).Take(columns).ToArray();
             for (var column = 0; column < rowItems.Length; column++)
             {
                 var item = rowItems[column];
                 var itemId = item.type;
+                var selected = isBuff ? editor.ContainsCombatBuff(itemId) : editor.ContainsItem(itemId);
                 var slot = new JournalBuildCandidateSlot(
                     item,
-                    editor.ContainsItem(itemId),
+                    selected,
                     disabled: false,
-                    () => { editor.AddItem(itemId); system.RefreshView(); },
-                    () => { editor.RemoveItem(itemId); system.RefreshView(); });
-                slot.Left.Set(column * (JournalUiMetrics.BuildSlotSize + 6f), 0f);
+                    () =>
+                    {
+                        if (isBuff)
+                        {
+                            editor.AddCombatBuff(itemId, _pickerBuffCategory);
+                        }
+                        else
+                        {
+                            editor.AddItem(itemId, _pickerItemCategory, _pickerTier);
+                        }
+
+                        system.RefreshView();
+                    },
+                    () =>
+                    {
+                        if (isBuff)
+                        {
+                            editor.RemoveCombatBuff(itemId);
+                        }
+                        else
+                        {
+                            editor.RemoveItem(itemId);
+                        }
+
+                        system.RefreshView();
+                    });
+                slot.Left.Set(column * (JournalUiMetrics.BuildSlotSize + 5f), 0f);
                 row.Append(slot);
             }
 
-            _list.Add(row);
+            _pickerList.Add(row);
         }
     }
 
-    private void PopulateBossResults(JournalSystem system, JournalProfileEditorSession editor)
+    private void PopulateItemProperties(UIElement panel, JournalSystem system, JournalProfileEditorSession editor)
     {
-        var search = _searchInput.CurrentString.Trim();
-        _appliedSearch = _searchInput.CurrentString;
-        var results = Enumerable.Range(1, NPCLoader.NPCCount - 1)
-            .Select(type => new
-            {
-                Type = type,
-                Name = Lang.GetNPCNameValue(type),
-                ModNpc = NPCLoader.GetNPC(type)
-            })
-            .Where(static value => !string.IsNullOrWhiteSpace(value.Name))
-            .Where(value => string.IsNullOrWhiteSpace(search)
-                || value.Name.Contains(search, StringComparison.CurrentCultureIgnoreCase)
-                || (value.ModNpc?.Mod.DisplayNameClean?.Contains(search, StringComparison.CurrentCultureIgnoreCase) ?? false))
-            .OrderBy(value => value.ModNpc?.Mod.DisplayNameClean ?? "Terraria", StringComparer.CurrentCultureIgnoreCase)
-            .ThenBy(static value => value.Name, StringComparer.CurrentCultureIgnoreCase)
-            .Take(160);
-
-        foreach (var result in results)
+        var entry = editor.FindSelectedItemEntry(_selectedItemId);
+        if (entry is null || !ContentSamples.ItemsByType.TryGetValue(_selectedItemId, out var item))
         {
-            var source = result.ModNpc?.Mod.DisplayNameClean ?? "Terraria";
-            var button = JournalUiElementFactory.CreateTextButton(
-                $"{result.Name} ({source})",
-                0f,
-                36f,
+            _overlay = EditorOverlay.None;
+            return;
+        }
+
+        AddOverlayTitle(panel, item.HoverName);
+        var evaluation = entry.Evaluations.First(value =>
+            string.Equals(value.StageId, editor.SelectedStageId, StringComparison.OrdinalIgnoreCase));
+        AddPanelButton(panel, Language.GetTextValue($"Mods.ProgressionJournal.Categories.{entry.Category}"), 20f, 64f, 180f, () =>
+        {
+            var values = Enum.GetValues<JournalItemCategory>();
+            var next = values[(Array.IndexOf(values, entry.Category) + 1) % values.Length];
+            editor.SetItemPlacement(_selectedItemId, next, evaluation.Tier);
+            system.RefreshView();
+        });
+        AddPanelButton(panel, GetTierName(evaluation.Tier), 210f, 64f, 190f, () =>
+        {
+            var values = new[]
+            {
+                RecommendationTier.Recommended,
+                RecommendationTier.Additional,
+                RecommendationTier.NotRecommended,
+                RecommendationTier.Useless
+            };
+            var next = values[(Array.IndexOf(values, evaluation.Tier) + 1) % values.Length];
+            editor.SetItemPlacement(_selectedItemId, entry.Category, next);
+            system.RefreshView();
+        });
+        AddPanelButton(
+            panel,
+            Language.GetTextValue(entry.IsSupportWeapon
+                ? "Mods.ProgressionJournal.UI.ProfileSupportWeaponOn"
+                : "Mods.ProgressionJournal.UI.ProfileSupportWeaponOff"),
+            410f,
+            64f,
+            190f,
+            () =>
+            {
+                editor.SetItemSupportWeapon(_selectedItemId, !entry.IsSupportWeapon);
+                system.RefreshView();
+            });
+
+        AddLabelTo(panel, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileEventLabel"), 20f, 120f, 0.72f);
+        var eventValues = Enum.GetValues<JournalEventCategory>();
+        for (var index = 0; index < eventValues.Length; index++)
+        {
+            var eventCategory = eventValues[index];
+            var captured = eventCategory;
+            AddPanelButton(
+                panel,
+                eventCategory.GetDisplayName(),
+                20f + (index % 3) * 218f,
+                150f + (index / 3) * 40f,
+                208f,
                 () =>
                 {
-                    editor.SetSelectedStageBoss(
-                        result.ModNpc?.Mod.Name ?? "Terraria",
-                        result.ModNpc?.Name ?? result.Type.ToString());
+                    editor.SetItemEvent(_selectedItemId, captured, string.Empty);
                     system.RefreshView();
                 },
-                0.72f);
-            button.Width.Set(0f, 1f);
-            _list.Add(button);
+                entry.EventCategory == eventCategory);
+        }
+
+        AddPanelButton(panel, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileNoEvent"), 20f, 270f, 150f, () =>
+        {
+            editor.SetItemEvent(_selectedItemId, null, string.Empty);
+            _customEventInput.SetText(string.Empty);
+            system.RefreshView();
+        }, entry.EventCategory is null && string.IsNullOrWhiteSpace(entry.CustomEventName));
+        AddInputBackground(panel, _customEventInput, 180f, 270f, 300f, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileCustomEvent"));
+        AddPanelButton(panel, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileApply"), 490f, 270f, 110f, () =>
+        {
+            editor.SetItemEvent(_selectedItemId, null, _customEventInput.CurrentString);
+            system.RefreshView();
+        }, entry.EventCategory is null && !string.IsNullOrWhiteSpace(entry.CustomEventName));
+        AddPanelTrashButton(panel, Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileDeleteItem"), 20f, 330f, () =>
+        {
+            editor.RemoveItem(_selectedItemId);
+            _overlay = EditorOverlay.None;
+            system.RefreshView();
+        });
+    }
+
+    private void SyncEditorInputs(JournalProfileEditorSession editor)
+    {
+        if (!string.Equals(_loadedProfileId, editor.Document.Id, StringComparison.OrdinalIgnoreCase))
+        {
+            _loadedProfileId = editor.Document.Id;
+            _profileNameInput.SetText(editor.Document.Name);
+            _searchInput.SetText(string.Empty);
+            _appliedSearch = string.Empty;
+            _classNameInput.SetText(string.Empty);
+            _overlay = EditorOverlay.None;
+        }
+
+        if (!string.Equals(_loadedClassId, editor.SelectedClassId, StringComparison.OrdinalIgnoreCase))
+        {
+            _loadedClassId = editor.SelectedClassId;
+            var definition = editor.Document.Classes.FirstOrDefault(value =>
+                string.Equals(value.Id, editor.SelectedClassId, StringComparison.OrdinalIgnoreCase));
+            _classNameInput.SetText(definition?.Name ?? string.Empty);
+        }
+
+        if (!string.Equals(_loadedStageId, editor.SelectedStageId, StringComparison.OrdinalIgnoreCase))
+        {
+            _loadedStageId = editor.SelectedStageId;
+            var stage = editor.Document.Stages.First(value =>
+                string.Equals(value.Id, editor.SelectedStageId, StringComparison.OrdinalIgnoreCase));
+            _stageNameInput.SetText(stage.Name);
+        }
+
+        if (_overlay == EditorOverlay.ItemProperties && _loadedPropertyItemId != _selectedItemId)
+        {
+            _loadedPropertyItemId = _selectedItemId;
+            var entry = editor.FindSelectedItemEntry(_selectedItemId);
+            _customEventInput.SetText(entry?.CustomEventName ?? string.Empty);
+        }
+        else if (_overlay != EditorOverlay.ItemProperties)
+        {
+            _loadedPropertyItemId = 0;
         }
     }
 
-    private void RemoveTransientChildren()
+    private void ConfigureList(UIList list, UIScrollbar scrollbar, float left, float top, float width, float height)
     {
-        foreach (var child in Children
-            .Where(child => child != _list && child != _scrollbar)
-            .ToArray())
+        list.Left.Set(left, 0f);
+        list.Top.Set(top, 0f);
+        list.Width.Set(width, 1f);
+        list.Height.Set(height, 1f);
+        Append(list);
+        scrollbar.Left.Set(-32f, 1f);
+        scrollbar.Top.Set(top, 0f);
+        scrollbar.Width.Set(20f, 0f);
+        scrollbar.Height.Set(height, 1f);
+        Append(scrollbar);
+    }
+
+    private void ConfigurePickerList(UIElement panel, float top)
+    {
+        _pickerList.Left.Set(20f, 0f);
+        _pickerList.Top.Set(top, 0f);
+        _pickerList.Width.Set(-62f, 1f);
+        _pickerList.Height.Set(-top - 20f, 1f);
+        panel.Append(_pickerList);
+        _pickerScrollbar.Left.Set(-32f, 1f);
+        _pickerScrollbar.Top.Set(top, 0f);
+        _pickerScrollbar.Width.Set(20f, 0f);
+        _pickerScrollbar.Height.Set(-top - 20f, 1f);
+        panel.Append(_pickerScrollbar);
+    }
+
+    private static void AddOverlayTitle(UIElement panel, string text)
+    {
+        var title = new UIText(text, 0.66f, true)
         {
-            RemoveChild(child);
-        }
+            HAlign = 0.5f,
+            TextColor = JournalUiTheme.RootTitleText
+        };
+        title.Top.Set(15f, 0f);
+        panel.Append(title);
     }
 
     private void AddTitle(string text)
@@ -394,38 +898,89 @@ public sealed class JournalProfileManagerPanel : UIPanel
         Append(button);
     }
 
-    private void AddTopIconButton(
-        string texturePath,
-        string hoverText,
-        float left,
-        Action action,
-        bool alignRight = false)
+    private void AddTopIconButton(string texturePath, string hoverText, float left, Action action, bool alignRight = false)
     {
-        AddTopIconButton(
-            Main.Assets.Request<Texture2D>(texturePath),
-            hoverText,
-            left,
-            action,
-            alignRight);
+        AddTopIconButton(Main.Assets.Request<Texture2D>(texturePath), hoverText, left, action, alignRight);
     }
 
-    private void AddCompactButton(string text, float left, float top, Action action, float width = 32f)
+    private void AddMainIconButton(
+        Asset<Texture2D> texture,
+        string hoverText,
+        float left,
+        float top,
+        Action action)
     {
-        var button = JournalUiElementFactory.CreateTextButton(text, width, 36f, action, CompactButtonTextScale);
+        var button = JournalUiElementFactory.CreateIconButton(texture, 32f, 32f, action, 0.72f);
         button.Left.Set(left, 0f);
         button.Top.Set(top, 0f);
+        button.SetHoverText(hoverText);
         Append(button);
     }
 
-    private void AddLabel(string text, float left, float top, float scale)
+    private static JournalIconButton AddPanelIconButton(
+        UIElement parent,
+        string texturePath,
+        string hoverText,
+        float left,
+        float top,
+        Action action)
     {
-        var label = new UIText(text, scale)
-        {
-            TextColor = JournalUiTheme.ContentDescriptionText
-        };
-        label.Left.Set(left, 0f);
-        label.Top.Set(top, 0f);
-        Append(label);
+        return AddPanelIconButton(
+            parent,
+            Main.Assets.Request<Texture2D>(texturePath),
+            hoverText,
+            left,
+            top,
+            action);
+    }
+
+    private static JournalIconButton AddPanelIconButton(
+        UIElement parent,
+        Asset<Texture2D> texture,
+        string hoverText,
+        float left,
+        float top,
+        Action action)
+    {
+        var button = JournalUiElementFactory.CreateIconButton(texture, 30f, 30f, action, 0.72f);
+        button.Left.Set(left, 0f);
+        button.Top.Set(top, top < 0f ? 1f : 0f);
+        button.SetHoverText(hoverText);
+        parent.Append(button);
+        return button;
+    }
+
+    private static void AddPanelTrashButton(
+        UIElement parent,
+        string hoverText,
+        float left,
+        float top,
+        Action action)
+    {
+        var button = JournalBuildActionButton.CreateTrash(action);
+        button.Left.Set(left, 0f);
+        button.Top.Set(top, top < 0f ? 1f : 0f);
+        button.SetHoverText(hoverText);
+        parent.Append(button);
+    }
+
+    private static void AddPanelButton(
+        UIElement parent,
+        string text,
+        float left,
+        float top,
+        float width,
+        Action action,
+        bool active = false,
+        bool alignRight = false)
+    {
+        var button = JournalUiElementFactory.CreateTextButton(text, width, 32f, action, CompactTextScale);
+        button.Left.Set(left, alignRight ? 1f : 0f);
+        button.Top.Set(top, top < 0f ? 1f : 0f);
+        button.SetStyle(active
+            ? JournalUiTheme.GetTabButtonStyle(true)
+            : JournalUiTheme.GetDefaultTextButtonStyle());
+        parent.Append(button);
     }
 
     private void AddInputBackground(
@@ -435,8 +990,17 @@ public sealed class JournalProfileManagerPanel : UIPanel
         float width,
         string hint)
     {
+        AddInputBackground(this, input, left, top, width, hint);
+    }
+
+    private void AddCenteredInputBackground(
+        JournalTextInput input,
+        float top,
+        float width,
+        string hint)
+    {
         var background = JournalUiElementFactory.CreatePanel();
-        background.Left.Set(left, 0f);
+        background.HAlign = 0.5f;
         background.Top.Set(top, 0f);
         background.Width.Set(width, 0f);
         background.Height.Set(36f, 0f);
@@ -448,18 +1012,70 @@ public sealed class JournalProfileManagerPanel : UIPanel
         input.Left.Set(8f, 0f);
         input.Top.Set(8f, 0f);
         input.Width.Set(-16f, 1f);
-        if (input.Parent is not null)
-        {
-            input.Parent.RemoveChild(input);
-        }
-
+        input.Parent?.RemoveChild(input);
         background.Append(input);
     }
 
-    private static string GetTierName(RecommendationTier tier)
+    private static void AddInputBackground(
+        UIElement parent,
+        JournalTextInput input,
+        float left,
+        float top,
+        float width,
+        string hint,
+        bool relativeWidth = false)
     {
-        return tier == RecommendationTier.FromGuide
-            ? Language.GetTextValue("Mods.ProgressionJournal.UI.FromGuideBlock")
-            : tier.ToString();
+        var background = JournalUiElementFactory.CreatePanel();
+        background.Left.Set(left, 0f);
+        background.Top.Set(top, top < 0f ? 1f : 0f);
+        background.Width.Set(width, relativeWidth ? 1f : 0f);
+        background.Height.Set(36f, 0f);
+        background.BackgroundColor = JournalUiTheme.PanelBackground;
+        background.BorderColor = JournalUiTheme.PanelBorder;
+        parent.Append(background);
+
+        input.HintText = hint;
+        input.Left.Set(8f, 0f);
+        input.Top.Set(8f, 0f);
+        input.Width.Set(-16f, 1f);
+        input.Parent?.RemoveChild(input);
+        background.Append(input);
     }
+
+    private void AddLabel(string text, float left, float top, float scale)
+    {
+        AddLabelTo(this, text, left, top, scale);
+    }
+
+    private static void AddLabelTo(UIElement parent, string text, float left, float top, float scale)
+    {
+        var label = new UIText(text, scale)
+        {
+            TextColor = JournalUiTheme.ContentDescriptionText
+        };
+        label.Left.Set(left, 0f);
+        label.Top.Set(top, 0f);
+        parent.Append(label);
+    }
+
+    private static string GetTierName(RecommendationTier tier) => tier switch
+    {
+        RecommendationTier.Recommended => Language.GetTextValue("Mods.ProgressionJournal.UI.RecommendedBlock"),
+        RecommendationTier.Additional => Language.GetTextValue("Mods.ProgressionJournal.UI.AdditionalBlock"),
+        RecommendationTier.NotRecommended => Language.GetTextValue("Mods.ProgressionJournal.UI.NotRecommendedBlock"),
+        RecommendationTier.Useless => Language.GetTextValue("Mods.ProgressionJournal.UI.UselessBlock"),
+        _ => Language.GetTextValue("Mods.ProgressionJournal.UI.FromGuideBlock")
+    };
+
+    private static string GetBuffCategoryName(JournalBuffCategory category) => Language.GetTextValue(category switch
+    {
+        JournalBuffCategory.Station => "Mods.ProgressionJournal.UI.CombatBuffStations",
+        JournalBuffCategory.Passive => "Mods.ProgressionJournal.UI.CombatBuffPassive",
+        JournalBuffCategory.Basic => "Mods.ProgressionJournal.UI.CombatBuffBasic",
+        JournalBuffCategory.Potion => "Mods.ProgressionJournal.UI.CombatBuffPotions",
+        JournalBuffCategory.Eternal => "Mods.ProgressionJournal.UI.CombatBuffEternal",
+        JournalBuffCategory.Food => "Mods.ProgressionJournal.UI.CombatBuffFood",
+        JournalBuffCategory.Flask => "Mods.ProgressionJournal.UI.CombatBuffFlasks",
+        _ => string.Empty
+    });
 }

@@ -99,7 +99,7 @@ report.assumedVanillaItems = [...new Set(report.assumedVanillaItems)]
 
 const profile = {
   format: "ProgressionJournalProfile",
-  version: 1,
+  version: 2,
   id: "builtin.calamity-wiki",
   name: "Calamity Wiki",
   author: "Calamity Wiki contributors",

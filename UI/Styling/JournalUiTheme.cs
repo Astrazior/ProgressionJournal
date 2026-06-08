@@ -105,6 +105,15 @@ public static class JournalUiTheme
             new Color(226, 233, 240))
     };
 
+    public static JournalClassPalette GetCustomClassPalette()
+    {
+        return new JournalClassPalette(
+            new Color(28, 36, 48),
+            new Color(100, 120, 142),
+            new Color(184, 196, 210),
+            new Color(232, 236, 242));
+    }
+
 }
 
 public readonly record struct JournalButtonStyle(Color Background, Color Border, Color Text);
