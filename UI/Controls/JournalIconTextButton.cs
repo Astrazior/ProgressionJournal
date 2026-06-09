@@ -13,14 +13,21 @@ public sealed class JournalIconTextButton : JournalHoverPanel
     private const float TextLeft = 36f;
     private const float TextRight = 10f;
 
-    private readonly Asset<Texture2D> _iconTexture;
+    private Asset<Texture2D> _iconTexture;
+    private Rectangle? _iconSourceRectangle;
     private readonly UIText _label;
     private JournalButtonStyle _style;
     private string? _hoverText;
 
-    public JournalIconTextButton(Asset<Texture2D> iconTexture, string text, float textScale, Action onClick)
+    public JournalIconTextButton(
+        Asset<Texture2D> iconTexture,
+        string text,
+        float textScale,
+        Action onClick,
+        Rectangle? iconSourceRectangle = null)
     {
         _iconTexture = iconTexture;
+        _iconSourceRectangle = iconSourceRectangle;
         SetPadding(0f);
 
         _label = new UIText(text, textScale)
@@ -36,6 +43,12 @@ public sealed class JournalIconTextButton : JournalHoverPanel
     }
 
     public void SetText(string text) => _label.SetText(text);
+
+    public void SetIcon(Asset<Texture2D> iconTexture, Rectangle? sourceRectangle = null)
+    {
+        _iconTexture = iconTexture;
+        _iconSourceRectangle = sourceRectangle;
+    }
 
     public void SetHoverText(string hoverText) => _hoverText = hoverText;
 
@@ -63,17 +76,19 @@ public sealed class JournalIconTextButton : JournalHoverPanel
 
         var dimensions = GetDimensions().ToRectangle();
         var texture = _iconTexture.Value;
-        var scale = MathF.Min(IconSize / texture.Width, IconSize / texture.Height);
+        var sourceWidth = _iconSourceRectangle?.Width ?? texture.Width;
+        var sourceHeight = _iconSourceRectangle?.Height ?? texture.Height;
+        var scale = MathF.Min(IconSize / sourceWidth, IconSize / sourceHeight);
         var iconCenter = new Vector2(dimensions.X + IconPaddingLeft + IconSize * 0.5f, dimensions.Center.Y);
         var drawColor = IsMouseHovering ? Color.White : Color.White * 0.95f;
 
         spriteBatch.Draw(
             texture,
             iconCenter,
-            null,
+            _iconSourceRectangle,
             drawColor,
             0f,
-            new Vector2(texture.Width * 0.5f, texture.Height * 0.5f),
+            new Vector2(sourceWidth * 0.5f, sourceHeight * 0.5f),
             scale,
             SpriteEffects.None,
             0f);

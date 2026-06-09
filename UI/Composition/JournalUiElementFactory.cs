@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
@@ -40,9 +41,16 @@ public static class JournalUiElementFactory
         return button;
     }
 
-    public static JournalIconTextButton CreateIconTextButton(Asset<Texture2D> texture, string text, float width, float height, Action onClick, float textScale = 0.4f)
+    public static JournalIconTextButton CreateIconTextButton(
+        Asset<Texture2D> texture,
+        string text,
+        float width,
+        float height,
+        Action onClick,
+        float textScale = 0.4f,
+        Rectangle? sourceRectangle = null)
     {
-        var button = new JournalIconTextButton(texture, text, textScale, onClick);
+        var button = new JournalIconTextButton(texture, text, textScale, onClick, sourceRectangle);
         button.Width.Set(width, 0f);
         button.Height.Set(height, 0f);
         return button;
@@ -64,4 +72,3 @@ public static class JournalUiElementFactory
         return header;
     }
 }
-

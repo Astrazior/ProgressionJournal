@@ -169,15 +169,22 @@ public sealed class JournalProfileManagerPanel : UIPanel
             row.Width.Set(0f, 1f);
             row.Height.Set(48f, 0f);
 
-            var button = JournalUiElementFactory.CreateTextButton(
-                $"{profile.Name}{suffix}{warning}",
+            var buttonText = $"{profile.Name}{suffix}{warning}";
+            var buttonStyle = JournalUiTheme.GetTabButtonStyle(
+                string.Equals(profile.Id, JournalProfileRegistry.Active.Id, StringComparison.OrdinalIgnoreCase));
+            var buttonWidth = profile.IsBuiltIn ? 0f : -40f;
+
+            var profileIcon = JournalProfileIconResolver.GetIcon(profile);
+            var button = JournalUiElementFactory.CreateIconTextButton(
+                profileIcon.Texture,
+                buttonText,
                 0f,
                 48f,
                 () => system.SelectProfile(profile.Id),
-                0.78f);
-            button.Width.Set(profile.IsBuiltIn ? 0f : -40f, 1f);
-            button.SetStyle(JournalUiTheme.GetTabButtonStyle(
-                string.Equals(profile.Id, JournalProfileRegistry.Active.Id, StringComparison.OrdinalIgnoreCase)));
+                0.78f,
+                profileIcon.SourceRectangle);
+            button.Width.Set(buttonWidth, 1f);
+            button.SetStyle(buttonStyle);
             row.Append(button);
 
             if (!profile.IsBuiltIn)
