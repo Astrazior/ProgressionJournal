@@ -88,36 +88,23 @@ public static class JournalItemSlotRenderer
             accent,
             emphasizeOuterAccent ? 0.30f : 0.08f);
 
-        var innerLip = Color.Lerp(
-            JournalUiTheme.ItemSlotInnerEdge,
-            outerEdge,
-            emphasizeOuterAccent ? 0.16f : 0.08f);
-
         var well = JournalUiTheme.ItemSlotWell;
-
-        var topBevel = Lighten(outerEdge, hovered ? 0.25f : 0.15f);
-        var bottomBevel = Color.Lerp(outerEdge, Color.Black, hovered ? 0.34f : 0.46f);
-
-        var innerTopShadow = Color.Lerp(JournalUiTheme.ItemSlotInnerEdge, Color.Black, 0.48f);
-        var innerBottomLight = Color.Lerp(JournalUiTheme.ItemSlotWellHighlight, outerEdge, 0.16f);
 
         if (hovered)
         {
             outerEdge = Lighten(outerEdge, 0.12f);
-            innerLip = Lighten(innerLip, 0.08f);
-            well = Lighten(well, 0.04f);
         }
+
+        var topBevel = Lighten(outerEdge, hovered ? 0.25f : 0.15f);
+        var bottomBevel = Color.Lerp(outerEdge, Color.Black, hovered ? 0.34f : 0.46f);
 
         if (disabled)
         {
             outerShadow *= 0.55f;
             outerEdge *= 0.55f;
-            innerLip *= 0.55f;
             well *= 0.55f;
             topBevel *= 0.55f;
             bottomBevel *= 0.55f;
-            innerTopShadow *= 0.55f;
-            innerBottomLight *= 0.55f;
         }
 
         var shadowRect = rectangle;
@@ -127,26 +114,10 @@ public static class JournalItemSlotRenderer
         DrawChamferedRectangle(spriteBatch, rectangle, 5, outerEdge);
         DrawBevel(spriteBatch, rectangle, 5, topBevel, bottomBevel);
 
-        var lipRect = rectangle;
-        lipRect.Inflate(-3, -3);
-        DrawChamferedRectangle(spriteBatch, lipRect, 3, innerLip);
-
         var wellRect = rectangle;
         wellRect.Inflate(-5, -5);
         DrawChamferedRectangle(spriteBatch, wellRect, 2, well);
-        DrawBevel(spriteBatch, wellRect, 2, innerTopShadow, innerBottomLight);
-
         DrawSoftInnerHighlight(spriteBatch, wellRect, disabled);
-
-        if (emphasizeOuterAccent || hovered)
-        {
-            var pixel = TextureAssets.MagicPixel.Value;
-            var strength = disabled ? 0.26f : hovered ? 0.42f : 0.30f;
-            var color = accent * strength;
-
-            spriteBatch.Draw(pixel, new Rectangle(rectangle.X + 10, rectangle.Y + 2, rectangle.Width - 20, 1), color);
-            spriteBatch.Draw(pixel, new Rectangle(rectangle.X + 2, rectangle.Y + 10, 1, rectangle.Height - 20), color * 0.55f);
-        }
     }
 
     private static void DrawMarker(
