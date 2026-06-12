@@ -1,7 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.Localization;
 using Terraria.UI;
 
@@ -9,12 +8,9 @@ namespace ProgressionJournal.UI.Controls;
 
 public sealed class JournalBuildCandidateSlot : UIElement
 {
-    private const int DisplaySlotIndex = 10;
-
     private readonly Item _item;
     private readonly bool _selected;
     private readonly bool _disabled;
-    private readonly Item[] _displayItems = CreateDisplayItems();
     private float _visualScale = 1f;
 
     public JournalBuildCandidateSlot(
@@ -62,8 +58,6 @@ public sealed class JournalBuildCandidateSlot : UIElement
             dimensions.Height * (1f - _visualScale) * 0.5f);
         var oldScale = Main.inventoryScale;
         var displayItem = _item.Clone();
-        var previousBackground = TextureAssets.InventoryBack;
-
         try
         {
             if (!JournalItemUtilities.IsValidItemId(displayItem.type))
@@ -73,18 +67,22 @@ public sealed class JournalBuildCandidateSlot : UIElement
 
             Main.instance.LoadItem(displayItem.type);
             Main.inventoryScale = _visualScale;
-            if (_selected)
-            {
-                TextureAssets.InventoryBack = TextureAssets.InventoryBack14;
-            }
-
-            _displayItems[DisplaySlotIndex] = displayItem;
-            ItemSlot.Draw(spriteBatch, _displayItems, ItemSlot.Context.InventoryItem, DisplaySlotIndex, position);
+            var rectangle = new Rectangle(
+                (int)position.X,
+                (int)position.Y,
+                (int)(dimensions.Width * _visualScale),
+                (int)(dimensions.Height * _visualScale));
+            JournalItemSlotRenderer.Draw(
+                spriteBatch,
+                displayItem,
+                rectangle,
+                _selected ? JournalUiTheme.InventoryButtonActiveGlow : JournalUiTheme.ItemSlotDefaultAccent,
+                IsMouseHovering && !_disabled,
+                _disabled,
+                _visualScale);
         }
         finally
         {
-            _displayItems[DisplaySlotIndex].TurnToAir();
-            TextureAssets.InventoryBack = previousBackground;
             Main.inventoryScale = oldScale;
         }
 
@@ -102,16 +100,5 @@ public sealed class JournalBuildCandidateSlot : UIElement
         Main.HoverItem = hoverItem;
         Main.hoverItemName = hoverItem.HoverName;
         Main.mouseText = true;
-    }
-
-    private static Item[] CreateDisplayItems()
-    {
-        var items = new Item[DisplaySlotIndex + 1];
-        for (var index = 0; index < items.Length; index++)
-        {
-            items[index] = new Item();
-        }
-
-        return items;
     }
 }

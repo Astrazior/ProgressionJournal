@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.Localization;
@@ -94,7 +93,6 @@ public sealed class JournalEntrySlot : UIElement
                 Main.instance.LoadItem(displayItem.type);
                 var slotPosition = inner.TopLeft() + new Vector2(index * SlotStep, 0f);
                 DrawVanillaSlot(spriteBatch, ref displayItem, slotPosition);
-                DrawSpecialOutline(spriteBatch, slotPosition, hoveredIndex == index);
                 DrawSupportBadge(spriteBatch, slotPosition);
                 DrawEventBadge(spriteBatch, slotPosition);
 
@@ -162,15 +160,6 @@ public sealed class JournalEntrySlot : UIElement
         return -1;
     }
 
-    private static Asset<Texture2D> GetSlotTexture(RecommendationTier tier) => tier switch
-    {
-        RecommendationTier.Recommended => TextureAssets.InventoryBack3,
-        RecommendationTier.Additional => TextureAssets.InventoryBack8,
-        RecommendationTier.NotRecommended => TextureAssets.InventoryBack13,
-        RecommendationTier.Useless => TextureAssets.InventoryBack11,
-        _ => TextureAssets.InventoryBack9
-    };
-
     private Item GetDisplayedItem(int groupIndex)
     {
         var groupItems = _itemGroups[groupIndex];
@@ -206,17 +195,22 @@ public sealed class JournalEntrySlot : UIElement
 
     private void DrawVanillaSlot(SpriteBatch spriteBatch, ref Item displayItem, Vector2 slotPosition)
     {
-        var previousTexture = TextureAssets.InventoryBack9;
-
-        try
-        {
-            TextureAssets.InventoryBack9 = GetSlotTexture(_entry.Evaluation.Tier);
-            ItemSlot.Draw(spriteBatch, ref displayItem, ItemSlot.Context.TrashItem, slotPosition);
-        }
-        finally
-        {
-            TextureAssets.InventoryBack9 = previousTexture;
-        }
+        var hasEvent = _entry.Entry.EventCategory is not null || _hasCustomEvent;
+        var accent = hasEvent
+            ? JournalUiTheme.EventEntryOutline
+            : JournalUiTheme.GetRecommendationSlotAccent(_entry.Evaluation.Tier);
+        var rectangle = new Rectangle(
+            (int)slotPosition.X,
+            (int)slotPosition.Y,
+            (int)WidthPixels,
+            TextureAssets.InventoryBack9.Height());
+        JournalItemSlotRenderer.Draw(
+            spriteBatch,
+            displayItem,
+            rectangle,
+            accent,
+            rectangle.Contains(Main.MouseScreen.ToPoint()),
+            emphasizeOuterAccent: hasEvent);
     }
 
     private static void DrawAlternativeMarker(SpriteBatch spriteBatch, Vector2 slotPosition)
@@ -231,31 +225,6 @@ public sealed class JournalEntrySlot : UIElement
             Color.Black,
             Vector2.Zero,
             0.64f);
-    }
-
-    private void DrawSpecialOutline(SpriteBatch spriteBatch, Vector2 slotPosition, bool isHovered)
-    {
-        if (_entry.Entry.EventCategory is not null || _hasCustomEvent)
-        {
-            DrawOutline(
-                spriteBatch,
-                slotPosition,
-                isHovered ? JournalUiTheme.EventEntryOutlineBright : JournalUiTheme.EventEntryOutline,
-                JournalUiTheme.EventEntryOutlineShadow);
-        }
-    }
-
-    private static void DrawOutline(SpriteBatch spriteBatch, Vector2 slotPosition, Color outerColor, Color shadowColor)
-    {
-        var rectangle = new Rectangle((int)slotPosition.X, (int)slotPosition.Y, (int)WidthPixels, TextureAssets.InventoryBack9.Height());
-        var texture = TextureAssets.MagicPixel.Value;
-        var innerColor = Color.Lerp(outerColor, Color.White, 0.35f);
-
-        DrawRectangleOutline(spriteBatch, texture, rectangle, shadowColor);
-        rectangle.Inflate(-1, -1);
-        DrawRectangleOutline(spriteBatch, texture, rectangle, outerColor);
-        rectangle.Inflate(-1, -1);
-        DrawRectangleOutline(spriteBatch, texture, rectangle, innerColor);
     }
 
     private void DrawSupportBadge(SpriteBatch spriteBatch, Vector2 slotPosition)

@@ -43,11 +43,20 @@ public sealed class JournalBuildEquipmentSlot : UIElement
             if (JournalItemUtilities.TryCreateItem(itemId, out var item))
             {
                 Main.instance.LoadItem(item.type);
-                ItemSlot.Draw(spriteBatch, ref item, ItemSlot.Context.TrashItem, dimensions.TopLeft());
+                JournalItemSlotRenderer.Draw(
+                    spriteBatch,
+                    item,
+                    dimensions,
+                    JournalUiTheme.ItemSlotDefaultAccent,
+                    IsMouseHovering);
             }
             else
             {
-                spriteBatch.Draw(TextureAssets.InventoryBack9.Value, dimensions, Color.White * 0.45f);
+                JournalItemSlotRenderer.DrawBackground(
+                    spriteBatch,
+                    dimensions,
+                    JournalUiTheme.ItemSlotDefaultAccent,
+                    IsMouseHovering);
                 Utils.DrawBorderStringFourWay(
                     spriteBatch,
                     FontAssets.MouseText.Value,

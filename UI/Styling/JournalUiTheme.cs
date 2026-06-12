@@ -21,10 +21,19 @@ public static class JournalUiTheme
     public static readonly Color InventoryButtonShadow = new(10, 12, 20);
     public static readonly Color EntryAlternativeMarker = new(162, 214, 255);
     public static readonly Color EventEntryOutline = new(228, 196, 84);
-    public static readonly Color EventEntryOutlineBright = new(255, 236, 154);
-    public static readonly Color EventEntryOutlineShadow = new(96, 72, 24);
     public static readonly Color EventBadgeBackground = new(27, 33, 43, 230);
     public static readonly Color EventBadgeBorder = new(234, 214, 124);
+    public static readonly Color ItemSlotOuterShadow = new(8, 12, 17);
+    public static readonly Color ItemSlotOuterEdge = new(62, 78, 90);
+    public static readonly Color ItemSlotInnerEdge = new(25, 32, 38);
+    public static readonly Color ItemSlotWell = new(11, 17, 23);
+    public static readonly Color ItemSlotWellHighlight = new(31, 40, 47);
+    public static readonly Color ItemSlotDefaultAccent = new(92, 122, 150);
+    public static readonly Color ItemSlotTopBevel = new(118, 145, 166);
+    public static readonly Color ItemSlotBottomBevel = new(4, 7, 10);
+    public static readonly Color ItemSlotInnerShadow = new(2, 5, 8);
+    public static readonly Color ItemSlotCornerStud = new(126, 151, 172);
+    public static readonly Color ItemSlotMarkerText = new(250, 254, 255);
 
     public static float RootBackgroundOpacity => 0.98f;
 
@@ -65,6 +74,16 @@ public static class JournalUiTheme
         RecommendationTier.Useless => new JournalPanelStyle(new Color(76, 22, 22), new Color(228, 72, 72)),
         RecommendationTier.FromGuide => new JournalPanelStyle(new Color(28, 47, 66), new Color(102, 164, 214)),
         _ => new JournalPanelStyle(PanelBackground, PanelBorder)
+    };
+
+    public static Color GetRecommendationSlotAccent(RecommendationTier tier) => tier switch
+    {
+        RecommendationTier.Recommended => new Color(90, 196, 116),
+        RecommendationTier.Additional => new Color(190, 178, 94),
+        RecommendationTier.NotRecommended => new Color(205, 116, 160),
+        RecommendationTier.Useless => new Color(228, 72, 72),
+        RecommendationTier.FromGuide => new Color(102, 164, 214),
+        _ => ItemSlotDefaultAccent
     };
 
     public static JournalCategoryStyle GetCategoryStyle(JournalItemCategory category) => category switch

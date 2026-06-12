@@ -173,7 +173,17 @@ public sealed class JournalBuffSlot : UIElement
         {
             var displayItem = GetDisplayedItem(groupIndex);
             Main.instance.LoadItem(displayItem.type);
-            ItemSlot.Draw(spriteBatch, ref displayItem, ItemSlot.Context.TrashItem, slotPosition);
+            var rectangle = new Rectangle(
+                (int)slotPosition.X,
+                (int)slotPosition.Y,
+                (int)WidthPixels,
+                TextureAssets.InventoryBack9.Height());
+            JournalItemSlotRenderer.Draw(
+                spriteBatch,
+                displayItem,
+                rectangle,
+                JournalUiTheme.ItemSlotDefaultAccent,
+                rectangle.Contains(Main.MouseScreen.ToPoint()));
             return;
         }
 

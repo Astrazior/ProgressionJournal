@@ -78,7 +78,17 @@ public sealed class JournalItemStrip : UIElement
                 {
                     item.stack = _stacks[index];
                     Main.instance.LoadItem(item.type);
-                    ItemSlot.Draw(spriteBatch, ref item, ItemSlot.Context.TrashItem, position);
+                    var rectangle = new Rectangle(
+                        (int)position.X,
+                        (int)position.Y,
+                        (int)SlotWidth,
+                        TextureAssets.InventoryBack9.Height());
+                    JournalItemSlotRenderer.Draw(
+                        spriteBatch,
+                        item,
+                        rectangle,
+                        JournalUiTheme.ItemSlotDefaultAccent,
+                        rectangle.Contains(Main.MouseScreen.ToPoint()));
                     continue;
                 }
 
@@ -130,7 +140,7 @@ public sealed class JournalItemStrip : UIElement
     private static void DrawUnloadedSlot(SpriteBatch spriteBatch, Vector2 position)
     {
         var rectangle = new Rectangle((int)position.X, (int)position.Y, (int)SlotWidth, TextureAssets.InventoryBack9.Height());
-        spriteBatch.Draw(TextureAssets.InventoryBack9.Value, rectangle, Color.White * 0.72f);
+        JournalItemSlotRenderer.DrawBackground(spriteBatch, rectangle, JournalUiTheme.ItemSlotDefaultAccent);
 
         Utils.DrawBorderStringFourWay(
             spriteBatch,
