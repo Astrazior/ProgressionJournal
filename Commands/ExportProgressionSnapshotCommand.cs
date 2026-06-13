@@ -13,45 +13,81 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
 
     public override string Command => "pjexport";
 
-    public override string Usage => "/pjexport [ModName ...]";
+    public override string Usage => "/pjexport <InternalModName>";
 
     public override string Description => "Exports loaded content for the Progression Journal profile generator.";
 
     public override void Action(CommandCaller caller, string input, string[] args)
     {
-        var requestedMods = args
-            .SelectMany(static value => value.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+        if (args.Length != 1)
+        {
+            caller.Reply($"Usage: {Usage}");
+            return;
+        }
+
+        var targetModName = args[0].Trim();
+        if (!ModLoader.TryGetMod(targetModName, out var targetMod))
+        {
+            caller.Reply($"Loaded mod '{targetModName}' was not found. Use its internal mod name.");
+            return;
+        }
+
+        var dependencyMods = ResolveTransitiveDependencies(targetMod);
+        var contentMods = dependencyMods
+            .Select(static mod => mod.Name)
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
-        var includeAllLoadedMods = requestedMods.Count == 0;
-        requestedMods.Add("Terraria");
+        var includedMods = new HashSet<string>(contentMods, StringComparer.OrdinalIgnoreCase)
+        {
+            "Terraria"
+        };
 
         var itemIds = Enumerable.Range(1, ItemLoader.ItemCount - 1)
-            .Where(itemId => IncludeContent(GetItemModName(itemId), requestedMods, includeAllLoadedMods))
+            .Where(itemId => includedMods.Contains(GetItemModName(itemId)))
             .ToHashSet();
         var npcIds = Enumerable.Range(1, NPCLoader.NPCCount - 1)
-            .Where(npcId => IncludeContent(GetNpcModName(npcId), requestedMods, includeAllLoadedMods))
+            .Where(npcId => includedMods.Contains(GetNpcModName(npcId)))
             .ToHashSet();
 
         var snapshot = new ProgressionSnapshot
         {
             GeneratedAtUtc = DateTime.UtcNow.ToString("O"),
-            Mods = ModLoader.Mods
-                .Where(mod => includeAllLoadedMods || requestedMods.Contains(mod.Name))
+            TargetMod = targetMod.Name,
+            ContentMods = contentMods
+                .OrderBy(static name => name, StringComparer.OrdinalIgnoreCase)
+                .ToList(),
+            Mods = dependencyMods
+                .Select(static mod => new SnapshotMod(mod.Name, mod.Version.ToString()))
+                .OrderBy(static mod => mod.Name, StringComparer.OrdinalIgnoreCase)
+                .ToList(),
+            EnvironmentMods = ModLoader.Mods
                 .Select(static mod => new SnapshotMod(mod.Name, mod.Version.ToString()))
                 .OrderBy(static mod => mod.Name, StringComparer.OrdinalIgnoreCase)
                 .ToList(),
             Items = itemIds.Select(CreateItem).ToList(),
             Npcs = npcIds.Select(CreateNpc).ToList(),
-            Recipes = CreateRecipes(itemIds),
+            Recipes = CreateRecipes(itemIds, includedMods),
             Drops = CreateDrops(itemIds, npcIds),
-            Shops = CreateShops(itemIds)
+            Shops = CreateShops(itemIds, npcIds)
         };
 
-        var directory = Path.Combine(Main.SavePath, "Mods", nameof(ProgressionJournal), "Exports");
+        var sourceFolder = ProgressionJournal.Instance?.SourceFolder;
+        var developmentExport = !string.IsNullOrWhiteSpace(sourceFolder)
+            && Directory.Exists(sourceFolder);
+        var directory = developmentExport
+            ? Path.Combine(sourceFolder!, "Profiles", "Mods", targetMod.Name)
+            : Path.Combine(
+                Main.SavePath,
+                "Mods",
+                nameof(ProgressionJournal),
+                "Snapshots",
+                targetMod.Name);
         Directory.CreateDirectory(directory);
-        var path = Path.Combine(directory, $"content-snapshot-{DateTime.UtcNow:yyyyMMdd-HHmmss}.json");
-        File.WriteAllText(path, JsonSerializer.Serialize(snapshot, SnapshotJsonOptions));
-        caller.Reply($"Progression Journal snapshot exported: {path}");
+        var path = Path.Combine(directory, "snapshot.json");
+        WriteAtomically(path, JsonSerializer.Serialize(snapshot, SnapshotJsonOptions));
+        CreateSupportTemplateIfMissing(directory, targetMod, dependencyMods);
+        caller.Reply(
+            $"Progression Journal snapshot exported: {path}. "
+            + $"Content mods: {string.Join(", ", snapshot.ContentMods)}");
     }
 
     private static readonly JsonSerializerOptions SnapshotJsonOptions = new()
@@ -60,11 +96,86 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         WriteIndented = true
     };
 
-    private static bool IncludeContent(string modName, IReadOnlySet<string> requestedMods, bool includeAllLoadedMods)
+    private static IReadOnlyList<Mod> ResolveTransitiveDependencies(Mod targetMod)
     {
-        return string.Equals(modName, "Terraria", StringComparison.OrdinalIgnoreCase)
-            || includeAllLoadedMods
-            || requestedMods.Contains(modName);
+        var loadedByAssembly = ModLoader.Mods
+            .Where(static mod => mod.Code is not null)
+            .GroupBy(static mod => mod.Code.GetName().Name ?? mod.Name, StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(static group => group.Key, static group => group.First(), StringComparer.OrdinalIgnoreCase);
+        var result = new Dictionary<string, Mod>(StringComparer.OrdinalIgnoreCase);
+        var pending = new Queue<Mod>();
+        pending.Enqueue(targetMod);
+        while (pending.TryDequeue(out var mod))
+        {
+            if (!result.TryAdd(mod.Name, mod) || mod.Code is null)
+            {
+                continue;
+            }
+
+            foreach (var reference in mod.Code.GetReferencedAssemblies())
+            {
+                if (reference.Name is not null
+                    && loadedByAssembly.TryGetValue(reference.Name, out var dependency)
+                    && !result.ContainsKey(dependency.Name))
+                {
+                    pending.Enqueue(dependency);
+                }
+            }
+        }
+
+        return result.Values
+            .OrderBy(static mod => mod.Name, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+    }
+
+    private static void WriteAtomically(string path, string contents)
+    {
+        var temporaryPath = $"{path}.{Guid.NewGuid():N}.tmp";
+        try
+        {
+            File.WriteAllText(temporaryPath, contents);
+            File.Move(temporaryPath, path, overwrite: true);
+        }
+        finally
+        {
+            if (File.Exists(temporaryPath))
+            {
+                File.Delete(temporaryPath);
+            }
+        }
+    }
+
+    private static void CreateSupportTemplateIfMissing(
+        string directory,
+        Mod targetMod,
+        IReadOnlyList<Mod> dependencyMods)
+    {
+        var path = Path.Combine(directory, "support.json");
+        if (File.Exists(path))
+        {
+            return;
+        }
+
+        var template = new
+        {
+            format = "ProgressionJournalModSupport",
+            version = 1,
+            targetMod = targetMod.Name,
+            id = $"mod.{targetMod.Name.ToLowerInvariant()}",
+            name = new Dictionary<string, string>
+            {
+                ["en-US"] = $"{targetMod.DisplayName} progression",
+                ["ru-RU"] = $"Прогрессия {targetMod.DisplayName}"
+            },
+            profileVersion = targetMod.Version.ToString(),
+            requiredMods = dependencyMods.Select(static mod => new SnapshotMod(
+                mod.Name,
+                mod.Version.ToString())),
+            contentMods = dependencyMods.Select(static mod => mod.Name).ToArray(),
+            classes = Array.Empty<object>(),
+            stages = Array.Empty<object>()
+        };
+        WriteAtomically(path, JsonSerializer.Serialize(template, SnapshotJsonOptions));
     }
 
     private static SnapshotItem CreateItem(int itemId)
@@ -255,7 +366,9 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             headSlot);
     }
 
-    private static List<SnapshotRecipe> CreateRecipes(IReadOnlySet<int> includedItems)
+    private static List<SnapshotRecipe> CreateRecipes(
+        IReadOnlySet<int> includedItems,
+        IReadOnlySet<string> includedMods)
     {
         List<SnapshotRecipe> recipes = [];
         for (var recipeIndex = 0; recipeIndex < Recipe.numRecipes; recipeIndex++)
@@ -266,7 +379,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                 continue;
             }
 
-            recipes.Add(new SnapshotRecipe(
+            var result = new SnapshotRecipe(
                 GetItemReference(recipe.createItem.type),
                 recipe.createItem.stack,
                 recipe.requiredItem
@@ -274,7 +387,12 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                     .Select(static item => new SnapshotStack(GetItemReference(item.type), item.stack))
                     .ToList(),
                 recipe.requiredTile.Select(GetTileReference).ToList(),
-                recipe.Conditions.Select(CreateCondition).ToList()));
+                recipe.Conditions.Select(CreateCondition).ToList());
+            if (result.Ingredients.All(stack => ReferenceIsIncluded(stack.Item, includedMods))
+                && result.Stations.All(station => ReferenceIsIncluded(station, includedMods)))
+            {
+                recipes.Add(result);
+            }
         }
 
         return recipes;
@@ -344,12 +462,15 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         }
     }
 
-    private static List<SnapshotShop> CreateShops(IReadOnlySet<int> includedItems)
+    private static List<SnapshotShop> CreateShops(
+        IReadOnlySet<int> includedItems,
+        IReadOnlySet<int> includedNpcs)
     {
         return NPCShopDatabase.AllShops
             .SelectMany(static shop => shop.ActiveEntries.Select(entry => new { shop, entry }))
             .Where(pair => pair.entry.Item is not null
                 && !pair.entry.Item.IsAir
+                && includedNpcs.Contains(pair.shop.NpcType)
                 && includedItems.Contains(pair.entry.Item.type))
             .Select(pair => new SnapshotShop(
                 GetNpcReference(pair.shop.NpcType),
@@ -431,14 +552,23 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
     private static string GetItemModName(int itemId) => ItemLoader.GetItem(itemId)?.Mod.Name ?? "Terraria";
 
     private static string GetNpcModName(int npcId) => NPCLoader.GetNPC(npcId)?.Mod.Name ?? "Terraria";
+
+    private static bool ReferenceIsIncluded(string reference, IReadOnlySet<string> includedMods)
+    {
+        var separator = reference.IndexOf('/');
+        return separator > 0 && includedMods.Contains(reference[..separator]);
+    }
 }
 
 public sealed class ProgressionSnapshot
 {
     public string Format { get; set; } = "ProgressionJournalSnapshot";
-    public int Version { get; set; } = 1;
+    public int Version { get; set; } = 2;
     public string GeneratedAtUtc { get; set; } = string.Empty;
+    public string TargetMod { get; set; } = string.Empty;
+    public List<string> ContentMods { get; set; } = [];
     public List<SnapshotMod> Mods { get; set; } = [];
+    public List<SnapshotMod> EnvironmentMods { get; set; } = [];
     public List<SnapshotItem> Items { get; set; } = [];
     public List<SnapshotNpc> Npcs { get; set; } = [];
     public List<SnapshotRecipe> Recipes { get; set; } = [];

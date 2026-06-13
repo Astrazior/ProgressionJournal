@@ -91,51 +91,32 @@ the former `combatClass` field when it is imported or saved again.
 
 ## Built-in profile generation
 
-All profile documents use `version: 1`. Stage manifests live in `Profiles/Manifests`.
-They describe progression facts that tModLoader cannot infer: boss order, persistent flags,
-new enemies and materials, special stations, and manual include/exclude rules.
+Each supported mod has one self-contained directory under
+`Profiles/Mods/<InternalModName>`. `profile.json` is the only file packaged into the mod;
+the snapshot, support data, agent rules, recommendations, review, and report remain
+development files.
 
 1. Start tModLoader with the supported mods enabled.
-2. Run `/pjexport CalamityMod ThoriumMod FargowiltasSouls`.
-3. Use the exported file from `Mods/ProgressionJournal/Exports`.
-4. Regenerate and validate all bundled profiles:
+2. Run `/pjexport <InternalModName>` once for each supported mod.
+3. Fill unresolved decisions in that mod's `agent-rules.json`.
+4. Build one profile or all profiles:
 
 ```powershell
-node Tools\GenerateProfiles.mjs --snapshot C:\path\to\content-snapshot.json --all
+node Tools\BuildModProfiles.mjs CalamityMod
+node Tools\BuildModProfiles.mjs --all
 node Tools\TestProfileGenerator.mjs
-node Tools\AuditProfiles.mjs
-node Tools\ValidateProfiles.mjs
+node Tools\TestModProfilePipeline.mjs
 ```
 
-Pass `--previous C:\path\to\older-snapshot.json` to include added, removed, renamed-candidate,
-and changed content in each report. Reports are written to `Profiles/Reports`.
-
 Anything the generator cannot place without guessing is excluded from automatic availability
-and written to `Profiles/Review/<profile>-review.json`. Review issue IDs are stable across
-regeneration while their evidence remains unchanged.
+and written to that mod's `review.json`. Every rule or ignored issue in `agent-rules.json`
+must contain an official source URL, source version or revision, check date, and explanation.
+The single build command applies those rules, writes the review and report, audits cross-mod
+paths, validates the result, and regenerates `profile.json`.
 
-Resolve an issue in `Profiles/Manual/<profile>.json`, then regenerate:
-
-- `itemStages`: place one item at a stage; recipes reachable from it are expanded automatically.
-- `sourceStages`: place an NPC or container source at a stage and include its drops.
-- `stationStages`: mark a crafting station as available at a stage.
-- `conditionStages`: map a captured drop, shop, or recipe condition to a stage.
-- `itemOverrides`: correct category or class detection.
-- `ignoredItems`: mark a non-combat or intentionally unsupported item as reviewed.
-- `ignoredIssues`: hide a specific review issue by its stable ID when no assignment is needed.
-
-The generated review file includes evidence and a resolution example for every issue. Manual
-files are never overwritten by the generator.
-
-`AuditProfiles.mjs` checks that generated availability is not later than a compatible
-official Wiki snapshot and that acquisition paths do not cross into unrelated mods.
-Wiki data can move an item earlier only when its mod version has the same major/minor
-version family as the exported snapshot. Older Wiki snapshots remain visible as audit
-warnings and never change generated availability automatically.
-
-Official Wiki parsers are input adapters only. Their recommendations appear in a separate
-book-marked block and are not used to define the boss scale. Fargo's official enchantment
-availability data is retained as neutral availability data, not marked as a recommendation.
+`recommendations.json` is display-only data. It can annotate entries but never creates or
+moves availability evaluations. Boss order and other structural facts live in `support.json`;
+verified exceptions and facts that tModLoader cannot expose live in `agent-rules.json`.
 
 ## License
 

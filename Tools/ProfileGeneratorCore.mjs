@@ -64,10 +64,11 @@ export function generateProfile(
   snapshot,
   manifest,
   wikiProfile = null,
-  manualAssignments = null,
-  availabilityProfile = null) {
+  manualAssignments = null) {
   assert(snapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot format.");
-  assert(snapshot.version === 1, `Unsupported snapshot version '${snapshot.version}'.`);
+  assert(
+    snapshot.version === 1 || snapshot.version === 2,
+    `Unsupported snapshot version '${snapshot.version}'.`);
 
   const manualResult = applyManualAssignments(manifest, manualAssignments);
   manifest = manualResult.manifest;
@@ -111,7 +112,6 @@ export function generateProfile(
     wikiAmbiguousItems: [],
     wikiUnresolvedItems: [],
     wikiAvailabilityCorrections: [],
-    availabilityCorrections: [],
     staleRules: [],
     manualAssignmentProblems: manualResult.problems
   };
@@ -128,10 +128,8 @@ export function generateProfile(
   const wikiItemIds = getWikiItemIds(wikiProfile, manifest, wikiResolver);
   const modifiedVanillaItems = new Set(manifest.modifiedVanillaItems ?? []);
   const wikiCompatibility = sourceCompatibility(wikiProfile, snapshot);
-  const availabilityCompatibility = sourceCompatibility(availabilityProfile, snapshot);
   report.officialSourceCompatibility = {
-    recommendations: wikiCompatibility,
-    availability: availabilityCompatibility
+    recommendations: wikiCompatibility
   };
 
   for (const id of available) acquiredBy.set(id, { stage: "start", via: "initial" });
@@ -304,17 +302,7 @@ export function generateProfile(
     buffItems,
     report,
     wikiResolver,
-    itemById,
-    wikiCompatibility.compatible);
-  applyAvailabilityData(
-    availabilityProfile,
-    manifest,
-    entryByItem,
-    profileEntries,
-    report,
-    wikiResolver,
-    itemById,
-    availabilityCompatibility.compatible);
+    itemById);
   validateManualRules(manifest, itemById, report);
   const review = buildManualReview({
     snapshot,
@@ -624,8 +612,7 @@ function applyWikiRecommendations(
   buffItems,
   report,
   wikiResolver,
-  itemById,
-  applyAvailabilityCorrections) {
+  itemById) {
   if (!wikiProfile) return;
   for (const sourceEntry of wikiProfile.entries ?? []) {
     const ids = resolveWikiEntryIds(sourceEntry, wikiResolver);
@@ -680,116 +667,8 @@ function applyWikiRecommendations(
         if (!entry.wiki.some(value => wikiRecommendationSignature(value) === signature)) {
           entry.wiki.push(recommendation);
         }
-        if (applyAvailabilityCorrections) {
-          ensureAvailableByStage(
-            entry,
-            mapping.stageId,
-            manifest,
-            report.wikiAvailabilityCorrections,
-            "official-wiki-recommendation");
-        }
       }
     }
-  }
-}
-
-function applyAvailabilityData(
-  availabilityProfile,
-  manifest,
-  entryByItem,
-  profileEntries,
-  report,
-  resolver,
-  itemById,
-  applyAvailabilityCorrections) {
-  if (!availabilityProfile || !applyAvailabilityCorrections) return;
-  const allProfileClasses = allClasses(manifest);
-
-  for (const sourceEntry of availabilityProfile.entries ?? []) {
-    const ids = resolveWikiEntryIds(sourceEntry, resolver);
-    const stageIds = (sourceEntry.evaluations ?? [])
-      .map(evaluation => manifest.availabilityStageMap?.[evaluation.stageId])
-      .filter(Boolean);
-    for (const id of ids) {
-      const item = itemById.get(id);
-      if (!item) continue;
-
-      let entry = entryByItem.get(id);
-      if (!entry) {
-        const classification = classifyWikiItem({
-          category: sourceEntry.category,
-          classes: sourceEntry.classes?.includes("all")
-            ? allProfileClasses
-            : sourceEntry.classes
-        });
-        if (!classification || classification.buffCategory) continue;
-        entry = {
-          key: `availability.${slug(id)}`,
-          category: classification.category,
-          classes: classification.classes,
-          itemGroups: [[toItemReference(item)]],
-          evaluations: [],
-          wiki: [],
-          isSupportWeapon: sourceEntry.isSupportWeapon === true,
-          eventCategory: sourceEntry.eventCategory ?? null,
-          customEventName: sourceEntry.customEventName ?? ""
-        };
-        entryByItem.set(id, entry);
-        profileEntries.push(entry);
-      }
-
-      const exactStage = earliestStage(stageIds, manifest);
-      if (!exactStage) continue;
-      const previousStage = earliestStage(
-        entry.evaluations.map(evaluation => evaluation.stageId),
-        manifest);
-      entry.evaluations = [{
-        stageId: exactStage,
-        tier: "FromGuide",
-        scope: "StageOnly"
-      }];
-      if (previousStage !== exactStage) {
-        report.availabilityCorrections.push({
-          item: id,
-          fromStage: previousStage ?? null,
-          toStage: exactStage,
-          source: "official-wiki-availability"
-        });
-      }
-    }
-  }
-}
-
-function ensureAvailableByStage(entry, stageId, manifest, corrections, source) {
-  const stageIndexes = new Map(manifest.stages.map((stage, index) => [stage.id, index]));
-  const targetIndex = stageIndexes.get(stageId);
-  if (targetIndex === undefined) return;
-
-  const currentStage = earliestStage(
-    entry.evaluations.map(evaluation => evaluation.stageId),
-    manifest);
-  const currentIndex = currentStage === null
-    ? Number.POSITIVE_INFINITY
-    : stageIndexes.get(currentStage) ?? Number.POSITIVE_INFINITY;
-  if (currentIndex <= targetIndex) return;
-
-  entry.evaluations = [{
-    stageId,
-    tier: "FromGuide",
-    scope: "StageOnly"
-  }];
-  const item = `${entry.itemGroups[0][0].mod}/${entry.itemGroups[0][0].item}`;
-  const existing = corrections.find(correction =>
-    correction.item === item && correction.source === source);
-  if (existing) {
-    existing.toStage = stageId;
-  } else {
-    corrections.push({
-      item,
-      fromStage: currentStage,
-      toStage: stageId,
-      source
-    });
   }
 }
 

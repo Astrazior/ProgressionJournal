@@ -134,9 +134,8 @@ public static class JournalProfileRegistry
 
             foreach (var path in mod.GetFileNames()
                          .Where(static path =>
-                             path.StartsWith("Profiles/Builtin/", StringComparison.OrdinalIgnoreCase)
-                             && path.EndsWith(".json", StringComparison.OrdinalIgnoreCase)
-                             && !path.EndsWith("-report.json", StringComparison.OrdinalIgnoreCase)))
+                             path.StartsWith("Profiles/Mods/", StringComparison.OrdinalIgnoreCase)
+                             && path.EndsWith("/profile.json", StringComparison.OrdinalIgnoreCase)))
             {
                 var json = System.Text.Encoding.UTF8.GetString(mod.GetFileBytes(path));
                 if (JournalProfileStorage.TryParse(json, $"builtin:{path}", isBuiltIn: true, out var profile, out _)

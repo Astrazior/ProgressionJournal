@@ -231,19 +231,6 @@ const wikiProfile = {
     }
   ]
 };
-const availabilityProfile = {
-  requiredMods: [{ name: "Test", version: "1.2" }],
-  entries: [{
-    key: "early-availability",
-    category: "Accessory",
-    classes: ["all"],
-    itemGroups: [[{ mod: "Test", item: "MixedAccessory" }]],
-    evaluations: [{ stageId: "availableEarly" }]
-  }]
-};
-manifest.availabilityStageMap = {
-  availableEarly: "start"
-};
 const { profile, report, review } = generateProfile(snapshot, manifest, wikiProfile);
 assert.equal(profile.version, 1);
 assert(profile.entries.some(entry => entry.itemGroups[0][0].item === "Sword"));
@@ -259,7 +246,7 @@ assert(profile.entries.some(entry =>
   && entry.wiki.length === 1));
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "EarlyWikiSword")?.evaluations,
-  [{ stageId: "start", tier: "FromGuide", scope: "StageOnly" }]);
+  [{ stageId: "boss", tier: "FromGuide", scope: "StageOnly" }]);
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "EarlyWikiSword")?.wiki
     .map(value => value.stageId),
@@ -269,7 +256,7 @@ assert.equal(
   1);
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "WikiOnlyBlade")?.evaluations,
-  [{ stageId: "start", tier: "FromGuide", scope: "StageOnly" }]);
+  []);
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "WikiOnlyBlade")?.wiki
     .map(value => value.stageId),
@@ -300,7 +287,7 @@ assert(profile.entries.some(entry =>
 assert.equal(report.paths["Test/BagBlade"].via, "container:Test/BossBag");
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "LateDrop")?.evaluations,
-  [{ stageId: "start", tier: "FromGuide", scope: "StageOnly" }]);
+  [{ stageId: "late", tier: "FromGuide", scope: "StageOnly" }]);
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "LateDrop")?.wiki
     .map(value => value.stageId),
@@ -409,34 +396,5 @@ const ignoredReviewResult = generateProfile(snapshot, manifest, wikiProfile, {
 });
 assert(!ignoredReviewResult.review.issues.some(issue => issue.id === ignoredIssueId));
 
-const availabilityResult = generateProfile(
-  snapshot,
-  manifest,
-  wikiProfile,
-  manualAssignments,
-  availabilityProfile);
-assert.deepEqual(
-  availabilityResult.profile.entries.find(entry =>
-    entry.itemGroups[0][0].item === "MixedAccessory")?.evaluations,
-  [{ stageId: "start", tier: "FromGuide", scope: "StageOnly" }]);
-assert(availabilityResult.report.availabilityCorrections.some(correction =>
-  correction.item === "Test/MixedAccessory"
-  && correction.toStage === "start"));
-
-const incompatibleAvailabilityResult = generateProfile(
-  snapshot,
-  manifest,
-  wikiProfile,
-  manualAssignments,
-  {
-    ...availabilityProfile,
-    requiredMods: [{ name: "Test", version: "2.0" }]
-  });
-assert.deepEqual(
-  incompatibleAvailabilityResult.profile.entries.find(entry =>
-    entry.itemGroups[0][0].item === "MixedAccessory")?.evaluations,
-  [{ stageId: "boss", tier: "FromGuide", scope: "StageOnly" }]);
-assert.equal(
-  incompatibleAvailabilityResult.report.officialSourceCompatibility.availability.compatible,
-  false);
+assert.equal(report.wikiAvailabilityCorrections.length, 0);
 console.log("Profile generator tests: OK");

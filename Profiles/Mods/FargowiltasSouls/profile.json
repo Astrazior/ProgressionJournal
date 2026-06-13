@@ -1,0 +1,4609 @@
+{
+  "format": "ProgressionJournalProfile",
+  "version": 1,
+  "id": "builtin.fargosouls",
+  "name": {
+    "en-US": "Fargo's Souls progression",
+    "ru-RU": "Прогрессия Fargo's Souls"
+  },
+  "author": "Progression Journal",
+  "profileVersion": "1",
+  "readOnly": true,
+  "sourceUrl": "https://fargosmods.wiki.gg/wiki/Fargo%27s_Souls_Mod",
+  "sourceRevision": "",
+  "generatedAtUtc": "2026-06-13T19:59:34.216Z",
+  "requiredMods": [
+    {
+      "name": "FargowiltasSouls",
+      "version": "1.7.3.9"
+    },
+    {
+      "name": "Fargowiltas",
+      "version": "3.3.6.7"
+    }
+  ],
+  "classes": [
+    {
+      "id": "melee",
+      "name": {
+        "en-US": "Melee",
+        "ru-RU": "Воин"
+      },
+      "damageClassNames": [
+        "Melee"
+      ]
+    },
+    {
+      "id": "ranged",
+      "name": {
+        "en-US": "Ranged",
+        "ru-RU": "Стрелок"
+      },
+      "damageClassNames": [
+        "Ranged"
+      ]
+    },
+    {
+      "id": "magic",
+      "name": {
+        "en-US": "Magic",
+        "ru-RU": "Маг"
+      },
+      "damageClassNames": [
+        "Magic"
+      ]
+    },
+    {
+      "id": "summoner",
+      "name": {
+        "en-US": "Summoner",
+        "ru-RU": "Призыватель"
+      },
+      "damageClassNames": [
+        "Summon"
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "id": "start",
+      "name": {
+        "en-US": "Start",
+        "ru-RU": "Начало"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Guide",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "always"
+      }
+    },
+    {
+      "id": "trojan-squirrel",
+      "name": {
+        "en-US": "Trojan Squirrel",
+        "ru-RU": "Троянская белка"
+      },
+      "iconMod": "FargowiltasSouls",
+      "iconNpc": "TrojanSquirrel",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "FargowiltasSouls",
+        "key": "DownedBoss[9]"
+      }
+    },
+    {
+      "id": "king-slime",
+      "name": {
+        "en-US": "King Slime",
+        "ru-RU": "Король слизней"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "KingSlime",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedSlimeKing"
+      }
+    },
+    {
+      "id": "eye-of-cthulhu",
+      "name": {
+        "en-US": "Eye of Cthulhu",
+        "ru-RU": "Глаз Ктулху"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "EyeofCthulhu",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedBoss1"
+      }
+    },
+    {
+      "id": "cursed-coffin",
+      "name": {
+        "en-US": "Cursed Coffin",
+        "ru-RU": "Проклятый гроб"
+      },
+      "iconMod": "FargowiltasSouls",
+      "iconNpc": "CursedCoffin",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "FargowiltasSouls",
+        "key": "DownedBoss[11]"
+      }
+    },
+    {
+      "id": "world-evil",
+      "name": {
+        "en-US": "Eater of Worlds / Brain of Cthulhu",
+        "ru-RU": "Пожиратель миров / Мозг Ктулху"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "EaterofWorldsHead",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedBoss2"
+      }
+    },
+    {
+      "id": "queen-bee",
+      "name": {
+        "en-US": "Queen Bee",
+        "ru-RU": "Королева пчёл"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "QueenBee",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedQueenBee"
+      }
+    },
+    {
+      "id": "deerclops",
+      "name": {
+        "en-US": "Deerclops",
+        "ru-RU": "Циклоп-олень"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Deerclops",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedDeerclops"
+      }
+    },
+    {
+      "id": "skeletron",
+      "name": {
+        "en-US": "Skeletron",
+        "ru-RU": "Скелетрон"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "SkeletronHead",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedBoss3"
+      }
+    },
+    {
+      "id": "wall-of-flesh",
+      "name": {
+        "en-US": "Wall of Flesh",
+        "ru-RU": "Стена плоти"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "WallofFlesh",
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "hardMode"
+      }
+    },
+    {
+      "id": "queen-slime",
+      "name": {
+        "en-US": "Queen Slime",
+        "ru-RU": "Королева слизней"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "QueenSlimeBoss",
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedQueenSlime"
+      }
+    },
+    {
+      "id": "banished-baron",
+      "name": {
+        "en-US": "Banished Baron",
+        "ru-RU": "Изгнанный барон"
+      },
+      "iconMod": "FargowiltasSouls",
+      "iconNpc": "BanishedBaron",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "FargowiltasSouls",
+        "key": "DownedBoss[12]"
+      }
+    },
+    {
+      "id": "destroyer",
+      "name": {
+        "en-US": "The Destroyer",
+        "ru-RU": "Уничтожитель"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "TheDestroyer",
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedMechBoss1"
+      }
+    },
+    {
+      "id": "twins",
+      "name": {
+        "en-US": "The Twins",
+        "ru-RU": "Близнецы"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Retinazer",
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedMechBoss2"
+      }
+    },
+    {
+      "id": "skeletron-prime",
+      "name": {
+        "en-US": "Skeletron Prime",
+        "ru-RU": "Скелетрон Прайм"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "SkeletronPrime",
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedMechBoss3"
+      }
+    },
+    {
+      "id": "lifelight",
+      "name": {
+        "en-US": "Lifelight",
+        "ru-RU": "Свет жизни"
+      },
+      "iconMod": "FargowiltasSouls",
+      "iconNpc": "LifeChallenger",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "FargowiltasSouls",
+        "key": "DownedBoss[10]"
+      }
+    },
+    {
+      "id": "plantera",
+      "name": {
+        "en-US": "Plantera",
+        "ru-RU": "Плантера"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Plantera",
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedPlantBoss"
+      }
+    },
+    {
+      "id": "golem",
+      "name": {
+        "en-US": "Golem",
+        "ru-RU": "Голем"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "GolemHead",
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedGolemBoss"
+      }
+    },
+    {
+      "id": "betsy",
+      "name": {
+        "en-US": "Betsy",
+        "ru-RU": "Бетси"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "DD2Betsy",
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "DD2Event.DownedInvasionT3"
+      }
+    },
+    {
+      "id": "duke-fishron",
+      "name": {
+        "en-US": "Duke Fishron",
+        "ru-RU": "Герцог Рыброн"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "DukeFishron",
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedFishron"
+      }
+    },
+    {
+      "id": "empress-of-light",
+      "name": {
+        "en-US": "Empress of Light",
+        "ru-RU": "Императрица света"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "HallowBoss",
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedEmpressOfLight"
+      }
+    },
+    {
+      "id": "lunatic-cultist",
+      "name": {
+        "en-US": "Lunatic Cultist",
+        "ru-RU": "Лунатик-культист"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "CultistBoss",
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedAncientCultist"
+      }
+    },
+    {
+      "id": "moon-lord",
+      "name": {
+        "en-US": "Moon Lord",
+        "ru-RU": "Лунный лорд"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "MoonLordHead",
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedMoonlord"
+      }
+    },
+    {
+      "id": "deviantt",
+      "name": {
+        "en-US": "Deviantt",
+        "ru-RU": "Девиантт"
+      },
+      "iconMod": "FargowiltasSouls",
+      "iconNpc": "DeviBoss",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "FargowiltasSouls",
+        "key": "DownedDevi"
+      }
+    },
+    {
+      "id": "timber-champion",
+      "name": {
+        "en-US": "Champion of Timber",
+        "ru-RU": "Чемпион древесины"
+      },
+      "iconMod": "FargowiltasSouls",
+      "iconNpc": "TimberChampion",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "FargowiltasSouls",
+        "key": "DownedBoss[0]"
+      }
+    },
+    {
+      "id": "terra-champion",
+      "name": {
+        "en-US": "Champion of Terra",
+        "ru-RU": "Чемпион Террарии"
+      },
+      "iconMod": "FargowiltasSouls",
+      "iconNpc": "TerraChampion",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "FargowiltasSouls",
+        "key": "DownedBoss[1]"
+      }
+    },
+    {
+      "id": "earth-champion",
+      "name": {
+        "en-US": "Champion of Earth",
+        "ru-RU": "Чемпион земли"
+      },
+      "iconMod": "FargowiltasSouls",
+      "iconNpc": "EarthChampion",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "FargowiltasSouls",
+        "key": "DownedBoss[2]"
+      }
+    },
+    {
+      "id": "nature-champion",
+      "name": {
+        "en-US": "Champion of Nature",
+        "ru-RU": "Чемпион природы"
+      },
+      "iconMod": "FargowiltasSouls",
+      "iconNpc": "NatureChampion",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "FargowiltasSouls",
+        "key": "DownedBoss[3]"
+      }
+    },
+    {
+      "id": "life-champion",
+      "name": {
+        "en-US": "Champion of Life",
+        "ru-RU": "Чемпион жизни"
+      },
+      "iconMod": "FargowiltasSouls",
+      "iconNpc": "LifeChampion",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "FargowiltasSouls",
+        "key": "DownedBoss[4]"
+      }
+    },
+    {
+      "id": "shadow-champion",
+      "name": {
+        "en-US": "Champion of Shadow",
+        "ru-RU": "Чемпион тени"
+      },
+      "iconMod": "FargowiltasSouls",
+      "iconNpc": "ShadowChampion",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "FargowiltasSouls",
+        "key": "DownedBoss[5]"
+      }
+    },
+    {
+      "id": "spirit-champion",
+      "name": {
+        "en-US": "Champion of Spirit",
+        "ru-RU": "Чемпион духа"
+      },
+      "iconMod": "FargowiltasSouls",
+      "iconNpc": "SpiritChampion",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "FargowiltasSouls",
+        "key": "DownedBoss[6]"
+      }
+    },
+    {
+      "id": "will-champion",
+      "name": {
+        "en-US": "Champion of Will",
+        "ru-RU": "Чемпион воли"
+      },
+      "iconMod": "FargowiltasSouls",
+      "iconNpc": "WillChampion",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "FargowiltasSouls",
+        "key": "DownedBoss[7]"
+      }
+    },
+    {
+      "id": "cosmos-champion",
+      "name": {
+        "en-US": "Champion of Cosmos",
+        "ru-RU": "Чемпион космоса"
+      },
+      "iconMod": "FargowiltasSouls",
+      "iconNpc": "CosmosChampion",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "FargowiltasSouls",
+        "key": "DownedBoss[8]"
+      }
+    },
+    {
+      "id": "abominationn",
+      "name": {
+        "en-US": "Abominationn",
+        "ru-RU": "Абоминейшн"
+      },
+      "iconMod": "FargowiltasSouls",
+      "iconNpc": "AbomBoss",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "FargowiltasSouls",
+        "key": "DownedAbom"
+      }
+    },
+    {
+      "id": "mutant",
+      "name": {
+        "en-US": "Mutant",
+        "ru-RU": "Мутант"
+      },
+      "iconMod": "FargowiltasSouls",
+      "iconNpc": "MutantBoss",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "FargowiltasSouls",
+        "key": "DownedMutant"
+      }
+    }
+  ],
+  "entries": [
+    {
+      "key": "new.fargowiltassouls.decrepitairstrikeremote",
+      "category": "Weapon",
+      "classes": [
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "DecrepitAirstrikeRemote",
+            "displayName": "Дряхлый пульт авиаудара"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "banished-baron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.prismaregalia",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "PrismaRegalia",
+            "displayName": "Призма Регалия"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "empress-of-light",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.rosetintedvisor",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "RoseTintedVisor",
+            "displayName": "Розовый визор"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "banished-baron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.fishstick",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "FishStick",
+            "displayName": "Рыбная палка"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "duke-fishron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.navalrustrifle",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "NavalRustrifle",
+            "displayName": "Флотское ржавое ружьё"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "banished-baron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.deviousaestheticus",
+      "category": "Weapon",
+      "classes": [
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "DeviousAestheticus",
+            "displayName": "Коварный эстетикус"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "moon-lord",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.sisypheanfist",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "SisypheanFist",
+            "displayName": "Рукавица Сизифа"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "cursed-coffin",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.thebaronstusk",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "TheBaronsTusk",
+            "displayName": "Клык Барона"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "banished-baron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.staffofunleashedocean",
+      "category": "Weapon",
+      "classes": [
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "StaffOfUnleashedOcean",
+            "displayName": "Посох высвобожденного океана"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "abominationn",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.electricwhip",
+      "category": "Weapon",
+      "classes": [
+        "melee",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "ElectricWhip",
+            "displayName": "Гальваническая цепь"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.dicer",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "Dicer",
+            "displayName": "Измельчитель"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.kamikazesquirrelstaff",
+      "category": "Weapon",
+      "classes": [
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "KamikazeSquirrelStaff",
+            "displayName": "Посох белки-камикадзе"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "trojan-squirrel",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.enchantedlifeblade",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "EnchantedLifeblade",
+            "displayName": "Зачарованный клинок жизни"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "lifelight",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.rockslide",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "RockSlide",
+            "displayName": "Обвал"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "golem",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.kamikazepixiestaff",
+      "category": "Weapon",
+      "classes": [
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "KamikazePixieStaff",
+            "displayName": "Посох взрывофеи"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "lifelight",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.thesmallsting",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "TheSmallSting",
+            "displayName": "Маленькое жало"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "queen-bee",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.dragonbreath",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "DragonBreath",
+            "displayName": "Дыхание дракона"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "betsy",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.crystallinecongregation",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "CrystallineCongregation",
+            "displayName": "Кристаллическое скопление"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "lifelight",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.fleshhand",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "FleshHand",
+            "displayName": "Рука плоти"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.eaterlauncherjr",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "EaterLauncherJr",
+            "displayName": "Бластер-кусака"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "world-evil",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.slimekingsslasher",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "SlimeKingsSlasher",
+            "displayName": "Катана Короля слизней"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "king-slime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.twinrangs",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "TwinRangs",
+            "displayName": "Близнеранги"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "twins",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.refractorblaster",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "RefractorBlaster",
+            "displayName": "Преломляющий бластер"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.thelightningrod",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "TheLightningRod",
+            "displayName": "Посох-громоотвод"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "world-evil",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.primestaff",
+      "category": "Weapon",
+      "classes": [
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "PrimeStaff",
+            "displayName": "Посох Прайма"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.spiritlongbow",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "SpiritLongbow",
+            "displayName": "Большой лук духа"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "cursed-coffin",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.lightslinger",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "Lightslinger",
+            "displayName": "Светопульта"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "lifelight",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltas.brittlebone",
+      "category": "Ammunition",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Fargowiltas",
+            "item": "BrittleBone",
+            "displayName": "Хрупкая кость"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.darktome",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "DarkTome",
+            "displayName": "Тёмный том"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "world-evil",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": "OldOnesArmy",
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.mountedacorngun",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "MountedAcornGun",
+            "displayName": "Устанавливаемая желудёвая пушка"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "trojan-squirrel",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.treesword",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "TreeSword",
+            "displayName": "Меч древа"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "trojan-squirrel",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.leashofcthulhu",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "LeashOfCthulhu",
+            "displayName": "Глаз на привязи"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.snowballstaff",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "SnowballStaff",
+            "displayName": "Эффект снежного кома"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "trojan-squirrel",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.bonezone",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "BoneZone",
+            "displayName": "Костяная зона"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.brainstaff",
+      "category": "Weapon",
+      "classes": [
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "BrainStaff",
+            "displayName": "Разлом разума"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "world-evil",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.egyptianflail",
+      "category": "Weapon",
+      "classes": [
+        "melee",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "EgyptianFlail",
+            "displayName": "Некхакха"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "cursed-coffin",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.gildedsceptre",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "GildedSceptre",
+            "displayName": "Позолоченный скипетр"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "cursed-coffin",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.mutantantibodies",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "MutantAntibodies",
+            "displayName": "Антитела Мутанта"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "duke-fishron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.agitatinglens",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "AgitatingLens",
+            "displayName": "Возбуждающиеся линзы"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.guttedheart",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "GuttedHeart",
+            "displayName": "Выпотрошенное сердце"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "world-evil",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.computationorb",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "ComputationOrb",
+            "displayName": "Вычислительная сфера"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "golem",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.gelicwings",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "GelicWings",
+            "displayName": "Гелеподобные крылья"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "queen-slime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.mutanteye",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "MutantEye",
+            "displayName": "Глаз Мутанта"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "mutant",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.pungenteyeball",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "PungentEyeball",
+            "displayName": "Едкое глазное яблоко"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.queenstinger",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "QueenStinger",
+            "displayName": "Жало королевы"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "queen-bee",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.adamantiteenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "AdamantiteEnchant",
+            "displayName": "Зачарование адамантита"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.crimsonenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "CrimsonEnchant",
+            "displayName": "Зачарование багрянца"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "world-evil",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.vortexenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "VortexEnchant",
+            "displayName": "Зачарование вихря"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "moon-lord",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.tungstenenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "TungstenEnchant",
+            "displayName": "Зачарование вольфрама"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.gladiatorenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "GladiatorEnchant",
+            "displayName": "Зачарование гладиатора"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.shroomiteenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "ShroomiteEnchant",
+            "displayName": "Зачарование грибов"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.woodenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "WoodEnchant",
+            "displayName": "Зачарование дерева"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.jungleenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "JungleEnchant",
+            "displayName": "Зачарование джунглей"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.rainenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "RainEnchant",
+            "displayName": "Зачарование дождя"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.ancientcobaltenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "AncientCobaltEnchant",
+            "displayName": "Зачарование древнего кобальта"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.ancienthallowenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "AncientHallowEnchant",
+            "displayName": "Зачарование древнего освящения"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.ancientshadowenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "AncientShadowEnchant",
+            "displayName": "Зачарование древней тени"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.ironenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "IronEnchant",
+            "displayName": "Зачарование железа"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.pearlwoodenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "PearlwoodEnchant",
+            "displayName": "Зачарование жемчужной древесины"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.beetleenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "BeetleEnchant",
+            "displayName": "Зачарование жука"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "golem",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.spookyenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "SpookyEnchant",
+            "displayName": "Зачарование жути"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.forbiddenenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "ForbiddenEnchant",
+            "displayName": "Зачарование запрета"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.borealwoodenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "BorealWoodEnchant",
+            "displayName": "Зачарование заснеженной древесины"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.stardustenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "StardustEnchant",
+            "displayName": "Зачарование звёздной пыли"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "moon-lord",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.goldenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "GoldEnchant",
+            "displayName": "Зачарование золота"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.fossilenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "FossilEnchant",
+            "displayName": "Зачарование ископаемого"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.cactusenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "CactusEnchant",
+            "displayName": "Зачарование кактуса"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.cobaltenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "CobaltEnchant",
+            "displayName": "Зачарование кобальта"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.wizardenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "WizardEnchant",
+            "displayName": "Зачарование колдуна"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.redridingenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "RedRidingEnchant",
+            "displayName": "Зачарование красного наездника"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "betsy",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.richmahoganyenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "RichMahoganyEnchant",
+            "displayName": "Зачарование красной древесины"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.shinobienchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "ShinobiEnchant",
+            "displayName": "Зачарование лазутчика Шиноби"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "golem",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.moltenenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "MoltenEnchant",
+            "displayName": "Зачарование литья"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "world-evil",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.copperenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "CopperEnchant",
+            "displayName": "Зачарование меди"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.meteorenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "MeteorEnchant",
+            "displayName": "Зачарование метеора"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "world-evil",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.mythrilenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "MythrilEnchant",
+            "displayName": "Зачарование мифрила"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.monkenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "MonkEnchant",
+            "displayName": "Зачарование монаха"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.frostenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "FrostEnchant",
+            "displayName": "Зачарование мороза"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.shadewoodenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "ShadewoodEnchant",
+            "displayName": "Зачарование мрачной древесины"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.necroenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "NecroEnchant",
+            "displayName": "Зачарование некро"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.ninjaenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "NinjaEnchant",
+            "displayName": "Зачарование ниндзя"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "king-slime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.obsidianenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "ObsidianEnchant",
+            "displayName": "Зачарование обсидиана"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "world-evil",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.tinenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "TinEnchant",
+            "displayName": "Зачарование олова"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.orichalcumenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "OrichalcumEnchant",
+            "displayName": "Зачарование орихалка"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.squireenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "SquireEnchant",
+            "displayName": "Зачарование оруженосца"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.hallowenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "HallowEnchant",
+            "displayName": "Зачарование освящения"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.huntressenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "HuntressEnchant",
+            "displayName": "Зачарование охотницы"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.palladiumenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "PalladiumEnchant",
+            "displayName": "Зачарование палладия"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.palmwoodenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "PalmWoodEnchant",
+            "displayName": "Зачарование пальмовой древесины"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.spiderenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "SpiderEnchant",
+            "displayName": "Зачарование паука"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.platinumenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "PlatinumEnchant",
+            "displayName": "Зачарование платины"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.beeenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "BeeEnchant",
+            "displayName": "Зачарование пчелы"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "queen-bee",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.anglerenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "AnglerEnchant",
+            "displayName": "Зачарование рыбака"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.valhallaknightenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "ValhallaKnightEnchant",
+            "displayName": "Зачарование рыцаря из Вальгаллы"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "golem",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.leadenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "LeadEnchant",
+            "displayName": "Зачарование свинца"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.silverenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "SilverEnchant",
+            "displayName": "Зачарование серебра"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.snowenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "SnowEnchant",
+            "displayName": "Зачарование снега"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.solarenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "SolarEnchant",
+            "displayName": "Зачарование солнечной вспышки"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "moon-lord",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.spectreenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "SpectreEnchant",
+            "displayName": "Зачарование спектра"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.darkartistenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "DarkArtistEnchant",
+            "displayName": "Зачарование тёмного мастера"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "golem",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.shadowenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "ShadowEnchant",
+            "displayName": "Зачарование тени"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "world-evil",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.tikienchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "TikiEnchant",
+            "displayName": "Зачарование тики"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.titaniumenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "TitaniumEnchant",
+            "displayName": "Зачарование титана"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.nebulaenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "NebulaEnchant",
+            "displayName": "Зачарование туманности"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "moon-lord",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.pumpkinenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "PumpkinEnchant",
+            "displayName": "Зачарование тыквы"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.apprenticeenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "ApprenticeEnchant",
+            "displayName": "Зачарование ученика"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.chlorophyteenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "ChlorophyteEnchant",
+            "displayName": "Зачарование хлорофита"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.crystalassassinenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "CrystalAssassinEnchant",
+            "displayName": "Зачарование хрустального убийцы"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "queen-slime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.turtleenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "TurtleEnchant",
+            "displayName": "Зачарование черепахи"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.ebonwoodenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "EbonwoodEnchant",
+            "displayName": "Зачарование чёрной древесины"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.minerenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "MinerEnchant",
+            "displayName": "Зачарование шахтёра"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.ashwoodenchant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "AshWoodEnchant",
+            "displayName": "Зачарование ясеня"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.chaliceofthemoon",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "ChaliceoftheMoon",
+            "displayName": "Зеленеющая маска провидца рока"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "deviantt",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.necromanticbrew",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "NecromanticBrew",
+            "displayName": "Колдовское варево"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.saucercontrolconsole",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "SaucerControlConsole",
+            "displayName": "Консоль управления тарелкой"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "golem",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": "MartianMadness",
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.boxofgizmos",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "BoxofGizmos",
+            "displayName": "Коробка вещиц"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "trojan-squirrel",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.lihzahrdtreasurebox",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "LihzahrdTreasureBox",
+            "displayName": "Коробка сокровищ ящщеров"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "golem",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.icequeenscrown",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "IceQueensCrown",
+            "displayName": "Корона ледяной королевы"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": "FrostMoon",
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.universecore",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "UniverseCore",
+            "displayName": "Космическое ядро"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "cosmos-champion",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.magicalbulb",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "MagicalBulb",
+            "displayName": "Магический бутон"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.medallionofthefallenking",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "MedallionoftheFallenKing",
+            "displayName": "Медальон падшего короля"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "king-slime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.celestialrune",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "CelestialRune",
+            "displayName": "Небесная руна"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "lunatic-cultist",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.darkenedheart",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "DarkenedHeart",
+            "displayName": "Омрачённое сердце"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "world-evil",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.dreadshell",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "DreadShell",
+            "displayName": "Панцирь ужаса"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": "BloodMoon",
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.precisionseal",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "PrecisionSeal",
+            "displayName": "Печать точности"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "empress-of-light",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.pumpkingscape",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "PumpkingsCape",
+            "displayName": "Плащ тыквенного короля"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": "PumpkinMoon",
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.groundstick",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "GroundStick",
+            "displayName": "Пульт дистанционного управления"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.sparklingadoration",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "SparklingAdoration",
+            "displayName": "Сверкающая влюблённость"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "deviantt",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.betsysheart",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "BetsysHeart",
+            "displayName": "Сердце Бетси"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "betsy",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.slimyshield",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "SlimyShield",
+            "displayName": "Слизневый щит"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "king-slime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.dubiouscircuitry",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "DubiousCircuitry",
+            "displayName": "Сомнительная схема"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "deviantt",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.fusedlens",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "FusedLens",
+            "displayName": "Сплавленная линза"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "twins",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.reinforcedplating",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "ReinforcedPlating",
+            "displayName": "Укреплённая пластина"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.abominablewand",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "AbominableWand",
+            "displayName": "Уродливый жезл"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "abominationn",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.deerclawps",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "Deerclawps",
+            "displayName": "Циклешнень"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "deerclops",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    },
+    {
+      "key": "new.fargowiltassouls.galacticglobe",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "GalacticGlobe",
+            "displayName": "Чаша луны"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "moon-lord",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": ""
+    }
+  ],
+  "combatBuffs": [
+    {
+      "key": "new.fargowiltassouls.mutantsdiscountcard",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "FargowiltasSouls",
+            "item": "MutantsDiscountCard",
+            "displayName": "Скидочная карта Мутанта"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.fargowiltas.goldendippingvat",
+      "category": "Station",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Fargowiltas",
+            "item": "GoldenDippingVat",
+            "displayName": "Золотой чан для обмакивания"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.fargowiltas.cruciblecosmos",
+      "category": "Station",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "cosmos-champion",
+      "itemGroups": [
+        [
+          {
+            "mod": "Fargowiltas",
+            "item": "CrucibleCosmos",
+            "displayName": "Горнило Космоса"
+          }
+        ]
+      ]
+    }
+  ]
+}
