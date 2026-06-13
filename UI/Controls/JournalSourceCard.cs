@@ -24,13 +24,22 @@ public sealed class JournalSourceCard : UIPanel
         base.DrawSelf(spriteBatch);
 
         var bounds = GetDimensions().ToRectangle();
+        DrawBackground(spriteBatch, bounds, _accent, IsMouseHovering);
+    }
+
+    internal static void DrawBackground(
+        SpriteBatch spriteBatch,
+        Rectangle bounds,
+        Color accent,
+        bool highlighted = false)
+    {
         var texture = Main.Assets.Request<Texture2D>(BestiaryPanelTexturePath).Value;
         var darkBackground = Color.Lerp(
             JournalUiTheme.RootBackground,
             JournalUiTheme.PanelBackground,
             0.34f);
-        var tint = IsMouseHovering
-            ? Color.Lerp(darkBackground, _accent, 0.10f)
+        var tint = highlighted
+            ? Color.Lerp(darkBackground, accent, 0.10f)
             : darkBackground;
         DrawNineSlice(spriteBatch, texture, bounds, tint);
     }

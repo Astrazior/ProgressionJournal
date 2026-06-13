@@ -1,0 +1,245 @@
+{
+  "name": { "en-US": "Vanilla progression", "ru-RU": "Прогрессия ванилы" },
+  "classes": [
+    { "id": "melee", "name": { "en-US": "Melee", "ru-RU": "Воин" }, "damageClassNames": ["Melee"] },
+    { "id": "ranged", "name": { "en-US": "Ranged", "ru-RU": "Стрелок" }, "damageClassNames": ["Ranged"] },
+    { "id": "magic", "name": { "en-US": "Magic", "ru-RU": "Маг" }, "damageClassNames": ["Magic"] },
+    { "id": "summoner", "name": { "en-US": "Summoner", "ru-RU": "Призыватель" }, "damageClassNames": ["Summon"] }
+  ],
+  "initialStations": [
+    "Terraria/WorkBenches",
+    "Terraria/Furnaces",
+    "Terraria/Anvils",
+    "Terraria/Bottles"
+  ],
+  "events": [
+    {
+      "id": "blood-moon",
+      "stageId": "eye-of-cthulhu",
+      "eventCategory": "BloodMoon",
+      "enemies": ["Terraria/BloodZombie", "Terraria/Drippler", "Terraria/BloodNautilus"]
+    },
+    {
+      "id": "goblin-army",
+      "stageId": "eye-of-cthulhu",
+      "eventCategory": "GoblinArmy",
+      "enemies": ["Terraria/GoblinPeon", "Terraria/GoblinThief", "Terraria/GoblinWarrior", "Terraria/GoblinSorcerer"]
+    },
+    {
+      "id": "old-ones-army-1",
+      "stageId": "world-evil",
+      "eventCategory": "OldOnesArmy",
+      "enemies": ["Terraria/DD2DarkMageT1", "Terraria/DD2OgreT2"]
+    },
+    {
+      "id": "pirate-invasion",
+      "stageId": "wall-of-flesh",
+      "eventCategory": "PirateInvasion",
+      "enemies": ["Terraria/PirateShip", "Terraria/PirateCaptain", "Terraria/PirateCorsair", "Terraria/PirateDeadeye"]
+    },
+    {
+      "id": "old-ones-army-2",
+      "stageId": "skeletron-prime",
+      "eventCategory": "OldOnesArmy",
+      "enemies": ["Terraria/DD2DarkMageT3", "Terraria/DD2OgreT2"]
+    },
+    {
+      "id": "solar-eclipse",
+      "stageId": "skeletron-prime",
+      "eventCategory": "SolarEclipse",
+      "enemies": ["Terraria/Mothron", "Terraria/Frankenstein", "Terraria/SwampThing", "Terraria/CreatureFromTheDeep"]
+    },
+    {
+      "id": "pumpkin-moon",
+      "stageId": "plantera",
+      "eventCategory": "PumpkinMoon",
+      "enemies": ["Terraria/MourningWood", "Terraria/Pumpking"]
+    },
+    {
+      "id": "frost-moon",
+      "stageId": "plantera",
+      "eventCategory": "FrostMoon",
+      "enemies": ["Terraria/Everscream", "Terraria/SantaNK1", "Terraria/IceQueen"]
+    },
+    {
+      "id": "martian-madness",
+      "stageId": "golem",
+      "eventCategory": "MartianMadness",
+      "enemies": ["Terraria/MartianSaucerCore", "Terraria/MartianWalker", "Terraria/MartianEngineer"]
+    },
+    {
+      "id": "celestial-pillars",
+      "stageId": "lunatic-cultist",
+      "customEventName": "Celestial Pillars",
+      "enemies": ["Terraria/LunarTowerSolar", "Terraria/LunarTowerVortex", "Terraria/LunarTowerNebula", "Terraria/LunarTowerStardust"]
+    }
+  ],
+  "stages": [
+    {
+      "id": "start",
+      "name": { "en-US": "Start", "ru-RU": "Начало" },
+      "iconMod": "Terraria",
+      "iconNpc": "Guide",
+      "unlock": { "type": "always" }
+    },
+    {
+      "id": "king-slime",
+      "name": { "en-US": "King Slime", "ru-RU": "Король слизней" },
+      "iconMod": "Terraria",
+      "iconNpc": "KingSlime",
+      "dropSources": ["Terraria/KingSlime"],
+      "unlock": { "type": "vanilla-flag", "key": "downedSlimeKing" }
+    },
+    {
+      "id": "eye-of-cthulhu",
+      "name": { "en-US": "Eye of Cthulhu", "ru-RU": "Глаз Ктулху" },
+      "iconMod": "Terraria",
+      "iconNpc": "EyeofCthulhu",
+      "dropSources": ["Terraria/EyeofCthulhu"],
+      "unlock": { "type": "vanilla-flag", "key": "downedBoss1" }
+    },
+    {
+      "id": "world-evil",
+      "name": { "en-US": "Eater of Worlds / Brain of Cthulhu", "ru-RU": "Пожиратель миров / Мозг Ктулху" },
+      "iconMod": "Terraria",
+      "iconNpc": "EaterofWorldsHead",
+      "dropSources": ["Terraria/EaterofWorldsHead", "Terraria/BrainofCthulhu"],
+      "unlock": { "type": "vanilla-flag", "key": "downedBoss2" }
+    },
+    {
+      "id": "queen-bee",
+      "name": { "en-US": "Queen Bee", "ru-RU": "Королева пчёл" },
+      "iconMod": "Terraria",
+      "iconNpc": "QueenBee",
+      "dropSources": ["Terraria/QueenBee"],
+      "unlock": { "type": "vanilla-flag", "key": "downedQueenBee" }
+    },
+    {
+      "id": "deerclops",
+      "name": { "en-US": "Deerclops", "ru-RU": "Циклоп-олень" },
+      "iconMod": "Terraria",
+      "iconNpc": "Deerclops",
+      "dropSources": ["Terraria/Deerclops"],
+      "unlock": { "type": "vanilla-flag", "key": "downedDeerclops" }
+    },
+    {
+      "id": "skeletron",
+      "name": { "en-US": "Skeletron", "ru-RU": "Скелетрон" },
+      "iconMod": "Terraria",
+      "iconNpc": "SkeletronHead",
+      "dropSources": ["Terraria/SkeletronHead"],
+      "unlock": { "type": "vanilla-flag", "key": "downedBoss3" }
+    },
+    {
+      "id": "wall-of-flesh",
+      "name": { "en-US": "Wall of Flesh", "ru-RU": "Стена плоти" },
+      "iconMod": "Terraria",
+      "iconNpc": "WallofFlesh",
+      "dropSources": ["Terraria/WallofFlesh"],
+      "stations": ["Terraria/MythrilAnvil", "Terraria/AdamantiteForge"],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "hardMode" }
+    },
+    {
+      "id": "queen-slime",
+      "name": { "en-US": "Queen Slime", "ru-RU": "Королева слизней" },
+      "iconMod": "Terraria",
+      "iconNpc": "QueenSlimeBoss",
+      "dropSources": ["Terraria/QueenSlimeBoss"],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedQueenSlime" }
+    },
+    {
+      "id": "destroyer",
+      "name": { "en-US": "The Destroyer", "ru-RU": "Уничтожитель" },
+      "iconMod": "Terraria",
+      "iconNpc": "TheDestroyer",
+      "dropSources": ["Terraria/TheDestroyer"],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedMechBoss1" }
+    },
+    {
+      "id": "twins",
+      "name": { "en-US": "The Twins", "ru-RU": "Близнецы" },
+      "iconMod": "Terraria",
+      "iconNpc": "Retinazer",
+      "dropSources": ["Terraria/Retinazer", "Terraria/Spazmatism"],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedMechBoss2" }
+    },
+    {
+      "id": "skeletron-prime",
+      "name": { "en-US": "Skeletron Prime", "ru-RU": "Скелетрон Прайм" },
+      "iconMod": "Terraria",
+      "iconNpc": "SkeletronPrime",
+      "dropSources": ["Terraria/SkeletronPrime"],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedMechBoss3" }
+    },
+    {
+      "id": "plantera",
+      "name": { "en-US": "Plantera", "ru-RU": "Плантера" },
+      "iconMod": "Terraria",
+      "iconNpc": "Plantera",
+      "dropSources": ["Terraria/Plantera"],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedPlantBoss" }
+    },
+    {
+      "id": "golem",
+      "name": { "en-US": "Golem", "ru-RU": "Голем" },
+      "iconMod": "Terraria",
+      "iconNpc": "GolemHead",
+      "dropSources": ["Terraria/Golem"],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedGolemBoss" }
+    },
+    {
+      "id": "betsy",
+      "name": { "en-US": "Betsy", "ru-RU": "Бетси" },
+      "iconMod": "Terraria",
+      "iconNpc": "DD2Betsy",
+      "dropSources": ["Terraria/DD2Betsy"],
+      "enemies": ["Terraria/DD2DarkMageT3", "Terraria/DD2OgreT3", "Terraria/DD2Betsy"],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "DD2Event.DownedInvasionT3" }
+    },
+    {
+      "id": "duke-fishron",
+      "name": { "en-US": "Duke Fishron", "ru-RU": "Герцог Рыброн" },
+      "iconMod": "Terraria",
+      "iconNpc": "DukeFishron",
+      "dropSources": ["Terraria/DukeFishron"],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedFishron" }
+    },
+    {
+      "id": "empress-of-light",
+      "name": { "en-US": "Empress of Light", "ru-RU": "Императрица света" },
+      "iconMod": "Terraria",
+      "iconNpc": "HallowBoss",
+      "dropSources": ["Terraria/HallowBoss"],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedEmpressOfLight" }
+    },
+    {
+      "id": "lunatic-cultist",
+      "name": { "en-US": "Lunatic Cultist", "ru-RU": "Лунатик-культист" },
+      "iconMod": "Terraria",
+      "iconNpc": "CultistBoss",
+      "dropSources": ["Terraria/CultistBoss"],
+      "stations": ["Terraria/LunarCraftingStation"],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedAncientCultist" }
+    },
+    {
+      "id": "moon-lord",
+      "name": { "en-US": "Moon Lord", "ru-RU": "Лунный лорд" },
+      "iconMod": "Terraria",
+      "iconNpc": "MoonLordHead",
+      "dropSources": ["Terraria/MoonLordCore"],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedMoonlord" }
+    }
+  ]
+}

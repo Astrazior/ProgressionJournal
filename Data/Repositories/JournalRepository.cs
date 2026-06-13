@@ -35,13 +35,41 @@ public static partial class JournalRepository
         }
 
         return profile.Entries
-            .Where(entry => entry.AppliesToClass(classId) && entry.TryGetEvaluation(profile.Id, stageId, out _))
-            .Select(entry => new JournalStageEntry(entry, entry.GetEvaluation(profile.Id, stageId)))
-            .OrderBy(entry => JournalOrdering.GetTierOrder(entry.Evaluation.Tier))
+            .Where(entry => entry.AppliesToClass(classId)
+                || entry.WikiRecommendations.Any(value =>
+                    string.Equals(value.StageId, stageId, StringComparison.OrdinalIgnoreCase)
+                    && value.ClassIds.Contains(classId)))
+            .Select(entry => CreateStageEntry(profile.Id, stageId, classId, entry))
+            .Where(static entry => entry is not null)
+            .Select(static entry => entry!)
+            .OrderByDescending(static entry => entry.IsWikiRecommendation)
+            .ThenBy(entry => JournalOrdering.GetTierOrder(entry.Evaluation.Tier))
             .ThenBy(entry => JournalOrdering.GetCategoryOrder(entry.Entry.Category))
             .ThenBy(entry => GetDisplayOrderOverride(profile.Id, stageId, entry.Entry.Key))
             .ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
             .ToArray();
+    }
+
+    private static JournalStageEntry? CreateStageEntry(
+        string profileId,
+        string stageId,
+        string classId,
+        JournalEntry entry)
+    {
+        var wiki = entry.WikiRecommendations.FirstOrDefault(value =>
+            string.Equals(value.StageId, stageId, StringComparison.OrdinalIgnoreCase)
+            && value.ClassIds.Contains(classId));
+        if (wiki is not null)
+        {
+            return new JournalStageEntry(
+                entry,
+                new StageEvaluation(stageId, RecommendationTier.FromGuide, scope: JournalEvaluationScope.StageOnly),
+                wiki);
+        }
+
+        return entry.TryGetEvaluation(profileId, stageId, out var evaluation)
+            ? new JournalStageEntry(entry, evaluation)
+            : null;
     }
 
     public static IReadOnlyList<JournalEntry> GetAllVanillaEntries() => Entries.Value;
@@ -90,4 +118,3 @@ public static partial class JournalRepository
                 : int.MaxValue;
     }
 }
-

@@ -26,30 +26,6 @@ public static class JournalStageIconCatalog
             ["pre-moonlord"] = NPCID.MoonLordHead,
             ["pre-provi"] = NPCID.MoonLordHead
         };
-    private static readonly Dictionary<string, string> CalamityStageNpcNames =
-        new(StringComparer.OrdinalIgnoreCase)
-        {
-            ["pre-evil1"] = "DesertScourgeHead",
-            ["pre-evil2"] = "Crabulon",
-            ["pre-skeletron"] = "HiveMind",
-            ["pre-wof"] = "SlimeGodCore",
-            ["pre-mech"] = "Cryogen",
-            ["post-mech1"] = "AquaticScourgeHead",
-            ["post-mech2"] = "BrimstoneElemental",
-            ["pre-plantera"] = "CalamitasClone",
-            ["pre-golem"] = "Leviathan",
-            ["post-golem"] = "RavagerBody",
-            ["pre-lunar"] = "PlaguebringerGoliath",
-            ["pre-moonlord"] = "AstrumDeusHead",
-            ["pre-polter"] = "Providence",
-            ["pre-dog"] = "Polterghast",
-            ["pre-yharon"] = "DevourerofGodsHead",
-            ["pre-scal-exo"] = "Yharon",
-            ["pre-scal"] = "AresBody",
-            ["pre-exo"] = "SupremeCalamitas",
-            ["endgame"] = "PrimordialWyrmHead"
-        };
-
     public static IReadOnlyList<JournalStageIconCandidate> GetCandidates(string search)
     {
         _cachedCandidates ??= Enumerable.Range(1, NPCLoader.NPCCount - 1)
@@ -75,12 +51,6 @@ public static class JournalStageIconCatalog
     {
         if (TryResolveConfigured(stage, out npcType))
         {
-            return true;
-        }
-
-        if (string.Equals(profile.Id, JournalProfileIds.CalamityWiki, StringComparison.OrdinalIgnoreCase))
-        {
-            npcType = ResolveCalamityStage(stage.Id);
             return true;
         }
 
@@ -115,36 +85,6 @@ public static class JournalStageIconCatalog
 
         npcType = -1;
         return false;
-    }
-
-    private static int ResolveCalamityStage(string stageId)
-    {
-        var vanillaNpcType = stageId.ToLowerInvariant() switch
-        {
-            "pre-boss" => NPCID.Guide,
-            "pre-provi" => NPCID.MoonLordHead,
-            _ => -1
-        };
-        if (vanillaNpcType >= 0)
-        {
-            return vanillaNpcType;
-        }
-
-        if (CalamityStageNpcNames.TryGetValue(stageId, out var npcName))
-        {
-            if (stageId.Equals("pre-skeletron", StringComparison.OrdinalIgnoreCase) && WorldGen.crimson)
-            {
-                npcName = "PerforatorHive";
-            }
-
-            if (ModContent.TryFind("CalamityMod", npcName, out ModNPC modNpc)
-                && GetBossHeadSlot(modNpc.Type) >= 0)
-            {
-                return modNpc.Type;
-            }
-        }
-
-        return NPCID.Guide;
     }
 
     public static int GetBossHeadSlot(int npcType)
@@ -187,7 +127,7 @@ public static class JournalStageIconCatalog
         var npcName = string.IsNullOrWhiteSpace(stage.IconNpc) ? stage.Unlock.Npc : stage.IconNpc;
 
         if (string.Equals(modName, "Terraria", StringComparison.OrdinalIgnoreCase)
-            && int.TryParse(npcName, out npcType))
+            && (int.TryParse(npcName, out npcType) || NPCID.Search.TryGetId(npcName, out npcType)))
         {
             return true;
         }

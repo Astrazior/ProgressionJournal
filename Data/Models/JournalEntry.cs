@@ -53,7 +53,8 @@ public sealed class JournalEntry
 		IEnumerable<StageEvaluation> evaluations,
 		JournalEventCategory? eventCategory = null,
 		bool isSupportWeapon = false,
-		string? customEventName = null)
+		string? customEventName = null,
+		IEnumerable<JournalWikiRecommendation>? wikiRecommendations = null)
 	{
 		Key = key;
 		Category = category;
@@ -72,6 +73,7 @@ public sealed class JournalEntry
 		RepresentativeItemId = ItemGroups[0].RepresentativeItemId;
 		CategoryStrength = ComputeCategoryStrength(category, ItemGroups, ItemIds);
 		_evaluations = evaluations.ToDictionary(evaluation => evaluation.StageId, StringComparer.OrdinalIgnoreCase);
+		WikiRecommendations = wikiRecommendations?.ToArray() ?? [];
 	}
 
 	public string Key { get; }
@@ -95,6 +97,8 @@ public sealed class JournalEntry
 	public int RepresentativeItemId { get; }
 
 	public int CategoryStrength { get; }
+
+	public IReadOnlyList<JournalWikiRecommendation> WikiRecommendations { get; }
 
 	public bool AppliesToClass(CombatClass combatClass) => (Classes & combatClass) != 0;
 
@@ -138,7 +142,9 @@ public sealed class JournalEntry
 			}
 		}
 
-		if (nearestPreviousEvaluation is not null && hasLaterEvaluation) {
+		if (nearestPreviousEvaluation is not null
+			&& nearestPreviousEvaluation.Scope == JournalEvaluationScope.UntilNext
+			&& hasLaterEvaluation) {
 			evaluation = nearestPreviousEvaluation;
 			return true;
 		}
@@ -166,7 +172,7 @@ public sealed class JournalEntry
 		IReadOnlyList<JournalItemGroup> itemGroups,
 		IReadOnlyList<int> itemIds) => category switch
 	{
-		JournalItemCategory.Weapon => GetWeaponStrength(itemIds),
+		JournalItemCategory.Weapon or JournalItemCategory.Ammunition => GetWeaponStrength(itemIds),
 		JournalItemCategory.Armor => GetArmorStrength(itemGroups),
 		_ => 0
 	};
@@ -222,4 +228,3 @@ public sealed class JournalEntry
 			: 0;
 	}
 }
-

@@ -10,7 +10,7 @@ public sealed class JournalProfileDocument
 
     public string Id { get; set; } = string.Empty;
 
-    public string Name { get; set; } = string.Empty;
+    public JournalLocalizedText Name { get; set; } = string.Empty;
 
     public string Author { get; set; } = string.Empty;
 
@@ -46,7 +46,7 @@ public sealed class JournalProfileClassDocument
 {
     public string Id { get; set; } = string.Empty;
 
-    public string Name { get; set; } = string.Empty;
+    public JournalLocalizedText Name { get; set; } = string.Empty;
 
     public string IconMod { get; set; } = string.Empty;
 
@@ -59,7 +59,7 @@ public sealed class JournalProfileStageDocument
 {
     public string Id { get; set; } = string.Empty;
 
-    public string Name { get; set; } = string.Empty;
+    public JournalLocalizedText Name { get; set; } = string.Empty;
 
     public string IconMod { get; set; } = string.Empty;
 
@@ -79,6 +79,10 @@ public sealed class JournalUnlockConditionDocument
     public string Mod { get; set; } = string.Empty;
 
     public string Npc { get; set; } = string.Empty;
+
+    public string Mode { get; set; } = "all";
+
+    public List<JournalUnlockConditionDocument> Conditions { get; set; } = [];
 }
 
 public sealed class JournalProfileEntryDocument
@@ -94,6 +98,8 @@ public sealed class JournalProfileEntryDocument
 
     public List<JournalProfileEvaluationDocument> Evaluations { get; set; } = [];
 
+    public List<JournalWikiRecommendationDocument> Wiki { get; set; } = [];
+
     public bool IsSupportWeapon { get; set; }
 
     [JsonConverter(typeof(JsonStringEnumConverter))]
@@ -108,6 +114,28 @@ public sealed class JournalProfileEvaluationDocument
 
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public RecommendationTier Tier { get; set; }
+
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public JournalEvaluationScope Scope { get; set; } = JournalEvaluationScope.UntilNext;
+}
+
+public enum JournalEvaluationScope
+{
+    UntilNext,
+    StageOnly
+}
+
+public sealed class JournalWikiRecommendationDocument
+{
+    public string StageId { get; set; } = string.Empty;
+
+    public List<string> Classes { get; set; } = [];
+
+    public string SourceName { get; set; } = string.Empty;
+
+    public string SourceUrl { get; set; } = string.Empty;
+
+    public JournalLocalizedText Target { get; set; } = string.Empty;
 }
 
 public sealed class JournalItemReferenceDocument
@@ -127,6 +155,8 @@ public sealed class JournalProfileCombatBuffDocument
     public JournalBuffCategory Category { get; set; }
 
     public string ClassId { get; set; } = string.Empty;
+
+    public List<string> Classes { get; set; } = [];
 
     public string StageId { get; set; } = string.Empty;
 

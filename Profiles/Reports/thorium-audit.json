@@ -1,0 +1,42 @@
+{
+  "format": "ProgressionJournalProfileAudit",
+  "version": 1,
+  "profileId": "builtin.thorium",
+  "generatedAtUtc": "2026-06-13T18:52:37.244Z",
+  "officialSources": {
+    "recommendations": "../Wiki/thorium-recommendations.json",
+    "availability": null,
+    "compatibility": {
+      "recommendations": {
+        "present": true,
+        "compatible": true,
+        "comparisons": [
+          {
+            "mod": "ThoriumMod",
+            "sourceVersion": "1.7.2",
+            "snapshotVersion": "1.7.2.5",
+            "compatible": true
+          }
+        ]
+      },
+      "availability": {
+        "present": false,
+        "compatible": false,
+        "comparisons": []
+      }
+    }
+  },
+  "summary": {
+    "errors": 0,
+    "warnings": 1,
+    "wikiAvailabilityCorrections": 605,
+    "exactAvailabilityCorrections": 0
+  },
+  "errors": [],
+  "warnings": [
+    {
+      "kind": "unresolved-official-wiki-items",
+      "count": 4
+    }
+  ]
+}

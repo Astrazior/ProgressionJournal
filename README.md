@@ -7,11 +7,11 @@ https://steamcommunity.com/sharedfiles/filedetails?id=3710545729
 
 ## What it does
 
-- Shows equipment recommendations by progression stage and class
+- Shows equipment first unlocked by each boss or combat event
 - Shows combat buffs and utility information
 - Shows item acquisition sources: drops, shops, recipes, stations, conditions
 - Supports selectable vanilla, bundled, add-on, and user-created progression profiles
-- Includes a read-only Calamity Wiki snapshot when Calamity is installed
+- Includes bundled Calamity, Thorium, and Fargo's Souls profiles
 - Supports custom classes, stages, unlock conditions, and recommendation tiers
 
 ## Project notes
@@ -89,22 +89,53 @@ Built-in profiles are read-only. Use `Copy / Edit` in the profile manager before
 Profile builds store `profileId`, `classId`, and `stageId`; old build JSON is migrated from
 the former `combatClass` field when it is imported or saved again.
 
-## Calamity snapshot
+## Built-in profile generation
 
-The bundled profile is generated from the structured Calamity Wiki class setup data pages.
-Wiki entries use the neutral `FromGuide` tier because the source does not rank items within
-each section.
+All profile documents use `version: 1`. Stage manifests live in `Profiles/Manifests`.
+They describe progression facts that tModLoader cannot infer: boss order, persistent flags,
+new enemies and materials, special stations, and manual include/exclude rules.
 
-Regenerate it from an official Calamity source checkout:
+1. Start tModLoader with the supported mods enabled.
+2. Run `/pjexport CalamityMod ThoriumMod FargowiltasSouls`.
+3. Use the exported file from `Mods/ProgressionJournal/Exports`.
+4. Regenerate and validate all bundled profiles:
 
 ```powershell
-node Tools\CalamityProfileConverter.mjs `
-  --calamity-source C:\path\to\CalamityModPublic `
-  --output Profiles\Builtin\calamity-wiki.json `
-  --report Profiles\Builtin\calamity-wiki-report.json
+node Tools\GenerateProfiles.mjs --snapshot C:\path\to\content-snapshot.json --all
+node Tools\TestProfileGenerator.mjs
+node Tools\AuditProfiles.mjs
+node Tools\ValidateProfiles.mjs
 ```
 
-The report records assumed vanilla names and skipped rows instead of silently discarding data.
+Pass `--previous C:\path\to\older-snapshot.json` to include added, removed, renamed-candidate,
+and changed content in each report. Reports are written to `Profiles/Reports`.
+
+Anything the generator cannot place without guessing is excluded from automatic availability
+and written to `Profiles/Review/<profile>-review.json`. Review issue IDs are stable across
+regeneration while their evidence remains unchanged.
+
+Resolve an issue in `Profiles/Manual/<profile>.json`, then regenerate:
+
+- `itemStages`: place one item at a stage; recipes reachable from it are expanded automatically.
+- `sourceStages`: place an NPC or container source at a stage and include its drops.
+- `stationStages`: mark a crafting station as available at a stage.
+- `conditionStages`: map a captured drop, shop, or recipe condition to a stage.
+- `itemOverrides`: correct category or class detection.
+- `ignoredItems`: mark a non-combat or intentionally unsupported item as reviewed.
+- `ignoredIssues`: hide a specific review issue by its stable ID when no assignment is needed.
+
+The generated review file includes evidence and a resolution example for every issue. Manual
+files are never overwritten by the generator.
+
+`AuditProfiles.mjs` checks that generated availability is not later than a compatible
+official Wiki snapshot and that acquisition paths do not cross into unrelated mods.
+Wiki data can move an item earlier only when its mod version has the same major/minor
+version family as the exported snapshot. Older Wiki snapshots remain visible as audit
+warnings and never change generated availability automatically.
+
+Official Wiki parsers are input adapters only. Their recommendations appear in a separate
+book-marked block and are not used to define the boss scale. Fargo's official enchantment
+availability data is retained as neutral availability data, not marked as a recommendation.
 
 ## License
 

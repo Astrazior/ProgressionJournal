@@ -1,0 +1,208 @@
+{
+  "baseManifest": "vanilla.json",
+  "id": "builtin.thorium",
+  "outputName": "thorium",
+  "name": { "en-US": "Thorium progression", "ru-RU": "Прогрессия Thorium" },
+  "profileVersion": "1",
+  "requiredMods": [{ "name": "ThoriumMod", "version": "" }],
+  "sourceUrl": "https://thoriummod.wiki.gg/wiki/Bosses",
+  "wikiSource": { "name": "Official Thorium Mod Wiki", "url": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups" },
+  "wikiInput": "../Wiki/thorium-recommendations.json",
+  "classes": [
+    { "id": "melee", "name": { "en-US": "Melee", "ru-RU": "Воин" }, "damageClassNames": ["Melee"] },
+    { "id": "ranged", "name": { "en-US": "Ranged", "ru-RU": "Стрелок" }, "damageClassNames": ["Ranged"] },
+    { "id": "magic", "name": { "en-US": "Magic", "ru-RU": "Маг" }, "damageClassNames": ["Magic"] },
+    { "id": "summoner", "name": { "en-US": "Summoner", "ru-RU": "Призыватель" }, "damageClassNames": ["Summon"] },
+    { "id": "bard", "name": { "en-US": "Bard", "ru-RU": "Бард" }, "damageClassNames": ["Bard"] },
+    { "id": "healer", "name": { "en-US": "Healer", "ru-RU": "Целитель" }, "damageClassNames": ["Healer", "Radiant"] },
+    { "id": "thrower", "name": { "en-US": "Thrower", "ru-RU": "Метатель" }, "damageClassNames": ["Thrower", "Throwing"] }
+  ],
+  "stagePatches": {
+    "skeletron": {
+      "enemies": [
+        "ThoriumMod/BigBone",
+        "ThoriumMod/DarksteelKnight",
+        "ThoriumMod/GelatinousCube",
+        "ThoriumMod/NecroPot",
+        "ThoriumMod/Shambler"
+      ],
+      "materials": ["Terraria/Bone"]
+    }
+  },
+  "conditionUnlocks": [
+    {
+      "stageId": "eye-of-cthulhu",
+      "sources": ["shop"],
+      "conditionDescriptions": ["После победы над Глазом Ктулху", "After defeating the Eye of Cthulhu"]
+    },
+    {
+      "stageId": "world-evil",
+      "sources": ["shop", "drop"],
+      "conditionDescriptions": [
+        "После победы над Пожирателем миров или Мозгом Ктулху",
+        "Items: After defeating the Eater of Worlds or Brain of Cthulhu"
+      ]
+    },
+    {
+      "stageId": "queen-bee",
+      "sources": ["shop"],
+      "conditionDescriptions": ["После победы над Королевой пчёл", "After defeating Queen Bee"]
+    },
+    {
+      "stageId": "skeletron",
+      "sources": ["shop", "drop"],
+      "conditionTypes": ["ThoriumMod.Core.ItemDropRules.DropConditions.DownedSkeletronCondition"],
+      "conditionDescriptions": ["После победы над Скелетроном", "After defeating Skeletron"]
+    },
+    {
+      "stageId": "buried-champion",
+      "sources": ["shop"],
+      "conditionDescriptions": ["Buried Champion has been defeated"]
+    },
+    {
+      "stageId": "star-scouter",
+      "sources": ["shop"],
+      "conditionDescriptions": ["Star Scouter has been defeated"]
+    },
+    {
+      "stageId": "queen-jellyfish",
+      "sources": ["shop"],
+      "conditionDescriptions": ["Queen Jellyfish has been defeated"]
+    },
+    {
+      "stageId": "viscount",
+      "sources": ["shop"],
+      "conditionDescriptions": [
+        "Viscount has been defeated",
+        "World has no Blood Altar or Viscount has been defeated"
+      ]
+    },
+    {
+      "stageId": "wall-of-flesh",
+      "sources": ["shop", "drop"],
+      "conditionTypes": [
+        "ThoriumMod.Core.ItemDropRules.DropConditions.IsHardmodeWithUICondition",
+        "ThoriumMod.Core.ItemDropRules.DropConditions.SoulofPlightCondition",
+        "ThoriumMod.Core.ItemDropRules.DropConditions.AquaticDepthsKeyCondition",
+        "ThoriumMod.Core.ItemDropRules.DropConditions.UnderworldKeyCondition"
+      ],
+      "conditionDescriptions": ["В хардмоде", "In Hardmode"]
+    },
+    {
+      "stageId": "borean-strider",
+      "sources": ["shop"],
+      "conditionDescriptions": ["Borean Strider has been defeated"]
+    },
+    {
+      "stageId": "destroyer",
+      "sources": ["shop"],
+      "conditionDescriptions": [
+        "После победы над любым механическим боссом",
+        "After defeating any mechanical boss"
+      ]
+    },
+    {
+      "stageId": "skeletron-prime",
+      "sources": ["shop"],
+      "conditionDescriptions": [
+        "После победы над всеми механическими боссами",
+        "After defeating all mechanical bosses",
+        "An Ogre has been defeated"
+      ]
+    },
+    {
+      "stageId": "coznix",
+      "sources": ["shop", "drop"],
+      "conditionTypes": ["ThoriumMod.Core.ItemDropRules.DropConditions.DownedFallenBeholderCondition"],
+      "conditionDescriptions": ["Fallen Beholder has been defeated"]
+    },
+    {
+      "stageId": "plantera",
+      "sources": ["shop", "drop"],
+      "conditionTypes": ["Terraria.GameContent.ItemDropRules.Conditions+DownedPlantera"],
+      "conditionDescriptions": ["После победы над Плантерой", "After defeating Plantera"]
+    },
+    {
+      "stageId": "lich",
+      "sources": ["shop"],
+      "conditionDescriptions": ["Lich has been defeated"]
+    },
+    {
+      "stageId": "golem",
+      "sources": ["shop"],
+      "conditionDescriptions": ["После победы над Големом", "After defeating Golem"]
+    },
+    {
+      "stageId": "forgotten-one",
+      "sources": ["shop"],
+      "conditionDescriptions": ["Forgotten One has been defeated"]
+    },
+    {
+      "stageId": "empress-of-light",
+      "sources": ["shop"],
+      "conditionDescriptions": [
+        "После победы над Императрицей света",
+        "After defeating the Empress of Light"
+      ]
+    },
+    {
+      "stageId": "primordials",
+      "sources": ["drop"],
+      "conditionTypes": ["ThoriumMod.Core.ItemDropRules.DropConditions.LastPrimordialDefeatedCondition"]
+    }
+  ],
+  "insertions": [
+    { "after": "king-slime", "stages": [
+      { "id": "grand-thunder-bird", "name": { "en-US": "The Grand Thunder Bird", "ru-RU": "Великая громовая птица" }, "iconMod": "ThoriumMod", "iconNpc": "TheGrandThunderBird", "dropSources": ["ThoriumMod/TheGrandThunderBird"], "unlock": { "type": "mod-flag", "mod": "ThoriumMod", "key": "downedThunderBird" } }
+    ] },
+    { "after": "eye-of-cthulhu", "stages": [
+      { "id": "queen-jellyfish", "name": { "en-US": "Queen Jellyfish", "ru-RU": "Королева медуз" }, "iconMod": "ThoriumMod", "iconNpc": "QueenJellyfish", "dropSources": ["ThoriumMod/QueenJellyfish"], "unlock": { "type": "mod-flag", "mod": "ThoriumMod", "key": "downedQueenJelly" } }
+    ] },
+    { "after": "world-evil", "stages": [
+      { "id": "viscount", "name": { "en-US": "Viscount", "ru-RU": "Виконт" }, "iconMod": "ThoriumMod", "iconNpc": "Viscount", "dropSources": ["ThoriumMod/Viscount"], "unlock": { "type": "mod-flag", "mod": "ThoriumMod", "key": "downedViscount" } },
+      { "id": "granite-energy-storm", "name": { "en-US": "Granite Energy Storm", "ru-RU": "Гранитный энергетический шторм" }, "iconMod": "ThoriumMod", "iconNpc": "GraniteEnergyStorm", "dropSources": ["ThoriumMod/GraniteEnergyStorm"], "unlock": { "type": "mod-flag", "mod": "ThoriumMod", "key": "downedGranite" } }
+    ] },
+    { "after": "skeletron", "stages": [
+      { "id": "buried-champion", "name": { "en-US": "Buried Champion", "ru-RU": "Погребённый чемпион" }, "iconMod": "ThoriumMod", "iconNpc": "BuriedChampion", "dropSources": ["ThoriumMod/BuriedChampion"], "unlock": { "type": "mod-flag", "mod": "ThoriumMod", "key": "downedBuriedChampion" } },
+      { "id": "star-scouter", "name": { "en-US": "Star Scouter", "ru-RU": "Звёздный разведчик" }, "iconMod": "ThoriumMod", "iconNpc": "StarScouter", "dropSources": ["ThoriumMod/StarScouter"], "unlock": { "type": "mod-flag", "mod": "ThoriumMod", "key": "downedStarScouter" } }
+    ] },
+    { "after": "wall-of-flesh", "stages": [
+      { "id": "borean-strider", "name": { "en-US": "Borean Strider", "ru-RU": "Бореанский странник" }, "iconMod": "ThoriumMod", "iconNpc": "BoreanStrider", "dropSources": ["ThoriumMod/BoreanStrider"], "unlock": { "type": "mod-flag", "mod": "ThoriumMod", "key": "downedBoreanStrider" } }
+    ] },
+    { "after": "skeletron-prime", "stages": [
+      { "id": "coznix", "name": { "en-US": "Coznix, The Fallen Beholder", "ru-RU": "Козникс, падший наблюдатель" }, "iconMod": "ThoriumMod", "iconNpc": "FallenBeholder", "dropSources": ["ThoriumMod/FallenBeholder"], "unlock": { "type": "mod-flag", "mod": "ThoriumMod", "key": "downedFallenBeholder" } }
+    ] },
+    { "after": "plantera", "stages": [
+      { "id": "lich", "name": { "en-US": "The Lich", "ru-RU": "Лич" }, "iconMod": "ThoriumMod", "iconNpc": "Lich", "dropSources": ["ThoriumMod/Lich"], "unlock": { "type": "mod-flag", "mod": "ThoriumMod", "key": "downedLich" } }
+    ] },
+    { "after": "golem", "stages": [
+      { "id": "forgotten-one", "name": { "en-US": "The Forgotten One", "ru-RU": "Забытый" }, "iconMod": "ThoriumMod", "iconNpc": "ForgottenOne", "dropSources": ["ThoriumMod/ForgottenOne"], "unlock": { "type": "mod-flag", "mod": "ThoriumMod", "key": "downedForgottenOne" } }
+    ] },
+    { "after": "moon-lord", "stages": [
+      { "id": "primordials", "name": { "en-US": "The Primordials", "ru-RU": "Первородные" }, "iconMod": "ThoriumMod", "iconNpc": "DreamEater", "dropSources": ["ThoriumMod/Aquaius", "ThoriumMod/DreamEater", "ThoriumMod/Omnicide", "ThoriumMod/SlagFury"], "unlock": { "type": "mod-flag", "mod": "ThoriumMod", "key": "downedThePrimordials" } }
+    ] }
+  ],
+  "wikiStageMap": {
+    "pre-boss": { "stageId": "start", "target": { "en-US": "Grand Thunder Bird", "ru-RU": "Великая громовая птица" } },
+    "post-thunderbird": { "stageId": "grand-thunder-bird", "target": { "en-US": "Eye of Cthulhu", "ru-RU": "Глаз Ктулху" } },
+    "pre-evil": { "stageId": "eye-of-cthulhu", "target": { "en-US": "World Evil", "ru-RU": "Зло мира" } },
+    "post-queen-jellyfish": { "stageId": "queen-jellyfish", "target": { "en-US": "Viscount", "ru-RU": "Виконт" } },
+    "mid-prehardmode": { "stageId": "world-evil", "target": { "en-US": "Queen Bee", "ru-RU": "Королева пчёл" } },
+    "post-viscount": { "stageId": "viscount", "target": { "en-US": "Granite Energy Storm", "ru-RU": "Гранитный энергетический шторм" } },
+    "post-granite-storm": { "stageId": "granite-energy-storm", "target": { "en-US": "Buried Champion", "ru-RU": "Погребённый чемпион" } },
+    "post-buried-champion": { "stageId": "buried-champion", "target": { "en-US": "Skeletron", "ru-RU": "Скелетрон" } },
+    "pre-skeletron": { "stageId": "buried-champion", "target": { "en-US": "Skeletron", "ru-RU": "Скелетрон" } },
+    "post-star-scouter": { "stageId": "star-scouter", "target": { "en-US": "Wall of Flesh", "ru-RU": "Стена плоти" } },
+    "pre-wof": { "stageId": "star-scouter", "target": { "en-US": "Wall of Flesh", "ru-RU": "Стена плоти" } },
+    "post-wof": { "stageId": "wall-of-flesh", "target": { "en-US": "Borean Strider", "ru-RU": "Бореанский странник" } },
+    "post-borean-strider": { "stageId": "borean-strider", "target": { "en-US": "Mechanical Bosses", "ru-RU": "Механические боссы" } },
+    "pre-mechs": { "stageId": "borean-strider", "target": { "en-US": "Mechanical Bosses", "ru-RU": "Механические боссы" } },
+    "post-mechs": { "stageId": "skeletron-prime", "target": { "en-US": "Coznix", "ru-RU": "Козникс" } },
+    "post-fallen-beholder": { "stageId": "coznix", "target": { "en-US": "Lich", "ru-RU": "Лич" } },
+    "post-lich": { "stageId": "lich", "target": { "en-US": "Plantera", "ru-RU": "Плантера" } },
+    "post-forgotten-one": { "stageId": "forgotten-one", "target": { "en-US": "Lunar Events", "ru-RU": "Лунные события" } },
+    "pre-lunar": { "stageId": "forgotten-one", "target": { "en-US": "Lunatic Cultist", "ru-RU": "Лунатик-культист" } },
+    "pre-primordials": { "stageId": "moon-lord", "target": { "en-US": "The Primordials", "ru-RU": "Первородные" } },
+    "endgame": { "stageId": "primordials", "target": { "en-US": "Endgame", "ru-RU": "Финал" } }
+  }
+}

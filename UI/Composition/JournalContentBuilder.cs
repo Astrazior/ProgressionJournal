@@ -41,22 +41,46 @@ public static class JournalContentBuilder
         IReadOnlyList<JournalStageEntry> entries,
         Action<int>? onItemSelected = null)
     {
-        if (entries.Count == 0)
+        var wikiEntries = entries.Where(static entry => entry.IsWikiRecommendation).ToArray();
+        var newEntries = entries.Where(static entry => !entry.IsWikiRecommendation).ToArray();
+
+        foreach (var group in wikiEntries.GroupBy(
+                     static entry => entry.WikiRecommendation!.SourceName,
+                     StringComparer.OrdinalIgnoreCase))
         {
-            entryList.Add(JournalUiElementFactory.CreateSectionHeader(Language.GetTextValue("Mods.ProgressionJournal.UI.EmptyState")));
+            var title = Language.GetTextValue("Mods.ProgressionJournal.UI.WikiRecommendationsBlock");
+            var hoverText = Language.GetTextValue(
+                "Mods.ProgressionJournal.UI.WikiRecommendationsTooltip",
+                group.Key);
+            var palette = JournalUiTheme.GetRecommendationBlockStyle(RecommendationTier.FromGuide);
+            entryList.Add(CreateRecommendationBlock(
+                title,
+                group.ToArray(),
+                palette,
+                onItemSelected,
+                hoverText));
+        }
+
+        if (newEntries.Length == 0)
+        {
+            entryList.Add(JournalUiElementFactory.CreateSectionHeader(
+                Language.GetTextValue("Mods.ProgressionJournal.UI.NoNewEquipment")));
             return;
         }
 
         foreach (var tier in TierOrder)
         {
-            var tierEntries = GetEntriesForTier(entries, profileId, stageId, tier);
+            var tierEntries = GetEntriesForTier(newEntries, profileId, stageId, tier);
             if (tierEntries.Length == 0)
             {
                 continue;
             }
 
             var palette = JournalUiTheme.GetRecommendationBlockStyle(tier);
-            entryList.Add(CreateRecommendationBlock(GetTierTitle(tier), tierEntries, palette, onItemSelected));
+            var title = tier == RecommendationTier.FromGuide
+                ? Language.GetTextValue("Mods.ProgressionJournal.UI.NewEquipmentBlock")
+                : GetTierTitle(tier);
+            entryList.Add(CreateRecommendationBlock(title, tierEntries, palette, onItemSelected));
         }
     }
 
@@ -98,16 +122,15 @@ public static class JournalContentBuilder
         block.Append(header);
         top += JournalUiMetrics.RecommendationHeaderHeight + 4f;
 
-        var buttonWidthPercent = 1f / 4f;
+        const float buttonWidthPercent = 1f / 4f;
         for (var index = 0; index < JournalOrdering.EntryCategories.Count; index++)
         {
             var category = JournalOrdering.EntryCategories[index];
-            var capturedCategory = category;
             var button = JournalUiElementFactory.CreateIconButton(
                 TextureAssets.Item[GetEditorCategoryIconItem(category)],
                 30f,
                 30f,
-                () => onAddCategory(capturedCategory),
+                () => onAddCategory(category),
                 0.72f);
             button.Left.Set(-15f, buttonWidthPercent * index + buttonWidthPercent * 0.5f);
             button.Top.Set(top, 0f);
@@ -805,7 +828,8 @@ public static class JournalContentBuilder
 
     private static int GetCategoryStrength(JournalStageEntry entry) => entry.Entry.Category switch
     {
-        JournalItemCategory.Weapon or JournalItemCategory.Armor => entry.Entry.CategoryStrength,
+        JournalItemCategory.Weapon or JournalItemCategory.Armor or JournalItemCategory.Ammunition =>
+            entry.Entry.CategoryStrength,
         _ => 0
     };
 
@@ -813,7 +837,8 @@ public static class JournalContentBuilder
         string title,
         IReadOnlyList<JournalStageEntry> entries,
         JournalPanelStyle palette,
-        Action<int>? onItemSelected)
+        Action<int>? onItemSelected,
+        string? headerHoverText = null)
     {
         var block = JournalUiElementFactory.CreatePanel();
         block.Width.Set(0f, 1f);
@@ -823,7 +848,7 @@ public static class JournalContentBuilder
 
         var top = JournalUiMetrics.BlockVerticalPadding;
 
-        var header = CreateRecommendationHeader(title);
+        var header = CreateRecommendationHeader(title, headerHoverText);
         header.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
         header.Top.Set(top, 0f);
         block.Append(header);
@@ -910,9 +935,11 @@ public static class JournalContentBuilder
         return header;
     }
 
-    private static JournalRecommendationHeader CreateRecommendationHeader(string title)
+    private static JournalRecommendationHeader CreateRecommendationHeader(
+        string title,
+        string? hoverText = null)
     {
-        var header = new JournalRecommendationHeader(title);
+        var header = new JournalRecommendationHeader(title, hoverText);
         header.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
         header.Height.Set(JournalUiMetrics.RecommendationHeaderHeight, 0f);
         return header;

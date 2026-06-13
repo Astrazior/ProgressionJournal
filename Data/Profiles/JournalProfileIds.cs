@@ -3,7 +3,6 @@ namespace ProgressionJournal.Data.Profiles;
 public static class JournalProfileIds
 {
     public const string Vanilla = "builtin.vanilla";
-    public const string CalamityWiki = "builtin.calamity-wiki";
 }
 
 public static class JournalClassIds

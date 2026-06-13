@@ -4,8 +4,6 @@ namespace ProgressionJournal.Data.Profiles;
 
 public static class JournalProfileRegistry
 {
-    private const string CalamityProfilePath = "Profiles/Builtin/calamity-wiki.json";
-
     private static readonly Dictionary<string, JournalProfile> Profiles =
         new(StringComparer.OrdinalIgnoreCase);
     private static readonly Dictionary<string, JournalProfile> AddonProfiles =
@@ -25,7 +23,7 @@ public static class JournalProfileRegistry
     {
         Profiles.Clear();
         Register(JournalProfileStorage.CreateVanillaProfile(vanillaEntries));
-        LoadBundledCalamityProfile();
+        LoadBundledProfiles();
 
         foreach (var profile in AddonProfiles.Values)
         {
@@ -124,7 +122,7 @@ public static class JournalProfileRegistry
         return profile.Document.RequiredMods.All(requirement => ModLoader.HasMod(requirement.Name));
     }
 
-    private static void LoadBundledCalamityProfile()
+    private static void LoadBundledProfiles()
     {
         try
         {
@@ -134,11 +132,18 @@ public static class JournalProfileRegistry
                 return;
             }
 
-            var json = System.Text.Encoding.UTF8.GetString(mod.GetFileBytes(CalamityProfilePath));
-            if (JournalProfileStorage.TryParse(json, $"builtin:{CalamityProfilePath}", isBuiltIn: true, out var profile, out _)
-                && profile is not null)
+            foreach (var path in mod.GetFileNames()
+                         .Where(static path =>
+                             path.StartsWith("Profiles/Builtin/", StringComparison.OrdinalIgnoreCase)
+                             && path.EndsWith(".json", StringComparison.OrdinalIgnoreCase)
+                             && !path.EndsWith("-report.json", StringComparison.OrdinalIgnoreCase)))
             {
-                Register(profile);
+                var json = System.Text.Encoding.UTF8.GetString(mod.GetFileBytes(path));
+                if (JournalProfileStorage.TryParse(json, $"builtin:{path}", isBuiltIn: true, out var profile, out _)
+                    && profile is not null)
+                {
+                    Register(profile);
+                }
             }
         }
         catch

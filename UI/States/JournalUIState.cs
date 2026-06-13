@@ -54,7 +54,8 @@ public sealed class JournalUiState : UIState
     private JournalIconButton _buildBuilderButton = null!;
     private JournalIconButton _buildBackButton = null!;
     private JournalIconButton _buildSaveButton = null!;
-    private UIElement _stageListContainer = null!;
+    private JournalSmoothScrollGrid _stageListContainer = null!;
+    private UIScrollbar _stageScrollbar = null!;
     private UIList _classSelectionContainer = null!;
     private UIScrollbar _classSelectionScrollbar = null!;
     private UIList _entryList = null!;
@@ -236,7 +237,7 @@ public sealed class JournalUiState : UIState
         var profile = JournalProfileRegistry.TryGet(profileId, out var registeredProfile)
             ? registeredProfile
             : JournalProfileRegistry.Active;
-        EnsureProfileNavigation(profile);
+        EnsureProfileNavigation(profile, stageId);
         ApplyNavigationLayout(hasSelectedClass);
         EnsureLayout();
         ApplyContentLayout(selectingClass, showingPresets);
@@ -2144,10 +2145,6 @@ public sealed class JournalUiState : UIState
         _root.Recalculate();
         PositionProfileButton();
 
-        JournalStageButtonPresenter.Layout(
-            _stageButtons,
-            _stageListContainer,
-            JournalProfileRegistry.Active.Stages.Select(static value => value.Id).ToArray());
         _layoutInitialized = true;
         _layoutScreenWidth = Main.screenWidth;
         _layoutScreenHeight = Main.screenHeight;
@@ -2195,13 +2192,25 @@ public sealed class JournalUiState : UIState
         _progressionModeToggleButton.Top.Set(JournalUiMetrics.StageProgressionToggleTop, 0f);
         _stagePanel.Append(_progressionModeToggleButton);
 
-        _stageListContainer = new UIElement();
+        _stageListContainer = new JournalSmoothScrollGrid
+        {
+            ListPadding = JournalUiMetrics.StageButtonGap,
+            ManualSortMethod = _ => { }
+        };
         _root.AddDragTarget(_stageListContainer);
         _stageListContainer.Left.Set(JournalUiMetrics.StageListLeft, 0f);
         _stageListContainer.Top.Set(JournalUiMetrics.StageListTop, 0f);
         _stageListContainer.Width.Set(-JournalUiMetrics.StageListHorizontalInset, 1f);
         _stageListContainer.Height.Set(-JournalUiMetrics.StageListBottomInset, 1f);
         _stagePanel.Append(_stageListContainer);
+
+        _stageScrollbar = new UIScrollbar();
+        _stageScrollbar.Width.Set(JournalUiMetrics.ScrollbarWidth, 0f);
+        _stageScrollbar.Left.Set(-JournalUiMetrics.StageScrollbarOffset, 1f);
+        _stageScrollbar.Top.Set(JournalUiMetrics.StageListTop, 0f);
+        _stageScrollbar.Height.Set(-JournalUiMetrics.StageListBottomInset, 1f);
+        _stagePanel.Append(_stageScrollbar);
+        _stageListContainer.SetSmoothScrollbar(_stageScrollbar);
 
         _profileButton = JournalUiElementFactory.CreateIconTextButton(
             TextureAssets.Item[ItemID.Book],
@@ -2859,7 +2868,7 @@ public sealed class JournalUiState : UIState
         }
     }
 
-    private void EnsureProfileNavigation(JournalProfile profile)
+    private void EnsureProfileNavigation(JournalProfile profile, string selectedStageId)
     {
         if (string.Equals(_renderedProfileId, profile.Id, StringComparison.OrdinalIgnoreCase)
             && _stageButtons.Count == profile.Stages.Count)
@@ -2869,18 +2878,27 @@ public sealed class JournalUiState : UIState
 
         _renderedProfileId = profile.Id;
         _stageButtons.Clear();
-        _stageListContainer.RemoveAllChildren();
+        _stageListContainer.Clear();
 
+        var buttons = new List<JournalStageButton>(profile.Stages.Count);
         foreach (var stage in profile.Stages)
         {
             var capturedStageId = stage.Id;
             var button = JournalUiElementFactory.CreateStageButton(() => JournalSystem.SelectStage(capturedStageId));
             button.Left.Set(0f, 0f);
-            button.Width.Set(0f, 1f);
-            _stageListContainer.Append(button);
+            button.Width.Set(-JournalUiMetrics.StageButtonColumnGap * 0.5f, 0.5f);
+            button.Height.Set(JournalUiMetrics.StageButtonDefaultHeight, 0f);
             _stageButtons[capturedStageId] = button;
+            buttons.Add(button);
         }
 
+        _stageListContainer.AddRange(buttons);
+        if (_stageButtons.TryGetValue(selectedStageId, out var selectedButton))
+        {
+            _stageListContainer.Goto(
+                element => ReferenceEquals(element, selectedButton),
+                center: true);
+        }
         _layoutInitialized = false;
     }
 

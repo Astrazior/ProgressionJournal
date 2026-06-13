@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
-using Terraria.UI;
 
 namespace ProgressionJournal.UI.Composition;
 
@@ -53,56 +52,6 @@ public static class JournalStageButtonPresenter
             button.SetStyle(JournalUiTheme.GetStageButtonStyle(
                 string.Equals(stage.Id, selectedStage, StringComparison.OrdinalIgnoreCase)));
         }
-    }
-
-    public static void Layout(
-        IReadOnlyDictionary<string, JournalStageButton> buttons,
-        UIElement container,
-        IReadOnlyList<string> stageOrder)
-    {
-        if (buttons.Count == 0 || stageOrder.Count == 0 || container.Parent is null)
-        {
-            return;
-        }
-
-        var dimensions = container.GetInnerDimensions();
-        var availableHeight = dimensions.Height;
-        var availableWidth = dimensions.Width;
-        if (availableHeight <= 0f)
-        {
-            return;
-        }
-
-        var columns = GetColumnCount(availableHeight, stageOrder.Count);
-        var rows = (int)MathF.Ceiling(stageOrder.Count / (float)columns);
-        var buttonHeight = (availableHeight - JournalUiMetrics.StageButtonGap * (rows - 1)) / rows;
-        var buttonWidth = columns == 1
-            ? availableWidth
-            : (availableWidth - JournalUiMetrics.StageButtonColumnGap * (columns - 1)) / columns;
-
-        for (var index = 0; index < stageOrder.Count; index++)
-        {
-            var stageId = stageOrder[index];
-            var button = buttons[stageId];
-            var row = index / columns;
-            var column = index % columns;
-            var isTrailingSingleButton = columns > 1 && stageOrder.Count % columns != 0 && index == stageOrder.Count - 1;
-            var top = row * (buttonHeight + JournalUiMetrics.StageButtonGap);
-            var left = isTrailingSingleButton ? 0f : column * (buttonWidth + JournalUiMetrics.StageButtonColumnGap);
-
-            button.Left.Set(left, 0f);
-            button.Top.Set(top, 0f);
-            button.Width.Set(isTrailingSingleButton ? availableWidth : buttonWidth, 0f);
-            button.Height.Set(buttonHeight, 0f);
-        }
-
-        container.Recalculate();
-    }
-
-    private static int GetColumnCount(float availableHeight, int stageCount)
-    {
-        var singleColumnButtonHeight = (availableHeight - JournalUiMetrics.StageButtonGap * (stageCount - 1)) / stageCount;
-        return singleColumnButtonHeight >= JournalUiMetrics.MinSingleColumnStageButtonHeight ? 1 : 2;
     }
 
     private static void ApplyContent(

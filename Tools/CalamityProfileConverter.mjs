@@ -10,8 +10,8 @@ const WIKI_PAGES = [
 
 const args = parseArgs(process.argv.slice(2));
 const sourceRoot = path.resolve(args["calamity-source"] ?? "");
-const outputPath = path.resolve(args.output ?? "Profiles/Builtin/calamity-wiki.json");
-const reportPath = path.resolve(args.report ?? "Profiles/Builtin/calamity-wiki-report.json");
+const outputPath = path.resolve(args.output ?? "Profiles/Wiki/calamity-recommendations.json");
+const reportPath = path.resolve(args.report ?? "Profiles/Reports/calamity-wiki-report.json");
 
 if (!sourceRoot || !fs.existsSync(sourceRoot)) {
   throw new Error("Pass --calamity-source <CalamityModPublic checkout>.");
@@ -122,8 +122,8 @@ report.assumedVanillaItems = [...new Set(report.assumedVanillaItems)]
 
 const profile = {
   format: "ProgressionJournalProfile",
-  version: 2,
-  id: "builtin.calamity-wiki",
+  version: 1,
+  id: "source.calamity-wiki",
   name: "Calamity Wiki",
   author: "Calamity Wiki contributors",
   profileVersion: getCalamityVersion(sourceRoot),

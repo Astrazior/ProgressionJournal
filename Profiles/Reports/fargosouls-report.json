@@ -1,0 +1,6614 @@
+{
+  "profileId": "builtin.fargosouls",
+  "generatedAtUtc": "2026-06-13T18:51:31.095Z",
+  "unknownReferences": [],
+  "unresolvedConditions": [
+    {
+      "sourceKind": "recipe",
+      "source": "Terraria/MechdusaSummon",
+      "item": "Terraria/MechdusaSummon",
+      "condition": {
+        "type": "Terraria.Condition",
+        "description": "В генерации мира «Zenith»"
+      }
+    },
+    {
+      "sourceKind": "recipe",
+      "source": "Terraria/WandofSparking",
+      "item": "Terraria/WandofSparking",
+      "condition": {
+        "type": "Terraria.Condition",
+        "description": "Не в генерации мира «Remix»"
+      }
+    },
+    {
+      "sourceKind": "recipe",
+      "source": "Fargowiltas/KohaCrystal",
+      "item": "Fargowiltas/KohaCrystal",
+      "condition": {
+        "type": "Terraria.Condition",
+        "description": "Рядом с мерцанием"
+      }
+    },
+    {
+      "sourceKind": "recipe",
+      "source": "Terraria/SnowballCannon",
+      "item": "Terraria/SnowballCannon",
+      "condition": {
+        "type": "Terraria.Condition",
+        "description": "Не в генерации мира «Remix»"
+      }
+    },
+    {
+      "sourceKind": "recipe",
+      "source": "Terraria/VampireKnives",
+      "item": "Terraria/VampireKnives",
+      "condition": {
+        "type": "Terraria.Condition",
+        "description": "После победы над Плантерой"
+      }
+    },
+    {
+      "sourceKind": "recipe",
+      "source": "Terraria/ScourgeoftheCorruptor",
+      "item": "Terraria/ScourgeoftheCorruptor",
+      "condition": {
+        "type": "Terraria.Condition",
+        "description": "После победы над Плантерой"
+      }
+    },
+    {
+      "sourceKind": "recipe",
+      "source": "Terraria/PiranhaGun",
+      "item": "Terraria/PiranhaGun",
+      "condition": {
+        "type": "Terraria.Condition",
+        "description": "После победы над Плантерой"
+      }
+    },
+    {
+      "sourceKind": "recipe",
+      "source": "Terraria/StaffoftheFrostHydra",
+      "item": "Terraria/StaffoftheFrostHydra",
+      "condition": {
+        "type": "Terraria.Condition",
+        "description": "После победы над Плантерой"
+      }
+    },
+    {
+      "sourceKind": "recipe",
+      "source": "Terraria/RainbowGun",
+      "item": "Terraria/RainbowGun",
+      "condition": {
+        "type": "Terraria.Condition",
+        "description": "После победы над Плантерой"
+      }
+    },
+    {
+      "sourceKind": "recipe",
+      "source": "Terraria/StormTigerStaff",
+      "item": "Terraria/StormTigerStaff",
+      "condition": {
+        "type": "Terraria.Condition",
+        "description": "После победы над Плантерой"
+      }
+    },
+    {
+      "sourceKind": "recipe",
+      "source": "Terraria/LavaBomb",
+      "item": "Terraria/LavaBomb",
+      "condition": {
+        "type": "Terraria.Condition",
+        "description": "Нужна лава"
+      }
+    },
+    {
+      "sourceKind": "recipe",
+      "source": "Terraria/HoneyBomb",
+      "item": "Terraria/HoneyBomb",
+      "condition": {
+        "type": "Terraria.Condition",
+        "description": "Нужен мёд"
+      }
+    },
+    {
+      "sourceKind": "recipe",
+      "source": "Fargowiltas/DeathFruit",
+      "item": "Fargowiltas/DeathFruit",
+      "condition": {
+        "type": "Terraria.Condition",
+        "description": "Рядом с мерцанием"
+      }
+    }
+  ],
+  "ambiguousClasses": [
+    {
+      "item": "FargowiltasSouls/EgyptianFlail",
+      "classes": [
+        "melee",
+        "summoner"
+      ]
+    },
+    {
+      "item": "FargowiltasSouls/ElectricWhip",
+      "classes": [
+        "melee",
+        "summoner"
+      ]
+    }
+  ],
+  "excludedItems": [
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/MechanicalWorm",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/MechanicalEye",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/MechanicalSkull",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/BloodyMachete",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/BladedGlove",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/JungleKey",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CorruptionKey",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CrimsonKey",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/HallowedKey",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/FrozenKey",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/DungeonDesertKey",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/GoodieBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Present",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LivingFireBlock",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/SoulofLight",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/SoulofNight",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/PirateMap",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Cascade",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Amarok",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Yelets",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Kraken",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/HelFire",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "FargowiltasSouls/TrojanSquirrelTrophy",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "FargowiltasSouls/TrojanMask",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Squirrel",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/SquirrelRed",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/SquirrelHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/WoodenCrate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/HerbBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Acorn",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Fargowiltas/LumberJaxe",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "FargowiltasSouls/TrojanSquirrelBag",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "FargowiltasSouls/TrojanSquirrelRelic",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LifeCrystal",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/UnluckyYarn",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/BatHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/RottenEgg",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/JackingSkeletron",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/BitterHarvest",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/BloodMoonCountess",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/HallowsEve",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/MorbidCuriosity",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CatMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CatShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CatPants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CreeperMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CreeperShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CreeperPants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/GhostMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/GhostShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LeprechaunHat",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LeprechaunShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LeprechaunPants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/PixieShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/PixiePants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/PrincessHat",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/PrincessDressNew",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/PumpkinMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/PumpkinShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/PumpkinPants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/RobotMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/RobotShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/RobotPants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/UnicornMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/UnicornShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/UnicornPants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/VampireMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/VampireShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/VampirePants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/WitchHat",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/WitchDress",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/WitchBoots",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/BrideofFrankensteinMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/BrideofFrankensteinDress",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/KarateTortoiseMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/KarateTortoiseShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/KarateTortoisePants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/ReaperHood",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/ReaperRobe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/FoxMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/FoxShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/FoxPants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CatEars",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/SpaceCreatureMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/SpaceCreatureShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/SpaceCreaturePants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/WolfMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/WolfShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/WolfPants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/TreasureHunterShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/TreasureHunterPants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/SailfishBoots",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/TsunamiInABottle",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Extractinator",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Aglet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/ClimbingClaws",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/PortableStool",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CordageGuide",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Radar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/GoldCoin",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/SilverCoin",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CopperOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/TinOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/IronOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LeadOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CopperBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/TinBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/IronBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LeadBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/ObsidianSkinPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/SwiftnessPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/IronskinPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/NightOwlPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/ShinePotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/HunterPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/GillsPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/MiningPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/HeartreachPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/TrapsightPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LesserHealingPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LesserManaPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/JourneymanBait",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/ApprenticeBait",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Daybloom",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Moonglow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Blinkroot",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Waterleaf",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Deathweed",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Fireblossom",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Shiverthorn",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/DaybloomSeeds",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/MoonglowSeeds",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/BlinkrootSeeds",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/WaterleafSeeds",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/DeathweedSeeds",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/FireblossomSeeds",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/ShiverthornSeeds",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CopperCoin",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/GarlandHat",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LightKey",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/NightKey",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LeadFence",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/IronFence",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/WeatherVane",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CopperBroadsword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CopperShortsword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CopperBow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CopperHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CopperChainmail",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CopperGreaves",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/TinBroadsword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/TinShortsword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/TinBow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/TinHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/TinChainmail",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/TinGreaves",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/IronAnvil",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/ReinforcedFishingPole",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/IronBroadsword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/IronShortsword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/IronBow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/IronHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/IronChainmail",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/IronGreaves",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LeadAnvil",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LeadBroadsword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LeadShortsword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LeadBow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LeadHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LeadChainmail",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LeadGreaves",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/EmptyBucket",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/IronDoor",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LeadDoor",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/TrashCan",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Bathtub",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Toilet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Chain",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Grate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/PlatinumCoin",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Umbrella",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/WoodenBoomerang",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/HandWarmer",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/DogWhistle",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Toolbox",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/RedRyder",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CandyCaneSword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/CandyCaneHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/FruitcakeChakram",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Spear",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/Blowpipe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/SunflowerMinecart",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/LadybugMinecart",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Fargowiltas/ModeToggle",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Fargowiltas/MechEye",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Fargowiltas/MechSkull",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Fargowiltas/MechWorm",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "trojan-squirrel",
+      "id": "Terraria/HeartLantern",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/KingSlimeTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/KingSlimeBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/KingSlimeMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/KingSlimePetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/SlimySaddle",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/KingSlimeMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/NinjaHood",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/NinjaShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/NinjaPants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/SlimeHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/SlimeGun",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/Solidifier",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/Gel",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/Keybrand",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/Katana",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/RoyalGel",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "king-slime",
+      "id": "Terraria/SlimeStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/EyeofCthulhuTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/EyeOfCthulhuBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/EyeofCthulhuMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/AviatorSunglasses",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/EyeOfCthulhuPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/EyeMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/Binoculars",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/CrimtaneOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/CrimsonSeeds",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/UnholyArrow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/DemoniteOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/CorruptSeeds",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/IronCrate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/FallenStar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/SharkToothNecklace",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/MoneyTrough",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/BloodMoonStarter",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/RegenerationPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/ChumBucket",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/SanguineStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/BloodMoonMonolith",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/Harpoon",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/SpikyBall",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/BattlePotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/ManaRegenerationPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/EoCShield",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/GingerBeard",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/TartarSauce",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/FalconBlade",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/SilverOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/TungstenOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/SilverBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/TungstenBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/SpelunkerPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/GravitationPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/CalmingPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/FlipperPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/HealingPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/ManaPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/MasterBait",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/SilverBroadsword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/SilverShortsword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/SilverBow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/SilverHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/SilverChainmail",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/SilverGreaves",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/TungstenBroadsword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/TungstenShortsword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/TungstenBow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/TungstenHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/TungstenChainmail",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/TungstenGreaves",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/DemoniteBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/FisherofSouls",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/DemonBow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/WarAxeoftheNight",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/LightsBane",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/CorruptYoyo",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/CrimtaneBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/Fleshcatcher",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/TendonBow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/BloodLustCluster",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/BloodButcherer",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/CrimsonYoyo",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/ManaCrystal",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "eye-of-cthulhu",
+      "id": "Terraria/CloudinaBottle",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "FargowiltasSouls/CursedCoffinTrophy",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "FargowiltasSouls/CoffinMask",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/OasisCrate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/Amethyst",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/Topaz",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/Sapphire",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/Emerald",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/Ruby",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/Amber",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/Diamond",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/PharaohsMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/PharaohsRobe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "FargowiltasSouls/CursedCoffinBag",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "FargowiltasSouls/CursedCoffinRelic",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/AncientChisel",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/ScarabFishingRod",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/SandBoots",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/ThunderSpear",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/ThunderStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/CatBast",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/MysticCoilSnake",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/MagicConch",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/ScarabBomb",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/SandstorminaBottle",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/FossilOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/GoldOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/PlatinumOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/GoldBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/PlatinumBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "FargowiltasSouls/AccursedAnkh",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/EnchantedBoomerang",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/GemTreeAmethystSeed",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/GemTreeTopazSeed",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/GemTreeSapphireSeed",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/GemTreeEmeraldSeed",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/GemTreeRubySeed",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/GemTreeDiamondSeed",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/GemTreeAmberSeed",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/AmethystStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/TopazStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/SapphireStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/EmeraldStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/GoldBroadsword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/GoldShortsword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/GoldBow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/RubyStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/GoldHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/GoldChainmail",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/GoldGreaves",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/GoldCrown",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/PlatinumBroadsword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/PlatinumShortsword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/PlatinumBow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/DiamondStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/PlatinumHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/PlatinumChainmail",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/PlatinumGreaves",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/PlatinumCrown",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/Magiluminescence",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/AmethystHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/TopazHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/SapphireHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/EmeraldHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/RubyHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/DiamondHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/AmberHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/LargeAmethyst",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/LargeTopaz",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/LargeSapphire",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/LargeEmerald",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/LargeRuby",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/LargeDiamond",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/LargeAmber",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/BoneJavelin",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/BoneDagger",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/AmberStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/FossilHelm",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/FossilShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/FossilPants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/EncumberingStone",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/LuckyHorseshoe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/DesertMinecart",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "cursed-coffin",
+      "id": "Terraria/FlyingCarpet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/EaterofWorldsTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/ShadowScale",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/EaterOfWorldsBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/EaterofWorldsMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/EaterOfWorldsPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/EatersBone",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/EaterMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/CorruptFishingCrate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/BrainofCthulhuTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/BrainOfCthulhuBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/BrainofCthulhuMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/BrainOfCthulhuPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/BrainMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/BoneRattle",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "FargowiltasSouls/CrimetroidEgg",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/CrimsonFishingCrate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/TissueSample",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/BossMaskDarkMage",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/DarkMageBookMountItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/SquireShield",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/ApprenticeScarf",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/WarTable",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/WarTableBanner",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/DD2PetDragon",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/DD2PetGato",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/BossTrophyDarkmage",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/DefenderMedal",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/BossMaskOgre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/HuntressBuckler",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/MonkBelt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/BookStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/DD2PhoenixBow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/DD2SquireDemonSword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/MonkStaffT1",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/MonkStaffT2",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/DD2PetGhost",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/BossTrophyOgre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/WormScarf",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/BallOHurt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/BandofStarpower",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/Musket",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/ShadowOrb",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/Vilethorn",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/BrainOfConfusion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/TheUndertaker",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/TheRottedFork",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/CrimsonRod",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/PanicNecklace",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/CrimsonHeart",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/ShadowHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/ShadowScalemail",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/ShadowGreaves",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/NightmarePickaxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/TheBreaker",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/CrimsonHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/CrimsonScalemail",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/CrimsonGreaves",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/DeathbringerPickaxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/FleshGrinder",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Terraria/TheMeatball",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Fargowiltas/CrimsonAltar",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "world-evil",
+      "id": "Fargowiltas/DemonAltar",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/QueenBeeTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/QueenBeeBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/QueenBeeMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/QueenBeePetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BeeMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/HoneyComb",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/Nectar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/HoneyedGoggles",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/HiveWand",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BeeHat",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BeeShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BeePants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/Beenade",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BeeWax",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BeeKeeper",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BeesKnees",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BeeGun",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/Stinger",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/JungleFishingCrate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/Hive",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/HiveBackpack",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/FlowerBoots",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/AnkletoftheWind",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/Boomstick",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/FeralClaws",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/StaffofRegrowth",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/FiberglassFishingPole",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BambooBlock",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/Seaweed",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/PoisonDart",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BambooPlatform",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BambooBlockWall",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BambooChair",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BambooChest",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BambooDoor",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BambooTable",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BambooWorkbench",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BambooFence",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/HiveWall",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/HornetStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BeeHeadgear",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BeeBreastplate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BeeGreaves",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/HiveFive",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/BeeMinecart",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-bee",
+      "id": "Terraria/HoneyDispenser",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/DeerclopsTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/DeerclopsBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/DeerclopsMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/DeerclopsPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/DeerclopsMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/ChesterPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/Eyebrella",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/DontStarveShaderItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/DizzyHat",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/LucyTheAxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/PewMaticHorn",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/WeatherPain",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/HoundiusShootius",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "FargowiltasSouls/DeerSinew",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/FrozenCrate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/BoneHelm",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/IceBoomerang",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/IceBlade",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/IceSkates",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/BlizzardinaBottle",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/FlurryBoots",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/Fish",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/IceMirror",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deerclops",
+      "id": "Terraria/IceMachine",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/SkeletronTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/SkeletronBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/SkeletronMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/SkeletronPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/SkeletronMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/SkeletronHand",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/BookofSkulls",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/ChippysCouch",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/Bone",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/DungeonFishingCrate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/BoneGlove",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/LockBox",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/Book",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/BonePlatform",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/ChestLock",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/Valor",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/Muramasa",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/CobaltShield",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/BlueMoon",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/MagicMissile",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/Handgun",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron",
+      "id": "Terraria/ShadowKey",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/WallofFleshTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/WallOfFleshBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/WallofFleshMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/WallOfFleshGoatMountItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/FleshMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/Pwnhammer",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/WarriorEmblem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/RangerEmblem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/SorcererEmblem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/SummonerEmblem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/BreakerBlade",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/ClockworkAssaultRifle",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/LaserRifle",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/FireWhip",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/HallowedFishingCrateHard",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/LavaCrateHard",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CoinGun",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/LuckyCoin",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/DiscountCard",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PirateStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldRing",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PirateMinecart",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/Cutlass",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/FlyingDutchmanMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PirateShipMountItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenChair",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenToilet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenDoor",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenTable",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenBed",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenPiano",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenDresser",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenSofa",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenSink",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenChest",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenBathtub",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenWorkbench",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenClock",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenLamp",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenBookcase",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenChandelier",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenLantern",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenCandelabra",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenCandle",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/FlyingDutchmanTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/AmmoReservationPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/SailorHat",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/EyePatch",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/SailorShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/SailorPants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/GoldenPlatform",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/BuccaneerBandana",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/BuccaneerShirt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/BuccaneerPants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CobaltOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PalladiumOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/MythrilOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/OrichalcumOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/AdamantiteOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/TitaniumOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CobaltBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PalladiumBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/MythrilBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/OrichalcumBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/AdamantiteBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/TitaniumBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CrystalShard",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/LavaCharm",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/FlameWakerBoots",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/SuperheatedBlood",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/LavaFishbowl",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/LavaFishingHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/VolcanoSmall",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PotSuspended",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/ObsidianLockbox",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/WetBomb",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PottedLavaPlantPalm",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PottedLavaPlantBush",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PottedLavaPlantBramble",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PottedLavaPlantBulb",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PottedLavaPlantTendrils",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/HellMinecart",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/OrnateShadowKey",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/HellCake",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CrystalDart",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/DryBomb",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PotSuspendedDaybloom",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PotSuspendedMoonglow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PotSuspendedWaterleaf",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PotSuspendedShiverthorn",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PotSuspendedBlinkroot",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PotSuspendedDeathweedCorrupt",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PotSuspendedDeathweedCrimson",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PotSuspendedFireblossom",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/VolcanoLarge",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CobaltHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CobaltMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CobaltHat",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CobaltBreastplate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CobaltLeggings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CobaltDrill",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CobaltPickaxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CobaltChainsaw",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CobaltWaraxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CobaltRepeater",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CobaltSword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/CobaltNaginata",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PalladiumMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PalladiumHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PalladiumHeadgear",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PalladiumBreastplate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PalladiumLeggings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PalladiumDrill",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PalladiumPickaxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PalladiumChainsaw",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PalladiumWaraxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PalladiumRepeater",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PalladiumSword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/PalladiumPike",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/MythrilHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/MythrilHat",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/MythrilHood",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/MythrilChainmail",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/MythrilGreaves",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/MythrilDrill",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/MythrilPickaxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/MythrilChainsaw",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/MythrilWaraxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/MythrilRepeater",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/MythrilSword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/MythrilHalberd",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/MythrilAnvil",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/OrichalcumMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/OrichalcumHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/OrichalcumHeadgear",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/OrichalcumBreastplate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/OrichalcumLeggings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/OrichalcumDrill",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/OrichalcumPickaxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/OrichalcumChainsaw",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/OrichalcumWaraxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/OrichalcumRepeater",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/OrichalcumSword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/OrichalcumHalberd",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/OrichalcumAnvil",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/AdamantiteHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/AdamantiteMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/AdamantiteHeadgear",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/AdamantiteBreastplate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/AdamantiteLeggings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/AdamantiteDrill",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/AdamantitePickaxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/AdamantiteChainsaw",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/AdamantiteWaraxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/AdamantiteRepeater",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/AdamantiteSword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/AdamantiteGlaive",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/TitaniumMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/TitaniumHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/TitaniumHeadgear",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/TitaniumBreastplate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/TitaniumLeggings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/TitaniumDrill",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/TitaniumPickaxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/TitaniumChainsaw",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/TitaniumWaraxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/TitaniumRepeater",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/TitaniumSword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/TitaniumTrident",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/BouncingShield",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Fargowiltas/AltarExterminator",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Fargowiltas/JellyCrystal",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/DarkLance",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/Sunfury",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/Flamelash",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/HellwingBow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/TreasureMagnet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "wall-of-flesh",
+      "id": "Terraria/QueenSlimeCrystal",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-slime",
+      "id": "Terraria/QueenSlimeTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-slime",
+      "id": "Terraria/QueenSlimeBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-slime",
+      "id": "Terraria/QueenSlimeMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-slime",
+      "id": "Terraria/QueenSlimePetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-slime",
+      "id": "Terraria/GelBalloon",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-slime",
+      "id": "Terraria/QueenSlimeMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-slime",
+      "id": "Terraria/CrystalNinjaHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-slime",
+      "id": "Terraria/CrystalNinjaChestplate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-slime",
+      "id": "Terraria/CrystalNinjaLeggings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-slime",
+      "id": "Terraria/Smolstar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-slime",
+      "id": "Terraria/QueenSlimeMountSaddle",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-slime",
+      "id": "Terraria/QueenSlimeHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-slime",
+      "id": "Terraria/PinkGel",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-slime",
+      "id": "Terraria/VolatileGelatin",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "queen-slime",
+      "id": "Terraria/ResplendentDessert",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "FargowiltasSouls/BaronTrophy",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "FargowiltasSouls/BaronMask",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/OceanCrateHard",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/Sextant",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/WeatherRadio",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/FishermansGuide",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/FishingBobber",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/FishingPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/SonarPotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/CratePotion",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/GoldenBugNet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/FishHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/GoldenFishingRod",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "FargowiltasSouls/BanishedBaronBag",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "FargowiltasSouls/BaronRelic",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/WaterWalkingBoots",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/BreathingReed",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/FloatingTube",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/Trident",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/Flipper",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/SharkBait",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/ShellPileBlock",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "Terraria/SandcastleBucket",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "banished-baron",
+      "id": "FargowiltasSouls/RustedOxygenTank",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/DestroyerTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/DestroyerBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/DestroyerMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/DestroyerPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/DestroyerMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/SoulofMight",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/WaffleIron",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/HallowedBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/IronCrateHard",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/MechanicalWagonPiece",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/HallowedMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/HallowedHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/HallowedHeadgear",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/HallowedHood",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/HallowedPlateMail",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/HallowedGreaves",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/HallowedRepeater",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/Excalibur",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/Gungnir",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/HallowJoustingLance",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/SwordWhip",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "destroyer",
+      "id": "Terraria/LightDisc",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "twins",
+      "id": "Terraria/RetinazerTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "twins",
+      "id": "Terraria/TwinsBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "twins",
+      "id": "Terraria/TwinMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "twins",
+      "id": "Terraria/SoulofSight",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "twins",
+      "id": "Terraria/TwinsMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "twins",
+      "id": "Terraria/TwinsPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "twins",
+      "id": "Terraria/SpazmatismTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "twins",
+      "id": "Terraria/MechanicalWheelPiece",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/SkeletronPrimeTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/SkeletronPrimeBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/SkeletronPrimeMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/SkeletronPrimePetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/SkeletronPrimeMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/SoulofFright",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/DarkMageMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/WingsofEvil",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/MothronWings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/TheEyeOfCthulhu",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/BrokenHeroSword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/Buddies",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/NeptunesShell",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/MechanicalBatteryPiece",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/TerraToilet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/Drax",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/PickaxeAxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "skeletron-prime",
+      "id": "Terraria/MinecartPowerup",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lifelight",
+      "id": "FargowiltasSouls/LifelightTrophy",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "lifelight",
+      "id": "FargowiltasSouls/LifelightMask",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "lifelight",
+      "id": "Terraria/PixieDust",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lifelight",
+      "id": "FargowiltasSouls/LifelightBag",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "lifelight",
+      "id": "FargowiltasSouls/LifelightRelic",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "lifelight",
+      "id": "FargowiltasSouls/LifelightMasterPet",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "lifelight",
+      "id": "FargowiltasSouls/LifeRevitalizer",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "lifelight",
+      "id": "FargowiltasSouls/FragilePixieLamp",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/PlanteraTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/PlanteraBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/PlanteraMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/PlanteraPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/PlanteraMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/TempleKey",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/Seedling",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/TheAxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ThornHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/FlowerPow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/Seedler",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/GrenadeLauncher",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/VenusMagnum",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/LeafBlower",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/NettleBurst",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/WaspGun",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/PygmyStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Fargowiltas/LihzahrdInstactuationBomb",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/JungleFishingCrateHard",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/LifeFruit",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophyteOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SpookyHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SpookyTwig",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/StakeLauncher",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/CursedSapling",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/NecromanticScroll",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/MourningWoodTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/WitchBroom",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/MourningWoodMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SpookyWoodMountItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SpookyWood",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/CandyCornRifle",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/JackOLanternLauncher",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/BlackFairyDust",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/TheHorsemansBlade",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/BatScepter",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/RavenStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ScytheWhip",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SpiderEgg",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/PumpkingTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/PumpkingMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/PumpkingPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/EverscreamTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/FestiveWings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChristmasHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChristmasTreeSword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/Razorpine",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/EverscreamMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/EverscreamPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SantaNK1Trophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ElfMelter",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChainGun",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SantankMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SantankMountItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/IceQueenTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ReindeerBells",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/BabyGrinchMischiefWhistle",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/BlizzardStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SnowmanCannon",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/NorthPole",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/IceQueenMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/IceQueenPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SporeSac",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SpookyPlatform",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SpookyWoodWall",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SpookyHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SpookyBreastplate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SpookyLeggings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SpookyDoor",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SpookyChair",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SpookyChest",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SpookyTable",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SpookyWorkBench",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/CopperWatch",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/TinWatch",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/SilverWatch",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/TungstenWatch",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/GoldWatch",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/PlatinumWatch",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophyteBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophyteHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophyteMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophyteHeadgear",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophytePlateMail",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophyteGreaves",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophyteDrill",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophytePickaxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophyteChainsaw",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophyteGreataxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophyteJackhammer",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophyteWarhammer",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophyteShotbow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophyteSaber",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophyteClaymore",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophytePartisan",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophyteExtractinator",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/ChlorophyteArrow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "plantera",
+      "id": "Terraria/TrueExcalibur",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/GolemTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/GolemBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/GolemMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/GolemPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/GolemMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/Picksaw",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/GolemFist",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/PossessedHatchet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/Stynger",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/HeatRay",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/StaffofEarth",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/EyeoftheGolem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/SunStone",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/BeetleHusk",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/GoldenCrateHard",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/UFOMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/MartianPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/MartianSaucerTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/Xenopopper",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/XenoStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/LaserMachinegun",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/ElectrosphereLauncher",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/InfluxWaver",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/CosmicCarKey",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/MartianConduitPlating",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/LaserDrill",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/AntiGravityHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/ChargedBlasterCannon",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/MartianUniformHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/MartianUniformTorso",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/MartianUniformPants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/ShinyStone",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/EnchantedSword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/FlareGun",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/Mace",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/BandofRegeneration",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/ShoeSpikes",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/MartianPlatform",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/MartianConduitWall",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/MartianHoverChair",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/MartianChest",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/MartianDoor",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/MartianTable",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/MartianWorkBench",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/BeetleHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/BeetleScaleMail",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/BeetleShell",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/BeetleLeggings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/HardySaddle",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "golem",
+      "id": "Terraria/Nazar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "betsy",
+      "id": "Terraria/BossTrophyBetsy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "betsy",
+      "id": "Terraria/BossBagBetsy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "betsy",
+      "id": "Terraria/BetsyMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "betsy",
+      "id": "Terraria/DD2BetsyPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "betsy",
+      "id": "Terraria/BossMaskBetsy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "betsy",
+      "id": "Terraria/BetsyWings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "betsy",
+      "id": "Terraria/DD2SquireBetsySword",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "betsy",
+      "id": "Terraria/MonkStaffT3",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "betsy",
+      "id": "Terraria/DD2BetsyBow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "betsy",
+      "id": "Terraria/ApprenticeStaffT3",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "betsy",
+      "id": "Terraria/OgreMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "betsy",
+      "id": "Terraria/DD2OgrePetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/DukeFishronTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/FishronBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/DukeFishronMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/DukeFishronPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/DukeFishronMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/Flairon",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/Tsunami",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/BubbleGun",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/RazorbladeTyphoon",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/TempestStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/FishronWings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/AquaScepter",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "FargowiltasSouls/MutantsCreditCard",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/FuzzyCarrot",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/AnglerHat",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/AnglerVest",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/AnglerPants",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/HighTestFishingLine",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/AnglerEarring",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/TackleBox",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/FinWings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/BottomlessBucket",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/SuperAbsorbantSponge",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/HotlineFishingHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "duke-fishron",
+      "id": "Terraria/ShrimpyTruffle",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "empress-of-light",
+      "id": "Terraria/FairyQueenTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "empress-of-light",
+      "id": "Terraria/FairyQueenBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "empress-of-light",
+      "id": "Terraria/FairyQueenMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "empress-of-light",
+      "id": "Terraria/FairyQueenPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "empress-of-light",
+      "id": "Terraria/HallowBossDye",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "empress-of-light",
+      "id": "Terraria/FairyQueenMask",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "empress-of-light",
+      "id": "Terraria/RainbowCursor",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "empress-of-light",
+      "id": "Terraria/PiercingStarlight",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "empress-of-light",
+      "id": "Terraria/FairyQueenRangedItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "empress-of-light",
+      "id": "Terraria/FairyQueenMagicItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "empress-of-light",
+      "id": "Terraria/SparkleGuitar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "empress-of-light",
+      "id": "Terraria/RainbowWhip",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "empress-of-light",
+      "id": "Terraria/RainbowWings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "empress-of-light",
+      "id": "Terraria/EmpressBlade",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "empress-of-light",
+      "id": "Terraria/EmpressFlightBooster",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/AncientCultistTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/LunaticCultistMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/LunaticCultistPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/BossMaskCultist",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/LunarCraftingStation",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "FargowiltasSouls/MutantsPact",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/DungeonFishingCrateHard",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/FragmentSolar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/FragmentVortex",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/FragmentNebula",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/FragmentStardust",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/LunarHook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/SolarMonolith",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/SolarEruption",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/DayBreak",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/VortexMonolith",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/VortexBeater",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/Phantasm",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/NebulaMonolith",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/NebulaArcanum",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/NebulaBlaze",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/StardustMonolith",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/StardustCellStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/StardustDragonStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Terraria/CelestialSigil",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "lunatic-cultist",
+      "id": "Fargowiltas/CelestialSigil2",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/MoonLordTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/MoonLordBossBag",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/MoonLordMasterTrophy",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/MoonLordPetItem",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/BossMaskMoonlord",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/MeowmereMinecart",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/PortalGun",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/LunarOre",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/Meowmere",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/Terrarian",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/StarWrath",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/SDMG",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/Celeb2",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/LastPrism",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/LunarFlareBook",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/RainbowCrystalStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/MoonlordTurretStaff",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/MoonLordLegs",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/GravityGlobe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/SuspiciousLookingTentacle",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/LongRainbowTrailWings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/LunarBar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/MoonlordBullet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/MoonlordArrow",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/VoidMonolith",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/SolarFlareHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/SolarFlareBreastplate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/SolarFlareLeggings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/SolarFlarePickaxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/SolarFlareDrill",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/LunarHamaxeSolar",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/VortexHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/VortexBreastplate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/VortexLeggings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/VortexPickaxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/VortexDrill",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/LunarHamaxeVortex",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/NebulaHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/NebulaBreastplate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/NebulaLeggings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/NebulaPickaxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/NebulaDrill",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/LunarHamaxeNebula",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/StardustHelmet",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/StardustBreastplate",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/StardustLeggings",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/StardustPickaxe",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/StardustDrill",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/LunarHamaxeStardust",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "moon-lord",
+      "id": "Terraria/BottomlessShimmerBucket",
+      "reason": "unchanged vanilla item in mod profile"
+    },
+    {
+      "stage": "deviantt",
+      "id": "FargowiltasSouls/DeviatingEnergy",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "deviantt",
+      "id": "FargowiltasSouls/DeviBag",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "deviantt",
+      "id": "FargowiltasSouls/DeviTrophy",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "deviantt",
+      "id": "FargowiltasSouls/DeviRelic",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "deviantt",
+      "id": "FargowiltasSouls/ChibiHat",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "timber-champion",
+      "id": "FargowiltasSouls/TimberMask",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "timber-champion",
+      "id": "FargowiltasSouls/TimberChampionRelic",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "terra-champion",
+      "id": "FargowiltasSouls/TerraMask",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "terra-champion",
+      "id": "FargowiltasSouls/TerraChampionRelic",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "terra-champion",
+      "id": "FargowiltasSouls/MostlyOrdinaryRock",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "earth-champion",
+      "id": "FargowiltasSouls/EarthMask",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "earth-champion",
+      "id": "FargowiltasSouls/EarthChampionRelic",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "nature-champion",
+      "id": "FargowiltasSouls/NatureMask",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "nature-champion",
+      "id": "FargowiltasSouls/NatureChampionRelic",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "life-champion",
+      "id": "FargowiltasSouls/LifeMask",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "life-champion",
+      "id": "FargowiltasSouls/LifeDye",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "life-champion",
+      "id": "FargowiltasSouls/LifeChampionRelic",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "shadow-champion",
+      "id": "FargowiltasSouls/DeathMask",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "shadow-champion",
+      "id": "FargowiltasSouls/ShadowChampionRelic",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "shadow-champion",
+      "id": "FargowiltasSouls/PortableFogMachine",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "spirit-champion",
+      "id": "FargowiltasSouls/SpiritMask",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "spirit-champion",
+      "id": "FargowiltasSouls/SpiritChampionRelic",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "spirit-champion",
+      "id": "FargowiltasSouls/AccursedRags",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "will-champion",
+      "id": "FargowiltasSouls/WillMask",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "will-champion",
+      "id": "FargowiltasSouls/WillDye",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "will-champion",
+      "id": "FargowiltasSouls/WillChampionRelic",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "will-champion",
+      "id": "FargowiltasSouls/EnerGear",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "cosmos-champion",
+      "id": "FargowiltasSouls/EridanusTrophy",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "cosmos-champion",
+      "id": "FargowiltasSouls/Eridanium",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "cosmos-champion",
+      "id": "FargowiltasSouls/CosmosBag",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "cosmos-champion",
+      "id": "FargowiltasSouls/EridanusRelic",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "abominationn",
+      "id": "FargowiltasSouls/AbomEnergy",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "abominationn",
+      "id": "FargowiltasSouls/AbomBag",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "abominationn",
+      "id": "FargowiltasSouls/AbomTrophy",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "abominationn",
+      "id": "FargowiltasSouls/AbomRelic",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "abominationn",
+      "id": "FargowiltasSouls/BabyScythe",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "mutant",
+      "id": "FargowiltasSouls/MutantBag",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "mutant",
+      "id": "FargowiltasSouls/MutantTrophy",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "mutant",
+      "id": "FargowiltasSouls/MutantRelic",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "mutant",
+      "id": "FargowiltasSouls/SpawnSack",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "mutant",
+      "id": "FargowiltasSouls/Masochist",
+      "reason": "not combat equipment"
+    },
+    {
+      "stage": "mutant",
+      "id": "FargowiltasSouls/MutantsFury",
+      "reason": "not combat equipment"
+    }
+  ],
+  "emptyStages": [
+    "start"
+  ],
+  "paths": {
+    "FargowiltasSouls/TreeSword": {
+      "stage": "trojan-squirrel",
+      "via": "npc:FargowiltasSouls/TrojanSquirrel"
+    },
+    "FargowiltasSouls/MountedAcornGun": {
+      "stage": "trojan-squirrel",
+      "via": "npc:FargowiltasSouls/TrojanSquirrel"
+    },
+    "FargowiltasSouls/SnowballStaff": {
+      "stage": "trojan-squirrel",
+      "via": "npc:FargowiltasSouls/TrojanSquirrel"
+    },
+    "FargowiltasSouls/KamikazeSquirrelStaff": {
+      "stage": "trojan-squirrel",
+      "via": "npc:FargowiltasSouls/TrojanSquirrel"
+    },
+    "FargowiltasSouls/BoxofGizmos": {
+      "stage": "trojan-squirrel",
+      "via": "container:FargowiltasSouls/TrojanSquirrelBag"
+    },
+    "FargowiltasSouls/MedallionoftheFallenKing": {
+      "stage": "king-slime",
+      "via": "npc:Terraria/KingSlime"
+    },
+    "FargowiltasSouls/SlimyShield": {
+      "stage": "king-slime",
+      "via": "npc:Terraria/KingSlime"
+    },
+    "FargowiltasSouls/SlimeKingsSlasher": {
+      "stage": "king-slime",
+      "via": "npc:Terraria/KingSlime"
+    },
+    "FargowiltasSouls/AgitatingLens": {
+      "stage": "eye-of-cthulhu",
+      "via": "npc:Terraria/EyeofCthulhu"
+    },
+    "FargowiltasSouls/LeashOfCthulhu": {
+      "stage": "eye-of-cthulhu",
+      "via": "npc:Terraria/EyeofCthulhu"
+    },
+    "FargowiltasSouls/DreadShell": {
+      "stage": "eye-of-cthulhu",
+      "via": "npc:Terraria/BloodNautilus",
+      "eventCategory": "BloodMoon",
+      "customEventName": ""
+    },
+    "FargowiltasSouls/SisypheanFist": {
+      "stage": "cursed-coffin",
+      "via": "npc:FargowiltasSouls/CursedCoffin"
+    },
+    "FargowiltasSouls/SpiritLongbow": {
+      "stage": "cursed-coffin",
+      "via": "npc:FargowiltasSouls/CursedCoffin"
+    },
+    "FargowiltasSouls/GildedSceptre": {
+      "stage": "cursed-coffin",
+      "via": "npc:FargowiltasSouls/CursedCoffin"
+    },
+    "FargowiltasSouls/EgyptianFlail": {
+      "stage": "cursed-coffin",
+      "via": "npc:FargowiltasSouls/CursedCoffin"
+    },
+    "FargowiltasSouls/DarkenedHeart": {
+      "stage": "world-evil",
+      "via": "npc:Terraria/EaterofWorldsHead"
+    },
+    "FargowiltasSouls/EaterLauncherJr": {
+      "stage": "world-evil",
+      "via": "npc:Terraria/EaterofWorldsHead"
+    },
+    "FargowiltasSouls/GuttedHeart": {
+      "stage": "world-evil",
+      "via": "npc:Terraria/BrainofCthulhu"
+    },
+    "FargowiltasSouls/BrainStaff": {
+      "stage": "world-evil",
+      "via": "npc:Terraria/BrainofCthulhu"
+    },
+    "FargowiltasSouls/DarkTome": {
+      "stage": "world-evil",
+      "via": "npc:Terraria/DD2DarkMageT1",
+      "eventCategory": "OldOnesArmy",
+      "customEventName": ""
+    },
+    "FargowiltasSouls/TheLightningRod": {
+      "stage": "world-evil",
+      "via": "recipe:Terraria/IronBar+Terraria/Diamond+Terraria/Topaz+Terraria/DemoniteBar+Terraria/ShadowScale"
+    },
+    "FargowiltasSouls/QueenStinger": {
+      "stage": "queen-bee",
+      "via": "npc:Terraria/QueenBee"
+    },
+    "FargowiltasSouls/TheSmallSting": {
+      "stage": "queen-bee",
+      "via": "npc:Terraria/QueenBee"
+    },
+    "FargowiltasSouls/Deerclawps": {
+      "stage": "deerclops",
+      "via": "npc:Terraria/Deerclops"
+    },
+    "FargowiltasSouls/NecromanticBrew": {
+      "stage": "skeletron",
+      "via": "npc:Terraria/SkeletronHead"
+    },
+    "FargowiltasSouls/BoneZone": {
+      "stage": "skeletron",
+      "via": "npc:Terraria/SkeletronHead"
+    },
+    "Fargowiltas/BrittleBone": {
+      "stage": "skeletron",
+      "via": "npc:Terraria/SkeletronHead"
+    },
+    "FargowiltasSouls/PungentEyeball": {
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/WallofFlesh"
+    },
+    "FargowiltasSouls/MutantsDiscountCard": {
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/WallofFlesh"
+    },
+    "FargowiltasSouls/FleshHand": {
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/WallofFlesh"
+    },
+    "Fargowiltas/GoldenDippingVat": {
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/PirateCaptain",
+      "eventCategory": "PirateInvasion",
+      "customEventName": ""
+    },
+    "FargowiltasSouls/GelicWings": {
+      "stage": "queen-slime",
+      "via": "npc:Terraria/QueenSlimeBoss"
+    },
+    "FargowiltasSouls/TheBaronsTusk": {
+      "stage": "banished-baron",
+      "via": "npc:FargowiltasSouls/BanishedBaron"
+    },
+    "FargowiltasSouls/RoseTintedVisor": {
+      "stage": "banished-baron",
+      "via": "npc:FargowiltasSouls/BanishedBaron"
+    },
+    "FargowiltasSouls/NavalRustrifle": {
+      "stage": "banished-baron",
+      "via": "npc:FargowiltasSouls/BanishedBaron"
+    },
+    "FargowiltasSouls/DecrepitAirstrikeRemote": {
+      "stage": "banished-baron",
+      "via": "npc:FargowiltasSouls/BanishedBaron"
+    },
+    "FargowiltasSouls/GroundStick": {
+      "stage": "destroyer",
+      "via": "npc:Terraria/TheDestroyer"
+    },
+    "FargowiltasSouls/ElectricWhip": {
+      "stage": "destroyer",
+      "via": "npc:Terraria/TheDestroyer"
+    },
+    "FargowiltasSouls/FusedLens": {
+      "stage": "twins",
+      "via": "npc:Terraria/Retinazer"
+    },
+    "FargowiltasSouls/TwinRangs": {
+      "stage": "twins",
+      "via": "npc:Terraria/Retinazer"
+    },
+    "FargowiltasSouls/PrimeStaff": {
+      "stage": "skeletron-prime",
+      "via": "npc:Terraria/SkeletronPrime"
+    },
+    "FargowiltasSouls/ReinforcedPlating": {
+      "stage": "skeletron-prime",
+      "via": "npc:Terraria/SkeletronPrime"
+    },
+    "FargowiltasSouls/RefractorBlaster": {
+      "stage": "skeletron-prime",
+      "via": "npc:Terraria/SkeletronPrime"
+    },
+    "FargowiltasSouls/EnchantedLifeblade": {
+      "stage": "lifelight",
+      "via": "npc:FargowiltasSouls/LifeChallenger"
+    },
+    "FargowiltasSouls/Lightslinger": {
+      "stage": "lifelight",
+      "via": "npc:FargowiltasSouls/LifeChallenger"
+    },
+    "FargowiltasSouls/CrystallineCongregation": {
+      "stage": "lifelight",
+      "via": "npc:FargowiltasSouls/LifeChallenger"
+    },
+    "FargowiltasSouls/KamikazePixieStaff": {
+      "stage": "lifelight",
+      "via": "npc:FargowiltasSouls/LifeChallenger"
+    },
+    "FargowiltasSouls/MagicalBulb": {
+      "stage": "plantera",
+      "via": "npc:Terraria/Plantera"
+    },
+    "FargowiltasSouls/Dicer": {
+      "stage": "plantera",
+      "via": "npc:Terraria/Plantera"
+    },
+    "FargowiltasSouls/PumpkingsCape": {
+      "stage": "plantera",
+      "via": "npc:Terraria/Pumpking",
+      "eventCategory": "PumpkinMoon",
+      "customEventName": ""
+    },
+    "FargowiltasSouls/IceQueensCrown": {
+      "stage": "plantera",
+      "via": "npc:Terraria/IceQueen",
+      "eventCategory": "FrostMoon",
+      "customEventName": ""
+    },
+    "FargowiltasSouls/ComputationOrb": {
+      "stage": "golem",
+      "via": "npc:Terraria/Golem"
+    },
+    "FargowiltasSouls/LihzahrdTreasureBox": {
+      "stage": "golem",
+      "via": "npc:Terraria/Golem"
+    },
+    "FargowiltasSouls/RockSlide": {
+      "stage": "golem",
+      "via": "npc:Terraria/Golem"
+    },
+    "FargowiltasSouls/SaucerControlConsole": {
+      "stage": "golem",
+      "via": "npc:Terraria/MartianSaucerCore",
+      "eventCategory": "MartianMadness",
+      "customEventName": ""
+    },
+    "FargowiltasSouls/BetsysHeart": {
+      "stage": "betsy",
+      "via": "npc:Terraria/DD2Betsy"
+    },
+    "FargowiltasSouls/DragonBreath": {
+      "stage": "betsy",
+      "via": "npc:Terraria/DD2Betsy"
+    },
+    "FargowiltasSouls/MutantAntibodies": {
+      "stage": "duke-fishron",
+      "via": "npc:Terraria/DukeFishron"
+    },
+    "FargowiltasSouls/FishStick": {
+      "stage": "duke-fishron",
+      "via": "npc:Terraria/DukeFishron"
+    },
+    "FargowiltasSouls/PrecisionSeal": {
+      "stage": "empress-of-light",
+      "via": "npc:Terraria/HallowBoss"
+    },
+    "FargowiltasSouls/PrismaRegalia": {
+      "stage": "empress-of-light",
+      "via": "npc:Terraria/HallowBoss"
+    },
+    "FargowiltasSouls/CelestialRune": {
+      "stage": "lunatic-cultist",
+      "via": "npc:Terraria/CultistBoss"
+    },
+    "FargowiltasSouls/DeviousAestheticus": {
+      "stage": "moon-lord",
+      "via": "npc:Terraria/MoonLordCore"
+    },
+    "FargowiltasSouls/GalacticGlobe": {
+      "stage": "moon-lord",
+      "via": "npc:Terraria/MoonLordCore"
+    },
+    "FargowiltasSouls/NebulaEnchant": {
+      "stage": "moon-lord",
+      "via": "recipe:Terraria/NebulaHelmet+Terraria/NebulaBreastplate+Terraria/NebulaLeggings+Terraria/NebulaArcanum+Terraria/NebulaBlaze+Terraria/LunarFlareBook"
+    },
+    "FargowiltasSouls/SolarEnchant": {
+      "stage": "moon-lord",
+      "via": "recipe:Terraria/SolarFlareHelmet+Terraria/SolarFlareBreastplate+Terraria/SolarFlareLeggings+Terraria/DayBreak+Terraria/SolarEruption+Terraria/StarWrath"
+    },
+    "FargowiltasSouls/StardustEnchant": {
+      "stage": "moon-lord",
+      "via": "recipe:Terraria/StardustHelmet+Terraria/StardustBreastplate+Terraria/StardustLeggings+Terraria/StardustCellStaff+Terraria/StardustDragonStaff+Terraria/RainbowCrystalStaff"
+    },
+    "FargowiltasSouls/VortexEnchant": {
+      "stage": "moon-lord",
+      "via": "recipe:Terraria/VortexHelmet+Terraria/VortexBreastplate+Terraria/VortexLeggings+Terraria/VortexBeater+Terraria/Phantasm+Terraria/SDMG"
+    },
+    "FargowiltasSouls/SparklingAdoration": {
+      "stage": "deviantt",
+      "via": "npc:FargowiltasSouls/DeviBoss"
+    },
+    "FargowiltasSouls/ChaliceoftheMoon": {
+      "stage": "deviantt",
+      "via": "recipe:FargowiltasSouls/MagicalBulb+FargowiltasSouls/LihzahrdTreasureBox+FargowiltasSouls/CelestialRune+Terraria/FragmentSolar+Terraria/FragmentVortex+Terraria/FragmentNebula+Terraria/FragmentStardust+FargowiltasSouls/DeviatingEnergy"
+    },
+    "FargowiltasSouls/DubiousCircuitry": {
+      "stage": "deviantt",
+      "via": "recipe:FargowiltasSouls/FusedLens+FargowiltasSouls/GroundStick+FargowiltasSouls/ReinforcedPlating+Terraria/HallowedBar+Terraria/SoulofFright+Terraria/SoulofMight+Terraria/SoulofSight+FargowiltasSouls/DeviatingEnergy"
+    },
+    "FargowiltasSouls/WoodEnchant": {
+      "stage": "timber-champion",
+      "via": "npc:FargowiltasSouls/TimberChampion"
+    },
+    "FargowiltasSouls/BorealWoodEnchant": {
+      "stage": "timber-champion",
+      "via": "npc:FargowiltasSouls/TimberChampion"
+    },
+    "FargowiltasSouls/RichMahoganyEnchant": {
+      "stage": "timber-champion",
+      "via": "npc:FargowiltasSouls/TimberChampion"
+    },
+    "FargowiltasSouls/EbonwoodEnchant": {
+      "stage": "timber-champion",
+      "via": "npc:FargowiltasSouls/TimberChampion"
+    },
+    "FargowiltasSouls/ShadewoodEnchant": {
+      "stage": "timber-champion",
+      "via": "npc:FargowiltasSouls/TimberChampion"
+    },
+    "FargowiltasSouls/PalmWoodEnchant": {
+      "stage": "timber-champion",
+      "via": "npc:FargowiltasSouls/TimberChampion"
+    },
+    "FargowiltasSouls/PearlwoodEnchant": {
+      "stage": "timber-champion",
+      "via": "npc:FargowiltasSouls/TimberChampion"
+    },
+    "FargowiltasSouls/CopperEnchant": {
+      "stage": "terra-champion",
+      "via": "npc:FargowiltasSouls/TerraChampion"
+    },
+    "FargowiltasSouls/TinEnchant": {
+      "stage": "terra-champion",
+      "via": "npc:FargowiltasSouls/TerraChampion"
+    },
+    "FargowiltasSouls/IronEnchant": {
+      "stage": "terra-champion",
+      "via": "npc:FargowiltasSouls/TerraChampion"
+    },
+    "FargowiltasSouls/LeadEnchant": {
+      "stage": "terra-champion",
+      "via": "npc:FargowiltasSouls/TerraChampion"
+    },
+    "FargowiltasSouls/SilverEnchant": {
+      "stage": "terra-champion",
+      "via": "npc:FargowiltasSouls/TerraChampion"
+    },
+    "FargowiltasSouls/TungstenEnchant": {
+      "stage": "terra-champion",
+      "via": "npc:FargowiltasSouls/TerraChampion"
+    },
+    "FargowiltasSouls/ObsidianEnchant": {
+      "stage": "terra-champion",
+      "via": "npc:FargowiltasSouls/TerraChampion"
+    },
+    "FargowiltasSouls/CobaltEnchant": {
+      "stage": "earth-champion",
+      "via": "npc:FargowiltasSouls/EarthChampion"
+    },
+    "FargowiltasSouls/PalladiumEnchant": {
+      "stage": "earth-champion",
+      "via": "npc:FargowiltasSouls/EarthChampion"
+    },
+    "FargowiltasSouls/MythrilEnchant": {
+      "stage": "earth-champion",
+      "via": "npc:FargowiltasSouls/EarthChampion"
+    },
+    "FargowiltasSouls/OrichalcumEnchant": {
+      "stage": "earth-champion",
+      "via": "npc:FargowiltasSouls/EarthChampion"
+    },
+    "FargowiltasSouls/AdamantiteEnchant": {
+      "stage": "earth-champion",
+      "via": "npc:FargowiltasSouls/EarthChampion"
+    },
+    "FargowiltasSouls/TitaniumEnchant": {
+      "stage": "earth-champion",
+      "via": "npc:FargowiltasSouls/EarthChampion"
+    },
+    "FargowiltasSouls/CrimsonEnchant": {
+      "stage": "nature-champion",
+      "via": "npc:FargowiltasSouls/NatureChampion"
+    },
+    "FargowiltasSouls/MoltenEnchant": {
+      "stage": "nature-champion",
+      "via": "npc:FargowiltasSouls/NatureChampion"
+    },
+    "FargowiltasSouls/RainEnchant": {
+      "stage": "nature-champion",
+      "via": "npc:FargowiltasSouls/NatureChampion"
+    },
+    "FargowiltasSouls/FrostEnchant": {
+      "stage": "nature-champion",
+      "via": "npc:FargowiltasSouls/NatureChampion"
+    },
+    "FargowiltasSouls/ChlorophyteEnchant": {
+      "stage": "nature-champion",
+      "via": "npc:FargowiltasSouls/NatureChampion"
+    },
+    "FargowiltasSouls/ShroomiteEnchant": {
+      "stage": "nature-champion",
+      "via": "npc:FargowiltasSouls/NatureChampion"
+    },
+    "FargowiltasSouls/PumpkinEnchant": {
+      "stage": "life-champion",
+      "via": "npc:FargowiltasSouls/LifeChampion"
+    },
+    "FargowiltasSouls/BeeEnchant": {
+      "stage": "life-champion",
+      "via": "npc:FargowiltasSouls/LifeChampion"
+    },
+    "FargowiltasSouls/SpiderEnchant": {
+      "stage": "life-champion",
+      "via": "npc:FargowiltasSouls/LifeChampion"
+    },
+    "FargowiltasSouls/TurtleEnchant": {
+      "stage": "life-champion",
+      "via": "npc:FargowiltasSouls/LifeChampion"
+    },
+    "FargowiltasSouls/BeetleEnchant": {
+      "stage": "life-champion",
+      "via": "npc:FargowiltasSouls/LifeChampion"
+    },
+    "FargowiltasSouls/NinjaEnchant": {
+      "stage": "shadow-champion",
+      "via": "npc:FargowiltasSouls/ShadowChampion"
+    },
+    "FargowiltasSouls/AncientShadowEnchant": {
+      "stage": "shadow-champion",
+      "via": "npc:FargowiltasSouls/ShadowChampion"
+    },
+    "FargowiltasSouls/CrystalAssassinEnchant": {
+      "stage": "shadow-champion",
+      "via": "npc:FargowiltasSouls/ShadowChampion"
+    },
+    "FargowiltasSouls/SpookyEnchant": {
+      "stage": "shadow-champion",
+      "via": "npc:FargowiltasSouls/ShadowChampion"
+    },
+    "FargowiltasSouls/ShinobiEnchant": {
+      "stage": "shadow-champion",
+      "via": "npc:FargowiltasSouls/ShadowChampion"
+    },
+    "FargowiltasSouls/DarkArtistEnchant": {
+      "stage": "shadow-champion",
+      "via": "npc:FargowiltasSouls/ShadowChampion"
+    },
+    "FargowiltasSouls/NecroEnchant": {
+      "stage": "shadow-champion",
+      "via": "npc:FargowiltasSouls/ShadowChampion"
+    },
+    "FargowiltasSouls/ForbiddenEnchant": {
+      "stage": "spirit-champion",
+      "via": "npc:FargowiltasSouls/SpiritChampion"
+    },
+    "FargowiltasSouls/HallowEnchant": {
+      "stage": "spirit-champion",
+      "via": "npc:FargowiltasSouls/SpiritChampion"
+    },
+    "FargowiltasSouls/AncientHallowEnchant": {
+      "stage": "spirit-champion",
+      "via": "npc:FargowiltasSouls/SpiritChampion"
+    },
+    "FargowiltasSouls/TikiEnchant": {
+      "stage": "spirit-champion",
+      "via": "npc:FargowiltasSouls/SpiritChampion"
+    },
+    "FargowiltasSouls/SpectreEnchant": {
+      "stage": "spirit-champion",
+      "via": "npc:FargowiltasSouls/SpiritChampion"
+    },
+    "FargowiltasSouls/GoldEnchant": {
+      "stage": "will-champion",
+      "via": "npc:FargowiltasSouls/WillChampion"
+    },
+    "FargowiltasSouls/PlatinumEnchant": {
+      "stage": "will-champion",
+      "via": "npc:FargowiltasSouls/WillChampion"
+    },
+    "FargowiltasSouls/GladiatorEnchant": {
+      "stage": "will-champion",
+      "via": "npc:FargowiltasSouls/WillChampion"
+    },
+    "FargowiltasSouls/RedRidingEnchant": {
+      "stage": "will-champion",
+      "via": "npc:FargowiltasSouls/WillChampion"
+    },
+    "FargowiltasSouls/ValhallaKnightEnchant": {
+      "stage": "will-champion",
+      "via": "npc:FargowiltasSouls/WillChampion"
+    },
+    "FargowiltasSouls/MeteorEnchant": {
+      "stage": "cosmos-champion",
+      "via": "npc:FargowiltasSouls/CosmosChampion"
+    },
+    "FargowiltasSouls/WizardEnchant": {
+      "stage": "cosmos-champion",
+      "via": "npc:FargowiltasSouls/CosmosChampion"
+    },
+    "Fargowiltas/CrucibleCosmos": {
+      "stage": "cosmos-champion",
+      "via": "npc:FargowiltasSouls/CosmosChampion"
+    },
+    "FargowiltasSouls/UniverseCore": {
+      "stage": "cosmos-champion",
+      "via": "container:FargowiltasSouls/CosmosBag"
+    },
+    "FargowiltasSouls/AbominableWand": {
+      "stage": "abominationn",
+      "via": "npc:FargowiltasSouls/AbomBoss"
+    },
+    "FargowiltasSouls/StaffOfUnleashedOcean": {
+      "stage": "abominationn",
+      "via": "npc:FargowiltasSouls/AbomBoss"
+    },
+    "FargowiltasSouls/MutantEye": {
+      "stage": "mutant",
+      "via": "npc:FargowiltasSouls/MutantBoss"
+    }
+  },
+  "wikiMissingItems": [],
+  "wikiResolvedItems": [],
+  "wikiAmbiguousItems": [],
+  "wikiUnresolvedItems": [],
+  "wikiAvailabilityCorrections": [],
+  "availabilityCorrections": [
+    {
+      "item": "FargowiltasSouls/AncientCobaltEnchant",
+      "fromStage": null,
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/AshWoodEnchant",
+      "fromStage": null,
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/BorealWoodEnchant",
+      "fromStage": "timber-champion",
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/CactusEnchant",
+      "fromStage": null,
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/CopperEnchant",
+      "fromStage": "terra-champion",
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/EbonwoodEnchant",
+      "fromStage": "timber-champion",
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/FossilEnchant",
+      "fromStage": null,
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/GladiatorEnchant",
+      "fromStage": "will-champion",
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/GoldEnchant",
+      "fromStage": "will-champion",
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/IronEnchant",
+      "fromStage": "terra-champion",
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/JungleEnchant",
+      "fromStage": null,
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/LeadEnchant",
+      "fromStage": "terra-champion",
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/PalmWoodEnchant",
+      "fromStage": "timber-champion",
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/PlatinumEnchant",
+      "fromStage": "will-champion",
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/PumpkinEnchant",
+      "fromStage": "life-champion",
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/RainEnchant",
+      "fromStage": "nature-champion",
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/RichMahoganyEnchant",
+      "fromStage": "timber-champion",
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/ShadewoodEnchant",
+      "fromStage": "timber-champion",
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/SilverEnchant",
+      "fromStage": "terra-champion",
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/SnowEnchant",
+      "fromStage": null,
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/WoodEnchant",
+      "fromStage": "timber-champion",
+      "toStage": "start",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/TinEnchant",
+      "fromStage": "terra-champion",
+      "toStage": "eye-of-cthulhu",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/AnglerEnchant",
+      "fromStage": null,
+      "toStage": "eye-of-cthulhu",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/MinerEnchant",
+      "fromStage": null,
+      "toStage": "eye-of-cthulhu",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/TungstenEnchant",
+      "fromStage": "terra-champion",
+      "toStage": "eye-of-cthulhu",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/NinjaEnchant",
+      "fromStage": "shadow-champion",
+      "toStage": "king-slime",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/CrimsonEnchant",
+      "fromStage": "nature-champion",
+      "toStage": "world-evil",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/MeteorEnchant",
+      "fromStage": "cosmos-champion",
+      "toStage": "world-evil",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/MoltenEnchant",
+      "fromStage": "nature-champion",
+      "toStage": "world-evil",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/ObsidianEnchant",
+      "fromStage": "terra-champion",
+      "toStage": "world-evil",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/ShadowEnchant",
+      "fromStage": null,
+      "toStage": "world-evil",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/BeeEnchant",
+      "fromStage": "life-champion",
+      "toStage": "queen-bee",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/NecroEnchant",
+      "fromStage": "shadow-champion",
+      "toStage": "skeletron",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/AdamantiteEnchant",
+      "fromStage": "earth-champion",
+      "toStage": "wall-of-flesh",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/AncientShadowEnchant",
+      "fromStage": "shadow-champion",
+      "toStage": "wall-of-flesh",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/CobaltEnchant",
+      "fromStage": "earth-champion",
+      "toStage": "wall-of-flesh",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/FrostEnchant",
+      "fromStage": "nature-champion",
+      "toStage": "wall-of-flesh",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/ForbiddenEnchant",
+      "fromStage": "spirit-champion",
+      "toStage": "wall-of-flesh",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/MythrilEnchant",
+      "fromStage": "earth-champion",
+      "toStage": "wall-of-flesh",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/OrichalcumEnchant",
+      "fromStage": "earth-champion",
+      "toStage": "wall-of-flesh",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/PalladiumEnchant",
+      "fromStage": "earth-champion",
+      "toStage": "wall-of-flesh",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/PearlwoodEnchant",
+      "fromStage": "timber-champion",
+      "toStage": "wall-of-flesh",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/SpiderEnchant",
+      "fromStage": "life-champion",
+      "toStage": "wall-of-flesh",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/TitaniumEnchant",
+      "fromStage": "earth-champion",
+      "toStage": "wall-of-flesh",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/WizardEnchant",
+      "fromStage": "cosmos-champion",
+      "toStage": "wall-of-flesh",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/CrystalAssassinEnchant",
+      "fromStage": "shadow-champion",
+      "toStage": "queen-slime",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/ApprenticeEnchant",
+      "fromStage": null,
+      "toStage": "skeletron-prime",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/HuntressEnchant",
+      "fromStage": null,
+      "toStage": "skeletron-prime",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/MonkEnchant",
+      "fromStage": null,
+      "toStage": "skeletron-prime",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/SquireEnchant",
+      "fromStage": null,
+      "toStage": "skeletron-prime",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/AncientHallowEnchant",
+      "fromStage": "spirit-champion",
+      "toStage": "skeletron-prime",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/HallowEnchant",
+      "fromStage": "spirit-champion",
+      "toStage": "skeletron-prime",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/ChlorophyteEnchant",
+      "fromStage": "nature-champion",
+      "toStage": "skeletron-prime",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/TurtleEnchant",
+      "fromStage": "life-champion",
+      "toStage": "skeletron-prime",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/ShroomiteEnchant",
+      "fromStage": "nature-champion",
+      "toStage": "plantera",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/SpectreEnchant",
+      "fromStage": "spirit-champion",
+      "toStage": "plantera",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/SpookyEnchant",
+      "fromStage": "shadow-champion",
+      "toStage": "plantera",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/TikiEnchant",
+      "fromStage": "spirit-champion",
+      "toStage": "plantera",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/BeetleEnchant",
+      "fromStage": "life-champion",
+      "toStage": "golem",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/DarkArtistEnchant",
+      "fromStage": "shadow-champion",
+      "toStage": "golem",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/ShinobiEnchant",
+      "fromStage": "shadow-champion",
+      "toStage": "golem",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/ValhallaKnightEnchant",
+      "fromStage": "will-champion",
+      "toStage": "golem",
+      "source": "official-wiki-availability"
+    },
+    {
+      "item": "FargowiltasSouls/RedRidingEnchant",
+      "fromStage": "will-champion",
+      "toStage": "betsy",
+      "source": "official-wiki-availability"
+    }
+  ],
+  "staleRules": [],
+  "manualAssignmentProblems": [],
+  "officialSourceCompatibility": {
+    "recommendations": {
+      "present": false,
+      "compatible": false,
+      "comparisons": []
+    },
+    "availability": {
+      "present": true,
+      "compatible": true,
+      "comparisons": [
+        {
+          "mod": "FargowiltasSouls",
+          "sourceVersion": "1.7.3",
+          "snapshotVersion": "1.7.3.9",
+          "compatible": true
+        }
+      ]
+    }
+  }
+}

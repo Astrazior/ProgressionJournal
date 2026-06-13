@@ -22,8 +22,9 @@ public static class JournalUiMetrics
     public const float StageProgressionToggleRightInset = 10f;
     public const float StageListLeft = 12f;
     public const float StageListTop = 40f;
-    public const float StageListHorizontalInset = 24f;
+    public const float StageListHorizontalInset = 42f;
     public const float StageListBottomInset = 52f;
+    public const float StageScrollbarOffset = 24f;
     public const float ProfileButtonHeight = 36f;
     public const float ProfileButtonOverlap = 2f;
     public const float ProfileButtonTextScale = 0.82f;
@@ -92,10 +93,9 @@ public static class JournalUiMetrics
     public const float ClassButtonPreviewHeight = 112f;
     public const float ClassButtonTitleTop = 10f;
     public const float ClassButtonTitleScale = 0.5f;
-    public const float MinSingleColumnStageButtonHeight = 40f;
     public const float StageButtonDefaultHeight = 44f;
     public const float StageButtonGap = 6f;
-    public const float StageButtonColumnGap = 8f;
+    public const float StageButtonColumnGap = 6f;
     public const float InventoryButtonSize = 34f;
     public const float InventoryButtonAccessorySlotStep = 47f;
     public const float InventoryButtonHorizontalSpacing = 8f;

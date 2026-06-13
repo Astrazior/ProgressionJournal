@@ -19,7 +19,22 @@ public static class JournalProfileUnlockRegistry
 
     public static bool IsUnlocked(JournalProfileStageDocument stage, out bool conditionResolved)
     {
-        var condition = stage.Unlock;
+        return IsUnlocked(stage.Unlock, out conditionResolved);
+    }
+
+    private static bool IsUnlocked(JournalUnlockConditionDocument condition, out bool conditionResolved)
+    {
+        if (condition.Conditions.Count > 0)
+        {
+            var results = condition.Conditions
+                .Select(value => (Unlocked: IsUnlocked(value, out var resolved), Resolved: resolved))
+                .ToArray();
+            conditionResolved = results.All(static value => value.Resolved);
+            return string.Equals(condition.Mode, "any", StringComparison.OrdinalIgnoreCase)
+                ? results.Any(static value => value.Unlocked)
+                : results.All(static value => value.Unlocked);
+        }
+
         var type = condition.Type.Trim().ToLowerInvariant();
 
         switch (type)
@@ -31,6 +46,8 @@ public static class JournalProfileUnlockRegistry
             case "vanilla-stage":
                 conditionResolved = JournalStageIds.TryToLegacy(condition.Key, out var vanillaStage);
                 return !conditionResolved || ProgressionStageCatalog.Get(vanillaStage).IsUnlocked();
+            case "vanilla-flag":
+                return TryResolveVanillaFlag(condition.Key, out conditionResolved);
             case "external":
                 conditionResolved = ExternalConditions.TryGetValue(condition.Key, out var callback);
                 return !conditionResolved || callback!();
@@ -42,6 +59,77 @@ public static class JournalProfileUnlockRegistry
                 conditionResolved = false;
                 return true;
         }
+    }
+
+    private static bool TryResolveVanillaFlag(string key, out bool conditionResolved)
+    {
+        var value = key switch
+        {
+            "downedSlimeKing" => NPC.downedSlimeKing,
+            "downedBoss1" => NPC.downedBoss1,
+            "downedBoss2" => NPC.downedBoss2,
+            "downedQueenBee" => NPC.downedQueenBee,
+            "downedBoss3" => NPC.downedBoss3,
+            "downedDeerclops" => NPC.downedDeerclops,
+            "hardMode" => Main.hardMode,
+            "downedQueenSlime" => NPC.downedQueenSlime,
+            "downedGoblins" => NPC.downedGoblins,
+            "downedPirates" => NPC.downedPirates,
+            "downedMechBoss1" => NPC.downedMechBoss1,
+            "downedMechBoss2" => NPC.downedMechBoss2,
+            "downedMechBoss3" => NPC.downedMechBoss3,
+            "downedPlantBoss" => NPC.downedPlantBoss,
+            "downedGolemBoss" => NPC.downedGolemBoss,
+            "downedFishron" => NPC.downedFishron,
+            "downedEmpressOfLight" => NPC.downedEmpressOfLight,
+            "downedAncientCultist" => NPC.downedAncientCultist,
+            "downedMartians" => NPC.downedMartians,
+            "downedHalloweenTree" => NPC.downedHalloweenTree,
+            "downedHalloweenKing" => NPC.downedHalloweenKing,
+            "downedChristmasTree" => NPC.downedChristmasTree,
+            "downedChristmasSantank" => NPC.downedChristmasSantank,
+            "downedChristmasIceQueen" => NPC.downedChristmasIceQueen,
+            "downedMoonlord" => NPC.downedMoonlord,
+            _ => (bool?)null
+        };
+        if (value.HasValue)
+        {
+            conditionResolved = true;
+            return value.Value;
+        }
+
+        var reflected = FindVanillaFlag(key);
+        conditionResolved = reflected is not null;
+        return reflected?.Invoke() ?? true;
+    }
+
+    private static Func<bool>? FindVanillaFlag(string key)
+    {
+        const System.Reflection.BindingFlags flags =
+            System.Reflection.BindingFlags.Public
+            | System.Reflection.BindingFlags.NonPublic
+            | System.Reflection.BindingFlags.Static;
+        var separator = key.LastIndexOf('.');
+        var typeName = separator > 0 ? key[..separator] : nameof(NPC);
+        var memberName = separator > 0 ? key[(separator + 1)..] : key;
+        var type = typeof(Main).Assembly.GetTypes().FirstOrDefault(candidate =>
+            string.Equals(candidate.Name, typeName, StringComparison.Ordinal)
+            || string.Equals(candidate.FullName, typeName, StringComparison.Ordinal));
+        if (type is null)
+        {
+            return null;
+        }
+
+        var property = type.GetProperty(memberName, flags);
+        if (property?.PropertyType == typeof(bool) && property.GetMethod is { IsStatic: true })
+        {
+            return () => (bool)(property.GetValue(null) ?? false);
+        }
+
+        var field = type.GetField(memberName, flags);
+        return field?.FieldType == typeof(bool) && field.IsStatic
+            ? () => (bool)(field.GetValue(null) ?? false)
+            : null;
     }
 
     public static void Clear()
@@ -156,6 +244,34 @@ public static class JournalProfileUnlockRegistry
 
         foreach (var type in mod.Code.GetTypes())
         {
+            var bracketIndex = key.IndexOf('[');
+            if (bracketIndex > 0
+                && key.EndsWith(']')
+                && int.TryParse(key[(bracketIndex + 1)..^1], out var arrayIndex))
+            {
+                var memberName = key[..bracketIndex];
+                var arrayProperty = type.GetProperty(memberName, flags);
+                if (arrayProperty?.PropertyType == typeof(bool[])
+                    && arrayProperty.GetMethod is { IsStatic: true })
+                {
+                    return () =>
+                    {
+                        var values = arrayProperty.GetValue(null) as bool[];
+                        return values is not null && arrayIndex >= 0 && arrayIndex < values.Length && values[arrayIndex];
+                    };
+                }
+
+                var arrayField = type.GetField(memberName, flags);
+                if (arrayField?.FieldType == typeof(bool[]) && arrayField.IsStatic)
+                {
+                    return () =>
+                    {
+                        var values = arrayField.GetValue(null) as bool[];
+                        return values is not null && arrayIndex >= 0 && arrayIndex < values.Length && values[arrayIndex];
+                    };
+                }
+            }
+
             var property = type.GetProperty(key, flags);
             if (property?.PropertyType == typeof(bool)
                 && property.GetMethod is not null

@@ -10,7 +10,7 @@ namespace ProgressionJournal.Data.Profiles;
 public static class JournalProfileStorage
 {
     public const string ProfileFormat = "ProgressionJournalProfile";
-    public const int CurrentVersion = 2;
+    public const int CurrentVersion = 1;
     public const string FileExtension = ".pjprofile.json";
 
     private const string ProfileDirectoryName = "Profiles";
@@ -73,7 +73,7 @@ public static class JournalProfileStorage
                 return false;
             }
 
-            if (!Validate(document, out error))
+            if (!Validate(document, isBuiltIn, out error))
             {
                 return false;
             }
@@ -106,7 +106,7 @@ public static class JournalProfileStorage
             document.Version = CurrentVersion;
             document.ReadOnly = false;
 
-            if (!Validate(document, out error))
+            if (!Validate(document, requireBuiltInLocalization: false, out error))
             {
                 return false;
             }
@@ -190,7 +190,7 @@ public static class JournalProfileStorage
         document.ReadOnly = false;
 
         if (string.Equals(document.Id, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase)
-            || string.Equals(document.Id, JournalProfileIds.CalamityWiki, StringComparison.OrdinalIgnoreCase))
+            || document.Id.StartsWith("builtin.", StringComparison.OrdinalIgnoreCase))
         {
             document.Id = CreateCopyId(document.Id);
             document.Name = $"{document.Name} (copy)";
@@ -296,7 +296,10 @@ public static class JournalProfileStorage
         return JsonSerializer.Serialize(document, SerializerOptions);
     }
 
-    private static bool Validate(JournalProfileDocument document, out string error)
+    private static bool Validate(
+        JournalProfileDocument document,
+        bool requireBuiltInLocalization,
+        out string error)
     {
         if (!string.Equals(document.Format, ProfileFormat, StringComparison.Ordinal))
         {
@@ -310,7 +313,7 @@ public static class JournalProfileStorage
             return false;
         }
 
-        if (string.IsNullOrWhiteSpace(document.Id) || string.IsNullOrWhiteSpace(document.Name))
+        if (string.IsNullOrWhiteSpace(document.Id) || document.Name.IsEmpty)
         {
             error = "Profile id and name are required.";
             return false;
@@ -322,10 +325,21 @@ public static class JournalProfileStorage
             return false;
         }
 
+        if (requireBuiltInLocalization
+            && (!HasBuiltInLocales(document.Name)
+                || document.Classes.Any(static value => !HasBuiltInLocales(value.Name))
+                || document.Stages.Any(static value => !HasBuiltInLocales(value.Name))
+                || document.Entries.SelectMany(static value => value.Wiki)
+                    .Any(static value => !HasBuiltInLocales(value.Target))))
+        {
+            error = "Built-in profile names and Wiki targets require en-US and ru-RU text.";
+            return false;
+        }
+
         if (document.Classes.Any(static value =>
-                string.IsNullOrWhiteSpace(value.Id) || string.IsNullOrWhiteSpace(value.Name))
+                string.IsNullOrWhiteSpace(value.Id) || value.Name.IsEmpty)
             || document.Stages.Any(static value =>
-                string.IsNullOrWhiteSpace(value.Id) || string.IsNullOrWhiteSpace(value.Name))
+                string.IsNullOrWhiteSpace(value.Id) || value.Name.IsEmpty)
             || document.Entries.Any(static value => string.IsNullOrWhiteSpace(value.Key)))
         {
             error = "Class, stage, and entry ids and names cannot be empty.";
@@ -352,9 +366,21 @@ public static class JournalProfileStorage
                 return false;
             }
 
-            if (entry.Evaluations.Count == 0 || entry.Evaluations.Any(value => !stageIds.Contains(value.StageId)))
+            if ((entry.Evaluations.Count == 0 && entry.Wiki.Count == 0)
+                || entry.Evaluations.Any(value => !stageIds.Contains(value.StageId)))
             {
                 error = $"Entry '{entry.Key}' references an unknown stage.";
+                return false;
+            }
+
+            if (entry.Wiki.Any(value =>
+                    !stageIds.Contains(value.StageId)
+                    || value.Classes.Count == 0
+                    || value.Classes.Any(classId => !classIds.Contains(classId))
+                    || value.Target.IsEmpty
+                    || string.IsNullOrWhiteSpace(value.SourceName)))
+            {
+                error = $"Entry '{entry.Key}' contains invalid Wiki recommendation metadata.";
                 return false;
             }
 
@@ -374,8 +400,10 @@ public static class JournalProfileStorage
 
         foreach (var buff in document.CombatBuffs)
         {
+            var buffClasses = GetCombatBuffClasses(buff);
             if (string.IsNullOrWhiteSpace(buff.Key)
-                || !classIds.Contains(buff.ClassId)
+                || buffClasses.Count == 0
+                || buffClasses.Any(classId => !classIds.Contains(classId))
                 || !stageIds.Contains(buff.StageId)
                 || buff.ItemGroups.Count == 0
                 || buff.ItemGroups.Any(static group => group.Count == 0)
@@ -416,10 +444,17 @@ public static class JournalProfileStorage
                 entryDocument.Category,
                 entryDocument.Classes,
                 groups,
-                entryDocument.Evaluations.Select(static value => new StageEvaluation(value.StageId, value.Tier)),
+                entryDocument.Evaluations.Select(static value =>
+                    new StageEvaluation(value.StageId, value.Tier, scope: value.Scope)),
                 entryDocument.EventCategory,
                 entryDocument.IsSupportWeapon,
-                entryDocument.CustomEventName));
+                entryDocument.CustomEventName,
+                entryDocument.Wiki.Select(static value => new JournalWikiRecommendation(
+                    value.StageId,
+                    value.Classes.ToHashSet(StringComparer.OrdinalIgnoreCase),
+                    value.SourceName,
+                    value.SourceUrl,
+                    value.Target))));
         }
 
         return result;
@@ -447,7 +482,7 @@ public static class JournalProfileStorage
             result.Add(new JournalCombatBuffEntry(
                 buffDocument.Key,
                 buffDocument.Category,
-                [buffDocument.ClassId],
+                GetCombatBuffClasses(buffDocument),
                 groups,
                 buffDocument.StageId));
         }
@@ -517,11 +552,24 @@ public static class JournalProfileStorage
         };
     }
 
+    private static IReadOnlyList<string> GetCombatBuffClasses(JournalProfileCombatBuffDocument document)
+    {
+        if (document.Classes.Count > 0)
+        {
+            return document.Classes;
+        }
+
+        return string.IsNullOrWhiteSpace(document.ClassId) ? [] : [document.ClassId];
+    }
+
     private static bool HasDuplicates(IEnumerable<string> values)
     {
         HashSet<string> seen = new(StringComparer.OrdinalIgnoreCase);
         return values.Any(value => string.IsNullOrWhiteSpace(value) || !seen.Add(value));
     }
+
+    private static bool HasBuiltInLocales(JournalLocalizedText value) =>
+        value.HasLocale("en-US") && value.HasLocale("ru-RU");
 
     private static string CreateCopyId(string sourceId)
     {

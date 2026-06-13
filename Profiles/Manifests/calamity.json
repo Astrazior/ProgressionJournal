@@ -1,0 +1,288 @@
+{
+  "baseManifest": "vanilla.json",
+  "id": "builtin.calamity",
+  "outputName": "calamity",
+  "name": { "en-US": "Calamity progression", "ru-RU": "Прогрессия Calamity" },
+  "profileVersion": "1",
+  "requiredMods": [{ "name": "CalamityMod", "version": "" }],
+  "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bosses",
+  "wikiSource": {
+    "name": "Official Calamity Mod Wiki",
+    "url": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups"
+  },
+  "wikiInput": "../Wiki/calamity-recommendations.json",
+  "initialItems": ["Terraria/Feather"],
+  "classes": [
+    { "id": "melee", "name": { "en-US": "Melee", "ru-RU": "Воин" }, "damageClassNames": ["Melee"] },
+    { "id": "ranged", "name": { "en-US": "Ranged", "ru-RU": "Стрелок" }, "damageClassNames": ["Ranged"] },
+    { "id": "magic", "name": { "en-US": "Magic", "ru-RU": "Маг" }, "damageClassNames": ["Magic"] },
+    { "id": "summoner", "name": { "en-US": "Summoner", "ru-RU": "Призыватель" }, "damageClassNames": ["Summon"] },
+    { "id": "rogue", "name": { "en-US": "Rogue", "ru-RU": "Разбойник" }, "damageClassNames": ["Rogue"] }
+  ],
+  "stagePatches": {
+    "hive-mind-perforators": {
+      "materials": ["CalamityMod/AerialiteOre"]
+    },
+    "cryogen": {
+      "materials": ["CalamityMod/CryonicOre"]
+    },
+    "plantera": {
+      "materials": ["CalamityMod/PerennialOre"]
+    },
+    "golem": {
+      "materials": ["CalamityMod/ScoriaOre"]
+    },
+    "astrum-deus": {
+      "materials": ["CalamityMod/AstralOre"]
+    },
+    "moon-lord": {
+      "materials": ["CalamityMod/ExodiumCluster"]
+    },
+    "providence": {
+      "materials": ["CalamityMod/UelibloomOre"]
+    },
+    "yharon": {
+      "materials": ["CalamityMod/AuricOre"]
+    }
+  },
+  "conditionUnlocks": [
+    {
+      "stageId": "desert-scourge",
+      "sources": ["drop"],
+      "conditionDescriptions": ["Предметы: After defeating the Desert Scourge"]
+    },
+    {
+      "stageId": "eye-of-cthulhu",
+      "sources": ["drop"],
+      "conditionDescriptions": ["Предметы: После победы над Глазом Ктулху"]
+    },
+    {
+      "stageId": "skeletron",
+      "sources": ["shop"],
+      "conditionDescriptions": ["После победы над Скелетроном", "After defeating Skeletron"]
+    },
+    {
+      "stageId": "wall-of-flesh",
+      "sources": ["shop", "drop"],
+      "conditionDescriptions": ["В хардмоде", "In Hardmode", "Предметы: В хардмоде", "Items: In Hardmode"]
+    },
+    {
+      "stageId": "cryogen",
+      "sources": ["drop"],
+      "conditionDescriptions": ["Предметы: After defeating Cryogen"]
+    },
+    {
+      "stageId": "aquatic-scourge",
+      "sources": ["drop"],
+      "conditionDescriptions": ["Предметы: After defeating the Aquatic Scourge"]
+    },
+    {
+      "stageId": "destroyer",
+      "sources": ["shop"],
+      "conditionDescriptions": [
+        "После победы над любым механическим боссом",
+        "After defeating any mechanical boss"
+      ]
+    },
+    {
+      "stageId": "skeletron-prime",
+      "sources": ["shop"],
+      "conditionDescriptions": [
+        "После победы над всеми механическими боссами",
+        "After defeating all mechanical bosses"
+      ]
+    },
+    {
+      "stageId": "calamitas-clone",
+      "sources": ["shop", "drop"],
+      "conditionDescriptions": ["After defeating Calamitas Clone", "Предметы: After defeating Calamitas Clone"]
+    },
+    {
+      "stageId": "plantera",
+      "sources": ["shop", "drop"],
+      "conditionDescriptions": ["После победы над Плантерой", "After defeating Plantera", "Предметы: После победы над Плантерой"]
+    },
+    {
+      "stageId": "leviathan-anahita",
+      "sources": ["drop"],
+      "conditionDescriptions": ["Предметы: After defeating the Leviathan and Anahita"]
+    },
+    {
+      "stageId": "golem",
+      "sources": ["shop"],
+      "conditionDescriptions": ["После победы над Големом", "After defeating Golem"]
+    },
+    {
+      "stageId": "moon-lord",
+      "sources": ["shop", "drop"],
+      "conditionDescriptions": [
+        "После победы над Лунным лордом",
+        "After defeating Moon Lord",
+        "Предметы: После победы над Лунным лордом"
+      ]
+    },
+    {
+      "stageId": "providence",
+      "sources": ["drop"],
+      "conditionDescriptions": ["Предметы: After defeating Providence"]
+    },
+    {
+      "stageId": "polterghast",
+      "sources": ["shop", "drop"],
+      "conditionDescriptions": ["After defeating the Polterghast", "Предметы: After defeating the Polterghast"]
+    },
+    {
+      "stageId": "old-duke",
+      "sources": ["shop"],
+      "conditionDescriptions": ["After defeating the Old Duke"]
+    },
+    {
+      "stageId": "devourer-of-gods",
+      "sources": ["shop", "drop"],
+      "conditionDescriptions": ["After defeating the Devourer of Gods", "Предметы: After defeating the Devourer of Gods"]
+    },
+    {
+      "stageId": "yharon",
+      "sources": ["shop"],
+      "conditionDescriptions": ["After defeating Yharon"]
+    }
+  ],
+  "events": [
+    {
+      "id": "acid-rain-1",
+      "stageId": "eye-of-cthulhu",
+      "customEventName": "Acid Rain",
+      "enemies": ["CalamityMod/NuclearToad", "CalamityMod/CragmawMire"]
+    },
+    {
+      "id": "acid-rain-2",
+      "stageId": "aquatic-scourge",
+      "customEventName": "Acid Rain II",
+      "enemies": ["CalamityMod/CragmawMire"]
+    }
+  ],
+  "insertions": [
+    {
+      "after": "king-slime",
+      "stages": [
+        { "id": "desert-scourge", "name": { "en-US": "Desert Scourge", "ru-RU": "Пустынный бич" }, "iconMod": "CalamityMod", "iconNpc": "DesertScourgeHead", "dropSources": ["CalamityMod/DesertScourgeHead"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedDesertScourge" } }
+      ]
+    },
+    {
+      "after": "eye-of-cthulhu",
+      "stages": [
+        { "id": "crabulon", "name": { "en-US": "Crabulon", "ru-RU": "Крабулон" }, "iconMod": "CalamityMod", "iconNpc": "Crabulon", "dropSources": ["CalamityMod/Crabulon"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedCrabulon" } }
+      ]
+    },
+    {
+      "after": "world-evil",
+      "stages": [
+        {
+          "id": "hive-mind-perforators",
+          "name": { "en-US": "The Hive Mind / The Perforators", "ru-RU": "Разум улья / Перфораторы" },
+          "iconMod": "CalamityMod",
+          "iconNpc": "HiveMind",
+          "dropSources": ["CalamityMod/HiveMind", "CalamityMod/PerforatorHive"],
+          "unlock": {
+            "mode": "any",
+            "conditions": [
+              { "type": "mod-flag", "mod": "CalamityMod", "key": "downedHiveMind" },
+              { "type": "mod-flag", "mod": "CalamityMod", "key": "downedPerforator" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "after": "skeletron",
+      "stages": [
+        { "id": "slime-god", "name": { "en-US": "The Slime God", "ru-RU": "Бог слизней" }, "iconMod": "CalamityMod", "iconNpc": "SlimeGodCore", "dropSources": ["CalamityMod/SlimeGodCore"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedSlimeGod" } }
+      ]
+    },
+    {
+      "after": "wall-of-flesh",
+      "stages": [
+        { "id": "cryogen", "name": { "en-US": "Cryogen", "ru-RU": "Криоген" }, "iconMod": "CalamityMod", "iconNpc": "Cryogen", "dropSources": ["CalamityMod/Cryogen"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedCryogen" } }
+      ]
+    },
+    {
+      "after": "queen-slime",
+      "stages": [
+        { "id": "aquatic-scourge", "name": { "en-US": "Aquatic Scourge", "ru-RU": "Водный бич" }, "iconMod": "CalamityMod", "iconNpc": "AquaticScourgeHead", "dropSources": ["CalamityMod/AquaticScourgeHead"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedAquaticScourge" } }
+      ]
+    },
+    {
+      "after": "destroyer",
+      "stages": [
+        { "id": "brimstone-elemental", "name": { "en-US": "Brimstone Elemental", "ru-RU": "Серная элементаль" }, "iconMod": "CalamityMod", "iconNpc": "BrimstoneElemental", "dropSources": ["CalamityMod/BrimstoneElemental"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedBrimstoneElemental" } }
+      ]
+    },
+    {
+      "after": "skeletron-prime",
+      "stages": [
+        { "id": "calamitas-clone", "name": { "en-US": "Calamitas Clone", "ru-RU": "Клон Каламитас" }, "iconMod": "CalamityMod", "iconNpc": "CalamitasClone", "dropSources": ["CalamityMod/CalamitasClone"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedCalamitasClone" } }
+      ]
+    },
+    {
+      "after": "plantera",
+      "stages": [
+        { "id": "leviathan-anahita", "name": { "en-US": "Anahita and Leviathan", "ru-RU": "Анахита и Левиафан" }, "iconMod": "CalamityMod", "iconNpc": "Leviathan", "dropSources": ["CalamityMod/Anahita", "CalamityMod/Leviathan"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedLeviathan" } },
+        { "id": "astrum-aureus", "name": { "en-US": "Astrum Aureus", "ru-RU": "Аструм Ауреус" }, "iconMod": "CalamityMod", "iconNpc": "AstrumAureus", "dropSources": ["CalamityMod/AstrumAureus"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedAstrumAureus" } }
+      ]
+    },
+    {
+      "after": "golem",
+      "stages": [
+        { "id": "plaguebringer-goliath", "name": { "en-US": "The Plaguebringer Goliath", "ru-RU": "Чумной голиаф" }, "iconMod": "CalamityMod", "iconNpc": "PlaguebringerGoliath", "dropSources": ["CalamityMod/PlaguebringerGoliath"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedPlaguebringer" } },
+        { "id": "ravager", "name": { "en-US": "Ravager", "ru-RU": "Разрушитель" }, "iconMod": "CalamityMod", "iconNpc": "RavagerBody", "dropSources": ["CalamityMod/RavagerBody"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedRavager" } }
+      ]
+    },
+    {
+      "after": "lunatic-cultist",
+      "stages": [
+        { "id": "astrum-deus", "name": { "en-US": "Astrum Deus", "ru-RU": "Аструм Деус" }, "iconMod": "CalamityMod", "iconNpc": "AstrumDeusHead", "dropSources": ["CalamityMod/AstrumDeusHead"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedAstrumDeus" } }
+      ]
+    },
+    {
+      "after": "moon-lord",
+      "stages": [
+        { "id": "profaned-guardians", "name": { "en-US": "Profaned Guardians", "ru-RU": "Осквернённые стражи" }, "iconMod": "CalamityMod", "iconNpc": "ProfanedGuardianCommander", "dropSources": ["CalamityMod/ProfanedGuardianCommander"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedGuardians" } },
+        { "id": "dragonfolly", "name": { "en-US": "The Dragonfolly", "ru-RU": "Драконья глупость" }, "iconMod": "CalamityMod", "iconNpc": "Dragonfolly", "dropSources": ["CalamityMod/Dragonfolly"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedDragonfolly" } },
+        { "id": "providence", "name": { "en-US": "Providence", "ru-RU": "Провиденс" }, "iconMod": "CalamityMod", "iconNpc": "Providence", "dropSources": ["CalamityMod/Providence"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedProvidence" } },
+        { "id": "storm-weaver", "name": { "en-US": "Storm Weaver", "ru-RU": "Штормовой ткач" }, "iconMod": "CalamityMod", "iconNpc": "StormWeaverHead", "dropSources": ["CalamityMod/StormWeaverHead"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedStormWeaver" } },
+        { "id": "ceaseless-void", "name": { "en-US": "Ceaseless Void", "ru-RU": "Бесконечная пустота" }, "iconMod": "CalamityMod", "iconNpc": "CeaselessVoid", "dropSources": ["CalamityMod/CeaselessVoid"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedCeaselessVoid" } },
+        { "id": "signus", "name": { "en-US": "Signus", "ru-RU": "Сигнус" }, "iconMod": "CalamityMod", "iconNpc": "Signus", "dropSources": ["CalamityMod/Signus"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedSignus" } },
+        { "id": "polterghast", "name": { "en-US": "Polterghast", "ru-RU": "Полтергаст" }, "iconMod": "CalamityMod", "iconNpc": "Polterghast", "dropSources": ["CalamityMod/Polterghast"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedPolterghast" } },
+        { "id": "old-duke", "name": { "en-US": "The Old Duke", "ru-RU": "Старый герцог" }, "iconMod": "CalamityMod", "iconNpc": "OldDuke", "dropSources": ["CalamityMod/OldDuke"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedBoomerDuke" } },
+        { "id": "devourer-of-gods", "name": { "en-US": "The Devourer of Gods", "ru-RU": "Пожиратель богов" }, "iconMod": "CalamityMod", "iconNpc": "DevourerofGodsHead", "dropSources": ["CalamityMod/DevourerofGodsHead"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedDoG" } },
+        { "id": "yharon", "name": { "en-US": "Yharon", "ru-RU": "Ярон" }, "iconMod": "CalamityMod", "iconNpc": "Yharon", "dropSources": ["CalamityMod/Yharon"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedYharon" } },
+        { "id": "exo-mechs", "name": { "en-US": "Exo Mechs", "ru-RU": "Экзо-механизмы" }, "iconMod": "CalamityMod", "iconNpc": "AresBody", "dropSources": ["CalamityMod/AresBody", "CalamityMod/ThanatosHead", "CalamityMod/Apollo"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedExoMechs" } },
+        { "id": "supreme-calamitas", "name": { "en-US": "Supreme Witch, Calamitas", "ru-RU": "Высшая ведьма Каламитас" }, "iconMod": "CalamityMod", "iconNpc": "SupremeCalamitas", "dropSources": ["CalamityMod/SupremeCalamitas"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedCalamitas" } },
+        { "id": "primordial-wyrm", "name": { "en-US": "Primordial Wyrm", "ru-RU": "Первородный змей" }, "iconMod": "CalamityMod", "iconNpc": "PrimordialWyrmHead", "dropSources": ["CalamityMod/PrimordialWyrmHead"], "unlock": { "type": "mod-flag", "mod": "CalamityMod", "key": "downedPrimordialWyrm" } }
+      ]
+    }
+  ],
+  "wikiStageMap": {
+    "pre-boss": { "stageId": "start", "target": { "en-US": "King Slime", "ru-RU": "Король слизней" } },
+    "pre-evil1": { "stageId": "eye-of-cthulhu", "target": { "en-US": "World Evil", "ru-RU": "Зло мира" } },
+    "pre-evil2": { "stageId": "crabulon", "target": { "en-US": "World Evil", "ru-RU": "Зло мира" } },
+    "pre-skeletron": { "stageId": "queen-bee", "target": { "en-US": "Skeletron", "ru-RU": "Скелетрон" } },
+    "pre-wof": { "stageId": "slime-god", "target": { "en-US": "Wall of Flesh", "ru-RU": "Стена плоти" } },
+    "pre-mech": { "stageId": "cryogen", "target": { "en-US": "Mechanical Bosses", "ru-RU": "Механические боссы" } },
+    "post-mech1": { "stageId": "destroyer", "target": { "en-US": "Second Mechanical Boss", "ru-RU": "Второй механический босс" } },
+    "post-mech2": { "stageId": "twins", "target": { "en-US": "Third Mechanical Boss", "ru-RU": "Третий механический босс" } },
+    "pre-plantera": { "stageId": "calamitas-clone", "target": { "en-US": "Plantera", "ru-RU": "Плантера" } },
+    "pre-golem": { "stageId": "astrum-aureus", "target": { "en-US": "Golem", "ru-RU": "Голем" } },
+    "post-golem": { "stageId": "ravager", "target": { "en-US": "Lunatic Cultist", "ru-RU": "Лунатик-культист" } },
+    "pre-lunar": { "stageId": "astrum-deus", "target": { "en-US": "Celestial Pillars", "ru-RU": "Небесные башни" } },
+    "pre-moonlord": { "stageId": "lunatic-cultist", "target": { "en-US": "Moon Lord", "ru-RU": "Лунный лорд" } },
+    "pre-provi": { "stageId": "dragonfolly", "target": { "en-US": "Providence", "ru-RU": "Провиденс" } },
+    "pre-polter": { "stageId": "signus", "target": { "en-US": "Polterghast", "ru-RU": "Полтергаст" } },
+    "pre-dog": { "stageId": "old-duke", "target": { "en-US": "Devourer of Gods", "ru-RU": "Пожиратель богов" } },
+    "pre-yharon": { "stageId": "devourer-of-gods", "target": { "en-US": "Yharon", "ru-RU": "Ярон" } },
+    "pre-scal-exo": { "stageId": "yharon", "target": { "en-US": "Exo Mechs / Calamitas", "ru-RU": "Экзо-механизмы / Каламитас" } },
+    "pre-scal": { "stageId": "exo-mechs", "target": { "en-US": "Supreme Calamitas", "ru-RU": "Высшая Каламитас" } },
+    "pre-exo": { "stageId": "supreme-calamitas", "target": { "en-US": "Exo Mechs", "ru-RU": "Экзо-механизмы" } },
+    "endgame": { "stageId": "primordial-wyrm", "target": { "en-US": "Endgame", "ru-RU": "Финал" } }
+  }
+}

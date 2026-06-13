@@ -160,6 +160,10 @@ public sealed class JournalSystem : ModSystem
             "ProgressionJournal: Journal Window",
             DrawJournalInterface,
             InterfaceScaleType.UI));
+        layers.Insert(mouseTextIndex + 1, new LegacyGameInterfaceLayer(
+            "ProgressionJournal: Journal Tooltip",
+            DrawJournalTooltipInterface,
+            InterfaceScaleType.UI));
     }
 
     public void ToggleView()
@@ -954,8 +958,14 @@ public sealed class JournalSystem : ModSystem
 
     private bool DrawJournalInterface()
     {
+        JournalRecommendationHeader.ClearPendingTooltip();
         _journalInterface?.Draw(Main.spriteBatch, new GameTime());
         return true;
+    }
+
+    private static bool DrawJournalTooltipInterface()
+    {
+        return JournalRecommendationHeader.DrawPendingTooltip(Main.spriteBatch);
     }
 
     private bool DrawJournalButtonInterface()

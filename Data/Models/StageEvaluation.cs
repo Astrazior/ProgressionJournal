@@ -7,12 +7,17 @@ public sealed class StageEvaluation
 	{
 	}
 
-	public StageEvaluation(string stageId, RecommendationTier tier, string? noteKey = null)
+	public StageEvaluation(
+		string stageId,
+		RecommendationTier tier,
+		string? noteKey = null,
+		JournalEvaluationScope scope = JournalEvaluationScope.UntilNext)
 	{
 		ArgumentException.ThrowIfNullOrWhiteSpace(stageId);
 		StageId = stageId;
 		Tier = tier;
 		NoteKey = noteKey;
+		Scope = scope;
 	}
 
 	public string StageId { get; }
@@ -20,5 +25,7 @@ public sealed class StageEvaluation
 	public RecommendationTier Tier { get; }
 
 	public string? NoteKey { get; }
+
+	public JournalEvaluationScope Scope { get; }
 }
 
