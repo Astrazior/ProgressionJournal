@@ -22,6 +22,7 @@ public sealed class JournalStageButton : JournalHoverPanel
     private bool _isCompleted;
     private bool _isInteractable = true;
     private bool _showLockedMarker;
+    private bool _isActive;
     private JournalButtonStyle _style;
 
     private enum HeadTextureKind
@@ -85,6 +86,7 @@ public sealed class JournalStageButton : JournalHoverPanel
     public void SetStyle(JournalButtonStyle style)
     {
         _style = style;
+        _isActive = style == JournalUiTheme.GetStageButtonStyle(active: true);
         BackgroundColor = style.Background;
         BorderColor = style.Border;
     }
@@ -92,15 +94,13 @@ public sealed class JournalStageButton : JournalHoverPanel
     protected override void DrawSelf(SpriteBatch spriteBatch)
     {
         var canHighlight = _isInteractable && IsMouseHovering;
-
-        BackgroundColor = canHighlight
-            ? Color.Lerp(_style.Background, Color.White, 0.12f)
-            : _style.Background;
-        BorderColor = canHighlight
-            ? Color.Lerp(_style.Border, Color.White, 0.24f)
-            : _style.Border;
-
-        base.DrawSelf(spriteBatch);
+        JournalStageButtonRenderer.Draw(
+            spriteBatch,
+            GetDimensions().ToRectangle(),
+            _style,
+            _isActive,
+            canHighlight,
+            _isInteractable);
 
         if (IsMouseHovering && !string.IsNullOrWhiteSpace(_tooltipText))
         {
@@ -153,7 +153,7 @@ public sealed class JournalStageButton : JournalHoverPanel
             var scale = MathF.Min(slotWidth / iconWidth, maxHeight / iconHeight);
             scale = MathF.Min(scale, 1.35f);
 
-            var drawPosition = new Vector2(startX + index * (slotWidth - IconOverlap), dimensions.Center().Y);
+            var drawPosition = new Vector2(startX + index * (slotWidth - IconOverlap), dimensions.Center().Y - 1f);
             var origin = new Vector2(iconWidth * 0.5f, iconHeight * 0.5f);
 
             spriteBatch.Draw(texture, drawPosition + new Vector2(1f, 2f), null, shadowColor, 0f, origin, scale, SpriteEffects.None, 0f);
