@@ -4,7 +4,7 @@ namespace ProgressionJournal.UI.Visuals.Styles;
 public static class JournalUiTheme
 {
     // Switch between InlineRule, AccentTag, and SideRail to compare category treatments in-game.
-    public static readonly JournalCategoryHeaderStyle CategoryHeaderStyle = JournalCategoryHeaderStyle.InlineRule;
+    public const JournalCategoryHeaderStyle CategoryHeaderStyle = JournalCategoryHeaderStyle.InlineRule;
 
     public static readonly Color RootBackground = new(12, 20, 30);
     public static readonly Color RootBorder = new(78, 101, 124);
