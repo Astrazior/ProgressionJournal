@@ -142,7 +142,7 @@ public sealed class JournalRecommendationHeader(
         x = MathHelper.Clamp(x, TooltipOffset, Math.Max(TooltipOffset, viewportWidth - width - TooltipOffset));
         y = MathHelper.Clamp(y, TooltipOffset, Math.Max(TooltipOffset, viewportHeight - height - TooltipOffset));
 
-        JournalSourceCardRenderer.Draw(
+        JournalSourceCardRenderer.DrawTooltip(
             spriteBatch,
             new Rectangle((int)x, (int)y, width, height),
             JournalUiTheme.PresetPanelBorder);

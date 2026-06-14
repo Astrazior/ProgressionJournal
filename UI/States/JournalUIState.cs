@@ -453,12 +453,18 @@ public sealed class JournalUiState : UIState
         panel.Width.Set(0f, 1f);
 
         var top = JournalUiMetrics.BlockVerticalPadding;
-        top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemIngredients", top);
+        top = AppendSourceGroupLabel(
+            panel,
+            "Mods.ProgressionJournal.UI.SelectedItemIngredients",
+            top);
         top = AppendItemRows(panel, recipe.Ingredients, top);
 
         if (recipe.Stations.Count > 0)
         {
-            top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemStations", top + 4f);
+            top = AppendSourceGroupLabel(
+                panel,
+                "Mods.ProgressionJournal.UI.SelectedItemStations",
+                top + 4f);
             top = AppendTokenRows(
                 panel,
                 recipe.Stations
@@ -490,21 +496,20 @@ public sealed class JournalUiState : UIState
             : "Mods.ProgressionJournal.UI.SelectedItemSource";
         if (JournalAcquisitionVisuals.TryCreateSourceToken(drop, out var sourceToken))
         {
-            top = AppendDetailLabel(panel, sourceLabelKey, top);
-            top = AppendTokenRows(panel, [sourceToken], top);
+            top = AppendCenteredTokenRows(panel, [sourceToken], top);
 
             if (drop.SourceNpcType is { } sourceNpcType)
             {
                 var npcLocationTokens = JournalAcquisitionVisuals.GetNpcLocationTokens(sourceNpcType);
                 if (npcLocationTokens.Count > 0)
                 {
-                    top = AppendTokenRows(panel, npcLocationTokens, top + 6f);
+                    top = AppendCenteredTokenRows(panel, npcLocationTokens, top + 6f);
                 }
             }
         }
         else
         {
-            top = AppendTextLines(panel, [$"{Language.GetTextValue(sourceLabelKey)}: {drop.SourceName}"], top);
+            top = AppendCenteredTextLines(panel, [$"{Language.GetTextValue(sourceLabelKey)}: {drop.SourceName}"], top);
         }
 
         var lines = new List<string>
@@ -517,7 +522,7 @@ public sealed class JournalUiState : UIState
             lines.Add($"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemStack")}: {FormatStackRange(drop.StackMin, drop.StackMax)}");
         }
 
-        top = AppendTextLines(panel, lines, top + 8f);
+        top = AppendCenteredTextLines(panel, lines, top + 8f);
 
         if (drop.Conditions.Count > 0)
         {
@@ -534,7 +539,7 @@ public sealed class JournalUiState : UIState
         panel.Width.Set(0f, 1f);
 
         var top = JournalUiMetrics.BlockVerticalPadding;
-        top = AppendTextLines(
+        top = AppendCenteredTextLines(
             panel,
             [$"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSource")}: {Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemFromAnyEnemy")}"],
             top);
@@ -548,7 +553,7 @@ public sealed class JournalUiState : UIState
         var commonLocationTokens = JournalAcquisitionVisuals.GetCommonNpcLocationTokens(npcTypes);
         if (commonLocationTokens.Count > 0)
         {
-            top = AppendTokenRows(panel, commonLocationTokens, top + 6f);
+            top = AppendCenteredTokenRows(panel, commonLocationTokens, top + 6f);
         }
 
         var primaryDrop = drops[0];
@@ -562,7 +567,7 @@ public sealed class JournalUiState : UIState
             lines.Add($"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemStack")}: {FormatStackRange(primaryDrop.StackMin, primaryDrop.StackMax)}");
         }
 
-        top = AppendTextLines(panel, lines, top + 8f);
+        top = AppendCenteredTextLines(panel, lines, top + 8f);
 
         if (primaryDrop.Conditions.Count > 0)
         {
@@ -579,8 +584,7 @@ public sealed class JournalUiState : UIState
         panel.Width.Set(0f, 1f);
 
         var top = JournalUiMetrics.BlockVerticalPadding;
-        top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemTrade", top);
-        top = AppendTokenRows(panel, [JournalAcquisitionVisuals.CreateSourceToken(shop)], top);
+        top = AppendCenteredTokenRows(panel, [JournalAcquisitionVisuals.CreateSourceToken(shop)], top);
 
         var lines = new List<string>();
         if (!shop.ShopName.Equals("Shop", StringComparison.OrdinalIgnoreCase))
@@ -590,7 +594,7 @@ public sealed class JournalUiState : UIState
 
         if (lines.Count > 0)
         {
-            top = AppendTextLines(panel, lines, top + 8f);
+            top = AppendCenteredTextLines(panel, lines, top + 8f);
         }
 
         if (shop.Conditions.Count > 0)
@@ -608,7 +612,7 @@ public sealed class JournalUiState : UIState
         panel.Width.Set(0f, 1f);
 
         var top = JournalUiMetrics.BlockVerticalPadding;
-        top = AppendTextLines(
+        top = AppendCenteredTextLines(
             panel,
             [Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemFishingMethod")],
             top);
@@ -656,13 +660,19 @@ public sealed class JournalUiState : UIState
         return container;
     }
 
-    private static float AppendDetailLabel(UIElement parent, string localizationKey, float top)
+    private static float AppendSourceGroupLabel(
+        UIElement parent,
+        string localizationKey,
+        float top)
     {
-        var label = new UIText(Language.GetTextValue(localizationKey), JournalUiMetrics.AcquisitionPanelLabelScale, true);
+        var label = new UIText(
+            Language.GetTextValue(localizationKey),
+            JournalUiMetrics.AcquisitionPanelTextScale)
+        {
+            TextColor = JournalUiTheme.ContentDescriptionText
+        };
         label.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
         label.Top.Set(top, 0f);
-        label.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
-        label.TextColor = JournalUiTheme.SectionHeaderText;
         parent.Append(label);
         return top + JournalUiMetrics.AcquisitionPanelTextLineHeight;
     }
@@ -690,11 +700,36 @@ public sealed class JournalUiState : UIState
         return top;
     }
 
+    private float AppendCenteredTextLines(UIElement parent, IEnumerable<string> lines, float top)
+    {
+        var maxWidth = GetSourceTextMaxWidth();
+
+        foreach (var line in lines.Where(static line => !string.IsNullOrWhiteSpace(line)))
+        {
+            foreach (var wrappedLine in JournalTextUtilities.WrapToPixelWidth(
+                         line,
+                         maxWidth,
+                         JournalUiMetrics.AcquisitionPanelTextScale))
+            {
+                var text = new UIText(wrappedLine, JournalUiMetrics.AcquisitionPanelTextScale)
+                {
+                    HAlign = 0.5f,
+                    TextColor = JournalUiTheme.ContentDescriptionText
+                };
+                text.Top.Set(top, 0f);
+                parent.Append(text);
+                top += JournalUiMetrics.AcquisitionPanelTextLineHeight;
+            }
+        }
+
+        return top;
+    }
+
     private float AppendItemRows(UIElement parent, IReadOnlyList<Item> items, float top)
     {
         foreach (var rowItems in ChunkItems(items, GetSourcePanelItemSlotsPerRow()))
         {
-            var strip = new JournalItemStrip(rowItems);
+            var strip = new JournalItemStrip(rowItems, JournalSystem.SelectItem);
             strip.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
             strip.Top.Set(top, 0f);
             parent.Append(strip);
@@ -760,7 +795,8 @@ public sealed class JournalUiState : UIState
                 visuals.Tokens,
                 contentTop,
                 10f,
-                contentWidth);
+                contentWidth,
+                centerRows: true);
         }
 
         if (visuals.RemainingText.Count > 0)
@@ -813,7 +849,19 @@ public sealed class JournalUiState : UIState
             tokens,
             top,
             JournalUiMetrics.BlockHorizontalPadding,
-            GetSourceTextMaxWidth());
+            GetSourceTextMaxWidth(),
+            centerRows: false);
+    }
+
+    private float AppendCenteredTokenRows(UIElement parent, IReadOnlyList<JournalSourceTokenData> tokens, float top)
+    {
+        return AppendTokenRows(
+            parent,
+            tokens,
+            top,
+            JournalUiMetrics.BlockHorizontalPadding,
+            GetSourceTextMaxWidth(),
+            centerRows: true);
     }
 
     private static float AppendTokenRows(
@@ -821,14 +869,15 @@ public sealed class JournalUiState : UIState
         IReadOnlyList<JournalSourceTokenData> tokens,
         float top,
         float left,
-        float maxWidth)
+        float maxWidth,
+        bool centerRows)
     {
         if (tokens.Count == 0)
         {
             return top;
         }
 
-        const float spacing = 6f;
+        const float spacing = 8f;
         var rows = new List<List<JournalSourceTokenData>>();
         var currentRow = new List<JournalSourceTokenData>();
         var currentRowWidth = 0f;
@@ -862,7 +911,9 @@ public sealed class JournalUiState : UIState
         foreach (var row in rows)
         {
             var rowWidth = row.Sum(static token => JournalSourceToken.GetTokenSize(token)) + spacing * (row.Count - 1);
-            var currentX = left + MathF.Max(0f, (maxWidth - rowWidth) * 0.5f);
+            var currentX = centerRows
+                ? left + MathF.Max(0f, (maxWidth - rowWidth) * 0.5f)
+                : left;
             var rowHeight = 0f;
 
             foreach (var tokenData in row)

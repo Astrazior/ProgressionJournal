@@ -31,8 +31,6 @@ public sealed class JournalSourceToken : UIElement
     private const string BestiaryFilterIconTexturePath = "Images/UI/Bestiary/Icon_Tags_Shadow";
     private const int BestiaryFilterIconColumns = 16;
     private const int BestiaryFilterIconRows = 5;
-    private const float InnerPadding = 4f;
-
     private readonly JournalSourceTokenData _data;
 
     public JournalSourceToken(JournalSourceTokenData data)
@@ -43,13 +41,20 @@ public sealed class JournalSourceToken : UIElement
         Height.Set(tokenSize, 0f);
     }
 
-    public static float TokenSize => 34f;
+    public static float TokenSize => 44f;
 
-    public static float NpcTokenSize => 46f;
+    public static float NpcTokenSize => 56f;
+
+    public static float TileTokenSize => 70f;
 
     public static float GetTokenSize(JournalSourceTokenData data)
     {
-        return data.Kind == JournalSourceTokenKind.Npc ? NpcTokenSize : TokenSize;
+        return data.Kind switch
+        {
+            JournalSourceTokenKind.Npc => NpcTokenSize,
+            JournalSourceTokenKind.Tile => TileTokenSize,
+            _ => TokenSize
+        };
     }
 
     protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -57,28 +62,16 @@ public sealed class JournalSourceToken : UIElement
         base.DrawSelf(spriteBatch);
 
         var bounds = GetDimensions().ToRectangle();
-        if (_data.Kind == JournalSourceTokenKind.Tile)
-        {
-            var tileBounds = bounds;
-            tileBounds.Inflate(-1, -1);
-            DrawTile(spriteBatch, tileBounds);
-            ShowHoverText();
-            return;
-        }
-
-        var texture = TextureAssets.MagicPixel.Value;
-        var background = IsMouseHovering
-            ? Color.Lerp(JournalUiTheme.PanelBackground, Color.White, 0.16f)
-            : JournalUiTheme.PanelBackground;
-        var border = IsMouseHovering
-            ? Color.Lerp(JournalUiTheme.PanelBorder, Color.White, 0.28f)
-            : JournalUiTheme.PanelBorder;
-
-        spriteBatch.Draw(texture, bounds, background);
-        DrawOutline(spriteBatch, texture, bounds, border);
+        DrawTokenFrame(spriteBatch, bounds);
 
         var inner = bounds;
-        inner.Inflate((int)-InnerPadding, (int)-InnerPadding);
+        var innerPadding = _data.Kind switch
+        {
+            JournalSourceTokenKind.Npc => 8,
+            JournalSourceTokenKind.Tile => 7,
+            _ => 7
+        };
+        inner.Inflate(-innerPadding, -innerPadding);
         if (inner.Width <= 0 || inner.Height <= 0)
         {
             return;
@@ -97,6 +90,9 @@ public sealed class JournalSourceToken : UIElement
                 break;
             case JournalSourceTokenKind.Texture:
                 DrawTextureIcon(spriteBatch, inner);
+                break;
+            case JournalSourceTokenKind.Tile:
+                DrawTile(spriteBatch, inner);
                 break;
             default:
                 throw new InvalidOperationException($"Unsupported {nameof(JournalSourceTokenKind)} value: {_data.Kind}");
@@ -194,14 +190,83 @@ public sealed class JournalSourceToken : UIElement
         Main.instance.LoadTiles(_data.Value);
         var tileTexture = TextureAssets.Tile[_data.Value].Value;
         var tileData = TileObjectData.GetTileData(_data.Value, 0);
-        var frameWidth = Math.Min(tileTexture.Width, tileData?.CoordinateFullWidth ?? 16);
-        var frameHeight = Math.Min(tileTexture.Height, tileData?.CoordinateFullHeight ?? 16);
-        DrawTexture(
-            spriteBatch,
-            tileTexture,
-            new Rectangle(0, 0, frameWidth, frameHeight),
-            inner,
-            anchorBottom: true);
+        if (tileData is null || tileData.Width <= 0 || tileData.Height <= 0)
+        {
+            DrawTexture(
+                spriteBatch,
+                tileTexture,
+                new Rectangle(0, 0, Math.Min(tileTexture.Width, 16), Math.Min(tileTexture.Height, 16)),
+                inner,
+                anchorBottom: true);
+            return;
+        }
+
+        DrawTileObject(spriteBatch, tileTexture, tileData, inner);
+    }
+
+    private static void DrawTileObject(
+        SpriteBatch spriteBatch,
+        Texture2D texture,
+        TileObjectData tileData,
+        Rectangle inner)
+    {
+        var coordinateWidth = Math.Max(1, tileData.CoordinateWidth);
+        var coordinatePadding = Math.Max(0, tileData.CoordinatePadding);
+        var rowHeights = tileData.CoordinateHeights;
+        if (rowHeights is null || rowHeights.Length < tileData.Height)
+        {
+            return;
+        }
+
+        var contentWidth = coordinateWidth * tileData.Width;
+        var contentHeight = rowHeights.Take(tileData.Height).Sum();
+        if (contentWidth <= 0 || contentHeight <= 0)
+        {
+            return;
+        }
+
+        var availableScale = MathF.Min(inner.Width / (float)contentWidth, inner.Height / (float)contentHeight);
+        var scale = availableScale >= 1f
+            ? MathF.Max(1f, MathF.Floor(availableScale))
+            : availableScale;
+        var drawWidth = contentWidth * scale;
+        var drawHeight = contentHeight * scale;
+        var drawLeft = inner.Center.X - drawWidth * 0.5f;
+        var drawTop = inner.Bottom - drawHeight;
+        var contentY = 0;
+        var sourceY = 0;
+
+        for (var row = 0; row < tileData.Height; row++)
+        {
+            var rowHeight = rowHeights[row];
+            for (var column = 0; column < tileData.Width; column++)
+            {
+                var sourceX = column * (coordinateWidth + coordinatePadding);
+                var source = new Rectangle(sourceX, sourceY, coordinateWidth, rowHeight);
+                if (source.Right > texture.Width || source.Bottom > texture.Height)
+                {
+                    continue;
+                }
+
+                var left = (int)MathF.Floor(drawLeft + column * coordinateWidth * scale);
+                var right = (int)MathF.Ceiling(drawLeft + (column + 1) * coordinateWidth * scale);
+                var top = (int)MathF.Floor(drawTop + contentY * scale);
+                var bottom = (int)MathF.Ceiling(drawTop + (contentY + rowHeight) * scale);
+                if (scale < 1f)
+                {
+                    right += column + 1 < tileData.Width ? 1 : 0;
+                    bottom += row + 1 < tileData.Height ? 1 : 0;
+                }
+                spriteBatch.Draw(
+                    texture,
+                    new Rectangle(left, top, Math.Max(1, right - left), Math.Max(1, bottom - top)),
+                    source,
+                    Color.White);
+            }
+
+            contentY += rowHeight;
+            sourceY += rowHeight + coordinatePadding;
+        }
     }
 
     private static void DrawAchievementIcon(SpriteBatch spriteBatch, Rectangle inner, string achievementId)
@@ -278,11 +343,105 @@ public sealed class JournalSourceToken : UIElement
         return new Rectangle(frameX * frameWidth, frameY * frameHeight, frameWidth, frameHeight);
     }
 
-    private static void DrawOutline(SpriteBatch spriteBatch, Texture2D texture, Rectangle rectangle, Color color)
+    private void DrawTokenFrame(SpriteBatch spriteBatch, Rectangle bounds)
     {
-        spriteBatch.Draw(texture, new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, 1), color);
-        spriteBatch.Draw(texture, new Rectangle(rectangle.X, rectangle.Bottom - 1, rectangle.Width, 1), color);
-        spriteBatch.Draw(texture, new Rectangle(rectangle.X, rectangle.Y, 1, rectangle.Height), color);
-        spriteBatch.Draw(texture, new Rectangle(rectangle.Right - 1, rectangle.Y, 1, rectangle.Height), color);
+        var (background, border) = GetFrameColors(_data.Kind);
+        if (IsMouseHovering)
+        {
+            background = Color.Lerp(background, Color.White, 0.10f);
+            border = Color.Lerp(border, Color.White, 0.24f);
+        }
+
+        var cornerCut = _data.Kind switch
+        {
+            JournalSourceTokenKind.Npc => 7,
+            JournalSourceTokenKind.Bestiary => 11,
+            JournalSourceTokenKind.Texture => 8,
+            JournalSourceTokenKind.Tile => 5,
+            _ => 6
+        };
+
+        var shadow = bounds;
+        shadow.Offset(2, 3);
+        DrawChamferedRectangle(spriteBatch, shadow, cornerCut, Color.Black * 0.36f);
+        DrawChamferedRectangle(spriteBatch, bounds, cornerCut, border);
+        DrawBevel(spriteBatch, bounds, cornerCut, Color.Lerp(border, Color.White, 0.28f), Color.Lerp(border, Color.Black, 0.52f));
+
+        var inner = bounds;
+        inner.Inflate(-4, -4);
+        DrawChamferedRectangle(spriteBatch, inner, Math.Max(2, cornerCut - 3), background);
+
+        var highlight = inner;
+        highlight.Inflate(-2, -2);
+        highlight.Height = Math.Max(1, highlight.Height / 3);
+        DrawChamferedRectangle(spriteBatch, highlight, Math.Max(1, cornerCut - 5), Color.White * 0.035f);
+
     }
+
+    private static (Color Background, Color Border) GetFrameColors(JournalSourceTokenKind kind)
+    {
+        return kind switch
+        {
+            JournalSourceTokenKind.Item => (new Color(18, 31, 43), new Color(91, 145, 184)),
+            JournalSourceTokenKind.Npc => (new Color(43, 25, 28), new Color(190, 100, 91)),
+            JournalSourceTokenKind.Bestiary => (new Color(17, 39, 39), new Color(82, 166, 153)),
+            JournalSourceTokenKind.Texture => (new Color(42, 34, 20), new Color(210, 165, 73)),
+            JournalSourceTokenKind.Tile => (new Color(43, 36, 24), new Color(190, 149, 76)),
+            _ => (JournalUiTheme.PanelBackground, JournalUiTheme.PanelBorder)
+        };
+    }
+
+    private static void DrawBevel(
+        SpriteBatch spriteBatch,
+        Rectangle rectangle,
+        int cornerCut,
+        Color topLeft,
+        Color bottomRight)
+    {
+        var pixel = TextureAssets.MagicPixel.Value;
+        var horizontalWidth = rectangle.Width - cornerCut * 2;
+        var verticalHeight = rectangle.Height - cornerCut * 2;
+        if (horizontalWidth <= 0 || verticalHeight <= 0)
+        {
+            return;
+        }
+
+        spriteBatch.Draw(pixel, new Rectangle(rectangle.X + cornerCut, rectangle.Y, horizontalWidth, 2), topLeft * 0.72f);
+        spriteBatch.Draw(pixel, new Rectangle(rectangle.X, rectangle.Y + cornerCut, 2, verticalHeight), topLeft * 0.52f);
+        spriteBatch.Draw(pixel, new Rectangle(rectangle.X + cornerCut, rectangle.Bottom - 2, horizontalWidth, 2), bottomRight * 0.80f);
+        spriteBatch.Draw(pixel, new Rectangle(rectangle.Right - 2, rectangle.Y + cornerCut, 2, verticalHeight), bottomRight * 0.72f);
+    }
+
+    private static void DrawChamferedRectangle(
+        SpriteBatch spriteBatch,
+        Rectangle rectangle,
+        int cornerCut,
+        Color color)
+    {
+        if (rectangle.Width <= 0 || rectangle.Height <= 0)
+        {
+            return;
+        }
+
+        var pixel = TextureAssets.MagicPixel.Value;
+        cornerCut = Math.Min(cornerCut, Math.Min(rectangle.Width, rectangle.Height) / 2);
+        spriteBatch.Draw(
+            pixel,
+            new Rectangle(rectangle.X, rectangle.Y + cornerCut, rectangle.Width, rectangle.Height - cornerCut * 2),
+            color);
+
+        for (var row = 0; row < cornerCut; row++)
+        {
+            var inset = cornerCut - row;
+            var width = rectangle.Width - inset * 2;
+            if (width <= 0)
+            {
+                continue;
+            }
+
+            spriteBatch.Draw(pixel, new Rectangle(rectangle.X + inset, rectangle.Y + row, width, 1), color);
+            spriteBatch.Draw(pixel, new Rectangle(rectangle.X + inset, rectangle.Bottom - row - 1, width, 1), color);
+        }
+    }
+
 }

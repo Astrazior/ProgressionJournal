@@ -54,11 +54,9 @@ internal static class JournalVolumetricPanelRenderer
             spriteBatch,
             inner,
             innerCornerCut,
-            Color.Lerp(stoneBackground, Color.Black, 0.07f),
+            Color.Lerp(stoneBackground, Color.White, 0.055f),
             stoneBackground,
-            Color.Lerp(stoneBackground, Color.Black, 0.15f));
-
-        DrawSmoothInteriorVolume(spriteBatch, inner, innerCornerCut, stoneBackground);
+            Color.Lerp(stoneBackground, Color.Black, 0.13f));
         DrawInnerDepth(spriteBatch, inner, innerCornerCut, stoneBackground);
     }
 
@@ -217,143 +215,6 @@ internal static class JournalVolumetricPanelRenderer
         DrawChamferedHorizontalLine(spriteBatch, inner, cornerCut, inner.Bottom - 1, Color.Black * 0.24f);
     }
 
-    private static void DrawSmoothInteriorVolume(
-        SpriteBatch spriteBatch,
-        Rectangle inner,
-        int cornerCut,
-        Color background)
-    {
-        if (inner.Width <= 2 || inner.Height <= 2)
-        {
-            return;
-        }
-
-        DrawSoftVerticalBody(spriteBatch, inner, cornerCut, background);
-        DrawSoftSideBody(spriteBatch, inner, cornerCut, background);
-        DrawSoftCornerWeight(spriteBatch, inner, cornerCut, background);
-    }
-
-    private static void DrawSoftVerticalBody(
-        SpriteBatch spriteBatch,
-        Rectangle inner,
-        int cornerCut,
-        Color background)
-    {
-        var upperLight = Color.Lerp(background, Color.White, 0.22f);
-        var lowerShade = Color.Lerp(background, Color.Black, 0.70f);
-        var centerLight = Color.Lerp(background, Color.White, 0.10f);
-
-        for (var row = 0; row < inner.Height; row++)
-        {
-            var y = inner.Y + row;
-            var v = inner.Height <= 1
-                ? 0f
-                : row / (float)(inner.Height - 1);
-
-            var topGlow = Math.Max(0f, 1f - v * 2.65f);
-            var middleGlow = 1f - Math.Abs(v - 0.38f) / 0.42f;
-            var bottomWeight = SmoothStep(0.46f, 1f, v);
-
-            if (topGlow > 0f)
-            {
-                DrawChamferedHorizontalLine(
-                    spriteBatch,
-                    inner,
-                    cornerCut,
-                    y,
-                    upperLight * (0.050f * topGlow));
-            }
-
-            if (middleGlow > 0f)
-            {
-                DrawChamferedHorizontalLine(
-                    spriteBatch,
-                    inner,
-                    cornerCut,
-                    y,
-                    centerLight * (0.030f * middleGlow));
-            }
-
-            if (bottomWeight > 0f)
-            {
-                DrawChamferedHorizontalLine(
-                    spriteBatch,
-                    inner,
-                    cornerCut,
-                    y,
-                    lowerShade * (0.075f * bottomWeight));
-            }
-        }
-    }
-
-    private static void DrawSoftSideBody(
-        SpriteBatch spriteBatch,
-        Rectangle inner,
-        int cornerCut,
-        Color background)
-    {
-        var sideWidth = Math.Clamp(inner.Width / 7, 6, 18);
-        var leftShade = Color.Lerp(background, Color.Black, 0.62f);
-        var rightShade = Color.Lerp(background, Color.Black, 0.48f);
-        var rightLight = Color.Lerp(background, Color.White, 0.08f);
-
-        for (var i = 0; i < sideWidth; i++)
-        {
-            var t = 1f - i / (float)Math.Max(1, sideWidth - 1);
-            t *= t;
-
-            DrawChamferedVerticalLine(
-                spriteBatch,
-                inner,
-                cornerCut,
-                inner.X + i,
-                leftShade * (0.045f * t));
-
-            DrawChamferedVerticalLine(
-                spriteBatch,
-                inner,
-                cornerCut,
-                inner.Right - 1 - i,
-                rightShade * (0.030f * t));
-
-            DrawChamferedVerticalLine(
-                spriteBatch,
-                inner,
-                cornerCut,
-                inner.Right - 1 - i,
-                rightLight * (0.014f * t));
-        }
-    }
-
-    private static void DrawSoftCornerWeight(
-        SpriteBatch spriteBatch,
-        Rectangle inner,
-        int cornerCut,
-        Color background)
-    {
-        var pixel = TextureAssets.MagicPixel.Value;
-        var shade = Color.Lerp(background, Color.Black, 0.78f);
-
-        var size = Math.Clamp(Math.Min(inner.Width, inner.Height) / 5, 8, 20);
-
-        for (var i = 0; i < size; i++)
-        {
-            var t = i / (float)Math.Max(1, size - 1);
-            var alpha = 0.030f * t * t;
-
-            var bottomLine = new Rectangle(
-                inner.X + cornerCut + i,
-                inner.Bottom - size + i,
-                Math.Max(1, inner.Width - cornerCut * 2 - i * 2),
-                1);
-
-            if (bottomLine.Width > 0)
-            {
-                spriteBatch.Draw(pixel, bottomLine, shade * alpha);
-            }
-        }
-    }
-
     private static void DrawChamferedGradient(
         SpriteBatch spriteBatch,
         Rectangle rectangle,
@@ -426,46 +287,6 @@ internal static class JournalVolumetricPanelRenderer
             color);
     }
 
-    private static void DrawChamferedVerticalLine(
-        SpriteBatch spriteBatch,
-        Rectangle rectangle,
-        int cornerCut,
-        int x,
-        Color color)
-    {
-        if (x < rectangle.X || x >= rectangle.Right)
-        {
-            return;
-        }
-
-        var column = x - rectangle.X;
-        var inset = 0;
-
-        if (cornerCut > 0)
-        {
-            if (column < cornerCut)
-            {
-                inset = cornerCut - column;
-            }
-            else if (column >= rectangle.Width - cornerCut)
-            {
-                inset = cornerCut - (rectangle.Width - 1 - column);
-            }
-        }
-
-        var height = rectangle.Height - inset * 2;
-
-        if (height <= 0)
-        {
-            return;
-        }
-
-        spriteBatch.Draw(
-            TextureAssets.MagicPixel.Value,
-            new Rectangle(x, rectangle.Y + inset, 1, height),
-            color);
-    }
-
     private static void DrawChamferedRectangle(
         SpriteBatch spriteBatch,
         Rectangle rectangle,
@@ -475,19 +296,4 @@ internal static class JournalVolumetricPanelRenderer
         DrawChamferedGradient(spriteBatch, rectangle, cornerCut, color, color, color);
     }
 
-    private static float SmoothStep(float from, float to, float value)
-    {
-        if (value <= from)
-        {
-            return 0f;
-        }
-
-        if (value >= to)
-        {
-            return 1f;
-        }
-
-        var t = (value - from) / (to - from);
-        return t * t * (3f - 2f * t);
-    }
 }

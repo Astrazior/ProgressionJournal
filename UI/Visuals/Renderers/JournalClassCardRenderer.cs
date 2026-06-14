@@ -33,7 +33,6 @@ internal static class JournalClassCardRenderer
         face.Inflate(-FrameInset, -FrameInset);
         DrawFace(spriteBatch, face, palette, selected, hovered);
         DrawTitlePlate(spriteBatch, face, palette, selected);
-        DrawPreviewBay(spriteBatch, face, palette, selected);
     }
 
     private static void DrawShadow(SpriteBatch spriteBatch, Rectangle bounds, bool selected)
@@ -80,9 +79,13 @@ internal static class JournalClassCardRenderer
             : hovered
                 ? Color.Lerp(palette.Background, palette.Accent, 0.05f)
                 : palette.Background;
-        var top = Color.Lerp(background, Color.White, 0.10f);
-        var bottom = Color.Lerp(background, Color.Black, 0.24f);
-        DrawVerticalGradient(spriteBatch, face, Math.Max(3, CornerCut - FrameInset), top, background, bottom);
+        DrawVerticalGradient(
+            spriteBatch,
+            face,
+            Math.Max(3, CornerCut - FrameInset),
+            Color.Lerp(background, Color.White, 0.07f),
+            background,
+            Color.Lerp(background, Color.Black, 0.18f));
     }
 
     private static void DrawTitlePlate(
@@ -104,27 +107,6 @@ internal static class JournalClassCardRenderer
             Color.Lerp(plateBackground, Color.White, 0.10f),
             plateBackground,
             Color.Lerp(plateBackground, Color.Black, 0.18f));
-    }
-
-    private static void DrawPreviewBay(
-        SpriteBatch spriteBatch,
-        Rectangle face,
-        JournalClassPalette palette,
-        bool selected)
-    {
-        var bay = new Rectangle(face.X + 15, face.Y + 39, face.Width - 30, face.Height - 51);
-        var center = bay.Center.X;
-        var pixel = TextureAssets.MagicPixel.Value;
-        var glow = Color.Lerp(palette.Accent, Color.White, 0.08f);
-
-        for (var inset = 0; inset < bay.Width / 2; inset++)
-        {
-            var normalized = inset / (float)Math.Max(1, bay.Width / 2);
-            var alpha = (1f - normalized) * (selected ? 0.026f : 0.015f);
-            var x = center - inset;
-            spriteBatch.Draw(pixel, new Rectangle(x, bay.Y + 4, 2, bay.Height - 8), glow * alpha);
-            spriteBatch.Draw(pixel, new Rectangle(center + inset, bay.Y + 4, 2, bay.Height - 8), glow * alpha);
-        }
     }
 
     private static void DrawVerticalGradient(

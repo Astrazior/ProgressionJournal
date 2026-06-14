@@ -13,8 +13,9 @@ public sealed class JournalItemStrip : UIElement
 
     private readonly JournalSavedBuildItemReference[] _items;
     private readonly int[] _stacks;
+    private readonly Action<int>? _onItemSelected;
 
-    public JournalItemStrip(IEnumerable<Item> items)
+    public JournalItemStrip(IEnumerable<Item> items, Action<int>? onItemSelected = null)
     {
         var itemArray = items.ToArray();
         _items = itemArray
@@ -27,7 +28,12 @@ public sealed class JournalItemStrip : UIElement
         _stacks = itemArray
             .Select(static item => item.stack)
             .ToArray();
+        _onItemSelected = onItemSelected;
         SetSize();
+        if (_onItemSelected is not null)
+        {
+            OnLeftClick += HandleLeftClick;
+        }
     }
 
     public JournalItemStrip(IEnumerable<JournalSavedBuildItemReference> items)
@@ -135,6 +141,17 @@ public sealed class JournalItemStrip : UIElement
         }
 
         return -1;
+    }
+
+    private void HandleLeftClick(UIMouseEvent evt, UIElement listeningElement)
+    {
+        var hoveredIndex = GetHoveredItemIndex(GetInnerDimensions().ToRectangle());
+        if (hoveredIndex < 0 || !_items[hoveredIndex].IsLoaded)
+        {
+            return;
+        }
+
+        _onItemSelected?.Invoke(_items[hoveredIndex].Type);
     }
 
     private static void DrawUnloadedSlot(SpriteBatch spriteBatch, Vector2 position)
