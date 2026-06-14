@@ -20,6 +20,7 @@ Namespaces mirror the folder structure:
 - `Renderers/JournalItemSlotRenderer.cs`: volumetric item slots and markers.
 - `Renderers/JournalProgressionToggleRenderer.cs`: progression mode indicator.
 - `Renderers/JournalStageButtonRenderer.cs`: progression-stage plaques.
+- `Renderers/JournalClassCardRenderer.cs`: volumetric class-selection cards.
 - `Renderers/JournalVolumetricPanelRenderer.cs`: shared panel frame, bevel, and shadow.
 - `Renderers/JournalSourceCardRenderer.cs`: Bestiary-style source card background.
 

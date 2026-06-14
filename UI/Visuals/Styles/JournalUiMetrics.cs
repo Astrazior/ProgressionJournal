@@ -88,9 +88,9 @@ public static class JournalUiMetrics
     public const float ClassSelectionButtonWidth = 0.5f;
     public const float ClassSelectionButtonHeight = 176f;
     public const float ClassSelectionButtonGap = 12f;
-    public const float ClassButtonPreviewTop = 38f;
+    public const float ClassButtonPreviewTop = 48f;
     public const float ClassButtonPreviewWidth = 102f;
-    public const float ClassButtonPreviewHeight = 112f;
+    public const float ClassButtonPreviewHeight = 104f;
     public const float ClassButtonTitleTop = 10f;
     public const float ClassButtonTitleScale = 0.5f;
     public const float StageButtonDefaultHeight = 44f;

@@ -2,12 +2,13 @@ using Microsoft.Xna.Framework;
 using ProgressionJournal.Systems;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ProgressionJournal.UI.Utilities;
 
 public static class JournalPreviewPlayerFactory
 {
-    public static Player CreateNeutral()
+    private static Player CreateNeutral()
     {
         var preview = Main.LocalPlayer.SerializedClone();
         preview.dead = false;
@@ -42,7 +43,7 @@ public static class JournalPreviewPlayerFactory
         return preview;
     }
 
-    public static Player Create(CombatClass combatClass)
+    private static Player Create(CombatClass combatClass)
     {
         var preview = Main.LocalPlayer.SerializedClone();
         preview.dead = false;
@@ -70,6 +71,40 @@ public static class JournalPreviewPlayerFactory
         preview.mount.UpdateFrame(preview, GetMountPreviewState(preview), preview.velocity);
         preview.PlayerFrame();
         ApplyMountBodyPose(preview);
+        ConfigurePreviewDraw(preview);
+        return preview;
+    }
+
+    public static Player Create(JournalProfileClassDocument classDefinition)
+    {
+        if (JournalClassIds.TryToLegacy(classDefinition.Id, out var combatClass))
+        {
+            return Create(combatClass);
+        }
+
+        var preview = CreateNeutral();
+        for (var index = 0; index < Math.Min(3, classDefinition.PreviewArmor.Count); index++)
+        {
+            if (TryCreateProfileItem(classDefinition.PreviewArmor[index], out var armor))
+            {
+                preview.armor[index] = armor;
+            }
+        }
+
+        if (classDefinition.PreviewMount is not null
+            && TryCreateProfileItem(classDefinition.PreviewMount, out var mountItem)
+            && mountItem.mountType >= MountID.Rudolph)
+        {
+            preview.mount.SetMount(mountItem.mountType, preview);
+            preview.mount.UpdateFrame(preview, GetMountPreviewState(preview), preview.velocity);
+        }
+
+        preview.PlayerFrame();
+        if (preview.mount.Active)
+        {
+            ApplyMountBodyPose(preview);
+        }
+
         ConfigurePreviewDraw(preview);
         return preview;
     }
@@ -156,6 +191,19 @@ public static class JournalPreviewPlayerFactory
 
         var supportWeapon = build.GetSelectedItemId(JournalBuildPlannerCatalog.SupportWeaponSlotKey);
         return supportWeapon > ItemID.None ? supportWeapon : build.GetSelectedItemId(JournalBuildPlannerCatalog.ClassSpecificSlotKey);
+    }
+
+    private static bool TryCreateProfileItem(JournalItemReferenceDocument reference, out Item item)
+    {
+        item = new Item();
+        if (!ModContent.TryFind(reference.Mod, reference.Item, out ModItem modItem))
+        {
+            item.TurnToAir();
+            return false;
+        }
+
+        item.SetDefaults(modItem.Type);
+        return !item.IsAir;
     }
 
     private static int[] GetArmorItemIds(CombatClass combatClass) => combatClass switch

@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System.Globalization;
 namespace ProgressionJournal.UI.Visuals.Styles;
 
 public static class JournalUiTheme
@@ -129,6 +130,44 @@ public static class JournalUiTheme
             new Color(100, 120, 142),
             new Color(184, 196, 210),
             new Color(232, 236, 242));
+    }
+
+    public static JournalClassPalette GetClassPalette(JournalProfileClassDocument classDefinition)
+    {
+        if (JournalClassIds.TryToLegacy(classDefinition.Id, out var combatClass))
+        {
+            return GetClassPalette(combatClass);
+        }
+
+        return TryParseHexColor(classDefinition.AccentColor, out var accent)
+            ? CreateCustomClassPalette(accent)
+            : GetCustomClassPalette();
+    }
+
+    private static JournalClassPalette CreateCustomClassPalette(Color accent)
+    {
+        return new JournalClassPalette(
+            Color.Lerp(RootBackground, accent, 0.15f),
+            Color.Lerp(PanelBorder, accent, 0.58f),
+            accent,
+            Color.Lerp(Color.White, accent, 0.14f));
+    }
+
+    private static bool TryParseHexColor(string value, out Color color)
+    {
+        var hex = value.Trim().TrimStart('#');
+        if (hex.Length == 6
+            && uint.TryParse(hex, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var rgb))
+        {
+            color = new Color(
+                (byte)(rgb >> 16),
+                (byte)(rgb >> 8),
+                (byte)rgb);
+            return true;
+        }
+
+        color = default;
+        return false;
     }
 
 }

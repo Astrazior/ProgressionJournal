@@ -8,7 +8,7 @@ namespace ProgressionJournal.UI.Controls;
 public sealed class JournalClassButton : JournalHoverPanel
 {
     private readonly string _className;
-    private readonly CombatClass? _visualClass;
+    private readonly JournalProfileClassDocument _classDefinition;
     private readonly UIText _title;
     private bool _selected;
 
@@ -19,9 +19,7 @@ public sealed class JournalClassButton : JournalHoverPanel
         float height)
     {
         _className = JournalProfileText.GetClassName(profile, classDefinition.Id);
-        _visualClass = JournalClassIds.TryToLegacy(classDefinition.Id, out var visualClass)
-            ? visualClass
-            : null;
+        _classDefinition = classDefinition;
         _selected = selected;
 
         Height.Set(height, 0f);
@@ -31,12 +29,9 @@ public sealed class JournalClassButton : JournalHoverPanel
         {
             HAlign = 0.5f
         };
-        _title.Top.Set(JournalUiMetrics.ClassButtonTitleTop, 0f);
-        Append(_title);
+        _title.Top.Set(JournalUiMetrics.ClassButtonTitleTop + 5f, 0f);
 
-        var previewPlayer = _visualClass.HasValue
-            ? JournalPreviewPlayerFactory.Create(_visualClass.Value)
-            : JournalPreviewPlayerFactory.CreateNeutral();
+        var previewPlayer = JournalPreviewPlayerFactory.Create(classDefinition);
         var characterPreview = new UICharacter(previewPlayer, false, false, 1.42f);
         characterPreview.Width.Set(JournalUiMetrics.ClassButtonPreviewWidth, 0f);
         characterPreview.Height.Set(JournalUiMetrics.ClassButtonPreviewHeight, 0f);
@@ -45,7 +40,9 @@ public sealed class JournalClassButton : JournalHoverPanel
         characterPreview.IgnoresMouseInteraction = true;
         Append(characterPreview);
 
-        if (!_visualClass.HasValue)
+        if (!JournalClassIds.TryToLegacy(classDefinition.Id, out _)
+            && classDefinition.PreviewArmor.Count == 0
+            && classDefinition.PreviewMount is null)
         {
             var petPreview = new JournalPetPreview();
             petPreview.Left.Set(18f, 0.5f);
@@ -55,6 +52,7 @@ public sealed class JournalClassButton : JournalHoverPanel
             Append(petPreview);
         }
 
+        Append(_title);
         ApplyVisualState();
     }
 
@@ -67,7 +65,12 @@ public sealed class JournalClassButton : JournalHoverPanel
     protected override void DrawSelf(SpriteBatch spriteBatch)
     {
         ApplyVisualState();
-        base.DrawSelf(spriteBatch);
+        JournalClassCardRenderer.Draw(
+            spriteBatch,
+            GetDimensions().ToRectangle(),
+            JournalUiTheme.GetClassPalette(_classDefinition),
+            _selected,
+            IsMouseHovering);
 
         if (IsMouseHovering)
         {
@@ -77,9 +80,7 @@ public sealed class JournalClassButton : JournalHoverPanel
 
     private void ApplyVisualState()
     {
-        var palette = _visualClass.HasValue
-            ? JournalUiTheme.GetClassPalette(_visualClass.Value)
-            : JournalUiTheme.GetCustomClassPalette();
+        var palette = JournalUiTheme.GetClassPalette(_classDefinition);
         var emphasis = _selected ? 1f : IsMouseHovering ? 0.52f : 0f;
 
         BackgroundColor = Color.Lerp(palette.Background, palette.Accent * 0.2f, emphasis);

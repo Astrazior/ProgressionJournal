@@ -36,6 +36,12 @@ public sealed class JournalProfileClassDocument
 
     public JournalLocalizedText Name { get; set; } = string.Empty;
 
+    public string AccentColor { get; set; } = string.Empty;
+
+    public List<JournalItemReferenceDocument> PreviewArmor { get; set; } = [];
+
+    public JournalItemReferenceDocument? PreviewMount { get; set; }
+
     public string IconMod { get; set; } = string.Empty;
 
     public string IconItem { get; set; } = string.Empty;

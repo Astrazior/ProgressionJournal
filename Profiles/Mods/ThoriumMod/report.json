@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-06-14T01:26:09.855Z",
+  "generatedAtUtc": "2026-06-14T15:58:39.142Z",
   "snapshot": {
     "version": 2,
     "generatedAtUtc": "2026-06-13T12:51:40.6623343Z",
@@ -462,7 +462,7 @@
   "ready": true,
   "generation": {
     "profileId": "builtin.thorium",
-    "generatedAtUtc": "2026-06-14T01:25:43.516Z",
+    "generatedAtUtc": "2026-06-14T15:58:11.645Z",
     "unknownReferences": [
       {
         "stage": "wall-of-flesh",
@@ -61252,6 +61252,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/PinkTorch",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/DemonTorch",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -61352,6 +61357,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/BouncyBomb",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/DirtBomb",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -61363,6 +61373,11 @@
       {
         "stage": "start",
         "id": "Terraria/StickyGlowstick",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BouncyGlowstick",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -64667,6 +64682,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/PeaceCandle",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/Candelabra",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -65158,6 +65178,11 @@
       {
         "stage": "start",
         "id": "Terraria/Boulder",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BouncyBoulder",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -66357,6 +66382,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/BouncyDynamite",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/FishingPotion",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -67053,6 +67083,11 @@
       {
         "stage": "king-slime",
         "id": "Terraria/FrozenSlimeBlock",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "king-slime",
+        "id": "Terraria/PinkSlimeBlock",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -67867,11 +67902,6 @@
       },
       {
         "stage": "queen-jellyfish",
-        "id": "Terraria/PinkGel",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "queen-jellyfish",
         "id": "ThoriumMod/QueensGlowstick",
         "reason": "not combat equipment"
       },
@@ -67899,41 +67929,6 @@
         "stage": "queen-jellyfish",
         "id": "ThoriumMod/MarineKelpSeeds",
         "reason": "not combat equipment"
-      },
-      {
-        "stage": "queen-jellyfish",
-        "id": "Terraria/PinkTorch",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "queen-jellyfish",
-        "id": "Terraria/BouncyBomb",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "queen-jellyfish",
-        "id": "Terraria/BouncyDynamite",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "queen-jellyfish",
-        "id": "Terraria/BouncyGlowstick",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "queen-jellyfish",
-        "id": "Terraria/PinkSlimeBlock",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "queen-jellyfish",
-        "id": "Terraria/PeaceCandle",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "queen-jellyfish",
-        "id": "Terraria/BouncyBoulder",
-        "reason": "unchanged vanilla item in mod profile"
       },
       {
         "stage": "queen-jellyfish",
@@ -83050,6 +83045,10 @@
         "stage": "start",
         "via": "initial"
       },
+      "Terraria/PinkGel": {
+        "stage": "start",
+        "via": "initial"
+      },
       "Terraria/Cobweb": {
         "stage": "start",
         "via": "initial"
@@ -84778,6 +84777,10 @@
         "stage": "start",
         "via": "recipe:Terraria/Torch+Terraria/JungleSpores"
       },
+      "Terraria/PinkTorch": {
+        "stage": "start",
+        "via": "recipe:Terraria/PinkGel+Terraria/Wood"
+      },
       "Terraria/DemonTorch": {
         "stage": "start",
         "via": "recipe:Terraria/Torch+Terraria/Obsidian"
@@ -84858,6 +84861,10 @@
         "stage": "start",
         "via": "recipe:Terraria/Bomb+Terraria/Gel"
       },
+      "Terraria/BouncyBomb": {
+        "stage": "start",
+        "via": "recipe:Terraria/Bomb+Terraria/PinkGel"
+      },
       "Terraria/DirtBomb": {
         "stage": "start",
         "via": "recipe:Terraria/Bomb+Terraria/DirtBlock"
@@ -84869,6 +84876,10 @@
       "Terraria/StickyGlowstick": {
         "stage": "start",
         "via": "recipe:Terraria/Glowstick+Terraria/Gel"
+      },
+      "Terraria/BouncyGlowstick": {
+        "stage": "start",
+        "via": "recipe:Terraria/Glowstick+Terraria/PinkGel"
       },
       "Terraria/EnchantedNightcrawler": {
         "stage": "start",
@@ -87510,6 +87521,10 @@
         "stage": "start",
         "via": "recipe:Terraria/GoldBar+Terraria/Torch"
       },
+      "Terraria/PeaceCandle": {
+        "stage": "start",
+        "via": "recipe:Terraria/GoldBar+Terraria/PinkTorch"
+      },
       "Terraria/Candelabra": {
         "stage": "start",
         "via": "recipe:Terraria/GoldBar+Terraria/Torch"
@@ -87905,6 +87920,10 @@
       "Terraria/Boulder": {
         "stage": "start",
         "via": "recipe:Terraria/StoneBlock"
+      },
+      "Terraria/BouncyBoulder": {
+        "stage": "start",
+        "via": "recipe:Terraria/Boulder+Terraria/PinkGel"
       },
       "Terraria/PlaceableHealingPotion": {
         "stage": "start",
@@ -88862,6 +88881,10 @@
         "stage": "start",
         "via": "recipe:Terraria/Dynamite+Terraria/Gel"
       },
+      "Terraria/BouncyDynamite": {
+        "stage": "start",
+        "via": "recipe:Terraria/Dynamite+Terraria/PinkGel"
+      },
       "Terraria/FishingPotion": {
         "stage": "start",
         "via": "recipe:Terraria/BottledWater+Terraria/CrispyHoneyBlock+Terraria/Waterleaf"
@@ -89421,6 +89444,10 @@
       "Terraria/FrozenSlimeBlock": {
         "stage": "king-slime",
         "via": "recipe:Terraria/SlimeBlock+Terraria/IceBlock"
+      },
+      "Terraria/PinkSlimeBlock": {
+        "stage": "king-slime",
+        "via": "recipe:Terraria/PinkGel"
       },
       "Terraria/ShinyRedBalloon": {
         "stage": "king-slime",
@@ -90082,10 +90109,6 @@
         "stage": "queen-jellyfish",
         "via": "npc:ThoriumMod/QueenJellyfish"
       },
-      "Terraria/PinkGel": {
-        "stage": "queen-jellyfish",
-        "via": "npc:ThoriumMod/QueenJellyfish"
-      },
       "ThoriumMod/QueensGlowstick": {
         "stage": "queen-jellyfish",
         "via": "npc:ThoriumMod/QueenJellyfish"
@@ -90109,34 +90132,6 @@
       "ThoriumMod/MarineKelpSeeds": {
         "stage": "queen-jellyfish",
         "via": "shop:ThoriumMod/Druid"
-      },
-      "Terraria/PinkTorch": {
-        "stage": "queen-jellyfish",
-        "via": "recipe:Terraria/PinkGel+Terraria/Wood"
-      },
-      "Terraria/BouncyBomb": {
-        "stage": "queen-jellyfish",
-        "via": "recipe:Terraria/Bomb+Terraria/PinkGel"
-      },
-      "Terraria/BouncyDynamite": {
-        "stage": "queen-jellyfish",
-        "via": "recipe:Terraria/Dynamite+Terraria/PinkGel"
-      },
-      "Terraria/BouncyGlowstick": {
-        "stage": "queen-jellyfish",
-        "via": "recipe:Terraria/Glowstick+Terraria/PinkGel"
-      },
-      "Terraria/PinkSlimeBlock": {
-        "stage": "queen-jellyfish",
-        "via": "recipe:Terraria/PinkGel"
-      },
-      "Terraria/PeaceCandle": {
-        "stage": "queen-jellyfish",
-        "via": "recipe:Terraria/GoldBar+Terraria/PinkTorch"
-      },
-      "Terraria/BouncyBoulder": {
-        "stage": "queen-jellyfish",
-        "via": "recipe:Terraria/Boulder+Terraria/PinkGel"
       },
       "ThoriumMod/DeeplightCampfire": {
         "stage": "queen-jellyfish",
@@ -98269,134 +98264,7 @@
         "via": "recipe:ThoriumMod/BlankPainting+ThoriumMod/InfernoEssence+ThoriumMod/DeathEssence+ThoriumMod/OceanEssence"
       }
     },
-    "wikiMissingItems": [
-      {
-        "id": "ThoriumMod/NinjaRack",
-        "wikiStage": "post-wof",
-        "sourceReference": [
-          "ThoriumMod/NinjaRack"
-        ]
-      },
-      {
-        "id": "ThoriumMod/Altar",
-        "wikiStage": "post-wof",
-        "sourceReference": [
-          "ThoriumMod/Altar"
-        ]
-      },
-      {
-        "id": "ThoriumMod/ConductorsStand",
-        "wikiStage": "post-wof",
-        "sourceReference": [
-          "ThoriumMod/ConductorsStand"
-        ]
-      },
-      {
-        "id": "ThoriumMod/NinjaRack",
-        "wikiStage": "pre-mechs",
-        "sourceReference": [
-          "ThoriumMod/NinjaRack"
-        ]
-      },
-      {
-        "id": "ThoriumMod/Altar",
-        "wikiStage": "pre-mechs",
-        "sourceReference": [
-          "ThoriumMod/Altar"
-        ]
-      },
-      {
-        "id": "ThoriumMod/ConductorsStand",
-        "wikiStage": "pre-mechs",
-        "sourceReference": [
-          "ThoriumMod/ConductorsStand"
-        ]
-      },
-      {
-        "id": "ThoriumMod/NinjaRack",
-        "wikiStage": "post-mechs",
-        "sourceReference": [
-          "ThoriumMod/NinjaRack"
-        ]
-      },
-      {
-        "id": "ThoriumMod/Altar",
-        "wikiStage": "post-mechs",
-        "sourceReference": [
-          "ThoriumMod/Altar"
-        ]
-      },
-      {
-        "id": "ThoriumMod/ConductorsStand",
-        "wikiStage": "post-mechs",
-        "sourceReference": [
-          "ThoriumMod/ConductorsStand"
-        ]
-      },
-      {
-        "id": "ThoriumMod/NinjaRack",
-        "wikiStage": "pre-lunar",
-        "sourceReference": [
-          "ThoriumMod/NinjaRack"
-        ]
-      },
-      {
-        "id": "ThoriumMod/Altar",
-        "wikiStage": "pre-lunar",
-        "sourceReference": [
-          "ThoriumMod/Altar"
-        ]
-      },
-      {
-        "id": "ThoriumMod/ConductorsStand",
-        "wikiStage": "pre-lunar",
-        "sourceReference": [
-          "ThoriumMod/ConductorsStand"
-        ]
-      },
-      {
-        "id": "ThoriumMod/NinjaRack",
-        "wikiStage": "pre-primordials",
-        "sourceReference": [
-          "ThoriumMod/NinjaRack"
-        ]
-      },
-      {
-        "id": "ThoriumMod/Altar",
-        "wikiStage": "pre-primordials",
-        "sourceReference": [
-          "ThoriumMod/Altar"
-        ]
-      },
-      {
-        "id": "ThoriumMod/ConductorsStand",
-        "wikiStage": "pre-primordials",
-        "sourceReference": [
-          "ThoriumMod/ConductorsStand"
-        ]
-      },
-      {
-        "id": "ThoriumMod/NinjaRack",
-        "wikiStage": "endgame",
-        "sourceReference": [
-          "ThoriumMod/NinjaRack"
-        ]
-      },
-      {
-        "id": "ThoriumMod/Altar",
-        "wikiStage": "endgame",
-        "sourceReference": [
-          "ThoriumMod/Altar"
-        ]
-      },
-      {
-        "id": "ThoriumMod/ConductorsStand",
-        "wikiStage": "endgame",
-        "sourceReference": [
-          "ThoriumMod/ConductorsStand"
-        ]
-      }
-    ],
+    "wikiMissingItems": [],
     "wikiResolvedItems": [
       {
         "from": "ThoriumMod/Silkarmor",
