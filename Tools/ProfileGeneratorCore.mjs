@@ -12,55 +12,6 @@ export function writeJson(file, value) {
   fs.writeFileSync(file, `${JSON.stringify(value, null, 2)}\n`, "utf8");
 }
 
-export function loadManifest(file) {
-  const manifest = readJson(file);
-  if (!manifest.baseManifest) return manifest;
-
-  const basePath = path.resolve(path.dirname(file), manifest.baseManifest);
-  const base = loadManifest(basePath);
-  const stages = [...base.stages];
-  const events = [...(base.events ?? []), ...(manifest.events ?? [])];
-  for (const insertion of manifest.insertions ?? []) {
-    const index = stages.findIndex(stage => stage.id === insertion.after);
-    if (index < 0) throw new Error(`Unknown insertion anchor '${insertion.after}'.`);
-    stages.splice(index + 1, 0, ...insertion.stages);
-  }
-  for (const [stageId, patch] of Object.entries(manifest.stagePatches ?? {})) {
-    const index = stages.findIndex(stage => stage.id === stageId);
-    if (index < 0) throw new Error(`Unknown patched stage '${stageId}'.`);
-    stages[index] = mergeStage(stages[index], patch);
-  }
-
-  return {
-    ...base,
-    ...manifest,
-    stages,
-    events,
-    insertions: undefined,
-    stagePatches: undefined,
-    baseManifest: undefined
-  };
-}
-
-function mergeStage(stage, patch) {
-  const merged = { ...stage, ...patch };
-  for (const property of [
-    "dropSources",
-    "enemies",
-    "containers",
-    "shops",
-    "materials",
-    "include",
-    "exclude",
-    "stations"
-  ]) {
-    if (stage[property] || patch[property]) {
-      merged[property] = [...new Set([...(stage[property] ?? []), ...(patch[property] ?? [])])];
-    }
-  }
-  return merged;
-}
-
 export function generateProfile(
   snapshot,
   manifest,

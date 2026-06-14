@@ -84,16 +84,26 @@ public static class JournalContentBuilder
         }
     }
 
-    public static void PopulateCombatBuffs(UIList entryList, IReadOnlyList<JournalCombatBuffEntry> combatBuffEntries, Action<int>? onItemSelected = null)
+    public static void PopulateCombatBuffs(
+        UIList entryList,
+        string profileId,
+        IReadOnlyList<JournalCombatBuffEntry> combatBuffEntries,
+        Action<int>? onItemSelected = null)
     {
         if (combatBuffEntries.Count == 0)
         {
             return;
         }
 
+        var titleLocalizationKey = string.Equals(
+            profileId,
+            JournalProfileIds.Vanilla,
+            StringComparison.OrdinalIgnoreCase)
+            ? "Mods.ProgressionJournal.UI.VanillaCombatBuffsTitle"
+            : "Mods.ProgressionJournal.UI.CombatBuffsTitle";
         var buffPanel = new JournalCombatBuffPanel(
             CombatBuffSectionOrder,
-            "Mods.ProgressionJournal.UI.CombatBuffsTitle",
+            titleLocalizationKey,
             showTitle: true,
             autoHeight: true,
             onItemSelected: onItemSelected);
@@ -418,28 +428,6 @@ public static class JournalContentBuilder
         }
 
         return top;
-    }
-
-    private static void AppendEquipmentGrid(
-        UIElement panel,
-        CombatClass combatClass,
-        IReadOnlyList<string> slotKeys,
-        int columns,
-        float left,
-        float top,
-        Func<string, int> getSelectedItemId,
-        Action<string> onSlotClick,
-        Action<string> onSlotRightClick)
-    {
-        for (var index = 0; index < slotKeys.Count; index++)
-        {
-            var column = index % columns;
-            var row = index / columns;
-            var slot = CreateBuildSlot(slotKeys[index], combatClass, getSelectedItemId, onSlotClick, onSlotRightClick);
-            slot.Left.Set(left + column * (JournalUiMetrics.BuildSlotSize + JournalUiMetrics.BuildSlotGap), 0f);
-            slot.Top.Set(top + row * (JournalUiMetrics.BuildSlotSize + JournalUiMetrics.BuildSlotGap), 0f);
-            panel.Append(slot);
-        }
     }
 
     private static float AppendExpandableEquipmentGrid(

@@ -35,7 +35,7 @@ public sealed class JournalInventoryButton : UIElement
             - JournalUiMetrics.InventoryButtonAccessorySlotStep * 2f
             - Width.Pixels
             - JournalUiMetrics.InventoryButtonHorizontalSpacing;
-        var y = defensePosition.Y - Height.Pixels - JournalUiMetrics.InventoryButtonVerticalSpacing;
+        var y = AccessorySlotLoader.DrawVerticalAlignment;
 
         Left.Set(MathF.Round(x), 0f);
         Top.Set(MathF.Round(y), 0f);

@@ -121,11 +121,14 @@ assert(vanillaSources.stages.find(stage => stage.id === "dungeon")
 assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
   .include.includes("Terraria/AdamantiteForge"));
 
-const ignore = fs.readFileSync(path.join(root, "buildIgnore.txt"), "utf8");
+const ignore = fs.readFileSync(path.join(root, "build.txt"), "utf8");
 for (const name of requiredFiles.filter(name => name !== "profile.json")) {
-  assert(ignore.includes(`Profiles/Mods/**/${name}`), `${name} is not excluded from .tmod`);
+  assert(ignore.includes(`Profiles/Mods/*/${name}`), `${name} is not excluded from .tmod`);
 }
-assert(!ignore.includes("Profiles/Mods/**/profile.json"));
+assert(!ignore.includes("Profiles/Mods/*/profile.json"));
+assert(ignore.includes("Tools/*"));
+assert(ignore.includes("*.user"));
+assert(ignore.includes("*.md"));
 const registry = fs.readFileSync(
   path.join(root, "Data", "Profiles", "JournalProfileRegistry.cs"),
   "utf8");

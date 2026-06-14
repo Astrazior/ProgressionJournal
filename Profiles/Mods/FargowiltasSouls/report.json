@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "FargowiltasSouls",
   "profileId": "builtin.fargosouls",
-  "generatedAtUtc": "2026-06-14T01:25:43.365Z",
+  "generatedAtUtc": "2026-06-14T19:07:04.881Z",
   "snapshot": {
     "version": 2,
     "generatedAtUtc": "2026-06-13T00:10:42.0187109Z",
@@ -690,7 +690,7 @@
   "ready": true,
   "generation": {
     "profileId": "builtin.fargosouls",
-    "generatedAtUtc": "2026-06-14T01:25:36.590Z",
+    "generatedAtUtc": "2026-06-14T19:06:57.501Z",
     "unknownReferences": [
       {
         "stage": "wall-of-flesh",
@@ -29428,6 +29428,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/PinkTorch",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/DemonTorch",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -29548,6 +29553,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/BouncyBomb",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/DirtBomb",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -29559,6 +29569,11 @@
       {
         "stage": "start",
         "id": "Terraria/StickyGlowstick",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BouncyGlowstick",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -33248,6 +33263,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/PeaceCandle",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/Candelabra",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -34084,6 +34104,11 @@
       {
         "stage": "start",
         "id": "Terraria/Boulder",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BouncyBoulder",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -35718,6 +35743,11 @@
       },
       {
         "stage": "king-slime",
+        "id": "Terraria/PinkSlimeBlock",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "king-slime",
         "id": "Terraria/Binoculars",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -36295,6 +36325,11 @@
         "stage": "eye-of-cthulhu",
         "id": "Terraria/WebSlinger",
         "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "FargowiltasSouls/DevisCurse",
+        "reason": "not combat equipment"
       },
       {
         "stage": "eye-of-cthulhu",
@@ -38783,6 +38818,11 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Fargowiltas/DevianttBody",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Fargowiltas/DevianttMask",
         "reason": "not combat equipment"
       },
@@ -38878,58 +38918,13 @@
       },
       {
         "stage": "queen-slime",
-        "id": "Terraria/PinkGel",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "queen-slime",
         "id": "Terraria/VolatileGelatin",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "queen-slime",
-        "id": "Terraria/PinkTorch",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "queen-slime",
-        "id": "Terraria/BouncyBomb",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "queen-slime",
-        "id": "Terraria/BouncyGlowstick",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "queen-slime",
-        "id": "Terraria/PinkSlimeBlock",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "queen-slime",
-        "id": "Terraria/PeaceCandle",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
         "stage": "queen-slime",
         "id": "Terraria/ResplendentDessert",
         "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "queen-slime",
-        "id": "Terraria/BouncyBoulder",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "queen-slime",
-        "id": "Fargowiltas/DevianttBody",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "queen-slime",
-        "id": "FargowiltasSouls/DevisCurse",
-        "reason": "not combat equipment"
       },
       {
         "stage": "banished-baron",
@@ -42413,6 +42408,10 @@
         "stage": "start",
         "via": "initial"
       },
+      "Terraria/PinkGel": {
+        "stage": "start",
+        "via": "initial"
+      },
       "Terraria/Cobweb": {
         "stage": "start",
         "via": "initial"
@@ -44717,6 +44716,10 @@
         "stage": "start",
         "via": "recipe:Terraria/Torch+Terraria/GlowingMushroom"
       },
+      "Terraria/PinkTorch": {
+        "stage": "start",
+        "via": "recipe:Terraria/PinkGel+Terraria/Wood"
+      },
       "Terraria/DemonTorch": {
         "stage": "start",
         "via": "recipe:Terraria/Torch+Terraria/Obsidian"
@@ -44813,6 +44816,10 @@
         "stage": "start",
         "via": "recipe:Terraria/Bomb+Terraria/Gel"
       },
+      "Terraria/BouncyBomb": {
+        "stage": "start",
+        "via": "recipe:Terraria/Bomb+Terraria/PinkGel"
+      },
       "Terraria/DirtBomb": {
         "stage": "start",
         "via": "recipe:Terraria/Bomb+Terraria/DirtBlock"
@@ -44824,6 +44831,10 @@
       "Terraria/StickyGlowstick": {
         "stage": "start",
         "via": "recipe:Terraria/Glowstick+Terraria/Gel"
+      },
+      "Terraria/BouncyGlowstick": {
+        "stage": "start",
+        "via": "recipe:Terraria/Glowstick+Terraria/PinkGel"
       },
       "Terraria/EnchantedNightcrawler": {
         "stage": "start",
@@ -47773,6 +47784,10 @@
         "stage": "start",
         "via": "recipe:Terraria/GoldBar+Terraria/Torch"
       },
+      "Terraria/PeaceCandle": {
+        "stage": "start",
+        "via": "recipe:Terraria/GoldBar+Terraria/PinkTorch"
+      },
       "Terraria/Candelabra": {
         "stage": "start",
         "via": "recipe:Terraria/GoldBar+Terraria/Torch"
@@ -48444,6 +48459,10 @@
       "Terraria/Boulder": {
         "stage": "start",
         "via": "recipe:Terraria/StoneBlock"
+      },
+      "Terraria/BouncyBoulder": {
+        "stage": "start",
+        "via": "recipe:Terraria/Boulder+Terraria/PinkGel"
       },
       "Terraria/PlaceableHealingPotion": {
         "stage": "start",
@@ -49749,6 +49768,10 @@
         "stage": "king-slime",
         "via": "recipe:Terraria/SlimeBlock+Terraria/IceBlock"
       },
+      "Terraria/PinkSlimeBlock": {
+        "stage": "king-slime",
+        "via": "recipe:Terraria/PinkGel"
+      },
       "Terraria/Binoculars": {
         "stage": "king-slime",
         "via": "recipe:Terraria/EyeofCthulhuTrophy"
@@ -50224,6 +50247,10 @@
       "Terraria/WebSlinger": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/GrapplingHook+Terraria/WebRopeCoil"
+      },
+      "FargowiltasSouls/DevisCurse": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/PinkGel+Terraria/GoldOre+Terraria/RottenChunk+Terraria/Stinger+Terraria/ChumBucket"
       },
       "Terraria/MagnetFlower": {
         "stage": "eye-of-cthulhu",
@@ -52329,6 +52356,10 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/ChlorophyteBar+Terraria/Moonglow+Terraria/Blinkroot"
       },
+      "Fargowiltas/DevianttBody": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/Robe+Terraria/PinkGel+Terraria/AncientBattleArmorMaterial"
+      },
       "Fargowiltas/DevianttMask": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/RuneHat+Terraria/MetalDetector"
@@ -52405,49 +52436,13 @@
         "stage": "queen-slime",
         "via": "npc:Terraria/QueenSlimeBoss"
       },
-      "Terraria/PinkGel": {
-        "stage": "queen-slime",
-        "via": "npc:Terraria/QueenSlimeBoss"
-      },
       "Terraria/VolatileGelatin": {
         "stage": "queen-slime",
         "via": "container:Terraria/QueenSlimeBossBag"
       },
-      "Terraria/PinkTorch": {
-        "stage": "queen-slime",
-        "via": "recipe:Terraria/PinkGel+Terraria/Wood"
-      },
-      "Terraria/BouncyBomb": {
-        "stage": "queen-slime",
-        "via": "recipe:Terraria/Bomb+Terraria/PinkGel"
-      },
-      "Terraria/BouncyGlowstick": {
-        "stage": "queen-slime",
-        "via": "recipe:Terraria/Glowstick+Terraria/PinkGel"
-      },
-      "Terraria/PinkSlimeBlock": {
-        "stage": "queen-slime",
-        "via": "recipe:Terraria/PinkGel"
-      },
-      "Terraria/PeaceCandle": {
-        "stage": "queen-slime",
-        "via": "recipe:Terraria/GoldBar+Terraria/PinkTorch"
-      },
       "Terraria/ResplendentDessert": {
         "stage": "queen-slime",
         "via": "recipe:Terraria/KingSlimePetItem+Terraria/QueenSlimePetItem"
-      },
-      "Terraria/BouncyBoulder": {
-        "stage": "queen-slime",
-        "via": "recipe:Terraria/Boulder+Terraria/PinkGel"
-      },
-      "Fargowiltas/DevianttBody": {
-        "stage": "queen-slime",
-        "via": "recipe:Terraria/Robe+Terraria/PinkGel+Terraria/AncientBattleArmorMaterial"
-      },
-      "FargowiltasSouls/DevisCurse": {
-        "stage": "queen-slime",
-        "via": "recipe:Terraria/PinkGel+Terraria/GoldOre+Terraria/RottenChunk+Terraria/Stinger+Terraria/ChumBucket"
       },
       "FargowiltasSouls/BaronTrophy": {
         "stage": "banished-baron",

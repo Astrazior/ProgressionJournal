@@ -337,6 +337,7 @@ public sealed class JournalUiState : UIState
             JournalSystem.SelectItem);
         JournalContentBuilder.PopulateCombatBuffs(
             _entryList,
+            profile.Id,
             GetCombatBuffEntries(profile.Id, stageId, classId),
             JournalSystem.SelectItem);
 
@@ -675,29 +676,6 @@ public sealed class JournalUiState : UIState
         label.Top.Set(top, 0f);
         parent.Append(label);
         return top + JournalUiMetrics.AcquisitionPanelTextLineHeight;
-    }
-
-    private float AppendTextLines(UIElement parent, IEnumerable<string> lines, float top)
-    {
-        var maxWidth = GetSourceTextMaxWidth();
-
-        foreach (var line in lines.Where(static line => !string.IsNullOrWhiteSpace(line)))
-        {
-            var wrappedLines = JournalTextUtilities.WrapToPixelWidth(line, maxWidth, JournalUiMetrics.AcquisitionPanelTextScale);
-
-            foreach (var wrappedLine in wrappedLines)
-            {
-                var text = new UIText(wrappedLine, JournalUiMetrics.AcquisitionPanelTextScale);
-                text.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
-                text.Top.Set(top, 0f);
-                text.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
-                text.TextColor = JournalUiTheme.ContentDescriptionText;
-                parent.Append(text);
-                top += JournalUiMetrics.AcquisitionPanelTextLineHeight;
-            }
-        }
-
-        return top;
     }
 
     private float AppendCenteredTextLines(UIElement parent, IEnumerable<string> lines, float top)
