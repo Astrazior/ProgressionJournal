@@ -3,7 +3,7 @@ import { generateProfile } from "./ProfileGeneratorCore.mjs";
 
 const item = (id, values = {}) => ({
   id, name: id, englishName: "", damageClass: "", damage: 0, defense: 0,
-  headSlot: -1, bodySlot: -1, legSlot: -1, accessory: false,
+  headSlot: -1, bodySlot: -1, legSlot: -1, accessory: false, vanity: false,
   ammo: 0, useAmmo: 0, buffType: 0, buffTime: 0, consumable: false,
   potion: false, healLife: 0, healMana: 0, food: false, flask: false, maxStack: 1,
   createTile: -1, placedTile: "", createWall: -1, pick: 0, axe: 0,
@@ -90,7 +90,8 @@ const snapshot = {
     item("Test/CycleB"),
     item("Test/Forge", { createTile: 1, placedTile: "Test/ForgeTile" }),
     item("Test/ForgeSword", { damageClass: "Melee", damage: 35 }),
-    item("Test/SeedSword", { damageClass: "Melee", damage: 99 })
+    item("Test/SeedSword", { damageClass: "Melee", damage: 99 }),
+    item("Test/VanityAccessory", { accessory: true, vanity: true })
   ],
   npcs: [],
   recipes: [
@@ -280,6 +281,7 @@ assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "ForgeSword"
   && entry.evaluations[0].stageId === "boss"));
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "SeedSword"));
+assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "VanityAccessory"));
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "CycleA"));
 assert(profile.combatBuffs.some(entry => entry.itemGroups[0][0].item === "Potion"));
 assert(profile.combatBuffs.some(entry =>

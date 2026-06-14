@@ -507,6 +507,7 @@ function normalizeConditionText(value) {
 function classifyItem(item, manifest, report, context) {
   const override = manifest.itemOverrides?.[item.id];
   if (override?.exclude) return null;
+  if (item.vanity) return null;
   if (override?.buffCategory) {
     return { buffCategory: override.buffCategory, classes: override.classes ?? allClasses(manifest) };
   }

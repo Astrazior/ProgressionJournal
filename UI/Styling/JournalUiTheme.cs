@@ -76,6 +76,11 @@ public static class JournalUiTheme
         _ => new JournalPanelStyle(PanelBackground, PanelBorder)
     };
 
+    public static JournalPanelStyle GetWikiRecommendationBlockStyle()
+    {
+        return new JournalPanelStyle(new Color(76, 65, 18), new Color(232, 196, 66));
+    }
+
     public static Color GetRecommendationSlotAccent(RecommendationTier tier) => tier switch
     {
         RecommendationTier.Recommended => new Color(90, 196, 116),

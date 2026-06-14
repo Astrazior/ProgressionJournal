@@ -67,7 +67,7 @@ public sealed class JournalCombatBuffPanel : UIPanel
                 HAlign = 0.5f
             };
             title.Top.Set(top, 0f);
-            title.TextColor = JournalUiTheme.SectionHeaderText;
+            title.TextColor = JournalUiTheme.RootTitleText;
             Append(title);
             top += JournalUiMetrics.RecommendationHeaderHeight + JournalUiMetrics.RecommendationHeaderBottomSpacing;
         }

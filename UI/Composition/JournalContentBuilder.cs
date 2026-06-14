@@ -52,7 +52,7 @@ public static class JournalContentBuilder
             var hoverText = Language.GetTextValue(
                 "Mods.ProgressionJournal.UI.WikiRecommendationsTooltip",
                 group.Key);
-            var palette = JournalUiTheme.GetRecommendationBlockStyle(RecommendationTier.FromGuide);
+            var palette = JournalUiTheme.GetWikiRecommendationBlockStyle();
             entryList.Add(CreateRecommendationBlock(
                 title,
                 group.ToArray(),

@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-06-14T01:37:53.131Z",
+  "generatedAtUtc": "2026-06-14T02:26:31.432Z",
   "snapshot": {
     "version": 2,
     "generatedAtUtc": "2026-06-13T00:10:42.0187109Z",
@@ -16,7 +16,7 @@
     ]
   },
   "agentRules": {
-    "rules": 90,
+    "rules": 91,
     "ignoredItems": 3,
     "ignoredIssues": 1,
     "evidence": [
@@ -372,10 +372,17 @@
       },
       {
         "id": "great-sand-shark-material",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/GreatSandShark/GreatSandShark.cs",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityNaturalSpawnBossNPC.cs#L109-L113",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
         "checkedAt": "2026-06-14",
-        "reason": "Grand Scale is official Great Sand Shark loot; the encounter is placed after the first mechanical-boss milestone."
+        "reason": "Great Sand Shark drops Grand Scale, and its official natural-spawn check immediately returns until Plantera has been defeated."
+      },
+      {
+        "id": "lucis-sight-vanity-accessory",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Accessories/Vanity/LucisSight.cs",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-14",
+        "reason": "The official item source sets Item.vanity to true. It is cosmetic and must not appear in a combat-equipment profile."
       },
       {
         "id": "shady-salesman-source",
@@ -693,7 +700,7 @@
   "ready": true,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-06-14T01:37:34.206Z",
+    "generatedAtUtc": "2026-06-14T02:26:14.144Z",
     "unknownReferences": [
       {
         "stage": "wall-of-flesh",
@@ -60045,6 +60052,11 @@
       },
       {
         "stage": "destroyer",
+        "id": "CalamityMod/LucisSight",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
         "id": "Terraria/MushroomSpear",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -60147,11 +60159,6 @@
         "stage": "destroyer",
         "id": "Terraria/SuperStarCannon",
         "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "destroyer",
-        "id": "CalamityMod/GrandScale",
-        "reason": "not combat equipment"
       },
       {
         "stage": "destroyer",
@@ -60772,6 +60779,11 @@
         "stage": "plantera",
         "id": "Terraria/ElfMelter",
         "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
+        "id": "CalamityMod/GrandScale",
+        "reason": "not combat equipment"
       },
       {
         "stage": "plantera",
@@ -67235,10 +67247,6 @@
         "stage": "destroyer",
         "via": "npc:Terraria/RedDevil"
       },
-      "CalamityMod/LucisSight": {
-        "stage": "destroyer",
-        "via": "shop:Terraria/Steampunker"
-      },
       "CalamityMod/DeepcoreGK2": {
         "stage": "destroyer",
         "via": "shop:Terraria/Demolitionist"
@@ -67279,29 +67287,9 @@
         "stage": "destroyer",
         "via": "recipe:Terraria/Bottle+Terraria/FireFeather"
       },
-      "CalamityMod/ShiftingSands": {
-        "stage": "destroyer",
-        "via": "recipe:Terraria/MagicMissile+Terraria/AncientCloth+CalamityMod/GrandScale"
-      },
-      "CalamityMod/Tumbleweed": {
-        "stage": "destroyer",
-        "via": "recipe:Terraria/Sunfury+Terraria/AncientCloth+CalamityMod/GrandScale"
-      },
       "CalamityMod/FlarewingBow": {
         "stage": "destroyer",
         "via": "recipe:Terraria/HellwingBow+CalamityMod/EssenceofSunlight+Terraria/LivingFireBlock+Terraria/Obsidian"
-      },
-      "CalamityMod/Sandblaster": {
-        "stage": "destroyer",
-        "via": "recipe:Terraria/Sandgun+Terraria/AncientCloth+CalamityMod/GrandScale"
-      },
-      "CalamityMod/DuststormInABottle": {
-        "stage": "destroyer",
-        "via": "recipe:CalamityMod/LemonNade+Terraria/AncientCloth+CalamityMod/GrandScale"
-      },
-      "CalamityMod/SandSharknadoStaff": {
-        "stage": "destroyer",
-        "via": "recipe:CalamityMod/ForgottenApexWand+Terraria/AncientCloth+CalamityMod/GrandScale"
       },
       "CalamityMod/Brimlance": {
         "stage": "brimstone-elemental",
@@ -67378,10 +67366,6 @@
       "CalamityMod/NecklaceofVexation": {
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/AvengerEmblem+CalamityMod/PerennialBar"
-      },
-      "CalamityMod/SandSharkToothNecklace": {
-        "stage": "skeletron-prime",
-        "via": "recipe:Terraria/SharkToothNecklace+Terraria/AvengerEmblem+CalamityMod/GrandScale"
       },
       "CalamityMod/MOAB": {
         "stage": "skeletron-prime",
@@ -67639,6 +67623,10 @@
         "stage": "plantera",
         "via": "recipe:CalamityMod/HoneyDew+CalamityMod/LivingShard+CalamityMod/EssenceofSunlight"
       },
+      "CalamityMod/SandSharkToothNecklace": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/SharkToothNecklace+Terraria/AvengerEmblem+CalamityMod/GrandScale"
+      },
       "CalamityMod/StatisBlessing": {
         "stage": "plantera",
         "via": "recipe:Terraria/PapyrusScarab+Terraria/PygmyNecklace+Terraria/SummonerEmblem+Terraria/HolyWater+CalamityMod/EssenceofSunlight"
@@ -67670,6 +67658,10 @@
       "CalamityMod/PrimordialEarth": {
         "stage": "plantera",
         "via": "recipe:CalamityMod/DeathValleyDuster+Terraria/Amber+Terraria/Ectoplasm"
+      },
+      "CalamityMod/ShiftingSands": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/MagicMissile+Terraria/AncientCloth+CalamityMod/GrandScale"
       },
       "CalamityMod/TearsofHeaven": {
         "stage": "plantera",
@@ -67707,6 +67699,10 @@
         "stage": "plantera",
         "via": "recipe:CalamityMod/FracturedArk+Terraria/Starfury+Terraria/BrokenHeroSword"
       },
+      "CalamityMod/Tumbleweed": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/Sunfury+Terraria/AncientCloth+CalamityMod/GrandScale"
+      },
       "CalamityMod/Hydra": {
         "stage": "plantera",
         "via": "recipe:Terraria/QuadBarrelShotgun+Terraria/Nanites+Terraria/VialofVenom"
@@ -67723,6 +67719,10 @@
         "stage": "plantera",
         "via": "recipe:Terraria/Marble+Terraria/MeteoriteBar+Terraria/Diamond+Terraria/Amber"
       },
+      "CalamityMod/Sandblaster": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/Sandgun+Terraria/AncientCloth+CalamityMod/GrandScale"
+      },
       "CalamityMod/TheBallista": {
         "stage": "plantera",
         "via": "recipe:Terraria/Marrow+Terraria/AncientBattleArmorMaterial+Terraria/Ectoplasm"
@@ -67738,6 +67738,10 @@
       "CalamityMod/WildfireBloom": {
         "stage": "plantera",
         "via": "recipe:Terraria/Flamethrower+CalamityMod/Meowthrower+CalamityMod/LivingShard"
+      },
+      "CalamityMod/DuststormInABottle": {
+        "stage": "plantera",
+        "via": "recipe:CalamityMod/LemonNade+Terraria/AncientCloth+CalamityMod/GrandScale"
       },
       "CalamityMod/FantasyTalisman": {
         "stage": "plantera",
@@ -67766,6 +67770,10 @@
       "CalamityMod/ResurrectionButterfly": {
         "stage": "plantera",
         "via": "recipe:CalamityMod/LifeAlloy+Terraria/ButterflyDust+Terraria/Silk+Terraria/Ectoplasm"
+      },
+      "CalamityMod/SandSharknadoStaff": {
+        "stage": "plantera",
+        "via": "recipe:CalamityMod/ForgottenApexWand+Terraria/AncientCloth+CalamityMod/GrandScale"
       },
       "CalamityMod/VengefulSunStaff": {
         "stage": "plantera",
@@ -80911,6 +80919,10 @@
         "stage": "destroyer",
         "via": "shop:Terraria/Steampunker"
       },
+      "CalamityMod/LucisSight": {
+        "stage": "destroyer",
+        "via": "shop:Terraria/Steampunker"
+      },
       "Terraria/MushroomSpear": {
         "stage": "destroyer",
         "via": "shop:Terraria/Truffle"
@@ -80992,10 +81004,6 @@
         "via": "manifest"
       },
       "Terraria/SuperStarCannon": {
-        "stage": "destroyer",
-        "via": "manifest"
-      },
-      "CalamityMod/GrandScale": {
         "stage": "destroyer",
         "via": "manifest"
       },
@@ -81502,6 +81510,10 @@
         "via": "manifest"
       },
       "Terraria/ElfMelter": {
+        "stage": "plantera",
+        "via": "manifest"
+      },
+      "CalamityMod/GrandScale": {
         "stage": "plantera",
         "via": "manifest"
       },
@@ -84962,615 +84974,7 @@
         "via": "recipe:Terraria/SolarFlarePickaxe+CalamityMod/BlossomPickaxe+CalamityMod/ShadowspecBar"
       }
     },
-    "wikiMissingItems": [
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-boss",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/Eggnog",
-        "wikiStage": "pre-boss",
-        "sourceReference": [
-          "Terraria/Lesser Healing Potion",
-          "Terraria/Eggnog"
-        ]
-      },
-      {
-        "id": "Terraria/RoastedBird",
-        "wikiStage": "pre-boss",
-        "sourceReference": [
-          "Terraria/Roasted Bird"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-evil1",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-evil2",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-evil2",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/Honeyfin",
-        "wikiStage": "pre-evil2",
-        "sourceReference": [
-          "Terraria/Healing Potion",
-          "Terraria/Honeyfin"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-skeletron",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-skeletron",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/Honeyfin",
-        "wikiStage": "pre-skeletron",
-        "sourceReference": [
-          "Terraria/Healing Potion",
-          "Terraria/Honeyfin"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-wof",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-wof",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-wof",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/Honeyfin",
-        "wikiStage": "pre-wof",
-        "sourceReference": [
-          "Terraria/Honeyfin",
-          "Terraria/Restoration Potion"
-        ]
-      },
-      {
-        "id": "Terraria/RestorationPotion",
-        "wikiStage": "pre-wof",
-        "sourceReference": [
-          "Terraria/Honeyfin",
-          "Terraria/Restoration Potion"
-        ]
-      },
-      {
-        "id": "Terraria/SliceOfCake",
-        "wikiStage": "pre-wof",
-        "sourceReference": [
-          "Terraria/Slice of Cake"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-mech",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-mech",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-mech",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-mech",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-mech",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "post-mech1",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "post-mech1",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "post-mech1",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "post-mech1",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "post-mech1",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "post-mech2",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "post-mech2",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "post-mech2",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "post-mech2",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "post-mech2",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-plantera",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-plantera",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-plantera",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-plantera",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-plantera",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-golem",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-golem",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-golem",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-golem",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-golem",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "post-golem",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "post-golem",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "post-golem",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "post-golem",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "post-golem",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-lunar",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-lunar",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-lunar",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-lunar",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-lunar",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-moonlord",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-moonlord",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-moonlord",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-moonlord",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-moonlord",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-provi",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-provi",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-provi",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-provi",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-provi",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-polter",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-polter",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-polter",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-polter",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-polter",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-dog",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-dog",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-dog",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-dog",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-dog",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-yharon",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-yharon",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-yharon",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-yharon",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-yharon",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-scal-exo",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-scal-exo",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-scal-exo",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-scal-exo",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-scal-exo",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "endgame",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "endgame",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "endgame",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "endgame",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "endgame",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      }
-    ],
+    "wikiMissingItems": [],
     "wikiResolvedItems": [
       {
         "from": "Terraria/Enchanted Boomerang",

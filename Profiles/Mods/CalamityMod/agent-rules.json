@@ -589,11 +589,23 @@
       "id": "great-sand-shark-material",
       "kind": "item-stage",
       "item": "CalamityMod/GrandScale",
-      "stageId": "destroyer",
-      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/GreatSandShark/GreatSandShark.cs",
+      "stageId": "plantera",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityNaturalSpawnBossNPC.cs#L109-L113",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
-      "reason": "Grand Scale is official Great Sand Shark loot; the encounter is placed after the first mechanical-boss milestone."
+      "reason": "Great Sand Shark drops Grand Scale, and its official natural-spawn check immediately returns until Plantera has been defeated."
+    },
+    {
+      "id": "lucis-sight-vanity-accessory",
+      "kind": "item-override",
+      "item": "CalamityMod/LucisSight",
+      "override": {
+        "exclude": true
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Accessories/Vanity/LucisSight.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official item source sets Item.vanity to true. It is cosmetic and must not appear in a combat-equipment profile."
     },
     {
       "id": "shady-salesman-source",

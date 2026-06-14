@@ -37,7 +37,7 @@ public sealed class JournalRecommendationHeader(string title, string? hoverText 
             title,
             textX,
             textY,
-            JournalUiTheme.SectionHeaderText,
+            JournalUiTheme.RootTitleText,
             Color.Black * 0.7f,
             Vector2.Zero,
             textScale);

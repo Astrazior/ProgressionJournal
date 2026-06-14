@@ -2748,7 +2748,7 @@ public sealed class JournalUiState : UIState
     private void UpdateStaticText(bool progressionModeEnabled)
     {
         _stagePanelTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.StageSelectorTitle"));
-        _progressionModeToggleButton.SetText(progressionModeEnabled ? "x" : "✓");
+        _progressionModeToggleButton.SetText(progressionModeEnabled ? "✓" : string.Empty);
         _progressionModeToggleButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProgressionModeToggleTooltip"));
         _buildBuilderButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildBuilderTab"));
         _buildImportButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildImportTooltip"));
