@@ -11,5 +11,7 @@ global using ProgressionJournal.Data.Repositories;
 global using ProgressionJournal.UI.Composition;
 global using ProgressionJournal.UI.Controls;
 global using ProgressionJournal.UI.States;
-global using ProgressionJournal.UI.Styling;
 global using ProgressionJournal.UI.Utilities;
+global using ProgressionJournal.UI.Visuals.Elements;
+global using ProgressionJournal.UI.Visuals.Renderers;
+global using ProgressionJournal.UI.Visuals.Styles;

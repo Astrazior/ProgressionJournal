@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.UI;
 
-namespace ProgressionJournal.UI.Controls;
+namespace ProgressionJournal.UI.Visuals.Elements;
 
 public sealed class JournalRecommendationHeader(
     string title,
@@ -142,7 +142,7 @@ public sealed class JournalRecommendationHeader(
         x = MathHelper.Clamp(x, TooltipOffset, Math.Max(TooltipOffset, viewportWidth - width - TooltipOffset));
         y = MathHelper.Clamp(y, TooltipOffset, Math.Max(TooltipOffset, viewportHeight - height - TooltipOffset));
 
-        JournalSourceCard.DrawBackground(
+        JournalSourceCardRenderer.Draw(
             spriteBatch,
             new Rectangle((int)x, (int)y, width, height),
             JournalUiTheme.PresetPanelBorder);

@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.UI;
 
-namespace ProgressionJournal.UI.Utilities;
+namespace ProgressionJournal.UI.Visuals.Renderers;
 
 public enum JournalSlotMarkerPlacement
 {

@@ -1,12 +1,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 namespace ProgressionJournal.UI.Controls;
 
-public sealed class JournalDraggablePanel : UIPanel
+public sealed class JournalDraggablePanel : JournalVolumetricPanel
 {
     private readonly List<UIElement> _dragTargets = [];
     private Vector2 _dragOffset;

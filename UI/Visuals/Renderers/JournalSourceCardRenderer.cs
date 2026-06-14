@@ -1,33 +1,14 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.GameContent.UI.Elements;
 
-namespace ProgressionJournal.UI.Controls;
+namespace ProgressionJournal.UI.Visuals.Renderers;
 
-public sealed class JournalSourceCard : UIPanel
+internal static class JournalSourceCardRenderer
 {
     private const string BestiaryPanelTexturePath = "Images/UI/Bestiary/Stat_Panel";
 
-    private readonly Color _accent;
-
-    public JournalSourceCard(Color accent)
-    {
-        _accent = accent;
-        SetPadding(0f);
-        BackgroundColor = Color.Transparent;
-        BorderColor = Color.Transparent;
-    }
-
-    protected override void DrawSelf(SpriteBatch spriteBatch)
-    {
-        base.DrawSelf(spriteBatch);
-
-        var bounds = GetDimensions().ToRectangle();
-        DrawBackground(spriteBatch, bounds, _accent, IsMouseHovering);
-    }
-
-    internal static void DrawBackground(
+    public static void Draw(
         SpriteBatch spriteBatch,
         Rectangle bounds,
         Color accent,

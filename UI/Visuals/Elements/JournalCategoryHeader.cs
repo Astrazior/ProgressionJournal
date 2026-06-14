@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.UI;
 
-namespace ProgressionJournal.UI.Controls;
+namespace ProgressionJournal.UI.Visuals.Elements;
 
 public enum JournalCategoryHeaderStyle
 {

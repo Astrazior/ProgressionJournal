@@ -12,7 +12,7 @@ using Terraria.UI;
 
 namespace ProgressionJournal.UI.Controls;
 
-public sealed class JournalProfileManagerPanel : UIPanel
+public sealed class JournalProfileManagerPanel : JournalVolumetricPanel
 {
     private const string CloseIconTexturePath = "Images/UI/SearchCancel";
     private const string BackIconTexturePath = "Images/UI/Bestiary/Button_Back";

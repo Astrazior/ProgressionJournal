@@ -1,4 +1,3 @@
-using Terraria.GameContent.UI.Elements;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
@@ -6,7 +5,7 @@ using Terraria.UI;
 
 namespace ProgressionJournal.UI.Controls;
 
-public sealed class JournalCombatBuffPanel : UIPanel
+public sealed class JournalCombatBuffPanel : JournalVolumetricPanel
 {
     private readonly IReadOnlyList<JournalBuffCategory> _sectionOrder;
     private readonly string _titleLocalizationKey;

@@ -1,9 +1,8 @@
 using Microsoft.Xna.Framework;
-using Terraria.GameContent.UI.Elements;
 
 namespace ProgressionJournal.UI.Controls;
 
-public sealed class JournalConditionPanel : UIPanel
+public sealed class JournalConditionPanel : JournalVolumetricPanel
 {
     public JournalConditionPanel()
     {

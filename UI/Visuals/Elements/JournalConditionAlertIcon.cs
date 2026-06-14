@@ -5,7 +5,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.UI;
 using Terraria.UI;
 
-namespace ProgressionJournal.UI.Controls;
+namespace ProgressionJournal.UI.Visuals.Elements;
 
 public sealed class JournalConditionAlertIcon : UIElement
 {

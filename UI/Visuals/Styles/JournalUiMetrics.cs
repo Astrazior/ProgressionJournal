@@ -1,4 +1,4 @@
-namespace ProgressionJournal.UI.Styling;
+namespace ProgressionJournal.UI.Visuals.Styles;
 
 public static class JournalUiMetrics
 {

@@ -10,7 +10,7 @@ public static class JournalUiElementFactory
 {
     public static UIPanel CreatePanel()
     {
-        var panel = new UIPanel();
+        var panel = new JournalVolumetricPanel();
         panel.SetPadding(0f);
         panel.BackgroundColor = JournalUiTheme.PanelBackground;
         panel.BorderColor = JournalUiTheme.PanelBorder;
