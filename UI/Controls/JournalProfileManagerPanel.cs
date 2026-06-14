@@ -71,7 +71,7 @@ public sealed class JournalProfileManagerPanel : JournalVolumetricPanel
             var profileIcon = JournalProfileIconResolver.GetIcon(profile);
             var button = JournalUiElementFactory.CreateIconTextButton(
                 profileIcon.Texture,
-                $"{profile.Name}{warning}",
+                $"{profile.DisplayName}{warning}",
                 0f,
                 48f,
                 () => system.SelectProfile(profile.Id),

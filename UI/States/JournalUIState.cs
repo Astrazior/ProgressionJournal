@@ -2763,7 +2763,7 @@ public sealed class JournalUiState : UIState
         _classButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.Class"));
         _overviewTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.OverviewTab"));
         _presetsTabButton.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.PresetsTab"));
-        _profileButton.SetText(JournalProfileRegistry.Active.Name);
+        _profileButton.SetText(JournalProfileRegistry.Active.DisplayName);
         var profileIcon = JournalProfileIconResolver.GetIcon(JournalProfileRegistry.Active);
         _profileButton.SetIcon(profileIcon.Texture, profileIcon.SourceRectangle);
         _profileButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileManagerTooltip"));

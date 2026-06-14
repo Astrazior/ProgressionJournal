@@ -10,7 +10,7 @@ public static class JournalProfileRegistry
     public static IReadOnlyList<JournalProfile> All => Profiles.Values
         .Where(IsAvailable)
         .OrderByDescending(static profile => profile.Id == JournalProfileIds.Vanilla)
-        .ThenBy(static profile => profile.Name, StringComparer.CurrentCultureIgnoreCase)
+        .ThenBy(static profile => profile.DisplayName, StringComparer.CurrentCultureIgnoreCase)
         .ToArray();
 
     public static JournalProfile Active { get; private set; } = null!;

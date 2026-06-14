@@ -1,3 +1,5 @@
+using Terraria.ModLoader;
+
 namespace ProgressionJournal.Data.Profiles;
 
 public sealed class JournalProfile(
@@ -16,6 +18,25 @@ public sealed class JournalProfile(
     public string Id => Document.Id;
 
     public string Name => Document.Name.Resolve();
+
+    public string DisplayName
+    {
+        get
+        {
+            var requiredMod = Document.RequiredMods.FirstOrDefault();
+            if (requiredMod is null)
+            {
+                return Name;
+            }
+
+            if (ModLoader.TryGetMod(requiredMod.Name, out var mod))
+            {
+                return NormalizeModProfileName(mod.DisplayNameClean);
+            }
+
+            return NormalizeModProfileName(Name);
+        }
+    }
 
     public bool HasVersionMismatch { get; } = hasVersionMismatch;
 
@@ -52,5 +73,27 @@ public sealed class JournalProfile(
         }
 
         return 0;
+    }
+
+    private static string NormalizeModProfileName(string name)
+    {
+        var result = name.Trim();
+        ReadOnlySpan<string> prefixes = ["Прогрессия ", "Progression "];
+
+        foreach (var prefix in prefixes)
+        {
+            if (result.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+            {
+                result = result[prefix.Length..].TrimStart();
+                break;
+            }
+        }
+
+        if (result.EndsWith(" Mod", StringComparison.OrdinalIgnoreCase))
+        {
+            result = result[..^4].TrimEnd();
+        }
+
+        return result;
     }
 }
