@@ -7,8 +7,14 @@ using Terraria.UI;
 
 namespace ProgressionJournal.UI.Controls;
 
-public sealed class JournalRecommendationHeader(string title, string? hoverText = null) : UIElement
+public sealed class JournalRecommendationHeader(
+    string title,
+    Color accentColor,
+    string? hoverText = null) : UIElement
 {
+    private const float TitleScale = 1.06f;
+    private const int PlaqueHorizontalPadding = 18;
+    private const int PlaqueMinWidth = 150;
     private const float HelpScale = 0.82f;
     private const float HelpRightPadding = 7f;
     private const float TooltipMaxWidth = 360f;
@@ -24,12 +30,27 @@ public sealed class JournalRecommendationHeader(string title, string? hoverText 
 
         var dimensions = GetInnerDimensions();
         var font = FontAssets.MouseText.Value;
-        const float textScale = 1.18f;
-
-        var titleSize = font.MeasureString(title) * textScale;
+        var titleSize = font.MeasureString(title) * TitleScale;
         var centerX = dimensions.X + dimensions.Width * 0.5f;
-        var textX = centerX - titleSize.X * 0.5f;
-        var textY = dimensions.Y + (dimensions.Height - titleSize.Y) * 0.5f - 1f;
+        var reservedHelpWidth = string.IsNullOrWhiteSpace(hoverText) ? 0 : 36;
+        var maxPlaqueWidth = Math.Max(1, (int)dimensions.Width - reservedHelpWidth);
+        var plaqueWidth = Math.Min(
+            maxPlaqueWidth,
+            Math.Max(PlaqueMinWidth, (int)MathF.Ceiling(titleSize.X) + PlaqueHorizontalPadding * 2));
+        var plaqueRectangle = new Rectangle(
+            (int)(centerX - plaqueWidth * 0.5f),
+            (int)dimensions.Y,
+            plaqueWidth,
+            Math.Max(1, (int)dimensions.Height - 3));
+
+        JournalItemSlotRenderer.DrawBackground(
+            spriteBatch,
+            plaqueRectangle,
+            accentColor,
+            emphasizeOuterAccent: true);
+
+        var textX = plaqueRectangle.Center.X - titleSize.X * 0.5f;
+        var textY = plaqueRectangle.Center.Y - titleSize.Y * 0.5f + 5f;
 
         Utils.DrawBorderStringFourWay(
             spriteBatch,
@@ -40,7 +61,7 @@ public sealed class JournalRecommendationHeader(string title, string? hoverText 
             JournalUiTheme.RootTitleText,
             Color.Black * 0.7f,
             Vector2.Zero,
-            textScale);
+            TitleScale);
 
         if (string.IsNullOrWhiteSpace(hoverText))
         {

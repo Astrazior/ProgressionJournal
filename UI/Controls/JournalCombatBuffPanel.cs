@@ -62,12 +62,13 @@ public sealed class JournalCombatBuffPanel : UIPanel
 
         if (_showTitle)
         {
-            var title = new UIText(Language.GetTextValue(_titleLocalizationKey), 0.48f, true)
-            {
-                HAlign = 0.5f
-            };
+            var title = new JournalRecommendationHeader(
+                Language.GetTextValue(_titleLocalizationKey),
+                JournalUiTheme.PresetPanelBorder);
+            title.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
             title.Top.Set(top, 0f);
-            title.TextColor = JournalUiTheme.RootTitleText;
+            title.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
+            title.Height.Set(JournalUiMetrics.RecommendationHeaderHeight, 0f);
             Append(title);
             top += JournalUiMetrics.RecommendationHeaderHeight + JournalUiMetrics.RecommendationHeaderBottomSpacing;
         }

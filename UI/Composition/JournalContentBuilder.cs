@@ -116,7 +116,7 @@ public static class JournalContentBuilder
         block.BorderColor = palette.Border;
 
         var top = JournalUiMetrics.BlockVerticalPadding;
-        var header = CreateRecommendationHeader(GetTierTitle(tier));
+        var header = CreateRecommendationHeader(GetTierTitle(tier), palette.Border);
         header.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
         header.Top.Set(top, 0f);
         block.Append(header);
@@ -848,7 +848,7 @@ public static class JournalContentBuilder
 
         var top = JournalUiMetrics.BlockVerticalPadding;
 
-        var header = CreateRecommendationHeader(title, headerHoverText);
+        var header = CreateRecommendationHeader(title, palette.Border, headerHoverText);
         header.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
         header.Top.Set(top, 0f);
         block.Append(header);
@@ -937,9 +937,10 @@ public static class JournalContentBuilder
 
     private static JournalRecommendationHeader CreateRecommendationHeader(
         string title,
+        Color accentColor,
         string? hoverText = null)
     {
-        var header = new JournalRecommendationHeader(title, hoverText);
+        var header = new JournalRecommendationHeader(title, accentColor, hoverText);
         header.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
         header.Height.Set(JournalUiMetrics.RecommendationHeaderHeight, 0f);
         return header;
