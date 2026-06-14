@@ -270,6 +270,7 @@ public static class JournalProfileStorage
                 entryDocument.EventCategory,
                 entryDocument.IsSupportWeapon,
                 entryDocument.CustomEventName,
+                entryDocument.EventIcon,
                 entryDocument.Wiki.Select(static value => new JournalWikiRecommendation(
                     value.StageId,
                     value.Classes.ToHashSet(StringComparer.OrdinalIgnoreCase),

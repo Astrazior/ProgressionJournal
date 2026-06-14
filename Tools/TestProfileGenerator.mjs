@@ -26,6 +26,9 @@ const snapshot = {
     item("Test/ClassTool", { damageClass: "Melee" }),
     item("Test/BossBag"),
     item("Test/BagBlade", { damageClass: "Melee", damage: 21 }),
+    item("Test/ConditionalBagBlade", { damageClass: "Melee", damage: 22 }),
+    item("Test/ZeroRateBlade", { damageClass: "Melee", damage: 23 }),
+    item("Test/FlooredBlade", { damageClass: "Melee", damage: 24 }),
     item("Test/LateDrop", { damageClass: "Melee", damage: 40 }),
     item("Test/ManualLateDrop", { damageClass: "Melee", damage: 39 }),
     item("Test/WikiOnlyBlade", { damageClass: "Melee", damage: 41 }),
@@ -128,6 +131,20 @@ const snapshot = {
     { source: "Test/Boss", sourceType: "npc", item: "Test/ClassTool", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/BossBag", conditions: [] },
     { source: "Test/BossBag", sourceType: "container", item: "Test/BagBlade", conditions: [] },
+    {
+      source: "Test/BossBag",
+      sourceType: "container",
+      item: "Test/ConditionalBagBlade",
+      conditions: [{ type: "Test.Lambda", description: null }]
+    },
+    {
+      source: "Test/Boss",
+      sourceType: "npc",
+      item: "Test/ZeroRateBlade",
+      rate: 0,
+      conditions: []
+    },
+    { source: "Test/Boss", sourceType: "npc", item: "Test/FlooredBlade", conditions: [] },
     { source: "Test/LateBoss", sourceType: "npc", item: "Test/LateDrop", conditions: [] },
     { source: "Test/ManualLateBoss", sourceType: "npc", item: "Test/ManualLateDrop", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/MeleeAccessory", conditions: [] },
@@ -177,14 +194,21 @@ const manifest = {
     { id: "magic", name: { "en-US": "Magic", "ru-RU": "Маг" }, damageClassNames: ["Magic"] }
   ],
   events: [
-    { id: "test-event", stageId: "boss", eventCategory: "BloodMoon", enemies: ["Test/EventEnemy"] }
+    {
+      id: "test-event",
+      stageId: "boss",
+      customEventName: "Test Event",
+      eventIcon: "Test/Bestiary/EventIcon",
+      enemies: ["Test/EventEnemy"]
+    }
   ],
   stages: [
     { id: "start", name: { "en-US": "Start", "ru-RU": "Начало" } },
     {
       id: "boss",
       name: { "en-US": "Boss", "ru-RU": "Босс" },
-      dropSources: ["Test/Boss"]
+      dropSources: ["Test/Boss"],
+      shops: ["Test/Merchant"]
     },
     { id: "empty", name: { "en-US": "Empty", "ru-RU": "Пусто" } },
     {
@@ -194,6 +218,12 @@ const manifest = {
     }
   ],
   conditionUnlocks: [
+    {
+      stageId: "start",
+      sources: ["drop"],
+      sourceIds: ["Test/BossBag"],
+      conditionTypes: ["Test.Lambda"]
+    },
     {
       stageId: "boss",
       sources: ["shop"],
@@ -284,15 +314,18 @@ assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "SeedSword
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "VanityAccessory"));
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "CycleA"));
 assert(profile.combatBuffs.some(entry => entry.itemGroups[0][0].item === "Potion"));
-assert(profile.combatBuffs.some(entry =>
-  entry.itemGroups[0][0].item === "BuffStation"
-  && entry.category === "Station"
-  && entry.classes.length === 1
-  && entry.classes[0] === "melee"));
+assert(!profile.combatBuffs.some(entry =>
+  entry.itemGroups[0][0].item === "BuffStation"));
+assert(report.wikiMissingItems.some(entry =>
+  entry.id === "Test/BuffStation"
+  && entry.reason === "recommendation has no proven availability"));
 assert(!profile.combatBuffs.some(entry => entry.itemGroups[0][0].item === "Forge"));
 assert.equal(
-  profile.entries.find(entry => entry.itemGroups[0][0].item === "EventGun")?.eventCategory,
-  "BloodMoon");
+  profile.entries.find(entry => entry.itemGroups[0][0].item === "EventGun")?.customEventName,
+  "Test Event");
+assert.equal(
+  profile.entries.find(entry => entry.itemGroups[0][0].item === "EventGun")?.eventIcon,
+  "Test/Bestiary/EventIcon");
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "FilteredSword"));
 assert(profile.entries.some(entry => entry.itemGroups[0][0].item === "ModifiedSword"));
 assert(profile.entries.some(entry =>
@@ -341,6 +374,11 @@ assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "BagBlade"
   && entry.evaluations[0].stageId === "boss"));
 assert.equal(report.paths["Test/BagBlade"].via, "container:Test/BossBag");
+assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "ConditionalBagBlade"
+  && entry.evaluations[0].stageId === "boss"));
+assert(!profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "ZeroRateBlade"));
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "LateDrop")?.evaluations,
   [{ stageId: "late", tier: "FromGuide", scope: "StageOnly" }]);
@@ -396,7 +434,8 @@ const manualAssignments = {
   version: 1,
   profileId: "test",
   itemStages: {
-    "Test/CycleA": "boss"
+    "Test/CycleA": "boss",
+    "Test/FlooredBlade": "late"
   },
   sourceStages: {
     "Test/ManualLateBoss": "boss",
@@ -420,6 +459,9 @@ const manualResult = generateProfile(snapshot, manifest, wikiProfile, manualAssi
 assert(manualResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "CycleA"
   && entry.evaluations[0].stageId === "boss"));
+assert(manualResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "FlooredBlade"
+  && entry.evaluations[0].stageId === "late"));
 assert(manualResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "ManualLateDrop"
   && entry.evaluations[0].stageId === "boss"));

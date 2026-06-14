@@ -576,14 +576,106 @@
       "reason": "The Astral Infection and its monolith material become available when Hardmode begins."
     },
     {
-      "id": "unholy-core-hardmode-recipe",
+      "id": "unholy-core-brimstone-material",
       "kind": "item-stage",
-      "item": "CalamityMod/UnholyCore",
-      "stageId": "wall-of-flesh",
-      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Materials/UnholyCore.cs",
+      "items": [
+        "CalamityMod/InfernalSuevite",
+        "CalamityMod/UnholyCore"
+      ],
+      "stageId": "brimstone-elemental",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Crags/InfernalCongealment.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-      "checkedAt": "2026-06-14",
-      "reason": "The official recipe crafts Unholy Core at a Hellforge from Hardmode evil-biome materials."
+      "checkedAt": "2026-06-15",
+      "reason": "Infernal Congealment cannot spawn before Brimstone Elemental is defeated and drops Infernal Suevite, which is required to craft Unholy Core."
+    },
+    {
+      "id": "cryonic-materials",
+      "kind": "item-stage",
+      "items": [
+        "CalamityMod/CryonicOre",
+        "CalamityMod/CryonicBar"
+      ],
+      "stageId": "cryogen",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Cryogen/Cryogen.cs#L1411-L1432",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "Cryonic Ore is generated on Cryogen's first defeat; Cryonic Bars are crafted from that ore."
+    },
+    {
+      "id": "perennial-materials",
+      "kind": "item-stage",
+      "items": [
+        "CalamityMod/PerennialOre",
+        "CalamityMod/PerennialBar"
+      ],
+      "stageId": "plantera",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityGlobalNPCLoot.cs#L2019-L2034",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "Perennial Ore is generated on Plantera's first defeat; Perennial Bars are crafted from that ore."
+    },
+    {
+      "id": "scoria-materials",
+      "kind": "item-stage",
+      "items": [
+        "CalamityMod/ScoriaOre",
+        "CalamityMod/ScoriaBar"
+      ],
+      "stageId": "golem",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Abyss/DevilFish.cs#L315",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "Abyss enemies only drop Scoria Ore after Golem is defeated; Scoria Bars are crafted from that ore."
+    },
+    {
+      "id": "default-early-hardmode-tier-two-ores",
+      "kind": "item-stage",
+      "items": [
+        "Terraria/MythrilOre",
+        "Terraria/OrichalcumOre",
+        "Terraria/MythrilBar",
+        "Terraria/OrichalcumBar"
+      ],
+      "stageId": "destroyer",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityGlobalNPCLoot.cs#L2134-L2142",
+      "sourceVersion": "2.2.1 default EarlyHardmodeProgressionRework",
+      "checkedAt": "2026-06-15",
+      "reason": "With Calamity's default early-Hardmode progression enabled, Mythril and Orichalcum generate after the first mechanical boss; this profile's first mechanical boss is The Destroyer."
+    },
+    {
+      "id": "default-early-hardmode-tier-three-ores",
+      "kind": "item-stage",
+      "items": [
+        "Terraria/AdamantiteOre",
+        "Terraria/TitaniumOre",
+        "Terraria/AdamantiteBar",
+        "Terraria/TitaniumBar"
+      ],
+      "stageId": "twins",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityGlobalNPCLoot.cs#L2143-L2150",
+      "sourceVersion": "2.2.1 default EarlyHardmodeProgressionRework",
+      "checkedAt": "2026-06-15",
+      "reason": "With Calamity's default early-Hardmode progression enabled, Adamantite and Titanium generate after the second mechanical boss; this profile's second mechanical boss is The Twins."
+    },
+    {
+      "id": "default-mythril-anvil-stage",
+      "kind": "station-stage",
+      "station": "Terraria/MythrilAnvil",
+      "stageId": "destroyer",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityGlobalNPCLoot.cs#L2134-L2142",
+      "sourceVersion": "2.2.1 default EarlyHardmodeProgressionRework",
+      "checkedAt": "2026-06-15",
+      "reason": "The Mythril Anvil requires Mythril or Orichalcum bars, which become available after the first mechanical boss under the default progression rework."
+    },
+    {
+      "id": "default-adamantite-forge-stage",
+      "kind": "station-stage",
+      "station": "Terraria/AdamantiteForge",
+      "stageId": "twins",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityGlobalNPCLoot.cs#L2143-L2150",
+      "sourceVersion": "2.2.1 default EarlyHardmodeProgressionRework",
+      "checkedAt": "2026-06-15",
+      "reason": "The Adamantite Forge requires Adamantite or Titanium ore, which becomes available after the second mechanical boss under the default progression rework."
     },
     {
       "id": "great-sand-shark-material",
@@ -606,6 +698,54 @@
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
       "reason": "The official item source sets Item.vanity to true. It is cosmetic and must not appear in a combat-equipment profile."
+    },
+    {
+      "id": "zen-potion-noncombat",
+      "kind": "item-override",
+      "item": "CalamityMod/ZenPotion",
+      "override": {
+        "exclude": true
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Potions/ZenPotion.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "Zen Potion changes enemy spawn frequency and is a farming/exploration utility, not a combat buff."
+    },
+    {
+      "id": "zerg-potion-noncombat",
+      "kind": "item-override",
+      "item": "CalamityMod/ZergPotion",
+      "override": {
+        "exclude": true
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Potions/ZergPotion.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "Zerg Potion changes enemy spawn frequency and is a farming utility, not a combat buff."
+    },
+    {
+      "id": "omniscience-potion-noncombat",
+      "kind": "item-override",
+      "item": "CalamityMod/PotionofOmniscience",
+      "override": {
+        "exclude": true
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Potions/PotionofOmniscience.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "Potion of Omniscience combines information and detection effects; it does not improve combat statistics."
+    },
+    {
+      "id": "anechoic-coating-noncombat",
+      "kind": "item-override",
+      "item": "CalamityMod/AnechoicCoating",
+      "override": {
+        "exclude": true
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Potions/AnechoicCoating.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "Anechoic Coating reduces enemy detection range and is an exploration/avoidance utility rather than combat equipment."
     },
     {
       "id": "shady-salesman-source",
@@ -972,10 +1112,10 @@
         "Terraria/DeerclopsBossBag"
       ],
       "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
-      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityGlobalNPCLoot.cs",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Utilities/DropHelper.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
-      "reason": "These lambdas select difficulty or Calamity mode variants inside boss bags; each bag's own source stage remains the progression gate."
+      "reason": "AddRevBagAccessories applies the Revengeance-only Heart of Darkness / Stress Pills pool to boss bags; each bag's own source stage remains the progression gate."
     },
     {
       "id": "calamity-boss-bag-lambda-drops",

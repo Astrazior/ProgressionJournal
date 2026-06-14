@@ -11,6 +11,7 @@ public static class JournalItemSourceResolver
 {
     private static readonly Dictionary<int, JournalItemAcquisitionInfo> Cache = new();
     private static readonly Dictionary<int, Item?> StationItemCache = new();
+    private static readonly Dictionary<int, bool> RevengeanceExclusiveCache = new();
 
     public static JournalItemAcquisitionInfo GetInfo(int itemId)
     {
@@ -174,8 +175,63 @@ public static class JournalItemSourceResolver
                 drop.dropRate,
                 drop.stackMin,
                 drop.stackMax,
-                EnumerateConditions(drop.conditions).Select(GetConditionDescription)));
+                EnumerateConditions(drop.conditions)
+                    .Select(condition => GetDropConditionDescription(condition, targetItemId))));
         }
+    }
+
+    private static string GetDropConditionDescription(object? condition, int targetItemId)
+    {
+        var description = GetConditionDescription(condition);
+        if (!string.IsNullOrWhiteSpace(description))
+        {
+            return description;
+        }
+
+        if (condition?.GetType().FullName == "CalamityMod.DropHelper+LambdaDropRuleCondition"
+            && IsRevengeanceExclusive(targetItemId))
+        {
+            return Language.GetTextValue("Mods.CalamityMod.UI.Revengeance");
+        }
+
+        return string.Empty;
+    }
+
+    private static bool IsRevengeanceExclusive(int itemId)
+    {
+        if (RevengeanceExclusiveCache.TryGetValue(itemId, out var cached))
+        {
+            return cached;
+        }
+
+        var result = false;
+        try
+        {
+            if (ModLoader.TryGetMod("CalamityMod", out var calamity)
+                && calamity.Code.GetType("CalamityMod.Items.CalamityGlobalItem") is { } globalItemType)
+            {
+                var getGlobalItemMethod = typeof(Item)
+                    .GetMethods(BindingFlags.Public | BindingFlags.Instance)
+                    .FirstOrDefault(static method =>
+                        method.Name == "GetGlobalItem"
+                        && method.IsGenericMethodDefinition
+                        && method.GetGenericArguments().Length == 1
+                        && method.GetParameters().Length == 0);
+                var globalItem = getGlobalItemMethod?
+                    .MakeGenericMethod(globalItemType)
+                    .Invoke(ContentSamples.ItemsByType[itemId], null);
+                result = globalItemType
+                    .GetProperty("revengeanceItem", BindingFlags.Public | BindingFlags.Instance)?
+                    .GetValue(globalItem) is true;
+            }
+        }
+        catch
+        {
+            // Calamity is optional; a changed integration surface must not break source resolution.
+        }
+
+        RevengeanceExclusiveCache[itemId] = result;
+        return result;
     }
 
     private static Item? ResolveStationItem(int tileId)

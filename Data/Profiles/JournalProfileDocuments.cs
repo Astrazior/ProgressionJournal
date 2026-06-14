@@ -100,6 +100,8 @@ public sealed class JournalProfileEntryDocument
     public JournalEventCategory? EventCategory { get; set; }
 
     public string CustomEventName { get; set; } = string.Empty;
+
+    public string EventIcon { get; set; } = string.Empty;
 }
 
 public sealed class JournalProfileEvaluationDocument

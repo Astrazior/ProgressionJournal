@@ -1,8 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.Localization;
+using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace ProgressionJournal.UI.Controls;
@@ -23,6 +25,7 @@ public sealed class JournalEntrySlot : UIElement
     private readonly JournalStageEntry _entry;
     private readonly Item[][] _itemGroups;
     private readonly int? _eventBadgeFrame;
+    private readonly Asset<Texture2D>? _eventIcon;
     private readonly string? _eventLabel;
     private readonly bool _hasCustomEvent;
     private readonly string? _supportLabel;
@@ -49,6 +52,7 @@ public sealed class JournalEntrySlot : UIElement
         {
             _eventLabel = entry.Entry.CustomEventName;
             _hasCustomEvent = true;
+            _eventIcon = TryResolveEventIcon(entry.Entry.EventIcon);
         }
 
         if (entry.Entry.IsSupportWeapon)
@@ -288,6 +292,25 @@ public sealed class JournalEntrySlot : UIElement
             return;
         }
 
+        if (_eventIcon is not null)
+        {
+            var itemTexture = _eventIcon.Value;
+            const int maxIconSize = EventBadgeSize - EventBadgeInnerPadding * 2;
+            var scale = MathF.Min(maxIconSize / (float)itemTexture.Width, maxIconSize / (float)itemTexture.Height);
+
+            spriteBatch.Draw(
+                itemTexture,
+                badgeRectangle.Center.ToVector2(),
+                null,
+                Color.White,
+                0f,
+                itemTexture.Size() * 0.5f,
+                scale,
+                SpriteEffects.None,
+                0f);
+            return;
+        }
+
         Utils.DrawBorderStringFourWay(
             spriteBatch,
             FontAssets.MouseText.Value,
@@ -298,6 +321,22 @@ public sealed class JournalEntrySlot : UIElement
             Color.Black,
             Vector2.Zero,
             0.52f);
+    }
+
+    private static Asset<Texture2D>? TryResolveEventIcon(string assetPath)
+    {
+        var separatorIndex = assetPath.IndexOf('/');
+        if (separatorIndex <= 0 || separatorIndex >= assetPath.Length - 1)
+        {
+            return null;
+        }
+
+        var modName = assetPath[..separatorIndex];
+        var relativePath = assetPath[(separatorIndex + 1)..];
+        return ModLoader.TryGetMod(modName, out var mod)
+            && mod.RequestAssetIfExists<Texture2D>(relativePath, out var asset)
+                ? asset
+                : null;
     }
 
     private static Rectangle GetBestiaryFilterSourceRectangle(Texture2D texture, int frame)

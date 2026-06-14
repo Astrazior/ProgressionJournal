@@ -40,6 +40,8 @@ export function generateProfile(
     recipe => recipe.result);
   const dropsBySource = groupBy(
     snapshot.drops.filter(drop =>
+      (drop.rate ?? 1) > 0
+      &&
       isAllowedProfileItem(drop.item, contentMods)
       && isAllowedProfileItem(drop.source, contentMods)),
     drop => drop.source);
@@ -51,6 +53,28 @@ export function generateProfile(
   const acquiredBy = new Map();
   const available = new Set(manifest.initialItems ?? []);
   const availableStations = new Set(manifest.initialStations ?? []);
+  const availableDropSources = new Set();
+  const availableShops = new Set();
+  const stageIndexes = new Map(manifest.stages.map((stage, index) => [stage.id, index]));
+  const itemStageFloors = new Map(
+    Object.entries(manifest.itemStageFloors ?? {})
+      .filter(([, stageId]) => stageIndexes.has(stageId))
+      .map(([id, stageId]) => [id, stageIndexes.get(stageId)]));
+  const stationStageFloors = new Map(
+    Object.entries(manifest.stationStageFloors ?? {})
+      .filter(([, stageId]) => stageIndexes.has(stageId))
+      .map(([id, stageId]) => [id, stageIndexes.get(stageId)]));
+  const stationAllowedAtStage = (id, stage) => {
+    const floorIndex = stationStageFloors.get(id);
+    return floorIndex === undefined || (stageIndexes.get(stage) ?? -1) >= floorIndex;
+  };
+  const unlockAtStage = (id, stage, via, metadata = {}) => {
+    const floorIndex = itemStageFloors.get(id);
+    if (floorIndex !== undefined && (stageIndexes.get(stage) ?? -1) < floorIndex) {
+      return false;
+    }
+    return unlock(id, stage, via, available, acquiredBy, metadata);
+  };
   const report = {
     profileId: manifest.id,
     generatedAtUtc: new Date().toISOString(),
@@ -68,15 +92,13 @@ export function generateProfile(
     staleRules: [],
     manualAssignmentProblems: manualResult.problems
   };
+  Object.defineProperty(manifest, "_stageIndexes", { value: stageIndexes });
+  Object.defineProperty(report, "_unresolvedConditionSignatures", { value: new Set() });
   const usedStations = new Set(
     snapshot.recipes
       .filter(recipe => isAllowedProfileItem(recipe.result, contentMods))
       .flatMap(recipe => recipe.stations));
   const classificationContext = { usedStations, items: allowedItems };
-  const conditionUnlocksByStage = buildConditionUnlocksByStage(
-    snapshot,
-    manifest,
-    contentMods);
   const wikiResolver = createWikiReferenceResolver(allowedItems, report);
   const wikiItemIds = getWikiItemIds(wikiProfile, manifest, wikiResolver);
   const modifiedVanillaItems = new Set(manifest.modifiedVanillaItems ?? []);
@@ -90,8 +112,11 @@ export function generateProfile(
   const profileBuffs = [];
   const entryByItem = new Map();
   const buffItems = new Set();
-  const openedContainers = new Set();
-  unlockPlacedStations(available, itemById, availableStations);
+  unlockPlacedStations(
+    available,
+    itemById,
+    availableStations,
+    station => stationAllowedAtStage(station, "start"));
 
   for (const stage of manifest.stages) {
     const before = new Set(available);
@@ -100,15 +125,17 @@ export function generateProfile(
       ...(stage.enemies ?? []),
       ...(stage.containers ?? [])
     ];
+    for (const source of stageSources) availableDropSources.add(source);
+    for (const npc of stage.shops ?? []) availableShops.add(npc);
 
-    for (const source of stageSources) {
+    for (const source of availableDropSources) {
       for (const drop of dropsBySource.get(source) ?? []) {
         if (conditionsAllowed(drop.conditions, stage, manifest, report, {
           sourceKind: "drop",
           source,
           item: drop.item
         })) {
-          unlock(drop.item, stage.id, `${drop.sourceType}:${source}`, available, acquiredBy);
+          unlockAtStage(drop.item, stage.id, `${drop.sourceType}:${source}`);
         }
       }
     }
@@ -119,65 +146,71 @@ export function generateProfile(
         ...(event.containers ?? [])
       ];
       for (const source of eventSources) {
+        availableDropSources.add(source);
         for (const drop of dropsBySource.get(source) ?? []) {
           if (conditionsAllowed(drop.conditions, stage, manifest, report, {
             sourceKind: "drop",
             source,
             item: drop.item
           })) {
-            unlock(
+            unlockAtStage(
               drop.item,
               stage.id,
               `${drop.sourceType}:${source}`,
-              available,
-              acquiredBy,
               {
                 eventCategory: event.eventCategory ?? null,
-                customEventName: event.customEventName ?? ""
+                customEventName: event.customEventName ?? "",
+                eventIcon: event.eventIcon ?? ""
               });
           }
         }
       }
     }
-    for (const npc of stage.shops ?? []) {
+    for (const npc of availableShops) {
       for (const shop of shopsByNpc.get(npc) ?? []) {
         if (conditionsAllowed(shop.conditions, stage, manifest, report, {
           sourceKind: "shop",
           source: npc,
           item: shop.item
         })) {
-          unlock(shop.item, stage.id, `shop:${npc}`, available, acquiredBy);
+          unlockAtStage(shop.item, stage.id, `shop:${npc}`);
         }
       }
     }
-    for (const record of conditionUnlocksByStage.get(stage.id) ?? []) {
-      unlock(record.item, stage.id, record.via, available, acquiredBy);
-    }
     for (const id of [...(stage.materials ?? []), ...(stage.include ?? [])]) {
-      unlock(id, stage.id, "manifest", available, acquiredBy);
+      unlockAtStage(id, stage.id, "manifest");
     }
-    for (const station of stage.stations ?? []) availableStations.add(station);
+    for (const station of stage.stations ?? []) {
+      if (stationAllowedAtStage(station, stage.id)) availableStations.add(station);
+    }
 
     let changed = true;
     while (changed) {
       changed = false;
-      if (unlockPlacedStations(available, itemById, availableStations)) {
+      if (unlockPlacedStations(
+        available,
+        itemById,
+        availableStations,
+        station => stationAllowedAtStage(station, stage.id))) {
         changed = true;
       }
       for (const container of [...available]) {
-        if (openedContainers.has(container)) continue;
-        openedContainers.add(container);
         for (const drop of dropsBySource.get(container) ?? []) {
-          if (!containerConditionsAllowed(drop.conditions)) continue;
+          if (!conditionsAllowed(drop.conditions, stage, manifest, report, {
+            sourceKind: "drop",
+            source: container,
+            item: drop.item
+          })) {
+            continue;
+          }
           if (!available.has(drop.item)) {
-            unlock(
+            if (unlockAtStage(
               drop.item,
               stage.id,
               `container:${container}`,
-              available,
-              acquiredBy,
-              inheritedEventMetadata([{ item: container }], stage.id, acquiredBy));
-            changed = true;
+              inheritedEventMetadata([{ item: container }], stage.id, acquiredBy))) {
+              changed = true;
+            }
           }
         }
       }
@@ -193,13 +226,13 @@ export function generateProfile(
           }));
         if (!openRecipe) continue;
 
-        unlock(
+        if (!unlockAtStage(
           result,
           stage.id,
           `recipe:${openRecipe.ingredients.map(value => value.item).join("+")}`,
-          available,
-          acquiredBy,
-          inheritedEventMetadata(openRecipe.ingredients, stage.id, acquiredBy));
+          inheritedEventMetadata(openRecipe.ingredients, stage.id, acquiredBy))) {
+          continue;
+        }
         const item = itemById.get(result);
         if (item?.placedTile) availableStations.add(item.placedTile);
         changed = true;
@@ -251,7 +284,8 @@ export function generateProfile(
           wiki: [],
           isSupportWeapon: false,
           eventCategory: acquiredBy.get(id)?.eventCategory ?? null,
-          customEventName: acquiredBy.get(id)?.customEventName ?? ""
+          customEventName: acquiredBy.get(id)?.customEventName ?? "",
+          eventIcon: acquiredBy.get(id)?.eventIcon ?? ""
         };
         profileEntries.push(entry);
         entryByItem.set(id, entry);
@@ -353,6 +387,14 @@ function applyManualAssignments(sourceManifest, manualAssignments) {
   applyStageMap(manualAssignments.sourceStages, "dropSources", "source-stage");
   applyStageMap(manualAssignments.sourceStages, "shops", "source-stage");
   applyStageMap(manualAssignments.stationStages, "stations", "station-stage");
+  manifest.itemStageFloors = {
+    ...(manifest.itemStageFloors ?? {}),
+    ...(manualAssignments.itemStages ?? {})
+  };
+  manifest.stationStageFloors = {
+    ...(manifest.stationStageFloors ?? {}),
+    ...(manualAssignments.stationStages ?? {})
+  };
   manifest.itemOverrides = {
     ...(manifest.itemOverrides ?? {}),
     ...(manualAssignments.itemOverrides ?? {})
@@ -380,68 +422,6 @@ function applyManualAssignments(sourceManifest, manualAssignments) {
   }
 
   return { manifest, problems };
-}
-
-function buildConditionUnlocksByStage(snapshot, manifest, contentMods) {
-  const rules = manifest.conditionUnlocks ?? [];
-  const stageIndexes = new Map(manifest.stages.map((stage, index) => [stage.id, index]));
-  const result = new Map();
-  const records = [
-    ...snapshot.drops
-      .filter(drop =>
-        isAllowedProfileItem(drop.item, contentMods)
-        && isAllowedProfileItem(drop.source, contentMods))
-      .map(drop => ({
-        sourceKind: "drop",
-        source: drop.source,
-        item: drop.item,
-        conditions: drop.conditions,
-        via: `condition-drop:${drop.source}`
-      })),
-    ...snapshot.shops
-      .filter(shop =>
-        isAllowedProfileItem(shop.item, contentMods)
-        && isAllowedProfileItem(shop.npc, contentMods))
-      .map(shop => ({
-        sourceKind: "shop",
-        source: shop.npc,
-        item: shop.item,
-        conditions: shop.conditions,
-        via: `shop:${shop.npc}`
-      })),
-    ...snapshot.recipes
-      .filter(recipe =>
-        isAllowedProfileItem(recipe.result, contentMods)
-        && recipe.ingredients.every(ingredient =>
-          isAllowedProfileItem(ingredient.item, contentMods))
-        && recipe.stations.every(station =>
-          isAllowedProfileItem(station, contentMods)))
-      .map(recipe => ({
-        sourceKind: "recipe",
-        source: recipe.result,
-        item: recipe.result,
-        conditions: recipe.conditions,
-        via: "condition-recipe"
-      }))
-  ];
-
-  for (const record of records) {
-    const matchingRules = rules.filter(rule =>
-      (rule.sources ?? ["drop", "shop", "recipe"]).includes(record.sourceKind)
-      && ((rule.sourceIds ?? []).length === 0 || rule.sourceIds.includes(record.source))
-      && record.conditions.some(condition => conditionMatchesUnlockRule(condition, rule)));
-    if (matchingRules.length === 0) continue;
-
-    const selected = matchingRules
-      .map(rule => ({ rule, index: stageIndexes.get(rule.stageId) ?? -1 }))
-      .filter(value => value.index >= 0)
-      .sort((left, right) => right.index - left.index)[0];
-    if (!selected) continue;
-    if (!result.has(selected.rule.stageId)) result.set(selected.rule.stageId, []);
-    result.get(selected.rule.stageId).push(record);
-  }
-
-  return result;
 }
 
 function conditionMatchesUnlockRule(condition, rule) {
@@ -491,11 +471,6 @@ function classifyItem(item, manifest, report, context) {
     return { category: "Support", classes };
   }
   return null;
-}
-
-function containerConditionsAllowed(conditions) {
-  return (conditions ?? []).every(condition =>
-    !condition.type || isProgressionNeutralCondition(condition));
 }
 
 function classifyWikiItem(metadata) {
@@ -551,26 +526,55 @@ function resolveDamageClasses(damageClass, manifest) {
 }
 
 function conditionsAllowed(conditions, stage, manifest, report, context) {
+  const stageIndexes = manifest._stageIndexes
+    ?? new Map(manifest.stages.map((value, index) => [value.id, index]));
+  const currentStageIndex = stageIndexes.get(stage.id) ?? -1;
   for (const condition of conditions ?? []) {
     if (!condition.type) continue;
     if (isProgressionNeutralCondition(condition)) continue;
     const rule = manifest.conditionRules?.[condition.type];
     if (rule === "allow") continue;
     if (rule?.stages?.includes(stage.id)) continue;
-    if (!conditionHasAssignment(condition, context.sourceKind, context.source, manifest)) {
-      appendUnique(
-        report.unresolvedConditions,
-        {
-          sourceKind: context.sourceKind,
-          source: context.source,
-          item: context.item,
-          condition
-        },
-        value => JSON.stringify(value));
+    const assignedStageIndex = assignedConditionStageIndex(
+      condition,
+      context.sourceKind,
+      context.source,
+      manifest,
+      stageIndexes);
+    if (assignedStageIndex < 0) {
+      const unresolved = {
+        sourceKind: context.sourceKind,
+        source: context.source,
+        item: context.item,
+        condition
+      };
+      const signature = JSON.stringify(unresolved);
+      const signatures = report._unresolvedConditionSignatures;
+      if (!signatures || !signatures.has(signature)) {
+        report.unresolvedConditions.push(unresolved);
+        signatures?.add(signature);
+      }
+      return false;
     }
-    return false;
+    if (currentStageIndex < assignedStageIndex) return false;
   }
   return true;
+}
+
+function assignedConditionStageIndex(
+  condition,
+  sourceKind,
+  source,
+  manifest,
+  stageIndexes) {
+  const indexes = (manifest.conditionUnlocks ?? [])
+    .filter(rule =>
+      (rule.sources ?? ["drop", "shop", "recipe"]).includes(sourceKind)
+      && ((rule.sourceIds ?? []).length === 0 || rule.sourceIds.includes(source))
+      && conditionMatchesUnlockRule(condition, rule))
+    .map(rule => stageIndexes.get(rule.stageId) ?? -1)
+    .filter(index => index >= 0);
+  return indexes.length === 0 ? -1 : Math.max(...indexes);
 }
 
 function conditionHasAssignment(condition, sourceKind, source, manifest) {
@@ -627,20 +631,16 @@ function applyWikiRecommendations(
             continue;
           }
 
-          let buff = buffByItem.get(id);
+          const buff = buffByItem.get(id);
           if (!buff) {
-            buff = {
-              key: `wiki.${slug(id)}`,
-              category: classifyWikiBuffCategory(item),
-              classes: [],
-              stageId: mapping.stageId,
-              itemGroups: [[toItemReference(item)]]
-            };
-            buffByItem.set(id, buff);
-            profileBuffs.push(buff);
-            buffItems.add(id);
-          } else {
-            buff.stageId = earliestStage([buff.stageId, mapping.stageId], manifest) ?? buff.stageId;
+            report.wikiMissingItems.push({
+              id,
+              wikiStage: evaluation.stageId,
+              reason: "recommendation has no proven availability",
+              sourceReference: sourceEntry.itemGroups?.flat()
+                .map(ref => `${ref.mod}/${ref.item}`)
+            });
+            continue;
           }
 
           const classes = wikiBuffClasses.get(id) ?? new Set();
@@ -679,7 +679,8 @@ function applyWikiRecommendations(
             isSupportWeapon: sourceEntry.category === "Support"
               || sourceEntry.isSupportWeapon === true,
             eventCategory: null,
-            customEventName: ""
+            customEventName: "",
+            eventIcon: ""
           };
           entryByItem.set(id, entry);
           profileEntries.push(entry);
@@ -709,14 +710,6 @@ function applyWikiRecommendations(
   }
 }
 
-function classifyWikiBuffCategory(item) {
-  if (item.placedTile) return "Station";
-  if (item.food) return "Food";
-  if (item.flask) return "Flask";
-  if (item.healLife > 0 || item.healMana > 0) return "Basic";
-  return "Potion";
-}
-
 function narrowUnclassifiedEquipmentClasses(profileEntries, manifest) {
   const profileClasses = allClasses(manifest);
   const allClassIds = new Set(profileClasses);
@@ -734,14 +727,6 @@ function narrowUnclassifiedEquipmentClasses(profileEntries, manifest) {
       entry.classes = narrowedClasses;
     }
   }
-}
-
-function earliestStage(stageIds, manifest) {
-  const stageIndexes = new Map(manifest.stages.map((stage, index) => [stage.id, index]));
-  const stages = [...new Set(stageIds)]
-    .filter(stageId => stageIndexes.has(stageId))
-    .sort((left, right) => stageIndexes.get(left) - stageIndexes.get(right));
-  return stages[0] ?? null;
 }
 
 function sourceCompatibility(sourceProfile, snapshot) {
@@ -1078,7 +1063,7 @@ function buildManualReview({
     if (!classification) continue;
 
     const drops = snapshot.drops
-      .filter(drop => drop.item === item.id)
+      .filter(drop => (drop.rate ?? 1) > 0 && drop.item === item.id)
       .map(drop => ({
         sourceKind: drop.sourceType,
         source: drop.source,
@@ -1177,7 +1162,7 @@ function buildManualReview({
 function collectUnknownConditionRecords(snapshot, manifest, contentMods) {
   const records = [
     ...snapshot.drops
-      .filter(drop => isAllowedProfileItem(drop.item, contentMods))
+      .filter(drop => (drop.rate ?? 1) > 0 && isAllowedProfileItem(drop.item, contentMods))
       .flatMap(drop => (drop.conditions ?? []).map(condition => ({
         sourceKind: "drop",
         source: drop.source,
@@ -1244,15 +1229,21 @@ function allClasses(manifest) {
 }
 
 function unlock(id, stage, via, available, acquiredBy, metadata = {}) {
-  if (!available.has(id)) acquiredBy.set(id, { stage, via, ...metadata });
+  if (available.has(id)) return false;
+  acquiredBy.set(id, { stage, via, ...metadata });
   available.add(id);
+  return true;
 }
 
-function unlockPlacedStations(available, itemById, availableStations) {
+function unlockPlacedStations(
+  available,
+  itemById,
+  availableStations,
+  stationAllowed = () => true) {
   let changed = false;
   for (const id of available) {
     const station = itemById.get(id)?.placedTile;
-    if (station && !availableStations.has(station)) {
+    if (station && stationAllowed(station) && !availableStations.has(station)) {
       availableStations.add(station);
       changed = true;
     }
@@ -1271,11 +1262,13 @@ function inheritedEventMetadata(ingredients, stageId, acquiredBy) {
   const first = eventSources[0];
   const sameEvent = eventSources.every(source =>
     source.eventCategory === first.eventCategory
-    && source.customEventName === first.customEventName);
+    && source.customEventName === first.customEventName
+    && source.eventIcon === first.eventIcon);
   return sameEvent
     ? {
         eventCategory: first.eventCategory ?? null,
-        customEventName: first.customEventName ?? ""
+        customEventName: first.customEventName ?? "",
+        eventIcon: first.eventIcon ?? ""
       }
     : {};
 }

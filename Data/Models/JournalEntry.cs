@@ -54,6 +54,7 @@ public sealed class JournalEntry
 		JournalEventCategory? eventCategory = null,
 		bool isSupportWeapon = false,
 		string? customEventName = null,
+		string? eventIcon = null,
 		IEnumerable<JournalWikiRecommendation>? wikiRecommendations = null)
 	{
 		Key = key;
@@ -62,6 +63,7 @@ public sealed class JournalEntry
 		Classes = GetLegacyClasses(_classIds);
 		EventCategory = eventCategory;
 		CustomEventName = customEventName?.Trim() ?? string.Empty;
+		EventIcon = eventIcon?.Trim() ?? string.Empty;
 		IsSupportWeapon = isSupportWeapon;
 		ItemGroups = itemGroups.ToArray();
 
@@ -87,6 +89,8 @@ public sealed class JournalEntry
 	public JournalEventCategory? EventCategory { get; }
 
 	public string CustomEventName { get; }
+
+	public string EventIcon { get; }
 
 	public bool IsSupportWeapon { get; }
 

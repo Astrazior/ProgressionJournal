@@ -579,6 +579,39 @@ public sealed class JournalUiState : UIState
         return panel;
     }
 
+    private UIPanel CreateAggregatedBossDropSourceCard(IReadOnlyList<JournalDropSource> drops)
+    {
+        var panel = CreateSourceCard(new Color(205, 116, 118));
+        panel.Width.Set(0f, 1f);
+
+        var top = JournalUiMetrics.BlockVerticalPadding;
+        top = AppendCenteredTextLines(
+            panel,
+            [$"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSource")}: {Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemFromAnyBoss")}"],
+            top);
+
+        var primaryDrop = drops[0];
+        var lines = new List<string>
+        {
+            $"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemChance")}: {FormatDropRate(primaryDrop.DropRate)}"
+        };
+
+        if (primaryDrop.StackMax > 1 || primaryDrop.StackMin > 1)
+        {
+            lines.Add($"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemStack")}: {FormatStackRange(primaryDrop.StackMin, primaryDrop.StackMax)}");
+        }
+
+        top = AppendCenteredTextLines(panel, lines, top + 8f);
+
+        if (primaryDrop.Conditions.Count > 0)
+        {
+            top = AppendConditionContent(panel, primaryDrop.Conditions, top + 6f);
+        }
+
+        panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
+        return panel;
+    }
+
     private UIPanel CreateShopSourceCard(JournalShopSource shop)
     {
         var panel = CreateSourceCard(new Color(232, 198, 92));
@@ -720,9 +753,20 @@ public sealed class JournalUiState : UIState
     private IEnumerable<UIElement> CreateDropSourceCards(IReadOnlyList<JournalDropSource> drops)
     {
         return GroupDropSourcesForDisplay(drops)
-            .Select(group => group.Count > 1 && group.All(static drop => drop is { SourceNpcType: not null, SourceItemId: null })
-                ? (UIElement)CreateAggregatedNpcDropSourceCard(group)
-                : CreateDropSourceCard(group[0]));
+            .Select(group =>
+            {
+                if (group.Count <= 1)
+                {
+                    return CreateDropSourceCard(group[0]);
+                }
+
+                if (group.All(static drop => drop is { SourceNpcType: not null, SourceItemId: null }))
+                {
+                    return (UIElement)CreateAggregatedNpcDropSourceCard(group);
+                }
+
+                return CreateAggregatedBossDropSourceCard(group);
+            });
     }
 
     private static IReadOnlyList<JournalDropSource>[] GroupDropSourcesForDisplay(IReadOnlyList<JournalDropSource> drops)
@@ -741,7 +785,12 @@ public sealed class JournalUiState : UIState
             .Select(static group =>
             {
                 var groupedDrops = group.ToArray();
-                return groupedDrops.Length >= 4 && group.Key.IsNpcSource
+                var isBossBagGroup = groupedDrops.All(static drop =>
+                    drop.SourceItemId is { } itemId
+                    && itemId >= 0
+                    && itemId < ItemID.Sets.BossBag.Length
+                    && ItemID.Sets.BossBag[itemId]);
+                return groupedDrops.Length >= 4 && (group.Key.IsNpcSource || isBossBagGroup)
                     ? (IReadOnlyList<JournalDropSource>)groupedDrops
                     : [groupedDrops[0]];
             })
