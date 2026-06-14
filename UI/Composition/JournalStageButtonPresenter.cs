@@ -15,7 +15,6 @@ public static class JournalStageButtonPresenter
         ApplyContent(button, profile, stage);
         button.SetTooltip(GetStageName(profile, stage));
         button.SetInteractable(true);
-        button.SetCompleted(false);
         button.SetStyle(JournalUiTheme.GetStageButtonStyle(selected));
     }
 
@@ -48,7 +47,6 @@ public static class JournalStageButtonPresenter
             }
 
             button.SetInteractable(isAvailable);
-            button.SetCompleted(unlocked);
             button.SetStyle(JournalUiTheme.GetStageButtonStyle(
                 string.Equals(stage.Id, selectedStage, StringComparison.OrdinalIgnoreCase)));
         }

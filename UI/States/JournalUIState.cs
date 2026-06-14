@@ -41,7 +41,7 @@ public sealed class JournalUiState : UIState
     private UIElement _contentTabsPanel = null!;
     private UIElement _contentPanel = null!;
     private UIText _stagePanelTitle = null!;
-    private JournalTextButton _progressionModeToggleButton = null!;
+    private JournalProgressionModeToggle _progressionModeToggleButton = null!;
     private JournalIconTextButton _profileButton = null!;
     private JournalIconButton _closeButton = null!;
     private JournalTextButton _classButton = null!;
@@ -2127,12 +2127,10 @@ public sealed class JournalUiState : UIState
         _stagePanelTitle.Top.Set(JournalUiMetrics.StagePanelTitleTop, 0f);
         _stagePanel.Append(_stagePanelTitle);
 
-        _progressionModeToggleButton = JournalUiElementFactory.CreateTextButton(
-            string.Empty,
-            JournalUiMetrics.StageProgressionToggleSize,
-            JournalUiMetrics.StageProgressionToggleSize,
-            () => JournalSystem.ToggleProgressionMode(),
-            0.75f);
+        _progressionModeToggleButton = new JournalProgressionModeToggle(
+            () => JournalSystem.ToggleProgressionMode());
+        _progressionModeToggleButton.Width.Set(JournalUiMetrics.StageProgressionToggleSize, 0f);
+        _progressionModeToggleButton.Height.Set(JournalUiMetrics.StageProgressionToggleSize, 0f);
         _progressionModeToggleButton.Left.Set(-(JournalUiMetrics.StageProgressionToggleRightInset + JournalUiMetrics.StageProgressionToggleSize), 1f);
         _progressionModeToggleButton.Top.Set(JournalUiMetrics.StageProgressionToggleTop, 0f);
         _stagePanel.Append(_progressionModeToggleButton);
@@ -2748,7 +2746,7 @@ public sealed class JournalUiState : UIState
     private void UpdateStaticText(bool progressionModeEnabled)
     {
         _stagePanelTitle.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.StageSelectorTitle"));
-        _progressionModeToggleButton.SetText(progressionModeEnabled ? "✓" : string.Empty);
+        _progressionModeToggleButton.SetEnabled(progressionModeEnabled);
         _progressionModeToggleButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProgressionModeToggleTooltip"));
         _buildBuilderButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildBuilderTab"));
         _buildImportButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildImportTooltip"));

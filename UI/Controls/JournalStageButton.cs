@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
-using Terraria.ModLoader;
 
 namespace ProgressionJournal.UI.Controls;
 
@@ -12,14 +11,11 @@ public sealed class JournalStageButton : JournalHoverPanel
     private const float IconPadding = 6f;
     private const float IconOverlap = 10f;
 
-    private static readonly Asset<Texture2D> CompletedMarkerTexture =
-        ModContent.Request<Texture2D>("ProgressionJournal/Assets/UI/StageCompletedCheck");
     private static readonly Asset<Texture2D> LockedMarkerTexture =
         Main.Assets.Request<Texture2D>("Images/UI/Bestiary/Icon_Locked");
 
     private readonly List<(HeadTextureKind Kind, int Slot)> _headSlots = [];
     private string _tooltipText = string.Empty;
-    private bool _isCompleted;
     private bool _isInteractable = true;
     private bool _showLockedMarker;
     private bool _isActive;
@@ -48,11 +44,6 @@ public sealed class JournalStageButton : JournalHoverPanel
     public void SetTooltip(string tooltipText)
     {
         _tooltipText = tooltipText;
-    }
-
-    public void SetCompleted(bool isCompleted)
-    {
-        _isCompleted = isCompleted;
     }
 
     public void SetInteractable(bool isInteractable)
@@ -105,11 +96,6 @@ public sealed class JournalStageButton : JournalHoverPanel
         if (IsMouseHovering && !string.IsNullOrWhiteSpace(_tooltipText))
         {
             Main.hoverItemName = _tooltipText;
-        }
-
-        if (_isCompleted)
-        {
-            DrawCompletedMarker(spriteBatch);
         }
 
         if (_headSlots.Count == 0)
@@ -177,14 +163,6 @@ public sealed class JournalStageButton : JournalHoverPanel
                 texture = null!;
                 return false;
         }
-    }
-
-    private void DrawCompletedMarker(SpriteBatch spriteBatch)
-    {
-        var dimensions = GetDimensions();
-        var texture = CompletedMarkerTexture.Value;
-        var position = new Vector2(dimensions.X + dimensions.Width - 16f, dimensions.Y + 6f);
-        spriteBatch.Draw(texture, position, IsMouseHovering ? Color.White : Color.White * 0.92f);
     }
 
     private void DrawLockedMarker(SpriteBatch spriteBatch)
