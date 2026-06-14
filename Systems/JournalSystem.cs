@@ -20,8 +20,6 @@ public sealed class JournalSystem : ModSystem
 
     public bool ShowingBuildBuilder { get; private set; }
 
-    public bool ShowingCombatBuffsPage { get; private set; }
-
     public bool ShowingBuildSaveDialog { get; private set; }
 
     public bool ShowingBuildExportDialog { get; private set; }
@@ -88,7 +86,6 @@ public sealed class JournalSystem : ModSystem
         Visible = false;
         ShowingPresets = false;
         ShowingBuildBuilder = false;
-        ShowingCombatBuffsPage = false;
         ShowingBuildSaveDialog = false;
         ShowingBuildExportDialog = false;
         ShowingProfileManager = false;
@@ -310,7 +307,6 @@ public sealed class JournalSystem : ModSystem
         SelectingClass = true;
         ShowingPresets = false;
         ShowingBuildBuilder = false;
-        ShowingCombatBuffsPage = false;
         ActiveBuildSlotKey = null;
         _editingBuild = null;
         _exportingBuild = null;
@@ -462,7 +458,6 @@ public sealed class JournalSystem : ModSystem
         SelectingClass = true;
         ShowingPresets = false;
         ShowingBuildBuilder = false;
-        ShowingCombatBuffsPage = false;
         _buildSelections.Clear();
         _journalState?.ResetProfileNavigation();
         Main.NewText(
@@ -542,17 +537,6 @@ public sealed class JournalSystem : ModSystem
         RefreshView();
     }
 
-    public void CycleOverviewPage(int direction)
-    {
-        if (SelectingClass || ShowingPresets)
-        {
-            return;
-        }
-
-        ShowingCombatBuffsPage = !ShowingCombatBuffsPage;
-        RefreshView();
-    }
-
     public void SelectItem(int itemId)
     {
         if (itemId <= ItemID.None)
@@ -591,7 +575,6 @@ public sealed class JournalSystem : ModSystem
             SelectingClass,
             ShowingPresets,
             ShowingBuildBuilder,
-            ShowingCombatBuffsPage,
             ProgressionModeEnabled,
             HasSelectedClass,
             SelectedItemId);

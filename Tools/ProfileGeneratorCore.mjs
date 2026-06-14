@@ -321,6 +321,7 @@ export function generateProfile(
     manifest,
     entryByItem,
     profileEntries,
+    profileBuffs,
     buffItems,
     report,
     wikiResolver,
@@ -644,17 +645,58 @@ function applyWikiRecommendations(
   manifest,
   entryByItem,
   profileEntries,
+  profileBuffs,
   buffItems,
   report,
   wikiResolver,
   itemById) {
   if (!wikiProfile) return;
+  const buffByItem = new Map(
+    profileBuffs.flatMap(buff => buff.itemGroups
+      .flat()
+      .map(reference => [`${reference.mod}/${reference.item}`, buff])));
+  const wikiBuffClasses = new Map();
+
   for (const sourceEntry of wikiProfile.entries ?? []) {
     const ids = resolveWikiEntryIds(sourceEntry, wikiResolver);
     for (const evaluation of sourceEntry.evaluations ?? []) {
       const mapping = manifest.wikiStageMap?.[evaluation.stageId];
       if (!mapping) continue;
       for (const id of ids) {
+        if (sourceEntry.category === "Buff") {
+          const item = itemById.get(id);
+          if (!item) {
+            report.wikiMissingItems.push({
+              id,
+              wikiStage: evaluation.stageId,
+              sourceReference: sourceEntry.itemGroups?.flat()
+                .map(ref => `${ref.mod}/${ref.item}`)
+            });
+            continue;
+          }
+
+          let buff = buffByItem.get(id);
+          if (!buff) {
+            buff = {
+              key: `wiki.${slug(id)}`,
+              category: classifyWikiBuffCategory(item),
+              classes: [],
+              stageId: mapping.stageId,
+              itemGroups: [[toItemReference(item)]]
+            };
+            buffByItem.set(id, buff);
+            profileBuffs.push(buff);
+            buffItems.add(id);
+          } else {
+            buff.stageId = earliestStage([buff.stageId, mapping.stageId], manifest) ?? buff.stageId;
+          }
+
+          const classes = wikiBuffClasses.get(id) ?? new Set();
+          for (const classId of sourceEntry.classes ?? []) classes.add(classId);
+          wikiBuffClasses.set(id, classes);
+          continue;
+        }
+
         if (buffItems.has(id)) continue;
         let entry = entryByItem.get(id);
         if (!entry) {
@@ -705,6 +747,22 @@ function applyWikiRecommendations(
       }
     }
   }
+
+  const profileClasses = allClasses(manifest);
+  for (const [id, classes] of wikiBuffClasses) {
+    const buff = buffByItem.get(id);
+    if (buff) {
+      buff.classes = profileClasses.filter(classId => classes.has(classId));
+    }
+  }
+}
+
+function classifyWikiBuffCategory(item) {
+  if (item.placedTile) return "Station";
+  if (item.food) return "Food";
+  if (item.flask) return "Flask";
+  if (item.healLife > 0 || item.healMana > 0) return "Basic";
+  return "Potion";
 }
 
 function narrowUnclassifiedEquipmentClasses(profileEntries, manifest) {

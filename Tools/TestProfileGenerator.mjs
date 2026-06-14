@@ -42,6 +42,12 @@ const snapshot = {
     item("Test/ExampleBreastplate", { name: "Example Breastplate", defense: 4, bodySlot: 1 }),
     item("Test/ExampleGreaves", { name: "Example Greaves", defense: 2, legSlot: 1 }),
     item("Test/ExamplePartyHat", { name: "Example Party Hat", headSlot: 2 }),
+    item("Test/BuffStation", {
+      name: "Buff Station",
+      createTile: 100,
+      placedTile: "Test/BuffStationTile",
+      consumable: true
+    }),
     item("Test/BlueChime", { name: "Blue Chime", damageClass: "Magic", damage: 12 }),
     item("Test/RedChime", { name: "Red Chime", damageClass: "Magic", damage: 12 }),
     item("Test/TwinMask", { name: "Twin Mask", defense: 3, headSlot: 3 }),
@@ -236,6 +242,12 @@ const wikiProfile = {
       evaluations: [{ stageId: "earlyGuide" }]
     },
     {
+      category: "Buff",
+      classes: ["melee"],
+      itemGroups: [[{ mod: "Test", item: "BuffStation" }]],
+      evaluations: [{ stageId: "earlyGuide" }]
+    },
+    {
       category: "Weapon",
       classes: ["magic"],
       itemGroups: [[{ mod: "Test", item: "Chime", displayName: "Chime" }]],
@@ -270,6 +282,11 @@ assert(profile.entries.some(entry =>
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "SeedSword"));
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "CycleA"));
 assert(profile.combatBuffs.some(entry => entry.itemGroups[0][0].item === "Potion"));
+assert(profile.combatBuffs.some(entry =>
+  entry.itemGroups[0][0].item === "BuffStation"
+  && entry.category === "Station"
+  && entry.classes.length === 1
+  && entry.classes[0] === "melee"));
 assert(!profile.combatBuffs.some(entry => entry.itemGroups[0][0].item === "Forge"));
 assert.equal(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "EventGun")?.eventCategory,

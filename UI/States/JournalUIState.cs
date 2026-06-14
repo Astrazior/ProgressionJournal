@@ -17,7 +17,6 @@ public sealed class JournalUiState : UIState
 {
     private const string BestiarySearchCancelTexturePath = "Images/UI/SearchCancel";
     private const string BestiaryBackButtonTexturePath = "Images/UI/Bestiary/Button_Back";
-    private const string BestiaryForwardButtonTexturePath = "Images/UI/Bestiary/Button_Forward";
     private const string CraftingWindowToggleTexturePath = "Images/UI/Craft_Toggle_0";
     private const string BuildPickerFilterIconTexturePath = "Images/UI/Bestiary/Button_Filtering";
     private const string BuildPickerSortIconTexturePath = "Images/UI/Bestiary/Button_Sorting";
@@ -229,7 +228,6 @@ public sealed class JournalUiState : UIState
         bool selectingClass,
         bool showingPresets,
         bool showingBuildBuilder,
-        bool showingCombatBuffsPage,
         bool progressionModeEnabled,
         bool hasSelectedClass,
         int selectedItemId)
@@ -245,7 +243,7 @@ public sealed class JournalUiState : UIState
         UpdateStaticText(progressionModeEnabled);
         UpdateNavigationStyles(selectingClass, showingPresets);
         JournalStageButtonPresenter.Refresh(profile, _stageButtons, stageId, progressionModeEnabled);
-        RefreshContent(profile, classId, stageId, selectingClass, showingPresets, showingBuildBuilder, showingCombatBuffsPage, selectedItemId);
+        RefreshContent(profile, classId, stageId, selectingClass, showingPresets, showingBuildBuilder, selectedItemId);
         RefreshBuildPickerOverlay(profile.Id, classId, stageId, showingPresets, showingBuildBuilder);
         RefreshBuildSaveOverlay(showingPresets, showingBuildBuilder);
         RefreshBuildExportOverlay(showingPresets, showingBuildBuilder);
@@ -281,7 +279,6 @@ public sealed class JournalUiState : UIState
         bool selectingClass,
         bool showingPresets,
         bool showingBuildBuilder,
-        bool showingCombatBuffsPage,
         int selectedItemId)
     {
         _entryList.Clear();
@@ -332,28 +329,16 @@ public sealed class JournalUiState : UIState
         var className = JournalProfileText.GetClassName(profile, classId);
         var stageName = JournalProfileText.GetStageName(profile, stageId);
         SetContentHeader($"{className} • {stageName}");
-        var combatBuffEntries = GetCombatBuffEntries(profile.Id, stageId, classId);
-        if (combatBuffEntries.Count > 0)
-        {
-            _entryList.Add(CreateOverviewPageSwitcherBlock(showingCombatBuffsPage));
-        }
-
-        if (showingCombatBuffsPage && combatBuffEntries.Count > 0)
-        {
-            JournalContentBuilder.PopulateCombatBuffs(
-                _entryList,
-                combatBuffEntries,
-                JournalSystem.SelectItem);
-        }
-        else
-        {
-            JournalContentBuilder.PopulateEntries(
-                _entryList,
-                profile.Id,
-                stageId,
-                GetEntries(profile.Id, stageId, classId),
-                JournalSystem.SelectItem);
-        }
+        JournalContentBuilder.PopulateEntries(
+            _entryList,
+            profile.Id,
+            stageId,
+            GetEntries(profile.Id, stageId, classId),
+            JournalSystem.SelectItem);
+        JournalContentBuilder.PopulateCombatBuffs(
+            _entryList,
+            GetCombatBuffEntries(profile.Id, stageId, classId),
+            JournalSystem.SelectItem);
 
         RefreshAcquisitionPanel(selectedItemId);
     }
@@ -967,54 +952,6 @@ public sealed class JournalUiState : UIState
     private void SetContentDescription(string text, float textScale = JournalUiMetrics.ContentDescriptionScale)
     {
         _contentDescription.SetText(text, textScale, false);
-    }
-
-    private static UIPanel CreateOverviewPageSwitcherBlock(bool showingCombatBuffsPage)
-    {
-        var panel = JournalUiElementFactory.CreatePanel();
-        panel.Width.Set(0f, 1f);
-        panel.Height.Set(40f, 0f);
-
-        var currentPageLabel = Language.GetTextValue(
-            showingCombatBuffsPage
-                ? "Mods.ProgressionJournal.UI.CombatBuffsTitle"
-                : "Mods.ProgressionJournal.UI.OverviewTab");
-        var targetPageLabel = Language.GetTextValue(
-            showingCombatBuffsPage
-                ? "Mods.ProgressionJournal.UI.OverviewTab"
-                : "Mods.ProgressionJournal.UI.CombatBuffsTitle");
-
-        var previousButton = JournalUiElementFactory.CreateIconButton(
-            BestiaryBackButtonTexturePath,
-            22f,
-            22f,
-            () => JournalSystem.CycleOverviewPage(-1),
-            0.95f);
-        previousButton.Left.Set(JournalUiMetrics.BlockHorizontalPadding + 6f, 0f);
-        previousButton.Top.Set(9f, 0f);
-        previousButton.SetHoverText(targetPageLabel);
-        panel.Append(previousButton);
-
-        var nextButton = JournalUiElementFactory.CreateIconButton(
-            BestiaryForwardButtonTexturePath,
-            22f,
-            22f,
-            () => JournalSystem.CycleOverviewPage(1),
-            0.95f);
-        nextButton.Left.Set(-(JournalUiMetrics.BlockHorizontalPadding + 28f), 1f);
-        nextButton.Top.Set(9f, 0f);
-        nextButton.SetHoverText(targetPageLabel);
-        panel.Append(nextButton);
-
-        var label = new UIText(currentPageLabel, JournalUiMetrics.ContentPageLabelScale, true)
-        {
-            HAlign = 0.5f,
-            VAlign = 0.5f,
-            TextColor = JournalUiTheme.ContentDescriptionText
-        };
-        panel.Append(label);
-
-        return panel;
     }
 
     private void AddEntriesToSourceList(IEnumerable<UIElement> entries)
