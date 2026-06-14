@@ -19,8 +19,8 @@ internal static class JournalProgressionToggleRenderer
         bool enabled,
         bool hovered)
     {
-        bounds.X += 1;
-        bounds.Width = Math.Max(1, bounds.Width - 1);
+        bounds.X += 2;
+        bounds.Width = Math.Max(1, bounds.Width - 2);
 
         var background = hovered
             ? Color.Lerp(style.Background, Color.White, 0.10f)
