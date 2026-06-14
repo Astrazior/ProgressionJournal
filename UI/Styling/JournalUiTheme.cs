@@ -81,16 +81,6 @@ public static class JournalUiTheme
         return new JournalPanelStyle(new Color(76, 65, 18), new Color(232, 196, 66));
     }
 
-    public static Color GetRecommendationSlotAccent(RecommendationTier tier) => tier switch
-    {
-        RecommendationTier.Recommended => new Color(90, 196, 116),
-        RecommendationTier.Additional => new Color(190, 178, 94),
-        RecommendationTier.NotRecommended => new Color(205, 116, 160),
-        RecommendationTier.Useless => new Color(228, 72, 72),
-        RecommendationTier.FromGuide => new Color(102, 164, 214),
-        _ => ItemSlotDefaultAccent
-    };
-
     public static JournalCategoryStyle GetCategoryStyle(JournalItemCategory category) => category switch
     {
         JournalItemCategory.Weapon => new JournalCategoryStyle(new Color(196, 162, 88), RootTitleText),

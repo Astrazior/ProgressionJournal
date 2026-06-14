@@ -20,11 +20,16 @@ public sealed class JournalBuffSlot : UIElement
     private readonly Item[][] _itemGroups;
     private readonly string? _classSpecificLabel;
     private readonly Action<int>? _onItemSelected;
+    private readonly Color _blockAccent;
 
-    public JournalBuffSlot(JournalCombatBuffEntry entry, Action<int>? onItemSelected = null)
+    public JournalBuffSlot(
+        JournalCombatBuffEntry entry,
+        Color blockAccent,
+        Action<int>? onItemSelected = null)
     {
         _entry = entry;
         _onItemSelected = onItemSelected;
+        _blockAccent = blockAccent;
         _itemGroups = entry.ItemGroups
             .Select(group => group.ItemIds.Select(JournalItemUtilities.CreateItem).ToArray())
             .ToArray();
@@ -182,8 +187,9 @@ public sealed class JournalBuffSlot : UIElement
                 spriteBatch,
                 displayItem,
                 rectangle,
-                JournalUiTheme.ItemSlotDefaultAccent,
-                rectangle.Contains(Main.MouseScreen.ToPoint()));
+                _blockAccent,
+                rectangle.Contains(Main.MouseScreen.ToPoint()),
+                accentStrength: 0.30f);
             return;
         }
 

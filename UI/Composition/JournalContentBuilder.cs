@@ -162,7 +162,7 @@ public static class JournalContentBuilder
 
             foreach (var rowEntries in ChunkEntries(categoryEntries, JournalUiMetrics.EntrySlotsPerRow))
             {
-                var row = CreateSlotRow(rowEntries, onItemSelected);
+                var row = CreateSlotRow(rowEntries, onItemSelected, palette.Border);
                 row.Left.Set(JournalUiMetrics.BlockHorizontalPadding + JournalUiMetrics.CategoryContentIndent, 0f);
                 row.Top.Set(top, 0f);
                 block.Append(row);
@@ -876,7 +876,7 @@ public static class JournalContentBuilder
 
             foreach (var rowEntries in ChunkEntries(categoryEntries, JournalUiMetrics.EntrySlotsPerRow))
             {
-                var row = CreateSlotRow(rowEntries, onItemSelected);
+                var row = CreateSlotRow(rowEntries, onItemSelected, palette.Border);
                 row.Left.Set(JournalUiMetrics.BlockHorizontalPadding + JournalUiMetrics.CategoryContentIndent, 0f);
                 row.Top.Set(top, 0f);
                 block.Append(row);
@@ -946,7 +946,10 @@ public static class JournalContentBuilder
         return header;
     }
 
-    private static UIElement CreateSlotRow(JournalStageEntry[] entries, Action<int>? onItemSelected)
+    private static UIElement CreateSlotRow(
+        JournalStageEntry[] entries,
+        Action<int>? onItemSelected,
+        Color blockAccent)
     {
         var row = new UIElement();
         row.Width.Set(GetRowWidth(entries), 0f);
@@ -955,7 +958,7 @@ public static class JournalContentBuilder
         var left = 0f;
         foreach (var entry in entries)
         {
-            var slot = new JournalEntrySlot(entry, onItemSelected);
+            var slot = new JournalEntrySlot(entry, blockAccent, onItemSelected);
             slot.Left.Set(left, 0f);
             row.Append(slot);
             left += JournalEntrySlot.GetVisualWidth(entry.Entry.ItemGroups.Count) + JournalUiMetrics.EntrySpacing;

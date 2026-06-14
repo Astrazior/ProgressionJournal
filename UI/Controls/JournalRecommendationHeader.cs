@@ -47,7 +47,7 @@ public sealed class JournalRecommendationHeader(
             spriteBatch,
             plaqueRectangle,
             accentColor,
-            emphasizeOuterAccent: true);
+            accentStrength: 0.30f);
 
         var textX = plaqueRectangle.Center.X - titleSize.X * 0.5f;
         var textY = plaqueRectangle.Center.Y - titleSize.Y * 0.5f + 5f;
@@ -162,4 +162,3 @@ public sealed class JournalRecommendationHeader(
         }
     }
 }
-

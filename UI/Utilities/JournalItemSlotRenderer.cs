@@ -35,9 +35,10 @@ public static class JournalItemSlotRenderer
         bool disabled = false,
         float scale = 1f,
         bool emphasizeOuterAccent = false,
-        JournalSlotMarker? marker = null)
+        JournalSlotMarker? marker = null,
+        float accentStrength = 0.08f)
     {
-        DrawBackground(spriteBatch, rectangle, accent, hovered, disabled, emphasizeOuterAccent);
+        DrawBackground(spriteBatch, rectangle, accent, hovered, disabled, emphasizeOuterAccent, accentStrength);
 
         if (!item.IsAir)
         {
@@ -79,14 +80,15 @@ public static class JournalItemSlotRenderer
         Color accent,
         bool hovered = false,
         bool disabled = false,
-        bool emphasizeOuterAccent = false)
+        bool emphasizeOuterAccent = false,
+        float accentStrength = 0.08f)
     {
         var outerShadow = JournalUiTheme.ItemSlotOuterShadow;
 
         var outerEdge = Color.Lerp(
             JournalUiTheme.ItemSlotOuterEdge,
             accent,
-            emphasizeOuterAccent ? 0.30f : 0.08f);
+            emphasizeOuterAccent ? 0.72f : accentStrength);
 
         var well = JournalUiTheme.ItemSlotWell;
 

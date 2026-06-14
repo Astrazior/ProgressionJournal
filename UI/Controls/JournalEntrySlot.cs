@@ -27,11 +27,16 @@ public sealed class JournalEntrySlot : UIElement
     private readonly bool _hasCustomEvent;
     private readonly string? _supportLabel;
     private readonly Action<int>? _onItemSelected;
+    private readonly Color _blockAccent;
 
-    public JournalEntrySlot(JournalStageEntry entry, Action<int>? onItemSelected = null)
+    public JournalEntrySlot(
+        JournalStageEntry entry,
+        Color blockAccent,
+        Action<int>? onItemSelected = null)
     {
         _entry = entry;
         _onItemSelected = onItemSelected;
+        _blockAccent = blockAccent;
         _itemGroups = entry.Entry.ItemGroups
             .Select(group => group.ItemIds.Select(JournalItemUtilities.CreateItem).ToArray())
             .ToArray();
@@ -197,8 +202,8 @@ public sealed class JournalEntrySlot : UIElement
     {
         var hasEvent = _entry.Entry.EventCategory is not null || _hasCustomEvent;
         var accent = hasEvent
-            ? JournalUiTheme.EventEntryOutline
-            : JournalUiTheme.GetRecommendationSlotAccent(_entry.Evaluation.Tier);
+            ? JournalUiTheme.EventBadgeBorder
+            : _blockAccent;
         var rectangle = new Rectangle(
             (int)slotPosition.X,
             (int)slotPosition.Y,
@@ -210,7 +215,8 @@ public sealed class JournalEntrySlot : UIElement
             rectangle,
             accent,
             rectangle.Contains(Main.MouseScreen.ToPoint()),
-            emphasizeOuterAccent: hasEvent);
+            emphasizeOuterAccent: hasEvent,
+            accentStrength: 0.30f);
     }
 
     private static void DrawAlternativeMarker(SpriteBatch spriteBatch, Vector2 slotPosition)

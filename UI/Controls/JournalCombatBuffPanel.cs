@@ -200,7 +200,7 @@ public sealed class JournalCombatBuffPanel : UIPanel
         var left = 0f;
         foreach (var entry in entries)
         {
-            var slot = new JournalBuffSlot(entry, _onItemSelected);
+            var slot = new JournalBuffSlot(entry, BorderColor, _onItemSelected);
             slot.Left.Set(left, 0f);
             row.Append(slot);
             left += JournalBuffSlot.GetVisualWidth(entry) + JournalUiMetrics.EntrySpacing;
