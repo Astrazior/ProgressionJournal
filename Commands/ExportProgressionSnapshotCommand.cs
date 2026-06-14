@@ -274,14 +274,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             var equipped = CreateEffectProbePlayer();
             var item = sourceItem.Clone();
 
-            if (item.accessory)
-            {
-                ItemLoader.UpdateAccessory(item, equipped, hideVisual: false);
-            }
-            else
-            {
-                ItemLoader.UpdateEquip(item, equipped);
-            }
+            equipped.ApplyEquipFunctional(item, hideVisual: false);
 
             List<SnapshotClassEffect> effects = [];
             foreach (var damageClass in EnumerateDamageClasses())

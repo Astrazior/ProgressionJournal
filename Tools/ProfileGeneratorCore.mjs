@@ -325,6 +325,7 @@ export function generateProfile(
     report,
     wikiResolver,
     itemById);
+  narrowUnclassifiedEquipmentClasses(profileEntries, manifest);
   validateManualRules(manifest, itemById, report);
   const review = buildManualReview({
     snapshot,
@@ -702,6 +703,25 @@ function applyWikiRecommendations(
           entry.wiki.push(recommendation);
         }
       }
+    }
+  }
+}
+
+function narrowUnclassifiedEquipmentClasses(profileEntries, manifest) {
+  const profileClasses = allClasses(manifest);
+  const allClassIds = new Set(profileClasses);
+  for (const entry of profileEntries) {
+    if (!["Armor", "Accessory"].includes(entry.category)
+        || entry.classes.length !== profileClasses.length
+        || !entry.classes.every(classId => allClassIds.has(classId))) {
+      continue;
+    }
+
+    const recommendedClasses = new Set(
+      (entry.wiki ?? []).flatMap(recommendation => recommendation.classes ?? []));
+    const narrowedClasses = profileClasses.filter(classId => recommendedClasses.has(classId));
+    if (narrowedClasses.length > 0 && narrowedClasses.length < profileClasses.length) {
+      entry.classes = narrowedClasses;
     }
   }
 }

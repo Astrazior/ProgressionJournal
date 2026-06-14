@@ -302,7 +302,9 @@ assert(profile.entries.some(entry =>
 for (const itemName of ["ExampleHelmet", "ExampleBreastplate", "ExampleGreaves"]) {
   assert(profile.entries.some(entry =>
     entry.itemGroups[0][0].item === itemName
-    && entry.wiki.length === 1));
+    && entry.wiki.length === 1
+    && entry.classes.length === 1
+    && entry.classes[0] === "melee"));
 }
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "ExamplePartyHat"));
 assert(profile.entries.some(entry =>
