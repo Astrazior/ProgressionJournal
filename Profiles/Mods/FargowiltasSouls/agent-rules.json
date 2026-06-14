@@ -672,8 +672,395 @@
       "sourceVersion": "26424",
       "checkedAt": "2026-06-08",
       "reason": "Official enchantment availability guide assigns this item to 'post-moon-lord'."
+    },
+    {
+      "id": "fargo-mode-drop-conditions-are-source-gated",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["drop"],
+      "conditionTypes": [
+        "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeDropCondition",
+        "FargowiltasSouls.Core.ItemDropRules.Conditions.NotEModeDropCondition",
+        "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeEarlyBirdRewardDropCondition",
+        "Terraria.GameContent.ItemDropRules.Conditions+LegacyHack_IsABoss",
+        "Terraria.GameContent.ItemDropRules.Conditions+MissingTwin"
+      ],
+      "conditionDescriptions": [],
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Eternity_Mode",
+      "sourceVersion": "Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "These conditions select Eternity, non-Eternity, early-bird, segmented-boss, or surviving-twin loot branches; the defeated source remains the progression gate."
+    },
+    {
+      "id": "fargo-runtime-supporter-drop-conditions",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["drop"],
+      "conditionTypes": [
+        "FargowiltasSouls.Core.ItemDropRules.Conditions.RuntimeDropCondition"
+      ],
+      "conditionDescriptions": [],
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Category:Patreon_items",
+      "sourceVersion": "Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "Runtime supporter conditions enable optional Patreon items but do not add a later progression milestone; the enemy or boss source determines availability."
+    },
+    {
+      "id": "fargo-hardmode-drop-condition",
+      "kind": "condition-stage",
+      "stageId": "wall-of-flesh",
+      "sources": ["drop"],
+      "conditionTypes": [
+        "Terraria.GameContent.ItemDropRules.Conditions+IsHardmode"
+      ],
+      "conditionDescriptions": [],
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Hardmode",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "Hardmode begins after Wall of Flesh."
+    },
+    {
+      "id": "fargo-prehardmode-drop-condition",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["drop"],
+      "conditionTypes": [
+        "Terraria.GameContent.ItemDropRules.Conditions+IsPreHardmode"
+      ],
+      "conditionDescriptions": [],
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Pre-Hardmode",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "A pre-Hardmode restriction does not require a defeated boss."
+    },
+    {
+      "id": "meteor-enchant-world-evil-condition",
+      "kind": "condition-stage",
+      "stageId": "world-evil",
+      "sources": ["recipe"],
+      "sourceIds": ["FargowiltasSouls/MeteorEnchant"],
+      "conditionTypes": [],
+      "conditionDescriptions": [
+        "После победы над Пожирателем миров или Мозгом Ктулху"
+      ],
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Guide:Enchantment_Availability",
+      "sourceVersion": "26424",
+      "checkedAt": "2026-06-14",
+      "reason": "The official availability guide places Meteor Enchantment after the world-evil boss."
+    },
+    {
+      "id": "fargo-neutral-shop-conditions",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["shop"],
+      "conditionTypes": [],
+      "conditionDescriptions": [
+        "В хардмоде",
+        "Держите в инвентаре оружие, которое использует хрупкие кости как боеприпасы"
+      ],
+      "sourceUrl": "https://terraria.wiki.gg/wiki/NPCs",
+      "sourceVersion": "Terraria 1.4.4.9; Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The vendor's own arrival stage remains authoritative; holding a matching weapon does not create a boss milestone."
+    },
+    {
+      "id": "abominationn-post-pillars-shop-condition",
+      "kind": "condition-stage",
+      "stageId": "lunatic-cultist",
+      "sources": ["shop"],
+      "sourceIds": ["Fargowiltas/Abominationn"],
+      "conditionTypes": [],
+      "conditionDescriptions": [
+        "После победы над небесными башнями"
+      ],
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Abominationn",
+      "sourceVersion": "Fargowiltas 3.3.6.7",
+      "checkedAt": "2026-06-14",
+      "reason": "The shop entry opens after the Celestial Pillars, represented by the Lunatic Cultist stage in this profile."
+    },
+    {
+      "id": "crucible-of-the-cosmos-stage",
+      "kind": "station-stage",
+      "station": "Fargowiltas/CrucibleCosmosSheet",
+      "stageId": "moon-lord",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Crucible_of_the_Cosmos",
+      "sourceVersion": "Fargowiltas 3.3.6.7",
+      "checkedAt": "2026-06-14",
+      "reason": "The official recipe requires Luminite Bars and the Ancient Manipulator, so the station is available after Moon Lord."
+    },
+    {
+      "id": "fargo-boss-energy-stages",
+      "kind": "item-stage",
+      "items": [
+        "FargowiltasSouls/DeviatingEnergy"
+      ],
+      "stageId": "deviantt",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Deviating_Energy",
+      "sourceVersion": "Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "Deviating Energy drops from Deviantt and its treasure bag."
+    },
+    {
+      "id": "abominationn-energy-stage",
+      "kind": "item-stage",
+      "items": [
+        "FargowiltasSouls/AbomEnergy"
+      ],
+      "stageId": "abominationn",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Abomination_Energy",
+      "sourceVersion": "Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "Abomination Energy drops from Abominationn and its treasure bag."
+    },
+    {
+      "id": "mutant-eternal-energy-stage",
+      "kind": "item-stage",
+      "items": [
+        "FargowiltasSouls/EternalEnergy"
+      ],
+      "stageId": "mutant",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Eternal_Energy",
+      "sourceVersion": "Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "Eternal Energy drops from Mutant's treasure bag."
+    },
+    {
+      "id": "shimmer-weapon-variants",
+      "kind": "item-stage",
+      "items": [
+        "FargowiltasSouls/DestroyerGun"
+      ],
+      "stageId": "destroyer",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Destroyer_Gun",
+      "sourceVersion": "Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "Destroyer Gun is the Shimmer transform of Electric Whip and shares its Destroyer availability."
+    },
+    {
+      "id": "queen-bee-shimmer-weapon-variant",
+      "kind": "item-stage",
+      "items": [
+        "FargowiltasSouls/HiveStaff"
+      ],
+      "stageId": "queen-bee",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Hive_Staff",
+      "sourceVersion": "Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "Hive Staff is the Shimmer transform of The Small Sting and shares its Queen Bee availability."
+    },
+    {
+      "id": "abominationn-shimmer-weapon-variant",
+      "kind": "item-stage",
+      "items": [
+        "FargowiltasSouls/OpticStaffEX"
+      ],
+      "stageId": "abominationn",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Optic_Staff_EX",
+      "sourceVersion": "Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "Optic Staff EX is the Shimmer transform of Gemini Glaives and shares its Abominationn-tier availability."
+    },
+    {
+      "id": "paradox-wolf-patreon-accessory",
+      "kind": "item-stage",
+      "items": [
+        "FargowiltasSouls/ParadoxWolfSoul"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Category:Patreon_items",
+      "sourceVersion": "Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Patreon player hook can drop this accessory on player death without a boss progression requirement."
+    },
+    {
+      "id": "the-destroyer-hybrid-whip-classification",
+      "kind": "item-override",
+      "item": "FargowiltasSouls/TheDestroyer",
+      "override": {
+        "classes": [
+          "melee",
+          "summoner"
+        ]
+      },
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/The_Destroyer_(item)",
+      "sourceVersion": "Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official source defines The Destroyer as a summon-damage whip that explicitly accepts melee prefixes, so both detected class affinities are intentional."
+    },
+    {
+      "id": "fargowiltas-post-skeletron-infinite-ammo",
+      "kind": "item-stage",
+      "items": [
+        "Fargowiltas/BoneQuiver"
+      ],
+      "stageId": "skeletron",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Bone_Quiver",
+      "sourceVersion": "Fargowiltas 3.3.6.7",
+      "checkedAt": "2026-06-14",
+      "reason": "The recipe requires Bone Arrows and a Crystal Ball, making it post-Skeletron."
+    },
+    {
+      "id": "fargowiltas-post-world-evil-infinite-ammo",
+      "kind": "item-stage",
+      "items": [
+        "Fargowiltas/MeteorPouch"
+      ],
+      "stageId": "world-evil",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Meteor_Pouch",
+      "sourceVersion": "Fargowiltas 3.3.6.7",
+      "checkedAt": "2026-06-14",
+      "reason": "The recipe requires Meteor Shot, available after the world-evil boss in this profile."
+    },
+    {
+      "id": "fargowiltas-post-plantera-infinite-ammo",
+      "kind": "item-stage",
+      "items": [
+        "Fargowiltas/ClusterRocket1Box",
+        "Fargowiltas/ClusterRocket2Box",
+        "Fargowiltas/HoneyRocketBox",
+        "Fargowiltas/LavaRocketBox",
+        "Fargowiltas/MiniNuke1Box",
+        "Fargowiltas/MiniNuke2Box",
+        "Fargowiltas/Rocket3Box",
+        "Fargowiltas/Rocket4Box",
+        "Fargowiltas/VenomPouch",
+        "Fargowiltas/VenomQuiver",
+        "Fargowiltas/WetRocketBox"
+      ],
+      "stageId": "plantera",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Category:Unlimited_ammunition",
+      "sourceVersion": "Fargowiltas 3.3.6.7",
+      "checkedAt": "2026-06-14",
+      "reason": "These recipes use Cyborg rockets, Shroomite-derived rockets, or post-Plantera venom ammunition."
+    },
+    {
+      "id": "post-mechanical-boss-class-essences",
+      "kind": "item-stage",
+      "items": [
+        "FargowiltasSouls/ApprenticesEssence",
+        "FargowiltasSouls/BarbariansEssence",
+        "FargowiltasSouls/OccultistsEssence"
+      ],
+      "stageId": "skeletron-prime",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Category:Essences",
+      "sourceVersion": "Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official recipes require Hallowed Bars and class emblems, placing these essences after the mechanical bosses."
+    },
+    {
+      "id": "post-cultist-gaia-armor",
+      "kind": "item-stage",
+      "items": [
+        "FargowiltasSouls/GaiaGreaves",
+        "FargowiltasSouls/GaiaHelmet",
+        "FargowiltasSouls/GaiaPlate"
+      ],
+      "stageId": "lunatic-cultist",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Gaia_Armor",
+      "sourceVersion": "Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "Gaia armor requires the Ancient Manipulator plus Beetle, Shroomite, Spectre, and Spooky materials."
+    },
+    {
+      "id": "post-moon-lord-crucible-equipment",
+      "kind": "item-stage",
+      "items": [
+        "FargowiltasSouls/ArchWizardsSoul",
+        "FargowiltasSouls/BerserkerSoul",
+        "FargowiltasSouls/BigBrainBuster",
+        "FargowiltasSouls/ColossusSoul",
+        "FargowiltasSouls/ConjuristsSoul",
+        "FargowiltasSouls/EaterLauncher",
+        "FargowiltasSouls/FleshCannon",
+        "FargowiltasSouls/FlightMasterySoul",
+        "FargowiltasSouls/HellZone",
+        "FargowiltasSouls/MechanicalLeashOfCthulhu",
+        "FargowiltasSouls/MissDrakovisFishingPole",
+        "FargowiltasSouls/SlimeSlingingSlasher",
+        "FargowiltasSouls/SnipersSoul",
+        "FargowiltasSouls/SupersonicSoul",
+        "FargowiltasSouls/TheBigSting",
+        "FargowiltasSouls/TrawlerSoul",
+        "FargowiltasSouls/WorldShaperSoul"
+      ],
+      "stageId": "moon-lord",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Crucible_of_the_Cosmos",
+      "sourceVersion": "Fargo's Souls 1.7.3.9; Fargowiltas 3.3.6.7",
+      "checkedAt": "2026-06-14",
+      "reason": "These official recipes require the post-Moon-Lord Crucible of the Cosmos and do not require a later Fargo boss energy."
+    },
+    {
+      "id": "deviantt-energy-equipment",
+      "kind": "item-stage",
+      "items": [
+        "FargowiltasSouls/PureHeart",
+        "FargowiltasSouls/TouhouStaff"
+      ],
+      "stageId": "deviantt",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Deviating_Energy",
+      "sourceVersion": "Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "These recipes require Deviating Energy and no later Fargo boss material."
+    },
+    {
+      "id": "abominationn-energy-equipment",
+      "kind": "item-stage",
+      "items": [
+        "FargowiltasSouls/Blender",
+        "FargowiltasSouls/DestroyerGun2",
+        "FargowiltasSouls/DimensionSoul",
+        "FargowiltasSouls/DragonBreath2",
+        "FargowiltasSouls/GeminiGlaives",
+        "FargowiltasSouls/GolemTome2",
+        "FargowiltasSouls/MasochistSoul",
+        "FargowiltasSouls/NukeFishron",
+        "FargowiltasSouls/RefractorBlaster2",
+        "FargowiltasSouls/TheDestroyer",
+        "FargowiltasSouls/UmbraRegalia",
+        "FargowiltasSouls/UniverseSoul"
+      ],
+      "stageId": "abominationn",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Abomination_Energy",
+      "sourceVersion": "Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "These official recipes require Abomination Energy and no later Mutant material."
+    },
+    {
+      "id": "mutant-eternal-energy-equipment",
+      "kind": "item-stage",
+      "items": [
+        "FargowiltasSouls/EternitySoul",
+        "FargowiltasSouls/FargoArrow",
+        "FargowiltasSouls/FargoBullet",
+        "FargowiltasSouls/GuardianTome",
+        "FargowiltasSouls/Penetrator",
+        "FargowiltasSouls/PhantasmalLeashOfCthulhu",
+        "FargowiltasSouls/SlimeRain",
+        "FargowiltasSouls/SparklingLove",
+        "FargowiltasSouls/StyxGazer",
+        "FargowiltasSouls/TheBiggestSting"
+      ],
+      "stageId": "mutant",
+      "sourceUrl": "https://fargosmods.wiki.gg/wiki/Eternal_Energy",
+      "sourceVersion": "Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "These final recipes require Eternal Energy from Mutant."
     }
   ],
-  "ignoredItems": [],
+  "ignoredItems": [
+    {
+      "id": "internal-inactive-test-and-projectile-items",
+      "items": [
+        "FargowiltasSouls/BionomicClusterInactive",
+        "FargowiltasSouls/FallenStarDayItem",
+        "FargowiltasSouls/GravityTestItem",
+        "FargowiltasSouls/MysticSkullInactive"
+      ],
+      "sourceUrl": "https://github.com/Fargowilta/FargowiltasSouls",
+      "sourceVersion": "Fargo's Souls 1.7.3.9",
+      "checkedAt": "2026-06-14",
+      "reason": "These are internal toggle-state copies, a projectile-dropped material, or an explicit placeholder test accessory; they are not independent player-facing combat choices."
+    }
+  ],
   "ignoredIssues": []
 }

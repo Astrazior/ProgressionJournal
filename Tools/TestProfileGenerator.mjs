@@ -21,6 +21,7 @@ const snapshot = {
     item("Test/EventMaterial"),
     item("Test/EventGun", { damageClass: "Melee", damage: 20 }),
     item("Test/ShopBlade", { damageClass: "Melee", damage: 18 }),
+    item("Test/ManualShopBlade", { damageClass: "Melee", damage: 17 }),
     item("Test/UnknownShopBlade", { damageClass: "Melee", damage: 19 }),
     item("Test/ClassTool", { damageClass: "Melee" }),
     item("Test/BossBag"),
@@ -80,7 +81,10 @@ const snapshot = {
     item("Other/Sword", { damageClass: "Melee", damage: 100 }),
     item("Test/ForeignRecipeSword", { damageClass: "Melee", damage: 90 }),
     item("Test/CycleA", { damageClass: "Melee", damage: 1 }),
-    item("Test/CycleB")
+    item("Test/CycleB"),
+    item("Test/Forge", { createTile: 1, placedTile: "Test/ForgeTile" }),
+    item("Test/ForgeSword", { damageClass: "Melee", damage: 35 }),
+    item("Test/SeedSword", { damageClass: "Melee", damage: 99 })
   ],
   npcs: [],
   recipes: [
@@ -90,10 +94,25 @@ const snapshot = {
     { result: "Test/EventGun", ingredients: [{ item: "Test/EventMaterial", stack: 1 }], stations: [], conditions: [] },
     { result: "Test/ForeignRecipeSword", ingredients: [{ item: "Other/Material", stack: 1 }], stations: [], conditions: [] },
     { result: "Test/CycleA", ingredients: [{ item: "Test/CycleB", stack: 1 }], stations: [], conditions: [] },
-    { result: "Test/CycleB", ingredients: [{ item: "Test/CycleA", stack: 1 }], stations: [], conditions: [] }
+    { result: "Test/CycleB", ingredients: [{ item: "Test/CycleA", stack: 1 }], stations: [], conditions: [] },
+    { result: "Test/Forge", ingredients: [{ item: "Test/Ore", stack: 1 }], stations: [], conditions: [] },
+    {
+      result: "Test/ForgeSword",
+      ingredients: [{ item: "Test/Ore", stack: 1 }],
+      stations: ["Test/ForgeTile"],
+      conditions: []
+    }
   ],
   drops: [
-    { source: "Test/Boss", sourceType: "npc", item: "Test/Ore", conditions: [] },
+    {
+      source: "Test/Boss",
+      sourceType: "npc",
+      item: "Test/Ore",
+      conditions: [{
+        type: "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
+        description: ""
+      }]
+    },
     { source: "Test/Boss", sourceType: "npc", item: "Test/Potion", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Terraria/FilteredSword", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Terraria/ModifiedSword", conditions: [] },
@@ -110,6 +129,12 @@ const snapshot = {
     { source: "Test/Boss", sourceType: "npc", item: "Test/GenericMeleeAccessory", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Other/Material", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Other/Sword", conditions: [] },
+    {
+      source: "Test/Boss",
+      sourceType: "npc",
+      item: "Test/SeedSword",
+      conditions: [{ type: "Test.SpecialSeed", description: "Special seed only" }]
+    },
     { source: "Test/EventEnemy", sourceType: "npc", item: "Test/EventMaterial", conditions: [] }
   ],
   shops: [
@@ -122,6 +147,11 @@ const snapshot = {
       npc: "Test/Merchant",
       item: "Test/UnknownShopBlade",
       conditions: [{ type: "Test.UnknownCondition", description: "After unknown event" }]
+    },
+    {
+      npc: "Test/ManualMerchant",
+      item: "Test/ManualShopBlade",
+      conditions: []
     }
   ]
 };
@@ -234,8 +264,13 @@ const wikiProfile = {
 const { profile, report, review } = generateProfile(snapshot, manifest, wikiProfile);
 assert.equal(profile.version, 1);
 assert(profile.entries.some(entry => entry.itemGroups[0][0].item === "Sword"));
+assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "ForgeSword"
+  && entry.evaluations[0].stageId === "boss"));
+assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "SeedSword"));
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "CycleA"));
 assert(profile.combatBuffs.some(entry => entry.itemGroups[0][0].item === "Potion"));
+assert(!profile.combatBuffs.some(entry => entry.itemGroups[0][0].item === "Forge"));
 assert.equal(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "EventGun")?.eventCategory,
   "BloodMoon");
@@ -343,14 +378,16 @@ const manualAssignments = {
     "Test/CycleA": "boss"
   },
   sourceStages: {
-    "Test/ManualLateBoss": "boss"
+    "Test/ManualLateBoss": "boss",
+    "Test/ManualMerchant": "boss"
   },
   stationStages: {},
   conditionStages: [{
     stageId: "boss",
     sources: ["shop"],
+    sourceIds: ["Test/Merchant"],
     conditionTypes: ["Test.UnknownCondition"],
-      conditionDescriptions: []
+    conditionDescriptions: []
   }],
   itemOverrides: {
     "Test/MixedAccessory": { classes: ["melee"] }
@@ -364,6 +401,9 @@ assert(manualResult.profile.entries.some(entry =>
   && entry.evaluations[0].stageId === "boss"));
 assert(manualResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "ManualLateDrop"
+  && entry.evaluations[0].stageId === "boss"));
+assert(manualResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "ManualShopBlade"
   && entry.evaluations[0].stageId === "boss"));
 assert(manualResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "UnknownShopBlade"

@@ -105,12 +105,8 @@ public sealed class JournalSystem : ModSystem
 
         _buildSelections.Clear();
 
-        _journalInterface?.SetState(null);
-        _buttonInterface?.SetState(null);
-
-        _journalState?.RemoveAllChildren();
-        _buttonState?.RemoveAllChildren();
-
+        // Mod reload can call Unload while the main thread is still drawing the old UI.
+        // Do not mutate its element collections here; releasing the references is sufficient.
         _journalInterface = null;
         _journalState = null;
         _buttonInterface = null;

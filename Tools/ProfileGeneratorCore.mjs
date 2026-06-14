@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
+import { applyVanillaSourceCatalog } from "./VanillaSourceCatalog.mjs";
 
 export function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -70,6 +71,7 @@ export function generateProfile(
     snapshot.version === 1 || snapshot.version === 2,
     `Unsupported snapshot version '${snapshot.version}'.`);
 
+  manifest = applyVanillaSourceCatalog(manifest);
   const manualResult = applyManualAssignments(manifest, manualAssignments);
   manifest = manualResult.manifest;
   const contentMods = new Set(
@@ -138,6 +140,7 @@ export function generateProfile(
   const entryByItem = new Map();
   const buffItems = new Set();
   const openedContainers = new Set();
+  unlockPlacedStations(available, itemById, availableStations);
 
   for (const stage of manifest.stages) {
     const before = new Set(available);
@@ -149,7 +152,13 @@ export function generateProfile(
 
     for (const source of stageSources) {
       for (const drop of dropsBySource.get(source) ?? []) {
-        unlock(drop.item, stage.id, `${drop.sourceType}:${source}`, available, acquiredBy);
+        if (conditionsAllowed(drop.conditions, stage, manifest, report, {
+          sourceKind: "drop",
+          source,
+          item: drop.item
+        })) {
+          unlock(drop.item, stage.id, `${drop.sourceType}:${source}`, available, acquiredBy);
+        }
       }
     }
     for (const event of (manifest.events ?? []).filter(event => event.stageId === stage.id)) {
@@ -160,16 +169,22 @@ export function generateProfile(
       ];
       for (const source of eventSources) {
         for (const drop of dropsBySource.get(source) ?? []) {
-          unlock(
-            drop.item,
-            stage.id,
-            `${drop.sourceType}:${source}`,
-            available,
-            acquiredBy,
-            {
-              eventCategory: event.eventCategory ?? null,
-              customEventName: event.customEventName ?? ""
-            });
+          if (conditionsAllowed(drop.conditions, stage, manifest, report, {
+            sourceKind: "drop",
+            source,
+            item: drop.item
+          })) {
+            unlock(
+              drop.item,
+              stage.id,
+              `${drop.sourceType}:${source}`,
+              available,
+              acquiredBy,
+              {
+                eventCategory: event.eventCategory ?? null,
+                customEventName: event.customEventName ?? ""
+              });
+          }
         }
       }
     }
@@ -195,6 +210,9 @@ export function generateProfile(
     let changed = true;
     while (changed) {
       changed = false;
+      if (unlockPlacedStations(available, itemById, availableStations)) {
+        changed = true;
+      }
       for (const container of [...available]) {
         if (openedContainers.has(container)) continue;
         openedContainers.add(container);
@@ -294,6 +312,10 @@ export function generateProfile(
     if (visibleCount === 0) report.emptyStages.push(stage.id);
   }
 
+  for (const [id, acquisition] of acquiredBy) {
+    report.paths[id] = acquisition;
+  }
+
   applyWikiRecommendations(
     wikiProfile,
     manifest,
@@ -376,6 +398,7 @@ function applyManualAssignments(sourceManifest, manualAssignments) {
 
   applyStageMap(manualAssignments.itemStages, "include", "item-stage");
   applyStageMap(manualAssignments.sourceStages, "dropSources", "source-stage");
+  applyStageMap(manualAssignments.sourceStages, "shops", "source-stage");
   applyStageMap(manualAssignments.stationStages, "stations", "station-stage");
   manifest.itemOverrides = {
     ...(manifest.itemOverrides ?? {}),
@@ -397,6 +420,7 @@ function applyManualAssignments(sourceManifest, manualAssignments) {
     manifest.conditionUnlocks.push({
       stageId: assignment.stageId,
       sources: assignment.sources ?? ["drop", "shop", "recipe"],
+      sourceIds: assignment.sourceIds ?? [],
       conditionTypes: assignment.conditionTypes ?? [],
       conditionDescriptions: assignment.conditionDescriptions ?? []
     });
@@ -416,6 +440,7 @@ function buildConditionUnlocksByStage(snapshot, manifest, contentMods) {
         && isAllowedProfileItem(drop.source, contentMods))
       .map(drop => ({
         sourceKind: "drop",
+        source: drop.source,
         item: drop.item,
         conditions: drop.conditions,
         via: `condition-drop:${drop.source}`
@@ -426,6 +451,7 @@ function buildConditionUnlocksByStage(snapshot, manifest, contentMods) {
         && isAllowedProfileItem(shop.npc, contentMods))
       .map(shop => ({
         sourceKind: "shop",
+        source: shop.npc,
         item: shop.item,
         conditions: shop.conditions,
         via: `shop:${shop.npc}`
@@ -439,6 +465,7 @@ function buildConditionUnlocksByStage(snapshot, manifest, contentMods) {
           isAllowedProfileItem(station, contentMods)))
       .map(recipe => ({
         sourceKind: "recipe",
+        source: recipe.result,
         item: recipe.result,
         conditions: recipe.conditions,
         via: "condition-recipe"
@@ -448,6 +475,7 @@ function buildConditionUnlocksByStage(snapshot, manifest, contentMods) {
   for (const record of records) {
     const matchingRules = rules.filter(rule =>
       (rule.sources ?? ["drop", "shop", "recipe"]).includes(record.sourceKind)
+      && ((rule.sourceIds ?? []).length === 0 || rule.sourceIds.includes(record.source))
       && record.conditions.some(condition => conditionMatchesUnlockRule(condition, rule)));
     if (matchingRules.length === 0) continue;
 
@@ -482,7 +510,7 @@ function classifyItem(item, manifest, report, context) {
   }
 
   if (item.placedTile && context.usedStations.has(item.placedTile)) {
-    return { buffCategory: "Station", classes: override?.classes ?? allClasses(manifest) };
+    return null;
   }
   if (item.flask) return { buffCategory: "Flask", classes: override?.classes ?? allClasses(manifest) };
   if (item.food) return { buffCategory: "Food", classes: override?.classes ?? allClasses(manifest) };
@@ -512,15 +540,8 @@ function classifyItem(item, manifest, report, context) {
 }
 
 function containerConditionsAllowed(conditions) {
-  const modeConditions = new Set([
-    "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
-    "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
-    "Terraria.GameContent.ItemDropRules.Conditions+IsMasterMode",
-    "Terraria.GameContent.ItemDropRules.Conditions+NotMasterMode",
-    "Terraria.GameContent.ItemDropRules.Conditions+LegacyHack_IsBossAndNotExpert"
-  ]);
   return (conditions ?? []).every(condition =>
-    !condition.type || modeConditions.has(condition.type));
+    !condition.type || isProgressionNeutralCondition(condition));
 }
 
 function classifyWikiItem(metadata) {
@@ -578,10 +599,11 @@ function resolveDamageClasses(damageClass, manifest) {
 function conditionsAllowed(conditions, stage, manifest, report, context) {
   for (const condition of conditions ?? []) {
     if (!condition.type) continue;
+    if (isProgressionNeutralCondition(condition)) continue;
     const rule = manifest.conditionRules?.[condition.type];
     if (rule === "allow") continue;
     if (rule?.stages?.includes(stage.id)) continue;
-    if (!conditionHasAssignment(condition, context.sourceKind, manifest)) {
+    if (!conditionHasAssignment(condition, context.sourceKind, context.source, manifest)) {
       appendUnique(
         report.unresolvedConditions,
         {
@@ -597,11 +619,23 @@ function conditionsAllowed(conditions, stage, manifest, report, context) {
   return true;
 }
 
-function conditionHasAssignment(condition, sourceKind, manifest) {
+function conditionHasAssignment(condition, sourceKind, source, manifest) {
+  if (isProgressionNeutralCondition(condition)) return true;
   if (manifest.conditionRules?.[condition.type]) return true;
   return (manifest.conditionUnlocks ?? []).some(rule =>
     (rule.sources ?? ["drop", "shop", "recipe"]).includes(sourceKind)
+    && ((rule.sourceIds ?? []).length === 0 || rule.sourceIds.includes(source))
     && conditionMatchesUnlockRule(condition, rule));
+}
+
+function isProgressionNeutralCondition(condition) {
+  return new Set([
+    "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
+    "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
+    "Terraria.GameContent.ItemDropRules.Conditions+IsMasterMode",
+    "Terraria.GameContent.ItemDropRules.Conditions+NotMasterMode",
+    "Terraria.GameContent.ItemDropRules.Conditions+LegacyHack_IsBossAndNotExpert"
+  ]).has(condition.type);
 }
 
 function applyWikiRecommendations(
@@ -934,6 +968,15 @@ function buildManualReview({
   const ignoredItems = new Set(manualAssignments?.ignoredItems ?? []);
   const ignoredIssues = new Set(manualAssignments?.ignoredIssues ?? []);
   const issues = [];
+  const usedStations = new Set(
+    snapshot.recipes
+      .filter(recipe => isAllowedProfileItem(recipe.result, contentMods))
+      .flatMap(recipe => recipe.stations));
+  const classificationContext = {
+    usedStations,
+    items: snapshot.items.filter(item => isAllowedProfileItem(item.id, contentMods))
+  };
+  const conditionClassificationReport = { ambiguousClasses: [] };
 
   const unresolvedConditions = uniqueBy(
     [
@@ -942,8 +985,14 @@ function buildManualReview({
     ],
     value => JSON.stringify(value))
     .filter(record =>
-      isOwnedByContentMod(record.item, contentMods)
-      || (manifest.modifiedVanillaItems ?? []).includes(record.item));
+      (isOwnedByContentMod(record.item, contentMods)
+        || (manifest.modifiedVanillaItems ?? []).includes(record.item))
+      && !ignoredItems.has(record.item)
+      && classifyItem(
+        itemById.get(record.item),
+        manifest,
+        conditionClassificationReport,
+        classificationContext));
   const unresolvedConditionGroups = groupBy(
     unresolvedConditions,
     record => JSON.stringify({
@@ -956,6 +1005,7 @@ function buildManualReview({
     const affected = uniqueBy(
       records.map(value => ({ item: value.item, source: value.source })),
       value => JSON.stringify(value));
+    const sourceIds = [...new Set(records.map(value => value.source))];
     issues.push(createReviewIssue("unresolved-condition", {
       sourceKind: record.sourceKind,
       conditions: [record.condition],
@@ -965,6 +1015,7 @@ function buildManualReview({
         conditionStages: [{
           stageId: "<stage-id>",
           sources: [record.sourceKind],
+          sourceIds,
           conditionTypes: !record.condition.description && record.condition.type
             ? [record.condition.type]
             : [],
@@ -979,15 +1030,7 @@ function buildManualReview({
     }));
   }
 
-  const usedStations = new Set(
-    snapshot.recipes
-      .filter(recipe => isAllowedProfileItem(recipe.result, contentMods))
-      .flatMap(recipe => recipe.stations));
   const classificationReport = { ambiguousClasses: [] };
-  const classificationContext = {
-    usedStations,
-    items: snapshot.items.filter(item => isAllowedProfileItem(item.id, contentMods))
-  };
 
   for (const item of classificationContext.items) {
     if (!isOwnedByContentMod(item.id, contentMods)
@@ -1131,7 +1174,11 @@ function collectUnknownConditionRecords(snapshot, manifest, contentMods) {
 
   return records.filter(record =>
     record.condition.type
-    && !conditionHasAssignment(record.condition, record.sourceKind, manifest));
+    && !conditionHasAssignment(
+      record.condition,
+      record.sourceKind,
+      record.source,
+      manifest));
 }
 
 function createReviewIssue(kind, values, identity = values) {
@@ -1169,6 +1216,18 @@ function allClasses(manifest) {
 function unlock(id, stage, via, available, acquiredBy, metadata = {}) {
   if (!available.has(id)) acquiredBy.set(id, { stage, via, ...metadata });
   available.add(id);
+}
+
+function unlockPlacedStations(available, itemById, availableStations) {
+  let changed = false;
+  for (const id of available) {
+    const station = itemById.get(id)?.placedTile;
+    if (station && !availableStations.has(station)) {
+      availableStations.add(station);
+      changed = true;
+    }
+  }
+  return changed;
 }
 
 function inheritedEventMetadata(ingredients, stageId, acquiredBy) {

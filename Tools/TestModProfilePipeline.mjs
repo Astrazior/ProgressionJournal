@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { normalizeAgentRules } from "./BuildModProfiles.mjs";
 import { readJson } from "./ProfileGeneratorCore.mjs";
+import { applyVanillaSourceCatalog } from "./VanillaSourceCatalog.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
 const modsRoot = path.join(root, "Profiles", "Mods");
@@ -63,28 +64,62 @@ const validRule = {
   format: "ProgressionJournalAgentRules",
   version: 1,
   profileId: "test",
-  rules: [{
-    id: "verified-item",
-    kind: "item-stage",
-    item: "Test/Sword",
-    stageId: "boss",
-    sourceUrl: "https://example.invalid/wiki/Sword",
-    sourceVersion: "revision-1",
-    checkedAt: "2026-06-13",
-    reason: "The official source states that the sword is unlocked after the boss."
-  }],
+  rules: [
+    {
+      id: "verified-item",
+      kind: "item-stage",
+      item: "Test/Sword",
+      stageId: "boss",
+      sourceUrl: "https://example.invalid/wiki/Sword",
+      sourceVersion: "revision-1",
+      checkedAt: "2026-06-13",
+      reason: "The official source states that the sword is unlocked after the boss."
+    },
+    {
+      id: "verified-sources",
+      kind: "source-stage",
+      sources: ["Test/EnemyA", "Test/EnemyB"],
+      stageId: "boss",
+      sourceUrl: "https://example.invalid/source/Enemies",
+      sourceVersion: "revision-1",
+      checkedAt: "2026-06-13",
+      reason: "The official source gives both enemies the same progression gate."
+    }
+  ],
   ignoredItems: [],
   ignoredIssues: []
 };
 const normalized = normalizeAgentRules(validRule, testSupport);
 assert.deepEqual(normalized.problems, []);
 assert.equal(normalized.assignments.itemStages["Test/Sword"], "boss");
+assert.equal(normalized.assignments.sourceStages["Test/EnemyA"], "boss");
+assert.equal(normalized.assignments.sourceStages["Test/EnemyB"], "boss");
 const invalid = normalizeAgentRules({
   ...validRule,
   rules: [{ kind: "item-stage", item: "Test/Sword", stageId: "boss" }]
 }, testSupport);
 assert(invalid.problems.some(problem => problem.includes("sourceUrl")));
 assert(invalid.problems.some(problem => problem.includes("checkedAt")));
+
+const vanillaSources = applyVanillaSourceCatalog({
+  initialStations: [],
+  events: [{ stageId: "goblin-stage", eventCategory: "GoblinArmy" }],
+  stages: [
+    { id: "start", unlock: { type: "always" } },
+    { id: "goblin-stage", unlock: { type: "vanilla-flag", key: "downedBoss1" } },
+    { id: "dungeon", unlock: { type: "vanilla-flag", key: "downedBoss3" } },
+    { id: "hardmode", unlock: { type: "vanilla-flag", key: "hardMode" } }
+  ]
+});
+assert(vanillaSources.initialStations.includes("Terraria/DemonAltar"));
+assert(vanillaSources.initialStations.includes("Terraria/Hellforge"));
+assert(vanillaSources.initialItems.includes("Terraria/PinkGel"));
+assert(vanillaSources.stages.find(stage => stage.id === "goblin-stage")
+  .include.includes("Terraria/TinkerersWorkshop"));
+assert(vanillaSources.stages.find(stage => stage.id === "dungeon")
+  .stations.includes("Terraria/AlchemyTable"));
+assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
+  .include.includes("Terraria/AdamantiteForge"));
 
 const ignore = fs.readFileSync(path.join(root, "buildIgnore.txt"), "utf8");
 for (const name of requiredFiles.filter(name => name !== "profile.json")) {
@@ -100,9 +135,12 @@ assert(!registry.includes("Profiles/Builtin/"));
 const exporter = fs.readFileSync(
   path.join(root, "Commands", "ExportProgressionSnapshotCommand.cs"),
   "utf8");
+const builder = fs.readFileSync(path.join(root, "Tools", "BuildModProfiles.mjs"), "utf8");
 assert(exporter.includes('public override string Usage => "/pjexport <InternalModName>"'));
 assert(exporter.includes('Path.Combine(directory, "snapshot.json")'));
 assert(exporter.includes("ResolveTransitiveDependencies(targetMod)"));
+assert(builder.includes("rule.sources ?? (rule.source ? [rule.source] : [])"));
+assert(builder.includes("rule.items ?? (rule.item ? [rule.item] : [])"));
 assert(exporter.includes("File.Move(temporaryPath, path, overwrite: true)"));
 assert(exporter.includes("EnvironmentMods = ModLoader.Mods"));
 

@@ -167,12 +167,24 @@ export function normalizeAgentRules(document, support) {
     }
     switch (rule.kind) {
       case "item-stage":
-        requireText(rule.item, `${label}: item`, problems);
-        if (rule.item && rule.stageId) assignments.itemStages[rule.item] = rule.stageId;
+        {
+          const items = rule.items ?? (rule.item ? [rule.item] : []);
+          if (items.length === 0) problems.push(`${label}: item or items is required`);
+          for (const item of items) {
+            requireText(item, `${label}: item`, problems);
+            if (item && rule.stageId) assignments.itemStages[item] = rule.stageId;
+          }
+        }
         break;
       case "source-stage":
-        requireText(rule.source, `${label}: source`, problems);
-        if (rule.source && rule.stageId) assignments.sourceStages[rule.source] = rule.stageId;
+        {
+          const sources = rule.sources ?? (rule.source ? [rule.source] : []);
+          if (sources.length === 0) problems.push(`${label}: source or sources is required`);
+          for (const source of sources) {
+            requireText(source, `${label}: source`, problems);
+            if (source && rule.stageId) assignments.sourceStages[source] = rule.stageId;
+          }
+        }
         break;
       case "station-stage":
         requireText(rule.station, `${label}: station`, problems);
@@ -182,6 +194,7 @@ export function normalizeAgentRules(document, support) {
         assignments.conditionStages.push({
           stageId: rule.stageId,
           sources: rule.sources ?? ["drop", "shop", "recipe"],
+          sourceIds: rule.sourceIds ?? [],
           conditionTypes: rule.conditionTypes ?? [],
           conditionDescriptions: rule.conditionDescriptions ?? []
         });
@@ -202,8 +215,12 @@ export function normalizeAgentRules(document, support) {
   for (const [index, ignored] of (document.ignoredItems ?? []).entries()) {
     const label = ignored.id || `ignoredItems[${index}]`;
     validateEvidence(ignored, label, problems);
-    requireText(ignored.item, `${label}: item`, problems);
-    if (ignored.item) assignments.ignoredItems.push(ignored.item);
+    const items = ignored.items ?? (ignored.item ? [ignored.item] : []);
+    if (items.length === 0) problems.push(`${label}: item or items is required`);
+    for (const item of items) {
+      requireText(item, `${label}: item`, problems);
+      if (item) assignments.ignoredItems.push(item);
+    }
     evidence.push(pickEvidence(ignored, label));
   }
   for (const [index, ignored] of (document.ignoredIssues ?? []).entries()) {

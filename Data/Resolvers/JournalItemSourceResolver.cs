@@ -2,6 +2,7 @@ using System.Reflection;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ProgressionJournal.Data.Resolvers;
@@ -45,9 +46,8 @@ public static class JournalItemSourceResolver
                 .Select(static ingredient => ingredient.Clone())
                 .ToArray();
             var stations = recipe.requiredTile
-                .SelectMany(ResolveStationItems)
-                .GroupBy(static station => station.type)
-                .Select(static group => group.First().Clone())
+                .Distinct()
+                .Select(tileId => new JournalTileStationSource(tileId, GetStationName(tileId)))
                 .ToArray();
             var conditions = recipe.Conditions
                 .Select(GetConditionDescription)
@@ -211,21 +211,38 @@ public static class JournalItemSourceResolver
         return resolved;
     }
 
-    private static IEnumerable<Item> ResolveStationItems(int tileId)
+    private static string GetStationName(int tileId)
     {
-        if (tileId == TileID.Bottles)
+        if (tileId == TileID.DemonAltar)
         {
-            yield return JournalItemUtilities.CreateItem(ItemID.Bottle);
-            yield return JournalItemUtilities.CreateItem(ItemID.AlchemyTable);
-            yield break;
+            return Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemDemonAltar");
         }
 
-        var stationItem = ResolveStationItem(tileId);
-        if (stationItem is not null)
+        if (tileId == TileID.Bottles)
         {
-            yield return stationItem;
+            return Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemBottleStation");
         }
+
+        var stationItemName = ResolveStationItem(tileId)?.HoverName;
+        if (!string.IsNullOrWhiteSpace(stationItemName))
+        {
+            return stationItemName;
+        }
+
+        var modTileName = TileLoader.GetTile(tileId)?.Name;
+        if (!string.IsNullOrWhiteSpace(modTileName))
+        {
+            return SplitInternalName(modTileName);
+        }
+
+        var internalName = TileID.Search.GetName(tileId);
+        return string.IsNullOrWhiteSpace(internalName)
+            ? $"Tile {tileId}"
+            : SplitInternalName(internalName);
     }
+
+    private static string SplitInternalName(string value) =>
+        System.Text.RegularExpressions.Regex.Replace(value, "(?<=[a-z])(?=[A-Z])", " ");
 
     private static string GetNpcName(int npcType)
     {

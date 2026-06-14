@@ -2,7 +2,994 @@
   "format": "ProgressionJournalAgentRules",
   "version": 1,
   "profileId": "builtin.thorium",
-  "rules": [],
-  "ignoredItems": [],
-  "ignoredIssues": []
+  "rules": [
+    {
+      "id": "arcane-armor-fabricator-world-station",
+      "kind": "station-stage",
+      "station": "ThoriumMod/ArcaneArmorFabricator",
+      "stageId": "start",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
+      "sourceVersion": "Thorium Mod 1.7.2.5, Workshop build 2025.8.3.1",
+      "checkedAt": "2026-06-14",
+      "reason": "The official mod build defines the Arcane Armor Fabricator as a naturally available pre-boss crafting station."
+    },
+    {
+      "id": "soul-forge-after-mechanical-bosses",
+      "kind": "station-stage",
+      "station": "ThoriumMod/SoulForgeNew",
+      "stageId": "skeletron-prime",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Soul_Forge",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Soul Forge recipes require Hallowed Bars and all three mechanical-boss souls, so the station becomes available after all mechanical bosses."
+    },
+    {
+      "id": "borean-strider-loot-forms",
+      "kind": "source-stage",
+      "sources": [
+        "ThoriumMod/BoreanStrider",
+        "ThoriumMod/BoreanStriderPopped",
+        "ThoriumMod/BoreanStriderTreasureBag"
+      ],
+      "stageId": "borean-strider",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Borean_Strider",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Both Borean Strider forms and its treasure bag belong to the same boss encounter."
+    },
+    {
+      "id": "forgotten-one-loot-forms",
+      "kind": "source-stage",
+      "sources": [
+        "ThoriumMod/ForgottenOne",
+        "ThoriumMod/ForgottenOneCracked",
+        "ThoriumMod/ForgottenOneReleased",
+        "ThoriumMod/ForgottenOneTreasureBag"
+      ],
+      "stageId": "forgotten-one",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/The_Forgotten_One",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "All three Forgotten One forms and its treasure bag are loot sources for the same boss encounter."
+    },
+    {
+      "id": "pre-hardmode-natural-and-container-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/Bunny",
+        "Terraria/BunnySlimed",
+        "Terraria/BunnyXmas",
+        "Terraria/CorruptBunny",
+        "Terraria/CrimsonBunny",
+        "Terraria/PartyBunny",
+        "Terraria/GoldBunny",
+        "Terraria/GemBunnyAmber",
+        "Terraria/GemBunnyAmethyst",
+        "Terraria/GemBunnyDiamond",
+        "Terraria/GemBunnyEmerald",
+        "Terraria/GemBunnyRuby",
+        "Terraria/GemBunnySapphire",
+        "Terraria/GemBunnyTopaz",
+        "Terraria/GiantBat",
+        "Terraria/GiantShelly",
+        "Terraria/GiantShelly2",
+        "Terraria/Crawdad",
+        "Terraria/Crawdad2",
+        "Terraria/Salamander",
+        "Terraria/Salamander2",
+        "Terraria/Salamander3",
+        "Terraria/Salamander4",
+        "Terraria/Salamander5",
+        "Terraria/Salamander6",
+        "Terraria/Salamander7",
+        "Terraria/Salamander8",
+        "Terraria/Salamander9",
+        "Terraria/WallCreeper",
+        "Terraria/WallCreeperWall",
+        "Terraria/DesertScorpionWalk",
+        "Terraria/DesertScorpionWall",
+        "Terraria/Demon",
+        "Terraria/VoodooDemon",
+        "Terraria/IronCrate",
+        "Terraria/JungleFishingCrate",
+        "Terraria/CorruptFishingCrate",
+        "Terraria/CrimsonFishingCrate",
+        "ThoriumMod/AquaticDepthsCrate",
+        "ThoriumMod/ScarletCrate",
+        "ThoriumMod/SinisterCrate",
+        "ThoriumMod/StrangeCrate",
+        "ThoriumMod/WondrousCrate",
+        "ThoriumMod/AbyssalCrate",
+        "ThoriumMod/AstroBeetle",
+        "ThoriumMod/BabySpider",
+        "ThoriumMod/BabySpiderWall",
+        "ThoriumMod/Blowfish",
+        "ThoriumMod/Coldling",
+        "ThoriumMod/FlamekinCaster",
+        "ThoriumMod/GigaClam",
+        "ThoriumMod/ManofWar",
+        "ThoriumMod/Octopus",
+        "ThoriumMod/Tarantula",
+        "ThoriumMod/TarantulaWall",
+        "ThoriumMod/UnderworldPot1",
+        "ThoriumMod/UnderworldPot2",
+        "ThoriumMod/VampireSquid",
+        "ThoriumMod/VoltEelHead",
+        "ThoriumMod/WindElemental"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Enemies",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "These are ordinary pre-Hardmode enemies, critters, fishing crates, or naturally generated containers with no boss progression requirement."
+    },
+    {
+      "id": "goblin-army-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/GoblinArcher",
+        "Terraria/GoblinPeon",
+        "Terraria/GoblinSorcerer",
+        "Terraria/GoblinThief",
+        "Terraria/GoblinWarrior"
+      ],
+      "stageId": "eye-of-cthulhu",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Goblin_Army",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The profile places the first Goblin Army availability after Eye of Cthulhu."
+    },
+    {
+      "id": "post-skeletron-dungeon-and-lockbox-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/LockBox",
+        "Terraria/ObsidianLockbox",
+        "ThoriumMod/LeFantome",
+        "ThoriumMod/Illusionist"
+      ],
+      "stageId": "skeletron",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Dungeon",
+      "sourceVersion": "Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Dungeon access and Dungeon lock boxes are gated by Skeletron; the listed Thorium enemies use the normal Dungeon spawn pool."
+    },
+    {
+      "id": "blood-moon-miniboss-sources",
+      "kind": "source-stage",
+      "sources": [
+        "ThoriumMod/PatchWerk",
+        "ThoriumMod/GraveLimb",
+        "ThoriumMod/SmotheringShade"
+      ],
+      "stageId": "eye-of-cthulhu",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Patch_Werk",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Patch Werk and its associated Blood Moon enemies are pre-Hardmode Blood Moon content; the profile starts Blood Moon progression at Eye of Cthulhu."
+    },
+    {
+      "id": "corpse-bloom-progression",
+      "kind": "source-stage",
+      "sources": [
+        "ThoriumMod/CorpseBloom",
+        "ThoriumMod/Druid"
+      ],
+      "stageId": "world-evil",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Corpse_Bloom",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The official build permits Corpse Bloom after the world-evil boss and permits the Druid to move in after Corpse Bloom is defeated."
+    },
+    {
+      "id": "hardmode-natural-mimic-and-crate-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/GoblinSummoner",
+        "Terraria/IceMimic",
+        "Terraria/Mimic",
+        "Terraria/RedDevil",
+        "Terraria/Vampire",
+        "Terraria/VampireBat",
+        "Terraria/IronCrateHard",
+        "Terraria/JungleFishingCrateHard",
+        "Terraria/CorruptFishingCrateHard",
+        "Terraria/CrimsonFishingCrateHard",
+        "ThoriumMod/ChilledSpitter",
+        "ThoriumMod/EarthenGolem",
+        "ThoriumMod/Freezer",
+        "ThoriumMod/FrozenGross",
+        "ThoriumMod/HellBringerMimic",
+        "ThoriumMod/Lycan",
+        "ThoriumMod/MoltenMortar",
+        "ThoriumMod/MyceliumMimic",
+        "ThoriumMod/SnowElemental",
+        "ThoriumMod/SubmergedMimic",
+        "ThoriumMod/VileFloater"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Enemies",
+      "sourceVersion": "Thorium Mod 1.7.2.5; Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "These enemies, mimics, and crate variants require Hardmode but no later boss flag."
+    },
+    {
+      "id": "post-plantera-dungeon-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/MisterStabby",
+        "Terraria/Psycho",
+        "Terraria/SkeletonCommando",
+        "Terraria/SkeletonSniper",
+        "Terraria/TacticalSkeleton",
+        "ThoriumMod/BoneFlayer",
+        "ThoriumMod/Kraken",
+        "ThoriumMod/LihzardMimic"
+      ],
+      "stageId": "plantera",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Dungeon",
+      "sourceVersion": "Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The listed Dungeon and Temple enemies become reachable in the post-Plantera portion of progression."
+    },
+    {
+      "id": "frost-moon-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/SnowBalla",
+        "Terraria/SnowmanGangsta",
+        "ThoriumMod/SnowSinga",
+        "ThoriumMod/FrostBurntFlayer"
+      ],
+      "stageId": "plantera",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Frost_Moon",
+      "sourceVersion": "Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "These sources belong to post-Plantera Frost Moon or equivalent blizzard content."
+    },
+    {
+      "id": "martian-sources",
+      "kind": "source-stage",
+      "sources": [
+        "ThoriumMod/MartianScout",
+        "ThoriumMod/UFO",
+        "ThoriumMod/Spectrumite"
+      ],
+      "stageId": "golem",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Martian_Madness",
+      "sourceVersion": "Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Martian probes and Martian Madness become available after Golem."
+    },
+    {
+      "id": "thorium-town-npc-arrival-stages",
+      "kind": "source-stage",
+      "sources": [
+        "ThoriumMod/Cobbler"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Cobbler",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The Cobbler can arrive as soon as a player owns qualifying footwear."
+    },
+    {
+      "id": "cook-arrival-stage",
+      "kind": "source-stage",
+      "source": "ThoriumMod/Cook",
+      "stageId": "king-slime",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Cook",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The official build's CanTownNPCSpawn requires King Slime to be defeated."
+    },
+    {
+      "id": "desert-acolyte-arrival-stage",
+      "kind": "source-stage",
+      "source": "ThoriumMod/DesertAcolyte",
+      "stageId": "grand-thunder-bird",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Desert_Acolyte",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The official build's CanTownNPCSpawn requires The Grand Thunder Bird to be defeated."
+    },
+    {
+      "id": "tracker-and-blacksmith-arrival-stage",
+      "kind": "source-stage",
+      "sources": [
+        "ThoriumMod/Tracker",
+        "ThoriumMod/Blacksmith"
+      ],
+      "stageId": "eye-of-cthulhu",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Town_NPCs",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The official build requires Eye of Cthulhu for both the Tracker and Blacksmith to move in."
+    },
+    {
+      "id": "confused-zombie-arrival-stage",
+      "kind": "source-stage",
+      "source": "ThoriumMod/ConfusedZombie",
+      "stageId": "eye-of-cthulhu",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Confused_Zombie",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The Confused Zombie arrives after Patch Werk, a pre-Hardmode Blood Moon miniboss placed at the Eye of Cthulhu stage."
+    },
+    {
+      "id": "spiritualist-arrival-stage",
+      "kind": "source-stage",
+      "source": "ThoriumMod/Spiritualist",
+      "stageId": "buried-champion",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Spiritualist",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The official build's CanTownNPCSpawn requires Buried Champion to be defeated."
+    },
+    {
+      "id": "weapon-master-arrival-stage",
+      "kind": "source-stage",
+      "source": "ThoriumMod/WeaponMaster",
+      "stageId": "coznix",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Weapon_Master",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The official build's CanTownNPCSpawn requires Coznix, the Fallen Beholder, to be defeated."
+    },
+    {
+      "id": "vanilla-shop-npc-arrival-stages",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/Merchant",
+        "Terraria/SkeletonMerchant",
+        "Terraria/Stylist",
+        "Terraria/PartyGirl"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/NPCs",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "These vanilla vendors have no boss requirement."
+    },
+    {
+      "id": "mechanic-and-clothier-shop-stage",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/Mechanic",
+        "Terraria/Clothier"
+      ],
+      "stageId": "skeletron",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/NPCs",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The Mechanic is rescued in the Dungeon and the Clothier arrives after Skeletron."
+    },
+    {
+      "id": "witch-doctor-shop-stage",
+      "kind": "source-stage",
+      "source": "Terraria/WitchDoctor",
+      "stageId": "queen-bee",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Witch_Doctor",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The Witch Doctor arrives after Queen Bee."
+    },
+    {
+      "id": "hardmode-shop-npc-stage",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/Wizard",
+        "Terraria/Pirate"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/NPCs",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "These vendors require Hardmode."
+    },
+    {
+      "id": "cyborg-shop-stage",
+      "kind": "source-stage",
+      "source": "Terraria/Cyborg",
+      "stageId": "plantera",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Cyborg",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The Cyborg arrives after Plantera."
+    },
+    {
+      "id": "configuration-gates-do-not-shift-progression",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": [
+        "recipe",
+        "shop"
+      ],
+      "conditionTypes": [],
+      "conditionDescriptions": [
+        "Enabled in the Thorium Mod Configuration",
+        "Enabled any item related to Steam Battery in the Configuration"
+      ],
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
+      "sourceVersion": "Thorium Mod 1.7.2.5, Workshop build 2025.8.3.1",
+      "checkedAt": "2026-06-14",
+      "reason": "Server configuration toggles enable or disable content but do not represent a progression milestone; ingredients and vendor stages remain authoritative."
+    },
+    {
+      "id": "pre-boss-world-and-biome-materials",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/Aquaite",
+        "ThoriumMod/AquaiteBar",
+        "ThoriumMod/Aquamarine",
+        "ThoriumMod/IcyShard",
+        "ThoriumMod/LivingLeaf",
+        "ThoriumMod/MarineKelp",
+        "ThoriumMod/Opal",
+        "ThoriumMod/Petal"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Materials",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The official mod build obtains these materials from world-generation tiles, pre-Hardmode biome enemies, plants, or pre-Hardmode fishing without a boss flag."
+    },
+    {
+      "id": "blood-moon-and-early-event-materials",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/Blood",
+        "ThoriumMod/PharaohsBreath",
+        "ThoriumMod/PurifiedShards",
+        "ThoriumMod/UnholyShards"
+      ],
+      "stageId": "eye-of-cthulhu",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Materials",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The official drop rules obtain these materials during the early Blood Moon or from ordinary early Desert enemies; the profile begins those event drops at Eye of Cthulhu."
+    },
+    {
+      "id": "hardmode-hallowed-materials",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/HallowedCharm"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Hallowed_Charms",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Hallowed Charms are crafted from Pixie Dust and Souls of Light, making them available at the start of Hardmode."
+    },
+    {
+      "id": "post-plantera-illumite-and-paladin-materials",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/HolyKnightsAlloy",
+        "ThoriumMod/IllumiteChunk",
+        "ThoriumMod/IllumiteIngot"
+      ],
+      "stageId": "plantera",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Illumite_Chunk",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The official build generates Illumite when Plantera dies, while Holy Knight's Alloy drops from the post-Plantera Paladin."
+    },
+    {
+      "id": "custom-pre-boss-world-fishing-and-starting-items",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/AloeLeaf",
+        "ThoriumMod/Aril",
+        "ThoriumMod/BrainCoral",
+        "ThoriumMod/Cranberry",
+        "ThoriumMod/EnchantedStaff",
+        "ThoriumMod/FamilyHeirloom",
+        "ThoriumMod/Fig",
+        "ThoriumMod/Fishbone",
+        "ThoriumMod/HeartRateMonitor",
+        "ThoriumMod/Heartstriker",
+        "ThoriumMod/Kumquat",
+        "ThoriumMod/LivingWoodSap",
+        "ThoriumMod/Lychee",
+        "ThoriumMod/ManaBerry",
+        "ThoriumMod/Mangosteen",
+        "ThoriumMod/Persimmon",
+        "ThoriumMod/PharaohsSlab",
+        "ThoriumMod/PhoenixStaff",
+        "ThoriumMod/Raspberry",
+        "ThoriumMod/RingofUnity",
+        "ThoriumMod/RivetingTadpole",
+        "ThoriumMod/RottenCod",
+        "ThoriumMod/SeedofHope",
+        "ThoriumMod/Soursop",
+        "ThoriumMod/SpinyShell",
+        "ThoriumMod/SpittingFish",
+        "ThoriumMod/Tamarind",
+        "ThoriumMod/ThoriumBar",
+        "ThoriumMod/WaterChestnut",
+        "ThoriumMod/Webgun"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
+      "sourceVersion": "Thorium Mod 1.7.2.5, Workshop build 2025.8.3.1",
+      "checkedAt": "2026-06-14",
+      "reason": "The official build supplies these through starting items, world generation, breakable plants, pre-Hardmode fishing, ordinary biome enemies, or pre-boss chests; these custom hooks are not represented by the standard tModLoader recipe/drop export."
+    },
+    {
+      "id": "custom-world-evil-travel-shop-items",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/ChiLantern",
+        "ThoriumMod/DivineLotus",
+        "ThoriumMod/SamsaraLotus"
+      ],
+      "stageId": "world-evil",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
+      "sourceVersion": "Thorium Mod 1.7.2.5, Workshop build 2025.8.3.1",
+      "checkedAt": "2026-06-14",
+      "reason": "The official SetupTravelShop hook adds these items only after the world-evil boss; the legacy travel-shop hook is not included in the snapshot shop export."
+    },
+    {
+      "id": "confused-zombie-repellents",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/BatRepellent",
+        "ThoriumMod/FishRepellent",
+        "ThoriumMod/InsectRepellent",
+        "ThoriumMod/SkeletonRepellent",
+        "ThoriumMod/ZombieRepellent"
+      ],
+      "stageId": "eye-of-cthulhu",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Confused_Zombie",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Confused Zombie shop code sells the five repellents after Patch Werk unlocks the vendor."
+    },
+    {
+      "id": "thor-hammer-conversion-variants",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/MagicThorHammer",
+        "ThoriumMod/RangedThorHammer"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
+      "sourceVersion": "Thorium Mod 1.7.2.5, Workshop build 2025.8.3.1",
+      "checkedAt": "2026-06-14",
+      "reason": "These are right-click conversion variants of the craftable melee Thor's Hammer and share its pre-Hardmode availability."
+    },
+    {
+      "id": "custom-source-combat-items",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/ArcanePotion",
+        "ThoriumMod/ArtilleryPotion",
+        "ThoriumMod/BouncingFlamePotion",
+        "ThoriumMod/DewCollector",
+        "ThoriumMod/OceanRetaliation",
+        "ThoriumMod/PrehistoricArachnid",
+        "ThoriumMod/SpikedBracer",
+        "ThoriumMod/TalonArrow",
+        "ThoriumMod/Ukulele",
+        "ThoriumMod/WarmongerPotion"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Recipes",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "All ingredients and stations for these recipes are available before the first required boss; custom tile, fishing, or world-generation ingredients are confirmed by the official build."
+    },
+    {
+      "id": "post-skeletron-custom-recipes",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/Nocturnal",
+        "ThoriumMod/Purify",
+        "ThoriumMod/Sanguine",
+        "ThoriumMod/SoulGuard",
+        "ThoriumMod/TurnUndead"
+      ],
+      "stageId": "skeletron",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Recipes",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "These recipes require Dungeon books, Valor, Grave Goods, Ancient Aegis, or equivalent post-Skeletron ingredients."
+    },
+    {
+      "id": "queen-bee-imbuing-station-recipes",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/SporeCoatingItem"
+      ],
+      "stageId": "queen-bee",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Spore_Coating",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Spore Coating requires the Imbuing Station, which becomes available from the Witch Doctor after Queen Bee."
+    },
+    {
+      "id": "early-hardmode-custom-recipes",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/CrystalScorpion",
+        "ThoriumMod/DefenderWand",
+        "ThoriumMod/FearMonger",
+        "ThoriumMod/HolyPotion",
+        "ThoriumMod/LustrousBaton",
+        "ThoriumMod/WindChimes"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Recipes",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "These recipes require a Hardmode anvil, Crystal Shards, Souls, hardmode enemy drops, or equivalent early-Hardmode ingredients."
+    },
+    {
+      "id": "star-scouter-music-player",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/MusicPlayerMovementSpeed"
+      ],
+      "stageId": "star-scouter",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
+      "sourceVersion": "Thorium Mod 1.7.2.5, Workshop build 2025.8.3.1",
+      "checkedAt": "2026-06-14",
+      "reason": "The official shop code sells the inactive music player after Star Scouter, which is the key ingredient for this variant."
+    },
+    {
+      "id": "all-mechanical-bosses-custom-recipes",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/TunePlayerMovementSpeed"
+      ],
+      "stageId": "skeletron-prime",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Recipes",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The recipe requires Hallowed Bars and Cogs, so it is available after all mechanical bosses in this profile order."
+    },
+    {
+      "id": "post-plantera-custom-recipes",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/MyceliumGattlingGun",
+        "ThoriumMod/Spores"
+      ],
+      "stageId": "plantera",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Recipes",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Both recipes require Shroomite Bars, which are post-Plantera."
+    },
+    {
+      "id": "moon-lord-terrarium-defender",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/TerrariumDefender"
+      ],
+      "stageId": "moon-lord",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Terrarium_Defender",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Terrarium Defender requires Terrarium Cores and the Lunar Crafting Station, placing it after Moon Lord."
+    },
+    {
+      "id": "unexported-direct-source-stages",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/Nurse",
+        "ThoriumMod/CrownofThorns"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
+      "sourceVersion": "Thorium Mod 1.7.2.5, Workshop build 2025.8.3.1",
+      "checkedAt": "2026-06-14",
+      "reason": "The Nurse and Aquatic Depths Crown of Thorns are available without a boss requirement."
+    },
+    {
+      "id": "goblin-trapper-source-stage",
+      "kind": "source-stage",
+      "source": "ThoriumMod/GoblinTrapper",
+      "stageId": "eye-of-cthulhu",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Goblin_Army",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Goblin Trapper spawns in the Goblin Army, which this profile opens at Eye of Cthulhu."
+    },
+    {
+      "id": "sea-shanty-singer-source-stage",
+      "kind": "source-stage",
+      "source": "ThoriumMod/SeaShantySinger",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Pirate_Invasion",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Sea Shanty Singer spawns in the Hardmode Pirate Invasion."
+    },
+    {
+      "id": "scissor-stalker-source-stage",
+      "kind": "source-stage",
+      "source": "ThoriumMod/ScissorStalker",
+      "stageId": "skeletron-prime",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Scissor_Stalker",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The official SpawnChance requires all three mechanical bosses and a Solar Eclipse."
+    },
+    {
+      "id": "pre-hardmode-condition",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": [
+        "drop",
+        "shop"
+      ],
+      "conditionTypes": [
+        "ThoriumMod.Core.ItemDropRules.DropConditions.NotHardmodeCondition"
+      ],
+      "conditionDescriptions": [
+        "До хардмода"
+      ],
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Pre-Hardmode",
+      "sourceVersion": "Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "A pre-Hardmode restriction does not require a defeated boss."
+    },
+    {
+      "id": "hardmode-condition",
+      "kind": "condition-stage",
+      "stageId": "wall-of-flesh",
+      "sources": [
+        "drop",
+        "shop"
+      ],
+      "conditionTypes": [
+        "Terraria.GameContent.ItemDropRules.Conditions+IsHardmode"
+      ],
+      "conditionDescriptions": [],
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Hardmode",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "Hardmode begins after Wall of Flesh."
+    },
+    {
+      "id": "borean-normal-mode-loot-condition",
+      "kind": "condition-stage",
+      "stageId": "borean-strider",
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "ThoriumMod/BoreanStrider",
+        "ThoriumMod/BoreanStriderPopped"
+      ],
+      "conditionTypes": [
+        "Terraria.GameContent.ItemDropRules.Conditions+NeverTrue"
+      ],
+      "conditionDescriptions": [],
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Borean_Strider",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The NeverTrue branches are tModLoader's hidden UI representation of the boss's normal-mode loot; they belong to the Borean Strider victory stage."
+    },
+    {
+      "id": "forgotten-one-normal-mode-loot-condition",
+      "kind": "condition-stage",
+      "stageId": "forgotten-one",
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "ThoriumMod/ForgottenOne",
+        "ThoriumMod/ForgottenOneCracked",
+        "ThoriumMod/ForgottenOneReleased"
+      ],
+      "conditionTypes": [
+        "Terraria.GameContent.ItemDropRules.Conditions+NeverTrue"
+      ],
+      "conditionDescriptions": [],
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/The_Forgotten_One",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The NeverTrue branches are tModLoader's hidden UI representation of the boss's normal-mode loot; they belong to the Forgotten One victory stage."
+    },
+    {
+      "id": "mimic-drop-condition",
+      "kind": "condition-stage",
+      "stageId": "wall-of-flesh",
+      "sources": [
+        "drop"
+      ],
+      "conditionTypes": [
+        "ThoriumMod.Core.ItemDropRules.DropConditions.MimicCondition"
+      ],
+      "conditionDescriptions": [],
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Mimics",
+      "sourceVersion": "Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Ordinary Mimics are Hardmode enemies."
+    },
+    {
+      "id": "dummy-shimmer-decraft-is-not-an-acquisition-gate",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": [
+        "recipe"
+      ],
+      "sourceIds": [
+        "ThoriumMod/LastingPliers"
+      ],
+      "conditionTypes": [],
+      "conditionDescriptions": [
+        "This is a dummy recipe used for a custom Shimmer decraft!"
+      ],
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
+      "sourceVersion": "Thorium Mod 1.7.2.5, Workshop build 2025.8.3.1",
+      "checkedAt": "2026-06-14",
+      "reason": "This hidden recipe only describes reverse Shimmer decrafting; Lasting Pliers already has its real Cobbler drop source, so the dummy condition must not create a later progression gate."
+    },
+    {
+      "id": "time-biome-weather-and-expert-shop-conditions",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": [
+        "shop"
+      ],
+      "conditionTypes": [],
+      "conditionDescriptions": [
+        "В джунглях",
+        "В режиме эксперта",
+        "Во время грозы",
+        "Только днём",
+        "Только ночью",
+        "Во время кровавой луны",
+        "Когда бестиарий заполнен хотя бы на 40%",
+        "Crawdads cannot spawn in the world",
+        "Giant Shellys cannot spawn in the world",
+        "Salamanders cannot spawn in the world",
+        "Player has 20 or more total inspiration"
+      ],
+      "sourceUrl": "https://terraria.wiki.gg/wiki/NPCs",
+      "sourceVersion": "Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "These are environment, difficulty, bestiary, world-generation fallback, or player-stat restrictions rather than boss progression; the vendor's own stage remains authoritative."
+    },
+    {
+      "id": "cook-supplied-ingredient-condition",
+      "kind": "condition-stage",
+      "stageId": "king-slime",
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "ThoriumMod/Cook"
+      ],
+      "conditionTypes": [],
+      "conditionDescriptions": [
+        "Player supplied enough ingredients to the Cook"
+      ],
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Cook",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Cook recipes are unlocked by supplying ingredients after the Cook arrives; this custom counter is not a later boss milestone."
+    },
+    {
+      "id": "tracker-contract-conditions",
+      "kind": "condition-stage",
+      "stageId": "eye-of-cthulhu",
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "ThoriumMod/Tracker"
+      ],
+      "conditionTypes": [],
+      "conditionDescriptions": [
+        "Completed the Arc of the Lost Raider Tracker contract",
+        "Completed the Destroy All Monsters Tracker contract",
+        "Completed the Enchanted Engagement Tracker contract",
+        "Completed the Gonna Need a Bigger Lamp Tracker contract",
+        "Completed the Haggard Hagglers Tracker contract",
+        "Completed the Ice Breaker Tracker contract",
+        "Completed the Learning the Ropes Tracker contract",
+        "Completed the Not so Itsy Bitsy Tracker contract",
+        "Completed the Pay Day Tracker contract",
+        "Completed the Pinky, the World Ender Tracker contract",
+        "Completed the Tracker's End Tracker contract"
+      ],
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Tracker",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Tracker contracts are side objectives available through the Tracker after Eye of Cthulhu, not separate boss stages."
+    },
+    {
+      "id": "thrombosis-hybrid-classification",
+      "kind": "item-override",
+      "item": "ThoriumMod/Thrombosis",
+      "override": {
+        "classes": [
+          "melee",
+          "summoner"
+        ]
+      },
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Thrombosis",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Thrombosis is intentionally a melee weapon with a summon-class effect, so both detected class affinities are retained."
+    }
+  ],
+  "ignoredItems": [
+    {
+      "id": "legacy-wiki-armor-group-labels",
+      "items": [
+        "ThoriumMod/Assassinarmor",
+        "ThoriumMod/Rhapsodistarmor",
+        "ThoriumMod/MetallurgyShield",
+        "ThoriumMod/TranquilLyre"
+      ],
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+      "sourceVersion": "Recommendation snapshot labels for Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "These identifiers are recommendation-only group or legacy labels, not exact item IDs in the current tModLoader snapshot; recommendations must not alter availability."
+    },
+    {
+      "id": "removed-development-and-internal-pickup-items",
+      "items": [
+        "ThoriumMod/ArcaneSpike",
+        "ThoriumMod/CataclysmicsGarb",
+        "ThoriumMod/DreamPotion",
+        "ThoriumMod/GodMode",
+        "ThoriumMod/GuidetoOvercomingGriefInactive",
+        "ThoriumMod/HalcandranDeluxeApparel",
+        "ThoriumMod/InspirationGem",
+        "ThoriumMod/InspirationNote",
+        "ThoriumMod/InspirationNoteNoble",
+        "ThoriumMod/InspirationNoteRhapsodist",
+        "ThoriumMod/InspirationNoteStatue",
+        "ThoriumMod/KineticBattery",
+        "ThoriumMod/LodestoneBuckshot",
+        "ThoriumMod/PhonicWings",
+        "ThoriumMod/SpiritBand",
+        "ThoriumMod/SuppressionBullet",
+        "ThoriumMod/TesterEmpowerment",
+        "ThoriumMod/TesterPurity",
+        "ThoriumMod/TesterText",
+        "ThoriumMod/TestNeedle",
+        "ThoriumMod/ThoriumRevolver"
+      ],
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
+      "sourceVersion": "Thorium Mod 1.7.2.5, Workshop build 2025.8.3.1",
+      "checkedAt": "2026-06-14",
+      "reason": "The official build marks these as removed, development-only, hidden state variants, non-inventory Bard pickups, or unobtainable items with no normal-world acquisition path; they are not player-selectable combat equipment."
+    },
+    {
+      "id": "disabled-donator-item-without-current-acquisition",
+      "items": [
+        "ThoriumMod/IncandescentAlacrity"
+      ],
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
+      "sourceVersion": "Thorium Mod 1.7.2.5, Workshop build 2025.8.3.1",
+      "checkedAt": "2026-06-14",
+      "reason": "The current official snapshot exposes no recipe, drop, shop, fishing, or world-generation acquisition path for this optional donator item."
+    }
+  ],
+  "ignoredIssues": [
+    {
+      "id": "assassin-armor-recommendation-group-label",
+      "issueId": "ambiguous-wiki-item.f7d99b2f802b",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+      "sourceVersion": "Recommendation snapshot for Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Assassin armor is a recommendation group label rather than an exact current item ID; it must not affect availability."
+    },
+    {
+      "id": "rhapsodist-armor-recommendation-group-label",
+      "issueId": "ambiguous-wiki-item.965cd5d22e89",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+      "sourceVersion": "Recommendation snapshot for Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "Rhapsodist armor is a recommendation group label rather than an exact current item ID; it must not affect availability."
+    }
+  ]
 }

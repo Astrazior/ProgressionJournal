@@ -2,7 +2,1271 @@
   "format": "ProgressionJournalAgentRules",
   "version": 1,
   "profileId": "builtin.calamity",
-  "rules": [],
-  "ignoredItems": [],
-  "ignoredIssues": []
+  "rules": [
+    {
+      "id": "post-dog-global-event-material-drops",
+      "kind": "condition-stage",
+      "stageId": "devourer-of-gods",
+      "sources": [
+        "drop"
+      ],
+      "conditionTypes": [],
+      "conditionDescriptions": [
+        "Предметы: After defeating the Devourer of Gods"
+      ],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityGlobalNPCLoot.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Calamity source places Nightmare Fuel, Endothermic Energy and Darksun Fragment drops in the shared PostDoG conditional drop set."
+    },
+    {
+      "id": "meld-blob-celestial-pillars",
+      "kind": "item-stage",
+      "item": "CalamityMod/MeldBlob",
+      "stageId": "lunatic-cultist",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityGlobalNPCLoot.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Calamity source adds Meld Blob to the loot of enemies from the Celestial Pillars."
+    },
+    {
+      "id": "burrower-cavern-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/Burrower",
+      "stageId": "start",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Deconstructors/Burrower.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official source gives Burrower a normal Cavern spawn chance with no progression flag and makes it drop Mysterious Circuitry and Dubious Plating."
+    },
+    {
+      "id": "ebonian-blight-slime-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/EbonianBlightSlime",
+      "stageId": "start",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/NormalNPCs/EbonianBlightSlime.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official source gives Ebonian Blight Slime an unconditional Corruption spawn chance, making its Blighted Gel available before bosses."
+    },
+    {
+      "id": "crimulan-blight-slime-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/CrimulanBlightSlime",
+      "stageId": "start",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/NormalNPCs/CrimulanBlightSlime.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official source gives Crimulan Blight Slime an unconditional Crimson spawn chance, making its Blighted Gel available before bosses."
+    },
+    {
+      "id": "leviathan-anahita-final-loot",
+      "kind": "item-stage",
+      "item": "CalamityMod/LeviathanBag",
+      "stageId": "leviathan-anahita",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Leviathan/Leviathan.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official boss source places the treasure bag and normal weapon pool behind LastAnLStanding(), so the shared loot becomes available after the Anahita and Leviathan encounter is completed."
+    },
+    {
+      "id": "astrum-deus-final-worm-loot",
+      "kind": "item-stage",
+      "item": "CalamityMod/AstrumDeusBag",
+      "stageId": "astrum-deus",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AstrumDeus/AstrumDeusHead.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official boss source places the treasure bag and normal weapon pool in the lastWorm conditional set, so they become available when the Astrum Deus encounter is completed."
+    },
+    {
+      "id": "exo-mechs-photon-ripper",
+      "kind": "item-stage",
+      "item": "CalamityMod/PhotonRipper",
+      "stageId": "exo-mechs",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/DraedonBag.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Draedon Bag loot source places Photon Ripper in the Ares-defeated reward set."
+    },
+    {
+      "id": "exo-mechs-the-jailor",
+      "kind": "item-stage",
+      "item": "CalamityMod/TheJailor",
+      "stageId": "exo-mechs",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/DraedonBag.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Draedon Bag loot source places The Jailor in the Ares-defeated reward set."
+    },
+    {
+      "id": "exo-mechs-ares-exoskeleton",
+      "kind": "item-stage",
+      "item": "CalamityMod/AresExoskeleton",
+      "stageId": "exo-mechs",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/DraedonBag.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Draedon Bag loot source places Ares Exoskeleton in the Ares-defeated reward set."
+    },
+    {
+      "id": "exo-mechs-spine-of-thanatos",
+      "kind": "item-stage",
+      "item": "CalamityMod/SpineOfThanatos",
+      "stageId": "exo-mechs",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/DraedonBag.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Draedon Bag loot source places Spine of Thanatos in the Thanatos-defeated reward set."
+    },
+    {
+      "id": "exo-mechs-refraction-rotor",
+      "kind": "item-stage",
+      "item": "CalamityMod/RefractionRotor",
+      "stageId": "exo-mechs",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/DraedonBag.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Draedon Bag loot source places Refraction Rotor in the Thanatos-defeated reward set."
+    },
+    {
+      "id": "exo-mechs-atlas-munitions-beacon",
+      "kind": "item-stage",
+      "item": "CalamityMod/AtlasMunitionsBeacon",
+      "stageId": "exo-mechs",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/DraedonBag.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Draedon Bag loot source places Atlas Munitions Beacon in the Thanatos-defeated reward set."
+    },
+    {
+      "id": "exo-mechs-surge-driver",
+      "kind": "item-stage",
+      "item": "CalamityMod/SurgeDriver",
+      "stageId": "exo-mechs",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/DraedonBag.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Draedon Bag loot source places Surge Driver in the Artemis and Apollo-defeated reward set."
+    },
+    {
+      "id": "exo-mechs-the-atom-splitter",
+      "kind": "item-stage",
+      "item": "CalamityMod/TheAtomSplitter",
+      "stageId": "exo-mechs",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/DraedonBag.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Draedon Bag loot source places The Atom Splitter in the Artemis and Apollo-defeated reward set."
+    },
+    {
+      "id": "antlion-source",
+      "kind": "source-stage",
+      "source": "Terraria/Antlion",
+      "stageId": "start",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Antlion",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Terraria Wiki identifies Antlions as ordinary pre-Hardmode Desert enemies."
+    },
+    {
+      "id": "fire-imp-source",
+      "kind": "source-stage",
+      "source": "Terraria/FireImp",
+      "stageId": "start",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Fire_Imp",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Terraria Wiki identifies Fire Imps as ordinary pre-Hardmode Underworld enemies."
+    },
+    {
+      "id": "demon-source",
+      "kind": "source-stage",
+      "source": "Terraria/Demon",
+      "stageId": "start",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Demon",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Terraria Wiki identifies Demons as ordinary pre-Hardmode Underworld enemies."
+    },
+    {
+      "id": "voodoo-demon-source",
+      "kind": "source-stage",
+      "source": "Terraria/VoodooDemon",
+      "stageId": "start",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Voodoo_Demon",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Terraria Wiki identifies Voodoo Demons as pre-Hardmode Underworld enemies."
+    },
+    {
+      "id": "bone-serpent-source",
+      "kind": "source-stage",
+      "source": "Terraria/BoneSerpentHead",
+      "stageId": "start",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Bone_Serpent",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Terraria Wiki identifies Bone Serpents as pre-Hardmode Underworld enemies."
+    },
+    {
+      "id": "dark-caster-source",
+      "kind": "source-stage",
+      "source": "Terraria/DarkCaster",
+      "stageId": "skeletron",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Dark_Caster",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Terraria Wiki identifies Dark Casters as Dungeon enemies; normal Dungeon access follows Skeletron."
+    },
+    {
+      "id": "wyvern-source",
+      "kind": "source-stage",
+      "source": "Terraria/WyvernHead",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Wyvern",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Terraria Wiki identifies Wyverns as Hardmode enemies."
+    },
+    {
+      "id": "goblin-summoner-source",
+      "kind": "source-stage",
+      "source": "Terraria/GoblinSummoner",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Goblin_Summoner",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Terraria Wiki identifies Goblin Summoners as Hardmode Goblin Army enemies."
+    },
+    {
+      "id": "sand-elemental-source",
+      "kind": "source-stage",
+      "source": "Terraria/SandElemental",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Sand_Elemental",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Terraria Wiki identifies Sand Elementals as Hardmode Sandstorm enemies."
+    },
+    {
+      "id": "clinger-source",
+      "kind": "source-stage",
+      "source": "Terraria/Clinger",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Clinger",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Terraria Wiki identifies Clingers as Hardmode Corruption enemies."
+    },
+    {
+      "id": "ichor-sticker-source",
+      "kind": "source-stage",
+      "source": "Terraria/IchorSticker",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Ichor_Sticker",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Terraria Wiki identifies Ichor Stickers as Hardmode Crimson enemies."
+    },
+    {
+      "id": "biome-mimic-corruption-source",
+      "kind": "source-stage",
+      "source": "Terraria/BigMimicCorruption",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Mimics",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Terraria Wiki identifies Corrupt Mimics as Hardmode enemies."
+    },
+    {
+      "id": "biome-mimic-crimson-source",
+      "kind": "source-stage",
+      "source": "Terraria/BigMimicCrimson",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Mimics",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Terraria Wiki identifies Crimson Mimics as Hardmode enemies."
+    },
+    {
+      "id": "biome-mimic-hallow-source",
+      "kind": "source-stage",
+      "source": "Terraria/BigMimicHallow",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Mimics",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Terraria Wiki identifies Hallowed Mimics as Hardmode enemies."
+    },
+    {
+      "id": "deadly-sphere-source",
+      "kind": "source-stage",
+      "source": "Terraria/DeadlySphere",
+      "stageId": "golem",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Deadly_Sphere",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Terraria Wiki identifies Deadly Spheres as Martian Madness enemies; the event becomes available after Golem."
+    },
+    {
+      "id": "calamity-preboss-natural-sources",
+      "kind": "source-stage",
+      "sources": [
+        "CalamityMod/AquaticUrchin",
+        "CalamityMod/Cnidrion",
+        "CalamityMod/CrawlerAmber",
+        "CalamityMod/CrawlerAmethyst",
+        "CalamityMod/CrawlerCrystal",
+        "CalamityMod/CrawlerDiamond",
+        "CalamityMod/CrawlerEmerald",
+        "CalamityMod/CrawlerRuby",
+        "CalamityMod/CrawlerSapphire",
+        "CalamityMod/CrawlerTopaz",
+        "CalamityMod/StarterBag",
+        "CalamityMod/Stormlion",
+        "CalamityMod/SulphurousCrate",
+        "CalamityMod/WulfrumAmplifier",
+        "CalamityMod/WulfrumDrone",
+        "CalamityMod/WulfrumGyrator",
+        "CalamityMod/WulfrumHovercraft",
+        "CalamityMod/WulfrumRover"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official source gives these enemies ordinary pre-boss biome spawn conditions, and the Starter Bag and pre-Hardmode Sulphurous Crate are available before boss progression."
+    },
+    {
+      "id": "giant-clam-and-sea-king-source",
+      "kind": "source-stage",
+      "sources": [
+        "CalamityMod/GiantClam",
+        "CalamityMod/SeaKing"
+      ],
+      "stageId": "desert-scourge",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/TownNPCs/SeaKing.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Sea King spawn condition requires both Giant Clam and Desert Scourge to be defeated, placing the encounter and its town shop after Desert Scourge."
+    },
+    {
+      "id": "acid-rain-tier-one-sources",
+      "kind": "source-stage",
+      "sources": [
+        "CalamityMod/NuclearToad",
+        "CalamityMod/Rotdog"
+      ],
+      "stageId": "eye-of-cthulhu",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AcidRain",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Acid Rain sources place these enemies in the first event tier, which this profile opens after Eye of Cthulhu."
+    },
+    {
+      "id": "post-skeletron-abyss-sources",
+      "kind": "source-stage",
+      "sources": [
+        "CalamityMod/BoxJellyfish",
+        "CalamityMod/Cuttlefish",
+        "CalamityMod/GiantSquid",
+        "CalamityMod/MirageJelly",
+        "CalamityMod/Viperfish"
+      ],
+      "stageId": "skeletron",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Abyss",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official sources spawn these enemies in the upper and middle Abyss layers; the profile follows Calamity's intended post-Skeletron Abyss access point."
+    },
+    {
+      "id": "bandit-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/Bandit",
+      "stageId": "skeletron",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/TownNPCs/Bandit.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "CanTownNPCSpawn in the official source requires Skeletron to be defeated and a player to possess a Platinum Coin."
+    },
+    {
+      "id": "calamity-hardmode-natural-sources",
+      "kind": "source-stage",
+      "sources": [
+        "CalamityMod/Aries",
+        "CalamityMod/Astraglomerate",
+        "CalamityMod/AstralSlime",
+        "CalamityMod/AstralachneaGround",
+        "CalamityMod/AstralachneaWall",
+        "CalamityMod/Atlas",
+        "CalamityMod/BrimstoneCrate",
+        "CalamityMod/CloudElemental",
+        "CalamityMod/EarthElemental",
+        "CalamityMod/Gnasher",
+        "CalamityMod/Hadarian",
+        "CalamityMod/HydrothermalCrate",
+        "CalamityMod/IceClasper",
+        "CalamityMod/Mantis",
+        "CalamityMod/Nova",
+        "CalamityMod/SeaSerpent1",
+        "CalamityMod/StellarCulex"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official source gates these enemies or their biomes and hardmode crate variants behind Hardmode; later conditional loot remains separately gated."
+    },
+    {
+      "id": "archmage-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/Archmage",
+      "stageId": "cryogen",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/TownNPCs/Archmage.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "CanTownNPCSpawn in the official source returns downedCryogen."
+    },
+    {
+      "id": "acid-rain-tier-two-sources",
+      "kind": "source-stage",
+      "sources": [
+        "CalamityMod/BelchingCoral",
+        "CalamityMod/Orthocera",
+        "CalamityMod/SulphurousSkater"
+      ],
+      "stageId": "aquatic-scourge",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AcidRain",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official sources place these enemies in the second Acid Rain tier after Aquatic Scourge."
+    },
+    {
+      "id": "calamitas-clone-construct-sources",
+      "kind": "source-stage",
+      "sources": [
+        "CalamityMod/Cataclysm",
+        "CalamityMod/Catastrophe"
+      ],
+      "stageId": "calamitas-clone",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalClone",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "Cataclysm and Catastrophe are parts of the Calamitas Clone encounter in the official source."
+    },
+    {
+      "id": "post-plantera-natural-sources",
+      "kind": "source-stage",
+      "sources": [
+        "CalamityMod/LeviathanStart",
+        "CalamityMod/MantisShrimp"
+      ],
+      "stageId": "plantera",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official spawn conditions require Plantera-era progression for these ocean enemies."
+    },
+    {
+      "id": "post-golem-natural-sources",
+      "kind": "source-stage",
+      "sources": [
+        "CalamityMod/PlaguebringerMiniboss",
+        "CalamityMod/ShockstormShuttle"
+      ],
+      "stageId": "golem",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official spawn conditions require Golem to be defeated."
+    },
+    {
+      "id": "post-moon-lord-impious-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/ImpiousImmolator",
+      "stageId": "moon-lord",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/NormalNPCs/ImpiousImmolator.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official source gates the Impious Immolator behind Moon Lord."
+    },
+    {
+      "id": "post-providence-renegade-warlock-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/RenegadeWarlock",
+      "stageId": "providence",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Crags/RenegadeWarlock.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official spawn condition requires Providence to be defeated."
+    },
+    {
+      "id": "acid-rain-tier-three-sources",
+      "kind": "source-stage",
+      "sources": [
+        "CalamityMod/FlakCrab",
+        "CalamityMod/Mauler",
+        "CalamityMod/NuclearTerror"
+      ],
+      "stageId": "polterghast",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AcidRain",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Acid Rain progression places these enemies in the post-Polterghast tier."
+    },
+    {
+      "id": "eidolon-wyrm-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/EidolonWyrmHead",
+      "stageId": "polterghast",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Abyss/EidolonWyrmHead.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official source uses the post-Polterghast Abyss progression for the Eidolon Wyrm encounter."
+    },
+    {
+      "id": "supreme-calamitas-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/SupremeCalamitas",
+      "stageId": "supreme-calamitas",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/SupremeCalamitas/SupremeCalamitas.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official source defines Supreme Calamitas boss loot at completion of the Supreme Calamitas encounter."
+    },
+    {
+      "id": "calamity-start-world-and-fishing-materials",
+      "kind": "item-stage",
+      "items": [
+        "CalamityMod/Acidwood",
+        "CalamityMod/CoastalDemonfish",
+        "CalamityMod/Driftwood",
+        "CalamityMod/AncientBoneDust"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/Items",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official source defines these as naturally available pre-boss wood, fishing, crate or ordinary cavern-skeleton materials."
+    },
+    {
+      "id": "calamity-post-skeletron-abyss-materials",
+      "kind": "item-stage",
+      "items": [
+        "CalamityMod/AbyssGravel",
+        "CalamityMod/PlantyMush"
+      ],
+      "stageId": "skeletron",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/World/Abyss.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official world-generation source places Abyss Gravel and Planty Mush in the middle Abyss layers, reached at the profile's post-Skeletron Abyss stage."
+    },
+    {
+      "id": "calamity-hardmode-world-materials",
+      "kind": "item-stage",
+      "items": [
+        "CalamityMod/AstralMonolith"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Placeables",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The Astral Infection and its monolith material become available when Hardmode begins."
+    },
+    {
+      "id": "unholy-core-hardmode-recipe",
+      "kind": "item-stage",
+      "item": "CalamityMod/UnholyCore",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Materials/UnholyCore.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official recipe crafts Unholy Core at a Hellforge from Hardmode evil-biome materials."
+    },
+    {
+      "id": "great-sand-shark-material",
+      "kind": "item-stage",
+      "item": "CalamityMod/GrandScale",
+      "stageId": "destroyer",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/GreatSandShark/GreatSandShark.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "Grand Scale is official Great Sand Shark loot; the encounter is placed after the first mechanical-boss milestone."
+    },
+    {
+      "id": "shady-salesman-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/ShadySalesman",
+      "stageId": "start",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/TownNPCs/ShadySalesman.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official source implements the Shady Salesman as a travelling NPC with no boss-progression requirement."
+    },
+    {
+      "id": "draedon-sunken-sea-schematic",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["recipe"],
+      "conditionDescriptions": ["View an unencrypted schematic from the lab near the Sunken Sea"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/DraedonMisc/DecryptionComputer.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The Sunken Sea schematic and the materials for the first Codebreaker upgrade are available from world-generated laboratories before bosses; recipe ingredients impose any later item-specific gate."
+    },
+    {
+      "id": "draedon-planetoid-schematic",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["recipe"],
+      "conditionDescriptions": ["Decrypt a schematic from the lab in the large planetoid in the sky"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/TileEntities/TECodebreaker.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Codebreaker source requires only the Decryption Computer for the Planetoid schematic; later recipes remain gated by their own Hardmode ingredients."
+    },
+    {
+      "id": "draedon-jungle-schematic",
+      "kind": "condition-stage",
+      "stageId": "wall-of-flesh",
+      "sources": ["recipe"],
+      "conditionDescriptions": ["Decrypt a schematic from the lab deep within the jungle"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/DraedonMisc/LongRangedSensorArray.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "Decrypting the Jungle schematic requires the Long Ranged Sensor Array, whose official recipe requires Hardmode Mythril or Orichalcum bars."
+    },
+    {
+      "id": "draedon-hell-schematic",
+      "kind": "condition-stage",
+      "stageId": "golem",
+      "sources": ["recipe"],
+      "conditionDescriptions": ["Decrypt a schematic from the lab near the edges of the underworld"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/DraedonMisc/AdvancedDisplay.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "Decrypting the Hell schematic requires the Advanced Display; its Life Alloy ingredient becomes available after Scoria Ore at Golem."
+    },
+    {
+      "id": "draedon-ice-schematic",
+      "kind": "condition-stage",
+      "stageId": "providence",
+      "sources": ["recipe"],
+      "conditionDescriptions": ["Decrypt a schematic from the lab deep within the frozen caverns"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/DraedonMisc/VoltageRegulationSystem.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "Decrypting the Ice schematic requires the Voltage Regulation System, whose official recipe includes post-Providence Uelibloom Bars."
+    },
+    {
+      "id": "non-progression-recipe-environments",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["recipe"],
+      "conditionDescriptions": [
+        "В генерации мира «Remix»",
+        "Не в генерации мира «Remix»",
+        "Рядом с мерцанием",
+        "На кладбище"
+      ],
+      "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+      "sourceVersion": "tModLoader 1.4.4",
+      "checkedAt": "2026-06-14",
+      "reason": "These conditions select a world variant or crafting environment rather than a boss milestone; recipe ingredients still determine progression."
+    },
+    {
+      "id": "shady-and-skeleton-merchant-time-conditions",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["shop"],
+      "conditionDescriptions": [
+        "During a gibbous moon",
+        "During a crescent moon",
+        "Во время новолуния, молодой луны, первой четверти или молодой полной луны",
+        "Во время полнолуния, последней четверти, новолуния или первой четверти",
+        "Во время растущей или убывающей луны",
+        "Во время полнолуния, старой полной луны, последней четверти или старой луны",
+        "Когда в мире присутствует Медсестра"
+      ],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/TownNPCs/ShadySalesman.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "Moon phase and town-NPC presence are repeatable shop timing requirements, not progression milestones."
+    },
+    {
+      "id": "shady-found-item-stock",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["shop"],
+      "sourceIds": ["CalamityMod/ShadySalesman"],
+      "conditionDescriptions": [
+        "After obtaining Frozen Cube",
+        "After obtaining Unstable Granite Core",
+        "After obtaining Trinket of Chi",
+        "After obtaining Gladiator's Locket",
+        "After obtaining Fungal Symbiote",
+        "After obtaining Luxor's Gift"
+      ],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/TownNPCs/ShadySalesman.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The shop condition only mirrors an already discovered world item; the original item's source determines its actual availability."
+    },
+    {
+      "id": "shady-revengeance-stock",
+      "kind": "condition-stage",
+      "stageId": "skeletron",
+      "sources": ["shop"],
+      "sourceIds": ["CalamityMod/ShadySalesman"],
+      "conditionDescriptions": ["In Revengeance Mode"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/TownNPCs/ShadySalesman.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "Heart of Darkness and Stress Pills require both Revengeance Mode and Skeletron in the official shop definition."
+    },
+    {
+      "id": "archmage-frost-moon-stock",
+      "kind": "condition-stage",
+      "stageId": "plantera",
+      "sources": ["shop"],
+      "sourceIds": ["CalamityMod/Archmage"],
+      "conditionDescriptions": [
+        "После победы над вечнозлой ели",
+        "После победы над Сантой-NK1",
+        "После победы над ледяной королевой"
+      ],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/TownNPCs/Archmage.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Archmage shop requires all three Frost Moon minibosses; the event is available after Plantera."
+    },
+    {
+      "id": "archmage-blood-rune-stock",
+      "kind": "condition-stage",
+      "stageId": "devourer-of-gods",
+      "sources": ["shop"],
+      "sourceIds": ["CalamityMod/Archmage"],
+      "conditionDescriptions": ["Когда в инвентаре находится Ice Barrage"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/TownNPCs/Archmage.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official shop requires carrying Ice Barrage, whose official recipe uses post-Devourer materials."
+    },
+    {
+      "id": "calamitas-construct-final-drops",
+      "kind": "condition-stage",
+      "stageId": "calamitas-clone",
+      "sources": ["drop"],
+      "sourceIds": ["CalamityMod/Cataclysm", "CalamityMod/Catastrophe"],
+      "conditionDescriptions": [
+        "Drops if defeated after Catastrophic Construct",
+        "Drops if defeated after Cataclysmic Construct"
+      ],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalClone",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "Both conditional drops are rewards for completing the paired constructs during the Calamitas Clone encounter."
+    },
+    {
+      "id": "default-world-duke-drop",
+      "kind": "condition-stage",
+      "stageId": "duke-fishron",
+      "sources": ["drop"],
+      "sourceIds": ["Terraria/DukeFishron"],
+      "conditionTypes": ["Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityGlobalNPCLoot.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "Duke's Decapitator is a Duke Fishron reward in ordinary non-Remix worlds."
+    },
+    {
+      "id": "profaned-soul-crystal-challenge",
+      "kind": "condition-stage",
+      "stageId": "providence",
+      "sources": ["drop"],
+      "sourceIds": ["CalamityMod/Providence"],
+      "conditionDescriptions": ["Drops if Providence was defeated only with the [i:CalamityMod/ProfanedSoulArtifact] Profaned Soul Artifact\nЭто шанс выпадения в режиме эксперта"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Providence/Providence.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The challenge reward cannot exist before Providence is defeated; the additional method restriction does not create a later boss milestone."
+    },
+    {
+      "id": "preboss-lambda-drops",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["drop"],
+      "sourceIds": ["Terraria/FireImp", "Terraria/Demon", "Terraria/VoodooDemon", "Terraria/BoneSerpentHead"],
+      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityGlobalNPCLoot.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The duplicate lambda rules only change drop chance before and after the world-evil boss; the weapons are obtainable from these pre-Hardmode Underworld enemies from the start."
+    },
+    {
+      "id": "acid-rain-lambda-drop",
+      "kind": "condition-stage",
+      "stageId": "eye-of-cthulhu",
+      "sources": ["drop"],
+      "sourceIds": ["CalamityMod/NuclearToad"],
+      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AcidRain",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "Nuclear Toad and its weapon drop are available in the first Acid Rain tier."
+    },
+    {
+      "id": "post-skeletron-abyss-lambda-drops",
+      "kind": "condition-stage",
+      "stageId": "skeletron",
+      "sources": ["drop"],
+      "sourceIds": ["CalamityMod/BoxJellyfish", "CalamityMod/MirageJelly"],
+      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Abyss",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Abyss enemy sources gate Abyss Shocker behind Skeletron."
+    },
+    {
+      "id": "post-aureus-astral-lambda-drops",
+      "kind": "condition-stage",
+      "stageId": "astrum-aureus",
+      "sources": ["drop"],
+      "sourceIds": [
+        "CalamityMod/Aries",
+        "CalamityMod/Astraglomerate",
+        "CalamityMod/AstralSlime",
+        "CalamityMod/AstralachneaGround",
+        "CalamityMod/AstralachneaWall",
+        "CalamityMod/Atlas",
+        "CalamityMod/Hadarian",
+        "CalamityMod/Mantis",
+        "CalamityMod/Nova",
+        "CalamityMod/StellarCulex"
+      ],
+      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Astral",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Astral enemy loot definitions require Astrum Aureus to be defeated for these combat drops."
+    },
+    {
+      "id": "post-plantera-mantis-shrimp-drop",
+      "kind": "condition-stage",
+      "stageId": "plantera",
+      "sources": ["drop"],
+      "sourceIds": ["CalamityMod/MantisShrimp"],
+      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/NormalNPCs/MantisShrimp.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Mantis Shrimp loot definition requires Plantera for Mantis Claws."
+    },
+    {
+      "id": "multipart-and-late-boss-lambda-drops",
+      "kind": "condition-stage",
+      "stageId": "leviathan-anahita",
+      "sources": ["drop"],
+      "sourceIds": ["CalamityMod/Anahita", "CalamityMod/Leviathan"],
+      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Leviathan/Leviathan.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official loot pool is emitted only when the final member of the Anahita and Leviathan encounter is defeated."
+    },
+    {
+      "id": "astrum-deus-lambda-drops",
+      "kind": "condition-stage",
+      "stageId": "astrum-deus",
+      "sources": ["drop"],
+      "sourceIds": ["CalamityMod/AstrumDeusHead"],
+      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AstrumDeus/AstrumDeusHead.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official loot pool is emitted only by the last surviving Astrum Deus worm."
+    },
+    {
+      "id": "late-enemy-lambda-drops",
+      "kind": "condition-stage",
+      "stageId": "providence",
+      "sources": ["drop"],
+      "sourceIds": ["CalamityMod/RenegadeWarlock"],
+      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Crags/RenegadeWarlock.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The source enemy itself appears after Providence, which is later than the Plantera condition on its Hellkite drop."
+    },
+    {
+      "id": "post-polterghast-eidolon-drop",
+      "kind": "condition-stage",
+      "stageId": "polterghast",
+      "sources": ["drop"],
+      "sourceIds": ["CalamityMod/EidolonWyrmHead"],
+      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Abyss/EidolonWyrmHead.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Eidolon Wyrm loot set places Eidolon Staff in its post-Polterghast pool."
+    },
+    {
+      "id": "exo-mechs-lambda-drops",
+      "kind": "condition-stage",
+      "stageId": "exo-mechs",
+      "sources": ["drop"],
+      "sourceIds": ["CalamityMod/AresBody", "CalamityMod/ThanatosHead", "CalamityMod/Apollo"],
+      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/ExoMechs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "These conditions select the final Exo Mech and its reward set within the completed Exo Mechs encounter."
+    },
+    {
+      "id": "supreme-calamitas-lambda-drops",
+      "kind": "condition-stage",
+      "stageId": "supreme-calamitas",
+      "sources": ["drop"],
+      "sourceIds": ["CalamityMod/SupremeCalamitas"],
+      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/SupremeCalamitas/SupremeCalamitas.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The conditional rewards are part of the completed Supreme Calamitas encounter."
+    },
+    {
+      "id": "vanilla-boss-bag-lambda-drops",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["drop"],
+      "sourceIds": [
+        "Terraria/KingSlimeBossBag",
+        "Terraria/EyeOfCthulhuBossBag",
+        "Terraria/EaterOfWorldsBossBag",
+        "Terraria/BrainOfCthulhuBossBag",
+        "Terraria/QueenBeeBossBag",
+        "Terraria/WallOfFleshBossBag",
+        "Terraria/DestroyerBossBag",
+        "Terraria/TwinsBossBag",
+        "Terraria/SkeletronPrimeBossBag",
+        "Terraria/PlanteraBossBag",
+        "Terraria/GolemBossBag",
+        "Terraria/FishronBossBag",
+        "Terraria/MoonLordBossBag",
+        "Terraria/FairyQueenBossBag",
+        "Terraria/QueenSlimeBossBag",
+        "Terraria/DeerclopsBossBag"
+      ],
+      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityGlobalNPCLoot.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "These lambdas select difficulty or Calamity mode variants inside boss bags; each bag's own source stage remains the progression gate."
+    },
+    {
+      "id": "calamity-boss-bag-lambda-drops",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["drop"],
+      "sourceIds": [
+        "CalamityMod/AquaticScourgeBag",
+        "CalamityMod/AstrumAureusBag",
+        "CalamityMod/AstrumDeusBag",
+        "CalamityMod/BrimstoneElementalBag",
+        "CalamityMod/CalamitasCloneBag",
+        "CalamityMod/CalamitasCoffer",
+        "CalamityMod/CeaselessVoidBag",
+        "CalamityMod/CrabulonBag",
+        "CalamityMod/CryogenBag",
+        "CalamityMod/DesertScourgeBag",
+        "CalamityMod/DevourerofGodsBag",
+        "CalamityMod/DraedonBag",
+        "CalamityMod/DragonfollyBag",
+        "CalamityMod/HiveMindBag",
+        "CalamityMod/LeviathanBag",
+        "CalamityMod/OldDukeBag",
+        "CalamityMod/PerforatorBag",
+        "CalamityMod/PlaguebringerGoliathBag",
+        "CalamityMod/PolterghastBag",
+        "CalamityMod/ProvidenceBag",
+        "CalamityMod/RavagerBag",
+        "CalamityMod/SignusBag",
+        "CalamityMod/SlimeGodBag",
+        "CalamityMod/StormWeaverBag",
+        "CalamityMod/YharonBag"
+      ],
+      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "These lambdas select difficulty, mode or encounter variants inside treasure bags; each bag's source stage remains authoritative."
+    },
+    {
+      "id": "calamity-worldgen-and-lab-materials",
+      "kind": "item-stage",
+      "items": [
+        "CalamityMod/SmoothBrimstoneSlag",
+        "CalamityMod/ScorchedBone",
+        "CalamityMod/SuspiciousScrap",
+        "CalamityMod/PlasmaDriveCore"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/World/DraedonStructures.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official world-generation sources place the Brimstone Crag blocks and laboratory materials during world creation, before boss progression."
+    },
+    {
+      "id": "calamity-middle-abyss-pyre-mantle",
+      "kind": "item-stage",
+      "item": "CalamityMod/PyreMantle",
+      "stageId": "skeletron",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/World/Abyss.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "Pyre Mantle is generated in the middle Abyss layers, using the same post-Skeletron access milestone as the other middle-Abyss materials."
+    },
+    {
+      "id": "calamity-preboss-fishing-and-natural-food",
+      "kind": "item-stage",
+      "items": [
+        "CalamityMod/AlluringBait",
+        "CalamityMod/DragoonDrizzlefish",
+        "CalamityMod/Jackfruit",
+        "CalamityMod/Salak",
+        "CalamityMod/DeliciousMeat",
+        "CalamityMod/QualitySlop",
+        "CalamityMod/ShroombleItem"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official sources make these available through pre-boss Sulphurous Sea or Brimstone fishing, Acidwood fruit, the ungated Divine Swine, the Shady Salesman's blender, or an ordinary Forest critter."
+    },
+    {
+      "id": "sunken-sea-post-desert-scourge-fishing",
+      "kind": "item-stage",
+      "items": [
+        "CalamityMod/SparklingEmpress",
+        "CalamityMod/SeaSpiritAmulet"
+      ],
+      "stageId": "desert-scourge",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Sunken Sea fishing pool adds both very-rare catches after Desert Scourge."
+    },
+    {
+      "id": "astral-biome-fruit-and-fishing",
+      "kind": "item-stage",
+      "items": [
+        "CalamityMod/Barberry",
+        "CalamityMod/Cometfruit",
+        "CalamityMod/Lotus",
+        "CalamityMod/Mangosteen",
+        "CalamityMod/PolarisParrotfish",
+        "CalamityMod/GacruxianMollusk",
+        "CalamityMod/UrsaSergeant"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "These are Astral biome tree fruit or legendary fishing catches; the Astral biome appears when Hardmode begins."
+    },
+    {
+      "id": "post-providence-brimstone-fishing",
+      "kind": "item-stage",
+      "item": "CalamityMod/Bloodfin",
+      "stageId": "providence",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Brimstone Crag lava-fishing branch explicitly requires Providence before Bloodfin can be caught."
+    },
+    {
+      "id": "horrible-hog-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/HorribleHog",
+      "stageId": "eye-of-cthulhu",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/NormalNPCs/HorribleHog/HorribleHog.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official spawn condition requires a Blood Moon after Eye of Cthulhu."
+    },
+    {
+      "id": "astral-chest-weapon",
+      "kind": "item-stage",
+      "item": "CalamityMod/HeavenfallenStardisk",
+      "stageId": "astrum-aureus",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Tiles/Astral/AstralChestLocked.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official locked Astral Chest refuses to open until Astrum Aureus is defeated."
+    },
+    {
+      "id": "murasama-usable-stage",
+      "kind": "item-stage",
+      "item": "CalamityMod/Murasama",
+      "stageId": "devourer-of-gods",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Weapons/Melee/Murasama.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "Although generated in the Hell laboratory, the official item cannot be used until the Devourer of Gods has been defeated."
+    },
+    {
+      "id": "post-yharon-lilies-of-finality",
+      "kind": "item-stage",
+      "item": "CalamityMod/LiliesOfFinality",
+      "stageId": "yharon",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Systems/World/WorldMiscUpdateSystem.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official world update places Lilies of Finality only after Yharon."
+    },
+    {
+      "id": "calamitas-exhumed-items",
+      "kind": "item-stage",
+      "items": [
+        "CalamityMod/CindersOfLament",
+        "CalamityMod/Metastasis",
+        "CalamityMod/GruesomeEminence",
+        "CalamityMod/Rancor",
+        "CalamityMod/ShatteredCommunity"
+      ],
+      "stageId": "supreme-calamitas",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/UI/CalamitasEnchantments/EnchantmentManager.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Exhumed upgrade table converts their base items through Calamitas's post-boss enchantment service."
+    }
+  ],
+  "ignoredItems": [
+    {
+      "id": "legacy-recommendation-display-labels",
+      "items": [
+        "CalamityMod/MagicHatBuff",
+        "CalamityMod/VoidofExtinction",
+        "Terraria/Adamantite armor",
+        "Terraria/Aerial Bane",
+        "Terraria/Apprentice armor",
+        "Terraria/Bee armor",
+        "Terraria/Beetle armor",
+        "Terraria/Betsy's Wings",
+        "Terraria/Betsy's Wrath",
+        "Terraria/Blood Thorn",
+        "Terraria/Bundle of Horseshoe Balloons",
+        "Terraria/Candles#Purchased",
+        "Terraria/Celestial Starboard",
+        "Terraria/Chlorophyte armor",
+        "Terraria/Cobalt armor",
+        "Terraria/Counterweights",
+        "Terraria/Crimson armor",
+        "Terraria/Crystal Assassin armor",
+        "Terraria/Dark Harvest",
+        "Terraria/Desert Tiger Staff",
+        "Terraria/Durendal",
+        "Terraria/Empress Wings",
+        "Terraria/Extra jump",
+        "Terraria/Firecracker",
+        "Terraria/Fledgling Wings",
+        "Terraria/Flying Dragon",
+        "Terraria/Fossil armor",
+        "Terraria/Gladiator armor",
+        "Terraria/Gold armor",
+        "Terraria/Gray Zapinator",
+        "Terraria/Hallowed armor",
+        "Terraria/Hive Pack",
+        "Terraria/Jungle armor",
+        "Terraria/Kaleidoscope",
+        "Terraria/Leather Whip",
+        "Terraria/Luminite Arrow",
+        "Terraria/Luminite Bullet",
+        "Terraria/Lunar Portal Staff",
+        "Terraria/Meteor armor",
+        "Terraria/Molten armor",
+        "Terraria/Monk armor",
+        "Terraria/Morning Star",
+        "Terraria/Mystic Robe",
+        "Terraria/Mythril armor",
+        "Terraria/Nebula armor",
+        "Terraria/Nebula Mantle",
+        "Terraria/Necro armor",
+        "Terraria/Obsidian armor",
+        "Terraria/Orichalcum armor",
+        "Terraria/P-LSR: Aerial Tracker",
+        "Terraria/Paintball Gun",
+        "Terraria/Palladium armor",
+        "Terraria/Phantom Phoenix",
+        "Terraria/Platinum armor",
+        "Terraria/Shadow armor",
+        "Terraria/Shield of Cthulhu",
+        "Terraria/Shinobi Infiltrator armor",
+        "Terraria/Shroomite armor",
+        "Terraria/Silver armor",
+        "Terraria/Snapthorn",
+        "Terraria/Soaring Insignia",
+        "Terraria/Solar Flare armor",
+        "Terraria/Solar Wings",
+        "Terraria/Spectre armor",
+        "Terraria/Spectre Wings",
+        "Terraria/Spider armor",
+        "Terraria/Spinal Tap",
+        "Terraria/Stardust armor",
+        "Terraria/Stardust Wings",
+        "Terraria/Stellar Tune",
+        "Terraria/Thunder Zapper",
+        "Terraria/Tiki armor",
+        "Terraria/Turtle armor",
+        "Terraria/Valhalla Knight armor",
+        "Terraria/Vortex armor",
+        "Terraria/Vortex Booster"
+      ],
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+      "sourceVersion": "recommendations snapshot 2.1.2, not progression evidence for Calamity 2.2",
+      "checkedAt": "2026-06-14",
+      "reason": "These legacy recommendation entries are display names, grouped armor labels, renamed content or anchors rather than exact current internal IDs. Recommendations remain separate and do not control item availability."
+    },
+    {
+      "id": "starter-bag-name-specific-dev-items",
+      "items": [
+        "CalamityMod/HapuFruit",
+        "CalamityMod/SharkyPlush",
+        "CalamityMod/GhostBracelet",
+        "CalamityMod/XyksBlessingBlue",
+        "CalamityMod/XyksBlessingOrange",
+        "CalamityMod/OracleHeadphones",
+        "CalamityMod/LittleE",
+        "CalamityMod/GlimmeringRibbon"
+      ],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/MiscGrabBags/StarterBag.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official Starter Bag source restricts these developer or vanity items to specific player names; they are not normal combat progression equipment."
+    },
+    {
+      "id": "non-profile-service-and-special-seed-items",
+      "items": [
+        "CalamityMod/WulfrumFusionCannon",
+        "CalamityMod/LavaChickenBroth"
+      ],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Armor/Wulfrum/WulfrumFusionCannon.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "Wulfrum Fusion Cannon is an internal held-only armor-set item rather than independent equipment, while Lava Chicken Broth is emitted only by the special-seed Exo Mechdusa variant."
+    }
+  ],
+  "ignoredIssues": [
+    {
+      "id": "zenith-seed-only-drop-pool",
+      "issueId": "unresolved-condition.5633e0304efe",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AstrumAureus/AstrumAureus.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "This is a special Get fixed boi or Zenith seed drop pool that intentionally bypasses normal progression. The standard-world profile uses the ordinary recipes and sources instead."
+    }
+  ]
 }

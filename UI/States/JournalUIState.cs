@@ -474,7 +474,15 @@ public sealed class JournalUiState : UIState
         if (recipe.Stations.Count > 0)
         {
             top = AppendDetailLabel(panel, "Mods.ProgressionJournal.UI.SelectedItemStations", top + 4f);
-            top = AppendItemRows(panel, recipe.Stations, top);
+            top = AppendTokenRows(
+                panel,
+                recipe.Stations
+                    .Select(static station => new JournalSourceTokenData(
+                        JournalSourceTokenKind.Tile,
+                        station.TileId,
+                        station.Name))
+                    .ToArray(),
+                top);
         }
 
         if (recipe.Conditions.Count > 0)

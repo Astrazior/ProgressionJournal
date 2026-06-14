@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.ObjectData;
 using Terraria.UI;
 
 namespace ProgressionJournal.UI.Controls;
@@ -12,7 +13,8 @@ public enum JournalSourceTokenKind
     Item,
     Npc,
     Bestiary,
-    Texture
+    Texture,
+    Tile
 }
 
 public readonly record struct JournalSourceTokenData(
@@ -55,6 +57,15 @@ public sealed class JournalSourceToken : UIElement
         base.DrawSelf(spriteBatch);
 
         var bounds = GetDimensions().ToRectangle();
+        if (_data.Kind == JournalSourceTokenKind.Tile)
+        {
+            var tileBounds = bounds;
+            tileBounds.Inflate(-1, -1);
+            DrawTile(spriteBatch, tileBounds);
+            ShowHoverText();
+            return;
+        }
+
         var texture = TextureAssets.MagicPixel.Value;
         var background = IsMouseHovering
             ? Color.Lerp(JournalUiTheme.PanelBackground, Color.White, 0.16f)
@@ -91,6 +102,11 @@ public sealed class JournalSourceToken : UIElement
                 throw new InvalidOperationException($"Unsupported {nameof(JournalSourceTokenKind)} value: {_data.Kind}");
         }
 
+        ShowHoverText();
+    }
+
+    private void ShowHoverText()
+    {
         if (!IsMouseHovering || string.IsNullOrWhiteSpace(_data.HoverText))
         {
             return;
@@ -166,6 +182,26 @@ public sealed class JournalSourceToken : UIElement
 
         var iconTexture = Main.Assets.Request<Texture2D>(_data.TexturePath).Value;
         DrawTexture(spriteBatch, iconTexture, iconTexture.Bounds, inner, anchorBottom: false);
+    }
+
+    private void DrawTile(SpriteBatch spriteBatch, Rectangle inner)
+    {
+        if (_data.Value < 0 || _data.Value >= TextureAssets.Tile.Length)
+        {
+            return;
+        }
+
+        Main.instance.LoadTiles(_data.Value);
+        var tileTexture = TextureAssets.Tile[_data.Value].Value;
+        var tileData = TileObjectData.GetTileData(_data.Value, 0);
+        var frameWidth = Math.Min(tileTexture.Width, tileData?.CoordinateFullWidth ?? 16);
+        var frameHeight = Math.Min(tileTexture.Height, tileData?.CoordinateFullHeight ?? 16);
+        DrawTexture(
+            spriteBatch,
+            tileTexture,
+            new Rectangle(0, 0, frameWidth, frameHeight),
+            inner,
+            anchorBottom: true);
     }
 
     private static void DrawAchievementIcon(SpriteBatch spriteBatch, Rectangle inner, string achievementId)
