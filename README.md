@@ -10,9 +10,9 @@ https://steamcommunity.com/sharedfiles/filedetails?id=3710545729
 - Shows equipment first unlocked by each boss or combat event
 - Shows combat buffs and utility information
 - Shows item acquisition sources: drops, shops, recipes, stations, conditions
-- Supports selectable vanilla, bundled, add-on, and user-created progression profiles
+- Supports selectable built-in progression profiles
 - Includes bundled Calamity, Thorium, and Fargo's Souls profiles
-- Supports custom classes, stages, unlock conditions, and recommendation tiers
+- Built-in profiles can define their own classes, stages, unlock conditions, and recommendation tiers
 
 ## Project notes
 
@@ -32,7 +32,6 @@ External mods can register additional journal entries through `Mod.Call`.
 
 - `GetApiVersion`
 - `RegisterEntry`
-- `RegisterProfileJson`
 - `RegisterUnlockCondition`
 
 Register external entries in `PostSetupContent`.
@@ -69,23 +68,10 @@ public override void PostSetupContent()
 }
 ```
 
-API version 2 can register a complete profile:
+`RegisterUnlockCondition` can provide a runtime condition referenced by bundled content.
+`RegisterEntry` adds entries to the built-in vanilla profile.
 
-```csharp
-journal.Call("RegisterProfileJson", profileJson, "ExampleMod");
-journal.Call("RegisterUnlockCondition", "ExampleMod/DownedBoss", (Func<bool>)(() => DownedBoss));
-```
-
-Profile JSON uses stable string IDs for profiles, classes, stages, and item references.
-Old `RegisterEntry` calls remain supported and add entries to `builtin.vanilla`.
-
-## Profile files
-
-User profiles are stored under:
-
-`Documents/My Games/Terraria/tModLoader/Mods/ProgressionJournal/Profiles`
-
-Built-in profiles are read-only. Use `Copy / Edit` in the profile manager before changing one.
+Built-in mod profiles are stored as `Profiles/Mods/<InternalModName>/profile.json`.
 Profile builds store `profileId`, `classId`, and `stageId`; old build JSON is migrated from
 the former `combatClass` field when it is imported or saved again.
 

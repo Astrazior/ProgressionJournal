@@ -13,6 +13,7 @@ public static class JournalBuildPlannerCatalog
 
     public const int PotionSlotCount = 8;
     public const int FoodSlotCount = 8;
+    public const int MaxAccessorySlotCount = 12;
 
     private static int GetAccessorySlotCount(ProgressionStageId stageId)
     {

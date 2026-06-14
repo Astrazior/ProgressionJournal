@@ -290,21 +290,22 @@ public static class JournalContentBuilder
             onSlotClick,
             onSlotRightClick);
 
-        var accessoryKeys = Enumerable.Range(1, JournalBuildPlannerCatalog.GetAccessorySlotCount(profileId, stageId))
-            .Select(JournalBuildPlannerCatalog.GetAccessorySlotKey)
-            .ToArray();
-        AppendEquipmentGrid(
+        var baseAccessorySlotCount = JournalBuildPlannerCatalog.GetAccessorySlotCount(profileId, stageId);
+        var accessoryGridHeight = AppendExpandableEquipmentGrid(
             panel,
             combatClass,
-            accessoryKeys,
+            JournalBuildPlannerCatalog.GetAccessorySlotKey,
+            JournalBuildPlannerCatalog.MaxAccessorySlotCount,
+            baseAccessorySlotCount,
             2,
             JournalUiMetrics.BlockHorizontalPadding + JournalUiMetrics.BuildSlotSize * 2.4f,
             armorHeaderTop + 26f,
             getSelectedItemId,
             onSlotClick,
-            onSlotRightClick);
+            onSlotRightClick,
+            Language.GetTextValue("Mods.ProgressionJournal.UI.BuildAddAccessorySlotTooltip"));
 
-        top = MathF.Max(armorBottom, armorHeaderTop + 26f + GetGridHeight(accessoryKeys.Length, 2));
+        top = MathF.Max(armorBottom, armorHeaderTop + 26f + accessoryGridHeight);
 
         panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
         return panel;
@@ -706,7 +707,7 @@ public static class JournalContentBuilder
             top,
             maxSlotsPerRow);
 
-        var accessoryItems = Enumerable.Range(1, JournalBuildPlannerCatalog.GetAccessorySlotCount(profileId, stageId))
+        var accessoryItems = Enumerable.Range(1, JournalBuildPlannerCatalog.MaxAccessorySlotCount)
             .Select(slotIndex => build.GetSelectedItemReference(JournalBuildPlannerCatalog.GetAccessorySlotKey(slotIndex)))
             .Where(static itemReference => itemReference is not null)
             .Select(static itemReference => itemReference!)

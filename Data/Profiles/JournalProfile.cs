@@ -4,8 +4,6 @@ public sealed class JournalProfile(
     JournalProfileDocument document,
     IReadOnlyList<JournalEntry> entries,
     IReadOnlyList<JournalCombatBuffEntry> combatBuffEntries,
-    string sourcePath,
-    bool isBuiltIn,
     bool hasVersionMismatch)
 {
     private readonly Dictionary<string, JournalProfileClassDocument> _classes =
@@ -19,15 +17,7 @@ public sealed class JournalProfile(
 
     public string Name => Document.Name.Resolve();
 
-    public string Author => Document.Author;
-
-    public bool IsReadOnly => IsBuiltIn || Document.ReadOnly;
-
-    public bool IsBuiltIn { get; } = isBuiltIn;
-
     public bool HasVersionMismatch { get; } = hasVersionMismatch;
-
-    public string SourcePath { get; } = sourcePath;
 
     public IReadOnlyList<JournalProfileClassDocument> Classes => Document.Classes;
 
@@ -41,14 +31,14 @@ public sealed class JournalProfile(
     {
         return _classes.TryGetValue(classId, out var definition)
             ? definition
-            : Classes.First();
+            : Classes[0];
     }
 
     public JournalProfileStageDocument GetStage(string stageId)
     {
         return _stages.TryGetValue(stageId, out var definition)
             ? definition
-            : Stages.First();
+            : Stages[0];
     }
 
     public int GetStageIndex(string stageId)

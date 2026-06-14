@@ -12,18 +12,6 @@ public sealed class JournalProfileDocument
 
     public JournalLocalizedText Name { get; set; } = string.Empty;
 
-    public string Author { get; set; } = string.Empty;
-
-    public string ProfileVersion { get; set; } = "1.0.0";
-
-    public bool ReadOnly { get; set; }
-
-    public string SourceUrl { get; set; } = string.Empty;
-
-    public string SourceRevision { get; set; } = string.Empty;
-
-    public string GeneratedAtUtc { get; set; } = string.Empty;
-
     public List<JournalRequiredModDocument> RequiredMods { get; set; } = [];
 
     public List<JournalProfileClassDocument> Classes { get; set; } = [];

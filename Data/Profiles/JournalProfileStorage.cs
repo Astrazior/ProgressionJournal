@@ -11,7 +11,6 @@ public static class JournalProfileStorage
 {
     public const string ProfileFormat = "ProgressionJournalProfile";
     public const int CurrentVersion = 1;
-    public const string FileExtension = ".pjprofile.json";
 
     private const string ProfileDirectoryName = "Profiles";
     private const string ActiveProfileFileName = "active-profile.txt";
@@ -24,43 +23,7 @@ public static class JournalProfileStorage
         Converters = { new JsonStringEnumConverter() }
     };
 
-    public static IReadOnlyList<JournalProfile> LoadUserProfiles()
-    {
-        var directory = GetProfileDirectoryPath();
-        if (!Directory.Exists(directory))
-        {
-            return [];
-        }
-
-        List<JournalProfile> profiles = [];
-        foreach (var path in Directory.EnumerateFiles(directory, $"*{FileExtension}", SearchOption.TopDirectoryOnly))
-        {
-            if (TryLoad(path, isBuiltIn: false, out var profile, out _))
-            {
-                profiles.Add(profile!);
-            }
-        }
-
-        return profiles;
-    }
-
-    public static bool TryLoad(string path, bool isBuiltIn, out JournalProfile? profile, out string error)
-    {
-        profile = null;
-
-        try
-        {
-            var json = File.ReadAllText(path, Encoding.UTF8);
-            return TryParse(json, path, isBuiltIn, out profile, out error);
-        }
-        catch (Exception exception)
-        {
-            error = exception.Message;
-            return false;
-        }
-    }
-
-    public static bool TryParse(string json, string sourcePath, bool isBuiltIn, out JournalProfile? profile, out string error)
+    public static bool TryParseBuiltIn(string json, out JournalProfile? profile, out string error)
     {
         profile = null;
 
@@ -73,7 +36,7 @@ public static class JournalProfileStorage
                 return false;
             }
 
-            if (!Validate(document, isBuiltIn, out error))
+            if (!Validate(document, requireBuiltInLocalization: true, out error))
             {
                 return false;
             }
@@ -84,8 +47,6 @@ public static class JournalProfileStorage
                 document,
                 entries,
                 combatBuffEntries,
-                sourcePath,
-                isBuiltIn,
                 HasVersionMismatch(document));
             return true;
         }
@@ -94,138 +55,6 @@ public static class JournalProfileStorage
             error = exception.Message;
             return false;
         }
-    }
-
-    public static bool Save(JournalProfileDocument document, out string path, out string error)
-    {
-        path = string.Empty;
-
-        try
-        {
-            document.Format = ProfileFormat;
-            document.Version = CurrentVersion;
-            document.ReadOnly = false;
-
-            if (!Validate(document, requireBuiltInLocalization: false, out error))
-            {
-                return false;
-            }
-
-            Directory.CreateDirectory(GetProfileDirectoryPath());
-            path = Path.Combine(GetProfileDirectoryPath(), $"{SanitizeFileName(document.Id)}{FileExtension}");
-            File.WriteAllText(path, JsonSerializer.Serialize(document, SerializerOptions), Encoding.UTF8);
-            error = string.Empty;
-            return true;
-        }
-        catch (Exception exception)
-        {
-            error = exception.Message;
-            return false;
-        }
-    }
-
-    public static bool Export(JournalProfile profile, string path, out string error)
-    {
-        try
-        {
-            var document = CloneDocument(profile.Document);
-            document.ReadOnly = false;
-            File.WriteAllText(path, JsonSerializer.Serialize(document, SerializerOptions), Encoding.UTF8);
-            error = string.Empty;
-            return true;
-        }
-        catch (Exception exception)
-        {
-            error = exception.Message;
-            return false;
-        }
-    }
-
-    public static bool Delete(JournalProfile profile, out string error)
-    {
-        if (profile.IsBuiltIn)
-        {
-            error = "Built-in profiles cannot be deleted.";
-            return false;
-        }
-
-        try
-        {
-            var profileDirectory = Path.GetFullPath(GetProfileDirectoryPath())
-                .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
-                + Path.DirectorySeparatorChar;
-            var profilePath = Path.GetFullPath(profile.SourcePath);
-            if (!profilePath.StartsWith(profileDirectory, StringComparison.OrdinalIgnoreCase)
-                || !profilePath.EndsWith(FileExtension, StringComparison.OrdinalIgnoreCase))
-            {
-                error = "The profile is not stored in the user profile directory.";
-                return false;
-            }
-
-            if (File.Exists(profilePath))
-            {
-                File.Delete(profilePath);
-            }
-
-            error = string.Empty;
-            return true;
-        }
-        catch (Exception exception)
-        {
-            error = exception.Message;
-            return false;
-        }
-    }
-
-    public static bool Import(string path, out JournalProfile? importedProfile, out string error)
-    {
-        importedProfile = null;
-
-        if (!TryLoad(path, isBuiltIn: false, out var loaded, out error) || loaded is null)
-        {
-            return false;
-        }
-
-        var document = CloneDocument(loaded.Document);
-        document.ReadOnly = false;
-
-        if (string.Equals(document.Id, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase)
-            || document.Id.StartsWith("builtin.", StringComparison.OrdinalIgnoreCase))
-        {
-            document.Id = CreateCopyId(document.Id);
-            document.Name = $"{document.Name} (copy)";
-        }
-
-        if (!Save(document, out var destinationPath, out error))
-        {
-            return false;
-        }
-
-        return TryLoad(destinationPath, isBuiltIn: false, out importedProfile, out error);
-    }
-
-    public static bool CreateEditableCopy(JournalProfile source, out JournalProfile? copy, out string error)
-    {
-        copy = null;
-        var document = CloneDocument(source.Document);
-        document.Id = CreateCopyId(source.Id);
-        document.Name = $"{source.Name} (copy)";
-        document.Author = Main.LocalPlayer?.name ?? document.Author;
-        document.ReadOnly = false;
-        document.SourceRevision = string.Empty;
-
-        if (!Save(document, out var path, out error))
-        {
-            return false;
-        }
-
-        return TryLoad(path, isBuiltIn: false, out copy, out error);
-    }
-
-    public static JournalProfileDocument CloneDocument(JournalProfileDocument document)
-    {
-        var json = JsonSerializer.Serialize(document, SerializerOptions);
-        return JsonSerializer.Deserialize<JournalProfileDocument>(json, SerializerOptions)!;
     }
 
     public static string LoadActiveProfileId()
@@ -263,9 +92,6 @@ public static class JournalProfileStorage
         {
             Id = JournalProfileIds.Vanilla,
             Name = "Vanilla",
-            Author = "Progression Journal",
-            ProfileVersion = "3.0.0",
-            ReadOnly = true,
             Classes =
             [
                 CreateVanillaClass(JournalClassIds.Melee, "Melee", "Melee"),
@@ -288,12 +114,7 @@ public static class JournalProfileStorage
                 .ToList()
         };
 
-        return new JournalProfile(document, entries, [], "builtin:vanilla", isBuiltIn: true, hasVersionMismatch: false);
-    }
-
-    public static string Serialize(JournalProfileDocument document)
-    {
-        return JsonSerializer.Serialize(document, SerializerOptions);
+        return new JournalProfile(document, entries, [], hasVersionMismatch: false);
     }
 
     private static bool Validate(
@@ -570,22 +391,6 @@ public static class JournalProfileStorage
 
     private static bool HasBuiltInLocales(JournalLocalizedText value) =>
         value.HasLocale("en-US") && value.HasLocale("ru-RU");
-
-    private static string CreateCopyId(string sourceId)
-    {
-        var normalized = sourceId.Replace("builtin.", string.Empty, StringComparison.OrdinalIgnoreCase);
-        return $"user.{normalized}.{DateTime.UtcNow:yyyyMMddHHmmssfff}";
-    }
-
-    private static string SanitizeFileName(string value)
-    {
-        foreach (var invalidCharacter in Path.GetInvalidFileNameChars())
-        {
-            value = value.Replace(invalidCharacter, '_');
-        }
-
-        return value;
-    }
 
     private static string NormalizeContentName(string value)
     {

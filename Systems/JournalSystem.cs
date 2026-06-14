@@ -28,10 +28,6 @@ public sealed class JournalSystem : ModSystem
 
     public bool ShowingProfileManager { get; private set; }
 
-    public JournalProfileEditorSession? ProfileEditor { get; private set; }
-
-    public string? PendingProfileDeleteId { get; private set; }
-
     public JournalSavedBuild? SharedBuildPreview { get; private set; }
 
     public bool SelectingClass { get; private set; } = true;
@@ -96,8 +92,6 @@ public sealed class JournalSystem : ModSystem
         _editingBuild = null;
         _exportingBuild = null;
         SharedBuildPreview = null;
-        ProfileEditor = null;
-        PendingProfileDeleteId = null;
         SelectedItemId = ItemID.None;
 
         _buildSelections.Clear();
@@ -184,7 +178,6 @@ public sealed class JournalSystem : ModSystem
         _editingBuild = null;
         _exportingBuild = null;
         SharedBuildPreview = null;
-        ProfileEditor = null;
         JournalBuildStorage.Reload();
         CoerceSelectedStage();
         _journalInterface?.SetState(_journalState);
@@ -201,7 +194,6 @@ public sealed class JournalSystem : ModSystem
         _exportingBuild = null;
         SharedBuildPreview = null;
         ShowingProfileManager = false;
-        ProfileEditor = null;
         _journalInterface?.SetState(null);
     }
 
@@ -295,7 +287,6 @@ public sealed class JournalSystem : ModSystem
 
     public void SelectProfile(string profileId)
     {
-        PendingProfileDeleteId = null;
         if (!JournalProfileRegistry.Select(profileId))
         {
             return;
@@ -318,7 +309,6 @@ public sealed class JournalSystem : ModSystem
     public void OpenProfileManager()
     {
         ShowingProfileManager = true;
-        ProfileEditor = null;
         ShowingBuildSaveDialog = false;
         ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
@@ -328,141 +318,6 @@ public sealed class JournalSystem : ModSystem
     public void CloseProfileManager()
     {
         ShowingProfileManager = false;
-        ProfileEditor = null;
-        PendingProfileDeleteId = null;
-        RefreshView();
-    }
-
-    public void BeginNewProfile()
-    {
-        ShowingProfileManager = true;
-        ProfileEditor = JournalProfileEditorSession.CreateNew();
-        RefreshView();
-    }
-
-    public void BeginEditActiveProfile()
-    {
-        var active = JournalProfileRegistry.Active;
-        if (active.IsReadOnly)
-        {
-            if (!JournalProfileStorage.CreateEditableCopy(active, out var copy, out var error) || copy is null)
-            {
-                Main.NewText(error, Color.OrangeRed);
-                return;
-            }
-
-            JournalProfileRegistry.Register(copy);
-            JournalProfileRegistry.Select(copy.Id);
-            active = copy;
-        }
-
-        ShowingProfileManager = true;
-        ProfileEditor = JournalProfileEditorSession.FromProfile(active);
-        RefreshView();
-    }
-
-    public void SaveProfileEditor()
-    {
-        if (ProfileEditor is null)
-        {
-            return;
-        }
-
-        if (!ProfileEditor.Save(out var profile, out var error) || profile is null)
-        {
-            Main.NewText(error, Color.OrangeRed);
-            return;
-        }
-
-        JournalProfileRegistry.ReloadUserProfiles();
-        JournalProfileRegistry.Select(profile.Id);
-        SelectedClassId = profile.Classes[0].Id;
-        SelectedStageId = profile.Stages[0].Id;
-        ProfileEditor = null;
-        HasSelectedClass = false;
-        SelectingClass = true;
-        _journalState?.ResetProfileNavigation();
-        Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileSaved"), Color.LightGreen);
-        RefreshView();
-    }
-
-    public void ImportProfile()
-    {
-        if (!JournalFileDialog.TryShowOpenProfileDialog(out var path))
-        {
-            return;
-        }
-
-        if (!JournalProfileStorage.Import(path, out var profile, out var error) || profile is null)
-        {
-            Main.NewText(error, Color.OrangeRed);
-            return;
-        }
-
-        JournalProfileRegistry.ReloadUserProfiles();
-        JournalProfileRegistry.Select(profile.Id);
-        SelectedClassId = profile.Classes[0].Id;
-        SelectedStageId = profile.Stages[0].Id;
-        _journalState?.ResetProfileNavigation();
-        Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileImported", profile.Name), Color.LightGreen);
-        RefreshView();
-    }
-
-    public void ExportActiveProfile()
-    {
-        var profile = JournalProfileRegistry.Active;
-        if (!JournalFileDialog.TryShowSaveProfileDialog(profile.Name, out var path))
-        {
-            return;
-        }
-
-        if (JournalProfileStorage.Export(profile, path, out var error))
-        {
-            Main.NewText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileExported", Path.GetFileName(path)), Color.LightGreen);
-            return;
-        }
-
-        Main.NewText(error, Color.OrangeRed);
-    }
-
-    public void DeleteProfile(string profileId)
-    {
-        if (!JournalProfileRegistry.TryGet(profileId, out var profile) || profile.IsBuiltIn)
-        {
-            return;
-        }
-
-        if (!string.Equals(PendingProfileDeleteId, profileId, StringComparison.OrdinalIgnoreCase))
-        {
-            PendingProfileDeleteId = profileId;
-            Main.NewText(
-                Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileDeleteConfirm", profile.Name),
-                Color.Orange);
-            RefreshView();
-            return;
-        }
-
-        PendingProfileDeleteId = null;
-        if (!JournalProfileStorage.Delete(profile, out var error))
-        {
-            Main.NewText(error, Color.OrangeRed);
-            RefreshView();
-            return;
-        }
-
-        JournalProfileRegistry.ReloadUserProfiles();
-        JournalProfileRegistry.Select(JournalProfileRegistry.Active.Id);
-        SelectedClassId = JournalProfileRegistry.Active.Classes[0].Id;
-        SelectedStageId = GetCurrentStageId();
-        HasSelectedClass = false;
-        SelectingClass = true;
-        ShowingPresets = false;
-        ShowingBuildBuilder = false;
-        _buildSelections.Clear();
-        _journalState?.ResetProfileNavigation();
-        Main.NewText(
-            Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileDeleted", profile.Name),
-            Color.LightGreen);
         RefreshView();
     }
 
@@ -474,7 +329,6 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildSaveDialog = false;
         ShowingBuildExportDialog = false;
         ShowingProfileManager = false;
-        ProfileEditor = null;
         ActiveBuildSlotKey = null;
         _editingBuild = null;
         _exportingBuild = null;

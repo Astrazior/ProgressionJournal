@@ -6,8 +6,6 @@ public static class JournalProfileRegistry
 {
     private static readonly Dictionary<string, JournalProfile> Profiles =
         new(StringComparer.OrdinalIgnoreCase);
-    private static readonly Dictionary<string, JournalProfile> AddonProfiles =
-        new(StringComparer.OrdinalIgnoreCase);
 
     public static IReadOnlyList<JournalProfile> All => Profiles.Values
         .Where(IsAvailable)
@@ -25,42 +23,13 @@ public static class JournalProfileRegistry
         Register(JournalProfileStorage.CreateVanillaProfile(vanillaEntries));
         LoadBundledProfiles();
 
-        foreach (var profile in AddonProfiles.Values)
-        {
-            Register(profile);
-        }
-
-        foreach (var profile in JournalProfileStorage.LoadUserProfiles())
-        {
-            Register(profile);
-        }
-
         var activeId = JournalProfileStorage.LoadActiveProfileId();
         Active = TryGet(activeId, out var selected) && IsAvailable(selected)
             ? selected
             : Profiles[JournalProfileIds.Vanilla];
     }
 
-    public static void ReloadUserProfiles()
-    {
-        var activeId = Active?.Id ?? JournalProfileIds.Vanilla;
-
-        foreach (var id in Profiles.Values.Where(static profile => !profile.IsBuiltIn).Select(static profile => profile.Id).ToArray())
-        {
-            Profiles.Remove(id);
-        }
-
-        foreach (var profile in JournalProfileStorage.LoadUserProfiles())
-        {
-            Register(profile);
-        }
-
-        Active = TryGet(activeId, out var selected) && IsAvailable(selected)
-            ? selected
-            : Profiles[JournalProfileIds.Vanilla];
-    }
-
-    public static void Register(JournalProfile profile)
+    private static void Register(JournalProfile profile)
     {
         Profiles[profile.Id] = profile;
     }
@@ -76,19 +45,6 @@ public static class JournalProfileRegistry
         {
             Active = profile;
         }
-    }
-
-    public static bool RegisterJson(string json, string sourceName, out string error)
-    {
-        if (!JournalProfileStorage.TryParse(json, sourceName, isBuiltIn: true, out var profile, out error)
-            || profile is null)
-        {
-            return false;
-        }
-
-        AddonProfiles[profile.Id] = profile;
-        Register(profile);
-        return true;
     }
 
     public static bool TryGet(string profileId, out JournalProfile profile)
@@ -111,7 +67,6 @@ public static class JournalProfileRegistry
     public static void Unload()
     {
         Profiles.Clear();
-        AddonProfiles.Clear();
         Active = null!;
         JournalProfileUnlockRegistry.Clear();
         JournalNpcUnlockTracker.Clear();
@@ -138,7 +93,7 @@ public static class JournalProfileRegistry
                              && path.EndsWith("/profile.json", StringComparison.OrdinalIgnoreCase)))
             {
                 var json = System.Text.Encoding.UTF8.GetString(mod.GetFileBytes(path));
-                if (JournalProfileStorage.TryParse(json, $"builtin:{path}", isBuiltIn: true, out var profile, out _)
+                if (JournalProfileStorage.TryParseBuiltIn(json, out var profile, out _)
                     && profile is not null)
                 {
                     Register(profile);

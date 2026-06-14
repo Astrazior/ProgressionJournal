@@ -91,15 +91,5 @@ public sealed class JournalBuildEquipmentSlot : UIElement
             Main.mouseText = true;
         }
 
-        DrawOutline(spriteBatch, dimensions, JournalUiTheme.PanelBorder);
-    }
-
-    private static void DrawOutline(SpriteBatch spriteBatch, Rectangle rectangle, Color color)
-    {
-        var texture = TextureAssets.MagicPixel.Value;
-        spriteBatch.Draw(texture, new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, 1), color);
-        spriteBatch.Draw(texture, new Rectangle(rectangle.X, rectangle.Bottom - 1, rectangle.Width, 1), color);
-        spriteBatch.Draw(texture, new Rectangle(rectangle.X, rectangle.Y, 1, rectangle.Height), color);
-        spriteBatch.Draw(texture, new Rectangle(rectangle.Right - 1, rectangle.Y, 1, rectangle.Height), color);
     }
 }

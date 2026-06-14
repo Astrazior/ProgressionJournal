@@ -1842,7 +1842,7 @@ public sealed class JournalUiState : UIState
                 JournalBuildPlannerCatalog.ArmorLegsSlotKey));
         AddSharedBuildSection(
             Language.GetTextValue("Mods.ProgressionJournal.UI.Accessories"),
-            Enumerable.Range(1, JournalBuildPlannerCatalog.GetAccessorySlotCount(build.ProfileId, build.StageId))
+            Enumerable.Range(1, JournalBuildPlannerCatalog.MaxAccessorySlotCount)
                 .Select(slotIndex => build.GetSelectedItemReference(JournalBuildPlannerCatalog.GetAccessorySlotKey(slotIndex)))
                 .Where(static itemReference => itemReference is not null)
                 .Select(static itemReference => itemReference!)

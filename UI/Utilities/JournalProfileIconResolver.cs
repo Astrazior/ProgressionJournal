@@ -36,7 +36,6 @@ public static class JournalProfileIconResolver
             }
         }
 
-        if (!profile.IsBuiltIn) return new JournalProfileIcon(TextureAssets.Item[ItemID.Book]);
         foreach (var requirement in profile.Document.RequiredMods)
         {
             if (!ModLoader.TryGetMod(requirement.Name, out var mod))
