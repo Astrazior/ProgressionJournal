@@ -12,6 +12,9 @@ namespace ProgressionJournal.UI.Controls;
 public sealed class JournalProfileManagerPanel : JournalVolumetricPanel
 {
     private const string CloseIconTexturePath = "Images/UI/SearchCancel";
+    private const float WarningAreaHeight = 138f;
+    private const float WarningTextScale = 0.68f;
+    private const float WarningLineHeight = 20f;
 
     private readonly UIList _profileList;
     private readonly UIScrollbar _profileScrollbar;
@@ -54,13 +57,13 @@ public sealed class JournalProfileManagerPanel : JournalVolumetricPanel
         _profileList.Left.Set(20f, 0f);
         _profileList.Top.Set(112f, 0f);
         _profileList.Width.Set(-62f, 1f);
-        _profileList.Height.Set(-132f, 1f);
+        _profileList.Height.Set(-(132f + WarningAreaHeight), 1f);
         Append(_profileList);
 
         _profileScrollbar.Left.Set(-32f, 1f);
         _profileScrollbar.Top.Set(112f, 0f);
         _profileScrollbar.Width.Set(20f, 0f);
-        _profileScrollbar.Height.Set(-132f, 1f);
+        _profileScrollbar.Height.Set(-(132f + WarningAreaHeight), 1f);
         Append(_profileScrollbar);
 
         foreach (var profile in JournalProfileRegistry.All)
@@ -81,6 +84,45 @@ public sealed class JournalProfileManagerPanel : JournalVolumetricPanel
             button.SetStyle(JournalUiTheme.GetTabButtonStyle(
                 string.Equals(profile.Id, JournalProfileRegistry.Active.Id, StringComparison.OrdinalIgnoreCase)));
             _profileList.Add(button);
+        }
+
+        AppendProfileWarning();
+    }
+
+    private void AppendProfileWarning()
+    {
+        const float horizontalInset = 20f;
+
+        var warningContainer = new UIElement();
+        warningContainer.Left.Set(horizontalInset, 0f);
+        warningContainer.Top.Set(-WarningAreaHeight, 1f);
+        warningContainer.Width.Set(-(horizontalInset * 2f), 1f);
+        warningContainer.Height.Set(WarningAreaHeight - 12f, 0f);
+        Append(warningContainer);
+
+        var alertIcon = new JournalConditionAlertIcon();
+        alertIcon.HAlign = 0.5f;
+        warningContainer.Append(alertIcon);
+
+        var maxTextWidth = MathF.Max(
+            1f,
+            Width.Pixels - horizontalInset * 4f);
+        var lines = JournalTextUtilities.WrapToPixelWidth(
+            Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileManagerWarning"),
+            maxTextWidth,
+            WarningTextScale);
+
+        var top = alertIcon.Height.Pixels;
+        foreach (var line in lines)
+        {
+            var warningText = new UIText(line, WarningTextScale)
+            {
+                HAlign = 0.5f,
+                TextColor = JournalUiTheme.SectionHeaderText
+            };
+            warningText.Top.Set(top, 0f);
+            warningContainer.Append(warningText);
+            top += WarningLineHeight;
         }
     }
 }
