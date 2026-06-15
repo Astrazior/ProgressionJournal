@@ -84,6 +84,16 @@ const validRule = {
       sourceVersion: "revision-1",
       checkedAt: "2026-06-13",
       reason: "The official source gives both enemies the same progression gate."
+    },
+    {
+      id: "verified-overrides",
+      kind: "item-override",
+      items: ["Test/HelmetA", "Test/HelmetB"],
+      override: { classes: ["melee"] },
+      sourceUrl: "https://example.invalid/source/Helmets",
+      sourceVersion: "revision-1",
+      checkedAt: "2026-06-15",
+      reason: "Both helmets have the same class-specific equip effect."
     }
   ],
   ignoredItems: [],
@@ -94,6 +104,8 @@ assert.deepEqual(normalized.problems, []);
 assert.equal(normalized.assignments.itemStages["Test/Sword"], "boss");
 assert.equal(normalized.assignments.sourceStages["Test/EnemyA"], "boss");
 assert.equal(normalized.assignments.sourceStages["Test/EnemyB"], "boss");
+assert.deepEqual(normalized.assignments.itemOverrides["Test/HelmetA"], { classes: ["melee"] });
+assert.deepEqual(normalized.assignments.itemOverrides["Test/HelmetB"], { classes: ["melee"] });
 const invalid = normalizeAgentRules({
   ...validRule,
   rules: [{ kind: "item-stage", item: "Test/Sword", stageId: "boss" }]

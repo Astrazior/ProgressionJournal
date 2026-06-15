@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-06-14T23:01:50.493Z",
+  "generatedAtUtc": "2026-06-15T11:41:42.729Z",
   "snapshot": {
     "version": 2,
     "generatedAtUtc": "2026-06-13T00:10:42.0187109Z",
@@ -16,7 +16,7 @@
     ]
   },
   "agentRules": {
-    "rules": 102,
+    "rules": 110,
     "ignoredItems": 3,
     "ignoredIssues": 1,
     "evidence": [
@@ -427,6 +427,62 @@
         "reason": "Great Sand Shark drops Grand Scale, and its official natural-spawn check immediately returns until Plantera has been defeated."
       },
       {
+        "id": "accessory-vanity-namespace",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Accessories/Vanity",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-15",
+        "reason": "These items are implemented in the official Accessories.Vanity namespace and provide cosmetic transformations or developer vanity effects, not combat progression."
+      },
+      {
+        "id": "daedalus-magic-head-class",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Armor/Daedalus/DaedalusHeadMagic.cs",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-15",
+        "reason": "UpdateEquip grants mana, magic damage and magic critical chance, so this helmet is magic-specific."
+      },
+      {
+        "id": "daedalus-melee-head-class",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Armor/Daedalus/DaedalusHeadMelee.cs",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-15",
+        "reason": "UpdateEquip grants melee damage, critical chance and speed, so this helmet is melee-specific."
+      },
+      {
+        "id": "daedalus-ranged-head-class",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Armor/Daedalus/DaedalusHeadRanged.cs",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-15",
+        "reason": "UpdateEquip grants ranged damage and critical chance, so this helmet is ranged-specific."
+      },
+      {
+        "id": "daedalus-summoner-head-class",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Armor/Daedalus/DaedalusHeadSummon.cs",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-15",
+        "reason": "UpdateEquip grants summon damage and minion slots, so this helmet is summoner-specific."
+      },
+      {
+        "id": "daedalus-rogue-head-class",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Armor/Daedalus/DaedalusHeadRogue.cs",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-15",
+        "reason": "UpdateEquip grants rogue damage, critical chance and stealth, so this helmet is rogue-specific."
+      },
+      {
+        "id": "daedalus-shared-armor-classes",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Armor/Daedalus",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-15",
+        "reason": "Every class-specific Daedalus helmet uses the same breastplate and leggings in IsArmorSet, making these two pieces shared by all five classes."
+      },
+      {
+        "id": "supreme-bait-tackle-box-noncombat",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Accessories/SupremeBaitTackleBoxFishingStation.cs",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-15",
+        "reason": "The official UpdateAccessory implementation only improves fishing power and fishing utility flags. It is not combat equipment."
+      },
+      {
         "id": "lucis-sight-vanity-accessory",
         "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Accessories/Vanity/LucisSight.cs",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
@@ -773,13 +829,14 @@
   "audit": {
     "errors": [],
     "warnings": [
-      "1 support or agent references are stale"
+      "1 support or agent references are stale",
+      "66 recommendations precede proven availability and were suppressed"
     ]
   },
   "ready": false,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-06-14T23:01:45.757Z",
+    "generatedAtUtc": "2026-06-15T11:41:38.697Z",
     "unknownReferences": [
       {
         "stage": "wall-of-flesh",
@@ -6190,6 +6247,213 @@
       {
         "sourceKind": "drop",
         "source": "Terraria/BlueJellyfish",
+        "item": "Terraria/ShinePotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/MechanicalWorm",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
+          "description": null
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/MechanicalEye",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
+          "description": null
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/MechanicalSkull",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
+          "description": null
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/BloodyMachete",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenWeapons",
+          "description": "Выпадает во время сезона Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/BladedGlove",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenWeapons",
+          "description": "Выпадает во время сезона Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/JungleKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+JungleKeyCondition",
+          "description": "Выпадает в сложном режиме в джунглях"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/CorruptionKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+CorruptKeyCondition",
+          "description": "Выпадает в сложном режиме в Порче"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/CrimsonKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+CrimsonKeyCondition",
+          "description": "Выпадает в сложном режиме в Багрянце"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/HallowedKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HallowKeyCondition",
+          "description": "Выпадает в сложном режиме в Освящении"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/FrozenKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+FrozenKeyCondition",
+          "description": "Выпадает в сложном режиме в снежном биоме"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/DungeonDesertKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+DesertKeyCondition",
+          "description": "Выпадает в сложном режиме в пустыне"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/GoodieBag",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenGoodieBagDrop",
+          "description": "Выпадает на раннем этапе игры во время Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/Present",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+XmasPresentDrop",
+          "description": "Выпадает на раннем этапе игры во время Рождества"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/LivingFireBlock",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+LivingFlames",
+          "description": "Выпадает в сложном режиме в Преисподней"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/SoulofLight",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+SoulOfLight",
+          "description": "Выпадает под землей в Освящении"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/SoulofNight",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+SoulOfNight",
+          "description": "Выпадает под землей в Багрянце или Порче"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/PirateMap",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+PirateMap",
+          "description": "Выпадает в сложном режиме в океане"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/Cascade",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyoCascade",
+          "description": "Выпадает после победы над Скелетроном, но до сложного режима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/Amarok",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosAmarok",
+          "description": "Выпадает в сложном режиме"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/Yelets",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosYelets",
+          "description": "Выпадает после победы над любым механическим боссом"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/Kraken",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosKraken",
+          "description": "Выпадает после победы над Плантерой"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/HelFire",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosHelFire",
+          "description": "Выпадает в сложном режиме"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
         "item": "Terraria/ShinePotion",
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
@@ -26084,213 +26348,6 @@
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosHelFire",
           "description": "Выпадает в сложном режиме"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/MechanicalWorm",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/MechanicalEye",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/MechanicalSkull",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/BloodyMachete",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenWeapons",
-          "description": "Выпадает во время сезона Хэллоуина"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/BladedGlove",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenWeapons",
-          "description": "Выпадает во время сезона Хэллоуина"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/JungleKey",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+JungleKeyCondition",
-          "description": "Выпадает в сложном режиме в джунглях"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/CorruptionKey",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+CorruptKeyCondition",
-          "description": "Выпадает в сложном режиме в Порче"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/CrimsonKey",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+CrimsonKeyCondition",
-          "description": "Выпадает в сложном режиме в Багрянце"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/HallowedKey",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+HallowKeyCondition",
-          "description": "Выпадает в сложном режиме в Освящении"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/FrozenKey",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+FrozenKeyCondition",
-          "description": "Выпадает в сложном режиме в снежном биоме"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/DungeonDesertKey",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+DesertKeyCondition",
-          "description": "Выпадает в сложном режиме в пустыне"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/GoodieBag",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenGoodieBagDrop",
-          "description": "Выпадает на раннем этапе игры во время Хэллоуина"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/Present",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+XmasPresentDrop",
-          "description": "Выпадает на раннем этапе игры во время Рождества"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/LivingFireBlock",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+LivingFlames",
-          "description": "Выпадает в сложном режиме в Преисподней"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/SoulofLight",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+SoulOfLight",
-          "description": "Выпадает под землей в Освящении"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/SoulofNight",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+SoulOfNight",
-          "description": "Выпадает под землей в Багрянце или Порче"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/PirateMap",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+PirateMap",
-          "description": "Выпадает в сложном режиме в океане"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/Cascade",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyoCascade",
-          "description": "Выпадает после победы над Скелетроном, но до сложного режима"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/Amarok",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosAmarok",
-          "description": "Выпадает в сложном режиме"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/Yelets",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosYelets",
-          "description": "Выпадает после победы над любым механическим боссом"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/Kraken",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosKraken",
-          "description": "Выпадает после победы над Плантерой"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/HelFire",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosHelFire",
-          "description": "Выпадает в сложном режиме"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/ShinePotion",
-        "condition": {
-          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
-          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
         }
       },
       {
@@ -49341,6 +49398,16 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/DemoniteOre",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CrimtaneOre",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/Vitamins",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -49373,6 +49440,11 @@
         "stage": "start",
         "id": "Terraria/FossilOre",
         "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/XyksBlessingBlue",
+        "reason": "not combat equipment"
       },
       {
         "stage": "start",
@@ -49486,6 +49558,11 @@
       },
       {
         "stage": "start",
+        "id": "CalamityMod/AbandonedWulfrumHelmet",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "CalamityMod/EnergyCore",
         "reason": "not combat equipment"
       },
@@ -49498,6 +49575,16 @@
         "stage": "start",
         "id": "Terraria/Glowstick",
         "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Megaphone",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/GhostBracelet",
+        "reason": "not combat equipment"
       },
       {
         "stage": "start",
@@ -49542,6 +49629,11 @@
       {
         "stage": "start",
         "id": "CalamityMod/JoyfulHeart",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/SharkyPlush",
         "reason": "not combat equipment"
       },
       {
@@ -49718,6 +49810,11 @@
         "stage": "start",
         "id": "Terraria/ScarabBomb",
         "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/TheComb",
+        "reason": "not combat equipment"
       },
       {
         "stage": "start",
@@ -50061,6 +50158,36 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/CalmingPotion",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/WormholePotion",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/TeleportationPotion",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LovePotion",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/StinkPotion",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PotionOfReturn",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/FlinxStaff",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -50227,11 +50354,6 @@
       {
         "stage": "start",
         "id": "Terraria/SpiderEcho",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/ShadowCandle",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -50467,36 +50589,6 @@
       {
         "stage": "start",
         "id": "Terraria/PlatinumBrick",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/HellstoneBrick",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/HellstoneBrickWall",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/Lava1Echo",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/Lava2Echo",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/Lava3Echo",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/Lava4Echo",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -52406,16 +52498,6 @@
       },
       {
         "stage": "start",
-        "id": "Terraria/ObsidianChest",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/ToiletObsidian",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
         "id": "Terraria/GoblinBattleStandard",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -53131,6 +53213,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/DemoniteBar",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/FisherofSouls",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -53147,6 +53234,11 @@
       {
         "stage": "start",
         "id": "Terraria/CorruptYoyo",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CrimtaneBar",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -53342,41 +53434,6 @@
       {
         "stage": "start",
         "id": "Terraria/JunglePants",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/Flamarang",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/FieryGreatsword",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/MoltenPickaxe",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/MoltenHamaxe",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/MoltenHelmet",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/MoltenBreastplate",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/MoltenGreaves",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -53676,11 +53733,6 @@
       },
       {
         "stage": "start",
-        "id": "Terraria/FlameWakerBoots",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "start",
         "id": "Terraria/HandWarmer",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -53701,6 +53753,16 @@
       },
       {
         "stage": "start",
+        "id": "CalamityMod/GlimmeringRibbon",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AcesApronOfAffection",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "CalamityMod/WulfrumRod",
         "reason": "not combat equipment"
       },
@@ -53712,11 +53774,6 @@
       {
         "stage": "start",
         "id": "CalamityMod/OnyxSeekingMechanism",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/RedSeekingMechanism",
         "reason": "not combat equipment"
       },
       {
@@ -54401,12 +54458,12 @@
       },
       {
         "stage": "start",
-        "id": "CalamityMod/SirenproofEarMuffs",
+        "id": "CalamityMod/BleachBall",
         "reason": "not combat equipment"
       },
       {
         "stage": "start",
-        "id": "CalamityMod/VoodooDemonVoodooDoll",
+        "id": "CalamityMod/SirenproofEarMuffs",
         "reason": "not combat equipment"
       },
       {
@@ -54556,6 +54613,16 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/KingStatue",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/QueenStatue",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/AbigailsFlower",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -54672,6 +54739,11 @@
       {
         "stage": "start",
         "id": "Terraria/ShellPileBlock",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ShadowCandle",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -56171,6 +56243,11 @@
       },
       {
         "stage": "eye-of-cthulhu",
+        "id": "Terraria/CountercurseMantra",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "eye-of-cthulhu",
         "id": "Terraria/WebSlinger",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -56481,6 +56558,56 @@
       },
       {
         "stage": "world-evil",
+        "id": "Terraria/Hellstone",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/HellstoneBar",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/HellstoneBrick",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/HellstoneBrickWall",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/Lava1Echo",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/Lava2Echo",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/Lava3Echo",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/Lava4Echo",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/ObsidianChest",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/ToiletObsidian",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
         "id": "Terraria/ObsidianHelm",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -56543,6 +56670,56 @@
         "stage": "world-evil",
         "id": "Terraria/FleshGrinder",
         "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/Flamarang",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/FieryGreatsword",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MoltenPickaxe",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MoltenHamaxe",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MoltenHelmet",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MoltenBreastplate",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MoltenGreaves",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/FlameWakerBoots",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "CalamityMod/RedSeekingMechanism",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "CalamityMod/VoodooDemonVoodooDoll",
+        "reason": "not combat equipment"
       },
       {
         "stage": "hive-mind-perforators",
@@ -57071,31 +57248,6 @@
       },
       {
         "stage": "skeletron",
-        "id": "Terraria/CalmingPotion",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/WormholePotion",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/TeleportationPotion",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/LovePotion",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/StinkPotion",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "skeletron",
         "id": "Terraria/LuckPotionLesser",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -57107,11 +57259,6 @@
       {
         "stage": "skeletron",
         "id": "Terraria/LuckPotionGreater",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/PotionOfReturn",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -57511,11 +57658,6 @@
       },
       {
         "stage": "skeletron",
-        "id": "CalamityMod/AcesApronOfAffection",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
         "id": "CalamityMod/DecryptionComputer",
         "reason": "not combat equipment"
       },
@@ -57563,26 +57705,6 @@
         "stage": "skeletron",
         "id": "CalamityMod/PotionofOmniscience",
         "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "CalamityMod/BleachBall",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/KingStatue",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/QueenStatue",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/NaturesGift",
-        "reason": "unchanged vanilla item in mod profile"
       },
       {
         "stage": "skeletron",
@@ -57928,11 +58050,6 @@
         "stage": "wall-of-flesh",
         "id": "CalamityMod/EssenceofEleum",
         "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/Megaphone",
-        "reason": "unchanged vanilla item in mod profile"
       },
       {
         "stage": "wall-of-flesh",
@@ -59061,11 +59178,6 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "Terraria/CountercurseMantra",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "Terraria/CrystalStorm",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -59103,6 +59215,11 @@
         "stage": "wall-of-flesh",
         "id": "Terraria/BouncingShield",
         "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "CalamityMod/SupremeBaitTackleBoxFishingStation",
+        "reason": "not combat equipment"
       },
       {
         "stage": "wall-of-flesh",
@@ -59437,6 +59554,11 @@
       {
         "stage": "cryogen",
         "id": "CalamityMod/CryogenTrophy",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "cryogen",
+        "id": "CalamityMod/Popo",
         "reason": "not combat equipment"
       },
       {
@@ -61422,6 +61544,11 @@
       {
         "stage": "golem",
         "id": "CalamityMod/PlagueCaller",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "golem",
+        "id": "CalamityMod/OracleHeadphones",
         "reason": "not combat equipment"
       },
       {
@@ -64763,10 +64890,6 @@
         "stage": "start",
         "via": "npc:CalamityMod/CrawlerAmber"
       },
-      "CalamityMod/XyksBlessingBlue": {
-        "stage": "start",
-        "via": "npc:CalamityMod/CrawlerAmber"
-      },
       "CalamityMod/SquirrelSquireStaff": {
         "stage": "start",
         "via": "container:CalamityMod/StarterBag"
@@ -64807,10 +64930,6 @@
         "stage": "start",
         "via": "npc:CalamityMod/WulfrumAmplifier"
       },
-      "CalamityMod/AbandonedWulfrumHelmet": {
-        "stage": "start",
-        "via": "npc:CalamityMod/WulfrumAmplifier"
-      },
       "CalamityMod/RoverDrive": {
         "stage": "start",
         "via": "npc:CalamityMod/WulfrumRover"
@@ -64819,9 +64938,9 @@
         "stage": "start",
         "via": "npc:Terraria/BlueJellyfish"
       },
-      "CalamityMod/GhostBracelet": {
+      "CalamityMod/VitalJelly": {
         "stage": "start",
-        "via": "npc:Terraria/Ghost"
+        "via": "npc:Terraria/GreenJellyfish"
       },
       "CalamityMod/Needler": {
         "stage": "start",
@@ -64840,10 +64959,6 @@
         "via": "npc:Terraria/PinkJellyfish"
       },
       "Terraria/SharkToothNecklace": {
-        "stage": "start",
-        "via": "npc:Terraria/Shark"
-      },
-      "CalamityMod/SharkyPlush": {
         "stage": "start",
         "via": "npc:Terraria/Shark"
       },
@@ -64878,10 +64993,6 @@
       "Terraria/HermesBoots": {
         "stage": "start",
         "via": "container:Terraria/GoldenCrate"
-      },
-      "CalamityMod/TheComb": {
-        "stage": "start",
-        "via": "container:Terraria/OasisCrate"
       },
       "CalamityMod/BaconOil": {
         "stage": "start",
@@ -64945,7 +65056,11 @@
       },
       "Terraria/SeafoodDinner": {
         "stage": "start",
-        "via": "recipe:CalamityMod/CoastalDemonfish"
+        "via": "recipe:Terraria/ArmoredCavefish"
+      },
+      "Terraria/RegenerationPotion": {
+        "stage": "start",
+        "via": "recipe:Terraria/BottledWater+Terraria/Daybloom+Terraria/Mushroom"
       },
       "Terraria/ManaRegenerationPotion": {
         "stage": "start",
@@ -64963,6 +65078,38 @@
         "stage": "start",
         "via": "recipe:Terraria/BottledWater+Terraria/Daybloom+Terraria/Lens"
       },
+      "Terraria/SummoningPotion": {
+        "stage": "start",
+        "via": "recipe:Terraria/BottledWater+Terraria/VariegatedLardfish+Terraria/Moonglow"
+      },
+      "Terraria/AmmoReservationPotion": {
+        "stage": "start",
+        "via": "recipe:Terraria/BottledWater+Terraria/DoubleCod+Terraria/Moonglow"
+      },
+      "Terraria/LifeforcePotion": {
+        "stage": "start",
+        "via": "recipe:Terraria/BottledWater+Terraria/Prismite+Terraria/Moonglow+Terraria/Shiverthorn+Terraria/Waterleaf"
+      },
+      "Terraria/EndurancePotion": {
+        "stage": "start",
+        "via": "recipe:Terraria/BottledWater+Terraria/ArmoredCavefish+Terraria/Blinkroot"
+      },
+      "Terraria/InfernoPotion": {
+        "stage": "start",
+        "via": "recipe:Terraria/BottledWater+Terraria/FlarefinKoi+Terraria/Obsidifish+Terraria/Fireblossom"
+      },
+      "Terraria/RagePotion": {
+        "stage": "start",
+        "via": "recipe:Terraria/BottledWater+Terraria/Hemopiranha+Terraria/Deathweed"
+      },
+      "Terraria/WrathPotion": {
+        "stage": "start",
+        "via": "recipe:Terraria/BottledWater+Terraria/Ebonkoi+Terraria/Deathweed"
+      },
+      "Terraria/WarmthPotion": {
+        "stage": "start",
+        "via": "recipe:Terraria/BottledWater+Terraria/FrostMinnow+Terraria/Shiverthorn"
+      },
       "Terraria/FlinxFurCoat": {
         "stage": "start",
         "via": "recipe:Terraria/Silk+Terraria/FlinxFur+Terraria/GoldBar"
@@ -64978,10 +65125,6 @@
       "Terraria/UnholyArrow": {
         "stage": "start",
         "via": "recipe:Terraria/WoodenArrow+Terraria/Vertebrae"
-      },
-      "Terraria/HellfireArrow": {
-        "stage": "start",
-        "via": "recipe:Terraria/WoodenArrow+Terraria/HellstoneBar"
       },
       "Terraria/SilverBullet": {
         "stage": "start",
@@ -65010,14 +65153,6 @@
       "Terraria/AmberStaff": {
         "stage": "start",
         "via": "recipe:Terraria/FossilOre+Terraria/Amber"
-      },
-      "Terraria/MoltenFury": {
-        "stage": "start",
-        "via": "recipe:Terraria/HellstoneBar"
-      },
-      "Terraria/ImpStaff": {
-        "stage": "start",
-        "via": "recipe:Terraria/HellstoneBar"
       },
       "Terraria/FrogLeg": {
         "stage": "start",
@@ -65058,10 +65193,6 @@
       "CalamityMod/UnholyTonic": {
         "stage": "start",
         "via": "recipe:Terraria/VilePowder+Terraria/RottenChunk"
-      },
-      "CalamityMod/GlimmeringRibbon": {
-        "stage": "start",
-        "via": "recipe:Terraria/Silk+Terraria/FallenStar"
       },
       "CalamityMod/ViciousTonic": {
         "stage": "start",
@@ -65171,25 +65302,17 @@
         "stage": "start",
         "via": "recipe:Terraria/BottledWater+CalamityMod/SulphurousSand+Terraria/Waterleaf"
       },
-      "CalamityMod/FlareBolt": {
-        "stage": "start",
-        "via": "recipe:Terraria/HellstoneBar+Terraria/Fireblossom+Terraria/Ruby"
-      },
       "CalamityMod/FrostBolt": {
         "stage": "start",
         "via": "recipe:Terraria/IceBlock+Terraria/SnowBlock+Terraria/Shiverthorn+Terraria/Sapphire"
-      },
-      "CalamityMod/HellwingStaff": {
-        "stage": "start",
-        "via": "recipe:Terraria/HellstoneBar+Terraria/AshWood"
       },
       "CalamityMod/IcicleStaff": {
         "stage": "start",
         "via": "recipe:Terraria/IceBlock+Terraria/Shiverthorn"
       },
-      "CalamityMod/TheCauldron": {
+      "CalamityMod/ManaRose": {
         "stage": "start",
-        "via": "recipe:Terraria/LavaBucket+Terraria/HellstoneBar+Terraria/Obsidian+Terraria/AshBlock"
+        "via": "recipe:Terraria/NaturesGift+Terraria/ManaCrystal+Terraria/Moonglow"
       },
       "CalamityMod/VeeringWind": {
         "stage": "start",
@@ -65223,10 +65346,6 @@
         "stage": "start",
         "via": "recipe:CalamityMod/Driftwood"
       },
-      "CalamityMod/FirestormCannon": {
-        "stage": "start",
-        "via": "recipe:Terraria/FlareGun+Terraria/HellstoneBar+Terraria/IllegalGunParts"
-      },
       "CalamityMod/Pumpler": {
         "stage": "start",
         "via": "recipe:Terraria/IllegalGunParts+Terraria/Pumpkin+Terraria/PumpkinSeed"
@@ -65246,10 +65365,6 @@
       "CalamityMod/GleamingDagger": {
         "stage": "start",
         "via": "recipe:Terraria/PlatinumBar"
-      },
-      "CalamityMod/InfernalKris": {
-        "stage": "start",
-        "via": "recipe:Terraria/HellstoneBar+Terraria/AshWood"
       },
       "CalamityMod/IronFrancisca": {
         "stage": "start",
@@ -65282,10 +65397,6 @@
       "CalamityMod/BelladonnaSpiritStaff": {
         "stage": "start",
         "via": "recipe:Terraria/Vine+Terraria/JungleSpores+Terraria/Stinger+Terraria/RichMahogany"
-      },
-      "CalamityMod/CinderBlossomStaff": {
-        "stage": "start",
-        "via": "recipe:Terraria/HellstoneBar+Terraria/AshWood+Terraria/Fireblossom"
       },
       "CalamityMod/FrostBlossomStaff": {
         "stage": "start",
@@ -65508,6 +65619,10 @@
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/SpectreBoots+Terraria/AnkletoftheWind+Terraria/Aglet"
       },
+      "Terraria/ManaFlower": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/NaturesGift+Terraria/ManaPotion"
+      },
       "CalamityMod/SulphurousHelmet": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:CalamityMod/Acidwood+CalamityMod/SulphuricScale"
@@ -65583,6 +65698,10 @@
         "stage": "crabulon",
         "via": "container:CalamityMod/CrabulonBag"
       },
+      "Terraria/RestorationPotion": {
+        "stage": "crabulon",
+        "via": "recipe:Terraria/Mushroom+Terraria/GlowingMushroom+Terraria/PinkGel+Terraria/Bottle"
+      },
       "Terraria/WormScarf": {
         "stage": "world-evil",
         "via": "container:Terraria/EaterOfWorldsBossBag"
@@ -65591,9 +65710,21 @@
         "stage": "world-evil",
         "via": "container:Terraria/BrainOfCthulhuBossBag"
       },
+      "Terraria/HellfireArrow": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/WoodenArrow+Terraria/HellstoneBar"
+      },
       "Terraria/TheMeatball": {
         "stage": "world-evil",
         "via": "recipe:Terraria/CrimtaneBar+Terraria/TissueSample"
+      },
+      "Terraria/MoltenFury": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/HellstoneBar"
+      },
+      "Terraria/ImpStaff": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/HellstoneBar"
       },
       "CalamityMod/BatholithBangle": {
         "stage": "world-evil",
@@ -65607,13 +65738,37 @@
         "stage": "world-evil",
         "via": "recipe:Terraria/DemoniteBar+Terraria/Silk+Terraria/ShadowScale"
       },
+      "CalamityMod/FlareBolt": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/HellstoneBar+Terraria/Fireblossom+Terraria/Ruby"
+      },
+      "CalamityMod/HellwingStaff": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/HellstoneBar+Terraria/AshWood"
+      },
+      "CalamityMod/TheCauldron": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/LavaBucket+Terraria/HellstoneBar+Terraria/Obsidian+Terraria/AshBlock"
+      },
       "CalamityMod/TaintedBlade": {
         "stage": "world-evil",
         "via": "recipe:CalamityMod/Acidwood+Terraria/ShadowScale+Terraria/Deathweed"
       },
+      "CalamityMod/FirestormCannon": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/FlareGun+Terraria/HellstoneBar+Terraria/IllegalGunParts"
+      },
+      "CalamityMod/InfernalKris": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/HellstoneBar+Terraria/AshWood"
+      },
       "CalamityMod/SludgeSplotch": {
         "stage": "world-evil",
         "via": "recipe:CalamityMod/BlightedGel+Terraria/ShadowScale"
+      },
+      "CalamityMod/CinderBlossomStaff": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/HellstoneBar+Terraria/AshWood+Terraria/Fireblossom"
       },
       "CalamityMod/ScabRipper": {
         "stage": "world-evil",
@@ -65847,10 +66002,6 @@
         "stage": "skeletron",
         "via": "npc:CalamityMod/Cuttlefish"
       },
-      "CalamityMod/VitalJelly": {
-        "stage": "skeletron",
-        "via": "npc:CalamityMod/MirageJelly"
-      },
       "CalamityMod/DepthCrusher": {
         "stage": "skeletron",
         "via": "npc:CalamityMod/Viperfish"
@@ -65883,42 +66034,6 @@
         "stage": "skeletron",
         "via": "container:Terraria/SkeletronBossBag"
       },
-      "Terraria/RegenerationPotion": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
-      },
-      "Terraria/SummoningPotion": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
-      },
-      "Terraria/AmmoReservationPotion": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
-      },
-      "Terraria/LifeforcePotion": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
-      },
-      "Terraria/EndurancePotion": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
-      },
-      "Terraria/InfernoPotion": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
-      },
-      "Terraria/RagePotion": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
-      },
-      "Terraria/WrathPotion": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
-      },
-      "Terraria/WarmthPotion": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
-      },
       "CalamityMod/ArchaicPowder": {
         "stage": "skeletron",
         "via": "recipe:CalamityMod/AncientFossil+Terraria/AncientChisel+CalamityMod/AncientBoneDust+CalamityMod/ScorchedBone+Terraria/Bone"
@@ -65942,14 +66057,6 @@
       "CalamityMod/EnchantedAxe": {
         "stage": "skeletron",
         "via": "recipe:CalamityMod/IronFrancisca+Terraria/FallenStar+CalamityMod/PearlShard+Terraria/Bone"
-      },
-      "Terraria/ManaFlower": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/NaturesGift+Terraria/ManaPotion"
-      },
-      "CalamityMod/ManaRose": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/NaturesGift+Terraria/ManaCrystal+Terraria/Moonglow"
       },
       "CalamityMod/OverloadedBlaster": {
         "stage": "slime-god",
@@ -66350,10 +66457,6 @@
         "stage": "wall-of-flesh",
         "via": "recipe:CalamityMod/ScorchedBone+CalamityMod/AncientBoneDust+CalamityMod/EssenceofHavoc"
       },
-      "CalamityMod/SupremeBaitTackleBoxFishingStation": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/LavaproofTackleBag+Terraria/MasterBait+CalamityMod/MolluskHusk"
-      },
       "CalamityMod/TitanHeartMask": {
         "stage": "wall-of-flesh",
         "via": "recipe:CalamityMod/AstralMonolith+CalamityMod/TitanHeart"
@@ -66519,10 +66622,6 @@
         "via": "shop:CalamityMod/Archmage"
       },
       "CalamityMod/PermafrostsConcoction": {
-        "stage": "cryogen",
-        "via": "shop:CalamityMod/Archmage"
-      },
-      "CalamityMod/Popo": {
         "stage": "cryogen",
         "via": "shop:CalamityMod/Archmage"
       },
@@ -67453,10 +67552,6 @@
       "CalamityMod/PlaguedFuelPack": {
         "stage": "golem",
         "via": "npc:CalamityMod/PlaguebringerMiniboss"
-      },
-      "CalamityMod/OracleHeadphones": {
-        "stage": "golem",
-        "via": "npc:CalamityMod/ShockstormShuttle"
       },
       "Terraria/ChargedBlasterCannon": {
         "stage": "golem",
@@ -69557,15 +69652,11 @@
         "stage": "start",
         "via": "initial"
       },
+      "Terraria/Mushroom": {
+        "stage": "start",
+        "via": "initial"
+      },
       "Terraria/Obsidian": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/Hellstone": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/HellstoneBar": {
         "stage": "start",
         "via": "initial"
       },
@@ -69626,6 +69717,66 @@
         "via": "initial"
       },
       "Terraria/Worm": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/ArmoredCavefish": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/ChaosFish": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/CrimsonTigerfish": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Damselfish": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/DoubleCod": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Ebonkoi": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/FlarefinKoi": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/FrostMinnow": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Hemopiranha": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Obsidifish": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/PrincessFish": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Prismite": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/SpecularFish": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Stinkfish": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/VariegatedLardfish": {
         "stage": "start",
         "via": "initial"
       },
@@ -69769,22 +69920,6 @@
         "stage": "start",
         "via": "initial"
       },
-      "Terraria/CrimtaneOre": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/DemoniteOre": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/CrimtaneBar": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/DemoniteBar": {
-        "stage": "start",
-        "via": "initial"
-      },
       "Terraria/Hive": {
         "stage": "start",
         "via": "initial"
@@ -69874,6 +70009,10 @@
         "via": "initial"
       },
       "Terraria/LeafWand": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/NaturesGift": {
         "stage": "start",
         "via": "initial"
       },
@@ -70061,6 +70200,14 @@
         "stage": "start",
         "via": "npc:CalamityMod/Burrower"
       },
+      "Terraria/DemoniteOre": {
+        "stage": "start",
+        "via": "npc:CalamityMod/Burrower"
+      },
+      "Terraria/CrimtaneOre": {
+        "stage": "start",
+        "via": "npc:CalamityMod/Burrower"
+      },
       "Terraria/Vitamins": {
         "stage": "start",
         "via": "npc:CalamityMod/EbonianBlightSlime"
@@ -70088,6 +70235,10 @@
       "Terraria/FossilOre": {
         "stage": "start",
         "via": "npc:CalamityMod/Cnidrion"
+      },
+      "CalamityMod/XyksBlessingBlue": {
+        "stage": "start",
+        "via": "npc:CalamityMod/CrawlerAmber"
       },
       "Terraria/CrystalShard": {
         "stage": "start",
@@ -70177,6 +70328,10 @@
         "stage": "start",
         "via": "npc:CalamityMod/WulfrumAmplifier"
       },
+      "CalamityMod/AbandonedWulfrumHelmet": {
+        "stage": "start",
+        "via": "npc:CalamityMod/WulfrumAmplifier"
+      },
       "CalamityMod/EnergyCore": {
         "stage": "start",
         "via": "npc:CalamityMod/WulfrumAmplifier"
@@ -70188,6 +70343,14 @@
       "Terraria/Glowstick": {
         "stage": "start",
         "via": "npc:Terraria/BlueJellyfish"
+      },
+      "Terraria/Megaphone": {
+        "stage": "start",
+        "via": "npc:Terraria/GreenJellyfish"
+      },
+      "CalamityMod/GhostBracelet": {
+        "stage": "start",
+        "via": "npc:Terraria/Ghost"
       },
       "Terraria/Bezoar": {
         "stage": "start",
@@ -70222,6 +70385,10 @@
         "via": "npc:Terraria/Shark"
       },
       "CalamityMod/JoyfulHeart": {
+        "stage": "start",
+        "via": "npc:Terraria/Shark"
+      },
+      "CalamityMod/SharkyPlush": {
         "stage": "start",
         "via": "npc:Terraria/Shark"
       },
@@ -70362,6 +70529,10 @@
         "via": "container:Terraria/OasisCrate"
       },
       "Terraria/ScarabBomb": {
+        "stage": "start",
+        "via": "container:Terraria/OasisCrate"
+      },
+      "CalamityMod/TheComb": {
         "stage": "start",
         "via": "container:Terraria/OasisCrate"
       },
@@ -70637,6 +70808,30 @@
         "stage": "start",
         "via": "recipe:Terraria/BottledWater+Terraria/Shiverthorn+Terraria/Waterleaf"
       },
+      "Terraria/CalmingPotion": {
+        "stage": "start",
+        "via": "recipe:Terraria/BottledWater+Terraria/Damselfish+Terraria/Daybloom"
+      },
+      "Terraria/WormholePotion": {
+        "stage": "start",
+        "via": "recipe:Terraria/BottledWater+Terraria/SpecularFish+Terraria/Blinkroot"
+      },
+      "Terraria/TeleportationPotion": {
+        "stage": "start",
+        "via": "recipe:Terraria/BottledWater+Terraria/ChaosFish+Terraria/Fireblossom"
+      },
+      "Terraria/LovePotion": {
+        "stage": "start",
+        "via": "recipe:Terraria/BottledWater+Terraria/PrincessFish+Terraria/Shiverthorn"
+      },
+      "Terraria/StinkPotion": {
+        "stage": "start",
+        "via": "recipe:Terraria/BottledWater+Terraria/Stinkfish+Terraria/Deathweed"
+      },
+      "Terraria/PotionOfReturn": {
+        "stage": "start",
+        "via": "recipe:Terraria/RecallPotion+Terraria/Obsidifish"
+      },
       "Terraria/FlinxStaff": {
         "stage": "start",
         "via": "recipe:Terraria/FlinxFur+Terraria/GoldBar"
@@ -70772,10 +70967,6 @@
       "Terraria/SpiderEcho": {
         "stage": "start",
         "via": "recipe:Terraria/Cobweb"
-      },
-      "Terraria/ShadowCandle": {
-        "stage": "start",
-        "via": "recipe:Terraria/DemoniteBar+Terraria/Torch"
       },
       "Terraria/CloudWall": {
         "stage": "start",
@@ -70964,30 +71155,6 @@
       "Terraria/PlatinumBrick": {
         "stage": "start",
         "via": "recipe:Terraria/StoneBlock+Terraria/PlatinumOre"
-      },
-      "Terraria/HellstoneBrick": {
-        "stage": "start",
-        "via": "recipe:Terraria/StoneBlock+Terraria/Hellstone"
-      },
-      "Terraria/HellstoneBrickWall": {
-        "stage": "start",
-        "via": "recipe:Terraria/HellstoneBrick"
-      },
-      "Terraria/Lava1Echo": {
-        "stage": "start",
-        "via": "recipe:Terraria/Hellstone"
-      },
-      "Terraria/Lava2Echo": {
-        "stage": "start",
-        "via": "recipe:Terraria/Hellstone"
-      },
-      "Terraria/Lava3Echo": {
-        "stage": "start",
-        "via": "recipe:Terraria/Hellstone"
-      },
-      "Terraria/Lava4Echo": {
-        "stage": "start",
-        "via": "recipe:Terraria/Hellstone"
       },
       "Terraria/ObsidianBrickWall": {
         "stage": "start",
@@ -72513,14 +72680,6 @@
         "stage": "start",
         "via": "recipe:Terraria/Hive"
       },
-      "Terraria/ObsidianChest": {
-        "stage": "start",
-        "via": "recipe:Terraria/Obsidian+Terraria/Hellstone+Terraria/IronBar"
-      },
-      "Terraria/ToiletObsidian": {
-        "stage": "start",
-        "via": "recipe:Terraria/Obsidian+Terraria/Hellstone"
-      },
       "Terraria/GoblinBattleStandard": {
         "stage": "start",
         "via": "recipe:Terraria/TatteredCloth+Terraria/Wood"
@@ -73093,6 +73252,10 @@
         "stage": "start",
         "via": "recipe:Terraria/Silk+Terraria/GoldBar"
       },
+      "Terraria/DemoniteBar": {
+        "stage": "start",
+        "via": "recipe:Terraria/DemoniteOre"
+      },
       "Terraria/FisherofSouls": {
         "stage": "start",
         "via": "recipe:Terraria/DemoniteBar"
@@ -73108,6 +73271,10 @@
       "Terraria/CorruptYoyo": {
         "stage": "start",
         "via": "recipe:Terraria/DemoniteBar"
+      },
+      "Terraria/CrimtaneBar": {
+        "stage": "start",
+        "via": "recipe:Terraria/CrimtaneOre"
       },
       "Terraria/Fleshcatcher": {
         "stage": "start",
@@ -73264,34 +73431,6 @@
       "Terraria/JunglePants": {
         "stage": "start",
         "via": "recipe:Terraria/JungleSpores+Terraria/Vine"
-      },
-      "Terraria/Flamarang": {
-        "stage": "start",
-        "via": "recipe:Terraria/EnchantedBoomerang+Terraria/HellstoneBar"
-      },
-      "Terraria/FieryGreatsword": {
-        "stage": "start",
-        "via": "recipe:Terraria/HellstoneBar"
-      },
-      "Terraria/MoltenPickaxe": {
-        "stage": "start",
-        "via": "recipe:Terraria/HellstoneBar"
-      },
-      "Terraria/MoltenHamaxe": {
-        "stage": "start",
-        "via": "recipe:Terraria/HellstoneBar"
-      },
-      "Terraria/MoltenHelmet": {
-        "stage": "start",
-        "via": "recipe:Terraria/HellstoneBar"
-      },
-      "Terraria/MoltenBreastplate": {
-        "stage": "start",
-        "via": "recipe:Terraria/HellstoneBar"
-      },
-      "Terraria/MoltenGreaves": {
-        "stage": "start",
-        "via": "recipe:Terraria/HellstoneBar"
       },
       "Terraria/Minecart": {
         "stage": "start",
@@ -73529,10 +73668,6 @@
         "stage": "start",
         "via": "recipe:Terraria/GoldBar"
       },
-      "Terraria/FlameWakerBoots": {
-        "stage": "start",
-        "via": "recipe:Terraria/Silk+Terraria/HellstoneBar+Terraria/Obsidian"
-      },
       "Terraria/HandWarmer": {
         "stage": "start",
         "via": "recipe:Terraria/Silk"
@@ -73549,6 +73684,14 @@
         "stage": "start",
         "via": "recipe:Terraria/Silk+Terraria/FlinxFur"
       },
+      "CalamityMod/GlimmeringRibbon": {
+        "stage": "start",
+        "via": "recipe:Terraria/Silk+Terraria/FallenStar"
+      },
+      "CalamityMod/AcesApronOfAffection": {
+        "stage": "start",
+        "via": "recipe:Terraria/Robe+Terraria/LovePotion+Terraria/LifeCrystal"
+      },
       "CalamityMod/WulfrumRod": {
         "stage": "start",
         "via": "recipe:CalamityMod/WulfrumMetalScrap"
@@ -73560,10 +73703,6 @@
       "CalamityMod/OnyxSeekingMechanism": {
         "stage": "start",
         "via": "recipe:CalamityMod/LabSeekingMechanism+Terraria/Obsidian"
-      },
-      "CalamityMod/RedSeekingMechanism": {
-        "stage": "start",
-        "via": "recipe:CalamityMod/LabSeekingMechanism+Terraria/HellstoneBar"
       },
       "CalamityMod/WhiteSeekingMechanism": {
         "stage": "start",
@@ -74109,13 +74248,13 @@
         "stage": "start",
         "via": "recipe:Terraria/DemoniteBar+Terraria/BottledWater"
       },
+      "CalamityMod/BleachBall": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/BlightedGel+Terraria/CalmingPotion"
+      },
       "CalamityMod/SirenproofEarMuffs": {
         "stage": "start",
         "via": "recipe:Terraria/FlinxFur+Terraria/Silk"
-      },
-      "CalamityMod/VoodooDemonVoodooDoll": {
-        "stage": "start",
-        "via": "recipe:Terraria/HellstoneBar+Terraria/Silk"
       },
       "CalamityMod/SuperDummy": {
         "stage": "start",
@@ -74233,6 +74372,14 @@
         "stage": "start",
         "via": "recipe:Terraria/StoneBlock"
       },
+      "Terraria/KingStatue": {
+        "stage": "start",
+        "via": "recipe:Terraria/Throne+Terraria/TeleportationPotion+Terraria/StoneBlock"
+      },
+      "Terraria/QueenStatue": {
+        "stage": "start",
+        "via": "recipe:Terraria/Throne+Terraria/TeleportationPotion+Terraria/StoneBlock"
+      },
       "Terraria/AbigailsFlower": {
         "stage": "start",
         "via": "recipe:Terraria/Deathweed"
@@ -74328,6 +74475,10 @@
       "Terraria/ShellPileBlock": {
         "stage": "start",
         "via": "recipe:Terraria/Seashell"
+      },
+      "Terraria/ShadowCandle": {
+        "stage": "start",
+        "via": "recipe:Terraria/DemoniteBar+Terraria/Torch"
       },
       "Terraria/StoneSlab": {
         "stage": "start",
@@ -75543,6 +75694,10 @@
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/Bezoar+Terraria/AdhesiveBandage"
       },
+      "Terraria/CountercurseMantra": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/Megaphone+Terraria/Nazar"
+      },
       "Terraria/WebSlinger": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/GrapplingHook+Terraria/WebRopeCoil"
@@ -75851,6 +76006,46 @@
         "stage": "world-evil",
         "via": "manifest"
       },
+      "Terraria/Hellstone": {
+        "stage": "world-evil",
+        "via": "manifest"
+      },
+      "Terraria/HellstoneBar": {
+        "stage": "world-evil",
+        "via": "manifest"
+      },
+      "Terraria/HellstoneBrick": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/StoneBlock+Terraria/Hellstone"
+      },
+      "Terraria/HellstoneBrickWall": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/HellstoneBrick"
+      },
+      "Terraria/Lava1Echo": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Hellstone"
+      },
+      "Terraria/Lava2Echo": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Hellstone"
+      },
+      "Terraria/Lava3Echo": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Hellstone"
+      },
+      "Terraria/Lava4Echo": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Hellstone"
+      },
+      "Terraria/ObsidianChest": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Obsidian+Terraria/Hellstone+Terraria/IronBar"
+      },
+      "Terraria/ToiletObsidian": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Obsidian+Terraria/Hellstone"
+      },
       "Terraria/ObsidianHelm": {
         "stage": "world-evil",
         "via": "recipe:Terraria/Silk+Terraria/Obsidian+Terraria/ShadowScale"
@@ -75902,6 +76097,46 @@
       "Terraria/FleshGrinder": {
         "stage": "world-evil",
         "via": "recipe:Terraria/CrimtaneBar+Terraria/TissueSample"
+      },
+      "Terraria/Flamarang": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/EnchantedBoomerang+Terraria/HellstoneBar"
+      },
+      "Terraria/FieryGreatsword": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/HellstoneBar"
+      },
+      "Terraria/MoltenPickaxe": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/HellstoneBar"
+      },
+      "Terraria/MoltenHamaxe": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/HellstoneBar"
+      },
+      "Terraria/MoltenHelmet": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/HellstoneBar"
+      },
+      "Terraria/MoltenBreastplate": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/HellstoneBar"
+      },
+      "Terraria/MoltenGreaves": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/HellstoneBar"
+      },
+      "Terraria/FlameWakerBoots": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Silk+Terraria/HellstoneBar+Terraria/Obsidian"
+      },
+      "CalamityMod/RedSeekingMechanism": {
+        "stage": "world-evil",
+        "via": "recipe:CalamityMod/LabSeekingMechanism+Terraria/HellstoneBar"
+      },
+      "CalamityMod/VoodooDemonVoodooDoll": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/HellstoneBar+Terraria/Silk"
       },
       "CalamityMod/HiveMindBag": {
         "stage": "hive-mind-perforators",
@@ -76323,26 +76558,6 @@
         "stage": "skeletron",
         "via": "recipe:Terraria/BottledWater+Terraria/Bone+Terraria/Deathweed+Terraria/Shiverthorn"
       },
-      "Terraria/CalmingPotion": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
-      },
-      "Terraria/WormholePotion": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
-      },
-      "Terraria/TeleportationPotion": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
-      },
-      "Terraria/LovePotion": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
-      },
-      "Terraria/StinkPotion": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
-      },
       "Terraria/LuckPotionLesser": {
         "stage": "skeletron",
         "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
@@ -76352,10 +76567,6 @@
         "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
       },
       "Terraria/LuckPotionGreater": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
-      },
-      "Terraria/PotionOfReturn": {
         "stage": "skeletron",
         "via": "recipe:Terraria/BottledWater+CalamityMod/BloodOrb"
       },
@@ -76675,10 +76886,6 @@
         "stage": "skeletron",
         "via": "recipe:CalamityMod/AerialiteBar+Terraria/Bone"
       },
-      "CalamityMod/AcesApronOfAffection": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Robe+Terraria/LovePotion+Terraria/LifeCrystal"
-      },
       "CalamityMod/DecryptionComputer": {
         "stage": "skeletron",
         "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+Terraria/Wire+Terraria/CopperBar+Terraria/Glass"
@@ -76718,22 +76925,6 @@
       "CalamityMod/PotionofOmniscience": {
         "stage": "skeletron",
         "via": "recipe:Terraria/HunterPotion+Terraria/SpelunkerPotion+Terraria/TrapsightPotion"
-      },
-      "CalamityMod/BleachBall": {
-        "stage": "skeletron",
-        "via": "recipe:CalamityMod/BlightedGel+Terraria/CalmingPotion"
-      },
-      "Terraria/KingStatue": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Throne+Terraria/TeleportationPotion+Terraria/StoneBlock"
-      },
-      "Terraria/QueenStatue": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Throne+Terraria/TeleportationPotion+Terraria/StoneBlock"
-      },
-      "Terraria/NaturesGift": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Moonglow+Terraria/ManaCrystal"
       },
       "Terraria/Teacup": {
         "stage": "skeletron",
@@ -77010,10 +77201,6 @@
       "CalamityMod/EssenceofEleum": {
         "stage": "wall-of-flesh",
         "via": "npc:CalamityMod/IceClasper"
-      },
-      "Terraria/Megaphone": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/GreenJellyfish"
       },
       "Terraria/FrostCore": {
         "stage": "wall-of-flesh",
@@ -78039,10 +78226,6 @@
         "customEventName": "",
         "eventIcon": ""
       },
-      "Terraria/CountercurseMantra": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/Megaphone+Terraria/Nazar"
-      },
       "Terraria/CrystalStorm": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/SpellTome+Terraria/CrystalShard+Terraria/SoulofLight"
@@ -78074,6 +78257,10 @@
       "Terraria/BouncingShield": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/CobaltBar+Terraria/SoulofLight"
+      },
+      "CalamityMod/SupremeBaitTackleBoxFishingStation": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/LavaproofTackleBag+Terraria/MasterBait+CalamityMod/MolluskHusk"
       },
       "CalamityMod/LoreBloodMoon": {
         "stage": "wall-of-flesh",
@@ -78342,6 +78529,10 @@
       "CalamityMod/CryogenTrophy": {
         "stage": "cryogen",
         "via": "npc:CalamityMod/Cryogen"
+      },
+      "CalamityMod/Popo": {
+        "stage": "cryogen",
+        "via": "shop:CalamityMod/Archmage"
       },
       "CalamityMod/FrigidMonolith": {
         "stage": "cryogen",
@@ -80017,6 +80208,10 @@
       "CalamityMod/PlagueCaller": {
         "stage": "golem",
         "via": "npc:CalamityMod/PlaguebringerMiniboss"
+      },
+      "CalamityMod/OracleHeadphones": {
+        "stage": "golem",
+        "via": "npc:CalamityMod/ShockstormShuttle"
       },
       "Terraria/MartianConduitPlating": {
         "stage": "golem",
@@ -83009,11 +83204,67 @@
     },
     "wikiMissingItems": [
       {
+        "id": "Terraria/FeralClaws",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Feral Claws"
+        ]
+      },
+      {
         "id": "Terraria/SharpeningStation",
         "wikiStage": "pre-boss",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sharpening Station"
+        ]
+      },
+      {
+        "id": "Terraria/FlintlockPistol",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Flintlock Pistol"
+        ]
+      },
+      {
+        "id": "Terraria/CrimsonRod",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Crimson Rod"
+        ]
+      },
+      {
+        "id": "Terraria/Vilethorn",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Vilethorn"
+        ]
+      },
+      {
+        "id": "Terraria/BandofStarpower",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Band of Starpower"
+        ]
+      },
+      {
+        "id": "Terraria/Gi",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Gi"
+        ]
+      },
+      {
+        "id": "CalamityMod/CrawCarapace",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/CrawCarapace"
         ]
       },
       {
@@ -83034,11 +83285,101 @@
         ]
       },
       {
+        "id": "CalamityMod/SeashineSword",
+        "wikiStage": "pre-evil1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/SeashineSword"
+        ]
+      },
+      {
+        "id": "Terraria/Trimarang",
+        "wikiStage": "pre-evil1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Trimarang"
+        ]
+      },
+      {
+        "id": "Terraria/FeralClaws",
+        "wikiStage": "pre-evil1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Feral Claws"
+        ]
+      },
+      {
         "id": "Terraria/SharpeningStation",
         "wikiStage": "pre-evil1",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sharpening Station"
+        ]
+      },
+      {
+        "id": "Terraria/Boomstick",
+        "wikiStage": "pre-evil1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Boomstick"
+        ]
+      },
+      {
+        "id": "Terraria/ShimmerArrow",
+        "wikiStage": "pre-evil1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Shimmer Arrow"
+        ]
+      },
+      {
+        "id": "Terraria/MusketBall",
+        "wikiStage": "pre-evil1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Musket Ball",
+          "Terraria/Tungsten Bullet"
+        ]
+      },
+      {
+        "id": "Terraria/CrimsonRod",
+        "wikiStage": "pre-evil1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Crimson Rod"
+        ]
+      },
+      {
+        "id": "Terraria/MagicCuffs",
+        "wikiStage": "pre-evil1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Mana Flower",
+          "Terraria/Magic Cuffs"
+        ]
+      },
+      {
+        "id": "CalamityMod/VoltaicJelly",
+        "wikiStage": "pre-evil1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/VoltaicJelly"
+        ]
+      },
+      {
+        "id": "CalamityMod/SeafoamBomb",
+        "wikiStage": "pre-evil1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/SeafoamBomb"
+        ]
+      },
+      {
+        "id": "CalamityMod/CrawCarapace",
+        "wikiStage": "pre-evil1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/CrawCarapace"
         ]
       },
       {
@@ -83051,6 +83392,38 @@
         ]
       },
       {
+        "id": "CalamityMod/SeashineSword",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/SeashineSword"
+        ]
+      },
+      {
+        "id": "CalamityMod/SmokingComet",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/SmokingComet"
+        ]
+      },
+      {
+        "id": "Terraria/FeralClaws",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Feral Claws"
+        ]
+      },
+      {
+        "id": "Terraria/MagmaStone",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Magma Stone"
+        ]
+      },
+      {
         "id": "Terraria/SharpeningStation",
         "wikiStage": "pre-evil2",
         "reason": "recommendation has no proven availability",
@@ -83059,11 +83432,86 @@
         ]
       },
       {
+        "id": "Terraria/Boomstick",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Boomstick"
+        ]
+      },
+      {
+        "id": "CalamityMod/MagnaCannon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/MagnaCannon",
+          "CalamityMod/OpalStriker"
+        ]
+      },
+      {
+        "id": "CalamityMod/OpalStriker",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/MagnaCannon",
+          "CalamityMod/OpalStriker"
+        ]
+      },
+      {
+        "id": "Terraria/MeteorShot",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Meteor Shot"
+        ]
+      },
+      {
+        "id": "Terraria/SpaceGun",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Space Gun"
+        ]
+      },
+      {
+        "id": "Terraria/MagicCuffs",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Mana Flower",
+          "Terraria/Magic Cuffs"
+        ]
+      },
+      {
+        "id": "CalamityMod/VoltaicJelly",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/VoltaicJelly"
+        ]
+      },
+      {
         "id": "Terraria/WarTable",
         "wikiStage": "pre-evil2",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
+        ]
+      },
+      {
+        "id": "CalamityMod/MeteorFist",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/MeteorFist"
+        ]
+      },
+      {
+        "id": "CalamityMod/CrawCarapace",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/CrawCarapace"
         ]
       },
       {
@@ -83076,11 +83524,77 @@
         ]
       },
       {
+        "id": "Terraria/FeralClaws",
+        "wikiStage": "pre-skeletron",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Feral Claws"
+        ]
+      },
+      {
         "id": "Terraria/SharpeningStation",
         "wikiStage": "pre-skeletron",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sharpening Station"
+        ]
+      },
+      {
+        "id": "CalamityMod/AquashardShotgun",
+        "wikiStage": "pre-skeletron",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/AquashardShotgun"
+        ]
+      },
+      {
+        "id": "CalamityMod/ShortCircuit",
+        "wikiStage": "pre-skeletron",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/ShortCircuit"
+        ]
+      },
+      {
+        "id": "Terraria/MusketBall",
+        "wikiStage": "pre-skeletron",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Musket Ball",
+          "Terraria/Tungsten Bullet"
+        ]
+      },
+      {
+        "id": "Terraria/SpaceGun",
+        "wikiStage": "pre-skeletron",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Space Gun"
+        ]
+      },
+      {
+        "id": "Terraria/MagicCuffs",
+        "wikiStage": "pre-skeletron",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Mana Flower",
+          "Terraria/Magic Cuffs"
+        ]
+      },
+      {
+        "id": "CalamityMod/AqueousHunterDrone",
+        "wikiStage": "pre-skeletron",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/AqueousHunterDrone"
+        ]
+      },
+      {
+        "id": "CalamityMod/VoltaicJelly",
+        "wikiStage": "pre-skeletron",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/VoltaicJelly"
         ]
       },
       {
@@ -83092,12 +83606,52 @@
         ]
       },
       {
+        "id": "CalamityMod/MeteorFist",
+        "wikiStage": "pre-skeletron",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/MeteorFist"
+        ]
+      },
+      {
+        "id": "CalamityMod/CrawCarapace",
+        "wikiStage": "pre-skeletron",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/CrawCarapace"
+        ]
+      },
+      {
         "id": "Terraria/Honeyfin",
         "wikiStage": "pre-skeletron",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Healing Potion",
           "Terraria/Honeyfin"
+        ]
+      },
+      {
+        "id": "Terraria/DarkLance",
+        "wikiStage": "pre-wof",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Dark Lance"
+        ]
+      },
+      {
+        "id": "CalamityMod/CrawCarapace",
+        "wikiStage": "pre-wof",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/CrawCarapace"
+        ]
+      },
+      {
+        "id": "Terraria/FeralClaws",
+        "wikiStage": "pre-wof",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Feral Claws"
         ]
       },
       {
@@ -83106,6 +83660,56 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sharpening Station"
+        ]
+      },
+      {
+        "id": "CalamityMod/CrawCarapace",
+        "wikiStage": "pre-wof",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/CrawCarapace"
+        ]
+      },
+      {
+        "id": "Terraria/ShimmerArrow",
+        "wikiStage": "pre-wof",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Shimmer Arrow"
+        ]
+      },
+      {
+        "id": "Terraria/MeteorShot",
+        "wikiStage": "pre-wof",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Meteor Shot"
+        ]
+      },
+      {
+        "id": "Terraria/MusketBall",
+        "wikiStage": "pre-wof",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Musket Ball",
+          "Terraria/Tungsten Bullet"
+        ]
+      },
+      {
+        "id": "Terraria/MagicCuffs",
+        "wikiStage": "pre-wof",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Mana Flower",
+          "Terraria/Magic Cuffs"
+        ]
+      },
+      {
+        "id": "CalamityMod/JellyChargedBattery",
+        "wikiStage": "pre-wof",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/JellyChargedBattery"
         ]
       },
       {
@@ -83125,16 +83729,23 @@
         ]
       },
       {
-        "id": "Terraria/Honeyfin",
+        "id": "CalamityMod/CrawCarapace",
         "wikiStage": "pre-wof",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
-          "Terraria/Honeyfin",
-          "Terraria/Restoration Potion"
+          "CalamityMod/CrawCarapace"
         ]
       },
       {
-        "id": "Terraria/RestorationPotion",
+        "id": "Terraria/TerrasparkBoots",
+        "wikiStage": "pre-wof",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Terraspark Boots"
+        ]
+      },
+      {
+        "id": "Terraria/Honeyfin",
         "wikiStage": "pre-wof",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
@@ -83151,11 +83762,43 @@
         ]
       },
       {
+        "id": "Terraria/Bananarang",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Bananarang"
+        ]
+      },
+      {
+        "id": "CalamityMod/CometQuasher",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/CometQuasher"
+        ]
+      },
+      {
+        "id": "Terraria/PowerGlove",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Power Glove"
+        ]
+      },
+      {
         "id": "Terraria/SharpeningStation",
         "wikiStage": "pre-mech",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sharpening Station"
+        ]
+      },
+      {
+        "id": "Terraria/Uzi",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Uzi"
         ]
       },
       {
@@ -83167,11 +83810,35 @@
         ]
       },
       {
+        "id": "Terraria/HighVelocityBullet",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/High Velocity Bullet"
+        ]
+      },
+      {
+        "id": "Terraria/MeteorStaff",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Meteor Staff"
+        ]
+      },
+      {
         "id": "Terraria/CrystalBall",
         "wikiStage": "pre-mech",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Crystal Ball"
+        ]
+      },
+      {
+        "id": "CalamityMod/JellyChargedBattery",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/JellyChargedBattery"
         ]
       },
       {
@@ -83188,6 +83855,72 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
+        ]
+      },
+      {
+        "id": "CalamityMod/Prismalline",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/Prismalline"
+        ]
+      },
+      {
+        "id": "CalamityMod/LunicEye",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/LunicEye"
+        ]
+      },
+      {
+        "id": "Terraria/RodofDiscord",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rod of Discord"
+        ]
+      },
+      {
+        "id": "CalamityMod/GiantTortoiseShell",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/GiantTortoiseShell"
+        ]
+      },
+      {
+        "id": "CalamityMod/DeepDiver",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/CounterScarf",
+          "CalamityMod/DeepDiver"
+        ]
+      },
+      {
+        "id": "Terraria/TerrasparkBoots",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Fairy Boots",
+          "Terraria/Terraspark Boots"
+        ]
+      },
+      {
+        "id": "CalamityMod/InfernaCutter",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/InfernaCutter"
+        ]
+      },
+      {
+        "id": "Terraria/PowerGlove",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Power Glove"
         ]
       },
       {
@@ -83207,6 +83940,14 @@
         ]
       },
       {
+        "id": "Terraria/UnholyTrident",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Unholy Trident"
+        ]
+      },
+      {
         "id": "Terraria/CrystalBall",
         "wikiStage": "post-mech1",
         "reason": "recommendation has no proven availability",
@@ -83215,6 +83956,38 @@
         ]
       },
       {
+        "id": "Terraria/SquireGreatHelm",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Squire armor"
+        ]
+      },
+      {
+        "id": "Terraria/SquirePlating",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Squire armor"
+        ]
+      },
+      {
+        "id": "Terraria/SquireGreaves",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Squire armor"
+        ]
+      },
+      {
+        "id": "CalamityMod/JellyChargedBattery",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/JellyChargedBattery"
+        ]
+      },
+      {
         "id": "Terraria/BewitchingTable",
         "wikiStage": "post-mech1",
         "reason": "recommendation has no proven availability",
@@ -83231,6 +84004,64 @@
         ]
       },
       {
+        "id": "CalamityMod/Prismalline",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/Prismalline"
+        ]
+      },
+      {
+        "id": "CalamityMod/LunicEye",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/LunicEye"
+        ]
+      },
+      {
+        "id": "Terraria/RodofDiscord",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rod of Discord"
+        ]
+      },
+      {
+        "id": "CalamityMod/GiantTortoiseShell",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/GiantTortoiseShell"
+        ]
+      },
+      {
+        "id": "CalamityMod/DeepDiver",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/EvasionScarf",
+          "CalamityMod/DeepDiver"
+        ]
+      },
+      {
+        "id": "Terraria/TerrasparkBoots",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Fairy Boots",
+          "Terraria/Terraspark Boots"
+        ]
+      },
+      {
+        "id": "CalamityMod/InfernaCutter",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/InfernaCutter"
+        ]
+      },
+      {
         "id": "Terraria/SharpeningStation",
         "wikiStage": "post-mech2",
         "reason": "recommendation has no proven availability",
@@ -83247,11 +84078,59 @@
         ]
       },
       {
+        "id": "Terraria/RocketI",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rocket I"
+        ]
+      },
+      {
+        "id": "Terraria/UnholyTrident",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Unholy Trident"
+        ]
+      },
+      {
         "id": "Terraria/CrystalBall",
         "wikiStage": "post-mech2",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Crystal Ball"
+        ]
+      },
+      {
+        "id": "Terraria/SquireGreatHelm",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Squire armor"
+        ]
+      },
+      {
+        "id": "Terraria/SquirePlating",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Squire armor"
+        ]
+      },
+      {
+        "id": "Terraria/SquireGreaves",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Squire armor"
+        ]
+      },
+      {
+        "id": "CalamityMod/JellyChargedBattery",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/JellyChargedBattery"
         ]
       },
       {
@@ -83268,6 +84147,55 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
+        ]
+      },
+      {
+        "id": "CalamityMod/ConsecratedWater",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/ConsecratedWater"
+        ]
+      },
+      {
+        "id": "CalamityMod/LunicEye",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/LunicEye"
+        ]
+      },
+      {
+        "id": "Terraria/RodofDiscord",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rod of Discord"
+        ]
+      },
+      {
+        "id": "CalamityMod/GiantTortoiseShell",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/GiantTortoiseShell"
+        ]
+      },
+      {
+        "id": "Terraria/TerrasparkBoots",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Fairy Boots",
+          "Terraria/Terraspark Boots"
+        ]
+      },
+      {
+        "id": "Terraria/MechanicalGlove",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Mechanical Glove"
         ]
       },
       {
@@ -83287,6 +84215,22 @@
         ]
       },
       {
+        "id": "CalamityMod/HallowPointRound",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/HallowPointRound"
+        ]
+      },
+      {
+        "id": "Terraria/VenomStaff",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Venom Staff"
+        ]
+      },
+      {
         "id": "Terraria/CrystalBall",
         "wikiStage": "pre-plantera",
         "reason": "recommendation has no proven availability",
@@ -83295,6 +84239,46 @@
         ]
       },
       {
+        "id": "Terraria/SoulofSight",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Soul of Sight"
+        ]
+      },
+      {
+        "id": "Terraria/SquireGreatHelm",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Squire armor"
+        ]
+      },
+      {
+        "id": "Terraria/SquirePlating",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Squire armor"
+        ]
+      },
+      {
+        "id": "Terraria/SquireGreaves",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Squire armor"
+        ]
+      },
+      {
+        "id": "CalamityMod/JellyChargedBattery",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/JellyChargedBattery"
+        ]
+      },
+      {
         "id": "Terraria/BewitchingTable",
         "wikiStage": "pre-plantera",
         "reason": "recommendation has no proven availability",
@@ -83311,6 +84295,92 @@
         ]
       },
       {
+        "id": "CalamityMod/TotalityBreakers",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/TotalityBreakers"
+        ]
+      },
+      {
+        "id": "CalamityMod/UmbraphileHood",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/UmbraphileHood",
+          "CalamityMod/UmbraphileRegalia",
+          "CalamityMod/UmbraphileBoots"
+        ]
+      },
+      {
+        "id": "CalamityMod/UmbraphileRegalia",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/UmbraphileHood",
+          "CalamityMod/UmbraphileRegalia",
+          "CalamityMod/UmbraphileBoots"
+        ]
+      },
+      {
+        "id": "CalamityMod/UmbraphileBoots",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/UmbraphileHood",
+          "CalamityMod/UmbraphileRegalia",
+          "CalamityMod/UmbraphileBoots"
+        ]
+      },
+      {
+        "id": "CalamityMod/VampiricTalisman",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/VampiricTalisman"
+        ]
+      },
+      {
+        "id": "CalamityMod/LunicEye",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/LunicEye"
+        ]
+      },
+      {
+        "id": "Terraria/RodofDiscord",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rod of Discord"
+        ]
+      },
+      {
+        "id": "CalamityMod/GiantTortoiseShell",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/GiantTortoiseShell"
+        ]
+      },
+      {
+        "id": "CalamityMod/BlightedCleaver",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/BlightedCleaver"
+        ]
+      },
+      {
+        "id": "Terraria/MechanicalGlove",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Mechanical Glove"
+        ]
+      },
+      {
         "id": "Terraria/FlaskofVenom",
         "wikiStage": "pre-golem",
         "reason": "recommendation has no proven availability",
@@ -83327,6 +84397,14 @@
         ]
       },
       {
+        "id": "CalamityMod/Hydra",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/Hydra"
+        ]
+      },
+      {
         "id": "Terraria/AmmoBox",
         "wikiStage": "pre-golem",
         "reason": "recommendation has no proven availability",
@@ -83335,11 +84413,67 @@
         ]
       },
       {
+        "id": "Terraria/VenomArrow",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Venom Arrow"
+        ]
+      },
+      {
+        "id": "Terraria/VenomBullet",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Venom Bullet"
+        ]
+      },
+      {
         "id": "Terraria/CrystalBall",
         "wikiStage": "pre-golem",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Crystal Ball"
+        ]
+      },
+      {
+        "id": "Terraria/SoulofSight",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Soul of Sight"
+        ]
+      },
+      {
+        "id": "Terraria/SquireGreatHelm",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Squire armor"
+        ]
+      },
+      {
+        "id": "Terraria/SquirePlating",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Squire armor"
+        ]
+      },
+      {
+        "id": "Terraria/SquireGreaves",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Squire armor"
+        ]
+      },
+      {
+        "id": "CalamityMod/JellyChargedBattery",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/JellyChargedBattery"
         ]
       },
       {
@@ -83367,6 +84501,52 @@
         ]
       },
       {
+        "id": "CalamityMod/FantasyTalisman",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/FantasyTalisman"
+        ]
+      },
+      {
+        "id": "CalamityMod/UmbraphileHood",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/UmbraphileHood",
+          "CalamityMod/UmbraphileRegalia",
+          "CalamityMod/UmbraphileBoots"
+        ]
+      },
+      {
+        "id": "CalamityMod/UmbraphileRegalia",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/UmbraphileHood",
+          "CalamityMod/UmbraphileRegalia",
+          "CalamityMod/UmbraphileBoots"
+        ]
+      },
+      {
+        "id": "CalamityMod/UmbraphileBoots",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/UmbraphileHood",
+          "CalamityMod/UmbraphileRegalia",
+          "CalamityMod/UmbraphileBoots"
+        ]
+      },
+      {
+        "id": "CalamityMod/VampiricTalisman",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/VampiricTalisman"
+        ]
+      },
+      {
         "id": "Terraria/FlaskofVenom",
         "wikiStage": "pre-golem",
         "reason": "recommendation has no proven availability",
@@ -83375,6 +84555,30 @@
         ]
       },
       {
+        "id": "CalamityMod/LunicEye",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/LunicEye"
+        ]
+      },
+      {
+        "id": "Terraria/RodofDiscord",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rod of Discord"
+        ]
+      },
+      {
+        "id": "Terraria/ChristmasTreeSword",
+        "wikiStage": "post-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Christmas Tree Sword"
+        ]
+      },
+      {
         "id": "Terraria/FlaskofVenom",
         "wikiStage": "post-golem",
         "reason": "recommendation has no proven availability",
@@ -83392,6 +84596,52 @@
         ]
       },
       {
+        "id": "CalamityMod/PlagueReaperMask",
+        "wikiStage": "post-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PlagueReaperMask",
+          "CalamityMod/PlagueReaperVest",
+          "CalamityMod/PlagueReaperStriders"
+        ]
+      },
+      {
+        "id": "CalamityMod/PlagueReaperVest",
+        "wikiStage": "post-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PlagueReaperMask",
+          "CalamityMod/PlagueReaperVest",
+          "CalamityMod/PlagueReaperStriders"
+        ]
+      },
+      {
+        "id": "CalamityMod/PlagueReaperStriders",
+        "wikiStage": "post-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PlagueReaperMask",
+          "CalamityMod/PlagueReaperVest",
+          "CalamityMod/PlagueReaperStriders"
+        ]
+      },
+      {
+        "id": "Terraria/ReconScope",
+        "wikiStage": "post-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Recon Scope"
+        ]
+      },
+      {
+        "id": "Terraria/SniperScope",
+        "wikiStage": "post-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Sniper Scope"
+        ]
+      },
+      {
         "id": "Terraria/AmmoBox",
         "wikiStage": "post-golem",
         "reason": "recommendation has no proven availability",
@@ -83400,11 +84650,51 @@
         ]
       },
       {
+        "id": "Terraria/RocketIII",
+        "wikiStage": "post-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rocket III"
+        ]
+      },
+      {
+        "id": "Terraria/ClusterRocketI",
+        "wikiStage": "post-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Cluster Rocket I"
+        ]
+      },
+      {
+        "id": "Terraria/BatScepter",
+        "wikiStage": "post-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Bat Scepter"
+        ]
+      },
+      {
         "id": "Terraria/CrystalBall",
         "wikiStage": "post-golem",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Crystal Ball"
+        ]
+      },
+      {
+        "id": "CalamityMod/StarTaintedGenerator",
+        "wikiStage": "post-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/StarTaintedGenerator"
+        ]
+      },
+      {
+        "id": "CalamityMod/StatisBlessing",
+        "wikiStage": "post-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/StatisBlessing"
         ]
       },
       {
@@ -83433,6 +84723,22 @@
         ]
       },
       {
+        "id": "CalamityMod/EpidemicShredder",
+        "wikiStage": "post-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/EpidemicShredder"
+        ]
+      },
+      {
+        "id": "CalamityMod/VampiricTalisman",
+        "wikiStage": "post-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/VampiricTalisman"
+        ]
+      },
+      {
         "id": "Terraria/FlaskofVenom",
         "wikiStage": "post-golem",
         "reason": "recommendation has no proven availability",
@@ -83442,6 +84748,30 @@
         ]
       },
       {
+        "id": "CalamityMod/LunicEye",
+        "wikiStage": "post-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/LunicEye"
+        ]
+      },
+      {
+        "id": "Terraria/RodofDiscord",
+        "wikiStage": "post-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rod of Discord"
+        ]
+      },
+      {
+        "id": "Terraria/CelestialShell",
+        "wikiStage": "post-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Celestial Shell"
+        ]
+      },
+      {
         "id": "Terraria/FlaskofVenom",
         "wikiStage": "pre-lunar",
         "reason": "recommendation has no proven availability",
@@ -83459,6 +84789,52 @@
         ]
       },
       {
+        "id": "CalamityMod/PlagueReaperMask",
+        "wikiStage": "pre-lunar",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PlagueReaperMask",
+          "CalamityMod/PlagueReaperVest",
+          "CalamityMod/PlagueReaperStriders"
+        ]
+      },
+      {
+        "id": "CalamityMod/PlagueReaperVest",
+        "wikiStage": "pre-lunar",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PlagueReaperMask",
+          "CalamityMod/PlagueReaperVest",
+          "CalamityMod/PlagueReaperStriders"
+        ]
+      },
+      {
+        "id": "CalamityMod/PlagueReaperStriders",
+        "wikiStage": "pre-lunar",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PlagueReaperMask",
+          "CalamityMod/PlagueReaperVest",
+          "CalamityMod/PlagueReaperStriders"
+        ]
+      },
+      {
+        "id": "Terraria/ReconScope",
+        "wikiStage": "pre-lunar",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Recon Scope"
+        ]
+      },
+      {
+        "id": "Terraria/SniperScope",
+        "wikiStage": "pre-lunar",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Sniper Scope"
+        ]
+      },
+      {
         "id": "Terraria/AmmoBox",
         "wikiStage": "pre-lunar",
         "reason": "recommendation has no proven availability",
@@ -83467,11 +84843,43 @@
         ]
       },
       {
+        "id": "Terraria/VenomArrow",
+        "wikiStage": "pre-lunar",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Venom Arrow"
+        ]
+      },
+      {
+        "id": "Terraria/RocketIII",
+        "wikiStage": "pre-lunar",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rocket III"
+        ]
+      },
+      {
         "id": "Terraria/CrystalBall",
         "wikiStage": "pre-lunar",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Crystal Ball"
+        ]
+      },
+      {
+        "id": "CalamityMod/StarTaintedGenerator",
+        "wikiStage": "pre-lunar",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/StarTaintedGenerator"
+        ]
+      },
+      {
+        "id": "CalamityMod/StatisBlessing",
+        "wikiStage": "pre-lunar",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/StatisBlessing"
         ]
       },
       {
@@ -83500,12 +84908,44 @@
         ]
       },
       {
+        "id": "CalamityMod/VampiricTalisman",
+        "wikiStage": "pre-lunar",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/VampiricTalisman"
+        ]
+      },
+      {
         "id": "Terraria/FlaskofVenom",
         "wikiStage": "pre-lunar",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "CalamityMod/FlaskOfBrimstone",
           "Terraria/Flask of Venom"
+        ]
+      },
+      {
+        "id": "CalamityMod/LunicEye",
+        "wikiStage": "pre-lunar",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/LunicEye"
+        ]
+      },
+      {
+        "id": "Terraria/RodofDiscord",
+        "wikiStage": "pre-lunar",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rod of Discord"
+        ]
+      },
+      {
+        "id": "Terraria/CelestialShell",
+        "wikiStage": "pre-lunar",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Celestial Shell"
         ]
       },
       {
@@ -83526,6 +84966,60 @@
         ]
       },
       {
+        "id": "CalamityMod/PlagueTaintedSMG",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PlagueTaintedSMG"
+        ]
+      },
+      {
+        "id": "CalamityMod/PlagueReaperMask",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PlagueReaperMask",
+          "CalamityMod/PlagueReaperVest",
+          "CalamityMod/PlagueReaperStriders"
+        ]
+      },
+      {
+        "id": "CalamityMod/PlagueReaperVest",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PlagueReaperMask",
+          "CalamityMod/PlagueReaperVest",
+          "CalamityMod/PlagueReaperStriders"
+        ]
+      },
+      {
+        "id": "CalamityMod/PlagueReaperStriders",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PlagueReaperMask",
+          "CalamityMod/PlagueReaperVest",
+          "CalamityMod/PlagueReaperStriders"
+        ]
+      },
+      {
+        "id": "Terraria/ReconScope",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Recon Scope"
+        ]
+      },
+      {
+        "id": "Terraria/SniperScope",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Sniper Scope"
+        ]
+      },
+      {
         "id": "Terraria/AmmoBox",
         "wikiStage": "pre-moonlord",
         "reason": "recommendation has no proven availability",
@@ -83534,11 +85028,35 @@
         ]
       },
       {
+        "id": "Terraria/ExplodingBullet",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Exploding Bullet"
+        ]
+      },
+      {
         "id": "Terraria/CrystalBall",
         "wikiStage": "pre-moonlord",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Crystal Ball"
+        ]
+      },
+      {
+        "id": "CalamityMod/StarTaintedGenerator",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/StarTaintedGenerator"
+        ]
+      },
+      {
+        "id": "CalamityMod/StatisCurse",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/StatisCurse"
         ]
       },
       {
@@ -83567,12 +85085,106 @@
         ]
       },
       {
+        "id": "CalamityMod/RadiantStar",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/RadiantStar"
+        ]
+      },
+      {
+        "id": "CalamityMod/VampiricTalisman",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/VampiricTalisman"
+        ]
+      },
+      {
         "id": "Terraria/FlaskofVenom",
         "wikiStage": "pre-moonlord",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "CalamityMod/FlaskOfBrimstone",
           "Terraria/Flask of Venom"
+        ]
+      },
+      {
+        "id": "CalamityMod/EyeofMagnus",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/EyeofMagnus"
+        ]
+      },
+      {
+        "id": "Terraria/RodofDiscord",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rod of Discord"
+        ]
+      },
+      {
+        "id": "CalamityMod/AstralHelm",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/AstralHelm",
+          "CalamityMod/AstralBreastplate",
+          "CalamityMod/AstralLeggings"
+        ]
+      },
+      {
+        "id": "CalamityMod/AstralBreastplate",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/AstralHelm",
+          "CalamityMod/AstralBreastplate",
+          "CalamityMod/AstralLeggings"
+        ]
+      },
+      {
+        "id": "CalamityMod/AstralLeggings",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/AstralHelm",
+          "CalamityMod/AstralBreastplate",
+          "CalamityMod/AstralLeggings"
+        ]
+      },
+      {
+        "id": "CalamityMod/TheAbsorber",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/TheAbsorber"
+        ]
+      },
+      {
+        "id": "Terraria/CelestialShell",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Celestial Shell"
+        ]
+      },
+      {
+        "id": "CalamityMod/DeificAmulet",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/DeificAmulet"
+        ]
+      },
+      {
+        "id": "Terraria/CelestialShell",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Celestial Shell"
         ]
       },
       {
@@ -83584,6 +85196,30 @@
         ]
       },
       {
+        "id": "CalamityMod/PridefulHuntersPlanarRipper",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PridefulHuntersPlanarRipper"
+        ]
+      },
+      {
+        "id": "Terraria/ReconScope",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Recon Scope"
+        ]
+      },
+      {
+        "id": "Terraria/SniperScope",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Sniper Scope"
+        ]
+      },
+      {
         "id": "Terraria/AmmoBox",
         "wikiStage": "pre-provi",
         "reason": "recommendation has no proven availability",
@@ -83592,6 +85228,22 @@
         ]
       },
       {
+        "id": "Terraria/VenomArrow",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Venom Arrow"
+        ]
+      },
+      {
+        "id": "Terraria/WoodenArrow",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Wooden Arrow"
+        ]
+      },
+      {
         "id": "Terraria/CrystalBall",
         "wikiStage": "pre-provi",
         "reason": "recommendation has no proven availability",
@@ -83600,6 +85252,22 @@
         ]
       },
       {
+        "id": "CalamityMod/StarTaintedGenerator",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/StarTaintedGenerator"
+        ]
+      },
+      {
+        "id": "CalamityMod/StatisCurse",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/StatisCurse"
+        ]
+      },
+      {
         "id": "Terraria/BewitchingTable",
         "wikiStage": "pre-provi",
         "reason": "recommendation has no proven availability",
@@ -83616,11 +85284,122 @@
         ]
       },
       {
+        "id": "CalamityMod/HolyFireBullet",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/HolyFireBullet",
+          "Terraria/Luminite Bullet"
+        ]
+      },
+      {
+        "id": "CalamityMod/VampiricTalisman",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/VampiricTalisman"
+        ]
+      },
+      {
+        "id": "CalamityMod/EyeofMagnus",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/EyeofMagnus"
+        ]
+      },
+      {
+        "id": "CalamityMod/RelicOfDeliverance",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/RelicOfDeliverance"
+        ]
+      },
+      {
+        "id": "Terraria/RodofDiscord",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rod of Discord"
+        ]
+      },
+      {
+        "id": "CalamityMod/AstralHelm",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/AstralHelm",
+          "CalamityMod/AstralBreastplate",
+          "CalamityMod/AstralLeggings"
+        ]
+      },
+      {
+        "id": "CalamityMod/AstralBreastplate",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/AstralHelm",
+          "CalamityMod/AstralBreastplate",
+          "CalamityMod/AstralLeggings"
+        ]
+      },
+      {
+        "id": "CalamityMod/AstralLeggings",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/AstralHelm",
+          "CalamityMod/AstralBreastplate",
+          "CalamityMod/AstralLeggings"
+        ]
+      },
+      {
+        "id": "CalamityMod/TheAbsorber",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/TheAbsorber"
+        ]
+      },
+      {
+        "id": "CalamityMod/DeificAmulet",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/DeificAmulet"
+        ]
+      },
+      {
         "id": "Terraria/SharpeningStation",
         "wikiStage": "pre-polter",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sharpening Station"
+        ]
+      },
+      {
+        "id": "CalamityMod/OntologicalDespoiler",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/OntologicalDespoiler"
+        ]
+      },
+      {
+        "id": "Terraria/ReconScope",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Recon Scope"
+        ]
+      },
+      {
+        "id": "Terraria/SniperScope",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Sniper Scope"
         ]
       },
       {
@@ -83632,11 +85411,65 @@
         ]
       },
       {
+        "id": "CalamityMod/NanoPurge",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/NanoPurge"
+        ]
+      },
+      {
+        "id": "CalamityMod/PrismaticHelmet",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PrismaticHelmet",
+          "CalamityMod/PrismaticRegalia",
+          "CalamityMod/PrismaticGreaves"
+        ]
+      },
+      {
+        "id": "CalamityMod/PrismaticRegalia",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PrismaticHelmet",
+          "CalamityMod/PrismaticRegalia",
+          "CalamityMod/PrismaticGreaves"
+        ]
+      },
+      {
+        "id": "CalamityMod/PrismaticGreaves",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PrismaticHelmet",
+          "CalamityMod/PrismaticRegalia",
+          "CalamityMod/PrismaticGreaves"
+        ]
+      },
+      {
         "id": "Terraria/CrystalBall",
         "wikiStage": "pre-polter",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Crystal Ball"
+        ]
+      },
+      {
+        "id": "CalamityMod/StarTaintedGenerator",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/StarTaintedGenerator"
+        ]
+      },
+      {
+        "id": "CalamityMod/StatisCurse",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/StatisCurse"
         ]
       },
       {
@@ -83656,11 +85489,123 @@
         ]
       },
       {
+        "id": "CalamityMod/ShatteredDawn",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/ShatteredDawn"
+        ]
+      },
+      {
+        "id": "CalamityMod/TwistingThunder",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/TwistingThunder"
+        ]
+      },
+      {
+        "id": "CalamityMod/VampiricTalisman",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/VampiricTalisman"
+        ]
+      },
+      {
+        "id": "CalamityMod/ClaretCannon",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/ClaretCannon"
+        ]
+      },
+      {
+        "id": "CalamityMod/EyeofMagnus",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/EyeofMagnus"
+        ]
+      },
+      {
+        "id": "CalamityMod/RelicOfDeliverance",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/RelicOfDeliverance"
+        ]
+      },
+      {
+        "id": "Terraria/RodofDiscord",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rod of Discord"
+        ]
+      },
+      {
+        "id": "CalamityMod/TheAbsorber",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/TheAbsorber"
+        ]
+      },
+      {
+        "id": "CalamityMod/DeificAmulet",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/DeificAmulet"
+        ]
+      },
+      {
+        "id": "CalamityMod/NeptunesBounty",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/NeptunesBounty"
+        ]
+      },
+      {
         "id": "Terraria/SharpeningStation",
         "wikiStage": "pre-dog",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sharpening Station"
+        ]
+      },
+      {
+        "id": "CalamityMod/Monsoon",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/Monsoon"
+        ]
+      },
+      {
+        "id": "CalamityMod/TauCannon",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/TauCannon"
+        ]
+      },
+      {
+        "id": "Terraria/ReconScope",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Recon Scope"
+        ]
+      },
+      {
+        "id": "Terraria/SniperScope",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Sniper Scope"
         ]
       },
       {
@@ -83672,11 +85617,81 @@
         ]
       },
       {
+        "id": "Terraria/WoodenArrow",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Wooden Arrow"
+        ]
+      },
+      {
+        "id": "CalamityMod/HolyFireBullet",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/HolyFireBullet"
+        ]
+      },
+      {
+        "id": "Terraria/MiniNukeI",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Mini Nuke I"
+        ]
+      },
+      {
+        "id": "CalamityMod/PrismaticHelmet",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PrismaticHelmet",
+          "CalamityMod/PrismaticRegalia",
+          "CalamityMod/PrismaticGreaves"
+        ]
+      },
+      {
+        "id": "CalamityMod/PrismaticRegalia",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PrismaticHelmet",
+          "CalamityMod/PrismaticRegalia",
+          "CalamityMod/PrismaticGreaves"
+        ]
+      },
+      {
+        "id": "CalamityMod/PrismaticGreaves",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PrismaticHelmet",
+          "CalamityMod/PrismaticRegalia",
+          "CalamityMod/PrismaticGreaves"
+        ]
+      },
+      {
         "id": "Terraria/CrystalBall",
         "wikiStage": "pre-dog",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Crystal Ball"
+        ]
+      },
+      {
+        "id": "CalamityMod/StarTaintedGenerator",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/StarTaintedGenerator"
+        ]
+      },
+      {
+        "id": "CalamityMod/StatisCurse",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/StatisCurse"
         ]
       },
       {
@@ -83696,11 +85711,191 @@
         ]
       },
       {
+        "id": "CalamityMod/TwistingThunder",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/TwistingThunder"
+        ]
+      },
+      {
+        "id": "CalamityMod/JawsOfOblivion",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/JawsOfOblivion"
+        ]
+      },
+      {
+        "id": "CalamityMod/Valediction",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/Valediction"
+        ]
+      },
+      {
+        "id": "CalamityMod/VampiricTalisman",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/VampiricTalisman"
+        ]
+      },
+      {
+        "id": "CalamityMod/ClaretCannon",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/ClaretCannon"
+        ]
+      },
+      {
+        "id": "CalamityMod/EyeofMagnus",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/EyeofMagnus"
+        ]
+      },
+      {
+        "id": "Terraria/RodofDiscord",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rod of Discord"
+        ]
+      },
+      {
+        "id": "CalamityMod/StratusSphere",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/StratusSphere"
+        ]
+      },
+      {
+        "id": "CalamityMod/OmegaBlueHelmet",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/OmegaBlueHelmet",
+          "CalamityMod/OmegaBlueChestplate",
+          "CalamityMod/OmegaBlueTentacles"
+        ]
+      },
+      {
+        "id": "CalamityMod/OmegaBlueChestplate",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/OmegaBlueHelmet",
+          "CalamityMod/OmegaBlueChestplate",
+          "CalamityMod/OmegaBlueTentacles"
+        ]
+      },
+      {
+        "id": "CalamityMod/OmegaBlueTentacles",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/OmegaBlueHelmet",
+          "CalamityMod/OmegaBlueChestplate",
+          "CalamityMod/OmegaBlueTentacles"
+        ]
+      },
+      {
+        "id": "CalamityMod/TheAbsorber",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/TheAbsorber"
+        ]
+      },
+      {
+        "id": "CalamityMod/DeificAmulet",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/DeificAmulet"
+        ]
+      },
+      {
+        "id": "CalamityMod/ReaperToothNecklace",
+        "wikiStage": "pre-dog",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/ReaperToothNecklace"
+        ]
+      },
+      {
+        "id": "CalamityMod/OmegaBlueHelmet",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/OmegaBlueHelmet",
+          "CalamityMod/OmegaBlueChestplate",
+          "CalamityMod/OmegaBlueTentacles"
+        ]
+      },
+      {
+        "id": "CalamityMod/OmegaBlueChestplate",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/OmegaBlueHelmet",
+          "CalamityMod/OmegaBlueChestplate",
+          "CalamityMod/OmegaBlueTentacles"
+        ]
+      },
+      {
+        "id": "CalamityMod/OmegaBlueTentacles",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/OmegaBlueHelmet",
+          "CalamityMod/OmegaBlueChestplate",
+          "CalamityMod/OmegaBlueTentacles"
+        ]
+      },
+      {
+        "id": "Terraria/YoyoBag",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Yoyo Bag"
+        ]
+      },
+      {
         "id": "Terraria/SharpeningStation",
         "wikiStage": "pre-yharon",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sharpening Station"
+        ]
+      },
+      {
+        "id": "CalamityMod/Onyxia",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/Onyxia"
+        ]
+      },
+      {
+        "id": "CalamityMod/ScorchedEarth",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/ScorchedEarth"
+        ]
+      },
+      {
+        "id": "Terraria/SniperScope",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Sniper Scope"
         ]
       },
       {
@@ -83712,11 +85907,43 @@
         ]
       },
       {
+        "id": "Terraria/VenomArrow",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Venom Arrow"
+        ]
+      },
+      {
+        "id": "CalamityMod/HolyFireBullet",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/HolyFireBullet"
+        ]
+      },
+      {
+        "id": "Terraria/MiniNukeI",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Mini Nuke I"
+        ]
+      },
+      {
         "id": "Terraria/CrystalBall",
         "wikiStage": "pre-yharon",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Crystal Ball"
+        ]
+      },
+      {
+        "id": "CalamityMod/Nucleogenesis",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/Nucleogenesis"
         ]
       },
       {
@@ -83736,11 +85963,107 @@
         ]
       },
       {
+        "id": "CalamityMod/Nanotech",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/Nanotech"
+        ]
+      },
+      {
+        "id": "CalamityMod/ClaretCannon",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/ClaretCannon"
+        ]
+      },
+      {
+        "id": "CalamityMod/EyeofMagnus",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/EyeofMagnus"
+        ]
+      },
+      {
+        "id": "Terraria/RodofDiscord",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rod of Discord"
+        ]
+      },
+      {
+        "id": "CalamityMod/StratusSphere",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/StratusSphere"
+        ]
+      },
+      {
+        "id": "CalamityMod/TheAbsorber",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/TheAbsorber"
+        ]
+      },
+      {
+        "id": "CalamityMod/DeificAmulet",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/DeificAmulet"
+        ]
+      },
+      {
+        "id": "CalamityMod/ReaperToothNecklace",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/ReaperToothNecklace"
+        ]
+      },
+      {
+        "id": "CalamityMod/PhotonRipper",
+        "wikiStage": "pre-scal",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/PhotonRipper"
+        ]
+      },
+      {
         "id": "Terraria/SharpeningStation",
         "wikiStage": "pre-scal-exo",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sharpening Station"
+        ]
+      },
+      {
+        "id": "CalamityMod/AcesHigh",
+        "wikiStage": "pre-scal-exo",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/AcesHigh"
+        ]
+      },
+      {
+        "id": "CalamityMod/TyrannysEnd",
+        "wikiStage": "pre-scal-exo",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/TyrannysEnd"
+        ]
+      },
+      {
+        "id": "Terraria/SniperScope",
+        "wikiStage": "pre-scal-exo",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Sniper Scope"
         ]
       },
       {
@@ -83752,11 +86075,51 @@
         ]
       },
       {
+        "id": "CalamityMod/HolyFireBullet",
+        "wikiStage": "pre-scal-exo",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/HolyFireBullet"
+        ]
+      },
+      {
+        "id": "Terraria/MiniNukeI",
+        "wikiStage": "pre-scal-exo",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Mini Nuke I"
+        ]
+      },
+      {
+        "id": "CalamityMod/AetherfluxCannon",
+        "wikiStage": "pre-scal-exo",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/AetherfluxCannon"
+        ]
+      },
+      {
         "id": "Terraria/CrystalBall",
         "wikiStage": "pre-scal-exo",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Crystal Ball"
+        ]
+      },
+      {
+        "id": "CalamityMod/CosmicImmaterializer",
+        "wikiStage": "pre-scal",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/CosmicImmaterializer"
+        ]
+      },
+      {
+        "id": "CalamityMod/Nucleogenesis",
+        "wikiStage": "pre-scal-exo",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/Nucleogenesis"
         ]
       },
       {
@@ -83776,11 +86139,107 @@
         ]
       },
       {
+        "id": "CalamityMod/Seraphim",
+        "wikiStage": "pre-scal-exo",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/Seraphim"
+        ]
+      },
+      {
+        "id": "CalamityMod/Supernova",
+        "wikiStage": "pre-scal",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/Supernova"
+        ]
+      },
+      {
+        "id": "CalamityMod/Nanotech",
+        "wikiStage": "pre-scal-exo",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/Nanotech"
+        ]
+      },
+      {
+        "id": "CalamityMod/EyeofMagnus",
+        "wikiStage": "pre-scal-exo",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/EyeofMagnus"
+        ]
+      },
+      {
+        "id": "Terraria/RodofDiscord",
+        "wikiStage": "pre-scal-exo",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rod of Discord"
+        ]
+      },
+      {
+        "id": "CalamityMod/TheAbsorber",
+        "wikiStage": "pre-scal-exo",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/TheAbsorber"
+        ]
+      },
+      {
+        "id": "CalamityMod/RampartofDeities",
+        "wikiStage": "pre-scal-exo",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/RampartofDeities"
+        ]
+      },
+      {
+        "id": "CalamityMod/ReaperToothNecklace",
+        "wikiStage": "pre-scal-exo",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/ReaperToothNecklace"
+        ]
+      },
+      {
+        "id": "CalamityMod/Earth",
+        "wikiStage": "endgame",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/Earth"
+        ]
+      },
+      {
         "id": "Terraria/SharpeningStation",
         "wikiStage": "endgame",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sharpening Station"
+        ]
+      },
+      {
+        "id": "CalamityMod/SomaPrime",
+        "wikiStage": "endgame",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/SomaPrime"
+        ]
+      },
+      {
+        "id": "CalamityMod/Voidragon",
+        "wikiStage": "endgame",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/Voidragon"
+        ]
+      },
+      {
+        "id": "Terraria/SniperScope",
+        "wikiStage": "endgame",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Sniper Scope"
         ]
       },
       {
@@ -83800,6 +86259,14 @@
         ]
       },
       {
+        "id": "CalamityMod/Nucleogenesis",
+        "wikiStage": "endgame",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/Nucleogenesis"
+        ]
+      },
+      {
         "id": "Terraria/BewitchingTable",
         "wikiStage": "endgame",
         "reason": "recommendation has no proven availability",
@@ -83813,6 +86280,62 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
+        ]
+      },
+      {
+        "id": "CalamityMod/NanoblackReaper",
+        "wikiStage": "endgame",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/NanoblackReaper"
+        ]
+      },
+      {
+        "id": "CalamityMod/Nanotech",
+        "wikiStage": "endgame",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/Nanotech"
+        ]
+      },
+      {
+        "id": "CalamityMod/EyeofMagnus",
+        "wikiStage": "endgame",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/EyeofMagnus"
+        ]
+      },
+      {
+        "id": "Terraria/RodOfHarmony",
+        "wikiStage": "endgame",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Rod of Harmony"
+        ]
+      },
+      {
+        "id": "CalamityMod/TheAbsorber",
+        "wikiStage": "endgame",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/TheAbsorber"
+        ]
+      },
+      {
+        "id": "CalamityMod/RampartofDeities",
+        "wikiStage": "endgame",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/RampartofDeities"
+        ]
+      },
+      {
+        "id": "CalamityMod/ReaperToothNecklace",
+        "wikiStage": "endgame",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "CalamityMod/ReaperToothNecklace"
         ]
       }
     ],
@@ -85667,7 +88190,470 @@
         "category": "Ammunition"
       }
     ],
-    "wikiAvailabilityCorrections": [],
+    "wikiAvailabilityCorrections": [
+      {
+        "id": "Terraria/Starfury",
+        "factualStage": "hive-mind-perforators",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/ContaminatedBile",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/Fungicide",
+        "factualStage": "crabulon",
+        "recommendedStage": "eye-of-cthulhu",
+        "wikiStage": "pre-evil1",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/ContaminatedBile",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "eye-of-cthulhu",
+        "wikiStage": "pre-evil1",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/FungalClump",
+        "factualStage": "crabulon",
+        "recommendedStage": "eye-of-cthulhu",
+        "wikiStage": "pre-evil1",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/TheMeatball",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/FirestormCannon",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/MoltenFury",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/ProtolithBangle",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/HellfireArrow",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/TheCauldron",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/FlareBolt",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/HellwingStaff",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/BatholithBangle",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/ImpStaff",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/ScabRipper",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/VileFeeder",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/InfernalKris",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/SludgeSplotch",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/SilencingSheath",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/BrainOfConfusion",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/WormScarf",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/HoundiusShootius",
+        "factualStage": "deerclops",
+        "recommendedStage": "queen-bee",
+        "wikiStage": "pre-skeletron",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/PygmyNecklace",
+        "factualStage": "plantera",
+        "recommendedStage": "queen-bee",
+        "wikiStage": "pre-skeletron",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/Archerfish",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "slime-god",
+        "wikiStage": "pre-wof",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/PygmyNecklace",
+        "factualStage": "plantera",
+        "recommendedStage": "slime-god",
+        "wikiStage": "pre-wof",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/Lionfish",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "slime-god",
+        "wikiStage": "pre-wof",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/ObsidianShield",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "slime-god",
+        "wikiStage": "pre-wof",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/PygmyNecklace",
+        "factualStage": "plantera",
+        "recommendedStage": "cryogen",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/Buzzkill",
+        "factualStage": "skeletron-prime",
+        "recommendedStage": "destroyer",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/BrimroseStaff",
+        "factualStage": "brimstone-elemental",
+        "recommendedStage": "destroyer",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/IgneousExaltation",
+        "factualStage": "brimstone-elemental",
+        "recommendedStage": "destroyer",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/RuinMedallion",
+        "factualStage": "brimstone-elemental",
+        "recommendedStage": "destroyer",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/MoonStone",
+        "factualStage": "plantera",
+        "recommendedStage": "destroyer",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/ButterflyWings",
+        "factualStage": "plantera",
+        "recommendedStage": "destroyer",
+        "wikiStage": "post-mech1",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/Buzzkill",
+        "factualStage": "skeletron-prime",
+        "recommendedStage": "twins",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/FlakToxicannon",
+        "factualStage": "polterghast",
+        "recommendedStage": "twins",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/MoonStone",
+        "factualStage": "plantera",
+        "recommendedStage": "twins",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/ButterflyWings",
+        "factualStage": "plantera",
+        "recommendedStage": "twins",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/PulseBow",
+        "factualStage": "plantera",
+        "recommendedStage": "calamitas-clone",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/VengefulSunStaff",
+        "factualStage": "plantera",
+        "recommendedStage": "calamitas-clone",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/MoonStone",
+        "factualStage": "plantera",
+        "recommendedStage": "calamitas-clone",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/ButterflyWings",
+        "factualStage": "plantera",
+        "recommendedStage": "calamitas-clone",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/Hellkite",
+        "factualStage": "providence",
+        "recommendedStage": "astrum-aureus",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/UndinesRetribution",
+        "factualStage": "polterghast",
+        "recommendedStage": "astrum-aureus",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/DreadmineStaff",
+        "factualStage": "polterghast",
+        "recommendedStage": "astrum-aureus",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/DefectiveSphere",
+        "factualStage": "golem",
+        "recommendedStage": "astrum-aureus",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/AbyssalMirror",
+        "factualStage": "polterghast",
+        "recommendedStage": "astrum-aureus",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/DreadmineStaff",
+        "factualStage": "polterghast",
+        "recommendedStage": "ravager",
+        "wikiStage": "post-golem",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/Apoctolith",
+        "factualStage": "polterghast",
+        "recommendedStage": "ravager",
+        "wikiStage": "post-golem",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/AbyssalMirror",
+        "factualStage": "polterghast",
+        "recommendedStage": "ravager",
+        "wikiStage": "post-golem",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/DreadmineStaff",
+        "factualStage": "polterghast",
+        "recommendedStage": "astrum-deus",
+        "wikiStage": "pre-lunar",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/AbyssalMirror",
+        "factualStage": "polterghast",
+        "recommendedStage": "astrum-deus",
+        "wikiStage": "pre-lunar",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/HideofAstrumDeus",
+        "factualStage": "astrum-deus",
+        "recommendedStage": "lunatic-cultist",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/StarShower",
+        "factualStage": "astrum-deus",
+        "recommendedStage": "lunatic-cultist",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/RegulusRiot",
+        "factualStage": "astrum-deus",
+        "recommendedStage": "lunatic-cultist",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/AbyssalMirror",
+        "factualStage": "polterghast",
+        "recommendedStage": "lunatic-cultist",
+        "wikiStage": "pre-moonlord",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/AbyssalMirror",
+        "factualStage": "polterghast",
+        "recommendedStage": "dragonfolly",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/StatisNinjaBelt",
+        "factualStage": "polterghast",
+        "recommendedStage": "dragonfolly",
+        "wikiStage": "pre-provi",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/BloodBoiler",
+        "factualStage": "polterghast",
+        "recommendedStage": "signus",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/BloodfireArrow",
+        "factualStage": "polterghast",
+        "recommendedStage": "signus",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/DragonbloodDisgorger",
+        "factualStage": "polterghast",
+        "recommendedStage": "signus",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/BloodsoakedCrasher",
+        "factualStage": "polterghast",
+        "recommendedStage": "signus",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/AbyssalMirror",
+        "factualStage": "polterghast",
+        "recommendedStage": "signus",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/StatisNinjaBelt",
+        "factualStage": "polterghast",
+        "recommendedStage": "signus",
+        "wikiStage": "pre-polter",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/EclipsesFall",
+        "factualStage": "yharon",
+        "recommendedStage": "devourer-of-gods",
+        "wikiStage": "pre-yharon",
+        "reason": "recommendation precedes proven availability"
+      }
+    ],
     "staleRules": [
       "Terraria/ForbiddenFragment"
     ],

@@ -7,7 +7,8 @@ const item = (id, values = {}) => ({
   ammo: 0, useAmmo: 0, buffType: 0, buffTime: 0, consumable: false,
   potion: false, healLife: 0, healMana: 0, food: false, flask: false, maxStack: 1,
   createTile: -1, placedTile: "", createWall: -1, pick: 0, axe: 0,
-  hammer: 0, mountType: -1, shoot: 0, sentry: false, classEffects: [], ...values
+  hammer: 0, mountType: -1, shoot: 0, sentry: false, sourceNamespace: "",
+  classEffects: [], ...values
 });
 const snapshot = {
   format: "ProgressionJournalSnapshot",
@@ -85,7 +86,7 @@ const snapshot = {
         { damageClass: "Melee", damage: true }
       ]
     }),
-    item("Test/SupportTool"),
+    item("Test/SupportTool", { damageClass: "Melee" }),
     item("Other/Material"),
     item("Other/Sword", { damageClass: "Melee", damage: 100 }),
     item("Test/ForeignRecipeSword", { damageClass: "Melee", damage: 90 }),
@@ -94,7 +95,11 @@ const snapshot = {
     item("Test/Forge", { createTile: 1, placedTile: "Test/ForgeTile" }),
     item("Test/ForgeSword", { damageClass: "Melee", damage: 35 }),
     item("Test/SeedSword", { damageClass: "Melee", damage: 99 }),
-    item("Test/VanityAccessory", { accessory: true, vanity: true })
+    item("Test/VanityAccessory", { accessory: true, vanity: true }),
+    item("Test/NamespaceVanity", {
+      accessory: true,
+      sourceNamespace: "Test.Items.Accessories.Vanity"
+    })
   ],
   npcs: [],
   recipes: [
@@ -128,6 +133,11 @@ const snapshot = {
     { source: "Test/Boss", sourceType: "npc", item: "Terraria/ModifiedSword", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Terraria/WikiSword", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/EarlyWikiSword", conditions: [] },
+    { source: "Test/Boss", sourceType: "npc", item: "Test/RenamedBlade", conditions: [] },
+    { source: "Test/Boss", sourceType: "npc", item: "Test/ExampleHelmet", conditions: [] },
+    { source: "Test/Boss", sourceType: "npc", item: "Test/ExampleBreastplate", conditions: [] },
+    { source: "Test/Boss", sourceType: "npc", item: "Test/ExampleGreaves", conditions: [] },
+    { source: "Test/Boss", sourceType: "npc", item: "Test/SupportTool", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/ClassTool", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/BossBag", conditions: [] },
     { source: "Test/BossBag", sourceType: "container", item: "Test/BagBlade", conditions: [] },
@@ -258,19 +268,19 @@ const wikiProfile = {
       category: "Weapon",
       classes: ["melee"],
       itemGroups: [[{ mod: "Test", item: "OldBlade", displayName: "Renamed Blade" }]],
-      evaluations: [{ stageId: "earlyGuide" }]
+      evaluations: [{ stageId: "guide" }]
     },
     {
       category: "Armor",
       classes: ["melee"],
       itemGroups: [[{ mod: "Test", item: "Examplearmor", displayName: "Example armor" }]],
-      evaluations: [{ stageId: "earlyGuide" }]
+      evaluations: [{ stageId: "guide" }]
     },
     {
       category: "Support",
       classes: ["melee"],
       itemGroups: [[{ mod: "Test", item: "SupportTool", displayName: "Support Tool" }]],
-      evaluations: [{ stageId: "earlyGuide" }]
+      evaluations: [{ stageId: "guide" }]
     },
     {
       category: "Buff",
@@ -312,6 +322,7 @@ assert(profile.entries.some(entry =>
   && entry.evaluations[0].stageId === "boss"));
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "SeedSword"));
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "VanityAccessory"));
+assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "NamespaceVanity"));
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "CycleA"));
 assert(profile.combatBuffs.some(entry => entry.itemGroups[0][0].item === "Potion"));
 assert(!profile.combatBuffs.some(entry =>
@@ -337,17 +348,15 @@ assert.deepEqual(
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "EarlyWikiSword")?.wiki
     .map(value => value.stageId),
-  ["start"]);
+  []);
 assert.equal(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "EarlyWikiSword")?.wiki.length,
-  1);
-assert.deepEqual(
-  profile.entries.find(entry => entry.itemGroups[0][0].item === "WikiOnlyBlade")?.evaluations,
-  []);
-assert.deepEqual(
-  profile.entries.find(entry => entry.itemGroups[0][0].item === "WikiOnlyBlade")?.wiki
-    .map(value => value.stageId),
-  ["start"]);
+  0);
+assert(!profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "WikiOnlyBlade"));
+assert(report.wikiMissingItems.some(entry =>
+  entry.id === "Test/WikiOnlyBlade"
+  && entry.reason === "recommendation has no proven availability"));
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "RenamedBlade"
   && entry.wiki.length === 1));
@@ -385,7 +394,7 @@ assert.deepEqual(
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "LateDrop")?.wiki
     .map(value => value.stageId),
-  ["start"]);
+  []);
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "MeleeAccessory")?.classes,
   ["melee"]);
@@ -499,5 +508,12 @@ const ignoredReviewResult = generateProfile(snapshot, manifest, wikiProfile, {
 });
 assert(!ignoredReviewResult.review.issues.some(issue => issue.id === ignoredIssueId));
 
-assert.equal(report.wikiAvailabilityCorrections.length, 0);
+assert(report.wikiAvailabilityCorrections.some(entry =>
+  entry.id === "Test/EarlyWikiSword"
+  && entry.factualStage === "boss"
+  && entry.recommendedStage === "start"));
+assert(report.wikiAvailabilityCorrections.some(entry =>
+  entry.id === "Test/LateDrop"
+  && entry.factualStage === "late"
+  && entry.recommendedStage === "start"));
 console.log("Profile generator tests: OK");

@@ -42,9 +42,8 @@ const START_ITEMS = [
   "Terraria/PinkGel",
   "Terraria/Cobweb",
   "Terraria/Silk",
+  "Terraria/Mushroom",
   "Terraria/Obsidian",
-  "Terraria/Hellstone",
-  "Terraria/HellstoneBar",
   "Terraria/Cactus",
   "Terraria/Coral",
   "Terraria/Seashell",
@@ -61,6 +60,21 @@ const START_ITEMS = [
   "Terraria/FallenStar",
   "Terraria/Chain",
   "Terraria/Worm",
+  "Terraria/ArmoredCavefish",
+  "Terraria/ChaosFish",
+  "Terraria/CrimsonTigerfish",
+  "Terraria/Damselfish",
+  "Terraria/DoubleCod",
+  "Terraria/Ebonkoi",
+  "Terraria/FlarefinKoi",
+  "Terraria/FrostMinnow",
+  "Terraria/Hemopiranha",
+  "Terraria/Obsidifish",
+  "Terraria/PrincessFish",
+  "Terraria/Prismite",
+  "Terraria/SpecularFish",
+  "Terraria/Stinkfish",
+  "Terraria/VariegatedLardfish",
   "Terraria/Robe",
   "Terraria/DynastyWood",
   "Terraria/GoldButterfly",
@@ -96,10 +110,6 @@ const START_ITEMS = [
   "Terraria/TungstenBar",
   "Terraria/GoldBar",
   "Terraria/PlatinumBar",
-  "Terraria/CrimtaneOre",
-  "Terraria/DemoniteOre",
-  "Terraria/CrimtaneBar",
-  "Terraria/DemoniteBar",
   "Terraria/Hive",
   "Terraria/HoneyBlock",
   "Terraria/BottledHoney",
@@ -123,6 +133,7 @@ const START_ITEMS = [
   "Terraria/Hay",
   "Terraria/LivingWoodWand",
   "Terraria/LeafWand",
+  "Terraria/NaturesGift",
   "Terraria/Boomstick",
   "Terraria/Gladius",
   "Terraria/Musket",
@@ -170,8 +181,22 @@ const START_ITEMS = [
 
 const MILESTONE_FACTS = [
   {
+    findStage: manifest => findVanillaFlagStage(manifest, "downedBoss1", "eye-of-cthulhu"),
+    items: [
+      "Terraria/CrimtaneOre",
+      "Terraria/DemoniteOre",
+      "Terraria/CrimtaneBar",
+      "Terraria/DemoniteBar"
+    ]
+  },
+  {
     findStage: manifest => findStageById(manifest, "world-evil"),
-    items: ["Terraria/ShadowScale", "Terraria/TissueSample"]
+    items: [
+      "Terraria/ShadowScale",
+      "Terraria/TissueSample",
+      "Terraria/Hellstone",
+      "Terraria/HellstoneBar"
+    ]
   },
   {
     findStage: manifest => findStageById(manifest, "queen-bee"),
@@ -260,7 +285,6 @@ const MILESTONE_FACTS = [
       ,"Terraria/AncientBattleArmorMaterial"
     ],
     enemies: [
-      "Terraria/GreenJellyfish",
       "Terraria/MossHornet",
       "Terraria/IceGolem",
       "Terraria/SandElemental",
@@ -389,6 +413,7 @@ const MILESTONE_FACTS = [
 
 const START_SOURCES = [
   "Terraria/BlueJellyfish",
+  "Terraria/GreenJellyfish",
   "Terraria/BoneSerpentHead",
   "Terraria/Demon",
   "Terraria/FireImp",

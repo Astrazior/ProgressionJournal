@@ -213,6 +213,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             item.mountType,
             item.shoot,
             item.sentry,
+            item.ModItem?.GetType().Namespace ?? string.Empty,
             GetClassEffects(item));
     }
 
@@ -603,6 +604,7 @@ public sealed record SnapshotItem(
     int MountType,
     int Shoot,
     bool Sentry,
+    string SourceNamespace,
     List<SnapshotClassEffect> ClassEffects);
 public sealed record SnapshotClassEffect(
     string DamageClass,

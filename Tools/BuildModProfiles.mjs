@@ -200,11 +200,19 @@ export function normalizeAgentRules(document, support) {
         });
         break;
       case "item-override":
-        requireText(rule.item, `${label}: item`, problems);
-        if (!rule.override || typeof rule.override !== "object") {
-          problems.push(`${label}: override object is required`);
-        } else if (rule.item) {
-          assignments.itemOverrides[rule.item] = rule.override;
+        {
+          const items = rule.items ?? (rule.item ? [rule.item] : []);
+          if (items.length === 0) problems.push(`${label}: item or items is required`);
+          for (const item of items) {
+            requireText(item, `${label}: item`, problems);
+          }
+          if (!rule.override || typeof rule.override !== "object") {
+            problems.push(`${label}: override object is required`);
+          } else {
+            for (const item of items) {
+              if (item) assignments.itemOverrides[item] = rule.override;
+            }
+          }
         }
         break;
       default:
@@ -294,7 +302,8 @@ function auditProfile(profile, generationReport, support, snapshot) {
     warnings.push(`${generationReport.staleRules.length} support or agent references are stale`);
   }
   if ((generationReport.wikiAvailabilityCorrections ?? []).length > 0) {
-    errors.push("recommendations changed availability");
+    warnings.push(
+      `${generationReport.wikiAvailabilityCorrections.length} recommendations precede proven availability and were suppressed`);
   }
   const contentMods = new Set(snapshot.contentMods ?? support.contentMods ?? [support.targetMod]);
   for (const item of snapshot.items ?? []) {

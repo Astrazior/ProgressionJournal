@@ -438,7 +438,7 @@ function normalizeConditionText(value) {
 function classifyItem(item, manifest, report, context) {
   const override = manifest.itemOverrides?.[item.id];
   if (override?.exclude) return null;
-  if (item.vanity) return null;
+  if (item.vanity || item.sourceNamespace?.split(".").includes("Vanity")) return null;
   if (override?.buffCategory) {
     return { buffCategory: override.buffCategory, classes: override.classes ?? allClasses(manifest) };
   }
@@ -650,42 +650,35 @@ function applyWikiRecommendations(
         }
 
         if (buffItems.has(id)) continue;
-        let entry = entryByItem.get(id);
+        const entry = entryByItem.get(id);
         if (!entry) {
-          const item = itemById.get(id);
-          const classification = classifyWikiItem({
-            category: sourceEntry.category,
-            classes: sourceEntry.classes,
-            isSupportWeapon: sourceEntry.category === "Support"
-              || sourceEntry.isSupportWeapon === true
+          report.wikiMissingItems.push({
+            id,
+            wikiStage: evaluation.stageId,
+            reason: "recommendation has no proven availability",
+            sourceReference: sourceEntry.itemGroups?.flat()
+              .map(ref => `${ref.mod}/${ref.item}`)
           });
-          if (!item || !classification || classification.buffCategory) {
-            report.wikiMissingItems.push({
-              id,
-              wikiStage: evaluation.stageId,
-              sourceReference: sourceEntry.itemGroups?.flat()
-                .map(ref => `${ref.mod}/${ref.item}`)
-            });
-            continue;
-          }
-
-          entry = {
-            key: `wiki.${slug(id)}`,
-            category: classification.category,
-            classes: classification.classes,
-            itemGroups: [[toItemReference(item)]],
-            evaluations: [],
-            wiki: [],
-            isSupportWeapon: sourceEntry.category === "Support"
-              || sourceEntry.isSupportWeapon === true,
-            eventCategory: null,
-            customEventName: "",
-            eventIcon: ""
-          };
-          entryByItem.set(id, entry);
-          profileEntries.push(entry);
+          continue;
         }
 
+        const factualStageId = entry.evaluations?.[0]?.stageId;
+        const factualStageIndex = manifest._stageIndexes.get(factualStageId) ?? -1;
+        const recommendationStageIndex = manifest._stageIndexes.get(mapping.stageId) ?? -1;
+        if (factualStageIndex >= 0 && recommendationStageIndex < factualStageIndex) {
+          report.wikiAvailabilityCorrections.push({
+            id,
+            factualStage: factualStageId,
+            recommendedStage: mapping.stageId,
+            wikiStage: evaluation.stageId,
+            reason: "recommendation precedes proven availability"
+          });
+          continue;
+        }
+
+        if (sourceEntry.category === "Support" || sourceEntry.isSupportWeapon === true) {
+          entry.isSupportWeapon = true;
+        }
         const recommendation = {
           stageId: mapping.stageId,
           classes: sourceEntry.classes,
@@ -714,6 +707,11 @@ function narrowUnclassifiedEquipmentClasses(profileEntries, manifest) {
   const profileClasses = allClasses(manifest);
   const allClassIds = new Set(profileClasses);
   for (const entry of profileEntries) {
+    const reference = entry.itemGroups?.[0]?.[0];
+    const itemId = reference ? `${reference.mod}/${reference.item}` : "";
+    if (manifest.itemOverrides?.[itemId]?.classes) {
+      continue;
+    }
     if (!["Armor", "Accessory"].includes(entry.category)
         || entry.classes.length !== profileClasses.length
         || !entry.classes.every(classId => allClassIds.has(classId))) {

@@ -688,6 +688,134 @@
       "reason": "Great Sand Shark drops Grand Scale, and its official natural-spawn check immediately returns until Plantera has been defeated."
     },
     {
+      "id": "accessory-vanity-namespace",
+      "kind": "item-override",
+      "items": [
+        "CalamityMod/AbandonedWulfrumHelmet",
+        "CalamityMod/GhostBracelet",
+        "CalamityMod/GlimmeringRibbon",
+        "CalamityMod/HapuFruit",
+        "CalamityMod/LittleE",
+        "CalamityMod/LucisSight",
+        "CalamityMod/OracleHeadphones",
+        "CalamityMod/Popo",
+        "CalamityMod/SharkyPlush",
+        "CalamityMod/TheComb",
+        "CalamityMod/XyksBlessingBlue",
+        "CalamityMod/XyksBlessingOrange"
+      ],
+      "override": {
+        "exclude": true
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Accessories/Vanity",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "These items are implemented in the official Accessories.Vanity namespace and provide cosmetic transformations or developer vanity effects, not combat progression."
+    },
+    {
+      "id": "daedalus-magic-head-class",
+      "kind": "item-override",
+      "item": "CalamityMod/DaedalusHeadMagic",
+      "override": {
+        "classes": [
+          "magic"
+        ]
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Armor/Daedalus/DaedalusHeadMagic.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "UpdateEquip grants mana, magic damage and magic critical chance, so this helmet is magic-specific."
+    },
+    {
+      "id": "daedalus-melee-head-class",
+      "kind": "item-override",
+      "item": "CalamityMod/DaedalusHeadMelee",
+      "override": {
+        "classes": [
+          "melee"
+        ]
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Armor/Daedalus/DaedalusHeadMelee.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "UpdateEquip grants melee damage, critical chance and speed, so this helmet is melee-specific."
+    },
+    {
+      "id": "daedalus-ranged-head-class",
+      "kind": "item-override",
+      "item": "CalamityMod/DaedalusHeadRanged",
+      "override": {
+        "classes": [
+          "ranged"
+        ]
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Armor/Daedalus/DaedalusHeadRanged.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "UpdateEquip grants ranged damage and critical chance, so this helmet is ranged-specific."
+    },
+    {
+      "id": "daedalus-summoner-head-class",
+      "kind": "item-override",
+      "item": "CalamityMod/DaedalusHeadSummon",
+      "override": {
+        "classes": [
+          "summoner"
+        ]
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Armor/Daedalus/DaedalusHeadSummon.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "UpdateEquip grants summon damage and minion slots, so this helmet is summoner-specific."
+    },
+    {
+      "id": "daedalus-rogue-head-class",
+      "kind": "item-override",
+      "item": "CalamityMod/DaedalusHeadRogue",
+      "override": {
+        "classes": [
+          "rogue"
+        ]
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Armor/Daedalus/DaedalusHeadRogue.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "UpdateEquip grants rogue damage, critical chance and stealth, so this helmet is rogue-specific."
+    },
+    {
+      "id": "daedalus-shared-armor-classes",
+      "kind": "item-override",
+      "items": [
+        "CalamityMod/DaedalusBreastplate",
+        "CalamityMod/DaedalusLeggings"
+      ],
+      "override": {
+        "classes": [
+          "melee",
+          "ranged",
+          "magic",
+          "summoner",
+          "rogue"
+        ]
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Armor/Daedalus",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "Every class-specific Daedalus helmet uses the same breastplate and leggings in IsArmorSet, making these two pieces shared by all five classes."
+    },
+    {
+      "id": "supreme-bait-tackle-box-noncombat",
+      "kind": "item-override",
+      "item": "CalamityMod/SupremeBaitTackleBoxFishingStation",
+      "override": {
+        "exclude": true
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Accessories/SupremeBaitTackleBoxFishingStation.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "The official UpdateAccessory implementation only improves fishing power and fishing utility flags. It is not combat equipment."
+    },
+    {
       "id": "lucis-sight-vanity-accessory",
       "kind": "item-override",
       "item": "CalamityMod/LucisSight",
