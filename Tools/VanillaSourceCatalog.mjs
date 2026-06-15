@@ -51,6 +51,7 @@ const START_ITEMS = [
   "Terraria/BlackPearl",
   "Terraria/PinkPearl",
   "Terraria/JungleSpores",
+  "Terraria/JungleRose",
   "Terraria/Vine",
   "Terraria/Stinger",
   "Terraria/SharkFin",
@@ -134,6 +135,8 @@ const START_ITEMS = [
   "Terraria/LivingWoodWand",
   "Terraria/LeafWand",
   "Terraria/NaturesGift",
+  "Terraria/PanicNecklace",
+  "Terraria/SweetheartNecklace",
   "Terraria/Boomstick",
   "Terraria/Gladius",
   "Terraria/Musket",
@@ -187,7 +190,8 @@ const MILESTONE_FACTS = [
       "Terraria/DemoniteOre",
       "Terraria/CrimtaneBar",
       "Terraria/DemoniteBar"
-    ]
+    ],
+    shops: ["Terraria/Dryad"]
   },
   {
     findStage: manifest => findStageById(manifest, "world-evil"),
@@ -203,7 +207,8 @@ const MILESTONE_FACTS = [
   {
     findStage: manifest => findStageById(manifest, "queen-bee"),
     items: ["Terraria/BeeWax"],
-    stations: ["Terraria/ImbuingStation"]
+    stations: ["Terraria/ImbuingStation"],
+    shops: ["Terraria/WitchDoctor"]
   },
   {
     findStage: manifest => findEventStage(manifest, "GoblinArmy"),
@@ -229,10 +234,17 @@ const MILESTONE_FACTS = [
       "Terraria/WaterBolt",
       "Terraria/Sunfury",
       "Terraria/Valor",
-      "Terraria/BewitchingTable"
+      "Terraria/BewitchingTable",
+      "Terraria/QuadBarrelShotgun",
+      "Terraria/CowboyHat",
+      "Terraria/WaterCandle"
     ],
-    enemies: ["Terraria/Clothier", "Terraria/DungeonGuardian"],
-    shops: ["Terraria/Clothier"]
+    enemies: [
+      "Terraria/Clothier",
+      "Terraria/DungeonGuardian",
+      "Terraria/DungeonSlime"
+    ],
+    shops: ["Terraria/Clothier", "Terraria/Mechanic"]
   },
   {
     findStage: manifest => findVanillaFlagStage(manifest, "hardMode", "wall-of-flesh"),
@@ -276,6 +288,9 @@ const MILESTONE_FACTS = [
       "Terraria/MagicQuiver",
       "Terraria/SpellTome",
       "Terraria/CharmofMyths",
+      "Terraria/PhilosophersStone",
+      "Terraria/FetidBaghnakhs",
+      "Terraria/DaedalusStormbow",
       "Terraria/StarVeil",
       "Terraria/BeeCloak",
       "Terraria/StarCloak",
@@ -285,6 +300,17 @@ const MILESTONE_FACTS = [
       "Terraria/CrystalBall"
       ,"Terraria/GreaterManaPotion"
       ,"Terraria/AncientBattleArmorMaterial"
+      ,"Terraria/EmptyBullet"
+      ,"Terraria/ExplosivePowder"
+      ,"Terraria/GoldDust"
+      ,"Terraria/CursedArrow"
+      ,"Terraria/CursedBullet"
+      ,"Terraria/CursedDart"
+      ,"Terraria/IchorArrow"
+      ,"Terraria/IchorBullet"
+      ,"Terraria/IchorDart"
+      ,"Terraria/ExplodingBullet"
+      ,"Terraria/GoldenBullet"
     ],
     enemies: [
       "Terraria/MossHornet",
@@ -294,10 +320,23 @@ const MILESTONE_FACTS = [
       "Terraria/RuneWizard",
       "Terraria/RainbowSlime",
       "Terraria/BigMimicJungle",
+      "Terraria/BigMimicCorruption",
+      "Terraria/BigMimicCrimson",
+      "Terraria/BigMimicHallow",
       "Terraria/GoblinSummoner",
+      "Terraria/SkeletonArcher",
       "Terraria/VampireBat",
       "Terraria/Wizard",
-      "Terraria/Truffle"
+      "Terraria/Truffle",
+      "Terraria/ZombieMushroom",
+      "Terraria/ZombieMushroomHat",
+      "Terraria/FungoFish",
+      "Terraria/AnomuraFungus",
+      "Terraria/MushiLadybug",
+      "Terraria/FungiBulb",
+      "Terraria/GiantFungiBulb",
+      "Terraria/SporeBat",
+      "Terraria/SporeSkeleton"
     ],
     shops: [
       "Terraria/Wizard",
@@ -365,14 +404,19 @@ const MILESTONE_FACTS = [
       "Terraria/MoonStone",
       "Terraria/InfernoFork",
       "Terraria/PhoenixBlaster",
-      "Terraria/ButterflyDust"
+      "Terraria/ButterflyDust",
+      "Terraria/VialofVenom",
+      "Terraria/Keybrand",
+      "Terraria/PulseBow",
+      "Terraria/RocketII"
     ],
     enemies: [
       "Terraria/Vampire",
       "Terraria/Reaper",
-      "Terraria/Psycho"
+      "Terraria/Psycho",
+      "Terraria/GiantCursedSkull"
     ],
-    shops: ["Terraria/Cyborg"]
+    shops: ["Terraria/Cyborg", "Terraria/Princess"]
   },
   {
     findStage: manifest => findEventStage(manifest, "PumpkinMoon"),
@@ -389,11 +433,24 @@ const MILESTONE_FACTS = [
       "Terraria/ElfMelter",
       "Terraria/Razorpine",
       "Terraria/SnowmanCannon"
+    ],
+    enemies: [
+      "Terraria/SnowmanGangsta",
+      "Terraria/MisterStabby",
+      "Terraria/SnowBalla",
+      "Terraria/PresentMimic",
+      "Terraria/Yeti",
+      "Terraria/ElfCopter",
+      "Terraria/Nutcracker",
+      "Terraria/NutcrackerSpinning",
+      "Terraria/Krampus",
+      "Terraria/Flocko"
     ]
   },
   {
     findStage: manifest => findVanillaFlagStage(manifest, "downedGolemBoss", "golem"),
     enemies: [
+      "Terraria/FlyingSnake",
       "Terraria/BrainScrambler",
       "Terraria/GigaZapper",
       "Terraria/GrayGrunt",
@@ -424,6 +481,12 @@ const START_SOURCES = [
   "Terraria/BlueJellyfish",
   "Terraria/GreenJellyfish",
   "Terraria/BoneSerpentHead",
+  "Terraria/Harpy",
+  "Terraria/Crawdad",
+  "Terraria/Crawdad2",
+  "Terraria/GiantShelly",
+  "Terraria/GiantShelly2",
+  "Terraria/GreekSkeleton",
   "Terraria/Demon",
   "Terraria/FireImp",
   "Terraria/Ghost",
@@ -452,7 +515,16 @@ const START_CONTAINERS = [
 ];
 
 const START_SHOPS = [
-  "Terraria/ArmsDealer"
+  "Terraria/ArmsDealer",
+  "Terraria/Merchant",
+  "Terraria/Demolitionist",
+  "Terraria/DyeTrader",
+  "Terraria/PartyGirl",
+  "Terraria/Painter",
+  "Terraria/Stylist",
+  "Terraria/Golfer",
+  "Terraria/BestiaryGirl",
+  "Terraria/SkeletonMerchant"
 ];
 
 export function applyVanillaSourceCatalog(sourceManifest) {
@@ -477,6 +549,14 @@ export function applyVanillaSourceCatalog(sourceManifest) {
     const stageId = fact.findStage(manifest);
     const stage = stages.get(stageId);
     if (!stage) continue;
+    manifest.itemStageFloors ??= {};
+    manifest.stationStageFloors ??= {};
+    for (const item of fact.items ?? []) {
+      manifest.itemStageFloors[item] ??= stageId;
+    }
+    for (const station of fact.stations ?? []) {
+      manifest.stationStageFloors[station] ??= stageId;
+    }
     stage.stations = unique([...(stage.stations ?? []), ...(fact.stations ?? [])]);
     stage.include = unique([...(stage.include ?? []), ...(fact.items ?? [])]);
     stage.enemies = unique([...(stage.enemies ?? []), ...(fact.enemies ?? [])]);

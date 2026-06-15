@@ -11,11 +11,11 @@
   "readOnly": true,
   "sourceUrl": "https://thoriummod.wiki.gg/wiki/Bosses",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-06-15T14:25:12.133Z",
+  "generatedAtUtc": "2026-06-15T14:58:59.445Z",
   "requiredMods": [
     {
       "name": "ThoriumMod",
-      "version": "1.7.2.5"
+      "version": "1.7.2.6"
     }
   ],
   "classes": [
@@ -1106,6 +1106,64 @@
       "eventIcon": "Terraria/LunarTowerSolar"
     },
     {
+      "key": "new.thoriummod.quasarsflare",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "QuasarsFlare",
+            "displayName": "Quasar's Flare"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "primordials",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.lingeringwill",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "LingeringWill",
+            "displayName": "Lingering Will"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.deitystrefork",
       "category": "Weapon",
       "classes": [
@@ -1732,6 +1790,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.emperorswill",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "EmperorsWill",
+            "displayName": "Emperor's Will"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "lunatic-cultist",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "Celestial Pillars",
+      "eventIcon": "Terraria/LunarTowerSolar"
+    },
+    {
       "key": "new.thoriummod.nebulareflection",
       "category": "Weapon",
       "classes": [
@@ -2316,6 +2403,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.callofcthulhu",
+      "category": "Weapon",
+      "classes": [
+        "bard"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "CallofCthulhu",
+            "displayName": "Call of Cthulhu"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "lunatic-cultist",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.holophonor",
       "category": "Weapon",
       "classes": [
@@ -2500,7 +2616,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -3301,7 +3417,36 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.hydropump",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "HydroPump",
+            "displayName": "Hydro Pump"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "forgotten-one",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -3472,7 +3617,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -3869,7 +4014,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -4337,6 +4482,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.thewhirlpool",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TheWhirlpool",
+            "displayName": "The Whirlpool"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "forgotten-one",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.voltmodule",
       "category": "Weapon",
       "classes": [
@@ -4495,7 +4669,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -4992,7 +5166,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -5118,6 +5292,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.spearmint",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "Spearmint",
+            "displayName": "Spearmint"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "golem",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.spectralblade",
       "category": "Weapon",
       "classes": [
@@ -5134,7 +5337,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -5244,6 +5447,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.geomancersbrush",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "GeomancersBrush",
+            "displayName": "Geomancer's Brush"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.trenchspitter",
       "category": "Weapon",
       "classes": [
@@ -5286,6 +5518,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.armorbane",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "ArmorBane",
+            "displayName": "Armor Bane"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "coznix",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.dreadrazor",
       "category": "Weapon",
       "classes": [
@@ -5302,7 +5563,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -5486,7 +5747,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -5754,6 +6015,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.bloodyhighclaws",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "BloodyHighClaws",
+            "displayName": "Bloody High Claw"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.charonsbeacon",
       "category": "Weapon",
       "classes": [
@@ -5828,7 +6118,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -5957,7 +6247,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -6422,6 +6712,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.corrodlingstaff",
+      "category": "Weapon",
+      "classes": [
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "CorrodlingStaff",
+            "displayName": "Corrodling Staff"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.hippocraticrossbow",
       "category": "Weapon",
       "classes": [
@@ -6696,7 +7015,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -6954,7 +7273,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -6983,7 +7302,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -7067,6 +7386,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.shadowflarebow",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "ShadowFlareBow",
+            "displayName": "Shadow-Flare Bow"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.soulcleaver",
       "category": "Weapon",
       "classes": [
@@ -7112,7 +7460,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "destroyer",
+          "stageId": "skeletron-prime",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -7238,7 +7586,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -7368,6 +7716,35 @@
       "evaluations": [
         {
           "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.scalper",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "Scalper",
+            "displayName": "Scalper"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "coznix",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -7538,7 +7915,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -8058,35 +8435,6 @@
       "eventIcon": ""
     },
     {
-      "key": "new.thoriummod.geomancersbrush",
-      "category": "Weapon",
-      "classes": [
-        "magic"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "GeomancersBrush",
-            "displayName": "Geomancer's Brush"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "wall-of-flesh",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
       "key": "new.thoriummod.glacialsting",
       "category": "Weapon",
       "classes": [
@@ -8442,6 +8790,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.theseamine",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TheSeaMine",
+            "displayName": "The Sea Mine"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "coznix",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.titanboomerang",
       "category": "Weapon",
       "classes": [
@@ -8584,6 +8961,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.waterwickcandle",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "WaterwickCandle",
+            "displayName": "Waterwick Candle"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.windchimes",
       "category": "Weapon",
       "classes": [
@@ -8714,6 +9120,36 @@
       "evaluations": [
         {
           "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.thrombosis",
+      "category": "Weapon",
+      "classes": [
+        "melee",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "Thrombosis",
+            "displayName": "Thrombosis"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -9068,6 +9504,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.blooddrinker",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "BloodDrinker",
+            "displayName": "Blood Drinker"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.cupidstring",
       "category": "Weapon",
       "classes": [
@@ -9142,7 +9607,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -9232,35 +9697,6 @@
           }
         }
       ],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
-      "key": "new.thoriummod.scalper",
-      "category": "Weapon",
-      "classes": [
-        "melee"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "Scalper",
-            "displayName": "Scalper"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "coznix",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -9374,6 +9810,35 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.chromaticfury",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "ChromaticFury",
+            "displayName": "Chromatic Fury"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "empress-of-light",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -9836,7 +10301,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -9949,7 +10414,8 @@
       "key": "new.thoriummod.tideturnerhelmet",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "thrower"
       ],
       "itemGroups": [
         [
@@ -10342,6 +10808,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.goldenlocks",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "GoldenLocks",
+            "displayName": "Golden Locks"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.handcannon",
       "category": "Weapon",
       "classes": [
@@ -10421,6 +10916,48 @@
       ],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.lifesurgestaff",
+      "category": "Weapon",
+      "classes": [
+        "healer"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "LifeSurgeStaff",
+            "displayName": "Life Surge Staff"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "skeletron-prime",
+          "classes": [
+            "healer"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Coznix",
+            "ru-RU": "Козникс"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -10613,7 +11150,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -11155,7 +11692,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "destroyer",
+          "stageId": "skeletron-prime",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -11345,6 +11882,35 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.snarkygun",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "SnarkyGun",
+            "displayName": "Snarky Gun"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -11981,7 +12547,7 @@
       "eventIcon": ""
     },
     {
-      "key": "new.thoriummod.rapier",
+      "key": "new.thoriummod.riflespear",
       "category": "Weapon",
       "classes": [
         "melee"
@@ -11990,14 +12556,14 @@
         [
           {
             "mod": "ThoriumMod",
-            "item": "Rapier",
-            "displayName": "Rapier"
+            "item": "RifleSpear",
+            "displayName": "Rifle Spear"
           }
         ]
       ],
       "evaluations": [
         {
-          "stageId": "coznix",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -12097,7 +12663,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "destroyer",
+          "stageId": "skeletron-prime",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -12762,7 +13328,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -13456,6 +14022,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.rapier",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "Rapier",
+            "displayName": "Rapier"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "coznix",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.scholarsharp",
       "category": "Weapon",
       "classes": [
@@ -13656,7 +14251,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -13728,35 +14323,6 @@
       "evaluations": [
         {
           "stageId": "plantera",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
-      "key": "new.thoriummod.armorbane",
-      "category": "Weapon",
-      "classes": [
-        "ranged"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "ArmorBane",
-            "displayName": "Armor Bane"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "coznix",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -13979,48 +14545,6 @@
       "eventIcon": ""
     },
     {
-      "key": "new.thoriummod.dynastywarfan",
-      "category": "Weapon",
-      "classes": [
-        "magic"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "DynastyWarFan",
-            "displayName": "Dynasty War Fan"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "wall-of-flesh",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [
-        {
-          "stageId": "wall-of-flesh",
-          "classes": [
-            "magic"
-          ],
-          "sourceName": "Official Thorium Mod Wiki",
-          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
-          "target": {
-            "en-US": "Borean Strider",
-            "ru-RU": "Бореанский странник"
-          }
-        }
-      ],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
       "key": "new.thoriummod.eternalnight",
       "category": "Weapon",
       "classes": [
@@ -14056,6 +14580,35 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.evisceratingclaw",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "EvisceratingClaw",
+            "displayName": "Eviscerating Claw"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -14599,7 +15152,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -14967,6 +15520,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.morelgrenade",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "MorelGrenade",
+            "displayName": "Morel Grenade"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.blobhorncoralstaff",
       "category": "Weapon",
       "classes": [
@@ -15096,7 +15678,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "buried-champion",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -15977,6 +16559,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.bulletstorm",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "BulletStorm",
+            "displayName": "Bullet Storm"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "coznix",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.chargedsplasher",
       "category": "Weapon",
       "classes": [
@@ -15993,12 +16604,54 @@
       ],
       "evaluations": [
         {
-          "stageId": "destroyer",
+          "stageId": "skeletron-prime",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
       "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.chum",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "Chum",
+            "displayName": "Chum"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "wall-of-flesh",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Borean Strider",
+            "ru-RU": "Бореанский странник"
+          }
+        }
+      ],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -16732,6 +17385,48 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.elephantgun",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "ElephantGun",
+            "displayName": "Elephant Gun"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "star-scouter",
+          "classes": [
+            "ranged"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Wall of Flesh",
+            "ru-RU": "Стена плоти"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.freezeray",
       "category": "Weapon",
       "classes": [
@@ -17352,7 +18047,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "buried-champion",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -17849,7 +18544,13 @@
       "key": "new.thoriummod.assassinsguard",
       "category": "Armor",
       "classes": [
-        "ranged"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
       ],
       "itemGroups": [
         [
@@ -18017,7 +18718,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "buried-champion",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -18036,35 +18737,6 @@
           }
         }
       ],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
-      "key": "new.thoriummod.bulletstorm",
-      "category": "Weapon",
-      "classes": [
-        "ranged"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "BulletStorm",
-            "displayName": "Bullet Storm"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "coznix",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -18136,6 +18808,48 @@
         }
       ],
       "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.fungalpopper",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "FungalPopper",
+            "displayName": "Fungal Popper"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "wall-of-flesh",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Borean Strider",
+            "ru-RU": "Бореанский странник"
+          }
+        }
+      ],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -19185,7 +19899,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -19427,6 +20141,48 @@
           "stageId": "star-scouter",
           "classes": [
             "healer"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Wall of Flesh",
+            "ru-RU": "Стена плоти"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.marinelauncher",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "MarineLauncher",
+            "displayName": "Marine Launcher"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "star-scouter",
+          "classes": [
+            "ranged"
           ],
           "sourceName": "Official Thorium Mod Wiki",
           "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
@@ -20103,7 +20859,13 @@
       "key": "new.thoriummod.titanhelmet",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
       ],
       "itemGroups": [
         [
@@ -20172,48 +20934,6 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
-      "key": "new.thoriummod.twilightstaff",
-      "category": "Weapon",
-      "classes": [
-        "healer"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "TwilightStaff",
-            "displayName": "Twilight Staff"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "wall-of-flesh",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [
-        {
-          "stageId": "borean-strider",
-          "classes": [
-            "healer"
-          ],
-          "sourceName": "Official Thorium Mod Wiki",
-          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
-          "target": {
-            "en-US": "Mechanical Bosses",
-            "ru-RU": "Механические боссы"
-          }
-        }
-      ],
-      "fishingSources": [],
-      "isSupportWeapon": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -20432,7 +21152,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -20587,7 +21307,13 @@
       "key": "new.thoriummod.assassinswalkers",
       "category": "Armor",
       "classes": [
-        "ranged"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
       ],
       "itemGroups": [
         [
@@ -20909,7 +21635,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -20951,7 +21677,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -21009,6 +21735,48 @@
           "target": {
             "en-US": "Skeletron",
             "ru-RU": "Скелетрон"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.dynastywarfan",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "DynastyWarFan",
+            "displayName": "Dynasty War Fan"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "wall-of-flesh",
+          "classes": [
+            "magic"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Borean Strider",
+            "ru-RU": "Бореанский странник"
           }
         }
       ],
@@ -21403,7 +22171,13 @@
       "key": "new.thoriummod.lodestonechestguard",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
       ],
       "itemGroups": [
         [
@@ -21734,7 +22508,7 @@
       ],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
+      "eventCategory": "BloodMoon",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -21797,7 +22571,7 @@
       "key": "new.thoriummod.rodofflocking",
       "category": "Weapon",
       "classes": [
-        "summoner"
+        "magic"
       ],
       "itemGroups": [
         [
@@ -22346,6 +23120,7 @@
       "key": "new.thoriummod.tideturnersgaze",
       "category": "Armor",
       "classes": [
+        "melee",
         "thrower"
       ],
       "itemGroups": [
@@ -22500,6 +23275,48 @@
           "target": {
             "en-US": "Grand Thunder Bird",
             "ru-RU": "Великая громовая птица"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.bagpipe",
+      "category": "Weapon",
+      "classes": [
+        "bard"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "Bagpipe",
+            "displayName": "Bagpipe"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "wall-of-flesh",
+          "classes": [
+            "bard"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Borean Strider",
+            "ru-RU": "Бореанский странник"
           }
         }
       ],
@@ -22912,7 +23729,7 @@
       ],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": "FrostMoon",
+      "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
     },
@@ -22954,7 +23771,7 @@
       ],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": "FrostMoon",
+      "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
     },
@@ -23033,7 +23850,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -23075,7 +23892,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -23272,48 +24089,6 @@
       "eventIcon": ""
     },
     {
-      "key": "new.thoriummod.harpytalon",
-      "category": "Weapon",
-      "classes": [
-        "melee"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "HarpyTalon",
-            "displayName": "Harpy Talon"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "start",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [
-        {
-          "stageId": "eye-of-cthulhu",
-          "classes": [
-            "melee"
-          ],
-          "sourceName": "Official Thorium Mod Wiki",
-          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
-          "target": {
-            "en-US": "World Evil",
-            "ru-RU": "Зло мира"
-          }
-        }
-      ],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
       "key": "new.thoriummod.harpiesbarrage",
       "category": "Weapon",
       "classes": [
@@ -23401,6 +24176,12 @@
       "key": "new.thoriummod.lichcarapace",
       "category": "Armor",
       "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
         "thrower"
       ],
       "itemGroups": [
@@ -23514,7 +24295,13 @@
       "key": "new.thoriummod.lodestoneshinguards",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
       ],
       "itemGroups": [
         [
@@ -24030,6 +24817,48 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.twilightstaff",
+      "category": "Weapon",
+      "classes": [
+        "healer"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TwilightStaff",
+            "displayName": "Twilight Staff"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "borean-strider",
+          "classes": [
+            "healer"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Mechanical Bosses",
+            "ru-RU": "Механические боссы"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": true,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.sawbladeichor",
       "category": "Ammunition",
       "classes": [
@@ -24091,6 +24920,48 @@
           "target": {
             "en-US": "Grand Thunder Bird",
             "ru-RU": "Великая громовая птица"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.whirlpoolsaber",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "WhirlpoolSaber",
+            "displayName": "Whirlpool Saber"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "buried-champion",
+          "classes": [
+            "melee"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Skeletron",
+            "ru-RU": "Скелетрон"
           }
         }
       ],
@@ -25067,7 +25938,7 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
+      "eventCategory": "BloodMoon",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -25193,7 +26064,7 @@
       ],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": "FrostMoon",
+      "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
     },
@@ -25369,7 +26240,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "buried-champion",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -25524,7 +26395,13 @@
       "key": "new.thoriummod.lodestonefaceguard",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
       ],
       "itemGroups": [
         [
@@ -25595,7 +26472,8 @@
       "key": "new.thoriummod.pyromancercowl",
       "category": "Armor",
       "classes": [
-        "magic"
+        "magic",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -26040,6 +26918,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.eelrod",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "Eelrod",
+            "displayName": "Eel-rod"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.geodechestplate",
       "category": "Armor",
       "classes": [
@@ -26291,7 +27198,13 @@
       "key": "new.thoriummod.valadiumbreastplate",
       "category": "Armor",
       "classes": [
-        "ranged"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
       ],
       "itemGroups": [
         [
@@ -26597,48 +27510,6 @@
       "eventIcon": ""
     },
     {
-      "key": "new.thoriummod.crimsonscythe",
-      "category": "Weapon",
-      "classes": [
-        "healer"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "CrimsonScythe",
-            "displayName": "Crimson Scythe"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "eye-of-cthulhu",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [
-        {
-          "stageId": "eye-of-cthulhu",
-          "classes": [
-            "healer"
-          ],
-          "sourceName": "Official Thorium Mod Wiki",
-          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
-          "target": {
-            "en-US": "World Evil",
-            "ru-RU": "Зло мира"
-          }
-        }
-      ],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
       "key": "new.thoriummod.crystalarrow",
       "category": "Ammunition",
       "classes": [
@@ -26881,6 +27752,48 @@
           "target": {
             "en-US": "World Evil",
             "ru-RU": "Зло мира"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.fungusguard",
+      "category": "Armor",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "FungusGuard",
+            "displayName": "Fungus Guard"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "wall-of-flesh",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Borean Strider",
+            "ru-RU": "Бореанский странник"
           }
         }
       ],
@@ -27146,6 +28059,12 @@
       "key": "new.thoriummod.lichtalon",
       "category": "Armor",
       "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
         "thrower"
       ],
       "itemGroups": [
@@ -27343,7 +28262,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -27588,6 +28507,35 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.theblender",
+      "category": "Weapon",
+      "classes": [
+        "healer"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TheBlender",
+            "displayName": "The Blender"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -27955,7 +28903,7 @@
       "eventIcon": ""
     },
     {
-      "key": "new.thoriummod.darkscythe",
+      "key": "new.thoriummod.downwardspiral",
       "category": "Weapon",
       "classes": [
         "healer"
@@ -27964,8 +28912,8 @@
         [
           {
             "mod": "ThoriumMod",
-            "item": "DarkScythe",
-            "displayName": "Dark Scythe"
+            "item": "DownwardSpiral",
+            "displayName": "Downward Spiral"
           }
         ]
       ],
@@ -27976,20 +28924,7 @@
           "scope": "StageOnly"
         }
       ],
-      "wiki": [
-        {
-          "stageId": "eye-of-cthulhu",
-          "classes": [
-            "healer"
-          ],
-          "sourceName": "Official Thorium Mod Wiki",
-          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
-          "target": {
-            "en-US": "World Evil",
-            "ru-RU": "Зло мира"
-          }
-        }
-      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -28273,7 +29208,13 @@
       "key": "new.thoriummod.valadiumgreaves",
       "category": "Armor",
       "classes": [
-        "ranged"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
       ],
       "itemGroups": [
         [
@@ -28673,6 +29614,48 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.coralpurifier",
+      "category": "Weapon",
+      "classes": [
+        "healer"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "CoralPurifier",
+            "displayName": "Coral Purifier"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "start",
+          "classes": [
+            "healer"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Grand Thunder Bird",
+            "ru-RU": "Великая громовая птица"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": true,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.dissolve",
       "category": "Weapon",
       "classes": [
@@ -28903,6 +29886,48 @@
         }
       ],
       "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.fungusleggings",
+      "category": "Armor",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "FungusLeggings",
+            "displayName": "Fungus Leggings"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "wall-of-flesh",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Borean Strider",
+            "ru-RU": "Бореанский странник"
+          }
+        }
+      ],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -29180,6 +30205,12 @@
       "key": "new.thoriummod.lichcowl",
       "category": "Armor",
       "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
         "thrower"
       ],
       "itemGroups": [
@@ -29527,7 +30558,7 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
+      "eventCategory": "BloodMoon",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -30188,7 +31219,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -30230,7 +31261,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -30323,7 +31354,13 @@
       "key": "new.thoriummod.valadiumhelmet",
       "category": "Armor",
       "classes": [
-        "ranged"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
       ],
       "itemGroups": [
         [
@@ -30352,6 +31389,12 @@
       "key": "new.thoriummod.ancienthallowedguise",
       "category": "Armor",
       "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
         "thrower"
       ],
       "itemGroups": [
@@ -30394,7 +31437,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "buried-champion",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -30657,6 +31700,48 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.fungushat",
+      "category": "Armor",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "FungusHat",
+            "displayName": "Fungus Cap"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "wall-of-flesh",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Borean Strider",
+            "ru-RU": "Бореанский странник"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.hallowedguise",
       "category": "Armor",
       "classes": [
@@ -30715,7 +31800,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -30799,7 +31884,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -31290,7 +32375,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "buried-champion",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -31661,7 +32746,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -32058,7 +33143,13 @@
       "key": "new.thoriummod.ancienthallowedchapeau",
       "category": "Armor",
       "classes": [
-        "bard"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
       ],
       "itemGroups": [
         [
@@ -32129,7 +33220,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "buried-champion",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -33076,6 +34167,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.liltorpedo",
+      "category": "Ammunition",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "LilTorpedo",
+            "displayName": "Lil' Torpedo"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.nobleshat",
       "category": "Armor",
       "classes": [
@@ -33591,6 +34711,48 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.coralgreaves",
+      "category": "Armor",
+      "classes": [
+        "healer"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "CoralGreaves",
+            "displayName": "Coral Greaves"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "start",
+          "classes": [
+            "healer"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Grand Thunder Bird",
+            "ru-RU": "Великая громовая птица"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.eboncloak",
       "category": "Armor",
       "classes": [
@@ -33692,7 +34854,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -34223,48 +35385,6 @@
           "target": {
             "en-US": "Queen Bee",
             "ru-RU": "Королева пчёл"
-          }
-        }
-      ],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
-      "key": "new.thoriummod.coralgreaves",
-      "category": "Armor",
-      "classes": [
-        "healer"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "CoralGreaves",
-            "displayName": "Coral Greaves"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "start",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [
-        {
-          "stageId": "start",
-          "classes": [
-            "healer"
-          ],
-          "sourceName": "Official Thorium Mod Wiki",
-          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
-          "target": {
-            "en-US": "Grand Thunder Bird",
-            "ru-RU": "Великая громовая птица"
           }
         }
       ],
@@ -35340,7 +36460,7 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
+      "eventCategory": "BloodMoon",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -35595,69 +36715,41 @@
       "eventIcon": ""
     },
     {
-      "key": "new.thoriummod.apothecaryscyanvial",
+      "key": "new.thoriummod.ancientaegis",
       "category": "Accessory",
       "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
+        "healer"
       ],
       "itemGroups": [
         [
           {
             "mod": "ThoriumMod",
-            "item": "ApothecarysCyanVial",
-            "displayName": "Apothecary's Cyan Vial"
+            "item": "AncientAegis",
+            "displayName": "Ancient Aegis"
           }
         ]
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
-      "key": "new.thoriummod.apothecarysscarletvial",
-      "category": "Accessory",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "ApothecarysScarletVial",
-            "displayName": "Apothecary's Scarlet Vial"
-          }
-        ]
-      ],
-      "evaluations": [
+      "wiki": [
         {
-          "stageId": "wall-of-flesh",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
+          "stageId": "star-scouter",
+          "classes": [
+            "healer"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Wall of Flesh",
+            "ru-RU": "Стена плоти"
+          }
         }
       ],
-      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -36396,60 +37488,6 @@
       "eventIcon": ""
     },
     {
-      "key": "new.thoriummod.beltofthequickresponse",
-      "category": "Accessory",
-      "classes": [
-        "healer"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "BeltoftheQuickResponse",
-            "displayName": "Belt of the Quick Response"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "start",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [
-        {
-          "stageId": "eye-of-cthulhu",
-          "classes": [
-            "healer"
-          ],
-          "sourceName": "Official Thorium Mod Wiki",
-          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
-          "target": {
-            "en-US": "World Evil",
-            "ru-RU": "Зло мира"
-          }
-        },
-        {
-          "stageId": "world-evil",
-          "classes": [
-            "healer"
-          ],
-          "sourceName": "Official Thorium Mod Wiki",
-          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
-          "target": {
-            "en-US": "Queen Bee",
-            "ru-RU": "Королева пчёл"
-          }
-        }
-      ],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
       "key": "new.thoriummod.blacksmithsbarrier",
       "category": "Accessory",
       "classes": [
@@ -36840,7 +37878,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "buried-champion",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -36883,41 +37921,6 @@
       "evaluations": [
         {
           "stageId": "plantera",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
-      "key": "new.thoriummod.campinggear",
-      "category": "Accessory",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "CampingGear",
-            "displayName": "Camping Gear"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -37499,48 +38502,6 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
-      "key": "new.thoriummod.coralpurifier",
-      "category": "Support",
-      "classes": [
-        "healer"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "CoralPurifier",
-            "displayName": "Coral Purifier"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "start",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [
-        {
-          "stageId": "start",
-          "classes": [
-            "healer"
-          ],
-          "sourceName": "Official Thorium Mod Wiki",
-          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
-          "target": {
-            "en-US": "Grand Thunder Bird",
-            "ru-RU": "Великая громовая птица"
-          }
-        }
-      ],
-      "fishingSources": [],
-      "isSupportWeapon": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -38408,7 +39369,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -38463,41 +39424,6 @@
       "eventIcon": ""
     },
     {
-      "key": "new.thoriummod.desertacolytecloak",
-      "category": "Accessory",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "DesertAcolyteCloak",
-            "displayName": "Desert Acolyte's Cloak"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "grand-thunder-bird",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
       "key": "new.thoriummod.devilssubwoofer",
       "category": "Accessory",
       "classes": [
@@ -38524,48 +39450,6 @@
           "stageId": "star-scouter",
           "classes": [
             "bard"
-          ],
-          "sourceName": "Official Thorium Mod Wiki",
-          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
-          "target": {
-            "en-US": "Wall of Flesh",
-            "ru-RU": "Стена плоти"
-          }
-        }
-      ],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
-      "key": "new.thoriummod.dewcollector",
-      "category": "Accessory",
-      "classes": [
-        "healer"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "DewCollector",
-            "displayName": "Dew Collector"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "start",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [
-        {
-          "stageId": "star-scouter",
-          "classes": [
-            "healer"
           ],
           "sourceName": "Official Thorium Mod Wiki",
           "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
@@ -38919,7 +39803,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -39115,41 +39999,6 @@
       "evaluations": [
         {
           "stageId": "start",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
-      "key": "new.thoriummod.druidcloak",
-      "category": "Accessory",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "DruidCloak",
-            "displayName": "Druid's Cloak"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "world-evil",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -39888,7 +40737,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -41021,41 +41870,6 @@
       "eventIcon": ""
     },
     {
-      "key": "new.thoriummod.hokegarb",
-      "category": "Accessory",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "HokeGarb",
-            "displayName": "Hoke's Garb"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "skeletron",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
       "key": "new.thoriummod.hollowring",
       "category": "Accessory",
       "classes": [
@@ -41315,7 +42129,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "coznix",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -41351,6 +42165,41 @@
       "evaluations": [
         {
           "stageId": "borean-strider",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.incandescentalacrity",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "IncandescentAlacrity",
+            "displayName": "Incandescent Alacrity"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -41585,7 +42434,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -41948,41 +42797,6 @@
       "eventIcon": ""
     },
     {
-      "key": "new.thoriummod.leatherglove",
-      "category": "Accessory",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "LeatherGlove",
-            "displayName": "Leather Glove"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "start",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
       "key": "new.thoriummod.leathersheath",
       "category": "Accessory",
       "classes": [
@@ -42323,48 +43137,6 @@
       "eventIcon": ""
     },
     {
-      "key": "new.thoriummod.lifesurgestaff",
-      "category": "Support",
-      "classes": [
-        "healer"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "LifeSurgeStaff",
-            "displayName": "Life Surge Staff"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "destroyer",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [
-        {
-          "stageId": "skeletron-prime",
-          "classes": [
-            "healer"
-          ],
-          "sourceName": "Official Thorium Mod Wiki",
-          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
-          "target": {
-            "en-US": "Coznix",
-            "ru-RU": "Козникс"
-          }
-        }
-      ],
-      "fishingSources": [],
-      "isSupportWeapon": true,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
       "key": "new.thoriummod.lifesgift",
       "category": "Support",
       "classes": [
@@ -42423,7 +43195,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -42881,7 +43653,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -42985,7 +43757,7 @@
       ],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
+      "eventCategory": "BloodMoon",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -43025,6 +43797,41 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.metabolicpills",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "MetabolicPills",
+            "displayName": "Metabolic Pills"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -43685,7 +44492,13 @@
       "key": "new.thoriummod.necroticskull",
       "category": "Accessory",
       "classes": [
-        "summoner"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
       ],
       "itemGroups": [
         [
@@ -43698,27 +44511,56 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.necroticstaff",
+      "category": "Support",
+      "classes": [
+        "healer"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "NecroticStaff",
+            "displayName": "Necrotic Staff"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
       "wiki": [
         {
-          "stageId": "star-scouter",
+          "stageId": "wall-of-flesh",
           "classes": [
-            "summoner"
+            "healer"
           ],
           "sourceName": "Official Thorium Mod Wiki",
           "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
           "target": {
-            "en-US": "Wall of Flesh",
-            "ru-RU": "Стена плоти"
+            "en-US": "Borean Strider",
+            "ru-RU": "Бореанский странник"
           }
         }
       ],
       "fishingSources": [],
-      "isSupportWeapon": false,
+      "isSupportWeapon": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -44097,6 +44939,48 @@
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": "OldOnesArmy",
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.olympictorch",
+      "category": "Accessory",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "OlympicTorch",
+            "displayName": "Olympic Torch"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "star-scouter",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Wall of Flesh",
+            "ru-RU": "Стена плоти"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
     },
@@ -45364,7 +46248,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "buried-champion",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -46018,6 +46902,41 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.serpentshield",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "SerpentShield",
+            "displayName": "Serpent Shield"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "golem",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.serpentsbubblewand",
       "category": "Support",
       "classes": [
@@ -46490,7 +47409,13 @@
       "key": "new.thoriummod.soulstone",
       "category": "Accessory",
       "classes": [
-        "summoner"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
       ],
       "itemGroups": [
         [
@@ -46503,25 +47428,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "eye-of-cthulhu",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [
-        {
-          "stageId": "eye-of-cthulhu",
-          "classes": [
-            "summoner"
-          ],
-          "sourceName": "Official Thorium Mod Wiki",
-          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
-          "target": {
-            "en-US": "World Evil",
-            "ru-RU": "Зло мира"
-          }
-        }
-      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -46878,7 +47790,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "destroyer",
+          "stageId": "skeletron-prime",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -47080,48 +47992,6 @@
         }
       ],
       "wiki": [],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
-      "key": "new.thoriummod.supportsash",
-      "category": "Accessory",
-      "classes": [
-        "healer"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "SupportSash",
-            "displayName": "Support Sash"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "wall-of-flesh",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [
-        {
-          "stageId": "wall-of-flesh",
-          "classes": [
-            "healer"
-          ],
-          "sourceName": "Official Thorium Mod Wiki",
-          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
-          "target": {
-            "en-US": "Borean Strider",
-            "ru-RU": "Бореанский странник"
-          }
-        }
-      ],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -47517,7 +48387,7 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
+      "eventCategory": "BloodMoon",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -47831,6 +48701,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.thoriumwand",
+      "category": "Support",
+      "classes": [
+        "healer"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "ThoriumWand",
+            "displayName": "Thorium Wand"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.thumbring",
       "category": "Accessory",
       "classes": [
@@ -48059,48 +48958,6 @@
           "target": {
             "en-US": "Grand Thunder Bird",
             "ru-RU": "Великая громовая птица"
-          }
-        }
-      ],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
-      "key": "new.thoriummod.musicplayernotactivated",
-      "category": "Accessory",
-      "classes": [
-        "bard"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "MusicPlayerNotActivated",
-            "displayName": "Track Player"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "star-scouter",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [
-        {
-          "stageId": "star-scouter",
-          "classes": [
-            "bard"
-          ],
-          "sourceName": "Official Thorium Mod Wiki",
-          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
-          "target": {
-            "en-US": "Wall of Flesh",
-            "ru-RU": "Стена плоти"
           }
         }
       ],
@@ -48903,7 +49760,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -49526,6 +50383,29 @@
       ]
     },
     {
+      "key": "new.thoriummod.stackofpancakes",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "king-slime",
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "StackofPancakes",
+            "displayName": "Stack of Pancakes"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.thoriummod.cherrypie",
       "category": "Food",
       "classes": [
@@ -49549,7 +50429,7 @@
       ]
     },
     {
-      "key": "new.thoriummod.stackofpancakes",
+      "key": "new.thoriummod.carrotcookie",
       "category": "Food",
       "classes": [
         "melee",
@@ -49565,8 +50445,8 @@
         [
           {
             "mod": "ThoriumMod",
-            "item": "StackofPancakes",
-            "displayName": "Stack of Pancakes"
+            "item": "CarrotCookie",
+            "displayName": "Carrot Cookie"
           }
         ]
       ]
@@ -49613,29 +50493,6 @@
             "mod": "ThoriumMod",
             "item": "HamandCheeseMelt",
             "displayName": "Ham and Cheese Melt"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.thoriummod.carrotcookie",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "king-slime",
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "CarrotCookie",
-            "displayName": "Carrot Cookie"
           }
         ]
       ]
@@ -50278,6 +51135,23 @@
       ]
     },
     {
+      "key": "new.thoriummod.gorgoncoatingitem",
+      "category": "Potion",
+      "classes": [
+        "thrower"
+      ],
+      "stageId": "skeletron",
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "GorgonCoatingItem",
+            "displayName": "Gorgon Coating"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.thoriummod.midnightoil",
       "category": "Basic",
       "classes": [
@@ -50296,23 +51170,6 @@
             "mod": "ThoriumMod",
             "item": "MidnightOil",
             "displayName": "Midnight Oil"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.thoriummod.gorgoncoatingitem",
-      "category": "Potion",
-      "classes": [
-        "thrower"
-      ],
-      "stageId": "buried-champion",
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "GorgonCoatingItem",
-            "displayName": "Gorgon Coating"
           }
         ]
       ]

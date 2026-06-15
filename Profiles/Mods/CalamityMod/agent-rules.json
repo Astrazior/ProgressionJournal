@@ -1476,6 +1476,61 @@
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
       "reason": "The official Exhumed upgrade table converts their base items through Calamitas's post-boss enchantment service."
+    },
+    {
+      "id": "sunken-sea-base-enemies",
+      "kind": "source-stage",
+      "source": "CalamityMod/GhostBell",
+      "stageId": "start",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/SunkenSea/GhostBell.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "Ghost Bell spawns from the start in Sunken Sea water; its Voltaic Jelly drop remains gated by the Desert Scourge condition."
+    },
+    {
+      "id": "post-polterghast-reaper-shark-loot",
+      "kind": "source-stage",
+      "source": "CalamityMod/ReaperShark",
+      "stageId": "polterghast",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Abyss/ReaperShark.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "The official Reaper Shark loot table places Reaper Tooth, Deep Sea Dumbbell and Valediction in its post-Polterghast conditional drop set."
+    },
+    {
+      "id": "remaining-conditional-enemy-sources",
+      "kind": "source-stage",
+      "sources": [
+        "CalamityMod/ColossalSquid"
+      ],
+      "stageId": "polterghast",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Abyss/ColossalSquid.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "Calamaris' Lament is emitted from the Colossal Squid's post-Polterghast conditional drop set."
+    },
+    {
+      "id": "post-providence-scryllar-sources",
+      "kind": "source-stage",
+      "sources": [
+        "CalamityMod/Scryllar",
+        "CalamityMod/ScryllarRage"
+      ],
+      "stageId": "providence",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Crags/Scryllar.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "Guidelight of Oblivion is in the Scryllar post-Providence conditional drop set."
+    },
+    {
+      "id": "post-aquatic-scourge-acid-eel-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/AcidEel",
+      "stageId": "aquatic-scourge",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AcidRain/AcidEel.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "The Acid Eel upgrades after Aquatic Scourge and its Slithering Eels drop uses that same progression condition."
     }
   ],
   "ignoredItems": [

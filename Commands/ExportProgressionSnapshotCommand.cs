@@ -124,6 +124,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         }
 
         return result.Values
+            .Where(static mod => !mod.Name.Equals("ModLoader", StringComparison.OrdinalIgnoreCase))
             .OrderBy(static mod => mod.Name, StringComparer.OrdinalIgnoreCase)
             .ToArray();
     }

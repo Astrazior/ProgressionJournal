@@ -540,10 +540,31 @@ public sealed class JournalUiState : UIState
         panel.Width.Set(0f, 1f);
 
         var top = JournalUiMetrics.BlockVerticalPadding;
-        top = AppendCenteredTextLines(
-            panel,
-            [$"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSource")}: {Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemFromAnyEnemy")}"],
-            top);
+        var isGlobalDrop = IsGlobalNpcDropGroup(drops);
+        if (isGlobalDrop)
+        {
+            top = AppendCenteredTextLines(
+                panel,
+                [$"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSource")}: {Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemFromAnyEnemy")}"],
+                top);
+        }
+        else
+        {
+            top = AppendCenteredTextLines(
+                panel,
+                [Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSource")],
+                top);
+            top = AppendCenteredTokenRows(
+                panel,
+                drops
+                    .Select(static drop => new JournalSourceTokenData(
+                        JournalSourceTokenKind.Npc,
+                        drop.SourceNpcType!.Value,
+                        drop.SourceName))
+                    .Distinct()
+                    .ToArray(),
+                top + 6f);
+        }
 
         var npcTypes = drops
             .Select(static drop => drop.SourceNpcType)
@@ -782,19 +803,31 @@ public sealed class JournalUiState : UIState
                 Conditions = CreateConditionGroupSignature(drop.Conditions),
                 IsNpcSource = drop is { SourceNpcType: not null, SourceItemId: null }
             })
-            .Select(static group =>
+            .SelectMany(static group =>
             {
                 var groupedDrops = group.ToArray();
                 var isBossBagGroup = groupedDrops.All(static drop =>
                     drop.SourceItemId is { } itemId and >= 0
                     && itemId < ItemID.Sets.BossBag.Length
                     && ItemID.Sets.BossBag[itemId]);
-                return groupedDrops.Length >= 4 && (group.Key.IsNpcSource || isBossBagGroup)
-                    ? (IReadOnlyList<JournalDropSource>)groupedDrops
-                    : [groupedDrops[0]];
+                if ((group.Key.IsNpcSource && groupedDrops.Length >= 2)
+                    || (isBossBagGroup && groupedDrops.Length >= 4))
+                {
+                    return [(IReadOnlyList<JournalDropSource>)groupedDrops];
+                }
+
+                return groupedDrops.Select(static drop =>
+                    (IReadOnlyList<JournalDropSource>)[drop]);
             })
             .ToArray();
     }
+
+    private static bool IsGlobalNpcDropGroup(IReadOnlyList<JournalDropSource> drops) =>
+        drops
+            .Select(static drop => drop.SourceNpcType)
+            .Where(static npcType => npcType.HasValue)
+            .Distinct()
+            .Count() == NPCLoader.NPCCount;
 
     private float AppendConditionContent(UIElement parent, IReadOnlyList<string> conditions, float top)
     {

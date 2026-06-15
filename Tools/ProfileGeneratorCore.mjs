@@ -437,7 +437,10 @@ function conditionMatchesUnlockRule(condition, rule) {
 }
 
 function normalizeConditionText(value) {
-  return (value ?? "").trim().toLocaleLowerCase();
+  return (value ?? "")
+    .trim()
+    .replace(/^(?:items|предметы)\s*:\s*/iu, "")
+    .toLocaleLowerCase();
 }
 
 function classifyItem(item, manifest, report, context) {
@@ -592,12 +595,24 @@ function conditionHasAssignment(condition, sourceKind, source, manifest) {
 }
 
 function isProgressionNeutralCondition(condition) {
+  if (condition.type === "Terraria.Condition") {
+    const description = normalizeConditionText(condition.description);
+    if (/^between \d/u.test(description)
+        || /^player is in /u.test(description)
+        || /^world (?:with|has) /u.test(description)
+        || /^мир с /u.test(description)
+        || /^enabled in .* configuration$/u.test(description)) {
+      return true;
+    }
+  }
   return new Set([
     "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
     "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
     "Terraria.GameContent.ItemDropRules.Conditions+IsMasterMode",
     "Terraria.GameContent.ItemDropRules.Conditions+NotMasterMode",
-    "Terraria.GameContent.ItemDropRules.Conditions+LegacyHack_IsBossAndNotExpert"
+    "Terraria.GameContent.ItemDropRules.Conditions+LegacyHack_IsBossAndNotExpert",
+    "Terraria.GameContent.ItemDropRules.Conditions+IsBloodMoonAndNotFromStatue",
+    "Terraria.GameContent.ItemDropRules.Conditions+NotFromStatue"
   ]).has(condition.type);
 }
 

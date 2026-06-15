@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { normalizeAgentRules } from "./BuildModProfiles.mjs";
-import { readJson } from "./ProfileGeneratorCore.mjs";
+import { generateProfile, readJson } from "./ProfileGeneratorCore.mjs";
 import { applyVanillaSourceCatalog } from "./VanillaSourceCatalog.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
@@ -198,8 +198,13 @@ const vanillaSources = applyVanillaSourceCatalog({
 assert(vanillaSources.initialStations.includes("Terraria/DemonAltar"));
 assert(vanillaSources.initialStations.includes("Terraria/Hellforge"));
 assert(vanillaSources.initialItems.includes("Terraria/PinkGel"));
+assert(vanillaSources.initialItems.includes("Terraria/JungleRose"));
 assert(vanillaSources.stages.find(stage => stage.id === "start")
   .shops.includes("Terraria/ArmsDealer"));
+assert(vanillaSources.stages.find(stage => stage.id === "start")
+  .shops.includes("Terraria/SkeletonMerchant"));
+assert(vanillaSources.stages.find(stage => stage.id === "start")
+  .enemies.includes("Terraria/Harpy"));
 assert(vanillaSources.stages.find(stage => stage.id === "goblin-stage")
   .include.includes("Terraria/TinkerersWorkshop"));
 assert(vanillaSources.stages.find(stage => stage.id === "dungeon")
@@ -214,6 +219,83 @@ assert(vanillaSources.stages.find(stage => stage.id === "plantera")
   .shops.includes("Terraria/Cyborg"));
 assert(vanillaSources.stages.find(stage => stage.id === "world-evil")
   .include.includes("Terraria/MeteoriteBar"));
+assert.equal(vanillaSources.itemStageFloors["Terraria/MeteoriteBar"], "world-evil");
+assert.equal(vanillaSources.stationStageFloors["Terraria/AlchemyTable"], "dungeon");
+
+const prefixedConditionSnapshot = {
+  format: "ProgressionJournalSnapshot",
+  version: 2,
+  items: [{
+    id: "Test/ConditionWeapon",
+    name: "Condition Weapon",
+    damageClass: "Magic",
+    damage: 10,
+    defense: 0,
+    headSlot: -1,
+    bodySlot: -1,
+    legSlot: -1,
+    accessory: false,
+    vanity: false,
+    ammo: 0,
+    useAmmo: 0,
+    buffType: 0,
+    buffTime: 0,
+    consumable: false,
+    potion: false,
+    healLife: 0,
+    healMana: 0,
+    food: false,
+    flask: false,
+    maxStack: 1,
+    createTile: -1,
+    placedTile: "",
+    createWall: -1,
+    pick: 0,
+    axe: 0,
+    hammer: 0,
+    mountType: -1,
+    shoot: 1,
+    sentry: false,
+    sourceNamespace: "",
+    classEffects: []
+  }],
+  npcs: [],
+  recipes: [],
+  shops: [],
+  drops: [{
+    sourceType: "npc",
+    source: "Terraria/Harpy",
+    item: "Test/ConditionWeapon",
+    rate: 1,
+    stackMin: 1,
+    stackMax: 1,
+    conditions: [{
+      type: "Test.Condition",
+      description: "Предметы: After defeating the Eye of Cthulhu"
+    }]
+  }]
+};
+const prefixedConditionSupport = {
+  id: "test.conditions",
+  contentMods: ["Test"],
+  classes: [{ id: "magic", damageClassNames: ["Magic"] }],
+  conditionUnlocks: [{
+    stageId: "eye",
+    sources: ["drop"],
+    conditionDescriptions: ["After defeating the Eye of Cthulhu"]
+  }],
+  stages: [
+    { id: "start", unlock: { type: "always" } },
+    { id: "eye", unlock: { type: "vanilla-flag", key: "downedBoss1" } }
+  ]
+};
+const prefixedConditionResult = generateProfile(
+  prefixedConditionSnapshot,
+  prefixedConditionSupport);
+assert.equal(
+  prefixedConditionResult.report.paths["Test/ConditionWeapon"]?.stage,
+  "eye",
+  "localized item-condition prefixes must not break stage matching");
 
 const ignore = fs.readFileSync(path.join(root, "build.txt"), "utf8");
 for (const name of requiredFiles.filter(name => name !== "profile.json")) {
@@ -236,6 +318,7 @@ const builder = fs.readFileSync(path.join(root, "Tools", "BuildModProfiles.mjs")
 assert(exporter.includes('public override string Usage => "/pjexport <InternalModName>"'));
 assert(exporter.includes('Path.Combine(directory, "snapshot.json")'));
 assert(exporter.includes("ResolveTransitiveDependencies(targetMod)"));
+assert(exporter.includes('!mod.Name.Equals("ModLoader"'));
 assert(builder.includes("rule.sources ?? (rule.source ? [rule.source] : [])"));
 assert(builder.includes("rule.items ?? (rule.item ? [rule.item] : [])"));
 assert(exporter.includes("File.Move(temporaryPath, path, overwrite: true)"));

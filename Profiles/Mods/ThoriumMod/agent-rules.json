@@ -917,9 +917,85 @@
       "sourceVersion": "Thorium Mod 1.7.2.5",
       "checkedAt": "2026-06-14",
       "reason": "Thrombosis is intentionally a melee weapon with a summon-class effect, so both detected class affinities are retained."
+    },
+    {
+      "id": "diverman-shop-after-queen-jellyfish",
+      "kind": "source-stage",
+      "source": "ThoriumMod/Diverman",
+      "stageId": "queen-jellyfish",
+      "sourceUrl": "https://github.com/Thorium-Mod/ThoriumMod/blob/1.7.2.6/ThoriumMod/NPCs/Diverman.cs",
+      "sourceVersion": "Thorium Mod 1.7.2.6",
+      "checkedAt": "2026-06-15",
+      "reason": "Diverman's CanTownNPCSpawn implementation requires the Queen Jellyfish defeat flag."
+    },
+    {
+      "id": "post-skeletron-ancient-and-dungeon-sources",
+      "kind": "source-stage",
+      "sources": [
+        "ThoriumMod/AncientArcher",
+        "ThoriumMod/AncientCharger",
+        "ThoriumMod/AncientPhalanx",
+        "ThoriumMod/RagingMinotaur"
+      ],
+      "stageId": "skeletron",
+      "sourceUrl": "https://github.com/Thorium-Mod/ThoriumMod/tree/1.7.2.6/ThoriumMod/NPCs",
+      "sourceVersion": "Thorium Mod 1.7.2.6",
+      "checkedAt": "2026-06-15",
+      "reason": "The ancient enemies explicitly require Skeletron, while Raging Minotaur is a Dungeon enemy."
+    },
+    {
+      "id": "post-plantera-aquatic-hallucination",
+      "kind": "source-stage",
+      "source": "ThoriumMod/AquaticHallucination",
+      "stageId": "plantera",
+      "sourceUrl": "https://github.com/Thorium-Mod/ThoriumMod/blob/1.7.2.6/ThoriumMod/NPCs/ThoriumGlobalNPC.cs",
+      "sourceVersion": "Thorium Mod 1.7.2.6",
+      "checkedAt": "2026-06-15",
+      "reason": "Aquatic Hallucination is added to the Aquatic Depths spawn pool only after Plantera."
+    },
+    {
+      "id": "post-forgotten-one-abyssal-shadow",
+      "kind": "condition-stage",
+      "stageId": "forgotten-one",
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "ThoriumMod/AquaticHallucination"
+      ],
+      "conditionTypes": [
+        "ThoriumMod.Core.ItemDropRules.DropConditions.AbyssalShadowTrueCondition"
+      ],
+      "sourceUrl": "https://github.com/Thorium-Mod/ThoriumMod/blob/1.7.2.6/ThoriumMod/Core/ItemDropRules/DropConditions/AbyssalShadowTrueCondition.cs",
+      "sourceVersion": "Thorium Mod 1.7.2.6",
+      "checkedAt": "2026-06-15",
+      "reason": "Abyssal Shadow's true drop branch directly checks the Forgotten One defeat flag."
     }
   ],
   "ignoredItems": [
+    {
+      "id": "unobtainable-legacy-items",
+      "items": [
+        "ThoriumMod/HarpyStaff",
+        "ThoriumMod/SoulGem"
+      ],
+      "sourceUrl": "https://github.com/Thorium-Mod/ThoriumMod/tree/1.7.2.6/ThoriumMod/Items",
+      "sourceVersion": "Thorium Mod 1.7.2.6",
+      "checkedAt": "2026-06-15",
+      "reason": "The current build exposes these item definitions but provides no recipe, drop, shop or other normal acquisition path; Soul Gem is explicitly under Items/ZRemoved."
+    },
+    {
+      "id": "removed-wiki-item-names",
+      "items": [
+        "ThoriumMod/CrimsonScythe",
+        "ThoriumMod/DarkScythe",
+        "ThoriumMod/HarpyTalon"
+      ],
+      "sourceUrl": "https://github.com/Thorium-Mod/ThoriumMod/tree/1.7.2.6/ThoriumMod/Items",
+      "sourceVersion": "Thorium Mod 1.7.2.6",
+      "checkedAt": "2026-06-15",
+      "reason": "These recommendation names do not resolve to current item IDs in the 1.7.2.6 snapshot."
+    },
     {
       "id": "legacy-wiki-armor-group-labels",
       "items": [
