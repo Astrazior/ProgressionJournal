@@ -22,9 +22,7 @@ public static partial class JournalRepository
                                 || entry.WikiRecommendations.Any(value =>
                                     string.Equals(value.StageId, stageId, StringComparison.OrdinalIgnoreCase)
                                     && value.ClassIds.Contains(classId)))
-                .Select(entry => CreateStageEntry(profile.Id, stageId, classId, entry))
-                .Where(static entry => entry is not null)
-                .Select(static entry => entry!)
+                .SelectMany(entry => CreateStageEntries(profile.Id, stageId, classId, entry))
                 .OrderByDescending(static entry => entry.IsWikiRecommendation)
                 .ThenBy(entry => JournalOrdering.GetTierOrder(entry.Evaluation.Tier))
                 .ThenBy(entry => JournalOrdering.GetCategoryOrder(entry.Entry.Category))
@@ -53,9 +51,7 @@ public static partial class JournalRepository
                 || entry.WikiRecommendations.Any(value =>
                     string.Equals(value.StageId, stageId, StringComparison.OrdinalIgnoreCase)
                     && value.ClassIds.Contains(classId)))
-            .Select(entry => CreateStageEntry(profile.Id, stageId, classId, entry))
-            .Where(static entry => entry is not null)
-            .Select(static entry => entry!)
+            .SelectMany(entry => CreateStageEntries(profile.Id, stageId, classId, entry))
             .OrderByDescending(static entry => entry.IsWikiRecommendation)
             .ThenBy(entry => JournalOrdering.GetTierOrder(entry.Evaluation.Tier))
             .ThenBy(entry => JournalOrdering.GetCategoryOrder(entry.Entry.Category))
@@ -64,7 +60,7 @@ public static partial class JournalRepository
             .ToArray();
     }
 
-    private static JournalStageEntry? CreateStageEntry(
+    private static IEnumerable<JournalStageEntry> CreateStageEntries(
         string profileId,
         string stageId,
         string classId,
@@ -75,15 +71,17 @@ public static partial class JournalRepository
             && value.ClassIds.Contains(classId));
         if (wiki is not null)
         {
-            return new JournalStageEntry(
+            yield return new JournalStageEntry(
                 entry,
                 new StageEvaluation(stageId, RecommendationTier.FromGuide, scope: JournalEvaluationScope.StageOnly),
                 wiki);
         }
 
-        return entry.TryGetEvaluation(profileId, stageId, out var evaluation)
-            ? new JournalStageEntry(entry, evaluation)
-            : null;
+        if (entry.AppliesToClass(classId)
+            && entry.TryGetEvaluation(profileId, stageId, out var evaluation))
+        {
+            yield return new JournalStageEntry(entry, evaluation);
+        }
     }
 
     public static IReadOnlyList<JournalEntry> GetAllVanillaEntries() => Entries.Value;

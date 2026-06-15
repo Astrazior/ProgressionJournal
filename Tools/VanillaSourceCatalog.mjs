@@ -293,6 +293,7 @@ const MILESTONE_FACTS = [
       "Terraria/RainbowSlime",
       "Terraria/BigMimicJungle",
       "Terraria/GoblinSummoner",
+      "Terraria/VampireBat",
       "Terraria/Wizard",
       "Terraria/Truffle"
     ],
@@ -363,6 +364,11 @@ const MILESTONE_FACTS = [
       "Terraria/InfernoFork",
       "Terraria/PhoenixBlaster",
       "Terraria/ButterflyDust"
+    ],
+    enemies: [
+      "Terraria/Vampire",
+      "Terraria/Reaper",
+      "Terraria/Psycho"
     ]
   },
   {
@@ -442,6 +448,10 @@ const START_CONTAINERS = [
   "Terraria/OasisCrate"
 ];
 
+const START_SHOPS = [
+  "Terraria/ArmsDealer"
+];
+
 export function applyVanillaSourceCatalog(sourceManifest) {
   const manifest = structuredClone(sourceManifest);
   manifest.initialItems = unique([
@@ -458,6 +468,7 @@ export function applyVanillaSourceCatalog(sourceManifest) {
   if (start) {
     start.enemies = unique([...(start.enemies ?? []), ...START_SOURCES]);
     start.containers = unique([...(start.containers ?? []), ...START_CONTAINERS]);
+    start.shops = unique([...(start.shops ?? []), ...START_SHOPS]);
   }
   for (const fact of MILESTONE_FACTS) {
     const stageId = fact.findStage(manifest);

@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-06-15T12:17:49.141Z",
+  "generatedAtUtc": "2026-06-15T13:49:14.312Z",
   "snapshot": {
     "version": 2,
     "generatedAtUtc": "2026-06-13T00:10:42.0187109Z",
@@ -842,22 +842,22 @@
     ]
   },
   "review": {
-    "total": 130,
+    "total": 113,
     "byKind": {
-      "unassigned-combat-item": 130
+      "unassigned-combat-item": 113
     }
   },
   "audit": {
     "errors": [],
     "warnings": [
       "1 support or agent references are stale",
-      "66 recommendations precede proven availability and were suppressed"
+      "64 recommendations precede proven availability and were suppressed"
     ]
   },
   "ready": false,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-06-15T12:17:44.490Z",
+    "generatedAtUtc": "2026-06-15T13:49:09.959Z",
     "unknownReferences": [
       {
         "stage": "wall-of-flesh",
@@ -9872,6 +9872,231 @@
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
           "description": null
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/SilverBullet",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Во время кровавой луны или в любое время в хардмоде"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/TungstenBullet",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Во время кровавой луны или в любое время в хардмоде"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/UnholyArrow",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Ночью после победы над Пожирателем миров или Мозгом Ктулху, или в любое время в хардмоде"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/QuadBarrelShotgun",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "На кладбище"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/IllegalGunParts",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Только ночью"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/StyngerBolt",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда в инвентаре находится Стингер"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/Stake",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда в инвентаре находится Коломет"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/Nail",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда в инвентаре находится Гвоздемет"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/CandyCorn",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда в инвентаре находится Винтовка из кенди-корна"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/ExplosiveJackOLantern",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда в инвентаре находится Светильникомет Джека"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/NurseHat",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Во время Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/NurseShirt",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Во время Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/NursePants",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Во время Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/Boomstick",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "После победы над Королевой пчёл"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/TeleportationPylonPurity",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда торговец достаточно счастлив для продажи пилонов"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/TeleportationPylonSnow",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда торговец достаточно счастлив для продажи пилонов"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/TeleportationPylonDesert",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда торговец достаточно счастлив для продажи пилонов"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/TeleportationPylonUnderground",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда торговец достаточно счастлив для продажи пилонов"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/TeleportationPylonOcean",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда торговец достаточно счастлив для продажи пилонов"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/TeleportationPylonJungle",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда торговец достаточно счастлив для продажи пилонов"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/TeleportationPylonHallow",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда торговец достаточно счастлив для продажи пилонов"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "Terraria/TeleportationPylonMushroom",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда торговец достаточно счастлив для продажи пилонов"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "CalamityMod/AstralPylon",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда рядом с торговцем находится другой житель"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "CalamityMod/SulphurPylon",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда рядом с торговцем находится другой житель"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/ArmsDealer",
+        "item": "CalamityMod/SunkenPylon",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда рядом с торговцем находится другой житель"
         }
       },
       {
@@ -27264,6 +27489,213 @@
       },
       {
         "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/MechanicalWorm",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
+          "description": null
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/MechanicalEye",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
+          "description": null
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/MechanicalSkull",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
+          "description": null
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/BloodyMachete",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenWeapons",
+          "description": "Выпадает во время сезона Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/BladedGlove",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenWeapons",
+          "description": "Выпадает во время сезона Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/JungleKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+JungleKeyCondition",
+          "description": "Выпадает в сложном режиме в джунглях"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/CorruptionKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+CorruptKeyCondition",
+          "description": "Выпадает в сложном режиме в Порче"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/CrimsonKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+CrimsonKeyCondition",
+          "description": "Выпадает в сложном режиме в Багрянце"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/HallowedKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HallowKeyCondition",
+          "description": "Выпадает в сложном режиме в Освящении"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/FrozenKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+FrozenKeyCondition",
+          "description": "Выпадает в сложном режиме в снежном биоме"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/DungeonDesertKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+DesertKeyCondition",
+          "description": "Выпадает в сложном режиме в пустыне"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/GoodieBag",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenGoodieBagDrop",
+          "description": "Выпадает на раннем этапе игры во время Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/Present",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+XmasPresentDrop",
+          "description": "Выпадает на раннем этапе игры во время Рождества"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/LivingFireBlock",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+LivingFlames",
+          "description": "Выпадает в сложном режиме в Преисподней"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/SoulofLight",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+SoulOfLight",
+          "description": "Выпадает под землей в Освящении"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/SoulofNight",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+SoulOfNight",
+          "description": "Выпадает под землей в Багрянце или Порче"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/PirateMap",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+PirateMap",
+          "description": "Выпадает в сложном режиме в океане"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/Cascade",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyoCascade",
+          "description": "Выпадает после победы над Скелетроном, но до сложного режима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/Amarok",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosAmarok",
+          "description": "Выпадает в сложном режиме"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/Yelets",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosYelets",
+          "description": "Выпадает после победы над любым механическим боссом"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/Kraken",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosKraken",
+          "description": "Выпадает после победы над Плантерой"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/HelFire",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosHelFire",
+          "description": "Выпадает в сложном режиме"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/VampireBat",
+        "item": "Terraria/SonarPotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
         "source": "Terraria/Wizard",
         "item": "Terraria/MechanicalWorm",
         "condition": {
@@ -35567,6 +35999,627 @@
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosHelFire",
           "description": "Выпадает в сложном режиме"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/MechanicalWorm",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
+          "description": null
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/MechanicalEye",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
+          "description": null
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/MechanicalSkull",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
+          "description": null
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/BloodyMachete",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenWeapons",
+          "description": "Выпадает во время сезона Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/BladedGlove",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenWeapons",
+          "description": "Выпадает во время сезона Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/JungleKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+JungleKeyCondition",
+          "description": "Выпадает в сложном режиме в джунглях"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/CorruptionKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+CorruptKeyCondition",
+          "description": "Выпадает в сложном режиме в Порче"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/CrimsonKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+CrimsonKeyCondition",
+          "description": "Выпадает в сложном режиме в Багрянце"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/HallowedKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HallowKeyCondition",
+          "description": "Выпадает в сложном режиме в Освящении"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/FrozenKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+FrozenKeyCondition",
+          "description": "Выпадает в сложном режиме в снежном биоме"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/DungeonDesertKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+DesertKeyCondition",
+          "description": "Выпадает в сложном режиме в пустыне"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/GoodieBag",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenGoodieBagDrop",
+          "description": "Выпадает на раннем этапе игры во время Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/Present",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+XmasPresentDrop",
+          "description": "Выпадает на раннем этапе игры во время Рождества"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/LivingFireBlock",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+LivingFlames",
+          "description": "Выпадает в сложном режиме в Преисподней"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/SoulofLight",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+SoulOfLight",
+          "description": "Выпадает под землей в Освящении"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/SoulofNight",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+SoulOfNight",
+          "description": "Выпадает под землей в Багрянце или Порче"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/PirateMap",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+PirateMap",
+          "description": "Выпадает в сложном режиме в океане"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/Cascade",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyoCascade",
+          "description": "Выпадает после победы над Скелетроном, но до сложного режима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/Amarok",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosAmarok",
+          "description": "Выпадает в сложном режиме"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/Yelets",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosYelets",
+          "description": "Выпадает после победы над любым механическим боссом"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/Kraken",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosKraken",
+          "description": "Выпадает после победы над Плантерой"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/HelFire",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosHelFire",
+          "description": "Выпадает в сложном режиме"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Vampire",
+        "item": "Terraria/SonarPotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/MechanicalWorm",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
+          "description": null
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/MechanicalEye",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
+          "description": null
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/MechanicalSkull",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
+          "description": null
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/BloodyMachete",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenWeapons",
+          "description": "Выпадает во время сезона Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/BladedGlove",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenWeapons",
+          "description": "Выпадает во время сезона Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/JungleKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+JungleKeyCondition",
+          "description": "Выпадает в сложном режиме в джунглях"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/CorruptionKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+CorruptKeyCondition",
+          "description": "Выпадает в сложном режиме в Порче"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/CrimsonKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+CrimsonKeyCondition",
+          "description": "Выпадает в сложном режиме в Багрянце"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/HallowedKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HallowKeyCondition",
+          "description": "Выпадает в сложном режиме в Освящении"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/FrozenKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+FrozenKeyCondition",
+          "description": "Выпадает в сложном режиме в снежном биоме"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/DungeonDesertKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+DesertKeyCondition",
+          "description": "Выпадает в сложном режиме в пустыне"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/GoodieBag",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenGoodieBagDrop",
+          "description": "Выпадает на раннем этапе игры во время Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/Present",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+XmasPresentDrop",
+          "description": "Выпадает на раннем этапе игры во время Рождества"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/LivingFireBlock",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+LivingFlames",
+          "description": "Выпадает в сложном режиме в Преисподней"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/SoulofLight",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+SoulOfLight",
+          "description": "Выпадает под землей в Освящении"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/SoulofNight",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+SoulOfNight",
+          "description": "Выпадает под землей в Багрянце или Порче"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/PirateMap",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+PirateMap",
+          "description": "Выпадает в сложном режиме в океане"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/Cascade",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyoCascade",
+          "description": "Выпадает после победы над Скелетроном, но до сложного режима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/Amarok",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosAmarok",
+          "description": "Выпадает в сложном режиме"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/Yelets",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosYelets",
+          "description": "Выпадает после победы над любым механическим боссом"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/Kraken",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosKraken",
+          "description": "Выпадает после победы над Плантерой"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/HelFire",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosHelFire",
+          "description": "Выпадает в сложном режиме"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Reaper",
+        "item": "Terraria/DeathSickle",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+DownedAllMechBosses",
+          "description": null
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/MechanicalWorm",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
+          "description": null
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/MechanicalEye",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
+          "description": null
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/MechanicalSkull",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+MechanicalBossesDummyCondition",
+          "description": null
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/BloodyMachete",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenWeapons",
+          "description": "Выпадает во время сезона Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/BladedGlove",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenWeapons",
+          "description": "Выпадает во время сезона Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/JungleKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+JungleKeyCondition",
+          "description": "Выпадает в сложном режиме в джунглях"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/CorruptionKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+CorruptKeyCondition",
+          "description": "Выпадает в сложном режиме в Порче"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/CrimsonKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+CrimsonKeyCondition",
+          "description": "Выпадает в сложном режиме в Багрянце"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/HallowedKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HallowKeyCondition",
+          "description": "Выпадает в сложном режиме в Освящении"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/FrozenKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+FrozenKeyCondition",
+          "description": "Выпадает в сложном режиме в снежном биоме"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/DungeonDesertKey",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+DesertKeyCondition",
+          "description": "Выпадает в сложном режиме в пустыне"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/GoodieBag",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+HalloweenGoodieBagDrop",
+          "description": "Выпадает на раннем этапе игры во время Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/Present",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+XmasPresentDrop",
+          "description": "Выпадает на раннем этапе игры во время Рождества"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/LivingFireBlock",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+LivingFlames",
+          "description": "Выпадает в сложном режиме в Преисподней"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/SoulofLight",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+SoulOfLight",
+          "description": "Выпадает под землей в Освящении"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/SoulofNight",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+SoulOfNight",
+          "description": "Выпадает под землей в Багрянце или Порче"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/PirateMap",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+PirateMap",
+          "description": "Выпадает в сложном режиме в океане"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/Cascade",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyoCascade",
+          "description": "Выпадает после победы над Скелетроном, но до сложного режима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/Amarok",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosAmarok",
+          "description": "Выпадает в сложном режиме"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/Yelets",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosYelets",
+          "description": "Выпадает после победы над любым механическим боссом"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/Kraken",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosKraken",
+          "description": "Выпадает после победы над Плантерой"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/HelFire",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+YoyosHelFire",
+          "description": "Выпадает в сложном режиме"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Psycho",
+        "item": "Terraria/PsychoKnife",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+DownedPlantera",
+          "description": null
         }
       },
       {
@@ -49839,6 +50892,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/Minishark",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
         "id": "CalamityMod/TheConcoction",
         "reason": "not combat equipment"
       },
@@ -58159,6 +59217,16 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/BrokenBatWing",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/BatHook",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/MushroomStatue",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -58369,6 +59437,21 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/Shotgun",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/EmptyBullet",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/AmmoBox",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "CalamityMod/TheMonument",
         "reason": "not combat equipment"
       },
@@ -58554,11 +59637,6 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "Terraria/BrokenBatWing",
-        "reason": "unchanged vanilla item in mod profile"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "Terraria/Katana",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -58590,6 +59668,11 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/EndlessQuiver",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/PartyBullet",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -60094,6 +61177,11 @@
       },
       {
         "stage": "destroyer",
+        "id": "Terraria/OnyxBlaster",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "destroyer",
         "id": "Terraria/SkyFracture",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -60864,6 +61952,11 @@
       },
       {
         "stage": "calamitas-clone",
+        "id": "CalamityMod/SolarVeil",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "calamitas-clone",
         "id": "CalamityMod/CalamitasCloneBag",
         "reason": "not combat equipment"
       },
@@ -61000,6 +62093,11 @@
       {
         "stage": "plantera",
         "id": "Terraria/ArmorPolish",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/Requiem",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -65045,6 +66143,10 @@
         "stage": "start",
         "via": "container:Terraria/GoldenCrate"
       },
+      "Terraria/FlintlockPistol": {
+        "stage": "start",
+        "via": "shop:Terraria/ArmsDealer"
+      },
       "CalamityMod/BaconOil": {
         "stage": "start",
         "via": "shop:CalamityMod/ShadySalesman"
@@ -66041,6 +67143,10 @@
         "stage": "skeletron",
         "via": "npc:CalamityMod/Viperfish"
       },
+      "CalamityMod/M1Garand": {
+        "stage": "skeletron",
+        "via": "shop:Terraria/ArmsDealer"
+      },
       "CalamityMod/CounterScarf": {
         "stage": "skeletron",
         "via": "shop:Terraria/Clothier"
@@ -66377,12 +67483,20 @@
         "stage": "wall-of-flesh",
         "via": "npc:CalamityMod/SeaSerpent1"
       },
+      "Terraria/MoonStone": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/VampireBat"
+      },
       "CalamityMod/MidasPrime": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/PirateDeadeye",
         "eventCategory": "PirateInvasion",
         "customEventName": "",
         "eventIcon": ""
+      },
+      "CalamityMod/P90": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/ArmsDealer"
       },
       "CalamityMod/HowlsHeart": {
         "stage": "wall-of-flesh",
@@ -66744,6 +67858,10 @@
         "stage": "destroyer",
         "via": "recipe:Terraria/WoodenArrow+Terraria/PixieDust+Terraria/UnicornHorn"
       },
+      "Terraria/HighVelocityBullet": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/EmptyBullet+Terraria/Cog"
+      },
       "Terraria/FlameWings": {
         "stage": "destroyer",
         "via": "recipe:Terraria/SoulofFlight+Terraria/FireFeather"
@@ -66763,6 +67881,10 @@
       "CalamityMod/StarlightWings": {
         "stage": "destroyer",
         "via": "recipe:Terraria/SoulofFlight+CalamityMod/CryonicBar"
+      },
+      "CalamityMod/HallowPointRound": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/EmptyBullet+Terraria/HallowedBar"
       },
       "CalamityMod/VeriumBolt": {
         "stage": "destroyer",
@@ -67080,6 +68202,10 @@
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/ChlorophyteBar+Terraria/Leather"
       },
+      "CalamityMod/VengefulSunStaff": {
+        "stage": "skeletron-prime",
+        "via": "recipe:CalamityMod/SunSpiritStaff+Terraria/MoonStone+Terraria/SoulofFright+Terraria/SoulofMight+Terraria/SoulofSight"
+      },
       "CalamityMod/Oblivion": {
         "stage": "calamitas-clone",
         "via": "npc:CalamityMod/CalamitasClone"
@@ -67120,6 +68246,10 @@
         "stage": "calamitas-clone",
         "via": "container:CalamityMod/CalamitasCloneBag"
       },
+      "CalamityMod/VampiricTalisman": {
+        "stage": "calamitas-clone",
+        "via": "recipe:CalamityMod/RaidersTalisman+CalamityMod/RottenDogtooth+CalamityMod/SolarVeil+Terraria/BrokenBatWing"
+      },
       "CalamityMod/BrimflameCowl": {
         "stage": "calamitas-clone",
         "via": "recipe:CalamityMod/AshesofCalamity+CalamityMod/UnholyCore"
@@ -67132,6 +68262,18 @@
         "stage": "calamitas-clone",
         "via": "recipe:CalamityMod/AshesofCalamity+CalamityMod/UnholyCore"
       },
+      "CalamityMod/UmbraphileHood": {
+        "stage": "calamitas-clone",
+        "via": "recipe:CalamityMod/SolarVeil+Terraria/HallowedBar"
+      },
+      "CalamityMod/UmbraphileRegalia": {
+        "stage": "calamitas-clone",
+        "via": "recipe:CalamityMod/SolarVeil+Terraria/HallowedBar"
+      },
+      "CalamityMod/UmbraphileBoots": {
+        "stage": "calamitas-clone",
+        "via": "recipe:CalamityMod/SolarVeil+Terraria/HallowedBar"
+      },
       "CalamityMod/FlaskOfBrimstone": {
         "stage": "calamitas-clone",
         "via": "recipe:Terraria/BottledWater+CalamityMod/AshesofCalamity"
@@ -67143,6 +68285,10 @@
       "CalamityMod/Brimlash": {
         "stage": "calamitas-clone",
         "via": "recipe:CalamityMod/AshesofCalamity+CalamityMod/UnholyCore"
+      },
+      "CalamityMod/TotalityBreakers": {
+        "stage": "calamitas-clone",
+        "via": "recipe:Terraria/MolotovCocktail+CalamityMod/SolarVeil"
       },
       "Terraria/WaspGun": {
         "stage": "plantera",
@@ -67163,6 +68309,10 @@
       "CalamityMod/MantisClaws": {
         "stage": "plantera",
         "via": "npc:CalamityMod/MantisShrimp"
+      },
+      "Terraria/Uzi": {
+        "stage": "plantera",
+        "via": "shop:Terraria/ArmsDealer"
       },
       "CalamityMod/GloveOfPrecision": {
         "stage": "plantera",
@@ -67213,10 +68363,6 @@
         "via": "manifest"
       },
       "Terraria/MasterNinjaGear": {
-        "stage": "plantera",
-        "via": "manifest"
-      },
-      "Terraria/MoonStone": {
         "stage": "plantera",
         "via": "manifest"
       },
@@ -67372,6 +68518,10 @@
         "stage": "plantera",
         "via": "recipe:CalamityMod/LemonNade+Terraria/AncientCloth+CalamityMod/GrandScale"
       },
+      "CalamityMod/FantasyTalisman": {
+        "stage": "plantera",
+        "via": "recipe:CalamityMod/SolarVeil+Terraria/Silk+Terraria/Ectoplasm"
+      },
       "CalamityMod/MangroveChakram": {
         "stage": "plantera",
         "via": "recipe:CalamityMod/PerennialBar"
@@ -67395,10 +68545,6 @@
       "CalamityMod/SandSharknadoStaff": {
         "stage": "plantera",
         "via": "recipe:CalamityMod/ForgottenApexWand+Terraria/AncientCloth+CalamityMod/GrandScale"
-      },
-      "CalamityMod/VengefulSunStaff": {
-        "stage": "plantera",
-        "via": "recipe:CalamityMod/SunSpiritStaff+Terraria/MoonStone+Terraria/SoulofFright+Terraria/SoulofMight+Terraria/SoulofSight"
       },
       "CalamityMod/ViralSprout": {
         "stage": "plantera",
@@ -67833,6 +68979,10 @@
         "stage": "plaguebringer-goliath",
         "via": "recipe:CalamityMod/SlagMagnum+CalamityMod/InfectedArmorPlating+CalamityMod/PlagueCellCanister"
       },
+      "CalamityMod/PlagueTaintedSMG": {
+        "stage": "plaguebringer-goliath",
+        "via": "recipe:CalamityMod/BlackHawkRemote+Terraria/Uzi+CalamityMod/Helstorm+CalamityMod/InfectedArmorPlating"
+      },
       "CalamityMod/TheHive": {
         "stage": "plaguebringer-goliath",
         "via": "recipe:CalamityMod/MineralMortar+CalamityMod/InfectedArmorPlating+CalamityMod/PlagueCellCanister"
@@ -67898,35 +69048,35 @@
         "via": "recipe:Terraria/GreaterHealingPotion+Terraria/FragmentNebula+Terraria/FragmentSolar+Terraria/FragmentStardust+Terraria/FragmentVortex",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaArcanum": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentNebula",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaBlaze": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentNebula",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustCellStaff": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentStardust",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/AmbrosialAmpoule": {
         "stage": "lunatic-cultist",
         "via": "recipe:CalamityMod/LivingDew+CalamityMod/RadiantOoze+CalamityMod/LifeAlloy+Terraria/FragmentSolar",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/DarkMatterSheath": {
         "stage": "lunatic-cultist",
@@ -67937,14 +69087,14 @@
         "via": "recipe:CalamityMod/ElementalinaBottle+CalamityMod/OasisElementalinaBottle+CalamityMod/PearlofEnthrallment+CalamityMod/EyeoftheStorm+CalamityMod/RoseStone+Terraria/FragmentStardust",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/SupremeHealingPotion": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SuperHealingPotion+CalamityMod/Bloodstone",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/Apathanull": {
         "stage": "lunatic-cultist",
@@ -67955,14 +69105,14 @@
         "via": "recipe:CalamityMod/IonBlaster+Terraria/FragmentSolar",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/ArchAmaryllis": {
         "stage": "lunatic-cultist",
         "via": "recipe:CalamityMod/GleamingMagnolia+Terraria/FragmentNebula",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/AstralStaff": {
         "stage": "lunatic-cultist",
@@ -67973,14 +69123,14 @@
         "via": "recipe:Terraria/ToxicFlask+Terraria/LaserRifle+Terraria/FragmentVortex",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/TheSwarmer": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/BeeGun+Terraria/WaspGun+Terraria/FragmentStardust",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/AstralPike": {
         "stage": "lunatic-cultist",
@@ -67991,7 +69141,7 @@
         "via": "recipe:Terraria/TheHorsemansBlade+Terraria/FragmentStardust",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/EntropicClaymore": {
         "stage": "lunatic-cultist",
@@ -68002,7 +69152,7 @@
         "via": "recipe:CalamityMod/MajesticGuard+Terraria/FragmentNebula",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/OmegaBiomeBlade": {
         "stage": "lunatic-cultist",
@@ -68013,7 +69163,7 @@
         "via": "recipe:CalamityMod/StormSaber+CalamityMod/WindBlade+Terraria/FragmentVortex",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/AstralBlaster": {
         "stage": "lunatic-cultist",
@@ -68024,7 +69174,7 @@
         "via": "recipe:Terraria/TacticalShotgun+Terraria/FragmentVortex",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/DeadSunsWind": {
         "stage": "lunatic-cultist",
@@ -68035,21 +69185,21 @@
         "via": "recipe:Terraria/SniperRifle+CalamityMod/Fungicide+Terraria/FragmentStardust",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/SpectralstormCannon": {
         "stage": "lunatic-cultist",
         "via": "recipe:CalamityMod/FirestormCannon+Terraria/FragmentSolar+Terraria/Ectoplasm",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/Vortexpopper": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/Xenopopper+Terraria/FragmentVortex",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/ShardofAntumbra": {
         "stage": "lunatic-cultist",
@@ -68231,9 +69381,17 @@
         "stage": "moon-lord",
         "via": "recipe:Terraria/LunarBar+Terraria/Cog"
       },
+      "CalamityMod/OnyxChainBlaster": {
+        "stage": "moon-lord",
+        "via": "recipe:Terraria/OnyxBlaster+Terraria/ChainGun+Terraria/LunarBar"
+      },
       "CalamityMod/PlanetaryAnnihilation": {
         "stage": "moon-lord",
         "via": "recipe:CalamityMod/VernalBolter+Terraria/DaedalusStormbow+Terraria/LunarBar+CalamityMod/LifeAlloy+Terraria/FragmentVortex"
+      },
+      "CalamityMod/PridefulHuntersPlanarRipper": {
+        "stage": "moon-lord",
+        "via": "recipe:CalamityMod/P90+Terraria/Uzi+Terraria/LunarBar+Terraria/FragmentVortex"
       },
       "CalamityMod/Shredder": {
         "stage": "moon-lord",
@@ -69047,6 +70205,10 @@
         "stage": "devourer-of-gods",
         "via": "recipe:CalamityMod/StellarCannon+CalamityMod/CosmiliteBar+CalamityMod/DarksunFragment"
       },
+      "CalamityMod/Onyxia": {
+        "stage": "devourer-of-gods",
+        "via": "recipe:CalamityMod/OnyxChainBlaster+CalamityMod/CosmiliteBar+CalamityMod/DarksunFragment"
+      },
       "CalamityMod/Riftburst": {
         "stage": "devourer-of-gods",
         "via": "recipe:Terraria/Phantasm+CalamityMod/CosmiliteBar+CalamityMod/Necroplasm+CalamityMod/NightmareFuel"
@@ -69126,6 +70288,10 @@
       "CalamityMod/EtherealTalisman": {
         "stage": "devourer-of-gods",
         "via": "recipe:CalamityMod/SigilofCalamitas+Terraria/ManaFlower+CalamityMod/AscendantSpiritEssence"
+      },
+      "CalamityMod/Nanotech": {
+        "stage": "devourer-of-gods",
+        "via": "recipe:CalamityMod/RogueEmblem+CalamityMod/VampiricTalisman+CalamityMod/ElectriciansGlove+Terraria/LunarBar+CalamityMod/AscendantSpiritEssence"
       },
       "CalamityMod/PlanebreakersPouch": {
         "stage": "devourer-of-gods",
@@ -69295,9 +70461,17 @@
         "stage": "yharon",
         "via": "recipe:CalamityMod/BurningRevelation+CalamityMod/TheObliterator+CalamityMod/AuricBar"
       },
+      "CalamityMod/AcesHigh": {
+        "stage": "yharon",
+        "via": "recipe:Terraria/Revolver+CalamityMod/ClaretCannon+CalamityMod/FantasyTalisman+CalamityMod/AuricBar"
+      },
       "CalamityMod/Drataliornus": {
         "stage": "yharon",
         "via": "recipe:CalamityMod/BlossomFlux+CalamityMod/AuricBar+CalamityMod/YharonSoulFragment+CalamityMod/EffulgentFeather"
+      },
+      "CalamityMod/Kingsbane": {
+        "stage": "yharon",
+        "via": "recipe:Terraria/ChainGun+CalamityMod/P90+CalamityMod/AuricBar+CalamityMod/LifeAlloy"
       },
       "CalamityMod/Starmada": {
         "stage": "yharon",
@@ -69518,6 +70692,10 @@
       "CalamityMod/Contagion": {
         "stage": "supreme-calamitas",
         "via": "recipe:CalamityMod/Riftburst+CalamityMod/ShadowspecBar+CalamityMod/PlagueCellCanister"
+      },
+      "CalamityMod/SomaPrime": {
+        "stage": "supreme-calamitas",
+        "via": "recipe:CalamityMod/Kingsbane+Terraria/VenusMagnum+CalamityMod/ShadowspecBar"
       },
       "CalamityMod/Svantechnical": {
         "stage": "supreme-calamitas",
@@ -70562,6 +71740,10 @@
       "CalamityMod/TheComb": {
         "stage": "start",
         "via": "container:Terraria/OasisCrate"
+      },
+      "Terraria/Minishark": {
+        "stage": "start",
+        "via": "shop:Terraria/ArmsDealer"
       },
       "CalamityMod/TheConcoction": {
         "stage": "start",
@@ -77297,6 +78479,14 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/BigMimicJungle"
       },
+      "Terraria/BrokenBatWing": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/VampireBat"
+      },
+      "Terraria/BatHook": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/VampireBat"
+      },
       "Terraria/MushroomStatue": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/Truffle"
@@ -77576,6 +78766,18 @@
         "customEventName": "",
         "eventIcon": ""
       },
+      "Terraria/Shotgun": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/ArmsDealer"
+      },
+      "Terraria/EmptyBullet": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/ArmsDealer"
+      },
+      "Terraria/AmmoBox": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/ArmsDealer"
+      },
       "CalamityMod/TheMonument": {
         "stage": "wall-of-flesh",
         "via": "shop:CalamityMod/ShadySalesman"
@@ -77728,10 +78930,6 @@
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
-      "Terraria/BrokenBatWing": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
       "Terraria/Katana": {
         "stage": "wall-of-flesh",
         "via": "manifest"
@@ -77759,6 +78957,10 @@
       "Terraria/EndlessQuiver": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/WoodenArrow"
+      },
+      "Terraria/PartyBullet": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/EmptyBullet+Terraria/Confetti"
       },
       "Terraria/Fertilizer": {
         "stage": "wall-of-flesh",
@@ -78969,6 +80171,10 @@
         "stage": "destroyer",
         "via": "recipe:Terraria/OrichalcumBar"
       },
+      "Terraria/OnyxBlaster": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/Shotgun+Terraria/DarkShard+Terraria/SoulofNight"
+      },
       "Terraria/SkyFracture": {
         "stage": "destroyer",
         "via": "recipe:Terraria/MagicMissile+Terraria/LightShard+Terraria/SoulofLight"
@@ -79597,6 +80803,10 @@
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/WarriorEmblem+Terraria/SoulofMight+Terraria/SoulofSight+Terraria/SoulofFright"
       },
+      "CalamityMod/SolarVeil": {
+        "stage": "calamitas-clone",
+        "via": "npc:Terraria/VampireBat"
+      },
       "CalamityMod/CalamitasCloneBag": {
         "stage": "calamitas-clone",
         "via": "npc:CalamityMod/CalamitasClone"
@@ -79708,6 +80918,10 @@
       "Terraria/ArmorPolish": {
         "stage": "plantera",
         "via": "npc:CalamityMod/MantisShrimp"
+      },
+      "Terraria/Requiem": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Reaper"
       },
       "Terraria/SpookyWood": {
         "stage": "plantera",
@@ -80832,28 +82046,28 @@
         "via": "npc:Terraria/LunarTowerSolar",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/FragmentVortex": {
         "stage": "lunatic-cultist",
         "via": "npc:Terraria/LunarTowerVortex",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/FragmentNebula": {
         "stage": "lunatic-cultist",
         "via": "npc:Terraria/LunarTowerNebula",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/FragmentStardust": {
         "stage": "lunatic-cultist",
         "via": "npc:Terraria/LunarTowerStardust",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/MeldBlob": {
         "stage": "lunatic-cultist",
@@ -80864,693 +82078,693 @@
         "via": "recipe:Terraria/StoneBlock+Terraria/FragmentSolar",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexBrick": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StoneBlock+Terraria/FragmentVortex",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaBrick": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StoneBlock+Terraria/FragmentNebula",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustBrick": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StoneBlock+Terraria/FragmentStardust",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/LunarBlockSolar": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentSolar+Terraria/StoneBlock",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/LunarBlockVortex": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentVortex+Terraria/StoneBlock",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/LunarBlockNebula": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentNebula+Terraria/StoneBlock",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/LunarBlockStardust": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentStardust+Terraria/StoneBlock",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarBrickWall": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarBathtub": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarBed": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick+Terraria/Silk",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarBookcase": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick+Terraria/Book",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarDresser": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarCandelabra": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick+Terraria/Torch",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarCandle": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick+Terraria/Torch",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarChair": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarChandelier": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick+Terraria/Torch+Terraria/Chain",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarChest": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick+Terraria/IronBar",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarClock": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick+Terraria/IronBar+Terraria/Glass",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarDoor": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarLamp": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/Torch+Terraria/SolarBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarLantern": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick+Terraria/Torch",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarPiano": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick+Terraria/Bone+Terraria/Book",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarSofa": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick+Terraria/Silk",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarTable": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarWorkbench": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarToilet": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexBrickWall": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexBathtub": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexBed": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick+Terraria/Silk",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexBookcase": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick+Terraria/Book",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexDresser": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexCandelabra": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick+Terraria/Torch",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexCandle": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick+Terraria/Torch",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexChair": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexChandelier": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick+Terraria/Torch+Terraria/Chain",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexChest": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick+Terraria/IronBar",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexClock": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick+Terraria/IronBar+Terraria/Glass",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexDoor": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexLamp": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/Torch+Terraria/VortexBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexLantern": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick+Terraria/Torch",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexPiano": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick+Terraria/Bone+Terraria/Book",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexSofa": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick+Terraria/Silk",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexTable": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexWorkbench": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexToilet": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaBrickWall": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaBathtub": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaBed": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick+Terraria/Silk",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaBookcase": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick+Terraria/Book",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaDresser": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaCandelabra": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick+Terraria/Torch",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaCandle": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick+Terraria/Torch",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaChair": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaChandelier": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick+Terraria/Torch+Terraria/Chain",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaChest": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick+Terraria/IronBar",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaClock": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick+Terraria/IronBar+Terraria/Glass",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaDoor": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaLamp": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/Torch+Terraria/NebulaBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaLantern": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick+Terraria/Torch",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaPiano": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick+Terraria/Bone+Terraria/Book",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaSofa": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick+Terraria/Silk",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaTable": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaWorkbench": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaToilet": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustBrickWall": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustBathtub": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustBed": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick+Terraria/Silk",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustBookcase": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick+Terraria/Book",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustDresser": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustCandelabra": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick+Terraria/Torch",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustCandle": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick+Terraria/Torch",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustChair": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustChandelier": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick+Terraria/Torch+Terraria/Chain",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustChest": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick+Terraria/IronBar",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustClock": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick+Terraria/IronBar+Terraria/Glass",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustDoor": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustLamp": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/Torch+Terraria/StardustBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustLantern": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick+Terraria/Torch",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustPiano": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick+Terraria/Bone+Terraria/Book",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustSofa": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick+Terraria/Silk",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustTable": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustWorkbench": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustToilet": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/Fake_SolarChest": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarChest+Terraria/Wire",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/Fake_VortexChest": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexChest+Terraria/Wire",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/Fake_NebulaChest": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaChest+Terraria/Wire",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/Fake_StardustChest": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustChest+Terraria/Wire",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/LunarHook": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentNebula+Terraria/FragmentSolar+Terraria/FragmentStardust+Terraria/FragmentVortex",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarMonolith": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentSolar",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarEruption": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentSolar",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/DayBreak": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentSolar",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexMonolith": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentVortex",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexBeater": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentVortex",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/Phantasm": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentVortex",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaMonolith": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentNebula",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustMonolith": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentStardust",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustDragonStaff": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentStardust",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/CelestialSigil": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentSolar+Terraria/FragmentVortex+Terraria/FragmentNebula+Terraria/FragmentStardust",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/AstralBar": {
         "stage": "lunatic-cultist",
@@ -81561,14 +82775,14 @@
         "via": "recipe:CalamityMod/AstralBar+Terraria/FragmentNebula+Terraria/FallenStar",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/ExoticPheromones": {
         "stage": "lunatic-cultist",
         "via": "recipe:CalamityMod/LifeAlloy+Terraria/FragmentSolar",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/Starcore": {
         "stage": "lunatic-cultist",
@@ -81587,42 +82801,42 @@
         "via": "recipe:CalamityMod/Bakidon+Terraria/Sundial+CalamityMod/AstralBar+Terraria/FragmentSolar",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/EyeofMagnus": {
         "stage": "lunatic-cultist",
         "via": "recipe:CalamityMod/LunicEye+Terraria/FragmentNebula",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/SolarPlatform": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/VortexPlatform": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/NebulaPlatform": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "Terraria/StardustPlatform": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick",
         "eventCategory": null,
         "customEventName": "Celestial Pillars",
-        "eventIcon": ""
+        "eventIcon": "Terraria/LunarTowerSolar"
       },
       "CalamityMod/AstrumDeusBag": {
         "stage": "astrum-deus",
@@ -82686,7 +83900,7 @@
       },
       "CalamityMod/DarksunFragment": {
         "stage": "devourer-of-gods",
-        "via": "npc:Terraria/Mothron"
+        "via": "npc:Terraria/VampireBat"
       },
       "CalamityMod/NightmareFuel": {
         "stage": "devourer-of-gods",
@@ -83271,14 +84485,6 @@
         ]
       },
       {
-        "id": "Terraria/FlintlockPistol",
-        "wikiStage": "pre-boss",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Flintlock Pistol"
-        ]
-      },
-      {
         "id": "Terraria/CrimsonRod",
         "wikiStage": "pre-boss",
         "reason": "recommendation has no proven availability",
@@ -83845,27 +85051,11 @@
         ]
       },
       {
-        "id": "Terraria/Uzi",
-        "wikiStage": "pre-mech",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Uzi"
-        ]
-      },
-      {
         "id": "Terraria/AmmoBox",
         "wikiStage": "pre-mech",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/HighVelocityBullet",
-        "wikiStage": "pre-mech",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/High Velocity Bullet"
         ]
       },
       {
@@ -84266,14 +85456,6 @@
         ]
       },
       {
-        "id": "CalamityMod/HallowPointRound",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/HallowPointRound"
-        ]
-      },
-      {
         "id": "Terraria/VenomStaff",
         "wikiStage": "pre-plantera",
         "reason": "recommendation has no proven availability",
@@ -84343,52 +85525,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "CalamityMod/TotalityBreakers",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/TotalityBreakers"
-        ]
-      },
-      {
-        "id": "CalamityMod/UmbraphileHood",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/UmbraphileHood",
-          "CalamityMod/UmbraphileRegalia",
-          "CalamityMod/UmbraphileBoots"
-        ]
-      },
-      {
-        "id": "CalamityMod/UmbraphileRegalia",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/UmbraphileHood",
-          "CalamityMod/UmbraphileRegalia",
-          "CalamityMod/UmbraphileBoots"
-        ]
-      },
-      {
-        "id": "CalamityMod/UmbraphileBoots",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/UmbraphileHood",
-          "CalamityMod/UmbraphileRegalia",
-          "CalamityMod/UmbraphileBoots"
-        ]
-      },
-      {
-        "id": "CalamityMod/VampiricTalisman",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/VampiricTalisman"
         ]
       },
       {
@@ -84549,52 +85685,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "CalamityMod/FantasyTalisman",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/FantasyTalisman"
-        ]
-      },
-      {
-        "id": "CalamityMod/UmbraphileHood",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/UmbraphileHood",
-          "CalamityMod/UmbraphileRegalia",
-          "CalamityMod/UmbraphileBoots"
-        ]
-      },
-      {
-        "id": "CalamityMod/UmbraphileRegalia",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/UmbraphileHood",
-          "CalamityMod/UmbraphileRegalia",
-          "CalamityMod/UmbraphileBoots"
-        ]
-      },
-      {
-        "id": "CalamityMod/UmbraphileBoots",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/UmbraphileHood",
-          "CalamityMod/UmbraphileRegalia",
-          "CalamityMod/UmbraphileBoots"
-        ]
-      },
-      {
-        "id": "CalamityMod/VampiricTalisman",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/VampiricTalisman"
         ]
       },
       {
@@ -84782,14 +85872,6 @@
         ]
       },
       {
-        "id": "CalamityMod/VampiricTalisman",
-        "wikiStage": "post-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/VampiricTalisman"
-        ]
-      },
-      {
         "id": "Terraria/FlaskofVenom",
         "wikiStage": "post-golem",
         "reason": "recommendation has no proven availability",
@@ -84959,14 +86041,6 @@
         ]
       },
       {
-        "id": "CalamityMod/VampiricTalisman",
-        "wikiStage": "pre-lunar",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/VampiricTalisman"
-        ]
-      },
-      {
         "id": "Terraria/FlaskofVenom",
         "wikiStage": "pre-lunar",
         "reason": "recommendation has no proven availability",
@@ -85014,14 +86088,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "CalamityMod/PlagueTaintedSMG",
-        "wikiStage": "pre-moonlord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PlagueTaintedSMG"
         ]
       },
       {
@@ -85144,14 +86210,6 @@
         ]
       },
       {
-        "id": "CalamityMod/VampiricTalisman",
-        "wikiStage": "pre-moonlord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/VampiricTalisman"
-        ]
-      },
-      {
         "id": "Terraria/FlaskofVenom",
         "wikiStage": "pre-moonlord",
         "reason": "recommendation has no proven availability",
@@ -85247,14 +86305,6 @@
         ]
       },
       {
-        "id": "CalamityMod/PridefulHuntersPlanarRipper",
-        "wikiStage": "pre-provi",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PridefulHuntersPlanarRipper"
-        ]
-      },
-      {
         "id": "Terraria/ReconScope",
         "wikiStage": "pre-provi",
         "reason": "recommendation has no proven availability",
@@ -85341,14 +86391,6 @@
         "sourceReference": [
           "CalamityMod/HolyFireBullet",
           "Terraria/Luminite Bullet"
-        ]
-      },
-      {
-        "id": "CalamityMod/VampiricTalisman",
-        "wikiStage": "pre-provi",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/VampiricTalisman"
         ]
       },
       {
@@ -85553,14 +86595,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "CalamityMod/TwistingThunder"
-        ]
-      },
-      {
-        "id": "CalamityMod/VampiricTalisman",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/VampiricTalisman"
         ]
       },
       {
@@ -85786,14 +86820,6 @@
         ]
       },
       {
-        "id": "CalamityMod/VampiricTalisman",
-        "wikiStage": "pre-dog",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/VampiricTalisman"
-        ]
-      },
-      {
         "id": "CalamityMod/ClaretCannon",
         "wikiStage": "pre-dog",
         "reason": "recommendation has no proven availability",
@@ -85926,14 +86952,6 @@
         ]
       },
       {
-        "id": "CalamityMod/Onyxia",
-        "wikiStage": "pre-yharon",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/Onyxia"
-        ]
-      },
-      {
         "id": "CalamityMod/ScorchedEarth",
         "wikiStage": "pre-yharon",
         "reason": "recommendation has no proven availability",
@@ -86014,14 +87032,6 @@
         ]
       },
       {
-        "id": "CalamityMod/Nanotech",
-        "wikiStage": "pre-yharon",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/Nanotech"
-        ]
-      },
-      {
         "id": "CalamityMod/ClaretCannon",
         "wikiStage": "pre-yharon",
         "reason": "recommendation has no proven availability",
@@ -86091,14 +87101,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "CalamityMod/AcesHigh",
-        "wikiStage": "pre-scal-exo",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/AcesHigh"
         ]
       },
       {
@@ -86206,14 +87208,6 @@
         ]
       },
       {
-        "id": "CalamityMod/Nanotech",
-        "wikiStage": "pre-scal-exo",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/Nanotech"
-        ]
-      },
-      {
         "id": "CalamityMod/EyeofMagnus",
         "wikiStage": "pre-scal-exo",
         "reason": "recommendation has no proven availability",
@@ -86267,14 +87261,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "CalamityMod/SomaPrime",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/SomaPrime"
         ]
       },
       {
@@ -86339,14 +87325,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "CalamityMod/NanoblackReaper"
-        ]
-      },
-      {
-        "id": "CalamityMod/Nanotech",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/Nanotech"
         ]
       },
       {
@@ -88439,6 +89417,20 @@
         "reason": "recommendation precedes proven availability"
       },
       {
+        "id": "Terraria/Uzi",
+        "factualStage": "plantera",
+        "recommendedStage": "cryogen",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/HighVelocityBullet",
+        "factualStage": "destroyer",
+        "recommendedStage": "cryogen",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
         "id": "Terraria/PygmyNecklace",
         "factualStage": "plantera",
         "recommendedStage": "cryogen",
@@ -88474,13 +89466,6 @@
         "reason": "recommendation precedes proven availability"
       },
       {
-        "id": "Terraria/MoonStone",
-        "factualStage": "plantera",
-        "recommendedStage": "destroyer",
-        "wikiStage": "post-mech1",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
         "id": "Terraria/ButterflyWings",
         "factualStage": "plantera",
         "recommendedStage": "destroyer",
@@ -88502,13 +89487,6 @@
         "reason": "recommendation precedes proven availability"
       },
       {
-        "id": "Terraria/MoonStone",
-        "factualStage": "plantera",
-        "recommendedStage": "twins",
-        "wikiStage": "post-mech2",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
         "id": "Terraria/ButterflyWings",
         "factualStage": "plantera",
         "recommendedStage": "twins",
@@ -88517,20 +89495,6 @@
       },
       {
         "id": "Terraria/PulseBow",
-        "factualStage": "plantera",
-        "recommendedStage": "calamitas-clone",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "CalamityMod/VengefulSunStaff",
-        "factualStage": "plantera",
-        "recommendedStage": "calamitas-clone",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "Terraria/MoonStone",
         "factualStage": "plantera",
         "recommendedStage": "calamitas-clone",
         "wikiStage": "pre-plantera",

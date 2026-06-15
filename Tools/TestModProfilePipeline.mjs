@@ -163,18 +163,25 @@ const vanillaSources = applyVanillaSourceCatalog({
     { id: "start", unlock: { type: "always" } },
     { id: "goblin-stage", unlock: { type: "vanilla-flag", key: "downedBoss1" } },
     { id: "dungeon", unlock: { type: "vanilla-flag", key: "downedBoss3" } },
-    { id: "hardmode", unlock: { type: "vanilla-flag", key: "hardMode" } }
+    { id: "hardmode", unlock: { type: "vanilla-flag", key: "hardMode" } },
+    { id: "plantera", unlock: { type: "vanilla-flag", key: "downedPlantBoss" } }
   ]
 });
 assert(vanillaSources.initialStations.includes("Terraria/DemonAltar"));
 assert(vanillaSources.initialStations.includes("Terraria/Hellforge"));
 assert(vanillaSources.initialItems.includes("Terraria/PinkGel"));
+assert(vanillaSources.stages.find(stage => stage.id === "start")
+  .shops.includes("Terraria/ArmsDealer"));
 assert(vanillaSources.stages.find(stage => stage.id === "goblin-stage")
   .include.includes("Terraria/TinkerersWorkshop"));
 assert(vanillaSources.stages.find(stage => stage.id === "dungeon")
   .stations.includes("Terraria/AlchemyTable"));
 assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
   .include.includes("Terraria/AdamantiteForge"));
+assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
+  .enemies.includes("Terraria/VampireBat"));
+assert(vanillaSources.stages.find(stage => stage.id === "plantera")
+  .enemies.includes("Terraria/Reaper"));
 
 const ignore = fs.readFileSync(path.join(root, "build.txt"), "utf8");
 for (const name of requiredFiles.filter(name => name !== "profile.json")) {
