@@ -43,7 +43,7 @@ public sealed class JournalLocalizedText
         return text;
     }
 
-    public static implicit operator string(JournalLocalizedText value) => value?.Resolve() ?? string.Empty;
+    public static implicit operator string(JournalLocalizedText? value) => value?.Resolve() ?? string.Empty;
 }
 
 public sealed class JournalLocalizedTextConverter : JsonConverter<JournalLocalizedText>

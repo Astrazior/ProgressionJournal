@@ -1,10 +1,8 @@
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ProgressionJournal.Systems;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace ProgressionJournal.UI.Controls;
@@ -100,8 +98,10 @@ public sealed class JournalProfileManagerPanel : JournalVolumetricPanel
         warningContainer.Height.Set(WarningAreaHeight - 12f, 0f);
         Append(warningContainer);
 
-        var alertIcon = new JournalConditionAlertIcon();
-        alertIcon.HAlign = 0.5f;
+        var alertIcon = new JournalConditionAlertIcon
+        {
+            HAlign = 0.5f
+        };
         warningContainer.Append(alertIcon);
 
         var maxTextWidth = MathF.Max(

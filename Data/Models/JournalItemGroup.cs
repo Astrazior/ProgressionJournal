@@ -20,7 +20,7 @@ public sealed class JournalItemGroup
 
 	public IReadOnlyList<int> ItemIds { get; }
 
-	public string? DisplayNameLocalizationKey { get; }
+	private string? DisplayNameLocalizationKey { get; }
 
 	public int? DisplayBuffId { get; }
 

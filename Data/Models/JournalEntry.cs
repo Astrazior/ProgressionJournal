@@ -84,7 +84,7 @@ public sealed class JournalEntry
 
 	public JournalItemCategory Category { get; }
 
-	public CombatClass Classes { get; }
+	private CombatClass Classes { get; }
 
 	public IReadOnlySet<string> ClassIds => _classIds;
 
@@ -112,7 +112,7 @@ public sealed class JournalEntry
 
 	public bool AppliesToClass(string classId) => _classIds.Contains(classId);
 
-	public bool TryGetEvaluation(ProgressionStageId stageId, out StageEvaluation evaluation)
+	private bool TryGetEvaluation(ProgressionStageId stageId, out StageEvaluation evaluation)
 	{
 		return TryGetEvaluation(
 			JournalProfileIds.Vanilla,

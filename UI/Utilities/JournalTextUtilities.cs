@@ -25,7 +25,7 @@ public static class JournalTextUtilities
         return ellipsis;
     }
 
-    public static float MeasureMouseTextWidth(string text, float textScale)
+    private static float MeasureMouseTextWidth(string text, float textScale)
     {
         return FontAssets.MouseText.Value.MeasureString(text).X * textScale;
     }

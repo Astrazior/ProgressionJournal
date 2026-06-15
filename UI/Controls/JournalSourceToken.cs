@@ -41,11 +41,11 @@ public sealed class JournalSourceToken : UIElement
         Height.Set(tokenSize, 0f);
     }
 
-    public static float TokenSize => 44f;
+    private static float TokenSize => 44f;
 
-    public static float NpcTokenSize => 56f;
+    private static float NpcTokenSize => 56f;
 
-    public static float TileTokenSize => 70f;
+    private static float TileTokenSize => 70f;
 
     public static float GetTokenSize(JournalSourceTokenData data)
     {
@@ -68,7 +68,6 @@ public sealed class JournalSourceToken : UIElement
         var innerPadding = _data.Kind switch
         {
             JournalSourceTokenKind.Npc => 8,
-            JournalSourceTokenKind.Tile => 7,
             _ => 7
         };
         inner.Inflate(-innerPadding, -innerPadding);

@@ -26,7 +26,8 @@ public static class JournalStageIconCatalog
             ["pre-moonlord"] = NPCID.MoonLordHead,
             ["pre-provi"] = NPCID.MoonLordHead
         };
-    public static IReadOnlyList<JournalStageIconCandidate> GetCandidates(string search)
+
+    private static IReadOnlyList<JournalStageIconCandidate> GetCandidates(string search)
     {
         _cachedCandidates ??= Enumerable.Range(1, NPCLoader.NPCCount - 1)
             .Select(CreateCandidate)

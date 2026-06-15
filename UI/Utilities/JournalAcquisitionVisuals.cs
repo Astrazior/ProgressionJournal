@@ -13,9 +13,11 @@ public static class JournalAcquisitionVisuals
 {
     private const string MoonTexturePathPrefix = "Images/Moon_";
     private const string HardmodeTexturePath = "achievement:ITS_HARD";
+#pragma warning disable SYSLIB1045 // tModLoader's in-game compiler does not run the GeneratedRegex source generator.
     private static readonly Regex LeadingItemTagRegex = new(
         @"^\s*\[i(?:/[^\]:]+)*:[^\]]+\]\s*",
-        RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+#pragma warning restore SYSLIB1045
 
     private static readonly HashSet<int> BestiaryLocationFrames =
     [
@@ -124,7 +126,7 @@ public static class JournalAcquisitionVisuals
         return new JournalSourceTokenData(JournalSourceTokenKind.Npc, shop.NpcType, shop.NpcName);
     }
 
-    public static IReadOnlyList<JournalSourceTokenData> GetNpcBestiaryTokens(int npcType)
+    private static JournalSourceTokenData[] GetNpcBestiaryTokens(int npcType)
     {
         if (NpcBestiaryTokenCache.TryGetValue(npcType, out var cachedTokens))
         {
@@ -188,30 +190,27 @@ public static class JournalAcquisitionVisuals
 
     public static JournalConditionVisuals SplitConditions(IEnumerable<string> conditions)
     {
-        var tokens = new List<JournalSourceTokenData>();
-        var remainingText = new List<string>();
+        var result = conditions
+            .Where(static condition => !string.IsNullOrWhiteSpace(condition))
+            .Select(static condition => RemoveLeadingItemTag(RemoveRedundantItemPrefix(condition)))
+            .Where(static condition => !string.IsNullOrWhiteSpace(condition))
+            .Aggregate(
+                (Tokens: new List<JournalSourceTokenData>(), RemainingText: new List<string>()),
+                static (result, condition) =>
+                {
+                    if (!TryCreateConditionTokens(condition, result.Tokens))
+                    {
+                        result.RemainingText.Add(condition);
+                    }
 
-        foreach (var rawCondition in conditions.Where(static condition => !string.IsNullOrWhiteSpace(condition)))
-        {
-            var condition = RemoveLeadingItemTag(RemoveRedundantItemPrefix(rawCondition));
-            if (string.IsNullOrWhiteSpace(condition))
-            {
-                continue;
-            }
-
-            if (TryCreateConditionTokens(condition, tokens))
-            {
-                continue;
-            }
-
-            remainingText.Add(condition);
-        }
+                    return result;
+                });
 
         return new JournalConditionVisuals(
-            tokens
+            result.Tokens
                 .Distinct()
                 .ToArray(),
-            remainingText.ToArray());
+            result.RemainingText.ToArray());
     }
 
     private static string RemoveLeadingItemTag(string condition) =>

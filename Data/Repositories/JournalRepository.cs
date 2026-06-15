@@ -16,7 +16,21 @@ public static partial class JournalRepository
 
     public static IReadOnlyList<JournalStageEntry> GetEntries(string profileId, string stageId, string classId)
     {
-        if (!JournalProfileRegistry.TryGet(profileId, out var profile))
+        if (JournalProfileRegistry.TryGet(profileId, out var profile))
+            return profile.Entries
+                .Where(entry => entry.AppliesToClass(classId)
+                                || entry.WikiRecommendations.Any(value =>
+                                    string.Equals(value.StageId, stageId, StringComparison.OrdinalIgnoreCase)
+                                    && value.ClassIds.Contains(classId)))
+                .Select(entry => CreateStageEntry(profile.Id, stageId, classId, entry))
+                .Where(static entry => entry is not null)
+                .Select(static entry => entry!)
+                .OrderByDescending(static entry => entry.IsWikiRecommendation)
+                .ThenBy(entry => JournalOrdering.GetTierOrder(entry.Evaluation.Tier))
+                .ThenBy(entry => JournalOrdering.GetCategoryOrder(entry.Entry.Category))
+                .ThenBy(entry => GetDisplayOrderOverride(profile.Id, stageId, entry.Entry.Key))
+                .ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
+                .ToArray();
         {
             if (!JournalProfileRegistry.IsLoaded
                 && string.Equals(profileId, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase))
@@ -96,13 +110,11 @@ public static partial class JournalRepository
 
         ExternalEntries.Add(entry);
 
-        if (Entries.IsValueCreated)
-        {
-            var currentEntries = JournalProfileRegistry.TryGet(JournalProfileIds.Vanilla, out var vanillaProfile)
-                ? vanillaProfile.Entries
-                : Entries.Value;
-            JournalProfileRegistry.RefreshVanillaProfile(currentEntries.Concat([entry]).ToArray());
-        }
+        if (!Entries.IsValueCreated) return;
+        var currentEntries = JournalProfileRegistry.TryGet(JournalProfileIds.Vanilla, out var vanillaProfile)
+            ? vanillaProfile.Entries
+            : Entries.Value;
+        JournalProfileRegistry.RefreshVanillaProfile(currentEntries.Concat([entry]).ToArray());
     }
 
     internal static void ClearExternalContent()

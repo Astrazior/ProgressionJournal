@@ -123,7 +123,7 @@ public static class JournalUiTheme
             new Color(226, 233, 240))
     };
 
-    public static JournalClassPalette GetCustomClassPalette()
+    private static JournalClassPalette GetCustomClassPalette()
     {
         return new JournalClassPalette(
             new Color(28, 36, 48),

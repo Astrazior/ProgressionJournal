@@ -6,6 +6,7 @@ public static class JournalProfileRegistry
 {
     private static readonly Dictionary<string, JournalProfile> Profiles =
         new(StringComparer.OrdinalIgnoreCase);
+    private static JournalProfile? _active;
 
     public static IReadOnlyList<JournalProfile> All => Profiles.Values
         .Where(IsAvailable)
@@ -13,9 +14,10 @@ public static class JournalProfileRegistry
         .ThenBy(static profile => profile.DisplayName, StringComparer.CurrentCultureIgnoreCase)
         .ToArray();
 
-    public static JournalProfile Active { get; private set; } = null!;
+    public static JournalProfile Active =>
+        _active ?? throw new InvalidOperationException("Journal profiles have not been loaded.");
 
-    public static bool IsLoaded => Active is not null;
+    public static bool IsLoaded => _active is not null;
 
     public static void Load(IReadOnlyList<JournalEntry> vanillaEntries)
     {
@@ -24,7 +26,7 @@ public static class JournalProfileRegistry
         LoadBundledProfiles();
 
         var activeId = JournalProfileStorage.LoadActiveProfileId();
-        Active = TryGet(activeId, out var selected) && IsAvailable(selected)
+        _active = TryGet(activeId, out var selected) && IsAvailable(selected)
             ? selected
             : Profiles[JournalProfileIds.Vanilla];
     }
@@ -36,14 +38,14 @@ public static class JournalProfileRegistry
 
     public static void RefreshVanillaProfile(IReadOnlyList<JournalEntry> entries)
     {
-        var wasActive = Active is not null
-            && string.Equals(Active.Id, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase);
+        var wasActive = _active is not null
+            && string.Equals(_active.Id, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase);
         var profile = JournalProfileStorage.CreateVanillaProfile(entries);
         Profiles[profile.Id] = profile;
 
         if (wasActive)
         {
-            Active = profile;
+            _active = profile;
         }
     }
 
@@ -59,7 +61,7 @@ public static class JournalProfileRegistry
             return false;
         }
 
-        Active = profile;
+        _active = profile;
         JournalProfileStorage.SaveActiveProfileId(profile.Id);
         return true;
     }
@@ -67,12 +69,12 @@ public static class JournalProfileRegistry
     public static void Unload()
     {
         Profiles.Clear();
-        Active = null!;
+        _active = null;
         JournalProfileUnlockRegistry.Clear();
         JournalNpcUnlockTracker.Clear();
     }
 
-    public static bool IsAvailable(JournalProfile profile)
+    private static bool IsAvailable(JournalProfile profile)
     {
         return profile.Document.RequiredMods.All(requirement => ModLoader.HasMod(requirement.Name));
     }

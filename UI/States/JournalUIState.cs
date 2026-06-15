@@ -786,8 +786,7 @@ public sealed class JournalUiState : UIState
             {
                 var groupedDrops = group.ToArray();
                 var isBossBagGroup = groupedDrops.All(static drop =>
-                    drop.SourceItemId is { } itemId
-                    && itemId >= 0
+                    drop.SourceItemId is { } itemId and >= 0
                     && itemId < ItemID.Sets.BossBag.Length
                     && ItemID.Sets.BossBag[itemId]);
                 return groupedDrops.Length >= 4 && (group.Key.IsNpcSource || isBossBagGroup)

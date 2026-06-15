@@ -17,7 +17,7 @@ public sealed class JournalProfile(
 
     public string Id => Document.Id;
 
-    public string Name => Document.Name.Resolve();
+    private string Name => Document.Name.Resolve();
 
     public string DisplayName
     {

@@ -1,7 +1,9 @@
 using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace ProgressionJournal.Data.Profiles;
 
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public sealed class JournalProfileDocument
 {
     public string Format { get; set; } = JournalProfileStorage.ProfileFormat;
@@ -23,6 +25,7 @@ public sealed class JournalProfileDocument
     public List<JournalProfileCombatBuffDocument> CombatBuffs { get; set; } = [];
 }
 
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public sealed class JournalRequiredModDocument
 {
     public string Name { get; set; } = string.Empty;
@@ -30,6 +33,7 @@ public sealed class JournalRequiredModDocument
     public string Version { get; set; } = string.Empty;
 }
 
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public sealed class JournalProfileClassDocument
 {
     public string Id { get; set; } = string.Empty;
@@ -49,6 +53,7 @@ public sealed class JournalProfileClassDocument
     public List<string> DamageClassNames { get; set; } = [];
 }
 
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public sealed class JournalProfileStageDocument
 {
     public string Id { get; set; } = string.Empty;
@@ -64,6 +69,7 @@ public sealed class JournalProfileStageDocument
     public JournalUnlockConditionDocument Unlock { get; set; } = new();
 }
 
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public sealed class JournalUnlockConditionDocument
 {
     public string Type { get; set; } = "always";
@@ -79,6 +85,7 @@ public sealed class JournalUnlockConditionDocument
     public List<JournalUnlockConditionDocument> Conditions { get; set; } = [];
 }
 
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public sealed class JournalProfileEntryDocument
 {
     public string Key { get; set; } = string.Empty;
@@ -106,11 +113,13 @@ public sealed class JournalProfileEntryDocument
     public string EventIcon { get; set; } = string.Empty;
 }
 
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public sealed class JournalFishingSourceDocument
 {
     public List<JournalLocalizedText> Conditions { get; set; } = [];
 }
 
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public sealed class JournalProfileEvaluationDocument
 {
     public string StageId { get; set; } = string.Empty;
@@ -128,6 +137,7 @@ public enum JournalEvaluationScope
     StageOnly
 }
 
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public sealed class JournalWikiRecommendationDocument
 {
     public string StageId { get; set; } = string.Empty;
@@ -141,6 +151,7 @@ public sealed class JournalWikiRecommendationDocument
     public JournalLocalizedText Target { get; set; } = string.Empty;
 }
 
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public sealed class JournalItemReferenceDocument
 {
     public string Mod { get; set; } = "Terraria";
@@ -150,6 +161,7 @@ public sealed class JournalItemReferenceDocument
     public string DisplayName { get; set; } = string.Empty;
 }
 
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public sealed class JournalProfileCombatBuffDocument
 {
     public string Key { get; set; } = string.Empty;

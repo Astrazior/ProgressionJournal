@@ -157,8 +157,7 @@ public sealed class JournalRecommendationHeader(
                 y + TooltipPadding + index * lineHeight,
                 JournalUiTheme.ContentDescriptionText,
                 Color.Black * 0.75f,
-                Vector2.Zero,
-                TooltipTextScale);
+                Vector2.Zero);
         }
     }
 }

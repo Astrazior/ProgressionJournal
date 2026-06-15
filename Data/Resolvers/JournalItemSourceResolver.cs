@@ -228,8 +228,7 @@ public static class JournalItemSourceResolver
                 var getGlobalItemMethod = typeof(Item)
                     .GetMethods(BindingFlags.Public | BindingFlags.Instance)
                     .FirstOrDefault(static method =>
-                        method.Name == "GetGlobalItem"
-                        && method.IsGenericMethodDefinition
+                        method is { Name: "GetGlobalItem", IsGenericMethodDefinition: true }
                         && method.GetGenericArguments().Length == 1
                         && method.GetParameters().Length == 0);
                 var globalItem = getGlobalItemMethod?

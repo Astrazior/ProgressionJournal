@@ -22,7 +22,7 @@ public sealed class JournalTextInput : UIElement
 
     public string HintText { get; set; }
 
-    public int MaxLength { get; } = 64;
+    private int MaxLength { get; } = 64;
 
     public string CurrentString { get; private set; } = string.Empty;
 

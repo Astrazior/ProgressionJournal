@@ -262,10 +262,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
 
     private static List<SnapshotClassEffect> GetClassEffects(Item sourceItem)
     {
-        if (!sourceItem.accessory
-            && sourceItem.headSlot < 0
-            && sourceItem.bodySlot < 0
-            && sourceItem.legSlot < 0)
+        if (sourceItem is { accessory: false, headSlot: < 0, bodySlot: < 0, legSlot: < 0 })
         {
             return [];
         }
@@ -278,42 +275,44 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
 
             equipped.ApplyEquipFunctional(item, hideVisual: false);
 
-            List<SnapshotClassEffect> effects = [];
-            foreach (var damageClass in EnumerateDamageClasses())
-            {
-                var damage = !StatModifierEquals(
-                    baseline.GetDamage(damageClass),
-                    equipped.GetDamage(damageClass));
-                var crit = !NearlyEqual(
-                    baseline.GetCritChance(damageClass),
-                    equipped.GetCritChance(damageClass));
-                var attackSpeed = !NearlyEqual(
-                    baseline.GetAttackSpeed(damageClass),
-                    equipped.GetAttackSpeed(damageClass));
-                var armorPenetration = baseline.GetArmorPenetration(damageClass)
-                    != equipped.GetArmorPenetration(damageClass);
-                var knockback = !StatModifierEquals(
-                    baseline.GetKnockback(damageClass),
-                    equipped.GetKnockback(damageClass));
-
-                if (damage || crit || attackSpeed || armorPenetration || knockback)
-                {
-                    effects.Add(new SnapshotClassEffect(
-                        damageClass.FullName,
-                        damage,
-                        crit,
-                        attackSpeed,
-                        armorPenetration,
-                        knockback));
-                }
-            }
-
-            return effects;
+            return EnumerateDamageClasses()
+                .Select(damageClass => CreateClassEffect(damageClass, baseline, equipped))
+                .OfType<SnapshotClassEffect>()
+                .ToList();
         }
         catch
         {
             return [];
         }
+    }
+
+    private static SnapshotClassEffect? CreateClassEffect(DamageClass damageClass, Player baseline, Player equipped)
+    {
+        var damage = !StatModifierEquals(
+            baseline.GetDamage(damageClass),
+            equipped.GetDamage(damageClass));
+        var crit = !NearlyEqual(
+            baseline.GetCritChance(damageClass),
+            equipped.GetCritChance(damageClass));
+        var attackSpeed = !NearlyEqual(
+            baseline.GetAttackSpeed(damageClass),
+            equipped.GetAttackSpeed(damageClass));
+        var armorPenetration = !NearlyEqual(
+            baseline.GetArmorPenetration(damageClass),
+            equipped.GetArmorPenetration(damageClass));
+        var knockback = !StatModifierEquals(
+            baseline.GetKnockback(damageClass),
+            equipped.GetKnockback(damageClass));
+
+        return damage || crit || attackSpeed || armorPenetration || knockback
+            ? new SnapshotClassEffect(
+                damageClass.FullName,
+                damage,
+                crit,
+                attackSpeed,
+                armorPenetration,
+                knockback)
+            : null;
     }
 
     private static Player CreateEffectProbePlayer()
@@ -561,7 +560,7 @@ public sealed class ProgressionSnapshot
     public int Version { get; set; } = 2;
     public string GeneratedAtUtc { get; set; } = string.Empty;
     public string TargetMod { get; set; } = string.Empty;
-    public List<string> ContentMods { get; set; } = [];
+    public List<string> ContentMods { get; init; } = [];
     public List<SnapshotMod> Mods { get; set; } = [];
     public List<SnapshotMod> EnvironmentMods { get; set; } = [];
     public List<SnapshotItem> Items { get; set; } = [];

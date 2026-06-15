@@ -26,7 +26,7 @@ internal static class JournalSourceCardRenderer
 
         var fill = bounds;
         fill.Inflate(-4, -4);
-        if (fill.Width > 0 && fill.Height > 0)
+        if (fill is { Width: > 0, Height: > 0 })
         {
             spriteBatch.Draw(
                 TextureAssets.MagicPixel.Value,
@@ -51,7 +51,7 @@ internal static class JournalSourceCardRenderer
 
         var fill = bounds;
         fill.Inflate(-4, -4);
-        if (fill.Width > 0 && fill.Height > 0)
+        if (fill is { Width: > 0, Height: > 0 })
         {
             spriteBatch.Draw(TextureAssets.MagicPixel.Value, fill, background * 0.96f);
         }
