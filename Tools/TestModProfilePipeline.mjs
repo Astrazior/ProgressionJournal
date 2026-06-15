@@ -29,6 +29,18 @@ for (const modName of expected) {
   assert.equal(support.targetMod, modName);
   assert.equal(snapshot.targetMod, modName);
   assert.equal(profile.format, "ProgressionJournalProfile");
+  for (const event of support.events ?? []) {
+    if (event.customEventName) {
+      assert(event.eventIcon,
+        `${modName}: custom event '${event.customEventName}' has no event icon`);
+    }
+  }
+  for (const entry of profile.entries) {
+    if (entry.customEventName) {
+      assert(entry.eventIcon,
+        `${modName}: generated custom event '${entry.customEventName}' has no event icon`);
+    }
+  }
   if (modName === "CalamityMod") {
     const profileItems = new Set(profile.entries.flatMap(entry =>
       (entry.itemGroups ?? []).flat().map(item => `${item.mod}/${item.item}`)));

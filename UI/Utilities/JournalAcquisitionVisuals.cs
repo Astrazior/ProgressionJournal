@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.Localization;
@@ -12,6 +13,9 @@ public static class JournalAcquisitionVisuals
 {
     private const string MoonTexturePathPrefix = "Images/Moon_";
     private const string HardmodeTexturePath = "achievement:ITS_HARD";
+    private static readonly Regex LeadingItemTagRegex = new(
+        @"^\s*\[i(?:/[^\]:]+)*:[^\]]+\]\s*",
+        RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
     private static readonly HashSet<int> BestiaryLocationFrames =
     [
@@ -189,7 +193,7 @@ public static class JournalAcquisitionVisuals
 
         foreach (var rawCondition in conditions.Where(static condition => !string.IsNullOrWhiteSpace(condition)))
         {
-            var condition = RemoveRedundantItemPrefix(rawCondition);
+            var condition = RemoveLeadingItemTag(RemoveRedundantItemPrefix(rawCondition));
             if (string.IsNullOrWhiteSpace(condition))
             {
                 continue;
@@ -209,6 +213,9 @@ public static class JournalAcquisitionVisuals
                 .ToArray(),
             remainingText.ToArray());
     }
+
+    private static string RemoveLeadingItemTag(string condition) =>
+        LeadingItemTagRegex.Replace(condition, string.Empty);
 
     private static string RemoveRedundantItemPrefix(string condition)
     {

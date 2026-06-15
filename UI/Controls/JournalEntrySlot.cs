@@ -3,9 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
+using ProgressionJournal.UI.Utilities;
 
 namespace ProgressionJournal.UI.Controls;
 
@@ -333,6 +335,15 @@ public sealed class JournalEntrySlot : UIElement
 
         var modName = assetPath[..separatorIndex];
         var relativePath = assetPath[(separatorIndex + 1)..];
+        if (string.Equals(modName, "Terraria", StringComparison.OrdinalIgnoreCase)
+            && NPCID.Search.TryGetId(relativePath, out var npcType))
+        {
+            var headSlot = JournalStageIconCatalog.GetBossHeadSlot(npcType);
+            return headSlot >= 0 && headSlot < TextureAssets.NpcHeadBoss.Length
+                ? TextureAssets.NpcHeadBoss[headSlot]
+                : null;
+        }
+
         return ModLoader.TryGetMod(modName, out var mod)
             && mod.RequestAssetIfExists<Texture2D>(relativePath, out var asset)
                 ? asset
