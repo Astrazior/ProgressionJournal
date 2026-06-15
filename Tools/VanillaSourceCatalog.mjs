@@ -43,6 +43,7 @@ const START_ITEMS = [
   "Terraria/Cobweb",
   "Terraria/Silk",
   "Terraria/Mushroom",
+  "Terraria/GlowingMushroom",
   "Terraria/Obsidian",
   "Terraria/Cactus",
   "Terraria/Coral",

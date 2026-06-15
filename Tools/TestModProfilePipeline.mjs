@@ -85,6 +85,13 @@ for (const modName of expected) {
     })) {
       assert.equal(stageOf(item), stageId, `${item} must follow its latest recipe dependency`);
     }
+    assert.equal(
+      profile.combatBuffs.find(entry =>
+        (entry.itemGroups ?? []).flat().some(reference =>
+          reference.mod === "Terraria" && reference.item === "RestorationPotion"))
+        ?.stageId,
+      "start",
+      "Restoration Potion must be available from naturally growing Glowing Mushrooms");
   }
   const snapshotVersions = new Map(snapshot.mods.map(mod => [mod.name, mod.version]));
   for (const required of support.requiredMods ?? []) {
@@ -199,6 +206,7 @@ assert(vanillaSources.initialStations.includes("Terraria/DemonAltar"));
 assert(vanillaSources.initialStations.includes("Terraria/Hellforge"));
 assert(vanillaSources.initialItems.includes("Terraria/PinkGel"));
 assert(vanillaSources.initialItems.includes("Terraria/JungleRose"));
+assert(vanillaSources.initialItems.includes("Terraria/GlowingMushroom"));
 assert(vanillaSources.stages.find(stage => stage.id === "start")
   .shops.includes("Terraria/ArmsDealer"));
 assert(vanillaSources.stages.find(stage => stage.id === "start")
