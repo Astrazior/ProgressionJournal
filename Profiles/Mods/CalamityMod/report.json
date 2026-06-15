@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-06-15T13:49:14.312Z",
+  "generatedAtUtc": "2026-06-15T14:25:08.872Z",
   "snapshot": {
     "version": 2,
     "generatedAtUtc": "2026-06-13T00:10:42.0187109Z",
@@ -344,10 +344,10 @@
       },
       {
         "id": "calamity-start-world-and-fishing-materials",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/Items",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/World/SunkenSea.cs#L581-L617",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official source defines these as naturally available pre-boss wood, fishing, crate or ordinary cavern-skeleton materials."
+        "checkedAt": "2026-06-15",
+        "reason": "These materials are naturally available before bosses; Prism Shards are generated as mineable crystal tiles in the Sunken Sea during world generation."
       },
       {
         "id": "calamity-post-skeletron-abyss-materials",
@@ -842,22 +842,22 @@
     ]
   },
   "review": {
-    "total": 113,
+    "total": 51,
     "byKind": {
-      "unassigned-combat-item": 113
+      "unassigned-combat-item": 51
     }
   },
   "audit": {
     "errors": [],
     "warnings": [
       "1 support or agent references are stale",
-      "64 recommendations precede proven availability and were suppressed"
+      "71 recommendations precede proven availability and were suppressed"
     ]
   },
   "ready": false,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-06-15T13:49:09.959Z",
+    "generatedAtUtc": "2026-06-15T14:25:04.154Z",
     "unknownReferences": [
       {
         "stage": "wall-of-flesh",
@@ -38126,6 +38126,249 @@
         }
       },
       {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/RocketII",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Во время кровавой луны"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/RocketIII",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Ночью или во время солнечного затмения"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/RocketIV",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Во время солнечного затмения"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/ClusterRocketI",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "После победы над марсианским безумием"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/ClusterRocketII",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "После победы над марсианским безумием"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/SpectreGoggles",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "На кладбище"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/EchoBlock",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "На кладбище"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/CyborgHelmet",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Во время Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/CyborgShirt",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Во время Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/CyborgPants",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Во время Хэллоуина"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/HiTekSunglasses",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "После победы над марсианским безумием"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/NightVisionHelmet",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "После победы над марсианским безумием"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/PortalGunStation",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда в инвентаре находится Портальная пушка или Держатель портальной пушки"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/TeleportationPylonPurity",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда торговец достаточно счастлив для продажи пилонов"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/TeleportationPylonSnow",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда торговец достаточно счастлив для продажи пилонов"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/TeleportationPylonDesert",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда торговец достаточно счастлив для продажи пилонов"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/TeleportationPylonUnderground",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда торговец достаточно счастлив для продажи пилонов"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/TeleportationPylonOcean",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда торговец достаточно счастлив для продажи пилонов"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/TeleportationPylonJungle",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда торговец достаточно счастлив для продажи пилонов"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/TeleportationPylonHallow",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда торговец достаточно счастлив для продажи пилонов"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "Terraria/TeleportationPylonMushroom",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда торговец достаточно счастлив для продажи пилонов"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "CalamityMod/AstralPylon",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда рядом с торговцем находится другой житель"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "CalamityMod/SulphurPylon",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда рядом с торговцем находится другой житель"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Cyborg",
+        "item": "CalamityMod/SunkenPylon",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Когда рядом с торговцем находится другой житель"
+        }
+      },
+      {
+        "sourceKind": "recipe",
+        "source": "Terraria/WetRocket",
+        "item": "Terraria/WetRocket",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Нужна вода"
+        }
+      },
+      {
+        "sourceKind": "recipe",
+        "source": "Terraria/LavaRocket",
+        "item": "Terraria/LavaRocket",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Нужна лава"
+        }
+      },
+      {
+        "sourceKind": "recipe",
+        "source": "Terraria/HoneyRocket",
+        "item": "Terraria/HoneyRocket",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "Нужен мёд"
+        }
+      },
+      {
         "sourceKind": "drop",
         "source": "CalamityMod/Anahita",
         "item": "Terraria/MechanicalWorm",
@@ -50952,6 +51195,11 @@
       },
       {
         "stage": "start",
+        "id": "CalamityMod/PrismShard",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "CalamityMod/SmoothBrimstoneSlag",
         "reason": "not combat equipment"
       },
@@ -54887,6 +55135,11 @@
       },
       {
         "stage": "start",
+        "id": "CalamityMod/TheEtomer",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "CalamityMod/LaboratoryPanels",
         "reason": "not combat equipment"
       },
@@ -54937,12 +55190,27 @@
       },
       {
         "stage": "start",
+        "id": "CalamityMod/AlgalPrismTorch",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "CalamityMod/AshenAltar",
         "reason": "not combat equipment"
       },
       {
         "stage": "start",
         "id": "CalamityMod/GloomTorch",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/NavyPrismTorch",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/RefractivePrismTorch",
         "reason": "not combat equipment"
       },
       {
@@ -55353,6 +55621,16 @@
       {
         "stage": "start",
         "id": "CalamityMod/PinkPearlPile",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/SeaPrism",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/SeaPrismBrick",
         "reason": "not combat equipment"
       },
       {
@@ -56277,6 +56555,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/UltrabrightTorch",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/FlowerBoots",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -56577,7 +56860,22 @@
       },
       {
         "stage": "start",
+        "id": "CalamityMod/Navyplate",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/NavyplateWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/MagicalPumpkinSeed",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/UltraBrightCampfire",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -56614,6 +56912,26 @@
         "stage": "start",
         "id": "Terraria/AmberStoneWallEcho",
         "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/CagedFloodlightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/MiniCagedFloodlightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/WaterTurret",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/HostileWaterTurret",
+        "reason": "not combat equipment"
       },
       {
         "stage": "king-slime",
@@ -56967,6 +57285,11 @@
       },
       {
         "stage": "desert-scourge",
+        "id": "CalamityMod/NavyFishingRod",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "desert-scourge",
         "id": "CalamityMod/LoreDesertScourge",
         "reason": "not combat equipment"
       },
@@ -57008,6 +57331,11 @@
       {
         "stage": "desert-scourge",
         "id": "CalamityMod/ReefclawHamaxe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "desert-scourge",
+        "id": "CalamityMod/EnchantedPearl",
         "reason": "not combat equipment"
       },
       {
@@ -57662,6 +57990,21 @@
       },
       {
         "stage": "world-evil",
+        "id": "Terraria/Meteorite",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteBar",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteBrick",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
         "id": "Terraria/HellstoneBrick",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -57688,6 +58031,91 @@
       {
         "stage": "world-evil",
         "id": "Terraria/Lava4Echo",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteBrickWall",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteBathtub",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteBed",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteCandelabra",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteCandle",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteChair",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteChandelier",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteChest",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteClock",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteDoor",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteDresser",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteLamp",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteLantern",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteSofa",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/ToiletMeteor",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteTable",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoriteWorkBench",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -57767,6 +58195,66 @@
       },
       {
         "stage": "world-evil",
+        "id": "Terraria/BluePhaseblade",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/RedPhaseblade",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/GreenPhaseblade",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/PurplePhaseblade",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/WhitePhaseblade",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/YellowPhaseblade",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/OrangePhaseblade",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteorHamaxe",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/StarCannon",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteorHelmet",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteorSuit",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteorLeggings",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "world-evil",
         "id": "Terraria/Flamarang",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -57814,6 +58302,11 @@
         "stage": "world-evil",
         "id": "CalamityMod/VoodooDemonVoodooDoll",
         "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/MeteoritePlatform",
+        "reason": "unchanged vanilla item in mod profile"
       },
       {
         "stage": "hive-mind-perforators",
@@ -57953,6 +58446,11 @@
       {
         "stage": "hive-mind-perforators",
         "id": "CalamityMod/SkyfringePickaxe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "hive-mind-perforators",
+        "id": "CalamityMod/Aestheticus",
         "reason": "not combat equipment"
       },
       {
@@ -58548,6 +59046,11 @@
       {
         "stage": "skeletron",
         "id": "Terraria/Fake_GlassChest",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/Fake_MeteoriteChest",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -59897,6 +60400,16 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/MeteoriteBookcase",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/MeteoritePiano",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/MarbleBookcase",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -60348,6 +60861,11 @@
       {
         "stage": "wall-of-flesh",
         "id": "CalamityMod/LoreBloodMoon",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "CalamityMod/CometShard",
         "reason": "not combat equipment"
       },
       {
@@ -61007,6 +61525,11 @@
       },
       {
         "stage": "destroyer",
+        "id": "Terraria/LivingUltrabrightFireBlock",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "destroyer",
         "id": "Terraria/CrystalBullet",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -61043,6 +61566,41 @@
       {
         "stage": "destroyer",
         "id": "Terraria/CogWall",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/BluePhasesaber",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/RedPhasesaber",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/GreenPhasesaber",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/PurplePhasesaber",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/WhitePhasesaber",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/YellowPhasesaber",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/OrangePhasesaber",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -62112,6 +62670,31 @@
       },
       {
         "stage": "plantera",
+        "id": "Terraria/DryRocket",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/ProximityMineLauncher",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/Nanites",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/JimsDrone",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/JimsDroneVisor",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
         "id": "Terraria/Ectoplasm",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -62233,6 +62816,16 @@
       {
         "stage": "plantera",
         "id": "Terraria/SporeSac",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/FlaskofNanites",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/NanoBullet",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -62774,6 +63367,11 @@
         "stage": "golem",
         "id": "Terraria/SteampunkWings",
         "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "golem",
+        "id": "CalamityMod/MartianDistressRemote",
+        "reason": "not combat equipment"
       },
       {
         "stage": "golem",
@@ -64248,6 +64846,11 @@
       {
         "stage": "moon-lord",
         "id": "Terraria/LunarHamaxeStardust",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "moon-lord",
+        "id": "Terraria/DrillContainmentUnit",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -66655,9 +67258,21 @@
         "stage": "desert-scourge",
         "via": "container:CalamityMod/DesertScourgeBag"
       },
+      "CalamityMod/AquamarineStaff": {
+        "stage": "desert-scourge",
+        "via": "recipe:Terraria/AmethystStaff+CalamityMod/PearlShard+CalamityMod/SeaPrism+CalamityMod/Navystone"
+      },
       "CalamityMod/CoralSpout": {
         "stage": "desert-scourge",
         "via": "recipe:CalamityMod/SeaRemains+Terraria/Coral"
+      },
+      "CalamityMod/Riptide": {
+        "stage": "desert-scourge",
+        "via": "recipe:CalamityMod/PearlShard+CalamityMod/SeaPrism+CalamityMod/Navystone"
+      },
+      "CalamityMod/SeashineSword": {
+        "stage": "desert-scourge",
+        "via": "recipe:CalamityMod/PearlShard+CalamityMod/SeaPrism+CalamityMod/Navystone"
       },
       "CalamityMod/UrchinMace": {
         "stage": "desert-scourge",
@@ -66667,9 +67282,17 @@
         "stage": "desert-scourge",
         "via": "recipe:CalamityMod/SeaRemains"
       },
+      "CalamityMod/StormSurge": {
+        "stage": "desert-scourge",
+        "via": "recipe:CalamityMod/StormlionMandible+CalamityMod/PearlShard+CalamityMod/SeaPrism+CalamityMod/Navystone"
+      },
       "CalamityMod/FishboneBoomerang": {
         "stage": "desert-scourge",
         "via": "recipe:CalamityMod/SeaRemains"
+      },
+      "CalamityMod/SeafoamBomb": {
+        "stage": "desert-scourge",
+        "via": "recipe:Terraria/Bomb+CalamityMod/SeaPrism+CalamityMod/PearlShard"
       },
       "CalamityMod/Cnidarian": {
         "stage": "desert-scourge",
@@ -66855,9 +67478,17 @@
         "stage": "world-evil",
         "via": "recipe:Terraria/WoodenArrow+Terraria/HellstoneBar"
       },
+      "Terraria/MeteorShot": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MusketBall+Terraria/MeteoriteBar"
+      },
       "Terraria/TheMeatball": {
         "stage": "world-evil",
         "via": "recipe:Terraria/CrimtaneBar+Terraria/TissueSample"
+      },
+      "Terraria/SpaceGun": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBar"
       },
       "Terraria/MoltenFury": {
         "stage": "world-evil",
@@ -66891,6 +67522,10 @@
         "stage": "world-evil",
         "via": "recipe:Terraria/LavaBucket+Terraria/HellstoneBar+Terraria/Obsidian+Terraria/AshBlock"
       },
+      "CalamityMod/SmokingComet": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Diamond+Terraria/Amethyst+Terraria/PinkGel+Terraria/FallenStar+Terraria/MeteoriteBar"
+      },
       "CalamityMod/TaintedBlade": {
         "stage": "world-evil",
         "via": "recipe:CalamityMod/Acidwood+Terraria/ShadowScale+Terraria/Deathweed"
@@ -66899,9 +67534,21 @@
         "stage": "world-evil",
         "via": "recipe:Terraria/FlareGun+Terraria/HellstoneBar+Terraria/IllegalGunParts"
       },
+      "CalamityMod/MagnaCannon": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Granite+Terraria/MeteoriteBar+Terraria/Diamond+Terraria/Sapphire"
+      },
+      "CalamityMod/OpalStriker": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Marble+Terraria/MeteoriteBar+Terraria/Diamond+Terraria/Amber"
+      },
       "CalamityMod/InfernalKris": {
         "stage": "world-evil",
         "via": "recipe:Terraria/HellstoneBar+Terraria/AshWood"
+      },
+      "CalamityMod/MeteorFist": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBar"
       },
       "CalamityMod/SludgeSplotch": {
         "stage": "world-evil",
@@ -67007,6 +67654,26 @@
         "stage": "hive-mind-perforators",
         "via": "recipe:Terraria/MusketBall+Terraria/Ichor"
       },
+      "CalamityMod/AerialTracker": {
+        "stage": "hive-mind-perforators",
+        "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/AerialiteBar+CalamityMod/SeaPrism"
+      },
+      "CalamityMod/AqueousHunterDrone": {
+        "stage": "hive-mind-perforators",
+        "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/AerialiteBar+CalamityMod/SeaPrism"
+      },
+      "CalamityMod/Auger": {
+        "stage": "hive-mind-perforators",
+        "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/AerialiteBar+CalamityMod/SeaPrism"
+      },
+      "CalamityMod/PulsePistol": {
+        "stage": "hive-mind-perforators",
+        "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/AerialiteBar+CalamityMod/SeaPrism"
+      },
+      "CalamityMod/ShortCircuit": {
+        "stage": "hive-mind-perforators",
+        "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/AerialiteBar+CalamityMod/SeaPrism"
+      },
       "CalamityMod/Tradewinds": {
         "stage": "hive-mind-perforators",
         "via": "recipe:CalamityMod/AerialiteBar"
@@ -67026,6 +67693,10 @@
       "CalamityMod/WindBlade": {
         "stage": "hive-mind-perforators",
         "via": "recipe:CalamityMod/AerialiteBar"
+      },
+      "CalamityMod/AquashardShotgun": {
+        "stage": "hive-mind-perforators",
+        "via": "recipe:Terraria/Boomstick+CalamityMod/AerialiteBar+CalamityMod/SeaPrism"
       },
       "CalamityMod/BulletFilledShotgun": {
         "stage": "hive-mind-perforators",
@@ -67054,6 +67725,10 @@
       "CalamityMod/HarpyRing": {
         "stage": "hive-mind-perforators",
         "via": "recipe:CalamityMod/AerialiteBar+Terraria/Feather"
+      },
+      "CalamityMod/TeslasAmulet": {
+        "stage": "hive-mind-perforators",
+        "via": "recipe:CalamityMod/AerialiteBar+CalamityMod/SeaPrism+CalamityMod/StormlionMandible"
       },
       "CalamityMod/SkylineWings": {
         "stage": "hive-mind-perforators",
@@ -67582,6 +68257,10 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Feather+Terraria/SoulofFlight+Terraria/SoulofNight"
       },
+      "Terraria/MeteorStaff": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/MeteoriteBar+Terraria/PixieDust+Terraria/SoulofLight"
+      },
       "Terraria/ArcaneFlower": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/ManaFlower+Terraria/PutridScent"
@@ -67598,6 +68277,10 @@
         "stage": "wall-of-flesh",
         "via": "recipe:CalamityMod/BloodyWormTooth+Terraria/WormScarf+Terraria/SoulofNight"
       },
+      "CalamityMod/DeepDiver": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:CalamityMod/SeaPrism+CalamityMod/MolluskHusk+Terraria/CobaltBar"
+      },
       "CalamityMod/GrandGelatin": {
         "stage": "wall-of-flesh",
         "via": "recipe:CalamityMod/CleansingJelly+CalamityMod/LifeJelly+CalamityMod/VitalJelly+Terraria/SoulofLight+Terraria/SoulofNight"
@@ -67605,6 +68288,18 @@
       "CalamityMod/SlagsplitterPauldron": {
         "stage": "wall-of-flesh",
         "via": "recipe:CalamityMod/ScorchedBone+CalamityMod/AncientBoneDust+CalamityMod/EssenceofHavoc"
+      },
+      "CalamityMod/MolluskShellmet": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:CalamityMod/MolluskHusk+CalamityMod/SeaPrism"
+      },
+      "CalamityMod/MolluskShellplate": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:CalamityMod/MolluskHusk+CalamityMod/SeaPrism"
+      },
+      "CalamityMod/MolluskShelleggings": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:CalamityMod/MolluskHusk+CalamityMod/SeaPrism"
       },
       "CalamityMod/TitanHeartMask": {
         "stage": "wall-of-flesh",
@@ -67682,6 +68377,10 @@
         "stage": "wall-of-flesh",
         "via": "recipe:CalamityMod/FrostBolt+CalamityMod/FlareBolt+CalamityMod/EssenceofHavoc+CalamityMod/EssenceofEleum"
       },
+      "CalamityMod/CometQuasher": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/MeteoriteBar+CalamityMod/EssenceofSunlight+CalamityMod/StarblightSoot+Terraria/FallenStar"
+      },
       "CalamityMod/MonolithSword": {
         "stage": "wall-of-flesh",
         "via": "recipe:CalamityMod/AstralMonolith"
@@ -67717,6 +68416,14 @@
       "CalamityMod/PalladiumJavelin": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/PalladiumBar"
+      },
+      "CalamityMod/Prismalline": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:CalamityMod/Crystalline+CalamityMod/MolluskHusk+CalamityMod/SeaPrism"
+      },
+      "CalamityMod/WaveSkipper": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:CalamityMod/ScourgeoftheDesert+CalamityMod/MolluskHusk+CalamityMod/SeaPrism+CalamityMod/PrismShard"
       },
       "CalamityMod/CausticStaff": {
         "stage": "wall-of-flesh",
@@ -67830,6 +68537,10 @@
         "stage": "aquatic-scourge",
         "via": "container:CalamityMod/AquaticScourgeBag"
       },
+      "CalamityMod/Miasma": {
+        "stage": "aquatic-scourge",
+        "via": "recipe:Terraria/NimbusRod+CalamityMod/AquamarineStaff+CalamityMod/CorrodedFossil"
+      },
       "CalamityMod/Bonebreaker": {
         "stage": "aquatic-scourge",
         "via": "recipe:Terraria/BoneJavelin+CalamityMod/CorrodedFossil"
@@ -67877,6 +68588,10 @@
       "CalamityMod/OrnateShield": {
         "stage": "destroyer",
         "via": "recipe:CalamityMod/CryonicBar+Terraria/CrystalShard"
+      },
+      "CalamityMod/TheTransformer": {
+        "stage": "destroyer",
+        "via": "recipe:CalamityMod/SeaPrism+Terraria/MythrilBar+CalamityMod/EssenceofSunlight+CalamityMod/EssenceofHavoc+CalamityMod/EssenceofEleum+Terraria/SoulofLight+Terraria/SoulofNight"
       },
       "CalamityMod/StarlightWings": {
         "stage": "destroyer",
@@ -67981,6 +68696,10 @@
       "CalamityMod/OrichalcumSpikedGemstone": {
         "stage": "destroyer",
         "via": "recipe:Terraria/OrichalcumBar"
+      },
+      "CalamityMod/StormfrontRazor": {
+        "stage": "destroyer",
+        "via": "recipe:CalamityMod/Cinquedea+Terraria/MythrilBar+CalamityMod/EssenceofSunlight+CalamityMod/SeaPrism+CalamityMod/StormlionMandible"
       },
       "CalamityMod/DaedalusGolemStaff": {
         "stage": "destroyer",
@@ -68338,6 +69057,10 @@
         "stage": "plantera",
         "via": "shop:CalamityMod/Archmage"
       },
+      "Terraria/RocketI": {
+        "stage": "plantera",
+        "via": "shop:Terraria/Cyborg"
+      },
       "Terraria/VampireKnives": {
         "stage": "plantera",
         "via": "manifest"
@@ -68462,6 +69185,10 @@
         "stage": "plantera",
         "via": "recipe:Terraria/MagicMissile+Terraria/AncientCloth+CalamityMod/GrandScale"
       },
+      "CalamityMod/TearsofHeaven": {
+        "stage": "plantera",
+        "via": "recipe:CalamityMod/FrigidflashBolt+Terraria/WaterBolt+CalamityMod/SeaPrism+Terraria/Ectoplasm"
+      },
       "CalamityMod/AnarchyBlade": {
         "stage": "plantera",
         "via": "recipe:Terraria/BreakerBlade+CalamityMod/UnholyCore+CalamityMod/CoreofCalamity"
@@ -68489,6 +69216,10 @@
       "CalamityMod/Tumbleweed": {
         "stage": "plantera",
         "via": "recipe:Terraria/Sunfury+Terraria/AncientCloth+CalamityMod/GrandScale"
+      },
+      "CalamityMod/ArcNovaDiffuser": {
+        "stage": "plantera",
+        "via": "recipe:CalamityMod/OpalStriker+CalamityMod/MagnaCannon+CalamityMod/CoreofCalamity"
       },
       "CalamityMod/BladedgeRailbow": {
         "stage": "plantera",
@@ -68827,6 +69558,18 @@
         "stage": "golem",
         "via": "recipe:CalamityMod/ScoriaBar"
       },
+      "CalamityMod/PlagueReaperMask": {
+        "stage": "golem",
+        "via": "recipe:Terraria/NecroHelmet+CalamityMod/PlagueCellCanister+Terraria/Nanites"
+      },
+      "CalamityMod/PlagueReaperVest": {
+        "stage": "golem",
+        "via": "recipe:Terraria/NecroBreastplate+CalamityMod/PlagueCellCanister+Terraria/Nanites"
+      },
+      "CalamityMod/PlagueReaperStriders": {
+        "stage": "golem",
+        "via": "recipe:Terraria/NecroGreaves+CalamityMod/PlagueCellCanister+Terraria/Nanites"
+      },
       "CalamityMod/ForbiddenSun": {
         "stage": "golem",
         "via": "recipe:Terraria/SpellTome+CalamityMod/ScoriaBar"
@@ -68878,6 +69621,10 @@
       "CalamityMod/Helstorm": {
         "stage": "golem",
         "via": "recipe:CalamityMod/ScoriaBar"
+      },
+      "CalamityMod/EpidemicShredder": {
+        "stage": "golem",
+        "via": "recipe:Terraria/ChlorophyteBar+Terraria/Nanites+CalamityMod/PlagueCellCanister"
       },
       "CalamityMod/Plaguenade": {
         "stage": "golem",
@@ -69180,6 +69927,13 @@
         "stage": "lunatic-cultist",
         "via": "recipe:CalamityMod/MeldBlob"
       },
+      "CalamityMod/Scorpio": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:Terraria/SnowmanCannon+Terraria/FragmentNebula+Terraria/Nanites",
+        "eventCategory": null,
+        "customEventName": "Celestial Pillars",
+        "eventIcon": "Terraria/LunarTowerSolar"
+      },
       "CalamityMod/Shroomer": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SniperRifle+CalamityMod/Fungicide+Terraria/FragmentStardust",
@@ -69201,6 +69955,10 @@
         "customEventName": "Celestial Pillars",
         "eventIcon": "Terraria/LunarTowerSolar"
       },
+      "CalamityMod/RadiantStar": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:CalamityMod/Prismalline+CalamityMod/AstralBar+CalamityMod/StarblightSoot+Terraria/FallenStar"
+      },
       "CalamityMod/ShardofAntumbra": {
         "stage": "lunatic-cultist",
         "via": "recipe:CalamityMod/MeldBlob"
@@ -69208,6 +69966,18 @@
       "CalamityMod/StarofDestruction": {
         "stage": "lunatic-cultist",
         "via": "recipe:CalamityMod/MeldBlob"
+      },
+      "CalamityMod/AstralHelm": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:CalamityMod/AstralBar+Terraria/MeteoriteBar"
+      },
+      "CalamityMod/AstralBreastplate": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:CalamityMod/AstralBar+Terraria/MeteoriteBar"
+      },
+      "CalamityMod/AstralLeggings": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:CalamityMod/AstralBar+Terraria/MeteoriteBar"
       },
       "CalamityMod/LunicCorpsHelmet": {
         "stage": "lunatic-cultist",
@@ -69360,6 +70130,10 @@
       "CalamityMod/StellarContempt": {
         "stage": "moon-lord",
         "via": "recipe:CalamityMod/FallenPaladinsHammer+Terraria/LunarBar+Terraria/FragmentSolar+CalamityMod/CoreofCalamity"
+      },
+      "CalamityMod/StellarStriker": {
+        "stage": "moon-lord",
+        "via": "recipe:CalamityMod/CometQuasher+Terraria/LunarBar"
       },
       "CalamityMod/VanishingPoint": {
         "stage": "moon-lord",
@@ -69545,6 +70319,10 @@
         "stage": "providence",
         "via": "recipe:Terraria/SpellTome+CalamityMod/UelibloomBar"
       },
+      "CalamityMod/NanoPurge": {
+        "stage": "providence",
+        "via": "recipe:Terraria/LaserMachinegun+CalamityMod/UelibloomBar+Terraria/Nanites"
+      },
       "CalamityMod/ThePrince": {
         "stage": "providence",
         "via": "recipe:CalamityMod/ArchAmaryllis+CalamityMod/DivineGeode+CalamityMod/UnholyEssence"
@@ -69596,6 +70374,10 @@
       "CalamityMod/Spyker": {
         "stage": "providence",
         "via": "recipe:CalamityMod/Needler+Terraria/Stynger+CalamityMod/UelibloomBar"
+      },
+      "CalamityMod/ShatteredDawn": {
+        "stage": "providence",
+        "via": "recipe:CalamityMod/RadiantStar+CalamityMod/DivineGeode"
       },
       "CalamityMod/TarragonThrowingDart": {
         "stage": "providence",
@@ -69657,6 +70439,18 @@
         "stage": "storm-weaver",
         "via": "container:CalamityMod/StormWeaverBag"
       },
+      "CalamityMod/PrismaticHelmet": {
+        "stage": "storm-weaver",
+        "via": "recipe:CalamityMod/ArmoredShell+CalamityMod/ExodiumCluster+CalamityMod/DivineGeode+Terraria/Nanites"
+      },
+      "CalamityMod/PrismaticRegalia": {
+        "stage": "storm-weaver",
+        "via": "recipe:CalamityMod/ArmoredShell+CalamityMod/ExodiumCluster+CalamityMod/DivineGeode+Terraria/Nanites"
+      },
+      "CalamityMod/PrismaticGreaves": {
+        "stage": "storm-weaver",
+        "via": "recipe:CalamityMod/ArmoredShell+CalamityMod/ExodiumCluster+CalamityMod/DivineGeode+Terraria/Nanites"
+      },
       "CalamityMod/Teslastaff": {
         "stage": "storm-weaver",
         "via": "recipe:Terraria/ThunderStaff+Terraria/CopperBar+CalamityMod/EssenceofSunlight+CalamityMod/ArmoredShell"
@@ -69664,6 +70458,10 @@
       "CalamityMod/CorinthPrime": {
         "stage": "storm-weaver",
         "via": "recipe:CalamityMod/RealmRavager+Terraria/VortexBeater+Terraria/IllegalGunParts+CalamityMod/ArmoredShell"
+      },
+      "CalamityMod/TwistingThunder": {
+        "stage": "storm-weaver",
+        "via": "recipe:CalamityMod/StormfrontRazor+CalamityMod/UnholyEssence+CalamityMod/ArmoredShell"
       },
       "CalamityMod/AquasScepter": {
         "stage": "storm-weaver",
@@ -69704,6 +70502,10 @@
       "CalamityMod/TacticiansTrumpCard": {
         "stage": "ceaseless-void",
         "via": "recipe:Terraria/CopperShortsword+CalamityMod/Apathanull+CalamityMod/FlareBolt+CalamityMod/Tradewinds+CalamityMod/NuclearFury+CalamityMod/UelibloomBar+CalamityMod/DarkPlasma"
+      },
+      "CalamityMod/OntologicalDespoiler": {
+        "stage": "ceaseless-void",
+        "via": "recipe:CalamityMod/ArcNovaDiffuser+CalamityMod/NullificationPistol+CalamityMod/DarkPlasma"
       },
       "CalamityMod/SealedSingularity": {
         "stage": "ceaseless-void",
@@ -69813,6 +70615,10 @@
         "stage": "polterghast",
         "via": "npc:CalamityMod/EidolonWyrmHead"
       },
+      "CalamityMod/LionHeart": {
+        "stage": "polterghast",
+        "via": "shop:Terraria/Cyborg"
+      },
       "CalamityMod/Affliction": {
         "stage": "polterghast",
         "via": "container:CalamityMod/PolterghastBag"
@@ -69833,6 +70639,10 @@
         "stage": "polterghast",
         "via": "recipe:CalamityMod/SeaSpiritAmulet+CalamityMod/AbyssGravel+CalamityMod/DepthCells+CalamityMod/PyreMantle+CalamityMod/ScoriaBar+CalamityMod/Voidstone+CalamityMod/Lumenyl"
       },
+      "CalamityMod/FragmentsOfAnotherWorld": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/Necroplasm+CalamityMod/Navyplate+CalamityMod/ExodiumCluster"
+      },
       "CalamityMod/PhantomicArtifact": {
         "stage": "polterghast",
         "via": "recipe:CalamityMod/HallowedRune+CalamityMod/RuinousSoul+CalamityMod/Onyxplate+CalamityMod/ExodiumCluster"
@@ -69840,6 +70650,10 @@
       "CalamityMod/StatisNinjaBelt": {
         "stage": "polterghast",
         "via": "recipe:Terraria/MasterNinjaGear+Terraria/FrogFlipper+CalamityMod/PurifiedGel+CalamityMod/Necroplasm"
+      },
+      "CalamityMod/V8000Engine": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/V8Engine+CalamityMod/RuinousSoul+Terraria/Nanites"
       },
       "CalamityMod/SupremeManaPotion": {
         "stage": "polterghast",
@@ -69945,13 +70759,25 @@
         "stage": "polterghast",
         "via": "recipe:CalamityMod/Arietes41+CalamityMod/LifeAlloy+CalamityMod/RuinousSoul+Terraria/WhitePearl"
       },
+      "CalamityMod/Seadragon": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/Megalodon+CalamityMod/Necroplasm+CalamityMod/SeaPrism+CalamityMod/ArmoredShell"
+      },
       "CalamityMod/Starfleet": {
         "stage": "polterghast",
         "via": "recipe:Terraria/SuperStarCannon+CalamityMod/RuinousSoul+Terraria/FallenStar+Terraria/FragmentStardust"
       },
+      "CalamityMod/TauCannon": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/ArcNovaDiffuser+CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/AstralBar+CalamityMod/RuinousSoul"
+      },
       "CalamityMod/Apoctolith": {
         "stage": "polterghast",
         "via": "recipe:CalamityMod/ThrowingBrick+CalamityMod/Voidstone+CalamityMod/Lumenyl"
+      },
+      "CalamityMod/BallisticPoisonBomb": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/SeafoamBomb+CalamityMod/SulphurousSand+CalamityMod/Voidstone+CalamityMod/DepthCells"
       },
       "CalamityMod/BloodsoakedCrasher": {
         "stage": "polterghast",
@@ -70213,6 +71039,10 @@
         "stage": "devourer-of-gods",
         "via": "recipe:Terraria/Phantasm+CalamityMod/CosmiliteBar+CalamityMod/Necroplasm+CalamityMod/NightmareFuel"
       },
+      "CalamityMod/ScorchedEarth": {
+        "stage": "devourer-of-gods",
+        "via": "recipe:CalamityMod/Scorpio+Terraria/AdamantiteBar+CalamityMod/DarksunFragment+Terraria/FragmentSolar"
+      },
       "CalamityMod/SDFMG": {
         "stage": "devourer-of-gods",
         "via": "recipe:Terraria/SDMG+CalamityMod/CosmiliteBar+CalamityMod/EndothermicEnergy"
@@ -70220,6 +71050,10 @@
       "CalamityMod/Starmageddon": {
         "stage": "devourer-of-gods",
         "via": "recipe:CalamityMod/Starfleet+CalamityMod/BarracudaGun+CalamityMod/CosmiliteBar+CalamityMod/DarksunFragment+CalamityMod/ExodiumCluster"
+      },
+      "CalamityMod/ThePack": {
+        "stage": "devourer-of-gods",
+        "via": "recipe:CalamityMod/Scorpio+Terraria/MarbleBlock+CalamityMod/CosmiliteBar+CalamityMod/EndothermicEnergy+CalamityMod/ArmoredShell"
       },
       "CalamityMod/Ultima": {
         "stage": "devourer-of-gods",
@@ -70425,6 +71259,10 @@
         "stage": "yharon",
         "via": "recipe:CalamityMod/YharonSoulFragment+CalamityMod/Plagueplate+CalamityMod/ExodiumCluster"
       },
+      "CalamityMod/AetherfluxCannon": {
+        "stage": "yharon",
+        "via": "recipe:CalamityMod/NanoPurge+CalamityMod/AuricBar+CalamityMod/UelibloomBar+CalamityMod/DivineGeode"
+      },
       "CalamityMod/HeliumFlash": {
         "stage": "yharon",
         "via": "recipe:CalamityMod/VenusianTrident+CalamityMod/ForbiddenSun+CalamityMod/AuricBar+Terraria/FragmentSolar+Terraria/FragmentNebula"
@@ -70477,9 +71315,17 @@
         "stage": "yharon",
         "via": "recipe:CalamityMod/Starfleet+CalamityMod/AuricBar+CalamityMod/ExodiumCluster"
       },
+      "CalamityMod/DynamicPursuer": {
+        "stage": "yharon",
+        "via": "recipe:CalamityMod/DimensionTearingDisk+CalamityMod/AerialTracker+CalamityMod/AuricBar"
+      },
       "CalamityMod/EclipsesFall": {
         "stage": "yharon",
         "via": "recipe:CalamityMod/Vega+CalamityMod/AuricBar+CalamityMod/DarksunFragment"
+      },
+      "CalamityMod/Seraphim": {
+        "stage": "yharon",
+        "via": "recipe:CalamityMod/ShatteredDawn+CalamityMod/AuricBar"
       },
       "CalamityMod/MidnightSunBeacon": {
         "stage": "yharon",
@@ -70573,6 +71419,10 @@
         "stage": "exo-mechs",
         "via": "recipe:CalamityMod/ExoPrism+Terraria/FragmentSolar+Terraria/FragmentVortex+Terraria/FragmentNebula+Terraria/FragmentStardust+CalamityMod/MeldBlob+CalamityMod/CoreofCalamity"
       },
+      "CalamityMod/SubsumingVortex": {
+        "stage": "exo-mechs",
+        "via": "recipe:CalamityMod/AuguroftheVoid+CalamityMod/EventHorizon+CalamityMod/TearsofHeaven+CalamityMod/MiracleMatter"
+      },
       "CalamityMod/VividClarity": {
         "stage": "exo-mechs",
         "via": "recipe:CalamityMod/Nucleosynthesis+CalamityMod/PhantasmalFury+CalamityMod/ShadowboltStaff+CalamityMod/UltraLiquidator+CalamityMod/MiracleMatter"
@@ -70581,6 +71431,10 @@
         "stage": "exo-mechs",
         "via": "recipe:CalamityMod/Terratomere+CalamityMod/Lightspeed+CalamityMod/EntropicClaymore+CalamityMod/FlarefrostBlade+CalamityMod/MiracleMatter"
       },
+      "CalamityMod/MagnomalyCannon": {
+        "stage": "exo-mechs",
+        "via": "recipe:CalamityMod/ThePack+CalamityMod/ScorchedEarth+Terraria/ElectrosphereLauncher+CalamityMod/MiracleMatter"
+      },
       "CalamityMod/Photoviscerator": {
         "stage": "exo-mechs",
         "via": "recipe:CalamityMod/ChromaticEruption+CalamityMod/HalleysInferno+CalamityMod/DeadSunsWind+CalamityMod/MiracleMatter"
@@ -70588,6 +71442,10 @@
       "CalamityMod/Celestus": {
         "stage": "exo-mechs",
         "via": "recipe:CalamityMod/ReboundingRainbow+CalamityMod/MoltenAmputator+CalamityMod/SubductionSlicer+CalamityMod/EnchantedAxe+CalamityMod/MiracleMatter"
+      },
+      "CalamityMod/Supernova": {
+        "stage": "exo-mechs",
+        "via": "recipe:CalamityMod/SealedSingularity+CalamityMod/StarofDestruction+CalamityMod/TotalityBreakers+CalamityMod/BallisticPoisonBomb+CalamityMod/MiracleMatter"
       },
       "CalamityMod/Violence": {
         "stage": "supreme-calamitas",
@@ -70673,6 +71531,10 @@
         "stage": "supreme-calamitas",
         "via": "recipe:CalamityMod/ShadowspecBar+Terraria/FragmentSolar+CalamityMod/EssenceofSunlight+CalamityMod/EssenceofEleum"
       },
+      "CalamityMod/Earth": {
+        "stage": "supreme-calamitas",
+        "via": "recipe:CalamityMod/GrandGuardian+CalamityMod/StellarStriker+CalamityMod/ShadowspecBar+CalamityMod/LifeAlloy"
+      },
       "CalamityMod/IllustriousKnives": {
         "stage": "supreme-calamitas",
         "via": "recipe:CalamityMod/EmpyreanKnives+CalamityMod/ShadowspecBar+CalamityMod/CoreofCalamity"
@@ -70700,6 +71562,14 @@
       "CalamityMod/Svantechnical": {
         "stage": "supreme-calamitas",
         "via": "recipe:CalamityMod/Infinity+CalamityMod/ShadowspecBar"
+      },
+      "CalamityMod/Voidragon": {
+        "stage": "supreme-calamitas",
+        "via": "recipe:CalamityMod/Seadragon+CalamityMod/DragonsBreath+CalamityMod/ShadowspecBar"
+      },
+      "CalamityMod/NanoblackReaper": {
+        "stage": "supreme-calamitas",
+        "via": "recipe:CalamityMod/MoltenAmputator+CalamityMod/GhoulishGouger+CalamityMod/ShadowspecBar+CalamityMod/EndothermicEnergy+CalamityMod/PlagueCellCanister+Terraria/Nanites"
       },
       "CalamityMod/ScarletDevil": {
         "stage": "supreme-calamitas",
@@ -71786,6 +72656,10 @@
         "via": "manifest"
       },
       "CalamityMod/AncientBoneDust": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "CalamityMod/PrismShard": {
         "stage": "start",
         "via": "manifest"
       },
@@ -74937,6 +75811,10 @@
         "stage": "start",
         "via": "recipe:Terraria/Frog+CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating"
       },
+      "CalamityMod/TheEtomer": {
+        "stage": "start",
+        "via": "recipe:Terraria/GoldBar+CalamityMod/PrismShard+CalamityMod/ScorchedBone"
+      },
       "CalamityMod/LaboratoryPanels": {
         "stage": "start",
         "via": "recipe:Terraria/StoneBlock+Terraria/IronBar"
@@ -74977,6 +75855,10 @@
         "stage": "start",
         "via": "recipe:CalamityMod/LaboratoryPlating+Terraria/IronBar"
       },
+      "CalamityMod/AlgalPrismTorch": {
+        "stage": "start",
+        "via": "recipe:Terraria/Torch+CalamityMod/PrismShard"
+      },
       "CalamityMod/AshenAltar": {
         "stage": "start",
         "via": "recipe:CalamityMod/SmoothBrimstoneSlag+CalamityMod/ScorchedBone"
@@ -74984,6 +75866,14 @@
       "CalamityMod/GloomTorch": {
         "stage": "start",
         "via": "recipe:Terraria/Torch+CalamityMod/ScorchedBone"
+      },
+      "CalamityMod/NavyPrismTorch": {
+        "stage": "start",
+        "via": "recipe:Terraria/Torch+CalamityMod/PrismShard"
+      },
+      "CalamityMod/RefractivePrismTorch": {
+        "stage": "start",
+        "via": "recipe:Terraria/Torch+CalamityMod/PrismShard"
       },
       "CalamityMod/RustyChest": {
         "stage": "start",
@@ -75312,6 +76202,14 @@
       "CalamityMod/PinkPearlPile": {
         "stage": "start",
         "via": "recipe:Terraria/PinkPearl"
+      },
+      "CalamityMod/SeaPrism": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/PrismShard"
+      },
+      "CalamityMod/SeaPrismBrick": {
+        "stage": "start",
+        "via": "recipe:Terraria/StoneBlock+CalamityMod/SeaPrism"
       },
       "CalamityMod/WhitePearlPile": {
         "stage": "start",
@@ -76049,6 +76947,10 @@
         "stage": "start",
         "via": "recipe:Terraria/StoneBlock+Terraria/Frog"
       },
+      "Terraria/UltrabrightTorch": {
+        "stage": "start",
+        "via": "recipe:Terraria/Torch+CalamityMod/SeaPrism"
+      },
       "Terraria/FlowerBoots": {
         "stage": "start",
         "via": "recipe:Terraria/HermesBoots+Terraria/Daybloom+Terraria/Blinkroot+Terraria/Shiverthorn+Terraria/Moonglow+Terraria/Waterleaf+Terraria/Deathweed+Terraria/Fireblossom"
@@ -76289,9 +77191,21 @@
         "stage": "start",
         "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/Onyxplate+CalamityMod/BlightedGel"
       },
+      "CalamityMod/Navyplate": {
+        "stage": "start",
+        "via": "recipe:Terraria/Obsidian+CalamityMod/SeaPrism"
+      },
+      "CalamityMod/NavyplateWall": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/Navyplate"
+      },
       "Terraria/MagicalPumpkinSeed": {
         "stage": "start",
         "via": "recipe:Terraria/Pumpkin"
+      },
+      "Terraria/UltraBrightCampfire": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood+Terraria/UltrabrightTorch"
       },
       "Terraria/AmethystEcho": {
         "stage": "start",
@@ -76320,6 +77234,22 @@
       "Terraria/AmberStoneWallEcho": {
         "stage": "start",
         "via": "recipe:Terraria/AmberStoneBlock"
+      },
+      "CalamityMod/CagedFloodlightItem": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Navyplate"
+      },
+      "CalamityMod/MiniCagedFloodlightItem": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Navyplate"
+      },
+      "CalamityMod/WaterTurret": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/Navyplate"
+      },
+      "CalamityMod/HostileWaterTurret": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/Navyplate"
       },
       "Terraria/KingSlimeBossBag": {
         "stage": "king-slime",
@@ -76601,6 +77531,10 @@
         "stage": "desert-scourge",
         "via": "recipe:Terraria/FishingBobber+CalamityMod/PearlShard+CalamityMod/Navystone"
       },
+      "CalamityMod/NavyFishingRod": {
+        "stage": "desert-scourge",
+        "via": "recipe:CalamityMod/PearlShard+CalamityMod/SeaPrism+CalamityMod/Navystone"
+      },
       "CalamityMod/LoreDesertScourge": {
         "stage": "desert-scourge",
         "via": "recipe:CalamityMod/DesertScourgeTrophy"
@@ -76636,6 +77570,10 @@
       "CalamityMod/ReefclawHamaxe": {
         "stage": "desert-scourge",
         "via": "recipe:CalamityMod/SeaRemains"
+      },
+      "CalamityMod/EnchantedPearl": {
+        "stage": "desert-scourge",
+        "via": "recipe:Terraria/WhitePearl+CalamityMod/SeaPrism+CalamityMod/SeaRemains"
       },
       "CalamityMod/NavystoneBathtub": {
         "stage": "desert-scourge",
@@ -77235,6 +78173,18 @@
         "stage": "world-evil",
         "via": "manifest"
       },
+      "Terraria/Meteorite": {
+        "stage": "world-evil",
+        "via": "manifest"
+      },
+      "Terraria/MeteoriteBar": {
+        "stage": "world-evil",
+        "via": "manifest"
+      },
+      "Terraria/MeteoriteBrick": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/StoneBlock+Terraria/Meteorite"
+      },
       "Terraria/HellstoneBrick": {
         "stage": "world-evil",
         "via": "recipe:Terraria/StoneBlock+Terraria/Hellstone"
@@ -77258,6 +78208,74 @@
       "Terraria/Lava4Echo": {
         "stage": "world-evil",
         "via": "recipe:Terraria/Hellstone"
+      },
+      "Terraria/MeteoriteBrickWall": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick"
+      },
+      "Terraria/MeteoriteBathtub": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick"
+      },
+      "Terraria/MeteoriteBed": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick+Terraria/Silk"
+      },
+      "Terraria/MeteoriteCandelabra": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick+Terraria/Torch"
+      },
+      "Terraria/MeteoriteCandle": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick+Terraria/Torch"
+      },
+      "Terraria/MeteoriteChair": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick"
+      },
+      "Terraria/MeteoriteChandelier": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick+Terraria/Torch+Terraria/Chain"
+      },
+      "Terraria/MeteoriteChest": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick+Terraria/IronBar"
+      },
+      "Terraria/MeteoriteClock": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/MeteoriteBrick"
+      },
+      "Terraria/MeteoriteDoor": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick"
+      },
+      "Terraria/MeteoriteDresser": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick"
+      },
+      "Terraria/MeteoriteLamp": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Torch+Terraria/MeteoriteBrick"
+      },
+      "Terraria/MeteoriteLantern": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick+Terraria/Torch"
+      },
+      "Terraria/MeteoriteSofa": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick+Terraria/Silk"
+      },
+      "Terraria/ToiletMeteor": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick"
+      },
+      "Terraria/MeteoriteTable": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick"
+      },
+      "Terraria/MeteoriteWorkBench": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick"
       },
       "Terraria/ObsidianChest": {
         "stage": "world-evil",
@@ -77319,6 +78337,54 @@
         "stage": "world-evil",
         "via": "recipe:Terraria/CrimtaneBar+Terraria/TissueSample"
       },
+      "Terraria/BluePhaseblade": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBar+Terraria/Sapphire"
+      },
+      "Terraria/RedPhaseblade": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBar+Terraria/Ruby"
+      },
+      "Terraria/GreenPhaseblade": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBar+Terraria/Emerald"
+      },
+      "Terraria/PurplePhaseblade": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBar+Terraria/Amethyst"
+      },
+      "Terraria/WhitePhaseblade": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBar+Terraria/Diamond"
+      },
+      "Terraria/YellowPhaseblade": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBar+Terraria/Topaz"
+      },
+      "Terraria/OrangePhaseblade": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBar+Terraria/Amber"
+      },
+      "Terraria/MeteorHamaxe": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBar"
+      },
+      "Terraria/StarCannon": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Minishark+Terraria/MeteoriteBar+Terraria/FallenStar"
+      },
+      "Terraria/MeteorHelmet": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBar"
+      },
+      "Terraria/MeteorSuit": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBar"
+      },
+      "Terraria/MeteorLeggings": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBar"
+      },
       "Terraria/Flamarang": {
         "stage": "world-evil",
         "via": "recipe:Terraria/EnchantedBoomerang+Terraria/HellstoneBar"
@@ -77358,6 +78424,10 @@
       "CalamityMod/VoodooDemonVoodooDoll": {
         "stage": "world-evil",
         "via": "recipe:Terraria/HellstoneBar+Terraria/Silk"
+      },
+      "Terraria/MeteoritePlatform": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick"
       },
       "CalamityMod/HiveMindBag": {
         "stage": "hive-mind-perforators",
@@ -77470,6 +78540,10 @@
       "CalamityMod/SkyfringePickaxe": {
         "stage": "hive-mind-perforators",
         "via": "recipe:CalamityMod/AerialiteBar"
+      },
+      "CalamityMod/Aestheticus": {
+        "stage": "hive-mind-perforators",
+        "via": "recipe:CalamityMod/AerialiteBar+CalamityMod/SeaPrism+Terraria/FallenStar"
       },
       "CalamityMod/AcrobaticBobber": {
         "stage": "hive-mind-perforators",
@@ -77946,6 +79020,10 @@
       "Terraria/Fake_GlassChest": {
         "stage": "skeletron",
         "via": "recipe:Terraria/GlassChest+Terraria/Wire"
+      },
+      "Terraria/Fake_MeteoriteChest": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/MeteoriteChest+Terraria/Wire"
       },
       "Terraria/Fake_GraniteChest": {
         "stage": "skeletron",
@@ -79138,6 +80216,14 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Bone+Terraria/SlimeBlock+Terraria/Book"
       },
+      "Terraria/MeteoriteBookcase": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/MeteoriteBrick+Terraria/Book"
+      },
+      "Terraria/MeteoritePiano": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/Bone+Terraria/MeteoriteBrick+Terraria/Book"
+      },
       "Terraria/MarbleBookcase": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/MarbleBlock+Terraria/Book"
@@ -79510,6 +80596,10 @@
       "CalamityMod/LoreBloodMoon": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/BloodMoonStarter+Terraria/SoulofNight"
+      },
+      "CalamityMod/CometShard": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/MeteoriteBar+Terraria/FallenStar+CalamityMod/StarblightSoot"
       },
       "CalamityMod/AstralTorch": {
         "stage": "wall-of-flesh",
@@ -80035,6 +81125,10 @@
         "stage": "destroyer",
         "via": "recipe:Terraria/LivingFireBlock+Terraria/Ichor"
       },
+      "Terraria/LivingUltrabrightFireBlock": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LivingFireBlock+Terraria/UltrabrightTorch"
+      },
       "Terraria/CrystalBullet": {
         "stage": "destroyer",
         "via": "recipe:Terraria/MusketBall+Terraria/CrystalShard"
@@ -80066,6 +81160,34 @@
       "Terraria/CogWall": {
         "stage": "destroyer",
         "via": "recipe:Terraria/Cog"
+      },
+      "Terraria/BluePhasesaber": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/BluePhaseblade+Terraria/CrystalShard"
+      },
+      "Terraria/RedPhasesaber": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/RedPhaseblade+Terraria/CrystalShard"
+      },
+      "Terraria/GreenPhasesaber": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/GreenPhaseblade+Terraria/CrystalShard"
+      },
+      "Terraria/PurplePhasesaber": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/PurplePhaseblade+Terraria/CrystalShard"
+      },
+      "Terraria/WhitePhasesaber": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/WhitePhaseblade+Terraria/CrystalShard"
+      },
+      "Terraria/YellowPhasesaber": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/YellowPhaseblade+Terraria/CrystalShard"
+      },
+      "Terraria/OrangePhasesaber": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/OrangePhaseblade+Terraria/CrystalShard"
       },
       "Terraria/MythrilHelmet": {
         "stage": "destroyer",
@@ -80934,6 +82056,26 @@
         "stage": "plantera",
         "via": "shop:Terraria/Truffle"
       },
+      "Terraria/DryRocket": {
+        "stage": "plantera",
+        "via": "shop:Terraria/Cyborg"
+      },
+      "Terraria/ProximityMineLauncher": {
+        "stage": "plantera",
+        "via": "shop:Terraria/Cyborg"
+      },
+      "Terraria/Nanites": {
+        "stage": "plantera",
+        "via": "shop:Terraria/Cyborg"
+      },
+      "Terraria/JimsDrone": {
+        "stage": "plantera",
+        "via": "shop:Terraria/Cyborg"
+      },
+      "Terraria/JimsDroneVisor": {
+        "stage": "plantera",
+        "via": "shop:Terraria/Cyborg"
+      },
       "Terraria/Ectoplasm": {
         "stage": "plantera",
         "via": "manifest"
@@ -81033,6 +82175,14 @@
       "Terraria/SporeSac": {
         "stage": "plantera",
         "via": "container:Terraria/PlanteraBossBag"
+      },
+      "Terraria/FlaskofNanites": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/BottledWater+Terraria/Nanites"
+      },
+      "Terraria/NanoBullet": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/EmptyBullet+Terraria/Nanites"
       },
       "Terraria/SpookyPlatform": {
         "stage": "plantera",
@@ -81552,6 +82702,10 @@
       "Terraria/SteampunkWings": {
         "stage": "golem",
         "via": "shop:Terraria/Steampunker"
+      },
+      "CalamityMod/MartianDistressRemote": {
+        "stage": "golem",
+        "via": "shop:Terraria/Cyborg"
       },
       "CalamityMod/ScoriaOre": {
         "stage": "golem",
@@ -83066,6 +84220,10 @@
         "stage": "moon-lord",
         "via": "recipe:Terraria/FragmentStardust+Terraria/LunarBar"
       },
+      "Terraria/DrillContainmentUnit": {
+        "stage": "moon-lord",
+        "via": "recipe:Terraria/LunarBar+Terraria/ChlorophyteBar+Terraria/ShroomiteBar+Terraria/SpectreBar+Terraria/HellstoneBar+Terraria/MeteoriteBar"
+      },
       "Terraria/WingsSolar": {
         "stage": "moon-lord",
         "via": "recipe:Terraria/SoulofFlight+Terraria/FragmentSolar+Terraria/LunarBar"
@@ -84542,14 +85700,6 @@
         ]
       },
       {
-        "id": "CalamityMod/SeashineSword",
-        "wikiStage": "pre-evil1",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/SeashineSword"
-        ]
-      },
-      {
         "id": "Terraria/Trimarang",
         "wikiStage": "pre-evil1",
         "reason": "recommendation has no proven availability",
@@ -84624,14 +85774,6 @@
         ]
       },
       {
-        "id": "CalamityMod/SeafoamBomb",
-        "wikiStage": "pre-evil1",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/SeafoamBomb"
-        ]
-      },
-      {
         "id": "CalamityMod/CrawCarapace",
         "wikiStage": "pre-evil1",
         "reason": "recommendation has no proven availability",
@@ -84646,22 +85788,6 @@
         "sourceReference": [
           "Terraria/Healing Potion",
           "Terraria/Strange Brew"
-        ]
-      },
-      {
-        "id": "CalamityMod/SeashineSword",
-        "wikiStage": "pre-evil2",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/SeashineSword"
-        ]
-      },
-      {
-        "id": "CalamityMod/SmokingComet",
-        "wikiStage": "pre-evil2",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/SmokingComet"
         ]
       },
       {
@@ -84697,40 +85823,6 @@
         ]
       },
       {
-        "id": "CalamityMod/MagnaCannon",
-        "wikiStage": "pre-evil2",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/MagnaCannon",
-          "CalamityMod/OpalStriker"
-        ]
-      },
-      {
-        "id": "CalamityMod/OpalStriker",
-        "wikiStage": "pre-evil2",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/MagnaCannon",
-          "CalamityMod/OpalStriker"
-        ]
-      },
-      {
-        "id": "Terraria/MeteorShot",
-        "wikiStage": "pre-evil2",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Meteor Shot"
-        ]
-      },
-      {
-        "id": "Terraria/SpaceGun",
-        "wikiStage": "pre-evil2",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Space Gun"
-        ]
-      },
-      {
         "id": "Terraria/MagicCuffs",
         "wikiStage": "pre-evil2",
         "reason": "recommendation has no proven availability",
@@ -84753,14 +85845,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "CalamityMod/MeteorFist",
-        "wikiStage": "pre-evil2",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/MeteorFist"
         ]
       },
       {
@@ -84797,22 +85881,6 @@
         ]
       },
       {
-        "id": "CalamityMod/AquashardShotgun",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/AquashardShotgun"
-        ]
-      },
-      {
-        "id": "CalamityMod/ShortCircuit",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/ShortCircuit"
-        ]
-      },
-      {
         "id": "Terraria/MusketBall",
         "wikiStage": "pre-skeletron",
         "reason": "recommendation has no proven availability",
@@ -84822,28 +85890,12 @@
         ]
       },
       {
-        "id": "Terraria/SpaceGun",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Space Gun"
-        ]
-      },
-      {
         "id": "Terraria/MagicCuffs",
         "wikiStage": "pre-skeletron",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Mana Flower",
           "Terraria/Magic Cuffs"
-        ]
-      },
-      {
-        "id": "CalamityMod/AqueousHunterDrone",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/AqueousHunterDrone"
         ]
       },
       {
@@ -84860,14 +85912,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "CalamityMod/MeteorFist",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/MeteorFist"
         ]
       },
       {
@@ -84933,14 +85977,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Shimmer Arrow"
-        ]
-      },
-      {
-        "id": "Terraria/MeteorShot",
-        "wikiStage": "pre-wof",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Meteor Shot"
         ]
       },
       {
@@ -85027,14 +86063,6 @@
         ]
       },
       {
-        "id": "CalamityMod/CometQuasher",
-        "wikiStage": "pre-mech",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/CometQuasher"
-        ]
-      },
-      {
         "id": "Terraria/PowerGlove",
         "wikiStage": "pre-mech",
         "reason": "recommendation has no proven availability",
@@ -85056,14 +86084,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/MeteorStaff",
-        "wikiStage": "pre-mech",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Meteor Staff"
         ]
       },
       {
@@ -85099,14 +86119,6 @@
         ]
       },
       {
-        "id": "CalamityMod/Prismalline",
-        "wikiStage": "pre-mech",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/Prismalline"
-        ]
-      },
-      {
         "id": "CalamityMod/LunicEye",
         "wikiStage": "pre-mech",
         "reason": "recommendation has no proven availability",
@@ -85128,15 +86140,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "CalamityMod/GiantTortoiseShell"
-        ]
-      },
-      {
-        "id": "CalamityMod/DeepDiver",
-        "wikiStage": "pre-mech",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/CounterScarf",
-          "CalamityMod/DeepDiver"
         ]
       },
       {
@@ -85245,14 +86248,6 @@
         ]
       },
       {
-        "id": "CalamityMod/Prismalline",
-        "wikiStage": "post-mech1",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/Prismalline"
-        ]
-      },
-      {
         "id": "CalamityMod/LunicEye",
         "wikiStage": "post-mech1",
         "reason": "recommendation has no proven availability",
@@ -85274,15 +86269,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "CalamityMod/GiantTortoiseShell"
-        ]
-      },
-      {
-        "id": "CalamityMod/DeepDiver",
-        "wikiStage": "post-mech1",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/EvasionScarf",
-          "CalamityMod/DeepDiver"
         ]
       },
       {
@@ -85316,14 +86302,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/RocketI",
-        "wikiStage": "post-mech2",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Rocket I"
         ]
       },
       {
@@ -85737,36 +86715,6 @@
         ]
       },
       {
-        "id": "CalamityMod/PlagueReaperMask",
-        "wikiStage": "post-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PlagueReaperMask",
-          "CalamityMod/PlagueReaperVest",
-          "CalamityMod/PlagueReaperStriders"
-        ]
-      },
-      {
-        "id": "CalamityMod/PlagueReaperVest",
-        "wikiStage": "post-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PlagueReaperMask",
-          "CalamityMod/PlagueReaperVest",
-          "CalamityMod/PlagueReaperStriders"
-        ]
-      },
-      {
-        "id": "CalamityMod/PlagueReaperStriders",
-        "wikiStage": "post-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PlagueReaperMask",
-          "CalamityMod/PlagueReaperVest",
-          "CalamityMod/PlagueReaperStriders"
-        ]
-      },
-      {
         "id": "Terraria/ReconScope",
         "wikiStage": "post-golem",
         "reason": "recommendation has no proven availability",
@@ -85864,14 +86812,6 @@
         ]
       },
       {
-        "id": "CalamityMod/EpidemicShredder",
-        "wikiStage": "post-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/EpidemicShredder"
-        ]
-      },
-      {
         "id": "Terraria/FlaskofVenom",
         "wikiStage": "post-golem",
         "reason": "recommendation has no proven availability",
@@ -85919,36 +86859,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "CalamityMod/PlagueReaperMask",
-        "wikiStage": "pre-lunar",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PlagueReaperMask",
-          "CalamityMod/PlagueReaperVest",
-          "CalamityMod/PlagueReaperStriders"
-        ]
-      },
-      {
-        "id": "CalamityMod/PlagueReaperVest",
-        "wikiStage": "pre-lunar",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PlagueReaperMask",
-          "CalamityMod/PlagueReaperVest",
-          "CalamityMod/PlagueReaperStriders"
-        ]
-      },
-      {
-        "id": "CalamityMod/PlagueReaperStriders",
-        "wikiStage": "pre-lunar",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PlagueReaperMask",
-          "CalamityMod/PlagueReaperVest",
-          "CalamityMod/PlagueReaperStriders"
         ]
       },
       {
@@ -86091,36 +87001,6 @@
         ]
       },
       {
-        "id": "CalamityMod/PlagueReaperMask",
-        "wikiStage": "pre-moonlord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PlagueReaperMask",
-          "CalamityMod/PlagueReaperVest",
-          "CalamityMod/PlagueReaperStriders"
-        ]
-      },
-      {
-        "id": "CalamityMod/PlagueReaperVest",
-        "wikiStage": "pre-moonlord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PlagueReaperMask",
-          "CalamityMod/PlagueReaperVest",
-          "CalamityMod/PlagueReaperStriders"
-        ]
-      },
-      {
-        "id": "CalamityMod/PlagueReaperStriders",
-        "wikiStage": "pre-moonlord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PlagueReaperMask",
-          "CalamityMod/PlagueReaperVest",
-          "CalamityMod/PlagueReaperStriders"
-        ]
-      },
-      {
         "id": "Terraria/ReconScope",
         "wikiStage": "pre-moonlord",
         "reason": "recommendation has no proven availability",
@@ -86202,14 +87082,6 @@
         ]
       },
       {
-        "id": "CalamityMod/RadiantStar",
-        "wikiStage": "pre-moonlord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/RadiantStar"
-        ]
-      },
-      {
         "id": "Terraria/FlaskofVenom",
         "wikiStage": "pre-moonlord",
         "reason": "recommendation has no proven availability",
@@ -86232,36 +87104,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Rod of Discord"
-        ]
-      },
-      {
-        "id": "CalamityMod/AstralHelm",
-        "wikiStage": "pre-moonlord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/AstralHelm",
-          "CalamityMod/AstralBreastplate",
-          "CalamityMod/AstralLeggings"
-        ]
-      },
-      {
-        "id": "CalamityMod/AstralBreastplate",
-        "wikiStage": "pre-moonlord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/AstralHelm",
-          "CalamityMod/AstralBreastplate",
-          "CalamityMod/AstralLeggings"
-        ]
-      },
-      {
-        "id": "CalamityMod/AstralLeggings",
-        "wikiStage": "pre-moonlord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/AstralHelm",
-          "CalamityMod/AstralBreastplate",
-          "CalamityMod/AstralLeggings"
         ]
       },
       {
@@ -86418,36 +87260,6 @@
         ]
       },
       {
-        "id": "CalamityMod/AstralHelm",
-        "wikiStage": "pre-provi",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/AstralHelm",
-          "CalamityMod/AstralBreastplate",
-          "CalamityMod/AstralLeggings"
-        ]
-      },
-      {
-        "id": "CalamityMod/AstralBreastplate",
-        "wikiStage": "pre-provi",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/AstralHelm",
-          "CalamityMod/AstralBreastplate",
-          "CalamityMod/AstralLeggings"
-        ]
-      },
-      {
-        "id": "CalamityMod/AstralLeggings",
-        "wikiStage": "pre-provi",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/AstralHelm",
-          "CalamityMod/AstralBreastplate",
-          "CalamityMod/AstralLeggings"
-        ]
-      },
-      {
         "id": "CalamityMod/TheAbsorber",
         "wikiStage": "pre-provi",
         "reason": "recommendation has no proven availability",
@@ -86472,14 +87284,6 @@
         ]
       },
       {
-        "id": "CalamityMod/OntologicalDespoiler",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/OntologicalDespoiler"
-        ]
-      },
-      {
         "id": "Terraria/ReconScope",
         "wikiStage": "pre-polter",
         "reason": "recommendation has no proven availability",
@@ -86501,44 +87305,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "CalamityMod/NanoPurge",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/NanoPurge"
-        ]
-      },
-      {
-        "id": "CalamityMod/PrismaticHelmet",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PrismaticHelmet",
-          "CalamityMod/PrismaticRegalia",
-          "CalamityMod/PrismaticGreaves"
-        ]
-      },
-      {
-        "id": "CalamityMod/PrismaticRegalia",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PrismaticHelmet",
-          "CalamityMod/PrismaticRegalia",
-          "CalamityMod/PrismaticGreaves"
-        ]
-      },
-      {
-        "id": "CalamityMod/PrismaticGreaves",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PrismaticHelmet",
-          "CalamityMod/PrismaticRegalia",
-          "CalamityMod/PrismaticGreaves"
         ]
       },
       {
@@ -86579,22 +87345,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "CalamityMod/ShatteredDawn",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/ShatteredDawn"
-        ]
-      },
-      {
-        "id": "CalamityMod/TwistingThunder",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/TwistingThunder"
         ]
       },
       {
@@ -86670,14 +87420,6 @@
         ]
       },
       {
-        "id": "CalamityMod/TauCannon",
-        "wikiStage": "pre-dog",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/TauCannon"
-        ]
-      },
-      {
         "id": "Terraria/ReconScope",
         "wikiStage": "pre-dog",
         "reason": "recommendation has no proven availability",
@@ -86726,36 +87468,6 @@
         ]
       },
       {
-        "id": "CalamityMod/PrismaticHelmet",
-        "wikiStage": "pre-dog",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PrismaticHelmet",
-          "CalamityMod/PrismaticRegalia",
-          "CalamityMod/PrismaticGreaves"
-        ]
-      },
-      {
-        "id": "CalamityMod/PrismaticRegalia",
-        "wikiStage": "pre-dog",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PrismaticHelmet",
-          "CalamityMod/PrismaticRegalia",
-          "CalamityMod/PrismaticGreaves"
-        ]
-      },
-      {
-        "id": "CalamityMod/PrismaticGreaves",
-        "wikiStage": "pre-dog",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/PrismaticHelmet",
-          "CalamityMod/PrismaticRegalia",
-          "CalamityMod/PrismaticGreaves"
-        ]
-      },
-      {
         "id": "Terraria/CrystalBall",
         "wikiStage": "pre-dog",
         "reason": "recommendation has no proven availability",
@@ -86793,14 +87505,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "CalamityMod/TwistingThunder",
-        "wikiStage": "pre-dog",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/TwistingThunder"
         ]
       },
       {
@@ -86949,14 +87653,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "CalamityMod/ScorchedEarth",
-        "wikiStage": "pre-yharon",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/ScorchedEarth"
         ]
       },
       {
@@ -87144,14 +87840,6 @@
         ]
       },
       {
-        "id": "CalamityMod/AetherfluxCannon",
-        "wikiStage": "pre-scal-exo",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/AetherfluxCannon"
-        ]
-      },
-      {
         "id": "Terraria/CrystalBall",
         "wikiStage": "pre-scal-exo",
         "reason": "recommendation has no proven availability",
@@ -87189,22 +87877,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "CalamityMod/Seraphim",
-        "wikiStage": "pre-scal-exo",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/Seraphim"
-        ]
-      },
-      {
-        "id": "CalamityMod/Supernova",
-        "wikiStage": "pre-scal",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/Supernova"
         ]
       },
       {
@@ -87248,27 +87920,11 @@
         ]
       },
       {
-        "id": "CalamityMod/Earth",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/Earth"
-        ]
-      },
-      {
         "id": "Terraria/SharpeningStation",
         "wikiStage": "endgame",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "CalamityMod/Voidragon",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/Voidragon"
         ]
       },
       {
@@ -87317,14 +87973,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "CalamityMod/NanoblackReaper",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/NanoblackReaper"
         ]
       },
       {
@@ -89256,6 +89904,13 @@
         "reason": "recommendation precedes proven availability"
       },
       {
+        "id": "CalamityMod/SmokingComet",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
         "id": "Terraria/TheMeatball",
         "factualStage": "world-evil",
         "recommendedStage": "crabulon",
@@ -89270,6 +89925,20 @@
         "reason": "recommendation precedes proven availability"
       },
       {
+        "id": "CalamityMod/MagnaCannon",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/OpalStriker",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
         "id": "Terraria/MoltenFury",
         "factualStage": "world-evil",
         "recommendedStage": "crabulon",
@@ -89278,6 +89947,13 @@
       },
       {
         "id": "CalamityMod/ProtolithBangle",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/MeteorShot",
         "factualStage": "world-evil",
         "recommendedStage": "crabulon",
         "wikiStage": "pre-evil2",
@@ -89306,6 +89982,13 @@
       },
       {
         "id": "CalamityMod/HellwingStaff",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/SpaceGun",
         "factualStage": "world-evil",
         "recommendedStage": "crabulon",
         "wikiStage": "pre-evil2",
@@ -89341,6 +90024,13 @@
       },
       {
         "id": "CalamityMod/InfernalKris",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "CalamityMod/MeteorFist",
         "factualStage": "world-evil",
         "recommendedStage": "crabulon",
         "wikiStage": "pre-evil2",
@@ -89482,6 +90172,13 @@
       {
         "id": "CalamityMod/FlakToxicannon",
         "factualStage": "polterghast",
+        "recommendedStage": "twins",
+        "wikiStage": "post-mech2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/RocketI",
+        "factualStage": "plantera",
         "recommendedStage": "twins",
         "wikiStage": "post-mech2",
         "reason": "recommendation precedes proven availability"

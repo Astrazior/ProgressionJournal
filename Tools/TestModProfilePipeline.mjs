@@ -26,9 +26,20 @@ for (const modName of expected) {
   const support = readJson(path.join(directory, "support.json"));
   const snapshot = readJson(path.join(directory, "snapshot.json"));
   const profile = readJson(path.join(directory, "profile.json"));
+  const supportWithVanillaSources = applyVanillaSourceCatalog(support);
   assert.equal(support.targetMod, modName);
   assert.equal(snapshot.targetMod, modName);
   assert.equal(profile.format, "ProgressionJournalProfile");
+  const stageForFlag = key => supportWithVanillaSources.stages.find(stage =>
+    stage.unlock?.type === "vanilla-flag" && stage.unlock.key === key);
+  assert(stageForFlag("downedBoss2")?.include?.includes("Terraria/MeteoriteBar"),
+    `${modName}: shared vanilla catalog did not add Meteorite Bar`);
+  assert(stageForFlag("hardMode")?.enemies?.includes("Terraria/VampireBat"),
+    `${modName}: shared vanilla catalog did not add Vampire Bat`);
+  assert(stageForFlag("downedPlantBoss")?.shops?.includes("Terraria/Cyborg"),
+    `${modName}: shared vanilla catalog did not add the Cyborg shop`);
+  assert(supportWithVanillaSources.stages[0]?.shops?.includes("Terraria/ArmsDealer"),
+    `${modName}: shared vanilla catalog did not add the Arms Dealer shop`);
   for (const event of support.events ?? []) {
     if (event.customEventName) {
       assert(event.eventIcon,
@@ -58,6 +69,22 @@ for (const modName of expected) {
     }
     assert(profileItems.has("CalamityMod/FishStocks"),
       "Fish Stocks provides combat stats and must remain in the combat profile");
+    const stageOf = itemId => {
+      const [mod, item] = itemId.split("/");
+      return profile.entries.find(entry =>
+        (entry.itemGroups ?? []).flat().some(reference =>
+          reference.mod === mod && reference.item === item))
+        ?.evaluations?.[0]?.stageId;
+    };
+    for (const [item, stageId] of Object.entries({
+      "CalamityMod/OpalStriker": "world-evil",
+      "CalamityMod/Prismalline": "wall-of-flesh",
+      "CalamityMod/PlagueReaperMask": "golem",
+      "CalamityMod/OntologicalDespoiler": "ceaseless-void",
+      "CalamityMod/Supernova": "exo-mechs"
+    })) {
+      assert.equal(stageOf(item), stageId, `${item} must follow its latest recipe dependency`);
+    }
   }
   const snapshotVersions = new Map(snapshot.mods.map(mod => [mod.name, mod.version]));
   for (const required of support.requiredMods ?? []) {
@@ -162,6 +189,7 @@ const vanillaSources = applyVanillaSourceCatalog({
   stages: [
     { id: "start", unlock: { type: "always" } },
     { id: "goblin-stage", unlock: { type: "vanilla-flag", key: "downedBoss1" } },
+    { id: "world-evil", unlock: { type: "vanilla-flag", key: "downedBoss2" } },
     { id: "dungeon", unlock: { type: "vanilla-flag", key: "downedBoss3" } },
     { id: "hardmode", unlock: { type: "vanilla-flag", key: "hardMode" } },
     { id: "plantera", unlock: { type: "vanilla-flag", key: "downedPlantBoss" } }
@@ -182,6 +210,10 @@ assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
   .enemies.includes("Terraria/VampireBat"));
 assert(vanillaSources.stages.find(stage => stage.id === "plantera")
   .enemies.includes("Terraria/Reaper"));
+assert(vanillaSources.stages.find(stage => stage.id === "plantera")
+  .shops.includes("Terraria/Cyborg"));
+assert(vanillaSources.stages.find(stage => stage.id === "world-evil")
+  .include.includes("Terraria/MeteoriteBar"));
 
 const ignore = fs.readFileSync(path.join(root, "build.txt"), "utf8");
 for (const name of requiredFiles.filter(name => name !== "profile.json")) {

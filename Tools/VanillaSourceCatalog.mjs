@@ -195,7 +195,9 @@ const MILESTONE_FACTS = [
       "Terraria/ShadowScale",
       "Terraria/TissueSample",
       "Terraria/Hellstone",
-      "Terraria/HellstoneBar"
+      "Terraria/HellstoneBar",
+      "Terraria/Meteorite",
+      "Terraria/MeteoriteBar"
     ]
   },
   {
@@ -369,7 +371,8 @@ const MILESTONE_FACTS = [
       "Terraria/Vampire",
       "Terraria/Reaper",
       "Terraria/Psycho"
-    ]
+    ],
+    shops: ["Terraria/Cyborg"]
   },
   {
     findStage: manifest => findEventStage(manifest, "PumpkinMoon"),

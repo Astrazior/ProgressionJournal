@@ -542,13 +542,14 @@
         "CalamityMod/Acidwood",
         "CalamityMod/CoastalDemonfish",
         "CalamityMod/Driftwood",
-        "CalamityMod/AncientBoneDust"
+        "CalamityMod/AncientBoneDust",
+        "CalamityMod/PrismShard"
       ],
       "stageId": "start",
-      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/Items",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/World/SunkenSea.cs#L581-L617",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-      "checkedAt": "2026-06-14",
-      "reason": "The official source defines these as naturally available pre-boss wood, fishing, crate or ordinary cavern-skeleton materials."
+      "checkedAt": "2026-06-15",
+      "reason": "These materials are naturally available before bosses; Prism Shards are generated as mineable crystal tiles in the Sunken Sea during world generation."
     },
     {
       "id": "calamity-post-skeletron-abyss-materials",
