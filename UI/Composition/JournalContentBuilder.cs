@@ -63,7 +63,7 @@ public static class JournalContentBuilder
 
         if (newEntries.Length == 0)
         {
-            entryList.Add(JournalUiElementFactory.CreateSectionHeader(
+            entryList.Add(CreateEmptyStateNotice(
                 Language.GetTextValue("Mods.ProgressionJournal.UI.NoNewEquipment")));
             return;
         }
@@ -821,6 +821,22 @@ public static class JournalContentBuilder
             entry.Entry.CategoryStrength,
         _ => 0
     };
+
+    private static UIElement CreateEmptyStateNotice(string text)
+    {
+        var container = new UIElement();
+        container.Width.Set(0f, 1f);
+        container.Height.Set(64f, 0f);
+
+        var label = new UIText(text, 0.72f)
+        {
+            HAlign = 0.5f,
+            VAlign = 0.5f,
+            TextColor = JournalUiTheme.ContentDescriptionText
+        };
+        container.Append(label);
+        return container;
+    }
 
     private static UIPanel CreateRecommendationBlock(
         string title,
