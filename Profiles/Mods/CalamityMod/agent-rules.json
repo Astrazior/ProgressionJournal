@@ -943,8 +943,12 @@
       "id": "draedon-sunken-sea-schematic",
       "kind": "condition-stage",
       "stageId": "start",
-      "sources": ["recipe"],
-      "conditionDescriptions": ["View an unencrypted schematic from the lab near the Sunken Sea"],
+      "sources": [
+        "recipe"
+      ],
+      "conditionDescriptions": [
+        "View an unencrypted schematic from the lab near the Sunken Sea"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/DraedonMisc/DecryptionComputer.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -954,8 +958,12 @@
       "id": "draedon-planetoid-schematic",
       "kind": "condition-stage",
       "stageId": "start",
-      "sources": ["recipe"],
-      "conditionDescriptions": ["Decrypt a schematic from the lab in the large planetoid in the sky"],
+      "sources": [
+        "recipe"
+      ],
+      "conditionDescriptions": [
+        "Decrypt a schematic from the lab in the large planetoid in the sky"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/TileEntities/TECodebreaker.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -965,8 +973,12 @@
       "id": "draedon-jungle-schematic",
       "kind": "condition-stage",
       "stageId": "wall-of-flesh",
-      "sources": ["recipe"],
-      "conditionDescriptions": ["Decrypt a schematic from the lab deep within the jungle"],
+      "sources": [
+        "recipe"
+      ],
+      "conditionDescriptions": [
+        "Decrypt a schematic from the lab deep within the jungle"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/DraedonMisc/LongRangedSensorArray.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -976,8 +988,12 @@
       "id": "draedon-hell-schematic",
       "kind": "condition-stage",
       "stageId": "golem",
-      "sources": ["recipe"],
-      "conditionDescriptions": ["Decrypt a schematic from the lab near the edges of the underworld"],
+      "sources": [
+        "recipe"
+      ],
+      "conditionDescriptions": [
+        "Decrypt a schematic from the lab near the edges of the underworld"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/DraedonMisc/AdvancedDisplay.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -987,8 +1003,12 @@
       "id": "draedon-ice-schematic",
       "kind": "condition-stage",
       "stageId": "providence",
-      "sources": ["recipe"],
-      "conditionDescriptions": ["Decrypt a schematic from the lab deep within the frozen caverns"],
+      "sources": [
+        "recipe"
+      ],
+      "conditionDescriptions": [
+        "Decrypt a schematic from the lab deep within the frozen caverns"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/DraedonMisc/VoltageRegulationSystem.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -998,7 +1018,9 @@
       "id": "non-progression-recipe-environments",
       "kind": "condition-stage",
       "stageId": "start",
-      "sources": ["recipe"],
+      "sources": [
+        "recipe"
+      ],
       "conditionDescriptions": [
         "В генерации мира «Remix»",
         "Не в генерации мира «Remix»",
@@ -1014,7 +1036,9 @@
       "id": "shady-and-skeleton-merchant-time-conditions",
       "kind": "condition-stage",
       "stageId": "start",
-      "sources": ["shop"],
+      "sources": [
+        "shop"
+      ],
       "conditionDescriptions": [
         "During a gibbous moon",
         "During a crescent moon",
@@ -1033,8 +1057,12 @@
       "id": "shady-found-item-stock",
       "kind": "condition-stage",
       "stageId": "start",
-      "sources": ["shop"],
-      "sourceIds": ["CalamityMod/ShadySalesman"],
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "CalamityMod/ShadySalesman"
+      ],
       "conditionDescriptions": [
         "After obtaining Frozen Cube",
         "After obtaining Unstable Granite Core",
@@ -1052,9 +1080,15 @@
       "id": "shady-revengeance-stock",
       "kind": "condition-stage",
       "stageId": "skeletron",
-      "sources": ["shop"],
-      "sourceIds": ["CalamityMod/ShadySalesman"],
-      "conditionDescriptions": ["In Revengeance Mode"],
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "CalamityMod/ShadySalesman"
+      ],
+      "conditionDescriptions": [
+        "In Revengeance Mode"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/TownNPCs/ShadySalesman.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1064,8 +1098,12 @@
       "id": "archmage-frost-moon-stock",
       "kind": "condition-stage",
       "stageId": "plantera",
-      "sources": ["shop"],
-      "sourceIds": ["CalamityMod/Archmage"],
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "CalamityMod/Archmage"
+      ],
       "conditionDescriptions": [
         "После победы над вечнозлой ели",
         "После победы над Сантой-NK1",
@@ -1080,9 +1118,15 @@
       "id": "archmage-blood-rune-stock",
       "kind": "condition-stage",
       "stageId": "devourer-of-gods",
-      "sources": ["shop"],
-      "sourceIds": ["CalamityMod/Archmage"],
-      "conditionDescriptions": ["Когда в инвентаре находится Ice Barrage"],
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "CalamityMod/Archmage"
+      ],
+      "conditionDescriptions": [
+        "Когда в инвентаре находится Ice Barrage"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/TownNPCs/Archmage.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1092,8 +1136,13 @@
       "id": "calamitas-construct-final-drops",
       "kind": "condition-stage",
       "stageId": "calamitas-clone",
-      "sources": ["drop"],
-      "sourceIds": ["CalamityMod/Cataclysm", "CalamityMod/Catastrophe"],
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "CalamityMod/Cataclysm",
+        "CalamityMod/Catastrophe"
+      ],
       "conditionDescriptions": [
         "Drops if defeated after Catastrophic Construct",
         "Drops if defeated after Cataclysmic Construct"
@@ -1107,9 +1156,15 @@
       "id": "default-world-duke-drop",
       "kind": "condition-stage",
       "stageId": "duke-fishron",
-      "sources": ["drop"],
-      "sourceIds": ["Terraria/DukeFishron"],
-      "conditionTypes": ["Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed"],
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "Terraria/DukeFishron"
+      ],
+      "conditionTypes": [
+        "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityGlobalNPCLoot.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1119,9 +1174,15 @@
       "id": "profaned-soul-crystal-challenge",
       "kind": "condition-stage",
       "stageId": "providence",
-      "sources": ["drop"],
-      "sourceIds": ["CalamityMod/Providence"],
-      "conditionDescriptions": ["Drops if Providence was defeated only with the [i:CalamityMod/ProfanedSoulArtifact] Profaned Soul Artifact\nЭто шанс выпадения в режиме эксперта"],
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "CalamityMod/Providence"
+      ],
+      "conditionDescriptions": [
+        "Drops if Providence was defeated only with the [i:CalamityMod/ProfanedSoulArtifact] Profaned Soul Artifact\nЭто шанс выпадения в режиме эксперта"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Providence/Providence.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1131,9 +1192,18 @@
       "id": "preboss-lambda-drops",
       "kind": "condition-stage",
       "stageId": "start",
-      "sources": ["drop"],
-      "sourceIds": ["Terraria/FireImp", "Terraria/Demon", "Terraria/VoodooDemon", "Terraria/BoneSerpentHead"],
-      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "Terraria/FireImp",
+        "Terraria/Demon",
+        "Terraria/VoodooDemon",
+        "Terraria/BoneSerpentHead"
+      ],
+      "conditionTypes": [
+        "CalamityMod.DropHelper+LambdaDropRuleCondition"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityGlobalNPCLoot.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1143,9 +1213,15 @@
       "id": "acid-rain-lambda-drop",
       "kind": "condition-stage",
       "stageId": "eye-of-cthulhu",
-      "sources": ["drop"],
-      "sourceIds": ["CalamityMod/NuclearToad"],
-      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "CalamityMod/NuclearToad"
+      ],
+      "conditionTypes": [
+        "CalamityMod.DropHelper+LambdaDropRuleCondition"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AcidRain",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1155,9 +1231,16 @@
       "id": "post-skeletron-abyss-lambda-drops",
       "kind": "condition-stage",
       "stageId": "skeletron",
-      "sources": ["drop"],
-      "sourceIds": ["CalamityMod/BoxJellyfish", "CalamityMod/MirageJelly"],
-      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "CalamityMod/BoxJellyfish",
+        "CalamityMod/MirageJelly"
+      ],
+      "conditionTypes": [
+        "CalamityMod.DropHelper+LambdaDropRuleCondition"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Abyss",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1167,7 +1250,9 @@
       "id": "post-aureus-astral-lambda-drops",
       "kind": "condition-stage",
       "stageId": "astrum-aureus",
-      "sources": ["drop"],
+      "sources": [
+        "drop"
+      ],
       "sourceIds": [
         "CalamityMod/Aries",
         "CalamityMod/Astraglomerate",
@@ -1180,7 +1265,9 @@
         "CalamityMod/Nova",
         "CalamityMod/StellarCulex"
       ],
-      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "conditionTypes": [
+        "CalamityMod.DropHelper+LambdaDropRuleCondition"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Astral",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1190,9 +1277,15 @@
       "id": "post-plantera-mantis-shrimp-drop",
       "kind": "condition-stage",
       "stageId": "plantera",
-      "sources": ["drop"],
-      "sourceIds": ["CalamityMod/MantisShrimp"],
-      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "CalamityMod/MantisShrimp"
+      ],
+      "conditionTypes": [
+        "CalamityMod.DropHelper+LambdaDropRuleCondition"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/NormalNPCs/MantisShrimp.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1202,9 +1295,16 @@
       "id": "multipart-and-late-boss-lambda-drops",
       "kind": "condition-stage",
       "stageId": "leviathan-anahita",
-      "sources": ["drop"],
-      "sourceIds": ["CalamityMod/Anahita", "CalamityMod/Leviathan"],
-      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "CalamityMod/Anahita",
+        "CalamityMod/Leviathan"
+      ],
+      "conditionTypes": [
+        "CalamityMod.DropHelper+LambdaDropRuleCondition"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Leviathan/Leviathan.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1214,9 +1314,15 @@
       "id": "astrum-deus-lambda-drops",
       "kind": "condition-stage",
       "stageId": "astrum-deus",
-      "sources": ["drop"],
-      "sourceIds": ["CalamityMod/AstrumDeusHead"],
-      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "CalamityMod/AstrumDeusHead"
+      ],
+      "conditionTypes": [
+        "CalamityMod.DropHelper+LambdaDropRuleCondition"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AstrumDeus/AstrumDeusHead.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1226,9 +1332,15 @@
       "id": "late-enemy-lambda-drops",
       "kind": "condition-stage",
       "stageId": "providence",
-      "sources": ["drop"],
-      "sourceIds": ["CalamityMod/RenegadeWarlock"],
-      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "CalamityMod/RenegadeWarlock"
+      ],
+      "conditionTypes": [
+        "CalamityMod.DropHelper+LambdaDropRuleCondition"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Crags/RenegadeWarlock.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1238,9 +1350,15 @@
       "id": "post-polterghast-eidolon-drop",
       "kind": "condition-stage",
       "stageId": "polterghast",
-      "sources": ["drop"],
-      "sourceIds": ["CalamityMod/EidolonWyrmHead"],
-      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "CalamityMod/EidolonWyrmHead"
+      ],
+      "conditionTypes": [
+        "CalamityMod.DropHelper+LambdaDropRuleCondition"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Abyss/EidolonWyrmHead.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1250,9 +1368,17 @@
       "id": "exo-mechs-lambda-drops",
       "kind": "condition-stage",
       "stageId": "exo-mechs",
-      "sources": ["drop"],
-      "sourceIds": ["CalamityMod/AresBody", "CalamityMod/ThanatosHead", "CalamityMod/Apollo"],
-      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "CalamityMod/AresBody",
+        "CalamityMod/ThanatosHead",
+        "CalamityMod/Apollo"
+      ],
+      "conditionTypes": [
+        "CalamityMod.DropHelper+LambdaDropRuleCondition"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/ExoMechs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1262,9 +1388,15 @@
       "id": "supreme-calamitas-lambda-drops",
       "kind": "condition-stage",
       "stageId": "supreme-calamitas",
-      "sources": ["drop"],
-      "sourceIds": ["CalamityMod/SupremeCalamitas"],
-      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "CalamityMod/SupremeCalamitas"
+      ],
+      "conditionTypes": [
+        "CalamityMod.DropHelper+LambdaDropRuleCondition"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/SupremeCalamitas/SupremeCalamitas.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1274,7 +1406,9 @@
       "id": "vanilla-boss-bag-lambda-drops",
       "kind": "condition-stage",
       "stageId": "start",
-      "sources": ["drop"],
+      "sources": [
+        "drop"
+      ],
       "sourceIds": [
         "Terraria/KingSlimeBossBag",
         "Terraria/EyeOfCthulhuBossBag",
@@ -1293,7 +1427,9 @@
         "Terraria/QueenSlimeBossBag",
         "Terraria/DeerclopsBossBag"
       ],
-      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "conditionTypes": [
+        "CalamityMod.DropHelper+LambdaDropRuleCondition"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Utilities/DropHelper.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1303,7 +1439,9 @@
       "id": "calamity-boss-bag-lambda-drops",
       "kind": "condition-stage",
       "stageId": "start",
-      "sources": ["drop"],
+      "sources": [
+        "drop"
+      ],
       "sourceIds": [
         "CalamityMod/AquaticScourgeBag",
         "CalamityMod/AstrumAureusBag",
@@ -1331,7 +1469,9 @@
         "CalamityMod/StormWeaverBag",
         "CalamityMod/YharonBag"
       ],
-      "conditionTypes": ["CalamityMod.DropHelper+LambdaDropRuleCondition"],
+      "conditionTypes": [
+        "CalamityMod.DropHelper+LambdaDropRuleCondition"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
@@ -1523,6 +1663,20 @@
       "reason": "Guidelight of Oblivion is in the Scryllar post-Providence conditional drop set."
     },
     {
+      "id": "empyrean-armor-post-moon-lord",
+      "kind": "item-stage",
+      "items": [
+        "CalamityMod/EmpyreanMask",
+        "CalamityMod/EmpyreanCloak",
+        "CalamityMod/EmpyreanCuisses"
+      ],
+      "stageId": "moon-lord",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Empyrean_armor",
+      "sourceVersion": "Calamity 2.2 wiki",
+      "checkedAt": "2026-06-15",
+      "reason": "Empyrean armor requires Luminite Bars, so it is available after Moon Lord."
+    },
+    {
       "id": "post-aquatic-scourge-acid-eel-source",
       "kind": "source-stage",
       "source": "CalamityMod/AcidEel",
@@ -1531,6 +1685,95 @@
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-15",
       "reason": "The Acid Eel upgrades after Aquatic Scourge and its Slithering Eels drop uses that same progression condition."
+    },
+    {
+      "id": "bloodstone-post-providence-material",
+      "kind": "item-stage",
+      "item": "CalamityMod/Bloodstone",
+      "stageId": "providence",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bloodstone",
+      "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-06-15",
+      "checkedAt": "2026-06-15",
+      "reason": "Bloodstone is dropped by Brimstone Crag enemies only after Providence; this prevents recipes such as Supreme Healing Potion from being placed too early."
+    },
+    {
+      "id": "necroplasm-post-moon-lord-material",
+      "kind": "item-stage",
+      "item": "CalamityMod/Necroplasm",
+      "stageId": "moon-lord",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Necroplasm",
+      "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "Necroplasm is dropped by post-Moon Lord enemies such as Phantom Spirits and Overloaded Soldiers; Polterghast is a later source, not the earliest source."
+    },
+    {
+      "id": "bloodstone-core-post-providence-material",
+      "kind": "item-stage",
+      "item": "CalamityMod/BloodstoneCore",
+      "stageId": "providence",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Materials/BloodstoneCore.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-16",
+      "reason": "Bloodstone Core requires Bloodstone, Blood Orb and Necroplasm. Necroplasm is post-Moon Lord, while Bloodstone is already gated after Providence, so Bloodstone Core and simple Bloodstone Core recipes become available after Providence."
+    },
+    {
+      "id": "supreme-healing-potion-post-providence",
+      "kind": "item-stage",
+      "item": "CalamityMod/SupremeHealingPotion",
+      "stageId": "providence",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Supreme_Healing_Potion",
+      "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-06-15",
+      "checkedAt": "2026-06-15",
+      "reason": "The recipe requires Bloodstone, which is post-Providence, so the potion cannot be available at Lunatic Cultist."
+    },
+    {
+      "id": "bloodfin-brimstone-crag-fishing-source",
+      "kind": "fishing-source",
+      "items": [
+        "CalamityMod/Bloodfin"
+      ],
+      "conditions": [
+        {
+          "en-US": "Caught in the Brimstone Crag",
+          "ru-RU": "Ловится в Brimstone Crag"
+        },
+        {
+          "en-US": "10% chance after defeating Providence",
+          "ru-RU": "Шанс 10% после победы над Провиденсом"
+        }
+      ],
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bloodfin",
+      "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-06-15",
+      "checkedAt": "2026-06-15",
+      "reason": "Bloodfin is a fishing source item; without an explicit fishing-source rule the profile can know the stage but show no source."
+    },
+    {
+      "id": "classless-weapons-as-shared-weapons",
+      "kind": "item-override",
+      "items": [
+        "CalamityMod/Aestheticus",
+        "CalamityMod/LunicEye",
+        "CalamityMod/EyeofMagnus",
+        "CalamityMod/ClaretCannon",
+        "CalamityMod/RelicOfDeliverance",
+        "CalamityMod/Skynamite",
+        "CalamityMod/StratusSphere"
+      ],
+      "override": {
+        "exclude": false,
+        "category": "Weapon",
+        "classes": [
+          "melee",
+          "ranged",
+          "magic",
+          "summoner",
+          "rogue"
+        ]
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/Items",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-16",
+      "reason": "Classless weapons and damage-dealing tools are usable combat items but do not map to a single Calamity class. Treat them as shared weapons for all profile classes instead of excluding them as non-combat equipment. Availability stage is still resolved from the normal generated item paths."
     }
   ],
   "ignoredItems": [

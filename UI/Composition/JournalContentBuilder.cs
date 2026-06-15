@@ -70,7 +70,7 @@ public static class JournalContentBuilder
 
         foreach (var tier in TierOrder)
         {
-            var tierEntries = GetEntriesForTier(newEntries, profileId, stageId, tier);
+            var tierEntries = GetEntriesForTier(newEntries, tier);
             if (tierEntries.Length == 0)
             {
                 continue;
@@ -572,7 +572,7 @@ public static class JournalContentBuilder
         top += 34f;
 
         var previewBottom = AppendSavedBuildCharacterPreview(card, build, profileId, stageId, top, palette, focusContainer);
-        var equipmentBottom = AppendSavedBuildEquipmentSummary(card, build, profileId, stageId, top);
+        var equipmentBottom = AppendSavedBuildEquipmentSummary(card, build, top);
         var consumablesBottom = AppendSavedBuildConsumablesSummary(card, build, top);
         top = MathF.Max(previewBottom, MathF.Max(equipmentBottom, consumablesBottom));
 
@@ -664,8 +664,6 @@ public static class JournalContentBuilder
     private static float AppendSavedBuildEquipmentSummary(
         UIElement card,
         JournalSavedBuild build,
-        string profileId,
-        string stageId,
         float top)
     {
         const float columnLeft = 164f;
@@ -794,33 +792,16 @@ public static class JournalContentBuilder
 
     private static JournalStageEntry[] GetEntriesForTier(
         IReadOnlyList<JournalStageEntry> entries,
-        string profileId,
-        string stageId,
         RecommendationTier tier)
     {
         return entries
             .Where(entry => entry.Evaluation.Tier == tier)
-            .OrderBy(entry => JournalOrdering.GetCategoryOrder(entry.Entry.Category))
-            .ThenByDescending(GetCategoryStrength)
-            .ThenBy(entry => GetStageEntryDisplayOrder(profileId, stageId, entry.Entry.Key))
-            .ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
+            .Select((entry, index) => new { Entry = entry, OriginalIndex = index })
+            .OrderBy(value => JournalOrdering.GetCategoryOrder(value.Entry.Entry.Category))
+            .ThenBy(value => value.OriginalIndex)
+            .Select(value => value.Entry)
             .ToArray();
     }
-
-    private static int GetStageEntryDisplayOrder(string profileId, string stageId, string entryKey)
-    {
-        return string.Equals(profileId, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase)
-            && JournalStageIds.TryToLegacy(stageId, out var legacyStage)
-                ? JournalOrdering.GetStageEntryDisplayOrderOverride(legacyStage, entryKey)
-                : int.MaxValue;
-    }
-
-    private static int GetCategoryStrength(JournalStageEntry entry) => entry.Entry.Category switch
-    {
-        JournalItemCategory.Weapon or JournalItemCategory.Armor or JournalItemCategory.Ammunition =>
-            entry.Entry.CategoryStrength,
-        _ => 0
-    };
 
     private static UIElement CreateEmptyStateNotice(string text)
     {

@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "https://thoriummod.wiki.gg/wiki/Bosses",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-06-15T14:58:59.445Z",
+  "generatedAtUtc": "2026-06-15T23:20:28.060Z",
   "requiredMods": [
     {
       "name": "ThoriumMod",
@@ -609,6 +609,60 @@
           "stageId": "primordials",
           "classes": [
             "ranged"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Endgame",
+            "ru-RU": "Финал"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.mjolnir",
+      "category": "Weapon",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "Mjolnir",
+            "displayName": "Mjölnir"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "primordials",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "primordials",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "thrower",
+            "healer",
+            "bard"
           ],
           "sourceName": "Official Thorium Mod Wiki",
           "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
@@ -37488,6 +37542,60 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.beltofthequickresponse",
+      "category": "Accessory",
+      "classes": [
+        "healer"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "BeltoftheQuickResponse",
+            "displayName": "Belt of the Quick Response"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "classes": [
+            "healer"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "World Evil",
+            "ru-RU": "Зло мира"
+          }
+        },
+        {
+          "stageId": "world-evil",
+          "classes": [
+            "healer"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Queen Bee",
+            "ru-RU": "Королева пчёл"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.blacksmithsbarrier",
       "category": "Accessory",
       "classes": [
@@ -39450,6 +39558,48 @@
           "stageId": "star-scouter",
           "classes": [
             "bard"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Wall of Flesh",
+            "ru-RU": "Стена плоти"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.dewcollector",
+      "category": "Accessory",
+      "classes": [
+        "healer"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "DewCollector",
+            "displayName": "Dew Collector"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "star-scouter",
+          "classes": [
+            "healer"
           ],
           "sourceName": "Official Thorium Mod Wiki",
           "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
@@ -47999,6 +48149,48 @@
       "eventIcon": ""
     },
     {
+      "key": "new.thoriummod.supportsash",
+      "category": "Accessory",
+      "classes": [
+        "healer"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "SupportSash",
+            "displayName": "Support Sash"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "wall-of-flesh",
+          "classes": [
+            "healer"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Borean Strider",
+            "ru-RU": "Бореанский странник"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.thoriummod.survivalistboots",
       "category": "Accessory",
       "classes": [
@@ -48076,6 +48268,526 @@
       "evaluations": [
         {
           "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.techniqueblindingdash",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TechniqueBlindingDash",
+            "displayName": "Technique: Blinding Dash"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "wall-of-flesh",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Borean Strider",
+            "ru-RU": "Бореанский странник"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.techniquebloodlotus",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TechniqueBloodLotus",
+            "displayName": "Technique: Blood Lotus"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "wall-of-flesh",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Borean Strider",
+            "ru-RU": "Бореанский странник"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.techniquedecoy",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TechniqueDecoy",
+            "displayName": "Technique: Decoy"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "grand-thunder-bird",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "World Evil",
+            "ru-RU": "Зло мира"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.techniquegravitywell",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TechniqueGravityWell",
+            "displayName": "Technique: Gravity Well"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "coznix",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.techniquehiddenblade",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TechniqueHiddenBlade",
+            "displayName": "Technique: Hidden Blade"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "king-slime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "World Evil",
+            "ru-RU": "Зло мира"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.techniquelaststand",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TechniqueLastStand",
+            "displayName": "Technique: Last Stand"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "lunatic-cultist",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "moon-lord",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "The Primordials",
+            "ru-RU": "Первородные"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.techniquemeteorstomp",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TechniqueMeteorStomp",
+            "displayName": "Technique: Meteor Stomp"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "world-evil",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "world-evil",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Queen Bee",
+            "ru-RU": "Королева пчёл"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.techniqueshadowclone",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TechniqueShadowClone",
+            "displayName": "Technique: Shadow Clone"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "forgotten-one",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Lunatic Cultist",
+            "ru-RU": "Лунатик-культист"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.techniqueshadowdance",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TechniqueShadowDance",
+            "displayName": "Technique: Shadow Dance"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "forgotten-one",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Lunatic Cultist",
+            "ru-RU": "Лунатик-культист"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.techniquesmokebomb",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TechniqueSmokeBomb",
+            "displayName": "Technique: Smoke Bomb"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "grand-thunder-bird",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "world-evil",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Queen Bee",
+            "ru-RU": "Королева пчёл"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.techniquesoulpulse",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TechniqueSoulPulse",
+            "displayName": "Technique: Soul Pulse"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "star-scouter",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Wall of Flesh",
+            "ru-RU": "Стена плоти"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.techniquesprint",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TechniqueSprint",
+            "displayName": "Technique: Sprint"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "grand-thunder-bird",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "classes": [
+            "thrower"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "World Evil",
+            "ru-RU": "Зло мира"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.thoriummod.techniquestonepalm",
+      "category": "Weapon",
+      "classes": [
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "TechniqueStonePalm",
+            "displayName": "Technique: Stone Palm"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "coznix",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }

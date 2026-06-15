@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bosses",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-06-15T14:58:55.495Z",
+  "generatedAtUtc": "2026-06-15T23:20:23.937Z",
   "requiredMods": [
     {
       "name": "CalamityMod",
@@ -1789,6 +1789,72 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.relicofdeliverance",
+      "category": "Weapon",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "RelicOfDeliverance",
+            "displayName": "Relic of Deliverance"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "profaned-guardians",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "dragonfolly",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Providence",
+            "ru-RU": "Провиденс"
+          }
+        },
+        {
+          "stageId": "signus",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Polterghast",
+            "ru-RU": "Полтергаст"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": true,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.cindersoflament",
       "category": "Weapon",
       "classes": [
@@ -2228,7 +2294,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "polterghast",
+          "stageId": "providence",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -2257,7 +2323,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "polterghast",
+          "stageId": "providence",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -4024,6 +4090,88 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.claretcannon",
+      "category": "Weapon",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "ClaretCannon",
+            "displayName": "Claret Cannon"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "providence",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "signus",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Polterghast",
+            "ru-RU": "Полтергаст"
+          }
+        },
+        {
+          "stageId": "old-duke",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Devourer of Gods",
+            "ru-RU": "Пожиратель богов"
+          }
+        },
+        {
+          "stageId": "devourer-of-gods",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Yharon",
+            "ru-RU": "Ярон"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": true,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.vega",
       "category": "Weapon",
       "classes": [
@@ -4579,7 +4727,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "polterghast",
+          "stageId": "providence",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -4755,6 +4903,72 @@
       ],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.stratussphere",
+      "category": "Weapon",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "StratusSphere",
+            "displayName": "Stratus Sphere"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "polterghast",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "old-duke",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Devourer of Gods",
+            "ru-RU": "Пожиратель богов"
+          }
+        },
+        {
+          "stageId": "devourer-of-gods",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Yharon",
+            "ru-RU": "Ярон"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -6377,7 +6591,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "polterghast",
+          "stageId": "providence",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -6747,12 +6961,25 @@
       ],
       "evaluations": [
         {
-          "stageId": "polterghast",
+          "stageId": "providence",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [],
+      "wiki": [
+        {
+          "stageId": "signus",
+          "classes": [
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Polterghast",
+            "ru-RU": "Полтергаст"
+          }
+        }
+      ],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -7047,7 +7274,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "polterghast",
+          "stageId": "providence",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -7147,7 +7374,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "polterghast",
+          "stageId": "providence",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -7205,12 +7432,24 @@
       ],
       "evaluations": [
         {
-          "stageId": "polterghast",
+          "stageId": "providence",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
       "wiki": [
+        {
+          "stageId": "signus",
+          "classes": [
+            "summoner"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Polterghast",
+            "ru-RU": "Полтергаст"
+          }
+        },
         {
           "stageId": "old-duke",
           "classes": [
@@ -9128,7 +9367,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "polterghast",
+          "stageId": "storm-weaver",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -10899,12 +11138,25 @@
       ],
       "evaluations": [
         {
-          "stageId": "polterghast",
+          "stageId": "providence",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [],
+      "wiki": [
+        {
+          "stageId": "signus",
+          "classes": [
+            "ranged"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Polterghast",
+            "ru-RU": "Полтергаст"
+          }
+        }
+      ],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -17320,6 +17572,152 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.eyeofmagnus",
+      "category": "Weapon",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "EyeofMagnus",
+            "displayName": "Eye of Magnus"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "lunatic-cultist",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "lunatic-cultist",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Moon Lord",
+            "ru-RU": "Лунный лорд"
+          }
+        },
+        {
+          "stageId": "dragonfolly",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Providence",
+            "ru-RU": "Провиденс"
+          }
+        },
+        {
+          "stageId": "signus",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Polterghast",
+            "ru-RU": "Полтергаст"
+          }
+        },
+        {
+          "stageId": "old-duke",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Devourer of Gods",
+            "ru-RU": "Пожиратель богов"
+          }
+        },
+        {
+          "stageId": "devourer-of-gods",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Yharon",
+            "ru-RU": "Ярон"
+          }
+        },
+        {
+          "stageId": "yharon",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Exo Mechs / Calamitas",
+            "ru-RU": "Экзо-механизмы / Каламитас"
+          }
+        },
+        {
+          "stageId": "primordial-wyrm",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Endgame",
+            "ru-RU": "Финал"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": true,
+      "eventCategory": null,
+      "customEventName": "Celestial Pillars",
+      "eventIcon": "Terraria/LunarTowerSolar"
+    },
+    {
       "key": "new.calamitymod.gloriousend",
       "category": "Weapon",
       "classes": [
@@ -17452,7 +17850,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "polterghast",
+          "stageId": "providence",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -24158,6 +24556,152 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.luniceye",
+      "category": "Weapon",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "LunicEye",
+            "displayName": "Lunic Eye"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "cryogen",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Mechanical Bosses",
+            "ru-RU": "Механические боссы"
+          }
+        },
+        {
+          "stageId": "destroyer",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Second Mechanical Boss",
+            "ru-RU": "Второй механический босс"
+          }
+        },
+        {
+          "stageId": "twins",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Third Mechanical Boss",
+            "ru-RU": "Третий механический босс"
+          }
+        },
+        {
+          "stageId": "calamitas-clone",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Plantera",
+            "ru-RU": "Плантера"
+          }
+        },
+        {
+          "stageId": "astrum-aureus",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Golem",
+            "ru-RU": "Голем"
+          }
+        },
+        {
+          "stageId": "ravager",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Lunatic Cultist",
+            "ru-RU": "Лунатик-культист"
+          }
+        },
+        {
+          "stageId": "astrum-deus",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Celestial Pillars",
+            "ru-RU": "Небесные башни"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": true,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.sausagemaker",
       "category": "Weapon",
       "classes": [
@@ -29438,12 +29982,25 @@
       ],
       "evaluations": [
         {
-          "stageId": "polterghast",
+          "stageId": "providence",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [],
+      "wiki": [
+        {
+          "stageId": "signus",
+          "classes": [
+            "ranged"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Polterghast",
+            "ru-RU": "Полтергаст"
+          }
+        }
+      ],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -30950,7 +31507,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "polterghast",
+          "stageId": "providence",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -36932,6 +37489,39 @@
       "evaluations": [
         {
           "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.aestheticus",
+      "category": "Weapon",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "Aestheticus",
+            "displayName": "Aestheticus"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "hive-mind-perforators",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -47217,7 +47807,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "polterghast",
+          "stageId": "moon-lord",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -51889,6 +52479,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.skynamite",
+      "category": "Weapon",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "Skynamite",
+            "displayName": "Skynamite"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.slagsplitterpauldron",
       "category": "Accessory",
       "classes": [
@@ -52566,12 +53189,44 @@
       ],
       "evaluations": [
         {
-          "stageId": "polterghast",
+          "stageId": "moon-lord",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
       "wiki": [
+        {
+          "stageId": "dragonfolly",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Providence",
+            "ru-RU": "Провиденс"
+          }
+        },
+        {
+          "stageId": "signus",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Polterghast",
+            "ru-RU": "Полтергаст"
+          }
+        },
         {
           "stageId": "old-duke",
           "classes": [
@@ -56125,27 +56780,6 @@
       ]
     },
     {
-      "key": "new.calamitymod.supremehealingpotion",
-      "category": "Basic",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "lunatic-cultist",
-      "itemGroups": [
-        [
-          {
-            "mod": "CalamityMod",
-            "item": "SupremeHealingPotion",
-            "displayName": "Supreme Healing Potion"
-          }
-        ]
-      ]
-    },
-    {
       "key": "new.calamitymod.blasphemousdonut",
       "category": "Food",
       "classes": [
@@ -56188,6 +56822,23 @@
       ]
     },
     {
+      "key": "new.calamitymod.suprememanapotion",
+      "category": "Basic",
+      "classes": [
+        "magic"
+      ],
+      "stageId": "moon-lord",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "SupremeManaPotion",
+            "displayName": "Supreme Mana Potion"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.calamitymod.bloodfin",
       "category": "Basic",
       "classes": [
@@ -56209,6 +56860,27 @@
       ]
     },
     {
+      "key": "new.calamitymod.supremehealingpotion",
+      "category": "Basic",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "providence",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "SupremeHealingPotion",
+            "displayName": "Supreme Healing Potion"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.calamitymod.ceaselesshungerpotion",
       "category": "Potion",
       "classes": [
@@ -56225,23 +56897,6 @@
             "mod": "CalamityMod",
             "item": "CeaselessHungerPotion",
             "displayName": "Ceaseless Hunger Potion"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.calamitymod.suprememanapotion",
-      "category": "Basic",
-      "classes": [
-        "magic"
-      ],
-      "stageId": "polterghast",
-      "itemGroups": [
-        [
-          {
-            "mod": "CalamityMod",
-            "item": "SupremeManaPotion",
-            "displayName": "Supreme Mana Potion"
           }
         ]
       ]

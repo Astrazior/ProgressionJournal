@@ -970,6 +970,254 @@
       "sourceVersion": "Thorium Mod 1.7.2.6",
       "checkedAt": "2026-06-15",
       "reason": "Abyssal Shadow's true drop branch directly checks the Forgotten One defeat flag."
+    },
+    {
+      "id": "thrower-technique-scrolls-as-thrower-weapons",
+      "kind": "item-override",
+      "items": [
+        "ThoriumMod/TechniqueHiddenBlade",
+        "ThoriumMod/TechniqueDecoy",
+        "ThoriumMod/TechniqueSprint",
+        "ThoriumMod/TechniqueSmokeBomb",
+        "ThoriumMod/TechniqueMeteorStomp",
+        "ThoriumMod/TechniqueStickyExplosive",
+        "ThoriumMod/TechniqueSoulPulse",
+        "ThoriumMod/TechniqueBlindingDash",
+        "ThoriumMod/TechniqueBloodLotus",
+        "ThoriumMod/TechniqueStonePalm",
+        "ThoriumMod/TechniqueGravityWell",
+        "ThoriumMod/TechniqueCobrasBite",
+        "ThoriumMod/TechniqueShadowDance",
+        "ThoriumMod/TechniqueShadowClone",
+        "ThoriumMod/TechniqueLastStand"
+      ],
+      "override": {
+        "exclude": false,
+        "category": "Weapon",
+        "classes": [
+          "thrower"
+        ]
+      },
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique_Scrolls",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "Technique Scrolls are Thrower class combat tools used for offensive, defensive, or movement techniques. In the progression profile they should appear as Thrower weapon/technique options rather than being excluded as ordinary non-combat tools."
+    },
+    {
+      "id": "technique-hidden-blade-king-slime",
+      "kind": "item-stage",
+      "item": "ThoriumMod/TechniqueHiddenBlade",
+      "stageId": "king-slime",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique%3A_Hidden_Blade",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "The official wiki identifies Technique: Hidden Blade as a Technique Scroll dropped by King Slime."
+    },
+    {
+      "id": "technique-scrolls-grand-thunder-bird-tier",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/TechniqueDecoy",
+        "ThoriumMod/TechniqueSprint",
+        "ThoriumMod/TechniqueSmokeBomb",
+        "ThoriumMod/TechniqueStickyExplosive"
+      ],
+      "stageId": "grand-thunder-bird",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Blank_Technique_Scroll",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "These Technique Scrolls are craftable from Blank Technique Scrolls and early ingredients. Blank Technique Scroll is sold by the Desert Acolyte, whose arrival is gated behind The Grand Thunder Bird in this profile. Smoke Bomb also has a later world-evil travel-shop source, but the craftable route is earlier."
+    },
+    {
+      "id": "technique-meteor-stomp-world-evil",
+      "kind": "item-stage",
+      "item": "ThoriumMod/TechniqueMeteorStomp",
+      "stageId": "world-evil",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Blank_Technique_Scroll",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "Technique: Meteor Stomp is crafted from Meteorite Bars and a Blank Technique Scroll. Meteorite availability follows the world-evil boss in current vanilla progression, which is later than the Blank Technique Scroll vendor gate."
+    },
+    {
+      "id": "technique-soul-pulse-skeletron",
+      "kind": "item-stage",
+      "item": "ThoriumMod/TechniqueSoulPulse",
+      "stageId": "skeletron",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique%3A_Soul_Pulse",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "Technique: Soul Pulse is crafted from Spirit Droplets and a Blank Technique Scroll. Spirit Droplets drop from Cursed Skulls and related Dungeon sources, placing it after Skeletron."
+    },
+    {
+      "id": "technique-early-hardmode-scrolls",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/TechniqueBlindingDash",
+        "ThoriumMod/TechniqueBloodLotus"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique_Scrolls",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "These are Hardmode Technique Scrolls available from early-Hardmode ingredients or Hardmode Blood Moon sources, so they open at the Wall of Flesh stage."
+    },
+    {
+      "id": "technique-coznix-ore-scrolls",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/TechniqueStonePalm",
+        "ThoriumMod/TechniqueGravityWell"
+      ],
+      "stageId": "coznix",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Lodestone_Chunk",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "Technique: Stone Palm and Technique: Gravity Well require Lodestone/Valadium ingots. Lodestone and Valadium chunks generate after Coznix, the Fallen Beholder."
+    },
+    {
+      "id": "technique-cobras-bite-all-mechs",
+      "kind": "item-stage",
+      "item": "ThoriumMod/TechniqueCobrasBite",
+      "stageId": "skeletron-prime",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique%3A_Cobra%27s_Bite",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "Technique: Cobra's Bite is crafted from Chlorophyte Bars and a Blank Technique Scroll. In vanilla progression Chlorophyte gear requires the post-mechanical-boss pickaxe tier, represented here by the final mechanical boss stage."
+    },
+    {
+      "id": "technique-post-plantera-dungeon-scrolls",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/TechniqueShadowDance",
+        "ThoriumMod/TechniqueShadowClone"
+      ],
+      "stageId": "plantera",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Dark_Matter",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "Technique: Shadow Dance uses Dark Matter, and Technique: Shadow Clone drops from Bone Lee; both are post-Plantera Dungeon sources."
+    },
+    {
+      "id": "technique-last-stand-celestial-towers",
+      "kind": "item-stage",
+      "item": "ThoriumMod/TechniqueLastStand",
+      "stageId": "lunatic-cultist",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/White_Dwarf_Fragment",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "Technique: Last Stand requires White Dwarf Fragments, which drop from the Celestial Towers after Lunatic Cultist."
+    },
+    {
+      "id": "mjolnir-true-damage-shared-weapon",
+      "kind": "item-override",
+      "item": "ThoriumMod/Mjolnir",
+      "override": {
+        "exclude": false,
+        "category": "Weapon",
+        "classes": [
+          "melee",
+          "ranged",
+          "magic",
+          "summoner",
+          "bard",
+          "healer",
+          "thrower"
+        ]
+      },
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Mj%C3%B6lnir",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "Mjölnir is a post-Primordials true damage weapon without a single normal damage class, so it is treated as a shared weapon option for all profile classes."
+    },
+    {
+      "id": "mjolnir-post-primordials-stage",
+      "kind": "item-stage",
+      "item": "ThoriumMod/Mjolnir",
+      "stageId": "primordials",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Mj%C3%B6lnir",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "The official wiki identifies Mjölnir as obtainable in Expert Mode after defeating The Primordials."
+    },
+    {
+      "id": "healer-accessory-manual-classification",
+      "kind": "item-override",
+      "items": [
+        "ThoriumMod/BeltoftheQuickResponse",
+        "ThoriumMod/SupportSash",
+        "ThoriumMod/DewCollector"
+      ],
+      "override": {
+        "exclude": false,
+        "category": "Accessory",
+        "classes": [
+          "healer"
+        ]
+      },
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Healer_Accessories",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "These are Healer accessories listed by the official wiki and should not be discarded as non-combat or unresolved recommendation entries."
+    },
+    {
+      "id": "belt-of-quick-response-stage",
+      "kind": "item-stage",
+      "item": "ThoriumMod/BeltoftheQuickResponse",
+      "stageId": "start",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Belt_of_the_Quick_Response",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "Belt of the Quick Response is crafted at an Iron or Lead Anvil from early materials, so it is available before boss progression."
+    },
+    {
+      "id": "support-sash-hardmode-stage",
+      "kind": "item-stage",
+      "item": "ThoriumMod/SupportSash",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Support_Sash",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "Support Sash is a Hardmode Healer accessory crafted at a Hardmode Anvil from Belt of the Quick Response and the Apothecary vial accessories."
+    },
+    {
+      "id": "class-buff-furniture-manual-classification",
+      "kind": "item-override",
+      "items": [
+        "ThoriumMod/Altar",
+        "ThoriumMod/ConductorsStand",
+        "ThoriumMod/NinjaRack"
+      ],
+      "override": {
+        "exclude": false,
+        "category": "Buff"
+      },
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Furniture",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "These placeable furniture items grant direct class combat buffs and should be represented as combat buffs rather than excluded as ordinary furniture."
+    },
+    {
+      "id": "altar-healer-buff-stage",
+      "kind": "item-stage",
+      "item": "ThoriumMod/Altar",
+      "stageId": "buried-champion",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Altar",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "Altar grants the Spiritual Connection Healer buff and is sold by the Spiritualist; this profile gates the Spiritualist after Buried Champion."
+    },
+    {
+      "id": "wall-of-flesh-class-buff-furniture-stages",
+      "kind": "item-stage",
+      "items": [
+        "ThoriumMod/ConductorsStand",
+        "ThoriumMod/NinjaRack"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Conductor%27s_Stand",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "Conductor's Stand is sold after Wall of Flesh and grants a Bard empowerment buff; Ninja Rack is sold after Wall of Flesh and grants Thrower velocity, speed and critical chance bonuses."
     }
   ],
   "ignoredItems": [

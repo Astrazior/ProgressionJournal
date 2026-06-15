@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-06-15T14:58:55.527Z",
+  "generatedAtUtc": "2026-06-15T23:20:23.973Z",
   "snapshot": {
     "version": 2,
     "generatedAtUtc": "2026-06-13T00:10:42.0187109Z",
@@ -16,7 +16,7 @@
     ]
   },
   "agentRules": {
-    "rules": 118,
+    "rules": 125,
     "ignoredItems": 3,
     "ignoredIssues": 1,
     "evidence": [
@@ -840,11 +840,60 @@
         "reason": "Guidelight of Oblivion is in the Scryllar post-Providence conditional drop set."
       },
       {
+        "id": "empyrean-armor-post-moon-lord",
+        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Empyrean_armor",
+        "sourceVersion": "Calamity 2.2 wiki",
+        "checkedAt": "2026-06-15",
+        "reason": "Empyrean armor requires Luminite Bars, so it is available after Moon Lord."
+      },
+      {
         "id": "post-aquatic-scourge-acid-eel-source",
         "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AcidRain/AcidEel.cs",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
         "checkedAt": "2026-06-15",
         "reason": "The Acid Eel upgrades after Aquatic Scourge and its Slithering Eels drop uses that same progression condition."
+      },
+      {
+        "id": "bloodstone-post-providence-material",
+        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bloodstone",
+        "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-06-15",
+        "checkedAt": "2026-06-15",
+        "reason": "Bloodstone is dropped by Brimstone Crag enemies only after Providence; this prevents recipes such as Supreme Healing Potion from being placed too early."
+      },
+      {
+        "id": "necroplasm-post-moon-lord-material",
+        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Necroplasm",
+        "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "Necroplasm is dropped by post-Moon Lord enemies such as Phantom Spirits and Overloaded Soldiers; Polterghast is a later source, not the earliest source."
+      },
+      {
+        "id": "bloodstone-core-post-providence-material",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Materials/BloodstoneCore.cs",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-16",
+        "reason": "Bloodstone Core requires Bloodstone, Blood Orb and Necroplasm. Necroplasm is post-Moon Lord, while Bloodstone is already gated after Providence, so Bloodstone Core and simple Bloodstone Core recipes become available after Providence."
+      },
+      {
+        "id": "supreme-healing-potion-post-providence",
+        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Supreme_Healing_Potion",
+        "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-06-15",
+        "checkedAt": "2026-06-15",
+        "reason": "The recipe requires Bloodstone, which is post-Providence, so the potion cannot be available at Lunatic Cultist."
+      },
+      {
+        "id": "bloodfin-brimstone-crag-fishing-source",
+        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bloodfin",
+        "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-06-15",
+        "checkedAt": "2026-06-15",
+        "reason": "Bloodfin is a fishing source item; without an explicit fishing-source rule the profile can know the stage but show no source."
+      },
+      {
+        "id": "classless-weapons-as-shared-weapons",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/Items",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-16",
+        "reason": "Classless weapons and damage-dealing tools are usable combat items but do not map to a single Calamity class. Treat them as shared weapons for all profile classes instead of excluding them as non-combat equipment. Availability stage is still resolved from the normal generated item paths."
       },
       {
         "id": "legacy-recommendation-display-labels",
@@ -884,13 +933,13 @@
     "errors": [],
     "warnings": [
       "1 support or agent references are stale",
-      "78 recommendations precede proven availability and were suppressed"
+      "72 recommendations precede proven availability and were suppressed"
     ]
   },
   "ready": true,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-06-15T14:58:50.090Z",
+    "generatedAtUtc": "2026-06-15T23:20:17.937Z",
     "unknownReferences": [
       {
         "stage": "wall-of-flesh",
@@ -67606,11 +67655,6 @@
       },
       {
         "stage": "start",
-        "id": "CalamityMod/Skynamite",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "Terraria/BombStatue",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -70297,11 +70341,6 @@
       {
         "stage": "hive-mind-perforators",
         "id": "CalamityMod/SkyfringePickaxe",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "hive-mind-perforators",
-        "id": "CalamityMod/Aestheticus",
         "reason": "not combat equipment"
       },
       {
@@ -73466,11 +73505,6 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "CalamityMod/LunicEye",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "Terraria/FrozenChest",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -76415,21 +76449,6 @@
         "reason": "not combat equipment"
       },
       {
-        "stage": "ravager",
-        "id": "CalamityMod/Bloodstone",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "ravager",
-        "id": "CalamityMod/BloodflareDye",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "ravager",
-        "id": "CalamityMod/Brimrose",
-        "reason": "not combat equipment"
-      },
-      {
         "stage": "betsy",
         "id": "Terraria/BossTrophyBetsy",
         "reason": "unchanged vanilla item in mod profile"
@@ -77201,11 +77220,6 @@
       },
       {
         "stage": "lunatic-cultist",
-        "id": "CalamityMod/EyeofMagnus",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "lunatic-cultist",
         "id": "Terraria/SolarPlatform",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -77358,6 +77372,11 @@
         "stage": "moon-lord",
         "id": "Terraria/LunarBar",
         "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "moon-lord",
+        "id": "CalamityMod/Necroplasm",
+        "reason": "not combat equipment"
       },
       {
         "stage": "moon-lord",
@@ -77551,6 +77570,11 @@
       },
       {
         "stage": "moon-lord",
+        "id": "CalamityMod/NecroplasmicDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "moon-lord",
         "id": "CalamityMod/ProfanedFlameDye",
         "reason": "not combat equipment"
       },
@@ -77601,7 +77625,17 @@
       },
       {
         "stage": "moon-lord",
+        "id": "CalamityMod/CosmicWorm",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "moon-lord",
         "id": "CalamityMod/MarkofProvidence",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "moon-lord",
+        "id": "CalamityMod/NecroplasmicBeacon",
         "reason": "not combat equipment"
       },
       {
@@ -77726,11 +77760,6 @@
       },
       {
         "stage": "profaned-guardians",
-        "id": "CalamityMod/RelicOfDeliverance",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "profaned-guardians",
         "id": "CalamityMod/ProfanedGuardianMask",
         "reason": "not combat equipment"
       },
@@ -77811,7 +77840,22 @@
       },
       {
         "stage": "providence",
+        "id": "CalamityMod/Bloodstone",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "providence",
         "id": "CalamityMod/UelibloomOre",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "providence",
+        "id": "CalamityMod/BloodstoneCore",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "providence",
+        "id": "CalamityMod/BloodflareDye",
         "reason": "not combat equipment"
       },
       {
@@ -77827,6 +77871,11 @@
       {
         "stage": "providence",
         "id": "CalamityMod/UelibloomBar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "providence",
+        "id": "CalamityMod/Brimrose",
         "reason": "not combat equipment"
       },
       {
@@ -78071,11 +78120,6 @@
       },
       {
         "stage": "signus",
-        "id": "CalamityMod/CosmicWorm",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "signus",
         "id": "CalamityMod/OtherworldlyBathtub",
         "reason": "not combat equipment"
       },
@@ -78166,11 +78210,6 @@
       },
       {
         "stage": "polterghast",
-        "id": "CalamityMod/Necroplasm",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
         "id": "CalamityMod/PolterghastMask",
         "reason": "not combat equipment"
       },
@@ -78256,22 +78295,12 @@
       },
       {
         "stage": "polterghast",
-        "id": "CalamityMod/NecroplasmicDye",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
         "id": "CalamityMod/StratusDye",
         "reason": "not combat equipment"
       },
       {
         "stage": "polterghast",
         "id": "CalamityMod/LorePolterghast",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "CalamityMod/BloodstoneCore",
         "reason": "not combat equipment"
       },
       {
@@ -78307,21 +78336,6 @@
       {
         "stage": "polterghast",
         "id": "CalamityMod/NaiadsWarhorn",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "CalamityMod/NecroplasmicBeacon",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "CalamityMod/ClaretCannon",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "CalamityMod/StratusSphere",
         "reason": "not combat equipment"
       },
       {
@@ -80011,6 +80025,10 @@
         "stage": "start",
         "via": "recipe:CalamityMod/WulfrumMetalScrap"
       },
+      "CalamityMod/Skynamite": {
+        "stage": "start",
+        "via": "recipe:Terraria/Dynamite"
+      },
       "Terraria/Terragrim": {
         "stage": "start",
         "via": "recipe:Terraria/EnchantedSword+Terraria/FallenStar+Terraria/Diamond"
@@ -80558,6 +80576,10 @@
       "CalamityMod/Turbulance": {
         "stage": "hive-mind-perforators",
         "via": "recipe:CalamityMod/AerialiteBar"
+      },
+      "CalamityMod/Aestheticus": {
+        "stage": "hive-mind-perforators",
+        "via": "recipe:CalamityMod/AerialiteBar+CalamityMod/SeaPrism+Terraria/FallenStar"
       },
       "Terraria/Starfury": {
         "stage": "hive-mind-perforators",
@@ -81325,6 +81347,10 @@
       "CalamityMod/HauntedScroll": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Wood+Terraria/SoulofLight+Terraria/SoulofNight+Terraria/FoodPlatter"
+      },
+      "CalamityMod/LunicEye": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/CobaltBar+CalamityMod/StarblightSoot"
       },
       "Terraria/ObsidianShield": {
         "stage": "wall-of-flesh",
@@ -82812,13 +82838,6 @@
         "stage": "lunatic-cultist",
         "via": "recipe:CalamityMod/GrandGelatin+CalamityMod/Baroclaw+CalamityMod/GiantTortoiseShell+CalamityMod/MolluskHusk+CalamityMod/MeldBlob"
       },
-      "CalamityMod/SupremeHealingPotion": {
-        "stage": "lunatic-cultist",
-        "via": "recipe:Terraria/SuperHealingPotion+CalamityMod/Bloodstone",
-        "eventCategory": null,
-        "customEventName": "Celestial Pillars",
-        "eventIcon": "Terraria/LunarTowerSolar"
-      },
       "CalamityMod/Apathanull": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SpellTome+CalamityMod/MeldBlob"
@@ -82943,6 +82962,13 @@
         "stage": "lunatic-cultist",
         "via": "recipe:CalamityMod/MeldBlob"
       },
+      "CalamityMod/EyeofMagnus": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:CalamityMod/LunicEye+Terraria/FragmentNebula",
+        "eventCategory": null,
+        "customEventName": "Celestial Pillars",
+        "eventIcon": "Terraria/LunarTowerSolar"
+      },
       "CalamityMod/DeificAmulet": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StarVeil+Terraria/SweetheartNecklace+CalamityMod/AstralBar"
@@ -83019,13 +83045,33 @@
         "stage": "moon-lord",
         "via": "shop:CalamityMod/Bandit"
       },
+      "CalamityMod/EmpyreanMask": {
+        "stage": "moon-lord",
+        "via": "manifest"
+      },
+      "CalamityMod/EmpyreanCloak": {
+        "stage": "moon-lord",
+        "via": "manifest"
+      },
+      "CalamityMod/EmpyreanCuisses": {
+        "stage": "moon-lord",
+        "via": "manifest"
+      },
       "CalamityMod/DaawnlightSpiritOrigin": {
         "stage": "moon-lord",
         "via": "recipe:CalamityMod/DeadshotBrooch+CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+Terraria/LunarBar+Terraria/FragmentVortex"
       },
+      "CalamityMod/FragmentsOfAnotherWorld": {
+        "stage": "moon-lord",
+        "via": "recipe:CalamityMod/Necroplasm+CalamityMod/Navyplate+CalamityMod/ExodiumCluster"
+      },
       "CalamityMod/MoonstoneCrown": {
         "stage": "moon-lord",
         "via": "recipe:CalamityMod/FeatherCrown+Terraria/LunarBar+Terraria/FragmentNebula+CalamityMod/CoreofCalamity"
+      },
+      "CalamityMod/StatisNinjaBelt": {
+        "stage": "moon-lord",
+        "via": "recipe:Terraria/MasterNinjaGear+Terraria/FrogFlipper+CalamityMod/PurifiedGel+CalamityMod/Necroplasm"
       },
       "CalamityMod/ExodusWings": {
         "stage": "moon-lord",
@@ -83043,21 +83089,13 @@
         "stage": "moon-lord",
         "via": "recipe:Terraria/ExplodingBullet+CalamityMod/UnholyEssence"
       },
-      "CalamityMod/EmpyreanMask": {
-        "stage": "moon-lord",
-        "via": "recipe:CalamityMod/MeldBlob+Terraria/LunarBar"
-      },
-      "CalamityMod/EmpyreanCloak": {
-        "stage": "moon-lord",
-        "via": "recipe:CalamityMod/MeldBlob+Terraria/LunarBar"
-      },
-      "CalamityMod/EmpyreanCuisses": {
-        "stage": "moon-lord",
-        "via": "recipe:CalamityMod/MeldBlob+Terraria/LunarBar"
-      },
       "CalamityMod/FlaskOfHolyFlames": {
         "stage": "moon-lord",
         "via": "recipe:Terraria/BottledWater+CalamityMod/UnholyEssence"
+      },
+      "CalamityMod/SupremeManaPotion": {
+        "stage": "moon-lord",
+        "via": "recipe:Terraria/SuperManaPotion+CalamityMod/Necroplasm"
       },
       "CalamityMod/AuguroftheVoid": {
         "stage": "moon-lord",
@@ -83183,6 +83221,10 @@
         "stage": "moon-lord",
         "via": "recipe:CalamityMod/BlackHawkRemote+CalamityMod/FuelCellBundle+Terraria/LunarBar"
       },
+      "CalamityMod/RelicOfDeliverance": {
+        "stage": "profaned-guardians",
+        "via": "npc:CalamityMod/ProfanedGuardianCommander"
+      },
       "CalamityMod/WarbanneroftheRighteous": {
         "stage": "profaned-guardians",
         "via": "npc:CalamityMod/ProfanedGuardianCommander"
@@ -83271,6 +83313,10 @@
         "stage": "providence",
         "via": "manifest"
       },
+      "CalamityMod/SupremeHealingPotion": {
+        "stage": "providence",
+        "via": "manifest"
+      },
       "CalamityMod/BlazingCore": {
         "stage": "providence",
         "via": "container:CalamityMod/ProvidenceBag"
@@ -83282,6 +83328,14 @@
       "CalamityMod/ProfanedSoulArtifact": {
         "stage": "providence",
         "via": "recipe:CalamityMod/DivineGeode+CalamityMod/Havocplate+CalamityMod/ExodiumCluster"
+      },
+      "CalamityMod/BloodfireArrow": {
+        "stage": "providence",
+        "via": "recipe:CalamityMod/BloodstoneCore"
+      },
+      "CalamityMod/BloodfireBullet": {
+        "stage": "providence",
+        "via": "recipe:CalamityMod/BloodstoneCore"
       },
       "CalamityMod/PhalanxSurge": {
         "stage": "providence",
@@ -83311,6 +83365,14 @@
         "stage": "providence",
         "via": "recipe:Terraria/LaserMachinegun+CalamityMod/UelibloomBar+Terraria/Nanites"
       },
+      "CalamityMod/RecitationoftheBeast": {
+        "stage": "providence",
+        "via": "recipe:Terraria/DemonScythe+CalamityMod/BloodstoneCore+CalamityMod/EssenceofHavoc"
+      },
+      "CalamityMod/SanguineFlare": {
+        "stage": "providence",
+        "via": "recipe:CalamityMod/BloodstoneCore"
+      },
       "CalamityMod/ThePrince": {
         "stage": "providence",
         "via": "recipe:CalamityMod/ArchAmaryllis+CalamityMod/DivineGeode+CalamityMod/UnholyEssence"
@@ -83319,13 +83381,25 @@
         "stage": "providence",
         "via": "recipe:CalamityMod/ArchAmaryllis+CalamityMod/UelibloomBar+CalamityMod/UnholyEssence"
       },
+      "CalamityMod/Viscera": {
+        "stage": "providence",
+        "via": "recipe:CalamityMod/BloodstoneCore"
+      },
       "CalamityMod/DefiledGreatsword": {
         "stage": "providence",
         "via": "recipe:CalamityMod/BlightedCleaver+CalamityMod/CoreofCalamity+CalamityMod/UelibloomBar"
       },
+      "CalamityMod/DevilsSunrise": {
+        "stage": "providence",
+        "via": "recipe:Terraria/Terragrim+CalamityMod/BloodstoneCore+CalamityMod/ScorchedBone"
+      },
       "CalamityMod/GalactusBlade": {
         "stage": "providence",
         "via": "recipe:Terraria/StarWrath+CalamityMod/DivineGeode+Terraria/FragmentSolar+Terraria/FragmentVortex+Terraria/FragmentNebula+Terraria/FragmentStardust"
+      },
+      "CalamityMod/Lacerator": {
+        "stage": "providence",
+        "via": "recipe:CalamityMod/BloodstoneCore"
       },
       "CalamityMod/LifehuntScythe": {
         "stage": "providence",
@@ -83343,13 +83417,25 @@
         "stage": "providence",
         "via": "recipe:Terraria/TerraBlade+CalamityMod/UelibloomBar+CalamityMod/LivingShard"
       },
+      "CalamityMod/TheMutilator": {
+        "stage": "providence",
+        "via": "recipe:CalamityMod/BloodstoneCore"
+      },
       "CalamityMod/AngelicShotgun": {
         "stage": "providence",
         "via": "recipe:Terraria/SunplateBlock+CalamityMod/DivineGeode+CalamityMod/EssenceofSunlight"
       },
+      "CalamityMod/ArterialAssault": {
+        "stage": "providence",
+        "via": "recipe:CalamityMod/BloodstoneCore"
+      },
       "CalamityMod/Auralis": {
         "stage": "providence",
         "via": "recipe:Terraria/SniperRifle+CalamityMod/UelibloomBar+CalamityMod/AureusCell+CalamityMod/StarblightSoot"
+      },
+      "CalamityMod/BloodBoiler": {
+        "stage": "providence",
+        "via": "recipe:CalamityMod/BloodstoneCore"
       },
       "CalamityMod/FreedomStar": {
         "stage": "providence",
@@ -83367,6 +83453,10 @@
         "stage": "providence",
         "via": "recipe:CalamityMod/Needler+Terraria/Stynger+CalamityMod/UelibloomBar"
       },
+      "CalamityMod/BloodsoakedCrasher": {
+        "stage": "providence",
+        "via": "recipe:CalamityMod/CrushsawCrasher+CalamityMod/BloodstoneCore"
+      },
       "CalamityMod/ShatteredDawn": {
         "stage": "providence",
         "via": "recipe:CalamityMod/RadiantStar+CalamityMod/DivineGeode"
@@ -83375,9 +83465,17 @@
         "stage": "providence",
         "via": "recipe:CalamityMod/UelibloomBar"
       },
+      "CalamityMod/DragonbloodDisgorger": {
+        "stage": "providence",
+        "via": "recipe:CalamityMod/BloodstoneCore"
+      },
       "CalamityMod/ViridVanguard": {
         "stage": "providence",
         "via": "recipe:CalamityMod/IgneousExaltation+CalamityMod/ViralSprout+CalamityMod/UelibloomBar"
+      },
+      "CalamityMod/ClaretCannon": {
+        "stage": "providence",
+        "via": "recipe:CalamityMod/BloodstoneCore"
       },
       "CalamityMod/BadgeofBravery": {
         "stage": "providence",
@@ -83450,6 +83548,10 @@
       "CalamityMod/CorinthPrime": {
         "stage": "storm-weaver",
         "via": "recipe:CalamityMod/RealmRavager+Terraria/VortexBeater+Terraria/IllegalGunParts+CalamityMod/ArmoredShell"
+      },
+      "CalamityMod/Seadragon": {
+        "stage": "storm-weaver",
+        "via": "recipe:CalamityMod/Megalodon+CalamityMod/Necroplasm+CalamityMod/SeaPrism+CalamityMod/ArmoredShell"
       },
       "CalamityMod/TwistingThunder": {
         "stage": "storm-weaver",
@@ -83643,10 +83745,6 @@
         "stage": "polterghast",
         "via": "recipe:CalamityMod/SeaSpiritAmulet+CalamityMod/AbyssGravel+CalamityMod/DepthCells+CalamityMod/PyreMantle+CalamityMod/ScoriaBar+CalamityMod/Voidstone+CalamityMod/Lumenyl"
       },
-      "CalamityMod/FragmentsOfAnotherWorld": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/Necroplasm+CalamityMod/Navyplate+CalamityMod/ExodiumCluster"
-      },
       "CalamityMod/PhantomicArtifact": {
         "stage": "polterghast",
         "via": "recipe:CalamityMod/HallowedRune+CalamityMod/RuinousSoul+CalamityMod/Onyxplate+CalamityMod/ExodiumCluster"
@@ -83655,213 +83753,9 @@
         "stage": "polterghast",
         "via": "recipe:CalamityMod/SandSharkToothNecklace+CalamityMod/ReaperTooth+CalamityMod/DepthCells"
       },
-      "CalamityMod/StatisNinjaBelt": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/MasterNinjaGear+Terraria/FrogFlipper+CalamityMod/PurifiedGel+CalamityMod/Necroplasm"
-      },
       "CalamityMod/V8000Engine": {
         "stage": "polterghast",
         "via": "recipe:CalamityMod/V8Engine+CalamityMod/RuinousSoul+Terraria/Nanites"
-      },
-      "CalamityMod/OmegaBlueHelmet": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/ReaperTooth+CalamityMod/DepthCells+CalamityMod/RuinousSoul"
-      },
-      "CalamityMod/OmegaBlueChestplate": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/ReaperTooth+CalamityMod/DepthCells+CalamityMod/RuinousSoul"
-      },
-      "CalamityMod/OmegaBlueTentacles": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/ReaperTooth+CalamityMod/DepthCells+CalamityMod/RuinousSoul"
-      },
-      "CalamityMod/SupremeManaPotion": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/SuperManaPotion+CalamityMod/Necroplasm"
-      },
-      "CalamityMod/AlphaDraconis": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/WyvernsCall+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
-      },
-      "CalamityMod/DarkSpark": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/LastPrism+CalamityMod/DarkPlasma+CalamityMod/RuinousSoul+CalamityMod/DivineGeode"
-      },
-      "CalamityMod/HadalUrn": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/BlackAnurian+CalamityMod/Voidstone+CalamityMod/DepthCells+Terraria/Bone"
-      },
-      "CalamityMod/PhantasmalFury": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/SpectreStaff+CalamityMod/RuinousSoul+CalamityMod/DarkPlasma"
-      },
-      "CalamityMod/RecitationoftheBeast": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/DemonScythe+CalamityMod/BloodstoneCore+CalamityMod/EssenceofHavoc"
-      },
-      "CalamityMod/SanguineFlare": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/BloodstoneCore"
-      },
-      "CalamityMod/ShadowboltStaff": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/ShadowbeamStaff+CalamityMod/RuinousSoul+CalamityMod/ArmoredShell"
-      },
-      "CalamityMod/UndinesRetribution": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/Voidstone+CalamityMod/DepthCells"
-      },
-      "CalamityMod/VenusianTrident": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/InfernoFork+CalamityMod/RuinousSoul+CalamityMod/TwistingNether"
-      },
-      "CalamityMod/Viscera": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/BloodstoneCore"
-      },
-      "CalamityMod/AbyssBlade": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/DepthCrusher+CalamityMod/Voidstone+CalamityMod/DepthCells"
-      },
-      "CalamityMod/CrescentMoon": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/BlueMoon+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
-      },
-      "CalamityMod/DeathsAscension": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/DeathSickle+CalamityMod/RuinousSoul+Terraria/SoulofNight+CalamityMod/TwistingNether"
-      },
-      "CalamityMod/DevilsSunrise": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/Terragrim+CalamityMod/BloodstoneCore+CalamityMod/ScorchedBone"
-      },
-      "CalamityMod/GalileoGladius": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/Gladius+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
-      },
-      "CalamityMod/Lacerator": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/BloodstoneCore"
-      },
-      "CalamityMod/NeptunesBounty": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/AbyssBlade+CalamityMod/ReaperTooth+CalamityMod/RuinousSoul"
-      },
-      "CalamityMod/RemsRevenge": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/BlueMoon+Terraria/LunarBar+CalamityMod/Lumenyl"
-      },
-      "CalamityMod/TenebreusTides": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/AmidiasTrident+CalamityMod/Atlantis+Terraria/InfluxWaver+CalamityMod/Lumenyl"
-      },
-      "CalamityMod/TheLastMourning": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/TheHorsemansBlade+Terraria/SoulofNight+CalamityMod/ReaperTooth+CalamityMod/RuinousSoul"
-      },
-      "CalamityMod/TheMutilator": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/BloodstoneCore"
-      },
-      "CalamityMod/TyphonsGreed": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/Voidstone+CalamityMod/DepthCells"
-      },
-      "CalamityMod/VoidEdge": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/HellfireFlamberge+CalamityMod/Necroplasm+CalamityMod/RuinousSoul"
-      },
-      "CalamityMod/ArterialAssault": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/BloodstoneCore"
-      },
-      "CalamityMod/BloodBoiler": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/BloodstoneCore"
-      },
-      "CalamityMod/FlakKraken": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/FlakToxicannon+CalamityMod/Voidstone+CalamityMod/DepthCells"
-      },
-      "CalamityMod/HalleysInferno": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/ElfMelter+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
-      },
-      "CalamityMod/Monsoon": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/Tsunami+CalamityMod/FlarewingBow+CalamityMod/ReaperTooth+CalamityMod/DepthCells"
-      },
-      "CalamityMod/PearlGod": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/Arietes41+CalamityMod/LifeAlloy+CalamityMod/RuinousSoul+Terraria/WhitePearl"
-      },
-      "CalamityMod/Seadragon": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/Megalodon+CalamityMod/Necroplasm+CalamityMod/SeaPrism+CalamityMod/ArmoredShell"
-      },
-      "CalamityMod/Starfleet": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/SuperStarCannon+CalamityMod/RuinousSoul+Terraria/FallenStar+Terraria/FragmentStardust"
-      },
-      "CalamityMod/TauCannon": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/ArcNovaDiffuser+CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/AstralBar+CalamityMod/RuinousSoul"
-      },
-      "CalamityMod/TheMaelstrom": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/TheStorm+CalamityMod/ReaperTooth+CalamityMod/DivineGeode+CalamityMod/Voidstone"
-      },
-      "CalamityMod/Apoctolith": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/ThrowingBrick+CalamityMod/Voidstone+CalamityMod/Lumenyl"
-      },
-      "CalamityMod/BallisticPoisonBomb": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/SeafoamBomb+CalamityMod/SulphurousSand+CalamityMod/Voidstone+CalamityMod/DepthCells"
-      },
-      "CalamityMod/BloodsoakedCrasher": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/CrushsawCrasher+CalamityMod/BloodstoneCore"
-      },
-      "CalamityMod/FrostcrushValari": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/Kylie+CalamityMod/CryonicBar+CalamityMod/Voidstone+Terraria/Ectoplasm"
-      },
-      "CalamityMod/JawsOfOblivion": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/LeviathanTeeth+CalamityMod/ReaperTooth+CalamityMod/Lumenyl+CalamityMod/RuinousSoul"
-      },
-      "CalamityMod/TimeBolt": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/CosmicKunai+Terraria/FastClock+CalamityMod/RuinousSoul+CalamityMod/Necroplasm"
-      },
-      "CalamityMod/Vega": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/ProfanedPartisan+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
-      },
-      "CalamityMod/DragonbloodDisgorger": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/BloodstoneCore"
-      },
-      "CalamityMod/DreadmineStaff": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/Voidstone+CalamityMod/DepthCells"
-      },
-      "CalamityMod/Sirius": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/VengefulSunStaff+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
-      },
-      "CalamityMod/WarloksMoonFist": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/GolemFist+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
-      },
-      "CalamityMod/BloodfireArrow": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/BloodstoneCore"
-      },
-      "CalamityMod/BloodfireBullet": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/BloodstoneCore"
       },
       "CalamityMod/BloodflareHeadMelee": {
         "stage": "polterghast",
@@ -83890,6 +83784,154 @@
       "CalamityMod/BloodflareCuisses": {
         "stage": "polterghast",
         "via": "recipe:CalamityMod/BloodstoneCore+CalamityMod/RuinousSoul"
+      },
+      "CalamityMod/OmegaBlueHelmet": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/ReaperTooth+CalamityMod/DepthCells+CalamityMod/RuinousSoul"
+      },
+      "CalamityMod/OmegaBlueChestplate": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/ReaperTooth+CalamityMod/DepthCells+CalamityMod/RuinousSoul"
+      },
+      "CalamityMod/OmegaBlueTentacles": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/ReaperTooth+CalamityMod/DepthCells+CalamityMod/RuinousSoul"
+      },
+      "CalamityMod/AlphaDraconis": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/WyvernsCall+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
+      },
+      "CalamityMod/DarkSpark": {
+        "stage": "polterghast",
+        "via": "recipe:Terraria/LastPrism+CalamityMod/DarkPlasma+CalamityMod/RuinousSoul+CalamityMod/DivineGeode"
+      },
+      "CalamityMod/HadalUrn": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/BlackAnurian+CalamityMod/Voidstone+CalamityMod/DepthCells+Terraria/Bone"
+      },
+      "CalamityMod/PhantasmalFury": {
+        "stage": "polterghast",
+        "via": "recipe:Terraria/SpectreStaff+CalamityMod/RuinousSoul+CalamityMod/DarkPlasma"
+      },
+      "CalamityMod/ShadowboltStaff": {
+        "stage": "polterghast",
+        "via": "recipe:Terraria/ShadowbeamStaff+CalamityMod/RuinousSoul+CalamityMod/ArmoredShell"
+      },
+      "CalamityMod/UndinesRetribution": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/Voidstone+CalamityMod/DepthCells"
+      },
+      "CalamityMod/VenusianTrident": {
+        "stage": "polterghast",
+        "via": "recipe:Terraria/InfernoFork+CalamityMod/RuinousSoul+CalamityMod/TwistingNether"
+      },
+      "CalamityMod/AbyssBlade": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/DepthCrusher+CalamityMod/Voidstone+CalamityMod/DepthCells"
+      },
+      "CalamityMod/CrescentMoon": {
+        "stage": "polterghast",
+        "via": "recipe:Terraria/BlueMoon+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
+      },
+      "CalamityMod/DeathsAscension": {
+        "stage": "polterghast",
+        "via": "recipe:Terraria/DeathSickle+CalamityMod/RuinousSoul+Terraria/SoulofNight+CalamityMod/TwistingNether"
+      },
+      "CalamityMod/GalileoGladius": {
+        "stage": "polterghast",
+        "via": "recipe:Terraria/Gladius+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
+      },
+      "CalamityMod/NeptunesBounty": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/AbyssBlade+CalamityMod/ReaperTooth+CalamityMod/RuinousSoul"
+      },
+      "CalamityMod/RemsRevenge": {
+        "stage": "polterghast",
+        "via": "recipe:Terraria/BlueMoon+Terraria/LunarBar+CalamityMod/Lumenyl"
+      },
+      "CalamityMod/TenebreusTides": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/AmidiasTrident+CalamityMod/Atlantis+Terraria/InfluxWaver+CalamityMod/Lumenyl"
+      },
+      "CalamityMod/TheLastMourning": {
+        "stage": "polterghast",
+        "via": "recipe:Terraria/TheHorsemansBlade+Terraria/SoulofNight+CalamityMod/ReaperTooth+CalamityMod/RuinousSoul"
+      },
+      "CalamityMod/TyphonsGreed": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/Voidstone+CalamityMod/DepthCells"
+      },
+      "CalamityMod/VoidEdge": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/HellfireFlamberge+CalamityMod/Necroplasm+CalamityMod/RuinousSoul"
+      },
+      "CalamityMod/FlakKraken": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/FlakToxicannon+CalamityMod/Voidstone+CalamityMod/DepthCells"
+      },
+      "CalamityMod/HalleysInferno": {
+        "stage": "polterghast",
+        "via": "recipe:Terraria/ElfMelter+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
+      },
+      "CalamityMod/Monsoon": {
+        "stage": "polterghast",
+        "via": "recipe:Terraria/Tsunami+CalamityMod/FlarewingBow+CalamityMod/ReaperTooth+CalamityMod/DepthCells"
+      },
+      "CalamityMod/PearlGod": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/Arietes41+CalamityMod/LifeAlloy+CalamityMod/RuinousSoul+Terraria/WhitePearl"
+      },
+      "CalamityMod/Starfleet": {
+        "stage": "polterghast",
+        "via": "recipe:Terraria/SuperStarCannon+CalamityMod/RuinousSoul+Terraria/FallenStar+Terraria/FragmentStardust"
+      },
+      "CalamityMod/TauCannon": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/ArcNovaDiffuser+CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/AstralBar+CalamityMod/RuinousSoul"
+      },
+      "CalamityMod/TheMaelstrom": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/TheStorm+CalamityMod/ReaperTooth+CalamityMod/DivineGeode+CalamityMod/Voidstone"
+      },
+      "CalamityMod/Apoctolith": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/ThrowingBrick+CalamityMod/Voidstone+CalamityMod/Lumenyl"
+      },
+      "CalamityMod/BallisticPoisonBomb": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/SeafoamBomb+CalamityMod/SulphurousSand+CalamityMod/Voidstone+CalamityMod/DepthCells"
+      },
+      "CalamityMod/FrostcrushValari": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/Kylie+CalamityMod/CryonicBar+CalamityMod/Voidstone+Terraria/Ectoplasm"
+      },
+      "CalamityMod/JawsOfOblivion": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/LeviathanTeeth+CalamityMod/ReaperTooth+CalamityMod/Lumenyl+CalamityMod/RuinousSoul"
+      },
+      "CalamityMod/TimeBolt": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/CosmicKunai+Terraria/FastClock+CalamityMod/RuinousSoul+CalamityMod/Necroplasm"
+      },
+      "CalamityMod/Vega": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/ProfanedPartisan+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
+      },
+      "CalamityMod/DreadmineStaff": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/Voidstone+CalamityMod/DepthCells"
+      },
+      "CalamityMod/Sirius": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/VengefulSunStaff+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
+      },
+      "CalamityMod/WarloksMoonFist": {
+        "stage": "polterghast",
+        "via": "recipe:Terraria/GolemFist+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
+      },
+      "CalamityMod/StratusSphere": {
+        "stage": "polterghast",
+        "via": "recipe:Terraria/NebulaArcanum+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
       },
       "CalamityMod/InsidiousImpaler": {
         "stage": "old-duke",
@@ -89979,10 +90021,6 @@
         "stage": "start",
         "via": "recipe:CalamityMod/WulfrumMetalScrap"
       },
-      "CalamityMod/Skynamite": {
-        "stage": "start",
-        "via": "recipe:Terraria/Dynamite"
-      },
       "Terraria/BombStatue": {
         "stage": "start",
         "via": "recipe:Terraria/Bomb+Terraria/StoneBlock"
@@ -92212,10 +92250,6 @@
       "CalamityMod/SkyfringePickaxe": {
         "stage": "hive-mind-perforators",
         "via": "recipe:CalamityMod/AerialiteBar"
-      },
-      "CalamityMod/Aestheticus": {
-        "stage": "hive-mind-perforators",
-        "via": "recipe:CalamityMod/AerialiteBar+CalamityMod/SeaPrism+Terraria/FallenStar"
       },
       "CalamityMod/AcrobaticBobber": {
         "stage": "hive-mind-perforators",
@@ -94869,10 +94903,6 @@
         "stage": "wall-of-flesh",
         "via": "recipe:CalamityMod/AstralMonolith"
       },
-      "CalamityMod/LunicEye": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/CobaltBar+CalamityMod/StarblightSoot"
-      },
       "Terraria/FrozenChest": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/FrozenKey+Terraria/Chest"
@@ -97331,18 +97361,6 @@
         "stage": "ravager",
         "via": "recipe:CalamityMod/RavagerTrophy"
       },
-      "CalamityMod/Bloodstone": {
-        "stage": "ravager",
-        "via": "container:CalamityMod/NecromanticGeode"
-      },
-      "CalamityMod/BloodflareDye": {
-        "stage": "ravager",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/Bloodstone"
-      },
-      "CalamityMod/Brimrose": {
-        "stage": "ravager",
-        "via": "recipe:CalamityMod/UnholyCore+CalamityMod/Bloodstone"
-      },
       "Terraria/BossTrophyBetsy": {
         "stage": "betsy",
         "via": "npc:Terraria/DD2Betsy"
@@ -98289,13 +98307,6 @@
         "customEventName": "Celestial Pillars",
         "eventIcon": "Terraria/LunarTowerSolar"
       },
-      "CalamityMod/EyeofMagnus": {
-        "stage": "lunatic-cultist",
-        "via": "recipe:CalamityMod/LunicEye+Terraria/FragmentNebula",
-        "eventCategory": null,
-        "customEventName": "Celestial Pillars",
-        "eventIcon": "Terraria/LunarTowerSolar"
-      },
       "Terraria/SolarPlatform": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick",
@@ -98432,6 +98443,10 @@
         "via": "manifest"
       },
       "Terraria/LunarBar": {
+        "stage": "moon-lord",
+        "via": "manifest"
+      },
+      "CalamityMod/Necroplasm": {
         "stage": "moon-lord",
         "via": "manifest"
       },
@@ -98587,6 +98602,10 @@
         "stage": "moon-lord",
         "via": "recipe:Terraria/BottledWater+Terraria/LunarBar"
       },
+      "CalamityMod/NecroplasmicDye": {
+        "stage": "moon-lord",
+        "via": "recipe:Terraria/BottledWater+CalamityMod/Necroplasm"
+      },
       "CalamityMod/ProfanedFlameDye": {
         "stage": "moon-lord",
         "via": "recipe:Terraria/BottledWater+CalamityMod/UnholyEssence"
@@ -98627,9 +98646,17 @@
         "stage": "moon-lord",
         "via": "recipe:CalamityMod/RunicProfanedBrick"
       },
+      "CalamityMod/CosmicWorm": {
+        "stage": "moon-lord",
+        "via": "recipe:Terraria/LunarBar+Terraria/FragmentSolar+Terraria/FragmentVortex+Terraria/FragmentNebula+Terraria/FragmentStardust+CalamityMod/MeldBlob+CalamityMod/Necroplasm"
+      },
       "CalamityMod/MarkofProvidence": {
         "stage": "moon-lord",
         "via": "recipe:Terraria/LunarBar+CalamityMod/UnholyEssence+Terraria/FragmentSolar"
+      },
+      "CalamityMod/NecroplasmicBeacon": {
+        "stage": "moon-lord",
+        "via": "recipe:Terraria/Wood+CalamityMod/Necroplasm"
       },
       "CalamityMod/ProfanedShard": {
         "stage": "moon-lord",
@@ -98727,10 +98754,6 @@
         "stage": "moon-lord",
         "via": "recipe:CalamityMod/ProfanedRock"
       },
-      "CalamityMod/RelicOfDeliverance": {
-        "stage": "profaned-guardians",
-        "via": "npc:CalamityMod/ProfanedGuardianCommander"
-      },
       "CalamityMod/ProfanedGuardianMask": {
         "stage": "profaned-guardians",
         "via": "npc:CalamityMod/ProfanedGuardianCommander"
@@ -98795,9 +98818,21 @@
         "stage": "providence",
         "via": "npc:CalamityMod/Providence"
       },
+      "CalamityMod/Bloodstone": {
+        "stage": "providence",
+        "via": "npc:CalamityMod/RenegadeWarlock"
+      },
       "CalamityMod/UelibloomOre": {
         "stage": "providence",
         "via": "manifest"
+      },
+      "CalamityMod/BloodstoneCore": {
+        "stage": "providence",
+        "via": "manifest"
+      },
+      "CalamityMod/BloodflareDye": {
+        "stage": "providence",
+        "via": "recipe:Terraria/BottledWater+CalamityMod/Bloodstone"
       },
       "CalamityMod/TarragonDye": {
         "stage": "providence",
@@ -98810,6 +98845,10 @@
       "CalamityMod/UelibloomBar": {
         "stage": "providence",
         "via": "recipe:CalamityMod/UelibloomOre"
+      },
+      "CalamityMod/Brimrose": {
+        "stage": "providence",
+        "via": "recipe:CalamityMod/UnholyCore+CalamityMod/Bloodstone"
       },
       "CalamityMod/TaintedCloudberry": {
         "stage": "providence",
@@ -99003,10 +99042,6 @@
         "stage": "signus",
         "via": "recipe:CalamityMod/OtherworldlyStone"
       },
-      "CalamityMod/CosmicWorm": {
-        "stage": "signus",
-        "via": "recipe:CalamityMod/ArmoredShell+CalamityMod/TwistingNether+CalamityMod/DarkPlasma"
-      },
       "CalamityMod/OtherworldlyBathtub": {
         "stage": "signus",
         "via": "recipe:CalamityMod/OtherworldlyStone"
@@ -99079,10 +99114,6 @@
         "stage": "polterghast",
         "via": "npc:CalamityMod/Polterghast"
       },
-      "CalamityMod/Necroplasm": {
-        "stage": "polterghast",
-        "via": "npc:CalamityMod/Polterghast"
-      },
       "CalamityMod/PolterghastMask": {
         "stage": "polterghast",
         "via": "npc:CalamityMod/Polterghast"
@@ -99151,10 +99182,6 @@
         "stage": "polterghast",
         "via": "recipe:CalamityMod/DesertProwlerShirt+Terraria/BlackInk"
       },
-      "CalamityMod/NecroplasmicDye": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/Necroplasm"
-      },
       "CalamityMod/StratusDye": {
         "stage": "polterghast",
         "via": "recipe:Terraria/BottledWater+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
@@ -99162,10 +99189,6 @@
       "CalamityMod/LorePolterghast": {
         "stage": "polterghast",
         "via": "recipe:CalamityMod/PolterghastTrophy"
-      },
-      "CalamityMod/BloodstoneCore": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/Bloodstone+CalamityMod/BloodOrb+CalamityMod/Necroplasm"
       },
       "CalamityMod/PhantomHeart": {
         "stage": "polterghast",
@@ -99194,18 +99217,6 @@
       "CalamityMod/NaiadsWarhorn": {
         "stage": "polterghast",
         "via": "recipe:CalamityMod/Driftwood+CalamityMod/AbyssGravel+CalamityMod/Lumenyl"
-      },
-      "CalamityMod/NecroplasmicBeacon": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/Wood+CalamityMod/Necroplasm"
-      },
-      "CalamityMod/ClaretCannon": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/BloodstoneCore"
-      },
-      "CalamityMod/StratusSphere": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/NebulaArcanum+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
       },
       "Terraria/PlaguebringerChestplate": {
         "stage": "polterghast",
@@ -100485,14 +100496,6 @@
         ]
       },
       {
-        "id": "CalamityMod/LunicEye",
-        "wikiStage": "pre-mech",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/LunicEye"
-        ]
-      },
-      {
         "id": "Terraria/RodofDiscord",
         "wikiStage": "pre-mech",
         "reason": "recommendation has no proven availability",
@@ -100598,14 +100601,6 @@
         ]
       },
       {
-        "id": "CalamityMod/LunicEye",
-        "wikiStage": "post-mech1",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/LunicEye"
-        ]
-      },
-      {
         "id": "Terraria/RodofDiscord",
         "wikiStage": "post-mech1",
         "reason": "recommendation has no proven availability",
@@ -100700,14 +100695,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "CalamityMod/LunicEye",
-        "wikiStage": "post-mech2",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/LunicEye"
         ]
       },
       {
@@ -100816,14 +100803,6 @@
         ]
       },
       {
-        "id": "CalamityMod/LunicEye",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/LunicEye"
-        ]
-      },
-      {
         "id": "Terraria/RodofDiscord",
         "wikiStage": "pre-plantera",
         "reason": "recommendation has no proven availability",
@@ -100909,14 +100888,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "CalamityMod/LunicEye",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/LunicEye"
         ]
       },
       {
@@ -101016,14 +100987,6 @@
         ]
       },
       {
-        "id": "CalamityMod/LunicEye",
-        "wikiStage": "post-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/LunicEye"
-        ]
-      },
-      {
         "id": "Terraria/RodofDiscord",
         "wikiStage": "post-golem",
         "reason": "recommendation has no proven availability",
@@ -101104,14 +101067,6 @@
         ]
       },
       {
-        "id": "CalamityMod/LunicEye",
-        "wikiStage": "pre-lunar",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/LunicEye"
-        ]
-      },
-      {
         "id": "Terraria/RodofDiscord",
         "wikiStage": "pre-lunar",
         "reason": "recommendation has no proven availability",
@@ -101181,14 +101136,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "CalamityMod/EyeofMagnus",
-        "wikiStage": "pre-moonlord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/EyeofMagnus"
         ]
       },
       {
@@ -101280,22 +101227,6 @@
         ]
       },
       {
-        "id": "CalamityMod/EyeofMagnus",
-        "wikiStage": "pre-provi",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/EyeofMagnus"
-        ]
-      },
-      {
-        "id": "CalamityMod/RelicOfDeliverance",
-        "wikiStage": "pre-provi",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/RelicOfDeliverance"
-        ]
-      },
-      {
         "id": "Terraria/RodofDiscord",
         "wikiStage": "pre-provi",
         "reason": "recommendation has no proven availability",
@@ -101357,30 +101288,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "CalamityMod/ClaretCannon",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/ClaretCannon"
-        ]
-      },
-      {
-        "id": "CalamityMod/EyeofMagnus",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/EyeofMagnus"
-        ]
-      },
-      {
-        "id": "CalamityMod/RelicOfDeliverance",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/RelicOfDeliverance"
         ]
       },
       {
@@ -101464,35 +101371,11 @@
         ]
       },
       {
-        "id": "CalamityMod/ClaretCannon",
-        "wikiStage": "pre-dog",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/ClaretCannon"
-        ]
-      },
-      {
-        "id": "CalamityMod/EyeofMagnus",
-        "wikiStage": "pre-dog",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/EyeofMagnus"
-        ]
-      },
-      {
         "id": "Terraria/RodofDiscord",
         "wikiStage": "pre-dog",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Rod of Discord"
-        ]
-      },
-      {
-        "id": "CalamityMod/StratusSphere",
-        "wikiStage": "pre-dog",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/StratusSphere"
         ]
       },
       {
@@ -101560,35 +101443,11 @@
         ]
       },
       {
-        "id": "CalamityMod/ClaretCannon",
-        "wikiStage": "pre-yharon",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/ClaretCannon"
-        ]
-      },
-      {
-        "id": "CalamityMod/EyeofMagnus",
-        "wikiStage": "pre-yharon",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/EyeofMagnus"
-        ]
-      },
-      {
         "id": "Terraria/RodofDiscord",
         "wikiStage": "pre-yharon",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Rod of Discord"
-        ]
-      },
-      {
-        "id": "CalamityMod/StratusSphere",
-        "wikiStage": "pre-yharon",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/StratusSphere"
         ]
       },
       {
@@ -101656,14 +101515,6 @@
         ]
       },
       {
-        "id": "CalamityMod/EyeofMagnus",
-        "wikiStage": "pre-scal-exo",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/EyeofMagnus"
-        ]
-      },
-      {
         "id": "Terraria/RodofDiscord",
         "wikiStage": "pre-scal-exo",
         "reason": "recommendation has no proven availability",
@@ -101717,14 +101568,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "CalamityMod/EyeofMagnus",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "CalamityMod/EyeofMagnus"
         ]
       },
       {
@@ -104079,49 +103922,7 @@
         "reason": "recommendation precedes proven availability"
       },
       {
-        "id": "CalamityMod/StatisNinjaBelt",
-        "factualStage": "polterghast",
-        "recommendedStage": "dragonfolly",
-        "wikiStage": "pre-provi",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "CalamityMod/BloodBoiler",
-        "factualStage": "polterghast",
-        "recommendedStage": "signus",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "CalamityMod/BloodfireArrow",
-        "factualStage": "polterghast",
-        "recommendedStage": "signus",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "CalamityMod/DragonbloodDisgorger",
-        "factualStage": "polterghast",
-        "recommendedStage": "signus",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "CalamityMod/BloodsoakedCrasher",
-        "factualStage": "polterghast",
-        "recommendedStage": "signus",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
         "id": "CalamityMod/AbyssalMirror",
-        "factualStage": "polterghast",
-        "recommendedStage": "signus",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "CalamityMod/StatisNinjaBelt",
         "factualStage": "polterghast",
         "recommendedStage": "signus",
         "wikiStage": "pre-polter",

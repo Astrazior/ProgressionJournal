@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-06-15T14:58:59.472Z",
+  "generatedAtUtc": "2026-06-15T23:20:28.083Z",
   "snapshot": {
     "version": 2,
     "generatedAtUtc": "2026-06-15T14:42:45.2084491Z",
@@ -16,7 +16,7 @@
     ]
   },
   "agentRules": {
-    "rules": 60,
+    "rules": 78,
     "ignoredItems": 5,
     "ignoredIssues": 2,
     "evidence": [
@@ -441,6 +441,132 @@
         "reason": "Abyssal Shadow's true drop branch directly checks the Forgotten One defeat flag."
       },
       {
+        "id": "thrower-technique-scrolls-as-thrower-weapons",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique_Scrolls",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "Technique Scrolls are Thrower class combat tools used for offensive, defensive, or movement techniques. In the progression profile they should appear as Thrower weapon/technique options rather than being excluded as ordinary non-combat tools."
+      },
+      {
+        "id": "technique-hidden-blade-king-slime",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique%3A_Hidden_Blade",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "The official wiki identifies Technique: Hidden Blade as a Technique Scroll dropped by King Slime."
+      },
+      {
+        "id": "technique-scrolls-grand-thunder-bird-tier",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Blank_Technique_Scroll",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "These Technique Scrolls are craftable from Blank Technique Scrolls and early ingredients. Blank Technique Scroll is sold by the Desert Acolyte, whose arrival is gated behind The Grand Thunder Bird in this profile. Smoke Bomb also has a later world-evil travel-shop source, but the craftable route is earlier."
+      },
+      {
+        "id": "technique-meteor-stomp-world-evil",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Blank_Technique_Scroll",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "Technique: Meteor Stomp is crafted from Meteorite Bars and a Blank Technique Scroll. Meteorite availability follows the world-evil boss in current vanilla progression, which is later than the Blank Technique Scroll vendor gate."
+      },
+      {
+        "id": "technique-soul-pulse-skeletron",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique%3A_Soul_Pulse",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "Technique: Soul Pulse is crafted from Spirit Droplets and a Blank Technique Scroll. Spirit Droplets drop from Cursed Skulls and related Dungeon sources, placing it after Skeletron."
+      },
+      {
+        "id": "technique-early-hardmode-scrolls",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique_Scrolls",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "These are Hardmode Technique Scrolls available from early-Hardmode ingredients or Hardmode Blood Moon sources, so they open at the Wall of Flesh stage."
+      },
+      {
+        "id": "technique-coznix-ore-scrolls",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Lodestone_Chunk",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "Technique: Stone Palm and Technique: Gravity Well require Lodestone/Valadium ingots. Lodestone and Valadium chunks generate after Coznix, the Fallen Beholder."
+      },
+      {
+        "id": "technique-cobras-bite-all-mechs",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique%3A_Cobra%27s_Bite",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "Technique: Cobra's Bite is crafted from Chlorophyte Bars and a Blank Technique Scroll. In vanilla progression Chlorophyte gear requires the post-mechanical-boss pickaxe tier, represented here by the final mechanical boss stage."
+      },
+      {
+        "id": "technique-post-plantera-dungeon-scrolls",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Dark_Matter",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "Technique: Shadow Dance uses Dark Matter, and Technique: Shadow Clone drops from Bone Lee; both are post-Plantera Dungeon sources."
+      },
+      {
+        "id": "technique-last-stand-celestial-towers",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/White_Dwarf_Fragment",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "Technique: Last Stand requires White Dwarf Fragments, which drop from the Celestial Towers after Lunatic Cultist."
+      },
+      {
+        "id": "mjolnir-true-damage-shared-weapon",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Mj%C3%B6lnir",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "Mjölnir is a post-Primordials true damage weapon without a single normal damage class, so it is treated as a shared weapon option for all profile classes."
+      },
+      {
+        "id": "mjolnir-post-primordials-stage",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Mj%C3%B6lnir",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "The official wiki identifies Mjölnir as obtainable in Expert Mode after defeating The Primordials."
+      },
+      {
+        "id": "healer-accessory-manual-classification",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Healer_Accessories",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "These are Healer accessories listed by the official wiki and should not be discarded as non-combat or unresolved recommendation entries."
+      },
+      {
+        "id": "belt-of-quick-response-stage",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Belt_of_the_Quick_Response",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "Belt of the Quick Response is crafted at an Iron or Lead Anvil from early materials, so it is available before boss progression."
+      },
+      {
+        "id": "support-sash-hardmode-stage",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Support_Sash",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "Support Sash is a Hardmode Healer accessory crafted at a Hardmode Anvil from Belt of the Quick Response and the Apothecary vial accessories."
+      },
+      {
+        "id": "class-buff-furniture-manual-classification",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Furniture",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "These placeable furniture items grant direct class combat buffs and should be represented as combat buffs rather than excluded as ordinary furniture."
+      },
+      {
+        "id": "altar-healer-buff-stage",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Altar",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "Altar grants the Spiritual Connection Healer buff and is sold by the Spiritualist; this profile gates the Spiritualist after Buried Champion."
+      },
+      {
+        "id": "wall-of-flesh-class-buff-furniture-stages",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Conductor%27s_Stand",
+        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+        "checkedAt": "2026-06-16",
+        "reason": "Conductor's Stand is sold after Wall of Flesh and grants a Bard empowerment buff; Ninja Rack is sold after Wall of Flesh and grants Thrower velocity, speed and critical chance bonuses."
+      },
+      {
         "id": "unobtainable-legacy-items",
         "sourceUrl": "https://github.com/Thorium-Mod/ThoriumMod/tree/1.7.2.6/ThoriumMod/Items",
         "sourceVersion": "Thorium Mod 1.7.2.6",
@@ -498,18 +624,26 @@
   "audit": {
     "errors": [],
     "warnings": [
-      "1 support or agent references are stale",
-      "78 recommendations precede proven availability and were suppressed"
+      "3 support or agent references are stale",
+      "80 recommendations precede proven availability and were suppressed"
     ]
   },
   "ready": true,
   "generation": {
     "profileId": "builtin.thorium",
-    "generatedAtUtc": "2026-06-15T14:58:56.709Z",
+    "generatedAtUtc": "2026-06-15T23:20:25.445Z",
     "unknownReferences": [
+      {
+        "stage": "grand-thunder-bird",
+        "id": "ThoriumMod/TechniqueStickyExplosive"
+      },
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/ForbiddenFragment"
+      },
+      {
+        "stage": "skeletron-prime",
+        "id": "ThoriumMod/TechniqueCobrasBite"
       }
     ],
     "unresolvedConditions": [
@@ -73449,11 +73583,6 @@
       },
       {
         "stage": "start",
-        "id": "ThoriumMod/DewCollector",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "Terraria/Nazar",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -73470,6 +73599,11 @@
       {
         "stage": "start",
         "id": "Terraria/JungleTorch",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomTorch",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -73540,6 +73674,11 @@
       {
         "stage": "start",
         "id": "Terraria/JungleCampfire",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomCampfire",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -73675,6 +73814,11 @@
       {
         "stage": "start",
         "id": "Terraria/SeafoodDinner",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/RestorationPotion",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -73905,6 +74049,11 @@
       {
         "stage": "start",
         "id": "Terraria/PumpkinPlatform",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomPlatform",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -74390,6 +74539,11 @@
       {
         "stage": "start",
         "id": "Terraria/AshWoodWall",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomWall",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -75045,6 +75199,96 @@
       {
         "stage": "start",
         "id": "Terraria/AshWoodToilet",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomBeam",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomBathtub",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomBed",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomBench",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomCandelabra",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomCandle",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomChair",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomChandelier",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomChest",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomClock",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomDoor",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomDresser",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomLamp",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomLantern",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomSofa",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ToiletMushroom",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomTable",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomWorkBench",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -79104,11 +79348,6 @@
       },
       {
         "stage": "king-slime",
-        "id": "ThoriumMod/TechniqueHiddenBlade",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "king-slime",
         "id": "Terraria/Bacon",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -79450,21 +79689,6 @@
       {
         "stage": "grand-thunder-bird",
         "id": "ThoriumMod/cSandstoneHammer",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "grand-thunder-bird",
-        "id": "ThoriumMod/TechniqueDecoy",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "grand-thunder-bird",
-        "id": "ThoriumMod/TechniqueSmokeBomb",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "grand-thunder-bird",
-        "id": "ThoriumMod/TechniqueSprint",
         "reason": "not combat equipment"
       },
       {
@@ -81009,11 +81233,6 @@
       },
       {
         "stage": "world-evil",
-        "id": "ThoriumMod/TechniqueMeteorStomp",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "world-evil",
         "id": "ThoriumMod/TechniquePaperExplosive",
         "reason": "not combat equipment"
       },
@@ -82039,6 +82258,11 @@
       },
       {
         "stage": "skeletron",
+        "id": "Terraria/Fake_MushroomChest",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "skeletron",
         "id": "Terraria/Fake_BorealWoodChest",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -82405,11 +82629,6 @@
       {
         "stage": "skeletron",
         "id": "ThoriumMod/YewChest_Trapped",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "ThoriumMod/TechniqueSoulPulse",
         "reason": "not combat equipment"
       },
       {
@@ -83979,6 +84198,16 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/MushroomBookcase",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/MushroomPiano",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/SlimeBookcase",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -84969,6 +85198,11 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "ThoriumMod/KeyofFungus",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "ThoriumMod/KeyofPlight",
         "reason": "not combat equipment"
       },
@@ -85170,16 +85404,6 @@
       {
         "stage": "wall-of-flesh",
         "id": "ThoriumMod/TechniqueAbsoluteZero",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "ThoriumMod/TechniqueBlindingDash",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "ThoriumMod/TechniqueBloodLotus",
         "reason": "not combat equipment"
       },
       {
@@ -86509,16 +86733,6 @@
       },
       {
         "stage": "coznix",
-        "id": "ThoriumMod/TechniqueGravityWell",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "coznix",
-        "id": "ThoriumMod/TechniqueStonePalm",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "coznix",
         "id": "ThoriumMod/ValadiumAxe",
         "reason": "not combat equipment"
       },
@@ -87409,6 +87623,41 @@
       },
       {
         "stage": "plantera",
+        "id": "Terraria/ShroomiteBar",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/ShroomiteHeadgear",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/ShroomiteMask",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/ShroomiteHelmet",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/ShroomiteBreastplate",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/ShroomiteLeggings",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/ShroomiteDiggingClaw",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
         "id": "Terraria/SpectreBar",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -87465,6 +87714,11 @@
       {
         "stage": "plantera",
         "id": "Terraria/GhostWings",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/Hoverboard",
         "reason": "unchanged vanilla item in mod profile"
       },
       {
@@ -87585,6 +87839,11 @@
       {
         "stage": "plantera",
         "id": "ThoriumMod/IllumitePick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "ThoriumMod/ShroomiteRocketDrill",
         "reason": "not combat equipment"
       },
       {
@@ -87939,8 +88198,13 @@
       },
       {
         "stage": "plantera",
-        "id": "ThoriumMod/TechniqueShadowDance",
-        "reason": "not combat equipment"
+        "id": "Terraria/ShroomitePlating",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/ShroomitePlatingWall",
+        "reason": "unchanged vanilla item in mod profile"
       },
       {
         "stage": "plantera",
@@ -89704,11 +89968,6 @@
       },
       {
         "stage": "lunatic-cultist",
-        "id": "ThoriumMod/TechniqueLastStand",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "lunatic-cultist",
         "id": "ThoriumMod/WhiteDwarfDye",
         "reason": "not combat equipment"
       },
@@ -90034,6 +90293,11 @@
       },
       {
         "stage": "moon-lord",
+        "id": "Terraria/DrillContainmentUnit",
+        "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "moon-lord",
         "id": "Terraria/WingsSolar",
         "reason": "unchanged vanilla item in mod profile"
       },
@@ -90165,11 +90429,6 @@
       {
         "stage": "primordials",
         "id": "ThoriumMod/ThoriumPartyHat",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "primordials",
-        "id": "ThoriumMod/Mjolnir",
         "reason": "not combat equipment"
       },
       {
@@ -90596,6 +90855,10 @@
         "stage": "start",
         "via": "manifest"
       },
+      "ThoriumMod/DewCollector": {
+        "stage": "start",
+        "via": "manifest"
+      },
       "ThoriumMod/OceanRetaliation": {
         "stage": "start",
         "via": "manifest"
@@ -90617,6 +90880,10 @@
         "via": "manifest"
       },
       "ThoriumMod/WarmongerPotion": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "ThoriumMod/BeltoftheQuickResponse": {
         "stage": "start",
         "via": "manifest"
       },
@@ -91312,6 +91579,10 @@
         "stage": "king-slime",
         "via": "npc:Terraria/KingSlime"
       },
+      "ThoriumMod/TechniqueHiddenBlade": {
+        "stage": "king-slime",
+        "via": "npc:Terraria/KingSlime"
+      },
       "ThoriumMod/GelGlove": {
         "stage": "king-slime",
         "via": "npc:Terraria/KingSlime"
@@ -91439,6 +91710,18 @@
       "ThoriumMod/PaddedGrip": {
         "stage": "grand-thunder-bird",
         "via": "shop:ThoriumMod/DesertAcolyte"
+      },
+      "ThoriumMod/TechniqueDecoy": {
+        "stage": "grand-thunder-bird",
+        "via": "manifest"
+      },
+      "ThoriumMod/TechniqueSprint": {
+        "stage": "grand-thunder-bird",
+        "via": "manifest"
+      },
+      "ThoriumMod/TechniqueSmokeBomb": {
+        "stage": "grand-thunder-bird",
+        "via": "manifest"
       },
       "ThoriumMod/CreativityPotion": {
         "stage": "grand-thunder-bird",
@@ -91997,6 +92280,10 @@
         "stage": "world-evil",
         "via": "manifest"
       },
+      "ThoriumMod/TechniqueMeteorStomp": {
+        "stage": "world-evil",
+        "via": "manifest"
+      },
       "ThoriumMod/DarkTome": {
         "stage": "world-evil",
         "via": "container:ThoriumMod/DarkMageTreasureBag",
@@ -92439,6 +92726,10 @@
         "via": "manifest"
       },
       "ThoriumMod/TurnUndead": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "ThoriumMod/TechniqueSoulPulse": {
         "stage": "skeletron",
         "via": "manifest"
       },
@@ -93038,6 +93329,18 @@
         "via": "manifest"
       },
       "ThoriumMod/WindChimes": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "ThoriumMod/TechniqueBlindingDash": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "ThoriumMod/TechniqueBloodLotus": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "ThoriumMod/SupportSash": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
@@ -94334,6 +94637,14 @@
         "stage": "coznix",
         "via": "shop:ThoriumMod/WeaponMaster"
       },
+      "ThoriumMod/TechniqueStonePalm": {
+        "stage": "coznix",
+        "via": "manifest"
+      },
+      "ThoriumMod/TechniqueGravityWell": {
+        "stage": "coznix",
+        "via": "manifest"
+      },
       "ThoriumMod/MirroroftheBeholder": {
         "stage": "coznix",
         "via": "container:ThoriumMod/FallenBeholderTreasureBag"
@@ -94621,6 +94932,14 @@
         "via": "manifest"
       },
       "ThoriumMod/Spores": {
+        "stage": "plantera",
+        "via": "manifest"
+      },
+      "ThoriumMod/TechniqueShadowDance": {
+        "stage": "plantera",
+        "via": "manifest"
+      },
+      "ThoriumMod/TechniqueShadowClone": {
         "stage": "plantera",
         "via": "manifest"
       },
@@ -95358,6 +95677,10 @@
         "customEventName": "Celestial Pillars",
         "eventIcon": "Terraria/LunarTowerSolar"
       },
+      "ThoriumMod/TechniqueLastStand": {
+        "stage": "lunatic-cultist",
+        "via": "manifest"
+      },
       "ThoriumMod/AncientLight": {
         "stage": "lunatic-cultist",
         "via": "container:ThoriumMod/LunaticCultistTreasureBag"
@@ -95600,6 +95923,10 @@
       "ThoriumMod/WhiteDwarfThrusters": {
         "stage": "moon-lord",
         "via": "recipe:ThoriumMod/WhiteDwarfFragment+Terraria/LunarBar"
+      },
+      "ThoriumMod/Mjolnir": {
+        "stage": "primordials",
+        "via": "manifest"
       },
       "ThoriumMod/TheOmegaCore": {
         "stage": "primordials",
@@ -95906,6 +96233,10 @@
         "via": "initial"
       },
       "Terraria/Mushroom": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/GlowingMushroom": {
         "stage": "start",
         "via": "initial"
       },
@@ -97389,10 +97720,6 @@
         "stage": "start",
         "via": "manifest"
       },
-      "ThoriumMod/DewCollector": {
-        "stage": "start",
-        "via": "manifest"
-      },
       "Terraria/Nazar": {
         "stage": "start",
         "via": "container:Terraria/EnchantedSword"
@@ -97408,6 +97735,10 @@
       "Terraria/JungleTorch": {
         "stage": "start",
         "via": "recipe:Terraria/Torch+Terraria/JungleSpores"
+      },
+      "Terraria/MushroomTorch": {
+        "stage": "start",
+        "via": "recipe:Terraria/Torch+Terraria/GlowingMushroom"
       },
       "Terraria/PinkTorch": {
         "stage": "start",
@@ -97464,6 +97795,10 @@
       "Terraria/JungleCampfire": {
         "stage": "start",
         "via": "recipe:Terraria/Wood+Terraria/JungleTorch"
+      },
+      "Terraria/MushroomCampfire": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom+Terraria/MushroomTorch"
       },
       "Terraria/RopeCoil": {
         "stage": "start",
@@ -97572,6 +97907,10 @@
       "Terraria/SeafoodDinner": {
         "stage": "start",
         "via": "recipe:Terraria/ArmoredCavefish"
+      },
+      "Terraria/RestorationPotion": {
+        "stage": "start",
+        "via": "recipe:Terraria/Mushroom+Terraria/GlowingMushroom+Terraria/PinkGel+Terraria/Bottle"
       },
       "Terraria/GenderChangePotion": {
         "stage": "start",
@@ -97756,6 +98095,10 @@
       "Terraria/PumpkinPlatform": {
         "stage": "start",
         "via": "recipe:Terraria/Pumpkin"
+      },
+      "Terraria/MushroomPlatform": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom"
       },
       "Terraria/SkywarePlatform": {
         "stage": "start",
@@ -98144,6 +98487,10 @@
       "Terraria/AshWoodWall": {
         "stage": "start",
         "via": "recipe:Terraria/AshWood"
+      },
+      "Terraria/MushroomWall": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom"
       },
       "Terraria/PumpkinWall": {
         "stage": "start",
@@ -98668,6 +99015,78 @@
       "Terraria/AshWoodToilet": {
         "stage": "start",
         "via": "recipe:Terraria/AshWood"
+      },
+      "Terraria/MushroomBeam": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom"
+      },
+      "Terraria/MushroomBathtub": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom"
+      },
+      "Terraria/MushroomBed": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom+Terraria/Silk"
+      },
+      "Terraria/MushroomBench": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom"
+      },
+      "Terraria/MushroomCandelabra": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom+Terraria/Torch"
+      },
+      "Terraria/MushroomCandle": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom+Terraria/Torch"
+      },
+      "Terraria/MushroomChair": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom"
+      },
+      "Terraria/MushroomChandelier": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom+Terraria/Torch+Terraria/Chain"
+      },
+      "Terraria/MushroomChest": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom+Terraria/IronBar"
+      },
+      "Terraria/MushroomClock": {
+        "stage": "start",
+        "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/GlowingMushroom"
+      },
+      "Terraria/MushroomDoor": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom"
+      },
+      "Terraria/MushroomDresser": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom"
+      },
+      "Terraria/MushroomLamp": {
+        "stage": "start",
+        "via": "recipe:Terraria/Torch+Terraria/GlowingMushroom"
+      },
+      "Terraria/MushroomLantern": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom+Terraria/Torch"
+      },
+      "Terraria/MushroomSofa": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom+Terraria/Silk"
+      },
+      "Terraria/ToiletMushroom": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom"
+      },
+      "Terraria/MushroomTable": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom"
+      },
+      "Terraria/MushroomWorkBench": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom"
       },
       "Terraria/MarbleBlockWall": {
         "stage": "start",
@@ -101913,10 +102332,6 @@
         "stage": "king-slime",
         "via": "npc:Terraria/KingSlime"
       },
-      "ThoriumMod/TechniqueHiddenBlade": {
-        "stage": "king-slime",
-        "via": "npc:Terraria/KingSlime"
-      },
       "Terraria/Bacon": {
         "stage": "king-slime",
         "via": "shop:ThoriumMod/Cook"
@@ -102173,6 +102588,10 @@
         "stage": "grand-thunder-bird",
         "via": "shop:ThoriumMod/DesertAcolyte"
       },
+      "ThoriumMod/TechniqueStickyExplosive": {
+        "stage": "grand-thunder-bird",
+        "via": "manifest"
+      },
       "ThoriumMod/ZephyrsGrip": {
         "stage": "grand-thunder-bird",
         "via": "container:ThoriumMod/TheGrandThunderBirdTreasureBag"
@@ -102192,18 +102611,6 @@
       "ThoriumMod/cSandstoneHammer": {
         "stage": "grand-thunder-bird",
         "via": "recipe:ThoriumMod/SandstoneIngot"
-      },
-      "ThoriumMod/TechniqueDecoy": {
-        "stage": "grand-thunder-bird",
-        "via": "recipe:ThoriumMod/TechniqueBlankScroll+ThoriumMod/LivingLeaf"
-      },
-      "ThoriumMod/TechniqueSmokeBomb": {
-        "stage": "grand-thunder-bird",
-        "via": "recipe:ThoriumMod/TechniqueBlankScroll+Terraria/SmokeBomb"
-      },
-      "ThoriumMod/TechniqueSprint": {
-        "stage": "grand-thunder-bird",
-        "via": "recipe:ThoriumMod/TechniqueBlankScroll+ThoriumMod/SandstoneIngot"
       },
       "Terraria/EyeOfCthulhuBossBag": {
         "stage": "eye-of-cthulhu",
@@ -103593,10 +104000,6 @@
         "stage": "world-evil",
         "via": "recipe:ThoriumMod/StrippedScarletBlock"
       },
-      "ThoriumMod/TechniqueMeteorStomp": {
-        "stage": "world-evil",
-        "via": "recipe:ThoriumMod/TechniqueBlankScroll+Terraria/MeteoriteBar"
-      },
       "ThoriumMod/TechniquePaperExplosive": {
         "stage": "world-evil",
         "via": "recipe:ThoriumMod/TechniqueBlankScroll+Terraria/HellstoneBar"
@@ -104417,6 +104820,10 @@
         "stage": "skeletron",
         "via": "recipe:Terraria/PalmWoodChest+Terraria/Wire"
       },
+      "Terraria/Fake_MushroomChest": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/MushroomChest+Terraria/Wire"
+      },
       "Terraria/Fake_BorealWoodChest": {
         "stage": "skeletron",
         "via": "recipe:Terraria/BorealWoodChest+Terraria/Wire"
@@ -104712,10 +105119,6 @@
       "ThoriumMod/YewChest_Trapped": {
         "stage": "skeletron",
         "via": "recipe:ThoriumMod/YewChest+Terraria/Wire"
-      },
-      "ThoriumMod/TechniqueSoulPulse": {
-        "stage": "skeletron",
-        "via": "recipe:ThoriumMod/TechniqueBlankScroll+ThoriumMod/SpiritDroplet"
       },
       "ThoriumMod/GelatinousGreaves": {
         "stage": "skeletron",
@@ -105991,6 +106394,14 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/AshWood+Terraria/Bone+Terraria/Book"
       },
+      "Terraria/MushroomBookcase": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/GlowingMushroom+Terraria/Book"
+      },
+      "Terraria/MushroomPiano": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/Bone+Terraria/GlowingMushroom+Terraria/Book"
+      },
       "Terraria/SlimeBookcase": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/SlimeBlock+Terraria/Book"
@@ -106783,6 +107194,10 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Glass+ThoriumMod/SoulofPlight"
       },
+      "ThoriumMod/KeyofFungus": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/GlowingMushroom+Terraria/SoulofLight+Terraria/SoulofNight"
+      },
       "ThoriumMod/KeyofPlight": {
         "stage": "wall-of-flesh",
         "via": "recipe:ThoriumMod/SoulofPlight"
@@ -106946,14 +107361,6 @@
       "ThoriumMod/TechniqueAbsoluteZero": {
         "stage": "wall-of-flesh",
         "via": "recipe:ThoriumMod/TechniqueBlankScroll+Terraria/FrostCore"
-      },
-      "ThoriumMod/TechniqueBlindingDash": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:ThoriumMod/TechniqueBlankScroll+Terraria/CrystalShard"
-      },
-      "ThoriumMod/TechniqueBloodLotus": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:ThoriumMod/TechniqueBlankScroll+ThoriumMod/BloodCell"
       },
       "ThoriumMod/LightAutomatonLeggings": {
         "stage": "wall-of-flesh",
@@ -107586,6 +107993,10 @@
         "stage": "skeletron-prime",
         "via": "manifest"
       },
+      "ThoriumMod/TechniqueCobrasBite": {
+        "stage": "skeletron-prime",
+        "via": "manifest"
+      },
       "Terraria/MechanicalBatteryPiece": {
         "stage": "skeletron-prime",
         "via": "container:Terraria/SkeletronPrimeBossBag"
@@ -108032,14 +108443,6 @@
       "ThoriumMod/ValadiumWorkbench": {
         "stage": "coznix",
         "via": "recipe:ThoriumMod/ValadiumPlating"
-      },
-      "ThoriumMod/TechniqueGravityWell": {
-        "stage": "coznix",
-        "via": "recipe:ThoriumMod/TechniqueBlankScroll+ThoriumMod/ValadiumIngot"
-      },
-      "ThoriumMod/TechniqueStonePalm": {
-        "stage": "coznix",
-        "via": "recipe:ThoriumMod/TechniqueBlankScroll+ThoriumMod/LodeStoneIngot"
       },
       "ThoriumMod/ValadiumAxe": {
         "stage": "coznix",
@@ -108825,6 +109228,34 @@
         "stage": "plantera",
         "via": "recipe:Terraria/Toilet+Terraria/BrokenHeroSword"
       },
+      "Terraria/ShroomiteBar": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/ChlorophyteBar+Terraria/GlowingMushroom"
+      },
+      "Terraria/ShroomiteHeadgear": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/ShroomiteBar"
+      },
+      "Terraria/ShroomiteMask": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/ShroomiteBar"
+      },
+      "Terraria/ShroomiteHelmet": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/ShroomiteBar"
+      },
+      "Terraria/ShroomiteBreastplate": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/ShroomiteBar"
+      },
+      "Terraria/ShroomiteLeggings": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/ShroomiteBar"
+      },
+      "Terraria/ShroomiteDiggingClaw": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/ShroomiteBar"
+      },
       "Terraria/SpectreBar": {
         "stage": "plantera",
         "via": "recipe:Terraria/ChlorophyteBar+Terraria/Ectoplasm"
@@ -108872,6 +109303,10 @@
       "Terraria/GhostWings": {
         "stage": "plantera",
         "via": "recipe:Terraria/SoulofFlight+Terraria/SpectreBar"
+      },
+      "Terraria/Hoverboard": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/SoulofFlight+Terraria/ShroomiteBar"
       },
       "Terraria/HeroShield": {
         "stage": "plantera",
@@ -108968,6 +109403,10 @@
       "ThoriumMod/IllumitePick": {
         "stage": "plantera",
         "via": "recipe:ThoriumMod/IllumiteIngot"
+      },
+      "ThoriumMod/ShroomiteRocketDrill": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/ShroomiteBar"
       },
       "ThoriumMod/SpectralSymphonyPaint": {
         "stage": "plantera",
@@ -109255,9 +109694,13 @@
         "stage": "plantera",
         "via": "recipe:ThoriumMod/ThoriumBar+Terraria/Ectoplasm"
       },
-      "ThoriumMod/TechniqueShadowDance": {
+      "Terraria/ShroomitePlating": {
         "stage": "plantera",
-        "via": "recipe:ThoriumMod/TechniqueBlankScroll+ThoriumMod/DarkMatter"
+        "via": "recipe:Terraria/StoneBlock+Terraria/ShroomiteBar"
+      },
+      "Terraria/ShroomitePlatingWall": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/ShroomitePlating"
       },
       "Terraria/Fake_SpookyChest": {
         "stage": "plantera",
@@ -111249,13 +111692,6 @@
         "stage": "lunatic-cultist",
         "via": "recipe:ThoriumMod/TerrariumCore"
       },
-      "ThoriumMod/TechniqueLastStand": {
-        "stage": "lunatic-cultist",
-        "via": "recipe:ThoriumMod/TechniqueBlankScroll+ThoriumMod/WhiteDwarfFragment",
-        "eventCategory": null,
-        "customEventName": "Celestial Pillars",
-        "eventIcon": "Terraria/LunarTowerSolar"
-      },
       "ThoriumMod/WhiteDwarfDye": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/BottledWater+ThoriumMod/WhiteDwarfFragment",
@@ -111558,6 +111994,10 @@
         "stage": "moon-lord",
         "via": "recipe:Terraria/FragmentStardust+Terraria/LunarBar"
       },
+      "Terraria/DrillContainmentUnit": {
+        "stage": "moon-lord",
+        "via": "recipe:Terraria/LunarBar+Terraria/ChlorophyteBar+Terraria/ShroomiteBar+Terraria/SpectreBar+Terraria/HellstoneBar+Terraria/MeteoriteBar"
+      },
       "Terraria/WingsSolar": {
         "stage": "moon-lord",
         "via": "recipe:Terraria/SoulofFlight+Terraria/FragmentSolar+Terraria/LunarBar"
@@ -111666,10 +112106,6 @@
         "stage": "primordials",
         "via": "container:ThoriumMod/ThePrimordialsTreasureBag"
       },
-      "ThoriumMod/Mjolnir": {
-        "stage": "primordials",
-        "via": "recipe:ThoriumMod/FamilyHeirloom+ThoriumMod/DormantHammer"
-      },
       "ThoriumMod/OtherworldlyRune": {
         "stage": "primordials",
         "via": "recipe:ThoriumMod/TomeoftheVoidGazersChariot+ThoriumMod/InfernoEssence+ThoriumMod/DeathEssence+ThoriumMod/OceanEssence"
@@ -111694,38 +112130,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ThoriumMod/InspirationFragment"
-        ]
-      },
-      {
-        "id": "ThoriumMod/TechniqueDecoy",
-        "wikiStage": "pre-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/TechniqueDecoy"
-        ]
-      },
-      {
-        "id": "ThoriumMod/TechniqueSprint",
-        "wikiStage": "pre-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/TechniqueSprint"
-        ]
-      },
-      {
-        "id": "ThoriumMod/TechniqueHiddenBlade",
-        "wikiStage": "pre-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/TechniqueHiddenBlade"
-        ]
-      },
-      {
-        "id": "ThoriumMod/BeltoftheQuickResponse",
-        "wikiStage": "pre-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/BeltoftheQuickResponse"
         ]
       },
       {
@@ -111766,30 +112170,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ThoriumMod/AmphibianEgg"
-        ]
-      },
-      {
-        "id": "ThoriumMod/TechniqueMeteorStomp",
-        "wikiStage": "mid-prehardmode",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/TechniqueMeteorStomp"
-        ]
-      },
-      {
-        "id": "ThoriumMod/TechniqueSmokeBomb",
-        "wikiStage": "mid-prehardmode",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/TechniqueSmokeBomb"
-        ]
-      },
-      {
-        "id": "ThoriumMod/BeltoftheQuickResponse",
-        "wikiStage": "mid-prehardmode",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/BeltoftheQuickResponse"
         ]
       },
       {
@@ -111849,27 +112229,11 @@
         ]
       },
       {
-        "id": "ThoriumMod/TechniqueSoulPulse",
-        "wikiStage": "pre-wof",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/TechniqueSoulPulse"
-        ]
-      },
-      {
         "id": "ThoriumMod/TechniquePaperExplosive",
         "wikiStage": "pre-wof",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ThoriumMod/TechniqueStickyExplosive"
-        ]
-      },
-      {
-        "id": "ThoriumMod/DewCollector",
-        "wikiStage": "pre-wof",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/DewCollector"
         ]
       },
       {
@@ -111889,35 +112253,11 @@
         ]
       },
       {
-        "id": "ThoriumMod/TechniqueBloodLotus",
-        "wikiStage": "post-wof",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/TechniqueBloodLotus"
-        ]
-      },
-      {
-        "id": "ThoriumMod/TechniqueBlindingDash",
-        "wikiStage": "post-wof",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/TechniqueBlindingDash"
-        ]
-      },
-      {
         "id": "ThoriumMod/NinjaRack",
         "wikiStage": "post-wof",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ThoriumMod/NinjaRack"
-        ]
-      },
-      {
-        "id": "ThoriumMod/SupportSash",
-        "wikiStage": "post-wof",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/SupportSash"
         ]
       },
       {
@@ -111950,22 +112290,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ThoriumMod/FakeCoin"
-        ]
-      },
-      {
-        "id": "ThoriumMod/TechniqueGravityWell",
-        "wikiStage": "pre-mechs",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/TechniqueGravityWell"
-        ]
-      },
-      {
-        "id": "ThoriumMod/TechniqueStonePalm",
-        "wikiStage": "pre-mechs",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/TechniqueStonePalm"
         ]
       },
       {
@@ -112057,22 +112381,6 @@
         ]
       },
       {
-        "id": "ThoriumMod/TechniqueShadowClone",
-        "wikiStage": "pre-lunar",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/TechniqueShadowClone"
-        ]
-      },
-      {
-        "id": "ThoriumMod/TechniqueShadowDance",
-        "wikiStage": "pre-lunar",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/TechniqueShadowDance"
-        ]
-      },
-      {
         "id": "ThoriumMod/NinjaRack",
         "wikiStage": "pre-lunar",
         "reason": "recommendation has no proven availability",
@@ -112113,14 +112421,6 @@
         ]
       },
       {
-        "id": "ThoriumMod/TechniqueLastStand",
-        "wikiStage": "pre-primordials",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/TechniqueLastStand"
-        ]
-      },
-      {
         "id": "ThoriumMod/NinjaRack",
         "wikiStage": "pre-primordials",
         "reason": "recommendation has no proven availability",
@@ -112174,14 +112474,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ThoriumMod/ConductorsStand"
-        ]
-      },
-      {
-        "id": "ThoriumMod/Mjolnir",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ThoriumMod/Mjolnir"
         ]
       }
     ],
@@ -113897,6 +114189,20 @@
         "reason": "recommendation precedes proven availability"
       },
       {
+        "id": "ThoriumMod/TechniqueGravityWell",
+        "factualStage": "coznix",
+        "recommendedStage": "borean-strider",
+        "wikiStage": "pre-mechs",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "ThoriumMod/TechniqueStonePalm",
+        "factualStage": "coznix",
+        "recommendedStage": "borean-strider",
+        "wikiStage": "pre-mechs",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
         "id": "ThoriumMod/LilDevilsWand",
         "factualStage": "coznix",
         "recommendedStage": "borean-strider",
@@ -114080,7 +114386,9 @@
       }
     ],
     "staleRules": [
-      "Terraria/ForbiddenFragment"
+      "ThoriumMod/TechniqueStickyExplosive",
+      "Terraria/ForbiddenFragment",
+      "ThoriumMod/TechniqueCobrasBite"
     ],
     "manualAssignmentProblems": [],
     "officialSourceCompatibility": {
