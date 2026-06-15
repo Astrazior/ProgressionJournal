@@ -252,12 +252,16 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             return new Dictionary<string, string>();
         }
 
-        return itemNames.EnumerateObject()
-            .Where(static property => property.Value.ValueKind == JsonValueKind.String)
-            .ToDictionary(
-                static property => property.Name,
-                static property => property.Value.GetString() ?? string.Empty,
-                StringComparer.Ordinal);
+        var result = new Dictionary<string, string>(StringComparer.Ordinal);
+        foreach (var property in itemNames.EnumerateObject())
+        {
+            if (property.Value.ValueKind == JsonValueKind.String)
+            {
+                result[property.Name] = property.Value.GetString() ?? string.Empty;
+            }
+        }
+
+        return result;
     }
 
     private static List<SnapshotClassEffect> GetClassEffects(Item sourceItem)

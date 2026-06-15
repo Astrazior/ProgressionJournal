@@ -240,6 +240,10 @@ assert(builder.includes("rule.sources ?? (rule.source ? [rule.source] : [])"));
 assert(builder.includes("rule.items ?? (rule.item ? [rule.item] : [])"));
 assert(exporter.includes("File.Move(temporaryPath, path, overwrite: true)"));
 assert(exporter.includes("EnvironmentMods = ModLoader.Mods"));
+assert(
+  exporter.includes("result[property.Name] = property.Value.GetString() ?? string.Empty"),
+  "English vanilla item names must tolerate duplicate localization keys",
+);
 
 console.log("Mod profile pipeline tests: OK");
 
