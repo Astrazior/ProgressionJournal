@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-06-15T11:41:42.729Z",
+  "generatedAtUtc": "2026-06-15T12:17:49.141Z",
   "snapshot": {
     "version": 2,
     "generatedAtUtc": "2026-06-13T00:10:42.0187109Z",
@@ -16,7 +16,7 @@
     ]
   },
   "agentRules": {
-    "rules": 110,
+    "rules": 113,
     "ignoredItems": 3,
     "ignoredIssues": 1,
     "evidence": [
@@ -427,6 +427,27 @@
         "reason": "Great Sand Shark drops Grand Scale, and its official natural-spawn check immediately returns until Plantera has been defeated."
       },
       {
+        "id": "alluring-bait-fishing-utility",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Accessories/AlluringBait.cs",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-15",
+        "reason": "UpdateAccessory only increases fishing power and potion-fish yield. It is fishing utility, not combat equipment."
+      },
+      {
+        "id": "fishing-accessories-noncombat",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Accessories",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-15",
+        "reason": "These accessories exclusively modify fishing bobbers, fishing power, lava fishing, fishing rewards, or the fishing minigame. They do not provide normal combat equipment effects."
+      },
+      {
+        "id": "sunken-sea-fishing-sources",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs#L364-L389",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-15",
+        "reason": "The custom Sunken Sea fishing pool adds Sparkling Empress and Sea Spirit Amulet to very-rare catches after Desert Scourge."
+      },
+      {
         "id": "accessory-vanity-namespace",
         "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Accessories/Vanity",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
@@ -821,9 +842,9 @@
     ]
   },
   "review": {
-    "total": 131,
+    "total": 130,
     "byKind": {
-      "unassigned-combat-item": 131
+      "unassigned-combat-item": 130
     }
   },
   "audit": {
@@ -836,7 +857,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-06-15T11:41:38.697Z",
+    "generatedAtUtc": "2026-06-15T12:17:44.490Z",
     "unknownReferences": [
       {
         "stage": "wall-of-flesh",
@@ -49893,6 +49914,11 @@
       },
       {
         "stage": "start",
+        "id": "CalamityMod/AlluringBait",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "CalamityMod/ShroombleItem",
         "reason": "not combat equipment"
       },
@@ -53758,6 +53784,11 @@
       },
       {
         "stage": "start",
+        "id": "CalamityMod/WulfrumBobber",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "CalamityMod/AcesApronOfAffection",
         "reason": "not combat equipment"
       },
@@ -55873,6 +55904,11 @@
       },
       {
         "stage": "desert-scourge",
+        "id": "CalamityMod/SunkenSinker",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "desert-scourge",
         "id": "CalamityMod/LoreDesertScourge",
         "reason": "not combat equipment"
       },
@@ -56859,6 +56895,11 @@
       {
         "stage": "hive-mind-perforators",
         "id": "CalamityMod/SkyfringePickaxe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "hive-mind-perforators",
+        "id": "CalamityMod/AcrobaticBobber",
         "reason": "not combat equipment"
       },
       {
@@ -61333,6 +61374,11 @@
       },
       {
         "stage": "plantera",
+        "id": "CalamityMod/FeralBobber",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
         "id": "CalamityMod/FeralDoubleRod",
         "reason": "not combat equipment"
       },
@@ -61785,6 +61831,11 @@
         "stage": "golem",
         "id": "Terraria/CelestialStone",
         "reason": "unchanged vanilla item in mod profile"
+      },
+      {
+        "stage": "golem",
+        "id": "CalamityMod/VolcanicSinker",
+        "reason": "not combat equipment"
       },
       {
         "stage": "golem",
@@ -65030,10 +65081,6 @@
         "stage": "start",
         "via": "shop:CalamityMod/ShadySalesman"
       },
-      "CalamityMod/AlluringBait": {
-        "stage": "start",
-        "via": "manifest"
-      },
       "CalamityMod/DragoonDrizzlefish": {
         "stage": "start",
         "via": "manifest"
@@ -65201,10 +65248,6 @@
       "CalamityMod/WulfrumAcrobaticsPack": {
         "stage": "start",
         "via": "recipe:CalamityMod/WulfrumMetalScrap+CalamityMod/EnergyCore+Terraria/Chain"
-      },
-      "CalamityMod/WulfrumBobber": {
-        "stage": "start",
-        "via": "recipe:CalamityMod/WulfrumMetalScrap"
       },
       "CalamityMod/FlashRound": {
         "stage": "start",
@@ -65509,10 +65552,6 @@
       "CalamityMod/OceanCrest": {
         "stage": "desert-scourge",
         "via": "container:CalamityMod/DesertScourgeBag"
-      },
-      "CalamityMod/SunkenSinker": {
-        "stage": "desert-scourge",
-        "via": "recipe:Terraria/FishingBobber+CalamityMod/PearlShard+CalamityMod/Navystone"
       },
       "CalamityMod/CoralSpout": {
         "stage": "desert-scourge",
@@ -65945,10 +65984,6 @@
       "CalamityMod/AerospecLeggings": {
         "stage": "hive-mind-perforators",
         "via": "recipe:CalamityMod/AerialiteBar+Terraria/Feather"
-      },
-      "CalamityMod/AcrobaticBobber": {
-        "stage": "hive-mind-perforators",
-        "via": "recipe:Terraria/FishingBobber+CalamityMod/AerialiteBar+Terraria/Feather"
       },
       "CalamityMod/HardenedHoneycomb": {
         "stage": "queen-bee",
@@ -67209,10 +67244,6 @@
         "stage": "plantera",
         "via": "recipe:Terraria/ShroomiteBar"
       },
-      "CalamityMod/FeralBobber": {
-        "stage": "plantera",
-        "via": "recipe:Terraria/FishingBobber+CalamityMod/PerennialBar"
-      },
       "CalamityMod/LivingDew": {
         "stage": "plantera",
         "via": "recipe:CalamityMod/HoneyDew+CalamityMod/LivingShard+CalamityMod/EssenceofSunlight"
@@ -67613,10 +67644,6 @@
       "CalamityMod/SigilofCalamitas": {
         "stage": "golem",
         "via": "recipe:Terraria/CelestialEmblem+CalamityMod/ScoriaBar+CalamityMod/AshesofCalamity"
-      },
-      "CalamityMod/VolcanicSinker": {
-        "stage": "golem",
-        "via": "recipe:Terraria/FishingBobber+CalamityMod/ScoriaBar"
       },
       "CalamityMod/HadalMantle": {
         "stage": "golem",
@@ -70593,6 +70620,10 @@
         "via": "manifest"
       },
       "CalamityMod/PlasmaDriveCore": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "CalamityMod/AlluringBait": {
         "stage": "start",
         "via": "manifest"
       },
@@ -73688,6 +73719,10 @@
         "stage": "start",
         "via": "recipe:Terraria/Silk+Terraria/FallenStar"
       },
+      "CalamityMod/WulfrumBobber": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/WulfrumMetalScrap"
+      },
       "CalamityMod/AcesApronOfAffection": {
         "stage": "start",
         "via": "recipe:Terraria/Robe+Terraria/LovePotion+Terraria/LifeCrystal"
@@ -75380,6 +75415,10 @@
         "stage": "desert-scourge",
         "via": "npc:CalamityMod/GiantClam"
       },
+      "CalamityMod/SunkenSinker": {
+        "stage": "desert-scourge",
+        "via": "recipe:Terraria/FishingBobber+CalamityMod/PearlShard+CalamityMod/Navystone"
+      },
       "CalamityMod/LoreDesertScourge": {
         "stage": "desert-scourge",
         "via": "recipe:CalamityMod/DesertScourgeTrophy"
@@ -76249,6 +76288,10 @@
       "CalamityMod/SkyfringePickaxe": {
         "stage": "hive-mind-perforators",
         "via": "recipe:CalamityMod/AerialiteBar"
+      },
+      "CalamityMod/AcrobaticBobber": {
+        "stage": "hive-mind-perforators",
+        "via": "recipe:Terraria/FishingBobber+CalamityMod/AerialiteBar+Terraria/Feather"
       },
       "CalamityMod/HeronRod": {
         "stage": "hive-mind-perforators",
@@ -80034,6 +80077,10 @@
         "stage": "plantera",
         "via": "recipe:Terraria/Silk+Terraria/Ectoplasm"
       },
+      "CalamityMod/FeralBobber": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/FishingBobber+CalamityMod/PerennialBar"
+      },
       "CalamityMod/FeralDoubleRod": {
         "stage": "plantera",
         "via": "recipe:CalamityMod/PerennialBar"
@@ -80415,6 +80462,10 @@
       "Terraria/CelestialStone": {
         "stage": "golem",
         "via": "recipe:Terraria/SunStone+Terraria/MoonStone"
+      },
+      "CalamityMod/VolcanicSinker": {
+        "stage": "golem",
+        "via": "recipe:Terraria/FishingBobber+CalamityMod/ScoriaBar"
       },
       "CalamityMod/LifeAlloy": {
         "stage": "golem",

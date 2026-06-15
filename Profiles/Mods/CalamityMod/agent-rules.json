@@ -688,6 +688,59 @@
       "reason": "Great Sand Shark drops Grand Scale, and its official natural-spawn check immediately returns until Plantera has been defeated."
     },
     {
+      "id": "alluring-bait-fishing-utility",
+      "kind": "item-override",
+      "item": "CalamityMod/AlluringBait",
+      "override": {
+        "exclude": true
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Accessories/AlluringBait.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "UpdateAccessory only increases fishing power and potion-fish yield. It is fishing utility, not combat equipment."
+    },
+    {
+      "id": "fishing-accessories-noncombat",
+      "kind": "item-override",
+      "items": [
+        "CalamityMod/AcrobaticBobber",
+        "CalamityMod/EnchantedPearl",
+        "CalamityMod/FeralBobber",
+        "CalamityMod/SunkenSinker",
+        "CalamityMod/VolcanicSinker",
+        "CalamityMod/WulfrumBobber"
+      ],
+      "override": {
+        "exclude": true
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Accessories",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "These accessories exclusively modify fishing bobbers, fishing power, lava fishing, fishing rewards, or the fishing minigame. They do not provide normal combat equipment effects."
+    },
+    {
+      "id": "sunken-sea-fishing-sources",
+      "kind": "fishing-source",
+      "items": [
+        "CalamityMod/SparklingEmpress",
+        "CalamityMod/SeaSpiritAmulet"
+      ],
+      "conditions": [
+        {
+          "en-US": "In the Sunken Sea",
+          "ru-RU": "В Затонувшем море"
+        },
+        {
+          "en-US": "After defeating the Desert Scourge",
+          "ru-RU": "После победы над Пустынным бичом"
+        }
+      ],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs#L364-L389",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "The custom Sunken Sea fishing pool adds Sparkling Empress and Sea Spirit Amulet to very-rare catches after Desert Scourge."
+    },
+    {
       "id": "accessory-vanity-namespace",
       "kind": "item-override",
       "items": [

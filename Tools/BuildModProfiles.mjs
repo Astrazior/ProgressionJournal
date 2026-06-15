@@ -153,6 +153,7 @@ export function normalizeAgentRules(document, support) {
     stationStages: {},
     conditionStages: [],
     itemOverrides: {},
+    fishingSources: {},
     ignoredItems: [],
     ignoredIssues: []
   };
@@ -211,6 +212,24 @@ export function normalizeAgentRules(document, support) {
           } else {
             for (const item of items) {
               if (item) assignments.itemOverrides[item] = rule.override;
+            }
+          }
+        }
+        break;
+      case "fishing-source":
+        {
+          const items = rule.items ?? (rule.item ? [rule.item] : []);
+          if (items.length === 0) problems.push(`${label}: item or items is required`);
+          if (!Array.isArray(rule.conditions) || rule.conditions.length === 0) {
+            problems.push(`${label}: conditions are required`);
+          }
+          for (const item of items) {
+            requireText(item, `${label}: item`, problems);
+            if (item && Array.isArray(rule.conditions) && rule.conditions.length > 0) {
+              assignments.fishingSources[item] = [
+                ...(assignments.fishingSources[item] ?? []),
+                { conditions: rule.conditions }
+              ];
             }
           }
         }

@@ -461,6 +461,11 @@ const manualAssignments = {
   itemOverrides: {
     "Test/MixedAccessory": { classes: ["melee"] }
   },
+  fishingSources: {
+    "Test/MixedAccessory": [{
+      conditions: [{ "en-US": "In test water", "ru-RU": "В тестовой воде" }]
+    }]
+  },
   ignoredItems: [],
   ignoredIssues: []
 };
@@ -484,6 +489,10 @@ assert.deepEqual(
   manualResult.profile.entries.find(entry =>
     entry.itemGroups[0][0].item === "MixedAccessory")?.classes,
   ["melee"]);
+assert.deepEqual(
+  manualResult.profile.entries.find(entry =>
+    entry.itemGroups[0][0].item === "MixedAccessory")?.fishingSources,
+  [{ conditions: [{ "en-US": "In test water", "ru-RU": "В тестовой воде" }] }]);
 assert(!manualResult.review.issues.some(issue =>
   issue.kind === "unresolved-condition"
   && issue.affected.some(value => value.item === "Test/UnknownShopBlade")));
@@ -503,6 +512,7 @@ const ignoredReviewResult = generateProfile(snapshot, manifest, wikiProfile, {
   stationStages: {},
   conditionStages: [],
   itemOverrides: {},
+  fishingSources: {},
   ignoredItems: [],
   ignoredIssues: [ignoredIssueId]
 });

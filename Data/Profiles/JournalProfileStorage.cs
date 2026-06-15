@@ -205,6 +205,14 @@ public static class JournalProfileStorage
                 return false;
             }
 
+            if (entry.FishingSources.Any(source =>
+                    source.Conditions.Count == 0
+                    || source.Conditions.Any(static condition => condition.IsEmpty)))
+            {
+                error = $"Entry '{entry.Key}' contains invalid fishing source metadata.";
+                return false;
+            }
+
             if (entry.ItemGroups.Count == 0 || entry.ItemGroups.Any(static group => group.Count == 0))
             {
                 error = $"Entry '{entry.Key}' must contain item groups.";
@@ -276,7 +284,9 @@ public static class JournalProfileStorage
                     value.Classes.ToHashSet(StringComparer.OrdinalIgnoreCase),
                     value.SourceName,
                     value.SourceUrl,
-                    value.Target))));
+                    value.Target)),
+                entryDocument.FishingSources.Select(static source =>
+                    new JournalFishingSource(source.Conditions.Select(static condition => condition.Resolve())))));
         }
 
         return result;

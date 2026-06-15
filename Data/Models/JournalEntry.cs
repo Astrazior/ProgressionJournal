@@ -55,7 +55,8 @@ public sealed class JournalEntry
 		bool isSupportWeapon = false,
 		string? customEventName = null,
 		string? eventIcon = null,
-		IEnumerable<JournalWikiRecommendation>? wikiRecommendations = null)
+		IEnumerable<JournalWikiRecommendation>? wikiRecommendations = null,
+		IEnumerable<JournalFishingSource>? fishingSources = null)
 	{
 		Key = key;
 		Category = category;
@@ -76,6 +77,7 @@ public sealed class JournalEntry
 		CategoryStrength = ComputeCategoryStrength(category, ItemGroups, ItemIds);
 		_evaluations = evaluations.ToDictionary(evaluation => evaluation.StageId, StringComparer.OrdinalIgnoreCase);
 		WikiRecommendations = wikiRecommendations?.ToArray() ?? [];
+		FishingSources = fishingSources?.ToArray() ?? [];
 	}
 
 	public string Key { get; }
@@ -103,6 +105,8 @@ public sealed class JournalEntry
 	public int CategoryStrength { get; }
 
 	public IReadOnlyList<JournalWikiRecommendation> WikiRecommendations { get; }
+
+	public IReadOnlyList<JournalFishingSource> FishingSources { get; }
 
 	public bool AppliesToClass(CombatClass combatClass) => (Classes & combatClass) != 0;
 

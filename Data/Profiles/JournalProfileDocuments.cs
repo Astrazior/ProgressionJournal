@@ -94,6 +94,8 @@ public sealed class JournalProfileEntryDocument
 
     public List<JournalWikiRecommendationDocument> Wiki { get; set; } = [];
 
+    public List<JournalFishingSourceDocument> FishingSources { get; set; } = [];
+
     public bool IsSupportWeapon { get; set; }
 
     [JsonConverter(typeof(JsonStringEnumConverter))]
@@ -102,6 +104,11 @@ public sealed class JournalProfileEntryDocument
     public string CustomEventName { get; set; } = string.Empty;
 
     public string EventIcon { get; set; } = string.Empty;
+}
+
+public sealed class JournalFishingSourceDocument
+{
+    public List<JournalLocalizedText> Conditions { get; set; } = [];
 }
 
 public sealed class JournalProfileEvaluationDocument

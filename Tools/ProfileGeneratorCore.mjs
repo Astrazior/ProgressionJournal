@@ -282,6 +282,7 @@ export function generateProfile(
           itemGroups: [[itemReference]],
           evaluations: [{ stageId: stage.id, tier: "FromGuide", scope: "StageOnly" }],
           wiki: [],
+          fishingSources: manifest.fishingSources?.[id] ?? [],
           isSupportWeapon: false,
           eventCategory: acquiredBy.get(id)?.eventCategory ?? null,
           customEventName: acquiredBy.get(id)?.customEventName ?? "",
@@ -398,6 +399,10 @@ function applyManualAssignments(sourceManifest, manualAssignments) {
   manifest.itemOverrides = {
     ...(manifest.itemOverrides ?? {}),
     ...(manualAssignments.itemOverrides ?? {})
+  };
+  manifest.fishingSources = {
+    ...(manifest.fishingSources ?? {}),
+    ...(manualAssignments.fishingSources ?? {})
   };
 
   manifest.conditionUnlocks = [...(manifest.conditionUnlocks ?? [])];

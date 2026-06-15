@@ -9,13 +9,15 @@ namespace ProgressionJournal.Data.Resolvers;
 
 public static class JournalItemSourceResolver
 {
-    private static readonly Dictionary<int, JournalItemAcquisitionInfo> Cache = new();
+    private static readonly Dictionary<(string ProfileId, int ItemId), JournalItemAcquisitionInfo> Cache = new();
     private static readonly Dictionary<int, Item?> StationItemCache = new();
     private static readonly Dictionary<int, bool> RevengeanceExclusiveCache = new();
 
     public static JournalItemAcquisitionInfo GetInfo(int itemId)
     {
-        if (Cache.TryGetValue(itemId, out var info))
+        var profileId = JournalProfileRegistry.IsLoaded ? JournalProfileRegistry.Active.Id : string.Empty;
+        var cacheKey = (profileId, itemId);
+        if (Cache.TryGetValue(cacheKey, out var info))
         {
             return info;
         }
@@ -25,9 +27,22 @@ public static class JournalItemSourceResolver
             BuildRecipes(itemId),
             BuildDrops(itemId),
             BuildShops(itemId),
-            JournalFishingSourceResolver.FindSources(itemId));
-        Cache[itemId] = info;
+            JournalFishingSourceResolver.FindSources(itemId)
+                .Concat(FindProfileFishingSources(itemId)));
+        Cache[cacheKey] = info;
         return info;
+    }
+
+    private static IEnumerable<JournalFishingSource> FindProfileFishingSources(int itemId)
+    {
+        if (!JournalProfileRegistry.IsLoaded)
+        {
+            return [];
+        }
+
+        return JournalProfileRegistry.Active.Entries
+            .Where(entry => entry.ItemIds.Contains(itemId))
+            .SelectMany(static entry => entry.FishingSources);
     }
 
     private static List<JournalRecipeSource> BuildRecipes(int itemId)

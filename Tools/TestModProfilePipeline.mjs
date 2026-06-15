@@ -29,6 +29,24 @@ for (const modName of expected) {
   assert.equal(support.targetMod, modName);
   assert.equal(snapshot.targetMod, modName);
   assert.equal(profile.format, "ProgressionJournalProfile");
+  if (modName === "CalamityMod") {
+    const profileItems = new Set(profile.entries.flatMap(entry =>
+      (entry.itemGroups ?? []).flat().map(item => `${item.mod}/${item.item}`)));
+    for (const item of [
+      "CalamityMod/AcrobaticBobber",
+      "CalamityMod/AlluringBait",
+      "CalamityMod/EnchantedPearl",
+      "CalamityMod/FeralBobber",
+      "CalamityMod/SunkenSinker",
+      "CalamityMod/SupremeBaitTackleBoxFishingStation",
+      "CalamityMod/VolcanicSinker",
+      "CalamityMod/WulfrumBobber"
+    ]) {
+      assert(!profileItems.has(item), `${item} is fishing utility and must be excluded`);
+    }
+    assert(profileItems.has("CalamityMod/FishStocks"),
+      "Fish Stocks provides combat stats and must remain in the combat profile");
+  }
   const snapshotVersions = new Map(snapshot.mods.map(mod => [mod.name, mod.version]));
   for (const required of support.requiredMods ?? []) {
     assert(required.version, `${modName}: required mod '${required.name}' has no supported version`);
@@ -94,6 +112,16 @@ const validRule = {
       sourceVersion: "revision-1",
       checkedAt: "2026-06-15",
       reason: "Both helmets have the same class-specific equip effect."
+    },
+    {
+      id: "verified-fishing",
+      kind: "fishing-source",
+      item: "Test/Amulet",
+      conditions: [{ "en-US": "In test water", "ru-RU": "В тестовой воде" }],
+      sourceUrl: "https://example.invalid/source/Fishing",
+      sourceVersion: "revision-1",
+      checkedAt: "2026-06-15",
+      reason: "The item is returned by the custom fishing hook in this biome."
     }
   ],
   ignoredItems: [],
@@ -106,6 +134,9 @@ assert.equal(normalized.assignments.sourceStages["Test/EnemyA"], "boss");
 assert.equal(normalized.assignments.sourceStages["Test/EnemyB"], "boss");
 assert.deepEqual(normalized.assignments.itemOverrides["Test/HelmetA"], { classes: ["melee"] });
 assert.deepEqual(normalized.assignments.itemOverrides["Test/HelmetB"], { classes: ["melee"] });
+assert.deepEqual(normalized.assignments.fishingSources["Test/Amulet"], [{
+  conditions: [{ "en-US": "In test water", "ru-RU": "В тестовой воде" }]
+}]);
 const invalid = normalizeAgentRules({
   ...validRule,
   rules: [{ kind: "item-stage", item: "Test/Sword", stageId: "boss" }]
