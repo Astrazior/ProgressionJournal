@@ -17,9 +17,7 @@ It is designed as a quick reference during gameplay, so you do not have to open 
 [*]Build sharing through JSON format or directly through the in-game chat
 [*]Support for items from other mods in custom builds
 [*]Search and filtering tools for easier build setup
-[*]Progression profiles with custom classes, stages, unlock conditions, and ratings
-[*]Profile import and export through JSON files
-[*]Bundled Calamity Wiki profile when Calamity is installed
+[*]Support for mods through separate profiles
 [/list]
 
 [h2]Build System[/h2]
@@ -38,14 +36,36 @@ Builds can be shared in two ways:
 
 Builds are attached to the active progression profile, class, and stage. Profiles can define modded classes such as Rogue and can be copied and edited in-game.
 
-[h2]Mod support[/h2]
+[h2]Profile System[/h2]
 
-Progression Journal uses profiles instead of pretending that item statistics alone can determine balance.
-Built-in wiki profiles provide a neutral [i]From guide[/i] list, while players can copy them and assign their own tiers, stages, and boss unlock conditions.
+Starting with version [b]2.1.0[/b], the mod now includes a profile system.
 
-The Calamity profile is generated from the structured class setup pages on the official Calamity Wiki and is shown only while Calamity is installed. It is a snapshot of the guide, not a claim that every item in the mod has been objectively ranked.
+Due to numerous requests, I decided to add profiles for content mods. I will say this right away: this is not full support, and as I have said before, there will be no complete manual support from me. I consider it madness to try to properly evaluate the sheer number of items large mods add, and then continue maintaining all of that after updates.
 
-Other mods can provide profile JSON through the public API, and profiles can also be shared as files.
+That is why I made a system that approaches the problem differently.
+
+Mod profiles are structured somewhat differently. Instead of the usual division by item effectiveness, they rely on two blocks:
+
+[list]
+[*][b]Recommendations[/b] — official recommendations from an official source. Usually this means the mod's wiki, provided it has ready-made class setups.
+[*][b]New Equipment and Buffs[/b] — items and buffs that are determined by the mod itself.
+[/list]
+
+[img]https://i.imgur.com/n7OK3RO.gif[/img]
+
+How does it work? The mod analyzes conditions, bosses, their loot, materials, recipes, and other progression connections. In an ideal case, it looks something like this:
+
+[b]boss → new material → new armor or weapon[/b]
+
+And in most cases, that is indeed roughly how it works. However, not all modded progression is that straightforward:
+
+[b]boss → new enemy or new drop from an old enemy → new material → new armor or weapon[/b]
+
+Such chains are already noticeably harder for the system to match correctly, which means the result may not always be accurate.
+
+Mod profiles do not have ratings like “strong”, “usable”, “weak”, or “very weak”. The idea is that the player decides how to move forward by looking at what becomes available after each stage.
+
+This feature is experimental. It will be updated, refined, improved, or changed over time. Do not expect it to work flawlessly. It is not a cure-all — at least not yet.
 
 [h2]Important[/h2]
 [list]
@@ -53,7 +73,7 @@ Other mods can provide profile JSON through the public API, and profiles can als
 [*]The server does not need to install it
 [*]It does not change vanilla progression balance; it works as a reference tool
 [*]Wiki and community profiles may be incomplete or become outdated after another mod updates
-[*]The profile author is responsible for balance and recommendation accuracy
+[*][b]At the moment, the system supports Calamity, Thorium, and Fargo's Souls profiles. This is not full manual support for every item and class. I cannot guarantee perfect accuracy of recommendations, as major content mods add a huge amount of equipment, mechanics, and non-standard progression conditions.[/b]
 [/list]
 
 [h1]Links[/h1]
