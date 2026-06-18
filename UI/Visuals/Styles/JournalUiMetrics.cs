@@ -99,4 +99,5 @@ public static class JournalUiMetrics
     public const float InventoryButtonSize = 34f;
     public const float InventoryButtonAccessorySlotStep = 47f;
     public const float InventoryButtonHorizontalSpacing = 8f;
+    public const float InventoryButtonVerticalSpacing = 6f;
 }
