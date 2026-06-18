@@ -203,7 +203,8 @@ const MILESTONE_FACTS = [
       "Terraria/HellstoneBar",
       "Terraria/Meteorite",
       "Terraria/MeteoriteBar"
-    ]
+    ],
+    shops: ["Terraria/DD2Bartender"]
   },
   {
     findStage: manifest => findStageById(manifest, "queen-bee"),
@@ -504,6 +505,7 @@ const START_SOURCES = [
   "Terraria/CrimsonPenguin",
   "Terraria/PinkJellyfish",
   "Terraria/Shark",
+  "Terraria/Skeleton",
   "Terraria/SkeletonMerchant",
   "Terraria/TombCrawlerHead",
   "Terraria/VoodooDemon"
@@ -564,7 +566,43 @@ export function applyVanillaSourceCatalog(sourceManifest) {
     stage.shops = unique([...(stage.shops ?? []), ...(fact.shops ?? [])]);
     stage.containers = unique([...(stage.containers ?? []), ...(fact.containers ?? [])]);
   }
+  addVanillaShopConditionStages(manifest);
   return manifest;
+}
+
+function addVanillaShopConditionStages(manifest) {
+  const mappings = [
+    {
+      stageId: findVanillaFlagStage(manifest, "hardMode", "wall-of-flesh"),
+      descriptions: ["In Hardmode", "В хардмоде"]
+    },
+    {
+      stageId: findEarliestVanillaFlagStage(
+        manifest,
+        ["downedMechBoss1", "downedMechBoss2", "downedMechBoss3"],
+        ["destroyer", "twins", "skeletron-prime"]),
+      descriptions: [
+        "After defeating any mechanical boss",
+        "После победы над любым механическим боссом"
+      ]
+    },
+    {
+      stageId: findVanillaFlagStage(manifest, "downedGolemBoss", "golem"),
+      descriptions: ["After defeating Golem", "После победы над Големом"]
+    }
+  ];
+
+  manifest.conditionUnlocks = [...(manifest.conditionUnlocks ?? [])];
+  for (const mapping of mappings) {
+    if (!mapping.stageId) continue;
+    manifest.conditionUnlocks.push({
+      stageId: mapping.stageId,
+      sources: ["shop"],
+      sourceIds: ["Terraria/DD2Bartender"],
+      conditionTypes: [],
+      conditionDescriptions: mapping.descriptions
+    });
+  }
 }
 
 function findEventStage(manifest, eventCategory) {
@@ -581,6 +619,20 @@ function findVanillaFlagStage(manifest, key, fallbackId) {
     stage.unlock?.type === "vanilla-flag" && stage.unlock.key === key)?.id
     ?? manifest.stages.find(stage => stage.id === fallbackId)?.id
     ?? null;
+}
+
+function findEarliestVanillaFlagStage(manifest, keys, fallbackIds) {
+  return manifest.stages.find(stage =>
+    keys.some(key => unlockContainsVanillaFlag(stage.unlock, key)))?.id
+    ?? fallbackIds.map(id => findStageById(manifest, id)).find(Boolean)
+    ?? null;
+}
+
+function unlockContainsVanillaFlag(unlock, key) {
+  if (!unlock) return false;
+  if (unlock.type === "vanilla-flag" && unlock.key === key) return true;
+  return (unlock.conditions ?? []).some(condition =>
+    unlockContainsVanillaFlag(condition, key));
 }
 
 function unique(values) {

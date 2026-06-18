@@ -35,6 +35,8 @@ const snapshot = {
     item("Test/WikiOnlyBlade", { damageClass: "Melee", damage: 41 }),
     item("Terraria/FilteredSword", { damageClass: "Melee", damage: 25 }),
     item("Terraria/ModifiedSword", { damageClass: "Melee", damage: 26 }),
+    item("Terraria/UnknownVanillaSword", { damageClass: "Melee", damage: 24 }),
+    item("Terraria/UnknownSourceSword", { damageClass: "Melee", damage: 23 }),
     item("Terraria/WikiSword", {
       englishName: "Localized Wiki Sword",
       damageClass: "Melee",
@@ -62,6 +64,7 @@ const snapshot = {
     item("Test/TwinLeggings2", { name: "Twin Leggings", defense: 2, legSlot: 4 }),
     item("Test/MeleeAccessory", {
       name: "Melee Accessory",
+      damage: 10,
       accessory: true,
       classEffects: [{ damageClass: "Melee", damage: true }]
     }),
@@ -131,6 +134,18 @@ const snapshot = {
     { source: "Test/Boss", sourceType: "npc", item: "Test/Potion", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Terraria/FilteredSword", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Terraria/ModifiedSword", conditions: [] },
+    {
+      source: "Test/Boss",
+      sourceType: "npc",
+      item: "Terraria/UnknownVanillaSword",
+      conditions: [{ type: "Test.UnknownVanillaCondition", description: "Unknown vanilla gate" }]
+    },
+    {
+      source: "Terraria/UnknownEnemy",
+      sourceType: "npc",
+      item: "Terraria/UnknownSourceSword",
+      conditions: []
+    },
     { source: "Test/Boss", sourceType: "npc", item: "Terraria/WikiSword", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/EarlyWikiSword", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/RenamedBlade", conditions: [] },
@@ -337,7 +352,9 @@ assert.equal(
 assert.equal(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "EventGun")?.eventIcon,
   "Test/Bestiary/EventIcon");
-assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "FilteredSword"));
+assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "FilteredSword"
+  && entry.evaluations[0].stageId === "boss"));
 assert(profile.entries.some(entry => entry.itemGroups[0][0].item === "ModifiedSword"));
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "WikiSword"
@@ -398,6 +415,9 @@ assert.deepEqual(
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "MeleeAccessory")?.classes,
   ["melee"]);
+assert.equal(
+  profile.entries.find(entry => entry.itemGroups[0][0].item === "MeleeAccessory")?.category,
+  "Accessory");
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "UniversalAccessory")?.classes,
   ["melee", "magic"]);
@@ -423,9 +443,8 @@ assert(report.wikiResolvedItems.some(entry =>
   && entry.to.length === 6));
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].mod === "Other"));
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "ForeignRecipeSword"));
-assert(report.excludedItems.some(entry =>
-  entry.id === "Terraria/FilteredSword"
-  && entry.reason === "unchanged vanilla item in mod profile"));
+assert(!report.excludedItems.some(entry =>
+  entry.id === "Terraria/FilteredSword"));
 assert(report.emptyStages.includes("empty"));
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "UnknownShopBlade"));
 assert(review.issues.some(issue =>
@@ -437,6 +456,18 @@ assert(review.issues.some(issue =>
 assert(review.issues.some(issue =>
   issue.kind === "unassigned-combat-item"
   && issue.item === "Test/CycleA"));
+assert(review.issues.some(issue =>
+  issue.kind === "unresolved-condition"
+  && issue.affected.some(value => value.item === "Terraria/UnknownVanillaSword")));
+assert(review.issues.some(issue =>
+  issue.kind === "unassigned-combat-item"
+  && issue.item === "Terraria/UnknownVanillaSword"));
+assert(report.unassignedVanillaNpcSources.some(record =>
+  record.source === "Terraria/UnknownEnemy"
+  && record.items.includes("Terraria/UnknownSourceSword")));
+assert(review.issues.some(issue =>
+  issue.kind === "unassigned-vanilla-npc-sources"
+  && issue.sources.some(record => record.source === "Terraria/UnknownEnemy")));
 
 const manualAssignments = {
   format: "ProgressionJournalManualAssignments",

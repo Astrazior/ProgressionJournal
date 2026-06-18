@@ -90,6 +90,7 @@ export function generateProfile(
     wikiUnresolvedItems: [],
     wikiAvailabilityCorrections: [],
     staleRules: [],
+    unassignedVanillaNpcSources: [],
     manualAssignmentProblems: manualResult.problems
   };
   Object.defineProperty(manifest, "_stageIndexes", { value: stageIndexes });
@@ -100,8 +101,6 @@ export function generateProfile(
       .flatMap(recipe => recipe.stations));
   const classificationContext = { usedStations, items: allowedItems };
   const wikiResolver = createWikiReferenceResolver(allowedItems, report);
-  const wikiItemIds = getWikiItemIds(wikiProfile, manifest, wikiResolver);
-  const modifiedVanillaItems = new Set(manifest.modifiedVanillaItems ?? []);
   const wikiCompatibility = sourceCompatibility(wikiProfile, snapshot);
   report.officialSourceCompatibility = {
     recommendations: wikiCompatibility
@@ -248,15 +247,6 @@ export function generateProfile(
         report.unknownReferences.push({ stage: stage.id, id });
         continue;
       }
-      if (shouldExcludeVanillaItem(id, manifest, wikiItemIds, modifiedVanillaItems)) {
-        report.excludedItems.push({
-          stage: stage.id,
-          id,
-          reason: "unchanged vanilla item in mod profile"
-        });
-        continue;
-      }
-
       const classification = classifyItem(item, manifest, report, classificationContext);
       if (!classification) {
         report.excludedItems.push({ stage: stage.id, id, reason: "not combat equipment" });
@@ -469,9 +459,9 @@ function classifyItem(item, manifest, report, context) {
   if (classes.length === 0) return null;
   if (override?.category) return { category: override.category, classes };
   if (item.ammo > 0) return { category: "Ammunition", classes };
+  if (item.accessory) return { category: "Accessory", classes };
   if (item.damage > 0 || item.sentry) return { category: "Weapon", classes };
   if (item.headSlot >= 0 || item.bodySlot >= 0 || item.legSlot >= 0) return { category: "Armor", classes };
-  if (item.accessory) return { category: "Accessory", classes };
   if (item.buffType > 0 && item.consumable) {
     return { buffCategory: "Potion", classes: allClasses(manifest) };
   }
@@ -788,20 +778,6 @@ function wikiRecommendationSignature(value) {
   });
 }
 
-function getWikiItemIds(wikiProfile, manifest, wikiResolver) {
-  if (!wikiProfile) return new Set();
-
-  const ids = new Set();
-  for (const sourceEntry of wikiProfile.entries ?? []) {
-    const hasMappedStage = (sourceEntry.evaluations ?? [])
-      .some(evaluation => manifest.wikiStageMap?.[evaluation.stageId]);
-    if (!hasMappedStage) continue;
-
-    for (const id of resolveWikiEntryIds(sourceEntry, wikiResolver)) ids.add(id);
-  }
-  return ids;
-}
-
 function resolveWikiEntryIds(sourceEntry, wikiResolver) {
   return [...new Set(
     (sourceEntry.itemGroups?.flat() ?? [])
@@ -952,13 +928,6 @@ function normalizeWikiText(value) {
     .replace(/[^a-z0-9]+/g, "");
 }
 
-function shouldExcludeVanillaItem(id, manifest, wikiItemIds, modifiedVanillaItems) {
-  return (manifest.requiredMods?.length ?? 0) > 0
-    && id.startsWith("Terraria/")
-    && !wikiItemIds.has(id)
-    && !modifiedVanillaItems.has(id);
-}
-
 function isAllowedProfileItem(id, contentMods) {
   const slash = id.indexOf("/");
   const mod = slash >= 0 ? id.slice(0, slash) : "";
@@ -1018,9 +987,7 @@ function buildManualReview({
     ],
     value => JSON.stringify(value))
     .filter(record =>
-      (isOwnedByContentMod(record.item, contentMods)
-        || (manifest.modifiedVanillaItems ?? []).includes(record.item))
-      && !ignoredItems.has(record.item)
+      !ignoredItems.has(record.item)
       && classifyItem(
         itemById.get(record.item),
         manifest,
@@ -1064,10 +1031,81 @@ function buildManualReview({
   }
 
   const classificationReport = { ambiguousClasses: [] };
+  const assignedDropSources = new Set(manifest.stages.flatMap(stage => [
+    ...(stage.dropSources ?? []),
+    ...(stage.enemies ?? []),
+    ...(stage.containers ?? [])
+  ]));
+  for (const event of manifest.events ?? []) {
+    for (const source of [
+      ...(event.dropSources ?? []),
+      ...(event.enemies ?? []),
+      ...(event.containers ?? [])
+    ]) {
+      assignedDropSources.add(source);
+    }
+  }
+  const assignedShops = new Set(
+    manifest.stages.flatMap(stage => stage.shops ?? []));
+  for (const shop of assignedShops) assignedDropSources.add(shop);
+  const missingVanillaSources = new Map();
+  const recordMissingSource = (source, sourceKind, item) => {
+    if (!source.startsWith("Terraria/")) return;
+    const key = `${sourceKind}:${source}`;
+    const record = missingVanillaSources.get(key) ?? {
+      source,
+      sourceKind,
+      items: []
+    };
+    if (!record.items.includes(item)) record.items.push(item);
+    missingVanillaSources.set(key, record);
+  };
+  const coverageClassificationReport = { ambiguousClasses: [] };
+  for (const drop of snapshot.drops) {
+    if (drop.sourceType !== "npc"
+        || assignedDropSources.has(drop.source)
+        || !classifyItem(
+          itemById.get(drop.item),
+          manifest,
+          coverageClassificationReport,
+          classificationContext)) {
+      continue;
+    }
+    recordMissingSource(drop.source, "drop", drop.item);
+  }
+  for (const shop of snapshot.shops) {
+    if (assignedShops.has(shop.npc)
+        || !classifyItem(
+          itemById.get(shop.item),
+          manifest,
+          coverageClassificationReport,
+          classificationContext)) {
+      continue;
+    }
+    recordMissingSource(shop.npc, "shop", shop.item);
+  }
+  report.unassignedVanillaNpcSources = [...missingVanillaSources.values()]
+    .map(record => ({ ...record, items: record.items.sort() }))
+    .sort((left, right) =>
+      left.sourceKind.localeCompare(right.sourceKind)
+      || left.source.localeCompare(right.source));
+  if (report.unassignedVanillaNpcSources.length > 0) {
+    issues.push(createReviewIssue("unassigned-vanilla-npc-sources", {
+      affectedCount: report.unassignedVanillaNpcSources.length,
+      sources: report.unassignedVanillaNpcSources,
+      resolution: {
+        sourceStages: Object.fromEntries(
+          report.unassignedVanillaNpcSources.map(record =>
+            [record.source, "<stage-id>"]))
+      }
+    }, {
+      sources: report.unassignedVanillaNpcSources.map(record =>
+        `${record.sourceKind}:${record.source}`)
+    }));
+  }
 
   for (const item of classificationContext.items) {
-    if (!isOwnedByContentMod(item.id, contentMods)
-        || available.has(item.id)
+    if (available.has(item.id)
         || (entryByItem.get(item.id)?.evaluations.length ?? 0) > 0
         || ignoredItems.has(item.id)) {
       continue;
@@ -1221,11 +1259,6 @@ function createReviewIssue(kind, values, identity = values) {
     kind,
     ...values
   };
-}
-
-function isOwnedByContentMod(id, contentMods) {
-  const slash = id.indexOf("/");
-  return slash > 0 && contentMods.has(id.slice(0, slash));
 }
 
 function appendUnique(values, value, selector) {

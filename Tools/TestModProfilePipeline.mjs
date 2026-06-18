@@ -207,6 +207,12 @@ assert(vanillaSources.initialStations.includes("Terraria/Hellforge"));
 assert(vanillaSources.initialItems.includes("Terraria/PinkGel"));
 assert(vanillaSources.initialItems.includes("Terraria/JungleRose"));
 assert(vanillaSources.initialItems.includes("Terraria/GlowingMushroom"));
+assert(vanillaSources.stages[0].enemies.includes("Terraria/Skeleton"));
+assert(vanillaSources.stages.find(stage => stage.id === "world-evil")
+  .shops.includes("Terraria/DD2Bartender"));
+assert(vanillaSources.conditionUnlocks.some(rule =>
+  rule.sourceIds?.includes("Terraria/DD2Bartender")
+  && rule.conditionDescriptions?.includes("In Hardmode")));
 assert(vanillaSources.stages.find(stage => stage.id === "start")
   .shops.includes("Terraria/ArmsDealer"));
 assert(vanillaSources.stages.find(stage => stage.id === "start")
