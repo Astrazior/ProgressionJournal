@@ -48,6 +48,8 @@ public sealed class JournalSystem : ModSystem
 
     public bool ProgressionModeEnabled { get; private set; } = true;
 
+    public bool BuildAllItemsEnabled { get; private set; }
+
     public int SelectedItemId { get; private set; }
 
     public string? ActiveBuildSlotKey { get; private set; }
@@ -68,7 +70,7 @@ public sealed class JournalSystem : ModSystem
         }
 
         _journalInterface = new UserInterface();
-        _journalState = new JournalUiState();
+        _journalState = new JournalUiState(this);
         _journalState.Activate();
 
         _buttonInterface = new UserInterface();
@@ -362,6 +364,17 @@ public sealed class JournalSystem : ModSystem
         RefreshView();
     }
 
+    public void ToggleBuildAllItems()
+    {
+        if (!ShowingBuildBuilder)
+        {
+            return;
+        }
+
+        BuildAllItemsEnabled = !BuildAllItemsEnabled;
+        RefreshView();
+    }
+
     public void EditSavedBuild(JournalSavedBuild build)
     {
         if (!JournalProfileRegistry.Select(build.ProfileId))
@@ -387,6 +400,12 @@ public sealed class JournalSystem : ModSystem
             _buildSelections[selection.Key] = selection.Value;
         }
 
+        BuildAllItemsEnabled = _buildSelections.Any(pair => !JournalRepository.IsBuildSelectionValid(
+            SelectedProfileId,
+            SelectedStageId,
+            SelectedClassId,
+            pair.Key,
+            pair.Value));
         CoerceBuildSelections();
         RefreshView();
     }
@@ -791,14 +810,14 @@ public sealed class JournalSystem : ModSystem
 
     private bool DrawJournalInterface()
     {
-        JournalRecommendationHeader.ClearPendingTooltip();
+        JournalTooltip.Clear();
         _journalInterface?.Draw(Main.spriteBatch, new GameTime());
         return true;
     }
 
     private static bool DrawJournalTooltipInterface()
     {
-        return JournalRecommendationHeader.DrawPendingTooltip(Main.spriteBatch);
+        return JournalTooltip.DrawPending(Main.spriteBatch);
     }
 
     private bool DrawJournalButtonInterface()
@@ -858,7 +877,8 @@ public sealed class JournalSystem : ModSystem
                 SelectedStageId,
                 SelectedClassId,
                 pair.Key,
-                pair.Value))
+                pair.Value,
+                BuildAllItemsEnabled))
             .Select(static pair => pair.Key)
             .ToArray();
 

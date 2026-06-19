@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.UI;
@@ -17,13 +16,6 @@ public sealed class JournalRecommendationHeader(
     private const int PlaqueMinWidth = 150;
     private const float HelpScale = 0.82f;
     private const float HelpRightPadding = 7f;
-    private const float TooltipMaxWidth = 360f;
-    private const float TooltipTextScale = 1f;
-    private const int TooltipPadding = 10;
-    private const int TooltipOffset = 16;
-
-    private static string? _pendingTooltip;
-
     protected override void DrawSelf(SpriteBatch spriteBatch)
     {
         base.DrawSelf(spriteBatch);
@@ -92,72 +84,7 @@ public sealed class JournalRecommendationHeader(
 
         if (hovered)
         {
-            _pendingTooltip = hoverText;
-        }
-    }
-
-    internal static void ClearPendingTooltip()
-    {
-        _pendingTooltip = null;
-    }
-
-    internal static bool DrawPendingTooltip(SpriteBatch spriteBatch)
-    {
-        if (string.IsNullOrWhiteSpace(_pendingTooltip))
-        {
-            return true;
-        }
-
-        DrawTooltip(spriteBatch, FontAssets.MouseText.Value, _pendingTooltip);
-        _pendingTooltip = null;
-        return true;
-    }
-
-    private static void DrawTooltip(SpriteBatch spriteBatch, DynamicSpriteFont font, string text)
-    {
-        var lines = JournalTextUtilities.WrapToPixelWidth(
-            text,
-            TooltipMaxWidth,
-            TooltipTextScale);
-        var lineHeight = font.LineSpacing * TooltipTextScale;
-        var textWidth = lines.Max(line => font.MeasureString(line).X * TooltipTextScale);
-        var width = (int)MathF.Ceiling(textWidth) + TooltipPadding * 2;
-        var height = (int)MathF.Ceiling(lineHeight * lines.Count) + TooltipPadding * 2;
-        var mouse = Main.MouseScreen;
-        var viewportWidth = Main.screenWidth;
-        var viewportHeight = Main.screenHeight;
-        var x = mouse.X + TooltipOffset;
-        var y = mouse.Y + TooltipOffset;
-
-        if (x + width + TooltipOffset > viewportWidth)
-        {
-            x = mouse.X - width - TooltipOffset;
-        }
-
-        if (y + height + TooltipOffset > viewportHeight)
-        {
-            y = mouse.Y - height - TooltipOffset;
-        }
-
-        x = MathHelper.Clamp(x, TooltipOffset, Math.Max(TooltipOffset, viewportWidth - width - TooltipOffset));
-        y = MathHelper.Clamp(y, TooltipOffset, Math.Max(TooltipOffset, viewportHeight - height - TooltipOffset));
-
-        JournalSourceCardRenderer.DrawTooltip(
-            spriteBatch,
-            new Rectangle((int)x, (int)y, width, height),
-            JournalUiTheme.PresetPanelBorder);
-
-        for (var index = 0; index < lines.Count; index++)
-        {
-            Utils.DrawBorderStringFourWay(
-                spriteBatch,
-                font,
-                lines[index],
-                x + TooltipPadding,
-                y + TooltipPadding + index * lineHeight,
-                JournalUiTheme.ContentDescriptionText,
-                Color.Black * 0.75f,
-                Vector2.Zero);
+            JournalTooltip.Request(hoverText);
         }
     }
 }

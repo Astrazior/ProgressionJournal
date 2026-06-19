@@ -43,16 +43,24 @@ public static partial class JournalRepository
         string profileId,
         string stageId,
         string classId,
-        string slotKey)
+        string slotKey,
+        bool includeAllItems = false)
     {
         if (!JournalBuildPlannerCatalog.TryGetSlotKind(slotKey, out var slotKind))
         {
             return [];
         }
 
+        if (includeAllItems)
+        {
+            return BuildAllItemCandidates(profileId, classId, slotKind);
+        }
+
         return slotKind switch
         {
-            JournalBuildSlotKind.Food => BuildFoodCandidates(),
+            JournalBuildSlotKind.Food when string.Equals(profileId, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase)
+                => BuildFoodCandidates(),
+            JournalBuildSlotKind.Food => BuildBuffCandidates(profileId, stageId, classId, slotKind),
             JournalBuildSlotKind.Potion => BuildBuffCandidates(profileId, stageId, classId, slotKind),
             _ => BuildEquipmentCandidates(profileId, stageId, classId, slotKind)
         };
@@ -77,15 +85,17 @@ public static partial class JournalRepository
         string stageId,
         string classId,
         string slotKey,
-        int itemId)
+        int itemId,
+        bool includeAllItems = false)
     {
         if (!JournalBuildPlannerCatalog.TryGetSlotKind(slotKey, out var slotKind))
         {
             return false;
         }
 
-        return GetBuildCandidates(profileId, stageId, classId, slotKey).Any(candidate => candidate.ItemId == itemId)
-            || IsValidModBuildCandidate(profileId, classId, slotKind, itemId);
+        return includeAllItems
+            ? IsValidBuildCandidate(profileId, classId, slotKind, itemId)
+            : GetBuildCandidates(profileId, stageId, classId, slotKey).Any(candidate => candidate.ItemId == itemId);
     }
 
     public static IReadOnlyList<JournalBuildCandidateGroup> GetModBuildCandidateGroups(
@@ -101,15 +111,25 @@ public static partial class JournalRepository
     public static IReadOnlyList<JournalBuildCandidateGroup> GetModBuildCandidateGroups(
         string profileId,
         string classId,
-        string slotKey)
+        string slotKey,
+        string? stageId = null,
+        bool includeAllItems = false)
     {
         if (!JournalBuildPlannerCatalog.TryGetSlotKind(slotKey, out var slotKind))
         {
             return [];
         }
 
-        return ContentSamples.ItemsByType.Values
-            .Where(item => IsModBuildCandidate(profileId, classId, slotKind, item))
+        IEnumerable<Item> items = includeAllItems
+            ? ContentSamples.ItemsByType.Values.Where(item => IsBuildCandidate(profileId, classId, slotKind, item))
+            : GetBuildCandidates(profileId, stageId ?? string.Empty, classId, slotKey)
+                .Select(static candidate => candidate.ItemId)
+                .Distinct()
+                .Select(static itemId => ContentSamples.ItemsByType.GetValueOrDefault(itemId))
+                .OfType<Item>();
+
+        return items
+            .Where(static item => item.ModItem is not null)
             .GroupBy(static item => item.ModItem!.Mod.DisplayNameClean)
             .OrderBy(static group => group.Key, StringComparer.CurrentCultureIgnoreCase)
             .Select(static group =>
@@ -191,14 +211,7 @@ public static partial class JournalRepository
     {
         Dictionary<int, BuildCandidateAccumulator> candidates = new();
 
-        if (!string.Equals(profileId, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase)
-            || !JournalStageIds.TryToLegacy(stageId, out var legacyStage))
-        {
-            return [];
-        }
-
-        var legacyClass = JournalClassIds.ToLegacy(classId);
-        foreach (var buffEntry in GetCombatBuffEntries(legacyStage, legacyClass))
+        foreach (var buffEntry in GetCombatBuffEntries(profileId, stageId, classId))
         {
             if (!MatchesBuildBuffSlot(buffEntry, slotKind))
             {
@@ -233,10 +246,27 @@ public static partial class JournalRepository
     private static IReadOnlyList<JournalBuildCandidate> BuildFoodCandidates()
     {
         return ContentSamples.ItemsByType.Values
+            .Where(static item => item.ModItem is null)
             .Where(IsFoodBuffItem)
             .GroupBy(static item => item.type)
             .Select(static group => group.First())
             .OrderBy(static item => GetFoodBuffSortOrder(item.buffType))
+            .ThenBy(static item => Lang.GetItemNameValue(item.type), StringComparer.CurrentCultureIgnoreCase)
+            .Select(static item => new JournalBuildCandidate(item.type))
+            .ToArray();
+    }
+
+    private static IReadOnlyList<JournalBuildCandidate> BuildAllItemCandidates(
+        string profileId,
+        string classId,
+        JournalBuildSlotKind slotKind)
+    {
+        return ContentSamples.ItemsByType.Values
+            .Where(item => IsBuildCandidate(profileId, classId, slotKind, item))
+            .GroupBy(static item => item.type)
+            .Select(static group => group.First())
+            .OrderBy(static item => item.ModItem is null ? 0 : 1)
+            .ThenBy(static item => item.ModItem?.Mod.DisplayNameClean ?? string.Empty, StringComparer.CurrentCultureIgnoreCase)
             .ThenBy(static item => Lang.GetItemNameValue(item.type), StringComparer.CurrentCultureIgnoreCase)
             .Select(static item => new JournalBuildCandidate(item.type))
             .ToArray();
@@ -330,15 +360,15 @@ public static partial class JournalRepository
         };
     }
 
-    private static bool IsValidModBuildCandidate(string profileId, string classId, JournalBuildSlotKind slotKind, int itemId)
+    private static bool IsValidBuildCandidate(string profileId, string classId, JournalBuildSlotKind slotKind, int itemId)
     {
         return ContentSamples.ItemsByType.TryGetValue(itemId, out var item)
-            && IsModBuildCandidate(profileId, classId, slotKind, item);
+            && IsBuildCandidate(profileId, classId, slotKind, item);
     }
 
-    private static bool IsModBuildCandidate(string profileId, string classId, JournalBuildSlotKind slotKind, Item item)
+    private static bool IsBuildCandidate(string profileId, string classId, JournalBuildSlotKind slotKind, Item item)
     {
-        if (item.type <= ItemID.None || item.IsAir || item.ModItem is null)
+        if (item.type <= ItemID.None || item.IsAir)
         {
             return false;
         }
@@ -346,7 +376,7 @@ public static partial class JournalRepository
         return slotKind switch
         {
             JournalBuildSlotKind.PrimaryWeapon or JournalBuildSlotKind.SupportWeapon => IsWeaponItem(item),
-            JournalBuildSlotKind.ClassSpecific => IsClassSpecificModItem(profileId, classId, item),
+            JournalBuildSlotKind.ClassSpecific => IsClassSpecificItem(profileId, classId, item),
             JournalBuildSlotKind.ArmorHead => item.headSlot >= 0,
             JournalBuildSlotKind.ArmorBody => item is { bodySlot: >= 0, headSlot: < 0 },
             JournalBuildSlotKind.ArmorLegs => item is { legSlot: >= 0, headSlot: < 0, bodySlot: < 0 },
@@ -357,8 +387,13 @@ public static partial class JournalRepository
         };
     }
 
-    private static bool IsClassSpecificModItem(string profileId, string classId, Item item)
+    private static bool IsClassSpecificItem(string profileId, string classId, Item item)
     {
+        if (item.ammo > AmmoID.None)
+        {
+            return IsRangedBuildClass(profileId, classId);
+        }
+
         if (JournalProfileRegistry.TryGet(profileId, out var profile))
         {
             var classDefinition = profile.GetClass(classId);
@@ -380,6 +415,17 @@ public static partial class JournalRepository
             CombatClass.Melee => IsWeaponItem(item) && item.CountsAsClass(DamageClass.Melee),
             _ => IsWeaponItem(item)
         };
+    }
+
+    private static bool IsRangedBuildClass(string profileId, string classId)
+    {
+        if (JournalProfileRegistry.TryGet(profileId, out var profile))
+        {
+            return profile.GetClass(classId).DamageClassNames.Any(
+                static name => name.Contains("Ranged", StringComparison.OrdinalIgnoreCase));
+        }
+
+        return JournalClassIds.ToLegacy(classId) == CombatClass.Ranged;
     }
 
     private static bool IsWeaponItem(Item item)

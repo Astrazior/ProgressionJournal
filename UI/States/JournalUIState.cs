@@ -15,6 +15,8 @@ namespace ProgressionJournal.UI.States;
 
 public sealed class JournalUiState : UIState
 {
+    private readonly JournalSystem _journalSystem;
+
     private const string BestiarySearchCancelTexturePath = "Images/UI/SearchCancel";
     private const string BestiaryBackButtonTexturePath = "Images/UI/Bestiary/Button_Back";
     private const string CraftingWindowToggleTexturePath = "Images/UI/Craft_Toggle_0";
@@ -27,6 +29,7 @@ public sealed class JournalUiState : UIState
     private const int BuildPickerModsIconItemId = ItemID.Wrench;
     private const int BuildPickerMeleeIconItemId = ItemID.WoodenSword;
     private const int BuildPickerMenuMaxColumns = 6;
+    private const float BuildPickerModeToggleWidth = 66f;
     private const float BuildPickerMenuPadding = 5f;
     private const float BuildPickerMenuButtonSize = 40f;
     private const float BuildPickerMenuGap = 5f;
@@ -70,6 +73,7 @@ public sealed class JournalUiState : UIState
     private UIText _buildPickerTitle = null!;
     private JournalIconButton _buildPickerCloseButton = null!;
     private JournalBuildFilterIconButton _buildPickerFilterButton = null!;
+    private JournalBuildItemModeToggle _buildPickerAllItemsButton = null!;
     private JournalBuildFilterIconButton _buildPickerSortButton = null!;
     private UIPanel _buildPickerFilterMenuPanel = null!;
     private UIPanel _buildPickerSortMenuPanel = null!;
@@ -115,6 +119,11 @@ public sealed class JournalUiState : UIState
     private string _renderedProfileId = string.Empty;
 
     private sealed record CachedAcquisitionView(UIElement PreviewElement, IReadOnlyList<UIElement> Entries);
+
+    public JournalUiState(JournalSystem journalSystem)
+    {
+        _journalSystem = journalSystem;
+    }
 
     private enum BuildPickerTab
     {
@@ -1128,7 +1137,7 @@ public sealed class JournalUiState : UIState
 
         if (_activeBuildPickerTab == BuildPickerTab.Mods)
         {
-            PopulateModBuildPicker(profileId, classId, slotKey, panelWidth);
+            PopulateModBuildPicker(profileId, stageId, classId, slotKey, panelWidth);
             return;
         }
 
@@ -1146,7 +1155,8 @@ public sealed class JournalUiState : UIState
                 profileId,
                 stageId,
                 classId,
-                slotKey)
+                slotKey,
+                JournalSystem.BuildAllItemsEnabled)
             .Where(MatchesBuildPickerSearch)
             .Where(MatchesBuildPickerDamageFilter)
             .ToArray();
@@ -1167,9 +1177,19 @@ public sealed class JournalUiState : UIState
         }
     }
 
-    private void PopulateModBuildPicker(string profileId, string classId, string slotKey, float panelWidth)
+    private void PopulateModBuildPicker(
+        string profileId,
+        string stageId,
+        string classId,
+        string slotKey,
+        float panelWidth)
     {
-        var groups = GetModBuildCandidateGroups(profileId, classId, slotKey)
+        var groups = GetModBuildCandidateGroups(
+                profileId,
+                classId,
+                slotKey,
+                stageId,
+                JournalSystem.BuildAllItemsEnabled)
             .Select(FilterBuildCandidateGroup)
             .Where(static group => group.Candidates.Count > 0)
             .ToArray();
@@ -1203,6 +1223,10 @@ public sealed class JournalUiState : UIState
         _buildPickerFilterButton.SetActive(_buildPickerFilterMenuOpen
             || _activeBuildPickerTab == BuildPickerTab.Mods
             || _buildPickerDamageFilter != BuildPickerDamageFilter.None);
+        _buildPickerAllItemsButton.SetAllItemsEnabled(JournalSystem.BuildAllItemsEnabled);
+        _buildPickerAllItemsButton.SetHoverText(Language.GetTextValue(JournalSystem.BuildAllItemsEnabled
+            ? "Mods.ProgressionJournal.UI.BuildProgressionItemsTooltip"
+            : "Mods.ProgressionJournal.UI.BuildAllItemsTooltip"));
         _buildPickerSortButton.SetActive(_buildPickerSortMenuOpen || _buildPickerPowerSort != BuildPickerPowerSort.None);
 
         if (selectedModGroup is null)
@@ -1300,7 +1324,12 @@ public sealed class JournalUiState : UIState
     {
         _buildPickerFilterMenuPanel.RemoveAllChildren();
 
-        var groups = GetModBuildCandidateGroups(profileId, classId, slotKey).ToArray();
+        var groups = GetModBuildCandidateGroups(
+            profileId,
+            classId,
+            slotKey,
+            JournalSystem.SelectedStageId,
+            JournalSystem.BuildAllItemsEnabled).ToArray();
         var showDamageFilters = CanUseBuildPickerDamageFilters(slotKey);
         var sourceButtonCount = 3 + groups.Length;
         if (showDamageFilters)
@@ -1522,11 +1551,17 @@ public sealed class JournalUiState : UIState
         var firstSlotLeft = GetBuildPickerFirstSlotLeft(panelWidth);
         var filterButtonLeft = MathF.Max(0f, firstSlotLeft - buttonSize - buttonGap);
         var sortButtonLeft = -(JournalUiMetrics.BuildPickerInset + buttonSize);
-        var searchRightInset = JournalUiMetrics.BuildPickerInset + buttonSize + searchSortGap;
+        var allItemsButtonLeft = sortButtonLeft - BuildPickerModeToggleWidth - buttonGap;
+        var searchRightInset = JournalUiMetrics.BuildPickerInset
+            + buttonSize
+            + BuildPickerModeToggleWidth
+            + buttonGap
+            + searchSortGap;
 
         _buildPickerFilterButton.Left.Set(filterButtonLeft, 0f);
         _buildPickerFilterMenuPanel.Left.Set(filterButtonLeft, 0f);
 
+        _buildPickerAllItemsButton.Left.Set(allItemsButtonLeft, 1f);
         _buildPickerSortButton.Left.Set(sortButtonLeft, 1f);
         _buildPickerSortMenuPanel.Left.Set(sortButtonLeft, 1f);
 
@@ -1777,7 +1812,12 @@ public sealed class JournalUiState : UIState
             return null;
         }
 
-        return GetModBuildCandidateGroups(profileId, classId, slotKey)
+        return GetModBuildCandidateGroups(
+                profileId,
+                classId,
+                slotKey,
+                JournalSystem.SelectedStageId,
+                JournalSystem.BuildAllItemsEnabled)
             .FirstOrDefault(group => string.Equals(group.Title, _selectedBuildPickerModName, StringComparison.CurrentCultureIgnoreCase));
     }
 
@@ -2038,7 +2078,7 @@ public sealed class JournalUiState : UIState
         _sharedBuildList.Clear();
     }
 
-    private static UIElement CreateBuildCandidateRow(
+    private UIElement CreateBuildCandidateRow(
         IReadOnlyList<JournalBuildCandidate> candidates,
         IReadOnlySet<int> highlightedItemIds,
         IReadOnlySet<int> blockedItemIds)
@@ -2470,6 +2510,7 @@ public sealed class JournalUiState : UIState
         const float filterButtonGap = 8f;
         const float filterButtonLeft = 4f;
         const float sortButtonLeft = -(JournalUiMetrics.BuildPickerInset + filterButtonSize);
+        const float allItemsButtonLeft = sortButtonLeft - BuildPickerModeToggleWidth - 4f;
 
         _buildPickerOverlay = new JournalDimOverlay(() => JournalSystem.CloseBuildSlotPicker());
 
@@ -2505,6 +2546,14 @@ public sealed class JournalUiState : UIState
         _buildPickerFilterButton.Width.Set(filterButtonSize, 0f);
         _buildPickerFilterButton.Height.Set(filterButtonSize, 0f);
         _buildPickerPanel.Append(_buildPickerFilterButton);
+
+        _buildPickerAllItemsButton = new JournalBuildItemModeToggle(JournalSystem.ToggleBuildAllItems);
+        _buildPickerAllItemsButton.Left.Set(allItemsButtonLeft, 1f);
+        _buildPickerAllItemsButton.Top.Set(84f, 0f);
+        _buildPickerAllItemsButton.Width.Set(BuildPickerModeToggleWidth, 0f);
+        _buildPickerAllItemsButton.Height.Set(filterButtonSize, 0f);
+        _buildPickerAllItemsButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildAllItemsTooltip"));
+        _buildPickerPanel.Append(_buildPickerAllItemsButton);
 
         _buildPickerSortButton = new JournalBuildFilterIconButton(ToggleBuildPickerSortMenu);
         _buildPickerSortButton.SetIconAsset(
@@ -3112,5 +3161,5 @@ public sealed class JournalUiState : UIState
         _buildSaveNameInput.Focused = true;
     }
 
-    private static JournalSystem JournalSystem => ModContent.GetInstance<JournalSystem>();
+    private JournalSystem JournalSystem => _journalSystem;
 }

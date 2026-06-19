@@ -37,18 +37,34 @@ public static class JournalTextUtilities
             return [];
         }
 
-        if (MeasureMouseTextWidth(text, textScale) <= maxWidth)
+        var paragraphs = text.Replace("\r\n", "\n").Split('\n');
+        if (paragraphs.Length == 1 && MeasureMouseTextWidth(text, textScale) <= maxWidth)
         {
             return [text];
         }
 
-        var words = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        if (words.Length == 0)
+        var lines = new List<string>();
+        foreach (var paragraph in paragraphs)
         {
-            return [TrimToPixelWidth(text, maxWidth, textScale)];
+            WrapParagraph(paragraph, maxWidth, textScale, lines);
         }
 
-        var lines = new List<string>();
+        return lines;
+    }
+
+    private static void WrapParagraph(
+        string paragraph,
+        float maxWidth,
+        float textScale,
+        List<string> lines)
+    {
+        var words = paragraph.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (words.Length == 0)
+        {
+            lines.Add(string.Empty);
+            return;
+        }
+
         var currentLine = string.Empty;
 
         foreach (var word in words)
@@ -74,7 +90,5 @@ public static class JournalTextUtilities
         {
             lines.Add(currentLine);
         }
-
-        return lines.Where(static line => !string.IsNullOrWhiteSpace(line)).ToArray();
     }
 }
