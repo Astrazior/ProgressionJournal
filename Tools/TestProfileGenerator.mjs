@@ -12,7 +12,7 @@ const item = (id, values = {}) => ({
 });
 const snapshot = {
   format: "ProgressionJournalSnapshot",
-  version: 1,
+  version: 4,
   mods: [{ name: "Test", version: "1.2.3" }],
   items: [
     item("Test/Ore"),
@@ -31,7 +31,10 @@ const snapshot = {
     item("Test/ZeroRateBlade", { damageClass: "Melee", damage: 23 }),
     item("Test/FlooredBlade", { damageClass: "Melee", damage: 24 }),
     item("Test/LateDrop", { damageClass: "Melee", damage: 40 }),
+    item("Test/GlobalBlade", { damageClass: "Melee", damage: 37 }),
     item("Test/ManualLateDrop", { damageClass: "Melee", damage: 39 }),
+    item("Test/CollisionSource"),
+    item("Test/CollisionBlade", { damageClass: "Melee", damage: 38 }),
     item("Test/WikiOnlyBlade", { damageClass: "Melee", damage: 41 }),
     item("Terraria/FilteredSword", { damageClass: "Melee", damage: 25 }),
     item("Terraria/ModifiedSword", { damageClass: "Melee", damage: 26 }),
@@ -42,6 +45,10 @@ const snapshot = {
       damageClass: "Melee",
       damage: 27
     }),
+    item("Terraria/VanillaSummonerAccessory", { accessory: true }),
+    item("Terraria/VanillaUtilityAccessory", { accessory: true }),
+    item("Terraria/VanillaMagicHelmet", { defense: 5, headSlot: 12 }),
+    item("Terraria/VanillaMeleeHelmet", { defense: 8, headSlot: 13 }),
     item("Test/EarlyWikiSword", { damageClass: "Melee", damage: 28 }),
     item("Test/RenamedBlade", { name: "Renamed Blade", damageClass: "Melee", damage: 29 }),
     item("Test/ExampleHelmet", { name: "Example Helmet", defense: 3, headSlot: 1 }),
@@ -88,6 +95,10 @@ const snapshot = {
         { damageClass: "GenericDamageClass", damage: true },
         { damageClass: "Melee", damage: true }
       ]
+    }),
+    item("Test/UtilityAccessory", {
+      name: "Utility Accessory",
+      accessory: true
     }),
     item("Test/SupportTool", { damageClass: "Melee" }),
     item("Other/Material"),
@@ -172,10 +183,16 @@ const snapshot = {
     { source: "Test/Boss", sourceType: "npc", item: "Test/FlooredBlade", conditions: [] },
     { source: "Test/LateBoss", sourceType: "npc", item: "Test/LateDrop", conditions: [] },
     { source: "Test/ManualLateBoss", sourceType: "npc", item: "Test/ManualLateDrop", conditions: [] },
+    { source: "Test/CollisionSource", sourceType: "npc", item: "Test/CollisionBlade", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/MeleeAccessory", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/UniversalAccessory", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/MixedAccessory", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/GenericMeleeAccessory", conditions: [] },
+    { source: "Test/Boss", sourceType: "npc", item: "Test/UtilityAccessory", conditions: [] },
+    { source: "Test/Boss", sourceType: "npc", item: "Terraria/VanillaSummonerAccessory", conditions: [] },
+    { source: "Test/Boss", sourceType: "npc", item: "Terraria/VanillaUtilityAccessory", conditions: [] },
+    { source: "Test/Boss", sourceType: "npc", item: "Terraria/VanillaMagicHelmet", conditions: [] },
+    { source: "Test/Boss", sourceType: "npc", item: "Terraria/VanillaMeleeHelmet", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Other/Material", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Other/Sword", conditions: [] },
     {
@@ -184,23 +201,55 @@ const snapshot = {
       item: "Test/SeedSword",
       conditions: [{ type: "Test.SpecialSeed", description: "Special seed only" }]
     },
+    {
+      source: "Terraria/GlobalNPCDrops",
+      sourceType: "global",
+      item: "Test/GlobalBlade",
+      conditions: [{ type: "Test.Condition", description: "After Boss" }]
+    },
     { source: "Test/EventEnemy", sourceType: "npc", item: "Test/EventMaterial", conditions: [] }
   ],
   shops: [
     {
       npc: "Test/Merchant",
       item: "Test/ShopBlade",
+      observed: true,
+      earliestStageIndex: 1,
+      earliestStageName: "Boss",
       conditions: [{ type: "Test.Condition", description: "After Boss" }]
     },
     {
       npc: "Test/Merchant",
       item: "Test/UnknownShopBlade",
+      observed: true,
+      earliestStageIndex: 1,
+      earliestStageName: "Boss",
       conditions: [{ type: "Test.UnknownCondition", description: "After unknown event" }]
     },
     {
       npc: "Test/ManualMerchant",
       item: "Test/ManualShopBlade",
+      observed: true,
+      earliestStageIndex: 1,
+      earliestStageName: "Boss",
       conditions: []
+    }
+  ],
+  vanillaItemClassifications: [
+    {
+      item: "Terraria/VanillaSummonerAccessory",
+      category: "Accessory",
+      classes: ["magic"]
+    },
+    {
+      item: "Terraria/VanillaMagicHelmet",
+      category: "Armor",
+      classes: ["magic"]
+    },
+    {
+      item: "Terraria/VanillaMeleeHelmet",
+      category: "Armor",
+      classes: ["melee"]
     }
   ]
 };
@@ -209,6 +258,7 @@ const manifest = {
   name: { "en-US": "Test", "ru-RU": "Тест" },
   requiredMods: [{ name: "Test", version: "" }],
   modifiedVanillaItems: ["Terraria/ModifiedSword"],
+  initialItems: ["Test/CollisionSource"],
   wikiSource: { name: "Test Wiki", url: "https://example.invalid" },
   wikiStageMap: {
     guide: { stageId: "boss", target: { "en-US": "Boss", "ru-RU": "Босс" } },
@@ -232,7 +282,7 @@ const manifest = {
     {
       id: "boss",
       name: { "en-US": "Boss", "ru-RU": "Босс" },
-      dropSources: ["Test/Boss"],
+      dropSources: ["Test/Boss", "Test/CollisionSource"],
       shops: ["Test/Merchant"]
     },
     { id: "empty", name: { "en-US": "Empty", "ru-RU": "Пусто" } },
@@ -251,7 +301,7 @@ const manifest = {
     },
     {
       stageId: "boss",
-      sources: ["shop"],
+      sources: ["shop", "drop"],
       conditionDescriptions: ["After Boss"]
     }
   ]
@@ -392,6 +442,10 @@ assert(profile.entries.some(entry =>
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "ShopBlade"
   && entry.evaluations[0].stageId === "boss"));
+assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "GlobalBlade"
+  && entry.evaluations[0].stageId === "boss"));
+assert.equal(report.paths["Test/GlobalBlade"].via, "global:Terraria/GlobalNPCDrops");
 assert.equal(report.paths["Test/ShopBlade"].via, "shop:Test/Merchant");
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "ClassTool"
@@ -427,6 +481,22 @@ assert.deepEqual(
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "GenericMeleeAccessory")?.classes,
   ["melee", "magic"]);
+assert(!profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "UtilityAccessory"));
+assert.deepEqual(
+  profile.entries.find(entry =>
+    entry.itemGroups[0][0].item === "VanillaSummonerAccessory")?.classes,
+  ["magic"]);
+assert.deepEqual(
+  profile.entries.find(entry =>
+    entry.itemGroups[0][0].item === "VanillaMagicHelmet")?.classes,
+  ["magic"]);
+assert.deepEqual(
+  profile.entries.find(entry =>
+    entry.itemGroups[0][0].item === "VanillaMeleeHelmet")?.classes,
+  ["melee"]);
+assert(!profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "VanillaUtilityAccessory"));
 assert(report.wikiResolvedItems.some(entry =>
   entry.from === "Test/OldBlade"
   && entry.to.includes("Test/RenamedBlade")));
@@ -468,6 +538,9 @@ assert(report.unassignedVanillaNpcSources.some(record =>
 assert(review.issues.some(issue =>
   issue.kind === "unassigned-vanilla-npc-sources"
   && issue.sources.some(record => record.source === "Terraria/UnknownEnemy")));
+assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "CollisionBlade"
+  && entry.evaluations[0].stageId === "boss"));
 
 const manualAssignments = {
   format: "ProgressionJournalManualAssignments",
@@ -548,6 +621,106 @@ const ignoredReviewResult = generateProfile(snapshot, manifest, wikiProfile, {
   ignoredIssues: [ignoredIssueId]
 });
 assert(!ignoredReviewResult.review.issues.some(issue => issue.id === ignoredIssueId));
+
+const runtimeSnapshot = structuredClone(snapshot);
+runtimeSnapshot.version = 4;
+runtimeSnapshot.items.push(
+  item("Test/RuntimeFishBlade", { damageClass: "Melee", damage: 31 }),
+  item("Test/RuntimeSpawnBlade", { damageClass: "Melee", damage: 32 }),
+  item("Test/RuntimeShopBlade", { damageClass: "Melee", damage: 33 }),
+  item("Test/EventFloorBlade", { damageClass: "Melee", damage: 34 }),
+  item("Test/ManualFloorBlade", { damageClass: "Melee", damage: 35 }));
+runtimeSnapshot.drops.push({
+  source: "Test/RuntimeEnemy",
+  sourceType: "npc",
+  item: "Test/RuntimeSpawnBlade",
+  conditions: []
+}, {
+  source: "Test/EventEnemy",
+  sourceType: "npc",
+  item: "Test/EventFloorBlade",
+  conditions: []
+}, {
+  source: "Test/ManualLateBoss",
+  sourceType: "npc",
+  item: "Test/ManualFloorBlade",
+  conditions: []
+});
+runtimeSnapshot.shops.push({
+  npc: "Test/RuntimeMerchant",
+  shop: "Shop",
+  item: "Test/RuntimeShopBlade",
+  conditions: [],
+  observed: true,
+  earliestStageIndex: 3,
+  earliestStageName: "Late"
+});
+runtimeSnapshot.fishing = [{
+  targetType: "item",
+  target: "Test/RuntimeFishBlade",
+  earliestStageIndex: 1,
+  earliestStageName: "Boss",
+  conditions: ["In runtime fishing scenario"]
+}];
+runtimeSnapshot.npcAvailability = [
+  {
+    npc: "Test/RuntimeEnemy",
+    kind: "spawn",
+    observed: true,
+    earliestStageIndex: 1,
+    earliestStageName: "Boss",
+    conditions: []
+  },
+  {
+    npc: "Test/RuntimeMerchant",
+    kind: "town",
+    observed: true,
+    earliestStageIndex: 3,
+    earliestStageName: "Late",
+    conditions: []
+  },
+  {
+    npc: "Test/EventEnemy",
+    kind: "spawn",
+    observed: true,
+    earliestStageIndex: 0,
+    earliestStageName: "Start",
+    conditions: []
+  },
+  {
+    npc: "Test/ManualLateBoss",
+    kind: "spawn",
+    observed: true,
+    earliestStageIndex: 0,
+    earliestStageName: "Start",
+    conditions: []
+  }
+];
+const runtimeResult = generateProfile(
+  runtimeSnapshot,
+  manifest,
+  wikiProfile,
+  manualAssignments);
+assert(runtimeResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "RuntimeFishBlade"
+  && entry.evaluations[0].stageId === "boss"
+  && entry.fishingSources[0]?.conditions[0] === "In runtime fishing scenario"));
+assert(runtimeResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "RuntimeSpawnBlade"
+  && entry.evaluations[0].stageId === "boss"));
+assert(runtimeResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "RuntimeShopBlade"
+  && entry.evaluations[0].stageId === "late"));
+assert(runtimeResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "EventFloorBlade"
+  && entry.evaluations[0].stageId === "boss"));
+assert(runtimeResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "ManualFloorBlade"
+  && entry.evaluations[0].stageId === "boss"));
+assert(runtimeResult.report.sourceAvailabilityCorrections.some(entry =>
+  entry.source === "Test/EventEnemy"
+  && entry.observedStageId === "start"
+  && entry.effectiveStageId === "boss"));
 
 assert(report.wikiAvailabilityCorrections.some(entry =>
   entry.id === "Test/EarlyWikiSword"

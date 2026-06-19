@@ -27,8 +27,7 @@ public static class JournalItemSourceResolver
             BuildRecipes(itemId),
             BuildDrops(itemId),
             BuildShops(itemId),
-            JournalFishingSourceResolver.FindSources(itemId)
-                .Concat(FindProfileFishingSources(itemId)));
+            FindProfileFishingSources(itemId));
         Cache[cacheKey] = info;
         return info;
     }
@@ -135,7 +134,8 @@ public static class JournalItemSourceResolver
                 pair.shop.NpcType,
                 GetNpcName(pair.shop.NpcType),
                 pair.shop.Name,
-                EnumerateConditions(pair.entry.Conditions).Select(GetConditionDescription)))
+                EnumerateConditions(pair.entry.Conditions)
+                    .Select(GetConditionDescription)))
             .GroupBy(static shop => new
             {
                 shop.NpcType,

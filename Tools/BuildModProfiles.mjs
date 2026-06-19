@@ -6,6 +6,7 @@ import {
   readJson,
   writeJson
 } from "./ProfileGeneratorCore.mjs";
+import { applyVanillaSourceCatalog } from "./VanillaSourceCatalog.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
 const modsRoot = path.join(root, "Profiles", "Mods");
@@ -52,10 +53,17 @@ export function buildModProfile(modName) {
     "agent-rules.json",
     emptyAgentRules(support.id));
   const recommendations = readOptionalJson(directory, "recommendations.json", null);
-  const { assignments, evidence, problems } = normalizeAgentRules(agentRules, support);
+  const { assignments, availabilityChecks, evidence, problems } =
+    normalizeAgentRules(agentRules, support);
   if (problems.length > 0) {
     throw new Error(`Invalid agent-rules.json:\n- ${problems.join("\n- ")}`);
   }
+  const legacyAssignments = structuredClone(assignments);
+  const availabilityMigration = applyConfirmedAvailabilityChecks(
+    snapshot,
+    support,
+    assignments,
+    availabilityChecks);
 
   const manifest = {
     ...support,
@@ -67,7 +75,21 @@ export function buildModProfile(modName) {
     manifest,
     recommendations,
     assignments);
-  const audit = auditProfile(profile, generationReport, support, snapshot);
+  if (availabilityMigration.confirmed > 0) {
+    const legacyProfile = generateProfile(
+      snapshot,
+      manifest,
+      recommendations,
+      legacyAssignments).profile;
+    availabilityMigration.stageComparison =
+      compareProfileStages(legacyProfile, profile);
+  }
+  const audit = auditProfile(
+    profile,
+    generationReport,
+    support,
+    snapshot,
+    assignments);
   const report = {
     format: "ProgressionJournalModProfileReport",
     version: 1,
@@ -84,7 +106,8 @@ export function buildModProfile(modName) {
       rules: agentRules.rules?.length ?? 0,
       ignoredItems: agentRules.ignoredItems?.length ?? 0,
       ignoredIssues: agentRules.ignoredIssues?.length ?? 0,
-      evidence
+      evidence,
+      availabilityMigration
     },
     review: review.summary,
     audit,
@@ -118,11 +141,13 @@ function validateSupport(support, directoryName) {
 
 function validateSnapshot(snapshot, support) {
   assert(snapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot.json format.");
-  assert(snapshot.version === 1 || snapshot.version === 2,
+  assert(snapshot.version === 4,
     `Unsupported snapshot.json version '${snapshot.version}'.`);
   const target = snapshot.targetMod ?? support.targetMod;
   assert(target === support.targetMod,
     `Snapshot target '${target}' does not match '${support.targetMod}'.`);
+  assert(snapshot.profileId === support.id,
+    `Snapshot profile '${snapshot.profileId ?? ""}' does not match '${support.id}'.`);
   const loaded = new Map((snapshot.mods ?? []).map(mod => [mod.name, mod.version ?? ""]));
   for (const required of support.requiredMods ?? []) {
     assert(loaded.has(required.name),
@@ -137,6 +162,7 @@ function validateSnapshot(snapshot, support) {
 export function normalizeAgentRules(document, support) {
   const problems = [];
   const evidence = [];
+  const availabilityChecks = [];
   assert(document.format === "ProgressionJournalAgentRules",
     "Invalid agent-rules.json format.");
   assert(document.version === 1,
@@ -183,7 +209,15 @@ export function normalizeAgentRules(document, support) {
           if (sources.length === 0) problems.push(`${label}: source or sources is required`);
           for (const source of sources) {
             requireText(source, `${label}: source`, problems);
-            if (source && rule.stageId) assignments.sourceStages[source] = rule.stageId;
+            if (source && rule.stageId) {
+              assignments.sourceStages[source] = rule.stageId;
+              availabilityChecks.push({
+                id: label,
+                kind: "npc-source",
+                target: source,
+                expectedStageId: rule.stageId
+              });
+            }
           }
         }
         break;
@@ -230,6 +264,11 @@ export function normalizeAgentRules(document, support) {
                 ...(assignments.fishingSources[item] ?? []),
                 { conditions: rule.conditions }
               ];
+              availabilityChecks.push({
+                id: label,
+                kind: "fishing",
+                target: item
+              });
             }
           }
         }
@@ -258,7 +297,95 @@ export function normalizeAgentRules(document, support) {
     evidence.push(pickEvidence(ignored, label));
   }
 
-  return { assignments, evidence, problems };
+  return { assignments, availabilityChecks, evidence, problems };
+}
+
+export function applyConfirmedAvailabilityChecks(
+  snapshot,
+  support,
+  assignments,
+  checks) {
+  const stageIds = support.stages.map(stage => stage.id);
+  const npcAvailability = new Map(
+    (snapshot.npcAvailability ?? []).map(record => [record.npc, record]));
+  const shopsByNpc = new Map();
+  for (const shop of snapshot.shops ?? []) {
+    if (!shopsByNpc.has(shop.npc)) shopsByNpc.set(shop.npc, []);
+    shopsByNpc.get(shop.npc).push(shop);
+  }
+  const fishing = new Set(
+    (snapshot.fishing ?? [])
+      .filter(record => record.targetType === "item" && record.earliestStageIndex >= 0)
+      .map(record => record.target));
+  const confirmed = [];
+  const pending = [];
+  const mismatched = [];
+
+  for (const check of checks) {
+    if (check.kind === "fishing") {
+      if (fishing.has(check.target)) {
+        delete assignments.fishingSources[check.target];
+        confirmed.push(check);
+      } else {
+        pending.push(check);
+      }
+      continue;
+    }
+
+    const observation = npcAvailability.get(check.target);
+    if (!observation?.observed || observation.earliestStageIndex < 0) {
+      pending.push(check);
+      continue;
+    }
+    if (observation.kind === "town"
+        && (shopsByNpc.get(check.target) ?? []).some(shop => !shop.observed)) {
+      pending.push(check);
+      continue;
+    }
+
+    const actualStageId = stageIds[observation.earliestStageIndex] ?? "";
+    if (actualStageId !== check.expectedStageId) {
+      mismatched.push({ ...check, actualStageId });
+      continue;
+    }
+
+    delete assignments.sourceStages[check.target];
+    confirmed.push({ ...check, actualStageId });
+  }
+
+  return {
+    confirmed: confirmed.length,
+    pending: pending.length + mismatched.length,
+    mismatched: mismatched.length,
+    confirmedRules: confirmed,
+    pendingRules: [...pending, ...mismatched]
+  };
+}
+
+function compareProfileStages(legacyProfile, automaticProfile) {
+  const collect = profile => new Map(
+    [...(profile.entries ?? []), ...(profile.combatBuffs ?? [])]
+      .flatMap(entry => (entry.itemGroups ?? []).flat().map(item => [
+        `${item.mod}/${item.item}`,
+        entry.evaluations?.[0]?.stageId ?? entry.stageId ?? ""
+      ])));
+  const legacyStages = collect(legacyProfile);
+  const automaticStages = collect(automaticProfile);
+  const moved = [];
+  for (const [item, expectedStageId] of legacyStages) {
+    const actualStageId = automaticStages.get(item);
+    if (actualStageId !== expectedStageId) {
+      moved.push({ item, expectedStageId, actualStageId: actualStageId ?? "" });
+    }
+  }
+  if (moved.length > 0) {
+    throw new Error(
+      "Removing confirmed legacy availability moved generated items:\n- "
+      + moved.map(value =>
+        `${value.item}: '${value.expectedStageId}' -> '${value.actualStageId || "missing"}'`)
+        .join("\n- "));
+  }
+  return { compared: legacyStages.size, moved: 0 };
 }
 
 function validateEvidence(value, label, problems) {
@@ -290,7 +417,12 @@ function pickEvidence(value, id) {
   };
 }
 
-function auditProfile(profile, generationReport, support, snapshot) {
+function auditProfile(
+  profile,
+  generationReport,
+  support,
+  snapshot,
+  manualAssignments = null) {
   const errors = [];
   const warnings = [];
   const stageIds = new Set(profile.stages.map(stage => stage.id));
@@ -332,7 +464,136 @@ function auditProfile(profile, generationReport, support, snapshot) {
       break;
     }
   }
-  return { errors, warnings };
+  const sourceCoverage = auditRuntimeSourceCoverage(
+    snapshot,
+    applyVanillaSourceCatalog(support, snapshot),
+    manualAssignments);
+  errors.push(...sourceCoverage.errors);
+  if (sourceCoverage.uncovered.length > 0) {
+    warnings.push(
+      `${sourceCoverage.uncovered.length} NPC drop or shop sources have neither a runtime observation nor an assigned stage`);
+  }
+  return { errors, warnings, sourceCoverage };
+}
+
+export function auditRuntimeSourceCoverage(
+  snapshot,
+  manifest,
+  manualAssignments = null) {
+  const errors = [];
+  const npcIds = new Set((snapshot.npcs ?? []).map(npc => npc.id));
+  const itemIds = new Set((snapshot.items ?? []).map(item => item.id));
+  const availability = new Map();
+  for (const record of snapshot.npcAvailability ?? []) {
+    if (!npcIds.has(record.npc)) {
+      errors.push(`NPC availability references unknown NPC '${record.npc}'`);
+    }
+    if (availability.has(record.npc)) {
+      errors.push(`duplicate NPC availability for '${record.npc}'`);
+    }
+    availability.set(record.npc, record);
+  }
+  for (const npc of npcIds) {
+    if (!availability.has(npc)) {
+      errors.push(`missing NPC availability for '${npc}'`);
+    }
+  }
+
+  const declaredDrops = new Set(
+    (manifest.stages ?? []).flatMap(stage => [
+      ...(stage.dropSources ?? []),
+      ...(stage.enemies ?? [])
+    ]));
+  const declaredShops = new Set(
+    (manifest.stages ?? []).flatMap(stage => stage.shops ?? []));
+  for (const event of manifest.events ?? []) {
+    for (const source of [
+      ...(event.dropSources ?? []),
+      ...(event.enemies ?? [])
+    ]) {
+      declaredDrops.add(source);
+    }
+  }
+  for (const source of Object.keys(manualAssignments?.sourceStages ?? {})) {
+    declaredDrops.add(source);
+    declaredShops.add(source);
+  }
+
+  const sourceKinds = new Map();
+  const addSource = (source, kind) => {
+    const kinds = sourceKinds.get(source) ?? new Set();
+    kinds.add(kind);
+    sourceKinds.set(source, kinds);
+  };
+  for (const drop of snapshot.drops ?? []) {
+    if (!itemIds.has(drop.item)) {
+      errors.push(`drop references unknown item '${drop.item}'`);
+    }
+    if (drop.sourceType === "npc") {
+      if (!npcIds.has(drop.source)) {
+        errors.push(`drop references unknown NPC '${drop.source}'`);
+      }
+      addSource(drop.source, "drop");
+    } else if (drop.sourceType === "container" && !itemIds.has(drop.source)) {
+      errors.push(`container drop references unknown item '${drop.source}'`);
+    }
+  }
+  for (const shop of snapshot.shops ?? []) {
+    if (!npcIds.has(shop.npc)) {
+      errors.push(`shop references unknown NPC '${shop.npc}'`);
+    }
+    if (!itemIds.has(shop.item)) {
+      errors.push(`shop references unknown item '${shop.item}'`);
+    }
+    addSource(shop.npc, "shop");
+  }
+  for (const catchRecord of snapshot.fishing ?? []) {
+    const known = catchRecord.targetType === "npc"
+      ? npcIds.has(catchRecord.target)
+      : catchRecord.targetType === "item" && itemIds.has(catchRecord.target);
+    if (!known) {
+      errors.push(
+        `fishing references unknown ${catchRecord.targetType} '${catchRecord.target}'`);
+    }
+  }
+
+  const observed = [];
+  const declared = [];
+  const uncovered = [];
+  for (const [source, kinds] of sourceKinds) {
+    const record = availability.get(source);
+    const runtimeCovered = record?.observed === true;
+    const assigned = [...kinds].every(kind =>
+      kind === "shop" ? declaredShops.has(source) : declaredDrops.has(source));
+    const result = {
+      source,
+      kinds: [...kinds].sort(),
+      availabilityKind: record?.kind ?? "",
+      earliestStageIndex: record?.earliestStageIndex ?? -1
+    };
+    if (runtimeCovered) observed.push(result);
+    else if (assigned) declared.push(result);
+    else uncovered.push(result);
+  }
+  const sortSources = values => values.sort((left, right) =>
+    left.source.localeCompare(right.source));
+  return {
+    npcCount: npcIds.size,
+    availabilityCount: availability.size,
+    fishingCount: (snapshot.fishing ?? []).length,
+    dropSourceCount: new Set(
+      (snapshot.drops ?? [])
+        .filter(drop => drop.sourceType === "npc")
+        .map(drop => drop.source)).size,
+    shopSourceCount: new Set(
+      (snapshot.shops ?? []).map(shop => shop.npc)).size,
+    globalDropCount: (snapshot.drops ?? [])
+      .filter(drop => drop.sourceType === "global").length,
+    observed: sortSources(observed),
+    declared: sortSources(declared),
+    uncovered: sortSources(uncovered),
+    errors: [...new Set(errors)].sort()
+  };
 }
 
 function validateLocalized(value, label, errors) {

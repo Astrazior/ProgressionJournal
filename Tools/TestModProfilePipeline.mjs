@@ -1,7 +1,11 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { normalizeAgentRules } from "./BuildModProfiles.mjs";
+import {
+  applyConfirmedAvailabilityChecks,
+  auditRuntimeSourceCoverage,
+  normalizeAgentRules
+} from "./BuildModProfiles.mjs";
 import { generateProfile, readJson } from "./ProfileGeneratorCore.mjs";
 import { applyVanillaSourceCatalog } from "./VanillaSourceCatalog.mjs";
 
@@ -17,6 +21,150 @@ const requiredFiles = [
   "report.json",
   "profile.json"
 ];
+const fishingResolverSource = fs.readFileSync(
+  path.join(root, "Data", "Resolvers", "JournalFishingSourceResolver.cs"),
+  "utf8");
+const fishingAttemptMethod = fishingResolverSource.slice(
+  fishingResolverSource.indexOf("private static void ProbeContextDrops"),
+  fishingResolverSource.indexOf("private static FishingAttempt CreateAttempt"));
+const fishingHookOrder = [
+  "PlayerLoader.ModifyFishingAttempt",
+  "InvokeFishingAttempt(pipeline.RollEnemySpawns",
+  "InvokeFishingAttempt(pipeline.RollItemDrop",
+  "PlayerLoader.CatchFish",
+  "AddCaughtItem"
+].map(token => fishingAttemptMethod.indexOf(token));
+assert(fishingHookOrder.every(index => index >= 0)
+  && fishingHookOrder.every((index, position) =>
+    position === 0 || index > fishingHookOrder[position - 1]),
+"Fishing hooks are not executed in tModLoader order");
+assert(fishingResolverSource.includes("PlayerLoader.ModifyCaughtFish"),
+  "The final caught item is not passed through ModifyCaughtFish");
+assert(fishingResolverSource.includes("ModContent.GetContent<ModBiome>()"),
+  "ModBiome scenarios are missing from the fishing pipeline");
+assert(fishingResolverSource.includes("ModContent.GetContent<ModWaterStyle>()"),
+  "ModWaterStyle scenarios are missing from the fishing pipeline");
+assert(!fishingResolverSource.includes("FishingPoleCondition")
+  && !fishingResolverSource.includes("FishingBaitCondition"),
+"Observed random catches must not be presented as mandatory pole or bait requirements");
+const townNpcResolverSource = fs.readFileSync(
+  path.join(root, "Data", "Resolvers", "JournalTownNpcAvailabilityResolver.cs"),
+  "utf8");
+assert(townNpcResolverSource.includes("\"UpdateTime_SpawnTownNPCs\""),
+  "Town NPC availability does not invoke Terraria's runtime calculation");
+assert(townNpcResolverSource.includes("Main.townNPCCanSpawn"),
+  "Town NPC availability does not read Terraria's calculated result");
+assert(townNpcResolverSource.includes("WorldGen.prioritizedTownNPCType"),
+  "Town NPC priority state is not isolated and restored");
+assert(townNpcResolverSource.includes("NPCShopDatabase.AllShops"),
+  "Town NPC availability is not linked to NPCShopDatabase");
+assert(townNpcResolverSource.includes("shop.FillShop(items, npc)"),
+  "Shop item conditions are not executed through FillShop");
+assert(townNpcResolverSource.includes("CreateCompletedBestiaryTracker"),
+  "Bestiary-gated town NPC scenarios are missing");
+assert(townNpcResolverSource.includes("BirthdayParty.GenuineParty"),
+  "Event-gated town NPC scenarios are missing");
+assert(townNpcResolverSource.includes("ModContent.GetContent<ModSystem>()")
+  && townNpcResolverSource.includes("system.PreUpdateWorld()")
+  && townNpcResolverSource.includes("CaptureStaticFieldState"),
+"Custom travelling town NPC systems are not runtime-probed or isolated");
+const itemSourceResolverSource = fs.readFileSync(
+  path.join(root, "Data", "Resolvers", "JournalItemSourceResolver.cs"),
+  "utf8");
+for (const heavyResolver of [
+  "JournalFishingSourceResolver.",
+  "JournalTownNpcAvailabilityResolver.",
+  "JournalNpcSpawnAvailabilityResolver."
+]) {
+  assert(!itemSourceResolverSource.includes(heavyResolver),
+    `Journal UI must not lazily execute ${heavyResolver}`);
+}
+assert(fishingResolverSource.includes("JournalRuntimeProgressionScenarios")
+  && townNpcResolverSource.includes("JournalRuntimeProgressionScenarios"),
+"Fishing and town NPC probes must share the progression scenario model");
+const npcSpawnResolverSource = fs.readFileSync(
+  path.join(root, "Data", "Resolvers", "JournalNpcSpawnAvailabilityResolver.cs"),
+  "utf8");
+assert(npcSpawnResolverSource.includes("modNpc.SpawnChance(spawnInfo)"),
+  "Enemy availability does not execute ModNPC.SpawnChance");
+assert(npcSpawnResolverSource.includes("globalNpc.EditSpawnPool(pool, spawnInfo)"),
+  "Enemy availability does not execute GlobalNPC.EditSpawnPool");
+assert(npcSpawnResolverSource.includes("NPCLoader.EditSpawnRate"),
+  "Enemy availability does not execute GlobalNPC.EditSpawnRate");
+assert(npcSpawnResolverSource.includes("NPCLoader.ChooseSpawn(spawnInfo)"),
+  "Enemy availability does not execute the final modded spawn selector");
+assert(npcSpawnResolverSource.includes("NPC.SpawnNPC()"),
+  "Enemy availability does not observe the full vanilla spawn pipeline");
+assert(npcSpawnResolverSource.includes("DefaultSpawnRateField?.SetValue(null, 1)")
+  && npcSpawnResolverSource.includes("FocusedFullSpawnSeedCount"),
+"Vanilla spawn probing must bypass the spawn-timer roll and sample the real selector");
+assert(npcSpawnResolverSource.includes("class SpawnArena")
+  && npcSpawnResolverSource.includes("spawnArena.Restore()"),
+"Vanilla spawn probing must provide and restore valid temporary tile geometry");
+assert(npcSpawnResolverSource.includes("GetEnvironmentDepths")
+  && npcSpawnResolverSource.includes("VanillaProgressionStages"),
+"Vanilla spawn probing must combine biome depths and progression changes");
+assert(!npcSpawnResolverSource.includes("NpcSpawnAvailabilityUnknown"),
+  "Technical unknown diagnostics must not be shown in the player UI");
+assert(npcSpawnResolverSource.includes("ModContent.GetContent<ModBiome>()"),
+  "ModBiome scenarios are missing from enemy availability");
+assert(npcSpawnResolverSource.includes("DD2Event.Ongoing")
+  && npcSpawnResolverSource.includes("Main.invasionType")
+  && npcSpawnResolverSource.includes("Main.pumpkinMoon"),
+"Event scenarios are incomplete in enemy availability");
+assert(npcSpawnResolverSource.includes("CreateCustomEventFlags")
+  && npcSpawnResolverSource.includes("field.Name.Contains(\"Ongoing\""),
+"Mod event flags are not included in enemy availability scenarios");
+assert(npcSpawnResolverSource.includes("static () => false"),
+  "Unstructured mod event flags must remain unknown instead of inventing an early stage");
+assert(npcSpawnResolverSource.includes("JournalRuntimeProgressionScenarios"),
+  "Enemy availability does not use the shared progression scenarios");
+const progressionScenarioSource = fs.readFileSync(
+  path.join(root, "Data", "Resolvers", "JournalRuntimeProgressionScenarios.cs"),
+  "utf8");
+assert(progressionScenarioSource.includes("\"vanilla:downedMechBossAny\"")
+  && progressionScenarioSource.includes("ApplyDerivedVanillaFlags"),
+"Derived Terraria progression flags are not reproduced by runtime scenarios");
+assert(progressionScenarioSource.includes("AddIsolationAccessors")
+  && progressionScenarioSource.includes("IsProgressionFlagName"),
+"Runtime scenarios do not isolate progression flags from the current world");
+const snapshotExporterSource = fs.readFileSync(
+  path.join(root, "Commands", "ExportProgressionSnapshotCommand.cs"),
+  "utf8");
+assert(snapshotExporterSource.includes("Fishing = CreateFishing(itemIds, npcIds)"),
+  "Runtime fishing observations are not exported to snapshot.json");
+assert(snapshotExporterSource.includes("NpcAvailability = CreateNpcAvailability(npcIds)"),
+  "Runtime NPC availability is not exported to snapshot.json");
+assert(snapshotExporterSource.includes("includeGlobalDrops: false")
+  && snapshotExporterSource.includes("\"Terraria/GlobalNPCDrops\""),
+"Global NPC drops must be exported once instead of being duplicated for every NPC");
+assert(snapshotExporterSource.includes("public int Version { get; set; } = 4"),
+  "The snapshot schema version was not advanced for runtime availability");
+assert(snapshotExporterSource.includes("TryGetShopStage"),
+  "Observed shop stages are not exported to snapshot.json");
+assert(snapshotExporterSource.includes("JournalFishingSourceResolver.GetItemAvailability")
+  && snapshotExporterSource.includes("JournalTownNpcAvailabilityResolver.GetAvailability")
+  && snapshotExporterSource.includes("JournalNpcSpawnAvailabilityResolver.GetAvailability"),
+"Heavy availability probes must remain confined to snapshot export");
+assert(snapshotExporterSource.includes("PlayerLoaderSetupPlayerMethod?.Invoke")
+  && snapshotExporterSource.includes("PlayerLoader.PostUpdateMiscEffects(player)"),
+"Item class-effect probing must initialize ModPlayers and execute delayed equipment effects");
+assert(snapshotExporterSource.includes("DamageClassLoader.DamageClassCount"),
+  "Modded damage classes are not fully enumerated for combat classification");
+assert(snapshotExporterSource.includes("VanillaItemClassifications = CreateVanillaItemClassifications()"),
+  "Vanilla combat item classifications are not exported for profile filtering");
+const profileGeneratorSource = fs.readFileSync(
+  path.join(root, "Tools", "ProfileGeneratorCore.mjs"),
+  "utf8");
+assert(profileGeneratorSource.includes("snapshot.npcAvailability")
+  && profileGeneratorSource.includes("snapshot.fishing"),
+"ProfileGeneratorCore does not consume runtime availability observations");
+assert(profileGeneratorSource.includes("drop.sourceType === \"global\"")
+  && profileGeneratorSource.includes("globalDrops"),
+"ProfileGeneratorCore does not process global NPC drops independently");
+assert(profileGeneratorSource.includes("snapshot.vanillaItemClassifications")
+  && profileGeneratorSource.includes("context.vanillaItems?.get(item.id)"),
+"ProfileGeneratorCore does not reuse the curated vanilla combat classification");
 
 for (const modName of expected) {
   const directory = path.join(modsRoot, modName);
@@ -26,20 +174,46 @@ for (const modName of expected) {
   const support = readJson(path.join(directory, "support.json"));
   const snapshot = readJson(path.join(directory, "snapshot.json"));
   const profile = readJson(path.join(directory, "profile.json"));
-  const supportWithVanillaSources = applyVanillaSourceCatalog(support);
+  const supportWithVanillaSources = applyVanillaSourceCatalog(support, snapshot);
   assert.equal(support.targetMod, modName);
   assert.equal(snapshot.targetMod, modName);
   assert.equal(profile.format, "ProgressionJournalProfile");
   const stageForFlag = key => supportWithVanillaSources.stages.find(stage =>
     stage.unlock?.type === "vanilla-flag" && stage.unlock.key === key);
-  assert(stageForFlag("downedBoss2")?.include?.includes("Terraria/MeteoriteBar"),
-    `${modName}: shared vanilla catalog did not add Meteorite Bar`);
-  assert(stageForFlag("hardMode")?.enemies?.includes("Terraria/VampireBat"),
-    `${modName}: shared vanilla catalog did not add Vampire Bat`);
-  assert(stageForFlag("downedPlantBoss")?.shops?.includes("Terraria/Cyborg"),
-    `${modName}: shared vanilla catalog did not add the Cyborg shop`);
-  assert(supportWithVanillaSources.stages[0]?.shops?.includes("Terraria/ArmsDealer"),
-    `${modName}: shared vanilla catalog did not add the Arms Dealer shop`);
+  const meteoriteHasRuntimeRecipe = snapshot.recipes?.some(
+    recipe => recipe.result === "Terraria/MeteoriteBar");
+  assert.equal(
+    stageForFlag("downedBoss2")?.include?.includes("Terraria/MeteoriteBar") ?? false,
+    !meteoriteHasRuntimeRecipe,
+    `${modName}: Meteorite Bar fallback does not match runtime recipe coverage`);
+  const expectsLegacySource = (source, expectedStageIndex, kind) => {
+    const observed = snapshot.npcAvailability?.find(record => record.npc === source);
+    if (!observed?.observed
+        || observed.kind !== kind
+        || observed.earliestStageIndex !== expectedStageIndex) {
+      return true;
+    }
+    return kind === "town"
+      && snapshot.shops?.some(shop => shop.npc === source && !shop.observed);
+  };
+  assert.equal(
+    stageForFlag("hardMode")?.enemies?.includes("Terraria/VampireBat") ?? false,
+    expectsLegacySource(
+      "Terraria/VampireBat",
+      supportWithVanillaSources.stages.indexOf(stageForFlag("hardMode")),
+      "spawn"),
+    `${modName}: Vampire Bat fallback does not match runtime coverage`);
+  assert.equal(
+    stageForFlag("downedPlantBoss")?.shops?.includes("Terraria/Cyborg") ?? false,
+    expectsLegacySource(
+      "Terraria/Cyborg",
+      supportWithVanillaSources.stages.indexOf(stageForFlag("downedPlantBoss")),
+      "town"),
+    `${modName}: Cyborg fallback does not match runtime coverage`);
+  assert.equal(
+    supportWithVanillaSources.stages[0]?.shops?.includes("Terraria/ArmsDealer") ?? false,
+    expectsLegacySource("Terraria/ArmsDealer", 0, "town"),
+    `${modName}: Arms Dealer fallback does not match runtime coverage`);
   for (const event of support.events ?? []) {
     if (event.customEventName) {
       assert(event.eventIcon,
@@ -53,6 +227,11 @@ for (const modName of expected) {
     }
   }
   if (modName === "CalamityMod") {
+    const agentRules = readJson(path.join(directory, "agent-rules.json"));
+    assert(!agentRules.rules.some(rule => rule.kind === "fishing-source"),
+      "Calamity fishing sources must come from the runtime fishing pipeline");
+    assert(!agentRules.rules.some(rule => rule.id === "shady-salesman-source"),
+      "Shady Salesman availability must come from its runtime spawn system");
     const profileItems = new Set(profile.entries.flatMap(entry =>
       (entry.itemGroups ?? []).flat().map(item => `${item.mod}/${item.item}`)));
     for (const item of [
@@ -77,6 +256,11 @@ for (const modName of expected) {
         ?.evaluations?.[0]?.stageId;
     };
     for (const [item, stageId] of Object.entries({
+      "CalamityMod/HeartofDarkness": "king-slime",
+      "Terraria/LuckyCoin": "wall-of-flesh",
+      "Terraria/DiscountCard": "wall-of-flesh",
+      "Terraria/MechanicalLens": "skeletron",
+      "Terraria/Blindfold": "start",
       "CalamityMod/OpalStriker": "world-evil",
       "CalamityMod/Prismalline": "wall-of-flesh",
       "CalamityMod/PlagueReaperMask": "golem",
@@ -92,6 +276,22 @@ for (const modName of expected) {
         ?.stageId,
       "start",
       "Restoration Potion must be available from naturally growing Glowing Mushrooms");
+    for (const itemId of [
+      "CalamityMod/SparklingEmpress",
+      "CalamityMod/SeaSpiritAmulet"
+    ]) {
+      const [mod, item] = itemId.split("/");
+      const entry = profile.entries.find(value =>
+        (value.itemGroups ?? []).flat().some(reference =>
+          reference.mod === mod && reference.item === item));
+      assert(entry, `${itemId} is missing from the generated profile`);
+      const observedFishing = snapshot.fishing?.some(record =>
+        record.targetType === "item" && record.target === itemId);
+      assert.equal(
+        entry.fishingSources.length > 0,
+        observedFishing,
+        `${itemId} fishing sources do not match runtime observations`);
+    }
   }
   const snapshotVersions = new Map(snapshot.mods.map(mod => [mod.name, mod.version]));
   for (const required of support.requiredMods ?? []) {
@@ -183,6 +383,82 @@ assert.deepEqual(normalized.assignments.itemOverrides["Test/HelmetB"], { classes
 assert.deepEqual(normalized.assignments.fishingSources["Test/Amulet"], [{
   conditions: [{ "en-US": "In test water", "ru-RU": "В тестовой воде" }]
 }]);
+const migration = applyConfirmedAvailabilityChecks(
+  {
+    fishing: [{
+      targetType: "item",
+      target: "Test/Amulet",
+      earliestStageIndex: 1
+    }],
+    npcAvailability: [
+      { npc: "Test/EnemyA", observed: true, earliestStageIndex: 1 },
+      { npc: "Test/EnemyB", observed: true, earliestStageIndex: 1 }
+    ]
+  },
+  testSupport,
+  normalized.assignments,
+  normalized.availabilityChecks);
+assert.equal(migration.confirmed, 3);
+assert.equal(migration.pending, 0);
+assert.equal(normalized.assignments.sourceStages["Test/EnemyA"], undefined);
+assert.equal(normalized.assignments.sourceStages["Test/EnemyB"], undefined);
+assert.equal(normalized.assignments.fishingSources["Test/Amulet"], undefined);
+const mismatchedMigration = applyConfirmedAvailabilityChecks(
+  {
+    fishing: [],
+    npcAvailability: [
+      { npc: "Test/EnemyA", observed: true, earliestStageIndex: 0 }
+    ]
+  },
+  testSupport,
+  { sourceStages: { "Test/EnemyA": "boss" }, fishingSources: {} },
+  [{
+    id: "wrong-stage",
+    kind: "npc-source",
+    target: "Test/EnemyA",
+    expectedStageId: "boss"
+  }]);
+assert.equal(mismatchedMigration.confirmed, 0);
+assert.equal(mismatchedMigration.mismatched, 1);
+const runtimeCoverage = auditRuntimeSourceCoverage(
+  {
+    items: [{ id: "Test/Blade" }],
+    npcs: [{ id: "Test/Enemy" }, { id: "Test/Merchant" }],
+    drops: [{
+      sourceType: "npc",
+      source: "Test/Enemy",
+      item: "Test/Blade"
+    }],
+    shops: [{
+      npc: "Test/Merchant",
+      item: "Test/Blade"
+    }],
+    fishing: [],
+    npcAvailability: [
+      {
+        npc: "Test/Enemy",
+        kind: "spawn",
+        observed: true,
+        earliestStageIndex: 0
+      },
+      {
+        npc: "Test/Merchant",
+        kind: "town",
+        observed: false,
+        earliestStageIndex: -1
+      }
+    ]
+  },
+  {
+    stages: [{
+      id: "start",
+      shops: ["Test/Merchant"]
+    }]
+  });
+assert.deepEqual(runtimeCoverage.errors, []);
+assert.equal(runtimeCoverage.observed[0]?.source, "Test/Enemy");
+assert.equal(runtimeCoverage.declared[0]?.source, "Test/Merchant");
+assert.deepEqual(runtimeCoverage.uncovered, []);
 const invalid = normalizeAgentRules({
   ...validRule,
   rules: [{ kind: "item-stage", item: "Test/Sword", stageId: "boss" }]
@@ -190,7 +466,7 @@ const invalid = normalizeAgentRules({
 assert(invalid.problems.some(problem => problem.includes("sourceUrl")));
 assert(invalid.problems.some(problem => problem.includes("checkedAt")));
 
-const vanillaSources = applyVanillaSourceCatalog({
+const vanillaSourceSupport = {
   initialStations: [],
   events: [{ stageId: "goblin-stage", eventCategory: "GoblinArmy" }],
   stages: [
@@ -201,36 +477,62 @@ const vanillaSources = applyVanillaSourceCatalog({
     { id: "hardmode", unlock: { type: "vanilla-flag", key: "hardMode" } },
     { id: "plantera", unlock: { type: "vanilla-flag", key: "downedPlantBoss" } }
   ]
+};
+const vanillaSources = applyVanillaSourceCatalog(vanillaSourceSupport, {
+  recipes: [{
+    result: "Terraria/FireGauntlet",
+    ingredients: [{ item: "Test/LateMaterial", stack: 1 }],
+    stations: [],
+    conditions: []
+  }],
+  npcAvailability: [
+    ["Terraria/Skeleton", "spawn", 0],
+    ["Terraria/Harpy", "spawn", 0],
+    ["Terraria/VampireBat", "spawn", 4],
+    ["Terraria/Reaper", "spawn", 5],
+    ["Terraria/DD2Bartender", "town", 2],
+    ["Terraria/ArmsDealer", "town", 0],
+    ["Terraria/SkeletonMerchant", "town", 0],
+    ["Terraria/Cyborg", "town", 5]
+  ].map(([npc, kind, earliestStageIndex]) => ({
+    npc,
+    kind,
+    observed: true,
+    earliestStageIndex
+  })),
+  shops: []
 });
 assert(vanillaSources.initialStations.includes("Terraria/DemonAltar"));
 assert(vanillaSources.initialStations.includes("Terraria/Hellforge"));
 assert(vanillaSources.initialItems.includes("Terraria/PinkGel"));
 assert(vanillaSources.initialItems.includes("Terraria/JungleRose"));
 assert(vanillaSources.initialItems.includes("Terraria/GlowingMushroom"));
-assert(vanillaSources.stages[0].enemies.includes("Terraria/Skeleton"));
-assert(vanillaSources.stages.find(stage => stage.id === "world-evil")
-  .shops.includes("Terraria/DD2Bartender"));
-assert(vanillaSources.conditionUnlocks.some(rule =>
-  rule.sourceIds?.includes("Terraria/DD2Bartender")
-  && rule.conditionDescriptions?.includes("In Hardmode")));
-assert(vanillaSources.stages.find(stage => stage.id === "start")
-  .shops.includes("Terraria/ArmsDealer"));
-assert(vanillaSources.stages.find(stage => stage.id === "start")
-  .shops.includes("Terraria/SkeletonMerchant"));
-assert(vanillaSources.stages.find(stage => stage.id === "start")
-  .enemies.includes("Terraria/Harpy"));
+assert(!vanillaSources.stages[0].enemies?.includes("Terraria/Skeleton"));
+assert(!vanillaSources.stages.find(stage => stage.id === "world-evil")
+  .shops?.includes("Terraria/DD2Bartender"));
+assert(!vanillaSources.conditionUnlocks?.some(rule =>
+  rule.sourceIds?.includes("Terraria/DD2Bartender")));
+assert(!vanillaSources.stages.find(stage => stage.id === "start")
+  .shops?.includes("Terraria/ArmsDealer"));
+assert(!vanillaSources.stages.find(stage => stage.id === "start")
+  .shops?.includes("Terraria/SkeletonMerchant"));
+assert(!vanillaSources.stages.find(stage => stage.id === "start")
+  .enemies?.includes("Terraria/Harpy"));
 assert(vanillaSources.stages.find(stage => stage.id === "goblin-stage")
   .include.includes("Terraria/TinkerersWorkshop"));
 assert(vanillaSources.stages.find(stage => stage.id === "dungeon")
   .stations.includes("Terraria/AlchemyTable"));
 assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
   .include.includes("Terraria/AdamantiteForge"));
-assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
-  .enemies.includes("Terraria/VampireBat"));
-assert(vanillaSources.stages.find(stage => stage.id === "plantera")
-  .enemies.includes("Terraria/Reaper"));
-assert(vanillaSources.stages.find(stage => stage.id === "plantera")
-  .shops.includes("Terraria/Cyborg"));
+assert(!vanillaSources.stages.find(stage => stage.id === "hardmode")
+  .enemies?.includes("Terraria/VampireBat"));
+assert(!vanillaSources.stages.find(stage => stage.id === "plantera")
+  .enemies?.includes("Terraria/Reaper"));
+assert(!vanillaSources.stages.find(stage => stage.id === "plantera")
+  .shops?.includes("Terraria/Cyborg"));
+assert(!vanillaSources.stages.find(stage => stage.id === "destroyer")
+  .include?.includes("Terraria/FireGauntlet"));
+assert.equal(vanillaSources.itemStageFloors["Terraria/FireGauntlet"], undefined);
 assert(vanillaSources.stages.find(stage => stage.id === "world-evil")
   .include.includes("Terraria/MeteoriteBar"));
 assert.equal(vanillaSources.itemStageFloors["Terraria/MeteoriteBar"], "world-evil");
@@ -238,7 +540,7 @@ assert.equal(vanillaSources.stationStageFloors["Terraria/AlchemyTable"], "dungeo
 
 const prefixedConditionSnapshot = {
   format: "ProgressionJournalSnapshot",
-  version: 2,
+  version: 4,
   items: [{
     id: "Test/ConditionWeapon",
     name: "Condition Weapon",
@@ -287,6 +589,15 @@ const prefixedConditionSnapshot = {
       type: "Test.Condition",
       description: "Предметы: After defeating the Eye of Cthulhu"
     }]
+  }],
+  fishing: [],
+  npcAvailability: [{
+    npc: "Terraria/Harpy",
+    kind: "spawn",
+    observed: true,
+    earliestStageIndex: 1,
+    earliestStageName: "Eye",
+    conditions: []
   }]
 };
 const prefixedConditionSupport = {

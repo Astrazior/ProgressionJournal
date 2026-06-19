@@ -1,19 +1,30 @@
+using System.Collections;
 using System.Reflection;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 using Terraria.Utilities;
 
 namespace ProgressionJournal.Data.Resolvers;
 
 internal static class JournalFishingSourceResolver
 {
-    private const int RandomSeedCount = 64;
+    private const int DefaultRandomSeedCount = 32;
+    private const int ScenarioRandomSeedCount = 8;
+    private const int EquipmentRandomSeedCount = 8;
 
     private static readonly object SyncRoot = new();
-    private static Dictionary<int, HashSet<ProbeContext>>? _catalog;
-
-    private delegate void RollFishingItemDelegate(Projectile projectile, ref FishingAttempt attempt);
+    private static readonly FieldInfo? ModBiomeFlagsField = typeof(Player).GetField(
+        "modBiomeFlags",
+        BindingFlags.Instance | BindingFlags.NonPublic);
+    private static readonly PropertyInfo? ModBiomeIndexProperty = typeof(ModBiome).GetProperty(
+        "ZeroIndexType",
+        BindingFlags.Instance | BindingFlags.NonPublic);
+    private static FishingCatalog? _catalog;
+    private static string _catalogKey = string.Empty;
 
     private enum ProbeLiquid
     {
@@ -22,34 +33,65 @@ internal static class JournalFishingSourceResolver
         Honey
     }
 
-    private sealed record ProbeBiome(string? LocalizationKey, Action<Player> Apply);
+    private sealed record ProbeEnvironment(
+        string DisplayName,
+        bool IsOcean,
+        ModBiome? ModBiome,
+        ModWaterStyle? WaterStyle,
+        Action<Player> ApplyVanillaBiome);
+
+    private sealed record ProbeEquipment(int PoleItemId, int BaitItemId, int RandomSeedCount);
+
+    private sealed record ProbeProgression(
+        string DisplayName,
+        bool Hardmode,
+        bool DownedSkeletron,
+        bool CombatBookUsed,
+        bool UnlockedSlimeRed);
 
     private sealed record ProbeWorld(
-        bool Hardmode,
-        bool BloodMoon,
-        bool DownedSkeletron,
-        bool Remix,
-        bool NotTheBees);
+        bool Hardmode = false,
+        bool BloodMoon = false,
+        bool DayTime = true,
+        bool DownedSkeletron = false,
+        bool CombatBookUsed = false,
+        bool UnlockedSlimeRed = false,
+        bool Remix = false,
+        bool NotTheBees = false);
+
+    private sealed record FishingPipeline(
+        MethodInfo RollDropLevels,
+        MethodInfo RollEnemySpawns,
+        MethodInfo RollItemDrop);
+
+    private sealed record FishingCatalog(
+        Dictionary<int, HashSet<ProbeContext>> ItemContexts,
+        Dictionary<int, HashSet<ProbeContext>> NpcContexts,
+        IReadOnlyList<ProbeEnvironment> Environments,
+        ProbeEquipment[] Equipment,
+        IReadOnlyList<ProbeProgression> Progression);
 
     private readonly record struct ProbeContext(
         ProbeLiquid Liquid,
-        int BiomeIndex,
+        int EnvironmentIndex,
         int Depth,
-        int WorldIndex);
+        int WorldIndex,
+        int EquipmentIndex,
+        int ProgressionIndex);
 
-    private static readonly ProbeBiome[] Biomes =
-    [
-        new(null, static _ => { }),
-        new("Bestiary_Biomes.Ocean", static player => player.ZoneBeach = true),
-        new("Bestiary_Biomes.Desert", static player => player.ZoneDesert = true),
-        new("Bestiary_Biomes.Snow", static player => player.ZoneSnow = true),
-        new("Bestiary_Biomes.Jungle", static player => player.ZoneJungle = true),
-        new("Bestiary_Biomes.TheCorruption", static player => player.ZoneCorrupt = true),
-        new("Bestiary_Biomes.Crimson", static player => player.ZoneCrimson = true),
-        new("Bestiary_Biomes.TheHallow", static player => player.ZoneHallow = true),
-        new("Bestiary_Biomes.TheDungeon", static player => player.ZoneDungeon = true),
-        new("Bestiary_Biomes.UndergroundMushroom", static player => player.ZoneGlowshroom = true)
-    ];
+    private readonly record struct PlayerState(
+        Vector2 Position,
+        Vector2 Velocity,
+        bool Beach,
+        bool Desert,
+        bool Snow,
+        bool Jungle,
+        bool Corrupt,
+        bool Crimson,
+        bool Hallow,
+        bool Dungeon,
+        bool Glowshroom,
+        BitArray ModBiomeFlags);
 
     private static readonly string[] DepthLocalizationKeys =
     [
@@ -60,15 +102,26 @@ internal static class JournalFishingSourceResolver
         "Bestiary_Biomes.TheUnderworld"
     ];
 
+    private static readonly int[] FishingLevels = [50, 200, 400];
+
     private static readonly ProbeWorld[] Worlds =
     [
-        new(false, false, false, false, false),
-        new(false, false, true, false, false),
-        new(true, false, true, false, false),
-        new(false, true, true, false, false),
-        new(true, true, true, false, false),
-        new(false, false, false, true, false),
-        new(false, false, false, false, true)
+        new(),
+        new(DayTime: false),
+        new(Hardmode: true),
+        new(Hardmode: true, DayTime: false),
+        new(BloodMoon: true, DayTime: false),
+        new(Hardmode: true, BloodMoon: true, DayTime: false),
+        new(DownedSkeletron: true),
+        new(Hardmode: true, DownedSkeletron: true),
+        new(CombatBookUsed: true),
+        new(Hardmode: true, CombatBookUsed: true),
+        new(BloodMoon: true, DayTime: false, UnlockedSlimeRed: true),
+        new(Hardmode: true, BloodMoon: true, DayTime: false, UnlockedSlimeRed: true),
+        new(Remix: true),
+        new(Hardmode: true, Remix: true),
+        new(NotTheBees: true),
+        new(Hardmode: true, NotTheBees: true)
     ];
 
     public static IReadOnlyList<JournalFishingSource> FindSources(int itemId)
@@ -82,140 +135,614 @@ internal static class JournalFishingSourceResolver
         }
 
         var catalog = GetCatalog();
-        if (!catalog.TryGetValue(itemId, out var contexts) || contexts.Count == 0)
-        {
-            return sources;
-        }
-
-        sources.Add(new JournalFishingSource(BuildConditions(contexts)));
+        AppendObservedSource(sources, catalog, catalog.ItemContexts, itemId);
         return sources;
     }
 
-    private static Dictionary<int, HashSet<ProbeContext>> GetCatalog()
+    internal static JournalFishingAvailability GetItemAvailability(int itemId)
     {
-        lock (SyncRoot)
+        var catalog = GetCatalog();
+        if (Main.anglerQuestItemNetIDs?.Contains(itemId) == true)
         {
-            return _catalog ??= BuildCatalog();
+            return new JournalFishingAvailability(
+                observed: true,
+                earliestStageIndex: 0,
+                earliestStageName: catalog.Progression.FirstOrDefault()?.DisplayName ?? string.Empty,
+                conditions:
+                [
+                    Language.GetTextValue("Mods.ProgressionJournal.UI.FishingAnglerQuestCondition")
+                ]);
+        }
+
+        return CreateAvailability(catalog, catalog.ItemContexts, itemId);
+    }
+
+    internal static JournalFishingAvailability GetNpcAvailability(int npcId)
+    {
+        var catalog = GetCatalog();
+        return CreateAvailability(catalog, catalog.NpcContexts, npcId);
+    }
+
+    internal static IReadOnlyList<JournalFishingSource> FindNpcSources(int npcId)
+    {
+        var sources = new List<JournalFishingSource>();
+        var catalog = GetCatalog();
+        AppendObservedSource(sources, catalog, catalog.NpcContexts, npcId);
+        return sources;
+    }
+
+    private static void AppendObservedSource(
+        List<JournalFishingSource> sources,
+        FishingCatalog catalog,
+        IReadOnlyDictionary<int, HashSet<ProbeContext>> observations,
+        int contentId)
+    {
+        if (observations.TryGetValue(contentId, out var contexts) && contexts.Count > 0)
+        {
+            sources.Add(new JournalFishingSource(BuildConditions(catalog, contexts)));
         }
     }
 
-    private static Dictionary<int, HashSet<ProbeContext>> BuildCatalog()
+    private static JournalFishingAvailability CreateAvailability(
+        FishingCatalog catalog,
+        IReadOnlyDictionary<int, HashSet<ProbeContext>> observations,
+        int contentId)
     {
-        var method = typeof(Projectile).GetMethod(
-            "FishingCheck_RollItemDrop",
-            BindingFlags.Instance | BindingFlags.NonPublic);
-        if (method is null)
+        if (!observations.TryGetValue(contentId, out var contexts) || contexts.Count == 0)
         {
-            return [];
+            return new JournalFishingAvailability(
+                observed: false,
+                earliestStageIndex: -1,
+                earliestStageName: string.Empty,
+                conditions: []);
         }
 
-        RollFishingItemDelegate rollFishingItem;
-        try
+        var effectiveStageIndexes = contexts
+            .Select(context => GetEffectiveProgressionIndex(catalog, context))
+            .Where(static index => index >= 0)
+            .ToArray();
+        if (effectiveStageIndexes.Length == 0)
         {
-            rollFishingItem = method.CreateDelegate<RollFishingItemDelegate>();
-        }
-        catch
-        {
-            return [];
-        }
-
-        var playerIndex = FindProbePlayerIndex();
-        if (playerIndex < 0)
-        {
-            return [];
+            return new JournalFishingAvailability(
+                observed: false,
+                earliestStageIndex: -1,
+                earliestStageName: string.Empty,
+                conditions: BuildConditions(catalog, contexts));
         }
 
-        var previousPlayer = Main.player[playerIndex];
+        var earliestStageIndex = effectiveStageIndexes.Min();
+        var earliestStageName = earliestStageIndex >= 0
+            && earliestStageIndex < catalog.Progression.Count
+            ? catalog.Progression[earliestStageIndex].DisplayName
+            : string.Empty;
+        return new JournalFishingAvailability(
+            observed: true,
+            earliestStageIndex,
+            earliestStageName,
+            BuildConditions(catalog, contexts));
+    }
+
+    private static FishingCatalog GetCatalog()
+    {
+        lock (SyncRoot)
+        {
+            var key = BuildCatalogKey();
+            if (_catalog is not null && string.Equals(_catalogKey, key, StringComparison.Ordinal)) return _catalog;
+            _catalog = BuildCatalog();
+            _catalogKey = key;
+
+            return _catalog;
+        }
+    }
+
+    private static string BuildCatalogKey()
+    {
+        var profileId = JournalRuntimeProgressionScenarios.CurrentProfile?.Id ?? string.Empty;
+        var mods = string.Join(
+            ";",
+            ModLoader.Mods
+                .Where(static mod => mod.Code is not null)
+                .OrderBy(static mod => mod.Name, StringComparer.OrdinalIgnoreCase)
+                .Select(static mod => $"{mod.Name}@{mod.Version}"));
+        return $"{Main.worldID}:{Main.maxTilesX}x{Main.maxTilesY}:{profileId}:{mods}";
+    }
+
+    private static FishingCatalog BuildCatalog()
+    {
+        var pipeline = CreatePipeline();
+        var player = GetProbePlayer();
+        var environments = CreateEnvironments();
+        var equipment = CreateEquipment();
+        using var progression = new JournalRuntimeProgressionScenarios();
+        var progressionScenarios = progression.StageNames
+            .Select(static name => new ProbeProgression(name, false, false, false, false))
+            .ToArray();
+        var catalog = new FishingCatalog([], [], environments, equipment, progressionScenarios);
+        if (pipeline is null || player is null)
+        {
+            return catalog;
+        }
+
         var previousRandom = Main.rand;
         var previousHardmode = Main.hardMode;
         var previousBloodMoon = Main.bloodMoon;
+        var previousDayTime = Main.dayTime;
         var previousRemix = Main.remixWorld;
         var previousNotTheBees = Main.notTheBeesWorld;
+        var previousWaterStyle = Main.waterStyle;
         var previousDownedSkeletron = NPC.downedBoss3;
-        var catalog = new Dictionary<int, HashSet<ProbeContext>>();
+        var previousCombatBookUsed = NPC.combatBookWasUsed;
+        var previousUnlockedSlimeRed = NPC.unlockedSlimeRedSpawn;
+        var previousPlayerState = CapturePlayerState(player);
 
         try
         {
-            var player = new Player
-            {
-                whoAmI = playerIndex
-            };
-            Main.player[playerIndex] = player;
+            progressionScenarios = progression.StageNames
+                .Select((name, index) =>
+                {
+                    progression.Reset();
+                    progression.Apply(index);
+                    return new ProbeProgression(
+                        name,
+                        Main.hardMode,
+                        NPC.downedBoss3,
+                        NPC.combatBookWasUsed,
+                        NPC.unlockedSlimeRedSpawn);
+                })
+                .ToArray();
+            catalog = catalog with { Progression = progressionScenarios };
 
             var projectile = new Projectile
             {
-                owner = playerIndex
+                owner = player.whoAmI
             };
 
-            for (var worldIndex = 0; worldIndex < Worlds.Length; worldIndex++)
+            foreach (var (context, randomSeedCount) in CreateProbeContexts(catalog))
             {
-                ApplyWorld(Worlds[worldIndex]);
-
-                for (var biomeIndex = 0; biomeIndex < Biomes.Length; biomeIndex++)
-                {
-                    ResetBiomes(player);
-                    Biomes[biomeIndex].Apply(player);
-
-                    for (var depth = 0; depth < DepthLocalizationKeys.Length; depth++)
-                    {
-                        for (var liquid = ProbeLiquid.Water; liquid <= ProbeLiquid.Honey; liquid++)
-                        {
-                            var context = new ProbeContext(liquid, biomeIndex, depth, worldIndex);
-                            ProbeContextDrops(catalog, rollFishingItem, projectile, context);
-                        }
-                    }
-                }
+                progression.Reset();
+                ApplyWorld(Worlds[context.WorldIndex]);
+                progression.Apply(context.ProgressionIndex);
+                ApplyEnvironment(player, environments[context.EnvironmentIndex]);
+                ProbeContextDrops(
+                    catalog,
+                    pipeline,
+                    player,
+                    projectile,
+                    context,
+                    randomSeedCount);
             }
         }
         catch
         {
-            return [];
+            return new FishingCatalog([], [], environments, equipment, progressionScenarios);
         }
         finally
         {
-            Main.player[playerIndex] = previousPlayer;
             Main.rand = previousRandom;
             Main.hardMode = previousHardmode;
             Main.bloodMoon = previousBloodMoon;
+            Main.dayTime = previousDayTime;
             Main.remixWorld = previousRemix;
             Main.notTheBeesWorld = previousNotTheBees;
+            Main.waterStyle = previousWaterStyle;
             NPC.downedBoss3 = previousDownedSkeletron;
+            NPC.combatBookWasUsed = previousCombatBookUsed;
+            NPC.unlockedSlimeRedSpawn = previousUnlockedSlimeRed;
+            RestorePlayerState(player, previousPlayerState);
         }
 
         return catalog;
     }
 
-    private static void ProbeContextDrops(
-        Dictionary<int, HashSet<ProbeContext>> catalog,
-        RollFishingItemDelegate rollFishingItem,
-        Projectile projectile,
-        ProbeContext context)
+    private static IReadOnlyList<(ProbeContext Context, int RandomSeedCount)> CreateProbeContexts(
+        FishingCatalog catalog)
     {
-        for (var rarity = 0; rarity < 5; rarity++)
+        var contexts = new Dictionary<ProbeContext, int>();
+
+        void Add(ProbeContext context, int randomSeedCount)
         {
-            for (var seed = 0; seed < RandomSeedCount; seed++)
+            if (!contexts.TryGetValue(context, out var existing) || randomSeedCount > existing)
+            {
+                contexts[context] = randomSeedCount;
+            }
+        }
+
+        for (var environmentIndex = 0; environmentIndex < catalog.Environments.Count; environmentIndex++)
+        {
+            for (var depth = 0; depth < DepthLocalizationKeys.Length; depth++)
+            {
+                for (var liquid = ProbeLiquid.Water; liquid <= ProbeLiquid.Honey; liquid++)
+                {
+                    Add(
+                        new ProbeContext(liquid, environmentIndex, depth, 0, 0, 0),
+                        DefaultRandomSeedCount);
+                }
+            }
+        }
+
+        for (var worldIndex = 1; worldIndex < Worlds.Length; worldIndex++)
+        {
+            Add(
+                new ProbeContext(ProbeLiquid.Water, 0, 1, worldIndex, 0, 0),
+                ScenarioRandomSeedCount);
+        }
+
+        for (var progressionIndex = 0; progressionIndex < catalog.Progression.Count; progressionIndex++)
+        {
+            for (var environmentIndex = 0; environmentIndex < catalog.Environments.Count; environmentIndex++)
+            {
+                Add(
+                    new ProbeContext(
+                        ProbeLiquid.Water,
+                        environmentIndex,
+                        1,
+                        0,
+                        0,
+                        progressionIndex),
+                    ScenarioRandomSeedCount);
+            }
+
+            for (var depth = 0; depth < DepthLocalizationKeys.Length; depth++)
+            {
+                Add(
+                    new ProbeContext(
+                        ProbeLiquid.Water,
+                        0,
+                        depth,
+                        0,
+                        0,
+                        progressionIndex),
+                    ScenarioRandomSeedCount);
+            }
+
+            for (var liquid = ProbeLiquid.Water; liquid <= ProbeLiquid.Honey; liquid++)
+            {
+                Add(
+                    new ProbeContext(
+                        liquid,
+                        0,
+                        1,
+                        0,
+                        0,
+                        progressionIndex),
+                    ScenarioRandomSeedCount);
+            }
+        }
+
+        for (var equipmentIndex = 1; equipmentIndex < catalog.Equipment.Length; equipmentIndex++)
+        {
+            Add(
+                new ProbeContext(
+                    ProbeLiquid.Water,
+                    0,
+                    1,
+                    0,
+                    equipmentIndex,
+                    0),
+                catalog.Equipment[equipmentIndex].RandomSeedCount);
+            if (catalog.Progression.Count > 1)
+            {
+                Add(
+                    new ProbeContext(
+                        ProbeLiquid.Water,
+                        0,
+                        1,
+                        0,
+                        equipmentIndex,
+                        catalog.Progression.Count - 1),
+                    catalog.Equipment[equipmentIndex].RandomSeedCount);
+            }
+        }
+
+        return contexts
+            .Select(static pair => (pair.Key, pair.Value))
+            .ToArray();
+    }
+
+    private static FishingPipeline? CreatePipeline()
+    {
+        const BindingFlags flags = BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic;
+        var methods = typeof(Projectile).GetMethods(flags);
+        var rollDropLevels = methods.FirstOrDefault(static method =>
+            method.Name == "FishingCheck_RollDropLevels");
+        var rollEnemySpawns = methods.FirstOrDefault(static method =>
+            method.Name == "FishingCheck_RollEnemySpawns");
+        var rollItemDrop = methods.FirstOrDefault(static method =>
+            method.Name == "FishingCheck_RollItemDrop");
+        return rollDropLevels is null || rollEnemySpawns is null || rollItemDrop is null
+            ? null
+            : new FishingPipeline(rollDropLevels, rollEnemySpawns, rollItemDrop);
+    }
+
+    private static IReadOnlyList<ProbeEnvironment> CreateEnvironments()
+    {
+        var environments = new List<ProbeEnvironment>
+        {
+            new(
+                Language.GetTextValue("Mods.ProgressionJournal.UI.FishingBiomeDefault"),
+                false,
+                null,
+                null,
+                static _ => { }),
+            new(
+                Language.GetTextValue("Bestiary_Biomes.Ocean"),
+                true,
+                null,
+                null,
+                static player => player.ZoneBeach = true),
+            new(
+                Language.GetTextValue("Bestiary_Biomes.Desert"),
+                false,
+                null,
+                null,
+                static player => player.ZoneDesert = true),
+            new(
+                Language.GetTextValue("Bestiary_Biomes.Snow"),
+                false,
+                null,
+                null,
+                static player => player.ZoneSnow = true),
+            new(
+                Language.GetTextValue("Bestiary_Biomes.Jungle"),
+                false,
+                null,
+                null,
+                static player => player.ZoneJungle = true),
+            new(
+                Language.GetTextValue("Bestiary_Biomes.TheCorruption"),
+                false,
+                null,
+                null,
+                static player => player.ZoneCorrupt = true),
+            new(
+                Language.GetTextValue("Bestiary_Biomes.Crimson"),
+                false,
+                null,
+                null,
+                static player => player.ZoneCrimson = true),
+            new(
+                Language.GetTextValue("Bestiary_Biomes.TheHallow"),
+                false,
+                null,
+                null,
+                static player => player.ZoneHallow = true),
+            new(
+                Language.GetTextValue("Bestiary_Biomes.TheDungeon"),
+                false,
+                null,
+                null,
+                static player => player.ZoneDungeon = true),
+            new(
+                Language.GetTextValue("Bestiary_Biomes.UndergroundMushroom"),
+                false,
+                null,
+                null,
+                static player => player.ZoneGlowshroom = true)
+        };
+
+        var relevantMods = GetRelevantModNames();
+        var modBiomes = ModContent.GetContent<ModBiome>()
+            .Where(biome => relevantMods.Count == 0 || relevantMods.Contains(biome.Mod.Name))
+            .OrderBy(static biome => biome.FullName, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+        environments.AddRange(modBiomes.Select(static biome => new ProbeEnvironment(
+            biome.DisplayName.Value,
+            false,
+            biome,
+            biome.WaterStyle,
+            static _ => { })));
+
+        var representedWaterStyles = modBiomes
+            .Select(static biome => biome.WaterStyle)
+            .Where(static waterStyle => waterStyle is not null)
+            .Select(static style => style!.Slot)
+            .ToHashSet();
+        environments.AddRange(ModContent.GetContent<ModWaterStyle>()
+            .Where(style => relevantMods.Count == 0 || relevantMods.Contains(style.Mod.Name))
+            .Where(style => !representedWaterStyles.Contains(style.Slot))
+            .OrderBy(static style => style.FullName, StringComparer.OrdinalIgnoreCase)
+            .Select(static waterStyle => new ProbeEnvironment(
+                waterStyle.FullName,
+                false,
+                null,
+                waterStyle,
+                static _ => { })));
+
+        return environments;
+    }
+
+    private static ProbeEquipment[] CreateEquipment()
+    {
+        const short defaultPole = ItemID.GoldenFishingRod;
+        const short defaultBait = ItemID.MasterBait;
+        var relevantMods = GetRelevantModNames();
+        var poles = new List<int> { defaultPole };
+        var baits = new List<int> { defaultBait };
+
+        for (var itemId = ItemID.Count; itemId < ItemLoader.ItemCount; itemId++)
+        {
+            var item = ContentSamples.ItemsByType[itemId];
+            var modName = item.ModItem?.Mod.Name;
+            if (modName is null || (relevantMods.Count > 0 && !relevantMods.Contains(modName)))
+            {
+                continue;
+            }
+
+            if (item.fishingPole > 0)
+            {
+                poles.Add(itemId);
+            }
+
+            if (item.bait > 0)
+            {
+                baits.Add(itemId);
+            }
+        }
+
+        var result = new List<ProbeEquipment>
+        {
+            new(defaultPole, defaultBait, DefaultRandomSeedCount)
+        };
+        result.AddRange(poles
+            .Skip(1)
+            .Select(pole => new ProbeEquipment(pole, defaultBait, EquipmentRandomSeedCount)));
+        result.AddRange(baits
+            .Skip(1)
+            .Select(bait => new ProbeEquipment(defaultPole, bait, EquipmentRandomSeedCount)));
+
+        return result.Distinct().ToArray();
+    }
+
+    private static HashSet<string> GetRelevantModNames()
+    {
+        var profile = JournalRuntimeProgressionScenarios.CurrentProfile;
+        if (profile is null)
+        {
+            return [];
+        }
+
+        return profile.Document.RequiredMods
+            .Select(static requirement => requirement.Name)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+    }
+
+    private static void ProbeContextDrops(
+        FishingCatalog catalog,
+        FishingPipeline pipeline,
+        Player player,
+        Projectile projectile,
+        ProbeContext context,
+        int randomSeedCount)
+    {
+        var equipment = catalog.Equipment[context.EquipmentIndex];
+        foreach (var fishingLevel in FishingLevels)
+        {
+            for (var seed = 0; seed < randomSeedCount; seed++)
             {
                 Main.rand = new UnifiedRandom(seed);
-                var attempt = CreateAttempt(context, rarity);
-                rollFishingItem(projectile, ref attempt);
+                var attempt = CreateAttempt(catalog, player, projectile, context, fishingLevel, equipment);
+                InvokeRollDropLevels(pipeline.RollDropLevels, projectile, fishingLevel, ref attempt);
 
-                if (!JournalItemUtilities.IsValidItemId(attempt.rolledItemDrop))
+                try
                 {
-                    continue;
-                }
+                    PlayerLoader.ModifyFishingAttempt(player, ref attempt);
+                    InvokeFishingAttempt(pipeline.RollEnemySpawns, projectile, ref attempt);
+                    InvokeFishingAttempt(pipeline.RollItemDrop, projectile, ref attempt);
 
-                if (!catalog.TryGetValue(attempt.rolledItemDrop, out var contexts))
+                    var itemDrop = attempt.rolledItemDrop;
+                    var npcSpawn = attempt.rolledEnemySpawn;
+                    var sonar = new AdvancedPopupRequest();
+                    var sonarPosition = projectile.position;
+                    PlayerLoader.CatchFish(
+                        player,
+                        attempt,
+                        ref itemDrop,
+                        ref npcSpawn,
+                        ref sonar,
+                        ref sonarPosition);
+
+                    AddCaughtItem(catalog.ItemContexts, player, itemDrop, context);
+                    AddContext(catalog.NpcContexts, npcSpawn, context);
+                }
+                catch
                 {
-                    contexts = [];
-                    catalog[attempt.rolledItemDrop] = contexts;
+                    // A broken third-party hook invalidates only this observed attempt.
                 }
-
-                contexts.Add(context);
             }
         }
     }
 
-    private static FishingAttempt CreateAttempt(ProbeContext context, int rarity)
+    private static void InvokeRollDropLevels(
+        MethodInfo method,
+        Projectile projectile,
+        int fishingLevel,
+        ref FishingAttempt attempt)
+    {
+        var parameters = method.GetParameters();
+        var arguments = new object?[parameters.Length];
+        var boolValues = new Queue<bool>(
+        [
+            attempt.common,
+            attempt.uncommon,
+            attempt.rare,
+            attempt.veryrare,
+            attempt.legendary,
+            attempt.crate
+        ]);
+        for (var index = 0; index < parameters.Length; index++)
+        {
+            var type = parameters[index].ParameterType;
+            arguments[index] = type == typeof(int)
+                ? fishingLevel
+                : type == typeof(bool).MakeByRefType() && boolValues.TryDequeue(out var value)
+                    ? value
+                    : type == typeof(Projectile)
+                        ? projectile
+                        : GetDefaultValue(parameters[index]);
+        }
+
+        method.Invoke(method.IsStatic ? null : projectile, arguments);
+        var values = arguments
+            .Where((_, index) => parameters[index].ParameterType == typeof(bool).MakeByRefType())
+            .Select(static value => value is true)
+            .ToArray();
+        if (values.Length < 6) return;
+        attempt.common = values[0];
+        attempt.uncommon = values[1];
+        attempt.rare = values[2];
+        attempt.veryrare = values[3];
+        attempt.legendary = values[4];
+        attempt.crate = values[5];
+    }
+
+    private static void InvokeFishingAttempt(
+        MethodInfo method,
+        Projectile projectile,
+        ref FishingAttempt attempt)
+    {
+        var parameters = method.GetParameters();
+        var arguments = new object?[parameters.Length];
+        for (var index = 0; index < parameters.Length; index++)
+        {
+            arguments[index] =
+                parameters[index].ParameterType == typeof(FishingAttempt).MakeByRefType()
+                    ? attempt
+                    : parameters[index].ParameterType == typeof(Projectile)
+                        ? projectile
+                        : GetDefaultValue(parameters[index]);
+        }
+
+        method.Invoke(method.IsStatic ? null : projectile, arguments);
+        var attemptIndex = Array.FindIndex(
+            parameters,
+            static parameter =>
+                parameter.ParameterType == typeof(FishingAttempt).MakeByRefType());
+        if (attemptIndex >= 0 && arguments[attemptIndex] is FishingAttempt updated)
+        {
+            attempt = updated;
+        }
+    }
+
+    private static object? GetDefaultValue(ParameterInfo parameter)
+    {
+        if (parameter.HasDefaultValue)
+        {
+            return parameter.DefaultValue;
+        }
+
+        var type = parameter.ParameterType.IsByRef
+            ? parameter.ParameterType.GetElementType()
+            : parameter.ParameterType;
+        return type is { IsValueType: true } ? Activator.CreateInstance(type) : null;
+    }
+
+    private static FishingAttempt CreateAttempt(
+        FishingCatalog catalog,
+        Player player,
+        Projectile projectile,
+        ProbeContext context,
+        int fishingLevel,
+        ProbeEquipment equipment)
     {
         var y = context.Depth switch
         {
@@ -225,37 +752,143 @@ internal static class JournalFishingSourceResolver
             3 => Math.Min(Main.maxTilesY - 10, (int)Main.rockLayer + 100),
             _ => Main.maxTilesY - 100
         };
+        var environment = catalog.Environments[context.EnvironmentIndex];
+        var x = environment.IsOcean
+            ? Math.Min(200, Main.maxTilesX / 10)
+            : Main.maxTilesX / 2;
+        player.Center = new Vector2(x * 16f, y * 16f);
+        projectile.Center = player.Center;
 
         return new FishingAttempt
         {
-            X = Main.maxTilesX / 2,
+            playerFishingConditions = new PlayerFishingConditions
+            {
+                FinalFishingLevel = fishingLevel,
+                LevelMultipliers = 1f,
+                Pole = CreateItem(equipment.PoleItemId),
+                Bait = CreateItem(equipment.BaitItemId)
+            },
+            X = x,
             Y = y,
-            common = rarity == 0,
-            uncommon = rarity == 1,
-            rare = rarity == 2,
-            veryrare = rarity == 3,
-            legendary = rarity == 4,
-            crate = false,
+            bobberType = ProjectileID.BobberGolden,
             inLava = context.Liquid == ProbeLiquid.Lava,
             inHoney = context.Liquid == ProbeLiquid.Honey,
             CanFishInLava = true,
             waterTilesCount = 1000,
             waterNeededToFish = 300,
-            fishingLevel = 200,
+            fishingLevel = fishingLevel,
             questFish = -1,
-            heightLevel = context.Depth,
-            rolledItemDrop = 0,
-            rolledEnemySpawn = 0
+            heightLevel = GetHeightLevel(y)
         };
     }
 
-    private static IReadOnlyList<string> BuildConditions(IReadOnlyCollection<ProbeContext> contexts)
+    private static Item CreateItem(int itemId)
+    {
+        var item = new Item();
+        item.SetDefaults(itemId);
+        item.stack = 1;
+        return item;
+    }
+
+    private static void AddCaughtItem(
+        Dictionary<int, HashSet<ProbeContext>> catalog,
+        Player player,
+        int itemId,
+        ProbeContext context)
+    {
+        if (!JournalItemUtilities.IsValidItemId(itemId))
+        {
+            return;
+        }
+
+        var item = CreateItem(itemId);
+        try
+        {
+            PlayerLoader.ModifyCaughtFish(player, item);
+        }
+        catch
+        {
+            return;
+        }
+
+        if (JournalItemUtilities.IsValidItemId(item.type))
+        {
+            AddContext(catalog, item.type, context);
+        }
+    }
+
+    private static void AddContext(
+        Dictionary<int, HashSet<ProbeContext>> catalog,
+        int contentId,
+        ProbeContext context)
+    {
+        if (contentId <= 0)
+        {
+            return;
+        }
+
+        if (!catalog.TryGetValue(contentId, out var contexts))
+        {
+            contexts = [];
+            catalog[contentId] = contexts;
+        }
+
+        contexts.Add(context);
+    }
+
+    private static int GetHeightLevel(int y)
+    {
+        if (y < Main.worldSurface * 0.5)
+        {
+            return 0;
+        }
+
+        if (y < Main.worldSurface)
+        {
+            return 1;
+        }
+
+        if (!Main.remixWorld)
+        {
+            return y < Main.rockLayer
+                ? 2
+                : y < Main.maxTilesY - 300
+                    ? 3
+                    : 4;
+        }
+
+        if (y < Main.rockLayer)
+        {
+            return 3;
+        }
+
+        if (y >= Main.maxTilesY - 300)
+        {
+            return 4;
+        }
+
+        return Main.rand.NextBool(2) ? 1 : 2;
+    }
+
+    private static List<string> BuildConditions(
+        FishingCatalog catalog,
+        IReadOnlyCollection<ProbeContext> contexts)
     {
         var conditions = new List<string>();
         var liquids = contexts.Select(static context => context.Liquid).Distinct().Order().ToArray();
-        var biomes = contexts.Select(static context => context.BiomeIndex).Distinct().Order().ToArray();
+        var environmentIndexes = contexts
+            .Select(static context => context.EnvironmentIndex)
+            .Distinct()
+            .Order()
+            .ToArray();
         var depths = contexts.Select(static context => context.Depth).Distinct().Order().ToArray();
-        var worlds = contexts.Select(static context => context.WorldIndex).Distinct().Order().ToArray();
+        var worldIndexes = contexts.Select(static context => context.WorldIndex).Distinct().Order().ToArray();
+        var progressionIndexes = contexts
+            .Select(context => GetEffectiveProgressionIndex(catalog, context))
+            .Where(static index => index >= 0)
+            .Distinct()
+            .Order()
+            .ToArray();
 
         if (liquids.Length < Enum.GetValues<ProbeLiquid>().Length)
         {
@@ -264,19 +897,28 @@ internal static class JournalFishingSourceResolver
                 string.Join(", ", liquids.Select(GetLiquidName))));
         }
 
-        if (biomes.Length < Biomes.Length)
+        if (environmentIndexes.Length < catalog.Environments.Count)
         {
-            var biomeNames = biomes
-                .Select(static index => Biomes[index].LocalizationKey)
-                .Where(static key => key is not null)
-                .Select(static key => Language.GetTextValue(key!))
-                .ToArray();
-            if (biomeNames.Length > 0)
-            {
-                conditions.Add(Language.GetTextValue(
-                    "Mods.ProgressionJournal.UI.FishingBiomeCondition",
-                    string.Join(", ", biomeNames)));
-            }
+            conditions.Add(Language.GetTextValue(
+                "Mods.ProgressionJournal.UI.FishingBiomeCondition",
+                string.Join(
+                    ", ",
+                    environmentIndexes.Select(index => catalog.Environments[index].DisplayName))));
+        }
+
+        var waterStyles = environmentIndexes
+            .Select(index => catalog.Environments[index].WaterStyle)
+            .Where(static waterStyle => waterStyle is not null)
+            .Select(static style => style!.FullName)
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .Order(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+        if (waterStyles.Length > 0
+            && environmentIndexes.All(index => catalog.Environments[index].WaterStyle is not null))
+        {
+            conditions.Add(Language.GetTextValue(
+                "Mods.ProgressionJournal.UI.FishingWaterStyleCondition",
+                string.Join(", ", waterStyles)));
         }
 
         if (depths.Length < DepthLocalizationKeys.Length)
@@ -286,11 +928,54 @@ internal static class JournalFishingSourceResolver
                 string.Join(", ", depths.Select(static depth => Language.GetTextValue(DepthLocalizationKeys[depth])))));
         }
 
-        AppendWorldConditions(conditions, worlds);
+        AppendProgressionCondition(conditions, catalog, progressionIndexes);
+        AppendWorldConditions(conditions, worldIndexes);
         return conditions;
     }
 
-    private static void AppendWorldConditions(ICollection<string> conditions, IReadOnlyCollection<int> worldIndexes)
+    private static int GetEffectiveProgressionIndex(
+        FishingCatalog catalog,
+        ProbeContext context)
+    {
+        var world = Worlds[context.WorldIndex];
+        for (var index = context.ProgressionIndex; index < catalog.Progression.Count; index++)
+        {
+            var progression = catalog.Progression[index];
+            if ((!world.Hardmode || progression.Hardmode)
+                && (!world.DownedSkeletron || progression.DownedSkeletron)
+                && (!world.CombatBookUsed || progression.CombatBookUsed)
+                && (!world.UnlockedSlimeRed || progression.UnlockedSlimeRed))
+            {
+                return index;
+            }
+        }
+
+        return -1;
+    }
+
+    private static void AppendProgressionCondition(
+        List<string> conditions,
+        FishingCatalog catalog,
+        IReadOnlyCollection<int> progressionIndexes)
+    {
+        if (catalog.Progression.Count <= 1 || progressionIndexes.Contains(0))
+        {
+            return;
+        }
+
+        var firstIndex = progressionIndexes.Min();
+        var stageName = catalog.Progression[firstIndex].DisplayName;
+        if (!string.IsNullOrWhiteSpace(stageName))
+        {
+            conditions.Add(Language.GetTextValue(
+                "Mods.ProgressionJournal.UI.FishingProgressionCondition",
+                stageName));
+        }
+    }
+
+    private static void AppendWorldConditions(
+        List<string> conditions,
+        IReadOnlyCollection<int> worldIndexes)
     {
         var worlds = worldIndexes.Select(static index => Worlds[index]).ToArray();
         var worldConditions = new List<string>();
@@ -309,9 +994,23 @@ internal static class JournalFishingSourceResolver
             worldConditions.Add(Language.GetTextValue("Mods.ProgressionJournal.UI.FishingWorldBloodMoon"));
         }
 
+        if (worlds.All(static world => world.DayTime))
+        {
+            worldConditions.Add(Language.GetTextValue("Mods.ProgressionJournal.UI.FishingWorldDay"));
+        }
+        else if (worlds.All(static world => !world.DayTime))
+        {
+            worldConditions.Add(Language.GetTextValue("Mods.ProgressionJournal.UI.FishingWorldNight"));
+        }
+
         if (worlds.All(static world => world.DownedSkeletron))
         {
             worldConditions.Add(Language.GetTextValue("Mods.ProgressionJournal.UI.FishingWorldPostSkeletron"));
+        }
+
+        if (worlds.All(static world => world.CombatBookUsed))
+        {
+            worldConditions.Add(Language.GetTextValue("Mods.ProgressionJournal.UI.FishingWorldCombatBook"));
         }
 
         if (worlds.All(static world => world.Remix))
@@ -344,29 +1043,77 @@ internal static class JournalFishingSourceResolver
         return Language.GetTextValue($"Mods.ProgressionJournal.UI.{key}");
     }
 
-    private static int FindProbePlayerIndex()
+    private static Player? GetProbePlayer()
     {
-        for (var index = Main.player.Length - 1; index >= 0; index--)
-        {
-            if (index != Main.myPlayer && (Main.player[index] is null || !Main.player[index].active))
-            {
-                return index;
-            }
-        }
-
-        return -1;
+        if (Main.myPlayer < 0 || Main.myPlayer >= Main.player.Length)
+            return Main.player.FirstOrDefault(static player => player is { active: true });
+        var localPlayer = Main.LocalPlayer;
+        return localPlayer is { active: true } ? localPlayer : Main.player.FirstOrDefault(static player => player is { active: true });
     }
 
     private static void ApplyWorld(ProbeWorld world)
     {
         Main.hardMode = world.Hardmode;
         Main.bloodMoon = world.BloodMoon;
+        Main.dayTime = world.DayTime;
         Main.remixWorld = world.Remix;
         Main.notTheBeesWorld = world.NotTheBees;
         NPC.downedBoss3 = world.DownedSkeletron;
+        NPC.combatBookWasUsed = world.CombatBookUsed;
+        NPC.unlockedSlimeRedSpawn = world.UnlockedSlimeRed;
     }
 
-    private static void ResetBiomes(Player player)
+    private static void ApplyEnvironment(Player player, ProbeEnvironment environment)
+    {
+        ResetVanillaBiomes(player);
+        var modBiomeFlags = GetModBiomeFlags(player);
+        modBiomeFlags.SetAll(false);
+        environment.ApplyVanillaBiome(player);
+        var modBiomeIndex = environment.ModBiome is null
+            ? -1
+            : GetModBiomeIndex(environment.ModBiome);
+        if (modBiomeIndex >= 0 && modBiomeIndex < modBiomeFlags.Length)
+        {
+            modBiomeFlags[modBiomeIndex] = true;
+        }
+
+        Main.waterStyle = environment.WaterStyle?.Slot ?? 0;
+    }
+
+    private static PlayerState CapturePlayerState(Player player)
+    {
+        return new PlayerState(
+            player.position,
+            player.velocity,
+            player.ZoneBeach,
+            player.ZoneDesert,
+            player.ZoneSnow,
+            player.ZoneJungle,
+            player.ZoneCorrupt,
+            player.ZoneCrimson,
+            player.ZoneHallow,
+            player.ZoneDungeon,
+            player.ZoneGlowshroom,
+            (BitArray)GetModBiomeFlags(player).Clone());
+    }
+
+    private static void RestorePlayerState(Player player, PlayerState state)
+    {
+        player.position = state.Position;
+        player.velocity = state.Velocity;
+        player.ZoneBeach = state.Beach;
+        player.ZoneDesert = state.Desert;
+        player.ZoneSnow = state.Snow;
+        player.ZoneJungle = state.Jungle;
+        player.ZoneCorrupt = state.Corrupt;
+        player.ZoneCrimson = state.Crimson;
+        player.ZoneHallow = state.Hallow;
+        player.ZoneDungeon = state.Dungeon;
+        player.ZoneGlowshroom = state.Glowshroom;
+        ModBiomeFlagsField?.SetValue(player, (BitArray)state.ModBiomeFlags.Clone());
+    }
+
+    private static void ResetVanillaBiomes(Player player)
     {
         player.ZoneBeach = false;
         player.ZoneDesert = false;
@@ -378,4 +1125,15 @@ internal static class JournalFishingSourceResolver
         player.ZoneDungeon = false;
         player.ZoneGlowshroom = false;
     }
+
+    private static BitArray GetModBiomeFlags(Player player)
+    {
+        return ModBiomeFlagsField?.GetValue(player) as BitArray ?? new BitArray(0);
+    }
+
+    private static int GetModBiomeIndex(ModBiome biome)
+    {
+        return ModBiomeIndexProperty?.GetValue(biome) is int index ? index : -1;
+    }
+
 }

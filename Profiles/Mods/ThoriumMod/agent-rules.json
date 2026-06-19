@@ -708,16 +708,6 @@
       "reason": "Sea Shanty Singer spawns in the Hardmode Pirate Invasion."
     },
     {
-      "id": "scissor-stalker-source-stage",
-      "kind": "source-stage",
-      "source": "ThoriumMod/ScissorStalker",
-      "stageId": "skeletron-prime",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Scissor_Stalker",
-      "sourceVersion": "Thorium Mod 1.7.2.5",
-      "checkedAt": "2026-06-14",
-      "reason": "The official SpawnChance requires all three mechanical bosses and a Solar Eclipse."
-    },
-    {
       "id": "pre-hardmode-condition",
       "kind": "condition-stage",
       "stageId": "start",
@@ -931,17 +921,17 @@
     {
       "id": "post-skeletron-ancient-and-dungeon-sources",
       "kind": "source-stage",
+      "stageId": "skeletron",
+      "sourceUrl": "https://github.com/Thorium-Mod/ThoriumMod/tree/1.7.2.6/ThoriumMod/NPCs",
+      "sourceVersion": "Thorium Mod 1.7.2.6",
+      "checkedAt": "2026-06-15",
+      "reason": "The ancient enemies explicitly require Skeletron, while Raging Minotaur is a Dungeon enemy.",
       "sources": [
         "ThoriumMod/AncientArcher",
         "ThoriumMod/AncientCharger",
         "ThoriumMod/AncientPhalanx",
         "ThoriumMod/RagingMinotaur"
-      ],
-      "stageId": "skeletron",
-      "sourceUrl": "https://github.com/Thorium-Mod/ThoriumMod/tree/1.7.2.6/ThoriumMod/NPCs",
-      "sourceVersion": "Thorium Mod 1.7.2.6",
-      "checkedAt": "2026-06-15",
-      "reason": "The ancient enemies explicitly require Skeletron, while Raging Minotaur is a Dungeon enemy."
+      ]
     },
     {
       "id": "post-plantera-aquatic-hallucination",
@@ -1073,16 +1063,6 @@
       "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
       "checkedAt": "2026-06-16",
       "reason": "Technique: Stone Palm and Technique: Gravity Well require Lodestone/Valadium ingots. Lodestone and Valadium chunks generate after Coznix, the Fallen Beholder."
-    },
-    {
-      "id": "technique-cobras-bite-all-mechs",
-      "kind": "item-stage",
-      "item": "ThoriumMod/TechniqueCobrasBite",
-      "stageId": "skeletron-prime",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique%3A_Cobra%27s_Bite",
-      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-      "checkedAt": "2026-06-16",
-      "reason": "Technique: Cobra's Bite is crafted from Chlorophyte Bars and a Blank Technique Scroll. In vanilla progression Chlorophyte gear requires the post-mechanical-boss pickaxe tier, represented here by the final mechanical boss stage."
     },
     {
       "id": "technique-post-plantera-dungeon-scrolls",
@@ -1218,6 +1198,26 @@
       "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
       "checkedAt": "2026-06-16",
       "reason": "Conductor's Stand is sold after Wall of Flesh and grants a Bard empowerment buff; Ninja Rack is sold after Wall of Flesh and grants Thrower velocity, speed and critical chance bonuses."
+    },
+    {
+      "id": "scissor-stalker-source-stage",
+      "kind": "source-stage",
+      "source": "ThoriumMod/ScissorStalker",
+      "stageId": "skeletron-prime",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Scissor_Stalker",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The official SpawnChance requires all three mechanical bosses and a Solar Eclipse."
+    },
+    {
+      "id": "technique-cobras-bite-all-mechs",
+      "kind": "item-stage",
+      "item": "ThoriumMod/TechniqueCobrasBite",
+      "stageId": "skeletron-prime",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique%3A_Cobra%27s_Bite",
+      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
+      "checkedAt": "2026-06-16",
+      "reason": "Technique: Cobra's Bite is crafted from Chlorophyte Bars and a Blank Technique Scroll. In vanilla progression Chlorophyte gear requires the post-mechanical-boss pickaxe tier, represented here by the final mechanical boss stage."
     }
   ],
   "ignoredItems": [

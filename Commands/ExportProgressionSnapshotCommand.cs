@@ -4,11 +4,19 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace ProgressionJournal.Commands;
 
 public sealed class ExportProgressionSnapshotCommand : ModCommand
 {
+    private static readonly MethodInfo? PlayerLoaderSetupPlayerMethod = typeof(PlayerLoader).GetMethod(
+        "SetupPlayer",
+        BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+    private static readonly FieldInfo? GlobalNpcDropRulesField = typeof(ItemDropDatabase).GetField(
+        "_globalEntries",
+        BindingFlags.Instance | BindingFlags.NonPublic);
+
     public override CommandType Type => CommandType.Chat;
 
     public override string Command => "pjexport";
@@ -32,6 +40,22 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             return;
         }
 
+        var matchingProfiles = JournalProfileRegistry.All
+            .Where(profile => profile.Document.RequiredMods.Any(requirement =>
+                string.Equals(requirement.Name, targetMod.Name, StringComparison.OrdinalIgnoreCase)))
+            .ToArray();
+        if (matchingProfiles.Length != 1)
+        {
+            caller.Reply(
+                matchingProfiles.Length == 0
+                    ? $"No loaded Progression Journal profile targets '{targetMod.Name}'."
+                    : $"More than one loaded profile targets '{targetMod.Name}': "
+                      + string.Join(", ", matchingProfiles.Select(static profile => profile.Id)));
+            return;
+        }
+
+        var targetProfile = matchingProfiles[0];
+        using var profileScope = JournalRuntimeProgressionScenarios.UseProfile(targetProfile);
         var dependencyMods = ResolveTransitiveDependencies(targetMod);
         var contentMods = dependencyMods
             .Select(static mod => mod.Name)
@@ -52,6 +76,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         {
             GeneratedAtUtc = DateTime.UtcNow.ToString("O"),
             TargetMod = targetMod.Name,
+            ProfileId = targetProfile.Id,
             ContentMods = contentMods
                 .OrderBy(static name => name, StringComparer.OrdinalIgnoreCase)
                 .ToList(),
@@ -67,7 +92,10 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             Npcs = npcIds.Select(CreateNpc).ToList(),
             Recipes = CreateRecipes(itemIds, includedMods),
             Drops = CreateDrops(itemIds, npcIds),
-            Shops = CreateShops(itemIds, npcIds)
+            Shops = CreateShops(itemIds, npcIds),
+            Fishing = CreateFishing(itemIds, npcIds),
+            NpcAvailability = CreateNpcAvailability(npcIds),
+            VanillaItemClassifications = CreateVanillaItemClassifications()
         };
 
         var sourceFolder = ProgressionJournal.Instance?.SourceFolder;
@@ -87,6 +115,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         CreateSupportTemplateIfMissing(directory, targetMod, dependencyMods);
         caller.Reply(
             $"Progression Journal snapshot exported: {path}. "
+            + $"Profile: {snapshot.ProfileId}. "
             + $"Content mods: {string.Join(", ", snapshot.ContentMods)}");
     }
 
@@ -277,8 +306,17 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             var baseline = CreateEffectProbePlayer();
             var equipped = CreateEffectProbePlayer();
             var item = sourceItem.Clone();
+            var previousRandom = Main.rand;
 
-            equipped.ApplyEquipFunctional(item, hideVisual: false);
+            try
+            {
+                RunEffectProbe(baseline, item: null);
+                RunEffectProbe(equipped, item);
+            }
+            finally
+            {
+                Main.rand = previousRandom;
+            }
 
             return EnumerateDamageClasses()
                 .Select(damageClass => CreateClassEffect(damageClass, baseline, equipped))
@@ -322,24 +360,71 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
 
     private static Player CreateEffectProbePlayer()
     {
-        return new Player();
+        var player = new Player
+        {
+            whoAmI = Main.myPlayer,
+            active = true,
+            dead = false
+        };
+        PlayerLoaderSetupPlayerMethod?.Invoke(null, [player]);
+        player.ResetEffects();
+        return player;
+    }
+
+    private static void RunEffectProbe(Player player, Item? item)
+    {
+        Main.rand = new UnifiedRandom(0);
+        for (var tick = 0; tick < 2; tick++)
+        {
+            player.ResetEffects();
+            if (item is not null)
+            {
+                player.ApplyEquipFunctional(item, hideVisual: false);
+            }
+
+            PlayerLoader.PostUpdateEquips(player);
+            PlayerLoader.PostUpdateMiscEffects(player);
+        }
+
+        player.active = true;
+        player.dead = false;
     }
 
     private static IEnumerable<DamageClass> EnumerateDamageClasses()
     {
-        var emptyRun = 0;
-        for (var type = 0; type < 4096 && emptyRun < 32; type++)
+        for (var type = 0; type < DamageClassLoader.DamageClassCount; type++)
         {
             var damageClass = DamageClassLoader.GetDamageClass(type);
             if (damageClass is null)
             {
-                emptyRun++;
                 continue;
             }
 
-            emptyRun = 0;
             yield return damageClass;
         }
+    }
+
+    private static List<SnapshotVanillaItemClassification> CreateVanillaItemClassifications()
+    {
+        return JournalRepository.GetAllVanillaEntries()
+            .SelectMany(entry => entry.ItemIds
+                .Where(static itemId => itemId > 0 && itemId < ItemID.Count)
+                .Select(itemId => new
+                {
+                    ItemId = itemId,
+                    entry.Category,
+                    Classes = entry.ClassIds
+                }))
+            .GroupBy(static value => value.ItemId)
+            .Select(group => new SnapshotVanillaItemClassification(
+                GetItemReference(group.Key),
+                group.Select(static value => value.Category.ToString()).First(),
+                group.SelectMany(static value => value.Classes)
+                    .Distinct(StringComparer.OrdinalIgnoreCase)
+                    .Order(StringComparer.OrdinalIgnoreCase)
+                    .ToList()))
+            .OrderBy(static value => value.Item, StringComparer.OrdinalIgnoreCase)
+            .ToList();
     }
 
     private static bool StatModifierEquals(StatModifier left, StatModifier right)
@@ -404,11 +489,18 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         {
             AppendDrops(
                 drops,
-                Main.ItemDropsDB.GetRulesForNPCID(npcId),
+                Main.ItemDropsDB.GetRulesForNPCID(npcId, includeGlobalDrops: false),
                 "npc",
                 GetNpcReference(npcId),
                 includedItems);
         }
+
+        AppendDrops(
+            drops,
+            GlobalNpcDropRulesField?.GetValue(Main.ItemDropsDB) as List<IItemDropRule>,
+            "global",
+            "Terraria/GlobalNPCDrops",
+            includedItems);
 
         foreach (var itemId in includedItems)
         {
@@ -471,12 +563,86 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                 && !pair.entry.Item.IsAir
                 && includedNpcs.Contains(pair.shop.NpcType)
                 && includedItems.Contains(pair.entry.Item.type))
-            .Select(pair => new SnapshotShop(
-                GetNpcReference(pair.shop.NpcType),
-                pair.shop.Name,
-                GetItemReference(pair.entry.Item.type),
-                EnumerateObjects(pair.entry.Conditions).Select(CreateCondition).ToList()))
+            .Select(pair =>
+            {
+                var observed = JournalTownNpcAvailabilityResolver.TryGetShopStage(
+                    pair.shop.NpcType,
+                    pair.shop.Name,
+                    pair.entry.Item.type,
+                    out var stageIndex,
+                    out var stageName);
+                return new SnapshotShop(
+                    GetNpcReference(pair.shop.NpcType),
+                    pair.shop.Name,
+                    GetItemReference(pair.entry.Item.type),
+                    EnumerateObjects(pair.entry.Conditions).Select(CreateCondition).ToList(),
+                    observed,
+                    stageIndex,
+                    stageName);
+            })
             .ToList();
+    }
+
+    private static List<SnapshotFishingCatch> CreateFishing(
+        IReadOnlySet<int> includedItems,
+        IReadOnlySet<int> includedNpcs)
+    {
+        var result = includedItems
+            .Select(itemId => new
+            {
+                Id = itemId,
+                Availability = JournalFishingSourceResolver.GetItemAvailability(itemId)
+            })
+            .Where(static value => value.Availability.Observed)
+            .Select(value => new SnapshotFishingCatch(
+                "item",
+                GetItemReference(value.Id),
+                value.Availability.EarliestStageIndex,
+                value.Availability.EarliestStageName,
+                value.Availability.Conditions.ToList()))
+            .ToList();
+        result.AddRange(includedNpcs
+            .Select(npcId => new
+            {
+                Id = npcId,
+                Availability = JournalFishingSourceResolver.GetNpcAvailability(npcId)
+            })
+            .Where(static value => value.Availability.Observed)
+            .Select(value => new SnapshotFishingCatch(
+                "npc",
+                GetNpcReference(value.Id),
+                value.Availability.EarliestStageIndex,
+                value.Availability.EarliestStageName,
+                value.Availability.Conditions.ToList())));
+        return result;
+    }
+
+    private static List<SnapshotNpcAvailability> CreateNpcAvailability(IReadOnlySet<int> includedNpcs)
+    {
+        return includedNpcs.Select(npcId =>
+        {
+            var npc = ContentSamples.NpcsByNetId[npcId];
+            if (npc.townNPC)
+            {
+                var availability = JournalTownNpcAvailabilityResolver.GetAvailability(npcId);
+                return new SnapshotNpcAvailability(
+                    GetNpcReference(npcId),
+                    "town",
+                    availability.Observed,
+                    availability.EarliestStageIndex,
+                    availability.EarliestStageName,
+                    []);
+            }
+
+            var spawnAvailability = JournalNpcSpawnAvailabilityResolver.GetAvailability(npcId);
+            return new SnapshotNpcAvailability(
+                GetNpcReference(npcId),
+                "spawn",
+                spawnAvailability.Observed,
+                spawnAvailability.EarliestStageIndex,
+                spawnAvailability.EarliestStageName,
+                spawnAvailability.Conditions.ToList());
+        }).ToList();
     }
 
     private static SnapshotCondition CreateCondition(object? condition)
@@ -557,14 +723,16 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         var separator = reference.IndexOf('/');
         return separator > 0 && includedMods.Contains(reference[..separator]);
     }
+
 }
 
 public sealed class ProgressionSnapshot
 {
     public string Format { get; set; } = "ProgressionJournalSnapshot";
-    public int Version { get; set; } = 2;
+    public int Version { get; set; } = 4;
     public string GeneratedAtUtc { get; set; } = string.Empty;
     public string TargetMod { get; set; } = string.Empty;
+    public string ProfileId { get; set; } = string.Empty;
     public List<string> ContentMods { get; init; } = [];
     public List<SnapshotMod> Mods { get; set; } = [];
     public List<SnapshotMod> EnvironmentMods { get; set; } = [];
@@ -573,9 +741,16 @@ public sealed class ProgressionSnapshot
     public List<SnapshotRecipe> Recipes { get; set; } = [];
     public List<SnapshotDrop> Drops { get; set; } = [];
     public List<SnapshotShop> Shops { get; set; } = [];
+    public List<SnapshotFishingCatch> Fishing { get; set; } = [];
+    public List<SnapshotNpcAvailability> NpcAvailability { get; set; } = [];
+    public List<SnapshotVanillaItemClassification> VanillaItemClassifications { get; set; } = [];
 }
 
 public sealed record SnapshotMod(string Name, string Version);
+public sealed record SnapshotVanillaItemClassification(
+    string Item,
+    string Category,
+    List<string> Classes);
 public sealed record SnapshotItem(
     string Id,
     string Name,
@@ -638,4 +813,20 @@ public sealed record SnapshotShop(
     string Npc,
     string Shop,
     string Item,
-    List<SnapshotCondition> Conditions);
+    List<SnapshotCondition> Conditions,
+    bool Observed,
+    int EarliestStageIndex,
+    string EarliestStageName);
+public sealed record SnapshotFishingCatch(
+    string TargetType,
+    string Target,
+    int EarliestStageIndex,
+    string EarliestStageName,
+    List<string> Conditions);
+public sealed record SnapshotNpcAvailability(
+    string Npc,
+    string Kind,
+    bool Observed,
+    int EarliestStageIndex,
+    string EarliestStageName,
+    List<string> Conditions);

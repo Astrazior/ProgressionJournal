@@ -40,26 +40,6 @@
       "reason": "The official source gives Burrower a normal Cavern spawn chance with no progression flag and makes it drop Mysterious Circuitry and Dubious Plating."
     },
     {
-      "id": "ebonian-blight-slime-source",
-      "kind": "source-stage",
-      "source": "CalamityMod/EbonianBlightSlime",
-      "stageId": "start",
-      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/NormalNPCs/EbonianBlightSlime.cs",
-      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-      "checkedAt": "2026-06-14",
-      "reason": "The official source gives Ebonian Blight Slime an unconditional Corruption spawn chance, making its Blighted Gel available before bosses."
-    },
-    {
-      "id": "crimulan-blight-slime-source",
-      "kind": "source-stage",
-      "source": "CalamityMod/CrimulanBlightSlime",
-      "stageId": "start",
-      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/NormalNPCs/CrimulanBlightSlime.cs",
-      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-      "checkedAt": "2026-06-14",
-      "reason": "The official source gives Crimulan Blight Slime an unconditional Crimson spawn chance, making its Blighted Gel available before bosses."
-    },
-    {
       "id": "leviathan-anahita-final-loot",
       "kind": "item-stage",
       "item": "CalamityMod/LeviathanBag",
@@ -312,6 +292,11 @@
     {
       "id": "calamity-preboss-natural-sources",
       "kind": "source-stage",
+      "stageId": "start",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official source gives these enemies ordinary pre-boss biome spawn conditions, and the Starter Bag and pre-Hardmode Sulphurous Crate are available before boss progression.",
       "sources": [
         "CalamityMod/AquaticUrchin",
         "CalamityMod/Cnidrion",
@@ -331,12 +316,7 @@
         "CalamityMod/WulfrumGyrator",
         "CalamityMod/WulfrumHovercraft",
         "CalamityMod/WulfrumRover"
-      ],
-      "stageId": "start",
-      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs",
-      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-      "checkedAt": "2026-06-14",
-      "reason": "The official source gives these enemies ordinary pre-boss biome spawn conditions, and the Starter Bag and pre-Hardmode Sulphurous Crate are available before boss progression."
+      ]
     },
     {
       "id": "giant-clam-and-sea-king-source",
@@ -354,15 +334,15 @@
     {
       "id": "acid-rain-tier-one-sources",
       "kind": "source-stage",
-      "sources": [
-        "CalamityMod/NuclearToad",
-        "CalamityMod/Rotdog"
-      ],
       "stageId": "eye-of-cthulhu",
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AcidRain",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
-      "reason": "The official Acid Rain sources place these enemies in the first event tier, which this profile opens after Eye of Cthulhu."
+      "reason": "The official Acid Rain sources place these enemies in the first event tier, which this profile opens after Eye of Cthulhu.",
+      "sources": [
+        "CalamityMod/NuclearToad",
+        "CalamityMod/Rotdog"
+      ]
     },
     {
       "id": "post-skeletron-abyss-sources",
@@ -431,16 +411,16 @@
     {
       "id": "acid-rain-tier-two-sources",
       "kind": "source-stage",
-      "sources": [
-        "CalamityMod/BelchingCoral",
-        "CalamityMod/Orthocera",
-        "CalamityMod/SulphurousSkater"
-      ],
       "stageId": "aquatic-scourge",
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AcidRain",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
-      "reason": "The official sources place these enemies in the second Acid Rain tier after Aquatic Scourge."
+      "reason": "The official sources place these enemies in the second Acid Rain tier after Aquatic Scourge.",
+      "sources": [
+        "CalamityMod/BelchingCoral",
+        "CalamityMod/Orthocera",
+        "CalamityMod/SulphurousSkater"
+      ]
     },
     {
       "id": "calamitas-clone-construct-sources",
@@ -471,15 +451,15 @@
     {
       "id": "post-golem-natural-sources",
       "kind": "source-stage",
-      "sources": [
-        "CalamityMod/PlaguebringerMiniboss",
-        "CalamityMod/ShockstormShuttle"
-      ],
       "stageId": "golem",
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
-      "reason": "The official spawn conditions require Golem to be defeated."
+      "reason": "The official spawn conditions require Golem to be defeated.",
+      "sources": [
+        "CalamityMod/PlaguebringerMiniboss",
+        "CalamityMod/ShockstormShuttle"
+      ]
     },
     {
       "id": "post-moon-lord-impious-source",
@@ -720,28 +700,6 @@
       "reason": "These accessories exclusively modify fishing bobbers, fishing power, lava fishing, fishing rewards, or the fishing minigame. They do not provide normal combat equipment effects."
     },
     {
-      "id": "sunken-sea-fishing-sources",
-      "kind": "fishing-source",
-      "items": [
-        "CalamityMod/SparklingEmpress",
-        "CalamityMod/SeaSpiritAmulet"
-      ],
-      "conditions": [
-        {
-          "en-US": "In the Sunken Sea",
-          "ru-RU": "В Затонувшем море"
-        },
-        {
-          "en-US": "After defeating the Desert Scourge",
-          "ru-RU": "После победы над Пустынным бичом"
-        }
-      ],
-      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs#L364-L389",
-      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-      "checkedAt": "2026-06-15",
-      "reason": "The custom Sunken Sea fishing pool adds Sparkling Empress and Sea Spirit Amulet to very-rare catches after Desert Scourge."
-    },
-    {
       "id": "accessory-vanity-namespace",
       "kind": "item-override",
       "items": [
@@ -928,16 +886,6 @@
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-15",
       "reason": "Anechoic Coating reduces enemy detection range and is an exploration/avoidance utility rather than combat equipment."
-    },
-    {
-      "id": "shady-salesman-source",
-      "kind": "source-stage",
-      "source": "CalamityMod/ShadySalesman",
-      "stageId": "start",
-      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/TownNPCs/ShadySalesman.cs",
-      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-      "checkedAt": "2026-06-14",
-      "reason": "The official source implements the Shady Salesman as a travelling NPC with no boss-progression requirement."
     },
     {
       "id": "draedon-sunken-sea-schematic",
@@ -1618,16 +1566,6 @@
       "reason": "The official Exhumed upgrade table converts their base items through Calamitas's post-boss enchantment service."
     },
     {
-      "id": "sunken-sea-base-enemies",
-      "kind": "source-stage",
-      "source": "CalamityMod/GhostBell",
-      "stageId": "start",
-      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/SunkenSea/GhostBell.cs",
-      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-      "checkedAt": "2026-06-15",
-      "reason": "Ghost Bell spawns from the start in Sunken Sea water; its Voltaic Jelly drop remains gated by the Desert Scourge condition."
-    },
-    {
       "id": "post-polterghast-reaper-shark-loot",
       "kind": "source-stage",
       "source": "CalamityMod/ReaperShark",
@@ -1727,27 +1665,6 @@
       "reason": "The recipe requires Bloodstone, which is post-Providence, so the potion cannot be available at Lunatic Cultist."
     },
     {
-      "id": "bloodfin-brimstone-crag-fishing-source",
-      "kind": "fishing-source",
-      "items": [
-        "CalamityMod/Bloodfin"
-      ],
-      "conditions": [
-        {
-          "en-US": "Caught in the Brimstone Crag",
-          "ru-RU": "Ловится в Brimstone Crag"
-        },
-        {
-          "en-US": "10% chance after defeating Providence",
-          "ru-RU": "Шанс 10% после победы над Провиденсом"
-        }
-      ],
-      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bloodfin",
-      "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-06-15",
-      "checkedAt": "2026-06-15",
-      "reason": "Bloodfin is a fishing source item; without an explicit fishing-source rule the profile can know the stage but show no source."
-    },
-    {
       "id": "classless-weapons-as-shared-weapons",
       "kind": "item-override",
       "items": [
@@ -1774,6 +1691,89 @@
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-16",
       "reason": "Classless weapons and damage-dealing tools are usable combat items but do not map to a single Calamity class. Treat them as shared weapons for all profile classes instead of excluding them as non-combat equipment. Availability stage is still resolved from the normal generated item paths."
+    },
+    {
+      "id": "ebonian-blight-slime-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/EbonianBlightSlime",
+      "stageId": "start",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/NormalNPCs/EbonianBlightSlime.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official source gives Ebonian Blight Slime an unconditional Corruption spawn chance, making its Blighted Gel available before bosses."
+    },
+    {
+      "id": "crimulan-blight-slime-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/CrimulanBlightSlime",
+      "stageId": "start",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/NormalNPCs/CrimulanBlightSlime.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official source gives Crimulan Blight Slime an unconditional Crimson spawn chance, making its Blighted Gel available before bosses."
+    },
+    {
+      "id": "sunken-sea-fishing-sources",
+      "kind": "fishing-source",
+      "items": [
+        "CalamityMod/SparklingEmpress",
+        "CalamityMod/SeaSpiritAmulet"
+      ],
+      "conditions": [
+        {
+          "en-US": "In the Sunken Sea",
+          "ru-RU": "В Затонувшем море"
+        },
+        {
+          "en-US": "After defeating the Desert Scourge",
+          "ru-RU": "После победы над Пустынным бичом"
+        }
+      ],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs#L364-L389",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "The custom Sunken Sea fishing pool adds Sparkling Empress and Sea Spirit Amulet to very-rare catches after Desert Scourge."
+    },
+    {
+      "id": "shady-salesman-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/ShadySalesman",
+      "stageId": "start",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/TownNPCs/ShadySalesman.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "The official source implements the Shady Salesman as a travelling NPC with no boss-progression requirement."
+    },
+    {
+      "id": "sunken-sea-base-enemies",
+      "kind": "source-stage",
+      "source": "CalamityMod/GhostBell",
+      "stageId": "start",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/SunkenSea/GhostBell.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-15",
+      "reason": "Ghost Bell spawns from the start in Sunken Sea water; its Voltaic Jelly drop remains gated by the Desert Scourge condition."
+    },
+    {
+      "id": "bloodfin-brimstone-crag-fishing-source",
+      "kind": "fishing-source",
+      "items": [
+        "CalamityMod/Bloodfin"
+      ],
+      "conditions": [
+        {
+          "en-US": "Caught in the Brimstone Crag",
+          "ru-RU": "Ловится в Brimstone Crag"
+        },
+        {
+          "en-US": "10% chance after defeating Providence",
+          "ru-RU": "Шанс 10% после победы над Провиденсом"
+        }
+      ],
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bloodfin",
+      "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-06-15",
+      "checkedAt": "2026-06-15",
+      "reason": "Bloodfin is a fishing source item; without an explicit fishing-source rule the profile can know the stage but show no source."
     }
   ],
   "ignoredItems": [

@@ -21,7 +21,6 @@ const START_ITEMS = [
   "Terraria/Ebonwood",
   "Terraria/Shadewood",
   "Terraria/AshWood",
-  "Terraria/Pearlwood",
   "Terraria/StoneBlock",
   "Terraria/DirtBlock",
   "Terraria/MudBlock",
@@ -62,21 +61,6 @@ const START_ITEMS = [
   "Terraria/FallenStar",
   "Terraria/Chain",
   "Terraria/Worm",
-  "Terraria/ArmoredCavefish",
-  "Terraria/ChaosFish",
-  "Terraria/CrimsonTigerfish",
-  "Terraria/Damselfish",
-  "Terraria/DoubleCod",
-  "Terraria/Ebonkoi",
-  "Terraria/FlarefinKoi",
-  "Terraria/FrostMinnow",
-  "Terraria/Hemopiranha",
-  "Terraria/Obsidifish",
-  "Terraria/PrincessFish",
-  "Terraria/Prismite",
-  "Terraria/SpecularFish",
-  "Terraria/Stinkfish",
-  "Terraria/VariegatedLardfish",
   "Terraria/Robe",
   "Terraria/DynastyWood",
   "Terraria/GoldButterfly",
@@ -273,7 +257,6 @@ const MILESTONE_FACTS = [
       "Terraria/UnicornHorn",
       "Terraria/SpiderFang",
       "Terraria/FrostCore",
-      "Terraria/ForbiddenFragment",
       "Terraria/LightShard",
       "Terraria/DarkShard",
       "Terraria/TurtleShell",
@@ -343,11 +326,6 @@ const MILESTONE_FACTS = [
     shops: [
       "Terraria/Wizard",
       "Terraria/Truffle"
-    ],
-    containers: [
-      "Terraria/WoodenCrateHard",
-      "Terraria/GoldenCrateHard",
-      "Terraria/OasisCrateHard"
     ]
   },
   {
@@ -511,12 +489,6 @@ const START_SOURCES = [
   "Terraria/VoodooDemon"
 ];
 
-const START_CONTAINERS = [
-  "Terraria/WoodenCrate",
-  "Terraria/GoldenCrate",
-  "Terraria/OasisCrate"
-];
-
 const START_SHOPS = [
   "Terraria/ArmsDealer",
   "Terraria/Merchant",
@@ -530,11 +502,15 @@ const START_SHOPS = [
   "Terraria/SkeletonMerchant"
 ];
 
-export function applyVanillaSourceCatalog(sourceManifest) {
+export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {
   const manifest = structuredClone(sourceManifest);
+  const recipeResults = new Set(
+    (snapshot?.recipes ?? []).map(recipe => recipe.result));
+  const fallbackItems = items =>
+    (items ?? []).filter(item => !recipeResults.has(item));
   manifest.initialItems = unique([
     ...(manifest.initialItems ?? []),
-    ...START_ITEMS
+    ...fallbackItems(START_ITEMS)
   ]);
   manifest.initialStations = unique([
     ...(manifest.initialStations ?? []),
@@ -544,65 +520,57 @@ export function applyVanillaSourceCatalog(sourceManifest) {
   const stages = new Map(manifest.stages.map(stage => [stage.id, stage]));
   const start = stages.get("start") ?? manifest.stages[0];
   if (start) {
-    start.enemies = unique([...(start.enemies ?? []), ...START_SOURCES]);
-    start.containers = unique([...(start.containers ?? []), ...START_CONTAINERS]);
-    start.shops = unique([...(start.shops ?? []), ...START_SHOPS]);
+    start.enemies = unique([
+      ...(start.enemies ?? []),
+      ...filterLegacyNpcSources(START_SOURCES, start.id, "spawn", manifest, snapshot)
+    ]);
+    start.shops = unique([
+      ...(start.shops ?? []),
+      ...filterLegacyNpcSources(START_SHOPS, start.id, "town", manifest, snapshot)
+    ]);
   }
   for (const fact of MILESTONE_FACTS) {
     const stageId = fact.findStage(manifest);
     const stage = stages.get(stageId);
     if (!stage) continue;
+    const items = fallbackItems(fact.items);
     manifest.itemStageFloors ??= {};
     manifest.stationStageFloors ??= {};
-    for (const item of fact.items ?? []) {
+    for (const item of items) {
       manifest.itemStageFloors[item] ??= stageId;
     }
     for (const station of fact.stations ?? []) {
       manifest.stationStageFloors[station] ??= stageId;
     }
     stage.stations = unique([...(stage.stations ?? []), ...(fact.stations ?? [])]);
-    stage.include = unique([...(stage.include ?? []), ...(fact.items ?? [])]);
-    stage.enemies = unique([...(stage.enemies ?? []), ...(fact.enemies ?? [])]);
-    stage.shops = unique([...(stage.shops ?? []), ...(fact.shops ?? [])]);
-    stage.containers = unique([...(stage.containers ?? []), ...(fact.containers ?? [])]);
+    stage.include = unique([...(stage.include ?? []), ...items]);
+    stage.enemies = unique([
+      ...(stage.enemies ?? []),
+      ...filterLegacyNpcSources(fact.enemies ?? [], stageId, "spawn", manifest, snapshot)
+    ]);
+    stage.shops = unique([
+      ...(stage.shops ?? []),
+      ...filterLegacyNpcSources(fact.shops ?? [], stageId, "town", manifest, snapshot)
+    ]);
   }
-  addVanillaShopConditionStages(manifest);
   return manifest;
 }
 
-function addVanillaShopConditionStages(manifest) {
-  const mappings = [
-    {
-      stageId: findVanillaFlagStage(manifest, "hardMode", "wall-of-flesh"),
-      descriptions: ["In Hardmode", "В хардмоде"]
-    },
-    {
-      stageId: findEarliestVanillaFlagStage(
-        manifest,
-        ["downedMechBoss1", "downedMechBoss2", "downedMechBoss3"],
-        ["destroyer", "twins", "skeletron-prime"]),
-      descriptions: [
-        "After defeating any mechanical boss",
-        "После победы над любым механическим боссом"
-      ]
-    },
-    {
-      stageId: findVanillaFlagStage(manifest, "downedGolemBoss", "golem"),
-      descriptions: ["After defeating Golem", "После победы над Големом"]
+function filterLegacyNpcSources(sources, expectedStageId, kind, manifest, snapshot) {
+  if (!snapshot) return sources;
+  const expectedStageIndex = manifest.stages.findIndex(stage => stage.id === expectedStageId);
+  const availability = new Map(
+    (snapshot.npcAvailability ?? []).map(record => [record.npc, record]));
+  return sources.filter(source => {
+    const observed = availability.get(source);
+    if (!observed?.observed
+        || observed.kind !== kind
+        || observed.earliestStageIndex !== expectedStageIndex) {
+      return true;
     }
-  ];
-
-  manifest.conditionUnlocks = [...(manifest.conditionUnlocks ?? [])];
-  for (const mapping of mappings) {
-    if (!mapping.stageId) continue;
-    manifest.conditionUnlocks.push({
-      stageId: mapping.stageId,
-      sources: ["shop"],
-      sourceIds: ["Terraria/DD2Bartender"],
-      conditionTypes: [],
-      conditionDescriptions: mapping.descriptions
-    });
-  }
+    return kind === "town"
+      && (snapshot.shops ?? []).some(shop => shop.npc === source && !shop.observed);
+  });
 }
 
 function findEventStage(manifest, eventCategory) {
@@ -619,20 +587,6 @@ function findVanillaFlagStage(manifest, key, fallbackId) {
     stage.unlock?.type === "vanilla-flag" && stage.unlock.key === key)?.id
     ?? manifest.stages.find(stage => stage.id === fallbackId)?.id
     ?? null;
-}
-
-function findEarliestVanillaFlagStage(manifest, keys, fallbackIds) {
-  return manifest.stages.find(stage =>
-    keys.some(key => unlockContainsVanillaFlag(stage.unlock, key)))?.id
-    ?? fallbackIds.map(id => findStageById(manifest, id)).find(Boolean)
-    ?? null;
-}
-
-function unlockContainsVanillaFlag(unlock, key) {
-  if (!unlock) return false;
-  if (unlock.type === "vanilla-flag" && unlock.key === key) return true;
-  return (unlock.conditions ?? []).some(condition =>
-    unlockContainsVanillaFlag(condition, key));
 }
 
 function unique(values) {
