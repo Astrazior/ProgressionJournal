@@ -106,6 +106,7 @@ public static class JournalItemSourceResolver
                 sourceItemId: sourceItemType);
         }
 
+        AppendWorldContainerSources(drops, itemId);
         return drops
             .GroupBy(static drop => new
             {
@@ -122,6 +123,72 @@ public static class JournalItemSourceResolver
             .OrderByDescending(static drop => drop.DropRate)
             .ThenBy(static drop => drop.SourceName, StringComparer.CurrentCultureIgnoreCase)
             .ToArray();
+    }
+
+    private static void AppendWorldContainerSources(List<JournalDropSource> drops, int targetItemId)
+    {
+        foreach (var chest in Main.chest)
+        {
+            if (chest is null)
+            {
+                continue;
+            }
+
+            var targetStacks = chest.item
+                .Where(item => item is not null && !item.IsAir && item.type == targetItemId)
+                .Select(static item => item.stack)
+                .ToArray();
+            if (targetStacks.Length == 0)
+            {
+                continue;
+            }
+
+            var sourceItemId = ResolveWorldContainerItem(chest);
+            if (sourceItemId is null)
+            {
+                continue;
+            }
+
+            foreach (var stack in targetStacks)
+            {
+                drops.Add(new JournalDropSource(
+                    Lang.GetItemNameValue(sourceItemId.Value),
+                    sourceNpcType: null,
+                    sourceItemId: sourceItemId,
+                    dropRate: 1f,
+                    stackMin: stack,
+                    stackMax: stack,
+                    conditions: []));
+            }
+        }
+    }
+
+    private static int? ResolveWorldContainerItem(Chest chest)
+    {
+        var tile = Framing.GetTileSafely(chest.x, chest.y);
+        if (!tile.HasTile)
+        {
+            return null;
+        }
+
+        var style = tile.TileFrameX / 36;
+        int? fallback = null;
+        for (var itemId = ItemID.None + 1; itemId < ItemLoader.ItemCount; itemId++)
+        {
+            var item = ContentSamples.ItemsByType[itemId];
+            if (item.createTile != tile.TileType)
+            {
+                continue;
+            }
+
+            fallback ??= itemId;
+            if (item.placeStyle == style)
+            {
+                return itemId;
+            }
+        }
+
+        return fallback;
     }
 
     private static JournalShopSource[] BuildShops(int itemId)

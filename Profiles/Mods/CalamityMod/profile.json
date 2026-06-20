@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bosses",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-06-20T01:31:04.046Z",
+  "generatedAtUtc": "2026-06-20T12:23:52.334Z",
   "requiredMods": [
     {
       "name": "CalamityMod",
@@ -29160,12 +29160,25 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [],
+      "wiki": [
+        {
+          "stageId": "slime-god",
+          "classes": [
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Wall of Flesh",
+            "ru-RU": "Стена плоти"
+          }
+        }
+      ],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -32815,7 +32828,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -34873,7 +34886,7 @@
       "key": "new.terraria.titaniummask",
       "category": "Armor",
       "classes": [
-        "summoner"
+        "melee"
       ],
       "itemGroups": [
         [
@@ -41445,7 +41458,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -49509,7 +49522,6 @@
       "key": "new.terraria.titaniumhelmet",
       "category": "Armor",
       "classes": [
-        "melee",
         "ranged"
       ],
       "itemGroups": [
@@ -63453,6 +63465,72 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.abyssaldivinggear",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "AbyssalDivingGear",
+            "displayName": "Abyssal Diving Gear"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "polterghast",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.abyssaldivingsuit",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "AbyssalDivingSuit",
+            "displayName": "Abyssal Diving Suit"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "polterghast",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.abyssalmirror",
       "category": "Accessory",
       "classes": [
@@ -63488,6 +63566,39 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.aerostone",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "AeroStone",
+            "displayName": "Aero Stone"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -63913,6 +64024,72 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.ancientfossil",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "AncientFossil",
+            "displayName": "Ancient Fossil"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.anechoicplating",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "AnechoicPlating",
+            "displayName": "Anechoic Plating"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.angeltreads",
       "category": "Accessory",
       "classes": [
@@ -64069,6 +64246,105 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.apollyon",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "Apollyon",
+            "displayName": "Apollyon"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "golem",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.aquaticemblem",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "AquaticEmblem",
+            "displayName": "Aquatic Emblem"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "aquatic-scourge",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.aquaticheart",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "AquaticHeart",
+            "displayName": "Aquatic Heart"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.arcflashring",
       "category": "Accessory",
       "classes": [
@@ -64170,6 +64446,39 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.archaicpowder",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "ArchaicPowder",
+            "displayName": "Archaic Powder"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -64487,6 +64796,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.aureatebooster",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "AureateBooster",
+            "displayName": "Aureate Booster"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.badgeofbravery",
       "category": "Accessory",
       "classes": [
@@ -64742,6 +65084,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.blazingcore",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "BlazingCore",
+            "displayName": "Blazing Core"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "providence",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.bloodpact",
       "category": "Accessory",
       "classes": [
@@ -64801,6 +65176,39 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.bloodflarecore",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "BloodflareCore",
+            "displayName": "Bloodflare Core"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "ravager",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -65374,6 +65782,72 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.chaosstone",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "ChaosStone",
+            "displayName": "Chaos Stone"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "calamitas-clone",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.cleansingjelly",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "CleansingJelly",
+            "displayName": "Cleansing Jelly"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.coinofdeceit",
       "category": "Accessory",
       "classes": [
@@ -65457,6 +65931,39 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.corrosivespine",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "CorrosiveSpine",
+            "displayName": "Corrosive Spine"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "aquatic-scourge",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -65779,6 +66286,39 @@
       "evaluations": [
         {
           "stageId": "devourer-of-gods",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.cryostone",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "CryoStone",
+            "displayName": "Cryo Stone"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "cryogen",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -66311,6 +66851,72 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.depthcharm",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "DepthCharm",
+            "displayName": "Depths Charm"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.diamondofthedeep",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "DiamondOfTheDeep",
+            "displayName": "Diamond of the Deep"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "polterghast",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.draedonsheart",
       "category": "Accessory",
       "classes": [
@@ -66370,6 +66976,39 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.dragonscales",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "DragonScales",
+            "displayName": "Dragon Scales"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "yharon",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -66641,6 +67280,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.elementalinabottle",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "ElementalinaBottle",
+            "displayName": "Elemental in a Bottle"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.elysianaegis",
       "category": "Accessory",
       "classes": [
@@ -66766,6 +67438,39 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.etherealextorter",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "EtherealExtorter",
+            "displayName": "Ethereal Extorter"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "golem",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -66963,6 +67668,72 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.eyeofthestorm",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "EyeoftheStorm",
+            "displayName": "Eye of the Storm"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.fadedidolatry",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "FadedIdolatry",
+            "displayName": "Faded Idolatry"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "yharon",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.feathercrown",
       "category": "Accessory",
       "classes": [
@@ -67079,6 +67850,39 @@
       "evaluations": [
         {
           "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.flamelickedshell",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "FlameLickedShell",
+            "displayName": "Flame-Licked Shell"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "brimstone-elemental",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -67285,6 +68089,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.frozencube",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "FrozenCube",
+            "displayName": "Frozen Cube"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.fungalclump",
       "category": "Accessory",
       "classes": [
@@ -67328,6 +68165,72 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.fungalsymbiote",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "FungalSymbiote",
+            "displayName": "Fungal Symbiote"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.giantpearl",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "GiantPearl",
+            "displayName": "Giant Pearl"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "desert-scourge",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -67859,6 +68762,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.hadarianwings",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "HadarianWings",
+            "displayName": "Hadarian Wings"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "astrum-aureus",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.hallowedrune",
       "category": "Accessory",
       "classes": [
@@ -67930,6 +68866,72 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.harpyring",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "HarpyRing",
+            "displayName": "Harpy Ring"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "hive-mind-perforators",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.heartofdarkness",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "HeartofDarkness",
+            "displayName": "Heart of Darkness"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "king-slime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -68150,6 +69152,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.howlsheart",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "HowlsHeart",
+            "displayName": "Howl's Heart"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.ilmerisspark",
       "category": "Accessory",
       "classes": [
@@ -68250,6 +69285,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.inkbomb",
+      "category": "Accessory",
+      "classes": [
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "InkBomb",
+            "displayName": "Ink Bomb"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.interstellarstompers",
       "category": "Accessory",
       "classes": [
@@ -68325,6 +69389,72 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.ironboots",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "IronBoots",
+            "displayName": "Iron Boots"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.ivdripontherocks",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "IVDripOnTheRocks",
+            "displayName": "IV Drip on the Rocks"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -68434,6 +69564,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.laudanum",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "Laudanum",
+            "displayName": "Laudanum"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.leviathanambergris",
       "category": "Accessory",
       "classes": [
@@ -68493,6 +69656,39 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.lifejelly",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "LifeJelly",
+            "displayName": "Life Jelly"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -68575,6 +69771,39 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.luxorsgift",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "LuxorsGift",
+            "displayName": "Luxor's Gift"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -68807,6 +70036,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.moab",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "MOAB",
+            "displayName": "MOAB"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.moonwalkers",
       "category": "Accessory",
       "classes": [
@@ -69001,6 +70263,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.necklaceofvexation",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "NecklaceofVexation",
+            "displayName": "Necklace of Vexation"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.nuclearfuelrod",
       "category": "Accessory",
       "classes": [
@@ -69133,6 +70428,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.oasiselementalinabottle",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "OasisElementalinaBottle",
+            "displayName": "Oasis Elemental in a Bottle"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.occultskullcrown",
       "category": "Accessory",
       "classes": [
@@ -69154,6 +70482,105 @@
       "evaluations": [
         {
           "stageId": "signus",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.oceancrest",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "OceanCrest",
+            "displayName": "Ocean Crest"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "desert-scourge",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.olddie",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "OldDie",
+            "displayName": "Old Die"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.olddukescales",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "OldDukeScales",
+            "displayName": "Old Duke's Scales"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "old-duke",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -69232,6 +70659,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.pearlofenthrallment",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "PearlofEnthrallment",
+            "displayName": "Pearl of Enthrallment"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "leviathan-anahita",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.permafrostsconcoction",
       "category": "Accessory",
       "classes": [
@@ -69267,6 +70727,72 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.phantomicartifact",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "PhantomicArtifact",
+            "displayName": "Phantomic Artifact"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "polterghast",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.plaguedfuelpack",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "PlaguedFuelPack",
+            "displayName": "Plagued Fuel Pack"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "golem",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -69736,6 +71262,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.raiderstalisman",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "RaidersTalisman",
+            "displayName": "Raider's Talisman"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.rampartofdeities",
       "category": "Accessory",
       "classes": [
@@ -69895,6 +71454,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.regenerator",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "Regenerator",
+            "displayName": "Regenerator"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "calamitas-clone",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.rogueemblem",
       "category": "Accessory",
       "classes": [
@@ -69966,6 +71558,105 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.rosestone",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "RoseStone",
+            "displayName": "Rose Stone"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "brimstone-elemental",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.rottenbrain",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "RottenBrain",
+            "displayName": "Rotten Brain"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "hive-mind-perforators",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.rottendogtooth",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "RottenDogtooth",
+            "displayName": "Rotten Dogtooth"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -70122,6 +71813,39 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.sandcloak",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "SandCloak",
+            "displayName": "Sand Cloak"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "desert-scourge",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -70363,6 +72087,50 @@
         }
       ],
       "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.seaspiritamulet",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "SeaSpiritAmulet",
+            "displayName": "Sea Spirit Amulet"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "desert-scourge",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Вода",
+            "Биом: Basalt Gully, Clam Den, Gleaming Burrows, Polyp Forest, Radiant Reefs, Timeless Shores",
+            "Стиль воды: CalamityMod/SunkenSeaBurrowsWater",
+            "Глубина: Поверхность",
+            "Доступно после этапа: Пустынный бич",
+            "Мир: До хардмода, День"
+          ]
+        }
+      ],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -70863,6 +72631,72 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.slagsplitterpauldron",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "SlagsplitterPauldron",
+            "displayName": "Slagsplitter Pauldron"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.soulofcryogen",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "SoulofCryogen",
+            "displayName": "Soul of Cryogen"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "cryogen",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.spectralveil",
       "category": "Accessory",
       "classes": [
@@ -70946,6 +72780,39 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.spelunkersamulet",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "SpelunkersAmulet",
+            "displayName": "Spelunker's Amulet"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -71072,6 +72939,39 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.springstool",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "SpringStool",
+            "displayName": "Spring Stool"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -71216,6 +73116,39 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.starlightwings",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "StarlightWings",
+            "displayName": "Starlight Wings"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -71519,6 +73452,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.stresspills",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "StressPills",
+            "displayName": "Stress Pills"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "king-slime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.tarragonwings",
       "category": "Accessory",
       "classes": [
@@ -71578,6 +73544,39 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.teslasamulet",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "TeslasAmulet",
+            "displayName": "Tesla's Amulet"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "hive-mind-perforators",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -71850,6 +73849,39 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.thebee",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "TheBee",
+            "displayName": "The Bee"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "queen-bee",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -72208,6 +74240,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.thepointer",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "ThePointer",
+            "displayName": "The Pointer"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.thesponge",
       "category": "Accessory",
       "classes": [
@@ -72290,6 +74355,105 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.thetransformer",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "TheTransformer",
+            "displayName": "The Transformer"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.toxicheart",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "ToxicHeart",
+            "displayName": "Toxic Heart"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plaguebringer-goliath",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.trinketofchi",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "TrinketofChi",
+            "displayName": "Trinket of Chi"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.unholytonic",
       "category": "Accessory",
       "classes": [
@@ -72349,6 +74513,105 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.unstablegranitecore",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "UnstableGraniteCore",
+            "displayName": "Unstable Granite Core"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.v8engine",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "V8Engine",
+            "displayName": "V8 Engine"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "twins",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.v8000engine",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "V8000Engine",
+            "displayName": "V8000 Engine"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "polterghast",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -72482,6 +74745,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.veneratedlocket",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "VeneratedLocket",
+            "displayName": "Venerated Locket"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "devourer-of-gods",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.vicioustonic",
       "category": "Accessory",
       "classes": [
@@ -72541,6 +74837,39 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.vitaljelly",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "VitalJelly",
+            "displayName": "Vital Jelly"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -72858,6 +75187,39 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.wulfrumacrobaticspack",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "WulfrumAcrobaticsPack",
+            "displayName": "Wulfrum Acrobatics Pack"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -74715,6 +77077,27 @@
       ]
     },
     {
+      "key": "new.calamitymod.mushroomplasmaroot",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "crabulon",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "MushroomPlasmaRoot",
+            "displayName": "Mushroom Plasma Root"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.terraria.flaskofpoison",
       "category": "Flask",
       "classes": [
@@ -74870,6 +77253,27 @@
             "mod": "Terraria",
             "item": "Teacup",
             "displayName": "Чайная чашка"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.calamitymod.electrolytegelpack",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "slime-god",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "ElectrolyteGelPack",
+            "displayName": "Electrolyte Gel Pack"
           }
         ]
       ]
@@ -75055,6 +77459,27 @@
             "mod": "Terraria",
             "item": "FlaskofGold",
             "displayName": "Флакон с золотом"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.calamitymod.cometshard",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "CometShard",
+            "displayName": "Comet Shard"
           }
         ]
       ]
@@ -75470,6 +77895,27 @@
       ]
     },
     {
+      "key": "new.calamitymod.sanguinetangerine",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "plantera",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "SanguineTangerine",
+            "displayName": "Sanguine Tangerine"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.calamitymod.moonshine",
       "category": "Food",
       "classes": [
@@ -75507,6 +77953,27 @@
             "mod": "CalamityMod",
             "item": "AureusCell",
             "displayName": "Aureus Cell"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.calamitymod.starlightfuelcell",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "astrum-aureus",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "StarlightFuelCell",
+            "displayName": "Starlight Fuel Cell"
           }
         ]
       ]
@@ -75554,6 +78021,48 @@
       ]
     },
     {
+      "key": "new.calamitymod.miraclefruit",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "golem",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "MiracleFruit",
+            "displayName": "Miracle Fruit"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.calamitymod.infernalblood",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "ravager",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "InfernalBlood",
+            "displayName": "Infernal Blood"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.terraria.superhealingpotion",
       "category": "Basic",
       "classes": [
@@ -75570,6 +78079,27 @@
             "mod": "Terraria",
             "item": "SuperHealingPotion",
             "displayName": "Превосходное лечебное зелье"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.calamitymod.etherealcore",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "lunatic-cultist",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "EtherealCore",
+            "displayName": "Ethereal Core"
           }
         ]
       ]
@@ -75634,6 +78164,27 @@
       ]
     },
     {
+      "key": "new.calamitymod.redlightningcontainer",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "dragonfolly",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "RedLightningContainer",
+            "displayName": "Red Lightning Container"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.calamitymod.bloodfin",
       "category": "Basic",
       "classes": [
@@ -75676,6 +78227,27 @@
       ]
     },
     {
+      "key": "new.calamitymod.taintedcloudberry",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "providence",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "TaintedCloudberry",
+            "displayName": "Tainted Cloudberry"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.calamitymod.ceaselesshungerpotion",
       "category": "Potion",
       "classes": [
@@ -75697,6 +78269,48 @@
       ]
     },
     {
+      "key": "new.calamitymod.ectoheart",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "polterghast",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "Ectoheart",
+            "displayName": "Ectoheart"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.calamitymod.phantomheart",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "polterghast",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "PhantomHeart",
+            "displayName": "Phantom Heart"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.calamitymod.omegahealingpotion",
       "category": "Basic",
       "classes": [
@@ -75713,6 +78327,27 @@
             "mod": "CalamityMod",
             "item": "OmegaHealingPotion",
             "displayName": "Omega Healing Potion"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.calamitymod.sacredstrawberry",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "yharon",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "SacredStrawberry",
+            "displayName": "Sacred Strawberry"
           }
         ]
       ]

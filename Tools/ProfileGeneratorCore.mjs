@@ -569,6 +569,11 @@ function classifyItem(item, manifest, report, context) {
   if (item.healLife > 0 || item.healMana > 0) {
     return { buffCategory: "Basic", classes: override?.classes ?? allClasses(manifest) };
   }
+  if (item.consumable
+      && item.maxStack === 1
+      && item.sourceNamespace?.split(".").includes("PermanentBoosters")) {
+    return { buffCategory: "Eternal", classes: override?.classes ?? allClasses(manifest) };
+  }
 
   if (item.pick > 0 || item.axe > 0 || item.hammer > 0 || item.mountType >= 0
       || item.createWall >= 0 || (item.createTile >= 0 && item.damage <= 0 && item.buffType <= 0)) {
@@ -603,6 +608,13 @@ function classifyItem(item, manifest, report, context) {
             || (wikiClassification.category === "Weapon" && (item.damage > 0 || item.sentry))
             || wikiClassification.category === "Support")) {
       return wikiClassification;
+    }
+    if (item.accessory
+        && !item.vanity
+        && item.createTile < 0
+        && !item.id.startsWith("Terraria/")
+        && item.sourceNamespace?.split(".").includes("Accessories")) {
+      return { category: "Accessory", classes: allClasses(manifest) };
     }
     return null;
   }

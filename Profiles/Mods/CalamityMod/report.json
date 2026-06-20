@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-06-20T01:31:04.087Z",
+  "generatedAtUtc": "2026-06-20T12:23:52.396Z",
   "snapshot": {
     "version": 4,
     "generatedAtUtc": "2026-06-20T01:07:23.4486071Z",
@@ -16,7 +16,7 @@
     ]
   },
   "agentRules": {
-    "rules": 121,
+    "rules": 123,
     "ignoredItems": 3,
     "ignoredIssues": 1,
     "evidence": [
@@ -343,6 +343,13 @@
         "reason": "The official world-generation source places Abyss Gravel and Planty Mush in the middle Abyss layers, reached at the profile's post-Skeletron Abyss stage."
       },
       {
+        "id": "ancient-treasure-chest-loot",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/World/Abyss.cs#L1028-L1116",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-20",
+        "reason": "The official Abyss world-generation code places these ten items in locked Ancient Treasure Chests, and the chest unlock check requires Skeletron."
+      },
+      {
         "id": "calamity-hardmode-world-materials",
         "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Placeables",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
@@ -411,6 +418,13 @@
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
         "checkedAt": "2026-06-14",
         "reason": "Great Sand Shark drops Grand Scale, and its official natural-spawn check immediately returns until Plantera has been defeated."
+      },
+      {
+        "id": "ink-bomb-rogue-accessory",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Accessories/InkBomb.cs",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-20",
+        "reason": "Ink Bomb is a rogue combat accessory; its custom stealth and retaliation effects are not represented by vanilla DamageClass stat probes."
       },
       {
         "id": "alluring-bait-fishing-utility",
@@ -1343,7 +1357,7 @@
   "audit": {
     "errors": [],
     "warnings": [
-      "70 recommendations precede proven availability and were suppressed",
+      "69 recommendations precede proven availability and were suppressed",
       "319 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
@@ -6302,7 +6316,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-06-20T01:31:00.271Z",
+    "generatedAtUtc": "2026-06-20T12:23:46.779Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -22195,16 +22209,6 @@
       },
       {
         "stage": "start",
-        "id": "CalamityMod/CleansingJelly",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/VitalJelly",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "Terraria/DepthMeter",
         "reason": "not combat equipment"
       },
@@ -22256,11 +22260,6 @@
       {
         "stage": "start",
         "id": "Terraria/PedguinPants",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/LifeJelly",
         "reason": "not combat equipment"
       },
       {
@@ -22721,31 +22720,6 @@
       {
         "stage": "start",
         "id": "CalamityMod/TheGift",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/LuxorsGift",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/FungalSymbiote",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/UnstableGraniteCore",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/FrozenCube",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/TrinketofChi",
         "reason": "not combat equipment"
       },
       {
@@ -26755,32 +26729,7 @@
       },
       {
         "stage": "start",
-        "id": "CalamityMod/AncientFossil",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/RaidersTalisman",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/SpringStool",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/ThePointer",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "CalamityMod/GlimmeringRibbon",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/WulfrumAcrobaticsPack",
         "reason": "not combat equipment"
       },
       {
@@ -28930,16 +28879,6 @@
       },
       {
         "stage": "king-slime",
-        "id": "CalamityMod/HeartofDarkness",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "king-slime",
-        "id": "CalamityMod/StressPills",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "king-slime",
         "id": "CalamityMod/AstrophageItem",
         "reason": "not combat equipment"
       },
@@ -29365,32 +29304,12 @@
       },
       {
         "stage": "desert-scourge",
-        "id": "CalamityMod/SandCloak",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "desert-scourge",
         "id": "CalamityMod/DesertScourgeTrophy",
         "reason": "not combat equipment"
       },
       {
         "stage": "desert-scourge",
-        "id": "CalamityMod/GiantPearl",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "desert-scourge",
         "id": "CalamityMod/GiantClamTrophy",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "desert-scourge",
-        "id": "CalamityMod/SeaSpiritAmulet",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "desert-scourge",
-        "id": "CalamityMod/OceanCrest",
         "reason": "not combat equipment"
       },
       {
@@ -29460,22 +29379,12 @@
       },
       {
         "stage": "eye-of-cthulhu",
-        "id": "CalamityMod/Laudanum",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
         "id": "Terraria/MoneyTrough",
         "reason": "not combat equipment"
       },
       {
         "stage": "eye-of-cthulhu",
         "id": "Terraria/AdhesiveBandage",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "CalamityMod/RottenDogtooth",
         "reason": "not combat equipment"
       },
       {
@@ -29786,11 +29695,6 @@
       {
         "stage": "crabulon",
         "id": "CalamityMod/CrabulonTrophy",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "crabulon",
-        "id": "CalamityMod/MushroomPlasmaRoot",
         "reason": "not combat equipment"
       },
       {
@@ -30175,11 +30079,6 @@
       },
       {
         "stage": "hive-mind-perforators",
-        "id": "CalamityMod/RottenBrain",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "hive-mind-perforators",
         "id": "Terraria/Ichor",
         "reason": "not combat equipment"
       },
@@ -30265,16 +30164,6 @@
       },
       {
         "stage": "hive-mind-perforators",
-        "id": "CalamityMod/HarpyRing",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "hive-mind-perforators",
-        "id": "CalamityMod/TeslasAmulet",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "hive-mind-perforators",
         "id": "CalamityMod/AcrobaticBobber",
         "reason": "not combat equipment"
       },
@@ -30336,11 +30225,6 @@
       {
         "stage": "queen-bee",
         "id": "Terraria/BeeWax",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "queen-bee",
-        "id": "CalamityMod/TheBee",
         "reason": "not combat equipment"
       },
       {
@@ -30536,11 +30420,6 @@
       {
         "stage": "skeletron",
         "id": "CalamityMod/AnechoicCoating",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "CalamityMod/InkBomb",
         "reason": "not combat equipment"
       },
       {
@@ -30750,11 +30629,6 @@
       },
       {
         "stage": "skeletron",
-        "id": "CalamityMod/OldDie",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
         "id": "CalamityMod/BearsEye",
         "reason": "not combat equipment"
       },
@@ -30801,6 +30675,11 @@
       {
         "stage": "skeletron",
         "id": "CalamityMod/AbyssGravel",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "CalamityMod/StrangeOrb",
         "reason": "not combat equipment"
       },
       {
@@ -31435,11 +31314,6 @@
       },
       {
         "stage": "skeletron",
-        "id": "CalamityMod/ArchaicPowder",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
         "id": "CalamityMod/DecryptionComputer",
         "reason": "not combat equipment"
       },
@@ -31715,11 +31589,6 @@
       },
       {
         "stage": "slime-god",
-        "id": "CalamityMod/ElectrolyteGelPack",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "slime-god",
         "id": "CalamityMod/BlueStatigelDye",
         "reason": "not combat equipment"
       },
@@ -31915,22 +31784,7 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "CalamityMod/AeroStone",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "Terraria/AncientBattleArmorMaterial",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "CalamityMod/ElementalinaBottle",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "CalamityMod/OasisElementalinaBottle",
         "reason": "not combat equipment"
       },
       {
@@ -31986,31 +31840,6 @@
       {
         "stage": "wall-of-flesh",
         "id": "CalamityMod/EssenceofHavoc",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "CalamityMod/EyeoftheStorm",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "CalamityMod/AnechoicPlating",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "CalamityMod/DepthCharm",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "CalamityMod/IronBoots",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "CalamityMod/StrangeOrb",
         "reason": "not combat equipment"
       },
       {
@@ -32426,11 +32255,6 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/EmptyDropper",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "CalamityMod/HowlsHeart",
         "reason": "not combat equipment"
       },
       {
@@ -32985,27 +32809,12 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "CalamityMod/SlagsplitterPauldron",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "CalamityMod/SpelunkersAmulet",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "CalamityMod/SupremeBaitTackleBoxFishingStation",
         "reason": "not combat equipment"
       },
       {
         "stage": "wall-of-flesh",
         "id": "CalamityMod/LoreBloodMoon",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "CalamityMod/CometShard",
         "reason": "not combat equipment"
       },
       {
@@ -33265,11 +33074,6 @@
       },
       {
         "stage": "cryogen",
-        "id": "CalamityMod/CryoStone",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "cryogen",
         "id": "CalamityMod/CryogenTrophy",
         "reason": "not combat equipment"
       },
@@ -33291,11 +33095,6 @@
       {
         "stage": "cryogen",
         "id": "CalamityMod/CryonicBar",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "cryogen",
-        "id": "CalamityMod/SoulofCryogen",
         "reason": "not combat equipment"
       },
       {
@@ -33370,22 +33169,12 @@
       },
       {
         "stage": "aquatic-scourge",
-        "id": "CalamityMod/CorrosiveSpine",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "aquatic-scourge",
         "id": "CalamityMod/AquaticScourgeTrophy",
         "reason": "not combat equipment"
       },
       {
         "stage": "aquatic-scourge",
         "id": "CalamityMod/CorrodedFossil",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "aquatic-scourge",
-        "id": "CalamityMod/AquaticEmblem",
         "reason": "not combat equipment"
       },
       {
@@ -33740,16 +33529,6 @@
       },
       {
         "stage": "destroyer",
-        "id": "CalamityMod/TheTransformer",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "destroyer",
-        "id": "CalamityMod/StarlightWings",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "destroyer",
         "id": "CalamityMod/LongRangedSensorArray",
         "reason": "not combat equipment"
       },
@@ -33810,11 +33589,6 @@
       },
       {
         "stage": "brimstone-elemental",
-        "id": "CalamityMod/RoseStone",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "brimstone-elemental",
         "id": "CalamityMod/BrimstoneElementalMask",
         "reason": "not combat equipment"
       },
@@ -33831,11 +33605,6 @@
       {
         "stage": "brimstone-elemental",
         "id": "CalamityMod/UnholyCore",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "brimstone-elemental",
-        "id": "CalamityMod/FlameLickedShell",
         "reason": "not combat equipment"
       },
       {
@@ -34070,11 +33839,6 @@
       },
       {
         "stage": "twins",
-        "id": "CalamityMod/V8Engine",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "twins",
         "id": "CalamityMod/LoreMechs",
         "reason": "not combat equipment"
       },
@@ -34234,11 +33998,6 @@
         "reason": "not combat equipment"
       },
       {
-        "stage": "skeletron-prime",
-        "id": "CalamityMod/MOAB",
-        "reason": "not combat equipment"
-      },
-      {
         "stage": "calamitas-clone",
         "id": "CalamityMod/SolarVeil",
         "reason": "not combat equipment"
@@ -34246,16 +34005,6 @@
       {
         "stage": "calamitas-clone",
         "id": "CalamityMod/CalamitasCloneBag",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "calamitas-clone",
-        "id": "CalamityMod/ChaosStone",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "calamitas-clone",
-        "id": "CalamityMod/Regenerator",
         "reason": "not combat equipment"
       },
       {
@@ -34370,11 +34119,6 @@
       },
       {
         "stage": "plantera",
-        "id": "CalamityMod/AquaticHeart",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "plantera",
         "id": "Terraria/Requiem",
         "reason": "not combat equipment"
       },
@@ -34396,11 +34140,6 @@
       {
         "stage": "plantera",
         "id": "Terraria/VialofVenom",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "plantera",
-        "id": "CalamityMod/IVDripOnTheRocks",
         "reason": "not combat equipment"
       },
       {
@@ -34710,16 +34449,6 @@
       },
       {
         "stage": "plantera",
-        "id": "CalamityMod/NecklaceofVexation",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "plantera",
-        "id": "CalamityMod/AureateBooster",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "plantera",
         "id": "CalamityMod/LivingShardDye",
         "reason": "not combat equipment"
       },
@@ -34736,11 +34465,6 @@
       {
         "stage": "plantera",
         "id": "CalamityMod/CoreofCalamity",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "plantera",
-        "id": "CalamityMod/SanguineTangerine",
         "reason": "not combat equipment"
       },
       {
@@ -34820,11 +34544,6 @@
       },
       {
         "stage": "leviathan-anahita",
-        "id": "CalamityMod/PearlofEnthrallment",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "leviathan-anahita",
         "id": "CalamityMod/LoreAbyss",
         "reason": "not combat equipment"
       },
@@ -34850,11 +34569,6 @@
       },
       {
         "stage": "astrum-aureus",
-        "id": "CalamityMod/HadarianWings",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "astrum-aureus",
         "id": "CalamityMod/AstrumAureusBag",
         "reason": "not combat equipment"
       },
@@ -34871,11 +34585,6 @@
       {
         "stage": "astrum-aureus",
         "id": "CalamityMod/AstrumAureusTrophy",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "astrum-aureus",
-        "id": "CalamityMod/StarlightFuelCell",
         "reason": "not combat equipment"
       },
       {
@@ -34901,11 +34610,6 @@
       {
         "stage": "golem",
         "id": "CalamityMod/PlagueCellCanister",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "CalamityMod/PlaguedFuelPack",
         "reason": "not combat equipment"
       },
       {
@@ -35021,11 +34725,6 @@
       {
         "stage": "golem",
         "id": "Terraria/CosmicCarKey",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "CalamityMod/EtherealExtorter",
         "reason": "not combat equipment"
       },
       {
@@ -35165,11 +34864,6 @@
       },
       {
         "stage": "golem",
-        "id": "CalamityMod/Apollyon",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
         "id": "CalamityMod/VolcanicSinker",
         "reason": "not combat equipment"
       },
@@ -35186,11 +34880,6 @@
       {
         "stage": "golem",
         "id": "CalamityMod/LifeAlloy",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "CalamityMod/MiracleFruit",
         "reason": "not combat equipment"
       },
       {
@@ -35390,11 +35079,6 @@
       },
       {
         "stage": "plaguebringer-goliath",
-        "id": "CalamityMod/ToxicHeart",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "plaguebringer-goliath",
         "id": "CalamityMod/PlaguePlateDye",
         "reason": "not combat equipment"
       },
@@ -35441,16 +35125,6 @@
       {
         "stage": "ravager",
         "id": "CalamityMod/NecromanticGeode",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "ravager",
-        "id": "CalamityMod/BloodflareCore",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "ravager",
-        "id": "CalamityMod/InfernalBlood",
         "reason": "not combat equipment"
       },
       {
@@ -36110,11 +35784,6 @@
       },
       {
         "stage": "lunatic-cultist",
-        "id": "CalamityMod/EtherealCore",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "lunatic-cultist",
         "id": "CalamityMod/ExoticPheromones",
         "reason": "not combat equipment"
       },
@@ -36600,11 +36269,6 @@
       },
       {
         "stage": "dragonfolly",
-        "id": "CalamityMod/RedLightningContainer",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "dragonfolly",
         "id": "CalamityMod/LoreDragonfolly",
         "reason": "not combat equipment"
       },
@@ -36645,11 +36309,6 @@
       },
       {
         "stage": "providence",
-        "id": "CalamityMod/BlazingCore",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "providence",
         "id": "CalamityMod/BloodflareDye",
         "reason": "not combat equipment"
       },
@@ -36671,11 +36330,6 @@
       {
         "stage": "providence",
         "id": "CalamityMod/Brimrose",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "providence",
-        "id": "CalamityMod/TaintedCloudberry",
         "reason": "not combat equipment"
       },
       {
@@ -37050,11 +36704,6 @@
       },
       {
         "stage": "polterghast",
-        "id": "CalamityMod/Ectoheart",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
         "id": "Terraria/BlackDye",
         "reason": "not combat equipment"
       },
@@ -37071,31 +36720,6 @@
       {
         "stage": "polterghast",
         "id": "Terraria/BlackAndWhiteDye",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "CalamityMod/AbyssalDivingGear",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "CalamityMod/AbyssalDivingSuit",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "CalamityMod/DiamondOfTheDeep",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "CalamityMod/PhantomicArtifact",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "CalamityMod/V8000Engine",
         "reason": "not combat equipment"
       },
       {
@@ -37121,11 +36745,6 @@
       {
         "stage": "polterghast",
         "id": "CalamityMod/LorePolterghast",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "CalamityMod/PhantomHeart",
         "reason": "not combat equipment"
       },
       {
@@ -37500,11 +37119,6 @@
       },
       {
         "stage": "old-duke",
-        "id": "CalamityMod/OldDukeScales",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "old-duke",
         "id": "CalamityMod/LoreOldDuke",
         "reason": "not combat equipment"
       },
@@ -37571,11 +37185,6 @@
       {
         "stage": "devourer-of-gods",
         "id": "CalamityMod/SilvaMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "devourer-of-gods",
-        "id": "CalamityMod/VeneratedLocket",
         "reason": "not combat equipment"
       },
       {
@@ -37905,22 +37514,12 @@
       },
       {
         "stage": "yharon",
-        "id": "CalamityMod/DragonScales",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "yharon",
         "id": "CalamityMod/AuricOre",
         "reason": "not combat equipment"
       },
       {
         "stage": "yharon",
         "id": "CalamityMod/FoxDrive",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "yharon",
-        "id": "CalamityMod/FadedIdolatry",
         "reason": "not combat equipment"
       },
       {
@@ -37941,11 +37540,6 @@
       {
         "stage": "yharon",
         "id": "CalamityMod/AuricBar",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "yharon",
-        "id": "CalamityMod/SacredStrawberry",
         "reason": "not combat equipment"
       },
       {
@@ -38496,6 +38090,14 @@
         "stage": "start",
         "via": "container:CalamityMod/SulphurousCrate"
       },
+      "CalamityMod/CleansingJelly": {
+        "stage": "start",
+        "via": "npc:Terraria/BlueJellyfish"
+      },
+      "CalamityMod/VitalJelly": {
+        "stage": "start",
+        "via": "npc:Terraria/GreenJellyfish"
+      },
       "Terraria/ChickenNugget": {
         "stage": "start",
         "via": "npc:Terraria/Harpy"
@@ -38543,6 +38145,10 @@
       "CalamityMod/PlasmaRod": {
         "stage": "start",
         "via": "npc:Terraria/Tim"
+      },
+      "CalamityMod/LifeJelly": {
+        "stage": "start",
+        "via": "npc:Terraria/PinkJellyfish"
       },
       "Terraria/ShrimpPoBoy": {
         "stage": "start",
@@ -38633,6 +38239,26 @@
         "via": "shop:CalamityMod/ShadySalesman"
       },
       "CalamityMod/GladiatorsLocket": {
+        "stage": "start",
+        "via": "shop:CalamityMod/ShadySalesman"
+      },
+      "CalamityMod/LuxorsGift": {
+        "stage": "start",
+        "via": "shop:CalamityMod/ShadySalesman"
+      },
+      "CalamityMod/FungalSymbiote": {
+        "stage": "start",
+        "via": "shop:CalamityMod/ShadySalesman"
+      },
+      "CalamityMod/UnstableGraniteCore": {
+        "stage": "start",
+        "via": "shop:CalamityMod/ShadySalesman"
+      },
+      "CalamityMod/FrozenCube": {
+        "stage": "start",
+        "via": "shop:CalamityMod/ShadySalesman"
+      },
+      "CalamityMod/TrinketofChi": {
         "stage": "start",
         "via": "shop:CalamityMod/ShadySalesman"
       },
@@ -39576,6 +39202,10 @@
         "stage": "start",
         "via": "recipe:Terraria/Silk+Terraria/FlinxFur"
       },
+      "CalamityMod/AncientFossil": {
+        "stage": "start",
+        "via": "recipe:Terraria/SiltBlock"
+      },
       "CalamityMod/BlackGlassBand": {
         "stage": "start",
         "via": "recipe:Terraria/GoldBar+Terraria/Diamond+Terraria/Obsidian"
@@ -39584,9 +39214,21 @@
         "stage": "start",
         "via": "recipe:Terraria/GoldBar+Terraria/Granite+Terraria/Marble"
       },
+      "CalamityMod/RaidersTalisman": {
+        "stage": "start",
+        "via": "recipe:Terraria/Leather+Terraria/Obsidian"
+      },
       "CalamityMod/SpiritGlyph": {
         "stage": "start",
         "via": "recipe:Terraria/Diamond+Terraria/Obsidian"
+      },
+      "CalamityMod/SpringStool": {
+        "stage": "start",
+        "via": "recipe:Terraria/PortableStool+Terraria/CopperBar"
+      },
+      "CalamityMod/ThePointer": {
+        "stage": "start",
+        "via": "recipe:Terraria/Glass+Terraria/CopperBar+Terraria/IronBar+Terraria/ManaCrystal"
       },
       "CalamityMod/UnholyTonic": {
         "stage": "start",
@@ -39595,6 +39237,10 @@
       "CalamityMod/ViciousTonic": {
         "stage": "start",
         "via": "recipe:Terraria/ViciousPowder+Terraria/Vertebrae"
+      },
+      "CalamityMod/WulfrumAcrobaticsPack": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/WulfrumMetalScrap+CalamityMod/EnergyCore+Terraria/Chain"
       },
       "CalamityMod/FlashRound": {
         "stage": "start",
@@ -39868,6 +39514,14 @@
         "stage": "king-slime",
         "via": "container:Terraria/KingSlimeBossBag"
       },
+      "CalamityMod/HeartofDarkness": {
+        "stage": "king-slime",
+        "via": "container:Terraria/KingSlimeBossBag"
+      },
+      "CalamityMod/StressPills": {
+        "stage": "king-slime",
+        "via": "container:Terraria/KingSlimeBossBag"
+      },
       "Terraria/CookedShrimp": {
         "stage": "king-slime",
         "via": "recipe:CalamityMod/ProcyonidPrawn"
@@ -39895,6 +39549,14 @@
       "CalamityMod/ScourgeoftheDesert": {
         "stage": "desert-scourge",
         "via": "npc:CalamityMod/DesertScourgeHead"
+      },
+      "CalamityMod/SandCloak": {
+        "stage": "desert-scourge",
+        "via": "npc:CalamityMod/DesertScourgeHead"
+      },
+      "CalamityMod/GiantPearl": {
+        "stage": "desert-scourge",
+        "via": "npc:CalamityMod/GiantClam"
       },
       "CalamityMod/AmidiasPendant": {
         "stage": "desert-scourge",
@@ -39928,9 +39590,17 @@
         "stage": "desert-scourge",
         "via": "shop:CalamityMod/SeaKing"
       },
+      "CalamityMod/SeaSpiritAmulet": {
+        "stage": "desert-scourge",
+        "via": "fishing"
+      },
       "CalamityMod/SparklingEmpress": {
         "stage": "desert-scourge",
         "via": "fishing"
+      },
+      "CalamityMod/OceanCrest": {
+        "stage": "desert-scourge",
+        "via": "container:CalamityMod/DesertScourgeBag"
       },
       "CalamityMod/AquamarineStaff": {
         "stage": "desert-scourge",
@@ -40007,6 +39677,14 @@
       "CalamityMod/SkyGlaze": {
         "stage": "eye-of-cthulhu",
         "via": "npc:Terraria/Harpy"
+      },
+      "CalamityMod/Laudanum": {
+        "stage": "eye-of-cthulhu",
+        "via": "npc:CalamityMod/HorribleHog"
+      },
+      "CalamityMod/RottenDogtooth": {
+        "stage": "eye-of-cthulhu",
+        "via": "npc:CalamityMod/Rotdog"
       },
       "CalamityMod/TeardropCleaver": {
         "stage": "eye-of-cthulhu",
@@ -40277,6 +39955,10 @@
         "via": "npc:CalamityMod/Crabulon"
       },
       "CalamityMod/FungalClump": {
+        "stage": "crabulon",
+        "via": "container:CalamityMod/CrabulonBag"
+      },
+      "CalamityMod/MushroomPlasmaRoot": {
         "stage": "crabulon",
         "via": "container:CalamityMod/CrabulonBag"
       },
@@ -40564,6 +40246,10 @@
         "stage": "hive-mind-perforators",
         "via": "npc:CalamityMod/PerforatorHive"
       },
+      "CalamityMod/RottenBrain": {
+        "stage": "hive-mind-perforators",
+        "via": "container:CalamityMod/HiveMindBag"
+      },
       "CalamityMod/BloodyWormTooth": {
         "stage": "hive-mind-perforators",
         "via": "container:CalamityMod/PerforatorBag"
@@ -40636,6 +40322,14 @@
         "stage": "hive-mind-perforators",
         "via": "recipe:Terraria/GoldCrown+CalamityMod/AerialiteBar+Terraria/Feather"
       },
+      "CalamityMod/HarpyRing": {
+        "stage": "hive-mind-perforators",
+        "via": "recipe:CalamityMod/AerialiteBar+Terraria/Feather"
+      },
+      "CalamityMod/TeslasAmulet": {
+        "stage": "hive-mind-perforators",
+        "via": "recipe:CalamityMod/AerialiteBar+CalamityMod/SeaPrism+CalamityMod/StormlionMandible"
+      },
       "CalamityMod/SkylineWings": {
         "stage": "hive-mind-perforators",
         "via": "recipe:CalamityMod/AerialiteBar+Terraria/Feather"
@@ -40689,6 +40383,10 @@
         "via": "npc:Terraria/QueenBee"
       },
       "CalamityMod/HardenedHoneycomb": {
+        "stage": "queen-bee",
+        "via": "npc:Terraria/QueenBee"
+      },
+      "CalamityMod/TheBee": {
         "stage": "queen-bee",
         "via": "npc:Terraria/QueenBee"
       },
@@ -40796,6 +40494,10 @@
         "stage": "skeletron",
         "via": "npc:CalamityMod/BoxJellyfish"
       },
+      "CalamityMod/InkBomb": {
+        "stage": "skeletron",
+        "via": "npc:CalamityMod/Cuttlefish"
+      },
       "CalamityMod/DepthCrusher": {
         "stage": "skeletron",
         "via": "npc:CalamityMod/Viperfish"
@@ -40821,6 +40523,10 @@
         "via": "shop:CalamityMod/Bandit"
       },
       "CalamityMod/SlickCane": {
+        "stage": "skeletron",
+        "via": "shop:CalamityMod/Bandit"
+      },
+      "CalamityMod/OldDie": {
         "stage": "skeletron",
         "via": "shop:CalamityMod/Bandit"
       },
@@ -40868,6 +40574,30 @@
         "stage": "skeletron",
         "via": "manifest"
       },
+      "CalamityMod/IronBoots": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "CalamityMod/DepthCharm": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "CalamityMod/AnechoicPlating": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "CalamityMod/BallOFugu": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "CalamityMod/HerringStaff": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "CalamityMod/Lionfish": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
       "Terraria/BoneGlove": {
         "stage": "skeletron",
         "via": "container:Terraria/SkeletronBossBag"
@@ -40911,6 +40641,10 @@
       "Terraria/CobaltShield": {
         "stage": "skeletron",
         "via": "recipe:Terraria/DungeonFishingCrate+Terraria/GoldenKey"
+      },
+      "CalamityMod/ArchaicPowder": {
+        "stage": "skeletron",
+        "via": "recipe:CalamityMod/AncientFossil+Terraria/AncientChisel+CalamityMod/AncientBoneDust+CalamityMod/ScorchedBone+Terraria/Bone"
       },
       "CalamityMod/MirageMirror": {
         "stage": "skeletron",
@@ -40961,6 +40695,10 @@
         "via": "npc:CalamityMod/SlimeGodCore"
       },
       "CalamityMod/ManaPolarizer": {
+        "stage": "slime-god",
+        "via": "container:CalamityMod/SlimeGodBag"
+      },
+      "CalamityMod/ElectrolyteGelPack": {
         "stage": "slime-god",
         "via": "container:CalamityMod/SlimeGodBag"
       },
@@ -41128,6 +40866,10 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/WallofFlesh"
       },
+      "CalamityMod/AeroStone": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/WyvernHead"
+      },
       "Terraria/ShadowFlameBow": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/GoblinSummoner"
@@ -41147,6 +40889,14 @@
       "CalamityMod/TheFirstShadowflame": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/GoblinSummoner"
+      },
+      "CalamityMod/ElementalinaBottle": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/SandElemental"
+      },
+      "CalamityMod/OasisElementalinaBottle": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/SandElemental"
       },
       "CalamityMod/CursedDagger": {
         "stage": "wall-of-flesh",
@@ -41216,6 +40966,10 @@
         "stage": "wall-of-flesh",
         "via": "container:CalamityMod/BrimstoneCrate"
       },
+      "CalamityMod/EyeoftheStorm": {
+        "stage": "wall-of-flesh",
+        "via": "npc:CalamityMod/CloudElemental"
+      },
       "CalamityMod/StormSaber": {
         "stage": "wall-of-flesh",
         "via": "npc:CalamityMod/CloudElemental"
@@ -41231,18 +40985,6 @@
       "CalamityMod/ContaminatedBile": {
         "stage": "wall-of-flesh",
         "via": "npc:CalamityMod/Gnasher"
-      },
-      "CalamityMod/BallOFugu": {
-        "stage": "wall-of-flesh",
-        "via": "container:CalamityMod/HydrothermalCrate"
-      },
-      "CalamityMod/HerringStaff": {
-        "stage": "wall-of-flesh",
-        "via": "container:CalamityMod/HydrothermalCrate"
-      },
-      "CalamityMod/Lionfish": {
-        "stage": "wall-of-flesh",
-        "via": "container:CalamityMod/HydrothermalCrate"
       },
       "CalamityMod/Serpentine": {
         "stage": "wall-of-flesh",
@@ -41321,6 +41063,10 @@
         "via": "shop:Terraria/Truffle"
       },
       "Terraria/IceRod": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/Wizard"
+      },
+      "CalamityMod/HowlsHeart": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Wizard"
       },
@@ -41636,6 +41382,14 @@
         "stage": "wall-of-flesh",
         "via": "recipe:CalamityMod/CleansingJelly+CalamityMod/LifeJelly+CalamityMod/VitalJelly+Terraria/SoulofLight+Terraria/SoulofNight"
       },
+      "CalamityMod/SlagsplitterPauldron": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:CalamityMod/ScorchedBone+CalamityMod/AncientBoneDust+CalamityMod/EssenceofHavoc"
+      },
+      "CalamityMod/SpelunkersAmulet": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/GoldDust+Terraria/SpelunkerPotion"
+      },
       "CalamityMod/MarksmanRound": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/GoldenBullet+Terraria/GoldCoin"
@@ -41663,6 +41417,10 @@
       "CalamityMod/TitanHeartBoots": {
         "stage": "wall-of-flesh",
         "via": "recipe:CalamityMod/AstralMonolith+CalamityMod/TitanHeart"
+      },
+      "CalamityMod/CometShard": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/MeteoriteBar+Terraria/FallenStar+CalamityMod/StarblightSoot"
       },
       "CalamityMod/CaribbeanRum": {
         "stage": "wall-of-flesh",
@@ -41816,6 +41574,10 @@
         "stage": "cryogen",
         "via": "npc:CalamityMod/Cryogen"
       },
+      "CalamityMod/CryoStone": {
+        "stage": "cryogen",
+        "via": "npc:CalamityMod/Cryogen"
+      },
       "CalamityMod/FrostFlare": {
         "stage": "cryogen",
         "via": "npc:CalamityMod/Cryogen"
@@ -41835,6 +41597,10 @@
       "CalamityMod/PermafrostsConcoction": {
         "stage": "cryogen",
         "via": "shop:CalamityMod/Archmage"
+      },
+      "CalamityMod/SoulofCryogen": {
+        "stage": "cryogen",
+        "via": "container:CalamityMod/CryogenBag"
       },
       "CalamityMod/ShadecrystalBarrage": {
         "stage": "cryogen",
@@ -41884,6 +41650,10 @@
         "stage": "aquatic-scourge",
         "via": "npc:CalamityMod/AquaticScourgeHead"
       },
+      "CalamityMod/CorrosiveSpine": {
+        "stage": "aquatic-scourge",
+        "via": "npc:CalamityMod/AquaticScourgeHead"
+      },
       "CalamityMod/SeasSearing": {
         "stage": "aquatic-scourge",
         "via": "npc:CalamityMod/AquaticScourgeHead"
@@ -41903,6 +41673,10 @@
       "CalamityMod/SlitheringEels": {
         "stage": "aquatic-scourge",
         "via": "npc:CalamityMod/AcidEel"
+      },
+      "CalamityMod/AquaticEmblem": {
+        "stage": "aquatic-scourge",
+        "via": "container:CalamityMod/AquaticScourgeBag"
       },
       "CalamityMod/Miasma": {
         "stage": "aquatic-scourge",
@@ -42224,6 +41998,14 @@
         "stage": "destroyer",
         "via": "recipe:CalamityMod/CryonicBar+Terraria/CrystalShard"
       },
+      "CalamityMod/TheTransformer": {
+        "stage": "destroyer",
+        "via": "recipe:CalamityMod/SeaPrism+Terraria/MythrilBar+CalamityMod/EssenceofSunlight+CalamityMod/EssenceofHavoc+CalamityMod/EssenceofEleum+Terraria/SoulofLight+Terraria/SoulofNight"
+      },
+      "CalamityMod/StarlightWings": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/SoulofFlight+CalamityMod/CryonicBar"
+      },
       "CalamityMod/HallowPointRound": {
         "stage": "destroyer",
         "via": "recipe:Terraria/EmptyBullet+Terraria/HallowedBar"
@@ -42355,6 +42137,14 @@
       "CalamityMod/Hellborn": {
         "stage": "brimstone-elemental",
         "via": "npc:CalamityMod/BrimstoneElemental"
+      },
+      "CalamityMod/RoseStone": {
+        "stage": "brimstone-elemental",
+        "via": "npc:CalamityMod/BrimstoneElemental"
+      },
+      "CalamityMod/FlameLickedShell": {
+        "stage": "brimstone-elemental",
+        "via": "container:CalamityMod/BrimstoneElementalBag"
       },
       "CalamityMod/RuinMedallion": {
         "stage": "brimstone-elemental",
@@ -42491,6 +42281,10 @@
       "Terraria/RainbowRod": {
         "stage": "twins",
         "via": "recipe:Terraria/CrystalShard+Terraria/UnicornHorn+Terraria/PixieDust+Terraria/SoulofLight+Terraria/SoulofSight"
+      },
+      "CalamityMod/V8Engine": {
+        "stage": "twins",
+        "via": "recipe:Terraria/AdamantiteBar+CalamityMod/UnholyCore"
       },
       "CalamityMod/ForbiddenCirclet": {
         "stage": "twins",
@@ -42655,6 +42449,10 @@
         "stage": "skeletron-prime",
         "via": "recipe:CalamityMod/SpiritGlyph+Terraria/HallowedBar+Terraria/SoulofFright+Terraria/SoulofMight+Terraria/SoulofSight"
       },
+      "CalamityMod/MOAB": {
+        "stage": "skeletron-prime",
+        "via": "recipe:Terraria/FrogLeg+Terraria/HorseshoeBundle+Terraria/Jetpack+Terraria/SoulofFright+Terraria/SoulofMight+Terraria/SoulofSight"
+      },
       "CalamityMod/HolofibreImmolator": {
         "stage": "skeletron-prime",
         "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+Terraria/MythrilBar+Terraria/SoulofFright"
@@ -42716,6 +42514,14 @@
         "via": "npc:CalamityMod/CalamitasClone"
       },
       "CalamityMod/EntropysVigil": {
+        "stage": "calamitas-clone",
+        "via": "npc:CalamityMod/CalamitasClone"
+      },
+      "CalamityMod/ChaosStone": {
+        "stage": "calamitas-clone",
+        "via": "npc:CalamityMod/CalamitasClone"
+      },
+      "CalamityMod/Regenerator": {
         "stage": "calamitas-clone",
         "via": "npc:CalamityMod/CalamitasClone"
       },
@@ -42827,6 +42633,10 @@
         "stage": "plantera",
         "via": "npc:Terraria/Plantera"
       },
+      "CalamityMod/AquaticHeart": {
+        "stage": "plantera",
+        "via": "npc:CalamityMod/LeviathanStart"
+      },
       "CalamityMod/MantisClaws": {
         "stage": "plantera",
         "via": "npc:CalamityMod/MantisShrimp"
@@ -42868,6 +42678,10 @@
         "via": "shop:CalamityMod/Bandit"
       },
       "CalamityMod/GloveOfRecklessness": {
+        "stage": "plantera",
+        "via": "shop:CalamityMod/Bandit"
+      },
+      "CalamityMod/IVDripOnTheRocks": {
         "stage": "plantera",
         "via": "shop:CalamityMod/Bandit"
       },
@@ -43136,6 +42950,10 @@
         "stage": "plantera",
         "via": "recipe:CalamityMod/HoneyDew+CalamityMod/LivingShard+CalamityMod/EssenceofSunlight"
       },
+      "CalamityMod/NecklaceofVexation": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/AvengerEmblem+CalamityMod/PerennialBar"
+      },
       "CalamityMod/SandSharkToothNecklace": {
         "stage": "plantera",
         "via": "recipe:Terraria/SharkToothNecklace+Terraria/AvengerEmblem+CalamityMod/GrandScale"
@@ -43143,6 +42961,10 @@
       "CalamityMod/StatisBlessing": {
         "stage": "plantera",
         "via": "recipe:Terraria/PapyrusScarab+Terraria/PygmyNecklace+Terraria/SummonerEmblem+Terraria/HolyWater+CalamityMod/EssenceofSunlight"
+      },
+      "CalamityMod/AureateBooster": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/SoulofFlight+CalamityMod/PerennialBar"
       },
       "CalamityMod/DryadsTear": {
         "stage": "plantera",
@@ -43179,6 +43001,10 @@
       "CalamityMod/ReaverCuisses": {
         "stage": "plantera",
         "via": "recipe:CalamityMod/PerennialBar"
+      },
+      "CalamityMod/SanguineTangerine": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/LifeFruit+CalamityMod/BloodOrb+Terraria/SoulofFright+Terraria/SoulofMight+Terraria/SoulofSight"
       },
       "CalamityMod/Moonshine": {
         "stage": "plantera",
@@ -43356,6 +43182,10 @@
         "stage": "leviathan-anahita",
         "via": "npc:CalamityMod/Anahita"
       },
+      "CalamityMod/PearlofEnthrallment": {
+        "stage": "leviathan-anahita",
+        "via": "npc:CalamityMod/Anahita"
+      },
       "CalamityMod/TheCommunity": {
         "stage": "leviathan-anahita",
         "via": "npc:CalamityMod/Anahita"
@@ -43407,6 +43237,10 @@
       "CalamityMod/TitanArm": {
         "stage": "astrum-aureus",
         "via": "npc:CalamityMod/Atlas"
+      },
+      "CalamityMod/HadarianWings": {
+        "stage": "astrum-aureus",
+        "via": "npc:CalamityMod/Hadarian"
       },
       "CalamityMod/AstralScythe": {
         "stage": "astrum-aureus",
@@ -43460,6 +43294,10 @@
         "stage": "astrum-aureus",
         "via": "container:CalamityMod/AstrumAureusBag"
       },
+      "CalamityMod/StarlightFuelCell": {
+        "stage": "astrum-aureus",
+        "via": "container:CalamityMod/AstrumAureusBag"
+      },
       "CalamityMod/InfectedJewel": {
         "stage": "astrum-aureus",
         "via": "recipe:CalamityMod/CrownJewel+CalamityMod/AureusCell+CalamityMod/StarblightSoot"
@@ -43471,6 +43309,10 @@
       "CalamityMod/GravityNormalizerPotion": {
         "stage": "astrum-aureus",
         "via": "recipe:Terraria/BottledWater+CalamityMod/AldebaranAlewife+CalamityMod/AureusCell"
+      },
+      "CalamityMod/PlaguedFuelPack": {
+        "stage": "golem",
+        "via": "npc:CalamityMod/PlaguebringerMiniboss"
       },
       "Terraria/GolemFist": {
         "stage": "golem",
@@ -43631,6 +43473,10 @@
         "stage": "golem",
         "via": "shop:Terraria/DD2Bartender"
       },
+      "CalamityMod/EtherealExtorter": {
+        "stage": "golem",
+        "via": "shop:CalamityMod/Bandit"
+      },
       "Terraria/ShinyStone": {
         "stage": "golem",
         "via": "container:Terraria/GolemBossBag"
@@ -43666,6 +43512,10 @@
       "CalamityMod/AlchemicalDecanter": {
         "stage": "golem",
         "via": "recipe:Terraria/BottledWater+Terraria/HoneyComb+Terraria/BeeWax+CalamityMod/PlagueCellCanister"
+      },
+      "CalamityMod/Apollyon": {
+        "stage": "golem",
+        "via": "recipe:CalamityMod/Abaddon+CalamityMod/ScoriaBar+CalamityMod/CoreofCalamity"
       },
       "CalamityMod/SigilofCalamitas": {
         "stage": "golem",
@@ -43730,6 +43580,10 @@
       "CalamityMod/PlagueReaperStriders": {
         "stage": "golem",
         "via": "recipe:Terraria/NecroGreaves+CalamityMod/PlagueCellCanister+Terraria/Nanites"
+      },
+      "CalamityMod/MiracleFruit": {
+        "stage": "golem",
+        "via": "recipe:Terraria/LifeFruit+CalamityMod/LifeAlloy+CalamityMod/LivingShard"
       },
       "CalamityMod/ForbiddenSun": {
         "stage": "golem",
@@ -43847,6 +43701,10 @@
         "stage": "plaguebringer-goliath",
         "via": "npc:CalamityMod/PlaguebringerGoliath"
       },
+      "CalamityMod/ToxicHeart": {
+        "stage": "plaguebringer-goliath",
+        "via": "container:CalamityMod/PlaguebringerGoliathBag"
+      },
       "CalamityMod/PlaguebringerVisor": {
         "stage": "plaguebringer-goliath",
         "via": "recipe:Terraria/BeeHeadgear+CalamityMod/InfectedArmorPlating+CalamityMod/PlagueCellCanister"
@@ -43932,6 +43790,14 @@
         "via": "npc:CalamityMod/RavagerBody"
       },
       "CalamityMod/BloodPact": {
+        "stage": "ravager",
+        "via": "container:CalamityMod/RavagerBag"
+      },
+      "CalamityMod/BloodflareCore": {
+        "stage": "ravager",
+        "via": "container:CalamityMod/RavagerBag"
+      },
+      "CalamityMod/InfernalBlood": {
         "stage": "ravager",
         "via": "container:CalamityMod/RavagerBag"
       },
@@ -44066,6 +43932,10 @@
       "CalamityMod/TheAbsorber": {
         "stage": "lunatic-cultist",
         "via": "recipe:CalamityMod/GrandGelatin+CalamityMod/Baroclaw+CalamityMod/GiantTortoiseShell+CalamityMod/MolluskHusk+CalamityMod/MeldBlob"
+      },
+      "CalamityMod/EtherealCore": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:CalamityMod/AstralBar+Terraria/FragmentNebula+Terraria/FallenStar"
       },
       "CalamityMod/Apathanull": {
         "stage": "lunatic-cultist",
@@ -44551,6 +44421,10 @@
         "stage": "dragonfolly",
         "via": "container:CalamityMod/DragonfollyBag"
       },
+      "CalamityMod/RedLightningContainer": {
+        "stage": "dragonfolly",
+        "via": "container:CalamityMod/DragonfollyBag"
+      },
       "CalamityMod/Hellkite": {
         "stage": "providence",
         "via": "npc:CalamityMod/RenegadeWarlock"
@@ -44611,6 +44485,10 @@
         "stage": "providence",
         "via": "manifest"
       },
+      "CalamityMod/BlazingCore": {
+        "stage": "providence",
+        "via": "container:CalamityMod/ProvidenceBag"
+      },
       "CalamityMod/AscendantInsignia": {
         "stage": "providence",
         "via": "recipe:Terraria/EmpressFlightBooster+CalamityMod/EffulgentFeather+CalamityMod/DivineGeode+Terraria/SoulofFlight"
@@ -44626,6 +44504,10 @@
       "CalamityMod/BloodfireBullet": {
         "stage": "providence",
         "via": "recipe:CalamityMod/BloodstoneCore"
+      },
+      "CalamityMod/TaintedCloudberry": {
+        "stage": "providence",
+        "via": "recipe:Terraria/LifeFruit+CalamityMod/UelibloomBar+CalamityMod/DivineGeode"
       },
       "CalamityMod/PhalanxSurge": {
         "stage": "providence",
@@ -45019,13 +44901,37 @@
         "stage": "polterghast",
         "via": "container:CalamityMod/PolterghastBag"
       },
+      "CalamityMod/Ectoheart": {
+        "stage": "polterghast",
+        "via": "container:CalamityMod/PolterghastBag"
+      },
+      "CalamityMod/AbyssalDivingGear": {
+        "stage": "polterghast",
+        "via": "recipe:Terraria/ArcticDivingGear+CalamityMod/DepthCharm+CalamityMod/DepthCells+CalamityMod/Lumenyl"
+      },
+      "CalamityMod/AbyssalDivingSuit": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/AbyssalDivingGear+CalamityMod/AnechoicPlating+Terraria/LunarBar+CalamityMod/MolluskHusk"
+      },
       "CalamityMod/AbyssalMirror": {
         "stage": "polterghast",
         "via": "recipe:CalamityMod/MirageMirror+CalamityMod/InkBomb+CalamityMod/DepthCells+CalamityMod/Lumenyl"
       },
+      "CalamityMod/DiamondOfTheDeep": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/SeaSpiritAmulet+CalamityMod/AbyssGravel+CalamityMod/DepthCells+CalamityMod/PyreMantle+CalamityMod/ScoriaBar+CalamityMod/Voidstone+CalamityMod/Lumenyl"
+      },
+      "CalamityMod/PhantomicArtifact": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/HallowedRune+CalamityMod/RuinousSoul+CalamityMod/Onyxplate+CalamityMod/ExodiumCluster"
+      },
       "CalamityMod/ReaperToothNecklace": {
         "stage": "polterghast",
         "via": "recipe:CalamityMod/SandSharkToothNecklace+CalamityMod/ReaperTooth+CalamityMod/DepthCells"
+      },
+      "CalamityMod/V8000Engine": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/V8Engine+CalamityMod/RuinousSoul+Terraria/Nanites"
       },
       "CalamityMod/BloodflareHeadMelee": {
         "stage": "polterghast",
@@ -45066,6 +44972,10 @@
       "CalamityMod/OmegaBlueTentacles": {
         "stage": "polterghast",
         "via": "recipe:CalamityMod/ReaperTooth+CalamityMod/DepthCells+CalamityMod/RuinousSoul"
+      },
+      "CalamityMod/PhantomHeart": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/RuinousSoul+CalamityMod/Necroplasm"
       },
       "CalamityMod/AlphaDraconis": {
         "stage": "polterghast",
@@ -45239,6 +45149,10 @@
         "stage": "old-duke",
         "via": "npc:CalamityMod/OldDuke"
       },
+      "CalamityMod/OldDukeScales": {
+        "stage": "old-duke",
+        "via": "container:CalamityMod/OldDukeBag"
+      },
       "CalamityMod/MawOfInfinity": {
         "stage": "devourer-of-gods",
         "via": "npc:CalamityMod/DevourerofGodsHead"
@@ -45266,6 +45180,10 @@
       "CalamityMod/CosmicDischarge": {
         "stage": "devourer-of-gods",
         "via": "npc:CalamityMod/DevourerofGodsHead"
+      },
+      "CalamityMod/VeneratedLocket": {
+        "stage": "devourer-of-gods",
+        "via": "shop:CalamityMod/Bandit"
       },
       "CalamityMod/BloodRune": {
         "stage": "devourer-of-gods",
@@ -45607,6 +45525,10 @@
         "stage": "yharon",
         "via": "npc:CalamityMod/Yharon"
       },
+      "CalamityMod/DragonScales": {
+        "stage": "yharon",
+        "via": "shop:CalamityMod/Bandit"
+      },
       "CalamityMod/LiliesOfFinality": {
         "stage": "yharon",
         "via": "manifest"
@@ -45614,6 +45536,14 @@
       "CalamityMod/YharimsGift": {
         "stage": "yharon",
         "via": "container:CalamityMod/YharonBag"
+      },
+      "CalamityMod/FadedIdolatry": {
+        "stage": "yharon",
+        "via": "recipe:CalamityMod/YharonSoulFragment+CalamityMod/Plagueplate+CalamityMod/ExodiumCluster"
+      },
+      "CalamityMod/SacredStrawberry": {
+        "stage": "yharon",
+        "via": "recipe:Terraria/LifeFruit+CalamityMod/YharonSoulFragment+CalamityMod/AscendantSpiritEssence"
       },
       "CalamityMod/AetherfluxCannon": {
         "stage": "yharon",
@@ -46667,14 +46597,6 @@
         "stage": "start",
         "via": "npc:Terraria/BlueJellyfish"
       },
-      "CalamityMod/CleansingJelly": {
-        "stage": "start",
-        "via": "npc:Terraria/BlueJellyfish"
-      },
-      "CalamityMod/VitalJelly": {
-        "stage": "start",
-        "via": "npc:Terraria/GreenJellyfish"
-      },
       "Terraria/DepthMeter": {
         "stage": "start",
         "via": "npc:Terraria/Crawdad"
@@ -46718,10 +46640,6 @@
       "Terraria/PedguinPants": {
         "stage": "start",
         "via": "npc:Terraria/CorruptPenguin"
-      },
-      "CalamityMod/LifeJelly": {
-        "stage": "start",
-        "via": "npc:Terraria/PinkJellyfish"
       },
       "Terraria/DivingHelmet": {
         "stage": "start",
@@ -47088,26 +47006,6 @@
         "via": "shop:CalamityMod/ShadySalesman"
       },
       "CalamityMod/TheGift": {
-        "stage": "start",
-        "via": "shop:CalamityMod/ShadySalesman"
-      },
-      "CalamityMod/LuxorsGift": {
-        "stage": "start",
-        "via": "shop:CalamityMod/ShadySalesman"
-      },
-      "CalamityMod/FungalSymbiote": {
-        "stage": "start",
-        "via": "shop:CalamityMod/ShadySalesman"
-      },
-      "CalamityMod/UnstableGraniteCore": {
-        "stage": "start",
-        "via": "shop:CalamityMod/ShadySalesman"
-      },
-      "CalamityMod/FrozenCube": {
-        "stage": "start",
-        "via": "shop:CalamityMod/ShadySalesman"
-      },
-      "CalamityMod/TrinketofChi": {
         "stage": "start",
         "via": "shop:CalamityMod/ShadySalesman"
       },
@@ -50315,29 +50213,9 @@
         "stage": "start",
         "via": "recipe:Terraria/Silk"
       },
-      "CalamityMod/AncientFossil": {
-        "stage": "start",
-        "via": "recipe:Terraria/SiltBlock"
-      },
-      "CalamityMod/RaidersTalisman": {
-        "stage": "start",
-        "via": "recipe:Terraria/Leather+Terraria/Obsidian"
-      },
-      "CalamityMod/SpringStool": {
-        "stage": "start",
-        "via": "recipe:Terraria/PortableStool+Terraria/CopperBar"
-      },
-      "CalamityMod/ThePointer": {
-        "stage": "start",
-        "via": "recipe:Terraria/Glass+Terraria/CopperBar+Terraria/IronBar+Terraria/ManaCrystal"
-      },
       "CalamityMod/GlimmeringRibbon": {
         "stage": "start",
         "via": "recipe:Terraria/Silk+Terraria/FallenStar"
-      },
-      "CalamityMod/WulfrumAcrobaticsPack": {
-        "stage": "start",
-        "via": "recipe:CalamityMod/WulfrumMetalScrap+CalamityMod/EnergyCore+Terraria/Chain"
       },
       "CalamityMod/WulfrumBobber": {
         "stage": "start",
@@ -52055,14 +51933,6 @@
         "stage": "king-slime",
         "via": "fishing"
       },
-      "CalamityMod/HeartofDarkness": {
-        "stage": "king-slime",
-        "via": "container:Terraria/KingSlimeBossBag"
-      },
-      "CalamityMod/StressPills": {
-        "stage": "king-slime",
-        "via": "container:Terraria/KingSlimeBossBag"
-      },
       "CalamityMod/AstrophageItem": {
         "stage": "king-slime",
         "via": "container:CalamityMod/MonolithCrate"
@@ -52403,29 +52273,13 @@
         "stage": "desert-scourge",
         "via": "npc:CalamityMod/DesertScourgeHead"
       },
-      "CalamityMod/SandCloak": {
-        "stage": "desert-scourge",
-        "via": "npc:CalamityMod/DesertScourgeHead"
-      },
       "CalamityMod/DesertScourgeTrophy": {
         "stage": "desert-scourge",
         "via": "npc:CalamityMod/DesertScourgeHead"
       },
-      "CalamityMod/GiantPearl": {
-        "stage": "desert-scourge",
-        "via": "npc:CalamityMod/GiantClam"
-      },
       "CalamityMod/GiantClamTrophy": {
         "stage": "desert-scourge",
         "via": "npc:CalamityMod/GiantClam"
-      },
-      "CalamityMod/SeaSpiritAmulet": {
-        "stage": "desert-scourge",
-        "via": "fishing"
-      },
-      "CalamityMod/OceanCrest": {
-        "stage": "desert-scourge",
-        "via": "container:CalamityMod/DesertScourgeBag"
       },
       "CalamityMod/SunkenSinker": {
         "stage": "desert-scourge",
@@ -52479,19 +52333,11 @@
         "stage": "eye-of-cthulhu",
         "via": "npc:CalamityMod/HorribleHog"
       },
-      "CalamityMod/Laudanum": {
-        "stage": "eye-of-cthulhu",
-        "via": "npc:CalamityMod/HorribleHog"
-      },
       "Terraria/MoneyTrough": {
         "stage": "eye-of-cthulhu",
         "via": "npc:CalamityMod/HorribleHog"
       },
       "Terraria/AdhesiveBandage": {
-        "stage": "eye-of-cthulhu",
-        "via": "npc:CalamityMod/Rotdog"
-      },
-      "CalamityMod/RottenDogtooth": {
         "stage": "eye-of-cthulhu",
         "via": "npc:CalamityMod/Rotdog"
       },
@@ -52748,10 +52594,6 @@
       "CalamityMod/CrabulonTrophy": {
         "stage": "crabulon",
         "via": "npc:CalamityMod/Crabulon"
-      },
-      "CalamityMod/MushroomPlasmaRoot": {
-        "stage": "crabulon",
-        "via": "container:CalamityMod/CrabulonBag"
       },
       "CalamityMod/LoreCrabulon": {
         "stage": "crabulon",
@@ -53057,10 +52899,6 @@
         "stage": "hive-mind-perforators",
         "via": "container:CalamityMod/HiveMindBag"
       },
-      "CalamityMod/RottenBrain": {
-        "stage": "hive-mind-perforators",
-        "via": "container:CalamityMod/HiveMindBag"
-      },
       "Terraria/Ichor": {
         "stage": "hive-mind-perforators",
         "via": "container:CalamityMod/PerforatorBag"
@@ -53129,14 +52967,6 @@
         "stage": "hive-mind-perforators",
         "via": "recipe:CalamityMod/AerialiteBar"
       },
-      "CalamityMod/HarpyRing": {
-        "stage": "hive-mind-perforators",
-        "via": "recipe:CalamityMod/AerialiteBar+Terraria/Feather"
-      },
-      "CalamityMod/TeslasAmulet": {
-        "stage": "hive-mind-perforators",
-        "via": "recipe:CalamityMod/AerialiteBar+CalamityMod/SeaPrism+CalamityMod/StormlionMandible"
-      },
       "CalamityMod/AcrobaticBobber": {
         "stage": "hive-mind-perforators",
         "via": "recipe:Terraria/FishingBobber+CalamityMod/AerialiteBar+Terraria/Feather"
@@ -53186,10 +53016,6 @@
         "via": "npc:Terraria/QueenBee"
       },
       "Terraria/BeeWax": {
-        "stage": "queen-bee",
-        "via": "npc:Terraria/QueenBee"
-      },
-      "CalamityMod/TheBee": {
         "stage": "queen-bee",
         "via": "npc:Terraria/QueenBee"
       },
@@ -53346,10 +53172,6 @@
         "via": "npc:Terraria/DarkCaster"
       },
       "CalamityMod/AnechoicCoating": {
-        "stage": "skeletron",
-        "via": "npc:CalamityMod/Cuttlefish"
-      },
-      "CalamityMod/InkBomb": {
         "stage": "skeletron",
         "via": "npc:CalamityMod/Cuttlefish"
       },
@@ -53517,10 +53339,6 @@
         "stage": "skeletron",
         "via": "shop:Terraria/Mechanic"
       },
-      "CalamityMod/OldDie": {
-        "stage": "skeletron",
-        "via": "shop:CalamityMod/Bandit"
-      },
       "CalamityMod/BearsEye": {
         "stage": "skeletron",
         "via": "shop:CalamityMod/Bandit"
@@ -53558,6 +53376,10 @@
         "via": "manifest"
       },
       "CalamityMod/AbyssGravel": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "CalamityMod/StrangeOrb": {
         "stage": "skeletron",
         "via": "manifest"
       },
@@ -54065,10 +53887,6 @@
         "stage": "skeletron",
         "via": "recipe:Terraria/Bone+Terraria/JungleSpores+Terraria/TissueSample"
       },
-      "CalamityMod/ArchaicPowder": {
-        "stage": "skeletron",
-        "via": "recipe:CalamityMod/AncientFossil+Terraria/AncientChisel+CalamityMod/AncientBoneDust+CalamityMod/ScorchedBone+Terraria/Bone"
-      },
       "CalamityMod/DecryptionComputer": {
         "stage": "skeletron",
         "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+Terraria/Wire+Terraria/CopperBar+Terraria/Glass"
@@ -54289,10 +54107,6 @@
         "stage": "slime-god",
         "via": "npc:CalamityMod/SlimeGodCore"
       },
-      "CalamityMod/ElectrolyteGelPack": {
-        "stage": "slime-god",
-        "via": "container:CalamityMod/SlimeGodBag"
-      },
       "CalamityMod/BlueStatigelDye": {
         "stage": "slime-god",
         "via": "recipe:Terraria/BottledWater+CalamityMod/PurifiedGel"
@@ -54449,19 +54263,7 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/WyvernHead"
       },
-      "CalamityMod/AeroStone": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/WyvernHead"
-      },
       "Terraria/AncientBattleArmorMaterial": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/SandElemental"
-      },
-      "CalamityMod/ElementalinaBottle": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/SandElemental"
-      },
-      "CalamityMod/OasisElementalinaBottle": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/SandElemental"
       },
@@ -54508,26 +54310,6 @@
       "CalamityMod/EssenceofHavoc": {
         "stage": "wall-of-flesh",
         "via": "container:CalamityMod/BrimstoneCrate"
-      },
-      "CalamityMod/EyeoftheStorm": {
-        "stage": "wall-of-flesh",
-        "via": "npc:CalamityMod/CloudElemental"
-      },
-      "CalamityMod/AnechoicPlating": {
-        "stage": "wall-of-flesh",
-        "via": "container:CalamityMod/HydrothermalCrate"
-      },
-      "CalamityMod/DepthCharm": {
-        "stage": "wall-of-flesh",
-        "via": "container:CalamityMod/HydrothermalCrate"
-      },
-      "CalamityMod/IronBoots": {
-        "stage": "wall-of-flesh",
-        "via": "container:CalamityMod/HydrothermalCrate"
-      },
-      "CalamityMod/StrangeOrb": {
-        "stage": "wall-of-flesh",
-        "via": "container:CalamityMod/HydrothermalCrate"
       },
       "Terraria/FrostCore": {
         "stage": "wall-of-flesh",
@@ -54960,10 +54742,6 @@
         "via": "shop:Terraria/Wizard"
       },
       "Terraria/EmptyDropper": {
-        "stage": "wall-of-flesh",
-        "via": "shop:Terraria/Wizard"
-      },
-      "CalamityMod/HowlsHeart": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Wizard"
       },
@@ -55416,14 +55194,6 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/SnowBlock+Terraria/Glass+Terraria/SoulofLight+Terraria/SoulofNight"
       },
-      "CalamityMod/SlagsplitterPauldron": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:CalamityMod/ScorchedBone+CalamityMod/AncientBoneDust+CalamityMod/EssenceofHavoc"
-      },
-      "CalamityMod/SpelunkersAmulet": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/GoldDust+Terraria/SpelunkerPotion"
-      },
       "CalamityMod/SupremeBaitTackleBoxFishingStation": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/LavaproofTackleBag+Terraria/MasterBait+CalamityMod/MolluskHusk"
@@ -55431,10 +55201,6 @@
       "CalamityMod/LoreBloodMoon": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/BloodMoonStarter+Terraria/SoulofNight"
-      },
-      "CalamityMod/CometShard": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/MeteoriteBar+Terraria/FallenStar+CalamityMod/StarblightSoot"
       },
       "CalamityMod/AstralTorch": {
         "stage": "wall-of-flesh",
@@ -55640,10 +55406,6 @@
         "stage": "cryogen",
         "via": "npc:CalamityMod/Cryogen"
       },
-      "CalamityMod/CryoStone": {
-        "stage": "cryogen",
-        "via": "npc:CalamityMod/Cryogen"
-      },
       "CalamityMod/CryogenTrophy": {
         "stage": "cryogen",
         "via": "npc:CalamityMod/Cryogen"
@@ -55663,10 +55425,6 @@
       "CalamityMod/CryonicBar": {
         "stage": "cryogen",
         "via": "manifest"
-      },
-      "CalamityMod/SoulofCryogen": {
-        "stage": "cryogen",
-        "via": "container:CalamityMod/CryogenBag"
       },
       "CalamityMod/CryonicDye": {
         "stage": "cryogen",
@@ -55724,10 +55482,6 @@
         "stage": "aquatic-scourge",
         "via": "npc:CalamityMod/AquaticScourgeHead"
       },
-      "CalamityMod/CorrosiveSpine": {
-        "stage": "aquatic-scourge",
-        "via": "npc:CalamityMod/AquaticScourgeHead"
-      },
       "CalamityMod/AquaticScourgeTrophy": {
         "stage": "aquatic-scourge",
         "via": "npc:CalamityMod/AquaticScourgeHead"
@@ -55735,10 +55489,6 @@
       "CalamityMod/CorrodedFossil": {
         "stage": "aquatic-scourge",
         "via": "npc:CalamityMod/BelchingCoral"
-      },
-      "CalamityMod/AquaticEmblem": {
-        "stage": "aquatic-scourge",
-        "via": "container:CalamityMod/AquaticScourgeBag"
       },
       "CalamityMod/LoreAquaticScourge": {
         "stage": "aquatic-scourge",
@@ -56020,14 +55770,6 @@
         "stage": "destroyer",
         "via": "recipe:Terraria/LunarTabletFragment"
       },
-      "CalamityMod/TheTransformer": {
-        "stage": "destroyer",
-        "via": "recipe:CalamityMod/SeaPrism+Terraria/MythrilBar+CalamityMod/EssenceofSunlight+CalamityMod/EssenceofHavoc+CalamityMod/EssenceofEleum+Terraria/SoulofLight+Terraria/SoulofNight"
-      },
-      "CalamityMod/StarlightWings": {
-        "stage": "destroyer",
-        "via": "recipe:Terraria/SoulofFlight+CalamityMod/CryonicBar"
-      },
       "CalamityMod/LongRangedSensorArray": {
         "stage": "destroyer",
         "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+Terraria/MythrilBar+Terraria/Wire"
@@ -56076,10 +55818,6 @@
         "stage": "brimstone-elemental",
         "via": "npc:CalamityMod/BrimstoneElemental"
       },
-      "CalamityMod/RoseStone": {
-        "stage": "brimstone-elemental",
-        "via": "npc:CalamityMod/BrimstoneElemental"
-      },
       "CalamityMod/BrimstoneElementalMask": {
         "stage": "brimstone-elemental",
         "via": "npc:CalamityMod/BrimstoneElemental"
@@ -56095,10 +55833,6 @@
       "CalamityMod/UnholyCore": {
         "stage": "brimstone-elemental",
         "via": "manifest"
-      },
-      "CalamityMod/FlameLickedShell": {
-        "stage": "brimstone-elemental",
-        "via": "container:CalamityMod/BrimstoneElementalBag"
       },
       "CalamityMod/CharredRelic": {
         "stage": "brimstone-elemental",
@@ -56284,10 +56018,6 @@
         "stage": "twins",
         "via": "recipe:Terraria/SoulofSight+Terraria/IronBar+Terraria/Wire"
       },
-      "CalamityMod/V8Engine": {
-        "stage": "twins",
-        "via": "recipe:Terraria/AdamantiteBar+CalamityMod/UnholyCore"
-      },
       "CalamityMod/LoreMechs": {
         "stage": "twins",
         "via": "recipe:Terraria/RetinazerTrophy"
@@ -56422,23 +56152,11 @@
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/ChlorophyteBar+Terraria/Extractinator"
       },
-      "CalamityMod/MOAB": {
-        "stage": "skeletron-prime",
-        "via": "recipe:Terraria/FrogLeg+Terraria/HorseshoeBundle+Terraria/Jetpack+Terraria/SoulofFright+Terraria/SoulofMight+Terraria/SoulofSight"
-      },
       "CalamityMod/SolarVeil": {
         "stage": "calamitas-clone",
         "via": "npc:Terraria/VampireBat"
       },
       "CalamityMod/CalamitasCloneBag": {
-        "stage": "calamitas-clone",
-        "via": "npc:CalamityMod/CalamitasClone"
-      },
-      "CalamityMod/ChaosStone": {
-        "stage": "calamitas-clone",
-        "via": "npc:CalamityMod/CalamitasClone"
-      },
-      "CalamityMod/Regenerator": {
         "stage": "calamitas-clone",
         "via": "npc:CalamityMod/CalamitasClone"
       },
@@ -56530,10 +56248,6 @@
         "stage": "plantera",
         "via": "npc:Terraria/Plantera"
       },
-      "CalamityMod/AquaticHeart": {
-        "stage": "plantera",
-        "via": "npc:CalamityMod/LeviathanStart"
-      },
       "Terraria/Requiem": {
         "stage": "plantera",
         "via": "npc:Terraria/Reaper"
@@ -56556,10 +56270,6 @@
       "Terraria/VialofVenom": {
         "stage": "plantera",
         "via": "shop:Terraria/WitchDoctor"
-      },
-      "CalamityMod/IVDripOnTheRocks": {
-        "stage": "plantera",
-        "via": "shop:CalamityMod/Bandit"
       },
       "Terraria/Autohammer": {
         "stage": "plantera",
@@ -56865,14 +56575,6 @@
         "stage": "plantera",
         "via": "recipe:Terraria/FishingBobber+CalamityMod/PerennialBar"
       },
-      "CalamityMod/NecklaceofVexation": {
-        "stage": "plantera",
-        "via": "recipe:Terraria/AvengerEmblem+CalamityMod/PerennialBar"
-      },
-      "CalamityMod/AureateBooster": {
-        "stage": "plantera",
-        "via": "recipe:Terraria/SoulofFlight+CalamityMod/PerennialBar"
-      },
       "CalamityMod/LivingShardDye": {
         "stage": "plantera",
         "via": "recipe:Terraria/BottledWater+CalamityMod/LivingShard"
@@ -56888,10 +56590,6 @@
       "CalamityMod/CoreofCalamity": {
         "stage": "plantera",
         "via": "recipe:CalamityMod/EssenceofSunlight+CalamityMod/EssenceofHavoc+CalamityMod/EssenceofEleum+CalamityMod/AshesofCalamity+Terraria/Ectoplasm"
-      },
-      "CalamityMod/SanguineTangerine": {
-        "stage": "plantera",
-        "via": "recipe:Terraria/LifeFruit+CalamityMod/BloodOrb+Terraria/SoulofFright+Terraria/SoulofMight+Terraria/SoulofSight"
       },
       "CalamityMod/PerennialBrick": {
         "stage": "plantera",
@@ -56956,10 +56654,6 @@
         "stage": "leviathan-anahita",
         "via": "npc:CalamityMod/Anahita"
       },
-      "CalamityMod/PearlofEnthrallment": {
-        "stage": "leviathan-anahita",
-        "via": "npc:CalamityMod/Anahita"
-      },
       "CalamityMod/LoreAbyss": {
         "stage": "leviathan-anahita",
         "via": "npc:CalamityMod/Anahita"
@@ -56980,10 +56674,6 @@
         "stage": "astrum-aureus",
         "via": "npc:CalamityMod/AstralSlime"
       },
-      "CalamityMod/HadarianWings": {
-        "stage": "astrum-aureus",
-        "via": "npc:CalamityMod/Hadarian"
-      },
       "CalamityMod/AstrumAureusBag": {
         "stage": "astrum-aureus",
         "via": "npc:CalamityMod/AstrumAureus"
@@ -56999,10 +56689,6 @@
       "CalamityMod/AstrumAureusTrophy": {
         "stage": "astrum-aureus",
         "via": "npc:CalamityMod/AstrumAureus"
-      },
-      "CalamityMod/StarlightFuelCell": {
-        "stage": "astrum-aureus",
-        "via": "container:CalamityMod/AstrumAureusBag"
       },
       "CalamityMod/AstralBlueDye": {
         "stage": "astrum-aureus",
@@ -57023,10 +56709,6 @@
       "CalamityMod/PlagueCellCanister": {
         "stage": "golem",
         "via": "npc:CalamityMod/Melter"
-      },
-      "CalamityMod/PlaguedFuelPack": {
-        "stage": "golem",
-        "via": "npc:CalamityMod/PlaguebringerMiniboss"
       },
       "CalamityMod/PlagueCaller": {
         "stage": "golem",
@@ -57128,10 +56810,6 @@
         "eventCategory": "MartianMadness",
         "customEventName": "",
         "eventIcon": ""
-      },
-      "CalamityMod/EtherealExtorter": {
-        "stage": "golem",
-        "via": "shop:CalamityMod/Bandit"
       },
       "Terraria/SteampunkWings": {
         "stage": "golem",
@@ -57241,10 +56919,6 @@
         "stage": "golem",
         "via": "recipe:Terraria/SoulofFlight+Terraria/BeetleHusk"
       },
-      "CalamityMod/Apollyon": {
-        "stage": "golem",
-        "via": "recipe:CalamityMod/Abaddon+CalamityMod/ScoriaBar+CalamityMod/CoreofCalamity"
-      },
       "CalamityMod/VolcanicSinker": {
         "stage": "golem",
         "via": "recipe:Terraria/FishingBobber+CalamityMod/ScoriaBar"
@@ -57260,10 +56934,6 @@
       "CalamityMod/LifeAlloy": {
         "stage": "golem",
         "via": "recipe:CalamityMod/CryonicBar+CalamityMod/PerennialBar+CalamityMod/ScoriaBar"
-      },
-      "CalamityMod/MiracleFruit": {
-        "stage": "golem",
-        "via": "recipe:Terraria/LifeFruit+CalamityMod/LifeAlloy+CalamityMod/LivingShard"
       },
       "CalamityMod/PlagueInfuser": {
         "stage": "golem",
@@ -57421,10 +57091,6 @@
         "stage": "plaguebringer-goliath",
         "via": "npc:CalamityMod/PlaguebringerGoliath"
       },
-      "CalamityMod/ToxicHeart": {
-        "stage": "plaguebringer-goliath",
-        "via": "container:CalamityMod/PlaguebringerGoliathBag"
-      },
       "CalamityMod/PlaguePlateDye": {
         "stage": "plaguebringer-goliath",
         "via": "recipe:Terraria/BottledWater+CalamityMod/InfectedArmorPlating"
@@ -57462,14 +57128,6 @@
         "via": "container:CalamityMod/RavagerBag"
       },
       "CalamityMod/NecromanticGeode": {
-        "stage": "ravager",
-        "via": "container:CalamityMod/RavagerBag"
-      },
-      "CalamityMod/BloodflareCore": {
-        "stage": "ravager",
-        "via": "container:CalamityMod/RavagerBag"
-      },
-      "CalamityMod/InfernalBlood": {
         "stage": "ravager",
         "via": "container:CalamityMod/RavagerBag"
       },
@@ -57997,10 +57655,6 @@
         "stage": "lunatic-cultist",
         "via": "recipe:CalamityMod/StarblightSoot+CalamityMod/AstralOre"
       },
-      "CalamityMod/EtherealCore": {
-        "stage": "lunatic-cultist",
-        "via": "recipe:CalamityMod/AstralBar+Terraria/FragmentNebula+Terraria/FallenStar"
-      },
       "CalamityMod/ExoticPheromones": {
         "stage": "lunatic-cultist",
         "via": "recipe:CalamityMod/LifeAlloy+Terraria/FragmentSolar"
@@ -58389,10 +58043,6 @@
         "stage": "dragonfolly",
         "via": "npc:CalamityMod/Dragonfolly"
       },
-      "CalamityMod/RedLightningContainer": {
-        "stage": "dragonfolly",
-        "via": "container:CalamityMod/DragonfollyBag"
-      },
       "CalamityMod/LoreDragonfolly": {
         "stage": "dragonfolly",
         "via": "recipe:CalamityMod/DragonfollyTrophy"
@@ -58425,10 +58075,6 @@
         "stage": "providence",
         "via": "manifest"
       },
-      "CalamityMod/BlazingCore": {
-        "stage": "providence",
-        "via": "container:CalamityMod/ProvidenceBag"
-      },
       "CalamityMod/BloodflareDye": {
         "stage": "providence",
         "via": "recipe:Terraria/BottledWater+CalamityMod/Bloodstone"
@@ -58448,10 +58094,6 @@
       "CalamityMod/Brimrose": {
         "stage": "providence",
         "via": "recipe:CalamityMod/UnholyCore+CalamityMod/Bloodstone"
-      },
-      "CalamityMod/TaintedCloudberry": {
-        "stage": "providence",
-        "via": "recipe:Terraria/LifeFruit+CalamityMod/UelibloomBar+CalamityMod/DivineGeode"
       },
       "CalamityMod/UelibloomBrick": {
         "stage": "providence",
@@ -58749,10 +58391,6 @@
         "stage": "polterghast",
         "via": "npc:CalamityMod/ColossalSquid"
       },
-      "CalamityMod/Ectoheart": {
-        "stage": "polterghast",
-        "via": "container:CalamityMod/PolterghastBag"
-      },
       "Terraria/BlackDye": {
         "stage": "polterghast",
         "via": "recipe:Terraria/BlackInk"
@@ -58768,26 +58406,6 @@
       "Terraria/BlackAndWhiteDye": {
         "stage": "polterghast",
         "via": "recipe:Terraria/SilverDye+Terraria/BlackDye"
-      },
-      "CalamityMod/AbyssalDivingGear": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/ArcticDivingGear+CalamityMod/DepthCharm+CalamityMod/DepthCells+CalamityMod/Lumenyl"
-      },
-      "CalamityMod/AbyssalDivingSuit": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/AbyssalDivingGear+CalamityMod/AnechoicPlating+Terraria/LunarBar+CalamityMod/MolluskHusk"
-      },
-      "CalamityMod/DiamondOfTheDeep": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/SeaSpiritAmulet+CalamityMod/AbyssGravel+CalamityMod/DepthCells+CalamityMod/PyreMantle+CalamityMod/ScoriaBar+CalamityMod/Voidstone+CalamityMod/Lumenyl"
-      },
-      "CalamityMod/PhantomicArtifact": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/HallowedRune+CalamityMod/RuinousSoul+CalamityMod/Onyxplate+CalamityMod/ExodiumCluster"
-      },
-      "CalamityMod/V8000Engine": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/V8Engine+CalamityMod/RuinousSoul+Terraria/Nanites"
       },
       "CalamityMod/OldHunterHat": {
         "stage": "polterghast",
@@ -58808,10 +58426,6 @@
       "CalamityMod/LorePolterghast": {
         "stage": "polterghast",
         "via": "recipe:CalamityMod/PolterghastTrophy"
-      },
-      "CalamityMod/PhantomHeart": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/RuinousSoul+CalamityMod/Necroplasm"
       },
       "CalamityMod/VoidTorch": {
         "stage": "polterghast",
@@ -59109,10 +58723,6 @@
         "stage": "old-duke",
         "via": "shop:CalamityMod/SeaKing"
       },
-      "CalamityMod/OldDukeScales": {
-        "stage": "old-duke",
-        "via": "container:CalamityMod/OldDukeBag"
-      },
       "CalamityMod/LoreOldDuke": {
         "stage": "old-duke",
         "via": "recipe:CalamityMod/OldDukeTrophy"
@@ -59168,10 +58778,6 @@
       "CalamityMod/SilvaMask": {
         "stage": "devourer-of-gods",
         "via": "shop:Terraria/Clothier"
-      },
-      "CalamityMod/VeneratedLocket": {
-        "stage": "devourer-of-gods",
-        "via": "shop:CalamityMod/Bandit"
       },
       "CalamityMod/CosmicPlushie": {
         "stage": "devourer-of-gods",
@@ -59433,10 +59039,6 @@
         "stage": "yharon",
         "via": "npc:CalamityMod/Yharon"
       },
-      "CalamityMod/DragonScales": {
-        "stage": "yharon",
-        "via": "shop:CalamityMod/Bandit"
-      },
       "CalamityMod/AuricOre": {
         "stage": "yharon",
         "via": "manifest"
@@ -59444,10 +59046,6 @@
       "CalamityMod/FoxDrive": {
         "stage": "yharon",
         "via": "container:CalamityMod/YharonBag"
-      },
-      "CalamityMod/FadedIdolatry": {
-        "stage": "yharon",
-        "via": "recipe:CalamityMod/YharonSoulFragment+CalamityMod/Plagueplate+CalamityMod/ExodiumCluster"
       },
       "CalamityMod/AuricDye": {
         "stage": "yharon",
@@ -59464,10 +59062,6 @@
       "CalamityMod/AuricBar": {
         "stage": "yharon",
         "via": "recipe:CalamityMod/AuricOre+CalamityMod/YharonSoulFragment"
-      },
-      "CalamityMod/SacredStrawberry": {
-        "stage": "yharon",
-        "via": "recipe:Terraria/LifeFruit+CalamityMod/YharonSoulFragment+CalamityMod/AscendantSpiritEssence"
       },
       "CalamityMod/DraconicIncense": {
         "stage": "yharon",
@@ -63213,13 +62807,6 @@
       {
         "id": "Terraria/PygmyNecklace",
         "factualStage": "plantera",
-        "recommendedStage": "slime-god",
-        "wikiStage": "pre-wof",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "CalamityMod/Lionfish",
-        "factualStage": "wall-of-flesh",
         "recommendedStage": "slime-god",
         "wikiStage": "pre-wof",
         "reason": "recommendation precedes proven availability"

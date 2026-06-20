@@ -526,6 +526,27 @@
       "reason": "The official world-generation source places Abyss Gravel and Planty Mush in the middle Abyss layers, reached at the profile's post-Skeletron Abyss stage."
     },
     {
+      "id": "ancient-treasure-chest-loot",
+      "kind": "item-stage",
+      "items": [
+        "CalamityMod/TorrentialTear",
+        "CalamityMod/IronBoots",
+        "CalamityMod/DepthCharm",
+        "CalamityMod/Archerfish",
+        "CalamityMod/AnechoicPlating",
+        "CalamityMod/BallOFugu",
+        "CalamityMod/StrangeOrb",
+        "CalamityMod/HerringStaff",
+        "CalamityMod/BlackAnurian",
+        "CalamityMod/Lionfish"
+      ],
+      "stageId": "skeletron",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/World/Abyss.cs#L1028-L1116",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-20",
+      "reason": "The official Abyss world-generation code places these ten items in locked Ancient Treasure Chests, and the chest unlock check requires Skeletron."
+    },
+    {
       "id": "calamity-hardmode-world-materials",
       "kind": "item-stage",
       "items": [
@@ -648,6 +669,21 @@
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-14",
       "reason": "Great Sand Shark drops Grand Scale, and its official natural-spawn check immediately returns until Plantera has been defeated."
+    },
+    {
+      "id": "ink-bomb-rogue-accessory",
+      "kind": "item-override",
+      "item": "CalamityMod/InkBomb",
+      "override": {
+        "category": "Accessory",
+        "classes": [
+          "rogue"
+        ]
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Accessories/InkBomb.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-20",
+      "reason": "Ink Bomb is a rogue combat accessory; its custom stealth and retaliation effects are not represented by vanilla DamageClass stat probes."
     },
     {
       "id": "alluring-bait-fishing-utility",

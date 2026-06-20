@@ -158,6 +158,9 @@ assert(snapshotExporterSource.includes("DamageClassLoader.DamageClassCount"),
   "Modded damage classes are not fully enumerated for combat classification");
 assert(snapshotExporterSource.includes("VanillaItemClassifications = CreateVanillaItemClassifications()"),
   "Vanilla combat item classifications are not exported for profile filtering");
+assert(snapshotExporterSource.includes("RecommendationTier.NotRecommended")
+  || snapshotExporterSource.includes("RecommendationTier.Recommended"),
+"Vanilla classification export must not treat negative recommendations as class membership");
 const profileGeneratorSource = fs.readFileSync(
   path.join(root, "Tools", "ProfileGeneratorCore.mjs"),
   "utf8");
@@ -184,6 +187,7 @@ for (const modName of expected) {
   const snapshot = readJson(path.join(directory, "snapshot.json"));
   const profile = readJson(path.join(directory, "profile.json"));
   const review = readJson(path.join(directory, "review.json"));
+  const report = readJson(path.join(directory, "report.json"));
   const supportWithVanillaSources = applyVanillaSourceCatalog(support, snapshot);
   assert.equal(support.targetMod, modName);
   assert.equal(snapshot.targetMod, modName);
@@ -264,6 +268,22 @@ for (const modName of expected) {
     && ["Terraria/BlandWhip", "Terraria/MaceWhip", "Terraria/ScytheWhip"]
       .includes(issue.item)),
   `${modName}: whips must not be classified as melee/summoner hybrids`);
+  assert(!(report.wikiMissingItems ?? []).some(item =>
+    item.reason === "recommendation has no proven availability"
+    && report.paths?.[item.id]),
+  `${modName}: an acquired recommendation was lost from the generated profile`);
+  for (const [itemId, expectedClasses] of Object.entries({
+    "Terraria/TitaniumHelmet": ["ranged"],
+    "Terraria/TitaniumMask": ["melee"],
+    "Terraria/TitaniumHeadgear": ["magic"]
+  })) {
+    const [mod, item] = itemId.split("/");
+    const entry = profile.entries.find(value =>
+      (value.itemGroups ?? []).flat().some(reference =>
+        reference.mod === mod && reference.item === item));
+    assert.deepEqual(entry?.classes, expectedClasses,
+      `${modName}: ${itemId} has an incorrect class assignment`);
+  }
   if (modName === "CalamityMod") {
     const agentRules = readJson(path.join(directory, "agent-rules.json"));
     const report = readJson(path.join(directory, "report.json"));
@@ -294,6 +314,27 @@ for (const modName of expected) {
     "Unobserved Shady Salesman availability must retain its manual fallback");
     const profileItems = new Set(profile.entries.flatMap(entry =>
       (entry.itemGroups ?? []).flat().map(item => `${item.mod}/${item.item}`)));
+    const allProfileItems = new Set(
+      [...profile.entries, ...(profile.combatBuffs ?? [])].flatMap(entry =>
+        (entry.itemGroups ?? []).flat().map(item => `${item.mod}/${item.item}`)));
+    const explicitlyExcluded = new Set(
+      agentRules.rules
+        .filter(rule => rule.kind === "item-override" && rule.override?.exclude)
+        .flatMap(rule => rule.items ?? (rule.item ? [rule.item] : [])));
+    for (const item of snapshot.items.filter(item =>
+      item.id.startsWith("CalamityMod/")
+      && report.generation?.paths?.[item.id]
+      && !explicitlyExcluded.has(item.id)
+      && ((item.accessory
+              && !item.vanity
+              && item.createTile < 0
+              && item.sourceNamespace?.split(".").includes("Accessories"))
+          || (item.consumable
+              && item.maxStack === 1
+              && item.sourceNamespace?.split(".").includes("PermanentBoosters"))))) {
+      assert(allProfileItems.has(item.id),
+        `${item.id} is acquired combat equipment but was excluded from the profile`);
+    }
     for (const item of [
       "CalamityMod/AcrobaticBobber",
       "CalamityMod/AlluringBait",
@@ -316,13 +357,13 @@ for (const modName of expected) {
       assert(entry?.classes.includes("rogue"),
         `${itemId} must remain available to rogue recommendations`);
     }
-    for (const itemId of ["Terraria/WormScarf", "Terraria/BrainOfConfusion"]) {
-      const entry = profile.entries.find(value =>
-        (value.itemGroups ?? []).flat().some(reference =>
-          reference.mod === "Terraria" && reference.item === itemId.slice(9)));
-      assert(entry?.classes.includes("rogue"),
-        `${itemId} is a generic accessory and must remain available to rogue`);
-    }
+    const inkBomb = profile.entries.find(value =>
+      (value.itemGroups ?? []).flat().some(reference =>
+        reference.mod === "CalamityMod" && reference.item === "InkBomb"));
+    assert.equal(inkBomb?.evaluations?.[0]?.stageId, "skeletron",
+      "Ink Bomb must remain visible at its proven post-Skeletron source stage");
+    assert.deepEqual(inkBomb?.classes, ["rogue"],
+      "Ink Bomb must remain a rogue accessory");
     const stageOf = itemId => {
       const [mod, item] = itemId.split("/");
       return profile.entries.find(entry =>
@@ -330,6 +371,42 @@ for (const modName of expected) {
           reference.mod === mod && reference.item === item))
         ?.evaluations?.[0]?.stageId;
     };
+    for (const [itemId, stageId] of Object.entries({
+      "CalamityMod/LuxorsGift": "start",
+      "CalamityMod/SeaSpiritAmulet": "desert-scourge",
+      "CalamityMod/DepthCharm": "skeletron",
+      "CalamityMod/AnechoicPlating": "skeletron",
+      "CalamityMod/IronBoots": "skeletron",
+      "CalamityMod/BlackAnurian": "skeletron",
+      "CalamityMod/AeroStone": "wall-of-flesh",
+      "CalamityMod/ElectrolyteGelPack": "slime-god",
+      "CalamityMod/StarlightFuelCell": "astrum-aureus",
+      "CalamityMod/PhantomHeart": "polterghast"
+    })) {
+      const [mod, item] = itemId.split("/");
+      const entry = [...profile.entries, ...(profile.combatBuffs ?? [])].find(value =>
+        (value.itemGroups ?? []).flat().some(reference =>
+          reference.mod === mod && reference.item === item));
+      assert.equal(entry?.evaluations?.[0]?.stageId ?? entry?.stageId, stageId,
+        `${itemId} has an incorrect availability stage`);
+    }
+    for (const [itemId, stageId] of Object.entries({
+      "CalamityMod/Swordsplosion": "moon-lord",
+      "CalamityMod/BlunderBooster": "moon-lord",
+      "CalamityMod/MadAlchemistsCocktailGlove": "moon-lord",
+      "CalamityMod/OrnateShield": "destroyer",
+      "CalamityMod/DaedalusHeadMelee": "destroyer"
+    })) {
+      assert.equal(stageOf(itemId), stageId,
+        `${itemId} must include alternate sources and required crafting stations`);
+    }
+    for (const itemId of ["Terraria/WormScarf", "Terraria/BrainOfConfusion"]) {
+      const entry = profile.entries.find(value =>
+        (value.itemGroups ?? []).flat().some(reference =>
+          reference.mod === "Terraria" && reference.item === itemId.slice(9)));
+      assert(entry?.classes.includes("rogue"),
+        `${itemId} is a generic accessory and must remain available to rogue`);
+    }
     for (const [item, stageId] of Object.entries({
       "Terraria/Blindfold": "start",
       "CalamityMod/OpalStriker": "world-evil",
@@ -341,7 +418,6 @@ for (const modName of expected) {
       assert.equal(stageOf(item), stageId, `${item} must follow its latest recipe dependency`);
     }
     for (const utilityItem of [
-      "CalamityMod/HeartofDarkness",
       "Terraria/LuckyCoin",
       "Terraria/DiscountCard",
       "Terraria/MechanicalLens"
@@ -349,6 +425,14 @@ for (const modName of expected) {
       assert.equal(stageOf(utilityItem), undefined,
         `${utilityItem} has no current combat effect and must remain excluded`);
     }
+    const heartOfDarkness = profile.entries.find(entry =>
+      (entry.itemGroups ?? []).flat().some(reference =>
+        reference.mod === "CalamityMod" && reference.item === "HeartofDarkness"));
+    assert.equal(heartOfDarkness?.evaluations?.[0]?.stageId, "king-slime",
+      "Heart of Darkness must remain available from the earliest Revengeance boss bag");
+    assert.deepEqual(heartOfDarkness?.classes,
+      ["melee", "ranged", "magic", "summoner", "rogue"],
+      "Heart of Darkness rage generation benefits every combat class");
     assert.equal(
       profile.combatBuffs.find(entry =>
         (entry.itemGroups ?? []).flat().some(reference =>

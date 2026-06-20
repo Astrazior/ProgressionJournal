@@ -108,6 +108,8 @@ public sealed class JournalEntry
 
 	public IReadOnlyList<JournalFishingSource> FishingSources { get; }
 
+	public IReadOnlyCollection<StageEvaluation> Evaluations => _evaluations.Values;
+
 	public bool AppliesToClass(CombatClass combatClass) => (Classes & combatClass) != 0;
 
 	public bool AppliesToClass(string classId) => _classIds.Contains(classId);

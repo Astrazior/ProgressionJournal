@@ -553,6 +553,54 @@ const START_VISIBLE_ITEMS = [
 
 export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {
   const manifest = structuredClone(sourceManifest);
+  manifest.itemOverrides ??= {};
+  manifest.itemOverrides["Terraria/TitaniumHelmet"] = {
+    ...(manifest.itemOverrides["Terraria/TitaniumHelmet"] ?? {}),
+    category: "Armor",
+    classes: ["ranged"]
+  };
+  manifest.itemOverrides["Terraria/TitaniumMask"] = {
+    ...(manifest.itemOverrides["Terraria/TitaniumMask"] ?? {}),
+    category: "Armor",
+    classes: ["melee"]
+  };
+  manifest.itemOverrides["Terraria/TitaniumHeadgear"] = {
+    ...(manifest.itemOverrides["Terraria/TitaniumHeadgear"] ?? {}),
+    category: "Armor",
+    classes: ["magic"]
+  };
+  manifest.itemOverrides ??= {};
+  manifest.itemOverrides["Terraria/TitaniumHelmet"] = {
+    ...(manifest.itemOverrides["Terraria/TitaniumHelmet"] ?? {}),
+    category: "Armor",
+    classes: ["ranged"]
+  };
+  manifest.itemOverrides["Terraria/TitaniumMask"] = {
+    ...(manifest.itemOverrides["Terraria/TitaniumMask"] ?? {}),
+    category: "Armor",
+    classes: ["melee"]
+  };
+  manifest.itemOverrides["Terraria/TitaniumHeadgear"] = {
+    ...(manifest.itemOverrides["Terraria/TitaniumHeadgear"] ?? {}),
+    category: "Armor",
+    classes: ["magic"]
+  };
+  manifest.itemOverrides ??= {};
+  manifest.itemOverrides["Terraria/TitaniumHelmet"] = {
+    ...(manifest.itemOverrides["Terraria/TitaniumHelmet"] ?? {}),
+    category: "Armor",
+    classes: ["ranged"]
+  };
+  manifest.itemOverrides["Terraria/TitaniumMask"] = {
+    ...(manifest.itemOverrides["Terraria/TitaniumMask"] ?? {}),
+    category: "Armor",
+    classes: ["melee"]
+  };
+  manifest.itemOverrides["Terraria/TitaniumHeadgear"] = {
+    ...(manifest.itemOverrides["Terraria/TitaniumHeadgear"] ?? {}),
+    category: "Armor",
+    classes: ["magic"]
+  };
   manifest.initialItems = unique([
     ...(manifest.initialItems ?? []),
     ...START_ITEMS

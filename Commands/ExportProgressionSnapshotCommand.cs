@@ -407,6 +407,10 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
     private static List<SnapshotVanillaItemClassification> CreateVanillaItemClassifications()
     {
         return JournalRepository.GetAllVanillaEntries()
+            .Where(entry => entry.Evaluations.Any(static evaluation =>
+                evaluation.Tier is RecommendationTier.Recommended
+                    or RecommendationTier.Additional
+                    or RecommendationTier.FromGuide))
             .SelectMany(entry => entry.ItemIds
                 .Where(static itemId => itemId > 0 && itemId < ItemID.Count)
                 .Select(itemId => new
@@ -512,7 +516,65 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                 includedItems);
         }
 
+        AppendWorldContainerDrops(drops, includedItems);
         return drops;
+    }
+
+    private static void AppendWorldContainerDrops(
+        ICollection<SnapshotDrop> result,
+        IReadOnlySet<int> includedItems)
+    {
+        foreach (var chest in Main.chest)
+        {
+            if (chest is null)
+            {
+                continue;
+            }
+
+            var sourceItemId = ResolveWorldContainerItem(chest, includedItems);
+            if (sourceItemId is null)
+            {
+                continue;
+            }
+
+            foreach (var item in chest.item.Where(item =>
+                         item is not null
+                         && !item.IsAir
+                         && includedItems.Contains(item.type)))
+            {
+                result.Add(new SnapshotDrop(
+                    "container",
+                    GetItemReference(sourceItemId.Value),
+                    GetItemReference(item.type),
+                    1f,
+                    item.stack,
+                    item.stack,
+                    []));
+            }
+        }
+    }
+
+    private static int? ResolveWorldContainerItem(Chest chest, IReadOnlySet<int> includedItems)
+    {
+        var tile = Framing.GetTileSafely(chest.x, chest.y);
+        if (!tile.HasTile)
+        {
+            return null;
+        }
+
+        var candidates = includedItems
+            .Where(itemId => ContentSamples.ItemsByType[itemId].createTile == tile.TileType)
+            .ToArray();
+        if (candidates.Length == 0)
+        {
+            return null;
+        }
+
+        var style = tile.TileFrameX / 36;
+        return candidates.FirstOrDefault(itemId => ContentSamples.ItemsByType[itemId].placeStyle == style)
+            is var exact and > ItemID.None
+            ? exact
+            : candidates[0];
     }
 
     private static void AppendDrops(

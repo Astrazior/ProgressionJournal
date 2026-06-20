@@ -294,7 +294,7 @@ public static partial class JournalRepository
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
 
             Set("titaniumArmorHardmodeEntry", JournalItemCategory.Armor, CombatClass.Melee,
-                            ItemID.TitaniumHelmet, ItemID.TitaniumBreastplate, ItemID.TitaniumLeggings,
+                            ItemID.TitaniumMask, ItemID.TitaniumBreastplate, ItemID.TitaniumLeggings,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
 
             Set("crystalAssassinArmorHardmodeEntry", JournalItemCategory.Armor, CombatClass.All,
