@@ -224,7 +224,20 @@ internal static class JournalNpcSpawnAvailabilityResolver
                 conditions: []);
         }
 
-        var earliestStageIndex = contexts.Min(static context => context.StageIndex);
+        var stageEvidence = contexts
+            .Where(context => catalog.Environments[context.EnvironmentIndex].ModBiome is null)
+            .ToArray();
+        if (stageEvidence.Length == 0)
+        {
+            return new JournalNpcSpawnAvailability(
+                npcType,
+                observed: false,
+                earliestStageIndex: -1,
+                earliestStageName: string.Empty,
+                conditions: []);
+        }
+
+        var earliestStageIndex = stageEvidence.Min(static context => context.StageIndex);
         var earliestStageName = earliestStageIndex >= 0 && earliestStageIndex < catalog.StageNames.Count
             ? catalog.StageNames[earliestStageIndex]
             : string.Empty;
@@ -233,7 +246,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
             observed: true,
             earliestStageIndex,
             earliestStageName,
-            BuildConditions(catalog, contexts, earliestStageIndex, earliestStageName));
+            BuildConditions(catalog, stageEvidence, earliestStageIndex, earliestStageName));
     }
 
     public static IReadOnlyList<string> GetConditions(int npcType)
@@ -525,26 +538,45 @@ internal static class JournalNpcSpawnAvailabilityResolver
     {
         var contexts = new HashSet<SpawnContext>();
 
+        void AddVariants(
+            int stageIndex,
+            int environmentIndex,
+            int depth,
+            int eventIndex,
+            bool includeSafe)
+        {
+            var variantCount = includeSafe ? 3 : 2;
+            for (var variant = 0; variant < variantCount; variant++)
+            {
+                contexts.Add(CreateContext(
+                    stageIndex,
+                    environmentIndex,
+                    depth,
+                    eventIndex,
+                    variant));
+            }
+        }
+
         for (var environmentIndex = 0; environmentIndex < catalog.Environments.Count; environmentIndex++)
         {
             for (var depth = 0; depth < 5; depth++)
             {
-                contexts.Add(CreateContext(
+                AddVariants(
                     stageIndex: 0,
                     environmentIndex,
                     depth,
                     eventIndex: 0,
-                    variant: environmentIndex + depth));
+                    includeSafe: true);
             }
 
             for (var eventIndex = 1; eventIndex < catalog.Events.Count; eventIndex++)
             {
-                contexts.Add(CreateContext(
+                AddVariants(
                     stageIndex: 0,
                     environmentIndex,
                     depth: 1,
                     eventIndex,
-                    variant: environmentIndex + eventIndex));
+                    includeSafe: false);
             }
         }
 
@@ -554,33 +586,36 @@ internal static class JournalNpcSpawnAvailabilityResolver
             {
                 foreach (var depth in GetEnvironmentDepths(environmentIndex))
                 {
-                    contexts.Add(CreateContext(
+                    AddVariants(
                         stageIndex,
                         environmentIndex,
                         depth,
                         eventIndex: 0,
-                        variant: stageIndex + environmentIndex + depth));
+                        includeSafe: true);
                 }
-            }
 
-            for (var depth = 0; depth < 5; depth++)
-            {
-                contexts.Add(CreateContext(
-                    stageIndex,
-                    environmentIndex: 0,
-                    depth,
-                    eventIndex: 0,
-                    variant: stageIndex + depth));
+                if (environmentIndex > 0)
+                {
+                    foreach (var eventIndex in Enumerable.Range(1, catalog.Events.Count - 1))
+                    {
+                        AddVariants(
+                            stageIndex,
+                            environmentIndex,
+                            GetEnvironmentDepths(environmentIndex).First(),
+                            eventIndex,
+                            includeSafe: false);
+                    }
+                }
             }
 
             for (var eventIndex = 1; eventIndex < catalog.Events.Count; eventIndex++)
             {
-                contexts.Add(CreateContext(
+                AddVariants(
                     stageIndex,
                     environmentIndex: 0,
                     depth: 1,
                     eventIndex,
-                    variant: stageIndex + eventIndex));
+                    includeSafe: false);
             }
         }
 

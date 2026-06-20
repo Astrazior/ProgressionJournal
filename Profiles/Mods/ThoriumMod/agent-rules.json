@@ -184,6 +184,11 @@
     {
       "id": "hardmode-natural-mimic-and-crate-sources",
       "kind": "source-stage",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Enemies",
+      "sourceVersion": "Thorium Mod 1.7.2.5; Terraria 1.4.4.9",
+      "checkedAt": "2026-06-14",
+      "reason": "These enemies, mimics, and crate variants require Hardmode but no later boss flag.",
       "sources": [
         "Terraria/GoblinSummoner",
         "Terraria/IceMimic",
@@ -202,20 +207,17 @@
         "ThoriumMod/HellBringerMimic",
         "ThoriumMod/Lycan",
         "ThoriumMod/MoltenMortar",
-        "ThoriumMod/MyceliumMimic",
-        "ThoriumMod/SnowElemental",
-        "ThoriumMod/SubmergedMimic",
-        "ThoriumMod/VileFloater"
-      ],
-      "stageId": "wall-of-flesh",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Enemies",
-      "sourceVersion": "Thorium Mod 1.7.2.5; Terraria 1.4.4.9",
-      "checkedAt": "2026-06-14",
-      "reason": "These enemies, mimics, and crate variants require Hardmode but no later boss flag."
+        "ThoriumMod/SubmergedMimic"
+      ]
     },
     {
       "id": "post-plantera-dungeon-sources",
       "kind": "source-stage",
+      "stageId": "plantera",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Dungeon",
+      "sourceVersion": "Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-14",
+      "reason": "The listed Dungeon and Temple enemies become reachable in the post-Plantera portion of progression.",
       "sources": [
         "Terraria/MisterStabby",
         "Terraria/Psycho",
@@ -223,14 +225,8 @@
         "Terraria/SkeletonSniper",
         "Terraria/TacticalSkeleton",
         "ThoriumMod/BoneFlayer",
-        "ThoriumMod/Kraken",
-        "ThoriumMod/LihzardMimic"
-      ],
-      "stageId": "plantera",
-      "sourceUrl": "https://terraria.wiki.gg/wiki/Dungeon",
-      "sourceVersion": "Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
-      "checkedAt": "2026-06-14",
-      "reason": "The listed Dungeon and Temple enemies become reachable in the post-Plantera portion of progression."
+        "ThoriumMod/Kraken"
+      ]
     },
     {
       "id": "frost-moon-sources",
@@ -698,16 +694,6 @@
       "reason": "Goblin Trapper spawns in the Goblin Army, which this profile opens at Eye of Cthulhu."
     },
     {
-      "id": "sea-shanty-singer-source-stage",
-      "kind": "source-stage",
-      "source": "ThoriumMod/SeaShantySinger",
-      "stageId": "wall-of-flesh",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Pirate_Invasion",
-      "sourceVersion": "Thorium Mod 1.7.2.5",
-      "checkedAt": "2026-06-14",
-      "reason": "Sea Shanty Singer spawns in the Hardmode Pirate Invasion."
-    },
-    {
       "id": "pre-hardmode-condition",
       "kind": "condition-stage",
       "stageId": "start",
@@ -929,8 +915,7 @@
       "sources": [
         "ThoriumMod/AncientArcher",
         "ThoriumMod/AncientCharger",
-        "ThoriumMod/AncientPhalanx",
-        "ThoriumMod/RagingMinotaur"
+        "ThoriumMod/AncientPhalanx"
       ]
     },
     {
@@ -1198,16 +1183,6 @@
       "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
       "checkedAt": "2026-06-16",
       "reason": "Conductor's Stand is sold after Wall of Flesh and grants a Bard empowerment buff; Ninja Rack is sold after Wall of Flesh and grants Thrower velocity, speed and critical chance bonuses."
-    },
-    {
-      "id": "scissor-stalker-source-stage",
-      "kind": "source-stage",
-      "source": "ThoriumMod/ScissorStalker",
-      "stageId": "skeletron-prime",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Scissor_Stalker",
-      "sourceVersion": "Thorium Mod 1.7.2.5",
-      "checkedAt": "2026-06-14",
-      "reason": "The official SpawnChance requires all three mechanical bosses and a Solar Eclipse."
     },
     {
       "id": "technique-cobras-bite-all-mechs",

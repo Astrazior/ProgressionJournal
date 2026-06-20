@@ -13,7 +13,7 @@ namespace ProgressionJournal.Data.Resolvers;
 internal static class JournalFishingSourceResolver
 {
     private const int DefaultRandomSeedCount = 32;
-    private const int ScenarioRandomSeedCount = 8;
+    private const int ScenarioRandomSeedCount = 32;
     private const int EquipmentRandomSeedCount = 8;
 
     private static readonly object SyncRoot = new();
@@ -198,7 +198,7 @@ internal static class JournalFishingSourceResolver
         }
 
         var effectiveStageIndexes = contexts
-            .Select(context => GetEffectiveProgressionIndex(catalog, context))
+            .Select(context => GetEvidenceProgressionIndex(catalog, context))
             .Where(static index => index >= 0)
             .ToArray();
         if (effectiveStageIndexes.Length == 0)
@@ -884,7 +884,7 @@ internal static class JournalFishingSourceResolver
         var depths = contexts.Select(static context => context.Depth).Distinct().Order().ToArray();
         var worldIndexes = contexts.Select(static context => context.WorldIndex).Distinct().Order().ToArray();
         var progressionIndexes = contexts
-            .Select(context => GetEffectiveProgressionIndex(catalog, context))
+            .Select(context => GetEvidenceProgressionIndex(catalog, context))
             .Where(static index => index >= 0)
             .Distinct()
             .Order()
@@ -953,12 +953,26 @@ internal static class JournalFishingSourceResolver
         return -1;
     }
 
+    private static int GetEvidenceProgressionIndex(
+        FishingCatalog catalog,
+        ProbeContext context)
+    {
+        var index = GetEffectiveProgressionIndex(catalog, context);
+        var environment = catalog.Environments[context.EnvironmentIndex];
+        return index == 0
+               && (environment.ModBiome is not null || environment.WaterStyle is not null)
+            ? -1
+            : index;
+    }
+
     private static void AppendProgressionCondition(
         List<string> conditions,
         FishingCatalog catalog,
         IReadOnlyCollection<int> progressionIndexes)
     {
-        if (catalog.Progression.Count <= 1 || progressionIndexes.Contains(0))
+        if (catalog.Progression.Count <= 1
+            || progressionIndexes.Count == 0
+            || progressionIndexes.Contains(0))
         {
             return;
         }

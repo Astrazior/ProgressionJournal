@@ -143,14 +143,15 @@ export function generateProfile(
     snapshot.recipes
       .filter(recipe => isAllowedProfileItem(recipe.result, contentMods))
       .flatMap(recipe => recipe.stations));
+  const wikiResolver = createWikiReferenceResolver(allowedItems, report);
   const classificationContext = {
     usedStations,
     items: allowedItems,
+    wikiItems: createWikiClassificationMap(wikiProfile, wikiResolver),
     vanillaItems: new Map(
       (snapshot.vanillaItemClassifications ?? [])
         .map(value => [value.item, value]))
   };
-  const wikiResolver = createWikiReferenceResolver(allowedItems, report);
   const wikiCompatibility = sourceCompatibility(wikiProfile, snapshot);
   report.officialSourceCompatibility = {
     recommendations: wikiCompatibility
@@ -170,6 +171,9 @@ export function generateProfile(
   for (const stage of manifest.stages) {
     const stageIndex = stageIndexes.get(stage.id);
     const before = new Set(available);
+    if (stageIndex === 0) {
+      for (const id of manifest.initialVisibleItems ?? []) before.delete(id);
+    }
     for (const availability of observedNpcAvailability) {
       if (availability.earliestStageIndex !== stageIndex) continue;
       if (availability.kind === "town") {
@@ -187,6 +191,7 @@ export function generateProfile(
     for (const source of stageSources) availableDropSources.add(source);
     for (const npc of stage.shops ?? []) {
       availableShops.add(npc);
+      availableDropSources.add(npc);
       legacyAvailableShops.add(npc);
     }
 
@@ -575,7 +580,12 @@ function classifyItem(item, manifest, report, context) {
     const vanilla = context.vanillaItems?.get(item.id);
     if (!vanilla) return null;
     const validClasses = new Set(allClasses(manifest));
-    const classes = (vanilla.classes ?? []).filter(value => validClasses.has(value));
+    let classes = (vanilla.classes ?? []).filter(value => validClasses.has(value));
+    const vanillaCombatClasses = ["melee", "ranged", "magic", "summoner"];
+    if (item.accessory
+        && vanillaCombatClasses.every(classId => classes.includes(classId))) {
+      classes = allClasses(manifest);
+    }
     if (classes.length === 0) return null;
     return {
       category: override?.category ?? vanilla.category,
@@ -584,7 +594,18 @@ function classifyItem(item, manifest, report, context) {
   }
 
   const classes = override?.classes ?? resolveClasses(item, manifest, report, context);
-  if (classes.length === 0) return null;
+  if (classes.length === 0) {
+    const wikiClassification = classifyWikiItem(context.wikiItems?.get(item.id));
+    if (wikiClassification
+        && ((wikiClassification.category === "Accessory" && item.accessory)
+            || (wikiClassification.category === "Armor"
+                && (item.headSlot >= 0 || item.bodySlot >= 0 || item.legSlot >= 0))
+            || (wikiClassification.category === "Weapon" && (item.damage > 0 || item.sentry))
+            || wikiClassification.category === "Support")) {
+      return wikiClassification;
+    }
+    return null;
+  }
   if (override?.category) return { category: override.category, classes };
   if (item.ammo > 0) return { category: "Ammunition", classes };
   if (item.accessory) return { category: "Accessory", classes };
@@ -643,7 +664,32 @@ function resolveClasses(item, manifest, report, context) {
   return [];
 }
 
+function createWikiClassificationMap(wikiProfile, wikiResolver) {
+  const result = new Map();
+  for (const entry of wikiProfile?.entries ?? []) {
+    if (!entry.category || (entry.classes ?? []).length === 0) continue;
+    for (const id of resolveWikiEntryIds(entry, wikiResolver)) {
+      const existing = result.get(id);
+      if (!existing) {
+        result.set(id, {
+          category: entry.category,
+          classes: [...new Set(entry.classes)]
+        });
+      } else if (existing.category === entry.category) {
+        existing.classes = [...new Set([...existing.classes, ...entry.classes])];
+      }
+    }
+  }
+  return result;
+}
+
 function resolveDamageClasses(damageClass, manifest) {
+  if (damageClass.toLowerCase().includes("summonmeleespeeddamageclass")) {
+    return manifest.classes
+      .filter(cls => (cls.damageClassNames ?? []).some(name =>
+        name.toLowerCase().includes("summon")))
+      .map(cls => cls.id);
+  }
   const matches = manifest.classes
     .filter(cls => (cls.damageClassNames ?? []).some(name =>
       damageClass.toLowerCase().includes(name.toLowerCase())))

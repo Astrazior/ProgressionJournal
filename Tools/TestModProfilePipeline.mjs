@@ -40,6 +40,8 @@ assert(fishingHookOrder.every(index => index >= 0)
 "Fishing hooks are not executed in tModLoader order");
 assert(fishingResolverSource.includes("PlayerLoader.ModifyCaughtFish"),
   "The final caught item is not passed through ModifyCaughtFish");
+assert(fishingResolverSource.includes("progressionIndexes.Count == 0"),
+  "Fishing conditions must tolerate observations with no trustworthy progression evidence");
 assert(fishingResolverSource.includes("ModContent.GetContent<ModBiome>()"),
   "ModBiome scenarios are missing from the fishing pipeline");
 assert(fishingResolverSource.includes("ModContent.GetContent<ModWaterStyle>()"),
@@ -119,6 +121,9 @@ assert(npcSpawnResolverSource.includes("static () => false"),
   "Unstructured mod event flags must remain unknown instead of inventing an early stage");
 assert(npcSpawnResolverSource.includes("JournalRuntimeProgressionScenarios"),
   "Enemy availability does not use the shared progression scenarios");
+assert(npcSpawnResolverSource.includes(
+  "catalog.Environments[context.EnvironmentIndex].ModBiome is null"),
+"Synthetic ModBiome flags must not be treated as proof of progression stage");
 const progressionScenarioSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalRuntimeProgressionScenarios.cs"),
   "utf8");
@@ -165,6 +170,10 @@ assert(profileGeneratorSource.includes("drop.sourceType === \"global\"")
 assert(profileGeneratorSource.includes("snapshot.vanillaItemClassifications")
   && profileGeneratorSource.includes("context.vanillaItems?.get(item.id)"),
 "ProfileGeneratorCore does not reuse the curated vanilla combat classification");
+assert(profileGeneratorSource.includes("summonmeleespeeddamageclass"),
+  "Whips must resolve exclusively to summoner instead of substring-matching melee");
+assert(profileGeneratorSource.includes("createWikiClassificationMap"),
+  "Available mod accessories need recommendation metadata as a classification fallback");
 
 for (const modName of expected) {
   const directory = path.join(modsRoot, modName);
@@ -174,18 +183,16 @@ for (const modName of expected) {
   const support = readJson(path.join(directory, "support.json"));
   const snapshot = readJson(path.join(directory, "snapshot.json"));
   const profile = readJson(path.join(directory, "profile.json"));
+  const review = readJson(path.join(directory, "review.json"));
   const supportWithVanillaSources = applyVanillaSourceCatalog(support, snapshot);
   assert.equal(support.targetMod, modName);
   assert.equal(snapshot.targetMod, modName);
   assert.equal(profile.format, "ProgressionJournalProfile");
   const stageForFlag = key => supportWithVanillaSources.stages.find(stage =>
     stage.unlock?.type === "vanilla-flag" && stage.unlock.key === key);
-  const meteoriteHasRuntimeRecipe = snapshot.recipes?.some(
-    recipe => recipe.result === "Terraria/MeteoriteBar");
-  assert.equal(
-    stageForFlag("downedBoss2")?.include?.includes("Terraria/MeteoriteBar") ?? false,
-    !meteoriteHasRuntimeRecipe,
-    `${modName}: Meteorite Bar fallback does not match runtime recipe coverage`);
+  assert(
+    stageForFlag("downedBoss2")?.include?.includes("Terraria/MeteoriteBar"),
+    `${modName}: natural Meteorite Bar availability must not disappear when a mod adds a recipe`);
   const expectsLegacySource = (source, expectedStageIndex, kind) => {
     const observed = snapshot.npcAvailability?.find(record => record.npc === source);
     if (!observed?.observed
@@ -226,12 +233,65 @@ for (const modName of expected) {
         `${modName}: generated custom event '${entry.customEventName}' has no event icon`);
     }
   }
+  const generatedStageOf = itemId => {
+    const [mod, item] = itemId.split("/");
+    return [...profile.entries, ...(profile.combatBuffs ?? [])].find(entry =>
+      (entry.itemGroups ?? []).flat().some(reference =>
+        reference.mod === mod && reference.item === item))
+      ?.evaluations?.[0]?.stageId
+      ?? [...profile.entries, ...(profile.combatBuffs ?? [])].find(entry =>
+        (entry.itemGroups ?? []).flat().some(reference =>
+          reference.mod === mod && reference.item === item))
+        ?.stageId;
+  };
+  for (const [itemId, stageId] of Object.entries({
+    "Terraria/DD2BallistraTowerT1Popper": "world-evil",
+    "Terraria/DD2BallistraTowerT2Popper": "destroyer",
+    "Terraria/DD2BallistraTowerT3Popper": "golem",
+    "Terraria/HallowedMask": "destroyer",
+    "Terraria/LuckPotion": "start",
+    "Terraria/Megaphone": "wall-of-flesh"
+  })) {
+    assert.equal(generatedStageOf(itemId), stageId,
+      `${modName}: ${itemId} must follow the correct Old One's Army tier`);
+  }
+  assert.equal(
+    generatedStageOf("Terraria/FireGauntlet"),
+    modName === "CalamityMod" ? "golem" : "skeletron-prime",
+    `${modName}: Fire Gauntlet must follow its actual recipe dependencies`);
+  assert(!review.issues.some(issue =>
+    issue.kind === "ambiguous-classes"
+    && ["Terraria/BlandWhip", "Terraria/MaceWhip", "Terraria/ScytheWhip"]
+      .includes(issue.item)),
+  `${modName}: whips must not be classified as melee/summoner hybrids`);
   if (modName === "CalamityMod") {
     const agentRules = readJson(path.join(directory, "agent-rules.json"));
-    assert(!agentRules.rules.some(rule => rule.kind === "fishing-source"),
-      "Calamity fishing sources must come from the runtime fishing pipeline");
-    assert(!agentRules.rules.some(rule => rule.id === "shady-salesman-source"),
-      "Shady Salesman availability must come from its runtime spawn system");
+    const report = readJson(path.join(directory, "report.json"));
+    const migration = report.agentRules?.availabilityMigration;
+    assert(!agentRules.rules.some(rule =>
+      rule.kind === "fishing-source"
+      && (rule.item === "CalamityMod/SeaSpiritAmulet"
+          || rule.items?.includes("CalamityMod/SeaSpiritAmulet"))),
+    "Observed Sea Spirit Amulet fishing must not retain a manual fishing source");
+    assert(snapshot.fishing?.some(record =>
+      record.targetType === "item"
+      && record.target === "CalamityMod/SeaSpiritAmulet"
+      && record.earliestStageIndex >= 0),
+    "Sea Spirit Amulet must be observed by the runtime fishing pipeline");
+    const sparklingEmpressObserved = snapshot.fishing?.some(record =>
+      record.targetType === "item"
+      && record.target === "CalamityMod/SparklingEmpress"
+      && record.earliestStageIndex >= 0);
+    assert.equal(
+      agentRules.rules.some(rule =>
+        rule.kind === "fishing-source"
+        && (rule.item === "CalamityMod/SparklingEmpress"
+            || rule.items?.includes("CalamityMod/SparklingEmpress"))),
+      !sparklingEmpressObserved,
+      "Sparkling Empress manual fishing source must exist only while runtime coverage is absent");
+    assert(migration?.pendingRules.some(rule =>
+      rule.id === "shady-salesman-source"),
+    "Unobserved Shady Salesman availability must retain its manual fallback");
     const profileItems = new Set(profile.entries.flatMap(entry =>
       (entry.itemGroups ?? []).flat().map(item => `${item.mod}/${item.item}`)));
     for (const item of [
@@ -248,6 +308,21 @@ for (const modName of expected) {
     }
     assert(profileItems.has("CalamityMod/FishStocks"),
       "Fish Stocks provides combat stats and must remain in the combat profile");
+    for (const itemId of ["CalamityMod/CoinofDeceit", "CalamityMod/ScuttlersJewel"]) {
+      const [mod, item] = itemId.split("/");
+      const entry = profile.entries.find(value =>
+        (value.itemGroups ?? []).flat().some(reference =>
+          reference.mod === mod && reference.item === item));
+      assert(entry?.classes.includes("rogue"),
+        `${itemId} must remain available to rogue recommendations`);
+    }
+    for (const itemId of ["Terraria/WormScarf", "Terraria/BrainOfConfusion"]) {
+      const entry = profile.entries.find(value =>
+        (value.itemGroups ?? []).flat().some(reference =>
+          reference.mod === "Terraria" && reference.item === itemId.slice(9)));
+      assert(entry?.classes.includes("rogue"),
+        `${itemId} is a generic accessory and must remain available to rogue`);
+    }
     const stageOf = itemId => {
       const [mod, item] = itemId.split("/");
       return profile.entries.find(entry =>
@@ -256,10 +331,6 @@ for (const modName of expected) {
         ?.evaluations?.[0]?.stageId;
     };
     for (const [item, stageId] of Object.entries({
-      "CalamityMod/HeartofDarkness": "king-slime",
-      "Terraria/LuckyCoin": "wall-of-flesh",
-      "Terraria/DiscountCard": "wall-of-flesh",
-      "Terraria/MechanicalLens": "skeletron",
       "Terraria/Blindfold": "start",
       "CalamityMod/OpalStriker": "world-evil",
       "CalamityMod/Prismalline": "wall-of-flesh",
@@ -269,6 +340,15 @@ for (const modName of expected) {
     })) {
       assert.equal(stageOf(item), stageId, `${item} must follow its latest recipe dependency`);
     }
+    for (const utilityItem of [
+      "CalamityMod/HeartofDarkness",
+      "Terraria/LuckyCoin",
+      "Terraria/DiscountCard",
+      "Terraria/MechanicalLens"
+    ]) {
+      assert.equal(stageOf(utilityItem), undefined,
+        `${utilityItem} has no current combat effect and must remain excluded`);
+    }
     assert.equal(
       profile.combatBuffs.find(entry =>
         (entry.itemGroups ?? []).flat().some(reference =>
@@ -276,22 +356,11 @@ for (const modName of expected) {
         ?.stageId,
       "start",
       "Restoration Potion must be available from naturally growing Glowing Mushrooms");
-    for (const itemId of [
-      "CalamityMod/SparklingEmpress",
-      "CalamityMod/SeaSpiritAmulet"
-    ]) {
-      const [mod, item] = itemId.split("/");
-      const entry = profile.entries.find(value =>
-        (value.itemGroups ?? []).flat().some(reference =>
-          reference.mod === mod && reference.item === item));
-      assert(entry, `${itemId} is missing from the generated profile`);
-      const observedFishing = snapshot.fishing?.some(record =>
-        record.targetType === "item" && record.target === itemId);
-      assert.equal(
-        entry.fishingSources.length > 0,
-        observedFishing,
-        `${itemId} fishing sources do not match runtime observations`);
-    }
+    assert(snapshot.fishing?.some(record =>
+      record.targetType === "item"
+      && record.target === "CalamityMod/SeaSpiritAmulet"
+      && record.earliestStageIndex >= 0),
+    "Sea Spirit Amulet fishing must remain present in the runtime snapshot");
   }
   const snapshotVersions = new Map(snapshot.mods.map(mod => [mod.name, mod.version]));
   for (const required of support.requiredMods ?? []) {
@@ -531,7 +600,7 @@ assert(!vanillaSources.stages.find(stage => stage.id === "plantera")
 assert(!vanillaSources.stages.find(stage => stage.id === "plantera")
   .shops?.includes("Terraria/Cyborg"));
 assert(!vanillaSources.stages.find(stage => stage.id === "destroyer")
-  .include?.includes("Terraria/FireGauntlet"));
+  ?.include?.includes("Terraria/FireGauntlet"));
 assert.equal(vanillaSources.itemStageFloors["Terraria/FireGauntlet"], undefined);
 assert(vanillaSources.stages.find(stage => stage.id === "world-evil")
   .include.includes("Terraria/MeteoriteBar"));

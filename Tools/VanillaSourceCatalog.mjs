@@ -59,6 +59,17 @@ const START_ITEMS = [
   "Terraria/FlinxFur",
   "Terraria/Feather",
   "Terraria/FallenStar",
+  "Terraria/MagmaStone",
+  "Terraria/Gel",
+  "Terraria/WoodenArrow",
+  "Terraria/Musket",
+  "Terraria/TheUndertaker",
+  "Terraria/Vilethorn",
+  "Terraria/CrimsonRod",
+  "Terraria/Boomstick",
+  "Terraria/SnowballCannon",
+  "Terraria/Gladius",
+  "Terraria/PanicNecklace",
   "Terraria/Chain",
   "Terraria/Worm",
   "Terraria/Robe",
@@ -114,6 +125,7 @@ const START_ITEMS = [
   "Terraria/Deathweed",
   "Terraria/Shiverthorn",
   "Terraria/Fireblossom",
+  "Terraria/LadyBug",
   "Terraria/Pumpkin",
   "Terraria/PumpkinSeed",
   "Terraria/Hay",
@@ -121,7 +133,6 @@ const START_ITEMS = [
   "Terraria/LeafWand",
   "Terraria/NaturesGift",
   "Terraria/PanicNecklace",
-  "Terraria/SweetheartNecklace",
   "Terraria/Boomstick",
   "Terraria/Gladius",
   "Terraria/Musket",
@@ -134,8 +145,6 @@ const START_ITEMS = [
   "Terraria/MagicMirror",
   "Terraria/Vilethorn",
   "Terraria/CrimsonRod",
-  "Terraria/DarkLance",
-  "Terraria/HellwingBow",
   "Terraria/ArcticDivingGear",
   "Terraria/TerrasparkBoots",
   "Terraria/SunplateBlock",
@@ -192,7 +201,10 @@ const MILESTONE_FACTS = [
   },
   {
     findStage: manifest => findStageById(manifest, "queen-bee"),
-    items: ["Terraria/BeeWax"],
+    items: [
+      "Terraria/BeeWax",
+      "Terraria/SweetheartNecklace"
+    ],
     stations: ["Terraria/ImbuingStation"],
     shops: ["Terraria/WitchDoctor"]
   },
@@ -223,7 +235,9 @@ const MILESTONE_FACTS = [
       "Terraria/BewitchingTable",
       "Terraria/QuadBarrelShotgun",
       "Terraria/CowboyHat",
-      "Terraria/WaterCandle"
+      "Terraria/WaterCandle",
+      "Terraria/DarkLance",
+      "Terraria/HellwingBow"
     ],
     enemies: [
       "Terraria/Clothier",
@@ -335,8 +349,12 @@ const MILESTONE_FACTS = [
       "Terraria/Megashark",
       "Terraria/DeathSickle",
       "Terraria/LivingFireBlock",
-      "Terraria/FireGauntlet",
-      "Terraria/SuperStarCannon"
+      "Terraria/HallowedBar",
+      "Terraria/SuperStarCannon",
+      "Terraria/DD2BallistraTowerT2Popper",
+      "Terraria/DD2ExplosiveTrapT2Popper",
+      "Terraria/DD2FlameburstTowerT2Popper",
+      "Terraria/DD2LightningAuraT2Popper"
     ],
     shops: ["Terraria/Steampunker"],
     enemies: ["Terraria/RedDevil"]
@@ -349,7 +367,7 @@ const MILESTONE_FACTS = [
     findStage: manifest => findVanillaFlagStage(manifest, "downedMechBoss3", "skeletron-prime"),
     items: [
       "Terraria/SoulofFright",
-      "Terraria/HallowedBar",
+      "Terraria/MechanicalGlove",
       "Terraria/Cog",
       "Terraria/ChlorophyteOre",
       "Terraria/ChlorophyteBar"
@@ -369,10 +387,13 @@ const MILESTONE_FACTS = [
       "Terraria/MagnetSphere",
       "Terraria/PaladinsShield",
       "Terraria/PaladinsHammer",
-      "Terraria/VampireKnives",
       "Terraria/StaffoftheFrostHydra",
+      "Terraria/ScourgeoftheCorruptor",
       "Terraria/RainbowGun",
+      "Terraria/VampireKnives",
       "Terraria/PiranhaGun",
+      "Terraria/StormTigerStaff",
+      "Terraria/Uzi",
       "Terraria/LifeFruit",
       "Terraria/FrozenShield",
       "Terraria/ShadowbeamStaff",
@@ -429,6 +450,13 @@ const MILESTONE_FACTS = [
   },
   {
     findStage: manifest => findVanillaFlagStage(manifest, "downedGolemBoss", "golem"),
+    items: [
+      "Terraria/DD2BallistraTowerT3Popper",
+      "Terraria/DD2ExplosiveTrapT3Popper",
+      "Terraria/DD2FlameburstTowerT3Popper",
+      "Terraria/DD2LightningAuraT3Popper",
+      "Terraria/FireworksLauncher"
+    ],
     enemies: [
       "Terraria/FlyingSnake",
       "Terraria/BrainScrambler",
@@ -499,18 +527,39 @@ const START_SHOPS = [
   "Terraria/Stylist",
   "Terraria/Golfer",
   "Terraria/BestiaryGirl",
-  "Terraria/SkeletonMerchant"
+  "Terraria/SkeletonMerchant",
+  "Terraria/TaxCollector"
+];
+
+const START_VISIBLE_ITEMS = [
+  "Terraria/Gel",
+  "Terraria/WoodenArrow",
+  "Terraria/FallenStar",
+  "Terraria/Musket",
+  "Terraria/TheUndertaker",
+  "Terraria/Vilethorn",
+  "Terraria/CrimsonRod",
+  "Terraria/Boomstick",
+  "Terraria/SnowballCannon",
+  "Terraria/Gladius",
+  "Terraria/PanicNecklace",
+  "Terraria/NaturesGift",
+  "Terraria/BouncyGrenade",
+  "Terraria/FrogGear",
+  "Terraria/FrogFlipper",
+  "Terraria/HorseshoeBundle",
+  "Terraria/PainterPaintballGun"
 ];
 
 export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {
   const manifest = structuredClone(sourceManifest);
-  const recipeResults = new Set(
-    (snapshot?.recipes ?? []).map(recipe => recipe.result));
-  const fallbackItems = items =>
-    (items ?? []).filter(item => !recipeResults.has(item));
   manifest.initialItems = unique([
     ...(manifest.initialItems ?? []),
-    ...fallbackItems(START_ITEMS)
+    ...START_ITEMS
+  ]);
+  manifest.initialVisibleItems = unique([
+    ...(manifest.initialVisibleItems ?? []),
+    ...START_VISIBLE_ITEMS
   ]);
   manifest.initialStations = unique([
     ...(manifest.initialStations ?? []),
@@ -533,7 +582,7 @@ export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {
     const stageId = fact.findStage(manifest);
     const stage = stages.get(stageId);
     if (!stage) continue;
-    const items = fallbackItems(fact.items);
+    const items = fact.items ?? [];
     manifest.itemStageFloors ??= {};
     manifest.stationStageFloors ??= {};
     for (const item of items) {
@@ -552,6 +601,28 @@ export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {
       ...(stage.shops ?? []),
       ...filterLegacyNpcSources(fact.shops ?? [], stageId, "town", manifest, snapshot)
     ]);
+  }
+
+  const hardmodeStageId = findVanillaFlagStage(manifest, "hardMode", "wall-of-flesh");
+  if (hardmodeStageId) {
+    manifest.itemStageFloors["Terraria/Megaphone"] ??= hardmodeStageId;
+  }
+
+  const fireGauntletHasRecipe = (snapshot?.recipes ?? []).some(recipe =>
+    recipe.result === "Terraria/FireGauntlet");
+  if (!fireGauntletHasRecipe) {
+    const allMechsStageId = findVanillaFlagStage(
+      manifest,
+      "downedMechBoss3",
+      "skeletron-prime");
+    const allMechsStage = stages.get(allMechsStageId);
+    if (allMechsStage) {
+      manifest.itemStageFloors["Terraria/FireGauntlet"] ??= allMechsStageId;
+      allMechsStage.include = unique([
+        ...(allMechsStage.include ?? []),
+        "Terraria/FireGauntlet"
+      ]);
+    }
   }
   return manifest;
 }
