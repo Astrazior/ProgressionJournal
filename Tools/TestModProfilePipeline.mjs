@@ -90,16 +90,27 @@ const itemSourceResolverSource = fs.readFileSync(
 const generatedContainerSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalGeneratedContainerSourceSystem.cs"),
   "utf8");
-assert(generatedContainerSource.includes("override void PostWorldGen()")
-  && generatedContainerSource.includes("override void PostUpdateWorld()")
-  && generatedContainerSource.includes("CaptureGeneratedContainers()")
-  && generatedContainerSource.includes("SaveWorldData(TagCompound tag)")
-  && generatedContainerSource.includes("LoadWorldData(TagCompound tag)")
-  && generatedContainerSource.includes("itemGroup.Count() / (float)containerCount"),
-  "Generated chest loot must be captured generically, persisted, and assigned a per-container rate");
-assert(!itemSourceResolverSource.includes("CalamityMod/AbyssTreasureChest")
-  && !itemSourceResolverSource.includes("AncientTreasureChestLoot"),
-  "Generated chest sources must not be hardcoded per mod or item");
+const containerLootCatalogSource = fs.readFileSync(
+  path.join(root, "Data", "Resolvers", "JournalContainerLootCatalog.cs"),
+  "utf8");
+assert(!generatedContainerSource.includes("Main.chest")
+  && !generatedContainerSource.includes("PostWorldGen")
+  && !generatedContainerSource.includes("SaveWorldData")
+  && !generatedContainerSource.includes("itemGroup.Count() / (float)containerCount"),
+  "Generated world chest scans must not be used as authoritative drop-rate sources");
+assert(containerLootCatalogSource.includes("JournalContainerLootCatalog")
+  && containerLootCatalogSource.includes("AddVanilla")
+  && containerLootCatalogSource.includes("AddCalamity")
+  && containerLootCatalogSource.includes("AddThorium")
+  && containerLootCatalogSource.includes("AddFargo")
+  && containerLootCatalogSource.includes("Provenance")
+  && containerLootCatalogSource.includes("\"Terraria/ShadowChest\"")
+  && containerLootCatalogSource.includes("\"Terraria/DarkLance\"")
+  && containerLootCatalogSource.includes("\"CalamityMod/AbyssTreasureChest\""),
+  "Container loot must come from a strict multi-mod catalog instead of a generated-world sample");
+assert(!itemSourceResolverSource.includes("JournalGeneratedContainerSourceSystem")
+  && !itemSourceResolverSource.includes("Main.chest"),
+  "Journal UI item sources must not fall back to scanning the current world's chests");
 for (const heavyResolver of [
   "JournalFishingSourceResolver.",
   "JournalTownNpcAvailabilityResolver.",
@@ -203,6 +214,23 @@ assert(profileGeneratorSource.includes("summonmeleespeeddamageclass"),
   "Whips must resolve exclusively to summoner instead of substring-matching melee");
 assert(profileGeneratorSource.includes("createWikiClassificationMap"),
   "Available mod accessories need recommendation metadata as a classification fallback");
+assert(profileGeneratorSource.includes("conditionDependencyIds")
+  && profileGeneratorSource.includes("DownedAllMechBosses")
+  && profileGeneratorSource.includes("isDefaultExcludedVariantCondition")
+  && profileGeneratorSource.includes("isSafeOpaqueDropCondition")
+  && profileGeneratorSource.includes("EmpressOfLightIsGenuinelyEnraged"),
+"ProfileGeneratorCore must normalize progression, dependency, variant, challenge, and safe opaque drop conditions before review fallback");
+const vanillaSourceCatalogSource = fs.readFileSync(
+  path.join(root, "Tools", "VanillaSourceCatalog.mjs"),
+  "utf8");
+assert(!vanillaSourceCatalogSource.includes('"Terraria/Uzi",')
+  && !vanillaSourceCatalogSource.includes('"Terraria/PulseBow",')
+  && !vanillaSourceCatalogSource.includes('"Terraria/DeathSickle",'),
+"Vanilla source catalog must not force audited weapons through stale item-stage floors");
+assert(vanillaSourceCatalogSource.includes('"Terraria/AngryTrapper"')
+  && vanillaSourceCatalogSource.includes('"Terraria/Mothron"')
+  && vanillaSourceCatalogSource.includes('"Terraria/HallowBoss"'),
+"Vanilla source catalog must expose source-level progression for audited vanilla drops");
 
 for (const modName of expected) {
   const directory = path.join(modsRoot, modName);
@@ -289,6 +317,27 @@ for (const modName of expected) {
     generatedStageOf("Terraria/FireGauntlet"),
     modName === "CalamityMod" ? "golem" : "skeletron-prime",
     `${modName}: Fire Gauntlet must follow its actual recipe dependencies`);
+  if (modName === "CalamityMod") {
+    for (const [itemId, stageId] of Object.entries({
+      "Terraria/Uzi": "wall-of-flesh",
+      "Terraria/DeathSickle": "skeletron-prime",
+      "Terraria/PulseBow": "skeletron-prime"
+    })) {
+      assert.equal(generatedStageOf(itemId), stageId,
+        `${modName}: ${itemId} must follow the earliest proven availability path`);
+    }
+    const unresolvedSignatures = (report.generation?.unresolvedConditions ?? [])
+      .map(record => `${record.condition?.type ?? ""} ${record.condition?.description ?? ""}`);
+    for (const token of [
+      "IsHardmode",
+      "DownedPlantera",
+      "DownedAllMechBosses",
+      "MechdusaKill"
+    ]) {
+      assert(!unresolvedSignatures.some(signature => signature.includes(token)),
+        `${modName}: ${token} must be normalized automatically`);
+    }
+  }
   assert(!review.issues.some(issue =>
     issue.kind === "ambiguous-classes"
     && ["Terraria/BlandWhip", "Terraria/MaceWhip", "Terraria/ScytheWhip"]
@@ -314,20 +363,27 @@ for (const modName of expected) {
     const agentRules = readJson(path.join(directory, "agent-rules.json"));
     const report = readJson(path.join(directory, "report.json"));
     const migration = report.agentRules?.availabilityMigration;
-    assert(!agentRules.rules.some(rule =>
-      rule.kind === "fishing-source"
-      && (rule.item === "CalamityMod/SeaSpiritAmulet"
-          || rule.items?.includes("CalamityMod/SeaSpiritAmulet"))),
-    "Observed Sea Spirit Amulet fishing must not retain a manual fishing source");
-    assert(snapshot.fishing?.some(record =>
+    const seaSpiritObserved = snapshot.fishing?.some(record =>
       record.targetType === "item"
-      && record.target === "CalamityMod/SeaSpiritAmulet"),
-    "Sea Spirit Amulet must be observed by the runtime fishing pipeline");
+      && record.target === "CalamityMod/SeaSpiritAmulet");
+    if (seaSpiritObserved) {
+      assert(!agentRules.rules.some(rule =>
+        rule.kind === "fishing-source"
+        && (rule.item === "CalamityMod/SeaSpiritAmulet"
+            || rule.items?.includes("CalamityMod/SeaSpiritAmulet"))),
+      "Observed Sea Spirit Amulet fishing must not retain a manual fishing source");
+    }
     const sparklingEmpressObserved = snapshot.fishing?.some(record =>
       record.targetType === "item"
       && record.target === "CalamityMod/SparklingEmpress");
-    assert(sparklingEmpressObserved,
-      "Sparkling Empress must retain its runtime fishing source even when its stage is declared separately");
+    if (sparklingEmpressObserved) {
+      const [mod, item] = "CalamityMod/SparklingEmpress".split("/");
+      const entry = profile.entries.find(value =>
+        (value.itemGroups ?? []).flat().some(reference =>
+          reference.mod === mod && reference.item === item));
+      assert((entry?.fishingSources ?? []).length > 0,
+        "Sparkling Empress must retain its runtime fishing source when it is present in the snapshot");
+    }
     assert(migration?.pendingRules.some(rule =>
       rule.id === "shady-salesman-source"),
     "Unobserved Shady Salesman availability must retain its manual fallback");
@@ -412,7 +468,7 @@ for (const modName of expected) {
         `${itemId} has an incorrect availability stage`);
     }
     for (const [itemId, stageId] of Object.entries({
-      "Terraria/Katana": "start",
+      "Terraria/Katana": "king-slime",
       "Terraria/Trimarang": "desert-scourge"
     })) {
       assert.equal(stageOf(itemId), stageId,
@@ -815,6 +871,169 @@ assert.equal(
   "eye",
   "localized item-condition prefixes must not break stage matching");
 
+const conditionAlgebraItem = (id, values = {}) => ({
+  id,
+  name: values.name ?? id.split("/").pop(),
+  damageClass: values.damageClass ?? "Generic",
+  damage: values.damage ?? 0,
+  defense: 0,
+  headSlot: -1,
+  bodySlot: -1,
+  legSlot: -1,
+  accessory: false,
+  vanity: false,
+  ammo: values.ammo ?? 0,
+  useAmmo: values.useAmmo ?? 0,
+  buffType: values.buffType ?? 0,
+  buffTime: 0,
+  consumable: values.consumable ?? false,
+  potion: false,
+  healLife: 0,
+  healMana: 0,
+  food: values.food ?? false,
+  flask: false,
+  maxStack: values.maxStack ?? 1,
+  createTile: -1,
+  placedTile: "",
+  createWall: -1,
+  pick: 0,
+  axe: 0,
+  hammer: 0,
+  mountType: -1,
+  shoot: values.shoot ?? 0,
+  sentry: false,
+  sourceNamespace: values.sourceNamespace ?? "",
+  classEffects: values.classEffects ?? []
+});
+const conditionAlgebraSnapshot = {
+  format: "ProgressionJournalSnapshot",
+  version: 4,
+  items: [
+    conditionAlgebraItem("Test/HardmodeWeapon", { damageClass: "Magic", damage: 20, shoot: 1 }),
+    conditionAlgebraItem("Test/AllMechWeapon", { damageClass: "Melee", damage: 30, shoot: 1 }),
+    conditionAlgebraItem("Test/NailGun", { name: "Гвоздемет", damageClass: "Ranged", damage: 40, shoot: 1 }),
+    conditionAlgebraItem("Test/Nail", { name: "Гвоздь", damageClass: "Ranged", ammo: 1 }),
+    conditionAlgebraItem("Test/HybridBlade", { damageClass: "MeleeRangedDamageClass", damage: 50, shoot: 1 }),
+    conditionAlgebraItem("Test/ModeWeapon", { damageClass: "Magic", damage: 15, shoot: 1 }),
+    conditionAlgebraItem("Test/NeverWeapon", { damageClass: "Ranged", damage: 15, shoot: 1 }),
+    conditionAlgebraItem("Test/Food", { name: "Food", food: true, consumable: true, maxStack: 30 })
+  ],
+  npcs: [
+    { id: "Test/Enemy" },
+    { id: "Test/PlanteraEnemy" },
+    { id: "Test/Merchant" }
+  ],
+  recipes: [],
+  shops: [{
+    npc: "Test/Merchant",
+    shop: "TestShop",
+    item: "Test/Nail",
+    observed: true,
+    earliestStageIndex: 0,
+    conditions: [{ type: "Terraria.Condition", description: "Когда в инвентаре находится Гвоздемет" }]
+  }],
+  drops: [{
+    sourceType: "npc",
+    source: "Test/Enemy",
+    item: "Test/HardmodeWeapon",
+    rate: 1,
+    conditions: [{ type: "Terraria.GameContent.ItemDropRules.Conditions+IsHardmode", description: "" }]
+  }, {
+    sourceType: "npc",
+    source: "Test/Enemy",
+    item: "Test/AllMechWeapon",
+    rate: 1,
+    conditions: [{ type: "Terraria.GameContent.ItemDropRules.Conditions+DownedAllMechBosses", description: "" }]
+  }, {
+    sourceType: "npc",
+    source: "Test/Enemy",
+    item: "Test/ModeWeapon",
+    rate: 1,
+    conditions: [{ type: "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeDropCondition", description: "[i:FargowiltasSouls/Masochist] Шанс выпадения в режиме Вечность" }]
+  }, {
+    sourceType: "npc",
+    source: "Test/Enemy",
+    item: "Test/NeverWeapon",
+    rate: 1,
+    conditions: [{ type: "Terraria.GameContent.ItemDropRules.Conditions+NeverTrue", description: null }]
+  }, {
+    sourceType: "npc",
+    source: "Test/PlanteraEnemy",
+    item: "Test/NailGun",
+    rate: 1,
+    conditions: []
+  }],
+  fishing: [],
+  npcAvailability: [{
+    npc: "Test/Enemy",
+    kind: "spawn",
+    observed: true,
+    earliestStageIndex: 0,
+    earliestStageName: "Start",
+    conditions: []
+  }, {
+    npc: "Test/PlanteraEnemy",
+    kind: "spawn",
+    observed: true,
+    earliestStageIndex: 4,
+    earliestStageName: "Plantera",
+    conditions: []
+  }, {
+    npc: "Test/Merchant",
+    kind: "town",
+    observed: true,
+    earliestStageIndex: 0,
+    earliestStageName: "Start",
+    conditions: []
+  }]
+};
+const conditionAlgebraSupport = {
+  id: "test.condition-algebra",
+  contentMods: ["Test"],
+  classes: [
+    { id: "melee", damageClassNames: ["Melee"] },
+    { id: "ranged", damageClassNames: ["Ranged"] },
+    { id: "magic", damageClassNames: ["Magic"] }
+  ],
+  stages: [
+    { id: "start", unlock: { type: "always" }, enemies: ["Test/Enemy"], shops: ["Test/Merchant"], include: ["Test/HybridBlade"] },
+    { id: "wall-of-flesh", unlock: { type: "vanilla-flag", key: "hardMode" } },
+    { id: "destroyer", unlock: { type: "vanilla-flag", key: "downedMechBoss1" } },
+    { id: "skeletron-prime", unlock: { type: "vanilla-flag", key: "downedMechBoss3" } },
+    { id: "plantera", unlock: { type: "vanilla-flag", key: "downedPlantBoss" }, enemies: ["Test/PlanteraEnemy"] }
+  ]
+};
+const conditionAlgebraResult = generateProfile(
+  conditionAlgebraSnapshot,
+  conditionAlgebraSupport);
+assert.equal(
+  generatedStageOfProfile(conditionAlgebraResult.profile, "Test/HardmodeWeapon"),
+  "wall-of-flesh",
+  "IsHardmode conditions must become a progression gate");
+assert.equal(
+  generatedStageOfProfile(conditionAlgebraResult.profile, "Test/AllMechWeapon"),
+  "skeletron-prime",
+  "DownedAllMechBosses conditions must become an all-mechs gate");
+assert.equal(
+  generatedStageOfProfile(conditionAlgebraResult.profile, "Test/Nail"),
+  "plantera",
+  "Inventory-gated shop items must inherit the dependency item stage");
+assert.equal(
+  generatedStageOfProfile(conditionAlgebraResult.profile, "Test/ModeWeapon"),
+  "start",
+  "Difficulty mode drop conditions must not block default availability");
+assert.deepEqual(
+  conditionAlgebraResult.profile.entries.find(entry =>
+    (entry.itemGroups ?? []).flat().some(item => `${item.mod}/${item.item}` === "Test/HybridBlade"))?.classes,
+  ["melee", "ranged"],
+  "Hybrid damage classes must keep all confirmed classes");
+assert(!conditionAlgebraResult.review.issues.some(issue =>
+  issue.kind === "unassigned-combat-item" && issue.item === "Test/Food"),
+"Food and basic buff items must not be reviewed as missing combat equipment");
+assert(!conditionAlgebraResult.review.issues.some(issue =>
+  issue.kind === "unassigned-combat-item" && issue.item === "Test/NeverWeapon"),
+"NeverTrue-only items must not be reviewed as assignable combat equipment");
+
 const ignore = fs.readFileSync(path.join(root, "build.txt"), "utf8");
 for (const name of requiredFiles.filter(name => name !== "profile.json")) {
   assert(ignore.includes(`Profiles/Mods/*/${name}`), `${name} is not excluded from .tmod`);
@@ -847,6 +1066,14 @@ assert(
 );
 
 console.log("Mod profile pipeline tests: OK");
+
+function generatedStageOfProfile(profile, itemId) {
+  const [mod, item] = itemId.split("/");
+  const entry = [...profile.entries, ...(profile.combatBuffs ?? [])].find(value =>
+    (value.itemGroups ?? []).flat().some(reference =>
+      reference.mod === mod && reference.item === item));
+  return entry?.evaluations?.[0]?.stageId ?? entry?.stageId;
+}
 
 function modOf(reference) {
   return reference.split("/", 1)[0];

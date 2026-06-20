@@ -125,7 +125,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         WriteIndented = true
     };
 
-    private static IReadOnlyList<Mod> ResolveTransitiveDependencies(Mod targetMod)
+    private static Mod[] ResolveTransitiveDependencies(Mod targetMod)
     {
         var loadedByAssembly = ModLoader.Mods
             .Where(static mod => mod.Code is not null)
@@ -178,7 +178,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
     private static void CreateSupportTemplateIfMissing(
         string directory,
         Mod targetMod,
-        IReadOnlyList<Mod> dependencyMods)
+        Mod[] dependencyMods)
     {
         var path = Path.Combine(directory, "support.json");
         if (File.Exists(path))
@@ -261,10 +261,10 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             : string.Empty;
     }
 
-    private static readonly Lazy<IReadOnlyDictionary<string, string>> EnglishVanillaItemNames =
+    private static readonly Lazy<Dictionary<string, string>> EnglishVanillaItemNames =
         new(LoadEnglishVanillaItemNames);
 
-    private static IReadOnlyDictionary<string, string> LoadEnglishVanillaItemNames()
+    private static Dictionary<string, string> LoadEnglishVanillaItemNames()
     {
         const string resourceName = "Terraria.Localization.Content.en_US.Items.json";
         using var stream = typeof(Main).Assembly.GetManifestResourceStream(resourceName);
@@ -283,12 +283,15 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         }
 
         var result = new Dictionary<string, string>(StringComparer.Ordinal);
+        // ReSharper disable once LoopCanBePartlyConvertedToQuery
         foreach (var property in itemNames.EnumerateObject())
         {
-            if (property.Value.ValueKind == JsonValueKind.String)
+            if (property.Value.ValueKind != JsonValueKind.String)
             {
-                result[property.Name] = property.Value.GetString() ?? string.Empty;
+                continue;
             }
+
+            result[property.Name] = property.Value.GetString() ?? string.Empty;
         }
 
         return result;
@@ -323,8 +326,9 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                 .OfType<SnapshotClassEffect>()
                 .ToList();
         }
-        catch
+        catch (Exception exception)
         {
+            LogDebug($"Failed to inspect class effects for item {sourceItem.type}.", exception);
             return [];
         }
     }
@@ -451,8 +455,8 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
     }
 
     private static List<SnapshotRecipe> CreateRecipes(
-        IReadOnlySet<int> includedItems,
-        IReadOnlySet<string> includedMods)
+        HashSet<int> includedItems,
+        HashSet<string> includedMods)
     {
         List<SnapshotRecipe> recipes = [];
         for (var recipeIndex = 0; recipeIndex < Recipe.numRecipes; recipeIndex++)
@@ -482,7 +486,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         return recipes;
     }
 
-    private static List<SnapshotDrop> CreateDrops(IReadOnlySet<int> includedItems, IReadOnlySet<int> includedNpcs)
+    private static List<SnapshotDrop> CreateDrops(HashSet<int> includedItems, HashSet<int> includedNpcs)
     {
         List<SnapshotDrop> drops = [];
         foreach (var npcId in includedNpcs)
@@ -512,65 +516,25 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                 includedItems);
         }
 
-        AppendGeneratedContainerDrops(drops, includedItems);
+        AppendContainerCatalogDrops(drops, includedItems);
         return drops;
     }
 
-    private static void AppendGeneratedContainerDrops(
-        ICollection<SnapshotDrop> result,
-        IReadOnlySet<int> includedItems)
+    private static void AppendContainerCatalogDrops(
+        List<SnapshotDrop> result,
+        HashSet<int> includedItems)
     {
-        var generatedDrops = JournalGeneratedContainerSourceSystem.GetAllSources()
-            .Where(drop => TryResolveItemReference(drop.SourceItem, out var sourceItemId)
-                && includedItems.Contains(sourceItemId)
-                && TryResolveItemReference(drop.TargetItem, out var targetItemId)
+        result.AddRange(global::ProgressionJournal.Data.Resolvers.JournalContainerLootCatalog.GetAllDrops()
+            .Where(drop => TryResolveItemReference(drop.TargetItem, out var targetItemId)
                 && includedItems.Contains(targetItemId))
-            .ToArray();
-        if (generatedDrops.Length > 0)
-        {
-            foreach (var drop in generatedDrops)
-            {
-                result.Add(new SnapshotDrop(
-                    "container",
-                    drop.SourceItem,
-                    drop.TargetItem,
-                    drop.DropRate,
-                    drop.StackMin,
-                    drop.StackMax,
-                    []));
-            }
-
-            return;
-        }
-
-        foreach (var chest in Main.chest)
-        {
-            if (chest is null)
-            {
-                continue;
-            }
-
-            var sourceItemId = ResolveWorldContainerItem(chest, includedItems);
-            if (sourceItemId is null)
-            {
-                continue;
-            }
-
-            foreach (var item in chest.item.Where(item =>
-                         item is not null
-                         && !item.IsAir
-                         && includedItems.Contains(item.type)))
-            {
-                result.Add(new SnapshotDrop(
-                    "container",
-                    GetItemReference(sourceItemId.Value),
-                    GetItemReference(item.type),
-                    1f,
-                    item.stack,
-                    item.stack,
-                    []));
-            }
-        }
+            .Select(drop => new SnapshotDrop(
+                "container",
+                drop.SourceItem,
+                drop.TargetItem,
+                drop.DropRate,
+                drop.StackMin,
+                drop.StackMax,
+                [])));
     }
 
     private static bool TryResolveItemReference(string reference, out int itemId)
@@ -598,35 +562,12 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         return true;
     }
 
-    private static int? ResolveWorldContainerItem(Chest chest, IReadOnlySet<int> includedItems)
-    {
-        var tile = Framing.GetTileSafely(chest.x, chest.y);
-        if (!tile.HasTile)
-        {
-            return null;
-        }
-
-        var candidates = includedItems
-            .Where(itemId => ContentSamples.ItemsByType[itemId].createTile == tile.TileType)
-            .ToArray();
-        if (candidates.Length == 0)
-        {
-            return null;
-        }
-
-        var style = tile.TileFrameX / 36;
-        return candidates.FirstOrDefault(itemId => ContentSamples.ItemsByType[itemId].placeStyle == style)
-            is var exact and > ItemID.None
-            ? exact
-            : candidates[0];
-    }
-
     private static void AppendDrops(
-        ICollection<SnapshotDrop> result,
+        List<SnapshotDrop> result,
         List<IItemDropRule>? rules,
         string sourceType,
         string source,
-        IReadOnlySet<int> includedItems)
+        HashSet<int> includedItems)
     {
         if (rules is null)
         {
@@ -640,28 +581,27 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             {
                 rule.ReportDroprates(reported, new DropRateInfoChainFeed(1f));
             }
-            catch
+            catch (Exception exception)
             {
-                // A malformed third-party drop rule is reported by its absence, not allowed to abort the export.
+                LogDebug($"Failed to inspect drop rates for snapshot source '{source}'.", exception);
             }
         }
 
-        foreach (var drop in reported.Where(drop => includedItems.Contains(drop.itemId)))
-        {
-            result.Add(new SnapshotDrop(
+        result.AddRange(reported
+            .Where(drop => includedItems.Contains(drop.itemId))
+            .Select(drop => new SnapshotDrop(
                 sourceType,
                 source,
                 GetItemReference(drop.itemId),
                 drop.dropRate,
                 drop.stackMin,
                 drop.stackMax,
-                EnumerateObjects(drop.conditions).Select(CreateCondition).ToList()));
-        }
+                EnumerateObjects(drop.conditions).Select(CreateCondition).ToList())));
     }
 
     private static List<SnapshotShop> CreateShops(
-        IReadOnlySet<int> includedItems,
-        IReadOnlySet<int> includedNpcs)
+        HashSet<int> includedItems,
+        HashSet<int> includedNpcs)
     {
         return NPCShopDatabase.AllShops
             .SelectMany(static shop => shop.ActiveEntries.Select(entry => new { shop, entry }))
@@ -690,8 +630,8 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
     }
 
     private static List<SnapshotFishingCatch> CreateFishing(
-        IReadOnlySet<int> includedItems,
-        IReadOnlySet<int> includedNpcs)
+        HashSet<int> includedItems,
+        HashSet<int> includedNpcs)
     {
         var result = includedItems
             .Select(itemId => new
@@ -723,7 +663,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         return result;
     }
 
-    private static List<SnapshotNpcAvailability> CreateNpcAvailability(IReadOnlySet<int> includedNpcs)
+    private static List<SnapshotNpcAvailability> CreateNpcAvailability(HashSet<int> includedNpcs)
     {
         return includedNpcs.Select(npcId =>
         {
@@ -824,10 +764,15 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
 
     private static string GetNpcModName(int npcId) => NPCLoader.GetNPC(npcId)?.Mod.Name ?? "Terraria";
 
-    private static bool ReferenceIsIncluded(string reference, IReadOnlySet<string> includedMods)
+    private static bool ReferenceIsIncluded(string reference, HashSet<string> includedMods)
     {
         var separator = reference.IndexOf('/');
         return separator > 0 && includedMods.Contains(reference[..separator]);
+    }
+
+    private static void LogDebug(string message, Exception exception)
+    {
+        ProgressionJournal.Instance?.Logger.Debug($"{message}{Environment.NewLine}{exception}");
     }
 
 }

@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -12,6 +13,9 @@ public static class JournalItemSourceResolver
     private static readonly Dictionary<(string ProfileId, int ItemId), JournalItemAcquisitionInfo> Cache = new();
     private static readonly Dictionary<int, Item?> StationItemCache = new();
     private static readonly Dictionary<int, bool> RevengeanceExclusiveCache = new();
+#pragma warning disable SYSLIB1045 // tModLoader's in-game compiler does not run the GeneratedRegex source generator.
+    private static readonly Regex InternalNameWordBoundaryRegex = new("(?<=[a-z])(?=[A-Z])", RegexOptions.Compiled);
+#pragma warning restore SYSLIB1045
 
     public static JournalItemAcquisitionInfo GetInfo(int itemId)
     {
@@ -106,7 +110,7 @@ public static class JournalItemSourceResolver
                 sourceItemId: sourceItemType);
         }
 
-        AppendGeneratedContainerSources(drops, itemId);
+        AppendContainerCatalogSources(drops, itemId);
         return drops
             .GroupBy(static drop => new
             {
@@ -130,88 +134,19 @@ public static class JournalItemSourceResolver
         Cache.Clear();
     }
 
-    private static void AppendGeneratedContainerSources(List<JournalDropSource> drops, int targetItemId)
+    private static void AppendContainerCatalogSources(List<JournalDropSource> drops, int targetItemId)
     {
-        var generatedSources = JournalGeneratedContainerSourceSystem.GetSources(targetItemId);
-        if (generatedSources.Count > 0)
-        {
-            foreach (var source in generatedSources)
-            {
-                drops.Add(new JournalDropSource(
-                    Lang.GetItemNameValue(source.SourceItemId),
-                    sourceNpcType: null,
-                    sourceItemId: source.SourceItemId,
-                    source.DropRate,
-                    source.StackMin,
-                    source.StackMax,
-                    conditions: []));
-            }
-
-            return;
-        }
-
-        foreach (var chest in Main.chest)
-        {
-            if (chest is null)
-            {
-                continue;
-            }
-
-            var targetStacks = chest.item
-                .Where(item => item is not null && !item.IsAir && item.type == targetItemId)
-                .Select(static item => item.stack)
-                .ToArray();
-            if (targetStacks.Length == 0)
-            {
-                continue;
-            }
-
-            var sourceItemId = ResolveWorldContainerItem(chest);
-            if (sourceItemId is null)
-            {
-                continue;
-            }
-
-            foreach (var stack in targetStacks)
-            {
-                drops.Add(new JournalDropSource(
-                    Lang.GetItemNameValue(sourceItemId.Value),
-                    sourceNpcType: null,
-                    sourceItemId: sourceItemId,
-                    dropRate: 1f,
-                    stackMin: stack,
-                    stackMax: stack,
-                    conditions: []));
-            }
-        }
-    }
-
-    private static int? ResolveWorldContainerItem(Chest chest)
-    {
-        var tile = Framing.GetTileSafely(chest.x, chest.y);
-        if (!tile.HasTile)
-        {
-            return null;
-        }
-
-        var style = tile.TileFrameX / 36;
-        int? fallback = null;
-        for (var itemId = ItemID.None + 1; itemId < ItemLoader.ItemCount; itemId++)
-        {
-            var item = ContentSamples.ItemsByType[itemId];
-            if (item.createTile != tile.TileType)
-            {
-                continue;
-            }
-
-            fallback ??= itemId;
-            if (item.placeStyle == style)
-            {
-                return itemId;
-            }
-        }
-
-        return fallback;
+        var catalogSources = JournalContainerLootCatalog.GetSources(targetItemId);
+        drops.AddRange(catalogSources.Select(source => new JournalDropSource(
+            string.IsNullOrWhiteSpace(source.SourceDisplayName)
+                ? Lang.GetItemNameValue(source.SourceItemId)
+                : source.SourceDisplayName,
+            sourceNpcType: null,
+            sourceItemId: source.SourceItemId,
+            source.DropRate,
+            source.StackMin,
+            source.StackMax,
+            conditions: [])));
     }
 
     private static JournalShopSource[] BuildShops(int itemId)
@@ -259,21 +194,17 @@ public static class JournalItemSourceResolver
             {
                 rule.ReportDroprates(reportedDrops, ratesInfo);
             }
-            catch
+            catch (Exception exception)
             {
-                // Skip malformed rules from other content sources instead of breaking the journal UI.
+                LogDebug(
+                    $"Failed to inspect drop rates for '{sourceName}' while resolving item {targetItemId}.",
+                    exception);
             }
         }
 
-        // LoopCanBeConvertedToQuery
-        foreach (var drop in reportedDrops)
-        {
-            if (drop.itemId != targetItemId)
-            {
-                continue;
-            }
-
-            drops.Add(new JournalDropSource(
+        drops.AddRange(reportedDrops
+            .Where(drop => drop.itemId == targetItemId)
+            .Select(drop => new JournalDropSource(
                 sourceName,
                 sourceNpcType,
                 sourceItemId,
@@ -281,8 +212,7 @@ public static class JournalItemSourceResolver
                 drop.stackMin,
                 drop.stackMax,
                 EnumerateConditions(drop.conditions)
-                    .Select(condition => GetDropConditionDescription(condition, targetItemId))));
-        }
+                    .Select(condition => GetDropConditionDescription(condition, targetItemId)))));
     }
 
     private static string GetDropConditionDescription(object? condition, int targetItemId)
@@ -329,9 +259,9 @@ public static class JournalItemSourceResolver
                     .GetValue(globalItem) is true;
             }
         }
-        catch
+        catch (Exception exception)
         {
-            // Calamity is optional; a changed integration surface must not break source resolution.
+            LogDebug($"Failed to inspect Calamity revengeance exclusivity for item {itemId}.", exception);
         }
 
         RevengeanceExclusiveCache[itemId] = result;
@@ -346,25 +276,13 @@ public static class JournalItemSourceResolver
         }
 
         var requiredStyle = Recipe.GetRequiredTileStyle(tileId);
-        Item? exactMatch = null;
-        Item? fallbackMatch = null;
-
-        // LoopCanBeConvertedToQuery
-        foreach (var sample in ContentSamples.ItemsByType.Values)
-        {
-            if (sample is null || sample.IsAir || sample.createTile != tileId)
-            {
-                continue;
-            }
-
-            if (sample.placeStyle == requiredStyle)
-            {
-                exactMatch = sample.Clone();
-                break;
-            }
-
-            fallbackMatch ??= sample.Clone();
-        }
+        var stationSamples = ContentSamples.ItemsByType.Values
+            .Where(sample => sample is not null && !sample.IsAir && sample.createTile == tileId)
+            .ToArray();
+        var exactMatch = stationSamples.FirstOrDefault(sample => sample.placeStyle == requiredStyle)?.Clone();
+        var fallbackMatch = exactMatch is null
+            ? stationSamples.FirstOrDefault()?.Clone()
+            : null;
 
         var resolved = exactMatch ?? fallbackMatch;
         StationItemCache[tileId] = resolved?.Clone();
@@ -373,14 +291,12 @@ public static class JournalItemSourceResolver
 
     private static string GetStationName(int tileId)
     {
-        if (tileId == TileID.DemonAltar)
+        switch (tileId)
         {
-            return Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemDemonAltar");
-        }
-
-        if (tileId == TileID.Bottles)
-        {
-            return Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemBottleStation");
+            case TileID.DemonAltar:
+                return Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemDemonAltar");
+            case TileID.Bottles:
+                return Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemBottleStation");
         }
 
         var stationItemName = ResolveStationItem(tileId)?.HoverName;
@@ -402,7 +318,7 @@ public static class JournalItemSourceResolver
     }
 
     private static string SplitInternalName(string value) =>
-        System.Text.RegularExpressions.Regex.Replace(value, "(?<=[a-z])(?=[A-Z])", " ");
+        InternalNameWordBoundaryRegex.Replace(value, " ");
 
     private static string GetNpcName(int npcType)
     {
@@ -457,5 +373,10 @@ public static class JournalItemSourceResolver
         {
             yield return condition;
         }
+    }
+
+    private static void LogDebug(string message, Exception exception)
+    {
+        ProgressionJournal.Instance?.Logger.Debug($"{message}{Environment.NewLine}{exception}");
     }
 }

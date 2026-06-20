@@ -526,25 +526,17 @@
       "reason": "The official world-generation source places Abyss Gravel and Planty Mush in the middle Abyss layers, reached at the profile's post-Skeletron Abyss stage."
     },
     {
-      "id": "ancient-treasure-chest-loot",
-      "kind": "item-stage",
-      "items": [
-        "CalamityMod/TorrentialTear",
-        "CalamityMod/IronBoots",
-        "CalamityMod/DepthCharm",
-        "CalamityMod/Archerfish",
-        "CalamityMod/AnechoicPlating",
-        "CalamityMod/BallOFugu",
-        "CalamityMod/StrangeOrb",
-        "CalamityMod/HerringStaff",
-        "CalamityMod/BlackAnurian",
-        "CalamityMod/Lionfish"
+      "id": "ancient-treasure-chest-source",
+      "kind": "source-stage",
+      "sources": [
+        "CalamityMod/AbyssTreasureChest",
+        "CalamityMod/AncientTreasureChest"
       ],
       "stageId": "skeletron",
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/World/Abyss.cs#L1028-L1116",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-20",
-      "reason": "The official Abyss world-generation code places these ten items in locked Ancient Treasure Chests, and the chest unlock check requires Skeletron."
+      "reason": "The official Abyss world-generation code places locked Ancient Treasure Chests in the Abyss, and the chest unlock check requires Skeletron. The individual loot items are provided by the container loot catalog."
     },
     {
       "id": "calamity-hardmode-world-materials",
@@ -1758,6 +1750,196 @@
       "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-06-15",
       "checkedAt": "2026-06-15",
       "reason": "Bloodfin is a fishing source item; without an explicit fishing-source rule the profile can know the stage but show no source."
+    },
+    {
+      "id": "vanilla-shadow-container-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/ShadowChest",
+        "Terraria/ObsidianLockbox"
+      ],
+      "stageId": "skeletron",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Shadow_Key",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-21",
+      "reason": "The Shadow Key opens Shadow Chests and Obsidian Lock Boxes and is found in the Dungeon; this profile models normal Dungeon access after Skeletron."
+    },
+    {
+      "id": "vanilla-common-zombie-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/Zombie",
+        "Terraria/BaldZombie",
+        "Terraria/ZombieEskimo",
+        "Terraria/PincushionZombie",
+        "Terraria/SlimedZombie",
+        "Terraria/SwampZombie",
+        "Terraria/TwiggyZombie",
+        "Terraria/FemaleZombie",
+        "Terraria/ZombieRaincoat",
+        "Terraria/ZombieDoctor",
+        "Terraria/ZombieSuperman",
+        "Terraria/ZombiePixie",
+        "Terraria/ZombieXmas",
+        "Terraria/ZombieSweater",
+        "Terraria/ArmedZombie",
+        "Terraria/ArmedZombieEskimo",
+        "Terraria/ArmedZombiePincussion",
+        "Terraria/ArmedZombieSlimed",
+        "Terraria/ArmedZombieSwamp",
+        "Terraria/ArmedZombieTwiggy",
+        "Terraria/ArmedZombieCenx",
+        "Terraria/TorchZombie",
+        "Terraria/ArmedTorchZombie"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Zombies",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-21",
+      "reason": "These are ordinary night zombie variants available before boss progression; special seasonal variants only add timing requirements, not boss milestones."
+    },
+    {
+      "id": "calamity-wulfrum-rover-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/WulfrumRover",
+      "stageId": "start",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Wulfrum_Rover",
+      "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
+      "checkedAt": "2026-06-21",
+      "reason": "The official wiki identifies Wulfrum Rover as a Pre-Hardmode enemy that spawns on the surface during the day."
+    },
+    {
+      "id": "calamity-stormlion-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/Stormlion",
+      "stageId": "start",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Stormlion",
+      "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
+      "checkedAt": "2026-06-21",
+      "reason": "The official wiki identifies Stormlion as a Pre-Hardmode Desert and Underground Desert enemy."
+    },
+    {
+      "id": "calamity-rotdog-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/Rotdog",
+      "stageId": "eye-of-cthulhu",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Rotdog",
+      "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
+      "checkedAt": "2026-06-21",
+      "reason": "The official wiki identifies Rotdog as a Pre-Hardmode surface-night enemy that spawns after Eye of Cthulhu."
+    },
+    {
+      "id": "calamity-hardmode-ice-clasper-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/IceClasper",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Ice_Clasper",
+      "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
+      "checkedAt": "2026-06-21",
+      "reason": "The official wiki identifies Ice Clasper as a Hardmode Snow and Ice biome enemy."
+    },
+    {
+      "id": "calamity-post-golem-plaguebringer-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/PlaguebringerMiniboss",
+      "stageId": "golem",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Plaguebringer",
+      "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
+      "checkedAt": "2026-06-21",
+      "reason": "The official wiki identifies the Plaguebringer miniboss as a Hardmode Jungle enemy that spawns after Golem."
+    },
+    {
+      "id": "calamity-blighted-gel-material",
+      "kind": "item-stage",
+      "item": "CalamityMod/BlightedGel",
+      "stageId": "start",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Blighted_Gel",
+      "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
+      "checkedAt": "2026-06-21",
+      "reason": "The official wiki identifies Blighted Gel as a Pre-Hardmode material dropped by Blight Slimes in the world's evil biome."
+    },
+    {
+      "id": "calamity-purified-gel-material",
+      "kind": "item-stage",
+      "item": "CalamityMod/PurifiedGel",
+      "stageId": "slime-god",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Purified_Gel",
+      "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
+      "checkedAt": "2026-06-21",
+      "reason": "The official wiki identifies Purified Gel as a Pre-Hardmode material dropped by The Slime God."
+    },
+    {
+      "id": "calamity-start-sunken-sea-materials",
+      "kind": "item-stage",
+      "items": [
+        "CalamityMod/SeaPrism",
+        "CalamityMod/Navystone"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Sunken_Sea",
+      "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
+      "checkedAt": "2026-06-21",
+      "reason": "The official wiki describes the Sunken Sea as containing Navystone structures and Sea Prism deposits before boss progression."
+    },
+    {
+      "id": "calamity-desert-scourge-pearl-shard",
+      "kind": "item-stage",
+      "item": "CalamityMod/PearlShard",
+      "stageId": "desert-scourge",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Pearl_Shard",
+      "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
+      "checkedAt": "2026-06-21",
+      "reason": "The official wiki identifies Pearl Shards as Pre-Hardmode crafting materials dropped by the Desert Scourge."
+    },
+    {
+      "id": "calamity-blood-orb-material",
+      "kind": "item-stage",
+      "item": "CalamityMod/BloodOrb",
+      "stageId": "start",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Blood_Orb",
+      "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
+      "checkedAt": "2026-06-21",
+      "reason": "The official wiki identifies Blood Orbs as materials dropped by Blood Moon enemies; Blood Moon timing is repeatable and not a boss milestone."
+    },
+    {
+      "id": "calamity-dragonfolly-effulgent-feather",
+      "kind": "item-stage",
+      "item": "CalamityMod/EffulgentFeather",
+      "stageId": "dragonfolly",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Effulgent_Feather",
+      "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
+      "checkedAt": "2026-06-21",
+      "reason": "The official wiki identifies Effulgent Feathers as crafting materials dropped by Draconic Swarmers and Dragonfolly."
+    },
+    {
+      "id": "calamity-post-dog-ascendant-spirit-essence",
+      "kind": "item-stage",
+      "item": "CalamityMod/AscendantSpiritEssence",
+      "stageId": "devourer-of-gods",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Ascendant_Spirit_Essence",
+      "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
+      "checkedAt": "2026-06-21",
+      "reason": "The official wiki identifies Ascendant Spirit Essence as a post-Moon Lord material crafted from Necroplasm, Nightmare Fuel, Endothermic Energy, and Darksun Fragment; this profile gates those shared global materials after the Devourer of Gods."
+    },
+    {
+      "id": "terragrim-enchanted-sword-shrine-worldgen-item",
+      "kind": "item-stage",
+      "item": "Terraria/Terragrim",
+      "stageId": "start",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Terragrim",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-20",
+      "reason": "Terragrim is obtained from sword-in-stone world generation in Enchanted Sword Shrines or cavern sword shrines before boss progression."
+    },
+    {
+      "id": "horrible-hog-blood-moon-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/HorribleHog",
+      "stageId": "eye-of-cthulhu",
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4-release/NPCs/NormalNPCs/HorribleHog/HorribleHog.cs",
+      "sourceVersion": "CalamityModPublic 1.4.4-release",
+      "checkedAt": "2026-06-20",
+      "reason": "The official source gates Horrible Hog behind Eye of Cthulhu progression during Blood Moon, and Horrible Hog drops Laudanum."
     }
   ],
   "ignoredItems": [

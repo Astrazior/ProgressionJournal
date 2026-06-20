@@ -135,9 +135,12 @@ export function generateProfile(
     sourceAvailabilityCorrections,
     staleRules: [],
     unassignedVanillaNpcSources: [],
+    unavailableCombatItems: [],
+    unresolvedAvailabilityItems: [],
     manualAssignmentProblems: manualResult.problems
   };
   Object.defineProperty(manifest, "_stageIndexes", { value: stageIndexes });
+  Object.defineProperty(manifest, "_itemNameIndex", { value: createItemNameIndex(allowedItems) });
   Object.defineProperty(report, "_unresolvedConditionSignatures", { value: new Set() });
   const usedStations = new Set(
     snapshot.recipes
@@ -200,7 +203,8 @@ export function generateProfile(
         if (conditionsAllowed(drop.conditions, stage, manifest, report, {
           sourceKind: "drop",
           source,
-          item: drop.item
+          item: drop.item,
+          available
         })) {
           unlockAtStage(drop.item, stage.id, `${drop.sourceType}:${source}`);
         }
@@ -218,7 +222,8 @@ export function generateProfile(
           if (conditionsAllowed(drop.conditions, stage, manifest, report, {
             sourceKind: "drop",
             source,
-            item: drop.item
+            item: drop.item,
+            available
           })) {
             unlockAtStage(
               drop.item,
@@ -242,7 +247,8 @@ export function generateProfile(
         if (conditionsAllowed(shop.conditions, stage, manifest, report, {
           sourceKind: "shop",
           source: npc,
-          item: shop.item
+          item: shop.item,
+          available
         })) {
           unlockAtStage(shop.item, stage.id, `shop:${npc}`);
         }
@@ -252,7 +258,8 @@ export function generateProfile(
       if (conditionsAllowed(drop.conditions, stage, manifest, report, {
         sourceKind: "drop",
         source: drop.source,
-        item: drop.item
+        item: drop.item,
+        available
       })) {
         unlockAtStage(drop.item, stage.id, `global:${drop.source}`);
       }
@@ -287,7 +294,8 @@ export function generateProfile(
           if (!conditionsAllowed(drop.conditions, stage, manifest, report, {
             sourceKind: "drop",
             source: container,
-            item: drop.item
+            item: drop.item,
+            available
           })) {
             continue;
           }
@@ -310,7 +318,8 @@ export function generateProfile(
           && conditionsAllowed(recipe.conditions, stage, manifest, report, {
             sourceKind: "recipe",
             source: result,
-            item: result
+            item: result,
+            available
           }));
         if (!openRecipe) continue;
 
@@ -662,15 +671,14 @@ function resolveClasses(item, manifest, report, context) {
     }
     for (const cls of resolveDamageClasses(effect.damageClass, manifest)) effectClasses.add(cls);
   }
-  if (!hasGenericEffect && effectClasses.size === 1) {
+  if (!hasGenericEffect && effectClasses.size > 0) {
     return [...effectClasses];
   }
-  if (hasGenericEffect || effectClasses.size > 1) {
+  if (hasGenericEffect) {
     return allClasses(manifest);
   }
 
   const matches = resolveDamageClasses(item.damageClass, manifest);
-  if (matches.length > 1) report.ambiguousClasses.push({ item: item.id, classes: matches });
   if (matches.length > 0) return matches;
   if (item.defense > 0 || item.buffType > 0) return allClasses(manifest);
   return [];
@@ -714,33 +722,41 @@ function conditionsAllowed(conditions, stage, manifest, report, context) {
     ?? new Map(manifest.stages.map((value, index) => [value.id, index]));
   const currentStageIndex = stageIndexes.get(stage.id) ?? -1;
   for (const condition of conditions ?? []) {
-    if (!condition.type) continue;
-    if (isProgressionNeutralCondition(condition)) continue;
-    const rule = manifest.conditionRules?.[condition.type];
-    if (rule === "allow") continue;
-    if (rule?.stages?.includes(stage.id)) continue;
+    if (!condition.type && !condition.description) continue;
+    if (isUnavailableCondition(condition) || isDefaultExcludedVariantCondition(condition)) return false;
+    const dependencyIds = conditionDependencyIds(condition, manifest);
+    if (dependencyIds.length > 0) {
+      if (context.available && dependencyIds.some(id => context.available.has(id))) continue;
+      return false;
+    }
     const assignedStageIndex = assignedConditionStageIndex(
       condition,
       context.sourceKind,
       context.source,
       manifest,
       stageIndexes);
-    if (assignedStageIndex < 0) {
-      const unresolved = {
-        sourceKind: context.sourceKind,
-        source: context.source,
-        item: context.item,
-        condition
-      };
-      const signature = JSON.stringify(unresolved);
-      const signatures = report._unresolvedConditionSignatures;
-      if (!signatures || !signatures.has(signature)) {
-        report.unresolvedConditions.push(unresolved);
-        signatures?.add(signature);
-      }
-      return false;
+    if (assignedStageIndex >= 0) {
+      if (currentStageIndex < assignedStageIndex) return false;
+      continue;
     }
-    if (currentStageIndex < assignedStageIndex) return false;
+    if (isProgressionNeutralCondition(condition)) continue;
+    if (isSafeOpaqueDropCondition(condition, context)) continue;
+    const rule = manifest.conditionRules?.[condition.type];
+    if (rule === "allow") continue;
+    if (rule?.stages?.includes(stage.id)) continue;
+    const unresolved = {
+      sourceKind: context.sourceKind,
+      source: context.source,
+      item: context.item,
+      condition
+    };
+    const signature = JSON.stringify(unresolved);
+    const signatures = report._unresolvedConditionSignatures;
+    if (!signatures || !signatures.has(signature)) {
+      report.unresolvedConditions.push(unresolved);
+      signatures?.add(signature);
+    }
+    return false;
   }
   return true;
 }
@@ -765,7 +781,11 @@ function assignedConditionStageIndex(
 }
 
 function conditionHasAssignment(condition, sourceKind, source, manifest) {
-  if (isProgressionNeutralCondition(condition)) return true;
+  if (isUnavailableCondition(condition)
+      || isDefaultExcludedVariantCondition(condition)
+      || isProgressionNeutralCondition(condition)
+      || isSafeOpaqueDropCondition(condition, { source })) return true;
+  if (conditionDependencyIds(condition, manifest).length > 0) return true;
   if (manifest.conditionRules?.[condition.type]) return true;
   const stageIndexes = manifest._stageIndexes
     ?? new Map(manifest.stages.map((stage, index) => [stage.id, index]));
@@ -777,22 +797,111 @@ function conditionHasAssignment(condition, sourceKind, source, manifest) {
 }
 
 function inferredConditionStageIndex(condition, manifest, stageIndexes) {
+  const type = condition.type ?? "";
   const description = normalizeConditionText(condition.description);
-  let stage = null;
-  if (description === "in hardmode") {
-    stage = manifest.stages.find(value =>
-      unlockContainsVanillaFlag(value.unlock, "hardMode"));
-  } else {
-    const match = /^after defeating (?:the )?(.+)$/u.exec(description);
-    if (match) {
-      const target = match[1];
-      stage = manifest.stages.find(value =>
-        Object.values(value.name ?? {})
-          .some(name => normalizeConditionText(name) === target)
-        || value.id.replaceAll("-", " ") === target);
-    }
+  const typeIndex = inferConditionTypeStageIndex(type, manifest, stageIndexes);
+  if (typeIndex >= 0) return typeIndex;
+
+  const hardmodeIndex = stageIndexByFlagOrId(manifest, stageIndexes, "hardMode", "wall-of-flesh");
+  const allMechsIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss3", "skeletron-prime");
+  const anyMechIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer");
+  const planteraIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedPlantBoss", "plantera");
+  const golemIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedGolemBoss", "golem");
+  const skeletronIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedBoss3", "skeletron");
+  const eyeIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedBoss1", "eye-of-cthulhu");
+  const worldEvilIndex = stageIndexById(manifest, stageIndexes, "world-evil");
+  const queenBeeIndex = stageIndexById(manifest, stageIndexes, "queen-bee");
+  const twinsIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss2", "twins");
+  const destroyerIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer");
+  const skeletronPrimeIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss3", "skeletron-prime");
+
+  if (/(?:hardmode|hard mode|хардмод|сложн(?:ом|ого) режим)/u.test(description)) {
+    return hardmodeIndex;
   }
+  if (/all mech|all mechanical|всем[и]? механическ/u.test(description)) {
+    return allMechsIndex;
+  }
+  if (/mechdusa/u.test(description)) {
+    return allMechsIndex;
+  }
+  if (/any mech|any mechanical|люб(?:ым|ого) механическ/u.test(description)) {
+    return anyMechIndex;
+  }
+  if (/shadow orb|crimson heart|тенев(?:ой|ую) сфер|багрян(?:ого|ое) серд/u.test(description)) {
+    return worldEvilIndex;
+  }
+  if (/pirate invasion|вторжен(?:ия|ием) пират/u.test(description)) {
+    return hardmodeIndex;
+  }
+  if (/martian madness|марсианск(?:им|ого) безуми/u.test(description)) {
+    return golemIndex;
+  }
+  if (/wave|волны/u.test(description)) {
+    const pumpkinMoonIndex = stageIndexByEvent(manifest, stageIndexes, "PumpkinMoon");
+    const frostMoonIndex = stageIndexByEvent(manifest, stageIndexes, "FrostMoon");
+    const indexes = [pumpkinMoonIndex, frostMoonIndex, planteraIndex].filter(index => index >= 0);
+    if (indexes.length > 0) return Math.min(...indexes);
+  }
+
+  const candidates = [];
+  const add = index => {
+    if (index >= 0) candidates.push(index);
+  };
+  if (/eye of cthulhu|глаз(?:ом)? ктулху/u.test(description)) add(eyeIndex);
+  if (/eater of worlds|brain of cthulhu|пожирател(?:я|ем) миров|мозг(?:а|ом) ктулху/u.test(description)) add(worldEvilIndex);
+  if (/queen bee|королев(?:ы|ой) пч/u.test(description)) add(queenBeeIndex);
+  if (/skeletron prime|скелетрон(?:ом)? прайм/u.test(description)) add(skeletronPrimeIndex);
+  if (/skeletron|скелетрон/u.test(description)) add(skeletronIndex);
+  if (/destroyer|уничтожител/u.test(description)) add(destroyerIndex);
+  if (/twins|близнец/u.test(description)) add(twinsIndex);
+  if (/plantera|плантер/u.test(description)) add(planteraIndex);
+  if (/golem|голем/u.test(description)) add(golemIndex);
+  if (candidates.length > 0) {
+    return /or| или /u.test(description)
+      ? Math.min(...candidates)
+      : Math.max(...candidates);
+  }
+
+  const match = /^after defeating (?:the )?(.+)$/u.exec(description);
+  if (match) {
+    const target = match[1];
+    const stage = manifest.stages.find(value =>
+      Object.values(value.name ?? {})
+        .some(name => normalizeConditionText(name) === target)
+      || value.id.replaceAll("-", " ") === target);
+    return stage ? stageIndexes.get(stage.id) ?? -1 : -1;
+  }
+  return -1;
+}
+
+function inferConditionTypeStageIndex(type, manifest, stageIndexes) {
+  if (!type) return -1;
+  if (type.endsWith("+IsHardmode") || type.endsWith("+RemixSeedHardmode")) {
+    return stageIndexByFlagOrId(manifest, stageIndexes, "hardMode", "wall-of-flesh");
+  }
+  if (type.endsWith("+DownedPlantera")) {
+    return stageIndexByFlagOrId(manifest, stageIndexes, "downedPlantBoss", "plantera");
+  }
+  if (type.endsWith("+DownedAllMechBosses") || type.endsWith("+MechdusaKill")) {
+    return stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss3", "skeletron-prime");
+  }
+  return -1;
+}
+
+function stageIndexByFlagOrId(manifest, stageIndexes, flag, id) {
+  const byFlag = manifest.stages.find(stage => unlockContainsVanillaFlag(stage.unlock, flag));
+  if (byFlag) return stageIndexes.get(byFlag.id) ?? -1;
+  return stageIndexById(manifest, stageIndexes, id);
+}
+
+function stageIndexById(manifest, stageIndexes, id) {
+  const stage = manifest.stages.find(value => value.id === id);
   return stage ? stageIndexes.get(stage.id) ?? -1 : -1;
+}
+
+function stageIndexByEvent(manifest, stageIndexes, eventCategory) {
+  const event = (manifest.events ?? []).find(value => value.eventCategory === eventCategory);
+  return event ? stageIndexes.get(event.stageId) ?? -1 : -1;
 }
 
 function unlockContainsVanillaFlag(unlock, key) {
@@ -804,11 +913,15 @@ function unlockContainsVanillaFlag(unlock, key) {
 
 function isProgressionNeutralCondition(condition) {
   const description = normalizeConditionText(condition.description);
+  const type = condition.type ?? "";
   if (/^not in world generation /u.test(description)
       || /^не в генерации мира /u.test(description)) {
     return true;
   }
-  if (condition.type === "Terraria.Condition"
+  if (/blood moon|solar eclipse|halloween|ночью|дн[её]м|кровав(?:ой|ая) лун|солнечн(?:ого|ое) затмени|луны|лун[аеы]|полнолуни|четверт|новолуни|graveyard|кладбищ|honey|water|lava|м[её]д|вод[ауы]|лав[аы]|snow|снег|biome|бестиар|bestiary|happy|pylon|пилон|достаточно счастлив|wave|волны|хэллоуин|императриц[аы] света атакована в дневное время|выпадает в порче/u.test(description)) {
+    return true;
+  }
+  if (type === "Terraria.Condition"
       && (/^between \d/u.test(description)
           || /^player is in /u.test(description)
           || /^world (?:with|has) /u.test(description)
@@ -823,9 +936,119 @@ function isProgressionNeutralCondition(condition) {
     "Terraria.GameContent.ItemDropRules.Conditions+NotMasterMode",
     "Terraria.GameContent.ItemDropRules.Conditions+LegacyHack_IsBossAndNotExpert",
     "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
+    "Terraria.GameContent.ItemDropRules.Conditions+DontStarveIsNotUp",
+    "Terraria.GameContent.ItemDropRules.Conditions+HalloweenWeapons",
+    "Terraria.GameContent.ItemDropRules.Conditions+EmpressOfLightIsGenuinelyEnraged",
+    "Terraria.GameContent.ItemDropRules.Conditions+IsCorruption",
+    "Terraria.GameContent.ItemDropRules.Conditions+IsCorruptionAndNotExpert",
     "Terraria.GameContent.ItemDropRules.Conditions+IsBloodMoonAndNotFromStatue",
-    "Terraria.GameContent.ItemDropRules.Conditions+NotFromStatue"
-  ]).has(condition.type);
+    "Terraria.GameContent.ItemDropRules.Conditions+NotFromStatue",
+    "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeDropCondition"
+  ]).has(type);
+}
+
+function isUnavailableCondition(condition) {
+  return condition.type === "Terraria.GameContent.ItemDropRules.Conditions+NeverTrue";
+}
+
+function isDefaultExcludedVariantCondition(condition) {
+  const description = normalizeConditionText(condition.description);
+  const type = condition.type ?? "";
+  if (/^not in world generation /u.test(description)
+      || /^не в генерации мира /u.test(description)) {
+    return false;
+  }
+  if (type === "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed"
+      || type === "Terraria.GameContent.ItemDropRules.Conditions+RemixSeedEasymode"
+      || type === "Terraria.GameContent.ItemDropRules.Conditions+RemixSeedHardmode"
+      || type === "Terraria.GameContent.ItemDropRules.Conditions+DontStarveIsUp") return true;
+  return /zenith|get fixed boi|gfb|celebration|mk 10|don't starve|dontstarve|^в генерации мира [«"]?(?:zenith|remix|celebration|get fixed boi)|^in world generation [«"]?(?:zenith|remix|celebration|get fixed boi)/u.test(description);
+}
+
+function isSafeOpaqueDropCondition(condition, context) {
+  if (condition.type !== "CalamityMod.DropHelper+LambdaDropRuleCondition") return false;
+  if (normalizeConditionText(condition.description)) return false;
+  return new Set([
+    "CalamityMod/StarterBag",
+    "Terraria/IceMimic",
+    "Terraria/Mimic",
+    "CalamityMod/FearlessGoldfishWarrior",
+    "CalamityMod/Trasher",
+    "CalamityMod/AbyssalTreasure",
+    "CalamityMod/SulphuricTreasure"
+  ]).has(context.source);
+}
+
+function conditionDependencyIds(condition, manifest) {
+  const names = extractConditionDependencyNames(condition);
+  if (names.length === 0) return [];
+  const index = manifest._itemNameIndex;
+  if (!index) return [];
+  const ids = [];
+  for (const name of names) {
+    const variants = [
+      name,
+      name.replace(/\s+upgrade$/u, ""),
+      name.replace(/^an?\s+/u, ""),
+      name.replace(/^the\s+/u, "")
+    ];
+    for (const variant of variants) {
+      const id = index.get(normalizeLookupText(variant));
+      if (id && !ids.includes(id)) ids.push(id);
+    }
+  }
+  return ids;
+}
+
+function extractConditionDependencyNames(condition) {
+  const description = normalizeConditionText(condition.description);
+  const patterns = [
+    /(?:while holding|when holding|when in inventory|when carried|inventory contains|когда в инвентаре находится|если в инвентаре есть|при наличии)\s+(?:a |an |the )?(.+)$/u
+  ];
+  const names = [];
+  for (const pattern of patterns) {
+    const match = pattern.exec(description);
+    if (!match) continue;
+    const value = match[1]
+      .replace(/[.;]+$/u, "")
+      .replace(/^оружи[ея],?\s*/u, "")
+      .trim();
+    if (value) names.push(value);
+  }
+  if (/uses seeds as ammo|использует семена как боеприпасы/u.test(description)) {
+    names.push("Blowpipe", "Blowgun", "Блуопайп", "Духовая трубка");
+  }
+  return names;
+}
+
+function createItemNameIndex(items) {
+  const result = new Map();
+  const add = (key, id) => {
+    const normalized = normalizeLookupText(key);
+    if (normalized && !result.has(normalized)) result.set(normalized, id);
+  };
+  for (const item of items ?? []) {
+    const localId = item.id?.split("/").pop() ?? "";
+    add(item.id, item.id);
+    add(localId, item.id);
+    add(decamelize(localId), item.id);
+    for (const value of [item.name, item.displayName, item.localizedName]) add(value, item.id);
+  }
+  return result;
+}
+
+function decamelize(value) {
+  return (value ?? "")
+    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+    .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2")
+    .replace(/_/g, " ");
+}
+
+function normalizeLookupText(value) {
+  return normalizeConditionText(value)
+    .replace(/[«»“”"']/gu, "")
+    .replace(/\s+/gu, " ")
+    .trim();
 }
 
 function applyWikiRecommendations(
@@ -1210,11 +1433,11 @@ function buildManualReview({
     value => JSON.stringify(value))
     .filter(record =>
       !ignoredItems.has(record.item)
-      && classifyItem(
+      && isEquipmentClassification(classifyItem(
         itemById.get(record.item),
         manifest,
         conditionClassificationReport,
-        classificationContext));
+        classificationContext)));
   const unresolvedConditionGroups = groupBy(
     unresolvedConditions,
     record => JSON.stringify({
@@ -1312,18 +1535,7 @@ function buildManualReview({
       left.sourceKind.localeCompare(right.sourceKind)
       || left.source.localeCompare(right.source));
   if (report.unassignedVanillaNpcSources.length > 0) {
-    issues.push(createReviewIssue("unassigned-vanilla-npc-sources", {
-      affectedCount: report.unassignedVanillaNpcSources.length,
-      sources: report.unassignedVanillaNpcSources,
-      resolution: {
-        sourceStages: Object.fromEntries(
-          report.unassignedVanillaNpcSources.map(record =>
-            [record.source, "<stage-id>"]))
-      }
-    }, {
-      sources: report.unassignedVanillaNpcSources.map(record =>
-        `${record.sourceKind}:${record.source}`)
-    }));
+    report.unassignedVanillaNpcSourceCount = report.unassignedVanillaNpcSources.length;
   }
 
   for (const item of classificationContext.items) {
@@ -1338,7 +1550,7 @@ function buildManualReview({
       manifest,
       classificationReport,
       classificationContext);
-    if (!classification) continue;
+    if (!isEquipmentClassification(classification)) continue;
 
     const drops = snapshot.drops
       .filter(drop => (drop.rate ?? 1) > 0 && drop.item === item.id)
@@ -1360,12 +1572,30 @@ function buildManualReview({
       stations: recipe.stations,
       conditions: recipe.conditions
     }));
+    const evidence = { drops, shops, recipes };
+    if (availabilityEvidenceIsUnavailable(evidence)) {
+      report.unavailableCombatItems.push({
+        item: item.id,
+        displayName: item.name,
+        classification,
+        evidence
+      });
+      continue;
+    }
+    if (availabilityEvidenceIsAbsent(item, evidence)) {
+      report.unresolvedAvailabilityItems.push({
+        item: item.id,
+        displayName: item.name,
+        classification
+      });
+      continue;
+    }
 
     issues.push(createReviewIssue("unassigned-combat-item", {
       item: item.id,
       displayName: item.name,
       classification,
-      evidence: { drops, shops, recipes },
+      evidence,
       resolution: {
         itemStages: { [item.id]: "<stage-id>" },
         sourceStages: Object.fromEntries(
@@ -1472,6 +1702,29 @@ function collectUnknownConditionRecords(snapshot, manifest, contentMods) {
       record.sourceKind,
       record.source,
       manifest));
+}
+
+function isEquipmentClassification(classification) {
+  return !!classification && !classification.buffCategory;
+}
+
+
+function availabilityEvidenceIsUnavailable(evidence) {
+  const paths = [
+    ...(evidence.drops ?? []),
+    ...(evidence.shops ?? []),
+    ...(evidence.recipes ?? [])
+  ];
+  return paths.length > 0 && paths.every(path =>
+    (path.conditions ?? []).some(condition =>
+      isUnavailableCondition(condition) || isDefaultExcludedVariantCondition(condition)));
+}
+
+function availabilityEvidenceIsAbsent(item, evidence) {
+  return item.id?.startsWith("Terraria/")
+    && (evidence.drops ?? []).length === 0
+    && (evidence.shops ?? []).length === 0
+    && (evidence.recipes ?? []).length === 0;
 }
 
 function createReviewIssue(kind, values, identity = values) {

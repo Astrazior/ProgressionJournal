@@ -116,6 +116,8 @@ const START_ITEMS = [
   "Terraria/WoodenArrow",
   "Terraria/FishingBobber",
   "Terraria/Frog",
+  "Terraria/Bird",
+  "Terraria/Stinkbug",
   "Terraria/LavaBucket",
   "Terraria/Granite",
   "Terraria/Marble",
@@ -179,6 +181,10 @@ const START_ITEMS = [
 
 const MILESTONE_FACTS = [
   {
+    findStage: manifest => findVanillaFlagStage(manifest, "downedSlimeKing", "king-slime"),
+    enemies: ["Terraria/KingSlime"]
+  },
+  {
     findStage: manifest => findVanillaFlagStage(manifest, "downedBoss1", "eye-of-cthulhu"),
     items: [
       "Terraria/CrimtaneOre",
@@ -222,6 +228,7 @@ const MILESTONE_FACTS = [
   {
     findStage: manifest => findVanillaFlagStage(manifest, "downedBoss3", "skeletron"),
     stations: ["Terraria/AlchemyTable"],
+    containers: ["Terraria/DungeonGoldChest", "Terraria/ShadowChest", "Terraria/ObsidianLockbox"],
     items: [
       "Terraria/AlchemyTable",
       "Terraria/BlueMoon",
@@ -265,6 +272,10 @@ const MILESTONE_FACTS = [
       "Terraria/AdamantiteBar",
       "Terraria/TitaniumBar",
       "Terraria/CrystalShard",
+      "Terraria/Pearlwood",
+      "Terraria/CursedFlame",
+      "Terraria/Ichor",
+      "Terraria/RainbowBrick",
       "Terraria/SoulofLight",
       "Terraria/SoulofNight",
       "Terraria/SoulofFlight",
@@ -335,7 +346,22 @@ const MILESTONE_FACTS = [
       "Terraria/FungiBulb",
       "Terraria/GiantFungiBulb",
       "Terraria/SporeBat",
-      "Terraria/SporeSkeleton"
+      "Terraria/SporeSkeleton",
+      "Terraria/AngryTrapper",
+      "Terraria/IceMimic",
+      "Terraria/BlackRecluse",
+      "Terraria/BlackRecluseWall",
+      "Terraria/IceElemental",
+      "Terraria/IcyMerman",
+      "Terraria/PigronCorruption",
+      "Terraria/PigronHallow",
+      "Terraria/PigronCrimson",
+      "Terraria/Medusa",
+      "Terraria/Clown",
+      "Terraria/BloodEelHead",
+      "Terraria/GoblinShark",
+      "Terraria/AngryNimbus",
+      "Terraria/Reaper"
     ],
     shops: [
       "Terraria/Wizard",
@@ -347,8 +373,7 @@ const MILESTONE_FACTS = [
     items: [
       "Terraria/SoulofMight",
       "Terraria/Megashark",
-      "Terraria/DeathSickle",
-      "Terraria/LivingFireBlock",
+            "Terraria/LivingFireBlock",
       "Terraria/HallowedBar",
       "Terraria/SuperStarCannon",
       "Terraria/DD2BallistraTowerT2Popper",
@@ -375,6 +400,14 @@ const MILESTONE_FACTS = [
   },
   {
     findStage: manifest => findVanillaFlagStage(manifest, "downedPlantBoss", "plantera"),
+    containers: [
+      "Terraria/JungleBiomeChest",
+      "Terraria/CorruptionBiomeChest",
+      "Terraria/CrimsonBiomeChest",
+      "Terraria/HallowedBiomeChest",
+      "Terraria/FrozenBiomeChest",
+      "Terraria/DesertBiomeChest"
+    ],
     items: [
       "Terraria/Ectoplasm",
       "Terraria/BrokenHeroSword",
@@ -393,7 +426,6 @@ const MILESTONE_FACTS = [
       "Terraria/VampireKnives",
       "Terraria/PiranhaGun",
       "Terraria/StormTigerStaff",
-      "Terraria/Uzi",
       "Terraria/LifeFruit",
       "Terraria/FrozenShield",
       "Terraria/ShadowbeamStaff",
@@ -408,14 +440,21 @@ const MILESTONE_FACTS = [
       "Terraria/ButterflyDust",
       "Terraria/VialofVenom",
       "Terraria/Keybrand",
-      "Terraria/PulseBow",
       "Terraria/RocketII"
     ],
     enemies: [
       "Terraria/Vampire",
       "Terraria/Reaper",
       "Terraria/Psycho",
-      "Terraria/GiantCursedSkull"
+      "Terraria/GiantCursedSkull",
+      "Terraria/Mothron",
+      "Terraria/Nailhead",
+      "Terraria/RustyArmoredBonesAxe",
+      "Terraria/RustyArmoredBonesFlail",
+      "Terraria/RustyArmoredBonesSword",
+      "Terraria/BlueArmoredBones",
+      "Terraria/DeadlySphere",
+      "Terraria/DrManFly"
     ],
     shops: ["Terraria/Cyborg", "Terraria/Princess"]
   },
@@ -424,6 +463,10 @@ const MILESTONE_FACTS = [
     items: [
       "Terraria/TheHorsemansBlade",
       "Terraria/RavenStaff"
+    ],
+    enemies: [
+      "Terraria/MourningWood",
+      "Terraria/Pumpking"
     ]
   },
   {
@@ -445,7 +488,10 @@ const MILESTONE_FACTS = [
       "Terraria/Nutcracker",
       "Terraria/NutcrackerSpinning",
       "Terraria/Krampus",
-      "Terraria/Flocko"
+      "Terraria/Flocko",
+      "Terraria/Everscream",
+      "Terraria/SantaNK1",
+      "Terraria/IceQueen"
     ]
   },
   {
@@ -487,6 +533,17 @@ const MILESTONE_FACTS = [
 
 const START_SOURCES = [
   "Terraria/BlueJellyfish",
+  "Terraria/CaveBat",
+  "Terraria/JungleBat",
+  "Terraria/SporeBat",
+  "Terraria/EaterofSouls",
+  "Terraria/DevourerHead",
+  "Terraria/DevourerBody",
+  "Terraria/DevourerTail",
+  "Terraria/Crimera",
+  "Terraria/FaceMonster",
+  "Terraria/BloodCrawler",
+  "Terraria/BloodCrawlerWall",
   "Terraria/GreenJellyfish",
   "Terraria/BoneSerpentHead",
   "Terraria/Harpy",
@@ -534,6 +591,102 @@ const START_SHOPS = [
   "Terraria/TravellingMerchant",
   "Terraria/TaxCollector"
 ];
+
+const START_CONTAINERS = [
+  "Terraria/SurfaceWoodenChest",
+  "Terraria/UndergroundWoodenChest",
+  "Terraria/UndergroundGoldChest",
+  "Terraria/IceChest",
+  "Terraria/IvyChest",
+  "Terraria/WaterChest",
+  "Terraria/SkywareChest",
+  "Terraria/SandstoneChest",
+  "Terraria/LivingWoodChest",
+  "Terraria/WebCoveredChest",
+  "Terraria/PyramidChest",
+  "Terraria/EnchantedSwordShrine",
+  "Terraria/Present",
+  "Terraria/GoodieBag"
+];
+
+const WORLDGEN_CONTAINER_ITEMS = new Set([
+  "Terraria/Spear",
+  "Terraria/Blowpipe",
+  "Terraria/WoodenBoomerang",
+  "Terraria/WandofSparking",
+  "Terraria/Aglet",
+  "Terraria/ClimbingClaws",
+  "Terraria/Radar",
+  "Terraria/GuideToPlantFiberCordage",
+  "Terraria/BandofRegeneration",
+  "Terraria/MagicMirror",
+  "Terraria/CloudinaBottle",
+  "Terraria/HermesBoots",
+  "Terraria/ShoeSpikes",
+  "Terraria/FlareGun",
+  "Terraria/Mace",
+  "Terraria/LavaCharm",
+  "Terraria/IceBlade",
+  "Terraria/IceBoomerang",
+  "Terraria/IceSkates",
+  "Terraria/FlurryBoots",
+  "Terraria/BlizzardinaBottle",
+  "Terraria/SnowballCannon",
+  "Terraria/IceMirror",
+  "Terraria/Boomstick",
+  "Terraria/FeralClaws",
+  "Terraria/AnkletoftheWind",
+  "Terraria/StaffofRegrowth",
+  "Terraria/FiberglassFishingPole",
+  "Terraria/FlowerBoots",
+  "Terraria/Trident",
+  "Terraria/Flipper",
+  "Terraria/BreathingReed",
+  "Terraria/WaterWalkingBoots",
+  "Terraria/Starfury",
+  "Terraria/ShinyRedBalloon",
+  "Terraria/LuckyHorseshoe",
+  "Terraria/CelestialMagnet",
+  "Terraria/CreativeWings",
+  "Terraria/ThunderSpear",
+  "Terraria/ThunderStaff",
+  "Terraria/MagicConch",
+  "Terraria/MysticCoilSnake",
+  "Terraria/AncientChisel",
+  "Terraria/DuneriderBoots",
+  "Terraria/CatBast",
+  "Terraria/FinchStaff",
+  "Terraria/LivingWoodWand",
+  "Terraria/LeafWand",
+  "Terraria/LivingLoom",
+  "Terraria/WebSlinger",
+  "Terraria/FlyingCarpet",
+  "Terraria/SandstorminaBottle",
+  "Terraria/EnchantedSword",
+  "Terraria/Terragrim",
+  "Terraria/Muramasa",
+  "Terraria/CobaltShield",
+  "Terraria/AquaScepter",
+  "Terraria/BlueMoon",
+  "Terraria/MagicMissile",
+  "Terraria/Valor",
+  "Terraria/Handgun",
+  "Terraria/DarkLance",
+  "Terraria/Sunfury",
+  "Terraria/FlowerofFire",
+  "Terraria/Flamelash",
+  "Terraria/HellwingBow",
+  "Terraria/PiranhaGun",
+  "Terraria/ScourgeoftheCorruptor",
+  "Terraria/VampireKnives",
+  "Terraria/RainbowGun",
+  "Terraria/StaffoftheFrostHydra",
+  "Terraria/StormTigerStaff"
+]);
+
+function excludeWorldgenContainerItems(items) {
+  return (items ?? []).filter(item => !WORLDGEN_CONTAINER_ITEMS.has(item));
+}
 
 const START_VISIBLE_ITEMS = [
   "Terraria/Gel",
@@ -608,11 +761,11 @@ export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {
   };
   manifest.initialItems = unique([
     ...(manifest.initialItems ?? []),
-    ...START_ITEMS
+    ...excludeWorldgenContainerItems(START_ITEMS)
   ]);
   manifest.initialVisibleItems = unique([
     ...(manifest.initialVisibleItems ?? []),
-    ...START_VISIBLE_ITEMS
+    ...excludeWorldgenContainerItems(START_VISIBLE_ITEMS)
   ]);
   manifest.initialStations = unique([
     ...(manifest.initialStations ?? []),
@@ -630,12 +783,16 @@ export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {
       ...(start.shops ?? []),
       ...filterLegacyNpcSources(START_SHOPS, start.id, "town", manifest, snapshot)
     ]);
+    start.containers = unique([
+      ...(start.containers ?? []),
+      ...START_CONTAINERS
+    ]);
   }
   for (const fact of MILESTONE_FACTS) {
     const stageId = fact.findStage(manifest);
     const stage = stages.get(stageId);
     if (!stage) continue;
-    const items = fact.items ?? [];
+    const items = excludeWorldgenContainerItems(fact.items ?? []);
     manifest.itemStageFloors ??= {};
     manifest.stationStageFloors ??= {};
     for (const item of items) {
@@ -649,6 +806,10 @@ export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {
     stage.enemies = unique([
       ...(stage.enemies ?? []),
       ...filterLegacyNpcSources(fact.enemies ?? [], stageId, "spawn", manifest, snapshot)
+    ]);
+    stage.containers = unique([
+      ...(stage.containers ?? []),
+      ...(fact.containers ?? [])
     ]);
     stage.shops = unique([
       ...(stage.shops ?? []),
@@ -677,6 +838,15 @@ export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {
       ]);
     }
   }
+
+  const empressStage = stages.get("empress-of-light");
+  if (empressStage) {
+    empressStage.enemies = unique([
+      ...(empressStage.enemies ?? []),
+      "Terraria/HallowBoss"
+    ]);
+  }
+
   return manifest;
 }
 
