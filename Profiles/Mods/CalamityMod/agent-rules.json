@@ -301,6 +301,7 @@
         "CalamityMod/AquaticUrchin",
         "CalamityMod/Cnidrion",
         "CalamityMod/CrawlerCrystal",
+        "CalamityMod/Gnasher",
         "CalamityMod/StarterBag",
         "CalamityMod/SulphurousCrate",
         "CalamityMod/WulfrumAmplifier"
@@ -373,7 +374,6 @@
         "CalamityMod/BrimstoneCrate",
         "CalamityMod/CloudElemental",
         "CalamityMod/EarthElemental",
-        "CalamityMod/Gnasher",
         "CalamityMod/Hadarian",
         "CalamityMod/HydrothermalCrate",
         "CalamityMod/Mantis",
@@ -1508,6 +1508,7 @@
         "CalamityMod/Mangosteen",
         "CalamityMod/PolarisParrotfish",
         "CalamityMod/GacruxianMollusk",
+        "CalamityMod/ProcyonidPrawn",
         "CalamityMod/UrsaSergeant"
       ],
       "stageId": "wall-of-flesh",
@@ -1718,6 +1719,24 @@
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-15",
       "reason": "Ghost Bell spawns from the start in Sunken Sea water; its Voltaic Jelly drop remains gated by the Desert Scourge condition."
+    },
+    {
+      "id": "astral-legendary-fishing-source",
+      "kind": "fishing-source",
+      "items": [
+        "CalamityMod/PolarisParrotfish",
+        "CalamityMod/GacruxianMollusk"
+      ],
+      "conditions": [
+        {
+          "en-US": "Legendary catch in the Astral Infection",
+          "ru-RU": "Легендарный улов в Астральной инфекции"
+        }
+      ],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-20",
+      "reason": "The runtime snapshot predates deterministic rarity probing; this fallback exposes the real fishing source until the next in-game export confirms it automatically."
     },
     {
       "id": "bloodfin-brimstone-crag-fishing-source",

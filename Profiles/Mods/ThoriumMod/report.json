@@ -3,10 +3,10 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-06-20T12:23:56.464Z",
+  "generatedAtUtc": "2026-06-20T17:19:22.478Z",
   "snapshot": {
     "version": 4,
-    "generatedAtUtc": "2026-06-20T01:08:08.2885187Z",
+    "generatedAtUtc": "2026-06-20T17:08:25.6046281Z",
     "targetMod": "ThoriumMod",
     "mods": [
       {
@@ -1459,11 +1459,11 @@
     }
   },
   "review": {
-    "total": 245,
+    "total": 226,
     "byKind": {
-      "unassigned-combat-item": 162,
+      "unassigned-combat-item": 147,
       "unassigned-vanilla-npc-sources": 1,
-      "unresolved-condition": 82
+      "unresolved-condition": 78
     }
   },
   "audit": {
@@ -1471,12 +1471,12 @@
     "warnings": [
       "2 support or agent references are stale",
       "80 recommendations precede proven availability and were suppressed",
-      "303 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
+      "300 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
       "npcCount": 915,
       "availabilityCount": 915,
-      "fishingCount": 109,
+      "fishingCount": 125,
       "dropSourceCount": 608,
       "shopSourceCount": 34,
       "globalDropCount": 28,
@@ -2806,6 +2806,30 @@
         },
         {
           "source": "Terraria/GiantShelly2",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/GiantWormBody",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/GiantWormHead",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/GiantWormTail",
           "kinds": [
             "drop"
           ],
@@ -4999,30 +5023,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/GiantWormBody",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/GiantWormHead",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/GiantWormTail",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Gnome",
           "kinds": [
             "drop"
@@ -6488,7 +6488,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.thorium",
-    "generatedAtUtc": "2026-06-20T12:23:53.308Z",
+    "generatedAtUtc": "2026-06-20T17:19:20.755Z",
     "unknownReferences": [
       {
         "stage": "grand-thunder-bird",
@@ -6939,6 +6939,24 @@
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
           "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GiantWormHead",
+        "item": "Terraria/WormholePotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GiantWormHead",
+        "item": "Terraria/WormTooth",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeDropCondition",
+          "description": "[i:FargowiltasSouls/Masochist] Шанс выпадения в режиме Вечность"
         }
       },
       {
@@ -10030,6 +10048,42 @@
       },
       {
         "sourceKind": "shop",
+        "source": "Terraria/TravellingMerchant",
+        "item": "Terraria/PulseBow",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "После победы над Уничтожителем"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/TravellingMerchant",
+        "item": "Terraria/Revolver",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "После разрушения теневой сферы или багряного сердца"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/TravellingMerchant",
+        "item": "Terraria/ZapinatorGray",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "После победы над Глазом Ктулху, Пожирателем миров, Мозгом Ктулху, Королевой пчёл, Скелетроном или Стеной плоти"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/TravellingMerchant",
+        "item": "Terraria/Keybrand",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "В генерации мира «Remix»"
+        }
+      },
+      {
+        "sourceKind": "shop",
         "source": "ThoriumMod/Cobbler",
         "item": "Terraria/IceSkates",
         "condition": {
@@ -10344,51 +10398,6 @@
         }
       },
       {
-        "sourceKind": "drop",
-        "source": "Terraria/WoodenCrate",
-        "item": "Terraria/Spear",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/WoodenCrate",
-        "item": "Terraria/Blowpipe",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/WoodenCrate",
-        "item": "Terraria/WoodenBoomerang",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/WoodenCrate",
-        "item": "Terraria/WandofSparking",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/FrozenCrate",
-        "item": "Terraria/SnowballCannon",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
         "sourceKind": "recipe",
         "source": "Terraria/ReefBlock",
         "item": "Terraria/ReefBlock",
@@ -10678,15 +10687,6 @@
       },
       {
         "sourceKind": "recipe",
-        "source": "Terraria/WandofSparking",
-        "item": "Terraria/WandofSparking",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "Не в генерации мира «Remix»"
-        }
-      },
-      {
-        "sourceKind": "recipe",
         "source": "Terraria/AbigailsFlower",
         "item": "Terraria/AbigailsFlower",
         "condition": {
@@ -10812,6 +10812,42 @@
         }
       },
       {
+        "sourceKind": "recipe",
+        "source": "Terraria/WoodShelf",
+        "item": "Terraria/WoodShelf",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "На кладбище"
+        }
+      },
+      {
+        "sourceKind": "recipe",
+        "source": "Terraria/BrassShelf",
+        "item": "Terraria/BrassShelf",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "На кладбище"
+        }
+      },
+      {
+        "sourceKind": "recipe",
+        "source": "Terraria/DungeonShelf",
+        "item": "Terraria/DungeonShelf",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "На кладбище"
+        }
+      },
+      {
+        "sourceKind": "recipe",
+        "source": "Terraria/MetalShelf",
+        "item": "Terraria/MetalShelf",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "На кладбище"
+        }
+      },
+      {
         "sourceKind": "drop",
         "source": "Terraria/KingSlime",
         "item": "Terraria/KingSlimeTrophy",
@@ -10845,15 +10881,6 @@
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
           "description": "Предметы: В генерации мира «Remix»"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/KingSlime",
-        "item": "Terraria/Katana",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: Не в генерации мира «Remix»"
         }
       },
       {
@@ -11016,15 +11043,6 @@
         "condition": {
           "type": "Terraria.Condition",
           "description": "Когда торговец достаточно счастлив для продажи пилонов"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/KingSlimeBossBag",
-        "item": "Terraria/Katana",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: Не в генерации мира «Remix»"
         }
       },
       {
@@ -11421,24 +11439,6 @@
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
           "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Dryad",
-        "item": "Terraria/ViciousPowder",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "Не в генерации мира «Remix»"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Dryad",
-        "item": "Terraria/VilePowder",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "Не в генерации мира «Remix»"
         }
       },
       {
@@ -13036,24 +13036,6 @@
       },
       {
         "sourceKind": "drop",
-        "source": "Terraria/LockBox",
-        "item": "Terraria/AquaScepter",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/ObsidianLockbox",
-        "item": "Terraria/FlowerofFire",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
         "source": "ThoriumMod/Illusionist",
         "item": "ThoriumMod/IllusionistRelic",
         "condition": {
@@ -13764,51 +13746,6 @@
         }
       },
       {
-        "sourceKind": "recipe",
-        "source": "Terraria/FlowerofFire",
-        "item": "Terraria/FlowerofFire",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "Не в генерации мира «Remix»"
-        }
-      },
-      {
-        "sourceKind": "recipe",
-        "source": "Terraria/WoodShelf",
-        "item": "Terraria/WoodShelf",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "На кладбище"
-        }
-      },
-      {
-        "sourceKind": "recipe",
-        "source": "Terraria/BrassShelf",
-        "item": "Terraria/BrassShelf",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "На кладбище"
-        }
-      },
-      {
-        "sourceKind": "recipe",
-        "source": "Terraria/DungeonShelf",
-        "item": "Terraria/DungeonShelf",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "На кладбище"
-        }
-      },
-      {
-        "sourceKind": "recipe",
-        "source": "Terraria/MetalShelf",
-        "item": "Terraria/MetalShelf",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "На кладбище"
-        }
-      },
-      {
         "sourceKind": "drop",
         "source": "ThoriumMod/BuriedChampion",
         "item": "ThoriumMod/BuriedChampionRelic",
@@ -14245,60 +14182,6 @@
         "source": "Terraria/Mimic",
         "item": "Terraria/DualHook",
         "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/Mimic",
-        "item": "Terraria/MagicDagger",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/Mimic",
-        "item": "Terraria/PhilosophersStone",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/Mimic",
-        "item": "Terraria/TitanGlove",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/Mimic",
-        "item": "Terraria/StarCloak",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/Mimic",
-        "item": "Terraria/CrossNecklace",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/Mimic",
-        "item": "Terraria/DualHook",
-        "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeedHardmode",
           "description": null
         }
@@ -14571,15 +14454,6 @@
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeEarlyBirdRewardDropCondition",
           "description": "[i:FargowiltasSouls/Masochist] Шанс выпадения в режиме Вечность в пре-хардмоде"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/RedDevil",
-        "item": "Terraria/UnholyTrident",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
         }
       },
       {
@@ -16394,15 +16268,6 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/Truffle",
-        "item": "Terraria/DarkBlueSolution",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "Не в генерации мира «Remix»"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Truffle",
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
@@ -17564,15 +17429,6 @@
       {
         "sourceKind": "drop",
         "source": "Terraria/FrozenCrateHard",
-        "item": "Terraria/SnowballCannon",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/FrozenCrateHard",
         "item": "Terraria/CobaltOre",
         "condition": {
           "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
@@ -18320,15 +18176,6 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/Steampunker",
-        "item": "Terraria/Clentaminator",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "Не в генерации мира «Remix»"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Steampunker",
         "item": "Terraria/SteampunkHat",
         "condition": {
           "type": "Terraria.Condition",
@@ -18413,7 +18260,7 @@
         "item": "Terraria/RedSolution",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Не в генерации мира «Remix»"
+          "description": "Во время кровавой луны или солнечного затмения"
         }
       },
       {
@@ -18431,7 +18278,7 @@
         "item": "Terraria/PurpleSolution",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Не в генерации мира «Remix»"
+          "description": "Во время кровавой луны или солнечного затмения"
         }
       },
       {
@@ -18449,7 +18296,7 @@
         "item": "Terraria/BlueSolution",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Не в генерации мира «Remix»"
+          "description": "Не во время кровавой луны или солнечного затмения"
         }
       },
       {
@@ -18458,7 +18305,7 @@
         "item": "Terraria/GreenSolution",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Не в генерации мира «Remix»"
+          "description": "Не во время кровавой луны или солнечного затмения"
         }
       },
       {
@@ -20689,60 +20536,6 @@
         "source": "Terraria/DukeFishron",
         "item": "Terraria/Flairon",
         "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/DukeFishron",
-        "item": "Terraria/Tsunami",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/DukeFishron",
-        "item": "Terraria/BubbleGun",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/DukeFishron",
-        "item": "Terraria/RazorbladeTyphoon",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/DukeFishron",
-        "item": "Terraria/TempestStaff",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/DukeFishron",
-        "item": "Terraria/FishronWings",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/DukeFishron",
-        "item": "Terraria/Flairon",
-        "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
           "description": null
         }
@@ -20988,51 +20781,6 @@
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeDropCondition",
           "description": "[i:FargowiltasSouls/Masochist] Шанс выпадения в режиме Вечность"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/FishronBossBag",
-        "item": "Terraria/Flairon",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/FishronBossBag",
-        "item": "Terraria/Tsunami",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/FishronBossBag",
-        "item": "Terraria/RazorbladeTyphoon",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/FishronBossBag",
-        "item": "Terraria/TempestStaff",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/FishronBossBag",
-        "item": "Terraria/BubbleGun",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
         }
       },
       {
@@ -21293,7 +21041,7 @@
         "item": "Terraria/SandSolution",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Не в генерации мира «Remix»"
+          "description": "После победы над Лунным лордом"
         }
       },
       {
@@ -21302,7 +21050,7 @@
         "item": "Terraria/SnowSolution",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Не в генерации мира «Remix»"
+          "description": "После победы над Лунным лордом"
         }
       },
       {
@@ -21311,7 +21059,7 @@
         "item": "Terraria/DirtSolution",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Не в генерации мира «Remix»"
+          "description": "После победы над Лунным лордом"
         }
       },
       {
@@ -21596,6 +21344,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/WhoopieCushion",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/Hook",
         "reason": "not combat equipment"
       },
@@ -21672,6 +21425,11 @@
       {
         "stage": "start",
         "id": "Terraria/Dynamite",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PeddlersHat",
         "reason": "not combat equipment"
       },
       {
@@ -22111,6 +21869,236 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/AngelHalo",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Kimono",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ArcaneRuneWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/WaterGun",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/DiamondRing",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CrimsonCloak",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MysteriousCape",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/RedCape",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/WinterCape",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/HunterCloak",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CompanionCube",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BirdieRattle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ExoticEasternChewToy",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BlueEgg",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BedazzledNectar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BambooLeaf",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Fez",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ChefHat",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GameMasterShirt",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/StarPrincessCrown",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LincolnsHood",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/DemonHorns",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/DevilHorns",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PandaEars",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/VulkelfEar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GoblorcEar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Fedora",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/StarHairpin",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/HeartHairpin",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/UnicornHornHat",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PrettyPinkRibbon",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BrickLayer",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ExtendoGrip",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PaintSprayer",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PortableCementMixer",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ActuationAccessory",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/UltrabrightTorch",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LeopardSkin",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ZebraSkin",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/SteampunkCup",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/FancyDishes",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/TeamBlockWhite",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LawnFlamingo",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/DPSMeter",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LifeformAnalyzer",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Stopwatch",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "ThoriumMod/TravelersBoots",
         "reason": "not combat equipment"
       },
@@ -22486,6 +22474,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/CombatBook",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/ScarabFish",
         "reason": "not combat equipment"
       },
@@ -22506,6 +22499,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/RockLobster",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/FrozenCrate",
         "reason": "not combat equipment"
       },
@@ -22517,6 +22515,16 @@
       {
         "stage": "start",
         "id": "Terraria/Oyster",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/DemonConch",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LavaAbsorbantSponge",
         "reason": "not combat equipment"
       },
       {
@@ -22537,6 +22545,21 @@
       {
         "stage": "start",
         "id": "ThoriumMod/LilGuppy",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "ThoriumMod/MagmaGill",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "ThoriumMod/ScarletCrate",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "ThoriumMod/HatFish",
         "reason": "not combat equipment"
       },
       {
@@ -22822,6 +22845,11 @@
       {
         "stage": "start",
         "id": "Terraria/DemonCampfire",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/UltraBrightCampfire",
         "reason": "not combat equipment"
       },
       {
@@ -25536,6 +25564,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/FartMinecart",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/AmethystMinecart",
         "reason": "not combat equipment"
       },
@@ -27091,6 +27124,51 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/RemnantsofDevotion",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GoldenKey",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BoneWelder",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/OrnateShadowKey",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/HellCake",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/HellMinecart",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/HerbBag",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CanOfWorms",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ShroomMinecart",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/CapricornLegs",
         "reason": "not combat equipment"
       },
@@ -27780,6 +27858,56 @@
         "reason": "not combat equipment"
       },
       {
+        "stage": "start",
+        "id": "Terraria/DaybloomSeeds",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MoonglowSeeds",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BlinkrootSeeds",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/WaterleafSeeds",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/DeathweedSeeds",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/FireblossomSeeds",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ShiverthornSeeds",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "ThoriumMod/MarineKelpSeeds",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GoldWorm",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GoldWormCage",
+        "reason": "not combat equipment"
+      },
+      {
         "stage": "king-slime",
         "id": "Terraria/KingSlimeBossBag",
         "reason": "not combat equipment"
@@ -28156,11 +28284,6 @@
       },
       {
         "stage": "eye-of-cthulhu",
-        "id": "Terraria/HerbBag",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
         "id": "Terraria/EyeOfCthulhuBossBag",
         "reason": "not combat equipment"
       },
@@ -28441,46 +28564,6 @@
       },
       {
         "stage": "eye-of-cthulhu",
-        "id": "Terraria/DaybloomSeeds",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/MoonglowSeeds",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/BlinkrootSeeds",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/WaterleafSeeds",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/DeathweedSeeds",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/FireblossomSeeds",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/ShiverthornSeeds",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "ThoriumMod/MarineKelpSeeds",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
         "id": "Terraria/UnholyWater",
         "reason": "not combat equipment"
       },
@@ -28571,6 +28654,11 @@
       },
       {
         "stage": "eye-of-cthulhu",
+        "id": "Terraria/GoblinTech",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
         "id": "Terraria/UltrabrightHelmet",
         "reason": "not combat equipment"
       },
@@ -28596,6 +28684,11 @@
       },
       {
         "stage": "eye-of-cthulhu",
+        "id": "Terraria/FartInABalloon",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
         "id": "Terraria/LavaSkull",
         "reason": "not combat equipment"
       },
@@ -28607,6 +28700,11 @@
       {
         "stage": "eye-of-cthulhu",
         "id": "Terraria/LavaWaders",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/ArchitectGizmoPack",
         "reason": "not combat equipment"
       },
       {
@@ -29591,11 +29689,6 @@
       },
       {
         "stage": "skeletron",
-        "id": "Terraria/GoldenKey",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
         "id": "Terraria/BoneWand",
         "reason": "not combat equipment"
       },
@@ -29712,6 +29805,11 @@
       {
         "stage": "skeletron",
         "id": "Terraria/Safe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/SittingDucksFishingRod",
         "reason": "not combat equipment"
       },
       {
@@ -29961,12 +30059,12 @@
       },
       {
         "stage": "skeletron",
-        "id": "Terraria/DungeonFishingCrate",
+        "id": "Terraria/AlchemyTable",
         "reason": "not combat equipment"
       },
       {
         "stage": "skeletron",
-        "id": "Terraria/AlchemyTable",
+        "id": "Terraria/DungeonFishingCrate",
         "reason": "not combat equipment"
       },
       {
@@ -30446,6 +30544,96 @@
       },
       {
         "stage": "skeletron",
+        "id": "Terraria/BoneBlockWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneDoor",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneClock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneChair",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneWorkBench",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneTable",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneBookcase",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneBed",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneBathtub",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneChandelier",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneCandelabra",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneLamp",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneLantern",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BonePiano",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneDresser",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/ToiletBone",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneSofa",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
         "id": "Terraria/PinkDungeonChest",
         "reason": "not combat equipment"
       },
@@ -30536,6 +30724,16 @@
       },
       {
         "stage": "skeletron",
+        "id": "Terraria/REK",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/HandOfCreation",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
         "id": "Terraria/MulticolorWrench",
         "reason": "not combat equipment"
       },
@@ -30607,11 +30805,6 @@
       {
         "stage": "skeletron",
         "id": "Terraria/VoidVault",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneWelder",
         "reason": "not combat equipment"
       },
       {
@@ -30807,96 +31000,6 @@
       {
         "stage": "skeletron",
         "id": "Terraria/Fake_BlueDungeonChest",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneBlockWall",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneDoor",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneChest",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneClock",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneChair",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneWorkBench",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneTable",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneBookcase",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneBed",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneBathtub",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneChandelier",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneCandelabra",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneLamp",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneLantern",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BonePiano",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneDresser",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/ToiletBone",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneSofa",
         "reason": "not combat equipment"
       },
       {
@@ -31281,6 +31384,11 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/DualHook",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/FireFeather",
         "reason": "not combat equipment"
       },
@@ -31367,11 +31475,6 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/RedPotion",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/WaterGun",
         "reason": "not combat equipment"
       },
       {
@@ -31546,6 +31649,11 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/AntiPortalBlock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "ThoriumMod/NinjaRack",
         "reason": "not combat equipment"
       },
@@ -31637,6 +31745,11 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/MySon",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/DarkBlueSolution",
         "reason": "not combat equipment"
       },
       {
@@ -31791,7 +31904,17 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/LadyOfTheLake",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "ThoriumMod/AbyssalCrate",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "ThoriumMod/SinisterCrate",
         "reason": "not combat equipment"
       },
       {
@@ -32476,11 +32599,6 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "Terraria/FartInABalloon",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "Terraria/CoinRing",
         "reason": "not combat equipment"
       },
@@ -32996,6 +33114,11 @@
       },
       {
         "stage": "destroyer",
+        "id": "Terraria/Clentaminator",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
         "id": "Terraria/StaticHook",
         "reason": "not combat equipment"
       },
@@ -33122,6 +33245,11 @@
       {
         "stage": "destroyer",
         "id": "Terraria/LivingIchorBlock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LivingUltrabrightFireBlock",
         "reason": "not combat equipment"
       },
       {
@@ -34422,6 +34550,11 @@
       {
         "stage": "plantera",
         "id": "Terraria/SpectrePaintScraper",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/TerraFartMinecart",
         "reason": "not combat equipment"
       },
       {
@@ -36833,6 +36966,10 @@
         "stage": "start",
         "via": "initial"
       },
+      "Terraria/Shroomerang": {
+        "stage": "start",
+        "via": "initial"
+      },
       "Terraria/Gladius": {
         "stage": "start",
         "via": "initial"
@@ -37317,6 +37454,42 @@
         "stage": "start",
         "via": "shop:Terraria/SkeletonMerchant"
       },
+      "Terraria/BlackCounterweight": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/YellowCounterweight": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/Pho": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/MagicHat": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/GypsyRobe": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/Gi": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/PadThai": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/Katana": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/Sake": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
       "ThoriumMod/WizardShoes": {
         "stage": "start",
         "via": "shop:ThoriumMod/Cobbler"
@@ -37333,6 +37506,10 @@
         "stage": "start",
         "via": "fishing"
       },
+      "Terraria/FrogLeg": {
+        "stage": "start",
+        "via": "fishing"
+      },
       "Terraria/FrostDaggerfish": {
         "stage": "start",
         "via": "fishing"
@@ -37342,6 +37519,14 @@
         "via": "fishing"
       },
       "ThoriumMod/RivetingTadpole": {
+        "stage": "start",
+        "via": "fishing"
+      },
+      "ThoriumMod/Heartstriker": {
+        "stage": "start",
+        "via": "fishing"
+      },
+      "ThoriumMod/BrainCoral": {
         "stage": "start",
         "via": "fishing"
       },
@@ -37361,10 +37546,6 @@
         "stage": "start",
         "via": "manifest"
       },
-      "ThoriumMod/BrainCoral": {
-        "stage": "start",
-        "via": "manifest"
-      },
       "ThoriumMod/Cranberry": {
         "stage": "start",
         "via": "manifest"
@@ -37378,10 +37559,6 @@
         "via": "manifest"
       },
       "ThoriumMod/Fishbone": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "ThoriumMod/Heartstriker": {
         "stage": "start",
         "via": "manifest"
       },
@@ -37522,6 +37699,22 @@
         "via": "container:Terraria/WoodenCrate"
       },
       "Terraria/TrapsightPotion": {
+        "stage": "start",
+        "via": "container:Terraria/WoodenCrate"
+      },
+      "Terraria/Spear": {
+        "stage": "start",
+        "via": "container:Terraria/WoodenCrate"
+      },
+      "Terraria/Blowpipe": {
+        "stage": "start",
+        "via": "container:Terraria/WoodenCrate"
+      },
+      "Terraria/WoodenBoomerang": {
+        "stage": "start",
+        "via": "container:Terraria/WoodenCrate"
+      },
+      "Terraria/WandofSparking": {
         "stage": "start",
         "via": "container:Terraria/WoodenCrate"
       },
@@ -37672,6 +37865,10 @@
       "Terraria/Sashimi": {
         "stage": "start",
         "via": "recipe:Terraria/Flounder"
+      },
+      "Terraria/LobsterTail": {
+        "stage": "start",
+        "via": "recipe:Terraria/RockLobster"
       },
       "Terraria/GrapeJuice": {
         "stage": "start",
@@ -37832,6 +38029,10 @@
       "Terraria/FlamingMace": {
         "stage": "start",
         "via": "recipe:Terraria/Mace+Terraria/Torch"
+      },
+      "Terraria/WandofFrosting": {
+        "stage": "start",
+        "via": "recipe:Terraria/WandofSparking+Terraria/IceTorch"
       },
       "Terraria/WoodHelmet": {
         "stage": "start",
@@ -38309,17 +38510,9 @@
         "stage": "start",
         "via": "recipe:Terraria/Silk+Terraria/CopperBar"
       },
-      "Terraria/WoodenBoomerang": {
-        "stage": "start",
-        "via": "recipe:Terraria/Wood"
-      },
       "Terraria/SlimeStaff": {
         "stage": "start",
         "via": "recipe:Terraria/Wood+Terraria/Gel"
-      },
-      "Terraria/FrogLeg": {
-        "stage": "start",
-        "via": "recipe:Terraria/Frog"
       },
       "Terraria/EskimoHood": {
         "stage": "start",
@@ -38332,14 +38525,6 @@
       "Terraria/EskimoPants": {
         "stage": "start",
         "via": "recipe:Terraria/Silk+Terraria/FlinxFur"
-      },
-      "Terraria/Spear": {
-        "stage": "start",
-        "via": "recipe:Terraria/WoodenCrate"
-      },
-      "Terraria/Blowpipe": {
-        "stage": "start",
-        "via": "recipe:Terraria/WoodenCrate"
       },
       "Terraria/Terragrim": {
         "stage": "start",
@@ -39037,6 +39222,30 @@
         "stage": "start",
         "via": "recipe:ThoriumMod/LivingLeaf+Terraria/Wood"
       },
+      "Terraria/TitanPotion": {
+        "stage": "start",
+        "via": "container:Terraria/Chest"
+      },
+      "Terraria/CobaltShield": {
+        "stage": "start",
+        "via": "container:Terraria/Chest"
+      },
+      "Terraria/Handgun": {
+        "stage": "start",
+        "via": "container:Terraria/Chest"
+      },
+      "Terraria/Muramasa": {
+        "stage": "start",
+        "via": "container:Terraria/Chest"
+      },
+      "Terraria/FlowerofFire": {
+        "stage": "start",
+        "via": "container:Terraria/Chest"
+      },
+      "Terraria/Flamelash": {
+        "stage": "start",
+        "via": "container:Terraria/Chest"
+      },
       "Terraria/MolotovCocktail": {
         "stage": "start",
         "via": "recipe:Terraria/Ale+Terraria/Gel+Terraria/Silk+Terraria/Torch"
@@ -39333,6 +39542,10 @@
         "customEventName": "",
         "eventIcon": ""
       },
+      "Terraria/Code1": {
+        "stage": "eye-of-cthulhu",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
       "ThoriumMod/Fork": {
         "stage": "eye-of-cthulhu",
         "via": "shop:ThoriumMod/Cook"
@@ -39549,6 +39762,14 @@
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/SailfishBoots+Terraria/FrogLeg"
       },
+      "Terraria/ObsidianShield": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/CobaltShield+Terraria/ObsidianSkull"
+      },
+      "Terraria/FartinaJar": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/CloudinaBottle+Terraria/WhoopieCushion"
+      },
       "Terraria/SharkronBalloon": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/TsunamiInABottle+Terraria/BalloonPufferfish"
@@ -39564,6 +39785,10 @@
       "Terraria/YellowHorseshoeBalloon": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/SandstorminaBalloon+Terraria/LuckyHorseshoe"
+      },
+      "Terraria/BalloonHorseshoeFart": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/FartInABalloon+Terraria/LuckyHorseshoe"
       },
       "Terraria/BalloonHorseshoeSharkron": {
         "stage": "eye-of-cthulhu",
@@ -40385,11 +40610,7 @@
         "stage": "skeletron",
         "via": "container:Terraria/LockBox"
       },
-      "Terraria/Muramasa": {
-        "stage": "skeletron",
-        "via": "container:Terraria/LockBox"
-      },
-      "Terraria/CobaltShield": {
+      "Terraria/AquaScepter": {
         "stage": "skeletron",
         "via": "container:Terraria/LockBox"
       },
@@ -40398,10 +40619,6 @@
         "via": "container:Terraria/LockBox"
       },
       "Terraria/MagicMissile": {
-        "stage": "skeletron",
-        "via": "container:Terraria/LockBox"
-      },
-      "Terraria/Handgun": {
         "stage": "skeletron",
         "via": "container:Terraria/LockBox"
       },
@@ -40430,10 +40647,6 @@
         "via": "container:Terraria/ObsidianLockbox"
       },
       "Terraria/Sunfury": {
-        "stage": "skeletron",
-        "via": "container:Terraria/ObsidianLockbox"
-      },
-      "Terraria/Flamelash": {
         "stage": "skeletron",
         "via": "container:Terraria/ObsidianLockbox"
       },
@@ -40513,10 +40726,6 @@
         "stage": "skeletron",
         "via": "shop:Terraria/Mechanic"
       },
-      "Terraria/AquaScepter": {
-        "stage": "skeletron",
-        "via": "manifest"
-      },
       "Terraria/WaterBolt": {
         "stage": "skeletron",
         "via": "manifest"
@@ -40553,10 +40762,6 @@
         "stage": "skeletron",
         "via": "container:Terraria/SkeletronBossBag"
       },
-      "Terraria/TitanPotion": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/BottledWater+Terraria/Bone+Terraria/Deathweed+Terraria/Shiverthorn"
-      },
       "Terraria/PinkEskimoHood": {
         "stage": "skeletron",
         "via": "recipe:Terraria/EskimoHood+Terraria/PinkThread"
@@ -40584,10 +40789,6 @@
       "Terraria/BoneWhip": {
         "stage": "skeletron",
         "via": "recipe:Terraria/Bone+Terraria/Cobweb"
-      },
-      "Terraria/ObsidianShield": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/CobaltShield+Terraria/ObsidianSkull"
       },
       "ThoriumMod/BoneTrumpet": {
         "stage": "skeletron",
@@ -41025,6 +41226,30 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/IceMimic"
       },
+      "Terraria/MagicDagger": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Mimic"
+      },
+      "Terraria/PhilosophersStone": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Mimic"
+      },
+      "Terraria/TitanGlove": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Mimic"
+      },
+      "Terraria/StarCloak": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Mimic"
+      },
+      "Terraria/CrossNecklace": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Mimic"
+      },
+      "Terraria/UnholyTrident": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/RedDevil"
+      },
       "ThoriumMod/FrostPlagueStaff": {
         "stage": "wall-of-flesh",
         "via": "npc:ThoriumMod/ChilledSpitter"
@@ -41081,10 +41306,6 @@
         "stage": "wall-of-flesh",
         "via": "npc:ThoriumMod/SubmergedMimic"
       },
-      "Terraria/FartinaJar": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BigMimicJungle"
-      },
       "Terraria/GoldenShower": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/BigMimicJungle"
@@ -41140,10 +41361,6 @@
       "Terraria/MagicQuiver": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/SkeletonArcher"
-      },
-      "Terraria/Shroomerang": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/SporeBat"
       },
       "ThoriumMod/TheJuggernaut": {
         "stage": "wall-of-flesh",
@@ -41227,6 +41444,18 @@
       "Terraria/SlapHand": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/SkeletonMerchant"
+      },
+      "Terraria/Gatligator": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/BouncingShield": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/ZapinatorOrange": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/TravellingMerchant"
       },
       "ThoriumMod/FlanPlatter": {
         "stage": "wall-of-flesh",
@@ -41324,19 +41553,23 @@
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Pirate"
       },
-      "Terraria/CrossNecklace": {
+      "Terraria/CrystalSerpent": {
         "stage": "wall-of-flesh",
-        "via": "manifest"
+        "via": "fishing"
+      },
+      "Terraria/Toxikarp": {
+        "stage": "wall-of-flesh",
+        "via": "fishing"
+      },
+      "Terraria/Bladetongue": {
+        "stage": "wall-of-flesh",
+        "via": "fishing"
       },
       "Terraria/NimbusRod": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
       "Terraria/FastClock": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/MagicDagger": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
@@ -41352,10 +41585,6 @@
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
-      "Terraria/PhilosophersStone": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
       "Terraria/StarVeil": {
         "stage": "wall-of-flesh",
         "via": "manifest"
@@ -41364,15 +41593,7 @@
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
-      "Terraria/StarCloak": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
       "Terraria/CelestialEmblem": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/Katana": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
@@ -41483,6 +41704,10 @@
       "Terraria/Chik": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/WoodYoyo+Terraria/CrystalShard+Terraria/SoulofLight"
+      },
+      "Terraria/YoyoBag": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/WhiteString+Terraria/YoYoGlove+Terraria/BlackCounterweight"
       },
       "Terraria/BluePhasesaber": {
         "stage": "wall-of-flesh",
@@ -41816,9 +42041,9 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/SpectreBoots+Terraria/FlowerBoots+Terraria/SoulofLight"
       },
-      "Terraria/BalloonHorseshoeFart": {
+      "Terraria/PowerGlove": {
         "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/FartInABalloon+Terraria/LuckyHorseshoe"
+        "via": "recipe:Terraria/TitanGlove+Terraria/FeralClaws"
       },
       "Terraria/MedicatedBandage": {
         "stage": "wall-of-flesh",
@@ -41843,10 +42068,6 @@
       "Terraria/RocketI": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/IronBar+Terraria/EmptyBullet+Terraria/ExplosivePowder"
-      },
-      "Terraria/BouncingShield": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/CobaltBar+Terraria/SoulofLight"
       },
       "ThoriumMod/AdamantiteKlaxon": {
         "stage": "wall-of-flesh",
@@ -42407,6 +42628,10 @@
         "stage": "wall-of-flesh",
         "via": "recipe:ThoriumMod/Kunai+Terraria/SpiderFang"
       },
+      "Terraria/BerserkerGlove": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/PowerGlove+Terraria/FleshKnuckles"
+      },
       "ThoriumMod/DragonsWail": {
         "stage": "wall-of-flesh",
         "via": "recipe:ThoriumMod/GreenDragonScale"
@@ -42550,6 +42775,10 @@
       "Terraria/MonkStaffT2": {
         "stage": "destroyer",
         "via": "npc:Terraria/DD2OgreT2"
+      },
+      "Terraria/Code2": {
+        "stage": "destroyer",
+        "via": "shop:Terraria/TravellingMerchant"
       },
       "Terraria/SquireGreatHelm": {
         "stage": "destroyer",
@@ -44804,6 +45033,30 @@
         "stage": "betsy",
         "via": "npc:Terraria/DD2Betsy"
       },
+      "Terraria/Flairon": {
+        "stage": "duke-fishron",
+        "via": "npc:Terraria/DukeFishron"
+      },
+      "Terraria/Tsunami": {
+        "stage": "duke-fishron",
+        "via": "npc:Terraria/DukeFishron"
+      },
+      "Terraria/BubbleGun": {
+        "stage": "duke-fishron",
+        "via": "npc:Terraria/DukeFishron"
+      },
+      "Terraria/RazorbladeTyphoon": {
+        "stage": "duke-fishron",
+        "via": "npc:Terraria/DukeFishron"
+      },
+      "Terraria/TempestStaff": {
+        "stage": "duke-fishron",
+        "via": "npc:Terraria/DukeFishron"
+      },
+      "Terraria/FishronWings": {
+        "stage": "duke-fishron",
+        "via": "npc:Terraria/DukeFishron"
+      },
       "ThoriumMod/DukesRegalCarnyx": {
         "stage": "duke-fishron",
         "via": "npc:Terraria/DukeFishron"
@@ -44811,30 +45064,6 @@
       "ThoriumMod/Brinefang": {
         "stage": "duke-fishron",
         "via": "npc:Terraria/DukeFishron"
-      },
-      "Terraria/Flairon": {
-        "stage": "duke-fishron",
-        "via": "container:Terraria/FishronBossBag"
-      },
-      "Terraria/Tsunami": {
-        "stage": "duke-fishron",
-        "via": "container:Terraria/FishronBossBag"
-      },
-      "Terraria/BubbleGun": {
-        "stage": "duke-fishron",
-        "via": "container:Terraria/FishronBossBag"
-      },
-      "Terraria/RazorbladeTyphoon": {
-        "stage": "duke-fishron",
-        "via": "container:Terraria/FishronBossBag"
-      },
-      "Terraria/TempestStaff": {
-        "stage": "duke-fishron",
-        "via": "container:Terraria/FishronBossBag"
-      },
-      "Terraria/FishronWings": {
-        "stage": "duke-fishron",
-        "via": "container:Terraria/FishronBossBag"
       },
       "Terraria/PiercingStarlight": {
         "stage": "empress-of-light",
@@ -46181,6 +46410,10 @@
         "stage": "start",
         "via": "npc:ThoriumMod/CrownofThorns"
       },
+      "Terraria/WhoopieCushion": {
+        "stage": "start",
+        "via": "npc:Terraria/GiantWormHead"
+      },
       "Terraria/Hook": {
         "stage": "start",
         "via": "npc:Terraria/GreekSkeleton"
@@ -46244,6 +46477,10 @@
       "Terraria/Dynamite": {
         "stage": "start",
         "via": "npc:Terraria/Demolitionist"
+      },
+      "Terraria/PeddlersHat": {
+        "stage": "start",
+        "via": "npc:Terraria/TravellingMerchant"
       },
       "Terraria/MiningHelmet": {
         "stage": "start",
@@ -46593,6 +46830,190 @@
         "stage": "start",
         "via": "shop:Terraria/BestiaryGirl"
       },
+      "Terraria/AngelHalo": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/Kimono": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/ArcaneRuneWall": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/WaterGun": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/DiamondRing": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/CrimsonCloak": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/MysteriousCape": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/RedCape": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/WinterCape": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/HunterCloak": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/CompanionCube": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/BirdieRattle": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/ExoticEasternChewToy": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/BlueEgg": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/BedazzledNectar": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/BambooLeaf": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/Fez": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/ChefHat": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/GameMasterShirt": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/StarPrincessCrown": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/LincolnsHood": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/DemonHorns": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/DevilHorns": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/PandaEars": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/VulkelfEar": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/GoblorcEar": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/Fedora": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/StarHairpin": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/HeartHairpin": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/UnicornHornHat": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/PrettyPinkRibbon": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/BrickLayer": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/ExtendoGrip": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/PaintSprayer": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/PortableCementMixer": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/ActuationAccessory": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/UltrabrightTorch": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/LeopardSkin": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/ZebraSkin": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/SteampunkCup": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/FancyDishes": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/TeamBlockWhite": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/LawnFlamingo": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/DPSMeter": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/LifeformAnalyzer": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/Stopwatch": {
+        "stage": "start",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
       "ThoriumMod/TravelersBoots": {
         "stage": "start",
         "via": "shop:ThoriumMod/Cobbler"
@@ -46893,6 +47314,10 @@
         "stage": "start",
         "via": "fishing"
       },
+      "Terraria/CombatBook": {
+        "stage": "start",
+        "via": "fishing"
+      },
       "Terraria/ScarabFish": {
         "stage": "start",
         "via": "fishing"
@@ -46909,6 +47334,10 @@
         "stage": "start",
         "via": "fishing"
       },
+      "Terraria/RockLobster": {
+        "stage": "start",
+        "via": "fishing"
+      },
       "Terraria/FrozenCrate": {
         "stage": "start",
         "via": "fishing"
@@ -46918,6 +47347,14 @@
         "via": "fishing"
       },
       "Terraria/Oyster": {
+        "stage": "start",
+        "via": "fishing"
+      },
+      "Terraria/DemonConch": {
+        "stage": "start",
+        "via": "fishing"
+      },
+      "Terraria/LavaAbsorbantSponge": {
         "stage": "start",
         "via": "fishing"
       },
@@ -46934,6 +47371,18 @@
         "via": "fishing"
       },
       "ThoriumMod/LilGuppy": {
+        "stage": "start",
+        "via": "fishing"
+      },
+      "ThoriumMod/MagmaGill": {
+        "stage": "start",
+        "via": "fishing"
+      },
+      "ThoriumMod/ScarletCrate": {
+        "stage": "start",
+        "via": "fishing"
+      },
+      "ThoriumMod/HatFish": {
         "stage": "start",
         "via": "fishing"
       },
@@ -47164,6 +47613,10 @@
       "Terraria/DemonCampfire": {
         "stage": "start",
         "via": "recipe:Terraria/Wood+Terraria/DemonTorch"
+      },
+      "Terraria/UltraBrightCampfire": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood+Terraria/UltrabrightTorch"
       },
       "Terraria/CoralCampfire": {
         "stage": "start",
@@ -49333,6 +49786,10 @@
         "stage": "start",
         "via": "recipe:Terraria/IronBar+Terraria/Wood"
       },
+      "Terraria/FartMinecart": {
+        "stage": "start",
+        "via": "recipe:Terraria/Minecart+Terraria/WhoopieCushion"
+      },
       "Terraria/AmethystMinecart": {
         "stage": "start",
         "via": "recipe:Terraria/Minecart+Terraria/LargeAmethyst"
@@ -50577,6 +51034,42 @@
         "stage": "start",
         "via": "recipe:Terraria/Silk+Terraria/BlackInk"
       },
+      "Terraria/RemnantsofDevotion": {
+        "stage": "start",
+        "via": "container:Terraria/Chest"
+      },
+      "Terraria/GoldenKey": {
+        "stage": "start",
+        "via": "container:Terraria/Chest"
+      },
+      "Terraria/BoneWelder": {
+        "stage": "start",
+        "via": "container:Terraria/Chest"
+      },
+      "Terraria/OrnateShadowKey": {
+        "stage": "start",
+        "via": "container:Terraria/Chest"
+      },
+      "Terraria/HellCake": {
+        "stage": "start",
+        "via": "container:Terraria/Chest"
+      },
+      "Terraria/HellMinecart": {
+        "stage": "start",
+        "via": "container:Terraria/Chest"
+      },
+      "Terraria/HerbBag": {
+        "stage": "start",
+        "via": "container:Terraria/Chest"
+      },
+      "Terraria/CanOfWorms": {
+        "stage": "start",
+        "via": "container:Terraria/Chest"
+      },
+      "Terraria/ShroomMinecart": {
+        "stage": "start",
+        "via": "container:Terraria/MushroomChest"
+      },
       "Terraria/CapricornLegs": {
         "stage": "start",
         "via": "container:Terraria/CapricornTail"
@@ -51129,6 +51622,46 @@
         "stage": "start",
         "via": "recipe:ThoriumMod/ThoriumBlock+Terraria/Silk"
       },
+      "Terraria/DaybloomSeeds": {
+        "stage": "start",
+        "via": "container:Terraria/HerbBag"
+      },
+      "Terraria/MoonglowSeeds": {
+        "stage": "start",
+        "via": "container:Terraria/HerbBag"
+      },
+      "Terraria/BlinkrootSeeds": {
+        "stage": "start",
+        "via": "container:Terraria/HerbBag"
+      },
+      "Terraria/WaterleafSeeds": {
+        "stage": "start",
+        "via": "container:Terraria/HerbBag"
+      },
+      "Terraria/DeathweedSeeds": {
+        "stage": "start",
+        "via": "container:Terraria/HerbBag"
+      },
+      "Terraria/FireblossomSeeds": {
+        "stage": "start",
+        "via": "container:Terraria/HerbBag"
+      },
+      "Terraria/ShiverthornSeeds": {
+        "stage": "start",
+        "via": "container:Terraria/HerbBag"
+      },
+      "ThoriumMod/MarineKelpSeeds": {
+        "stage": "start",
+        "via": "container:Terraria/HerbBag"
+      },
+      "Terraria/GoldWorm": {
+        "stage": "start",
+        "via": "container:Terraria/CanOfWorms"
+      },
+      "Terraria/GoldWormCage": {
+        "stage": "start",
+        "via": "recipe:Terraria/Terrarium+Terraria/GoldWorm"
+      },
       "Terraria/KingSlimeBossBag": {
         "stage": "king-slime",
         "via": "npc:Terraria/KingSlime"
@@ -51433,10 +51966,6 @@
         "stage": "eye-of-cthulhu",
         "via": "npc:ThoriumMod/Biter"
       },
-      "Terraria/HerbBag": {
-        "stage": "eye-of-cthulhu",
-        "via": "npc:Terraria/Dryad"
-      },
       "Terraria/EyeOfCthulhuBossBag": {
         "stage": "eye-of-cthulhu",
         "via": "npc:Terraria/EyeofCthulhu"
@@ -51664,38 +52193,6 @@
         "stage": "eye-of-cthulhu",
         "via": "manifest"
       },
-      "Terraria/DaybloomSeeds": {
-        "stage": "eye-of-cthulhu",
-        "via": "container:Terraria/HerbBag"
-      },
-      "Terraria/MoonglowSeeds": {
-        "stage": "eye-of-cthulhu",
-        "via": "container:Terraria/HerbBag"
-      },
-      "Terraria/BlinkrootSeeds": {
-        "stage": "eye-of-cthulhu",
-        "via": "container:Terraria/HerbBag"
-      },
-      "Terraria/WaterleafSeeds": {
-        "stage": "eye-of-cthulhu",
-        "via": "container:Terraria/HerbBag"
-      },
-      "Terraria/DeathweedSeeds": {
-        "stage": "eye-of-cthulhu",
-        "via": "container:Terraria/HerbBag"
-      },
-      "Terraria/FireblossomSeeds": {
-        "stage": "eye-of-cthulhu",
-        "via": "container:Terraria/HerbBag"
-      },
-      "Terraria/ShiverthornSeeds": {
-        "stage": "eye-of-cthulhu",
-        "via": "container:Terraria/HerbBag"
-      },
-      "ThoriumMod/MarineKelpSeeds": {
-        "stage": "eye-of-cthulhu",
-        "via": "container:Terraria/HerbBag"
-      },
       "Terraria/UnholyWater": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/BottledWater+Terraria/EbonsandBlock+Terraria/CorruptSeeds"
@@ -51768,6 +52265,10 @@
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/GoldWatch+Terraria/DepthMeter+Terraria/Compass"
       },
+      "Terraria/GoblinTech": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/MetalDetector+Terraria/Stopwatch+Terraria/DPSMeter"
+      },
       "Terraria/UltrabrightHelmet": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/MiningHelmet+Terraria/NightVisionHelmet"
@@ -51788,6 +52289,10 @@
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/SandstorminaBottle+Terraria/ShinyRedBalloon"
       },
+      "Terraria/FartInABalloon": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/FartinaJar+Terraria/ShinyRedBalloon"
+      },
       "Terraria/LavaSkull": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/ObsidianSkull+Terraria/LavaCharm"
@@ -51799,6 +52304,10 @@
       "Terraria/LavaWaders": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/ObsidianWaterWalkingBoots+Terraria/LavaCharm+Terraria/ObsidianRose"
+      },
+      "Terraria/ArchitectGizmoPack": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/BrickLayer+Terraria/ExtendoGrip+Terraria/PaintSprayer+Terraria/PortableCementMixer"
       },
       "Terraria/FishingBobberGlowingStar": {
         "stage": "eye-of-cthulhu",
@@ -52584,10 +53093,6 @@
         "stage": "skeletron",
         "via": "npc:Terraria/DungeonGuardian"
       },
-      "Terraria/GoldenKey": {
-        "stage": "skeletron",
-        "via": "npc:ThoriumMod/BigBone"
-      },
       "Terraria/BoneWand": {
         "stage": "skeletron",
         "via": "npc:ThoriumMod/BigBone"
@@ -52683,6 +53188,10 @@
       "Terraria/Safe": {
         "stage": "skeletron",
         "via": "shop:Terraria/Merchant"
+      },
+      "Terraria/SittingDucksFishingRod": {
+        "stage": "skeletron",
+        "via": "shop:Terraria/TravellingMerchant"
       },
       "ThoriumMod/SlagStompers": {
         "stage": "skeletron",
@@ -52880,13 +53389,13 @@
         "stage": "skeletron",
         "via": "shop:Terraria/Mechanic"
       },
-      "Terraria/DungeonFishingCrate": {
+      "Terraria/AlchemyTable": {
         "stage": "skeletron",
         "via": "fishing"
       },
-      "Terraria/AlchemyTable": {
+      "Terraria/DungeonFishingCrate": {
         "stage": "skeletron",
-        "via": "manifest"
+        "via": "fishing"
       },
       "Terraria/BewitchingTable": {
         "stage": "skeletron",
@@ -53268,6 +53777,78 @@
         "stage": "skeletron",
         "via": "recipe:Terraria/Bone+Terraria/Pumpkin+Terraria/Book"
       },
+      "Terraria/BoneBlockWall": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone"
+      },
+      "Terraria/BoneDoor": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone"
+      },
+      "Terraria/BoneChest": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone+Terraria/IronBar"
+      },
+      "Terraria/BoneClock": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/Bone"
+      },
+      "Terraria/BoneChair": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone"
+      },
+      "Terraria/BoneWorkBench": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone"
+      },
+      "Terraria/BoneTable": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone"
+      },
+      "Terraria/BoneBookcase": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone+Terraria/Book"
+      },
+      "Terraria/BoneBed": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone+Terraria/Silk"
+      },
+      "Terraria/BoneBathtub": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone"
+      },
+      "Terraria/BoneChandelier": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone+Terraria/Torch+Terraria/Chain"
+      },
+      "Terraria/BoneCandelabra": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone+Terraria/Torch"
+      },
+      "Terraria/BoneLamp": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Torch+Terraria/Bone"
+      },
+      "Terraria/BoneLantern": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone+Terraria/Torch"
+      },
+      "Terraria/BonePiano": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone+Terraria/Book"
+      },
+      "Terraria/BoneDresser": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone"
+      },
+      "Terraria/ToiletBone": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone"
+      },
+      "Terraria/BoneSofa": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone+Terraria/Silk"
+      },
       "Terraria/PinkDungeonChest": {
         "stage": "skeletron",
         "via": "recipe:Terraria/PinkBrick+Terraria/IronBar"
@@ -53340,6 +53921,14 @@
         "stage": "skeletron",
         "via": "recipe:Terraria/Chain+Terraria/Bone"
       },
+      "Terraria/REK": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/TallyCounter+Terraria/LifeformAnalyzer+Terraria/Radar"
+      },
+      "Terraria/HandOfCreation": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/ArchitectGizmoPack+Terraria/AncientChisel+Terraria/TreasureMagnet+Terraria/PortableStool"
+      },
       "Terraria/MulticolorWrench": {
         "stage": "skeletron",
         "via": "recipe:Terraria/Wrench+Terraria/GreenWrench+Terraria/BlueWrench+Terraria/YellowWrench+Terraria/WireCutter"
@@ -53399,10 +53988,6 @@
       "Terraria/VoidVault": {
         "stage": "skeletron",
         "via": "recipe:Terraria/Bone+Terraria/JungleSpores+Terraria/TissueSample"
-      },
-      "Terraria/BoneWelder": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/DungeonFishingCrate+Terraria/GoldenKey"
       },
       "ThoriumMod/AncientBlade": {
         "stage": "skeletron",
@@ -53559,78 +54144,6 @@
       "Terraria/Fake_BlueDungeonChest": {
         "stage": "skeletron",
         "via": "recipe:Terraria/BlueDungeonChest+Terraria/Wire"
-      },
-      "Terraria/BoneBlockWall": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Bone"
-      },
-      "Terraria/BoneDoor": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Bone"
-      },
-      "Terraria/BoneChest": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Bone+Terraria/IronBar"
-      },
-      "Terraria/BoneClock": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/Bone"
-      },
-      "Terraria/BoneChair": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Bone"
-      },
-      "Terraria/BoneWorkBench": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Bone"
-      },
-      "Terraria/BoneTable": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Bone"
-      },
-      "Terraria/BoneBookcase": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Bone+Terraria/Book"
-      },
-      "Terraria/BoneBed": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Bone+Terraria/Silk"
-      },
-      "Terraria/BoneBathtub": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Bone"
-      },
-      "Terraria/BoneChandelier": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Bone+Terraria/Torch+Terraria/Chain"
-      },
-      "Terraria/BoneCandelabra": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Bone+Terraria/Torch"
-      },
-      "Terraria/BoneLamp": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Torch+Terraria/Bone"
-      },
-      "Terraria/BoneLantern": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Bone+Terraria/Torch"
-      },
-      "Terraria/BonePiano": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Bone+Terraria/Book"
-      },
-      "Terraria/BoneDresser": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Bone"
-      },
-      "Terraria/ToiletBone": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Bone"
-      },
-      "Terraria/BoneSofa": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/Bone+Terraria/Silk"
       },
       "Terraria/Fake_BoneChest": {
         "stage": "skeletron",
@@ -53936,6 +54449,10 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/IceMimic"
       },
+      "Terraria/DualHook": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Mimic"
+      },
       "Terraria/FireFeather": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/RedDevil"
@@ -54005,10 +54522,6 @@
         "via": "npc:Terraria/BigMimicJungle"
       },
       "Terraria/RedPotion": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BigMimicJungle"
-      },
-      "Terraria/WaterGun": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/BigMimicJungle"
       },
@@ -54166,6 +54679,10 @@
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/BestiaryGirl"
       },
+      "Terraria/AntiPortalBlock": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
       "ThoriumMod/NinjaRack": {
         "stage": "wall-of-flesh",
         "via": "shop:ThoriumMod/DesertAcolyte"
@@ -54239,6 +54756,10 @@
         "via": "shop:Terraria/Truffle"
       },
       "Terraria/MySon": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/Truffle"
+      },
+      "Terraria/DarkBlueSolution": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Truffle"
       },
@@ -54362,7 +54883,15 @@
         "stage": "wall-of-flesh",
         "via": "fishing"
       },
+      "Terraria/LadyOfTheLake": {
+        "stage": "wall-of-flesh",
+        "via": "fishing"
+      },
       "ThoriumMod/AbyssalCrate": {
+        "stage": "wall-of-flesh",
+        "via": "fishing"
+      },
+      "ThoriumMod/SinisterCrate": {
         "stage": "wall-of-flesh",
         "via": "fishing"
       },
@@ -54910,10 +55439,6 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/GreenJellyfish+Terraria/BottledWater"
       },
-      "Terraria/FartInABalloon": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/FartinaJar+Terraria/ShinyRedBalloon"
-      },
       "Terraria/CoinRing": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/GoldRing+Terraria/LuckyCoin"
@@ -55326,6 +55851,10 @@
         "stage": "destroyer",
         "via": "shop:Terraria/Truffle"
       },
+      "Terraria/Clentaminator": {
+        "stage": "destroyer",
+        "via": "shop:Terraria/Steampunker"
+      },
       "Terraria/StaticHook": {
         "stage": "destroyer",
         "via": "shop:Terraria/Steampunker"
@@ -55429,6 +55958,10 @@
       "Terraria/LivingIchorBlock": {
         "stage": "destroyer",
         "via": "recipe:Terraria/LivingFireBlock+Terraria/Ichor"
+      },
+      "Terraria/LivingUltrabrightFireBlock": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LivingFireBlock+Terraria/UltrabrightTorch"
       },
       "Terraria/SoulBottleMight": {
         "stage": "destroyer",
@@ -56545,6 +57078,10 @@
       "Terraria/SpectrePaintScraper": {
         "stage": "plantera",
         "via": "recipe:Terraria/SpectreBar"
+      },
+      "Terraria/TerraFartMinecart": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/FartMinecart+Terraria/TerraToilet"
       },
       "Terraria/PumpkinMoonMedallion": {
         "stage": "plantera",
@@ -62350,25 +62887,6 @@
         "sourceKind": "drop",
         "items": [
           "Terraria/ZombieArm"
-        ]
-      },
-      {
-        "source": "Terraria/TravellingMerchant",
-        "sourceKind": "shop",
-        "items": [
-          "Terraria/BouncingShield",
-          "Terraria/Code1",
-          "Terraria/Code2",
-          "Terraria/Gatligator",
-          "Terraria/Katana",
-          "Terraria/Keybrand",
-          "Terraria/PadThai",
-          "Terraria/Pho",
-          "Terraria/PulseBow",
-          "Terraria/Revolver",
-          "Terraria/Sake",
-          "Terraria/ZapinatorGray",
-          "Terraria/ZapinatorOrange"
         ]
       }
     ],

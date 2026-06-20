@@ -15,6 +15,7 @@ internal static class JournalFishingSourceResolver
     private const int DefaultRandomSeedCount = 32;
     private const int ScenarioRandomSeedCount = 32;
     private const int EquipmentRandomSeedCount = 8;
+    private const int ForcedRaritySeedCount = 8;
 
     private static readonly object SyncRoot = new();
     private static readonly FieldInfo? ModBiomeFlagsField = typeof(Player).GetField(
@@ -615,6 +616,36 @@ internal static class JournalFishingSourceResolver
         int randomSeedCount)
     {
         var equipment = catalog.Equipment[context.EquipmentIndex];
+
+        void RunAttempt(ref FishingAttempt attempt)
+        {
+            try
+            {
+                PlayerLoader.ModifyFishingAttempt(player, ref attempt);
+                InvokeFishingAttempt(pipeline.RollEnemySpawns, projectile, ref attempt);
+                InvokeFishingAttempt(pipeline.RollItemDrop, projectile, ref attempt);
+
+                var itemDrop = attempt.rolledItemDrop;
+                var npcSpawn = attempt.rolledEnemySpawn;
+                var sonar = new AdvancedPopupRequest();
+                var sonarPosition = projectile.position;
+                PlayerLoader.CatchFish(
+                    player,
+                    attempt,
+                    ref itemDrop,
+                    ref npcSpawn,
+                    ref sonar,
+                    ref sonarPosition);
+
+                AddCaughtItem(catalog.ItemContexts, player, itemDrop, context);
+                AddContext(catalog.NpcContexts, npcSpawn, context);
+            }
+            catch
+            {
+                // A broken third-party hook invalidates only this observed attempt.
+            }
+        }
+
         foreach (var fishingLevel in FishingLevels)
         {
             for (var seed = 0; seed < randomSeedCount; seed++)
@@ -622,31 +653,22 @@ internal static class JournalFishingSourceResolver
                 Main.rand = new UnifiedRandom(seed);
                 var attempt = CreateAttempt(catalog, player, projectile, context, fishingLevel, equipment);
                 InvokeRollDropLevels(pipeline.RollDropLevels, projectile, fishingLevel, ref attempt);
+                RunAttempt(ref attempt);
+            }
 
-                try
+            for (var rarity = 0; rarity < 6; rarity++)
+            {
+                for (var seed = 0; seed < Math.Min(randomSeedCount, ForcedRaritySeedCount); seed++)
                 {
-                    PlayerLoader.ModifyFishingAttempt(player, ref attempt);
-                    InvokeFishingAttempt(pipeline.RollEnemySpawns, projectile, ref attempt);
-                    InvokeFishingAttempt(pipeline.RollItemDrop, projectile, ref attempt);
-
-                    var itemDrop = attempt.rolledItemDrop;
-                    var npcSpawn = attempt.rolledEnemySpawn;
-                    var sonar = new AdvancedPopupRequest();
-                    var sonarPosition = projectile.position;
-                    PlayerLoader.CatchFish(
-                        player,
-                        attempt,
-                        ref itemDrop,
-                        ref npcSpawn,
-                        ref sonar,
-                        ref sonarPosition);
-
-                    AddCaughtItem(catalog.ItemContexts, player, itemDrop, context);
-                    AddContext(catalog.NpcContexts, npcSpawn, context);
-                }
-                catch
-                {
-                    // A broken third-party hook invalidates only this observed attempt.
+                    Main.rand = new UnifiedRandom(seed);
+                    var attempt = CreateAttempt(catalog, player, projectile, context, fishingLevel, equipment);
+                    attempt.common = rarity == 0;
+                    attempt.uncommon = rarity == 1;
+                    attempt.rare = rarity == 2;
+                    attempt.veryrare = rarity == 3;
+                    attempt.legendary = rarity == 4;
+                    attempt.crate = rarity == 5;
+                    RunAttempt(ref attempt);
                 }
             }
         }
@@ -928,8 +950,14 @@ internal static class JournalFishingSourceResolver
                 string.Join(", ", depths.Select(static depth => Language.GetTextValue(DepthLocalizationKeys[depth])))));
         }
 
-        AppendProgressionCondition(conditions, catalog, progressionIndexes);
-        AppendWorldConditions(conditions, worldIndexes);
+        var hasSyntheticModEnvironment = environmentIndexes.Any(index =>
+            catalog.Environments[index].ModBiome is not null
+            || catalog.Environments[index].WaterStyle is not null);
+        if (!hasSyntheticModEnvironment)
+        {
+            AppendProgressionCondition(conditions, catalog, progressionIndexes);
+            AppendWorldConditions(conditions, worldIndexes);
+        }
         return conditions;
     }
 
@@ -959,8 +987,7 @@ internal static class JournalFishingSourceResolver
     {
         var index = GetEffectiveProgressionIndex(catalog, context);
         var environment = catalog.Environments[context.EnvironmentIndex];
-        return index == 0
-               && (environment.ModBiome is not null || environment.WaterStyle is not null)
+        return environment.ModBiome is not null || environment.WaterStyle is not null
             ? -1
             : index;
     }

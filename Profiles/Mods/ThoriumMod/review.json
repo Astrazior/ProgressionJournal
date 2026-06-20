@@ -2,13 +2,13 @@
   "format": "ProgressionJournalManualReview",
   "version": 1,
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-06-20T12:23:56.408Z",
+  "generatedAtUtc": "2026-06-20T17:19:22.433Z",
   "summary": {
-    "total": 245,
+    "total": 226,
     "byKind": {
-      "unassigned-combat-item": 162,
+      "unassigned-combat-item": 147,
       "unassigned-vanilla-npc-sources": 1,
-      "unresolved-condition": 82
+      "unresolved-condition": 78
     }
   },
   "issues": [
@@ -770,42 +770,6 @@
       "resolution": {
         "itemStages": {
           "Terraria/BlackCurrant": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.83f42f79c892",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/Bladetongue",
-      "displayName": "Язык-лезвие",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "melee"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/Toxikarp",
-                "stack": 1
-              }
-            ],
-            "stations": [
-              "Terraria/DemonAltar"
-            ],
-            "conditions": []
-          }
-        ]
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/Bladetongue": "<stage-id>"
         },
         "sourceStages": {}
       }
@@ -1696,76 +1660,6 @@
       }
     },
     {
-      "id": "unassigned-combat-item.686d9188a7c5",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/Code1",
-      "displayName": "Код 1",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "melee"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/TravellingMerchant",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "После победы над Глазом Ктулху"
-              }
-            ]
-          }
-        ],
-        "recipes": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/Code1": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.2f12b95d7f90",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/Code2",
-      "displayName": "Код 2",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "melee"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/TravellingMerchant",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "После победы над любым механическим боссом"
-              }
-            ]
-          }
-        ],
-        "recipes": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/Code2": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
       "id": "unassigned-combat-item.eefe28f150d9",
       "kind": "unassigned-combat-item",
       "item": "Terraria/CoffeeCup",
@@ -1966,29 +1860,6 @@
       "resolution": {
         "itemStages": {
           "Terraria/CookedShrimp": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.0d31a005804a",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/CrystalSerpent",
-      "displayName": "Кристальный змей",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "magic"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [],
-        "recipes": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/CrystalSerpent": "<stage-id>"
         },
         "sourceStages": {}
       }
@@ -2371,7 +2242,7 @@
       }
     },
     {
-      "id": "unassigned-combat-item.3007d5b6e642",
+      "id": "unassigned-combat-item.326c4e1e6a84",
       "kind": "unassigned-combat-item",
       "item": "Terraria/Flare",
       "displayName": "Сигнальная ракета",
@@ -2382,7 +2253,43 @@
         ]
       },
       "evidence": {
-        "drops": [],
+        "drops": [
+          {
+            "sourceKind": "container",
+            "source": "Terraria/GoldChest",
+            "conditions": []
+          },
+          {
+            "sourceKind": "container",
+            "source": "Terraria/GoldChest",
+            "conditions": []
+          },
+          {
+            "sourceKind": "container",
+            "source": "Terraria/GoldChest",
+            "conditions": []
+          },
+          {
+            "sourceKind": "container",
+            "source": "Terraria/GoldChest",
+            "conditions": []
+          },
+          {
+            "sourceKind": "container",
+            "source": "Terraria/GoldChest",
+            "conditions": []
+          },
+          {
+            "sourceKind": "container",
+            "source": "Terraria/GoldChest",
+            "conditions": []
+          },
+          {
+            "sourceKind": "container",
+            "source": "Terraria/GoldChest",
+            "conditions": []
+          }
+        ],
         "shops": [
           {
             "sourceKind": "shop",
@@ -2413,92 +2320,8 @@
         "itemStages": {
           "Terraria/Flare": "<stage-id>"
         },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.b5c9f8564306",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/FlowerofFire",
-      "displayName": "Огненный цветок",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "magic"
-        ]
-      },
-      "evidence": {
-        "drops": [
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/RedDevil",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              }
-            ]
-          },
-          {
-            "sourceKind": "container",
-            "source": "Terraria/ObsidianLockbox",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-                "description": null
-              }
-            ]
-          }
-        ],
-        "shops": [],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/LavaCrate",
-                "stack": 3
-              },
-              {
-                "item": "Terraria/ShadowKey",
-                "stack": 1
-              }
-            ],
-            "stations": [
-              "Terraria/WorkBenches"
-            ],
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "Не в генерации мира «Remix»"
-              }
-            ]
-          },
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/TreasureMagnet",
-                "stack": 1
-              }
-            ],
-            "stations": [
-              "Terraria/Solidifier"
-            ],
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "Не в генерации мира «Remix»"
-              }
-            ]
-          }
-        ]
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/FlowerofFire": "<stage-id>"
-        },
         "sourceStages": {
-          "Terraria/RedDevil": "<stage-id>",
-          "Terraria/ObsidianLockbox": "<stage-id>"
+          "Terraria/GoldChest": "<stage-id>"
         }
       }
     },
@@ -2978,41 +2801,6 @@
       "resolution": {
         "itemStages": {
           "Terraria/FruitSalad": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.1d18cc1e3543",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/Gatligator",
-      "displayName": "Гатлингатор",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/TravellingMerchant",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "В хардмоде"
-              }
-            ]
-          }
-        ],
-        "recipes": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/Gatligator": "<stage-id>"
         },
         "sourceStages": {}
       }
@@ -3952,72 +3740,6 @@
       "resolution": {
         "itemStages": {
           "Terraria/LesserRestorationPotion": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.86fe270f1454",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/LobsterTail",
-      "displayName": "Хвост лобстера",
-      "classification": {
-        "buffCategory": "Food",
-        "classes": [
-          "melee",
-          "ranged",
-          "magic",
-          "summoner",
-          "bard",
-          "healer",
-          "thrower"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/RockLobster",
-                "stack": 1
-              }
-            ],
-            "stations": [
-              "Terraria/CookingPots"
-            ],
-            "conditions": []
-          },
-          {
-            "ingredients": [
-              {
-                "item": "ThoriumMod/Lobster",
-                "stack": 1
-              }
-            ],
-            "stations": [
-              "Terraria/CookingPots"
-            ],
-            "conditions": []
-          },
-          {
-            "ingredients": [
-              {
-                "item": "ThoriumMod/BlueLobster",
-                "stack": 1
-              }
-            ],
-            "stations": [
-              "Terraria/CookingPots"
-            ],
-            "conditions": []
-          }
-        ]
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/LobsterTail": "<stage-id>"
         },
         "sourceStages": {}
       }
@@ -5025,42 +4747,6 @@
       }
     },
     {
-      "id": "unassigned-combat-item.9b0c731e225b",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/PadThai",
-      "displayName": "Тайская еда",
-      "classification": {
-        "buffCategory": "Food",
-        "classes": [
-          "melee",
-          "ranged",
-          "magic",
-          "summoner",
-          "bard",
-          "healer",
-          "thrower"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/TravellingMerchant",
-            "shop": "Shop",
-            "conditions": []
-          }
-        ],
-        "recipes": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/PadThai": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
       "id": "unassigned-combat-item.ae981be2d337",
       "kind": "unassigned-combat-item",
       "item": "Terraria/PaperAirplaneA",
@@ -5275,42 +4961,6 @@
       "resolution": {
         "itemStages": {
           "Terraria/PearlwoodSword": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.133e5bb468c2",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/Pho",
-      "displayName": "Фо",
-      "classification": {
-        "buffCategory": "Food",
-        "classes": [
-          "melee",
-          "ranged",
-          "magic",
-          "summoner",
-          "bard",
-          "healer",
-          "thrower"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/TravellingMerchant",
-            "shop": "Shop",
-            "conditions": []
-          }
-        ],
-        "recipes": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/Pho": "<stage-id>"
         },
         "sourceStages": {}
       }
@@ -5935,42 +5585,6 @@
         "sourceStages": {
           "Terraria/GoodieBag": "<stage-id>"
         }
-      }
-    },
-    {
-      "id": "unassigned-combat-item.4b918bf5efcc",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/Sake",
-      "displayName": "Саке",
-      "classification": {
-        "buffCategory": "Food",
-        "classes": [
-          "melee",
-          "ranged",
-          "magic",
-          "summoner",
-          "bard",
-          "healer",
-          "thrower"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/TravellingMerchant",
-            "shop": "Shop",
-            "conditions": []
-          }
-        ],
-        "recipes": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/Sake": "<stage-id>"
-        },
-        "sourceStages": {}
       }
     },
     {
@@ -7127,42 +6741,6 @@
       }
     },
     {
-      "id": "unassigned-combat-item.b703fc695112",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/Toxikarp",
-      "displayName": "Токсичный карп",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/Bladetongue",
-                "stack": 1
-              }
-            ],
-            "stations": [
-              "Terraria/DemonAltar"
-            ],
-            "conditions": []
-          }
-        ]
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/Toxikarp": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
       "id": "unassigned-combat-item.9ea218860f40",
       "kind": "unassigned-combat-item",
       "item": "Terraria/TragicUmbrella",
@@ -7354,60 +6932,6 @@
       }
     },
     {
-      "id": "unassigned-combat-item.c135883fd3d5",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/UnholyTrident",
-      "displayName": "Нечестивый трезубец",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "magic"
-        ]
-      },
-      "evidence": {
-        "drops": [
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/RedDevil",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-                "description": null
-              }
-            ]
-          }
-        ],
-        "shops": [],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/RedDevilBanner",
-                "stack": 1
-              }
-            ],
-            "stations": [
-              "Terraria/Solidifier"
-            ],
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "После победы над любым механическим боссом"
-              }
-            ]
-          }
-        ]
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/UnholyTrident": "<stage-id>"
-        },
-        "sourceStages": {
-          "Terraria/RedDevil": "<stage-id>"
-        }
-      }
-    },
-    {
       "id": "unassigned-combat-item.d2580693a319",
       "kind": "unassigned-combat-item",
       "item": "Terraria/ValkyrieYoyo",
@@ -7536,160 +7060,6 @@
           "Terraria/Spazmatism": "<stage-id>",
           "Terraria/SkeletronPrime": "<stage-id>",
           "Terraria/TheDestroyer": "<stage-id>"
-        }
-      }
-    },
-    {
-      "id": "unassigned-combat-item.ccf1982963a5",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/WandofFrosting",
-      "displayName": "Морозящий жезл",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "magic"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/WandofSparking",
-                "stack": 1
-              },
-              {
-                "item": "Terraria/IceTorch",
-                "stack": 99
-              }
-            ],
-            "stations": [],
-            "conditions": []
-          }
-        ]
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/WandofFrosting": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.b1162c0bdc3d",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/WandofSparking",
-      "displayName": "Жезл искр",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "magic"
-        ]
-      },
-      "evidence": {
-        "drops": [
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/Mimic",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeedHardmode",
-                "description": null
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/Mimic",
-            "conditions": [
-              {
-                "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-                "description": null
-              }
-            ]
-          },
-          {
-            "sourceKind": "container",
-            "source": "Terraria/WoodenCrate",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-                "description": null
-              }
-            ]
-          }
-        ],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/SkeletonMerchant",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "Во время последней четверти"
-              },
-              {
-                "type": "Terraria.Condition",
-                "description": "Не в генерации мира «Remix»"
-              }
-            ]
-          }
-        ],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/Wood",
-                "stack": 5
-              },
-              {
-                "item": "Terraria/Torch",
-                "stack": 3
-              },
-              {
-                "item": "Terraria/FallenStar",
-                "stack": 1
-              }
-            ],
-            "stations": [
-              "Terraria/Anvils"
-            ],
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "Не в генерации мира «Remix»"
-              }
-            ]
-          },
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/WoodenCrate",
-                "stack": 5
-              }
-            ],
-            "stations": [
-              "Terraria/WorkBenches"
-            ],
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "Не в генерации мира «Remix»"
-              }
-            ]
-          }
-        ]
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/WandofSparking": "<stage-id>"
-        },
-        "sourceStages": {
-          "Terraria/Mimic": "<stage-id>",
-          "Terraria/WoodenCrate": "<stage-id>"
         }
       }
     },
@@ -7852,41 +7222,6 @@
       "resolution": {
         "itemStages": {
           "Terraria/ZapinatorGray": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.b9ca625620f5",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/ZapinatorOrange",
-      "displayName": "Оранжевый запинатор",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "magic"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/TravellingMerchant",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "В хардмоде"
-              }
-            ]
-          }
-        ],
-        "recipes": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/ZapinatorOrange": "<stage-id>"
         },
         "sourceStages": {}
       }
@@ -8194,9 +7529,9 @@
       }
     },
     {
-      "id": "unassigned-vanilla-npc-sources.d7a6e5161142",
+      "id": "unassigned-vanilla-npc-sources.ba9fea0bdfda",
       "kind": "unassigned-vanilla-npc-sources",
-      "affectedCount": 164,
+      "affectedCount": 163,
       "sources": [
         {
           "source": "Terraria/AngryBones",
@@ -9490,25 +8825,6 @@
           "items": [
             "Terraria/ZombieArm"
           ]
-        },
-        {
-          "source": "Terraria/TravellingMerchant",
-          "sourceKind": "shop",
-          "items": [
-            "Terraria/BouncingShield",
-            "Terraria/Code1",
-            "Terraria/Code2",
-            "Terraria/Gatligator",
-            "Terraria/Katana",
-            "Terraria/Keybrand",
-            "Terraria/PadThai",
-            "Terraria/Pho",
-            "Terraria/PulseBow",
-            "Terraria/Revolver",
-            "Terraria/Sake",
-            "Terraria/ZapinatorGray",
-            "Terraria/ZapinatorOrange"
-          ]
         }
       ],
       "resolution": {
@@ -9675,8 +8991,7 @@
           "Terraria/ZombieRaincoat": "<stage-id>",
           "Terraria/ZombieSuperman": "<stage-id>",
           "Terraria/ZombieSweater": "<stage-id>",
-          "Terraria/ZombieXmas": "<stage-id>",
-          "Terraria/TravellingMerchant": "<stage-id>"
+          "Terraria/ZombieXmas": "<stage-id>"
         }
       }
     },
@@ -9828,46 +9143,6 @@
             "conditionTypes": [],
             "conditionDescriptions": [
               "Во время последней четверти"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.141987398a36",
-      "kind": "unresolved-condition",
-      "sourceKind": "drop",
-      "conditions": [
-        {
-          "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: Не в генерации мира «Remix»"
-        }
-      ],
-      "affectedCount": 2,
-      "affected": [
-        {
-          "item": "Terraria/Katana",
-          "source": "Terraria/KingSlime"
-        },
-        {
-          "item": "Terraria/Katana",
-          "source": "Terraria/KingSlimeBossBag"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "drop"
-            ],
-            "sourceIds": [
-              "Terraria/KingSlime",
-              "Terraria/KingSlimeBossBag"
-            ],
-            "conditionTypes": [],
-            "conditionDescriptions": [
-              "Предметы: Не в генерации мира «Remix»"
             ]
           }
         ]
@@ -11287,46 +10562,6 @@
       }
     },
     {
-      "id": "unresolved-condition.667cbb59ec93",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "Не в генерации мира «Remix»"
-        }
-      ],
-      "affectedCount": 2,
-      "affected": [
-        {
-          "item": "Terraria/WandofSparking",
-          "source": "Terraria/SkeletonMerchant"
-        },
-        {
-          "item": "Terraria/Katana",
-          "source": "Terraria/TravellingMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/SkeletonMerchant",
-              "Terraria/TravellingMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionDescriptions": [
-              "Не в генерации мира «Remix»"
-            ]
-          }
-        ]
-      }
-    },
-    {
       "id": "unresolved-condition.67d5981a7f06",
       "kind": "unresolved-condition",
       "sourceKind": "drop",
@@ -11636,159 +10871,6 @@
             "conditionDescriptions": [
               "Ночью после победы над Пожирателем миров или Мозгом Ктулху, или в любое время в хардмоде"
             ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.76a5d3f1a019",
-      "kind": "unresolved-condition",
-      "sourceKind": "drop",
-      "conditions": [
-        {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
-          "description": null
-        }
-      ],
-      "affectedCount": 34,
-      "affected": [
-        {
-          "item": "Terraria/Spear",
-          "source": "Terraria/WoodenCrate"
-        },
-        {
-          "item": "Terraria/Blowpipe",
-          "source": "Terraria/WoodenCrate"
-        },
-        {
-          "item": "Terraria/WoodenBoomerang",
-          "source": "Terraria/WoodenCrate"
-        },
-        {
-          "item": "Terraria/WandofSparking",
-          "source": "Terraria/WoodenCrate"
-        },
-        {
-          "item": "Terraria/SnowballCannon",
-          "source": "Terraria/FrozenCrate"
-        },
-        {
-          "item": "Terraria/AquaScepter",
-          "source": "Terraria/LockBox"
-        },
-        {
-          "item": "Terraria/FlowerofFire",
-          "source": "Terraria/ObsidianLockbox"
-        },
-        {
-          "item": "Terraria/MagicDagger",
-          "source": "Terraria/Mimic"
-        },
-        {
-          "item": "Terraria/UnholyTrident",
-          "source": "Terraria/RedDevil"
-        },
-        {
-          "item": "Terraria/SnowballCannon",
-          "source": "Terraria/FrozenCrateHard"
-        },
-        {
-          "item": "Terraria/Flairon",
-          "source": "Terraria/DukeFishron"
-        },
-        {
-          "item": "Terraria/Tsunami",
-          "source": "Terraria/DukeFishron"
-        },
-        {
-          "item": "Terraria/BubbleGun",
-          "source": "Terraria/DukeFishron"
-        },
-        {
-          "item": "Terraria/RazorbladeTyphoon",
-          "source": "Terraria/DukeFishron"
-        },
-        {
-          "item": "Terraria/TempestStaff",
-          "source": "Terraria/DukeFishron"
-        },
-        {
-          "item": "Terraria/Flairon",
-          "source": "Terraria/FishronBossBag"
-        },
-        {
-          "item": "Terraria/Tsunami",
-          "source": "Terraria/FishronBossBag"
-        },
-        {
-          "item": "Terraria/RazorbladeTyphoon",
-          "source": "Terraria/FishronBossBag"
-        },
-        {
-          "item": "Terraria/TempestStaff",
-          "source": "Terraria/FishronBossBag"
-        },
-        {
-          "item": "Terraria/BubbleGun",
-          "source": "Terraria/FishronBossBag"
-        },
-        {
-          "item": "Terraria/ChainKnife",
-          "source": "Terraria/CaveBat"
-        },
-        {
-          "item": "Terraria/KOCannon",
-          "source": "Terraria/Clown"
-        },
-        {
-          "item": "Terraria/Keybrand",
-          "source": "Terraria/RustyArmoredBonesAxe"
-        },
-        {
-          "item": "Terraria/Keybrand",
-          "source": "Terraria/RustyArmoredBonesFlail"
-        },
-        {
-          "item": "Terraria/Keybrand",
-          "source": "Terraria/RustyArmoredBonesSword"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "drop"
-            ],
-            "sourceIds": [
-              "Terraria/WoodenCrate",
-              "Terraria/FrozenCrate",
-              "Terraria/LockBox",
-              "Terraria/ObsidianLockbox",
-              "Terraria/Mimic",
-              "Terraria/RedDevil",
-              "Terraria/FrozenCrateHard",
-              "Terraria/DukeFishron",
-              "Terraria/FishronBossBag",
-              "Terraria/CaveBat",
-              "Terraria/Clown",
-              "Terraria/RustyArmoredBonesAxe",
-              "Terraria/RustyArmoredBonesFlail",
-              "Terraria/RustyArmoredBonesSword",
-              "Terraria/RustyArmoredBonesSwordNoArmor",
-              "Terraria/BlueArmoredBones",
-              "Terraria/BlueArmoredBonesMace",
-              "Terraria/BlueArmoredBonesNoPants",
-              "Terraria/BlueArmoredBonesSword",
-              "Terraria/HellArmoredBones",
-              "Terraria/HellArmoredBonesSpikeShield",
-              "Terraria/HellArmoredBonesMace",
-              "Terraria/HellArmoredBonesSword"
-            ],
-            "conditionTypes": [
-              "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed"
-            ],
-            "conditionDescriptions": []
           }
         ]
       }
@@ -12931,61 +12013,6 @@
       }
     },
     {
-      "id": "unresolved-condition.be1ddb6e6f3c",
-      "kind": "unresolved-condition",
-      "sourceKind": "recipe",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "Не в генерации мира «Remix»"
-        }
-      ],
-      "affectedCount": 5,
-      "affected": [
-        {
-          "item": "Terraria/WandofSparking",
-          "source": "Terraria/WandofSparking"
-        },
-        {
-          "item": "Terraria/FlowerofFire",
-          "source": "Terraria/FlowerofFire"
-        },
-        {
-          "item": "Terraria/ChainKnife",
-          "source": "Terraria/ChainKnife"
-        },
-        {
-          "item": "Terraria/AquaScepter",
-          "source": "Terraria/AquaScepter"
-        },
-        {
-          "item": "Terraria/SnowballCannon",
-          "source": "Terraria/SnowballCannon"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "recipe"
-            ],
-            "sourceIds": [
-              "Terraria/WandofSparking",
-              "Terraria/FlowerofFire",
-              "Terraria/ChainKnife",
-              "Terraria/AquaScepter",
-              "Terraria/SnowballCannon"
-            ],
-            "conditionTypes": [],
-            "conditionDescriptions": [
-              "Не в генерации мира «Remix»"
-            ]
-          }
-        ]
-      }
-    },
-    {
       "id": "unresolved-condition.c0a0193286c8",
       "kind": "unresolved-condition",
       "sourceKind": "drop",
@@ -13038,12 +12065,12 @@
       "affectedCount": 2,
       "affected": [
         {
-          "item": "Terraria/MagicDagger",
-          "source": "Terraria/SkeletonMerchant"
-        },
-        {
           "item": "Terraria/Keybrand",
           "source": "Terraria/TravellingMerchant"
+        },
+        {
+          "item": "Terraria/MagicDagger",
+          "source": "Terraria/SkeletonMerchant"
         }
       ],
       "resolution": {
@@ -13054,8 +12081,8 @@
               "shop"
             ],
             "sourceIds": [
-              "Terraria/SkeletonMerchant",
-              "Terraria/TravellingMerchant"
+              "Terraria/TravellingMerchant",
+              "Terraria/SkeletonMerchant"
             ],
             "conditionTypes": [],
             "conditionDescriptions": [

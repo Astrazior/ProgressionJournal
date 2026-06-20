@@ -40,8 +40,14 @@ assert(fishingHookOrder.every(index => index >= 0)
 "Fishing hooks are not executed in tModLoader order");
 assert(fishingResolverSource.includes("PlayerLoader.ModifyCaughtFish"),
   "The final caught item is not passed through ModifyCaughtFish");
+assert(fishingResolverSource.includes("attempt.legendary = rarity == 4")
+  && fishingResolverSource.includes("attempt.crate = rarity == 5"),
+  "Fishing pipeline must deterministically probe every catch rarity");
 assert(fishingResolverSource.includes("progressionIndexes.Count == 0"),
   "Fishing conditions must tolerate observations with no trustworthy progression evidence");
+assert(fishingResolverSource.includes("hasSyntheticModEnvironment")
+  && fishingResolverSource.includes("? -1"),
+  "Synthetic ModBiome fishing observations must not invent progression evidence");
 assert(fishingResolverSource.includes("ModContent.GetContent<ModBiome>()"),
   "ModBiome scenarios are missing from the fishing pipeline");
 assert(fishingResolverSource.includes("ModContent.GetContent<ModWaterStyle>()"),
@@ -70,9 +76,30 @@ assert(townNpcResolverSource.includes("ModContent.GetContent<ModSystem>()")
   && townNpcResolverSource.includes("system.PreUpdateWorld()")
   && townNpcResolverSource.includes("CaptureStaticFieldState"),
 "Custom travelling town NPC systems are not runtime-probed or isolated");
+const snapshotExporterClassificationSource = fs.readFileSync(
+  path.join(root, "Commands", "ExportProgressionSnapshotCommand.cs"),
+  "utf8");
+const vanillaClassificationMethod = snapshotExporterClassificationSource.slice(
+  snapshotExporterClassificationSource.indexOf("CreateVanillaItemClassifications"),
+  snapshotExporterClassificationSource.indexOf("private static bool StatModifierEquals"));
+assert(!vanillaClassificationMethod.includes("entry.Evaluations"),
+  "Vanilla classifications must not depend on the previously generated profile");
 const itemSourceResolverSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalItemSourceResolver.cs"),
   "utf8");
+const generatedContainerSource = fs.readFileSync(
+  path.join(root, "Data", "Resolvers", "JournalGeneratedContainerSourceSystem.cs"),
+  "utf8");
+assert(generatedContainerSource.includes("override void PostWorldGen()")
+  && generatedContainerSource.includes("override void PostUpdateWorld()")
+  && generatedContainerSource.includes("CaptureGeneratedContainers()")
+  && generatedContainerSource.includes("SaveWorldData(TagCompound tag)")
+  && generatedContainerSource.includes("LoadWorldData(TagCompound tag)")
+  && generatedContainerSource.includes("itemGroup.Count() / (float)containerCount"),
+  "Generated chest loot must be captured generically, persisted, and assigned a per-container rate");
+assert(!itemSourceResolverSource.includes("CalamityMod/AbyssTreasureChest")
+  && !itemSourceResolverSource.includes("AncientTreasureChestLoot"),
+  "Generated chest sources must not be hardcoded per mod or item");
 for (const heavyResolver of [
   "JournalFishingSourceResolver.",
   "JournalTownNpcAvailabilityResolver.",
@@ -158,9 +185,8 @@ assert(snapshotExporterSource.includes("DamageClassLoader.DamageClassCount"),
   "Modded damage classes are not fully enumerated for combat classification");
 assert(snapshotExporterSource.includes("VanillaItemClassifications = CreateVanillaItemClassifications()"),
   "Vanilla combat item classifications are not exported for profile filtering");
-assert(snapshotExporterSource.includes("RecommendationTier.NotRecommended")
-  || snapshotExporterSource.includes("RecommendationTier.Recommended"),
-"Vanilla classification export must not treat negative recommendations as class membership");
+assert(!vanillaClassificationMethod.includes("entry.Evaluations"),
+  "Vanilla combat classification must remain independent from recommendation tiers");
 const profileGeneratorSource = fs.readFileSync(
   path.join(root, "Tools", "ProfileGeneratorCore.mjs"),
   "utf8");
@@ -295,20 +321,13 @@ for (const modName of expected) {
     "Observed Sea Spirit Amulet fishing must not retain a manual fishing source");
     assert(snapshot.fishing?.some(record =>
       record.targetType === "item"
-      && record.target === "CalamityMod/SeaSpiritAmulet"
-      && record.earliestStageIndex >= 0),
+      && record.target === "CalamityMod/SeaSpiritAmulet"),
     "Sea Spirit Amulet must be observed by the runtime fishing pipeline");
     const sparklingEmpressObserved = snapshot.fishing?.some(record =>
       record.targetType === "item"
-      && record.target === "CalamityMod/SparklingEmpress"
-      && record.earliestStageIndex >= 0);
-    assert.equal(
-      agentRules.rules.some(rule =>
-        rule.kind === "fishing-source"
-        && (rule.item === "CalamityMod/SparklingEmpress"
-            || rule.items?.includes("CalamityMod/SparklingEmpress"))),
-      !sparklingEmpressObserved,
-      "Sparkling Empress manual fishing source must exist only while runtime coverage is absent");
+      && record.target === "CalamityMod/SparklingEmpress");
+    assert(sparklingEmpressObserved,
+      "Sparkling Empress must retain its runtime fishing source even when its stage is declared separately");
     assert(migration?.pendingRules.some(rule =>
       rule.id === "shady-salesman-source"),
     "Unobserved Shady Salesman availability must retain its manual fallback");
@@ -373,6 +392,8 @@ for (const modName of expected) {
     };
     for (const [itemId, stageId] of Object.entries({
       "CalamityMod/LuxorsGift": "start",
+      "CalamityMod/ContaminatedBile": "start",
+      "CalamityMod/GacruxianMollusk": "wall-of-flesh",
       "CalamityMod/SeaSpiritAmulet": "desert-scourge",
       "CalamityMod/DepthCharm": "skeletron",
       "CalamityMod/AnechoicPlating": "skeletron",
@@ -390,6 +411,22 @@ for (const modName of expected) {
       assert.equal(entry?.evaluations?.[0]?.stageId ?? entry?.stageId, stageId,
         `${itemId} has an incorrect availability stage`);
     }
+    for (const [itemId, stageId] of Object.entries({
+      "Terraria/Katana": "start",
+      "Terraria/Trimarang": "desert-scourge"
+    })) {
+      assert.equal(stageOf(itemId), stageId,
+        `${itemId} must follow its earliest available source`);
+    }
+    assert.equal(report.generation?.paths?.["Terraria/Shroomerang"]?.stage, "start",
+      "Shroomerang must be available from pre-Hardmode Mushroom Chests");
+    const gacruxianMollusk = profile.entries.find(entry =>
+      (entry.itemGroups ?? []).flat().some(reference =>
+        reference.mod === "CalamityMod" && reference.item === "GacruxianMollusk"));
+    assert(gacruxianMollusk?.fishingSources?.some(source =>
+      source.conditions?.some(condition =>
+        condition["en-US"] === "Legendary catch in the Astral Infection")),
+    "Gacruxian Mollusk must display its Astral legendary fishing source");
     for (const [itemId, stageId] of Object.entries({
       "CalamityMod/Swordsplosion": "moon-lord",
       "CalamityMod/BlunderBooster": "moon-lord",
@@ -442,8 +479,7 @@ for (const modName of expected) {
       "Restoration Potion must be available from naturally growing Glowing Mushrooms");
     assert(snapshot.fishing?.some(record =>
       record.targetType === "item"
-      && record.target === "CalamityMod/SeaSpiritAmulet"
-      && record.earliestStageIndex >= 0),
+      && record.target === "CalamityMod/SeaSpiritAmulet"),
     "Sea Spirit Amulet fishing must remain present in the runtime snapshot");
   }
   const snapshotVersions = new Map(snapshot.mods.map(mod => [mod.name, mod.version]));
@@ -660,6 +696,10 @@ assert(vanillaSources.initialStations.includes("Terraria/Hellforge"));
 assert(vanillaSources.initialItems.includes("Terraria/PinkGel"));
 assert(vanillaSources.initialItems.includes("Terraria/JungleRose"));
 assert(vanillaSources.initialItems.includes("Terraria/GlowingMushroom"));
+assert(vanillaSources.initialItems.includes("Terraria/Shroomerang"));
+assert(vanillaSources.initialVisibleItems.includes("Terraria/Shroomerang"));
+assert(vanillaSources.stages[0].enemies?.includes("Terraria/GiantWormHead"));
+assert(vanillaSources.stages[0].shops?.includes("Terraria/TravellingMerchant"));
 assert(!vanillaSources.stages[0].enemies?.includes("Terraria/Skeleton"));
 assert(!vanillaSources.stages.find(stage => stage.id === "world-evil")
   .shops?.includes("Terraria/DD2Bartender"));

@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bosses",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-06-20T12:23:52.334Z",
+  "generatedAtUtc": "2026-06-20T17:19:19.937Z",
   "requiredMods": [
     {
       "name": "CalamityMod",
@@ -12102,6 +12102,45 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.bladetongue",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Bladetongue",
+            "displayName": "Язык-лезвие"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Вода",
+            "Биом: Багрянец",
+            "Глубина: Поверхность",
+            "Доступно после этапа: Стена плоти",
+            "Мир: До хардмода, День"
+          ]
+        }
+      ],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.anarchyblade",
       "category": "Weapon",
       "classes": [
@@ -13707,6 +13746,35 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.zapinatororange",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "ZapinatorOrange",
+            "displayName": "Оранжевый запинатор"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -16472,6 +16540,60 @@
         }
       ],
       "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.unholytrident",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "UnholyTrident",
+            "displayName": "Нечестивый трезубец"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "destroyer",
+          "classes": [
+            "magic"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Second Mechanical Boss",
+            "ru-RU": "Второй механический босс"
+          }
+        },
+        {
+          "stageId": "twins",
+          "classes": [
+            "magic"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Third Mechanical Boss",
+            "ru-RU": "Третий механический босс"
+          }
+        }
+      ],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -25063,6 +25185,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.code2",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Code2",
+            "displayName": "Код 2"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.clingerstaff",
       "category": "Weapon",
       "classes": [
@@ -25086,6 +25237,45 @@
       ],
       "wiki": [],
       "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.toxikarp",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Toxikarp",
+            "displayName": "Токсичный карп"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Вода",
+            "Биом: Порча",
+            "Глубина: Поверхность",
+            "Доступно после этапа: Стена плоти",
+            "Мир: До хардмода, День"
+          ]
+        }
+      ],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -25861,6 +26051,45 @@
       ],
       "wiki": [],
       "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.crystalserpent",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "CrystalSerpent",
+            "displayName": "Кристальный змей"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Вода",
+            "Биом: Освящение",
+            "Глубина: Поверхность",
+            "Доступно после этапа: Стена плоти",
+            "Мир: До хардмода, День"
+          ]
+        }
+      ],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -27246,6 +27475,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.floweroffire",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "FlowerofFire",
+            "displayName": "Огненный цветок"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.firewhip",
       "category": "Weapon",
       "classes": [
@@ -27640,6 +27898,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.flamelash",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Flamelash",
+            "displayName": "Огнеплеть"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.orangephaseblade",
       "category": "Weapon",
       "classes": [
@@ -27943,7 +28230,16 @@
         }
       ],
       "wiki": [],
-      "fishingSources": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            {
+              "en-US": "Legendary catch in the Astral Infection",
+              "ru-RU": "Легендарный улов в Астральной инфекции"
+            }
+          ]
+        }
+      ],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -28659,7 +28955,16 @@
           }
         }
       ],
-      "fishingSources": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            {
+              "en-US": "Legendary catch in the Astral Infection",
+              "ru-RU": "Легендарный улов в Астральной инфекции"
+            }
+          ]
+        }
+      ],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -32100,7 +32405,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -33382,7 +33687,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -33674,18 +33979,7 @@
         }
       ],
       "wiki": [],
-      "fishingSources": [
-        {
-          "conditions": [
-            "Жидкость: Вода",
-            "Биом: Murky Waters, Thermal Vents, The Void",
-            "Стиль воды: CalamityMod/MiddleAbyssWater, CalamityMod/UpperAbyssWater, CalamityMod/VoidWater",
-            "Глубина: Поверхность",
-            "Доступно после этапа: Скелетрон",
-            "Мир: До хардмода, День"
-          ]
-        }
-      ],
+      "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -34870,7 +35164,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -35422,6 +35716,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.gatligator",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Gatligator",
+            "displayName": "Гатлингатор"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.enchantedboomerang",
       "category": "Weapon",
       "classes": [
@@ -35715,12 +36038,25 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "desert-scourge",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [],
+      "wiki": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "classes": [
+            "melee"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "World Evil",
+            "ru-RU": "Зло мира"
+          }
+        }
+      ],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -37946,7 +38282,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -38498,7 +38834,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "eye-of-cthulhu",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -40096,18 +40432,7 @@
           }
         }
       ],
-      "fishingSources": [
-        {
-          "conditions": [
-            "Жидкость: Вода",
-            "Биом: Murky Waters, Thermal Vents, The Void",
-            "Стиль воды: CalamityMod/MiddleAbyssWater, CalamityMod/UpperAbyssWater, CalamityMod/VoidWater",
-            "Глубина: Поверхность",
-            "Доступно после этапа: Скелетрон",
-            "Мир: До хардмода, День"
-          ]
-        }
-      ],
+      "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -40320,12 +40645,37 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [],
+      "wiki": [
+        {
+          "stageId": "start",
+          "classes": [
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "King Slime",
+            "ru-RU": "Король слизней"
+          }
+        },
+        {
+          "stageId": "eye-of-cthulhu",
+          "classes": [
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "World Evil",
+            "ru-RU": "Зло мира"
+          }
+        }
+      ],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -43623,12 +43973,24 @@
       ],
       "evaluations": [
         {
-          "stageId": "world-evil",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
       "wiki": [
+        {
+          "stageId": "crabulon",
+          "classes": [
+            "ranged"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "World Evil",
+            "ru-RU": "Зло мира"
+          }
+        },
         {
           "stageId": "queen-bee",
           "classes": [
@@ -47824,18 +48186,7 @@
           }
         }
       ],
-      "fishingSources": [
-        {
-          "conditions": [
-            "Жидкость: Вода",
-            "Биом: Basalt Gully, Clam Den, Gleaming Burrows, Polyp Forest, Radiant Reefs, Timeless Shores",
-            "Стиль воды: CalamityMod/SunkenSeaBurrowsWater",
-            "Глубина: Поверхность",
-            "Доступно после этапа: Пустынный бич",
-            "Мир: До хардмода, День"
-          ]
-        }
-      ],
+      "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -52964,6 +53315,52 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.gi",
+      "category": "Armor",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Gi",
+            "displayName": "Ги"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "start",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "King Slime",
+            "ru-RU": "Король слизней"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.woodenbow",
       "category": "Weapon",
       "classes": [
@@ -54715,6 +55112,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.magichat",
+      "category": "Armor",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "MagicHat",
+            "displayName": "Волшебная шляпа"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.irongreaves",
       "category": "Armor",
       "classes": [
@@ -54772,6 +55198,48 @@
         }
       ],
       "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.gypsyrobe",
+      "category": "Armor",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "GypsyRobe",
+            "displayName": "Загадочная роба"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "start",
+          "classes": [
+            "magic"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "King Slime",
+            "ru-RU": "Король слизней"
+          }
+        }
+      ],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -57436,10 +57904,7 @@
       "fishingSources": [
         {
           "conditions": [
-            "Жидкость: Вода",
-            "Биом: Вне особого биома",
-            "Глубина: Поверхность",
-            "Мир: День, Сид Not the bees"
+            "Жидкость: Вода"
           ]
         }
       ],
@@ -57747,6 +58212,35 @@
       "evaluations": [
         {
           "stageId": "eye-of-cthulhu",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.yellowcounterweight",
+      "category": "Accessory",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "YellowCounterweight",
+            "displayName": "Желтый противовес"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -58321,7 +58815,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "eye-of-cthulhu",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -58478,7 +58972,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -59748,7 +60242,13 @@
           }
         }
       ],
-      "fishingSources": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Вода"
+          ]
+        }
+      ],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -60750,7 +61250,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "eye-of-cthulhu",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -61396,7 +61896,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "eye-of-cthulhu",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -61716,6 +62216,48 @@
         }
       ],
       "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.yoyobag",
+      "category": "Accessory",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "YoyoBag",
+            "displayName": "Рюкзак для йо-йо"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "devourer-of-gods",
+          "classes": [
+            "melee"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Yharon",
+            "ru-RU": "Ярон"
+          }
+        }
+      ],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -62629,6 +63171,35 @@
       "evaluations": [
         {
           "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.blackcounterweight",
+      "category": "Accessory",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "BlackCounterweight",
+            "displayName": "Черный противовес"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -72119,18 +72690,7 @@
         }
       ],
       "wiki": [],
-      "fishingSources": [
-        {
-          "conditions": [
-            "Жидкость: Вода",
-            "Биом: Basalt Gully, Clam Den, Gleaming Burrows, Polyp Forest, Radiant Reefs, Timeless Shores",
-            "Стиль воды: CalamityMod/SunkenSeaBurrowsWater",
-            "Глубина: Поверхность",
-            "Доступно после этапа: Пустынный бич",
-            "Мир: До хардмода, День"
-          ]
-        }
-      ],
+      "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -75699,6 +76259,69 @@
       ]
     },
     {
+      "key": "new.terraria.pho",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Pho",
+            "displayName": "Фо"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.padthai",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "PadThai",
+            "displayName": "Тайская еда"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.sake",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Sake",
+            "displayName": "Саке"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.calamitymod.baconoil",
       "category": "Food",
       "classes": [
@@ -76198,6 +76821,27 @@
             "mod": "Terraria",
             "item": "Sashimi",
             "displayName": "Сашими"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.lobstertail",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "LobsterTail",
+            "displayName": "Хвост лобстера"
           }
         ]
       ]
@@ -77035,6 +77679,27 @@
       ]
     },
     {
+      "key": "new.terraria.titanpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "TitanPotion",
+            "displayName": "Зелье титана"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.terraria.fishingpotion",
       "category": "Potion",
       "classes": [
@@ -77051,27 +77716,6 @@
             "mod": "Terraria",
             "item": "FishingPotion",
             "displayName": "Зелье рыбалки"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.cookedshrimp",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "king-slime",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "CookedShrimp",
-            "displayName": "Приготовленная креветка"
           }
         ]
       ]
@@ -77190,27 +77834,6 @@
             "mod": "Terraria",
             "item": "FlaskofParty",
             "displayName": "Флакон с праздником"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.titanpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "skeletron",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "TitanPotion",
-            "displayName": "Зелье титана"
           }
         ]
       ]
@@ -77421,6 +78044,27 @@
             "mod": "CalamityMod",
             "item": "Mangosteen",
             "displayName": "Mangosteen"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.cookedshrimp",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "CookedShrimp",
+            "displayName": "Приготовленная креветка"
           }
         ]
       ]

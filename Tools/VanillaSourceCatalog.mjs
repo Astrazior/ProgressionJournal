@@ -68,6 +68,7 @@ const START_ITEMS = [
   "Terraria/CrimsonRod",
   "Terraria/Boomstick",
   "Terraria/SnowballCannon",
+  "Terraria/Shroomerang",
   "Terraria/Gladius",
   "Terraria/PanicNecklace",
   "Terraria/Chain",
@@ -295,7 +296,6 @@ const MILESTONE_FACTS = [
       "Terraria/StarCloak",
       "Terraria/BrokenBatWing",
       "Terraria/CelestialEmblem",
-      "Terraria/Katana",
       "Terraria/CrystalBall"
       ,"Terraria/GreaterManaPotion"
       ,"Terraria/AncientBattleArmorMaterial"
@@ -492,6 +492,9 @@ const START_SOURCES = [
   "Terraria/Harpy",
   "Terraria/Crawdad",
   "Terraria/Crawdad2",
+  "Terraria/GiantWormHead",
+  "Terraria/GiantWormBody",
+  "Terraria/GiantWormTail",
   "Terraria/GiantShelly",
   "Terraria/GiantShelly2",
   "Terraria/GreekSkeleton",
@@ -528,12 +531,14 @@ const START_SHOPS = [
   "Terraria/Golfer",
   "Terraria/BestiaryGirl",
   "Terraria/SkeletonMerchant",
+  "Terraria/TravellingMerchant",
   "Terraria/TaxCollector"
 ];
 
 const START_VISIBLE_ITEMS = [
   "Terraria/Gel",
   "Terraria/WoodenArrow",
+  "Terraria/Shroomerang",
   "Terraria/FallenStar",
   "Terraria/Musket",
   "Terraria/TheUndertaker",

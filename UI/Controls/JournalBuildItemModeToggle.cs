@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 
 namespace ProgressionJournal.UI.Controls;
 

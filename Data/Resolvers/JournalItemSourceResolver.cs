@@ -106,7 +106,7 @@ public static class JournalItemSourceResolver
                 sourceItemId: sourceItemType);
         }
 
-        AppendWorldContainerSources(drops, itemId);
+        AppendGeneratedContainerSources(drops, itemId);
         return drops
             .GroupBy(static drop => new
             {
@@ -125,8 +125,31 @@ public static class JournalItemSourceResolver
             .ToArray();
     }
 
-    private static void AppendWorldContainerSources(List<JournalDropSource> drops, int targetItemId)
+    public static void ClearCache()
     {
+        Cache.Clear();
+    }
+
+    private static void AppendGeneratedContainerSources(List<JournalDropSource> drops, int targetItemId)
+    {
+        var generatedSources = JournalGeneratedContainerSourceSystem.GetSources(targetItemId);
+        if (generatedSources.Count > 0)
+        {
+            foreach (var source in generatedSources)
+            {
+                drops.Add(new JournalDropSource(
+                    Lang.GetItemNameValue(source.SourceItemId),
+                    sourceNpcType: null,
+                    sourceItemId: source.SourceItemId,
+                    source.DropRate,
+                    source.StackMin,
+                    source.StackMax,
+                    conditions: []));
+            }
+
+            return;
+        }
+
         foreach (var chest in Main.chest)
         {
             if (chest is null)

@@ -803,15 +803,18 @@ function unlockContainsVanillaFlag(unlock, key) {
 }
 
 function isProgressionNeutralCondition(condition) {
-  if (condition.type === "Terraria.Condition") {
-    const description = normalizeConditionText(condition.description);
-    if (/^between \d/u.test(description)
-        || /^player is in /u.test(description)
-        || /^world (?:with|has) /u.test(description)
-        || /^мир с /u.test(description)
-        || /^enabled in .* configuration$/u.test(description)) {
-      return true;
-    }
+  const description = normalizeConditionText(condition.description);
+  if (/^not in world generation /u.test(description)
+      || /^не в генерации мира /u.test(description)) {
+    return true;
+  }
+  if (condition.type === "Terraria.Condition"
+      && (/^between \d/u.test(description)
+          || /^player is in /u.test(description)
+          || /^world (?:with|has) /u.test(description)
+          || /^мир с /u.test(description)
+          || /^enabled in .* configuration$/u.test(description))) {
+    return true;
   }
   return new Set([
     "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
@@ -819,6 +822,7 @@ function isProgressionNeutralCondition(condition) {
     "Terraria.GameContent.ItemDropRules.Conditions+IsMasterMode",
     "Terraria.GameContent.ItemDropRules.Conditions+NotMasterMode",
     "Terraria.GameContent.ItemDropRules.Conditions+LegacyHack_IsBossAndNotExpert",
+    "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
     "Terraria.GameContent.ItemDropRules.Conditions+IsBloodMoonAndNotFromStatue",
     "Terraria.GameContent.ItemDropRules.Conditions+NotFromStatue"
   ]).has(condition.type);

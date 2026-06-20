@@ -407,10 +407,6 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
     private static List<SnapshotVanillaItemClassification> CreateVanillaItemClassifications()
     {
         return JournalRepository.GetAllVanillaEntries()
-            .Where(entry => entry.Evaluations.Any(static evaluation =>
-                evaluation.Tier is RecommendationTier.Recommended
-                    or RecommendationTier.Additional
-                    or RecommendationTier.FromGuide))
             .SelectMany(entry => entry.ItemIds
                 .Where(static itemId => itemId > 0 && itemId < ItemID.Count)
                 .Select(itemId => new
@@ -516,14 +512,37 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                 includedItems);
         }
 
-        AppendWorldContainerDrops(drops, includedItems);
+        AppendGeneratedContainerDrops(drops, includedItems);
         return drops;
     }
 
-    private static void AppendWorldContainerDrops(
+    private static void AppendGeneratedContainerDrops(
         ICollection<SnapshotDrop> result,
         IReadOnlySet<int> includedItems)
     {
+        var generatedDrops = JournalGeneratedContainerSourceSystem.GetAllSources()
+            .Where(drop => TryResolveItemReference(drop.SourceItem, out var sourceItemId)
+                && includedItems.Contains(sourceItemId)
+                && TryResolveItemReference(drop.TargetItem, out var targetItemId)
+                && includedItems.Contains(targetItemId))
+            .ToArray();
+        if (generatedDrops.Length > 0)
+        {
+            foreach (var drop in generatedDrops)
+            {
+                result.Add(new SnapshotDrop(
+                    "container",
+                    drop.SourceItem,
+                    drop.TargetItem,
+                    drop.DropRate,
+                    drop.StackMin,
+                    drop.StackMax,
+                    []));
+            }
+
+            return;
+        }
+
         foreach (var chest in Main.chest)
         {
             if (chest is null)
@@ -552,6 +571,31 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                     []));
             }
         }
+    }
+
+    private static bool TryResolveItemReference(string reference, out int itemId)
+    {
+        itemId = ItemID.None;
+        var separator = reference.IndexOf('/');
+        if (separator <= 0 || separator >= reference.Length - 1)
+        {
+            return false;
+        }
+
+        var modName = reference[..separator];
+        var itemName = reference[(separator + 1)..];
+        if (string.Equals(modName, "Terraria", StringComparison.OrdinalIgnoreCase))
+        {
+            return ItemID.Search.TryGetId(itemName, out itemId);
+        }
+
+        if (!ModContent.TryFind<ModItem>($"{modName}/{itemName}", out var modItem))
+        {
+            return false;
+        }
+
+        itemId = modItem.Type;
+        return true;
     }
 
     private static int? ResolveWorldContainerItem(Chest chest, IReadOnlySet<int> includedItems)
