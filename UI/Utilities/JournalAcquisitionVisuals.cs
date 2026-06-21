@@ -279,7 +279,8 @@ public static class JournalAcquisitionVisuals
 
     private static void AddHardmodeToken(string normalized, string condition, ICollection<JournalSourceTokenData> tokens)
     {
-        if (!ContainsAny(normalized, "hardmode", "hard mode", "хардмод"))
+        var isHardmodeOnly = IsHardmodeOnlyCondition(normalized);
+        if (!isHardmodeOnly && !ContainsAny(normalized, "hardmode", "hard mode", "хардмод"))
         {
             return;
         }
@@ -287,9 +288,22 @@ public static class JournalAcquisitionVisuals
         tokens.Add(new JournalSourceTokenData(
             JournalSourceTokenKind.Texture,
             0,
-            condition,
+            isHardmodeOnly
+                ? Language.GetTextValue("Mods.ProgressionJournal.Stages.HardmodeEntry")
+                : condition,
             HardmodeTexturePath));
     }
+
+    private static bool IsHardmodeOnlyCondition(string normalized) =>
+        normalized is
+            "hardmode"
+            or "in hardmode"
+            or "in hard mode"
+            or "drops in hardmode"
+            or "drops in hard mode"
+            or "хардмод"
+            or "в хардмоде"
+            or "выпадает в сложном режиме";
 
     private static void AddMoonPhaseToken(string normalized, string condition, ICollection<JournalSourceTokenData> tokens)
     {
