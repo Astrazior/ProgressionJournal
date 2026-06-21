@@ -617,6 +617,35 @@ internal static class JournalFishingSourceResolver
     {
         var equipment = catalog.Equipment[context.EquipmentIndex];
 
+        foreach (var fishingLevel in FishingLevels)
+        {
+            for (var seed = 0; seed < randomSeedCount; seed++)
+            {
+                Main.rand = new UnifiedRandom(seed);
+                var attempt = CreateAttempt(catalog, player, projectile, context, fishingLevel, equipment);
+                InvokeRollDropLevels(pipeline.RollDropLevels, projectile, fishingLevel, ref attempt);
+                RunAttempt(ref attempt);
+            }
+
+            for (var rarity = 0; rarity < 6; rarity++)
+            {
+                for (var seed = 0; seed < Math.Min(randomSeedCount, ForcedRaritySeedCount); seed++)
+                {
+                    Main.rand = new UnifiedRandom(seed);
+                    var attempt = CreateAttempt(catalog, player, projectile, context, fishingLevel, equipment);
+                    attempt.common = rarity == 0;
+                    attempt.uncommon = rarity == 1;
+                    attempt.rare = rarity == 2;
+                    attempt.veryrare = rarity == 3;
+                    attempt.legendary = rarity == 4;
+                    attempt.crate = rarity == 5;
+                    RunAttempt(ref attempt);
+                }
+            }
+        }
+
+        return;
+
         void RunAttempt(ref FishingAttempt attempt)
         {
             try
@@ -643,33 +672,6 @@ internal static class JournalFishingSourceResolver
             catch
             {
                 // A broken third-party hook invalidates only this observed attempt.
-            }
-        }
-
-        foreach (var fishingLevel in FishingLevels)
-        {
-            for (var seed = 0; seed < randomSeedCount; seed++)
-            {
-                Main.rand = new UnifiedRandom(seed);
-                var attempt = CreateAttempt(catalog, player, projectile, context, fishingLevel, equipment);
-                InvokeRollDropLevels(pipeline.RollDropLevels, projectile, fishingLevel, ref attempt);
-                RunAttempt(ref attempt);
-            }
-
-            for (var rarity = 0; rarity < 6; rarity++)
-            {
-                for (var seed = 0; seed < Math.Min(randomSeedCount, ForcedRaritySeedCount); seed++)
-                {
-                    Main.rand = new UnifiedRandom(seed);
-                    var attempt = CreateAttempt(catalog, player, projectile, context, fishingLevel, equipment);
-                    attempt.common = rarity == 0;
-                    attempt.uncommon = rarity == 1;
-                    attempt.rare = rarity == 2;
-                    attempt.veryrare = rarity == 3;
-                    attempt.legendary = rarity == 4;
-                    attempt.crate = rarity == 5;
-                    RunAttempt(ref attempt);
-                }
             }
         }
     }
@@ -904,7 +906,10 @@ internal static class JournalFishingSourceResolver
             .Order()
             .ToArray();
         var depths = contexts.Select(static context => context.Depth).Distinct().Order().ToArray();
-        var worldIndexes = contexts.Select(static context => context.WorldIndex).Distinct().Order().ToArray();
+        var effectiveWorlds = contexts
+            .Select(context => GetEffectiveWorld(catalog, context))
+            .Distinct()
+            .ToArray();
         var progressionIndexes = contexts
             .Select(context => GetEvidenceProgressionIndex(catalog, context))
             .Where(static index => index >= 0)
@@ -950,15 +955,30 @@ internal static class JournalFishingSourceResolver
                 string.Join(", ", depths.Select(static depth => Language.GetTextValue(DepthLocalizationKeys[depth])))));
         }
 
-        var hasSyntheticModEnvironment = environmentIndexes.Any(index =>
-            catalog.Environments[index].ModBiome is not null
-            || catalog.Environments[index].WaterStyle is not null);
-        if (!hasSyntheticModEnvironment)
-        {
-            AppendProgressionCondition(conditions, catalog, progressionIndexes);
-            AppendWorldConditions(conditions, worldIndexes);
-        }
+        AppendProgressionCondition(conditions, catalog, progressionIndexes);
+        AppendWorldConditions(conditions, effectiveWorlds);
         return conditions;
+    }
+
+    private static ProbeWorld GetEffectiveWorld(
+        FishingCatalog catalog,
+        ProbeContext context)
+    {
+        var world = Worlds[context.WorldIndex];
+        var progressionIndex = GetEffectiveProgressionIndex(catalog, context);
+        if (progressionIndex < 0 || progressionIndex >= catalog.Progression.Count)
+        {
+            return world;
+        }
+
+        var progression = catalog.Progression[progressionIndex];
+        return world with
+        {
+            Hardmode = world.Hardmode || progression.Hardmode,
+            DownedSkeletron = world.DownedSkeletron || progression.DownedSkeletron,
+            CombatBookUsed = world.CombatBookUsed || progression.CombatBookUsed,
+            UnlockedSlimeRed = world.UnlockedSlimeRed || progression.UnlockedSlimeRed
+        };
     }
 
     private static int GetEffectiveProgressionIndex(
@@ -985,11 +1005,7 @@ internal static class JournalFishingSourceResolver
         FishingCatalog catalog,
         ProbeContext context)
     {
-        var index = GetEffectiveProgressionIndex(catalog, context);
-        var environment = catalog.Environments[context.EnvironmentIndex];
-        return environment.ModBiome is not null || environment.WaterStyle is not null
-            ? -1
-            : index;
+        return GetEffectiveProgressionIndex(catalog, context);
     }
 
     private static void AppendProgressionCondition(
@@ -1016,9 +1032,8 @@ internal static class JournalFishingSourceResolver
 
     private static void AppendWorldConditions(
         List<string> conditions,
-        IReadOnlyCollection<int> worldIndexes)
+        IReadOnlyCollection<ProbeWorld> worlds)
     {
-        var worlds = worldIndexes.Select(static index => Worlds[index]).ToArray();
         var worldConditions = new List<string>();
 
         if (worlds.All(static world => world.Hardmode))

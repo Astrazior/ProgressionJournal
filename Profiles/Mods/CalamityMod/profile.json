@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bosses",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-06-20T23:45:35.685Z",
+  "generatedAtUtc": "2026-06-21T01:15:47.744Z",
   "requiredMods": [
     {
       "name": "CalamityMod",
@@ -16032,24 +16032,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "plantera",
+          "stageId": "golem",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
       "wiki": [
-        {
-          "stageId": "astrum-aureus",
-          "classes": [
-            "rogue"
-          ],
-          "sourceName": "Official Calamity Mod Wiki",
-          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
-          "target": {
-            "en-US": "Golem",
-            "ru-RU": "Голем"
-          }
-        },
         {
           "stageId": "ravager",
           "classes": [
@@ -23846,7 +23834,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "plantera",
+          "stageId": "golem",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -29778,10 +29766,10 @@
       "fishingSources": [
         {
           "conditions": [
-            {
-              "en-US": "Legendary catch in the Astral Infection",
-              "ru-RU": "Легендарный улов в Астральной инфекции"
-            }
+            "Жидкость: Вода",
+            "Биом: Astral Infection",
+            "Стиль воды: CalamityMod/AstralWater",
+            "Мир: До хардмода, День"
           ]
         }
       ],
@@ -30503,10 +30491,10 @@
       "fishingSources": [
         {
           "conditions": [
-            {
-              "en-US": "Legendary catch in the Astral Infection",
-              "ru-RU": "Легендарный улов в Астральной инфекции"
-            }
+            "Жидкость: Вода",
+            "Биом: Astral Infection",
+            "Стиль воды: CalamityMod/AstralWater",
+            "Мир: До хардмода, День"
           ]
         }
       ],
@@ -34813,7 +34801,18 @@
         }
       ],
       "wiki": [],
-      "fishingSources": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Вода",
+            "Биом: Murky Waters, Thermal Vents, The Void",
+            "Стиль воды: CalamityMod/MiddleAbyssWater, CalamityMod/UpperAbyssWater, CalamityMod/VoidWater",
+            "Глубина: Поверхность",
+            "Доступно после этапа: Скелетрон",
+            "Мир: До хардмода, День"
+          ]
+        }
+      ],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -35682,7 +35681,18 @@
         }
       ],
       "wiki": [],
-      "fishingSources": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Вода",
+            "Биом: Murky Waters, Thermal Vents, The Void",
+            "Стиль воды: CalamityMod/MiddleAbyssWater, CalamityMod/UpperAbyssWater, CalamityMod/VoidWater",
+            "Глубина: Поверхность",
+            "Доступно после этапа: Скелетрон",
+            "Мир: До хардмода, День"
+          ]
+        }
+      ],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -40688,7 +40698,15 @@
         }
       ],
       "wiki": [],
-      "fishingSources": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Лава",
+            "Биом: Brimstone Crags",
+            "Мир: До хардмода, День"
+          ]
+        }
+      ],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -42309,7 +42327,18 @@
           }
         }
       ],
-      "fishingSources": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Вода",
+            "Биом: Murky Waters, Thermal Vents, The Void",
+            "Стиль воды: CalamityMod/MiddleAbyssWater, CalamityMod/UpperAbyssWater, CalamityMod/VoidWater",
+            "Глубина: Поверхность",
+            "Доступно после этапа: Скелетрон",
+            "Мир: До хардмода, День"
+          ]
+        }
+      ],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -43749,7 +43778,18 @@
         }
       ],
       "wiki": [],
-      "fishingSources": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Вода",
+            "Биом: Murky Waters, Thermal Vents, The Void",
+            "Стиль воды: CalamityMod/MiddleAbyssWater, CalamityMod/UpperAbyssWater, CalamityMod/VoidWater",
+            "Глубина: Поверхность",
+            "Доступно после этапа: Скелетрон",
+            "Мир: До хардмода, День"
+          ]
+        }
+      ],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -50209,7 +50249,18 @@
           }
         }
       ],
-      "fishingSources": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Вода",
+            "Биом: Basalt Gully, Clam Den, Gleaming Burrows, Polyp Forest, Radiant Reefs, Timeless Shores",
+            "Стиль воды: CalamityMod/SunkenSeaBurrowsWater",
+            "Глубина: Поверхность",
+            "Доступно после этапа: Пустынный бич",
+            "Мир: До хардмода, День"
+          ]
+        }
+      ],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -67678,7 +67729,18 @@
         }
       ],
       "wiki": [],
-      "fishingSources": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Вода",
+            "Биом: Murky Waters, Thermal Vents, The Void",
+            "Стиль воды: CalamityMod/MiddleAbyssWater, CalamityMod/UpperAbyssWater, CalamityMod/VoidWater",
+            "Глубина: Поверхность",
+            "Доступно после этапа: Скелетрон",
+            "Мир: До хардмода, День"
+          ]
+        }
+      ],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -73014,7 +73076,18 @@
         }
       ],
       "wiki": [],
-      "fishingSources": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Вода",
+            "Биом: Murky Waters, Thermal Vents, The Void",
+            "Стиль воды: CalamityMod/MiddleAbyssWater, CalamityMod/UpperAbyssWater, CalamityMod/VoidWater",
+            "Глубина: Поверхность",
+            "Доступно после этапа: Скелетрон",
+            "Мир: До хардмода, День"
+          ]
+        }
+      ],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -75711,7 +75784,18 @@
         }
       ],
       "wiki": [],
-      "fishingSources": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Вода",
+            "Биом: Basalt Gully, Clam Den, Gleaming Burrows, Polyp Forest, Radiant Reefs, Timeless Shores",
+            "Стиль воды: CalamityMod/SunkenSeaBurrowsWater",
+            "Глубина: Поверхность",
+            "Доступно после этапа: Пустынный бич",
+            "Мир: До хардмода, День"
+          ]
+        }
+      ],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
