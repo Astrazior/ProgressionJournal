@@ -111,6 +111,10 @@ export function generateProfile(
     const floorIndex = stationStageFloors.get(id);
     return floorIndex === undefined || (stageIndexes.get(stage) ?? -1) >= floorIndex;
   };
+  const sourceAllowedAtStage = (id, stage) => {
+    const floorIndex = sourceStageFloors.get(id);
+    return floorIndex === undefined || (stageIndexes.get(stage) ?? -1) >= floorIndex;
+  };
   const unlockAtStage = (id, stage, via, metadata = {}) => {
     const floorIndex = itemStageFloors.get(id);
     if (floorIndex !== undefined && (stageIndexes.get(stage) ?? -1) < floorIndex) {
@@ -191,14 +195,18 @@ export function generateProfile(
       ...(stage.enemies ?? []),
       ...(stage.containers ?? [])
     ];
-    for (const source of stageSources) availableDropSources.add(source);
+    for (const source of stageSources) {
+      if (sourceAllowedAtStage(source, stage.id)) availableDropSources.add(source);
+    }
     for (const npc of stage.shops ?? []) {
+      if (!sourceAllowedAtStage(npc, stage.id)) continue;
       availableShops.add(npc);
       availableDropSources.add(npc);
       legacyAvailableShops.add(npc);
     }
 
     for (const source of availableDropSources) {
+      if (!sourceAllowedAtStage(source, stage.id)) continue;
       for (const drop of dropsBySource.get(source) ?? []) {
         if (conditionsAllowed(drop.conditions, stage, manifest, report, {
           sourceKind: "drop",
@@ -217,6 +225,7 @@ export function generateProfile(
         ...(event.containers ?? [])
       ];
       for (const source of eventSources) {
+        if (!sourceAllowedAtStage(source, stage.id)) continue;
         availableDropSources.add(source);
         for (const drop of dropsBySource.get(source) ?? []) {
           if (conditionsAllowed(drop.conditions, stage, manifest, report, {
@@ -239,6 +248,7 @@ export function generateProfile(
       }
     }
     for (const npc of availableShops) {
+      if (!sourceAllowedAtStage(npc, stage.id)) continue;
       for (const shop of shopsByNpc.get(npc) ?? []) {
         if ((!shop.observed && !legacyAvailableShops.has(npc))
             || (shop.observed && shop.earliestStageIndex > stageIndex)) {
@@ -255,6 +265,7 @@ export function generateProfile(
       }
     }
     for (const drop of globalDrops) {
+      if (!sourceAllowedAtStage(drop.source, stage.id)) continue;
       if (conditionsAllowed(drop.conditions, stage, manifest, report, {
         sourceKind: "drop",
         source: drop.source,
@@ -290,6 +301,7 @@ export function generateProfile(
         changed = true;
       }
       for (const container of [...available]) {
+        if (!sourceAllowedAtStage(container, stage.id)) continue;
         for (const drop of containerDropsBySource.get(container) ?? []) {
           if (!conditionsAllowed(drop.conditions, stage, manifest, report, {
             sourceKind: "drop",
@@ -487,6 +499,10 @@ function applyManualAssignments(sourceManifest, manualAssignments) {
     ...(manifest.stationStageFloors ?? {}),
     ...(manualAssignments.stationStages ?? {})
   };
+  manifest.sourceStageFloors = {
+    ...(manifest.sourceStageFloors ?? {}),
+    ...(manualAssignments.sourceStages ?? {})
+  };
   manifest.itemOverrides = {
     ...(manifest.itemOverrides ?? {}),
     ...(manualAssignments.itemOverrides ?? {})
@@ -535,11 +551,16 @@ function normalizeConditionText(value) {
 }
 
 function collectSourceStageFloors(manifest, stageIndexes) {
-  const floors = new Map();
+  const floors = new Map(
+    Object.entries(manifest.sourceStageFloors ?? {})
+      .filter(([, stageId]) => stageIndexes.has(stageId))
+      .map(([source, stageId]) => [source, stageIndexes.get(stageId)]));
+  const explicitSources = new Set(floors.keys());
   const addSources = (stageId, sources) => {
     const stageIndex = stageIndexes.get(stageId);
     if (stageIndex === undefined) return;
     for (const source of sources ?? []) {
+      if (explicitSources.has(source)) continue;
       const existing = floors.get(source);
       if (existing === undefined || stageIndex < existing) {
         floors.set(source, stageIndex);

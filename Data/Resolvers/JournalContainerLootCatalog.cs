@@ -32,9 +32,8 @@ public static class JournalContainerLootCatalog
         ["Terraria/DesertBiomeChest"] = new("Desert Biome Chest", ["Terraria/DungeonDesertChest", "Terraria/GoldChest", "Terraria/Chest"]),
         ["CalamityMod/AbyssTreasureChest"] = new("Abyss Treasure Chest", ["CalamityMod/AbyssTreasureChest", "CalamityMod/AncientTreasureChest"]),
         ["CalamityMod/AstralChest"] = new("Astral Chest", ["CalamityMod/AstralChest"]),
-        ["ThoriumMod/AquaticDepthsBiomeChest"] = new("Aquatic Depths Biome Chest", ["ThoriumMod/AquaticDepthsChest", "ThoriumMod/DepthsChest"]),
-        ["ThoriumMod/DesertBiomeChest"] = new("Desert Biome Chest", ["ThoriumMod/DesertChest"]),
-        ["ThoriumMod/UnderworldBiomeChest"] = new("Underworld Biome Chest", ["ThoriumMod/UnderworldChest"])
+        ["ThoriumMod/AquaticDepthsBiomeChest"] = new("Aquatic Depths Biome Chest", ["ThoriumMod/AquaticDepthsBiomeChest", "ThoriumMod/DepthChest"]),
+        ["ThoriumMod/UnderworldBiomeChest"] = new("Underworld Biome Chest", ["ThoriumMod/UnderworldBiomeChest"]),
     };
 
     public static IReadOnlyList<JournalContainerLootSource> GetSources(int targetItemId)
@@ -133,9 +132,17 @@ public static class JournalContainerLootCatalog
                 "Terraria/HermesBoots",
                 "Terraria/ShoeSpikes",
                 "Terraria/FlareGun",
-                "Terraria/Mace",
-                "Terraria/LavaCharm"
+                "Terraria/Mace"
             ]);
+
+        AddDrop(
+            builders,
+            "terraria-wiki.gg/lava-charm; terraria-wiki.gg/gold-chest",
+            "Terraria/UndergroundGoldChest",
+            "Underground Gold Chest",
+            ["Terraria/GoldChest"],
+            "Terraria/LavaCharm",
+            1f / 20f);
 
         AddEqualPool(
             builders,
@@ -223,14 +230,14 @@ public static class JournalContainerLootCatalog
             "terraria-wiki.gg/sandstone-chest",
             "Terraria/SandstoneChest",
             "Sandstone Chest",
-            ["Terraria/SandstoneChest", "Terraria/GoldChest", "Terraria/Chest"],
+            ["Terraria/DesertChest", "Terraria/GoldChest", "Terraria/Chest"],
             [
                 "Terraria/ThunderSpear",
                 "Terraria/ThunderStaff",
                 "Terraria/MagicConch",
                 "Terraria/MysticCoilSnake",
                 "Terraria/AncientChisel",
-                "Terraria/DuneriderBoots",
+                "Terraria/SandBoots",
                 "Terraria/CatBast"
             ]);
 
@@ -258,15 +265,6 @@ public static class JournalContainerLootCatalog
             ["Terraria/LivingWoodChest", "Terraria/Chest"],
             "Terraria/LeafWand",
             2f / 3f);
-        AddDrop(
-            builders,
-            "terraria-wiki.gg/living-wood-chest",
-            "Terraria/LivingWoodChest",
-            "Living Wood Chest",
-            ["Terraria/LivingWoodChest", "Terraria/Chest"],
-            "Terraria/LivingLoom",
-            1f / 3f);
-
         AddDrop(
             builders,
             "terraria-wiki.gg/web-covered-chest",
@@ -379,7 +377,7 @@ public static class JournalContainerLootCatalog
             "terraria-wiki.gg/biome-chests",
             "Terraria/DesertBiomeChest",
             "Desert Biome Chest",
-            ["Terraria/DesertChest", "Terraria/GoldChest", "Terraria/Chest"],
+            ["Terraria/DungeonDesertChest", "Terraria/GoldChest", "Terraria/Chest"],
             "Terraria/StormTigerStaff",
             1f);
     }
@@ -422,15 +420,15 @@ public static class JournalContainerLootCatalog
             "thoriummod-wiki.gg/biome-chests",
             "ThoriumMod/AquaticDepthsBiomeChest",
             "Aquatic Depths Biome Chest",
-            ["ThoriumMod/AquaticDepthsChest", "ThoriumMod/DepthsChest"],
+            ["ThoriumMod/AquaticDepthsBiomeChest", "ThoriumMod/DepthChest"],
             "ThoriumMod/Fishbone",
             1f);
         AddDrop(
             builders,
-            "thoriummod-wiki.gg/biome-chests",
-            "ThoriumMod/DesertBiomeChest",
+            "thoriummod-wiki.gg/1.7.2.5; thoriummod-wiki.gg/pharaohs-slab",
+            "Terraria/DesertBiomeChest",
             "Desert Biome Chest",
-            ["ThoriumMod/DesertChest"],
+            ["Terraria/DungeonDesertChest", "Terraria/GoldChest", "Terraria/Chest"],
             "ThoriumMod/PharaohsSlab",
             1f);
         AddDrop(
@@ -438,7 +436,7 @@ public static class JournalContainerLootCatalog
             "thoriummod-wiki.gg/biome-chests",
             "ThoriumMod/UnderworldBiomeChest",
             "Underworld Biome Chest",
-            ["ThoriumMod/UnderworldChest"],
+            ["ThoriumMod/UnderworldBiomeChest"],
             "ThoriumMod/PhoenixStaff",
             1f);
     }
@@ -449,11 +447,14 @@ public static class JournalContainerLootCatalog
 
     private static Entry? TryCreateEntry(EntryBuilder builder)
     {
-        if (!TryResolveAnyItemReference(builder.SourceItemReferences, out var sourceItemId)
-            || !TryResolveItemReference(builder.TargetReference, out var targetItemId))
+        if (!TryResolveItemReference(builder.TargetReference, out var targetItemId))
         {
             return null;
         }
+
+        var sourceItemId = TryResolveAnyItemReference(builder.SourceItemReferences, out var resolvedSourceItemId)
+            ? resolvedSourceItemId
+            : ItemID.None;
 
         return new Entry(
             builder.SourceReference,

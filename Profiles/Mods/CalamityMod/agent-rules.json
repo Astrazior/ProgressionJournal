@@ -1520,14 +1520,14 @@
       "reason": "The official Brimstone Crag lava-fishing branch explicitly requires Providence before Bloodfin can be caught."
     },
     {
-      "id": "astral-chest-weapon",
-      "kind": "item-stage",
-      "item": "CalamityMod/HeavenfallenStardisk",
+      "id": "astral-chest-source",
+      "kind": "source-stage",
+      "source": "CalamityMod/AstralChest",
       "stageId": "astrum-aureus",
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Tiles/Astral/AstralChestLocked.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-      "checkedAt": "2026-06-14",
-      "reason": "The official locked Astral Chest refuses to open until Astrum Aureus is defeated."
+      "checkedAt": "2026-06-21",
+      "reason": "The official locked Astral Chest refuses to open until Astrum Aureus is defeated. The individual loot item is provided by the container loot catalog."
     },
     {
       "id": "murasama-usable-stage",

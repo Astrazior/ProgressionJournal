@@ -229,6 +229,16 @@
       ]
     },
     {
+      "id": "thorium-pharaohs-slab-vanilla-desert-biome-chest-source",
+      "kind": "source-stage",
+      "source": "Terraria/DesertBiomeChest",
+      "stageId": "plantera",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/1.7.2.5",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-21",
+      "reason": "Thorium 1.7.2.5 removed the Thorium Desert Chest and Desert Key and moved Pharaoh's Slab to the vanilla Desert Chest alongside Desert Tiger Staff, so the vanilla dungeon Desert biome chest remains the authoritative source path."
+    },
+    {
       "id": "frost-moon-sources",
       "kind": "source-stage",
       "sources": [
@@ -482,7 +492,6 @@
         "ThoriumMod/EnchantedStaff",
         "ThoriumMod/FamilyHeirloom",
         "ThoriumMod/Fig",
-        "ThoriumMod/Fishbone",
         "ThoriumMod/HeartRateMonitor",
         "ThoriumMod/Heartstriker",
         "ThoriumMod/Kumquat",
@@ -491,8 +500,6 @@
         "ThoriumMod/ManaBerry",
         "ThoriumMod/Mangosteen",
         "ThoriumMod/Persimmon",
-        "ThoriumMod/PharaohsSlab",
-        "ThoriumMod/PhoenixStaff",
         "ThoriumMod/Raspberry",
         "ThoriumMod/RingofUnity",
         "ThoriumMod/RivetingTadpole",
@@ -509,8 +516,8 @@
       "stageId": "start",
       "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
       "sourceVersion": "Thorium Mod 1.7.2.5, Workshop build 2025.8.3.1",
-      "checkedAt": "2026-06-14",
-      "reason": "The official build supplies these through starting items, world generation, breakable plants, pre-Hardmode fishing, ordinary biome enemies, or pre-boss chests; these custom hooks are not represented by the standard tModLoader recipe/drop export."
+      "checkedAt": "2026-06-21",
+      "reason": "The official build supplies these through starting items, world generation, breakable plants, pre-Hardmode fishing, ordinary biome enemies, or pre-boss chests; container-backed biome chest items are represented through source-stage rules and the container loot catalog."
     },
     {
       "id": "custom-world-evil-travel-shop-items",
@@ -1193,6 +1200,172 @@
       "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
       "checkedAt": "2026-06-16",
       "reason": "Technique: Cobra's Bite is crafted from Chlorophyte Bars and a Blank Technique Scroll. In vanilla progression Chlorophyte gear requires the post-mechanical-boss pickaxe tier, represented here by the final mechanical boss stage."
+    },
+    {
+      "id": "vanilla-start-worldgen-container-sources",
+      "kind": "source-stage",
+      "stageId": "start",
+      "sources": [
+        "Terraria/SurfaceWoodenChest",
+        "Terraria/UndergroundWoodenChest",
+        "Terraria/UndergroundGoldChest",
+        "Terraria/IceChest",
+        "Terraria/IvyChest",
+        "Terraria/WaterChest",
+        "Terraria/SkywareChest",
+        "Terraria/SandstoneChest",
+        "Terraria/LivingWoodChest",
+        "Terraria/WebCoveredChest",
+        "Terraria/PyramidChest",
+        "Terraria/EnchantedSwordShrine"
+      ],
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Chests",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-21",
+      "reason": "These virtual sources represent vanilla world-generated pre-Hardmode chests and shrine loot exported by JournalContainerLootCatalog."
+    },
+    {
+      "id": "vanilla-post-skeletron-container-sources",
+      "kind": "source-stage",
+      "stageId": "skeletron",
+      "sources": [
+        "Terraria/DungeonGoldChest",
+        "Terraria/ShadowChest",
+        "Terraria/LockBox",
+        "Terraria/ObsidianLockbox"
+      ],
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Dungeon",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-21",
+      "reason": "Dungeon locked chests, lock boxes and Shadow Chest access are gated by Skeletron-era progression."
+    },
+    {
+      "id": "vanilla-post-plantera-biome-container-sources",
+      "kind": "source-stage",
+      "stageId": "plantera",
+      "sources": [
+        "Terraria/JungleBiomeChest",
+        "Terraria/CorruptionBiomeChest",
+        "Terraria/CrimsonBiomeChest",
+        "Terraria/HallowedBiomeChest",
+        "Terraria/FrozenBiomeChest",
+        "Terraria/DesertBiomeChest"
+      ],
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Biome_Chests",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-21",
+      "reason": "Biome chests require biome keys and are not openable until after Plantera."
+    },
+    {
+      "id": "thorium-aquatic-depths-biome-chest-source",
+      "kind": "source-stage",
+      "source": "ThoriumMod/AquaticDepthsBiomeChest",
+      "stageId": "plantera",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Biome_Keys",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-21",
+      "reason": "Thorium Aquatic Depths Biome Chest requires a biome key and follows the post-Plantera biome chest gate."
+    },
+    {
+      "id": "thorium-underworld-biome-chest-source",
+      "kind": "source-stage",
+      "source": "ThoriumMod/UnderworldBiomeChest",
+      "stageId": "plantera",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Biome_Keys",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-21",
+      "reason": "Thorium Underworld Biome Chest requires a biome key and follows the post-Plantera biome chest gate."
+    },
+    {
+      "id": "thorium-review-start-zombie-and-early-corruption-sources",
+      "kind": "source-stage",
+      "stageId": "start",
+      "sources": [
+        "Terraria/Zombie",
+        "Terraria/BaldZombie",
+        "Terraria/ZombieEskimo",
+        "Terraria/PincushionZombie",
+        "Terraria/SlimedZombie",
+        "Terraria/SwampZombie",
+        "Terraria/TwiggyZombie",
+        "Terraria/FemaleZombie",
+        "Terraria/ZombieRaincoat",
+        "Terraria/ZombieDoctor",
+        "Terraria/ZombieSuperman",
+        "Terraria/ZombiePixie",
+        "Terraria/ZombieXmas",
+        "Terraria/ZombieSweater",
+        "Terraria/ArmedZombie",
+        "Terraria/ArmedZombieEskimo",
+        "Terraria/ArmedZombiePincussion",
+        "Terraria/ArmedZombieSlimed",
+        "Terraria/ArmedZombieSwamp",
+        "Terraria/ArmedZombieTwiggy",
+        "Terraria/ArmedZombieCenx",
+        "Terraria/TorchZombie",
+        "Terraria/ArmedTorchZombie",
+        "ThoriumMod/Biter"
+      ],
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Zombies; https://thoriummod.wiki.gg/wiki/Enemies",
+      "sourceVersion": "Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-21",
+      "reason": "These sources are ordinary early enemies used by the Thorium profile review for Zombie Arm availability."
+    },
+    {
+      "id": "thorium-review-hardmode-drop-sources",
+      "kind": "source-stage",
+      "stageId": "wall-of-flesh",
+      "sources": [
+        "ThoriumMod/SeaShantySinger",
+        "ThoriumMod/MyceliumMimic",
+        "ThoriumMod/BlizzardBat",
+        "ThoriumMod/SnowElemental",
+        "ThoriumMod/VileFloater"
+      ],
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Concertina; https://thoriummod.wiki.gg/wiki/Mycelium_Whip; https://thoriummod.wiki.gg/wiki/Ice_Fairy_Staff; https://thoriummod.wiki.gg/wiki/Vile_Spitter",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-21",
+      "reason": "These review sources are Hardmode enemies or Hardmode weapon sources."
+    },
+    {
+      "id": "thorium-review-raging-minotaur-source",
+      "kind": "source-stage",
+      "source": "ThoriumMod/RagingMinotaur",
+      "stageId": "skeletron",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Raging_Minotaur; https://thoriummod.wiki.gg/wiki/Elephant_Gun",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-21",
+      "reason": "Raging Minotaur is a Dungeon enemy and the Elephant Gun review evidence is gated by Thorium's DownedSkeletronCondition."
+    },
+    {
+      "id": "thorium-review-lihzard-mimic-source",
+      "kind": "source-stage",
+      "source": "ThoriumMod/LihzardMimic",
+      "stageId": "plantera",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Reject%27s_Blowpipe",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-21",
+      "reason": "Reject's Blowpipe review evidence comes from Lihzard Mimic with a DownedPlantera condition."
+    },
+    {
+      "id": "thorium-review-scissor-stalker-source",
+      "kind": "source-stage",
+      "source": "ThoriumMod/ScissorStalker",
+      "stageId": "skeletron-prime",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Scissor_Stalker",
+      "sourceVersion": "Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-06-21",
+      "reason": "Scissor Stalker spawns during Solar Eclipse after all three mechanical bosses; this profile represents that gate at Skeletron Prime."
+    },
+    {
+      "id": "thorium-review-true-nights-edge-recipe",
+      "kind": "item-stage",
+      "item": "Terraria/TrueNightsEdge",
+      "stageId": "skeletron-prime",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/True_Night%27s_Edge",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-06-21",
+      "reason": "The exported Thorium recipe requires Night's Edge, Souls of Fright, Might and Sight, and a Mythril Anvil, placing it after all mechanical bosses in this profile."
     }
   ],
   "ignoredItems": [
