@@ -29,6 +29,8 @@ public static class JournalProfileRegistry
         _active = TryGet(activeId, out var selected) && IsAvailable(selected)
             ? selected
             : Profiles[JournalProfileIds.Vanilla];
+
+        JournalItemSourceResolver.ClearCache();
     }
 
     private static void Register(JournalProfile profile)
@@ -43,10 +45,9 @@ public static class JournalProfileRegistry
         var profile = JournalProfileStorage.CreateVanillaProfile(entries);
         Profiles[profile.Id] = profile;
 
-        if (wasActive)
-        {
-            _active = profile;
-        }
+        if (!wasActive) return;
+        _active = profile;
+        JournalItemSourceResolver.ClearCache();
     }
 
     public static bool TryGet(string profileId, out JournalProfile profile)
@@ -62,6 +63,7 @@ public static class JournalProfileRegistry
         }
 
         _active = profile;
+        JournalItemSourceResolver.ClearCache();
         JournalProfileStorage.SaveActiveProfileId(profile.Id);
         return true;
     }
@@ -72,6 +74,7 @@ public static class JournalProfileRegistry
         _active = null;
         JournalProfileUnlockRegistry.Clear();
         JournalNpcUnlockTracker.Clear();
+        JournalItemSourceResolver.ClearCache();
     }
 
     private static bool IsAvailable(JournalProfile profile)

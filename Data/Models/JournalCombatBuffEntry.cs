@@ -31,17 +31,17 @@ public sealed class JournalCombatBuffEntry(
 
     public JournalBuffCategory Category { get; } = category;
 
-    public IReadOnlySet<string> ClassIds { get; } =
+    private HashSet<string> ClassIds { get; } =
         classIds.ToHashSet(StringComparer.OrdinalIgnoreCase);
 
     public IReadOnlyList<JournalItemGroup> ItemGroups { get; } = itemGroups.ToArray();
 
-    public string StageId { get; } = stageId;
+    private string StageId { get; } = stageId;
 
     public ProgressionStageId AvailableFrom =>
         JournalStageIds.TryToLegacy(StageId, out var stageId) ? stageId : ProgressionStageId.PreBoss;
 
-    public ProgressionStageId? AvailableUntil { get; }
+    private ProgressionStageId? AvailableUntil { get; }
 
     public bool IsClassSpecific { get; } = isClassSpecific;
 

@@ -219,140 +219,89 @@ public static class JournalProfileStorage
                 return false;
             }
 
-            if (entry.ItemGroups.SelectMany(static group => group).Any(static reference =>
-                    string.IsNullOrWhiteSpace(reference.Mod) || string.IsNullOrWhiteSpace(reference.Item)))
-            {
-                error = $"Entry '{entry.Key}' contains an invalid item reference.";
-                return false;
-            }
+            if (!entry.ItemGroups.SelectMany(static group => group).Any(static reference =>
+                    string.IsNullOrWhiteSpace(reference.Mod) || string.IsNullOrWhiteSpace(reference.Item))) continue;
+            error = $"Entry '{entry.Key}' contains an invalid item reference.";
+            return false;
         }
 
-        foreach (var buff in document.CombatBuffs)
+        foreach (var buff in from buff in document.CombatBuffs let buffClasses = GetCombatBuffClasses(buff) where string.IsNullOrWhiteSpace(buff.Key)
+                     || buffClasses.Count == 0
+                     || !buffClasses.All(classIds.Contains) || !stageIds.Contains(buff.StageId)
+                     || buff.ItemGroups.Count == 0
+                     || buff.ItemGroups.Any(static @group => @group.Count == 0)
+                     || buff.ItemGroups.SelectMany(static @group => @group).Any(static reference =>
+                         string.IsNullOrWhiteSpace(reference.Mod) || string.IsNullOrWhiteSpace(reference.Item)) select buff)
         {
-            var buffClasses = GetCombatBuffClasses(buff);
-            if (string.IsNullOrWhiteSpace(buff.Key)
-                || buffClasses.Count == 0
-                || buffClasses.Any(classId => !classIds.Contains(classId))
-                || !stageIds.Contains(buff.StageId)
-                || buff.ItemGroups.Count == 0
-                || buff.ItemGroups.Any(static group => group.Count == 0)
-                || buff.ItemGroups.SelectMany(static group => group).Any(static reference =>
-                    string.IsNullOrWhiteSpace(reference.Mod) || string.IsNullOrWhiteSpace(reference.Item)))
-            {
-                error = $"Combat buff '{buff.Key}' is invalid.";
-                return false;
-            }
+            error = $"Combat buff '{buff.Key}' is invalid.";
+            return false;
         }
 
         error = string.Empty;
         return true;
     }
 
-    private static IReadOnlyList<JournalEntry> ResolveEntries(JournalProfileDocument document)
+    private static List<JournalEntry> ResolveEntries(JournalProfileDocument document)
     {
         List<JournalEntry> result = [];
-
-        foreach (var entryDocument in document.Entries)
-        {
-            var groups = entryDocument.ItemGroups
-                .Select(group => group
-                    .Select(TryResolveItem)
+        result.AddRange(from entryDocument in document.Entries
+            let groups = entryDocument.ItemGroups.Select(@group => @group.Select(TryResolveItem)
                     .Where(static itemId => itemId > ItemID.None)
                     .ToArray())
-                .Where(static group => group.Length > 0)
-                .Select(static group => new JournalItemGroup(group))
-                .ToArray();
-
-            if (groups.Length == 0)
-            {
-                continue;
-            }
-
-            result.Add(new JournalEntry(
-                entryDocument.Key,
-                entryDocument.Category,
-                entryDocument.Classes,
-                groups,
-                entryDocument.Evaluations.Select(static value =>
-                    new StageEvaluation(value.StageId, value.Tier, scope: value.Scope)),
-                entryDocument.EventCategory,
-                entryDocument.IsSupportWeapon,
-                entryDocument.CustomEventName,
-                entryDocument.EventIcon,
-                entryDocument.Wiki.Select(static value => new JournalWikiRecommendation(
-                    value.StageId,
-                    value.Classes.ToHashSet(StringComparer.OrdinalIgnoreCase),
-                    value.SourceName,
-                    value.SourceUrl,
-                    value.Target)),
-                entryDocument.FishingSources.Select(static source =>
-                    new JournalFishingSource(source.Conditions.Select(static condition => condition.Resolve())))));
-        }
+                .Where(static @group => @group.Length > 0)
+                .Select(static @group => new JournalItemGroup(@group))
+                .ToArray()
+            where groups.Length != 0
+            select new JournalEntry(entryDocument.Key, entryDocument.Category, entryDocument.Classes, groups, entryDocument.Evaluations.Select(static value => new StageEvaluation(value.StageId, value.Tier, scope: value.Scope)), entryDocument.EventCategory, entryDocument.IsSupportWeapon, entryDocument.CustomEventName, entryDocument.EventIcon, entryDocument.Wiki.Select(static value => new JournalWikiRecommendation(value.StageId, value.Classes.ToHashSet(StringComparer.OrdinalIgnoreCase), value.SourceName, value.SourceUrl, value.Target)), entryDocument.FishingSources.Select(static source => new JournalFishingSource(source.Conditions.Select(static condition => condition.Resolve())))));
 
         return result;
     }
 
-    private static IReadOnlyList<JournalCombatBuffEntry> ResolveCombatBuffEntries(JournalProfileDocument document)
+    private static List<JournalCombatBuffEntry> ResolveCombatBuffEntries(JournalProfileDocument document)
     {
         List<JournalCombatBuffEntry> result = [];
-
-        foreach (var buffDocument in document.CombatBuffs)
-        {
-            var groups = buffDocument.ItemGroups
-                .Select(group => group
-                    .Select(TryResolveItem)
+        result.AddRange(from buffDocument in document.CombatBuffs
+            let groups = buffDocument.ItemGroups.Select(@group => @group.Select(TryResolveItem)
                     .Where(static itemId => itemId > ItemID.None)
                     .ToArray())
-                .Where(static group => group.Length > 0)
-                .Select(static group => new JournalItemGroup(group))
-                .ToArray();
-            if (groups.Length == 0)
-            {
-                continue;
-            }
-
-            result.Add(new JournalCombatBuffEntry(
-                buffDocument.Key,
-                buffDocument.Category,
-                GetCombatBuffClasses(buffDocument),
-                groups,
-                buffDocument.StageId));
-        }
+                .Where(static @group => @group.Length > 0)
+                .Select(static @group => new JournalItemGroup(@group))
+                .ToArray()
+            where groups.Length != 0
+            select new JournalCombatBuffEntry(buffDocument.Key, buffDocument.Category, GetCombatBuffClasses(buffDocument), groups, buffDocument.StageId));
 
         return result;
     }
 
     private static int TryResolveItem(JournalItemReferenceDocument reference)
     {
-        if (string.Equals(reference.Mod, "Terraria", StringComparison.OrdinalIgnoreCase))
+        if (!string.Equals(reference.Mod, "Terraria", StringComparison.OrdinalIgnoreCase))
+            return ModContent.TryFind(reference.Mod, reference.Item, out ModItem modItem)
+                ? modItem.Type
+                : ItemID.None;
+        if (int.TryParse(reference.Item, out var numericId)
+            && ContentSamples.ItemsByType.ContainsKey(numericId))
         {
-            if (int.TryParse(reference.Item, out var numericId)
-                && ContentSamples.ItemsByType.ContainsKey(numericId))
-            {
-                return numericId;
-            }
-
-            if (ItemID.Search.TryGetId(reference.Item, out var vanillaId))
-            {
-                return vanillaId;
-            }
-
-            var normalizedName = NormalizeContentName(reference.Item);
-            for (var itemId = ItemID.None + 1; itemId < ItemID.Count; itemId++)
-            {
-                var internalName = ItemID.Search.GetName(itemId);
-                if (string.Equals(NormalizeContentName(internalName ?? string.Empty), normalizedName, StringComparison.Ordinal))
-                {
-                    return itemId;
-                }
-            }
-
-            return ItemID.None;
+            return numericId;
         }
 
-        return ModContent.TryFind(reference.Mod, reference.Item, out ModItem modItem)
-            ? modItem.Type
-            : ItemID.None;
+        if (ItemID.Search.TryGetId(reference.Item, out var vanillaId))
+        {
+            return vanillaId;
+        }
+
+        var normalizedName = NormalizeContentName(reference.Item);
+        for (var itemId = ItemID.None + 1; itemId < ItemID.Count; itemId++)
+        {
+            var internalName = ItemID.Search.GetName(itemId);
+            if (string.Equals(NormalizeContentName(internalName ?? string.Empty), normalizedName, StringComparison.Ordinal))
+            {
+                return itemId;
+            }
+        }
+
+        return ItemID.None;
+
     }
 
     private static bool HasVersionMismatch(JournalProfileDocument document)
@@ -384,7 +333,7 @@ public static class JournalProfileStorage
         };
     }
 
-    private static IReadOnlyList<string> GetCombatBuffClasses(JournalProfileCombatBuffDocument document)
+    private static List<string> GetCombatBuffClasses(JournalProfileCombatBuffDocument document)
     {
         if (document.Classes.Count > 0)
         {
