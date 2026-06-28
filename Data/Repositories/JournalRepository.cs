@@ -5,6 +5,9 @@ public static partial class JournalRepository
     private static readonly Lazy<IReadOnlyList<JournalEntry>> Entries = new(BuildEntries);
     private static readonly Lazy<IReadOnlyList<JournalCombatBuffEntry>> CombatBuffEntries = new(BuildCombatBuffEntries);
     private static readonly List<JournalEntry> ExternalEntries = [];
+    private static readonly Dictionary<StageEntryCacheKey, IReadOnlyList<JournalStageEntry>> StageEntryCache = new();
+
+    private readonly record struct StageEntryCacheKey(string ProfileId, string StageId, string ClassId);
 
     public static IReadOnlyList<JournalStageEntry> GetEntries(ProgressionStageId stageId, CombatClass combatClass)
     {
@@ -16,8 +19,16 @@ public static partial class JournalRepository
 
     public static IReadOnlyList<JournalStageEntry> GetEntries(string profileId, string stageId, string classId)
     {
+        var cacheKey = new StageEntryCacheKey(profileId, stageId, classId);
+        if (StageEntryCache.TryGetValue(cacheKey, out var cachedEntries))
+        {
+            return cachedEntries;
+        }
+
+        IReadOnlyList<JournalStageEntry> result;
         if (JournalProfileRegistry.TryGet(profileId, out var profile))
-            return profile.Entries
+        {
+            result = profile.Entries
                 .Where(entry => entry.AppliesToClass(classId)
                                 || entry.WikiRecommendations.Any(value =>
                                     string.Equals(value.StageId, stageId, StringComparison.OrdinalIgnoreCase)
@@ -29,11 +40,14 @@ public static partial class JournalRepository
                 .ThenBy(entry => GetDisplayOrderOverride(profile.Id, stageId, entry.Entry.Key))
                 .ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
                 .ToArray();
+            StageEntryCache[cacheKey] = result;
+            return result;
+        }
         {
             if (!JournalProfileRegistry.IsLoaded
                 && string.Equals(profileId, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase))
             {
-                return Entries.Value
+                result = Entries.Value
                     .Where(entry => entry.AppliesToClass(classId) && entry.TryGetEvaluation(profileId, stageId, out _))
                     .Select(entry => new JournalStageEntry(entry, entry.GetEvaluation(profileId, stageId)))
                     .OrderBy(entry => JournalOrdering.GetTierOrder(entry.Evaluation.Tier))
@@ -41,12 +55,14 @@ public static partial class JournalRepository
                     .ThenBy(entry => GetDisplayOrderOverride(profileId, stageId, entry.Entry.Key))
                     .ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
                     .ToArray();
+                StageEntryCache[cacheKey] = result;
+                return result;
             }
 
             profile = JournalProfileRegistry.Active;
         }
 
-        return profile.Entries
+        result = profile.Entries
             .Where(entry => entry.AppliesToClass(classId)
                 || entry.WikiRecommendations.Any(value =>
                     string.Equals(value.StageId, stageId, StringComparison.OrdinalIgnoreCase)
@@ -58,6 +74,8 @@ public static partial class JournalRepository
             .ThenBy(entry => GetDisplayOrderOverride(profile.Id, stageId, entry.Entry.Key))
             .ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
             .ToArray();
+        StageEntryCache[cacheKey] = result;
+        return result;
     }
 
     private static IEnumerable<JournalStageEntry> CreateStageEntries(
@@ -107,6 +125,7 @@ public static partial class JournalRepository
         }
 
         ExternalEntries.Add(entry);
+        ClearDerivedCaches();
 
         if (!Entries.IsValueCreated) return;
         var currentEntries = JournalProfileRegistry.TryGet(JournalProfileIds.Vanilla, out var vanillaProfile)
@@ -118,6 +137,14 @@ public static partial class JournalRepository
     internal static void ClearExternalContent()
     {
         ExternalEntries.Clear();
+        ClearDerivedCaches();
+    }
+
+    internal static void ClearDerivedCaches()
+    {
+        StageEntryCache.Clear();
+        ClearCombatBuffCaches();
+        ClearBuildPlannerCaches();
     }
 
     private static int GetDisplayOrderOverride(string profileId, string stageId, string entryKey)

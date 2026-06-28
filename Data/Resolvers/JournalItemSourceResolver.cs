@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Terraria;
@@ -14,6 +15,9 @@ public static class JournalItemSourceResolver
     private static readonly Dictionary<int, Item?> StationItemCache = new();
     private static readonly Dictionary<int, bool> RevengeanceExclusiveCache = new();
     private static readonly Dictionary<int, string[]> SourceItemAcquisitionConditionCache = new();
+    private static Dictionary<int, JournalRecipeSource[]>? RecipeIndex;
+    private static Dictionary<int, JournalDropSource[]>? DropIndex;
+    private static Dictionary<int, JournalShopSource[]>? ShopIndex;
     private static readonly FieldInfo? GlobalNpcDropRulesField = typeof(ItemDropDatabase).GetField(
         "_globalEntries",
         BindingFlags.Instance | BindingFlags.NonPublic);
@@ -30,6 +34,7 @@ public static class JournalItemSourceResolver
             return info;
         }
 
+        var stopwatch = Stopwatch.StartNew();
         info = new JournalItemAcquisitionInfo(
             itemId,
             BuildRecipes(itemId),
@@ -37,6 +42,7 @@ public static class JournalItemSourceResolver
             BuildShops(itemId),
             FindProfileFishingSources(itemId));
         Cache[cacheKey] = info;
+        LogSlowResolve(itemId, profileId, stopwatch.Elapsed);
         return info;
     }
 
@@ -77,14 +83,24 @@ public static class JournalItemSourceResolver
             .SelectMany(static entry => entry.FishingSources);
     }
 
-    private static List<JournalRecipeSource> BuildRecipes(int itemId)
+    private static JournalRecipeSource[] BuildRecipes(int itemId)
     {
-        var recipes = new List<JournalRecipeSource>();
+        return GetRecipeIndex().TryGetValue(itemId, out var recipes) ? recipes : [];
+    }
+
+    private static Dictionary<int, JournalRecipeSource[]> GetRecipeIndex()
+    {
+        return RecipeIndex ??= BuildRecipeIndex();
+    }
+
+    private static Dictionary<int, JournalRecipeSource[]> BuildRecipeIndex()
+    {
+        var recipesByItem = new Dictionary<int, List<JournalRecipeSource>>();
 
         for (var recipeIndex = 0; recipeIndex < Recipe.numRecipes; recipeIndex++)
         {
             var recipe = Main.recipe[recipeIndex];
-            if (recipe is null || recipe.Disabled || recipe.createItem.type != itemId)
+            if (recipe is null || recipe.Disabled || recipe.createItem.type <= ItemID.None)
             {
                 continue;
             }
@@ -102,42 +118,20 @@ public static class JournalItemSourceResolver
                 .Where(static description => !string.IsNullOrWhiteSpace(description))
                 .ToArray();
 
-            recipes.Add(new JournalRecipeSource(ingredients, stations, conditions));
+            AddToIndex(
+                recipesByItem,
+                recipe.createItem.type,
+                new JournalRecipeSource(ingredients, stations, conditions));
         }
 
-        return recipes;
+        return recipesByItem.ToDictionary(static pair => pair.Key, static pair => pair.Value.ToArray());
     }
 
     private static JournalDropSource[] BuildDrops(int itemId)
     {
-        var drops = new List<JournalDropSource>();
-
-        for (var npcType = 0; npcType < NPCLoader.NPCCount; npcType++)
-        {
-            AppendDropSources(
-                drops,
-                Main.ItemDropsDB.GetRulesForNPCID(npcType),
-                itemId,
-                GetNpcName(npcType),
-                sourceNpcType: npcType,
-                sourceItemId: null);
-        }
-
-        for (var sourceItemType = 1; sourceItemType < ItemLoader.ItemCount; sourceItemType++)
-        {
-            if (sourceItemType == itemId)
-            {
-                continue;
-            }
-
-            AppendDropSources(
-                drops,
-                Main.ItemDropsDB.GetRulesForItemID(sourceItemType),
-                itemId,
-                Lang.GetItemNameValue(sourceItemType),
-                sourceNpcType: null,
-                sourceItemId: sourceItemType);
-        }
+        var drops = GetDropIndex().TryGetValue(itemId, out var indexedDrops)
+            ? indexedDrops.ToList()
+            : [];
 
         AppendContainerCatalogSources(drops, itemId);
         return drops
@@ -158,10 +152,50 @@ public static class JournalItemSourceResolver
             .ToArray();
     }
 
+    private static Dictionary<int, JournalDropSource[]> GetDropIndex()
+    {
+        return DropIndex ??= BuildDropIndex();
+    }
+
+    private static Dictionary<int, JournalDropSource[]> BuildDropIndex()
+    {
+        var drops = new Dictionary<int, List<JournalDropSource>>();
+
+        for (var npcType = 0; npcType < NPCLoader.NPCCount; npcType++)
+        {
+            AppendDropSourcesToIndex(
+                drops,
+                Main.ItemDropsDB.GetRulesForNPCID(npcType),
+                GetNpcName(npcType),
+                sourceNpcType: npcType,
+                sourceItemId: null);
+        }
+
+        for (var sourceItemType = 1; sourceItemType < ItemLoader.ItemCount; sourceItemType++)
+        {
+            AppendDropSourcesToIndex(
+                drops,
+                Main.ItemDropsDB.GetRulesForItemID(sourceItemType),
+                Lang.GetItemNameValue(sourceItemType),
+                sourceNpcType: null,
+                sourceItemId: sourceItemType);
+        }
+
+        return drops.ToDictionary(static pair => pair.Key, static pair => pair.Value.ToArray());
+    }
+
+    public static void ClearProfileCache()
+    {
+        Cache.Clear();
+    }
+
     public static void ClearCache()
     {
         Cache.Clear();
         SourceItemAcquisitionConditionCache.Clear();
+        RecipeIndex = null;
+        DropIndex = null;
+        ShopIndex = null;
     }
 
     private static void AppendContainerCatalogSources(List<JournalDropSource> drops, int targetItemId)
@@ -181,32 +215,52 @@ public static class JournalItemSourceResolver
 
     private static JournalShopSource[] BuildShops(int itemId)
     {
+        return GetShopIndex().TryGetValue(itemId, out var shops)
+            ? shops.ToArray()
+            : [];
+    }
+
+    private static Dictionary<int, JournalShopSource[]> GetShopIndex()
+    {
+        return ShopIndex ??= BuildShopIndex();
+    }
+
+    private static Dictionary<int, JournalShopSource[]> BuildShopIndex()
+    {
         return NPCShopDatabase.AllShops
             .SelectMany(
                 static shop => shop.ActiveEntries.Select(entry => new { shop, entry }))
-            .Where(pair => pair.entry.Item is not null && !pair.entry.Item.IsAir && pair.entry.Item.type == itemId)
-            .Select(pair => new JournalShopSource(
-                pair.shop.NpcType,
-                GetNpcName(pair.shop.NpcType),
-                pair.shop.Name,
-                EnumerateConditions(pair.entry.Conditions)
-                    .Select(GetConditionDescription)))
-            .GroupBy(static shop => new
+            .Where(static pair => pair.entry.Item is not null && !pair.entry.Item.IsAir && pair.entry.Item.type > ItemID.None)
+            .Select(pair => new
             {
-                shop.NpcType,
-                shop.NpcName,
-                shop.ShopName,
-                Conditions = string.Join('\n', shop.Conditions)
+                ItemId = pair.entry.Item!.type,
+                Source = new JournalShopSource(
+                    pair.shop.NpcType,
+                    GetNpcName(pair.shop.NpcType),
+                    pair.shop.Name,
+                    EnumerateConditions(pair.entry.Conditions)
+                        .Select(GetConditionDescription))
             })
-            .Select(static group => group.First())
-            .OrderBy(static shop => shop.NpcName, StringComparer.CurrentCultureIgnoreCase)
-            .ToArray();
+            .GroupBy(static value => new
+            {
+                value.ItemId,
+                value.Source.NpcType,
+                value.Source.NpcName,
+                value.Source.ShopName,
+                Conditions = string.Join('\n', value.Source.Conditions)
+            })
+            .GroupBy(static group => group.Key.ItemId)
+            .ToDictionary(
+                static group => group.Key,
+                static group => group
+                    .Select(static value => value.First().Source)
+                    .OrderBy(static shop => shop.NpcName, StringComparer.CurrentCultureIgnoreCase)
+                    .ToArray());
     }
 
-    private static void AppendDropSources(
-        List<JournalDropSource> drops,
+    private static void AppendDropSourcesToIndex(
+        Dictionary<int, List<JournalDropSource>> drops,
         List<IItemDropRule>? rules,
-        int targetItemId,
         string sourceName,
         int? sourceNpcType,
         int? sourceItemId)
@@ -227,21 +281,53 @@ public static class JournalItemSourceResolver
             catch (Exception exception)
             {
                 LogDebug(
-                    $"Failed to inspect drop rates for '{sourceName}' while resolving item {targetItemId}.",
+                    $"Failed to inspect drop rates for '{sourceName}' while building acquisition source index.",
                     exception);
             }
         }
 
-        drops.AddRange(reportedDrops
-            .Where(drop => drop.itemId == targetItemId)
-            .Select(drop => new JournalDropSource(
+        foreach (var drop in reportedDrops.Where(static drop => drop.itemId > ItemID.None))
+        {
+            if (sourceItemId == drop.itemId)
+            {
+                continue;
+            }
+
+            AddToIndex(
+                drops,
+                drop.itemId,
+                new JournalDropSource(
                 sourceName,
                 sourceNpcType,
                 sourceItemId,
                 drop.dropRate,
                 drop.stackMin,
                 drop.stackMax,
-                GetDropConditionDescriptions(drop, targetItemId, sourceItemId))));
+                    GetDropConditionDescriptions(drop, drop.itemId, sourceItemId)));
+        }
+    }
+
+    private static void AddToIndex<T>(Dictionary<int, List<T>> index, int itemId, T value)
+    {
+        if (!index.TryGetValue(itemId, out var values))
+        {
+            values = [];
+            index[itemId] = values;
+        }
+
+        values.Add(value);
+    }
+
+    [Conditional("DEBUG")]
+    private static void LogSlowResolve(int itemId, string profileId, TimeSpan elapsed)
+    {
+        if (elapsed.TotalMilliseconds < 50d)
+        {
+            return;
+        }
+
+        ProgressionJournal.Instance?.Logger.Info(
+            $"[Perf] ResolveItemSources item={itemId} profile={profileId} took {elapsed.TotalMilliseconds:F1} ms.");
     }
 
     private static IEnumerable<string> GetDropConditionDescriptions(

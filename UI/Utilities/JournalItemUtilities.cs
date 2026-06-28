@@ -6,9 +6,21 @@ namespace ProgressionJournal.UI.Utilities;
 
 public static class JournalItemUtilities
 {
+    private static readonly HashSet<int> LoadedItemTextures = [];
+
     public static bool IsValidItemId(int itemId)
     {
         return itemId > ItemID.None && itemId < ItemLoader.ItemCount;
+    }
+
+    public static void EnsureTextureLoaded(int itemId)
+    {
+        if (!IsValidItemId(itemId) || !LoadedItemTextures.Add(itemId))
+        {
+            return;
+        }
+
+        Main.instance.LoadItem(itemId);
     }
 
     public static bool TryCreateItem(int itemId, out Item item)

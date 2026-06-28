@@ -53,19 +53,24 @@ public sealed class JournalBuildCandidateSlot : UIElement
         base.DrawSelf(spriteBatch);
 
         var dimensions = GetInnerDimensions().ToRectangle();
+        var scissor = spriteBatch.GraphicsDevice.ScissorRectangle;
+        if (scissor is { Width: > 0, Height: > 0 } && !dimensions.Intersects(scissor))
+        {
+            return;
+        }
+
         var position = dimensions.TopLeft() + new Vector2(
             dimensions.Width * (1f - _visualScale) * 0.5f,
             dimensions.Height * (1f - _visualScale) * 0.5f);
         var oldScale = Main.inventoryScale;
-        var displayItem = _item.Clone();
         try
         {
-            if (!JournalItemUtilities.IsValidItemId(displayItem.type))
+            if (!JournalItemUtilities.IsValidItemId(_item.type))
             {
                 return;
             }
 
-            Main.instance.LoadItem(displayItem.type);
+            JournalItemUtilities.EnsureTextureLoaded(_item.type);
             Main.inventoryScale = _visualScale;
             var rectangle = new Rectangle(
                 (int)position.X,
@@ -74,7 +79,7 @@ public sealed class JournalBuildCandidateSlot : UIElement
                 (int)(dimensions.Height * _visualScale));
             JournalItemSlotRenderer.Draw(
                 spriteBatch,
-                displayItem,
+                _item,
                 rectangle,
                 _selected ? JournalUiTheme.InventoryButtonActiveGlow : JournalUiTheme.ItemSlotDefaultAccent,
                 IsMouseHovering && !_disabled,

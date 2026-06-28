@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.Localization;
@@ -15,9 +16,12 @@ public sealed class JournalBuffSlot : UIElement
     private const int SupportIconPadding = 3;
     private const float BuffIconSize = 32f;
     private const float GroupSpacing = 4f;
+    private static readonly Asset<Texture2D> BestiarySupportIconTexture =
+        Main.Assets.Request<Texture2D>(BestiarySupportIconTexturePath);
 
     private readonly JournalCombatBuffEntry _entry;
-    private readonly Item[][] _itemGroups;
+    private readonly int[][] _itemGroupIds;
+    private readonly Item?[][] _itemGroups;
     private readonly string? _classSpecificLabel;
     private readonly Action<int>? _onItemSelected;
     private readonly Color _blockAccent;
@@ -30,8 +34,11 @@ public sealed class JournalBuffSlot : UIElement
         _entry = entry;
         _onItemSelected = onItemSelected;
         _blockAccent = blockAccent;
-        _itemGroups = entry.ItemGroups
-            .Select(group => group.ItemIds.Select(JournalItemUtilities.CreateItem).ToArray())
+        _itemGroupIds = entry.ItemGroups
+            .Select(static group => group.ItemIds.ToArray())
+            .ToArray();
+        _itemGroups = _itemGroupIds
+            .Select(static group => new Item?[group.Length])
             .ToArray();
 
         if (entry.IsClassSpecific)
@@ -61,6 +68,12 @@ public sealed class JournalBuffSlot : UIElement
         base.DrawSelf(spriteBatch);
 
         var inner = GetInnerDimensions().ToRectangle();
+        var scissor = spriteBatch.GraphicsDevice.ScissorRectangle;
+        if (scissor is { Width: > 0, Height: > 0 } && !inner.Intersects(scissor))
+        {
+            return;
+        }
+
         var hoveredIndex = GetHoveredItemIndex(inner);
         var oldScale = Main.inventoryScale;
 
@@ -148,11 +161,24 @@ public sealed class JournalBuffSlot : UIElement
         var groupItems = _itemGroups[groupIndex];
         if (groupItems.Length == 1)
         {
-            return groupItems[0].Clone();
+            return GetItem(groupIndex, itemIndex: 0);
         }
 
         var cycleIndex = (int)(Main.GameUpdateCount / AlternativeCycleTicks) % groupItems.Length;
-        return groupItems[cycleIndex].Clone();
+        return GetItem(groupIndex, cycleIndex);
+    }
+
+    private Item GetItem(int groupIndex, int itemIndex)
+    {
+        var cached = _itemGroups[groupIndex][itemIndex];
+        if (cached is not null)
+        {
+            return cached;
+        }
+
+        var item = JournalItemUtilities.CreateItem(_itemGroupIds[groupIndex][itemIndex]);
+        _itemGroups[groupIndex][itemIndex] = item;
+        return item;
     }
 
     private void HandleLeftClick(UIMouseEvent evt, UIElement listeningElement)
@@ -177,7 +203,7 @@ public sealed class JournalBuffSlot : UIElement
         if (group.DisplayBuffId is not { } buffId)
         {
             var displayItem = GetDisplayedItem(groupIndex);
-            Main.instance.LoadItem(displayItem.type);
+            JournalItemUtilities.EnsureTextureLoaded(displayItem.type);
             var rectangle = new Rectangle(
                 (int)slotPosition.X,
                 (int)slotPosition.Y,
@@ -237,7 +263,7 @@ public sealed class JournalBuffSlot : UIElement
             return;
         }
 
-        var texture = Main.Assets.Request<Texture2D>(BestiarySupportIconTexturePath).Value;
+        var texture = BestiarySupportIconTexture.Value;
         var iconRectangle = new Rectangle(
             (int)slotPosition.X + SupportIconPadding,
             (int)slotPosition.Y + SupportIconPadding,

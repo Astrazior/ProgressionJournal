@@ -7,6 +7,9 @@ namespace ProgressionJournal.UI.Utilities;
 public static class JournalStageIconCatalog
 {
     private static IReadOnlyList<JournalStageIconCandidate>? _cachedCandidates;
+    private static readonly Dictionary<StageIconCacheKey, int> ResolvedStageIcons = new();
+
+    private readonly record struct StageIconCacheKey(string ProfileId, string StageId, bool Crimson);
 
     private static readonly Dictionary<string, int> VanillaStageFallbacks =
         new(StringComparer.OrdinalIgnoreCase)
@@ -37,9 +40,13 @@ public static class JournalStageIconCatalog
             .ThenBy(static candidate => candidate.DisplayName, StringComparer.CurrentCultureIgnoreCase)
             .ToArray();
 
+        if (string.IsNullOrWhiteSpace(search))
+        {
+            return _cachedCandidates;
+        }
+
         return _cachedCandidates
-            .Where(candidate => string.IsNullOrWhiteSpace(search)
-                || candidate.DisplayName.Contains(search, StringComparison.CurrentCultureIgnoreCase)
+            .Where(candidate => candidate.DisplayName.Contains(search, StringComparison.CurrentCultureIgnoreCase)
                 || candidate.InternalName.Contains(search, StringComparison.OrdinalIgnoreCase)
                 || candidate.ModDisplayName.Contains(search, StringComparison.CurrentCultureIgnoreCase))
             .ToArray();
@@ -50,8 +57,15 @@ public static class JournalStageIconCatalog
         JournalProfileStageDocument stage,
         out int npcType)
     {
+        var cacheKey = new StageIconCacheKey(profile.Id, stage.Id, WorldGen.crimson);
+        if (ResolvedStageIcons.TryGetValue(cacheKey, out npcType))
+        {
+            return npcType >= 0;
+        }
+
         if (TryResolveConfigured(stage, out npcType))
         {
+            ResolvedStageIcons[cacheKey] = npcType;
             return true;
         }
 
@@ -71,6 +85,7 @@ public static class JournalStageIconCatalog
         if (best is not null)
         {
             npcType = best.Candidate.NpcType;
+            ResolvedStageIcons[cacheKey] = npcType;
             return true;
         }
 
@@ -81,11 +96,19 @@ public static class JournalStageIconCatalog
                 npcType = NPCID.BrainofCthulhu;
             }
 
+            ResolvedStageIcons[cacheKey] = npcType;
             return true;
         }
 
         npcType = -1;
+        ResolvedStageIcons[cacheKey] = npcType;
         return false;
+    }
+
+    public static void ClearCache()
+    {
+        _cachedCandidates = null;
+        ResolvedStageIcons.Clear();
     }
 
     public static int GetBossHeadSlot(int npcType)

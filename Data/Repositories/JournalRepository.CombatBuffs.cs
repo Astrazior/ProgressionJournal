@@ -5,6 +5,9 @@ namespace ProgressionJournal.Data.Repositories;
 public static partial class JournalRepository
 {
     private const CombatClass NonSummonerClasses = CombatClass.Melee | CombatClass.Ranged | CombatClass.Magic;
+    private static readonly Dictionary<CombatBuffCacheKey, IReadOnlyList<JournalCombatBuffEntry>> CombatBuffCache = new();
+
+    private readonly record struct CombatBuffCacheKey(string ProfileId, string StageId, string ClassId);
 
     private static readonly JournalBuffCategory[] CombatBuffCategoryOrder =
     [
@@ -31,6 +34,13 @@ public static partial class JournalRepository
         string stageId,
         string classId)
     {
+        var cacheKey = new CombatBuffCacheKey(profileId, stageId, classId);
+        if (CombatBuffCache.TryGetValue(cacheKey, out var cachedEntries))
+        {
+            return cachedEntries;
+        }
+
+        IReadOnlyList<JournalCombatBuffEntry> result;
         if (!JournalProfileRegistry.TryGet(profileId, out var profile)
             || string.Equals(profile.Id, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase))
         {
@@ -39,13 +49,22 @@ public static partial class JournalRepository
                 return [];
             }
 
-            return GetCombatBuffEntries(legacyStage, JournalClassIds.ToLegacy(classId));
+            result = GetCombatBuffEntries(legacyStage, JournalClassIds.ToLegacy(classId));
+            CombatBuffCache[cacheKey] = result;
+            return result;
         }
 
-        return profile.CombatBuffEntries
+        result = profile.CombatBuffEntries
             .Where(entry => entry.AppliesToClass(classId) && entry.AppliesToStage(stageId))
             .OrderBy(entry => GetCombatBuffCategoryOrder(entry.Category))
             .ToArray();
+        CombatBuffCache[cacheKey] = result;
+        return result;
+    }
+
+    private static void ClearCombatBuffCaches()
+    {
+        CombatBuffCache.Clear();
     }
 
     private static int GetCombatBuffCategoryOrder(JournalBuffCategory category)
