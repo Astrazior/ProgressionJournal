@@ -43,7 +43,32 @@ public static class JournalItemSourceResolver
             return [];
         }
 
-        return JournalProfileRegistry.Active.Entries
+        var activeSources = FindProfileFishingSources(JournalProfileRegistry.Active, itemId)
+            .ToArray();
+        if (activeSources.Length > 0)
+        {
+            return activeSources;
+        }
+
+        var runtimeSources = JournalFishingSourceResolver.FindSources(itemId);
+        if (runtimeSources.Count > 0)
+        {
+            return runtimeSources;
+        }
+
+        return JournalProfileRegistry.All
+            .Where(profile => !string.Equals(
+                profile.Id,
+                JournalProfileRegistry.Active.Id,
+                StringComparison.OrdinalIgnoreCase))
+            .SelectMany(profile => FindProfileFishingSources(profile, itemId))
+            .GroupBy(static source => string.Join('\n', source.Conditions), StringComparer.Ordinal)
+            .Select(static group => group.First());
+    }
+
+    private static IEnumerable<JournalFishingSource> FindProfileFishingSources(JournalProfile profile, int itemId)
+    {
+        return profile.Entries
             .Where(entry => entry.ItemIds.Contains(itemId))
             .SelectMany(static entry => entry.FishingSources);
     }

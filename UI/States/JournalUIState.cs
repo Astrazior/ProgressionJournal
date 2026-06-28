@@ -13,10 +13,8 @@ using static ProgressionJournal.Data.Repositories.JournalRepository;
 
 namespace ProgressionJournal.UI.States;
 
-public sealed class JournalUiState : UIState
+public sealed class JournalUiState(JournalSystem journalSystem) : UIState
 {
-    private readonly JournalSystem _journalSystem;
-
     private const string BestiarySearchCancelTexturePath = "Images/UI/SearchCancel";
     private const string BestiaryBackButtonTexturePath = "Images/UI/Bestiary/Button_Back";
     private const string CraftingWindowToggleTexturePath = "Images/UI/Craft_Toggle_0";
@@ -119,11 +117,6 @@ public sealed class JournalUiState : UIState
     private string _renderedProfileId = string.Empty;
 
     private sealed record CachedAcquisitionView(UIElement PreviewElement, IReadOnlyList<UIElement> Entries);
-
-    public JournalUiState(JournalSystem journalSystem)
-    {
-        _journalSystem = journalSystem;
-    }
 
     private enum BuildPickerTab
     {
@@ -244,6 +237,11 @@ public sealed class JournalUiState : UIState
         var profile = JournalProfileRegistry.TryGet(profileId, out var registeredProfile)
             ? registeredProfile
             : JournalProfileRegistry.Active;
+        if (!string.Equals(_renderedProfileId, profile.Id, StringComparison.OrdinalIgnoreCase))
+        {
+            _acquisitionViewCache.Clear();
+        }
+
         EnsureProfileNavigation(profile, stageId);
         ApplyNavigationLayout(hasSelectedClass);
         EnsureLayout();
@@ -279,6 +277,7 @@ public sealed class JournalUiState : UIState
     {
         _renderedProfileId = string.Empty;
         _layoutInitialized = false;
+        _acquisitionViewCache.Clear();
     }
 
     private void RefreshContent(
@@ -360,13 +359,7 @@ public sealed class JournalUiState : UIState
         _sourcePreviewContainer.RemoveAllChildren();
         _sourceList.Clear();
 
-        if (selectedItemId <= ItemID.None)
-        {
-            ClearAcquisitionPanel();
-            return;
-        }
-
-        if (!JournalItemUtilities.TryCreateItem(selectedItemId, out var selectedItem))
+        if (selectedItemId <= ItemID.None || !JournalItemUtilities.TryCreateItem(selectedItemId, out var selectedItem))
         {
             ClearAcquisitionPanel();
             return;
@@ -495,7 +488,7 @@ public sealed class JournalUiState : UIState
         return panel;
     }
 
-    private UIPanel CreateDropSourceCard(JournalDropSource drop)
+    private JournalSourceCard CreateDropSourceCard(JournalDropSource drop)
     {
         var panel = CreateSourceCard(new Color(205, 116, 118));
         panel.Width.Set(0f, 1f);
@@ -543,7 +536,7 @@ public sealed class JournalUiState : UIState
         return panel;
     }
 
-    private UIPanel CreateAggregatedNpcDropSourceCard(IReadOnlyList<JournalDropSource> drops)
+    private JournalSourceCard CreateAggregatedNpcDropSourceCard(IReadOnlyList<JournalDropSource> drops)
     {
         var panel = CreateSourceCard(new Color(205, 116, 118));
         panel.Width.Set(0f, 1f);
@@ -783,7 +776,7 @@ public sealed class JournalUiState : UIState
     private IEnumerable<UIElement> CreateDropSourceCards(IReadOnlyList<JournalDropSource> drops)
     {
         return GroupDropSourcesForDisplay(drops)
-            .Select(group =>
+            .Select(UIElement (group) =>
             {
                 if (group.Count <= 1)
                 {
@@ -792,7 +785,7 @@ public sealed class JournalUiState : UIState
 
                 if (group.All(static drop => drop is { SourceNpcType: not null, SourceItemId: null }))
                 {
-                    return (UIElement)CreateAggregatedNpcDropSourceCard(group);
+                    return CreateAggregatedNpcDropSourceCard(group);
                 }
 
                 return CreateAggregatedBossDropSourceCard(group);
@@ -822,7 +815,7 @@ public sealed class JournalUiState : UIState
                 if ((group.Key.IsNpcSource && groupedDrops.Length >= 2)
                     || (isBossBagGroup && groupedDrops.Length >= 4))
                 {
-                    return [(IReadOnlyList<JournalDropSource>)groupedDrops];
+                    return [groupedDrops];
                 }
 
                 return groupedDrops.Select(static drop =>
@@ -881,7 +874,7 @@ public sealed class JournalUiState : UIState
         return top + area.Height.Pixels;
     }
 
-    private float AppendConditionTextList(
+    private static float AppendConditionTextList(
         UIElement parent,
         IReadOnlyList<string> conditions,
         float top,
@@ -1597,13 +1590,13 @@ public sealed class JournalUiState : UIState
         if (_activeBuildPickerTab == BuildPickerTab.Mods && _selectedBuildPickerModName is null)
         {
             _activeBuildPickerTab = BuildPickerTab.Vanilla;
-            _selectedBuildPickerModName = null;
         }
         else
         {
             _activeBuildPickerTab = BuildPickerTab.Mods;
-            _selectedBuildPickerModName = null;
         }
+
+        _selectedBuildPickerModName = null;
 
         JournalSystem.RefreshView();
     }
@@ -3161,5 +3154,5 @@ public sealed class JournalUiState : UIState
         _buildSaveNameInput.Focused = true;
     }
 
-    private JournalSystem JournalSystem => _journalSystem;
+    private JournalSystem JournalSystem => journalSystem;
 }
