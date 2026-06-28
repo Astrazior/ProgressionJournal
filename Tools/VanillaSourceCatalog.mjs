@@ -240,6 +240,7 @@ const MILESTONE_FACTS = [
       "Terraria/WaterBolt",
       "Terraria/Sunfury",
       "Terraria/Valor",
+      "Terraria/NightsEdge",
       "Terraria/BewitchingTable",
       "Terraria/QuadBarrelShotgun",
       "Terraria/CowboyHat",
@@ -532,6 +533,14 @@ const MILESTONE_FACTS = [
 ];
 
 const START_SOURCES = [
+  "Terraria/GreenSlime",
+  "Terraria/BlueSlime",
+  "Terraria/PurpleSlime",
+  "Terraria/RedSlime",
+  "Terraria/YellowSlime",
+  "Terraria/Zombie",
+  "Terraria/ZombieEskimo",
+  "Terraria/DemonEye",
   "Terraria/BlueJellyfish",
   "Terraria/CaveBat",
   "Terraria/JungleBat",

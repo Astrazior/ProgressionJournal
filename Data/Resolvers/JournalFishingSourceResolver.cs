@@ -15,7 +15,7 @@ internal static class JournalFishingSourceResolver
     private const int DefaultRandomSeedCount = 32;
     private const int ScenarioRandomSeedCount = 32;
     private const int EquipmentRandomSeedCount = 8;
-    private const int ForcedRaritySeedCount = 8;
+    private const int ForcedRaritySeedCount = 64;
 
     private static readonly object SyncRoot = new();
     private static readonly FieldInfo? ModBiomeFlagsField = typeof(Player).GetField(
@@ -282,6 +282,7 @@ internal static class JournalFishingSourceResolver
                 .Select((name, index) =>
                 {
                     progression.Reset();
+                    ApplyWorld(new ProbeWorld());
                     progression.Apply(index);
                     return new ProbeProgression(
                         name,
@@ -363,9 +364,19 @@ internal static class JournalFishingSourceResolver
 
         for (var worldIndex = 1; worldIndex < Worlds.Length; worldIndex++)
         {
-            Add(
-                new ProbeContext(ProbeLiquid.Water, 0, 1, worldIndex, 0, 0),
-                ScenarioRandomSeedCount);
+            for (var environmentIndex = 0; environmentIndex < catalog.Environments.Count; environmentIndex++)
+            {
+                Add(
+                    new ProbeContext(ProbeLiquid.Water, environmentIndex, 1, worldIndex, 0, 0),
+                    ScenarioRandomSeedCount);
+            }
+
+            for (var liquid = ProbeLiquid.Water; liquid <= ProbeLiquid.Honey; liquid++)
+            {
+                Add(
+                    new ProbeContext(liquid, 0, 1, worldIndex, 0, 0),
+                    ScenarioRandomSeedCount);
+            }
         }
 
         for (var progressionIndex = 0; progressionIndex < catalog.Progression.Count; progressionIndex++)
@@ -624,7 +635,7 @@ internal static class JournalFishingSourceResolver
                 Main.rand = new UnifiedRandom(seed);
                 var attempt = CreateAttempt(catalog, player, projectile, context, fishingLevel, equipment);
                 InvokeRollDropLevels(pipeline.RollDropLevels, projectile, fishingLevel, ref attempt);
-                RunAttempt(ref attempt);
+                RunAttempt(ref attempt, includeEnemySpawns: true);
             }
 
             for (var rarity = 0; rarity < 6; rarity++)
@@ -639,19 +650,23 @@ internal static class JournalFishingSourceResolver
                     attempt.veryrare = rarity == 3;
                     attempt.legendary = rarity == 4;
                     attempt.crate = rarity == 5;
-                    RunAttempt(ref attempt);
+                    RunAttempt(ref attempt, includeEnemySpawns: false);
                 }
             }
         }
 
         return;
 
-        void RunAttempt(ref FishingAttempt attempt)
+        void RunAttempt(ref FishingAttempt attempt, bool includeEnemySpawns)
         {
             try
             {
                 PlayerLoader.ModifyFishingAttempt(player, ref attempt);
-                InvokeFishingAttempt(pipeline.RollEnemySpawns, projectile, ref attempt);
+                if (includeEnemySpawns)
+                {
+                    InvokeFishingAttempt(pipeline.RollEnemySpawns, projectile, ref attempt);
+                }
+
                 InvokeFishingAttempt(pipeline.RollItemDrop, projectile, ref attempt);
 
                 var itemDrop = attempt.rolledItemDrop;
@@ -798,7 +813,7 @@ internal static class JournalFishingSourceResolver
             inLava = context.Liquid == ProbeLiquid.Lava,
             inHoney = context.Liquid == ProbeLiquid.Honey,
             CanFishInLava = true,
-            waterTilesCount = 1000,
+            waterTilesCount = 1001,
             waterNeededToFish = 300,
             fishingLevel = fishingLevel,
             questFish = -1,
@@ -906,8 +921,8 @@ internal static class JournalFishingSourceResolver
             .Order()
             .ToArray();
         var depths = contexts.Select(static context => context.Depth).Distinct().Order().ToArray();
-        var effectiveWorlds = contexts
-            .Select(context => GetEffectiveWorld(catalog, context))
+        var worlds = contexts
+            .Select(static context => Worlds[context.WorldIndex])
             .Distinct()
             .ToArray();
         var progressionIndexes = contexts
@@ -956,7 +971,7 @@ internal static class JournalFishingSourceResolver
         }
 
         AppendProgressionCondition(conditions, catalog, progressionIndexes);
-        AppendWorldConditions(conditions, effectiveWorlds);
+        AppendWorldConditions(conditions, worlds);
         return conditions;
     }
 

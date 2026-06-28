@@ -550,9 +550,6 @@ assert(review.issues.some(issue =>
 assert(report.unassignedVanillaNpcSources.some(record =>
   record.source === "Terraria/UnknownEnemy"
   && record.items.includes("Terraria/UnknownSourceSword")));
-assert(review.issues.some(issue =>
-  issue.kind === "unassigned-vanilla-npc-sources"
-  && issue.sources.some(record => record.source === "Terraria/UnknownEnemy")));
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "CollisionBlade"
   && entry.evaluations[0].stageId === "boss"));

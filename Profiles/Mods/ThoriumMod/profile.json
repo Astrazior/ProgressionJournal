@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "https://thoriummod.wiki.gg/wiki/Bosses",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-06-21T01:15:37.631Z",
+  "generatedAtUtc": "2026-06-28T20:58:24.971Z",
   "requiredMods": [
     {
       "name": "ThoriumMod",
@@ -3132,8 +3132,7 @@
             "Жидкость: Вода",
             "Биом: Багрянец",
             "Глубина: Поверхность",
-            "Доступно после этапа: Стена плоти",
-            "Мир: До хардмода, День"
+            "Доступно после этапа: Стена плоти"
           ]
         }
       ],
@@ -7782,6 +7781,44 @@
       ],
       "wiki": [],
       "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.obsidianswordfish",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "ObsidianSwordfish",
+            "displayName": "Обсидиановая рыба-меч"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Лава",
+            "Биом: Вне особого биома",
+            "Глубина: Поверхность",
+            "Доступно после этапа: Стена плоти"
+          ]
+        }
+      ],
       "isSupportWeapon": false,
       "eventCategory": null,
       "customEventName": "",
@@ -14359,6 +14396,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.nightsedge",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "NightsEdge",
+            "displayName": "Грань ночи"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.xenopopper",
       "category": "Weapon",
       "classes": [
@@ -15158,8 +15224,7 @@
             "Жидкость: Вода",
             "Биом: Порча",
             "Глубина: Поверхность",
-            "Доступно после этапа: Стена плоти",
-            "Мир: До хардмода, День"
+            "Доступно после этапа: Стена плоти"
           ]
         }
       ],
@@ -16207,8 +16272,7 @@
             "Жидкость: Вода",
             "Биом: Освящение",
             "Глубина: Поверхность",
-            "Доступно после этапа: Стена плоти",
-            "Мир: До хардмода, День"
+            "Доступно после этапа: Стена плоти"
           ]
         }
       ],
@@ -18076,8 +18140,7 @@
         {
           "conditions": [
             "Жидкость: Вода",
-            "Биом: Джунгли",
-            "Мир: До хардмода, День"
+            "Биом: Джунгли"
           ]
         }
       ],
@@ -19451,8 +19514,7 @@
         {
           "conditions": [
             "Жидкость: Вода",
-            "Биом: Порча",
-            "Мир: До хардмода, День"
+            "Биом: Порча"
           ]
         }
       ],
@@ -26948,8 +27010,7 @@
         {
           "conditions": [
             "Жидкость: Вода",
-            "Биом: Джунгли",
-            "Мир: До хардмода, День"
+            "Биом: Джунгли"
           ]
         }
       ],
@@ -29064,6 +29125,43 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.swordfish",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Swordfish",
+            "displayName": "Рыба-меч"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Вода",
+            "Биом: Океан",
+            "Глубина: Небо, Поверхность"
+          ]
+        }
+      ],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.stylistkillakillscissorsiwish",
       "category": "Weapon",
       "classes": [
@@ -29439,7 +29537,7 @@
     },
     {
       "key": "new.terraria.bone",
-      "category": "Weapon",
+      "category": "Ammunition",
       "classes": [
         "ranged"
       ],
@@ -33552,8 +33650,7 @@
         {
           "conditions": [
             "Жидкость: Вода",
-            "Биом: Океан",
-            "Мир: До хардмода, День"
+            "Биом: Океан"
           ]
         }
       ],
@@ -33990,8 +34087,7 @@
         {
           "conditions": [
             "Жидкость: Вода",
-            "Биом: Снежный биом",
-            "Мир: До хардмода, День"
+            "Биом: Снежный биом"
           ]
         }
       ],
@@ -42914,8 +43010,7 @@
         {
           "conditions": [
             "Жидкость: Вода",
-            "Биом: Порча",
-            "Мир: До хардмода, День"
+            "Биом: Порча"
           ]
         }
       ],
@@ -49981,6 +50076,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.abigailsflower",
+      "category": "Weapon",
+      "classes": [
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "AbigailsFlower",
+            "displayName": "Цветок Эбигейл"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.necrohelmet",
       "category": "Armor",
       "classes": [
@@ -52363,6 +52487,35 @@
       "evaluations": [
         {
           "stageId": "king-slime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.seed",
+      "category": "Ammunition",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Seed",
+            "displayName": "Семечко"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -60760,6 +60913,41 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.finwings",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "FinWings",
+            "displayName": "Плавниковые крылья"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "duke-fishron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.theplan",
       "category": "Accessory",
       "classes": [
@@ -63564,8 +63752,7 @@
         {
           "conditions": [
             "Жидкость: Вода",
-            "Биом: Багрянец",
-            "Мир: До хардмода, День"
+            "Биом: Багрянец"
           ]
         }
       ],
@@ -74547,6 +74734,98 @@
       ]
     },
     {
+      "key": "new.terraria.christmaspudding",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "ChristmasPudding",
+            "displayName": "Рождественский пудинг"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.sugarcookie",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "SugarCookie",
+            "displayName": "Сахарное печенье"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.gingerbreadcookie",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "GingerbreadCookie",
+            "displayName": "Имбирное печенье"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.eggnog",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Eggnog",
+            "displayName": "Алкогольный гоголь-моголь"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.terraria.lesserhealingpotion",
       "category": "Basic",
       "classes": [
@@ -75427,6 +75706,29 @@
             "mod": "Terraria",
             "item": "Sashimi",
             "displayName": "Сашими"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.cookedshrimp",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "CookedShrimp",
+            "displayName": "Приготовленная креветка"
           }
         ]
       ]
@@ -77046,98 +77348,6 @@
             "mod": "Terraria",
             "item": "Teacup",
             "displayName": "Чайная чашка"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.christmaspudding",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "wall-of-flesh",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "ChristmasPudding",
-            "displayName": "Рождественский пудинг"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.sugarcookie",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "wall-of-flesh",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "SugarCookie",
-            "displayName": "Сахарное печенье"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.gingerbreadcookie",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "wall-of-flesh",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "GingerbreadCookie",
-            "displayName": "Имбирное печенье"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.eggnog",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "wall-of-flesh",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "Eggnog",
-            "displayName": "Алкогольный гоголь-моголь"
           }
         ]
       ]

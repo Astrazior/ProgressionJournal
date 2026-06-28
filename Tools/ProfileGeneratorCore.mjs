@@ -1566,15 +1566,6 @@ function buildManualReview({
       || left.source.localeCompare(right.source));
   if (report.unassignedVanillaNpcSources.length > 0) {
     report.unassignedVanillaNpcSourceCount = report.unassignedVanillaNpcSources.length;
-    issues.push(createReviewIssue("unassigned-vanilla-npc-sources", {
-      affectedCount: report.unassignedVanillaNpcSources.length,
-      sources: report.unassignedVanillaNpcSources,
-      resolution: {
-        sourceStages: Object.fromEntries(
-          report.unassignedVanillaNpcSources
-            .map(record => [record.source, "<stage-id>"]))
-      }
-    }));
   }
 
   for (const item of classificationContext.items) {

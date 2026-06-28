@@ -504,6 +504,8 @@ export function auditRuntimeSourceCoverage(
       ...(stage.dropSources ?? []),
       ...(stage.enemies ?? [])
     ]));
+  const declaredContainers = new Set(
+    (manifest.stages ?? []).flatMap(stage => stage.containers ?? []));
   const declaredShops = new Set(
     (manifest.stages ?? []).flatMap(stage => stage.shops ?? []));
   for (const event of manifest.events ?? []) {
@@ -512,6 +514,9 @@ export function auditRuntimeSourceCoverage(
       ...(event.enemies ?? [])
     ]) {
       declaredDrops.add(source);
+    }
+    for (const container of event.containers ?? []) {
+      declaredContainers.add(container);
     }
   }
   for (const source of Object.keys(manualAssignments?.sourceStages ?? {})) {
@@ -534,7 +539,9 @@ export function auditRuntimeSourceCoverage(
         errors.push(`drop references unknown NPC '${drop.source}'`);
       }
       addSource(drop.source, "drop");
-    } else if (drop.sourceType === "container" && !itemIds.has(drop.source)) {
+    } else if (drop.sourceType === "container"
+        && !itemIds.has(drop.source)
+        && !declaredContainers.has(drop.source)) {
       errors.push(`container drop references unknown item '${drop.source}'`);
     }
   }
