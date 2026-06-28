@@ -115,6 +115,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
     private bool _buildPickerFilterMenuOpen;
     private bool _buildPickerSortMenuOpen;
     private string _renderedProfileId = string.Empty;
+    private int _renderedAcquisitionItemId = ItemID.None;
 
     private sealed record CachedAcquisitionView(UIElement PreviewElement, IReadOnlyList<UIElement> Entries);
 
@@ -356,6 +357,12 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
     {
         _sourceClearButton.SetStyle(JournalUiTheme.GetHeaderButtonStyle(danger: true));
         _sourceClearButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemClearTooltip"));
+        if (_renderedAcquisitionItemId != selectedItemId)
+        {
+            _sourceList.ViewPosition = 0f;
+            _renderedAcquisitionItemId = selectedItemId;
+        }
+
         _sourcePreviewContainer.RemoveAllChildren();
         _sourceList.Clear();
 
@@ -426,6 +433,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
 
     private void ClearAcquisitionPanel()
     {
+        _renderedAcquisitionItemId = ItemID.None;
         _sourcePreviewContainer.RemoveAllChildren();
         _sourceItemName.SetText(Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemEmpty"));
         _sourceList.Clear();
@@ -2479,7 +2487,10 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _sourceItemName.Top.Set(JournalUiMetrics.AcquisitionPanelNameTop, 0f);
         _sourcePanel.Append(_sourceItemName);
 
-        _sourceList = new JournalSmoothScrollList();
+        _sourceList = new JournalSmoothScrollList
+        {
+            ManualSortMethod = _ => { }
+        };
         _root.AddDragTarget(_sourceList);
         _sourceList.Left.Set(JournalUiMetrics.AcquisitionPanelInset, 0f);
         _sourceList.Top.Set(JournalUiMetrics.AcquisitionPanelContentTop, 0f);
