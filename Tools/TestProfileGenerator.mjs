@@ -45,6 +45,8 @@ const snapshot = {
       damageClass: "Melee",
       damage: 27
     }),
+    item("Terraria/Present"),
+    item("Terraria/CandyCaneSword", { damageClass: "Melee", damage: 20 }),
     item("Terraria/VanillaSummonerAccessory", { accessory: true }),
     item("Terraria/VanillaUtilityAccessory", { accessory: true }),
     item("Terraria/VanillaMagicHelmet", { defense: 5, headSlot: 12 }),
@@ -167,6 +169,15 @@ const snapshot = {
     { source: "Test/Boss", sourceType: "npc", item: "Test/ClassTool", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/BossBag", conditions: [] },
     { source: "Test/BossBag", sourceType: "container", item: "Test/BagBlade", conditions: [] },
+    {
+      source: "Terraria/Present",
+      sourceType: "container",
+      item: "Terraria/CandyCaneSword",
+      conditions: [{
+        type: "Terraria.GameContent.ItemDropRules.Conditions+IsHardmode",
+        description: ""
+      }]
+    },
     {
       source: "Test/BossBag",
       sourceType: "container",
@@ -454,6 +465,10 @@ assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "BagBlade"
   && entry.evaluations[0].stageId === "boss"));
 assert.equal(report.paths["Test/BagBlade"].via, "container:Test/BossBag");
+assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "CandyCaneSword"
+  && entry.evaluations[0].stageId === "start"));
+assert.equal(report.paths["Terraria/CandyCaneSword"].via, "container:Terraria/Present");
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "ConditionalBagBlade"
   && entry.evaluations[0].stageId === "boss"));

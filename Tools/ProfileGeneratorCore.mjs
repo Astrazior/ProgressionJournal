@@ -744,6 +744,7 @@ function conditionsAllowed(conditions, stage, manifest, report, context) {
   const currentStageIndex = stageIndexes.get(stage.id) ?? -1;
   for (const condition of conditions ?? []) {
     if (!condition.type && !condition.description) continue;
+    if (isAlternativeEarlyContainerCondition(condition, context)) continue;
     if (isUnavailableCondition(condition) || isDefaultExcludedVariantCondition(condition)) return false;
     const dependencyIds = conditionDependencyIds(condition, manifest);
     if (dependencyIds.length > 0) {
@@ -780,6 +781,14 @@ function conditionsAllowed(conditions, stage, manifest, report, context) {
     return false;
   }
   return true;
+}
+
+function isAlternativeEarlyContainerCondition(condition, context) {
+  const type = condition.type ?? "";
+  // Presents can drop during real-world Christmas before hardmode.
+  return context.sourceKind === "drop"
+    && context.source === "Terraria/Present"
+    && type.endsWith("+IsHardmode");
 }
 
 function assignedConditionStageIndex(
@@ -1557,6 +1566,15 @@ function buildManualReview({
       || left.source.localeCompare(right.source));
   if (report.unassignedVanillaNpcSources.length > 0) {
     report.unassignedVanillaNpcSourceCount = report.unassignedVanillaNpcSources.length;
+    issues.push(createReviewIssue("unassigned-vanilla-npc-sources", {
+      affectedCount: report.unassignedVanillaNpcSources.length,
+      sources: report.unassignedVanillaNpcSources,
+      resolution: {
+        sourceStages: Object.fromEntries(
+          report.unassignedVanillaNpcSources
+            .map(record => [record.source, "<stage-id>"]))
+      }
+    }));
   }
 
   for (const item of classificationContext.items) {
