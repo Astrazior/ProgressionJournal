@@ -68,12 +68,6 @@ public sealed class JournalBuffSlot : UIElement
         base.DrawSelf(spriteBatch);
 
         var inner = GetInnerDimensions().ToRectangle();
-        var scissor = spriteBatch.GraphicsDevice.ScissorRectangle;
-        if (scissor is { Width: > 0, Height: > 0 } && !inner.Intersects(scissor))
-        {
-            return;
-        }
-
         var hoveredIndex = GetHoveredItemIndex(inner);
         var oldScale = Main.inventoryScale;
 

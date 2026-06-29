@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ModLoader;
 using ProgressionJournal.Api;
 using ProgressionJournal.Systems;
+using ProgressionJournal.UI.Utilities;
 
 namespace ProgressionJournal;
 
@@ -31,6 +32,7 @@ public sealed class ProgressionJournal : Mod
 
 		JournalBuildChat.Unload();
 
+		JournalItemUtilities.ClearCache();
 		JournalRepository.ClearExternalContent();
 		ToggleJournalKeybind = null;
 		Instance = null;

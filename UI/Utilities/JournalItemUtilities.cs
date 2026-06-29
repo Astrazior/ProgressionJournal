@@ -23,6 +23,11 @@ public static class JournalItemUtilities
         Main.instance.LoadItem(itemId);
     }
 
+    public static void ClearCache()
+    {
+        LoadedItemTextures.Clear();
+    }
+
     public static bool TryCreateItem(int itemId, out Item item)
     {
         item = new Item();

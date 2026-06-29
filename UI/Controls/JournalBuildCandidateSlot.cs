@@ -53,12 +53,6 @@ public sealed class JournalBuildCandidateSlot : UIElement
         base.DrawSelf(spriteBatch);
 
         var dimensions = GetInnerDimensions().ToRectangle();
-        var scissor = spriteBatch.GraphicsDevice.ScissorRectangle;
-        if (scissor is { Width: > 0, Height: > 0 } && !dimensions.Intersects(scissor))
-        {
-            return;
-        }
-
         var position = dimensions.TopLeft() + new Vector2(
             dimensions.Width * (1f - _visualScale) * 0.5f,
             dimensions.Height * (1f - _visualScale) * 0.5f);
