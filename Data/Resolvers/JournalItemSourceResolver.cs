@@ -13,10 +13,6 @@ public static class JournalItemSourceResolver
     private static readonly Dictionary<(string ProfileId, int ItemId), JournalItemAcquisitionInfo> Cache = new();
     private static readonly Dictionary<int, Item?> StationItemCache = new();
     private static readonly Dictionary<int, bool> RevengeanceExclusiveCache = new();
-    private static readonly Dictionary<int, string[]> SourceItemAcquisitionConditionCache = new();
-    private static readonly FieldInfo? GlobalNpcDropRulesField = typeof(ItemDropDatabase).GetField(
-        "_globalEntries",
-        BindingFlags.Instance | BindingFlags.NonPublic);
 #pragma warning disable SYSLIB1045 // tModLoader's in-game compiler does not run the GeneratedRegex source generator.
     private static readonly Regex InternalNameWordBoundaryRegex = new("(?<=[a-z])(?=[A-Z])", RegexOptions.Compiled);
 #pragma warning restore SYSLIB1045
@@ -47,32 +43,7 @@ public static class JournalItemSourceResolver
             return [];
         }
 
-        var activeSources = FindProfileFishingSources(JournalProfileRegistry.Active, itemId)
-            .ToArray();
-        if (activeSources.Length > 0)
-        {
-            return activeSources;
-        }
-
-        var runtimeSources = JournalFishingSourceResolver.FindSources(itemId);
-        if (runtimeSources.Count > 0)
-        {
-            return runtimeSources;
-        }
-
-        return JournalProfileRegistry.All
-            .Where(profile => !string.Equals(
-                profile.Id,
-                JournalProfileRegistry.Active.Id,
-                StringComparison.OrdinalIgnoreCase))
-            .SelectMany(profile => FindProfileFishingSources(profile, itemId))
-            .GroupBy(static source => string.Join('\n', source.Conditions), StringComparer.Ordinal)
-            .Select(static group => group.First());
-    }
-
-    private static IEnumerable<JournalFishingSource> FindProfileFishingSources(JournalProfile profile, int itemId)
-    {
-        return profile.Entries
+        return JournalProfileRegistry.Active.Entries
             .Where(entry => entry.ItemIds.Contains(itemId))
             .SelectMany(static entry => entry.FishingSources);
     }
@@ -161,7 +132,6 @@ public static class JournalItemSourceResolver
     public static void ClearCache()
     {
         Cache.Clear();
-        SourceItemAcquisitionConditionCache.Clear();
     }
 
     private static void AppendContainerCatalogSources(List<JournalDropSource> drops, int targetItemId)
@@ -241,73 +211,8 @@ public static class JournalItemSourceResolver
                 drop.dropRate,
                 drop.stackMin,
                 drop.stackMax,
-                GetDropConditionDescriptions(drop, targetItemId, sourceItemId))));
-    }
-
-    private static IEnumerable<string> GetDropConditionDescriptions(
-        DropRateInfo drop,
-        int targetItemId,
-        int? sourceItemId)
-    {
-        foreach (var description in EnumerateConditions(drop.conditions)
-                     .Select(condition => GetDropConditionDescription(condition, targetItemId)))
-        {
-            yield return description;
-        }
-
-        if (sourceItemId is not { } itemId)
-        {
-            yield break;
-        }
-
-        foreach (var description in GetSourceItemAcquisitionConditions(itemId))
-        {
-            yield return description;
-        }
-    }
-
-    private static string[] GetSourceItemAcquisitionConditions(int itemId)
-    {
-        if (SourceItemAcquisitionConditionCache.TryGetValue(itemId, out var cached))
-        {
-            return cached;
-        }
-
-        var result = ResolveSourceItemAcquisitionConditions(itemId);
-        SourceItemAcquisitionConditionCache[itemId] = result;
-        return result;
-    }
-
-    private static string[] ResolveSourceItemAcquisitionConditions(int itemId)
-    {
-        if (GlobalNpcDropRulesField?.GetValue(Main.ItemDropsDB) is not List<IItemDropRule> globalRules)
-        {
-            return [];
-        }
-
-        var reportedDrops = new List<DropRateInfo>();
-        var ratesInfo = new DropRateInfoChainFeed(1f);
-        foreach (var rule in globalRules)
-        {
-            try
-            {
-                rule.ReportDroprates(reportedDrops, ratesInfo);
-            }
-            catch (Exception exception)
-            {
-                LogDebug(
-                    $"Failed to inspect source acquisition conditions for item {itemId}.",
-                    exception);
-            }
-        }
-
-        return reportedDrops
-            .Where(drop => drop.itemId == itemId)
-            .SelectMany(static drop => EnumerateConditions(drop.conditions))
-            .Select(condition => GetDropConditionDescription(condition, itemId))
-            .Where(static description => !string.IsNullOrWhiteSpace(description))
-            .Distinct()
-            .ToArray();
+                EnumerateConditions(drop.conditions)
+                    .Select(condition => GetDropConditionDescription(condition, targetItemId)))));
     }
 
     private static string GetDropConditionDescription(object? condition, int targetItemId)
