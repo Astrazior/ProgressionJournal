@@ -145,11 +145,9 @@ internal static class JournalTownNpcAvailabilityResolver
         lock (SyncRoot)
         {
             var key = BuildCatalogKey();
-            if (_catalog is null || !string.Equals(_catalogKey, key, StringComparison.Ordinal))
-            {
-                _catalog = BuildCatalog();
-                _catalogKey = key;
-            }
+            if (_catalog is not null && string.Equals(_catalogKey, key, StringComparison.Ordinal)) return _catalog;
+            _catalog = BuildCatalog();
+            _catalogKey = key;
 
             return _catalog;
         }
@@ -496,7 +494,7 @@ internal static class JournalTownNpcAvailabilityResolver
         }
     }
 
-    private static IReadOnlyList<StaticFieldState> CaptureStaticFieldState(Type type)
+    private static List<StaticFieldState> CaptureStaticFieldState(Type type)
     {
         const BindingFlags flags =
             BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly;
@@ -551,7 +549,7 @@ internal static class JournalTownNpcAvailabilityResolver
             .ToArray();
     }
 
-    private static IReadOnlyList<InventoryScenario> CreateInventoryScenarios()
+    private static List<InventoryScenario> CreateInventoryScenarios()
     {
         var result = new List<InventoryScenario>
         {
@@ -774,7 +772,7 @@ internal static class JournalTownNpcAvailabilityResolver
         }
     }
 
-    private static IReadOnlyList<Action<Player>> CreateShopEnvironmentScenarios()
+    private static List<Action<Player>> CreateShopEnvironmentScenarios()
     {
         var scenarios = new List<Action<Player>>
         {
@@ -817,21 +815,18 @@ internal static class JournalTownNpcAvailabilityResolver
             });
         }
 
-        foreach (var biome in ModContent.GetContent<ModBiome>())
-        {
-            var index = GetModBiomeIndex(biome);
-            if (index >= 0)
+        scenarios.AddRange(from biome in ModContent.GetContent<ModBiome>()
+            select GetModBiomeIndex(biome)
+            into index
+            where index >= 0
+            select (Action<Player>)(player =>
             {
-                scenarios.Add(player =>
+                var flags = GetModBiomeFlags(player);
+                if (index < flags.Length)
                 {
-                    var flags = GetModBiomeFlags(player);
-                    if (index < flags.Length)
-                    {
-                        flags[index] = true;
-                    }
-                });
-            }
-        }
+                    flags[index] = true;
+                }
+            }));
 
         return scenarios;
     }
@@ -984,7 +979,7 @@ internal static class JournalTownNpcAvailabilityResolver
         GetModBiomeFlags(player).SetAll(false);
     }
 
-    private static IReadOnlyList<StaticBooleanFlag> CreateSpecialUnlockFlags()
+    private static StaticBooleanFlag[] CreateSpecialUnlockFlags()
     {
         const BindingFlags flags =
             BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
@@ -1064,16 +1059,10 @@ internal static class JournalTownNpcAvailabilityResolver
 
     private static Player? GetProbePlayer()
     {
-        if (Main.myPlayer >= 0 && Main.myPlayer < Main.player.Length)
-        {
-            var localPlayer = Main.player[Main.myPlayer];
-            if (localPlayer is { active: true })
-            {
-                return localPlayer;
-            }
-        }
-
-        return Main.player.FirstOrDefault(static player => player is { active: true });
+        if (Main.myPlayer < 0 || Main.myPlayer >= Main.player.Length)
+            return Main.player.FirstOrDefault(static player => player is { active: true });
+        var localPlayer = Main.LocalPlayer;
+        return localPlayer is { active: true } ? localPlayer : Main.player.FirstOrDefault(static player => player is { active: true });
     }
 
     private static BitArray GetModBiomeFlags(Player player)

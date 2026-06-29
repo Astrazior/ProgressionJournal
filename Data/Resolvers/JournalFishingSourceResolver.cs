@@ -148,7 +148,9 @@ internal static class JournalFishingSourceResolver
             return new JournalFishingAvailability(
                 observed: true,
                 earliestStageIndex: 0,
-                earliestStageName: catalog.Progression.FirstOrDefault()?.DisplayName ?? string.Empty,
+                earliestStageName: catalog.Progression.Count > 0
+                    ? catalog.Progression[0].DisplayName
+                    : string.Empty,
                 conditions:
                 [
                     Language.GetTextValue("Mods.ProgressionJournal.UI.FishingAnglerQuestCondition")
@@ -341,14 +343,6 @@ internal static class JournalFishingSourceResolver
     {
         var contexts = new Dictionary<ProbeContext, int>();
 
-        void Add(ProbeContext context, int randomSeedCount)
-        {
-            if (!contexts.TryGetValue(context, out var existing) || randomSeedCount > existing)
-            {
-                contexts[context] = randomSeedCount;
-            }
-        }
-
         for (var environmentIndex = 0; environmentIndex < catalog.Environments.Count; environmentIndex++)
         {
             for (var depth = 0; depth < DepthLocalizationKeys.Length; depth++)
@@ -449,6 +443,14 @@ internal static class JournalFishingSourceResolver
         return contexts
             .Select(static pair => (pair.Key, pair.Value))
             .ToArray();
+
+        void Add(ProbeContext context, int randomSeedCount)
+        {
+            if (!contexts.TryGetValue(context, out var existing) || randomSeedCount > existing)
+            {
+                contexts[context] = randomSeedCount;
+            }
+        }
     }
 
     private static FishingPipeline? CreatePipeline()

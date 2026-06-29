@@ -221,14 +221,7 @@ public sealed class JournalEntry
 
 	private static CombatClass GetLegacyClasses(IEnumerable<string> classIds)
 	{
-		var classes = CombatClass.None;
-
-		foreach (var classId in classIds)
-		{
-			classes |= JournalClassIds.ToLegacy(classId);
-		}
-
-		return classes;
+		return classIds.Aggregate(CombatClass.None, (current, classId) => current | JournalClassIds.ToLegacy(classId));
 	}
 
 	private static int GetLegacyStageIndex(string stageId)

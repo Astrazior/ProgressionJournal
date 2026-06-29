@@ -8,32 +8,32 @@ public static class JournalContainerLootCatalog
     private static readonly Lazy<IReadOnlyList<Entry>> Entries = new(CreateEntries);
     private static readonly Lazy<IReadOnlyList<JournalContainerLootCatalogProblem>> Problems = new(CreateProblems);
 
-    private static readonly IReadOnlyDictionary<string, SourcePresentation> SourcePresentations = new Dictionary<string, SourcePresentation>(StringComparer.OrdinalIgnoreCase)
+    private static readonly Dictionary<string, SourcePresentation> SourcePresentations = new(StringComparer.OrdinalIgnoreCase)
     {
-        ["Terraria/SurfaceWoodenChest"] = new("Surface Wooden Chest", ["Terraria/Chest"]),
-        ["Terraria/UndergroundWoodenChest"] = new("Underground Wooden Chest", ["Terraria/Chest"]),
-        ["Terraria/UndergroundGoldChest"] = new("Underground Gold Chest", ["Terraria/GoldChest"]),
-        ["Terraria/IceChest"] = new("Ice Chest", ["Terraria/IceChest", "Terraria/FrozenChest"]),
-        ["Terraria/IvyChest"] = new("Ivy Chest", ["Terraria/IvyChest"]),
-        ["Terraria/WaterChest"] = new("Water Chest", ["Terraria/WaterChest"]),
-        ["Terraria/SkywareChest"] = new("Skyware Chest", ["Terraria/SkywareChest"]),
-        ["Terraria/SandstoneChest"] = new("Sandstone Chest", ["Terraria/DesertChest"]),
-        ["Terraria/LivingWoodChest"] = new("Living Wood Chest", ["Terraria/LivingWoodChest", "Terraria/Chest"]),
-        ["Terraria/WebCoveredChest"] = new("Web Covered Chest", ["Terraria/WebCoveredChest", "Terraria/Chest"]),
-        ["Terraria/PyramidChest"] = new("Pyramid Chest", ["Terraria/GoldChest"]),
-        ["Terraria/EnchantedSwordShrine"] = new("Enchanted Sword Shrine", ["Terraria/EnchantedSword"]),
-        ["Terraria/DungeonGoldChest"] = new("Dungeon Gold Chest", ["Terraria/GoldChest"]),
-        ["Terraria/ShadowChest"] = new("Shadow Chest", ["Terraria/ShadowChest"]),
-        ["Terraria/JungleBiomeChest"] = new("Jungle Biome Chest", ["Terraria/JungleChest", "Terraria/GoldChest", "Terraria/Chest"]),
-        ["Terraria/CorruptionBiomeChest"] = new("Corruption Biome Chest", ["Terraria/CorruptionChest", "Terraria/GoldChest", "Terraria/Chest"]),
-        ["Terraria/CrimsonBiomeChest"] = new("Crimson Biome Chest", ["Terraria/CrimsonChest", "Terraria/GoldChest", "Terraria/Chest"]),
-        ["Terraria/HallowedBiomeChest"] = new("Hallowed Biome Chest", ["Terraria/HallowedChest", "Terraria/GoldChest", "Terraria/Chest"]),
-        ["Terraria/FrozenBiomeChest"] = new("Frozen Biome Chest", ["Terraria/FrozenChest", "Terraria/IceChest", "Terraria/GoldChest", "Terraria/Chest"]),
-        ["Terraria/DesertBiomeChest"] = new("Desert Biome Chest", ["Terraria/DungeonDesertChest", "Terraria/GoldChest", "Terraria/Chest"]),
-        ["CalamityMod/AbyssTreasureChest"] = new("Abyss Treasure Chest", ["CalamityMod/AbyssTreasureChest", "CalamityMod/AncientTreasureChest"]),
-        ["CalamityMod/AstralChest"] = new("Astral Chest", ["CalamityMod/AstralChest"]),
-        ["ThoriumMod/AquaticDepthsBiomeChest"] = new("Aquatic Depths Biome Chest", ["ThoriumMod/AquaticDepthsBiomeChest", "ThoriumMod/DepthChest"]),
-        ["ThoriumMod/UnderworldBiomeChest"] = new("Underworld Biome Chest", ["ThoriumMod/UnderworldBiomeChest"]),
+        ["Terraria/SurfaceWoodenChest"] = new SourcePresentation("Surface Wooden Chest", ["Terraria/Chest"]),
+        ["Terraria/UndergroundWoodenChest"] = new SourcePresentation("Underground Wooden Chest", ["Terraria/Chest"]),
+        ["Terraria/UndergroundGoldChest"] = new SourcePresentation("Underground Gold Chest", ["Terraria/GoldChest"]),
+        ["Terraria/IceChest"] = new SourcePresentation("Ice Chest", ["Terraria/IceChest", "Terraria/FrozenChest"]),
+        ["Terraria/IvyChest"] = new SourcePresentation("Ivy Chest", ["Terraria/IvyChest"]),
+        ["Terraria/WaterChest"] = new SourcePresentation("Water Chest", ["Terraria/WaterChest"]),
+        ["Terraria/SkywareChest"] = new SourcePresentation("Skyware Chest", ["Terraria/SkywareChest"]),
+        ["Terraria/SandstoneChest"] = new SourcePresentation("Sandstone Chest", ["Terraria/DesertChest"]),
+        ["Terraria/LivingWoodChest"] = new SourcePresentation("Living Wood Chest", ["Terraria/LivingWoodChest", "Terraria/Chest"]),
+        ["Terraria/WebCoveredChest"] = new SourcePresentation("Web Covered Chest", ["Terraria/WebCoveredChest", "Terraria/Chest"]),
+        ["Terraria/PyramidChest"] = new SourcePresentation("Pyramid Chest", ["Terraria/GoldChest"]),
+        ["Terraria/EnchantedSwordShrine"] = new SourcePresentation("Enchanted Sword Shrine", ["Terraria/EnchantedSword"]),
+        ["Terraria/DungeonGoldChest"] = new SourcePresentation("Dungeon Gold Chest", ["Terraria/GoldChest"]),
+        ["Terraria/ShadowChest"] = new SourcePresentation("Shadow Chest", ["Terraria/ShadowChest"]),
+        ["Terraria/JungleBiomeChest"] = new SourcePresentation("Jungle Biome Chest", ["Terraria/JungleChest", "Terraria/GoldChest", "Terraria/Chest"]),
+        ["Terraria/CorruptionBiomeChest"] = new SourcePresentation("Corruption Biome Chest", ["Terraria/CorruptionChest", "Terraria/GoldChest", "Terraria/Chest"]),
+        ["Terraria/CrimsonBiomeChest"] = new SourcePresentation("Crimson Biome Chest", ["Terraria/CrimsonChest", "Terraria/GoldChest", "Terraria/Chest"]),
+        ["Terraria/HallowedBiomeChest"] = new SourcePresentation("Hallowed Biome Chest", ["Terraria/HallowedChest", "Terraria/GoldChest", "Terraria/Chest"]),
+        ["Terraria/FrozenBiomeChest"] = new SourcePresentation("Frozen Biome Chest", ["Terraria/FrozenChest", "Terraria/IceChest", "Terraria/GoldChest", "Terraria/Chest"]),
+        ["Terraria/DesertBiomeChest"] = new SourcePresentation("Desert Biome Chest", ["Terraria/DungeonDesertChest", "Terraria/GoldChest", "Terraria/Chest"]),
+        ["CalamityMod/AbyssTreasureChest"] = new SourcePresentation("Abyss Treasure Chest", ["CalamityMod/AbyssTreasureChest", "CalamityMod/AncientTreasureChest"]),
+        ["CalamityMod/AstralChest"] = new SourcePresentation("Astral Chest", ["CalamityMod/AstralChest"]),
+        ["ThoriumMod/AquaticDepthsBiomeChest"] = new SourcePresentation("Aquatic Depths Biome Chest", ["ThoriumMod/AquaticDepthsBiomeChest", "ThoriumMod/DepthChest"]),
+        ["ThoriumMod/UnderworldBiomeChest"] = new SourcePresentation("Underworld Biome Chest", ["ThoriumMod/UnderworldBiomeChest"]),
     };
 
     public static IReadOnlyList<JournalContainerLootSource> GetSources(int targetItemId)
@@ -68,7 +68,7 @@ public static class JournalContainerLootCatalog
 
     public static IReadOnlyList<JournalContainerLootCatalogProblem> GetProblems() => Problems.Value;
 
-    private static IReadOnlyList<Entry> CreateEntries()
+    private static Entry[] CreateEntries()
     {
         return CreateBuilders()
             .Select(TryCreateEntry)
@@ -78,7 +78,7 @@ public static class JournalContainerLootCatalog
             .ToArray();
     }
 
-    private static IReadOnlyList<JournalContainerLootCatalogProblem> CreateProblems()
+    private static JournalContainerLootCatalogProblem[] CreateProblems()
     {
         return CreateBuilders()
             .Where(static builder => TryCreateEntry(builder) is null)
@@ -90,7 +90,7 @@ public static class JournalContainerLootCatalog
             .ToArray();
     }
 
-    private static IReadOnlyList<EntryBuilder> CreateBuilders()
+    private static List<EntryBuilder> CreateBuilders()
     {
         List<EntryBuilder> builders = [];
         AddVanilla(builders);

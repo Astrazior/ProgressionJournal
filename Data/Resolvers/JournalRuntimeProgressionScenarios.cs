@@ -81,21 +81,25 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
         }
 
         var type = condition.Type.Trim().ToLowerInvariant();
-        if (type == "mod-flag")
+        switch (type)
         {
-            foreach (var key in SplitKeys(condition.Key))
+            case "mod-flag":
             {
-                if (_accessors.TryGetValue($"mod:{condition.Mod}/{key}", out var accessor))
+                foreach (var key in SplitKeys(condition.Key))
                 {
-                    accessor.Set(true);
+                    if (_accessors.TryGetValue($"mod:{condition.Mod}/{key}", out var accessor))
+                    {
+                        accessor.Set(true);
+                    }
                 }
+
+                break;
             }
-        }
-        else if (type == "vanilla-flag"
-                 && _accessors.TryGetValue($"vanilla:{condition.Key}", out var accessor))
-        {
-            accessor.Set(true);
-            ApplyDerivedVanillaFlags(condition.Key);
+            case "vanilla-flag"
+                when _accessors.TryGetValue($"vanilla:{condition.Key}", out var accessor):
+                accessor.Set(true);
+                ApplyDerivedVanillaFlags(condition.Key);
+                break;
         }
     }
 
@@ -116,27 +120,34 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
         foreach (var condition in stages.SelectMany(static stage => EnumerateConditions(stage.Unlock)))
         {
             var type = condition.Type.Trim().ToLowerInvariant();
-            if (type == "mod-flag"
-                && !string.IsNullOrWhiteSpace(condition.Mod)
-                && ModLoader.TryGetMod(condition.Mod, out var mod))
+            switch (type)
             {
-                foreach (var key in SplitKeys(condition.Key))
+                case "mod-flag"
+                    when !string.IsNullOrWhiteSpace(condition.Mod)
+                         && ModLoader.TryGetMod(condition.Mod, out var mod):
                 {
-                    var accessorKey = $"mod:{condition.Mod}/{key}";
+                    foreach (var key in SplitKeys(condition.Key))
+                    {
+                        var accessorKey = $"mod:{condition.Mod}/{key}";
+                        if (!result.ContainsKey(accessorKey)
+                            && TryCreateModFlagAccessor(mod, key, accessorKey, out var accessor))
+                        {
+                            result[accessorKey] = accessor;
+                        }
+                    }
+
+                    break;
+                }
+                case "vanilla-flag":
+                {
+                    var accessorKey = $"vanilla:{condition.Key}";
                     if (!result.ContainsKey(accessorKey)
-                        && TryCreateModFlagAccessor(mod, key, accessorKey, out var accessor))
+                        && TryCreateVanillaFlagAccessor(condition.Key, accessorKey, out var accessor))
                     {
                         result[accessorKey] = accessor;
                     }
-                }
-            }
-            else if (type == "vanilla-flag")
-            {
-                var accessorKey = $"vanilla:{condition.Key}";
-                if (!result.ContainsKey(accessorKey)
-                    && TryCreateVanillaFlagAccessor(condition.Key, accessorKey, out var accessor))
-                {
-                    result[accessorKey] = accessor;
+
+                    break;
                 }
             }
         }
@@ -227,16 +238,13 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
         JournalUnlockConditionDocument condition)
     {
         yield return condition;
-        foreach (var child in condition.Conditions)
+        foreach (var nested in condition.Conditions.SelectMany(EnumerateConditions))
         {
-            foreach (var nested in EnumerateConditions(child))
-            {
-                yield return nested;
-            }
+            yield return nested;
         }
     }
 
-    private static IEnumerable<string> SplitKeys(string keys)
+    private static string[] SplitKeys(string keys)
     {
         return keys.Split(
             ',',

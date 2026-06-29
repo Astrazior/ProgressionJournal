@@ -17,7 +17,7 @@ public static partial class JournalRepository
         JournalBuffCategory.Flask
     ];
 
-    public static IReadOnlyList<JournalCombatBuffEntry> GetCombatBuffEntries(ProgressionStageId stageId, CombatClass combatClass)
+    private static IReadOnlyList<JournalCombatBuffEntry> GetCombatBuffEntries(ProgressionStageId stageId, CombatClass combatClass)
     {
         return CombatBuffEntries.Value
             .Where(entry => entry.AppliesToClass(combatClass) && entry.AppliesToStage(stageId))

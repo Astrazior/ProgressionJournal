@@ -24,17 +24,7 @@ public sealed class JournalProfile(
         get
         {
             var requiredMod = Document.RequiredMods.FirstOrDefault();
-            if (requiredMod is null)
-            {
-                return Name;
-            }
-
-            if (ModLoader.TryGetMod(requiredMod.Name, out var mod))
-            {
-                return NormalizeModProfileName(mod.DisplayNameClean);
-            }
-
-            return NormalizeModProfileName(Name);
+            return requiredMod is null ? Name : NormalizeModProfileName(ModLoader.TryGetMod(requiredMod.Name, out var mod) ? mod.DisplayNameClean : Name);
         }
     }
 
@@ -82,11 +72,9 @@ public sealed class JournalProfile(
 
         foreach (var prefix in prefixes)
         {
-            if (result.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-            {
-                result = result[prefix.Length..].TrimStart();
-                break;
-            }
+            if (!result.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) continue;
+            result = result[prefix.Length..].TrimStart();
+            break;
         }
 
         if (result.EndsWith(" Mod", StringComparison.OrdinalIgnoreCase))

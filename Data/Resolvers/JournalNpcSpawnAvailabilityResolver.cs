@@ -154,10 +154,10 @@ internal static class JournalNpcSpawnAvailabilityResolver
     private sealed record Catalog(
         Dictionary<int, HashSet<SpawnContext>> Observations,
         IReadOnlyList<string> StageNames,
-        IReadOnlySet<int> VanillaProgressionStages,
-        IReadOnlyList<SpawnEnvironment> Environments,
-        IReadOnlyList<SpawnEvent> Events,
-        IReadOnlyList<StaticBooleanFlag> CustomEventFlags);
+        HashSet<int> VanillaProgressionStages,
+        SpawnEnvironment[] Environments,
+        SpawnEvent[] Events,
+        StaticBooleanFlag[] CustomEventFlags);
 
     private readonly record struct PlayerState(
         bool Active,
@@ -377,7 +377,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
         return catalog;
     }
 
-    private static IReadOnlyList<SpawnEnvironment> CreateEnvironments()
+    private static SpawnEnvironment[] CreateEnvironments()
     {
         var environments = new List<SpawnEnvironment>
         {
@@ -423,22 +423,16 @@ internal static class JournalNpcSpawnAvailabilityResolver
                 .Select(static requirement => requirement.Name)
                 .ToHashSet(StringComparer.OrdinalIgnoreCase)
             : [];
-        foreach (var biome in ModContent.GetContent<ModBiome>()
-                     .Where(biome => relevantMods.Count == 0 || relevantMods.Contains(biome.Mod.Name))
-                     .OrderBy(static biome => biome.FullName, StringComparer.OrdinalIgnoreCase))
-        {
-            environments.Add(new SpawnEnvironment(
-                biome.DisplayName.Value,
-                TileID.Stone,
-                biome,
-                static _ => { }));
-        }
+        environments.AddRange(ModContent.GetContent<ModBiome>()
+            .Where(biome => relevantMods.Count == 0 || relevantMods.Contains(biome.Mod.Name))
+            .OrderBy(static biome => biome.FullName, StringComparer.OrdinalIgnoreCase)
+            .Select(biome => new SpawnEnvironment(biome.DisplayName.Value, TileID.Stone, biome, static _ => { })));
 
-        return environments;
+        return environments.ToArray();
     }
 
-    private static IReadOnlyList<SpawnEvent> CreateEvents(
-        IReadOnlyCollection<StaticBooleanFlag> customEventFlags)
+    private static SpawnEvent[] CreateEvents(
+        StaticBooleanFlag[] customEventFlags)
     {
         List<SpawnEvent> events =
         [
@@ -497,10 +491,10 @@ internal static class JournalNpcSpawnAvailabilityResolver
                 flag.Name,
                 () => flag.Set(true),
                 static () => false)));
-        return events;
+        return events.ToArray();
     }
 
-    private static IReadOnlyList<StaticBooleanFlag> CreateCustomEventFlags()
+    private static StaticBooleanFlag[] CreateCustomEventFlags()
     {
         var profile = JournalRuntimeProgressionScenarios.CurrentProfile;
         var relevantMods = profile is not null
@@ -533,7 +527,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
     {
         var contexts = new HashSet<SpawnContext>();
 
-        for (var environmentIndex = 0; environmentIndex < catalog.Environments.Count; environmentIndex++)
+        for (var environmentIndex = 0; environmentIndex < catalog.Environments.Length; environmentIndex++)
         {
             for (var depth = 0; depth < 5; depth++)
             {
@@ -545,7 +539,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
                     includeSafe: true);
             }
 
-            for (var eventIndex = 1; eventIndex < catalog.Events.Count; eventIndex++)
+            for (var eventIndex = 1; eventIndex < catalog.Events.Length; eventIndex++)
             {
                 AddVariants(
                     stageIndex: 0,
@@ -558,7 +552,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
 
         for (var stageIndex = 0; stageIndex < catalog.StageNames.Count; stageIndex++)
         {
-            for (var environmentIndex = 0; environmentIndex < catalog.Environments.Count; environmentIndex++)
+            for (var environmentIndex = 0; environmentIndex < catalog.Environments.Length; environmentIndex++)
             {
                 foreach (var depth in GetEnvironmentDepths(environmentIndex))
                 {
@@ -571,7 +565,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
                 }
 
                 if (environmentIndex <= 0) continue;
-                foreach (var eventIndex in Enumerable.Range(1, catalog.Events.Count - 1))
+                foreach (var eventIndex in Enumerable.Range(1, catalog.Events.Length - 1))
                 {
                     AddVariants(
                         stageIndex,
@@ -582,7 +576,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
                 }
             }
 
-            for (var eventIndex = 1; eventIndex < catalog.Events.Count; eventIndex++)
+            for (var eventIndex = 1; eventIndex < catalog.Events.Length; eventIndex++)
             {
                 AddVariants(
                     stageIndex,
@@ -880,7 +874,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
         contexts.Add(context);
     }
 
-    private static IReadOnlyList<string> BuildConditions(
+    private static string[] BuildConditions(
         Catalog catalog,
         IReadOnlyCollection<SpawnContext> contexts,
         int earliestStageIndex,
@@ -899,7 +893,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
             .Distinct()
             .Order()
             .ToArray();
-        if (environmentIndexes.Length < catalog.Environments.Count)
+        if (environmentIndexes.Length < catalog.Environments.Length)
         {
             conditions.Add(Language.GetTextValue(
                 "Mods.ProgressionJournal.UI.NpcSpawnBiomeCondition",
@@ -941,11 +935,11 @@ internal static class JournalNpcSpawnAvailabilityResolver
             contexts,
             static context => context.PlayerInTown,
             "Mods.ProgressionJournal.UI.NpcSpawnTownCondition");
-        return conditions;
+        return conditions.ToArray();
     }
 
     private static void AppendBooleanCondition(
-        ICollection<string> conditions,
+        List<string> conditions,
         IEnumerable<SpawnContext> contexts,
         Func<SpawnContext, bool> selector,
         string localizationKey)
@@ -1174,7 +1168,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
     private static Player? GetProbePlayer()
     {
         if (Main.myPlayer >= 0 && Main.myPlayer < Main.player.Length
-            && Main.player[Main.myPlayer] is { active: true } localPlayer)
+            && Main.LocalPlayer is { active: true } localPlayer)
         {
             return localPlayer;
         }
