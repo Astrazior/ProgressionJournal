@@ -580,6 +580,8 @@ const START_SOURCES = [
   "Terraria/CrimsonPenguin",
   "Terraria/PinkJellyfish",
   "Terraria/Shark",
+  "Terraria/Squid",
+  "Terraria/SeaSnail",
   "Terraria/Skeleton",
   "Terraria/SkeletonMerchant",
   "Terraria/TombCrawlerHead",

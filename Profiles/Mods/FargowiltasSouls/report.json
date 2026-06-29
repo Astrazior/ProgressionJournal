@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "FargowiltasSouls",
   "profileId": "builtin.fargosouls",
-  "generatedAtUtc": "2026-06-28T20:58:27.780Z",
+  "generatedAtUtc": "2026-06-29T09:58:06.434Z",
   "snapshot": {
     "version": 4,
     "generatedAtUtc": "2026-06-28T20:57:56.1014058Z",
@@ -702,7 +702,7 @@
   "audit": {
     "errors": [],
     "warnings": [
-      "266 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
+      "264 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
       "npcCount": 742,
@@ -2041,6 +2041,14 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/SeaSnail",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/Shark",
           "kinds": [
             "drop"
@@ -2122,6 +2130,14 @@
         },
         {
           "source": "Terraria/SporeSkeleton",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/Squid",
           "kinds": [
             "drop"
           ],
@@ -3805,14 +3821,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/SeaSnail",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/SeekerBody",
           "kinds": [
             "drop"
@@ -4030,14 +4038,6 @@
         },
         {
           "source": "Terraria/Splinterling",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Squid",
           "kinds": [
             "drop"
           ],
@@ -4397,7 +4397,7 @@
   "ready": true,
   "generation": {
     "profileId": "builtin.fargosouls",
-    "generatedAtUtc": "2026-06-28T20:58:25.764Z",
+    "generatedAtUtc": "2026-06-29T09:58:04.900Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -12517,6 +12517,26 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/BlackInk",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "FargowiltasSouls/SquidwardDoor",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Starfish",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PurpleMucos",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/AncientIronHelmet",
         "reason": "not combat equipment"
       },
@@ -17922,12 +17942,52 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/PurpleDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PurpleandBlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BrownAndBlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BrightPurpleDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/BrightBrownDye",
         "reason": "not combat equipment"
       },
       {
         "stage": "start",
+        "id": "Terraria/PurpleandSilverDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/BrownAndSilverDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/SilverAndBlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BlackAndWhiteDye",
         "reason": "not combat equipment"
       },
       {
@@ -18948,6 +19008,46 @@
       {
         "stage": "start",
         "id": "Terraria/ToiletFrozen",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PlaguebringerChestplate",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PlaguebringerGreaves",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/TimelessTravelerRobe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/TimelessTravelerBottom",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/TVHeadSuit",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/TVHeadPants",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GolfBallDyedBlack",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GolfBallDyedPurple",
         "reason": "not combat equipment"
       },
       {
@@ -27929,6 +28029,14 @@
         "stage": "start",
         "via": "recipe:Terraria/BottledWater+Terraria/CrispyHoneyBlock+Terraria/Waterleaf"
       },
+      "Terraria/PurpleString": {
+        "stage": "start",
+        "via": "recipe:Terraria/WhiteString+Terraria/PurpleDye"
+      },
+      "Terraria/BlackString": {
+        "stage": "start",
+        "via": "recipe:Terraria/WhiteString+Terraria/BlackDye"
+      },
       "FargowiltasSouls/TreeSword": {
         "stage": "trojan-squirrel",
         "via": "npc:FargowiltasSouls/TrojanSquirrel"
@@ -32112,6 +32220,22 @@
       "FargowiltasSouls/HokeyBall": {
         "stage": "start",
         "via": "npc:Terraria/Shark"
+      },
+      "Terraria/BlackInk": {
+        "stage": "start",
+        "via": "npc:Terraria/Squid"
+      },
+      "FargowiltasSouls/SquidwardDoor": {
+        "stage": "start",
+        "via": "npc:Terraria/Squid"
+      },
+      "Terraria/Starfish": {
+        "stage": "start",
+        "via": "npc:Terraria/Squid"
+      },
+      "Terraria/PurpleMucos": {
+        "stage": "start",
+        "via": "npc:Terraria/SeaSnail"
       },
       "Terraria/AncientIronHelmet": {
         "stage": "start",
@@ -36437,13 +36561,45 @@
         "stage": "start",
         "via": "recipe:Terraria/PinkPaint"
       },
+      "Terraria/PurpleDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/PurpleMucos"
+      },
+      "Terraria/BlackDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/BlackInk"
+      },
+      "Terraria/PurpleandBlackDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/PurpleDye+Terraria/BlackDye"
+      },
+      "Terraria/BrownAndBlackDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/BrownDye+Terraria/BlackDye"
+      },
+      "Terraria/BrightPurpleDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/PurpleDye+Terraria/SilverDye"
+      },
       "Terraria/BrightBrownDye": {
         "stage": "start",
         "via": "recipe:Terraria/BrownDye+Terraria/SilverDye"
       },
+      "Terraria/PurpleandSilverDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/PurpleDye+Terraria/SilverDye"
+      },
       "Terraria/BrownAndSilverDye": {
         "stage": "start",
         "via": "recipe:Terraria/BrownDye+Terraria/SilverDye"
+      },
+      "Terraria/SilverAndBlackDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/SilverDye+Terraria/BlackDye"
+      },
+      "Terraria/BlackAndWhiteDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/SilverDye+Terraria/BlackDye"
       },
       "Terraria/BrightSilverDye": {
         "stage": "start",
@@ -37260,6 +37416,38 @@
       "Terraria/ToiletFrozen": {
         "stage": "start",
         "via": "recipe:Terraria/IceBlock"
+      },
+      "Terraria/PlaguebringerChestplate": {
+        "stage": "start",
+        "via": "recipe:Terraria/Silk+Terraria/Vertebrae+Terraria/BlackDye"
+      },
+      "Terraria/PlaguebringerGreaves": {
+        "stage": "start",
+        "via": "recipe:Terraria/Silk+Terraria/Vertebrae+Terraria/BlackDye"
+      },
+      "Terraria/TimelessTravelerRobe": {
+        "stage": "start",
+        "via": "recipe:Terraria/Silk+Terraria/RottenChunk+Terraria/BlackDye"
+      },
+      "Terraria/TimelessTravelerBottom": {
+        "stage": "start",
+        "via": "recipe:Terraria/Silk+Terraria/RottenChunk+Terraria/BlackDye"
+      },
+      "Terraria/TVHeadSuit": {
+        "stage": "start",
+        "via": "recipe:Terraria/Silk+Terraria/PurpleDye"
+      },
+      "Terraria/TVHeadPants": {
+        "stage": "start",
+        "via": "recipe:Terraria/Silk+Terraria/PurpleDye"
+      },
+      "Terraria/GolfBallDyedBlack": {
+        "stage": "start",
+        "via": "recipe:Terraria/GolfBall+Terraria/BlackDye"
+      },
+      "Terraria/GolfBallDyedPurple": {
+        "stage": "start",
+        "via": "recipe:Terraria/GolfBall+Terraria/PurpleDye"
       },
       "Terraria/AlphabetStatue0": {
         "stage": "start",

@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-06-28T20:58:21.357Z",
+  "generatedAtUtc": "2026-06-29T10:04:32.359Z",
   "snapshot": {
     "version": 4,
     "generatedAtUtc": "2026-06-28T20:57:13.6523686Z",
@@ -798,7 +798,7 @@
         "reason": "The official Reaper Shark loot table places Reaper Tooth, Deep Sea Dumbbell and Valediction in its post-Polterghast conditional drop set."
       },
       {
-        "id": "remaining-conditional-enemy-sources",
+        "id": "post-polterghast-colossal-squid-loot",
         "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Abyss/ColossalSquid.cs",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
         "checkedAt": "2026-06-15",
@@ -1211,6 +1211,12 @@
         {
           "id": "post-skeletron-abyss-sources",
           "kind": "npc-source",
+          "target": "CalamityMod/ColossalSquid",
+          "expectedStageId": "skeletron"
+        },
+        {
+          "id": "post-skeletron-abyss-sources",
+          "kind": "npc-source",
           "target": "CalamityMod/Cuttlefish",
           "expectedStageId": "skeletron"
         },
@@ -1449,12 +1455,6 @@
           "expectedStageId": "polterghast"
         },
         {
-          "id": "remaining-conditional-enemy-sources",
-          "kind": "npc-source",
-          "target": "CalamityMod/ColossalSquid",
-          "expectedStageId": "polterghast"
-        },
-        {
           "id": "post-providence-scryllar-sources",
           "kind": "npc-source",
           "target": "CalamityMod/Scryllar",
@@ -1677,7 +1677,7 @@
         }
       ],
       "stageComparison": {
-        "compared": 2122,
+        "compared": 2123,
         "moved": 0
       }
     }
@@ -1690,7 +1690,7 @@
     "errors": [],
     "warnings": [
       "64 recommendations precede proven availability and were suppressed",
-      "324 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
+      "322 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
       "npcCount": 992,
@@ -3742,6 +3742,14 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/SeaSnail",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/Shark",
           "kinds": [
             "drop"
@@ -3831,6 +3839,14 @@
         },
         {
           "source": "Terraria/SporeSkeleton",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/Squid",
           "kinds": [
             "drop"
           ],
@@ -6136,14 +6152,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/SeaSnail",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/SeekerBody",
           "kinds": [
             "drop"
@@ -6353,14 +6361,6 @@
         },
         {
           "source": "Terraria/Splinterling",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Squid",
           "kinds": [
             "drop"
           ],
@@ -6648,7 +6648,7 @@
   "ready": true,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-06-28T20:58:09.946Z",
+    "generatedAtUtc": "2026-06-29T10:04:19.239Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -17830,6 +17830,21 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/BlackInk",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Starfish",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PurpleMucos",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/AncientIronHelmet",
         "reason": "not combat equipment"
       },
@@ -23525,12 +23540,52 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/PurpleDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PurpleandBlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BrownAndBlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BrightPurpleDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/BrightBrownDye",
         "reason": "not combat equipment"
       },
       {
         "stage": "start",
+        "id": "Terraria/PurpleandSilverDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/BrownAndSilverDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/SilverAndBlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BlackAndWhiteDye",
         "reason": "not combat equipment"
       },
       {
@@ -23711,6 +23766,21 @@
       {
         "stage": "start",
         "id": "CalamityMod/AcesApronOfAffection",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/OldHunterHat",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/OldHunterPants",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/OldHunterShirt",
         "reason": "not combat equipment"
       },
       {
@@ -24451,6 +24521,11 @@
       {
         "stage": "start",
         "id": "CalamityMod/DesertMedallion",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/Seafood",
         "reason": "not combat equipment"
       },
       {
@@ -25226,6 +25301,46 @@
       {
         "stage": "start",
         "id": "Terraria/ToiletFrozen",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PlaguebringerChestplate",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PlaguebringerGreaves",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/TimelessTravelerRobe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/TimelessTravelerBottom",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/TVHeadSuit",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/TVHeadPants",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GolfBallDyedBlack",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GolfBallDyedPurple",
         "reason": "not combat equipment"
       },
       {
@@ -26180,11 +26295,6 @@
       },
       {
         "stage": "desert-scourge",
-        "id": "Terraria/Starfish",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "desert-scourge",
         "id": "CalamityMod/PearlShard",
         "reason": "not combat equipment"
       },
@@ -26216,11 +26326,6 @@
       {
         "stage": "desert-scourge",
         "id": "CalamityMod/SeaRemains",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "desert-scourge",
-        "id": "CalamityMod/Seafood",
         "reason": "not combat equipment"
       },
       {
@@ -34650,46 +34755,6 @@
       },
       {
         "stage": "polterghast",
-        "id": "Terraria/BlackInk",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "Terraria/BlackDye",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "Terraria/BrownAndBlackDye",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "Terraria/SilverAndBlackDye",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "Terraria/BlackAndWhiteDye",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "CalamityMod/OldHunterHat",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "CalamityMod/OldHunterPants",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "CalamityMod/OldHunterShirt",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
         "id": "CalamityMod/StratusDye",
         "reason": "not combat equipment"
       },
@@ -34726,31 +34791,6 @@
       {
         "stage": "polterghast",
         "id": "CalamityMod/NaiadsWarhorn",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "Terraria/PlaguebringerChestplate",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "Terraria/PlaguebringerGreaves",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "Terraria/TimelessTravelerRobe",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "Terraria/TimelessTravelerBottom",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "polterghast",
-        "id": "Terraria/GolfBallDyedBlack",
         "reason": "not combat equipment"
       },
       {
@@ -37650,6 +37690,14 @@
         "stage": "start",
         "via": "recipe:Terraria/BottledWater+Terraria/CrispyHoneyBlock+Terraria/Waterleaf"
       },
+      "Terraria/PurpleString": {
+        "stage": "start",
+        "via": "recipe:Terraria/WhiteString+Terraria/PurpleDye"
+      },
+      "Terraria/BlackString": {
+        "stage": "start",
+        "via": "recipe:Terraria/WhiteString+Terraria/BlackDye"
+      },
       "CalamityMod/Crystalline": {
         "stage": "start",
         "via": "recipe:CalamityMod/WulfrumKnife+Terraria/Diamond+Terraria/FallenStar"
@@ -38654,11 +38702,11 @@
         "stage": "skeletron",
         "via": "npc:CalamityMod/BoxJellyfish"
       },
-      "Terraria/Blindfold": {
-        "stage": "skeletron",
-        "via": "npc:CalamityMod/Cuttlefish"
-      },
       "CalamityMod/InkBomb": {
+        "stage": "skeletron",
+        "via": "npc:CalamityMod/ColossalSquid"
+      },
+      "Terraria/Blindfold": {
         "stage": "skeletron",
         "via": "npc:CalamityMod/Cuttlefish"
       },
@@ -43399,6 +43447,10 @@
         "stage": "signus",
         "via": "recipe:Terraria/StardustDragonStaff+Terraria/DarkShard+Terraria/LightShard+CalamityMod/TwistingNether"
       },
+      "CalamityMod/CalamarisLament": {
+        "stage": "polterghast",
+        "via": "npc:CalamityMod/ColossalSquid"
+      },
       "CalamityMod/TerrorBlade": {
         "stage": "polterghast",
         "via": "npc:CalamityMod/Polterghast"
@@ -43462,10 +43514,6 @@
       "CalamityMod/Valediction": {
         "stage": "polterghast",
         "via": "npc:CalamityMod/ReaperShark"
-      },
-      "CalamityMod/CalamarisLament": {
-        "stage": "polterghast",
-        "via": "npc:CalamityMod/ColossalSquid"
       },
       "CalamityMod/LionHeart": {
         "stage": "polterghast",
@@ -43686,10 +43734,6 @@
       "CalamityMod/StratusSphere": {
         "stage": "polterghast",
         "via": "recipe:Terraria/NebulaArcanum+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
-      },
-      "Terraria/BlackString": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/WhiteString+Terraria/BlackDye"
       },
       "CalamityMod/InsidiousImpaler": {
         "stage": "old-duke",
@@ -45230,6 +45274,18 @@
       "Terraria/DivingHelmet": {
         "stage": "start",
         "via": "npc:Terraria/Shark"
+      },
+      "Terraria/BlackInk": {
+        "stage": "start",
+        "via": "npc:Terraria/Squid"
+      },
+      "Terraria/Starfish": {
+        "stage": "start",
+        "via": "npc:Terraria/Squid"
+      },
+      "Terraria/PurpleMucos": {
+        "stage": "start",
+        "via": "npc:Terraria/SeaSnail"
       },
       "Terraria/AncientIronHelmet": {
         "stage": "start",
@@ -49787,13 +49843,45 @@
         "stage": "start",
         "via": "recipe:Terraria/PinkPaint"
       },
+      "Terraria/PurpleDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/PurpleMucos"
+      },
+      "Terraria/BlackDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/BlackInk"
+      },
+      "Terraria/PurpleandBlackDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/PurpleDye+Terraria/BlackDye"
+      },
+      "Terraria/BrownAndBlackDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/BrownDye+Terraria/BlackDye"
+      },
+      "Terraria/BrightPurpleDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/PurpleDye+Terraria/SilverDye"
+      },
       "Terraria/BrightBrownDye": {
         "stage": "start",
         "via": "recipe:Terraria/BrownDye+Terraria/SilverDye"
       },
+      "Terraria/PurpleandSilverDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/PurpleDye+Terraria/SilverDye"
+      },
       "Terraria/BrownAndSilverDye": {
         "stage": "start",
         "via": "recipe:Terraria/BrownDye+Terraria/SilverDye"
+      },
+      "Terraria/SilverAndBlackDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/SilverDye+Terraria/BlackDye"
+      },
+      "Terraria/BlackAndWhiteDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/SilverDye+Terraria/BlackDye"
       },
       "Terraria/BrightSilverDye": {
         "stage": "start",
@@ -49938,6 +50026,18 @@
       "CalamityMod/AcesApronOfAffection": {
         "stage": "start",
         "via": "recipe:Terraria/Robe+Terraria/LovePotion+Terraria/LifeCrystal"
+      },
+      "CalamityMod/OldHunterHat": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/DesertProwlerHat+Terraria/BlackInk"
+      },
+      "CalamityMod/OldHunterPants": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/DesertProwlerPants+Terraria/BlackInk"
+      },
+      "CalamityMod/OldHunterShirt": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/DesertProwlerShirt+Terraria/BlackInk"
       },
       "CalamityMod/InvisibleDye": {
         "stage": "start",
@@ -50530,6 +50630,10 @@
       "CalamityMod/DesertMedallion": {
         "stage": "start",
         "via": "recipe:Terraria/SandBlock+Terraria/AntlionMandible+CalamityMod/StormlionMandible"
+      },
+      "CalamityMod/Seafood": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/SulphurousSand+Terraria/Starfish+Terraria/SharkFin"
       },
       "CalamityMod/AcidwoodHammer": {
         "stage": "start",
@@ -51150,6 +51254,38 @@
       "Terraria/ToiletFrozen": {
         "stage": "start",
         "via": "recipe:Terraria/IceBlock"
+      },
+      "Terraria/PlaguebringerChestplate": {
+        "stage": "start",
+        "via": "recipe:Terraria/Silk+Terraria/Vertebrae+Terraria/BlackDye"
+      },
+      "Terraria/PlaguebringerGreaves": {
+        "stage": "start",
+        "via": "recipe:Terraria/Silk+Terraria/Vertebrae+Terraria/BlackDye"
+      },
+      "Terraria/TimelessTravelerRobe": {
+        "stage": "start",
+        "via": "recipe:Terraria/Silk+Terraria/RottenChunk+Terraria/BlackDye"
+      },
+      "Terraria/TimelessTravelerBottom": {
+        "stage": "start",
+        "via": "recipe:Terraria/Silk+Terraria/RottenChunk+Terraria/BlackDye"
+      },
+      "Terraria/TVHeadSuit": {
+        "stage": "start",
+        "via": "recipe:Terraria/Silk+Terraria/PurpleDye"
+      },
+      "Terraria/TVHeadPants": {
+        "stage": "start",
+        "via": "recipe:Terraria/Silk+Terraria/PurpleDye"
+      },
+      "Terraria/GolfBallDyedBlack": {
+        "stage": "start",
+        "via": "recipe:Terraria/GolfBall+Terraria/BlackDye"
+      },
+      "Terraria/GolfBallDyedPurple": {
+        "stage": "start",
+        "via": "recipe:Terraria/GolfBall+Terraria/PurpleDye"
       },
       "Terraria/AlphabetStatue0": {
         "stage": "start",
@@ -51911,10 +52047,6 @@
         "stage": "desert-scourge",
         "via": "npc:CalamityMod/DesertScourgeHead"
       },
-      "Terraria/Starfish": {
-        "stage": "desert-scourge",
-        "via": "npc:CalamityMod/DesertScourgeHead"
-      },
       "CalamityMod/PearlShard": {
         "stage": "desert-scourge",
         "via": "npc:CalamityMod/DesertScourgeHead"
@@ -51942,10 +52074,6 @@
       "CalamityMod/SeaRemains": {
         "stage": "desert-scourge",
         "via": "recipe:CalamityMod/PearlShard+Terraria/Coral+Terraria/Starfish+Terraria/Seashell"
-      },
-      "CalamityMod/Seafood": {
-        "stage": "desert-scourge",
-        "via": "recipe:CalamityMod/SulphurousSand+Terraria/Starfish+Terraria/SharkFin"
       },
       "CalamityMod/GreatbayPickaxe": {
         "stage": "desert-scourge",
@@ -56965,7 +57093,7 @@
       },
       "CalamityMod/DepthCells": {
         "stage": "leviathan-anahita",
-        "via": "npc:CalamityMod/GiantSquid"
+        "via": "npc:CalamityMod/ColossalSquid"
       },
       "CalamityMod/LeviathanBag": {
         "stage": "leviathan-anahita",
@@ -59179,38 +59307,6 @@
         "stage": "polterghast",
         "via": "npc:CalamityMod/ReaperShark"
       },
-      "Terraria/BlackInk": {
-        "stage": "polterghast",
-        "via": "npc:CalamityMod/ColossalSquid"
-      },
-      "Terraria/BlackDye": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/BlackInk"
-      },
-      "Terraria/BrownAndBlackDye": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/BrownDye+Terraria/BlackDye"
-      },
-      "Terraria/SilverAndBlackDye": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/SilverDye+Terraria/BlackDye"
-      },
-      "Terraria/BlackAndWhiteDye": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/SilverDye+Terraria/BlackDye"
-      },
-      "CalamityMod/OldHunterHat": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/DesertProwlerHat+Terraria/BlackInk"
-      },
-      "CalamityMod/OldHunterPants": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/DesertProwlerPants+Terraria/BlackInk"
-      },
-      "CalamityMod/OldHunterShirt": {
-        "stage": "polterghast",
-        "via": "recipe:CalamityMod/DesertProwlerShirt+Terraria/BlackInk"
-      },
       "CalamityMod/StratusDye": {
         "stage": "polterghast",
         "via": "recipe:Terraria/BottledWater+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster"
@@ -59242,26 +59338,6 @@
       "CalamityMod/NaiadsWarhorn": {
         "stage": "polterghast",
         "via": "recipe:CalamityMod/Driftwood+CalamityMod/AbyssGravel+CalamityMod/Lumenyl"
-      },
-      "Terraria/PlaguebringerChestplate": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/Silk+Terraria/Vertebrae+Terraria/BlackDye"
-      },
-      "Terraria/PlaguebringerGreaves": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/Silk+Terraria/Vertebrae+Terraria/BlackDye"
-      },
-      "Terraria/TimelessTravelerRobe": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/Silk+Terraria/RottenChunk+Terraria/BlackDye"
-      },
-      "Terraria/TimelessTravelerBottom": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/Silk+Terraria/RottenChunk+Terraria/BlackDye"
-      },
-      "Terraria/GolfBallDyedBlack": {
-        "stage": "polterghast",
-        "via": "recipe:Terraria/GolfBall+Terraria/BlackDye"
       },
       "CalamityMod/VoidCondenser": {
         "stage": "polterghast",

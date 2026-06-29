@@ -1020,7 +1020,10 @@ internal static class JournalFishingSourceResolver
         FishingCatalog catalog,
         ProbeContext context)
     {
-        return GetEffectiveProgressionIndex(catalog, context);
+        var hasSyntheticModEnvironment = catalog.Environments[context.EnvironmentIndex].ModBiome is not null;
+        return hasSyntheticModEnvironment
+            ? -1
+            : GetEffectiveProgressionIndex(catalog, context);
     }
 
     private static void AppendProgressionCondition(

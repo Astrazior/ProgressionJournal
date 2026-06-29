@@ -415,6 +415,7 @@ export function generateProfile(
     report,
     wikiResolver,
     itemById);
+  mergeEquivalentVariantEntries(profileEntries, entryByItem, itemById, manifest);
   narrowUnclassifiedEquipmentClasses(profileEntries, manifest);
   validateManualRules(manifest, itemById, report);
   const review = buildManualReview({
@@ -1235,6 +1236,70 @@ function sourceCompatibility(sourceProfile, snapshot) {
     compatible: comparisons.every(comparison => comparison.compatible),
     comparisons
   };
+}
+
+const EquivalentVariantGroups = [
+  [
+    "Terraria/WhiteString",
+    "Terraria/RedString",
+    "Terraria/OrangeString",
+    "Terraria/YellowString",
+    "Terraria/LimeString",
+    "Terraria/GreenString",
+    "Terraria/TealString",
+    "Terraria/CyanString",
+    "Terraria/SkyBlueString",
+    "Terraria/BlueString",
+    "Terraria/PurpleString",
+    "Terraria/VioletString",
+    "Terraria/PinkString",
+    "Terraria/BrownString",
+    "Terraria/BlackString",
+    "Terraria/RainbowString"
+  ]
+];
+
+function mergeEquivalentVariantEntries(profileEntries, entryByItem, itemById, manifest) {
+  const stageIndexes = manifest._stageIndexes ?? new Map();
+  for (const group of EquivalentVariantGroups) {
+    const entries = group
+      .map((id, groupIndex) => ({ id, groupIndex, entry: entryByItem.get(id) }))
+      .filter(value => value.entry);
+    const uniqueEntries = uniqueBy(entries, value => value.entry.key);
+    if (uniqueEntries.length < 2) continue;
+
+    const canonical = [...uniqueEntries]
+      .sort((left, right) => {
+        const leftStage = left.entry.evaluations?.[0]?.stageId ?? "";
+        const rightStage = right.entry.evaluations?.[0]?.stageId ?? "";
+        return (stageIndexes.get(leftStage) ?? Number.MAX_SAFE_INTEGER)
+          - (stageIndexes.get(rightStage) ?? Number.MAX_SAFE_INTEGER)
+          || left.groupIndex - right.groupIndex;
+      })[0].entry;
+    const references = group
+      .filter(id => entryByItem.has(id))
+      .map(id => itemById.get(id))
+      .filter(Boolean)
+      .map(toItemReference);
+    canonical.itemGroups = [references];
+
+    const wiki = uniqueBy(
+      uniqueEntries.flatMap(value => value.entry.wiki ?? []),
+      wikiRecommendationSignature);
+    canonical.wiki = wiki;
+    canonical.fishingSources = uniqueBy(
+      uniqueEntries.flatMap(value => value.entry.fishingSources ?? []),
+      value => JSON.stringify(value));
+
+    for (const { id } of entries) {
+      entryByItem.set(id, canonical);
+    }
+    for (const { entry } of uniqueEntries) {
+      if (entry === canonical) continue;
+      const index = profileEntries.indexOf(entry);
+      if (index >= 0) profileEntries.splice(index, 1);
+    }
+  }
 }
 
 function sameVersionFamily(left, right) {

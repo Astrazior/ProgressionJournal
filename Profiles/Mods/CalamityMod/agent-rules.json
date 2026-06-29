@@ -335,6 +335,7 @@
       "kind": "source-stage",
       "sources": [
         "CalamityMod/BoxJellyfish",
+        "CalamityMod/ColossalSquid",
         "CalamityMod/Cuttlefish",
         "CalamityMod/GiantSquid",
         "CalamityMod/MirageJelly",
@@ -1576,12 +1577,18 @@
       "reason": "The official Reaper Shark loot table places Reaper Tooth, Deep Sea Dumbbell and Valediction in its post-Polterghast conditional drop set."
     },
     {
-      "id": "remaining-conditional-enemy-sources",
-      "kind": "source-stage",
+      "id": "post-polterghast-colossal-squid-loot",
+      "kind": "condition-stage",
       "sources": [
+        "drop"
+      ],
+      "sourceIds": [
         "CalamityMod/ColossalSquid"
       ],
       "stageId": "polterghast",
+      "conditionDescriptions": [
+        "Предметы: After defeating the Polterghast"
+      ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Abyss/ColossalSquid.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-15",

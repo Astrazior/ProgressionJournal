@@ -115,7 +115,10 @@ const snapshot = {
     item("Test/NamespaceVanity", {
       accessory: true,
       sourceNamespace: "Test.Items.Accessories.Vanity"
-    })
+    }),
+    item("Terraria/WhiteString", { accessory: true }),
+    item("Terraria/BrownString", { accessory: true }),
+    item("Terraria/BlackString", { accessory: true })
   ],
   npcs: [],
   recipes: [
@@ -131,6 +134,22 @@ const snapshot = {
       result: "Test/ForgeSword",
       ingredients: [{ item: "Test/Ore", stack: 1 }],
       stations: ["Test/ForgeTile"],
+      conditions: []
+    },
+    { result: "Terraria/WhiteString", ingredients: [], stations: [], conditions: [] },
+    {
+      result: "Terraria/BrownString",
+      ingredients: [{ item: "Terraria/WhiteString", stack: 1 }],
+      stations: [],
+      conditions: []
+    },
+    {
+      result: "Terraria/BlackString",
+      ingredients: [
+        { item: "Terraria/WhiteString", stack: 1 },
+        { item: "Test/LateDrop", stack: 1 }
+      ],
+      stations: [],
       conditions: []
     }
   ],
@@ -260,6 +279,21 @@ const snapshot = {
     {
       item: "Terraria/VanillaMeleeHelmet",
       category: "Armor",
+      classes: ["melee"]
+    },
+    {
+      item: "Terraria/WhiteString",
+      category: "Accessory",
+      classes: ["melee"]
+    },
+    {
+      item: "Terraria/BrownString",
+      category: "Accessory",
+      classes: ["melee"]
+    },
+    {
+      item: "Terraria/BlackString",
+      category: "Accessory",
       classes: ["melee"]
     }
   ]
@@ -512,6 +546,17 @@ assert.deepEqual(
   ["melee"]);
 assert(!profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "VanillaUtilityAccessory"));
+const stringEntry = profile.entries.find(entry =>
+  entry.itemGroups[0].some(reference => reference.item === "WhiteString"));
+assert.deepEqual(stringEntry?.evaluations, [{ stageId: "start", tier: "FromGuide", scope: "StageOnly" }]);
+assert.deepEqual(
+  stringEntry?.itemGroups[0].map(reference => reference.item),
+  ["WhiteString", "BrownString", "BlackString"]);
+assert.equal(
+  profile.entries.filter(entry =>
+    entry.itemGroups[0].some(reference =>
+      ["WhiteString", "BrownString", "BlackString"].includes(reference.item))).length,
+  1);
 assert(report.wikiResolvedItems.some(entry =>
   entry.from === "Test/OldBlade"
   && entry.to.includes("Test/RenamedBlade")));
