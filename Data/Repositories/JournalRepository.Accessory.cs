@@ -170,7 +170,8 @@ public static partial class JournalRepository
             Entry("shinyRedBalloonPreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.ShinyRedBalloon,
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-            Entry("balloonPufferfishPreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.BalloonPufferfish,
+            FishingEntry("balloonPufferfishPreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.BalloonPufferfish,
+                            FishingSource(FishingLiquid("FishingLiquidWater")),
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
             Entry("shacklePreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.Shackle,
@@ -182,7 +183,8 @@ public static partial class JournalRepository
             Entry("frogGearPreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.FrogGear,
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
-            Entry("frogLegPreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.FrogLeg,
+            FishingEntry("frogLegPreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.FrogLeg,
+                            FishingSource(FishingLiquid("FishingLiquidWater")),
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
             Entry("frogFlipperPreBoss", JournalItemCategory.Accessory, CombatClass.All, ItemID.FrogFlipper,

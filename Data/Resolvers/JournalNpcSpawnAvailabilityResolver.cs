@@ -88,13 +88,12 @@ internal static class JournalNpcSpawnAvailabilityResolver
                     {
                         tile.WallType = (ushort)environment.WallType;
                     }
-                    if (y >= floorY)
+
+                    if (y < floorY) continue;
+                    tile.ResetToType((ushort)environment.TileType);
+                    if (environment.WallType > 0)
                     {
-                        tile.ResetToType((ushort)environment.TileType);
-                        if (environment.WallType > 0)
-                        {
-                            tile.WallType = (ushort)environment.WallType;
-                        }
+                        tile.WallType = (ushort)environment.WallType;
                     }
                 }
             }
@@ -259,11 +258,9 @@ internal static class JournalNpcSpawnAvailabilityResolver
         lock (SyncRoot)
         {
             var key = BuildCatalogKey();
-            if (_catalog is null || !string.Equals(_catalogKey, key, StringComparison.Ordinal))
-            {
-                _catalog = BuildCatalog();
-                _catalogKey = key;
-            }
+            if (_catalog is not null && string.Equals(_catalogKey, key, StringComparison.Ordinal)) return _catalog;
+            _catalog = BuildCatalog();
+            _catalogKey = key;
 
             return _catalog;
         }
@@ -344,14 +341,12 @@ internal static class JournalNpcSpawnAvailabilityResolver
                 ObserveChosenSpawn(catalog.Observations, spawnInfo, context);
                 ObserveDd2WaveEnemies(catalog.Observations, context);
 
-                if (ShouldRunFullSpawn(context, catalog))
-                {
-                    spawnArena.Prepare(
-                        catalog.Environments[context.EnvironmentIndex],
-                        context.Depth,
-                        context.EnvironmentIndex == 1);
-                    ObserveFullSpawn(catalog.Observations, player, context);
-                }
+                if (!ShouldRunFullSpawn(context, catalog)) continue;
+                spawnArena.Prepare(
+                    catalog.Environments[context.EnvironmentIndex],
+                    context.Depth,
+                    context.EnvironmentIndex == 1);
+                ObserveFullSpawn(catalog.Observations, player, context);
             }
         }
         catch
@@ -534,28 +529,9 @@ internal static class JournalNpcSpawnAvailabilityResolver
             .ToArray();
     }
 
-    private static IReadOnlyCollection<SpawnContext> CreateContexts(Catalog catalog)
+    private static HashSet<SpawnContext> CreateContexts(Catalog catalog)
     {
         var contexts = new HashSet<SpawnContext>();
-
-        void AddVariants(
-            int stageIndex,
-            int environmentIndex,
-            int depth,
-            int eventIndex,
-            bool includeSafe)
-        {
-            var variantCount = includeSafe ? 3 : 2;
-            for (var variant = 0; variant < variantCount; variant++)
-            {
-                contexts.Add(CreateContext(
-                    stageIndex,
-                    environmentIndex,
-                    depth,
-                    eventIndex,
-                    variant));
-            }
-        }
 
         for (var environmentIndex = 0; environmentIndex < catalog.Environments.Count; environmentIndex++)
         {
@@ -594,17 +570,15 @@ internal static class JournalNpcSpawnAvailabilityResolver
                         includeSafe: true);
                 }
 
-                if (environmentIndex > 0)
+                if (environmentIndex <= 0) continue;
+                foreach (var eventIndex in Enumerable.Range(1, catalog.Events.Count - 1))
                 {
-                    foreach (var eventIndex in Enumerable.Range(1, catalog.Events.Count - 1))
-                    {
-                        AddVariants(
-                            stageIndex,
-                            environmentIndex,
-                            GetEnvironmentDepths(environmentIndex).First(),
-                            eventIndex,
-                            includeSafe: false);
-                    }
+                    AddVariants(
+                        stageIndex,
+                        environmentIndex,
+                        GetEnvironmentDepths(environmentIndex).First(),
+                        eventIndex,
+                        includeSafe: false);
                 }
             }
 
@@ -620,6 +594,25 @@ internal static class JournalNpcSpawnAvailabilityResolver
         }
 
         return contexts;
+
+        void AddVariants(
+            int stageIndex,
+            int environmentIndex,
+            int depth,
+            int eventIndex,
+            bool includeSafe)
+        {
+            var variantCount = includeSafe ? 3 : 2;
+            for (var variant = 0; variant < variantCount; variant++)
+            {
+                contexts.Add(CreateContext(
+                    stageIndex,
+                    environmentIndex,
+                    depth,
+                    eventIndex,
+                    variant));
+            }
+        }
     }
 
     private static IEnumerable<int> GetEnvironmentDepths(int environmentIndex)

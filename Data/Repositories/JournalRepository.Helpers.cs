@@ -1,3 +1,5 @@
+using Terraria.Localization;
+
 namespace ProgressionJournal.Data.Repositories;
 
 public static partial class JournalRepository
@@ -54,6 +56,23 @@ public static partial class JournalRepository
         return new JournalEntry(key, category, classes, [itemId], evaluations);
     }
 
+    private static JournalEntry FishingEntry(
+        string key,
+        JournalItemCategory category,
+        CombatClass classes,
+        int itemId,
+        JournalFishingSource fishingSource,
+        params StageEvaluation[] evaluations)
+    {
+        return new JournalEntry(
+            key,
+            category,
+            JournalClassIds.FromLegacyFlags(classes),
+            [Group(itemId)],
+            evaluations,
+            fishingSources: [fishingSource]);
+    }
+
     private static JournalEntry EventEntry(
         string key,
         JournalItemCategory category,
@@ -63,6 +82,25 @@ public static partial class JournalRepository
         params StageEvaluation[] evaluations)
     {
         return new JournalEntry(key, category, classes, [itemId], evaluations, eventCategory);
+    }
+
+    private static JournalEntry FishingEventEntry(
+        string key,
+        JournalItemCategory category,
+        CombatClass classes,
+        JournalEventCategory eventCategory,
+        int itemId,
+        JournalFishingSource fishingSource,
+        params StageEvaluation[] evaluations)
+    {
+        return new JournalEntry(
+            key,
+            category,
+            JournalClassIds.FromLegacyFlags(classes),
+            [Group(itemId)],
+            evaluations,
+            eventCategory,
+            fishingSources: [fishingSource]);
     }
 
     private static JournalEntry SupportEntry(
@@ -149,6 +187,51 @@ public static partial class JournalRepository
     private static JournalItemGroup NamedBuffGroup(string displayNameLocalizationKey, int displayBuffId, params int[] itemIds)
     {
         return new JournalItemGroup(itemIds, displayNameLocalizationKey, displayBuffId);
+    }
+
+    private static JournalFishingSource FishingSource(params string[] conditions)
+    {
+        return new JournalFishingSource(conditions);
+    }
+
+    private static string FishingLiquid(string liquidLocalizationKey)
+    {
+        return FishingCondition(
+            "FishingLiquidCondition",
+            Language.GetTextValue($"Mods.ProgressionJournal.UI.{liquidLocalizationKey}"));
+    }
+
+    private static string FishingBiome(string biomeLocalizationKey)
+    {
+        return FishingCondition(
+            "FishingBiomeCondition",
+            Language.GetTextValue(biomeLocalizationKey));
+    }
+
+    private static string FishingBiomeDefault()
+    {
+        return FishingCondition(
+            "FishingBiomeCondition",
+            Language.GetTextValue("Mods.ProgressionJournal.UI.FishingBiomeDefault"));
+    }
+
+    private static string FishingDepth(params string[] depthLocalizationKeys)
+    {
+        return FishingCondition(
+            "FishingDepthCondition",
+            string.Join(", ", depthLocalizationKeys.Select(static key => Language.GetTextValue(key))));
+    }
+
+    private static string FishingProgression(ProgressionStageId stageId)
+    {
+        return FishingCondition(
+            "FishingProgressionCondition",
+            Language.GetTextValue(ProgressionStageCatalog.Get(stageId).LocalizationKey));
+    }
+
+    private static string FishingCondition(string key, string value)
+    {
+        return Language.GetTextValue($"Mods.ProgressionJournal.UI.{key}", value);
     }
 }
 

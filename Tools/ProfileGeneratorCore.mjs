@@ -1240,6 +1240,33 @@ function sourceCompatibility(sourceProfile, snapshot) {
 
 const EquivalentVariantGroups = [
   [
+    "Terraria/WoodHelmet",
+    "Terraria/BorealWoodHelmet",
+    "Terraria/RichMahoganyHelmet",
+    "Terraria/PalmWoodHelmet",
+    "Terraria/EbonwoodHelmet",
+    "Terraria/ShadewoodHelmet",
+    "Terraria/AshWoodHelmet"
+  ],
+  [
+    "Terraria/WoodBreastplate",
+    "Terraria/BorealWoodBreastplate",
+    "Terraria/RichMahoganyBreastplate",
+    "Terraria/PalmWoodBreastplate",
+    "Terraria/EbonwoodBreastplate",
+    "Terraria/ShadewoodBreastplate",
+    "Terraria/AshWoodBreastplate"
+  ],
+  [
+    "Terraria/WoodGreaves",
+    "Terraria/BorealWoodGreaves",
+    "Terraria/RichMahoganyGreaves",
+    "Terraria/PalmWoodGreaves",
+    "Terraria/EbonwoodGreaves",
+    "Terraria/ShadewoodGreaves",
+    "Terraria/AshWoodGreaves"
+  ],
+  [
     "Terraria/WhiteString",
     "Terraria/RedString",
     "Terraria/OrangeString",

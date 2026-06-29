@@ -181,7 +181,11 @@ public static partial class JournalRepository
             Entry("spearPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Spear,
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
-            Entry("swordfishPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Swordfish,
+            FishingEntry("swordfishPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Swordfish,
+                            FishingSource(
+                                FishingLiquid("FishingLiquidWater"),
+                                FishingBiome("Bestiary_Biomes.Ocean"),
+                                FishingDepth("Bestiary_Biomes.Sky", "Bestiary_Biomes.Surface")),
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
             Entry("katanaPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Katana,
@@ -190,7 +194,10 @@ public static partial class JournalRepository
             Entry("exoticScimitarPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.DyeTradersScimitar,
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-            Entry("purpleClubberfishPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.PurpleClubberfish,
+            FishingEntry("purpleClubberfishPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.PurpleClubberfish,
+                            FishingSource(
+                                FishingLiquid("FishingLiquidWater"),
+                                FishingBiome("Bestiary_Biomes.TheCorruption")),
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
             Entry("boneSwordPreBoss", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.BoneSword,
@@ -473,7 +480,12 @@ public static partial class JournalRepository
             Entry("meteorStaffHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.MeteorStaff,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Recommended)),
 
-            Entry("crystalSerpentHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.CrystalSerpent,
+            FishingEntry("crystalSerpentHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.CrystalSerpent,
+                            FishingSource(
+                                FishingLiquid("FishingLiquidWater"),
+                                FishingBiome("Bestiary_Biomes.TheHallow"),
+                                FishingDepth("Bestiary_Biomes.Surface"),
+                                FishingProgression(ProgressionStageId.HardmodeEntry)),
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
 
             Entry("crystalVileShardHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Magic, ItemID.CrystalVileShard,
@@ -803,7 +815,12 @@ public static partial class JournalRepository
             Entry("frostbrandHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Frostbrand,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
 
-            Entry("obsidianSwordfishHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.ObsidianSwordfish,
+            FishingEntry("obsidianSwordfishHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.ObsidianSwordfish,
+                            FishingSource(
+                                FishingLiquid("FishingLiquidLava"),
+                                FishingBiomeDefault(),
+                                FishingDepth("Bestiary_Biomes.Surface"),
+                                FishingProgression(ProgressionStageId.HardmodeEntry)),
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
 
             EventEntry("cutlassHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.PirateInvasion, ItemID.Cutlass,
@@ -822,7 +839,12 @@ public static partial class JournalRepository
             EventEntry("dripplerCripplerHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, JournalEventCategory.BloodMoon, ItemID.DripplerFlail,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
 
-            Entry("bladetongueHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Bladetongue,
+            FishingEntry("bladetongueHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.Bladetongue,
+                            FishingSource(
+                                FishingLiquid("FishingLiquidWater"),
+                                FishingBiome("Bestiary_Biomes.Crimson"),
+                                FishingDepth("Bestiary_Biomes.Surface"),
+                                FishingProgression(ProgressionStageId.HardmodeEntry)),
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
 
             Entry("flyingKnifeHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Melee, ItemID.FlyingKnife,
@@ -874,7 +896,12 @@ public static partial class JournalRepository
                             Group(ItemID.DartRifle, ItemID.DartPistol),
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
 
-            EventEntry("toxikarpHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.BloodMoon, ItemID.Toxikarp,
+            FishingEventEntry("toxikarpHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.BloodMoon, ItemID.Toxikarp,
+                            FishingSource(
+                                FishingLiquid("FishingLiquidWater"),
+                                FishingBiome("Bestiary_Biomes.TheCorruption"),
+                                FishingDepth("Bestiary_Biomes.Surface"),
+                                FishingProgression(ProgressionStageId.HardmodeEntry)),
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
 
             EventEntry("coinGunHardmodeEntry", JournalItemCategory.Weapon, CombatClass.Ranged, JournalEventCategory.PirateInvasion, ItemID.CoinGun,
