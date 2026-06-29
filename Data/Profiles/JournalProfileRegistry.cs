@@ -21,8 +21,6 @@ public static class JournalProfileRegistry
 
     public static void Load(IReadOnlyList<JournalEntry> vanillaEntries)
     {
-        JournalRepository.ClearDerivedCaches();
-        JournalStageIconCatalog.ClearCache();
         Profiles.Clear();
         Register(JournalProfileStorage.CreateVanillaProfile(vanillaEntries));
         LoadBundledProfiles();
@@ -46,8 +44,6 @@ public static class JournalProfileRegistry
             && string.Equals(_active.Id, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase);
         var profile = JournalProfileStorage.CreateVanillaProfile(entries);
         Profiles[profile.Id] = profile;
-        JournalRepository.ClearDerivedCaches();
-        JournalStageIconCatalog.ClearCache();
 
         if (!wasActive) return;
         _active = profile;
@@ -67,7 +63,7 @@ public static class JournalProfileRegistry
         }
 
         _active = profile;
-        JournalItemSourceResolver.ClearProfileCache();
+        JournalItemSourceResolver.ClearCache();
         JournalProfileStorage.SaveActiveProfileId(profile.Id);
         return true;
     }
@@ -79,7 +75,6 @@ public static class JournalProfileRegistry
         JournalProfileUnlockRegistry.Clear();
         JournalNpcUnlockTracker.Clear();
         JournalItemSourceResolver.ClearCache();
-        JournalStageIconCatalog.ClearCache();
     }
 
     private static bool IsAvailable(JournalProfile profile)

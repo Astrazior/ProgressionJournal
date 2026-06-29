@@ -22,14 +22,9 @@ public sealed class JournalEntrySlot : UIElement
     private const int EventBadgeInnerPadding = 1;
     private const int SupportIconSize = 12;
     private const int SupportIconPadding = 3;
-    private static readonly Asset<Texture2D> BestiaryFilterIconTexture =
-        Main.Assets.Request<Texture2D>(BestiaryFilterIconTexturePath);
-    private static readonly Asset<Texture2D> BestiarySupportIconTexture =
-        Main.Assets.Request<Texture2D>(BestiarySupportIconTexturePath);
 
     private readonly JournalStageEntry _entry;
-    private readonly int[][] _itemGroupIds;
-    private readonly Item?[][] _itemGroups;
+    private readonly Item[][] _itemGroups;
     private readonly int? _eventBadgeFrame;
     private readonly Asset<Texture2D>? _eventIcon;
     private readonly string? _eventLabel;
@@ -46,11 +41,8 @@ public sealed class JournalEntrySlot : UIElement
         _entry = entry;
         _onItemSelected = onItemSelected;
         _blockAccent = blockAccent;
-        _itemGroupIds = entry.Entry.ItemGroups
-            .Select(static group => group.ItemIds.ToArray())
-            .ToArray();
-        _itemGroups = _itemGroupIds
-            .Select(static group => new Item?[group.Length])
+        _itemGroups = entry.Entry.ItemGroups
+            .Select(group => group.ItemIds.Select(JournalItemUtilities.CreateItem).ToArray())
             .ToArray();
         if (entry.Entry.EventCategory is { } eventCategory)
         {
@@ -69,7 +61,7 @@ public sealed class JournalEntrySlot : UIElement
             _supportLabel = Language.GetTextValue("Mods.ProgressionJournal.UI.SupportWeaponTag");
         }
 
-        Width.Set(GetVisualWidth(_itemGroupIds.Length), 0f);
+        Width.Set(GetVisualWidth(_itemGroups.Length), 0f);
         Height.Set(TextureAssets.InventoryBack9.Height(), 0f);
         OnLeftClick += HandleLeftClick;
     }
@@ -100,7 +92,7 @@ public sealed class JournalEntrySlot : UIElement
         {
             Main.inventoryScale = 1f;
 
-            for (var index = 0; index < _itemGroupIds.Length; index++)
+            for (var index = 0; index < _itemGroups.Length; index++)
             {
                 var displayItem = GetDisplayedItem(index);
                 if (displayItem.IsAir || !JournalItemUtilities.IsValidItemId(displayItem.type))
@@ -108,7 +100,7 @@ public sealed class JournalEntrySlot : UIElement
                     continue;
                 }
 
-                JournalItemUtilities.EnsureTextureLoaded(displayItem.type);
+                Main.instance.LoadItem(displayItem.type);
                 var slotPosition = inner.TopLeft() + new Vector2(index * SlotStep, 0f);
                 DrawVanillaSlot(spriteBatch, ref displayItem, slotPosition);
                 DrawSupportBadge(spriteBatch, slotPosition);
@@ -161,7 +153,7 @@ public sealed class JournalEntrySlot : UIElement
 
     private int GetHoveredItemIndex(Rectangle inner)
     {
-        for (var index = 0; index < _itemGroupIds.Length; index++)
+        for (var index = 0; index < _itemGroups.Length; index++)
         {
             var slotRectangle = new Rectangle(
                 inner.X + (int)(index * SlotStep),
@@ -183,24 +175,11 @@ public sealed class JournalEntrySlot : UIElement
         var groupItems = _itemGroups[groupIndex];
         if (groupItems.Length == 1)
         {
-            return GetItem(groupIndex, itemIndex: 0);
+            return groupItems[0].Clone();
         }
 
         var cycleIndex = GetAlternativeCycleIndex() % groupItems.Length;
-        return GetItem(groupIndex, cycleIndex);
-    }
-
-    private Item GetItem(int groupIndex, int itemIndex)
-    {
-        var cached = _itemGroups[groupIndex][itemIndex];
-        if (cached is not null)
-        {
-            return cached;
-        }
-
-        var item = JournalItemUtilities.CreateItem(_itemGroupIds[groupIndex][itemIndex]);
-        _itemGroups[groupIndex][itemIndex] = item;
-        return item;
+        return groupItems[cycleIndex].Clone();
     }
 
     private static int GetAlternativeCycleIndex()
@@ -266,7 +245,7 @@ public sealed class JournalEntrySlot : UIElement
             return;
         }
 
-        var texture = BestiarySupportIconTexture.Value;
+        var texture = Main.Assets.Request<Texture2D>(BestiarySupportIconTexturePath).Value;
         var iconRectangle = new Rectangle(
             (int)slotPosition.X + SupportIconPadding,
             (int)slotPosition.Y + SupportIconPadding,
@@ -295,7 +274,7 @@ public sealed class JournalEntrySlot : UIElement
 
         if (_eventBadgeFrame is { } frame)
         {
-            var itemTexture = BestiaryFilterIconTexture.Value;
+            var itemTexture = Main.Assets.Request<Texture2D>(BestiaryFilterIconTexturePath).Value;
             var sourceRectangle = GetBestiaryFilterSourceRectangle(itemTexture, frame);
             const int maxIconSize = EventBadgeSize - EventBadgeInnerPadding * 2;
             var scale = MathF.Min(maxIconSize / (float)sourceRectangle.Width, maxIconSize / (float)sourceRectangle.Height);

@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using System.Diagnostics;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -63,10 +62,6 @@ public sealed class JournalSystem : ModSystem
 
     private JournalSavedBuild? _exportingBuild;
 
-    private readonly Queue<string> _pendingWarmupClassIds = new();
-    private string _pendingWarmupProfileId = string.Empty;
-    private string _pendingWarmupStageId = string.Empty;
-
     public override void Load()
     {
         if (Main.dedServ)
@@ -122,8 +117,6 @@ public sealed class JournalSystem : ModSystem
         {
             _buttonInterface?.Update(gameTime);
         }
-
-        WarmPendingContentCache();
     }
 
     public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -210,7 +203,6 @@ public sealed class JournalSystem : ModSystem
     {
         var classOrder = JournalProfileRegistry.Active.Classes.Select(static value => value.Id).ToArray();
         SelectedClassId = Cycle(classOrder, SelectedClassId, direction);
-        SelectedItemId = ItemID.None;
         RefreshView();
     }
 
@@ -236,7 +228,6 @@ public sealed class JournalSystem : ModSystem
         ActiveBuildSlotKey = null;
         _editingBuild = null;
         _exportingBuild = null;
-        SelectedItemId = ItemID.None;
         CoerceBuildSelections();
         RefreshView();
     }
@@ -250,14 +241,12 @@ public sealed class JournalSystem : ModSystem
         ActiveBuildSlotKey = null;
         _editingBuild = null;
         _exportingBuild = null;
-        SelectedItemId = ItemID.None;
         RefreshView();
     }
 
     public void CycleStage(int direction)
     {
         SelectedStageId = Cycle(GetAvailableStageOrder(), SelectedStageId, direction);
-        SelectedItemId = ItemID.None;
         RefreshView();
     }
 
@@ -281,7 +270,6 @@ public sealed class JournalSystem : ModSystem
         ActiveBuildSlotKey = null;
         _editingBuild = null;
         _exportingBuild = null;
-        SelectedItemId = ItemID.None;
         CoerceBuildSelections();
         RefreshView();
     }
@@ -295,7 +283,6 @@ public sealed class JournalSystem : ModSystem
         ActiveBuildSlotKey = null;
         _editingBuild = null;
         _exportingBuild = null;
-        SelectedItemId = ItemID.None;
         CoerceBuildSelections();
         RefreshView();
     }
@@ -317,9 +304,7 @@ public sealed class JournalSystem : ModSystem
         _editingBuild = null;
         _exportingBuild = null;
         _buildSelections.Clear();
-        SelectedItemId = ItemID.None;
         _journalState?.ResetProfileNavigation();
-        QueueSelectedStageContentWarmup();
         RefreshView();
     }
 
@@ -456,7 +441,6 @@ public sealed class JournalSystem : ModSystem
 
         CoerceBuildSelections();
 
-        var stopwatch = Stopwatch.StartNew();
         _journalState?.Refresh(
             SelectedProfileId,
             SelectedClassId,
@@ -467,9 +451,6 @@ public sealed class JournalSystem : ModSystem
             ProgressionModeEnabled,
             HasSelectedClass,
             SelectedItemId);
-        LogSlowUiOperation(
-            $"RefreshView profile={SelectedProfileId} stage={SelectedStageId} class={SelectedClassId} selectingClass={SelectingClass}",
-            stopwatch.Elapsed);
     }
 
     public void OpenBuildSlot(string slotKey)
@@ -973,48 +954,5 @@ public sealed class JournalSystem : ModSystem
         }
 
         return current;
-    }
-
-    private void QueueSelectedStageContentWarmup()
-    {
-        _pendingWarmupClassIds.Clear();
-        _pendingWarmupProfileId = SelectedProfileId;
-        _pendingWarmupStageId = SelectedStageId;
-
-        foreach (var profileClass in JournalProfileRegistry.Active.Classes)
-        {
-            _pendingWarmupClassIds.Enqueue(profileClass.Id);
-        }
-    }
-
-    private void WarmPendingContentCache()
-    {
-        if (!Visible
-            || !SelectingClass
-            || _pendingWarmupClassIds.Count == 0
-            || !string.Equals(_pendingWarmupProfileId, SelectedProfileId, StringComparison.OrdinalIgnoreCase)
-            || !string.Equals(_pendingWarmupStageId, SelectedStageId, StringComparison.OrdinalIgnoreCase))
-        {
-            return;
-        }
-
-        var classId = _pendingWarmupClassIds.Dequeue();
-        var stopwatch = Stopwatch.StartNew();
-        JournalRepository.GetEntries(SelectedProfileId, SelectedStageId, classId);
-        JournalRepository.GetCombatBuffEntries(SelectedProfileId, SelectedStageId, classId);
-        LogSlowUiOperation(
-            $"WarmContentCache profile={SelectedProfileId} stage={SelectedStageId} class={classId}",
-            stopwatch.Elapsed);
-    }
-
-    [Conditional("DEBUG")]
-    private static void LogSlowUiOperation(string operation, TimeSpan elapsed)
-    {
-        if (elapsed.TotalMilliseconds < 50d)
-        {
-            return;
-        }
-
-        ProgressionJournal.Instance?.Logger.Info($"[Perf] {operation} took {elapsed.TotalMilliseconds:F1} ms.");
     }
 }

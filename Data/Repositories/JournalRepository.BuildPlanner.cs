@@ -6,24 +6,6 @@ namespace ProgressionJournal.Data.Repositories;
 
 public static partial class JournalRepository
 {
-    private static readonly Dictionary<BuildCandidateCacheKey, IReadOnlyList<JournalBuildCandidate>> BuildCandidateCache = new();
-    private static readonly Dictionary<BuildCandidateCacheKey, HashSet<int>> BuildCandidateIdCache = new();
-    private static readonly Dictionary<ModBuildCandidateGroupCacheKey, IReadOnlyList<JournalBuildCandidateGroup>> ModBuildCandidateGroupCache = new();
-
-    private readonly record struct BuildCandidateCacheKey(
-        string ProfileId,
-        string StageId,
-        string ClassId,
-        JournalBuildSlotKind SlotKind,
-        bool IncludeAllItems);
-
-    private readonly record struct ModBuildCandidateGroupCacheKey(
-        string ProfileId,
-        string StageId,
-        string ClassId,
-        JournalBuildSlotKind SlotKind,
-        bool IncludeAllItems);
-
     private sealed class BuildCandidateAccumulator(
         int itemId,
         string availableFromStageId,
@@ -69,15 +51,12 @@ public static partial class JournalRepository
             return [];
         }
 
-        var cacheKey = new BuildCandidateCacheKey(profileId, stageId, classId, slotKind, includeAllItems);
-        if (BuildCandidateCache.TryGetValue(cacheKey, out var cachedCandidates))
+        if (includeAllItems)
         {
-            return cachedCandidates;
+            return BuildAllItemCandidates(profileId, classId, slotKind);
         }
 
-        var candidates = includeAllItems
-            ? BuildAllItemCandidates(profileId, classId, slotKind)
-            : slotKind switch
+        return slotKind switch
         {
             JournalBuildSlotKind.Food when string.Equals(profileId, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase)
                 => BuildFoodCandidates(),
@@ -85,9 +64,6 @@ public static partial class JournalRepository
             JournalBuildSlotKind.Potion => BuildBuffCandidates(profileId, stageId, classId, slotKind),
             _ => BuildEquipmentCandidates(profileId, stageId, classId, slotKind)
         };
-
-        BuildCandidateCache[cacheKey] = candidates;
-        return candidates;
     }
 
     public static bool IsBuildSelectionValid(
@@ -117,21 +93,9 @@ public static partial class JournalRepository
             return false;
         }
 
-        if (includeAllItems)
-        {
-            return IsValidBuildCandidate(profileId, classId, slotKind, itemId);
-        }
-
-        var cacheKey = new BuildCandidateCacheKey(profileId, stageId, classId, slotKind, IncludeAllItems: false);
-        if (!BuildCandidateIdCache.TryGetValue(cacheKey, out var candidateIds))
-        {
-            candidateIds = GetBuildCandidates(profileId, stageId, classId, slotKey)
-                .Select(static candidate => candidate.ItemId)
-                .ToHashSet();
-            BuildCandidateIdCache[cacheKey] = candidateIds;
-        }
-
-        return candidateIds.Contains(itemId);
+        return includeAllItems
+            ? IsValidBuildCandidate(profileId, classId, slotKind, itemId)
+            : GetBuildCandidates(profileId, stageId, classId, slotKey).Any(candidate => candidate.ItemId == itemId);
     }
 
     public static IReadOnlyList<JournalBuildCandidateGroup> GetModBuildCandidateGroups(
@@ -156,22 +120,15 @@ public static partial class JournalRepository
             return [];
         }
 
-        var normalizedStageId = stageId ?? string.Empty;
-        var cacheKey = new ModBuildCandidateGroupCacheKey(profileId, normalizedStageId, classId, slotKind, includeAllItems);
-        if (ModBuildCandidateGroupCache.TryGetValue(cacheKey, out var cachedGroups))
-        {
-            return cachedGroups;
-        }
-
         IEnumerable<Item> items = includeAllItems
             ? ContentSamples.ItemsByType.Values.Where(item => IsBuildCandidate(profileId, classId, slotKind, item))
-            : GetBuildCandidates(profileId, normalizedStageId, classId, slotKey)
+            : GetBuildCandidates(profileId, stageId ?? string.Empty, classId, slotKey)
                 .Select(static candidate => candidate.ItemId)
                 .Distinct()
                 .Select(static itemId => ContentSamples.ItemsByType.GetValueOrDefault(itemId))
                 .OfType<Item>();
 
-        var groups = items
+        return items
             .Where(static item => item.ModItem is not null)
             .GroupBy(static item => item.ModItem!.Mod.DisplayNameClean)
             .OrderBy(static group => group.Key, StringComparer.CurrentCultureIgnoreCase)
@@ -192,16 +149,6 @@ public static partial class JournalRepository
             })
             .Where(static group => group.Candidates.Count > 0)
             .ToArray();
-
-        ModBuildCandidateGroupCache[cacheKey] = groups;
-        return groups;
-    }
-
-    internal static void ClearBuildPlannerCaches()
-    {
-        BuildCandidateCache.Clear();
-        BuildCandidateIdCache.Clear();
-        ModBuildCandidateGroupCache.Clear();
     }
 
     private static IReadOnlyList<JournalBuildCandidate> BuildEquipmentCandidates(

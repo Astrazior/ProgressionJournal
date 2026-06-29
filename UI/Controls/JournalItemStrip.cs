@@ -13,7 +13,6 @@ public sealed class JournalItemStrip : UIElement
 
     private readonly JournalSavedBuildItemReference[] _items;
     private readonly int[] _stacks;
-    private readonly Item?[] _loadedItems;
     private readonly Action<int>? _onItemSelected;
 
     public JournalItemStrip(IEnumerable<Item> items, Action<int>? onItemSelected = null)
@@ -29,10 +28,6 @@ public sealed class JournalItemStrip : UIElement
         _stacks = itemArray
             .Select(static item => item.stack)
             .ToArray();
-        _loadedItems = itemArray
-            .Select(static item => item.Clone())
-            .Cast<Item?>()
-            .ToArray();
         _onItemSelected = onItemSelected;
         SetSize();
         if (_onItemSelected is not null)
@@ -45,11 +40,6 @@ public sealed class JournalItemStrip : UIElement
     {
         _items = items.ToArray();
         _stacks = Enumerable.Repeat(1, _items.Length).ToArray();
-        _loadedItems = _items
-            .Select(static item => item.IsLoaded && JournalItemUtilities.TryCreateItem(item.Type, out var loadedItem)
-                ? loadedItem
-                : null)
-            .ToArray();
         SetSize();
     }
 
@@ -80,8 +70,7 @@ public sealed class JournalItemStrip : UIElement
             return;
         }
 
-        var inner = GetInnerDimensions().ToRectangle();
-        var hoveredIndex = GetHoveredItemIndex(inner);
+        var hoveredIndex = GetHoveredItemIndex(GetInnerDimensions().ToRectangle());
         var oldScale = Main.inventoryScale;
 
         try
@@ -90,10 +79,11 @@ public sealed class JournalItemStrip : UIElement
 
             for (var index = 0; index < _items.Length; index++)
             {
-                var position = inner.TopLeft() + new Vector2(index * (SlotWidth + SlotSpacing), 0f);
-                if (_loadedItems[index] is { } item)
+                var position = GetInnerDimensions().ToRectangle().TopLeft() + new Vector2(index * (SlotWidth + SlotSpacing), 0f);
+                if (_items[index].IsLoaded && JournalItemUtilities.TryCreateItem(_items[index].Type, out var item))
                 {
-                    JournalItemUtilities.EnsureTextureLoaded(item.type);
+                    item.stack = _stacks[index];
+                    Main.instance.LoadItem(item.type);
                     var rectangle = new Rectangle(
                         (int)position.X,
                         (int)position.Y,
@@ -121,9 +111,8 @@ public sealed class JournalItemStrip : UIElement
             return;
         }
 
-        if (_loadedItems[hoveredIndex] is { } loadedItem)
+        if (_items[hoveredIndex].IsLoaded && JournalItemUtilities.TryCreateItem(_items[hoveredIndex].Type, out var hoverItem))
         {
-            var hoverItem = loadedItem.Clone();
             hoverItem.stack = _stacks[hoveredIndex];
             Main.HoverItem = hoverItem;
             Main.hoverItemName = hoverItem.HoverName;

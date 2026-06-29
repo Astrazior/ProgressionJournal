@@ -57,14 +57,15 @@ public sealed class JournalBuildCandidateSlot : UIElement
             dimensions.Width * (1f - _visualScale) * 0.5f,
             dimensions.Height * (1f - _visualScale) * 0.5f);
         var oldScale = Main.inventoryScale;
+        var displayItem = _item.Clone();
         try
         {
-            if (!JournalItemUtilities.IsValidItemId(_item.type))
+            if (!JournalItemUtilities.IsValidItemId(displayItem.type))
             {
                 return;
             }
 
-            JournalItemUtilities.EnsureTextureLoaded(_item.type);
+            Main.instance.LoadItem(displayItem.type);
             Main.inventoryScale = _visualScale;
             var rectangle = new Rectangle(
                 (int)position.X,
@@ -73,7 +74,7 @@ public sealed class JournalBuildCandidateSlot : UIElement
                 (int)(dimensions.Height * _visualScale));
             JournalItemSlotRenderer.Draw(
                 spriteBatch,
-                _item,
+                displayItem,
                 rectangle,
                 _selected ? JournalUiTheme.InventoryButtonActiveGlow : JournalUiTheme.ItemSlotDefaultAccent,
                 IsMouseHovering && !_disabled,
