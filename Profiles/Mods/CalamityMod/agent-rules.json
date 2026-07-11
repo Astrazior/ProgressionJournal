@@ -321,6 +321,19 @@
       "reason": "The official Sea King spawn condition requires both Giant Clam and Desert Scourge to be defeated, placing the encounter and its town shop after Desert Scourge."
     },
     {
+      "id": "sulphurous-sea-start-sources",
+      "kind": "source-stage",
+      "sources": [
+        "CalamityMod/RustyChest",
+        "CalamityMod/Toxicatfish"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Rusty_Chest",
+      "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-07-11",
+      "checkedAt": "2026-07-11",
+      "reason": "Rusty Chests and Toxicatfish are available in the upper Sulphurous Sea before boss progression."
+    },
+    {
       "id": "acid-rain-tier-one-sources",
       "kind": "source-stage",
       "stageId": "eye-of-cthulhu",
@@ -677,6 +690,18 @@
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
       "checkedAt": "2026-06-20",
       "reason": "Ink Bomb is a rogue combat accessory; its custom stealth and retaliation effects are not represented by vanilla DamageClass stat probes."
+    },
+    {
+      "id": "effigy-of-decay-passive-buff",
+      "kind": "item-override",
+      "item": "CalamityMod/EffigyOfDecay",
+      "override": {
+        "buffCategory": "Passive"
+      },
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Effigies",
+      "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-07-11",
+      "checkedAt": "2026-07-11",
+      "reason": "Effigy of Decay is placed furniture that gives nearby players a persistent environmental buff."
     },
     {
       "id": "alluring-bait-fishing-utility",

@@ -98,7 +98,10 @@ assert(containerLootCatalogSource.includes("JournalContainerLootCatalog")
   && containerLootCatalogSource.includes("Provenance")
   && containerLootCatalogSource.includes("\"Terraria/ShadowChest\"")
   && containerLootCatalogSource.includes("\"Terraria/DarkLance\"")
-  && containerLootCatalogSource.includes("\"CalamityMod/AbyssTreasureChest\""),
+  && containerLootCatalogSource.includes("\"CalamityMod/AbyssTreasureChest\"")
+  && containerLootCatalogSource.includes("\"CalamityMod/RustyChest\"")
+  && containerLootCatalogSource.includes("\"CalamityMod/EffigyOfDecay\"")
+  && containerLootCatalogSource.includes("\"CalamityMod/RustyBeaconPrototype\""),
   "Container loot must come from a strict multi-mod catalog instead of a generated-world sample");
 assert(!itemSourceResolverSource.includes("JournalGeneratedContainerSourceSystem")
   && !itemSourceResolverSource.includes("Main.chest"),

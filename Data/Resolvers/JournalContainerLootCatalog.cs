@@ -32,6 +32,7 @@ public static class JournalContainerLootCatalog
         ["Terraria/DesertBiomeChest"] = new SourcePresentation("Desert Biome Chest", ["Terraria/DungeonDesertChest", "Terraria/GoldChest", "Terraria/Chest"]),
         ["CalamityMod/AbyssTreasureChest"] = new SourcePresentation("Abyss Treasure Chest", ["CalamityMod/AbyssTreasureChest", "CalamityMod/AncientTreasureChest"]),
         ["CalamityMod/AstralChest"] = new SourcePresentation("Astral Chest", ["CalamityMod/AstralChest"]),
+        ["CalamityMod/RustyChest"] = new SourcePresentation("Rusty Chest", ["CalamityMod/RustyChest"]),
         ["ThoriumMod/AquaticDepthsBiomeChest"] = new SourcePresentation("Aquatic Depths Biome Chest", ["ThoriumMod/AquaticDepthsBiomeChest", "ThoriumMod/DepthChest"]),
         ["ThoriumMod/UnderworldBiomeChest"] = new SourcePresentation("Underworld Biome Chest", ["ThoriumMod/UnderworldBiomeChest"]),
     };
@@ -384,6 +385,19 @@ public static class JournalContainerLootCatalog
 
     private static void AddCalamity(ICollection<EntryBuilder> builders)
     {
+        AddEqualPool(
+            builders,
+            "calamitymod-wiki.gg/rusty-chest",
+            "CalamityMod/RustyChest",
+            "Rusty Chest",
+            ["CalamityMod/RustyChest"],
+            [
+                "CalamityMod/BrokenWaterFilter",
+                "CalamityMod/EffigyOfDecay",
+                "CalamityMod/RustyBeaconPrototype",
+                "CalamityMod/ScionsCurio"
+            ]);
+
         AddEqualPool(
             builders,
             "CalamityModPublic/World/Abyss.cs; calamitymod-wiki.gg/ancient-treasure-chest",
