@@ -28,9 +28,6 @@ internal static class JournalNpcSpawnAvailabilityResolver
     private static readonly MethodInfo? SpawnHelperDoChecksMethod = typeof(NPCLoader).Assembly
         .GetType("Terraria.ModLoader.Utilities.NPCSpawnHelper")
         ?.GetMethod("DoChecks", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-    private static readonly FieldInfo? NpcLoaderNpcsField = typeof(NPCLoader).GetField(
-        "npcs",
-        BindingFlags.Static | BindingFlags.NonPublic);
     private static readonly FieldInfo? EditSpawnPoolHookField = typeof(NPCLoader).GetField(
         "HookEditSpawnPool",
         BindingFlags.Static | BindingFlags.NonPublic);
@@ -157,7 +154,20 @@ internal static class JournalNpcSpawnAvailabilityResolver
         HashSet<int> VanillaProgressionStages,
         SpawnEnvironment[] Environments,
         SpawnEvent[] Events,
-        StaticBooleanFlag[] CustomEventFlags);
+        StaticBooleanFlag[] CustomEventFlags,
+        HashSet<string> Failures,
+        ProbeCounters Counters);
+
+    private sealed class ProbeCounters
+    {
+        public int CandidateNpcCount { get; init; }
+        public int ModNpcTemplateCount { get; init; }
+        public int ContextCount { get; set; }
+        public int SpawnRateBlockedContextCount { get; set; }
+        public HashSet<int> PositiveSpawnChanceTypes { get; } = [];
+        public HashSet<int> ChosenSpawnTypes { get; } = [];
+        public HashSet<int> FullSpawnTypes { get; } = [];
+    }
 
     private readonly record struct PlayerState(
         bool Active,
@@ -253,6 +263,21 @@ internal static class JournalNpcSpawnAvailabilityResolver
         return GetAvailability(npcType).Conditions;
     }
 
+    internal static JournalNpcSpawnProbeDiagnostics GetDiagnostics()
+    {
+        var catalog = GetCatalog();
+        return new JournalNpcSpawnProbeDiagnostics(
+            catalog.Observations.Count,
+            catalog.Counters.CandidateNpcCount,
+            catalog.Counters.ModNpcTemplateCount,
+            catalog.Counters.ContextCount,
+            catalog.Counters.SpawnRateBlockedContextCount,
+            catalog.Counters.PositiveSpawnChanceTypes.Count,
+            catalog.Counters.ChosenSpawnTypes.Count,
+            catalog.Counters.FullSpawnTypes.Count,
+            catalog.Failures.Order(StringComparer.Ordinal).ToArray());
+    }
+
     private static Catalog GetCatalog()
     {
         lock (SyncRoot)
@@ -294,7 +319,13 @@ internal static class JournalNpcSpawnAvailabilityResolver
                 .ToHashSet(),
             environments,
             events,
-            customEventFlags);
+            customEventFlags,
+            [],
+            new ProbeCounters
+            {
+                CandidateNpcCount = Enumerable.Range(1, NPCLoader.NPCCount - 1).Count(IsOrdinaryNpc),
+                ModNpcTemplateCount = ModContent.GetContent<ModNPC>().Count()
+            });
         if (player is null)
         {
             return catalog;
@@ -312,46 +343,47 @@ internal static class JournalNpcSpawnAvailabilityResolver
             Main.netMode = NetmodeID.SinglePlayer;
             foreach (var context in CreateContexts(catalog))
             {
-                progression.Reset();
-                progression.Apply(context.StageIndex);
-                ApplyContext(catalog, player, context);
-                if (!(catalog.Events[context.EventIndex].IsAvailable?.Invoke() ?? true))
-                {
-                    continue;
-                }
-                var spawnInfo = CreateSpawnInfo(catalog, player, context);
-
-                var spawnRate = 600;
-                var maxSpawns = 5;
                 try
                 {
+                    progression.Reset();
+                    progression.Apply(context.StageIndex);
+                    ApplyContext(catalog, player, context);
+                    if (!(catalog.Events[context.EventIndex].IsAvailable?.Invoke() ?? true))
+                    {
+                        continue;
+                    }
+                    var spawnInfo = CreateSpawnInfo(catalog, player, context);
+                    catalog.Counters.ContextCount++;
+
+                    // SpawnChance/EditSpawnPool describe which NPC is valid for this context.
+                    // EditSpawnRate only controls whether the shared spawn cycle runs at all and
+                    // must not prevent the availability probe from reaching those per-NPC APIs.
+                    ObserveExactSpawnPool(catalog, spawnInfo, context);
+                    ObserveChosenSpawn(catalog, spawnInfo, context);
+                    ObserveDd2WaveEnemies(catalog, context);
+
+                    var spawnRate = 600;
+                    var maxSpawns = 5;
                     NPCLoader.EditSpawnRate(player, ref spawnRate, ref maxSpawns);
+
+                    if (spawnRate <= 0 || maxSpawns <= 0)
+                    {
+                        catalog.Counters.SpawnRateBlockedContextCount++;
+                        continue;
+                    }
+
+                    if (!ShouldRunFullSpawn(context, catalog)) continue;
+                    spawnArena.Prepare(
+                        catalog.Environments[context.EnvironmentIndex],
+                        context.Depth,
+                        context.EnvironmentIndex == 1);
+                    ObserveFullSpawn(catalog, player, context);
                 }
-                catch
+                catch (Exception exception)
                 {
-                    continue;
+                    RecordFailure(catalog, "spawn scenario", exception);
                 }
-
-                if (spawnRate <= 0 || maxSpawns <= 0)
-                {
-                    continue;
-                }
-
-                ObserveExactSpawnPool(catalog.Observations, spawnInfo, context);
-                ObserveChosenSpawn(catalog.Observations, spawnInfo, context);
-                ObserveDd2WaveEnemies(catalog.Observations, context);
-
-                if (!ShouldRunFullSpawn(context, catalog)) continue;
-                spawnArena.Prepare(
-                    catalog.Environments[context.EnvironmentIndex],
-                    context.Depth,
-                    context.EnvironmentIndex == 1);
-                ObserveFullSpawn(catalog.Observations, player, context);
             }
-        }
-        catch
-        {
-            return catalog;
         }
         finally
         {
@@ -508,7 +540,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
             .Where(mod =>
                 mod.Code is not null
                 && (relevantMods.Count == 0 || relevantMods.Contains(mod.Name)))
-            .SelectMany(mod => mod.Code.GetTypes())
+            .SelectMany(mod => GetLoadableTypes(mod.Code))
             .Where(type =>
                 type.Name.Contains("Event", StringComparison.OrdinalIgnoreCase)
                 || type.Name.Contains("Invasion", StringComparison.OrdinalIgnoreCase))
@@ -690,7 +722,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
     }
 
     private static void ObserveExactSpawnPool(
-        Dictionary<int, HashSet<SpawnContext>> observations,
+        Catalog catalog,
         NPCSpawnInfo spawnInfo,
         SpawnContext context)
     {
@@ -699,15 +731,13 @@ internal static class JournalNpcSpawnAvailabilityResolver
             SpawnHelperResetMethod?.Invoke(null, null);
             SpawnHelperDoChecksMethod?.Invoke(null, [spawnInfo]);
             var pool = new Dictionary<int, float> { [0] = 1f };
-            if (NpcLoaderNpcsField?.GetValue(null) is IEnumerable<ModNPC> modNpcs)
+            foreach (var modNpc in ModContent.GetContent<ModNPC>())
             {
-                foreach (var modNpc in modNpcs)
+                var weight = modNpc.SpawnChance(spawnInfo);
+                if (weight > 0f)
                 {
-                    var weight = modNpc.SpawnChance(spawnInfo);
-                    if (weight > 0f)
-                    {
-                        pool[modNpc.Type] = weight;
-                    }
+                    pool[modNpc.Type] = weight;
+                    catalog.Counters.PositiveSpawnChanceTypes.Add(modNpc.Type);
                 }
             }
 
@@ -720,13 +750,13 @@ internal static class JournalNpcSpawnAvailabilityResolver
             {
                 if (npcType > 0 && weight > 0f && IsOrdinaryNpc(npcType))
                 {
-                    AddObservation(observations, npcType, context);
+                    AddObservation(catalog.Observations, npcType, context);
                 }
             }
         }
-        catch
+        catch (Exception exception)
         {
-            // Unknown third-party spawn code leaves this scenario unproven.
+            RecordFailure(catalog, "exact spawn pool", exception);
         }
     }
 
@@ -740,7 +770,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
     }
 
     private static void ObserveChosenSpawn(
-        Dictionary<int, HashSet<SpawnContext>> observations,
+        Catalog catalog,
         NPCSpawnInfo spawnInfo,
         SpawnContext context)
     {
@@ -750,20 +780,24 @@ internal static class JournalNpcSpawnAvailabilityResolver
             {
                 Main.rand = new UnifiedRandom(seed);
                 if (NPCLoader.ChooseSpawn(spawnInfo) is { } npcType and > 0
-                    && IsOrdinaryNpc(npcType))
+                    )
                 {
-                    AddObservation(observations, npcType, context);
+                    catalog.Counters.ChosenSpawnTypes.Add(npcType);
+                    if (IsOrdinaryNpc(npcType))
+                    {
+                        AddObservation(catalog.Observations, npcType, context);
+                    }
                 }
             }
         }
-        catch
+        catch (Exception exception)
         {
-            // Keep unknown when the real selection boundary cannot be executed.
+            RecordFailure(catalog, "chosen spawn", exception);
         }
     }
 
     private static void ObserveDd2WaveEnemies(
-        Dictionary<int, HashSet<SpawnContext>> observations,
+        Catalog catalog,
         SpawnContext context)
     {
         if (!DD2Event.Ongoing)
@@ -785,14 +819,14 @@ internal static class JournalNpcSpawnAvailabilityResolver
                     var npcType = Convert.ToInt32(value);
                     if (npcType > 0)
                     {
-                        AddObservation(observations, npcType, context);
+                        AddObservation(catalog.Observations, npcType, context);
                     }
                 }
             }
         }
-        catch
+        catch (Exception exception)
         {
-            // A changed event implementation remains unproven instead of being guessed.
+            RecordFailure(catalog, "Old One's Army wave", exception);
         }
     }
 
@@ -812,7 +846,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
     }
 
     private static void ObserveFullSpawn(
-        Dictionary<int, HashSet<SpawnContext>> observations,
+        Catalog catalog,
         Player player,
         SpawnContext context)
     {
@@ -835,9 +869,10 @@ internal static class JournalNpcSpawnAvailabilityResolver
                     NPC.SpawnNPC();
                     foreach (var npc in Main.npc.Where(static npc => npc is { active: true }))
                     {
+                        catalog.Counters.FullSpawnTypes.Add(npc.type);
                         if (IsOrdinaryNpc(npc.type))
                         {
-                            AddObservation(observations, npc.type, context);
+                            AddObservation(catalog.Observations, npc.type, context);
                         }
                     }
                 }
@@ -854,10 +889,22 @@ internal static class JournalNpcSpawnAvailabilityResolver
                 }
             }
         }
-        catch
+        catch (Exception exception)
         {
-            // Vanilla availability remains unknown for scenarios the full spawn method rejects.
+            RecordFailure(catalog, "full vanilla spawn", exception);
         }
+    }
+
+    private static void RecordFailure(Catalog catalog, string operation, Exception exception)
+    {
+        var message = $"{operation}: {exception.GetType().Name}: {exception.Message}";
+        if (!catalog.Failures.Add(message))
+        {
+            return;
+        }
+
+        ProgressionJournal.Instance?.Logger.Debug(
+            $"NPC availability probe failed during {operation}.{Environment.NewLine}{exception}");
     }
 
     private static void AddObservation(
@@ -1185,4 +1232,30 @@ internal static class JournalNpcSpawnAvailabilityResolver
     {
         return ModBiomeIndexProperty?.GetValue(biome) is int index ? index : -1;
     }
+
+    private static IEnumerable<Type> GetLoadableTypes(Assembly assembly)
+    {
+        try
+        {
+            return assembly.GetTypes();
+        }
+        catch (ReflectionTypeLoadException exception)
+        {
+            ProgressionJournal.Instance?.Logger.Debug(
+                $"Some types could not be loaded while preparing NPC spawn probes."
+                + $"{Environment.NewLine}{exception}");
+            return exception.Types.OfType<Type>();
+        }
+    }
 }
+
+internal sealed record JournalNpcSpawnProbeDiagnostics(
+    int ObservedNpcCount,
+    int CandidateNpcCount,
+    int ModNpcTemplateCount,
+    int ContextCount,
+    int SpawnRateBlockedContextCount,
+    int PositiveSpawnChanceCount,
+    int ChosenSpawnCount,
+    int FullSpawnCount,
+    IReadOnlyList<string> Failures);

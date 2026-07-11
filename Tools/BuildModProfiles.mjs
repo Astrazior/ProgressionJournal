@@ -123,6 +123,22 @@ export function buildModProfile(modName) {
   console.log(
     `${modName}: ${profile.entries.length} equipment, `
     + `${profile.combatBuffs.length} buffs, ${review.summary.total} review, ${state}`);
+  console.log(
+    `  NPC runtime: spawn ${audit.sourceCoverage.observedSpawnCount}`
+    + `/${audit.sourceCoverage.spawnCount}, town ${audit.sourceCoverage.observedTownCount}`
+    + `/${audit.sourceCoverage.townCount}; sources: ${audit.sourceCoverage.observed.length} observed, `
+    + `${audit.sourceCoverage.declared.length} manual, ${audit.sourceCoverage.uncovered.length} uncovered; `
+    + `probe failures: ${(snapshot.npcSpawnProbe?.failures ?? []).length}`);
+  if (snapshot.npcSpawnProbe) {
+    console.log(
+      `  Probe stages: candidates ${snapshot.npcSpawnProbe.candidates}, `
+      + `mod templates ${snapshot.npcSpawnProbe.modNpcTemplates}, `
+      + `contexts/rate-blocked ${snapshot.npcSpawnProbe.contexts ?? 0}`
+      + `/${snapshot.npcSpawnProbe.rateBlocked ?? 0}, `
+      + `positive/chosen/full ${snapshot.npcSpawnProbe.positiveSpawnChance}`
+      + `/${snapshot.npcSpawnProbe.chosenSpawn}/${snapshot.npcSpawnProbe.fullSpawn}, `
+      + `raw observed ${snapshot.npcSpawnProbe.rawObserved}`);
+  }
 }
 
 function validateSupport(support, directoryName) {
@@ -469,6 +485,10 @@ function auditProfile(
     applyVanillaSourceCatalog(support, snapshot),
     manualAssignments);
   errors.push(...sourceCoverage.errors);
+  const probeFailures = snapshot.npcSpawnProbe?.failures ?? [];
+  if (probeFailures.length > 0) {
+    warnings.push(`${probeFailures.length} NPC runtime probe operations failed`);
+  }
   if (sourceCoverage.uncovered.length > 0) {
     warnings.push(
       `${sourceCoverage.uncovered.length} NPC drop or shop sources have neither a runtime observation nor an assigned stage`);
@@ -497,6 +517,15 @@ export function auditRuntimeSourceCoverage(
     if (!availability.has(npc)) {
       errors.push(`missing NPC availability for '${npc}'`);
     }
+  }
+  const spawnRecords = [...availability.values()].filter(record => record.kind === "spawn");
+  const townRecords = [...availability.values()].filter(record => record.kind === "town");
+  const observedSpawnCount = spawnRecords.filter(record => record.observed === true).length;
+  const observedTownCount = townRecords.filter(record => record.observed === true).length;
+  if (spawnRecords.length > 0 && observedSpawnCount === 0) {
+    errors.push(
+      `ordinary NPC runtime probe produced 0 observations out of ${spawnRecords.length}; `
+      + "rerun /pjexport and inspect npcSpawnProbe.failures");
   }
 
   const declaredDrops = new Set(
@@ -587,6 +616,10 @@ export function auditRuntimeSourceCoverage(
   return {
     npcCount: npcIds.size,
     availabilityCount: availability.size,
+    spawnCount: spawnRecords.length,
+    observedSpawnCount,
+    townCount: townRecords.length,
+    observedTownCount,
     fishingCount: (snapshot.fishing ?? []).length,
     dropSourceCount: new Set(
       (snapshot.drops ?? [])

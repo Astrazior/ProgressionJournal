@@ -193,7 +193,7 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
                      mod.Code is not null
                      && (relevantMods.Count == 0 || relevantMods.Contains(mod.Name))))
         {
-            foreach (var type in mod.Code.GetTypes())
+            foreach (var type in GetLoadableTypes(mod.Code))
             {
                 AddIsolationAccessors(type, accessors);
             }
@@ -257,7 +257,7 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
         string accessorKey,
         out BooleanFlagAccessor accessor)
     {
-        foreach (var type in mod.Code.GetTypes())
+        foreach (var type in GetLoadableTypes(mod.Code))
         {
             if (TryCreateFlagAccessor(type, key, accessorKey, out accessor))
             {
@@ -348,6 +348,21 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
 
         accessor = null!;
         return false;
+    }
+
+    private static IEnumerable<Type> GetLoadableTypes(Assembly assembly)
+    {
+        try
+        {
+            return assembly.GetTypes();
+        }
+        catch (ReflectionTypeLoadException exception)
+        {
+            ProgressionJournal.Instance?.Logger.Debug(
+                $"Some types could not be loaded while preparing progression scenarios."
+                + $"{Environment.NewLine}{exception}");
+            return exception.Types.OfType<Type>();
+        }
     }
 
     private sealed class BooleanFlagAccessor(Func<bool> getValue, Action<bool> setValue)

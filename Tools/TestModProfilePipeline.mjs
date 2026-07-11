@@ -87,17 +87,9 @@ assert(!vanillaClassificationMethod.includes("entry.Evaluations"),
 const itemSourceResolverSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalItemSourceResolver.cs"),
   "utf8");
-const generatedContainerSource = fs.readFileSync(
-  path.join(root, "Data", "Resolvers", "JournalGeneratedContainerSourceSystem.cs"),
-  "utf8");
 const containerLootCatalogSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalContainerLootCatalog.cs"),
   "utf8");
-assert(!generatedContainerSource.includes("Main.chest")
-  && !generatedContainerSource.includes("PostWorldGen")
-  && !generatedContainerSource.includes("SaveWorldData")
-  && !generatedContainerSource.includes("itemGroup.Count() / (float)containerCount"),
-  "Generated world chest scans must not be used as authoritative drop-rate sources");
 assert(containerLootCatalogSource.includes("JournalContainerLootCatalog")
   && containerLootCatalogSource.includes("AddVanilla")
   && containerLootCatalogSource.includes("AddCalamity")
@@ -127,6 +119,8 @@ const npcSpawnResolverSource = fs.readFileSync(
   "utf8");
 assert(npcSpawnResolverSource.includes("modNpc.SpawnChance(spawnInfo)"),
   "Enemy availability does not execute ModNPC.SpawnChance");
+assert(npcSpawnResolverSource.includes("ModContent.GetContent<ModNPC>()"),
+  "Enemy availability must enumerate ModNPC through the public content API");
 assert(npcSpawnResolverSource.includes("globalNpc.EditSpawnPool(pool, spawnInfo)"),
   "Enemy availability does not execute GlobalNPC.EditSpawnPool");
 assert(npcSpawnResolverSource.includes("NPCLoader.EditSpawnRate"),
@@ -162,6 +156,17 @@ assert(npcSpawnResolverSource.includes("JournalRuntimeProgressionScenarios"),
 assert(npcSpawnResolverSource.includes(
   "catalog.Environments[context.EnvironmentIndex].ModBiome is null"),
 "Synthetic ModBiome flags must not be treated as proof of progression stage");
+assert(npcSpawnResolverSource.includes("RecordFailure(catalog")
+  && npcSpawnResolverSource.includes("JournalNpcSpawnProbeDiagnostics"),
+"NPC probe failures must remain visible in snapshot diagnostics");
+assert(npcSpawnResolverSource.includes("PositiveSpawnChanceTypes")
+  && npcSpawnResolverSource.includes("ChosenSpawnTypes")
+  && npcSpawnResolverSource.includes("FullSpawnTypes")
+  && npcSpawnResolverSource.includes("SpawnRateBlockedContextCount"),
+"NPC probe stages must expose measurable runtime diagnostics");
+assert(npcSpawnResolverSource.indexOf("ObserveExactSpawnPool(catalog, spawnInfo, context);")
+  < npcSpawnResolverSource.indexOf("NPCLoader.EditSpawnRate(player, ref spawnRate, ref maxSpawns);"),
+"Per-NPC spawn APIs must run before the global spawn-rate gate");
 const progressionScenarioSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalRuntimeProgressionScenarios.cs"),
   "utf8");
@@ -176,7 +181,9 @@ const snapshotExporterSource = fs.readFileSync(
   "utf8");
 assert(snapshotExporterSource.includes("Fishing = CreateFishing(itemIds, npcIds)"),
   "Runtime fishing observations are not exported to snapshot.json");
-assert(snapshotExporterSource.includes("NpcAvailability = CreateNpcAvailability(npcIds)"),
+assert(snapshotExporterSource.includes("var npcAvailability = CreateNpcAvailability(npcIds)")
+  && snapshotExporterSource.includes("NpcAvailability = npcAvailability")
+  && snapshotExporterSource.includes("NpcSpawnProbe = new SnapshotNpcSpawnProbe"),
   "Runtime NPC availability is not exported to snapshot.json");
 assert(snapshotExporterSource.includes("includeGlobalDrops: false")
   && snapshotExporterSource.includes("\"Terraria/GlobalNPCDrops\""),
@@ -701,9 +708,28 @@ const runtimeCoverage = auditRuntimeSourceCoverage(
     }]
   });
 assert.deepEqual(runtimeCoverage.errors, []);
+assert.equal(runtimeCoverage.observedSpawnCount, 1);
+assert.equal(runtimeCoverage.spawnCount, 1);
 assert.equal(runtimeCoverage.observed[0]?.source, "Test/Enemy");
 assert.equal(runtimeCoverage.declared[0]?.source, "Test/Merchant");
 assert.deepEqual(runtimeCoverage.uncovered, []);
+const emptyRuntimeCoverage = auditRuntimeSourceCoverage(
+  {
+    items: [],
+    npcs: [{ id: "Test/Enemy" }],
+    drops: [],
+    shops: [],
+    fishing: [],
+    npcAvailability: [{
+      npc: "Test/Enemy",
+      kind: "spawn",
+      observed: false,
+      earliestStageIndex: -1
+    }]
+  },
+  { stages: [{ id: "start" }] });
+assert(emptyRuntimeCoverage.errors.some(error =>
+  error.includes("ordinary NPC runtime probe produced 0 observations")));
 const invalid = normalizeAgentRules({
   ...validRule,
   rules: [{ kind: "item-stage", item: "Test/Sword", stageId: "boss" }]

@@ -72,6 +72,8 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             .Where(npcId => includedMods.Contains(GetNpcModName(npcId)))
             .ToHashSet();
 
+        var npcAvailability = CreateNpcAvailability(npcIds);
+        var npcSpawnProbe = JournalNpcSpawnAvailabilityResolver.GetDiagnostics();
         var snapshot = new ProgressionSnapshot
         {
             GeneratedAtUtc = DateTime.UtcNow.ToString("O"),
@@ -94,7 +96,19 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             Drops = CreateDrops(itemIds, npcIds),
             Shops = CreateShops(itemIds, npcIds),
             Fishing = CreateFishing(itemIds, npcIds),
-            NpcAvailability = CreateNpcAvailability(npcIds),
+            NpcAvailability = npcAvailability,
+            NpcSpawnProbe = new SnapshotNpcSpawnProbe(
+                npcAvailability.Count(static record => record is { Kind: "spawn", Observed: true }),
+                npcAvailability.Count(static record => record.Kind == "spawn"),
+                npcSpawnProbe.ObservedNpcCount,
+                npcSpawnProbe.CandidateNpcCount,
+                npcSpawnProbe.ModNpcTemplateCount,
+                npcSpawnProbe.ContextCount,
+                npcSpawnProbe.SpawnRateBlockedContextCount,
+                npcSpawnProbe.PositiveSpawnChanceCount,
+                npcSpawnProbe.ChosenSpawnCount,
+                npcSpawnProbe.FullSpawnCount,
+                npcSpawnProbe.Failures.ToList()),
             VanillaItemClassifications = CreateVanillaItemClassifications()
         };
 
@@ -116,7 +130,13 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         caller.Reply(
             $"Progression Journal snapshot exported: {path}. "
             + $"Profile: {snapshot.ProfileId}. "
-            + $"Content mods: {string.Join(", ", snapshot.ContentMods)}");
+            + $"Content mods: {string.Join(", ", snapshot.ContentMods)}. "
+            + $"Ordinary NPCs observed: {snapshot.NpcSpawnProbe.Observed}/{snapshot.NpcSpawnProbe.Total}. "
+            + $"Raw: {snapshot.NpcSpawnProbe.RawObserved}; candidates: {snapshot.NpcSpawnProbe.Candidates}; "
+            + $"contexts/rate-blocked: {snapshot.NpcSpawnProbe.Contexts}/{snapshot.NpcSpawnProbe.RateBlocked}; "
+            + $"positive/chosen/full: {snapshot.NpcSpawnProbe.PositiveSpawnChance}/"
+            + $"{snapshot.NpcSpawnProbe.ChosenSpawn}/{snapshot.NpcSpawnProbe.FullSpawn}. "
+            + $"Probe failures: {snapshot.NpcSpawnProbe.Failures.Count}.");
     }
 
     private static readonly JsonSerializerOptions SnapshotJsonOptions = new()
@@ -794,6 +814,7 @@ public sealed class ProgressionSnapshot
     public List<SnapshotShop> Shops { get; set; } = [];
     public List<SnapshotFishingCatch> Fishing { get; set; } = [];
     public List<SnapshotNpcAvailability> NpcAvailability { get; set; } = [];
+    public SnapshotNpcSpawnProbe NpcSpawnProbe { get; set; } = new(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, []);
     public List<SnapshotVanillaItemClassification> VanillaItemClassifications { get; set; } = [];
 }
 
@@ -881,3 +902,15 @@ public sealed record SnapshotNpcAvailability(
     int EarliestStageIndex,
     string EarliestStageName,
     List<string> Conditions);
+public sealed record SnapshotNpcSpawnProbe(
+    int Observed,
+    int Total,
+    int RawObserved,
+    int Candidates,
+    int ModNpcTemplates,
+    int Contexts,
+    int RateBlocked,
+    int PositiveSpawnChance,
+    int ChosenSpawn,
+    int FullSpawn,
+    List<string> Failures);
