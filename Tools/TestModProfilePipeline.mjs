@@ -186,22 +186,35 @@ assert(progressionScenarioSource.includes("BuildNpcKillCountAccessors")
 const snapshotExporterSource = fs.readFileSync(
   path.join(root, "Commands", "ExportProgressionSnapshotCommand.cs"),
   "utf8");
-assert(snapshotExporterSource.includes("Fishing = CreateFishing(itemIds, npcIds)"),
+const snapshotCollectorDirectory = path.join(root, "Data", "Snapshots", "Collectors");
+const snapshotNpcDropCollectorSource = fs.readFileSync(
+  path.join(snapshotCollectorDirectory, "JournalSnapshotNpcDropCollector.cs"),
+  "utf8");
+const snapshotShopCollectorSource = fs.readFileSync(
+  path.join(snapshotCollectorDirectory, "JournalSnapshotShopCollector.cs"),
+  "utf8");
+const snapshotFishingCollectorSource = fs.readFileSync(
+  path.join(snapshotCollectorDirectory, "JournalSnapshotFishingCollector.cs"),
+  "utf8");
+const snapshotNpcAvailabilityCollectorSource = fs.readFileSync(
+  path.join(snapshotCollectorDirectory, "JournalSnapshotNpcAvailabilityCollector.cs"),
+  "utf8");
+assert(snapshotExporterSource.includes("Fishing = JournalSnapshotFishingCollector.Collect("),
   "Runtime fishing observations are not exported to snapshot.json");
-assert(snapshotExporterSource.includes("var npcAvailability = CreateNpcAvailability(npcIds)")
+assert(snapshotExporterSource.includes("JournalSnapshotNpcAvailabilityCollector.Collect(npcIds")
   && snapshotExporterSource.includes("NpcAvailability = npcAvailability")
   && snapshotExporterSource.includes("NpcSpawnProbe = new SnapshotNpcSpawnProbe"),
   "Runtime NPC availability is not exported to snapshot.json");
-assert(snapshotExporterSource.includes("includeGlobalDrops: false")
-  && snapshotExporterSource.includes("\"Terraria/GlobalNPCDrops\""),
+assert(snapshotNpcDropCollectorSource.includes("includeGlobalDrops: false")
+  && snapshotNpcDropCollectorSource.includes("\"Terraria/GlobalNPCDrops\""),
 "Global NPC drops must be exported once instead of being duplicated for every NPC");
 assert(snapshotExporterSource.includes("public int Version { get; set; } = 4"),
   "The snapshot schema version was not advanced for runtime availability");
-assert(snapshotExporterSource.includes("TryGetShopStage"),
+assert(snapshotShopCollectorSource.includes("TryGetShopStage"),
   "Observed shop stages are not exported to snapshot.json");
-assert(snapshotExporterSource.includes("JournalFishingSourceResolver.GetItemAvailability")
-  && snapshotExporterSource.includes("JournalTownNpcAvailabilityResolver.GetAvailability")
-  && snapshotExporterSource.includes("JournalNpcSpawnAvailabilityResolver.GetAvailability"),
+assert(snapshotFishingCollectorSource.includes("JournalFishingSourceResolver.GetItemAvailability")
+  && snapshotNpcAvailabilityCollectorSource.includes("JournalTownNpcAvailabilityResolver.GetAvailability")
+  && snapshotNpcAvailabilityCollectorSource.includes("JournalNpcSpawnAvailabilityResolver.GetAvailability"),
 "Heavy availability probes must remain confined to snapshot export");
 assert(snapshotExporterSource.includes("PlayerLoaderSetupPlayerMethod?.Invoke")
   && snapshotExporterSource.includes("PlayerLoader.PostUpdateMiscEffects(player)"),

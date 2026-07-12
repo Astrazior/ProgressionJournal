@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-11T19:51:14.082Z",
+  "generatedAtUtc": "2026-07-12T19:51:15.846Z",
   "snapshot": {
     "version": 4,
     "generatedAtUtc": "2026-07-11T19:49:32.0168848Z",
@@ -1740,7 +1740,7 @@
   "audit": {
     "errors": [],
     "warnings": [
-      "64 recommendations precede proven availability and were suppressed",
+      "82 recommendations precede proven availability and were suppressed",
       "231 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
@@ -6529,7 +6529,7 @@
   "ready": true,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-07-11T19:51:02.545Z",
+    "generatedAtUtc": "2026-07-12T19:51:03.959Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -55943,6 +55943,14 @@
         ]
       },
       {
+        "id": "Terraria/ChlorophyteHelmet",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Chlorophyte armor"
+        ]
+      },
+      {
         "id": "Terraria/SharpeningStation",
         "wikiStage": "pre-plantera",
         "reason": "recommendation has no proven availability",
@@ -55951,11 +55959,27 @@
         ]
       },
       {
+        "id": "Terraria/ChlorophyteHelmet",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Chlorophyte armor"
+        ]
+      },
+      {
         "id": "Terraria/AmmoBox",
         "wikiStage": "pre-plantera",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Ammo Box"
+        ]
+      },
+      {
+        "id": "Terraria/ChlorophyteHelmet",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Chlorophyte armor"
         ]
       },
       {
@@ -55996,6 +56020,14 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Rod of Discord"
+        ]
+      },
+      {
+        "id": "Terraria/ChlorophyteHelmet",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "Terraria/Chlorophyte armor"
         ]
       },
       {
@@ -56729,6 +56761,16 @@
         "method": "english-display-name"
       },
       {
+        "from": "Terraria/Fossil armor",
+        "displayName": "Fossil armor",
+        "to": [
+          "Terraria/FossilHelm",
+          "Terraria/FossilShirt",
+          "Terraria/FossilPants"
+        ],
+        "method": "armor-set"
+      },
+      {
         "from": "Terraria/Ammo Reservation Potion",
         "displayName": "Ammo Reservation Potion",
         "to": [
@@ -56865,12 +56907,52 @@
         "method": "normalized-internal-name"
       },
       {
+        "from": "Terraria/Gladiator armor",
+        "displayName": "Gladiator armor",
+        "to": [
+          "Terraria/GladiatorHelmet",
+          "Terraria/GladiatorBreastplate",
+          "Terraria/GladiatorLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
         "from": "CalamityMod/PurpleHazeBuff",
         "displayName": "Purple Haze",
         "to": [
           "CalamityMod/PurpleHaze"
         ],
         "method": "display-name"
+      },
+      {
+        "from": "Terraria/Gold armor",
+        "displayName": "Gold armor",
+        "to": [
+          "Terraria/GoldHelmet",
+          "Terraria/GoldChainmail",
+          "Terraria/GoldGreaves"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "Terraria/Platinum armor",
+        "displayName": "Platinum armor",
+        "to": [
+          "Terraria/PlatinumHelmet",
+          "Terraria/PlatinumChainmail",
+          "Terraria/PlatinumGreaves"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "Terraria/Silver armor",
+        "displayName": "Silver armor",
+        "to": [
+          "Terraria/SilverHelmet",
+          "Terraria/SilverChainmail",
+          "Terraria/SilverGreaves"
+        ],
+        "method": "armor-set"
       },
       {
         "from": "Terraria/Frog Leg",
@@ -57017,6 +57099,16 @@
         "method": "english-display-name"
       },
       {
+        "from": "Terraria/Jungle armor",
+        "displayName": "Jungle armor",
+        "to": [
+          "Terraria/JungleHat",
+          "Terraria/JungleShirt",
+          "Terraria/JunglePants"
+        ],
+        "method": "armor-set"
+      },
+      {
         "from": "Terraria/Mana Flower",
         "displayName": "Mana Flower",
         "to": [
@@ -57129,12 +57221,35 @@
         "method": "normalized-internal-name"
       },
       {
+        "from": "Terraria/Molten armor",
+        "displayName": "Molten armor",
+        "to": [
+          "Terraria/MoltenHelmet",
+          "Terraria/MoltenBreastplate",
+          "Terraria/MoltenGreaves"
+        ],
+        "method": "armor-set"
+      },
+      {
         "from": "Terraria/Magma Stone",
         "displayName": "Magma Stone",
         "to": [
           "Terraria/MagmaStone"
         ],
         "method": "normalized-internal-name"
+      },
+      {
+        "from": "Terraria/Counterweights",
+        "displayName": "Counterweights",
+        "to": [
+          "Terraria/BlackCounterweight",
+          "Terraria/BlueCounterweight",
+          "Terraria/GreenCounterweight",
+          "Terraria/PurpleCounterweight",
+          "Terraria/RedCounterweight",
+          "Terraria/YellowCounterweight"
+        ],
+        "method": "variant-family"
       },
       {
         "from": "Terraria/Molten Fury",
@@ -57177,6 +57292,16 @@
         "method": "normalized-internal-name"
       },
       {
+        "from": "Terraria/Meteor armor",
+        "displayName": "Meteor armor",
+        "to": [
+          "Terraria/MeteorHelmet",
+          "Terraria/MeteorSuit",
+          "Terraria/MeteorLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
         "from": "Terraria/Imp Staff",
         "displayName": "Imp Staff",
         "to": [
@@ -57193,12 +57318,42 @@
         "method": "display-name"
       },
       {
+        "from": "Terraria/Obsidian armor",
+        "displayName": "Obsidian armor",
+        "to": [
+          "Terraria/ObsidianHelm",
+          "Terraria/ObsidianShirt",
+          "Terraria/ObsidianPants"
+        ],
+        "method": "armor-set"
+      },
+      {
         "from": "Terraria/War Table",
         "displayName": "War Table",
         "to": [
           "Terraria/WarTable"
         ],
         "method": "normalized-internal-name"
+      },
+      {
+        "from": "Terraria/Crimson armor",
+        "displayName": "Crimson armor",
+        "to": [
+          "Terraria/CrimsonHelmet",
+          "Terraria/CrimsonScalemail",
+          "Terraria/CrimsonGreaves"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "Terraria/Shadow armor",
+        "displayName": "Shadow armor",
+        "to": [
+          "Terraria/ShadowHelmet",
+          "Terraria/ShadowScalemail",
+          "Terraria/ShadowGreaves"
+        ],
+        "method": "armor-set"
       },
       {
         "from": "Terraria/Brain of Confusion",
@@ -57249,6 +57404,16 @@
         "method": "normalized-internal-name"
       },
       {
+        "from": "Terraria/Bee armor",
+        "displayName": "Bee armor",
+        "to": [
+          "Terraria/BeeHeadgear",
+          "Terraria/BeeBreastplate",
+          "Terraria/BeeGreaves"
+        ],
+        "method": "armor-set"
+      },
+      {
         "from": "Terraria/Hive Pack",
         "displayName": "Hive Pack",
         "to": [
@@ -57287,6 +57452,16 @@
           "Terraria/DarkLance"
         ],
         "method": "normalized-internal-name"
+      },
+      {
+        "from": "Terraria/Necro armor",
+        "displayName": "Necro armor",
+        "to": [
+          "Terraria/NecroHelmet",
+          "Terraria/NecroBreastplate",
+          "Terraria/NecroGreaves"
+        ],
+        "method": "armor-set"
       },
       {
         "from": "Terraria/Aqua Scepter",
@@ -57391,6 +57566,30 @@
           "Terraria/ShadowFlameKnife"
         ],
         "method": "normalized-internal-name"
+      },
+      {
+        "from": "Terraria/Cobalt armor",
+        "displayName": "Cobalt armor",
+        "to": [
+          "Terraria/CobaltHat",
+          "Terraria/CobaltHelmet",
+          "Terraria/CobaltMask",
+          "Terraria/CobaltBreastplate",
+          "Terraria/CobaltLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "Terraria/Palladium armor",
+        "displayName": "Palladium armor",
+        "to": [
+          "Terraria/PalladiumMask",
+          "Terraria/PalladiumHelmet",
+          "Terraria/PalladiumHeadgear",
+          "Terraria/PalladiumBreastplate",
+          "Terraria/PalladiumLeggings"
+        ],
+        "method": "armor-set"
       },
       {
         "from": "Terraria/Power Glove",
@@ -57633,12 +57832,32 @@
         "method": "english-display-name"
       },
       {
+        "from": "Terraria/Spider armor",
+        "displayName": "Spider armor",
+        "to": [
+          "Terraria/SpiderMask",
+          "Terraria/SpiderBreastplate",
+          "Terraria/SpiderGreaves"
+        ],
+        "method": "armor-set"
+      },
+      {
         "from": "Terraria/Rod of Discord",
         "displayName": "Rod of Discord",
         "to": [
           "Terraria/RodofDiscord"
         ],
         "method": "normalized-internal-name"
+      },
+      {
+        "from": "Terraria/Crystal Assassin armor",
+        "displayName": "Crystal Assassin armor",
+        "to": [
+          "Terraria/CrystalNinjaHelmet",
+          "Terraria/CrystalNinjaChestplate",
+          "Terraria/CrystalNinjaLeggings"
+        ],
+        "method": "armor-set"
       },
       {
         "from": "Terraria/Charm of Myths",
@@ -57697,6 +57916,30 @@
         "method": "normalized-internal-name"
       },
       {
+        "from": "Terraria/Mythril armor",
+        "displayName": "Mythril armor",
+        "to": [
+          "Terraria/MythrilHood",
+          "Terraria/MythrilHelmet",
+          "Terraria/MythrilHat",
+          "Terraria/MythrilChainmail",
+          "Terraria/MythrilGreaves"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "Terraria/Orichalcum armor",
+        "displayName": "Orichalcum armor",
+        "to": [
+          "Terraria/OrichalcumMask",
+          "Terraria/OrichalcumHelmet",
+          "Terraria/OrichalcumHeadgear",
+          "Terraria/OrichalcumBreastplate",
+          "Terraria/OrichalcumLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
         "from": "Terraria/Unholy Trident",
         "displayName": "Unholy Trident",
         "to": [
@@ -57705,12 +57948,32 @@
         "method": "normalized-internal-name"
       },
       {
+        "from": "Terraria/Apprentice armor",
+        "displayName": "Apprentice armor",
+        "to": [
+          "Terraria/ApprenticeHat",
+          "Terraria/ApprenticeRobe",
+          "Terraria/ApprenticeTrousers"
+        ],
+        "method": "armor-set"
+      },
+      {
         "from": "Terraria/Squire armor",
         "displayName": "Squire armor",
         "to": [
           "Terraria/SquireGreatHelm",
           "Terraria/SquirePlating",
           "Terraria/SquireGreaves"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "Terraria/Monk armor",
+        "displayName": "Monk armor",
+        "to": [
+          "Terraria/MonkBrows",
+          "Terraria/MonkShirt",
+          "Terraria/MonkPants"
         ],
         "method": "armor-set"
       },
@@ -57737,6 +58000,18 @@
           "Terraria/FlameWings"
         ],
         "method": "normalized-internal-name"
+      },
+      {
+        "from": "Terraria/Adamantite armor",
+        "displayName": "Adamantite armor",
+        "to": [
+          "Terraria/AdamantiteHeadgear",
+          "Terraria/AdamantiteHelmet",
+          "Terraria/AdamantiteMask",
+          "Terraria/AdamantiteBreastplate",
+          "Terraria/AdamantiteLeggings"
+        ],
+        "method": "armor-set"
       },
       {
         "from": "Terraria/Phantom Phoenix",
@@ -57777,6 +58052,41 @@
           "Terraria/TrueExcalibur"
         ],
         "method": "normalized-internal-name"
+      },
+      {
+        "from": "Terraria/Chlorophyte armor",
+        "displayName": "Chlorophyte armor",
+        "to": [
+          "Terraria/ChlorophyteMask",
+          "Terraria/ChlorophyteHelmet",
+          "Terraria/ChlorophyteHeadgear",
+          "Terraria/ChlorophytePlateMail",
+          "Terraria/ChlorophyteGreaves"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "Terraria/Hallowed armor",
+        "displayName": "Hallowed armor",
+        "to": [
+          "Terraria/HallowedHelmet",
+          "Terraria/HallowedHeadgear",
+          "Terraria/HallowedMask",
+          "Terraria/HallowedHood",
+          "Terraria/HallowedPlateMail",
+          "Terraria/HallowedGreaves"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "Terraria/Turtle armor",
+        "displayName": "Turtle armor",
+        "to": [
+          "Terraria/TurtleHelmet",
+          "Terraria/TurtleScaleMail",
+          "Terraria/TurtleLeggings"
+        ],
+        "method": "armor-set"
       },
       {
         "from": "Terraria/Mechanical Glove",
@@ -57859,6 +58169,18 @@
         "method": "normalized-internal-name"
       },
       {
+        "from": "Terraria/Shroomite armor",
+        "displayName": "Shroomite armor",
+        "to": [
+          "Terraria/ShroomiteHeadgear",
+          "Terraria/ShroomiteMask",
+          "Terraria/ShroomiteHelmet",
+          "Terraria/ShroomiteBreastplate",
+          "Terraria/ShroomiteLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
         "from": "Terraria/Venom Arrow",
         "displayName": "Venom Arrow",
         "to": [
@@ -57891,6 +58213,17 @@
         "method": "normalized-internal-name"
       },
       {
+        "from": "Terraria/Spectre armor",
+        "displayName": "Spectre armor",
+        "to": [
+          "Terraria/SpectreHood",
+          "Terraria/SpectreMask",
+          "Terraria/SpectreRobe",
+          "Terraria/SpectrePants"
+        ],
+        "method": "armor-set"
+      },
+      {
         "from": "Terraria/Desert Tiger Staff",
         "displayName": "Desert Tiger Staff",
         "to": [
@@ -57913,6 +58246,16 @@
           "Terraria/MaceWhip"
         ],
         "method": "english-display-name"
+      },
+      {
+        "from": "Terraria/Tiki armor",
+        "displayName": "Tiki armor",
+        "to": [
+          "Terraria/TikiMask",
+          "Terraria/TikiShirt",
+          "Terraria/TikiPants"
+        ],
+        "method": "armor-set"
       },
       {
         "from": "CalamityMod/EvergreenGinBuff",
@@ -57961,6 +58304,26 @@
           "Terraria/ChristmasTreeSword"
         ],
         "method": "normalized-internal-name"
+      },
+      {
+        "from": "Terraria/Beetle armor",
+        "displayName": "Beetle armor",
+        "to": [
+          "Terraria/BeetleHelmet",
+          "Terraria/BeetleScaleMail",
+          "Terraria/BeetleLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "Terraria/Valhalla Knight armor",
+        "displayName": "Valhalla Knight armor",
+        "to": [
+          "Terraria/SquireAltHead",
+          "Terraria/SquireAltShirt",
+          "Terraria/SquireAltPants"
+        ],
+        "method": "armor-set"
       },
       {
         "from": "Terraria/Eye of the Golem",
@@ -58099,6 +58462,16 @@
         "method": "normalized-internal-name"
       },
       {
+        "from": "Terraria/Shinobi Infiltrator armor",
+        "displayName": "Shinobi Infiltrator armor",
+        "to": [
+          "Terraria/MonkAltHead",
+          "Terraria/MonkAltShirt",
+          "Terraria/MonkAltPants"
+        ],
+        "method": "armor-set"
+      },
+      {
         "from": "Terraria/Celestial Shell",
         "displayName": "Celestial Shell",
         "to": [
@@ -58235,12 +58608,32 @@
         "method": "normalized-internal-name"
       },
       {
+        "from": "Terraria/Solar Flare armor",
+        "displayName": "Solar Flare armor",
+        "to": [
+          "Terraria/SolarFlareHelmet",
+          "Terraria/SolarFlareBreastplate",
+          "Terraria/SolarFlareLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
         "from": "Terraria/Solar Wings",
         "displayName": "Solar Wings",
         "to": [
           "Terraria/WingsSolar"
         ],
         "method": "english-display-name"
+      },
+      {
+        "from": "Terraria/Vortex armor",
+        "displayName": "Vortex armor",
+        "to": [
+          "Terraria/VortexHelmet",
+          "Terraria/VortexBreastplate",
+          "Terraria/VortexLeggings"
+        ],
+        "method": "armor-set"
       },
       {
         "from": "Terraria/Vortex Booster",
@@ -58257,6 +58650,16 @@
           "Terraria/WoodenArrow"
         ],
         "method": "normalized-internal-name"
+      },
+      {
+        "from": "Terraria/Nebula armor",
+        "displayName": "Nebula armor",
+        "to": [
+          "Terraria/NebulaHelmet",
+          "Terraria/NebulaBreastplate",
+          "Terraria/NebulaLeggings"
+        ],
+        "method": "armor-set"
       },
       {
         "from": "Terraria/Nebula Mantle",
@@ -58297,6 +58700,16 @@
           "Terraria/RainbowCrystalStaff"
         ],
         "method": "normalized-internal-name"
+      },
+      {
+        "from": "Terraria/Stardust armor",
+        "displayName": "Stardust armor",
+        "to": [
+          "Terraria/StardustHelmet",
+          "Terraria/StardustBreastplate",
+          "Terraria/StardustLeggings"
+        ],
+        "method": "armor-set"
       },
       {
         "from": "Terraria/Stardust Wings",
@@ -58414,33 +58827,8 @@
     "wikiAmbiguousItems": [],
     "wikiUnresolvedItems": [
       {
-        "id": "Terraria/Fossil armor",
-        "displayName": "Fossil armor",
-        "category": "Armor"
-      },
-      {
         "id": "CalamityMod/MagicHatBuff",
         "displayName": "Magic Hat",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Gladiator armor",
-        "displayName": "Gladiator armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Gold armor",
-        "displayName": "Gold armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Platinum armor",
-        "displayName": "Platinum armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Silver armor",
-        "displayName": "Silver armor",
         "category": "Armor"
       },
       {
@@ -58449,74 +58837,9 @@
         "category": "Accessory"
       },
       {
-        "id": "Terraria/Jungle armor",
-        "displayName": "Jungle armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Molten armor",
-        "displayName": "Molten armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Counterweights",
-        "displayName": "Counterweights",
-        "category": "Accessory"
-      },
-      {
-        "id": "Terraria/Meteor armor",
-        "displayName": "Meteor armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Obsidian armor",
-        "displayName": "Obsidian armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Crimson armor",
-        "displayName": "Crimson armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Shadow armor",
-        "displayName": "Shadow armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Bee armor",
-        "displayName": "Bee armor",
-        "category": "Armor"
-      },
-      {
         "id": "Terraria/P-LSR: Aerial Tracker",
         "displayName": "P-LSR: Aerial Tracker",
         "category": "Weapon"
-      },
-      {
-        "id": "Terraria/Necro armor",
-        "displayName": "Necro armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Cobalt armor",
-        "displayName": "Cobalt armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Palladium armor",
-        "displayName": "Palladium armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Spider armor",
-        "displayName": "Spider armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Crystal Assassin armor",
-        "displayName": "Crystal Assassin armor",
-        "category": "Armor"
       },
       {
         "id": "Terraria/Candles#Purchased",
@@ -58524,99 +58847,9 @@
         "category": "Buff"
       },
       {
-        "id": "Terraria/Mythril armor",
-        "displayName": "Mythril armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Orichalcum armor",
-        "displayName": "Orichalcum armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Apprentice armor",
-        "displayName": "Apprentice armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Monk armor",
-        "displayName": "Monk armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Adamantite armor",
-        "displayName": "Adamantite armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Chlorophyte armor",
-        "displayName": "Chlorophyte armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Hallowed armor",
-        "displayName": "Hallowed armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Turtle armor",
-        "displayName": "Turtle armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Shroomite armor",
-        "displayName": "Shroomite armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Spectre armor",
-        "displayName": "Spectre armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Tiki armor",
-        "displayName": "Tiki armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Beetle armor",
-        "displayName": "Beetle armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Valhalla Knight armor",
-        "displayName": "Valhalla Knight armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Shinobi Infiltrator armor",
-        "displayName": "Shinobi Infiltrator armor",
-        "category": "Armor"
-      },
-      {
         "id": "CalamityMod/VoidofExtinction",
         "displayName": "Void of Extinction",
         "category": "Accessory"
-      },
-      {
-        "id": "Terraria/Solar Flare armor",
-        "displayName": "Solar Flare armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Vortex armor",
-        "displayName": "Vortex armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Nebula armor",
-        "displayName": "Nebula armor",
-        "category": "Armor"
-      },
-      {
-        "id": "Terraria/Stardust armor",
-        "displayName": "Stardust armor",
-        "category": "Armor"
       }
     ],
     "wikiAvailabilityCorrections": [
@@ -58671,6 +58904,27 @@
       },
       {
         "id": "Terraria/TheMeatball",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/MoltenHelmet",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/MoltenBreastplate",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/MoltenGreaves",
         "factualStage": "world-evil",
         "recommendedStage": "crabulon",
         "wikiStage": "pre-evil2",
@@ -58754,6 +59008,27 @@
         "reason": "recommendation precedes proven availability"
       },
       {
+        "id": "Terraria/MeteorHelmet",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/MeteorSuit",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/MeteorLeggings",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
         "id": "CalamityMod/BatholithBangle",
         "factualStage": "world-evil",
         "recommendedStage": "crabulon",
@@ -58782,6 +59057,27 @@
         "reason": "recommendation precedes proven availability"
       },
       {
+        "id": "Terraria/ObsidianHelm",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/ObsidianShirt",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/ObsidianPants",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
         "id": "CalamityMod/InfernalKris",
         "factualStage": "world-evil",
         "recommendedStage": "crabulon",
@@ -58804,6 +59100,48 @@
       },
       {
         "id": "CalamityMod/SilencingSheath",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/CrimsonHelmet",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/CrimsonScalemail",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/CrimsonGreaves",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/ShadowHelmet",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/ShadowScalemail",
+        "factualStage": "world-evil",
+        "recommendedStage": "crabulon",
+        "wikiStage": "pre-evil2",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/ShadowGreaves",
         "factualStage": "world-evil",
         "recommendedStage": "crabulon",
         "wikiStage": "pre-evil2",
@@ -58854,6 +59192,27 @@
       {
         "id": "Terraria/PygmyNecklace",
         "factualStage": "plantera",
+        "recommendedStage": "cryogen",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/CrystalNinjaHelmet",
+        "factualStage": "queen-slime",
+        "recommendedStage": "cryogen",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/CrystalNinjaChestplate",
+        "factualStage": "queen-slime",
+        "recommendedStage": "cryogen",
+        "wikiStage": "pre-mech",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/CrystalNinjaLeggings",
+        "factualStage": "queen-slime",
         "recommendedStage": "cryogen",
         "wikiStage": "pre-mech",
         "reason": "recommendation precedes proven availability"

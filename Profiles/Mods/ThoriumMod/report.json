@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-06-29T15:42:38.767Z",
+  "generatedAtUtc": "2026-07-12T19:51:23.111Z",
   "snapshot": {
     "version": 4,
     "generatedAtUtc": "2026-06-28T20:57:38.3439447Z",
@@ -1876,7 +1876,9 @@
     "byKind": {}
   },
   "audit": {
-    "errors": [],
+    "errors": [
+      "ordinary NPC runtime probe produced 0 observations out of 865; rerun /pjexport and inspect npcSpawnProbe.failures"
+    ],
     "warnings": [
       "2 support or agent references are stale",
       "84 recommendations precede proven availability and were suppressed",
@@ -1885,6 +1887,10 @@
     "sourceCoverage": {
       "npcCount": 915,
       "availabilityCount": 915,
+      "spawnCount": 865,
+      "observedSpawnCount": 0,
+      "townCount": 50,
+      "observedTownCount": 16,
       "fishingCount": 141,
       "dropSourceCount": 608,
       "shopSourceCount": 34,
@@ -6891,13 +6897,15 @@
           "earliestStageIndex": -1
         }
       ],
-      "errors": []
+      "errors": [
+        "ordinary NPC runtime probe produced 0 observations out of 865; rerun /pjexport and inspect npcSpawnProbe.failures"
+      ]
     }
   },
-  "ready": true,
+  "ready": false,
   "generation": {
     "profileId": "builtin.thorium",
-    "generatedAtUtc": "2026-06-29T15:42:35.161Z",
+    "generatedAtUtc": "2026-07-12T19:51:17.670Z",
     "unknownReferences": [
       {
         "stage": "grand-thunder-bird",

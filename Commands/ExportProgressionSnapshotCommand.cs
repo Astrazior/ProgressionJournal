@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Text.Json;
+using ProgressionJournal.Data.Snapshots.Collectors;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -13,10 +14,6 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
     private static readonly MethodInfo? PlayerLoaderSetupPlayerMethod = typeof(PlayerLoader).GetMethod(
         "SetupPlayer",
         BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-    private static readonly FieldInfo? GlobalNpcDropRulesField = typeof(ItemDropDatabase).GetField(
-        "_globalEntries",
-        BindingFlags.Instance | BindingFlags.NonPublic);
-
     public override CommandType Type => CommandType.Chat;
 
     public override string Command => "pjexport";
@@ -72,8 +69,22 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             .Where(npcId => includedMods.Contains(GetNpcModName(npcId)))
             .ToHashSet();
 
-        var npcAvailability = CreateNpcAvailability(npcIds);
+        var npcAvailability = JournalSnapshotNpcAvailabilityCollector.Collect(npcIds, GetNpcReference);
         var npcSpawnProbe = JournalNpcSpawnAvailabilityResolver.GetDiagnostics();
+        List<SnapshotDrop> drops = [];
+        drops.AddRange(JournalSnapshotNpcDropCollector.Collect(
+            itemIds,
+            npcIds,
+            GetItemReference,
+            GetNpcReference,
+            CreateCondition,
+            LogDebug));
+        drops.AddRange(JournalSnapshotItemContainerCollector.Collect(
+            itemIds,
+            GetItemReference,
+            CreateCondition,
+            LogDebug));
+        drops.AddRange(JournalSnapshotWorldContainerCollector.Collect(itemIds));
         var snapshot = new ProgressionSnapshot
         {
             GeneratedAtUtc = DateTime.UtcNow.ToString("O"),
@@ -93,9 +104,18 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             Items = itemIds.Select(CreateItem).ToList(),
             Npcs = npcIds.Select(CreateNpc).ToList(),
             Recipes = CreateRecipes(itemIds, includedMods),
-            Drops = CreateDrops(itemIds, npcIds),
-            Shops = CreateShops(itemIds, npcIds),
-            Fishing = CreateFishing(itemIds, npcIds),
+            Drops = drops,
+            Shops = JournalSnapshotShopCollector.Collect(
+                itemIds,
+                npcIds,
+                GetItemReference,
+                GetNpcReference,
+                CreateCondition),
+            Fishing = JournalSnapshotFishingCollector.Collect(
+                itemIds,
+                npcIds,
+                GetItemReference,
+                GetNpcReference),
             NpcAvailability = npcAvailability,
             NpcSpawnProbe = new SnapshotNpcSpawnProbe(
                 npcAvailability.Count(static record => record is { Kind: "spawn", Observed: true }),
@@ -504,211 +524,6 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         }
 
         return recipes;
-    }
-
-    private static List<SnapshotDrop> CreateDrops(HashSet<int> includedItems, HashSet<int> includedNpcs)
-    {
-        List<SnapshotDrop> drops = [];
-        foreach (var npcId in includedNpcs)
-        {
-            AppendDrops(
-                drops,
-                Main.ItemDropsDB.GetRulesForNPCID(npcId, includeGlobalDrops: false),
-                "npc",
-                GetNpcReference(npcId),
-                includedItems);
-        }
-
-        AppendDrops(
-            drops,
-            GlobalNpcDropRulesField?.GetValue(Main.ItemDropsDB) as List<IItemDropRule>,
-            "global",
-            "Terraria/GlobalNPCDrops",
-            includedItems);
-
-        foreach (var itemId in includedItems)
-        {
-            AppendDrops(
-                drops,
-                Main.ItemDropsDB.GetRulesForItemID(itemId),
-                "container",
-                GetItemReference(itemId),
-                includedItems);
-        }
-
-        AppendContainerCatalogDrops(drops, includedItems);
-        return drops;
-    }
-
-    private static void AppendContainerCatalogDrops(
-        List<SnapshotDrop> result,
-        HashSet<int> includedItems)
-    {
-        result.AddRange(global::ProgressionJournal.Data.Resolvers.JournalContainerLootCatalog.GetAllDrops()
-            .Where(drop => TryResolveItemReference(drop.TargetItem, out var targetItemId)
-                && includedItems.Contains(targetItemId))
-            .Select(drop => new SnapshotDrop(
-                "container",
-                drop.SourceItem,
-                drop.TargetItem,
-                drop.DropRate,
-                drop.StackMin,
-                drop.StackMax,
-                [])));
-    }
-
-    private static bool TryResolveItemReference(string reference, out int itemId)
-    {
-        itemId = ItemID.None;
-        var separator = reference.IndexOf('/');
-        if (separator <= 0 || separator >= reference.Length - 1)
-        {
-            return false;
-        }
-
-        var modName = reference[..separator];
-        var itemName = reference[(separator + 1)..];
-        if (string.Equals(modName, "Terraria", StringComparison.OrdinalIgnoreCase))
-        {
-            return ItemID.Search.TryGetId(itemName, out itemId);
-        }
-
-        if (!ModContent.TryFind<ModItem>($"{modName}/{itemName}", out var modItem))
-        {
-            return false;
-        }
-
-        itemId = modItem.Type;
-        return true;
-    }
-
-    private static void AppendDrops(
-        List<SnapshotDrop> result,
-        List<IItemDropRule>? rules,
-        string sourceType,
-        string source,
-        HashSet<int> includedItems)
-    {
-        if (rules is null)
-        {
-            return;
-        }
-
-        List<DropRateInfo> reported = [];
-        foreach (var rule in rules)
-        {
-            try
-            {
-                rule.ReportDroprates(reported, new DropRateInfoChainFeed(1f));
-            }
-            catch (Exception exception)
-            {
-                LogDebug($"Failed to inspect drop rates for snapshot source '{source}'.", exception);
-            }
-        }
-
-        result.AddRange(reported
-            .Where(drop => includedItems.Contains(drop.itemId))
-            .Select(drop => new SnapshotDrop(
-                sourceType,
-                source,
-                GetItemReference(drop.itemId),
-                drop.dropRate,
-                drop.stackMin,
-                drop.stackMax,
-                EnumerateObjects(drop.conditions).Select(CreateCondition).ToList())));
-    }
-
-    private static List<SnapshotShop> CreateShops(
-        HashSet<int> includedItems,
-        HashSet<int> includedNpcs)
-    {
-        return NPCShopDatabase.AllShops
-            .SelectMany(static shop => shop.ActiveEntries.Select(entry => new { shop, entry }))
-            .Where(pair => pair.entry.Item is not null
-                && !pair.entry.Item.IsAir
-                && includedNpcs.Contains(pair.shop.NpcType)
-                && includedItems.Contains(pair.entry.Item.type))
-            .Select(pair =>
-            {
-                var observed = JournalTownNpcAvailabilityResolver.TryGetShopStage(
-                    pair.shop.NpcType,
-                    pair.shop.Name,
-                    pair.entry.Item.type,
-                    out var stageIndex,
-                    out var stageName);
-                return new SnapshotShop(
-                    GetNpcReference(pair.shop.NpcType),
-                    pair.shop.Name,
-                    GetItemReference(pair.entry.Item.type),
-                    EnumerateObjects(pair.entry.Conditions).Select(CreateCondition).ToList(),
-                    observed,
-                    stageIndex,
-                    stageName);
-            })
-            .ToList();
-    }
-
-    private static List<SnapshotFishingCatch> CreateFishing(
-        HashSet<int> includedItems,
-        HashSet<int> includedNpcs)
-    {
-        var result = includedItems
-            .Select(itemId => new
-            {
-                Id = itemId,
-                Availability = JournalFishingSourceResolver.GetItemAvailability(itemId)
-            })
-            .Where(static value => value.Availability.Observed)
-            .Select(value => new SnapshotFishingCatch(
-                "item",
-                GetItemReference(value.Id),
-                value.Availability.EarliestStageIndex,
-                value.Availability.EarliestStageName,
-                value.Availability.Conditions.ToList()))
-            .ToList();
-        result.AddRange(includedNpcs
-            .Select(npcId => new
-            {
-                Id = npcId,
-                Availability = JournalFishingSourceResolver.GetNpcAvailability(npcId)
-            })
-            .Where(static value => value.Availability.Observed)
-            .Select(value => new SnapshotFishingCatch(
-                "npc",
-                GetNpcReference(value.Id),
-                value.Availability.EarliestStageIndex,
-                value.Availability.EarliestStageName,
-                value.Availability.Conditions.ToList())));
-        return result;
-    }
-
-    private static List<SnapshotNpcAvailability> CreateNpcAvailability(HashSet<int> includedNpcs)
-    {
-        return includedNpcs.Select(npcId =>
-        {
-            var npc = ContentSamples.NpcsByNetId[npcId];
-            if (npc.townNPC)
-            {
-                var availability = JournalTownNpcAvailabilityResolver.GetAvailability(npcId);
-                return new SnapshotNpcAvailability(
-                    GetNpcReference(npcId),
-                    "town",
-                    availability.Observed,
-                    availability.EarliestStageIndex,
-                    availability.EarliestStageName,
-                    []);
-            }
-
-            var spawnAvailability = JournalNpcSpawnAvailabilityResolver.GetAvailability(npcId);
-            return new SnapshotNpcAvailability(
-                GetNpcReference(npcId),
-                "spawn",
-                spawnAvailability.Observed,
-                spawnAvailability.EarliestStageIndex,
-                spawnAvailability.EarliestStageName,
-                spawnAvailability.Conditions.ToList());
-        }).ToList();
     }
 
     private static SnapshotCondition CreateCondition(object? condition)

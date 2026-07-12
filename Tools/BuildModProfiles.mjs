@@ -114,15 +114,23 @@ export function buildModProfile(modName) {
     ready: audit.errors.length === 0 && review.summary.total === 0,
     generation: generationReport
   };
+  const itemAudit = createItemAudit(snapshot, profile, generationReport, support);
 
   writeJson(path.join(directory, "profile.json"), profile);
   writeJson(path.join(directory, "review.json"), review);
   writeJson(path.join(directory, "report.json"), report);
+  writeJson(path.join(directory, "item-audit.json"), itemAudit);
 
   const state = report.ready ? "READY" : "needs review";
   console.log(
     `${modName}: ${profile.entries.length} equipment, `
     + `${profile.combatBuffs.length} buffs, ${review.summary.total} review, ${state}`);
+  console.log(
+    `  Items: ${itemAudit.summary.snapshotItems} snapshot, `
+    + `${itemAudit.summary.profileItemReferences} profile references; `
+    + `${itemAudit.summary.unresolvedAvailability} unresolved, `
+    + `${itemAudit.summary.unavailableCombat} unavailable, `
+    + `${itemAudit.summary.noAcquisitionPath} without acquisition path`);
   console.log(
     `  NPC runtime: spawn ${audit.sourceCoverage.observedSpawnCount}`
     + `/${audit.sourceCoverage.spawnCount}, town ${audit.sourceCoverage.observedTownCount}`
@@ -139,6 +147,105 @@ export function buildModProfile(modName) {
       + `/${snapshot.npcSpawnProbe.chosenSpawn}/${snapshot.npcSpawnProbe.fullSpawn}, `
       + `raw observed ${snapshot.npcSpawnProbe.rawObserved}`);
   }
+}
+
+export function createItemAudit(snapshot, profile, generationReport, support) {
+  const contentMods = new Set(snapshot.contentMods ?? support.contentMods ?? [support.targetMod]);
+  const profileItems = new Map();
+  for (const entry of profile.entries ?? []) {
+    const stage = entry.evaluations?.[0]?.stageId ?? entry.stageId ?? "";
+    for (const item of (entry.itemGroups ?? []).flat()) {
+      profileItems.set(`${item.mod}/${item.item}`, { kind: "equipment", stage });
+    }
+  }
+  for (const entry of profile.combatBuffs ?? []) {
+    const stage = entry.stageId ?? entry.evaluations?.[0]?.stageId ?? "";
+    for (const item of (entry.itemGroups ?? []).flat()) {
+      profileItems.set(`${item.mod}/${item.item}`, { kind: "buff", stage });
+    }
+  }
+
+  const excluded = new Map();
+  for (const record of generationReport.excludedItems ?? []) {
+    const existing = excluded.get(record.id) ?? { stages: new Set(), reasons: new Set() };
+    if (record.stage) existing.stages.add(record.stage);
+    if (record.reason) existing.reasons.add(record.reason);
+    excluded.set(record.id, existing);
+  }
+  const unresolved = new Map(
+    (generationReport.unresolvedAvailabilityItems ?? []).map(record => [record.item, record]));
+  const unavailable = new Map(
+    (generationReport.unavailableCombatItems ?? []).map(record => [record.item, record]));
+  const paths = generationReport.paths ?? {};
+
+  const items = (snapshot.items ?? [])
+    .map(item => {
+      const mod = item.id.includes("/") ? item.id.slice(0, item.id.indexOf("/")) : "";
+      const profileItem = profileItems.get(item.id);
+      const unresolvedItem = unresolved.get(item.id);
+      const unavailableItem = unavailable.get(item.id);
+      const excludedItem = excluded.get(item.id);
+      const pathInfo = paths[item.id];
+      let status = "no-acquisition-path";
+      let reason = "No acquisition path was resolved.";
+      let stage = pathInfo?.stage ?? "";
+      let via = pathInfo?.via ?? "";
+
+      if (profileItem) {
+        status = profileItem.kind;
+        reason = "Included in the generated profile.";
+        stage = profileItem.stage;
+      } else if (unresolvedItem) {
+        status = "unresolved-availability";
+        reason = "Combat item has no proven acquisition source.";
+      } else if (unavailableItem) {
+        status = "unavailable-combat";
+        reason = "Known acquisition evidence is unavailable under the profile rules.";
+      } else if (excludedItem) {
+        status = "excluded";
+        reason = [...excludedItem.reasons].sort().join("; ") || "Excluded by item classification.";
+      } else if (pathInfo) {
+        status = "acquired-non-profile";
+        reason = "Acquisition path resolved, but the item is not a profile entry.";
+      }
+
+      return {
+        id: item.id,
+        name: item.name ?? "",
+        mod,
+        contentItem: mod !== "Terraria" && contentMods.has(mod),
+        status,
+        stage,
+        via,
+        reason
+      };
+    })
+    .sort((left, right) => left.id.localeCompare(right.id));
+  const countStatus = status => items.filter(item => item.status === status).length;
+
+  return {
+    format: "ProgressionJournalItemAudit",
+    version: 1,
+    targetMod: snapshot.targetMod ?? support.targetMod,
+    profileId: profile.id ?? support.id,
+    generatedAtUtc: new Date().toISOString(),
+    snapshotGeneratedAtUtc: snapshot.generatedAtUtc ?? "",
+    summary: {
+      snapshotItems: items.length,
+      contentItems: items.filter(item => item.contentItem).length,
+      profileEntries: (profile.entries ?? []).length,
+      profileBuffEntries: (profile.combatBuffs ?? []).length,
+      profileItemReferences: countStatus("equipment") + countStatus("buff"),
+      equipmentReferences: countStatus("equipment"),
+      buffReferences: countStatus("buff"),
+      excluded: countStatus("excluded"),
+      acquiredNonProfile: countStatus("acquired-non-profile"),
+      unresolvedAvailability: countStatus("unresolved-availability"),
+      unavailableCombat: countStatus("unavailable-combat"),
+      noAcquisitionPath: countStatus("no-acquisition-path")
+    },
+    items
+  };
 }
 
 function validateSupport(support, directoryName) {
