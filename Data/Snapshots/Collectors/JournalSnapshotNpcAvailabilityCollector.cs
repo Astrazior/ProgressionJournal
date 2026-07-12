@@ -1,6 +1,4 @@
 using ProgressionJournal.Commands;
-using ProgressionJournal.Data.Resolvers;
-using Terraria;
 using Terraria.ID;
 
 namespace ProgressionJournal.Data.Snapshots.Collectors;

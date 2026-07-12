@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bosses",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-07-12T19:51:10.036Z",
+  "generatedAtUtc": "2026-07-12T21:43:48.190Z",
   "requiredMods": [
     {
       "name": "CalamityMod",
@@ -16645,7 +16645,7 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
+      "eventCategory": "PirateInvasion",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -33483,7 +33483,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "eye-of-cthulhu",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -34369,7 +34369,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "eye-of-cthulhu",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -43143,7 +43143,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "eye-of-cthulhu",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -56315,6 +56315,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.ancientcobaltleggings",
+      "category": "Armor",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "AncientCobaltLeggings",
+            "displayName": "Древние кобальтовые ботинки"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.ancientshadowgreaves",
       "category": "Armor",
       "classes": [
@@ -56329,6 +56358,35 @@
             "mod": "Terraria",
             "item": "AncientShadowGreaves",
             "displayName": "Древние теневые ботинки"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.ancientcobaltbreastplate",
+      "category": "Armor",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "AncientCobaltBreastplate",
+            "displayName": "Древний кобальтовый нагрудник"
           }
         ]
       ],
@@ -57697,6 +57755,35 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.ancientcobalthelmet",
+      "category": "Armor",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "AncientCobaltHelmet",
+            "displayName": "Древний кобальтовый шлем"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -63318,7 +63405,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "plantera",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -63380,7 +63467,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "plantera",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -63440,8 +63527,23 @@
           },
           {
             "mod": "Terraria",
+            "item": "RedString",
+            "displayName": "Красная нитка"
+          },
+          {
+            "mod": "Terraria",
+            "item": "CyanString",
+            "displayName": "Голубая нитка"
+          },
+          {
+            "mod": "Terraria",
             "item": "PurpleString",
             "displayName": "Пурпурная нитка"
+          },
+          {
+            "mod": "Terraria",
+            "item": "VioletString",
+            "displayName": "Фиолетовая нитка"
           },
           {
             "mod": "Terraria",
@@ -64805,6 +64907,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.mooncharm",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "MoonCharm",
+            "displayName": "Зачарованная луна"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.starveil",
       "category": "Accessory",
       "classes": [
@@ -65636,7 +65771,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "plantera",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -66178,6 +66313,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.frozenturtleshell",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "FrozenTurtleShell",
+            "displayName": "Ледяной черепаший панцирь"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.frozenwings",
       "category": "Accessory",
       "classes": [
@@ -66356,6 +66524,39 @@
       "evaluations": [
         {
           "stageId": "eye-of-cthulhu",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.moonshell",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "MoonShell",
+            "displayName": "Лунная ракушка"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "skeletron-prime",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -67320,7 +67521,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "plantera",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -67367,6 +67568,100 @@
             "magic",
             "summoner",
             "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Providence",
+            "ru-RU": "Провиденс"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.celestialshell",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "CelestialShell",
+            "displayName": "Небесная ракушка"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "golem",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "ravager",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Lunatic Cultist",
+            "ru-RU": "Лунатик-культист"
+          }
+        },
+        {
+          "stageId": "astrum-deus",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Celestial Pillars",
+            "ru-RU": "Небесные башни"
+          }
+        },
+        {
+          "stageId": "lunatic-cultist",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Moon Lord",
+            "ru-RU": "Лунный лорд"
+          }
+        },
+        {
+          "stageId": "dragonfolly",
+          "classes": [
+            "melee"
           ],
           "sourceName": "Official Calamity Mod Wiki",
           "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
@@ -68368,6 +68663,36 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.berserkerglove",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "BerserkerGlove",
+            "displayName": "Перчатка берсерка"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.yoyoglove",
       "category": "Accessory",
       "classes": [
@@ -68379,6 +68704,91 @@
             "mod": "Terraria",
             "item": "YoYoGlove",
             "displayName": "Перчатка для йо-йо"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.powerglove",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "PowerGlove",
+            "displayName": "Перчатка силы"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "cryogen",
+          "classes": [
+            "melee"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Mechanical Bosses",
+            "ru-RU": "Механические боссы"
+          }
+        },
+        {
+          "stageId": "destroyer",
+          "classes": [
+            "melee"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Second Mechanical Boss",
+            "ru-RU": "Второй механический босс"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.titanglove",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "TitanGlove",
+            "displayName": "Перчатка титана"
           }
         ]
       ],
@@ -68504,7 +68914,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "plantera",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -68673,7 +69083,7 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": "SolarEclipse",
+      "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
     },
@@ -70086,7 +70496,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "plantera",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -82570,6 +82980,111 @@
   ],
   "combatBuffs": [
     {
+      "key": "new.terraria.burger",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Burger",
+            "displayName": "Бургер"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.milkcarton",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "MilkCarton",
+            "displayName": "Пакет молока"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.hotdog",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Hotdog",
+            "displayName": "Хотдог"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.coffeecup",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "CoffeeCup",
+            "displayName": "кофе"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.steak",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Steak",
+            "displayName": "Стейк"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.terraria.chickennugget",
       "category": "Food",
       "classes": [
@@ -82654,6 +83169,69 @@
       ]
     },
     {
+      "key": "new.terraria.pizza",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Pizza",
+            "displayName": "Пицца"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.spaghetti",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Spaghetti",
+            "displayName": "Спагетти"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.potatochips",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "PotatoChips",
+            "displayName": "Чипсы"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.terraria.bananasplit",
       "category": "Food",
       "classes": [
@@ -82670,27 +83248,6 @@
             "mod": "Terraria",
             "item": "BananaSplit",
             "displayName": "Банановый сплит"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.hotdog",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "Hotdog",
-            "displayName": "Хотдог"
           }
         ]
       ]
@@ -82881,69 +83438,6 @@
       ]
     },
     {
-      "key": "new.terraria.burger",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "Burger",
-            "displayName": "Бургер"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.potatochips",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "PotatoChips",
-            "displayName": "Чипсы"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.pizza",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "Pizza",
-            "displayName": "Пицца"
-          }
-        ]
-      ]
-    },
-    {
       "key": "new.terraria.shrimppoboy",
       "category": "Food",
       "classes": [
@@ -82960,27 +83454,6 @@
             "mod": "Terraria",
             "item": "ShrimpPoBoy",
             "displayName": "Бутерброд с креветкой"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.milkcarton",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "MilkCarton",
-            "displayName": "Пакет молока"
           }
         ]
       ]
@@ -84738,6 +85211,27 @@
       ]
     },
     {
+      "key": "new.terraria.creamsoda",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "skeletron",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "CreamSoda",
+            "displayName": "Крем-сода"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.terraria.titanpotion",
       "category": "Potion",
       "classes": [
@@ -84822,6 +85316,48 @@
       ]
     },
     {
+      "key": "new.terraria.applepie",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "ApplePie",
+            "displayName": "Яблочный пирог"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.milkshake",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Milkshake",
+            "displayName": "Молочный коктейль"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.terraria.greaterhealingpotion",
       "category": "Basic",
       "classes": [
@@ -84859,48 +85395,6 @@
             "mod": "Terraria",
             "item": "GreaterManaPotion",
             "displayName": "Большое зелье маны"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.coffeecup",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "wall-of-flesh",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "CoffeeCup",
-            "displayName": "кофе"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.milkshake",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "wall-of-flesh",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "Milkshake",
-            "displayName": "Молочный коктейль"
           }
         ]
       ]
@@ -85478,7 +85972,7 @@
       ]
     },
     {
-      "key": "new.terraria.creamsoda",
+      "key": "new.terraria.bbqribs",
       "category": "Food",
       "classes": [
         "melee",
@@ -85492,8 +85986,8 @@
         [
           {
             "mod": "Terraria",
-            "item": "CreamSoda",
-            "displayName": "Крем-сода"
+            "item": "BBQRibs",
+            "displayName": "Ребрышки барбекю"
           }
         ]
       ]

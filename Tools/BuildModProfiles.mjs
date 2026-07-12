@@ -146,6 +146,11 @@ export function buildModProfile(modName) {
       + `positive/chosen/full ${snapshot.npcSpawnProbe.positiveSpawnChance}`
       + `/${snapshot.npcSpawnProbe.chosenSpawn}/${snapshot.npcSpawnProbe.fullSpawn}, `
       + `raw observed ${snapshot.npcSpawnProbe.rawObserved}`);
+    console.log(
+      `  Full spawn: contexts ${snapshot.npcSpawnProbe.fullSpawnContexts ?? 0}, `
+      + `attempts/successful ${snapshot.npcSpawnProbe.fullSpawnAttempts ?? 0}`
+      + `/${snapshot.npcSpawnProbe.fullSpawnSuccessfulAttempts ?? 0}, `
+      + `spawned instances ${snapshot.npcSpawnProbe.fullSpawnedNpcInstances ?? 0}`);
   }
 }
 

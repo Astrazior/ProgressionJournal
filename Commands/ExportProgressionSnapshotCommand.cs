@@ -71,6 +71,9 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
 
         var npcAvailability = JournalSnapshotNpcAvailabilityCollector.Collect(npcIds, GetNpcReference);
         var npcSpawnProbe = JournalNpcSpawnAvailabilityResolver.GetDiagnostics();
+        var items = itemIds.Select(CreateItem).ToList();
+        var npcs = npcIds.Select(CreateNpc).ToList();
+        var recipes = CreateRecipes(itemIds, includedMods);
         List<SnapshotDrop> drops = [];
         drops.AddRange(JournalSnapshotNpcDropCollector.Collect(
             itemIds,
@@ -101,9 +104,9 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                 .Select(static mod => new SnapshotMod(mod.Name, mod.Version.ToString()))
                 .OrderBy(static mod => mod.Name, StringComparer.OrdinalIgnoreCase)
                 .ToList(),
-            Items = itemIds.Select(CreateItem).ToList(),
-            Npcs = npcIds.Select(CreateNpc).ToList(),
-            Recipes = CreateRecipes(itemIds, includedMods),
+            Items = items,
+            Npcs = npcs,
+            Recipes = recipes,
             Drops = drops,
             Shops = JournalSnapshotShopCollector.Collect(
                 itemIds,
@@ -128,6 +131,34 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                 npcSpawnProbe.PositiveSpawnChanceCount,
                 npcSpawnProbe.ChosenSpawnCount,
                 npcSpawnProbe.FullSpawnCount,
+                npcSpawnProbe.FullSpawnContextCount,
+                npcSpawnProbe.FullSpawnAttemptCount,
+                npcSpawnProbe.FullSpawnSuccessfulAttemptCount,
+                npcSpawnProbe.FullSpawnedNpcInstanceCount,
+                npcSpawnProbe.FullSpawnContextDetails
+                    .Select(detail => new SnapshotNpcFullSpawnContext(
+                        detail.StageIndex,
+                        detail.Environment,
+                        detail.Depth,
+                        detail.Event,
+                        detail.Water,
+                        detail.PlayerSafe,
+                        detail.PlayerInTown,
+                        detail.Attempts,
+                        detail.SuccessfulAttempts,
+                        detail.SpawnedNpcInstances,
+                        detail.NearbyActiveNpcs,
+                        detail.TownNpcs,
+                        detail.MinimumSpawnRate,
+                        detail.MaximumSpawnRate,
+                        detail.MinimumMaxSpawns,
+                        detail.MaximumMaxSpawns,
+                        detail.JourneyMode,
+                        detail.JourneySpawnsDisabled,
+                        detail.JourneySpawnRateMultiplier,
+                        detail.SpawnRateHookTrace.ToList(),
+                        detail.SpawnedNpcTypes.Select(GetNpcReference).ToList()))
+                    .ToList(),
                 npcSpawnProbe.Failures.ToList()),
             VanillaItemClassifications = CreateVanillaItemClassifications()
         };
@@ -629,7 +660,8 @@ public sealed class ProgressionSnapshot
     public List<SnapshotShop> Shops { get; set; } = [];
     public List<SnapshotFishingCatch> Fishing { get; set; } = [];
     public List<SnapshotNpcAvailability> NpcAvailability { get; set; } = [];
-    public SnapshotNpcSpawnProbe NpcSpawnProbe { get; set; } = new(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, []);
+    public SnapshotNpcSpawnProbe NpcSpawnProbe { get; set; } =
+        new(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, [], []);
     public List<SnapshotVanillaItemClassification> VanillaItemClassifications { get; set; } = [];
 }
 
@@ -728,4 +760,31 @@ public sealed record SnapshotNpcSpawnProbe(
     int PositiveSpawnChance,
     int ChosenSpawn,
     int FullSpawn,
+    int FullSpawnContexts,
+    int FullSpawnAttempts,
+    int FullSpawnSuccessfulAttempts,
+    int FullSpawnedNpcInstances,
+    List<SnapshotNpcFullSpawnContext> FullSpawnContextDetails,
     List<string> Failures);
+public sealed record SnapshotNpcFullSpawnContext(
+    int StageIndex,
+    string Environment,
+    int Depth,
+    string Event,
+    bool Water,
+    bool PlayerSafe,
+    bool PlayerInTown,
+    int Attempts,
+    int SuccessfulAttempts,
+    int SpawnedNpcInstances,
+    float NearbyActiveNpcs,
+    float TownNpcs,
+    int MinimumSpawnRate,
+    int MaximumSpawnRate,
+    int MinimumMaxSpawns,
+    int MaximumMaxSpawns,
+    bool JourneyMode,
+    bool JourneySpawnsDisabled,
+    float JourneySpawnRateMultiplier,
+    List<string> SpawnRateHookTrace,
+    List<string> SpawnedNpcs);

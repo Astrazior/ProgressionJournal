@@ -2,6 +2,7 @@ using System.Collections;
 using System.Reflection;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.Localization;
@@ -16,6 +17,9 @@ internal static class JournalNpcSpawnAvailabilityResolver
     private const int FocusedFullSpawnSeedCount = 192;
 
     private static readonly object SyncRoot = new();
+    private static readonly MethodInfo? PlayerLoaderSetupPlayerMethod = typeof(PlayerLoader).GetMethod(
+        "SetupPlayer",
+        BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
     private static readonly FieldInfo? ModBiomeFlagsField = typeof(Player).GetField(
         "modBiomeFlags",
         BindingFlags.Instance | BindingFlags.NonPublic);
@@ -31,8 +35,17 @@ internal static class JournalNpcSpawnAvailabilityResolver
     private static readonly FieldInfo? EditSpawnPoolHookField = typeof(NPCLoader).GetField(
         "HookEditSpawnPool",
         BindingFlags.Static | BindingFlags.NonPublic);
+    private static readonly FieldInfo? EditSpawnRateHookField = typeof(NPCLoader).GetField(
+        "HookEditSpawnRate",
+        BindingFlags.Static | BindingFlags.NonPublic);
     private static readonly FieldInfo? DefaultSpawnRateField = typeof(NPC).GetField(
         "defaultSpawnRate",
+        BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+    private static readonly FieldInfo? SpawnRateField = typeof(NPC).GetField(
+        "spawnRate",
+        BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+    private static readonly FieldInfo? MaxSpawnsField = typeof(NPC).GetField(
+        "maxSpawns",
         BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
     private static readonly FieldInfo? NoSpawnCycleField = typeof(NPC).GetField(
         "noSpawnCycle",
@@ -167,6 +180,11 @@ internal static class JournalNpcSpawnAvailabilityResolver
         public HashSet<int> PositiveSpawnChanceTypes { get; } = [];
         public HashSet<int> ChosenSpawnTypes { get; } = [];
         public HashSet<int> FullSpawnTypes { get; } = [];
+        public int FullSpawnContextCount { get; set; }
+        public int FullSpawnAttemptCount { get; set; }
+        public int FullSpawnSuccessfulAttemptCount { get; set; }
+        public int FullSpawnedNpcInstanceCount { get; set; }
+        public List<JournalNpcFullSpawnContextDiagnostics> FullSpawnContextDetails { get; } = [];
     }
 
     private readonly record struct PlayerState(
@@ -275,6 +293,11 @@ internal static class JournalNpcSpawnAvailabilityResolver
             catalog.Counters.PositiveSpawnChanceTypes.Count,
             catalog.Counters.ChosenSpawnTypes.Count,
             catalog.Counters.FullSpawnTypes.Count,
+            catalog.Counters.FullSpawnContextCount,
+            catalog.Counters.FullSpawnAttemptCount,
+            catalog.Counters.FullSpawnSuccessfulAttemptCount,
+            catalog.Counters.FullSpawnedNpcInstanceCount,
+            catalog.Counters.FullSpawnContextDetails,
             catalog.Failures.Order(StringComparer.Ordinal).ToArray());
     }
 
@@ -305,7 +328,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
 
     private static Catalog BuildCatalog()
     {
-        var player = GetProbePlayer();
+        var player = CreateProbePlayer();
         var environments = CreateEnvironments();
         var customEventFlags = CreateCustomEventFlags();
         var events = CreateEvents(customEventFlags);
@@ -326,11 +349,6 @@ internal static class JournalNpcSpawnAvailabilityResolver
                 CandidateNpcCount = Enumerable.Range(1, NPCLoader.NPCCount - 1).Count(IsOrdinaryNpc),
                 ModNpcTemplateCount = ModContent.GetContent<ModNPC>().Count()
             });
-        if (player is null)
-        {
-            return catalog;
-        }
-
         var playerState = CapturePlayerState(player);
         var worldState = CaptureWorldState();
         var originalNpcReferences = Main.npc.ToArray();
@@ -762,11 +780,64 @@ internal static class JournalNpcSpawnAvailabilityResolver
 
     private static IEnumerable<GlobalNPC> GetEditSpawnPoolGlobals()
     {
-        var hookList = EditSpawnPoolHookField?.GetValue(null);
-        var hookGlobalsField = hookList?.GetType().GetField(
+        return GetHookGlobals(EditSpawnPoolHookField);
+    }
+
+    private static IReadOnlyList<string> TraceSpawnRateHooks(Player player)
+    {
+        List<string> trace = [];
+        var spawnRate = 1;
+        var maxSpawns = 5;
+        foreach (var globalNpc in GetHookGlobals(EditSpawnRateHookField))
+        {
+            var previousSpawnRate = spawnRate;
+            var previousMaxSpawns = maxSpawns;
+            globalNpc.EditSpawnRate(player, ref spawnRate, ref maxSpawns);
+            if (spawnRate == previousSpawnRate && maxSpawns == previousMaxSpawns)
+            {
+                continue;
+            }
+
+            trace.Add(
+                $"{globalNpc.GetType().FullName}: "
+                + $"{previousSpawnRate}/{previousMaxSpawns} -> {spawnRate}/{maxSpawns}");
+        }
+
+        return trace;
+    }
+
+    private static (bool Disabled, float Multiplier) GetJourneySpawnRate(Player player)
+    {
+        if (!Main.GameModeInfo.IsJourneyMode)
+        {
+            return (false, 1f);
+        }
+
+        var power = CreativePowerManager.Instance
+            .GetPower<CreativePowers.SpawnRateSliderPerPlayerPower>();
+        if (power is null || !power.GetIsUnlocked())
+        {
+            return (false, 1f);
+        }
+
+        var disabled = power.GetShouldDisableSpawnsFor(player.whoAmI);
+        return power.GetRemappedSliderValueFor(player.whoAmI, out var multiplier)
+            ? (disabled, multiplier)
+            : (disabled, 1f);
+    }
+
+    private static IEnumerable<GlobalNPC> GetHookGlobals(FieldInfo? hookField)
+    {
+        var hookList = hookField?.GetValue(null);
+        var hookGlobalsField = GetHookGlobalsField(hookList);
+        return hookGlobalsField?.GetValue(hookList) as GlobalNPC[] ?? [];
+    }
+
+    private static FieldInfo? GetHookGlobalsField(object? hookList)
+    {
+        return hookList?.GetType().GetField(
             "hookGlobals",
             BindingFlags.Instance | BindingFlags.NonPublic);
-        return hookGlobalsField?.GetValue(hookList) as GlobalNPC[] ?? [];
     }
 
     private static void ObserveChosenSpawn(
@@ -852,23 +923,64 @@ internal static class JournalNpcSpawnAvailabilityResolver
     {
         try
         {
+            catalog.Counters.FullSpawnContextCount++;
+            var attemptCount = 0;
+            var successfulAttemptCount = 0;
+            var spawnedNpcInstanceCount = 0;
+            var minimumSpawnRate = int.MaxValue;
+            var maximumSpawnRate = int.MinValue;
+            var minimumMaxSpawns = int.MaxValue;
+            var maximumMaxSpawns = int.MinValue;
+            HashSet<int> spawnedNpcTypes = [];
+            var journeySpawnRate = GetJourneySpawnRate(player);
+            var spawnRateHookTrace = TraceSpawnRateHooks(player);
             var previousDefaultSpawnRate = DefaultSpawnRateField?.GetValue(null);
             var previousNoSpawnCycle = NoSpawnCycleField?.GetValue(null);
+            var editSpawnRateHookList = EditSpawnRateHookField?.GetValue(null);
+            var editSpawnRateHookGlobalsField = GetHookGlobalsField(editSpawnRateHookList);
+            var previousEditSpawnRateHooks = editSpawnRateHookGlobalsField?.GetValue(editSpawnRateHookList);
             try
             {
                 DefaultSpawnRateField?.SetValue(null, 1);
+                editSpawnRateHookGlobalsField?.SetValue(
+                    editSpawnRateHookList,
+                    Array.Empty<GlobalNPC>());
                 var seedCount = context is { EnvironmentIndex: 0, EventIndex: 0 }
                     ? FocusedFullSpawnSeedCount
                     : FullSpawnSeedCount;
                 for (var seed = 0; seed < seedCount; seed++)
                 {
+                    attemptCount++;
+                    catalog.Counters.FullSpawnAttemptCount++;
                     PrepareNpcArray();
                     NoSpawnCycleField?.SetValue(null, false);
                     Main.rand = new UnifiedRandom(seed);
                     player.active = true;
                     NPC.SpawnNPC();
-                    foreach (var npc in Main.npc.Where(static npc => npc is { active: true }))
+                    if (SpawnRateField?.GetValue(null) is int spawnRate)
                     {
+                        minimumSpawnRate = Math.Min(minimumSpawnRate, spawnRate);
+                        maximumSpawnRate = Math.Max(maximumSpawnRate, spawnRate);
+                    }
+                    if (MaxSpawnsField?.GetValue(null) is int maxSpawns)
+                    {
+                        minimumMaxSpawns = Math.Min(minimumMaxSpawns, maxSpawns);
+                        maximumMaxSpawns = Math.Max(maximumMaxSpawns, maxSpawns);
+                    }
+                    var spawnedNpcs = Main.npc
+                        .Where(static npc => npc is { active: true })
+                        .ToArray();
+                    if (spawnedNpcs.Length > 0)
+                    {
+                        successfulAttemptCount++;
+                        spawnedNpcInstanceCount += spawnedNpcs.Length;
+                        catalog.Counters.FullSpawnSuccessfulAttemptCount++;
+                        catalog.Counters.FullSpawnedNpcInstanceCount += spawnedNpcs.Length;
+                    }
+
+                    foreach (var npc in spawnedNpcs)
+                    {
+                        spawnedNpcTypes.Add(npc.type);
                         catalog.Counters.FullSpawnTypes.Add(npc.type);
                         if (IsOrdinaryNpc(npc.type))
                         {
@@ -876,9 +988,39 @@ internal static class JournalNpcSpawnAvailabilityResolver
                         }
                     }
                 }
+
+                catalog.Counters.FullSpawnContextDetails.Add(
+                    new JournalNpcFullSpawnContextDiagnostics(
+                        context.StageIndex,
+                        catalog.Environments[context.EnvironmentIndex].Name,
+                        context.Depth,
+                        catalog.Events[context.EventIndex].Name,
+                        context.Water,
+                        context.PlayerSafe,
+                        context.PlayerInTown,
+                        attemptCount,
+                        successfulAttemptCount,
+                        spawnedNpcInstanceCount,
+                        player.nearbyActiveNPCs,
+                        player.townNPCs,
+                        minimumSpawnRate == int.MaxValue ? -1 : minimumSpawnRate,
+                        maximumSpawnRate == int.MinValue ? -1 : maximumSpawnRate,
+                        minimumMaxSpawns == int.MaxValue ? -1 : minimumMaxSpawns,
+                        maximumMaxSpawns == int.MinValue ? -1 : maximumMaxSpawns,
+                        Main.GameModeInfo.IsJourneyMode,
+                        journeySpawnRate.Disabled,
+                        journeySpawnRate.Multiplier,
+                        spawnRateHookTrace,
+                        spawnedNpcTypes.Order().ToArray()));
             }
             finally
             {
+                if (editSpawnRateHookGlobalsField is not null)
+                {
+                    editSpawnRateHookGlobalsField.SetValue(
+                        editSpawnRateHookList,
+                        previousEditSpawnRateHooks);
+                }
                 if (previousDefaultSpawnRate is not null)
                 {
                     DefaultSpawnRateField?.SetValue(null, previousDefaultSpawnRate);
@@ -1212,15 +1354,18 @@ internal static class JournalNpcSpawnAvailabilityResolver
         Main.netMode = state.NetMode;
     }
 
-    private static Player? GetProbePlayer()
+    private static Player CreateProbePlayer()
     {
-        if (Main.myPlayer >= 0 && Main.myPlayer < Main.player.Length
-            && Main.LocalPlayer is { active: true } localPlayer)
+        var player = new Player
         {
-            return localPlayer;
-        }
+            whoAmI = Math.Clamp(Main.myPlayer, 0, 254),
+            active = true,
+            dead = false
+        };
+        PlayerLoaderSetupPlayerMethod?.Invoke(null, [player]);
+        player.ResetEffects();
 
-        return Main.player.FirstOrDefault(static player => player is { active: true });
+        return player;
     }
 
     private static BitArray GetModBiomeFlags(Player player)
@@ -1258,4 +1403,32 @@ internal sealed record JournalNpcSpawnProbeDiagnostics(
     int PositiveSpawnChanceCount,
     int ChosenSpawnCount,
     int FullSpawnCount,
+    int FullSpawnContextCount,
+    int FullSpawnAttemptCount,
+    int FullSpawnSuccessfulAttemptCount,
+    int FullSpawnedNpcInstanceCount,
+    IReadOnlyList<JournalNpcFullSpawnContextDiagnostics> FullSpawnContextDetails,
     IReadOnlyList<string> Failures);
+
+internal sealed record JournalNpcFullSpawnContextDiagnostics(
+    int StageIndex,
+    string Environment,
+    int Depth,
+    string Event,
+    bool Water,
+    bool PlayerSafe,
+    bool PlayerInTown,
+    int Attempts,
+    int SuccessfulAttempts,
+    int SpawnedNpcInstances,
+    float NearbyActiveNpcs,
+    float TownNpcs,
+    int MinimumSpawnRate,
+    int MaximumSpawnRate,
+    int MinimumMaxSpawns,
+    int MaximumMaxSpawns,
+    bool JourneyMode,
+    bool JourneySpawnsDisabled,
+    float JourneySpawnRateMultiplier,
+    IReadOnlyList<string> SpawnRateHookTrace,
+    IReadOnlyList<int> SpawnedNpcTypes);

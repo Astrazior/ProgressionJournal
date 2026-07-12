@@ -3,10 +3,10 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-12T19:51:15.846Z",
+  "generatedAtUtc": "2026-07-12T21:43:53.702Z",
   "snapshot": {
     "version": 4,
-    "generatedAtUtc": "2026-07-11T19:49:32.0168848Z",
+    "generatedAtUtc": "2026-07-12T21:43:11.7316734Z",
     "targetMod": "CalamityMod",
     "mods": [
       {
@@ -1044,14 +1044,56 @@
       }
     ],
     "availabilityMigration": {
-      "confirmed": 21,
-      "pending": 88,
-      "mismatched": 4,
+      "confirmed": 27,
+      "pending": 82,
+      "mismatched": 5,
       "confirmedRules": [
         {
-          "id": "goblin-summoner-source",
+          "id": "fire-imp-source",
           "kind": "npc-source",
-          "target": "Terraria/GoblinSummoner",
+          "target": "Terraria/FireImp",
+          "expectedStageId": "start",
+          "actualStageId": "start"
+        },
+        {
+          "id": "demon-source",
+          "kind": "npc-source",
+          "target": "Terraria/Demon",
+          "expectedStageId": "start",
+          "actualStageId": "start"
+        },
+        {
+          "id": "voodoo-demon-source",
+          "kind": "npc-source",
+          "target": "Terraria/VoodooDemon",
+          "expectedStageId": "start",
+          "actualStageId": "start"
+        },
+        {
+          "id": "bone-serpent-source",
+          "kind": "npc-source",
+          "target": "Terraria/BoneSerpentHead",
+          "expectedStageId": "start",
+          "actualStageId": "start"
+        },
+        {
+          "id": "dark-caster-source",
+          "kind": "npc-source",
+          "target": "Terraria/DarkCaster",
+          "expectedStageId": "skeletron",
+          "actualStageId": "skeletron"
+        },
+        {
+          "id": "clinger-source",
+          "kind": "npc-source",
+          "target": "Terraria/Clinger",
+          "expectedStageId": "wall-of-flesh",
+          "actualStageId": "wall-of-flesh"
+        },
+        {
+          "id": "ichor-sticker-source",
+          "kind": "npc-source",
+          "target": "Terraria/IchorSticker",
           "expectedStageId": "wall-of-flesh",
           "actualStageId": "wall-of-flesh"
         },
@@ -1128,6 +1170,13 @@
         {
           "id": "vanilla-common-zombie-sources",
           "kind": "npc-source",
+          "target": "Terraria/ArmedZombieSwamp",
+          "expectedStageId": "start",
+          "actualStageId": "start"
+        },
+        {
+          "id": "vanilla-common-zombie-sources",
+          "kind": "npc-source",
           "target": "Terraria/ArmedZombieTwiggy",
           "expectedStageId": "start",
           "actualStageId": "start"
@@ -1150,13 +1199,6 @@
           "id": "vanilla-common-zombie-sources",
           "kind": "npc-source",
           "target": "Terraria/ArmedTorchZombie",
-          "expectedStageId": "start",
-          "actualStageId": "start"
-        },
-        {
-          "id": "calamity-wulfrum-rover-source",
-          "kind": "npc-source",
-          "target": "CalamityMod/WulfrumRover",
           "expectedStageId": "start",
           "actualStageId": "start"
         },
@@ -1210,57 +1252,21 @@
           "expectedStageId": "start"
         },
         {
-          "id": "fire-imp-source",
-          "kind": "npc-source",
-          "target": "Terraria/FireImp",
-          "expectedStageId": "start"
-        },
-        {
-          "id": "demon-source",
-          "kind": "npc-source",
-          "target": "Terraria/Demon",
-          "expectedStageId": "start"
-        },
-        {
-          "id": "voodoo-demon-source",
-          "kind": "npc-source",
-          "target": "Terraria/VoodooDemon",
-          "expectedStageId": "start"
-        },
-        {
-          "id": "bone-serpent-source",
-          "kind": "npc-source",
-          "target": "Terraria/BoneSerpentHead",
-          "expectedStageId": "start"
-        },
-        {
-          "id": "dark-caster-source",
-          "kind": "npc-source",
-          "target": "Terraria/DarkCaster",
-          "expectedStageId": "skeletron"
-        },
-        {
           "id": "wyvern-source",
           "kind": "npc-source",
           "target": "Terraria/WyvernHead",
           "expectedStageId": "wall-of-flesh"
         },
         {
+          "id": "goblin-summoner-source",
+          "kind": "npc-source",
+          "target": "Terraria/GoblinSummoner",
+          "expectedStageId": "wall-of-flesh"
+        },
+        {
           "id": "sand-elemental-source",
           "kind": "npc-source",
           "target": "Terraria/SandElemental",
-          "expectedStageId": "wall-of-flesh"
-        },
-        {
-          "id": "clinger-source",
-          "kind": "npc-source",
-          "target": "Terraria/Clinger",
-          "expectedStageId": "wall-of-flesh"
-        },
-        {
-          "id": "ichor-sticker-source",
-          "kind": "npc-source",
-          "target": "Terraria/IchorSticker",
           "expectedStageId": "wall-of-flesh"
         },
         {
@@ -1280,12 +1286,6 @@
           "kind": "npc-source",
           "target": "Terraria/BigMimicHallow",
           "expectedStageId": "wall-of-flesh"
-        },
-        {
-          "id": "deadly-sphere-source",
-          "kind": "npc-source",
-          "target": "Terraria/DeadlySphere",
-          "expectedStageId": "golem"
         },
         {
           "id": "calamity-preboss-natural-sources",
@@ -1522,12 +1522,6 @@
           "expectedStageId": "plantera"
         },
         {
-          "id": "post-plantera-natural-sources",
-          "kind": "npc-source",
-          "target": "CalamityMod/MantisShrimp",
-          "expectedStageId": "plantera"
-        },
-        {
           "id": "post-golem-natural-sources",
           "kind": "npc-source",
           "target": "CalamityMod/ShockstormShuttle",
@@ -1699,6 +1693,19 @@
           "expectedStageId": "start"
         },
         {
+          "id": "calamity-wulfrum-rover-source",
+          "kind": "npc-source",
+          "target": "CalamityMod/WulfrumRover",
+          "expectedStageId": "start"
+        },
+        {
+          "id": "deadly-sphere-source",
+          "kind": "npc-source",
+          "target": "Terraria/DeadlySphere",
+          "expectedStageId": "golem",
+          "actualStageId": "plantera"
+        },
+        {
           "id": "calamity-preboss-natural-sources",
           "kind": "npc-source",
           "target": "CalamityMod/CrawlerCrystal",
@@ -1713,22 +1720,22 @@
           "actualStageId": "start"
         },
         {
+          "id": "post-plantera-natural-sources",
+          "kind": "npc-source",
+          "target": "CalamityMod/MantisShrimp",
+          "expectedStageId": "plantera",
+          "actualStageId": "wall-of-flesh"
+        },
+        {
           "id": "post-providence-renegade-warlock-source",
           "kind": "npc-source",
           "target": "CalamityMod/RenegadeWarlock",
           "expectedStageId": "providence",
           "actualStageId": "wall-of-flesh"
-        },
-        {
-          "id": "vanilla-common-zombie-sources",
-          "kind": "npc-source",
-          "target": "Terraria/ArmedZombieSwamp",
-          "expectedStageId": "start",
-          "actualStageId": "world-evil"
         }
       ],
       "stageComparison": {
-        "compared": 2120,
+        "compared": 2137,
         "moved": 0
       }
     }
@@ -1741,13 +1748,13 @@
     "errors": [],
     "warnings": [
       "82 recommendations precede proven availability and were suppressed",
-      "231 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
+      "188 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
       "npcCount": 992,
       "availabilityCount": 992,
       "spawnCount": 946,
-      "observedSpawnCount": 163,
+      "observedSpawnCount": 249,
       "townCount": 46,
       "observedTownCount": 11,
       "fishingCount": 144,
@@ -1762,14 +1769,6 @@
           ],
           "availabilityKind": "town",
           "earliestStageIndex": 12
-        },
-        {
-          "source": "CalamityMod/AuroraSpirit",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 11
         },
         {
           "source": "CalamityMod/BloomSlime",
@@ -1932,6 +1931,14 @@
           "earliestStageIndex": 11
         },
         {
+          "source": "CalamityMod/MantisShrimp",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
           "source": "CalamityMod/Melter",
           "kinds": [
             "drop"
@@ -2060,36 +2067,44 @@
           "earliestStageIndex": 31
         },
         {
-          "source": "CalamityMod/WulfrumDrone",
+          "source": "Terraria/AngryBones",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 0
+          "earliestStageIndex": 9
         },
         {
-          "source": "CalamityMod/WulfrumGyrator",
+          "source": "Terraria/AngryBonesBig",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 0
+          "earliestStageIndex": 9
         },
         {
-          "source": "CalamityMod/WulfrumHovercraft",
+          "source": "Terraria/AngryBonesBigHelmet",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 0
+          "earliestStageIndex": 9
         },
         {
-          "source": "CalamityMod/WulfrumRover",
+          "source": "Terraria/AngryBonesBigMuscle",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 0
+          "earliestStageIndex": 9
+        },
+        {
+          "source": "Terraria/AngryTrapper",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
         },
         {
           "source": "Terraria/ArmedTorchZombie",
@@ -2137,7 +2152,7 @@
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 5
+          "earliestStageIndex": 0
         },
         {
           "source": "Terraria/ArmedZombieTwiggy",
@@ -2146,6 +2161,22 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/ArmoredSkeleton",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/ArmoredViking",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
         },
         {
           "source": "Terraria/ArmsDealer",
@@ -2164,6 +2195,62 @@
           "earliestStageIndex": 0
         },
         {
+          "source": "Terraria/BlackRecluse",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/BloodCrawler",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/BloodZombie",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/BlueArmoredBones",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 20
+        },
+        {
+          "source": "Terraria/BlueArmoredBonesMace",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 20
+        },
+        {
+          "source": "Terraria/BlueArmoredBonesNoPants",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 20
+        },
+        {
+          "source": "Terraria/BlueArmoredBonesSword",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 20
+        },
+        {
           "source": "Terraria/BlueSlime",
           "kinds": [
             "drop"
@@ -2172,12 +2259,44 @@
           "earliestStageIndex": 0
         },
         {
-          "source": "Terraria/BrainScrambler",
+          "source": "Terraria/BoneLee",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 23
+          "earliestStageIndex": 20
+        },
+        {
+          "source": "Terraria/BoneSerpentHead",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/BoneThrowingSkeleton",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/BoneThrowingSkeleton4",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Butcher",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 20
         },
         {
           "source": "Terraria/CataractEye",
@@ -2185,7 +2304,23 @@
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 5
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/CaveBat",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Clinger",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
         },
         {
           "source": "Terraria/Clothier",
@@ -2197,12 +2332,124 @@
           "earliestStageIndex": 9
         },
         {
+          "source": "Terraria/Clown",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/CochinealBeetle",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Corruptor",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/CorruptSlime",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/Crawdad",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Crawdad2",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/CreatureFromTheDeep",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 15
+        },
+        {
+          "source": "Terraria/Crimera",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Crimslime",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/CrimsonAxe",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/CursedHammer",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/CursedSkull",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 9
+        },
+        {
+          "source": "Terraria/CyanBeetle",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 5
+        },
+        {
           "source": "Terraria/Cyborg",
           "kinds": [
             "shop"
           ],
           "availabilityKind": "town",
           "earliestStageIndex": 20
+        },
+        {
+          "source": "Terraria/DarkCaster",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 9
         },
         {
           "source": "Terraria/DD2Betsy",
@@ -2245,7 +2492,39 @@
           "earliestStageIndex": 23
         },
         {
+          "source": "Terraria/DeadlySphere",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 20
+        },
+        {
+          "source": "Terraria/Demon",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
           "source": "Terraria/DemonEye",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Derpling",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/DevourerHead",
           "kinds": [
             "drop"
           ],
@@ -2259,6 +2538,22 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Drippler",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/DrManFly",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 20
         },
         {
           "source": "Terraria/Dryad",
@@ -2277,12 +2572,60 @@
           "earliestStageIndex": 0
         },
         {
+          "source": "Terraria/DungeonSlime",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/EaterofSouls",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Eyezor",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 15
+        },
+        {
+          "source": "Terraria/FaceMonster",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
           "source": "Terraria/FemaleZombie",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/FireImp",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/FloatyGross",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
         },
         {
           "source": "Terraria/FlyingFish",
@@ -2293,7 +2636,55 @@
           "earliestStageIndex": 0
         },
         {
+          "source": "Terraria/FlyingSnake",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Frankenstein",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 15
+        },
+        {
+          "source": "Terraria/Fritz",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 15
+        },
+        {
           "source": "Terraria/Ghost",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/GiantBat",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/GiantTortoise",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/GiantWormHead",
           "kinds": [
             "drop"
           ],
@@ -2314,7 +2705,7 @@
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 0
+          "earliestStageIndex": 11
         },
         {
           "source": "Terraria/GoblinPeon",
@@ -2330,14 +2721,6 @@
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/GoblinSummoner",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
           "earliestStageIndex": 11
         },
         {
@@ -2349,7 +2732,7 @@
           "earliestStageIndex": 0
         },
         {
-          "source": "Terraria/GoblinWarrior",
+          "source": "Terraria/GraniteFlyer",
           "kinds": [
             "drop"
           ],
@@ -2357,12 +2740,20 @@
           "earliestStageIndex": 0
         },
         {
-          "source": "Terraria/GrayGrunt",
+          "source": "Terraria/GraniteGolem",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 23
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/GreekSkeleton",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
         },
         {
           "source": "Terraria/GreenEye",
@@ -2389,7 +2780,175 @@
           "earliestStageIndex": 0
         },
         {
+          "source": "Terraria/HeadacheSkeleton",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Hellbat",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Herpling",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/Hornet",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/HornetFatty",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/HornetHoney",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/HornetLeafy",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/HornetSpikey",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/HornetStingy",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/IceBat",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/IceElemental",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
           "source": "Terraria/IceSlime",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/IceTortoise",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/IchorSticker",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/IcyMerman",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/IlluminantBat",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/IlluminantSlime",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/JungleBat",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/LacBeetle",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/LavaSlime",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Lihzahrd",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/LostGirl",
           "kinds": [
             "drop"
           ],
@@ -2405,20 +2964,12 @@
           "earliestStageIndex": 0
         },
         {
-          "source": "Terraria/MartianEngineer",
+          "source": "Terraria/ManEater",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 23
-        },
-        {
-          "source": "Terraria/MartianOfficer",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 23
+          "earliestStageIndex": 0
         },
         {
           "source": "Terraria/MartianWalker",
@@ -2429,11 +2980,43 @@
           "earliestStageIndex": 23
         },
         {
+          "source": "Terraria/Medusa",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
           "source": "Terraria/Merchant",
           "kinds": [
             "shop"
           ],
           "availabilityKind": "town",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/MeteorHead",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Mimic",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/MisassembledSkeleton",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
           "earliestStageIndex": 0
         },
         {
@@ -2445,6 +3028,38 @@
           "earliestStageIndex": 11
         },
         {
+          "source": "Terraria/MossHornet",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/MotherSlime",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Mummy",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/Nailhead",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 20
+        },
+        {
           "source": "Terraria/NebulaBeast",
           "kinds": [
             "drop"
@@ -2453,23 +3068,7 @@
           "earliestStageIndex": 0
         },
         {
-          "source": "Terraria/NebulaBrain",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/NebulaHeadcrab",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/NebulaSoldier",
+          "source": "Terraria/PantlessSkeleton",
           "kinds": [
             "drop"
           ],
@@ -2485,31 +3084,7 @@
           "earliestStageIndex": 0
         },
         {
-          "source": "Terraria/PirateCaptain",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 11
-        },
-        {
-          "source": "Terraria/PirateCorsair",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 11
-        },
-        {
           "source": "Terraria/PirateCrossbower",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 11
-        },
-        {
-          "source": "Terraria/PirateDeadeye",
           "kinds": [
             "drop"
           ],
@@ -2525,6 +3100,22 @@
           "earliestStageIndex": 11
         },
         {
+          "source": "Terraria/Pixie",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/Psycho",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 20
+        },
+        {
           "source": "Terraria/PurpleEye",
           "kinds": [
             "drop"
@@ -2533,15 +3124,23 @@
           "earliestStageIndex": 0
         },
         {
-          "source": "Terraria/RayGunner",
+          "source": "Terraria/Reaper",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 23
+          "earliestStageIndex": 18
         },
         {
-          "source": "Terraria/Scarecrow1",
+          "source": "Terraria/RockGolem",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/RustyArmoredBonesAxe",
           "kinds": [
             "drop"
           ],
@@ -2549,55 +3148,47 @@
           "earliestStageIndex": 20
         },
         {
-          "source": "Terraria/Scarecrow10",
+          "source": "Terraria/RustyArmoredBonesFlail",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 20
+        },
+        {
+          "source": "Terraria/RustyArmoredBonesSword",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 20
+        },
+        {
+          "source": "Terraria/Salamander2",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Salamander6",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Salamander7",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
         },
         {
           "source": "Terraria/Scarecrow2",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 20
-        },
-        {
-          "source": "Terraria/Scarecrow3",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 20
-        },
-        {
-          "source": "Terraria/Scarecrow4",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 20
-        },
-        {
-          "source": "Terraria/Scarecrow6",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 20
-        },
-        {
-          "source": "Terraria/Scarecrow7",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 20
-        },
-        {
-          "source": "Terraria/Scarecrow8",
           "kinds": [
             "drop"
           ],
@@ -2613,12 +3204,36 @@
           "earliestStageIndex": 20
         },
         {
-          "source": "Terraria/ScutlixRider",
+          "source": "Terraria/SeekerHead",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 23
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/Skeleton",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/SkeletonArcher",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/SkeletonMerchant",
+          "kinds": [
+            "shop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
         },
         {
           "source": "Terraria/SleepyEye",
@@ -2626,7 +3241,7 @@
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 0
+          "earliestStageIndex": 9
         },
         {
           "source": "Terraria/SlimedZombie",
@@ -2637,12 +3252,20 @@
           "earliestStageIndex": 0
         },
         {
-          "source": "Terraria/SnowBalla",
+          "source": "Terraria/Snatcher",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 11
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/SnowFlinx",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
         },
         {
           "source": "Terraria/SnowmanGangsta",
@@ -2661,7 +3284,7 @@
           "earliestStageIndex": 0
         },
         {
-          "source": "Terraria/SolarDrakomire",
+          "source": "Terraria/SpikedIceSlime",
           "kinds": [
             "drop"
           ],
@@ -2669,7 +3292,7 @@
           "earliestStageIndex": 0
         },
         {
-          "source": "Terraria/SolarDrakomireRider",
+          "source": "Terraria/SpikedJungleSlime",
           "kinds": [
             "drop"
           ],
@@ -2677,7 +3300,7 @@
           "earliestStageIndex": 0
         },
         {
-          "source": "Terraria/SolarSpearman",
+          "source": "Terraria/SporeBat",
           "kinds": [
             "drop"
           ],
@@ -2685,31 +3308,7 @@
           "earliestStageIndex": 0
         },
         {
-          "source": "Terraria/SolarSroller",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/StardustCellBig",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/StardustJellyfishBig",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/StardustSoldier",
+          "source": "Terraria/SporeSkeleton",
           "kinds": [
             "drop"
           ],
@@ -2718,14 +3317,6 @@
         },
         {
           "source": "Terraria/StardustSpiderBig",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/StardustWormHead",
           "kinds": [
             "drop"
           ],
@@ -2742,12 +3333,28 @@
           "earliestStageIndex": 15
         },
         {
+          "source": "Terraria/SwampThing",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 15
+        },
+        {
           "source": "Terraria/SwampZombie",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/TacticalSkeleton",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 20
         },
         {
           "source": "Terraria/TheBride",
@@ -2764,6 +3371,14 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/ThePossessed",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 15
         },
         {
           "source": "Terraria/TorchZombie",
@@ -2798,31 +3413,47 @@
           "earliestStageIndex": 0
         },
         {
+          "source": "Terraria/UndeadMiner",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/UndeadViking",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Unicorn",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/Vampire",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 15
+        },
+        {
+          "source": "Terraria/VoodooDemon",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
           "source": "Terraria/VortexHornet",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/VortexHornetQueen",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/VortexRifleman",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/VortexSoldier",
           "kinds": [
             "drop"
           ],
@@ -2838,6 +3469,22 @@
           "earliestStageIndex": 0
         },
         {
+          "source": "Terraria/WanderingEye",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
+          "source": "Terraria/Werewolf",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
           "source": "Terraria/WitchDoctor",
           "kinds": [
             "shop"
@@ -2846,28 +3493,20 @@
           "earliestStageIndex": 7
         },
         {
+          "source": "Terraria/Wraith",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 11
+        },
+        {
           "source": "Terraria/Zombie",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/ZombieElf",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 20
-        },
-        {
-          "source": "Terraria/ZombieElfBeard",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 20
         },
         {
           "source": "Terraria/ZombieElfGirl",
@@ -3240,14 +3879,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "CalamityMod/MantisShrimp",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "CalamityMod/Mauler",
           "kinds": [
             "drop"
@@ -3497,6 +4128,14 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "CalamityMod/WulfrumRover",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "CalamityMod/Yharon",
           "kinds": [
             "drop"
@@ -3506,14 +4145,6 @@
         },
         {
           "source": "Terraria/AngryNimbus",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/AngryTrapper",
           "kinds": [
             "drop"
           ],
@@ -3577,23 +4208,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/BlackRecluse",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/BlackRecluseWall",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/BloodCrawler",
           "kinds": [
             "drop"
           ],
@@ -3625,31 +4240,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/BloodZombie",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/BlueArmoredBones",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/BlueJellyfish",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/BoneSerpentHead",
           "kinds": [
             "drop"
           ],
@@ -3665,23 +4256,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/CaveBat",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Clinger",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Clown",
+          "source": "Terraria/BrainScrambler",
           "kinds": [
             "drop"
           ],
@@ -3698,38 +4273,6 @@
         },
         {
           "source": "Terraria/CorruptPenguin",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Crawdad",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Crawdad2",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/CreatureFromTheDeep",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Crimera",
           "kinds": [
             "drop"
           ],
@@ -3761,22 +4304,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/DarkCaster",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/DeadlySphere",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Deerclops",
           "kinds": [
             "drop"
@@ -3793,23 +4320,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Demon",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/DevourerBody",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/DevourerHead",
           "kinds": [
             "drop"
           ],
@@ -3833,39 +4344,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Drippler",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/DrManFly",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/DukeFishron",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/DungeonSlime",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/EaterofSouls",
           "kinds": [
             "drop"
           ],
@@ -3913,39 +4392,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/FaceMonster",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/FireImp",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Flocko",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/FlyingSnake",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Frankenstein",
           "kinds": [
             "drop"
           ],
@@ -3993,14 +4440,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/GiantWormHead",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/GiantWormTail",
           "kinds": [
             "drop"
@@ -4017,11 +4456,27 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/GoblinSummoner",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/GoblinTinkerer",
           "kinds": [
             "shop"
           ],
           "availabilityKind": "town",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/GoblinWarrior",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
           "earliestStageIndex": -1
         },
         {
@@ -4041,7 +4496,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/GreekSkeleton",
+          "source": "Terraria/GrayGrunt",
           "kinds": [
             "drop"
           ],
@@ -4058,14 +4513,6 @@
         },
         {
           "source": "Terraria/HallowBoss",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/IceElemental",
           "kinds": [
             "drop"
           ],
@@ -4097,30 +4544,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/IchorSticker",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/IcyMerman",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/JungleBat",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/KingSlime",
           "kinds": [
             "drop"
@@ -4130,14 +4553,6 @@
         },
         {
           "source": "Terraria/Krampus",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/LostGirl",
           "kinds": [
             "drop"
           ],
@@ -4177,6 +4592,22 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/MartianEngineer",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/MartianOfficer",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/MartianSaucerCore",
           "kinds": [
             "drop"
@@ -4185,23 +4616,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Medusa",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/MoonLordCore",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/MossHornet",
           "kinds": [
             "drop"
           ],
@@ -4218,14 +4633,6 @@
         },
         {
           "source": "Terraria/MourningWood",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Nailhead",
           "kinds": [
             "drop"
           ],
@@ -4289,6 +4696,30 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/PirateCaptain",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/PirateCorsair",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/PirateDeadeye",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/PirateShip",
           "kinds": [
             "drop"
@@ -4306,14 +4737,6 @@
         },
         {
           "source": "Terraria/PresentMimic",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Psycho",
           "kinds": [
             "drop"
           ],
@@ -4353,7 +4776,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Reaper",
+          "source": "Terraria/RayGunner",
           "kinds": [
             "drop"
           ],
@@ -4385,30 +4808,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/RustyArmoredBonesAxe",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/RustyArmoredBonesFlail",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/RustyArmoredBonesSword",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/SandElemental",
           "kinds": [
             "drop"
@@ -4418,6 +4817,14 @@
         },
         {
           "source": "Terraria/SantaNK1",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/ScutlixRider",
           "kinds": [
             "drop"
           ],
@@ -4441,30 +4848,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Skeleton",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/SkeletonArcher",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/SkeletonMerchant",
-          "kinds": [
-            "shop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/SkeletronHead",
           "kinds": [
             "drop"
@@ -4481,6 +4864,14 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/SnowBalla",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/Spazmatism",
           "kinds": [
             "drop"
@@ -4489,31 +4880,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/SporeBat",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/SporeSkeleton",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Squid",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/SwampThing",
           "kinds": [
             "drop"
           ],
@@ -4545,23 +4912,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Vampire",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/VampireBat",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/VoodooDemon",
           "kinds": [
             "drop"
           ],
@@ -4684,6 +5035,14 @@
         },
         {
           "source": "CalamityMod/AstralProbe",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "CalamityMod/AuroraSpirit",
           "kinds": [
             "drop"
           ],
@@ -5075,6 +5434,30 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "CalamityMod/WulfrumDrone",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "CalamityMod/WulfrumGyrator",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "CalamityMod/WulfrumHovercraft",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/Angler",
           "kinds": [
             "drop"
@@ -5091,55 +5474,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/AngryBones",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/AngryBonesBig",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/AngryBonesBigHelmet",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/AngryBonesBigMuscle",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Arapaima",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/ArmoredSkeleton",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/ArmoredViking",
           "kinds": [
             "drop"
           ],
@@ -5171,46 +5506,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/BlueArmoredBonesMace",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/BlueArmoredBonesNoPants",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/BlueArmoredBonesSword",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/BoneLee",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/BoneThrowingSkeleton",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/BoneThrowingSkeleton2",
           "kinds": [
             "drop"
@@ -5227,47 +5522,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/BoneThrowingSkeleton4",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Butcher",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/ChaosElemental",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/CochinealBeetle",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Corruptor",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/CorruptSlime",
           "kinds": [
             "drop"
           ],
@@ -5284,46 +5539,6 @@
         },
         {
           "source": "Terraria/Creeper",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Crimslime",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/CrimsonAxe",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/CursedHammer",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/CursedSkull",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/CyanBeetle",
           "kinds": [
             "drop"
           ],
@@ -5365,14 +5580,6 @@
         },
         {
           "source": "Terraria/DemonEyeSpaceship",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Derpling",
           "kinds": [
             "drop"
           ],
@@ -5541,22 +5748,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Eyezor",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/FloatyGross",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/FlyingAntlion",
           "kinds": [
             "drop"
@@ -5565,23 +5756,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Fritz",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Gastropod",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/GiantBat",
           "kinds": [
             "drop"
           ],
@@ -5598,14 +5773,6 @@
         },
         {
           "source": "Terraria/GiantFlyingFox",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/GiantTortoise",
           "kinds": [
             "drop"
           ],
@@ -5638,30 +5805,6 @@
         },
         {
           "source": "Terraria/GoldfishWalker",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/GraniteFlyer",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/GraniteGolem",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/HeadacheSkeleton",
           "kinds": [
             "drop"
           ],
@@ -5709,111 +5852,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Hellbat",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Hellhound",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Herpling",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Hornet",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/HornetFatty",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/HornetHoney",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/HornetLeafy",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/HornetSpikey",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/HornetStingy",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/IceBat",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/IceTortoise",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/IlluminantBat",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/IlluminantSlime",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/LacBeetle",
           "kinds": [
             "drop"
           ],
@@ -5837,14 +5876,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/LavaSlime",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/LightMummy",
           "kinds": [
             "drop"
@@ -5853,23 +5884,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Lihzahrd",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/LihzahrdCrawler",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/ManEater",
           "kinds": [
             "drop"
           ],
@@ -5886,30 +5901,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/MeteorHead",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Mimic",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/MisassembledSkeleton",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Moth",
           "kinds": [
             "drop"
@@ -5918,7 +5909,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/MotherSlime",
+          "source": "Terraria/NebulaBrain",
           "kinds": [
             "drop"
           ],
@@ -5926,7 +5917,15 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Mummy",
+          "source": "Terraria/NebulaHeadcrab",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/NebulaSoldier",
           "kinds": [
             "drop"
           ],
@@ -5967,14 +5966,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/PantlessSkeleton",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/PartyGirl",
           "kinds": [
             "drop",
@@ -5997,14 +5988,6 @@
             "shop"
           ],
           "availabilityKind": "town",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Pixie",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
           "earliestStageIndex": -1
         },
         {
@@ -6065,14 +6048,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/RockGolem",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/RustyArmoredBonesSwordNoArmor",
           "kinds": [
             "drop"
@@ -6082,14 +6057,6 @@
         },
         {
           "source": "Terraria/Salamander",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Salamander2",
           "kinds": [
             "drop"
           ],
@@ -6114,22 +6081,6 @@
         },
         {
           "source": "Terraria/Salamander5",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Salamander6",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Salamander7",
           "kinds": [
             "drop"
           ],
@@ -6201,6 +6152,38 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/Scarecrow1",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/Scarecrow10",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/Scarecrow3",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/Scarecrow4",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/Scarecrow5",
           "kinds": [
             "drop"
@@ -6209,7 +6192,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/SeekerBody",
+          "source": "Terraria/Scarecrow6",
           "kinds": [
             "drop"
           ],
@@ -6217,7 +6200,23 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/SeekerHead",
+          "source": "Terraria/Scarecrow7",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/Scarecrow8",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/SeekerBody",
           "kinds": [
             "drop"
           ],
@@ -6321,23 +6320,23 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Snatcher",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/SnowFlinx",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/SolarCorite",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/SolarDrakomire",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/SolarDrakomireRider",
           "kinds": [
             "drop"
           ],
@@ -6353,7 +6352,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/SpikedIceSlime",
+          "source": "Terraria/SolarSpearman",
           "kinds": [
             "drop"
           ],
@@ -6361,7 +6360,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/SpikedJungleSlime",
+          "source": "Terraria/SolarSroller",
           "kinds": [
             "drop"
           ],
@@ -6370,6 +6369,38 @@
         },
         {
           "source": "Terraria/Splinterling",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/StardustCellBig",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/StardustJellyfishBig",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/StardustSoldier",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/StardustWormHead",
           "kinds": [
             "drop"
           ],
@@ -6386,27 +6417,11 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/TacticalSkeleton",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/TaxCollector",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "town",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/ThePossessed",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
           "earliestStageIndex": -1
         },
         {
@@ -6435,23 +6450,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/UndeadMiner",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/UndeadViking",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Unicorn",
+          "source": "Terraria/VortexHornetQueen",
           "kinds": [
             "drop"
           ],
@@ -6460,6 +6459,22 @@
         },
         {
           "source": "Terraria/VortexLarva",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/VortexRifleman",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/VortexSoldier",
           "kinds": [
             "drop"
           ],
@@ -6483,22 +6498,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/WanderingEye",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Werewolf",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/WindyBalloon",
           "kinds": [
             "drop"
@@ -6515,7 +6514,15 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Wraith",
+          "source": "Terraria/ZombieElf",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/ZombieElfBeard",
           "kinds": [
             "drop"
           ],
@@ -6529,7 +6536,7 @@
   "ready": true,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-07-12T19:51:03.959Z",
+    "generatedAtUtc": "2026-07-12T21:43:42.213Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -6539,6 +6546,24 @@
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+NamedNPC",
           "description": "Выпадает у поселенцев с уникальными именами"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/BoneSerpentHead",
+        "item": "Terraria/KiteBoneSerpent",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
+          "description": "Выпадает в ветренные дни"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/ManEater",
+        "item": "Terraria/KiteManEater",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
+          "description": "Выпадает в ветренные дни"
         }
       },
       {
@@ -6561,26 +6586,8 @@
       },
       {
         "sourceKind": "drop",
-        "source": "CalamityMod/WulfrumDrone",
-        "item": "CalamityMod/EnergyCore",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/WulfrumGyrator",
-        "item": "CalamityMod/EnergyCore",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/WulfrumHovercraft",
-        "item": "CalamityMod/EnergyCore",
+        "source": "CalamityMod/Gnasher",
+        "item": "Terraria/TurtleShell",
         "condition": {
           "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
           "description": null
@@ -6590,24 +6597,6 @@
         "sourceKind": "drop",
         "source": "CalamityMod/WulfrumRover",
         "item": "CalamityMod/EnergyCore",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/BoneSerpentHead",
-        "item": "Terraria/KiteBoneSerpent",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/Gnasher",
-        "item": "Terraria/TurtleShell",
         "condition": {
           "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
           "description": null
@@ -9819,6 +9808,42 @@
       },
       {
         "sourceKind": "drop",
+        "source": "Terraria/Unicorn",
+        "item": "Terraria/KiteUnicorn",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
+          "description": "Выпадает в ветренные дни"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/SeekerHead",
+        "item": "Terraria/KiteWorldFeeder",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
+          "description": "Выпадает в ветренные дни"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/WanderingEye",
+        "item": "Terraria/KiteWanderingEye",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
+          "description": "Выпадает в ветренные дни"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/AngryTrapper",
+        "item": "Terraria/KiteAngryTrapper",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
+          "description": "Выпадает в ветренные дни"
+        }
+      },
+      {
+        "sourceKind": "drop",
         "source": "Terraria/WallofFlesh",
         "item": "Terraria/WallofFleshTrophy",
         "condition": {
@@ -10346,15 +10371,6 @@
         "condition": {
           "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
           "description": null
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/AngryTrapper",
-        "item": "Terraria/KiteAngryTrapper",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
         }
       },
       {
@@ -14912,7 +14928,142 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/PigPetItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/WormTooth",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/WhoopieCushion",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Compass",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientIronHelmet",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientGoldHelmet",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Skull",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Hook",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientBoneDust",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PlumbersHat",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BonePickaxe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MiningHelmet",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MiningShirt",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MiningPants",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/DepthMeter",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/BloodMoonStarter",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/ToastyBatBottle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GuideVoodooDoll",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/FrostyBatBottle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/VikingHelmet",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/SnowballLauncher",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MetalDetector",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LizardEgg",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LihzahrdPowerCell",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LunarTabletFragment",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/JungleKey",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/RedHusk",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/VioletHusk",
         "reason": "not combat equipment"
       },
       {
@@ -14933,6 +15084,11 @@
       {
         "stage": "start",
         "id": "CalamityMod/GhostBracelet",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Geode",
         "reason": "not combat equipment"
       },
       {
@@ -14958,16 +15114,6 @@
       {
         "stage": "start",
         "id": "CalamityMod/Stohne",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/LunarTabletFragment",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/LihzahrdPowerCell",
         "reason": "not combat equipment"
       },
       {
@@ -15007,11 +15153,6 @@
       },
       {
         "stage": "start",
-        "id": "CalamityMod/WulfrumMetalScrap",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "CalamityMod/MysteriousCircuitry",
         "reason": "not combat equipment"
       },
@@ -15023,16 +15164,6 @@
       {
         "stage": "start",
         "id": "CalamityMod/BurrowerController",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/PlumbersHat",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/GuideVoodooDoll",
         "reason": "not combat equipment"
       },
       {
@@ -15137,6 +15268,11 @@
       },
       {
         "stage": "start",
+        "id": "CalamityMod/WulfrumMetalScrap",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "CalamityMod/AbandonedWulfrumHelmet",
         "reason": "not combat equipment"
       },
@@ -15153,46 +15289,6 @@
       {
         "stage": "start",
         "id": "Terraria/JellyfishNecklace",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/DepthMeter",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/PigPetItem",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/WormTooth",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/Compass",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/WhoopieCushion",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/Hook",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/AncientBoneDust",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/MetalDetector",
         "reason": "not combat equipment"
       },
       {
@@ -15228,21 +15324,6 @@
       {
         "stage": "start",
         "id": "Terraria/PurpleMucos",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/AncientIronHelmet",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/AncientGoldHelmet",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/Skull",
         "reason": "not combat equipment"
       },
       {
@@ -15713,11 +15794,6 @@
       {
         "stage": "start",
         "id": "Terraria/PeddlersHat",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/MiningHelmet",
         "reason": "not combat equipment"
       },
       {
@@ -20792,7 +20868,17 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/RedDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/PurpleDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/VioletDye",
         "reason": "not combat equipment"
       },
       {
@@ -20802,7 +20888,17 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/RedandBlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/PurpleandBlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/VioletandBlackDye",
         "reason": "not combat equipment"
       },
       {
@@ -20812,7 +20908,17 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/BrightRedDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/BrightPurpleDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BrightVioletDye",
         "reason": "not combat equipment"
       },
       {
@@ -20822,7 +20928,17 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/RedandSilverDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/PurpleandSilverDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/VioletandSilverDye",
         "reason": "not combat equipment"
       },
       {
@@ -22103,6 +22219,16 @@
       {
         "stage": "start",
         "id": "Terraria/GolfBallDyedPurple",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GolfBallDyedRed",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GolfBallDyedViolet",
         "reason": "not combat equipment"
       },
       {
@@ -23522,6 +23648,16 @@
       },
       {
         "stage": "world-evil",
+        "id": "Terraria/Meteorite",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/CyanHusk",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
         "id": "Terraria/BossMaskDarkMage",
         "reason": "not combat equipment"
       },
@@ -23648,11 +23784,6 @@
       {
         "stage": "world-evil",
         "id": "Terraria/HellstoneBar",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "world-evil",
-        "id": "Terraria/Meteorite",
         "reason": "not combat equipment"
       },
       {
@@ -23832,6 +23963,26 @@
       },
       {
         "stage": "world-evil",
+        "id": "Terraria/CyanDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/CyanandBlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/BrightCyanDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/CyanandSilverDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
         "id": "CalamityMod/RedSeekingMechanism",
         "reason": "not combat equipment"
       },
@@ -23843,6 +23994,11 @@
       {
         "stage": "world-evil",
         "id": "Terraria/MeteoritePlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/GolfBallDyedCyan",
         "reason": "not combat equipment"
       },
       {
@@ -24142,6 +24298,31 @@
       },
       {
         "stage": "skeletron",
+        "id": "Terraria/AncientNecroHelmet",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/ClothierVoodooDoll",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneWand",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/TallyCounter",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/GoldenKey",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
         "id": "Terraria/RedHat",
         "reason": "not combat equipment"
       },
@@ -24178,31 +24359,6 @@
       {
         "stage": "skeletron",
         "id": "Terraria/ChippysCouch",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/AncientNecroHelmet",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/ClothierVoodooDoll",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BoneWand",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/TallyCounter",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/GoldenKey",
         "reason": "not combat equipment"
       },
       {
@@ -25357,6 +25513,71 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/PixieDust",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/MummyMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/MummyShirt",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/MummyPants",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/MeatGrinder",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/DualHook",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/BlessedApple",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/UnicornHorn",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/UnicornonaStick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/TurtleShell",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "CalamityMod/EssenceofEleum",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/SpiderFang",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/GlommerPetItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/LuckyCoin",
         "reason": "not combat equipment"
       },
@@ -25507,7 +25728,7 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "CalamityMod/EssenceofEleum",
+        "id": "Terraria/RockGolemHead",
         "reason": "not combat equipment"
       },
       {
@@ -25558,11 +25779,6 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/DungeonDesertKey",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/MeatGrinder",
         "reason": "not combat equipment"
       },
       {
@@ -25673,11 +25889,6 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/ToySled",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/SpiderFang",
         "reason": "not combat equipment"
       },
       {
@@ -26042,11 +26253,6 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "Terraria/JungleKey",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "Terraria/PirateMap",
         "reason": "not combat equipment"
       },
@@ -26172,27 +26378,12 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "Terraria/PixieDust",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/UnicornHorn",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "Terraria/LightShard",
         "reason": "not combat equipment"
       },
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/DarkShard",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/TurtleShell",
         "reason": "not combat equipment"
       },
       {
@@ -27103,6 +27294,31 @@
       {
         "stage": "destroyer",
         "id": "Terraria/TatteredBeeWing",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/EyeSpring",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/Eyezorhead",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/OcularResonance",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/MidnightSun",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/ThisIsGettingOutOfHand",
         "reason": "not combat equipment"
       },
       {
@@ -28162,6 +28378,11 @@
       },
       {
         "stage": "skeletron-prime",
+        "id": "Terraria/Buddies",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron-prime",
         "id": "Terraria/SkeletronPrimeBossBag",
         "reason": "not combat equipment"
       },
@@ -28188,11 +28409,6 @@
       {
         "stage": "skeletron-prime",
         "id": "Terraria/WingsofEvil",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron-prime",
-        "id": "Terraria/Buddies",
         "reason": "not combat equipment"
       },
       {
@@ -28487,6 +28703,26 @@
       },
       {
         "stage": "plantera",
+        "id": "Terraria/BoneFeather",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/WispinaBottle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/Ectoplasm",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/SWATHelmet",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
         "id": "Terraria/ScarecrowHat",
         "reason": "not combat equipment"
       },
@@ -28513,6 +28749,41 @@
       {
         "stage": "plantera",
         "id": "Terraria/ElfPants",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/AMachineforTerrarians",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/ButchersChainsaw",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/ButcherMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/ButcherApron",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/ButcherPants",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/DrManFlyMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/DrManFlyLabCoat",
         "reason": "not combat equipment"
       },
       {
@@ -28558,31 +28829,6 @@
       {
         "stage": "plantera",
         "id": "CalamityMod/LivingShard",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "plantera",
-        "id": "Terraria/Ectoplasm",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "plantera",
-        "id": "Terraria/BoneFeather",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "plantera",
-        "id": "Terraria/WispinaBottle",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "plantera",
-        "id": "Terraria/DrManFlyMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "plantera",
-        "id": "Terraria/DrManFlyLabCoat",
         "reason": "not combat equipment"
       },
       {
@@ -29232,21 +29478,6 @@
       },
       {
         "stage": "golem",
-        "id": "Terraria/MartianCostumeMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "Terraria/MartianCostumeShirt",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "Terraria/MartianCostumePants",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
         "id": "Terraria/MartianUniformHelmet",
         "reason": "not combat equipment"
       },
@@ -29258,11 +29489,6 @@
       {
         "stage": "golem",
         "id": "Terraria/MartianUniformPants",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "Terraria/BrainScrambler",
         "reason": "not combat equipment"
       },
       {
@@ -29307,7 +29533,22 @@
       },
       {
         "stage": "golem",
-        "id": "Terraria/LizardEgg",
+        "id": "Terraria/MartianCostumeMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "golem",
+        "id": "Terraria/MartianCostumeShirt",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "golem",
+        "id": "Terraria/MartianCostumePants",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "golem",
+        "id": "Terraria/BrainScrambler",
         "reason": "not combat equipment"
       },
       {
@@ -30433,6 +30674,11 @@
       {
         "stage": "lunatic-cultist",
         "id": "CalamityMod/Cosmolight",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "lunatic-cultist",
+        "id": "CalamityMod/Respiteblock",
         "reason": "not combat equipment"
       },
       {
@@ -32177,46 +32423,6 @@
       },
       {
         "stage": "exo-mechs",
-        "id": "CalamityMod/ExoPrism",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/PhotonRipper",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/ExoThrone",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/DraedonMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/ThanatosMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/AresMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/ArtemisMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/ApolloMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
         "id": "CalamityMod/ThanatosTrophy",
         "reason": "not combat equipment"
       },
@@ -32248,6 +32454,46 @@
       {
         "stage": "exo-mechs",
         "id": "CalamityMod/DraedonBag",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/PhotonRipper",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/ExoPrism",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/AresMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/ThanatosMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/ArtemisMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/ApolloMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/ExoThrone",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/DraedonMask",
         "reason": "not combat equipment"
       },
       {
@@ -32554,17 +32800,97 @@
         "stage": "start",
         "via": "npc:Terraria/Zombie"
       },
+      "Terraria/Burger": {
+        "stage": "start",
+        "via": "npc:Terraria/EaterofSouls"
+      },
+      "Terraria/AncientShadowHelmet": {
+        "stage": "start",
+        "via": "npc:Terraria/EaterofSouls"
+      },
+      "Terraria/AncientShadowScalemail": {
+        "stage": "start",
+        "via": "npc:Terraria/EaterofSouls"
+      },
+      "Terraria/AncientShadowGreaves": {
+        "stage": "start",
+        "via": "npc:Terraria/EaterofSouls"
+      },
+      "Terraria/TentacleSpike": {
+        "stage": "start",
+        "via": "npc:Terraria/EaterofSouls"
+      },
+      "Terraria/Vitamins": {
+        "stage": "start",
+        "via": "npc:Terraria/DevourerHead"
+      },
+      "Terraria/MilkCarton": {
+        "stage": "start",
+        "via": "npc:Terraria/Skeleton"
+      },
+      "Terraria/BoneSword": {
+        "stage": "start",
+        "via": "npc:Terraria/Skeleton"
+      },
+      "Terraria/ObsidianRose": {
+        "stage": "start",
+        "via": "npc:Terraria/FireImp"
+      },
+      "CalamityMod/AshenStalactite": {
+        "stage": "start",
+        "via": "npc:Terraria/FireImp"
+      },
+      "Terraria/Hotdog": {
+        "stage": "start",
+        "via": "npc:Terraria/BoneSerpentHead"
+      },
+      "CalamityMod/OldLordClaymore": {
+        "stage": "start",
+        "via": "npc:Terraria/BoneSerpentHead"
+      },
+      "Terraria/AncientCobaltHelmet": {
+        "stage": "start",
+        "via": "npc:Terraria/Hornet"
+      },
+      "Terraria/AncientCobaltBreastplate": {
+        "stage": "start",
+        "via": "npc:Terraria/Hornet"
+      },
+      "Terraria/AncientCobaltLeggings": {
+        "stage": "start",
+        "via": "npc:Terraria/Hornet"
+      },
+      "Terraria/Bezoar": {
+        "stage": "start",
+        "via": "npc:Terraria/Hornet"
+      },
+      "Terraria/CoffeeCup": {
+        "stage": "start",
+        "via": "npc:Terraria/ManEater"
+      },
+      "Terraria/Steak": {
+        "stage": "start",
+        "via": "npc:Terraria/UndeadMiner"
+      },
       "Terraria/ChickenNugget": {
         "stage": "start",
         "via": "npc:Terraria/Harpy"
       },
-      "Terraria/Harpoon": {
+      "Terraria/ChainKnife": {
         "stage": "start",
-        "via": "npc:Terraria/GoblinArcher"
+        "via": "npc:Terraria/CaveBat"
       },
-      "Terraria/SpikyBall": {
+      "Terraria/BatBat": {
         "stage": "start",
-        "via": "npc:Terraria/GoblinArcher"
+        "via": "npc:Terraria/CaveBat"
+      },
+      "Terraria/DemonScythe": {
+        "stage": "start",
+        "via": "npc:Terraria/Demon"
+      },
+      "CalamityMod/BladecrestOathsword": {
+        "stage": "start",
+        "via": "npc:Terraria/Demon"
       },
       "Terraria/IceCream": {
         "stage": "start",
@@ -32578,6 +32904,38 @@
         "stage": "start",
         "via": "npc:Terraria/FlyingFish"
       },
+      "Terraria/Pizza": {
+        "stage": "start",
+        "via": "npc:Terraria/GreekSkeleton"
+      },
+      "Terraria/Javelin": {
+        "stage": "start",
+        "via": "npc:Terraria/GreekSkeleton"
+      },
+      "Terraria/GladiatorHelmet": {
+        "stage": "start",
+        "via": "npc:Terraria/GreekSkeleton"
+      },
+      "Terraria/GladiatorBreastplate": {
+        "stage": "start",
+        "via": "npc:Terraria/GreekSkeleton"
+      },
+      "Terraria/GladiatorLeggings": {
+        "stage": "start",
+        "via": "npc:Terraria/GreekSkeleton"
+      },
+      "Terraria/Spaghetti": {
+        "stage": "start",
+        "via": "npc:Terraria/GraniteGolem"
+      },
+      "Terraria/PotatoChips": {
+        "stage": "start",
+        "via": "npc:Terraria/Crawdad"
+      },
+      "Terraria/Rally": {
+        "stage": "start",
+        "via": "npc:Terraria/Crawdad"
+      },
       "CalamityMod/ScuttlersJewel": {
         "stage": "start",
         "via": "npc:CalamityMod/CrawlerAmber"
@@ -32585,10 +32943,6 @@
       "Terraria/Blindfold": {
         "stage": "start",
         "via": "npc:CalamityMod/CrimulanBlightSlime"
-      },
-      "Terraria/Vitamins": {
-        "stage": "start",
-        "via": "npc:CalamityMod/EbonianBlightSlime"
       },
       "CalamityMod/StormjawStaff": {
         "stage": "start",
@@ -32602,14 +32956,6 @@
         "stage": "start",
         "via": "npc:CalamityMod/Stormlion"
       },
-      "CalamityMod/WulfrumBattery": {
-        "stage": "start",
-        "via": "npc:CalamityMod/WulfrumDrone"
-      },
-      "CalamityMod/RoverDrive": {
-        "stage": "start",
-        "via": "npc:CalamityMod/WulfrumRover"
-      },
       "Terraria/BananaSplit": {
         "stage": "start",
         "via": "npc:Terraria/Antlion"
@@ -32617,30 +32963,6 @@
       "CalamityMod/AntlionSkewer": {
         "stage": "start",
         "via": "npc:Terraria/Antlion"
-      },
-      "Terraria/ObsidianRose": {
-        "stage": "start",
-        "via": "npc:Terraria/FireImp"
-      },
-      "CalamityMod/AshenStalactite": {
-        "stage": "start",
-        "via": "npc:Terraria/FireImp"
-      },
-      "Terraria/DemonScythe": {
-        "stage": "start",
-        "via": "npc:Terraria/Demon"
-      },
-      "CalamityMod/BladecrestOathsword": {
-        "stage": "start",
-        "via": "npc:Terraria/Demon"
-      },
-      "Terraria/Hotdog": {
-        "stage": "start",
-        "via": "npc:Terraria/BoneSerpentHead"
-      },
-      "CalamityMod/OldLordClaymore": {
-        "stage": "start",
-        "via": "npc:Terraria/BoneSerpentHead"
       },
       "CalamityMod/UrchinStinger": {
         "stage": "start",
@@ -32734,6 +33056,10 @@
         "stage": "start",
         "via": "container:CalamityMod/SulphurousCrate"
       },
+      "CalamityMod/WulfrumBattery": {
+        "stage": "start",
+        "via": "npc:CalamityMod/WulfrumAmplifier"
+      },
       "Terraria/EskimoHood": {
         "stage": "start",
         "via": "npc:Terraria/ZombieEskimo"
@@ -32754,73 +33080,17 @@
         "stage": "start",
         "via": "npc:Terraria/ZombieRaincoat"
       },
+      "CalamityMod/RoverDrive": {
+        "stage": "start",
+        "via": "npc:CalamityMod/WulfrumRover"
+      },
       "CalamityMod/CleansingJelly": {
         "stage": "start",
         "via": "npc:Terraria/BlueJellyfish"
       },
-      "Terraria/ChainKnife": {
-        "stage": "start",
-        "via": "npc:Terraria/CaveBat"
-      },
-      "Terraria/BatBat": {
-        "stage": "start",
-        "via": "npc:Terraria/CaveBat"
-      },
-      "Terraria/Burger": {
-        "stage": "start",
-        "via": "npc:Terraria/EaterofSouls"
-      },
-      "Terraria/AncientShadowHelmet": {
-        "stage": "start",
-        "via": "npc:Terraria/EaterofSouls"
-      },
-      "Terraria/AncientShadowScalemail": {
-        "stage": "start",
-        "via": "npc:Terraria/EaterofSouls"
-      },
-      "Terraria/AncientShadowGreaves": {
-        "stage": "start",
-        "via": "npc:Terraria/EaterofSouls"
-      },
-      "Terraria/TentacleSpike": {
-        "stage": "start",
-        "via": "npc:Terraria/EaterofSouls"
-      },
       "CalamityMod/VitalJelly": {
         "stage": "start",
         "via": "npc:Terraria/GreenJellyfish"
-      },
-      "Terraria/PotatoChips": {
-        "stage": "start",
-        "via": "npc:Terraria/Crawdad"
-      },
-      "Terraria/Rally": {
-        "stage": "start",
-        "via": "npc:Terraria/Crawdad"
-      },
-      "Terraria/Pizza": {
-        "stage": "start",
-        "via": "npc:Terraria/GreekSkeleton"
-      },
-      "Terraria/Javelin": {
-        "stage": "start",
-        "via": "npc:Terraria/GreekSkeleton"
-      },
-      "Terraria/GladiatorHelmet": {
-        "stage": "start",
-        "via": "npc:Terraria/GreekSkeleton"
-      },
-      "Terraria/GladiatorBreastplate": {
-        "stage": "start",
-        "via": "npc:Terraria/GreekSkeleton"
-      },
-      "Terraria/GladiatorLeggings": {
-        "stage": "start",
-        "via": "npc:Terraria/GreekSkeleton"
-      },
-      "Terraria/Bezoar": {
-        "stage": "start",
-        "via": "npc:Terraria/MossHornet"
       },
       "CalamityMod/Needler": {
         "stage": "start",
@@ -32845,14 +33115,6 @@
       "Terraria/SharkToothNecklace": {
         "stage": "start",
         "via": "npc:Terraria/Shark"
-      },
-      "Terraria/MilkCarton": {
-        "stage": "start",
-        "via": "npc:Terraria/Skeleton"
-      },
-      "Terraria/BoneSword": {
-        "stage": "start",
-        "via": "npc:Terraria/Skeleton"
       },
       "CalamityMod/BurntSienna": {
         "stage": "start",
@@ -34250,10 +34512,6 @@
         "stage": "start",
         "via": "recipe:Terraria/LeadBar"
       },
-      "CalamityMod/MetalMonstrosity": {
-        "stage": "start",
-        "via": "recipe:Terraria/SpikyBall+Terraria/Spike"
-      },
       "CalamityMod/NastyCholla": {
         "stage": "start",
         "via": "recipe:Terraria/Cactus"
@@ -34306,9 +34564,17 @@
         "stage": "start",
         "via": "recipe:Terraria/BottledWater+Terraria/CrispyHoneyBlock+Terraria/Waterleaf"
       },
+      "Terraria/RedString": {
+        "stage": "start",
+        "via": "recipe:Terraria/WhiteString+Terraria/RedDye"
+      },
       "Terraria/PurpleString": {
         "stage": "start",
         "via": "recipe:Terraria/WhiteString+Terraria/PurpleDye"
+      },
+      "Terraria/VioletString": {
+        "stage": "start",
+        "via": "recipe:Terraria/WhiteString+Terraria/VioletDye"
       },
       "Terraria/BlackString": {
         "stage": "start",
@@ -34501,6 +34767,14 @@
       "CalamityMod/SkyGlaze": {
         "stage": "eye-of-cthulhu",
         "via": "npc:Terraria/Harpy"
+      },
+      "Terraria/Harpoon": {
+        "stage": "eye-of-cthulhu",
+        "via": "npc:Terraria/GoblinPeon"
+      },
+      "Terraria/SpikyBall": {
+        "stage": "eye-of-cthulhu",
+        "via": "npc:Terraria/GoblinPeon"
       },
       "CalamityMod/Laudanum": {
         "stage": "eye-of-cthulhu",
@@ -34722,6 +34996,10 @@
       "CalamityMod/LemonNade": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/Lemon+Terraria/BouncyGrenade"
+      },
+      "CalamityMod/MetalMonstrosity": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/SpikyBall+Terraria/Spike"
       },
       "Terraria/MagnetFlower": {
         "stage": "eye-of-cthulhu",
@@ -34990,6 +35268,10 @@
       "CalamityMod/VileFeeder": {
         "stage": "world-evil",
         "via": "recipe:Terraria/DemoniteBar+Terraria/ShadowScale+Terraria/Ebonwood"
+      },
+      "Terraria/CyanString": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/WhiteString+Terraria/CyanDye"
       },
       "CalamityMod/PerfectDark": {
         "stage": "hive-mind-perforators",
@@ -35267,17 +35549,9 @@
         "stage": "deerclops",
         "via": "container:Terraria/DeerclopsBossBag"
       },
-      "CalamityMod/AbyssShocker": {
-        "stage": "skeletron",
-        "via": "npc:CalamityMod/BoxJellyfish"
-      },
-      "Terraria/BookofSkulls": {
-        "stage": "skeletron",
-        "via": "npc:Terraria/SkeletronHead"
-      },
       "Terraria/Bone": {
         "stage": "skeletron",
-        "via": "npc:Terraria/SkeletronHead"
+        "via": "npc:Terraria/AngryBones"
       },
       "CalamityMod/ShinobiBlade": {
         "stage": "skeletron",
@@ -35286,6 +35560,22 @@
       "CalamityMod/StaffOfNecrosteocytes": {
         "stage": "skeletron",
         "via": "npc:Terraria/DarkCaster"
+      },
+      "Terraria/CreamSoda": {
+        "stage": "skeletron",
+        "via": "npc:Terraria/CursedSkull"
+      },
+      "Terraria/Nazar": {
+        "stage": "skeletron",
+        "via": "npc:Terraria/CursedSkull"
+      },
+      "CalamityMod/AbyssShocker": {
+        "stage": "skeletron",
+        "via": "npc:CalamityMod/BoxJellyfish"
+      },
+      "Terraria/BookofSkulls": {
+        "stage": "skeletron",
+        "via": "npc:Terraria/SkeletronHead"
       },
       "CalamityMod/InkBomb": {
         "stage": "skeletron",
@@ -35615,6 +35905,94 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/Clothier"
       },
+      "Terraria/FastClock": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Pixie"
+      },
+      "Terraria/BeamSword": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/ArmoredSkeleton"
+      },
+      "Terraria/ArmorPolish": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/ArmoredSkeleton"
+      },
+      "Terraria/MagicDagger": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Mimic"
+      },
+      "Terraria/PhilosophersStone": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Mimic"
+      },
+      "Terraria/TitanGlove": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Mimic"
+      },
+      "Terraria/StarCloak": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Mimic"
+      },
+      "Terraria/CrossNecklace": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Mimic"
+      },
+      "Terraria/TrifoldMap": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/GiantBat"
+      },
+      "CalamityMod/CursedDagger": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Clinger"
+      },
+      "Terraria/MoonCharm": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Werewolf"
+      },
+      "Terraria/KOCannon": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Clown"
+      },
+      "Terraria/Bananarang": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Clown"
+      },
+      "Terraria/Marrow": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/SkeletonArcher"
+      },
+      "Terraria/MagicQuiver": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/SkeletonArcher"
+      },
+      "Terraria/ApplePie": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/IlluminantBat"
+      },
+      "Terraria/Milkshake": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/IceTortoise"
+      },
+      "Terraria/IceSickle": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/IceTortoise"
+      },
+      "Terraria/FrozenTurtleShell": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/IceTortoise"
+      },
+      "Terraria/PoisonStaff": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BlackRecluse"
+      },
+      "Terraria/FrostStaff": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/IceElemental"
+      },
+      "Terraria/Uzi": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/AngryTrapper"
+      },
       "Terraria/CoinGun": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/PirateDeckhand"
@@ -35627,29 +36005,17 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/PirateDeckhand"
       },
-      "CalamityMod/MidasPrime": {
+      "CalamityMod/IchorSpear": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeadeye"
+        "via": "npc:Terraria/IchorSticker"
       },
-      "Terraria/ShadowFlameBow": {
+      "Terraria/MedusaHead": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/GoblinSummoner"
+        "via": "npc:Terraria/Medusa"
       },
-      "Terraria/ShadowFlameHexDoll": {
+      "Terraria/PocketMirror": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/GoblinSummoner"
-      },
-      "Terraria/ShadowFlameKnife": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/GoblinSummoner"
-      },
-      "CalamityMod/BurningStrife": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/GoblinSummoner"
-      },
-      "CalamityMod/TheFirstShadowflame": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/GoblinSummoner"
+        "via": "npc:Terraria/Medusa"
       },
       "CalamityMod/FrostBarrier": {
         "stage": "wall-of-flesh",
@@ -35711,6 +36077,26 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/WyvernHead"
       },
+      "Terraria/ShadowFlameBow": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/GoblinSummoner"
+      },
+      "Terraria/ShadowFlameHexDoll": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/GoblinSummoner"
+      },
+      "Terraria/ShadowFlameKnife": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/GoblinSummoner"
+      },
+      "CalamityMod/BurningStrife": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/GoblinSummoner"
+      },
+      "CalamityMod/TheFirstShadowflame": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/GoblinSummoner"
+      },
       "CalamityMod/ElementalinaBottle": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/SandElemental"
@@ -35718,14 +36104,6 @@
       "CalamityMod/OasisElementalinaBottle": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/SandElemental"
-      },
-      "CalamityMod/CursedDagger": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/Clinger"
-      },
-      "CalamityMod/IchorSpear": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/IchorSticker"
       },
       "Terraria/DartRifle": {
         "stage": "wall-of-flesh",
@@ -35811,22 +36189,6 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/BigMimicJungle"
       },
-      "Terraria/Marrow": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/SkeletonArcher"
-      },
-      "Terraria/MagicQuiver": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/SkeletonArcher"
-      },
-      "Terraria/CoffeeCup": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/AngryTrapper"
-      },
-      "Terraria/Uzi": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/AngryTrapper"
-      },
       "Terraria/Frostbrand": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/IceMimic"
@@ -35839,22 +36201,6 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/IceMimic"
       },
-      "Terraria/PoisonStaff": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BlackRecluse"
-      },
-      "Terraria/IceSickle": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/IceElemental"
-      },
-      "Terraria/FrostStaff": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/IceElemental"
-      },
-      "Terraria/Milkshake": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/IcyMerman"
-      },
       "Terraria/Bacon": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/PigronCorruption"
@@ -35862,26 +36208,6 @@
       "Terraria/HamBat": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/PigronCorruption"
-      },
-      "Terraria/MedusaHead": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/Medusa"
-      },
-      "Terraria/PocketMirror": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/Medusa"
-      },
-      "Terraria/KOCannon": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/Clown"
-      },
-      "Terraria/Bananarang": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/Clown"
-      },
-      "Terraria/TrifoldMap": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/Clown"
       },
       "Terraria/DripplerFlail": {
         "stage": "wall-of-flesh",
@@ -35894,6 +36220,13 @@
       "Terraria/NimbusRod": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/AngryNimbus"
+      },
+      "CalamityMod/MidasPrime": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/PirateDeadeye",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/Shotgun": {
         "stage": "wall-of-flesh",
@@ -35975,22 +36308,6 @@
         "stage": "wall-of-flesh",
         "via": "fishing"
       },
-      "Terraria/CrossNecklace": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/FastClock": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/MagicDagger": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/BeamSword": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
       "Terraria/SpiritFlame": {
         "stage": "wall-of-flesh",
         "via": "manifest"
@@ -35999,19 +36316,11 @@
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
-      "Terraria/PhilosophersStone": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
       "Terraria/StarVeil": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
       "Terraria/BeeCloak": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/StarCloak": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
@@ -36275,13 +36584,29 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/SpectreBoots+Terraria/FlowerBoots+Terraria/SoulofLight"
       },
+      "Terraria/PowerGlove": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/TitanGlove+Terraria/FeralClaws"
+      },
+      "Terraria/ArmorBracing": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/ArmorPolish+Terraria/Vitamins"
+      },
       "Terraria/ThePlan": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/FastClock+Terraria/TrifoldMap"
       },
+      "Terraria/CountercurseMantra": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/Megaphone+Terraria/Nazar"
+      },
       "Terraria/ReflectiveShades": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Blindfold+Terraria/PocketMirror"
+      },
+      "Terraria/AnkhCharm": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/ArmorBracing+Terraria/MedicatedBandage+Terraria/ThePlan+Terraria/CountercurseMantra+Terraria/ReflectiveShades"
       },
       "Terraria/CrystalStorm": {
         "stage": "wall-of-flesh",
@@ -36482,6 +36807,14 @@
       "CalamityMod/LunicEye": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/CobaltBar+CalamityMod/StarblightSoot"
+      },
+      "Terraria/BerserkerGlove": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/PowerGlove+Terraria/FleshKnuckles"
+      },
+      "Terraria/AnkhShield": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/ObsidianShield+Terraria/AnkhCharm"
       },
       "CalamityMod/Avalanche": {
         "stage": "cryogen",
@@ -37293,10 +37626,7 @@
       },
       "Terraria/NeptunesShell": {
         "stage": "skeletron-prime",
-        "via": "npc:Terraria/CreatureFromTheDeep",
-        "eventCategory": "SolarEclipse",
-        "customEventName": "",
-        "eventIcon": ""
+        "via": "npc:Terraria/CreatureFromTheDeep"
       },
       "Terraria/PulseBow": {
         "stage": "skeletron-prime",
@@ -37393,6 +37723,10 @@
       "Terraria/Flamethrower": {
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/IronBar+Terraria/IllegalGunParts+Terraria/SoulofFright"
+      },
+      "Terraria/MoonShell": {
+        "stage": "skeletron-prime",
+        "via": "recipe:Terraria/MoonCharm+Terraria/NeptunesShell"
       },
       "Terraria/AvengerEmblem": {
         "stage": "skeletron-prime",
@@ -37554,6 +37888,50 @@
         "stage": "plantera",
         "via": "npc:Terraria/Mothron"
       },
+      "Terraria/MagnetSphere": {
+        "stage": "plantera",
+        "via": "npc:Terraria/RustyArmoredBonesAxe"
+      },
+      "Terraria/Keybrand": {
+        "stage": "plantera",
+        "via": "npc:Terraria/RustyArmoredBonesAxe"
+      },
+      "Terraria/MaceWhip": {
+        "stage": "plantera",
+        "via": "npc:Terraria/RustyArmoredBonesAxe"
+      },
+      "Terraria/Tabi": {
+        "stage": "plantera",
+        "via": "npc:Terraria/BoneLee"
+      },
+      "Terraria/BlackBelt": {
+        "stage": "plantera",
+        "via": "npc:Terraria/BoneLee"
+      },
+      "Terraria/BBQRibs": {
+        "stage": "plantera",
+        "via": "npc:Terraria/TacticalSkeleton"
+      },
+      "Terraria/TacticalShotgun": {
+        "stage": "plantera",
+        "via": "npc:Terraria/TacticalSkeleton"
+      },
+      "Terraria/NailGun": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Nailhead"
+      },
+      "Terraria/PsychoKnife": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Psycho"
+      },
+      "Terraria/ToxicFlask": {
+        "stage": "plantera",
+        "via": "npc:Terraria/DrManFly"
+      },
+      "CalamityMod/MantisClaws": {
+        "stage": "plantera",
+        "via": "npc:CalamityMod/MantisShrimp"
+      },
       "Terraria/FlowerPow": {
         "stage": "plantera",
         "via": "npc:Terraria/Plantera"
@@ -37598,49 +37976,9 @@
         "stage": "plantera",
         "via": "npc:CalamityMod/LeviathanStart"
       },
-      "CalamityMod/MantisClaws": {
-        "stage": "plantera",
-        "via": "npc:CalamityMod/MantisShrimp"
-      },
-      "Terraria/ArmorPolish": {
-        "stage": "plantera",
-        "via": "npc:CalamityMod/MantisShrimp"
-      },
-      "Terraria/PsychoKnife": {
-        "stage": "plantera",
-        "via": "npc:Terraria/Psycho"
-      },
-      "Terraria/CreamSoda": {
-        "stage": "plantera",
-        "via": "npc:Terraria/GiantCursedSkull"
-      },
-      "Terraria/Nazar": {
-        "stage": "plantera",
-        "via": "npc:Terraria/GiantCursedSkull"
-      },
       "Terraria/ShadowJoustingLance": {
         "stage": "plantera",
         "via": "npc:Terraria/GiantCursedSkull"
-      },
-      "Terraria/NailGun": {
-        "stage": "plantera",
-        "via": "npc:Terraria/Nailhead"
-      },
-      "Terraria/MagnetSphere": {
-        "stage": "plantera",
-        "via": "npc:Terraria/RustyArmoredBonesAxe"
-      },
-      "Terraria/Keybrand": {
-        "stage": "plantera",
-        "via": "npc:Terraria/RustyArmoredBonesAxe"
-      },
-      "Terraria/MaceWhip": {
-        "stage": "plantera",
-        "via": "npc:Terraria/RustyArmoredBonesAxe"
-      },
-      "Terraria/ToxicFlask": {
-        "stage": "plantera",
-        "via": "npc:Terraria/DrManFly"
       },
       "Terraria/StakeLauncher": {
         "stage": "plantera",
@@ -37814,10 +38152,6 @@
         "stage": "plantera",
         "via": "manifest"
       },
-      "Terraria/TacticalShotgun": {
-        "stage": "plantera",
-        "via": "manifest"
-      },
       "Terraria/RocketLauncher": {
         "stage": "plantera",
         "via": "manifest"
@@ -37847,14 +38181,6 @@
         "via": "manifest"
       },
       "Terraria/MasterNinjaGear": {
-        "stage": "plantera",
-        "via": "manifest"
-      },
-      "Terraria/Tabi": {
-        "stage": "plantera",
-        "via": "manifest"
-      },
-      "Terraria/BlackBelt": {
         "stage": "plantera",
         "via": "manifest"
       },
@@ -37977,18 +38303,6 @@
       "Terraria/HeroShield": {
         "stage": "plantera",
         "via": "recipe:Terraria/PaladinsShield+Terraria/FleshKnuckles"
-      },
-      "Terraria/ArmorBracing": {
-        "stage": "plantera",
-        "via": "recipe:Terraria/ArmorPolish+Terraria/Vitamins"
-      },
-      "Terraria/CountercurseMantra": {
-        "stage": "plantera",
-        "via": "recipe:Terraria/Megaphone+Terraria/Nazar"
-      },
-      "Terraria/AnkhCharm": {
-        "stage": "plantera",
-        "via": "recipe:Terraria/ArmorBracing+Terraria/MedicatedBandage+Terraria/ThePlan+Terraria/CountercurseMantra+Terraria/ReflectiveShades"
       },
       "CalamityMod/LivingDew": {
         "stage": "plantera",
@@ -38182,10 +38496,6 @@
         "stage": "plantera",
         "via": "recipe:CalamityMod/PerennialBar"
       },
-      "Terraria/AnkhShield": {
-        "stage": "plantera",
-        "via": "recipe:Terraria/ObsidianShield+Terraria/AnkhCharm"
-      },
       "CalamityMod/AsgardsValor": {
         "stage": "plantera",
         "via": "recipe:CalamityMod/OrnateShield+CalamityMod/CoreofCalamity+Terraria/HallowedBar"
@@ -38360,19 +38670,27 @@
       },
       "Terraria/ChargedBlasterCannon": {
         "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
+        "via": "npc:Terraria/GigaZapper"
       },
       "CalamityMod/DoomsdayDevice": {
         "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
+        "via": "npc:Terraria/GigaZapper"
       },
       "CalamityMod/Wingman": {
         "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
+        "via": "npc:Terraria/GigaZapper"
       },
       "CalamityMod/NullificationPistol": {
         "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
+        "via": "npc:Terraria/GigaZapper"
+      },
+      "Terraria/DeadlySphereStaff": {
+        "stage": "golem",
+        "via": "npc:Terraria/DeadlySphere"
+      },
+      "CalamityMod/DefectiveSphere": {
+        "stage": "golem",
+        "via": "npc:Terraria/DeadlySphere"
       },
       "CalamityMod/PlaguedFuelPack": {
         "stage": "golem",
@@ -38409,14 +38727,6 @@
       "CalamityMod/AegisBlade": {
         "stage": "golem",
         "via": "npc:Terraria/Golem"
-      },
-      "Terraria/DeadlySphereStaff": {
-        "stage": "golem",
-        "via": "npc:Terraria/DeadlySphere"
-      },
-      "CalamityMod/DefectiveSphere": {
-        "stage": "golem",
-        "via": "npc:Terraria/DeadlySphere"
       },
       "Terraria/Xenopopper": {
         "stage": "golem",
@@ -38568,6 +38878,10 @@
       "Terraria/CelestialStone": {
         "stage": "golem",
         "via": "recipe:Terraria/SunStone+Terraria/MoonStone"
+      },
+      "Terraria/CelestialShell": {
+        "stage": "golem",
+        "via": "recipe:Terraria/CelestialStone+Terraria/MoonShell"
       },
       "Terraria/DestroyerEmblem": {
         "stage": "golem",
@@ -40741,33 +41055,33 @@
         "stage": "yharon",
         "via": "recipe:CalamityMod/GodSlayerLeggings+CalamityMod/BloodflareCuisses+CalamityMod/TarragonLeggings+Terraria/FlyingCarpet+CalamityMod/AuricBar"
       },
-      "CalamityMod/SpineOfThanatos": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/RefractionRotor": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/AtlasMunitionsBeacon": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
       "CalamityMod/TheJailor": {
         "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
+        "via": "manifest"
       },
       "CalamityMod/AresExoskeleton": {
         "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
+        "via": "manifest"
       },
-      "CalamityMod/TheAtomSplitter": {
+      "CalamityMod/SpineOfThanatos": {
         "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
+        "via": "manifest"
+      },
+      "CalamityMod/RefractionRotor": {
+        "stage": "exo-mechs",
+        "via": "manifest"
+      },
+      "CalamityMod/AtlasMunitionsBeacon": {
+        "stage": "exo-mechs",
+        "via": "manifest"
       },
       "CalamityMod/SurgeDriver": {
         "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
+        "via": "manifest"
+      },
+      "CalamityMod/TheAtomSplitter": {
+        "stage": "exo-mechs",
+        "via": "manifest"
       },
       "CalamityMod/DraedonsHeart": {
         "stage": "exo-mechs",
@@ -41513,9 +41827,117 @@
         "stage": "start",
         "via": "npc:Terraria/Zombie"
       },
+      "Terraria/PigPetItem": {
+        "stage": "start",
+        "via": "npc:Terraria/EaterofSouls"
+      },
+      "Terraria/WormTooth": {
+        "stage": "start",
+        "via": "npc:Terraria/DevourerHead"
+      },
+      "Terraria/WhoopieCushion": {
+        "stage": "start",
+        "via": "npc:Terraria/GiantWormHead"
+      },
+      "Terraria/Compass": {
+        "stage": "start",
+        "via": "npc:Terraria/MotherSlime"
+      },
+      "Terraria/AncientIronHelmet": {
+        "stage": "start",
+        "via": "npc:Terraria/Skeleton"
+      },
+      "Terraria/AncientGoldHelmet": {
+        "stage": "start",
+        "via": "npc:Terraria/Skeleton"
+      },
+      "Terraria/Skull": {
+        "stage": "start",
+        "via": "npc:Terraria/Skeleton"
+      },
+      "Terraria/Hook": {
+        "stage": "start",
+        "via": "npc:Terraria/Skeleton"
+      },
+      "CalamityMod/AncientBoneDust": {
+        "stage": "start",
+        "via": "npc:Terraria/Skeleton"
+      },
+      "Terraria/PlumbersHat": {
+        "stage": "start",
+        "via": "npc:Terraria/FireImp"
+      },
+      "Terraria/BonePickaxe": {
+        "stage": "start",
+        "via": "npc:Terraria/UndeadMiner"
+      },
+      "Terraria/MiningHelmet": {
+        "stage": "start",
+        "via": "npc:Terraria/UndeadMiner"
+      },
+      "Terraria/MiningShirt": {
+        "stage": "start",
+        "via": "npc:Terraria/UndeadMiner"
+      },
+      "Terraria/MiningPants": {
+        "stage": "start",
+        "via": "npc:Terraria/UndeadMiner"
+      },
+      "Terraria/DepthMeter": {
+        "stage": "start",
+        "via": "npc:Terraria/CaveBat"
+      },
       "Terraria/BloodMoonStarter": {
         "stage": "start",
         "via": "npc:Terraria/TheGroom"
+      },
+      "CalamityMod/ToastyBatBottle": {
+        "stage": "start",
+        "via": "npc:Terraria/Hellbat"
+      },
+      "Terraria/GuideVoodooDoll": {
+        "stage": "start",
+        "via": "npc:Terraria/VoodooDemon"
+      },
+      "CalamityMod/FrostyBatBottle": {
+        "stage": "start",
+        "via": "npc:Terraria/IceBat"
+      },
+      "Terraria/VikingHelmet": {
+        "stage": "start",
+        "via": "npc:Terraria/UndeadViking"
+      },
+      "Terraria/SnowballLauncher": {
+        "stage": "start",
+        "via": "npc:Terraria/SnowFlinx"
+      },
+      "Terraria/MetalDetector": {
+        "stage": "start",
+        "via": "npc:Terraria/LostGirl"
+      },
+      "Terraria/LizardEgg": {
+        "stage": "start",
+        "via": "npc:Terraria/Lihzahrd"
+      },
+      "Terraria/LihzahrdPowerCell": {
+        "stage": "start",
+        "via": "npc:Terraria/Lihzahrd"
+      },
+      "Terraria/LunarTabletFragment": {
+        "stage": "start",
+        "via": "npc:Terraria/Lihzahrd"
+      },
+      "Terraria/JungleKey": {
+        "stage": "start",
+        "via": "npc:Terraria/Lihzahrd"
+      },
+      "Terraria/RedHusk": {
+        "stage": "start",
+        "via": "npc:Terraria/CochinealBeetle"
+      },
+      "Terraria/VioletHusk": {
+        "stage": "start",
+        "via": "npc:Terraria/LacBeetle"
       },
       "Terraria/CarbonGuitar": {
         "stage": "start",
@@ -41532,6 +41954,10 @@
       "CalamityMod/GhostBracelet": {
         "stage": "start",
         "via": "npc:Terraria/Ghost"
+      },
+      "Terraria/Geode": {
+        "stage": "start",
+        "via": "npc:Terraria/GraniteGolem"
       },
       "Terraria/TheBrideHat": {
         "stage": "start",
@@ -41550,14 +41976,6 @@
         "via": "npc:CalamityMod/MorayEel"
       },
       "CalamityMod/Stohne": {
-        "stage": "start",
-        "via": "npc:CalamityMod/Bohldohr"
-      },
-      "Terraria/LunarTabletFragment": {
-        "stage": "start",
-        "via": "npc:CalamityMod/Bohldohr"
-      },
-      "Terraria/LihzahrdPowerCell": {
         "stage": "start",
         "via": "npc:CalamityMod/Bohldohr"
       },
@@ -41589,10 +42007,6 @@
         "stage": "start",
         "via": "npc:CalamityMod/Stormlion"
       },
-      "CalamityMod/WulfrumMetalScrap": {
-        "stage": "start",
-        "via": "npc:CalamityMod/WulfrumDrone"
-      },
       "CalamityMod/MysteriousCircuitry": {
         "stage": "start",
         "via": "npc:CalamityMod/Burrower"
@@ -41604,14 +42018,6 @@
       "CalamityMod/BurrowerController": {
         "stage": "start",
         "via": "npc:CalamityMod/Burrower"
-      },
-      "Terraria/PlumbersHat": {
-        "stage": "start",
-        "via": "npc:Terraria/FireImp"
-      },
-      "Terraria/GuideVoodooDoll": {
-        "stage": "start",
-        "via": "npc:Terraria/VoodooDemon"
       },
       "Terraria/FossilOre": {
         "stage": "start",
@@ -41693,6 +42099,10 @@
         "stage": "start",
         "via": "container:CalamityMod/SulphurousCrate"
       },
+      "CalamityMod/WulfrumMetalScrap": {
+        "stage": "start",
+        "via": "npc:CalamityMod/WulfrumAmplifier"
+      },
       "CalamityMod/AbandonedWulfrumHelmet": {
         "stage": "start",
         "via": "npc:CalamityMod/WulfrumAmplifier"
@@ -41708,38 +42118,6 @@
       "Terraria/JellyfishNecklace": {
         "stage": "start",
         "via": "npc:CalamityMod/GhostBell"
-      },
-      "Terraria/DepthMeter": {
-        "stage": "start",
-        "via": "npc:Terraria/CaveBat"
-      },
-      "Terraria/PigPetItem": {
-        "stage": "start",
-        "via": "npc:Terraria/EaterofSouls"
-      },
-      "Terraria/WormTooth": {
-        "stage": "start",
-        "via": "npc:Terraria/DevourerHead"
-      },
-      "Terraria/Compass": {
-        "stage": "start",
-        "via": "npc:Terraria/Crawdad"
-      },
-      "Terraria/WhoopieCushion": {
-        "stage": "start",
-        "via": "npc:Terraria/GiantWormHead"
-      },
-      "Terraria/Hook": {
-        "stage": "start",
-        "via": "npc:Terraria/GreekSkeleton"
-      },
-      "CalamityMod/AncientBoneDust": {
-        "stage": "start",
-        "via": "npc:Terraria/GreekSkeleton"
-      },
-      "Terraria/MetalDetector": {
-        "stage": "start",
-        "via": "npc:Terraria/Nymph"
       },
       "Terraria/ArchaeologistsHat": {
         "stage": "start",
@@ -41768,18 +42146,6 @@
       "Terraria/PurpleMucos": {
         "stage": "start",
         "via": "npc:Terraria/SeaSnail"
-      },
-      "Terraria/AncientIronHelmet": {
-        "stage": "start",
-        "via": "npc:Terraria/Skeleton"
-      },
-      "Terraria/AncientGoldHelmet": {
-        "stage": "start",
-        "via": "npc:Terraria/Skeleton"
-      },
-      "Terraria/Skull": {
-        "stage": "start",
-        "via": "npc:Terraria/Skeleton"
       },
       "Terraria/Radar": {
         "stage": "start",
@@ -42156,10 +42522,6 @@
       "Terraria/PeddlersHat": {
         "stage": "start",
         "via": "npc:Terraria/TravellingMerchant"
-      },
-      "Terraria/MiningHelmet": {
-        "stage": "start",
-        "via": "shop:Terraria/Merchant"
       },
       "Terraria/PiggyBank": {
         "stage": "start",
@@ -46217,33 +46579,65 @@
         "stage": "start",
         "via": "recipe:Terraria/PinkPaint"
       },
+      "Terraria/RedDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/RedHusk"
+      },
       "Terraria/PurpleDye": {
         "stage": "start",
         "via": "recipe:Terraria/PurpleMucos"
+      },
+      "Terraria/VioletDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/VioletHusk"
       },
       "Terraria/BlackDye": {
         "stage": "start",
         "via": "recipe:Terraria/BlackInk"
       },
+      "Terraria/RedandBlackDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/RedDye+Terraria/BlackDye"
+      },
       "Terraria/PurpleandBlackDye": {
         "stage": "start",
         "via": "recipe:Terraria/PurpleDye+Terraria/BlackDye"
+      },
+      "Terraria/VioletandBlackDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/VioletDye+Terraria/BlackDye"
       },
       "Terraria/BrownAndBlackDye": {
         "stage": "start",
         "via": "recipe:Terraria/BrownDye+Terraria/BlackDye"
       },
+      "Terraria/BrightRedDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/RedDye+Terraria/SilverDye"
+      },
       "Terraria/BrightPurpleDye": {
         "stage": "start",
         "via": "recipe:Terraria/PurpleDye+Terraria/SilverDye"
+      },
+      "Terraria/BrightVioletDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/VioletDye+Terraria/SilverDye"
       },
       "Terraria/BrightBrownDye": {
         "stage": "start",
         "via": "recipe:Terraria/BrownDye+Terraria/SilverDye"
       },
+      "Terraria/RedandSilverDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/RedDye+Terraria/SilverDye"
+      },
       "Terraria/PurpleandSilverDye": {
         "stage": "start",
         "via": "recipe:Terraria/PurpleDye+Terraria/SilverDye"
+      },
+      "Terraria/VioletandSilverDye": {
+        "stage": "start",
+        "via": "recipe:Terraria/VioletDye+Terraria/SilverDye"
       },
       "Terraria/BrownAndSilverDye": {
         "stage": "start",
@@ -47268,6 +47662,14 @@
       "Terraria/GolfBallDyedPurple": {
         "stage": "start",
         "via": "recipe:Terraria/GolfBall+Terraria/PurpleDye"
+      },
+      "Terraria/GolfBallDyedRed": {
+        "stage": "start",
+        "via": "recipe:Terraria/GolfBall+Terraria/RedDye"
+      },
+      "Terraria/GolfBallDyedViolet": {
+        "stage": "start",
+        "via": "recipe:Terraria/GolfBall+Terraria/VioletDye"
       },
       "Terraria/AlphabetStatue0": {
         "stage": "start",
@@ -48407,6 +48809,14 @@
         "stage": "crabulon",
         "via": "recipe:CalamityMod/CrabulonTrophy"
       },
+      "Terraria/Meteorite": {
+        "stage": "world-evil",
+        "via": "npc:Terraria/MeteorHead"
+      },
+      "Terraria/CyanHusk": {
+        "stage": "world-evil",
+        "via": "npc:Terraria/CyanBeetle"
+      },
       "Terraria/BossMaskDarkMage": {
         "stage": "world-evil",
         "via": "npc:Terraria/DD2DarkMageT1"
@@ -48508,10 +48918,6 @@
         "via": "manifest"
       },
       "Terraria/HellstoneBar": {
-        "stage": "world-evil",
-        "via": "manifest"
-      },
-      "Terraria/Meteorite": {
         "stage": "world-evil",
         "via": "manifest"
       },
@@ -48655,6 +49061,22 @@
         "stage": "world-evil",
         "via": "recipe:Terraria/BugNet+Terraria/HellstoneBar"
       },
+      "Terraria/CyanDye": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/CyanHusk"
+      },
+      "Terraria/CyanandBlackDye": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/CyanDye+Terraria/BlackDye"
+      },
+      "Terraria/BrightCyanDye": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/CyanDye+Terraria/SilverDye"
+      },
+      "Terraria/CyanandSilverDye": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/CyanDye+Terraria/SilverDye"
+      },
       "CalamityMod/RedSeekingMechanism": {
         "stage": "world-evil",
         "via": "recipe:CalamityMod/LabSeekingMechanism+Terraria/HellstoneBar"
@@ -48666,6 +49088,10 @@
       "Terraria/MeteoritePlatform": {
         "stage": "world-evil",
         "via": "recipe:Terraria/MeteoriteBrick"
+      },
+      "Terraria/GolfBallDyedCyan": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/GolfBall+Terraria/CyanDye"
       },
       "CalamityMod/HiveMindBag": {
         "stage": "hive-mind-perforators",
@@ -48903,6 +49329,26 @@
         "stage": "deerclops",
         "via": "npc:Terraria/Deerclops"
       },
+      "Terraria/AncientNecroHelmet": {
+        "stage": "skeletron",
+        "via": "npc:Terraria/AngryBones"
+      },
+      "Terraria/ClothierVoodooDoll": {
+        "stage": "skeletron",
+        "via": "npc:Terraria/AngryBones"
+      },
+      "Terraria/BoneWand": {
+        "stage": "skeletron",
+        "via": "npc:Terraria/AngryBones"
+      },
+      "Terraria/TallyCounter": {
+        "stage": "skeletron",
+        "via": "npc:Terraria/AngryBones"
+      },
+      "Terraria/GoldenKey": {
+        "stage": "skeletron",
+        "via": "npc:Terraria/AngryBones"
+      },
       "Terraria/RedHat": {
         "stage": "skeletron",
         "via": "npc:Terraria/Clothier"
@@ -48934,26 +49380,6 @@
       "Terraria/ChippysCouch": {
         "stage": "skeletron",
         "via": "npc:Terraria/SkeletronHead"
-      },
-      "Terraria/AncientNecroHelmet": {
-        "stage": "skeletron",
-        "via": "npc:Terraria/DarkCaster"
-      },
-      "Terraria/ClothierVoodooDoll": {
-        "stage": "skeletron",
-        "via": "npc:Terraria/DarkCaster"
-      },
-      "Terraria/BoneWand": {
-        "stage": "skeletron",
-        "via": "npc:Terraria/DarkCaster"
-      },
-      "Terraria/TallyCounter": {
-        "stage": "skeletron",
-        "via": "npc:Terraria/DarkCaster"
-      },
-      "Terraria/GoldenKey": {
-        "stage": "skeletron",
-        "via": "npc:Terraria/DarkCaster"
       },
       "CalamityMod/StrangeOrb": {
         "stage": "skeletron",
@@ -49875,6 +50301,58 @@
         "stage": "wall-of-flesh",
         "via": "npc:CalamityMod/PerforatorHive"
       },
+      "Terraria/PixieDust": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Pixie"
+      },
+      "Terraria/MummyMask": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Mummy"
+      },
+      "Terraria/MummyShirt": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Mummy"
+      },
+      "Terraria/MummyPants": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Mummy"
+      },
+      "Terraria/MeatGrinder": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/CorruptSlime"
+      },
+      "Terraria/DualHook": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Mimic"
+      },
+      "Terraria/BlessedApple": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Unicorn"
+      },
+      "Terraria/UnicornHorn": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Unicorn"
+      },
+      "Terraria/UnicornonaStick": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Unicorn"
+      },
+      "Terraria/TurtleShell": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/GiantTortoise"
+      },
+      "CalamityMod/EssenceofEleum": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/IceTortoise"
+      },
+      "Terraria/SpiderFang": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BlackRecluse"
+      },
+      "Terraria/GlommerPetItem": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Derpling"
+      },
       "Terraria/LuckyCoin": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/PirateDeckhand"
@@ -49995,9 +50473,9 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/PirateDeckhand"
       },
-      "CalamityMod/EssenceofEleum": {
+      "Terraria/RockGolemHead": {
         "stage": "wall-of-flesh",
-        "via": "npc:CalamityMod/AuroraSpirit"
+        "via": "npc:Terraria/RockGolem"
       },
       "Terraria/WallOfFleshBossBag": {
         "stage": "wall-of-flesh",
@@ -50038,10 +50516,6 @@
       "Terraria/DungeonDesertKey": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/SandElemental"
-      },
-      "Terraria/MeatGrinder": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/Clinger"
       },
       "Terraria/WormHook": {
         "stage": "wall-of-flesh",
@@ -50130,10 +50604,6 @@
       "Terraria/ToySled": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/IceMimic"
-      },
-      "Terraria/SpiderFang": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BlackRecluse"
       },
       "Terraria/PigronMinecart": {
         "stage": "wall-of-flesh",
@@ -50435,10 +50905,6 @@
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Wizard"
       },
-      "Terraria/JungleKey": {
-        "stage": "wall-of-flesh",
-        "via": "global:Terraria/GlobalNPCDrops"
-      },
       "Terraria/PirateMap": {
         "stage": "wall-of-flesh",
         "via": "global:Terraria/GlobalNPCDrops"
@@ -50539,23 +51005,11 @@
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
-      "Terraria/PixieDust": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/UnicornHorn": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
       "Terraria/LightShard": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
       "Terraria/DarkShard": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/TurtleShell": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
@@ -51286,6 +51740,26 @@
       "Terraria/TatteredBeeWing": {
         "stage": "destroyer",
         "via": "npc:Terraria/MossHornet"
+      },
+      "Terraria/EyeSpring": {
+        "stage": "destroyer",
+        "via": "npc:Terraria/Eyezor"
+      },
+      "Terraria/Eyezorhead": {
+        "stage": "destroyer",
+        "via": "npc:Terraria/Eyezor"
+      },
+      "Terraria/OcularResonance": {
+        "stage": "destroyer",
+        "via": "npc:Terraria/Eyezor"
+      },
+      "Terraria/MidnightSun": {
+        "stage": "destroyer",
+        "via": "npc:Terraria/Fritz"
+      },
+      "Terraria/ThisIsGettingOutOfHand": {
+        "stage": "destroyer",
+        "via": "npc:Terraria/ThePossessed"
       },
       "Terraria/BossMaskOgre": {
         "stage": "destroyer",
@@ -52131,6 +52605,10 @@
         "stage": "twins",
         "via": "recipe:Terraria/CrystalBlock"
       },
+      "Terraria/Buddies": {
+        "stage": "skeletron-prime",
+        "via": "npc:Terraria/Frankenstein"
+      },
       "Terraria/SkeletronPrimeBossBag": {
         "stage": "skeletron-prime",
         "via": "npc:Terraria/SkeletronPrime"
@@ -52154,13 +52632,6 @@
       "Terraria/WingsofEvil": {
         "stage": "skeletron-prime",
         "via": "npc:Terraria/Mothron",
-        "eventCategory": "SolarEclipse",
-        "customEventName": "",
-        "eventIcon": ""
-      },
-      "Terraria/Buddies": {
-        "stage": "skeletron-prime",
-        "via": "npc:Terraria/Frankenstein",
         "eventCategory": "SolarEclipse",
         "customEventName": "",
         "eventIcon": ""
@@ -52397,29 +52868,73 @@
         "stage": "plantera",
         "via": "npc:Terraria/Mothron"
       },
+      "Terraria/BoneFeather": {
+        "stage": "plantera",
+        "via": "npc:Terraria/RustyArmoredBonesAxe"
+      },
+      "Terraria/WispinaBottle": {
+        "stage": "plantera",
+        "via": "npc:Terraria/RustyArmoredBonesAxe"
+      },
+      "Terraria/Ectoplasm": {
+        "stage": "plantera",
+        "via": "npc:Terraria/RustyArmoredBonesAxe"
+      },
+      "Terraria/SWATHelmet": {
+        "stage": "plantera",
+        "via": "npc:Terraria/TacticalSkeleton"
+      },
       "Terraria/ScarecrowHat": {
         "stage": "plantera",
-        "via": "npc:Terraria/Scarecrow1"
+        "via": "npc:Terraria/Scarecrow2"
       },
       "Terraria/ScarecrowShirt": {
         "stage": "plantera",
-        "via": "npc:Terraria/Scarecrow1"
+        "via": "npc:Terraria/Scarecrow2"
       },
       "Terraria/ScarecrowPants": {
         "stage": "plantera",
-        "via": "npc:Terraria/Scarecrow1"
+        "via": "npc:Terraria/Scarecrow2"
       },
       "Terraria/ElfHat": {
         "stage": "plantera",
-        "via": "npc:Terraria/ZombieElf"
+        "via": "npc:Terraria/ZombieElfGirl"
       },
       "Terraria/ElfShirt": {
         "stage": "plantera",
-        "via": "npc:Terraria/ZombieElf"
+        "via": "npc:Terraria/ZombieElfGirl"
       },
       "Terraria/ElfPants": {
         "stage": "plantera",
-        "via": "npc:Terraria/ZombieElf"
+        "via": "npc:Terraria/ZombieElfGirl"
+      },
+      "Terraria/AMachineforTerrarians": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Butcher"
+      },
+      "Terraria/ButchersChainsaw": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Butcher"
+      },
+      "Terraria/ButcherMask": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Butcher"
+      },
+      "Terraria/ButcherApron": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Butcher"
+      },
+      "Terraria/ButcherPants": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Butcher"
+      },
+      "Terraria/DrManFlyMask": {
+        "stage": "plantera",
+        "via": "npc:Terraria/DrManFly"
+      },
+      "Terraria/DrManFlyLabCoat": {
+        "stage": "plantera",
+        "via": "npc:Terraria/DrManFly"
       },
       "Terraria/PlanteraBossBag": {
         "stage": "plantera",
@@ -52456,26 +52971,6 @@
       "CalamityMod/LivingShard": {
         "stage": "plantera",
         "via": "npc:Terraria/Plantera"
-      },
-      "Terraria/Ectoplasm": {
-        "stage": "plantera",
-        "via": "npc:Terraria/GiantCursedSkull"
-      },
-      "Terraria/BoneFeather": {
-        "stage": "plantera",
-        "via": "npc:Terraria/RustyArmoredBonesAxe"
-      },
-      "Terraria/WispinaBottle": {
-        "stage": "plantera",
-        "via": "npc:Terraria/RustyArmoredBonesAxe"
-      },
-      "Terraria/DrManFlyMask": {
-        "stage": "plantera",
-        "via": "npc:Terraria/DrManFly"
-      },
-      "Terraria/DrManFlyLabCoat": {
-        "stage": "plantera",
-        "via": "npc:Terraria/DrManFly"
       },
       "Terraria/SpookyHook": {
         "stage": "plantera",
@@ -52983,43 +53478,27 @@
       },
       "Terraria/MartianConduitPlating": {
         "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
+        "via": "npc:Terraria/GigaZapper"
       },
       "Terraria/LaserDrill": {
         "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
+        "via": "npc:Terraria/GigaZapper"
       },
       "Terraria/AntiGravityHook": {
         "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
-      },
-      "Terraria/MartianCostumeMask": {
-        "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
-      },
-      "Terraria/MartianCostumeShirt": {
-        "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
-      },
-      "Terraria/MartianCostumePants": {
-        "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
+        "via": "npc:Terraria/GigaZapper"
       },
       "Terraria/MartianUniformHelmet": {
         "stage": "golem",
-        "via": "npc:Terraria/MartianOfficer"
+        "via": "npc:Terraria/GigaZapper"
       },
       "Terraria/MartianUniformTorso": {
         "stage": "golem",
-        "via": "npc:Terraria/MartianOfficer"
+        "via": "npc:Terraria/GigaZapper"
       },
       "Terraria/MartianUniformPants": {
         "stage": "golem",
-        "via": "npc:Terraria/MartianOfficer"
-      },
-      "Terraria/BrainScrambler": {
-        "stage": "golem",
-        "via": "npc:Terraria/ScutlixRider"
+        "via": "npc:Terraria/GigaZapper"
       },
       "CalamityMod/PlagueCellCanister": {
         "stage": "golem",
@@ -53053,9 +53532,21 @@
         "stage": "golem",
         "via": "npc:Terraria/Golem"
       },
-      "Terraria/LizardEgg": {
+      "Terraria/MartianCostumeMask": {
         "stage": "golem",
-        "via": "npc:Terraria/FlyingSnake"
+        "via": "npc:Terraria/BrainScrambler"
+      },
+      "Terraria/MartianCostumeShirt": {
+        "stage": "golem",
+        "via": "npc:Terraria/BrainScrambler"
+      },
+      "Terraria/MartianCostumePants": {
+        "stage": "golem",
+        "via": "npc:Terraria/BrainScrambler"
+      },
+      "Terraria/BrainScrambler": {
+        "stage": "golem",
+        "via": "npc:Terraria/ScutlixRider"
       },
       "Terraria/UFOMasterTrophy": {
         "stage": "golem",
@@ -53496,11 +53987,11 @@
       },
       "Terraria/FragmentStardust": {
         "stage": "lunatic-cultist",
-        "via": "npc:Terraria/StardustWormHead"
+        "via": "npc:Terraria/StardustSpiderBig"
       },
       "CalamityMod/MeldBlob": {
         "stage": "lunatic-cultist",
-        "via": "npc:Terraria/StardustWormHead"
+        "via": "npc:Terraria/StardustSpiderBig"
       },
       "Terraria/FragmentSolar": {
         "stage": "lunatic-cultist",
@@ -53508,11 +53999,11 @@
       },
       "Terraria/FragmentNebula": {
         "stage": "lunatic-cultist",
-        "via": "npc:Terraria/NebulaBrain"
+        "via": "npc:Terraria/NebulaBeast"
       },
       "Terraria/FragmentVortex": {
         "stage": "lunatic-cultist",
-        "via": "npc:Terraria/VortexRifleman"
+        "via": "npc:Terraria/VortexHornet"
       },
       "Terraria/LunaticCultistMasterTrophy": {
         "stage": "lunatic-cultist",
@@ -53965,6 +54456,10 @@
       "CalamityMod/Cosmolight": {
         "stage": "lunatic-cultist",
         "via": "recipe:CalamityMod/Bakidon+Terraria/Sundial+CalamityMod/AstralBar+Terraria/FragmentSolar"
+      },
+      "CalamityMod/Respiteblock": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:Terraria/ButchersChainsaw+Terraria/FragmentSolar+CalamityMod/EssenceofSunlight"
       },
       "Terraria/SolarPlatform": {
         "stage": "lunatic-cultist",
@@ -55358,38 +55853,6 @@
         "stage": "yharon",
         "via": "recipe:Terraria/Zenith+Terraria/IronBar"
       },
-      "CalamityMod/ExoPrism": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/PhotonRipper": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/ExoThrone": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/DraedonMask": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/ThanatosMask": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/AresMask": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/ArtemisMask": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/ApolloMask": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
       "CalamityMod/ThanatosTrophy": {
         "stage": "exo-mechs",
         "via": "npc:CalamityMod/AresBody"
@@ -55417,6 +55880,38 @@
       "CalamityMod/DraedonBag": {
         "stage": "exo-mechs",
         "via": "npc:CalamityMod/AresBody"
+      },
+      "CalamityMod/PhotonRipper": {
+        "stage": "exo-mechs",
+        "via": "manifest"
+      },
+      "CalamityMod/ExoPrism": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
+      },
+      "CalamityMod/AresMask": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
+      },
+      "CalamityMod/ThanatosMask": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
+      },
+      "CalamityMod/ArtemisMask": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
+      },
+      "CalamityMod/ApolloMask": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
+      },
+      "CalamityMod/ExoThrone": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
+      },
+      "CalamityMod/DraedonMask": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
       },
       "CalamityMod/ExoDye": {
         "stage": "exo-mechs",
@@ -55740,14 +56235,6 @@
         ]
       },
       {
-        "id": "Terraria/PowerGlove",
-        "wikiStage": "pre-mech",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Power Glove"
-        ]
-      },
-      {
         "id": "Terraria/SharpeningStation",
         "wikiStage": "pre-mech",
         "reason": "recommendation has no proven availability",
@@ -55810,14 +56297,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "CalamityMod/InfernaCutter"
-        ]
-      },
-      {
-        "id": "Terraria/PowerGlove",
-        "wikiStage": "post-mech1",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Power Glove"
         ]
       },
       {
@@ -56151,14 +56630,6 @@
         ]
       },
       {
-        "id": "Terraria/CelestialShell",
-        "wikiStage": "post-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Celestial Shell"
-        ]
-      },
-      {
         "id": "Terraria/SharpeningStation",
         "wikiStage": "pre-lunar",
         "reason": "recommendation has no proven availability",
@@ -56220,14 +56691,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Rod of Discord"
-        ]
-      },
-      {
-        "id": "Terraria/CelestialShell",
-        "wikiStage": "pre-lunar",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Celestial Shell"
         ]
       },
       {
@@ -56303,27 +56766,11 @@
         ]
       },
       {
-        "id": "Terraria/CelestialShell",
-        "wikiStage": "pre-moonlord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Celestial Shell"
-        ]
-      },
-      {
         "id": "Terraria/BetsyWings",
         "wikiStage": "pre-moonlord",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Betsy's Wings"
-        ]
-      },
-      {
-        "id": "Terraria/CelestialShell",
-        "wikiStage": "pre-provi",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Celestial Shell"
         ]
       },
       {
@@ -59440,16 +59887,6 @@
         "effectiveStageId": "eye-of-cthulhu"
       },
       {
-        "source": "Terraria/GoblinWarrior",
-        "observedStageId": "start",
-        "effectiveStageId": "eye-of-cthulhu"
-      },
-      {
-        "source": "Terraria/GoblinSorcerer",
-        "observedStageId": "start",
-        "effectiveStageId": "eye-of-cthulhu"
-      },
-      {
         "source": "Terraria/DungeonGuardian",
         "observedStageId": "start",
         "effectiveStageId": "skeletron"
@@ -59465,9 +59902,24 @@
         "effectiveStageId": "plantera"
       },
       {
-        "source": "Terraria/SnowBalla",
-        "observedStageId": "wall-of-flesh",
+        "source": "Terraria/Vampire",
+        "observedStageId": "destroyer",
         "effectiveStageId": "plantera"
+      },
+      {
+        "source": "Terraria/Frankenstein",
+        "observedStageId": "destroyer",
+        "effectiveStageId": "skeletron-prime"
+      },
+      {
+        "source": "Terraria/SwampThing",
+        "observedStageId": "destroyer",
+        "effectiveStageId": "skeletron-prime"
+      },
+      {
+        "source": "Terraria/FlyingSnake",
+        "observedStageId": "start",
+        "effectiveStageId": "golem"
       },
       {
         "source": "Terraria/ZombieMushroom",
@@ -59495,6 +59947,26 @@
         "effectiveStageId": "wall-of-flesh"
       },
       {
+        "source": "Terraria/CreatureFromTheDeep",
+        "observedStageId": "destroyer",
+        "effectiveStageId": "skeletron-prime"
+      },
+      {
+        "source": "Terraria/DeadlySphere",
+        "observedStageId": "plantera",
+        "effectiveStageId": "golem"
+      },
+      {
+        "source": "Terraria/BloodZombie",
+        "observedStageId": "start",
+        "effectiveStageId": "eye-of-cthulhu"
+      },
+      {
+        "source": "Terraria/Drippler",
+        "observedStageId": "start",
+        "effectiveStageId": "eye-of-cthulhu"
+      },
+      {
         "source": "Terraria/DD2Betsy",
         "observedStageId": "golem",
         "effectiveStageId": "betsy"
@@ -59510,6 +59982,16 @@
         "effectiveStageId": "betsy"
       },
       {
+        "source": "Terraria/SporeBat",
+        "observedStageId": "start",
+        "effectiveStageId": "wall-of-flesh"
+      },
+      {
+        "source": "Terraria/SporeSkeleton",
+        "observedStageId": "start",
+        "effectiveStageId": "wall-of-flesh"
+      },
+      {
         "source": "CalamityMod/BoxJellyfish",
         "observedStageId": "start",
         "effectiveStageId": "skeletron"
@@ -59518,6 +60000,11 @@
         "source": "CalamityMod/RenegadeWarlock",
         "observedStageId": "wall-of-flesh",
         "effectiveStageId": "providence"
+      },
+      {
+        "source": "CalamityMod/MantisShrimp",
+        "observedStageId": "wall-of-flesh",
+        "effectiveStageId": "plantera"
       }
     ],
     "staleRules": [],
@@ -59548,6 +60035,14 @@
         "sourceKind": "drop",
         "items": [
           "Terraria/Bone"
+        ]
+      },
+      {
+        "source": "Terraria/AngryTrapper",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/CoffeeCup",
+          "Terraria/Uzi"
         ]
       },
       {
@@ -59589,6 +60084,13 @@
         ]
       },
       {
+        "source": "Terraria/ArmedZombieSwamp",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/ZombieArm"
+        ]
+      },
+      {
         "source": "Terraria/ArmedZombieTwiggy",
         "sourceKind": "drop",
         "items": [
@@ -59614,6 +60116,31 @@
         "sourceKind": "drop",
         "items": [
           "Terraria/ZombieArm"
+        ]
+      },
+      {
+        "source": "Terraria/BlackRecluse",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/FriedEgg",
+          "Terraria/PoisonStaff"
+        ]
+      },
+      {
+        "source": "Terraria/BloodCrawler",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/TentacleSpike"
+        ]
+      },
+      {
+        "source": "Terraria/BlueArmoredBones",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/Katana",
+          "Terraria/Keybrand",
+          "Terraria/MaceWhip",
+          "Terraria/MagnetSphere"
         ]
       },
       {
@@ -59662,6 +60189,14 @@
         ]
       },
       {
+        "source": "Terraria/BoneSerpentHead",
+        "sourceKind": "drop",
+        "items": [
+          "CalamityMod/OldLordClaymore",
+          "Terraria/Hotdog"
+        ]
+      },
+      {
         "source": "Terraria/BoneThrowingSkeleton",
         "sourceKind": "drop",
         "items": [
@@ -59694,13 +60229,12 @@
         ]
       },
       {
-        "source": "Terraria/BrainScrambler",
+        "source": "Terraria/CaveBat",
         "sourceKind": "drop",
         "items": [
-          "CalamityMod/DoomsdayDevice",
-          "CalamityMod/NullificationPistol",
-          "CalamityMod/Wingman",
-          "Terraria/ChargedBlasterCannon"
+          "Terraria/BatBat",
+          "Terraria/ChainKnife",
+          "Terraria/KOCannon"
         ]
       },
       {
@@ -59708,6 +60242,22 @@
         "sourceKind": "drop",
         "items": [
           "Terraria/ApplePie"
+        ]
+      },
+      {
+        "source": "Terraria/Clinger",
+        "sourceKind": "drop",
+        "items": [
+          "CalamityMod/CursedDagger"
+        ]
+      },
+      {
+        "source": "Terraria/Clown",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/Bananarang",
+          "Terraria/ChainKnife",
+          "Terraria/KOCannon"
         ]
       },
       {
@@ -59725,6 +60275,32 @@
         ]
       },
       {
+        "source": "Terraria/Crawdad",
+        "sourceKind": "drop",
+        "items": [
+          "CalamityMod/CrawCarapace",
+          "Terraria/PotatoChips",
+          "Terraria/Rally"
+        ]
+      },
+      {
+        "source": "Terraria/Crawdad2",
+        "sourceKind": "drop",
+        "items": [
+          "CalamityMod/CrawCarapace",
+          "Terraria/PotatoChips",
+          "Terraria/Rally"
+        ]
+      },
+      {
+        "source": "Terraria/Crimera",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/Burger",
+          "Terraria/TentacleSpike"
+        ]
+      },
+      {
         "source": "Terraria/Crimslime",
         "sourceKind": "drop",
         "items": [
@@ -59737,6 +60313,23 @@
         "items": [
           "Terraria/Bone",
           "Terraria/CreamSoda"
+        ]
+      },
+      {
+        "source": "Terraria/DarkCaster",
+        "sourceKind": "drop",
+        "items": [
+          "CalamityMod/ShinobiBlade",
+          "CalamityMod/StaffOfNecrosteocytes",
+          "Terraria/Bone"
+        ]
+      },
+      {
+        "source": "Terraria/Demon",
+        "sourceKind": "drop",
+        "items": [
+          "CalamityMod/BladecrestOathsword",
+          "Terraria/DemonScythe"
         ]
       },
       {
@@ -59761,6 +60354,13 @@
         ]
       },
       {
+        "source": "Terraria/DevourerHead",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/TentacleSpike"
+        ]
+      },
+      {
         "source": "Terraria/DiabolistRed",
         "sourceKind": "drop",
         "items": [
@@ -59775,10 +60375,39 @@
         ]
       },
       {
+        "source": "Terraria/DrManFly",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/ToxicFlask"
+        ]
+      },
+      {
+        "source": "Terraria/EaterofSouls",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/Burger",
+          "Terraria/TentacleSpike"
+        ]
+      },
+      {
+        "source": "Terraria/FaceMonster",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/TentacleSpike"
+        ]
+      },
+      {
         "source": "Terraria/FemaleZombie",
         "sourceKind": "drop",
         "items": [
           "Terraria/ZombieArm"
+        ]
+      },
+      {
+        "source": "Terraria/FireImp",
+        "sourceKind": "drop",
+        "items": [
+          "CalamityMod/AshenStalactite"
         ]
       },
       {
@@ -59854,17 +60483,6 @@
         ]
       },
       {
-        "source": "Terraria/GoblinSummoner",
-        "sourceKind": "drop",
-        "items": [
-          "CalamityMod/BurningStrife",
-          "CalamityMod/TheFirstShadowflame",
-          "Terraria/ShadowFlameBow",
-          "Terraria/ShadowFlameHexDoll",
-          "Terraria/ShadowFlameKnife"
-        ]
-      },
-      {
         "source": "Terraria/GraniteFlyer",
         "sourceKind": "drop",
         "items": [
@@ -59879,13 +60497,12 @@
         ]
       },
       {
-        "source": "Terraria/GrayGrunt",
+        "source": "Terraria/GreekSkeleton",
         "sourceKind": "drop",
         "items": [
-          "CalamityMod/DoomsdayDevice",
-          "CalamityMod/NullificationPistol",
-          "CalamityMod/Wingman",
-          "Terraria/ChargedBlasterCannon"
+          "Terraria/Gladius",
+          "Terraria/Javelin",
+          "Terraria/Pizza"
         ]
       },
       {
@@ -59960,6 +60577,14 @@
         ]
       },
       {
+        "source": "Terraria/IceElemental",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/FrostStaff",
+          "Terraria/IceSickle"
+        ]
+      },
+      {
         "source": "Terraria/IceSlime",
         "sourceKind": "drop",
         "items": [
@@ -59972,6 +60597,22 @@
         "source": "Terraria/IceTortoise",
         "sourceKind": "drop",
         "items": [
+          "Terraria/IceSickle",
+          "Terraria/Milkshake"
+        ]
+      },
+      {
+        "source": "Terraria/IchorSticker",
+        "sourceKind": "drop",
+        "items": [
+          "CalamityMod/IchorSpear"
+        ]
+      },
+      {
+        "source": "Terraria/IcyMerman",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/FrostStaff",
           "Terraria/IceSickle",
           "Terraria/Milkshake"
         ]
@@ -59991,6 +60632,13 @@
           "Terraria/ApplePie",
           "Terraria/Gel",
           "Terraria/SlimeStaff"
+        ]
+      },
+      {
+        "source": "Terraria/JungleBat",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/BatBat"
         ]
       },
       {
@@ -60016,11 +60664,11 @@
         ]
       },
       {
-        "source": "Terraria/MartianOfficer",
+        "source": "Terraria/Medusa",
         "sourceKind": "drop",
         "items": [
-          "CalamityMod/DoomsdayDevice",
-          "Terraria/ChargedBlasterCannon"
+          "Terraria/MedusaHead",
+          "Terraria/Pizza"
         ]
       },
       {
@@ -60046,6 +60694,13 @@
         "items": [
           "Terraria/Gel",
           "Terraria/SlimeStaff"
+        ]
+      },
+      {
+        "source": "Terraria/Nailhead",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/NailGun"
         ]
       },
       {
@@ -60105,6 +60760,13 @@
         ]
       },
       {
+        "source": "Terraria/Psycho",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/PsychoKnife"
+        ]
+      },
+      {
         "source": "Terraria/QueenSlimeMinionBlue",
         "sourceKind": "drop",
         "items": [
@@ -60143,13 +60805,33 @@
         ]
       },
       {
-        "source": "Terraria/RayGunner",
+        "source": "Terraria/RustyArmoredBonesAxe",
         "sourceKind": "drop",
         "items": [
-          "CalamityMod/DoomsdayDevice",
-          "CalamityMod/NullificationPistol",
-          "CalamityMod/Wingman",
-          "Terraria/ChargedBlasterCannon"
+          "Terraria/Katana",
+          "Terraria/Keybrand",
+          "Terraria/MaceWhip",
+          "Terraria/MagnetSphere"
+        ]
+      },
+      {
+        "source": "Terraria/RustyArmoredBonesFlail",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/Katana",
+          "Terraria/Keybrand",
+          "Terraria/MaceWhip",
+          "Terraria/MagnetSphere"
+        ]
+      },
+      {
+        "source": "Terraria/RustyArmoredBonesSword",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/Katana",
+          "Terraria/Keybrand",
+          "Terraria/MaceWhip",
+          "Terraria/MagnetSphere"
         ]
       },
       {
@@ -60271,13 +60953,11 @@
         ]
       },
       {
-        "source": "Terraria/ScutlixRider",
+        "source": "Terraria/Skeleton",
         "sourceKind": "drop",
         "items": [
-          "CalamityMod/DoomsdayDevice",
-          "CalamityMod/NullificationPistol",
-          "CalamityMod/Wingman",
-          "Terraria/ChargedBlasterCannon"
+          "Terraria/BoneSword",
+          "Terraria/MilkCarton"
         ]
       },
       {
@@ -60286,6 +60966,13 @@
         "items": [
           "Terraria/BoneSword",
           "Terraria/MilkCarton"
+        ]
+      },
+      {
+        "source": "Terraria/SkeletonArcher",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/Marrow"
         ]
       },
       {
@@ -60464,6 +61151,14 @@
         "sourceKind": "drop",
         "items": [
           "Terraria/Steak"
+        ]
+      },
+      {
+        "source": "Terraria/VoodooDemon",
+        "sourceKind": "drop",
+        "items": [
+          "CalamityMod/BladecrestOathsword",
+          "Terraria/DemonScythe"
         ]
       },
       {
@@ -60665,6 +61360,6 @@
         ]
       }
     },
-    "unassignedVanillaNpcSourceCount": 124
+    "unassignedVanillaNpcSourceCount": 151
   }
 }

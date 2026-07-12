@@ -135,6 +135,9 @@ assert(npcSpawnResolverSource.includes("NPC.SpawnNPC()"),
 assert(npcSpawnResolverSource.includes("DefaultSpawnRateField?.SetValue(null, 1)")
   && npcSpawnResolverSource.includes("FocusedFullSpawnSeedCount"),
 "Vanilla spawn probing must bypass the spawn-timer roll and sample the real selector");
+assert(npcSpawnResolverSource.includes("Array.Empty<GlobalNPC>()")
+  && npcSpawnResolverSource.includes("previousEditSpawnRateHooks"),
+"Full vanilla spawn probing must suppress and restore frequency-only GlobalNPC hooks");
 assert(npcSpawnResolverSource.includes("class SpawnArena")
   && npcSpawnResolverSource.includes("spawnArena.Restore()"),
 "Vanilla spawn probing must provide and restore valid temporary tile geometry");
@@ -156,6 +159,10 @@ assert(npcSpawnResolverSource.includes("static () => false"),
   "Unstructured mod event flags must remain unknown instead of inventing an early stage");
 assert(npcSpawnResolverSource.includes("JournalRuntimeProgressionScenarios"),
   "Enemy availability does not use the shared progression scenarios");
+assert(npcSpawnResolverSource.includes("var player = CreateProbePlayer()")
+  && npcSpawnResolverSource.includes("PlayerLoaderSetupPlayerMethod?.Invoke")
+  && npcSpawnResolverSource.includes("player.ResetEffects()"),
+"Enemy availability must isolate spawn-rate hooks from the live player's ModPlayer effects");
 assert(npcSpawnResolverSource.includes(
   "catalog.Environments[context.EnvironmentIndex].ModBiome is null"),
 "Synthetic ModBiome flags must not be treated as proof of progression stage");
@@ -165,6 +172,9 @@ assert(npcSpawnResolverSource.includes("RecordFailure(catalog")
 assert(npcSpawnResolverSource.includes("PositiveSpawnChanceTypes")
   && npcSpawnResolverSource.includes("ChosenSpawnTypes")
   && npcSpawnResolverSource.includes("FullSpawnTypes")
+  && npcSpawnResolverSource.includes("FullSpawnAttemptCount")
+  && npcSpawnResolverSource.includes("FullSpawnSuccessfulAttemptCount")
+  && npcSpawnResolverSource.includes("FullSpawnContextDetails")
   && npcSpawnResolverSource.includes("SpawnRateBlockedContextCount"),
 "NPC probe stages must expose measurable runtime diagnostics");
 assert(npcSpawnResolverSource.indexOf("ObserveExactSpawnPool(catalog, spawnInfo, context);")
@@ -208,6 +218,14 @@ assert(snapshotExporterSource.includes("JournalSnapshotNpcAvailabilityCollector.
 assert(snapshotNpcDropCollectorSource.includes("includeGlobalDrops: false")
   && snapshotNpcDropCollectorSource.includes("\"Terraria/GlobalNPCDrops\""),
 "Global NPC drops must be exported once instead of being duplicated for every NPC");
+const itemCollectionIndex = snapshotExporterSource.indexOf(
+  "var items = itemIds.Select(CreateItem).ToList()");
+const npcDropCollectionIndex = snapshotExporterSource.indexOf(
+  "JournalSnapshotNpcDropCollector.Collect(");
+assert(itemCollectionIndex >= 0
+    && npcDropCollectionIndex >= 0
+    && itemCollectionIndex < npcDropCollectionIndex,
+"Item classification probes must run before drop reporting because mod drop rules can observe probe state");
 assert(snapshotExporterSource.includes("public int Version { get; set; } = 4"),
   "The snapshot schema version was not advanced for runtime availability");
 assert(snapshotShopCollectorSource.includes("TryGetShopStage"),
