@@ -46,10 +46,14 @@ internal static class JournalFishingSourceResolver
 
     private sealed record ProbeProgression(
         string DisplayName,
+        ProbeProgressionVariant[] Variants);
+
+    private sealed record ProbeProgressionVariant(
         bool Hardmode,
         bool DownedSkeletron,
         bool CombatBookUsed,
-        bool UnlockedSlimeRed);
+        bool UnlockedSlimeRed,
+        HashSet<string> ConditionKeys);
 
     private sealed record ProbeWorld(
         bool Hardmode = false,
@@ -79,7 +83,8 @@ internal static class JournalFishingSourceResolver
         int Depth,
         int WorldIndex,
         int EquipmentIndex,
-        int ProgressionIndex);
+        int ProgressionIndex,
+        int ProgressionVariantIndex = 0);
 
     private readonly record struct PlayerState(
         Vector2 Position,
@@ -260,7 +265,9 @@ internal static class JournalFishingSourceResolver
         var equipment = CreateEquipment();
         using var progression = new JournalRuntimeProgressionScenarios();
         var progressionScenarios = progression.StageNames
-            .Select(static name => new ProbeProgression(name, false, false, false, false))
+            .Select(static name => new ProbeProgression(
+                name,
+                [new ProbeProgressionVariant(false, false, false, false, [])]))
             .ToArray();
         var catalog = new FishingCatalog([], [], environments, equipment, progressionScenarios);
         if (pipeline is null || player is null)
@@ -285,15 +292,22 @@ internal static class JournalFishingSourceResolver
             progressionScenarios = progression.StageNames
                 .Select((name, index) =>
                 {
-                    progression.Reset();
-                    ApplyWorld(new ProbeWorld());
-                    progression.Apply(index);
                     return new ProbeProgression(
                         name,
-                        Main.hardMode,
-                        NPC.downedBoss3,
-                        NPC.combatBookWasUsed,
-                        NPC.unlockedSlimeRedSpawn);
+                        Enumerable.Range(0, progression.GetVariantCount(index))
+                            .Select(variantIndex =>
+                            {
+                                progression.Reset();
+                                ApplyWorld(new ProbeWorld());
+                                progression.Apply(index, variantIndex);
+                                return new ProbeProgressionVariant(
+                                    Main.hardMode,
+                                    NPC.downedBoss3,
+                                    NPC.combatBookWasUsed,
+                                    NPC.unlockedSlimeRedSpawn,
+                                    progression.GetVariantConditionKeys(index, variantIndex));
+                            })
+                            .ToArray());
                 })
                 .ToArray();
             catalog = catalog with { Progression = progressionScenarios };
@@ -307,7 +321,7 @@ internal static class JournalFishingSourceResolver
             {
                 progression.Reset();
                 ApplyWorld(Worlds[context.WorldIndex]);
-                progression.Apply(context.ProgressionIndex);
+                progression.Apply(context.ProgressionIndex, context.ProgressionVariantIndex);
                 ApplyEnvironment(player, environments[context.EnvironmentIndex]);
                 ProbeContextDrops(
                     catalog,
@@ -452,9 +466,14 @@ internal static class JournalFishingSourceResolver
 
         void Add(ProbeContext context, int randomSeedCount)
         {
-            if (!contexts.TryGetValue(context, out var existing) || randomSeedCount > existing)
+            var variants = catalog.Progression[context.ProgressionIndex].Variants;
+            for (var variantIndex = 0; variantIndex < variants.Length; variantIndex++)
             {
-                contexts[context] = randomSeedCount;
+                var variantContext = context with { ProgressionVariantIndex = variantIndex };
+                if (!contexts.TryGetValue(variantContext, out var existing) || randomSeedCount > existing)
+                {
+                    contexts[variantContext] = randomSeedCount;
+                }
             }
         }
     }
@@ -1003,7 +1022,17 @@ internal static class JournalFishingSourceResolver
             return world;
         }
 
-        var progression = catalog.Progression[progressionIndex];
+        var origin = catalog.Progression[context.ProgressionIndex]
+            .Variants[context.ProgressionVariantIndex];
+        var progression = catalog.Progression[progressionIndex].Variants
+            .FirstOrDefault(variant =>
+                IsVariantContinuation(origin, variant)
+                && SatisfiesWorld(world, variant));
+        if (progression is null)
+        {
+            return world;
+        }
+
         return world with
         {
             Hardmode = world.Hardmode || progression.Hardmode,
@@ -1018,19 +1047,34 @@ internal static class JournalFishingSourceResolver
         ProbeContext context)
     {
         var world = Worlds[context.WorldIndex];
+        var origin = catalog.Progression[context.ProgressionIndex]
+            .Variants[context.ProgressionVariantIndex];
         for (var index = context.ProgressionIndex; index < catalog.Progression.Count; index++)
         {
-            var progression = catalog.Progression[index];
-            if ((!world.Hardmode || progression.Hardmode)
-                && (!world.DownedSkeletron || progression.DownedSkeletron)
-                && (!world.CombatBookUsed || progression.CombatBookUsed)
-                && (!world.UnlockedSlimeRed || progression.UnlockedSlimeRed))
+            if (catalog.Progression[index].Variants.Any(variant =>
+                    IsVariantContinuation(origin, variant)
+                    && SatisfiesWorld(world, variant)))
             {
                 return index;
             }
         }
 
         return -1;
+    }
+
+    private static bool IsVariantContinuation(
+        ProbeProgressionVariant earlier,
+        ProbeProgressionVariant current)
+    {
+        return earlier.ConditionKeys.IsSubsetOf(current.ConditionKeys);
+    }
+
+    private static bool SatisfiesWorld(ProbeWorld world, ProbeProgressionVariant progression)
+    {
+        return (!world.Hardmode || progression.Hardmode)
+            && (!world.DownedSkeletron || progression.DownedSkeletron)
+            && (!world.CombatBookUsed || progression.CombatBookUsed)
+            && (!world.UnlockedSlimeRed || progression.UnlockedSlimeRed);
     }
 
     private static int GetEvidenceProgressionIndex(

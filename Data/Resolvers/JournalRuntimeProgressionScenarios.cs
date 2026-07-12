@@ -10,7 +10,9 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
 {
     private static JournalProfile? _profileOverride;
 
-    private readonly IReadOnlyList<JournalProfileStageDocument> _stages;
+    private readonly JournalProfileStageDocument[] _stages;
+    private readonly JournalUnlockConditionDocument[][][] _stageVariants;
+    private readonly HashSet<string>[][] _stageVariantKeys;
     private readonly Dictionary<string, BooleanFlagAccessor> _accessors;
     private readonly Dictionary<string, NpcKillCountAccessor> _npcKillCounts;
 
@@ -18,11 +20,19 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
     {
         var profile = CurrentProfile;
         _stages = profile is not null
-            ? profile.Stages
+            ? profile.Stages.ToArray()
             : [];
+        _stageVariants = BuildStageVariants(_stages);
+        _stageVariantKeys = _stageVariants
+            .Select(stage => stage
+                .Select(variant => variant
+                    .Select(GetConditionKey)
+                    .ToHashSet(StringComparer.OrdinalIgnoreCase))
+                .ToArray())
+            .ToArray();
         _accessors = BuildAccessors(_stages, profile);
         _npcKillCounts = BuildNpcKillCountAccessors(_stages);
-        StageNames = _stages.Count == 0
+        StageNames = _stages.Length == 0
             ? [string.Empty]
             : _stages.Select(stage => stage.Name.Resolve()).ToArray();
     }
@@ -44,7 +54,7 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
     public bool ChangesVanillaProgression(int stageIndex)
     {
         return stageIndex >= 0
-            && stageIndex < _stages.Count
+            && stageIndex < _stages.Length
             && EnumerateConditions(_stages[stageIndex].Unlock).Any(static condition =>
                 string.Equals(
                     condition.Type.Trim(),
@@ -65,11 +75,69 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
         }
     }
 
-    public void Apply(int stageIndex)
+    public int GetVariantCount(int stageIndex)
     {
-        for (var index = 0; index <= stageIndex && index < _stages.Count; index++)
+        return stageIndex < 0
+            ? 1
+            : _stageVariants[Math.Min(stageIndex, _stageVariants.Length - 1)].Length;
+    }
+
+    public HashSet<string> GetVariantConditionKeys(int stageIndex, int variantIndex)
+    {
+        if (stageIndex < 0)
         {
-            ApplyCondition(_stages[index].Unlock);
+            return [];
+        }
+
+        var effectiveStageIndex = Math.Min(stageIndex, _stageVariantKeys.Length - 1);
+        if (variantIndex < 0 || variantIndex >= _stageVariantKeys[effectiveStageIndex].Length)
+        {
+            throw new ArgumentOutOfRangeException(nameof(variantIndex));
+        }
+
+        return new HashSet<string>(
+            _stageVariantKeys[effectiveStageIndex][variantIndex],
+            StringComparer.OrdinalIgnoreCase);
+    }
+
+    public bool IsVariantContinuation(
+        int stageIndex,
+        int variantIndex,
+        int earlierStageIndex,
+        int earlierVariantIndex)
+    {
+        if (stageIndex < 0
+            || stageIndex >= _stageVariantKeys.Length
+            || variantIndex < 0
+            || variantIndex >= _stageVariantKeys[stageIndex].Length
+            || earlierStageIndex < 0
+            || earlierStageIndex >= _stageVariantKeys.Length
+            || earlierVariantIndex < 0
+            || earlierVariantIndex >= _stageVariantKeys[earlierStageIndex].Length)
+        {
+            return false;
+        }
+
+        var current = _stageVariantKeys[stageIndex][variantIndex];
+        return _stageVariantKeys[earlierStageIndex][earlierVariantIndex].All(current.Contains);
+    }
+
+    public void Apply(int stageIndex, int variantIndex)
+    {
+        if (stageIndex < 0)
+        {
+            return;
+        }
+
+        var variants = _stageVariants[Math.Min(stageIndex, _stageVariants.Length - 1)];
+        if (variantIndex < 0 || variantIndex >= variants.Length)
+        {
+            throw new ArgumentOutOfRangeException(nameof(variantIndex));
+        }
+
+        foreach (var condition in variants[variantIndex])
+        {
+            ApplyCondition(condition);
         }
     }
 
@@ -88,11 +156,6 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
 
     private void ApplyCondition(JournalUnlockConditionDocument condition)
     {
-        foreach (var child in condition.Conditions)
-        {
-            ApplyCondition(child);
-        }
-
         var type = condition.Type.Trim().ToLowerInvariant();
         switch (type)
         {
@@ -120,6 +183,82 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
                 npcAccessor.Set(true);
                 break;
         }
+    }
+
+    private static JournalUnlockConditionDocument[][][] BuildStageVariants(
+        JournalProfileStageDocument[] stages)
+    {
+        if (stages.Length == 0)
+        {
+            return [[[]]];
+        }
+
+        var result = new JournalUnlockConditionDocument[stages.Length][][];
+        JournalUnlockConditionDocument[][] accumulated = [[]];
+        for (var index = 0; index < stages.Length; index++)
+        {
+            accumulated = CombineVariants(
+                accumulated,
+                BuildConditionVariants(stages[index].Unlock));
+            result[index] = accumulated;
+        }
+
+        return result;
+    }
+
+    private static JournalUnlockConditionDocument[][] BuildConditionVariants(
+        JournalUnlockConditionDocument condition)
+    {
+        if (condition.Conditions.Count == 0)
+        {
+            return [[condition]];
+        }
+
+        var childVariants = condition.Conditions
+            .Select(BuildConditionVariants)
+            .ToArray();
+        if (string.Equals(condition.Mode, "any", StringComparison.OrdinalIgnoreCase))
+        {
+            return DeduplicateVariants(childVariants.SelectMany(static variants => variants));
+        }
+
+        JournalUnlockConditionDocument[][] combined = [[]];
+        foreach (var variants in childVariants)
+        {
+            combined = CombineVariants(combined, variants);
+        }
+
+        return combined;
+    }
+
+    private static JournalUnlockConditionDocument[][] CombineVariants(
+        JournalUnlockConditionDocument[][] left,
+        JournalUnlockConditionDocument[][] right)
+    {
+        return DeduplicateVariants(left.SelectMany(
+            leftVariant => right.Select(
+                rightVariant => leftVariant.Concat(rightVariant).ToArray())));
+    }
+
+    private static JournalUnlockConditionDocument[][] DeduplicateVariants(
+        IEnumerable<JournalUnlockConditionDocument[]> variants)
+    {
+        var result = new Dictionary<string, JournalUnlockConditionDocument[]>(StringComparer.OrdinalIgnoreCase);
+        foreach (var variant in variants)
+        {
+            var normalized = variant
+                .DistinctBy(GetConditionKey, StringComparer.OrdinalIgnoreCase)
+                .OrderBy(GetConditionKey, StringComparer.OrdinalIgnoreCase)
+                .ToArray();
+            result.TryAdd(string.Join('\n', normalized.Select(GetConditionKey)), normalized);
+        }
+
+        return result.Values.ToArray();
+    }
+
+    private static string GetConditionKey(JournalUnlockConditionDocument condition)
+    {
+        return $"{condition.Type}\u001f{condition.Mod}\u001f{condition.Key}\u001f{condition.Npc}";
     }
 
     private static Dictionary<string, NpcKillCountAccessor> BuildNpcKillCountAccessors(

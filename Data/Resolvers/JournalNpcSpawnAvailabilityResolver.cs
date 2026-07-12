@@ -361,45 +361,50 @@ internal static class JournalNpcSpawnAvailabilityResolver
             Main.netMode = NetmodeID.SinglePlayer;
             foreach (var context in CreateContexts(catalog))
             {
-                try
+                for (var variantIndex = 0;
+                     variantIndex < progression.GetVariantCount(context.StageIndex);
+                     variantIndex++)
                 {
-                    progression.Reset();
-                    progression.Apply(context.StageIndex);
-                    ApplyContext(catalog, player, context);
-                    if (!(catalog.Events[context.EventIndex].IsAvailable?.Invoke() ?? true))
+                    try
                     {
-                        continue;
+                        progression.Reset();
+                        progression.Apply(context.StageIndex, variantIndex);
+                        ApplyContext(catalog, player, context);
+                        if (!(catalog.Events[context.EventIndex].IsAvailable?.Invoke() ?? true))
+                        {
+                            continue;
+                        }
+                        var spawnInfo = CreateSpawnInfo(catalog, player, context);
+                        catalog.Counters.ContextCount++;
+
+                        // SpawnChance/EditSpawnPool describe which NPC is valid for this context.
+                        // EditSpawnRate only controls whether the shared spawn cycle runs at all and
+                        // must not prevent the availability probe from reaching those per-NPC APIs.
+                        ObserveExactSpawnPool(catalog, spawnInfo, context);
+                        ObserveChosenSpawn(catalog, spawnInfo, context);
+                        ObserveDd2WaveEnemies(catalog, context);
+
+                        var spawnRate = 600;
+                        var maxSpawns = 5;
+                        NPCLoader.EditSpawnRate(player, ref spawnRate, ref maxSpawns);
+
+                        if (spawnRate <= 0 || maxSpawns <= 0)
+                        {
+                            catalog.Counters.SpawnRateBlockedContextCount++;
+                            continue;
+                        }
+
+                        if (!ShouldRunFullSpawn(context, catalog)) continue;
+                        spawnArena.Prepare(
+                            catalog.Environments[context.EnvironmentIndex],
+                            context.Depth,
+                            context.EnvironmentIndex == 1);
+                        ObserveFullSpawn(catalog, player, context);
                     }
-                    var spawnInfo = CreateSpawnInfo(catalog, player, context);
-                    catalog.Counters.ContextCount++;
-
-                    // SpawnChance/EditSpawnPool describe which NPC is valid for this context.
-                    // EditSpawnRate only controls whether the shared spawn cycle runs at all and
-                    // must not prevent the availability probe from reaching those per-NPC APIs.
-                    ObserveExactSpawnPool(catalog, spawnInfo, context);
-                    ObserveChosenSpawn(catalog, spawnInfo, context);
-                    ObserveDd2WaveEnemies(catalog, context);
-
-                    var spawnRate = 600;
-                    var maxSpawns = 5;
-                    NPCLoader.EditSpawnRate(player, ref spawnRate, ref maxSpawns);
-
-                    if (spawnRate <= 0 || maxSpawns <= 0)
+                    catch (Exception exception)
                     {
-                        catalog.Counters.SpawnRateBlockedContextCount++;
-                        continue;
+                        RecordFailure(catalog, "spawn scenario", exception);
                     }
-
-                    if (!ShouldRunFullSpawn(context, catalog)) continue;
-                    spawnArena.Prepare(
-                        catalog.Environments[context.EnvironmentIndex],
-                        context.Depth,
-                        context.EnvironmentIndex == 1);
-                    ObserveFullSpawn(catalog, player, context);
-                }
-                catch (Exception exception)
-                {
-                    RecordFailure(catalog, "spawn scenario", exception);
                 }
             }
         }
