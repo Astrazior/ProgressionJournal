@@ -888,7 +888,7 @@ function inferredConditionStageIndex(condition, manifest, stageIndexes) {
   if (/plantera|плантер/u.test(description)) add(planteraIndex);
   if (/golem|голем/u.test(description)) add(golemIndex);
   if (candidates.length > 0) {
-    return /or| или /u.test(description)
+    return /\bor\b| или /u.test(description)
       ? Math.min(...candidates)
       : Math.max(...candidates);
   }

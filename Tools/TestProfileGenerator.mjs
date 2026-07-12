@@ -802,4 +802,60 @@ assert(report.wikiAvailabilityCorrections.some(entry =>
   entry.id === "Test/LateDrop"
   && entry.factualStage === "late"
   && entry.recommendedStage === "start"));
+
+const compoundBossConditionSnapshot = {
+  format: "ProgressionJournalSnapshot",
+  version: 4,
+  mods: [{ name: "Test", version: "1.2.3" }],
+  items: [
+    item("Test/DisjunctiveBlade", { damageClass: "Melee", damage: 20 }),
+    item("Test/ConjunctiveBlade", { damageClass: "Melee", damage: 20 })
+  ],
+  npcs: [],
+  recipes: [],
+  drops: [
+    {
+      source: "Terraria/GlobalNPCDrops",
+      sourceType: "global",
+      item: "Test/DisjunctiveBlade",
+      conditions: [{
+        type: "Test.CompositeBossCondition",
+        description: "After defeating the Eye of Cthulhu or Skeletron"
+      }]
+    },
+    {
+      source: "Terraria/GlobalNPCDrops",
+      sourceType: "global",
+      item: "Test/ConjunctiveBlade",
+      conditions: [{
+        type: "Test.CompositeBossCondition",
+        description: "After defeating the Eye of Cthulhu and Skeletron"
+      }]
+    }
+  ],
+  shops: []
+};
+const compoundBossConditionManifest = {
+  id: "test.compound-conditions",
+  name: { "en-US": "Test", "ru-RU": "Тест" },
+  requiredMods: [{ name: "Test", version: "" }],
+  classes: [
+    { id: "melee", name: { "en-US": "Melee", "ru-RU": "Воин" }, damageClassNames: ["Melee"] }
+  ],
+  stages: [
+    { id: "start", name: { "en-US": "Start", "ru-RU": "Начало" } },
+    { id: "eye-of-cthulhu", name: { "en-US": "Eye of Cthulhu", "ru-RU": "Глаз Ктулху" } },
+    { id: "skeletron", name: { "en-US": "Skeletron", "ru-RU": "Скелетрон" } }
+  ]
+};
+const compoundBossConditionResult = generateProfile(
+  compoundBossConditionSnapshot,
+  compoundBossConditionManifest);
+assert.equal(
+  compoundBossConditionResult.report.paths["Test/DisjunctiveBlade"]?.stage,
+  "eye-of-cthulhu");
+assert.equal(
+  compoundBossConditionResult.report.paths["Test/ConjunctiveBlade"]?.stage,
+  "skeletron");
+
 console.log("Profile generator tests: OK");
