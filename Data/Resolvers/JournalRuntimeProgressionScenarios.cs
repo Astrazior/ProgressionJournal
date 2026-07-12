@@ -1,6 +1,7 @@
 using System.Reflection;
 using Terraria;
 using Terraria.GameContent.Events;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ProgressionJournal.Data.Resolvers;
@@ -11,6 +12,7 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
 
     private readonly IReadOnlyList<JournalProfileStageDocument> _stages;
     private readonly Dictionary<string, BooleanFlagAccessor> _accessors;
+    private readonly Dictionary<string, NpcKillCountAccessor> _npcKillCounts;
 
     public JournalRuntimeProgressionScenarios()
     {
@@ -19,6 +21,7 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
             ? profile.Stages
             : [];
         _accessors = BuildAccessors(_stages, profile);
+        _npcKillCounts = BuildNpcKillCountAccessors(_stages);
         StageNames = _stages.Count == 0
             ? [string.Empty]
             : _stages.Select(stage => stage.Name.Resolve()).ToArray();
@@ -55,6 +58,11 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
         {
             accessor.Set(false);
         }
+
+        foreach (var accessor in _npcKillCounts.Values)
+        {
+            accessor.Set(false);
+        }
     }
 
     public void Apply(int stageIndex)
@@ -68,6 +76,11 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
     public void Dispose()
     {
         foreach (var accessor in _accessors.Values)
+        {
+            accessor.Restore();
+        }
+
+        foreach (var accessor in _npcKillCounts.Values)
         {
             accessor.Restore();
         }
@@ -100,7 +113,58 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
                 accessor.Set(true);
                 ApplyDerivedVanillaFlags(condition.Key);
                 break;
+            case "npc"
+                when _npcKillCounts.TryGetValue(
+                    $"npc:{condition.Mod}/{condition.Npc}",
+                    out var npcAccessor):
+                npcAccessor.Set(true);
+                break;
         }
+    }
+
+    private static Dictionary<string, NpcKillCountAccessor> BuildNpcKillCountAccessors(
+        IEnumerable<JournalProfileStageDocument> stages)
+    {
+        var result = new Dictionary<string, NpcKillCountAccessor>(StringComparer.OrdinalIgnoreCase);
+        foreach (var condition in stages.SelectMany(static stage => EnumerateConditions(stage.Unlock))
+                     .Where(static condition => string.Equals(
+                         condition.Type.Trim(),
+                         "npc",
+                         StringComparison.OrdinalIgnoreCase)))
+        {
+            var key = $"npc:{condition.Mod}/{condition.Npc}";
+            if (!result.ContainsKey(key)
+                && TryCreateNpcKillCountAccessor(condition, out var accessor))
+            {
+                result[key] = accessor;
+            }
+        }
+
+        return result;
+    }
+
+    private static bool TryCreateNpcKillCountAccessor(
+        JournalUnlockConditionDocument condition,
+        out NpcKillCountAccessor accessor)
+    {
+        if (string.IsNullOrWhiteSpace(condition.Mod)
+            || string.IsNullOrWhiteSpace(condition.Npc)
+            || !ModContent.TryFind(condition.Mod, condition.Npc, out ModNPC modNpc)
+            || !ContentSamples.NpcsByNetId.TryGetValue(modNpc.Type, out var sample)
+            || !ContentSamples.NpcBestiaryCreditIdsByNpcNetIds.TryGetValue(
+                modNpc.Type,
+                out var creditId)
+            || string.IsNullOrWhiteSpace(creditId))
+        {
+            accessor = null!;
+            return false;
+        }
+
+        var kills = Main.BestiaryTracker.Kills;
+        accessor = new NpcKillCountAccessor(
+            kills.GetKillCount(sample),
+            value => kills.SetKillCountDirectly(creditId, value));
+        return true;
     }
 
     private void ApplyDerivedVanillaFlags(string key)
@@ -372,6 +436,13 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
         public void Set(bool value) => setValue(value);
 
         public void Restore() => setValue(_originalValue);
+    }
+
+    private sealed class NpcKillCountAccessor(int originalValue, Action<int> setValue)
+    {
+        public void Set(bool value) => setValue(value ? 1 : 0);
+
+        public void Restore() => setValue(originalValue);
     }
 
     private sealed class ProfileScope(JournalProfile? previous) : IDisposable

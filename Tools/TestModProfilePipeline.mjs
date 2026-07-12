@@ -179,6 +179,10 @@ assert(progressionScenarioSource.includes("\"vanilla:downedMechBossAny\"")
 assert(progressionScenarioSource.includes("AddIsolationAccessors")
   && progressionScenarioSource.includes("IsProgressionFlagName"),
 "Runtime scenarios do not isolate progression flags from the current world");
+assert(progressionScenarioSource.includes("BuildNpcKillCountAccessors")
+  && progressionScenarioSource.includes("SetKillCountDirectly")
+  && progressionScenarioSource.includes('case "npc"'),
+"Runtime scenarios do not reproduce NPC-backed progression conditions");
 const snapshotExporterSource = fs.readFileSync(
   path.join(root, "Commands", "ExportProgressionSnapshotCommand.cs"),
   "utf8");
@@ -570,6 +574,37 @@ for (const modName of expected) {
     assert(allowed.has(modOf(shop.npc)), shop.npc);
   }
 }
+
+const aaDirectory = path.join(modsRoot, "AAModClassic");
+for (const name of requiredFiles) {
+  assert(fs.existsSync(path.join(aaDirectory, name)), `AAModClassic/${name} is missing`);
+}
+const aaSupport = readJson(path.join(aaDirectory, "support.json"));
+const aaSnapshot = readJson(path.join(aaDirectory, "snapshot.json"));
+const aaRecommendations = readJson(path.join(aaDirectory, "recommendations.json"));
+const aaProfile = readJson(path.join(aaDirectory, "profile.json"));
+const aaReport = readJson(path.join(aaDirectory, "report.json"));
+assert.equal(aaSupport.targetMod, "AAModClassic");
+assert.equal(aaSnapshot.targetMod, "AAModClassic");
+assert.equal(aaSnapshot.profileId, aaSupport.id);
+assert.equal(aaProfile.id, aaSupport.id);
+assert(aaSupport.stages.length >= 40, "AAModClassic progression stages are incomplete");
+assert(aaRecommendations.entries.length >= 1000,
+  "AAModClassic class-setup recommendations are incomplete");
+assert.equal(aaReport.audit.errors.length, 0);
+assert.equal(aaReport.review.total, 0, "AAModClassic manual review is not resolved");
+assert.equal(aaReport.ready, true, "AAModClassic profile is not ready");
+assert.equal(aaReport.audit.sourceCoverage.uncovered
+  .filter(entry => entry.source.startsWith("AAModClassic/"))
+  .length, 0, "AAModClassic has uncovered mod NPC or shop sources");
+const aaStage = id => aaSupport.stages.find(stage => stage.id === id);
+assert.equal(aaStage("grips-of-chaos")?.unlock?.key, "downedGrips");
+assert.equal(aaStage("equinox-worms")?.unlock?.key, "downedEquinox");
+assert.equal(aaStage("sisters-of-discord")?.unlock?.key, "downedSisters");
+assert(aaStage("akuma")?.dropSources?.includes("AAModClassic/AkumaAHead"));
+assert(aaStage("yamata")?.dropSources?.includes("AAModClassic/YamataABody"));
+assert(aaStage("zero")?.dropSources?.includes("AAModClassic/ZeroA"));
+assert(aaStage("shen-doragon")?.dropSources?.includes("AAModClassic/ShenDoragonA"));
 
 const fargoSupport = readJson(path.join(modsRoot, "FargowiltasSouls", "support.json"));
 assert(fargoSupport.requiredMods.some(mod => mod.name === "FargowiltasSouls"));

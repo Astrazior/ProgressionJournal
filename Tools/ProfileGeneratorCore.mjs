@@ -1426,17 +1426,19 @@ function createWikiReferenceResolver(items, report) {
     const candidates = uniqueItems(modItems.filter(item =>
       item.defense > 0
       && (item.headSlot >= 0 || item.bodySlot >= 0 || item.legSlot >= 0)
-      && normalizeWikiText(item.name).startsWith(stem)));
+      && [item.englishName, item.name]
+        .some(name => wikiNameStartsWith(name, reference.displayName.replace(/armor\s*$/i, "")))));
     const heads = candidates.filter(item => item.headSlot >= 0);
     const bodies = candidates.filter(item => item.bodySlot >= 0);
     const legs = candidates.filter(item => item.legSlot >= 0);
-    const isSingleSet = heads.length > 0 && bodies.length === 1 && legs.length === 1;
+    const isSingleSet = heads.length > 0 && bodies.length > 0 && legs.length > 0
+      && [heads, bodies, legs].filter(part => part.length > 1).length <= 1;
     const isParallelSet = heads.length >= 2
       && heads.length === bodies.length
       && bodies.length === legs.length
-      && new Set(heads.map(item => normalizeWikiText(item.name))).size === 1
-      && new Set(bodies.map(item => normalizeWikiText(item.name))).size === 1
-      && new Set(legs.map(item => normalizeWikiText(item.name))).size === 1;
+      && new Set(heads.map(item => normalizeWikiText(item.englishName ?? item.name))).size === 1
+      && new Set(bodies.map(item => normalizeWikiText(item.englishName ?? item.name))).size === 1
+      && new Set(legs.map(item => normalizeWikiText(item.englishName ?? item.name))).size === 1;
     if (!isSingleSet && !isParallelSet) {
       if (candidates.length > 0) {
         report.wikiAmbiguousItems.push({
@@ -1460,16 +1462,42 @@ function createWikiReferenceResolver(items, report) {
     if (!["Weapon", "Accessory", "Support"].includes(category)) return null;
     const target = normalizeWikiText(reference.displayName);
     if (target.length < 5) return null;
+    const targets = target.endsWith("s")
+      ? [target, target.slice(0, -1)]
+      : [target];
 
     const candidates = uniqueItems(modItems.filter(item => {
-      const name = normalizeWikiText(item.name);
+      const names = [item.englishName, item.name].map(normalizeWikiText);
       return itemMatchesWikiCategory(item, category)
-        && name !== target
-        && (name.startsWith(target) || name.endsWith(target));
+        && names.every(name => !targets.includes(name))
+        && names.some(name => targets.some(candidate =>
+          name.startsWith(candidate) || name.endsWith(candidate)));
     }));
-    if (candidates.length < 2) return null;
-    return { ids: candidates.map(item => item.id), method: "variant-family" };
+    if (candidates.length === 0) return null;
+    return {
+      ids: candidates.map(item => item.id),
+      method: candidates.length === 1 ? "display-name-affix" : "variant-family"
+    };
   }
+}
+
+function wikiNameStartsWith(value, stem) {
+  const words = wikiNameWords(value);
+  const stemWords = wikiNameWords(stem);
+  return stemWords.length > 0
+    && stemWords.every((word, index) =>
+      words[index] === word || words[index] === `${word}s`);
+}
+
+function wikiNameWords(value) {
+  return (value ?? "")
+    .normalize("NFKD")
+    .toLowerCase()
+    .replace(/[’']/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .split(/\s+/g)
+    .filter(Boolean);
 }
 
 function itemMatchesWikiCategory(item, category) {

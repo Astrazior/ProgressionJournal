@@ -53,9 +53,24 @@ const snapshot = {
     item("Terraria/VanillaMeleeHelmet", { defense: 8, headSlot: 13 }),
     item("Test/EarlyWikiSword", { damageClass: "Melee", damage: 28 }),
     item("Test/RenamedBlade", { name: "Renamed Blade", damageClass: "Melee", damage: 29 }),
-    item("Test/ExampleHelmet", { name: "Example Helmet", defense: 3, headSlot: 1 }),
-    item("Test/ExampleBreastplate", { name: "Example Breastplate", defense: 4, bodySlot: 1 }),
-    item("Test/ExampleGreaves", { name: "Example Greaves", defense: 2, legSlot: 1 }),
+    item("Test/ExampleHelmet", {
+      name: "Локализованный шлем",
+      englishName: "Example Helmet",
+      defense: 3,
+      headSlot: 1
+    }),
+    item("Test/ExampleBreastplate", {
+      name: "Локализованный нагрудник",
+      englishName: "Example Breastplate",
+      defense: 4,
+      bodySlot: 1
+    }),
+    item("Test/ExampleGreaves", {
+      name: "Локализованные поножи",
+      englishName: "Example Greaves",
+      defense: 2,
+      legSlot: 1
+    }),
     item("Test/ExamplePartyHat", { name: "Example Party Hat", headSlot: 2 }),
     item("Test/BuffStation", {
       name: "Buff Station",

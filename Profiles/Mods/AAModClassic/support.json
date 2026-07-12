@@ -1,0 +1,963 @@
+{
+  "format": "ProgressionJournalModSupport",
+  "version": 1,
+  "targetMod": "AAModClassic",
+  "id": "builtin.aamodclassic",
+  "name": {
+    "en-US": "Ancients Awakened: Classic progression",
+    "ru-RU": "Прогрессия Ancients Awakened: Classic"
+  },
+  "profileVersion": "1.0.11",
+  "requiredMods": [
+    {
+      "name": "AAModClassic",
+      "version": "1.0.11"
+    }
+  ],
+  "contentMods": [
+    "AAModClassic"
+  ],
+  "classes": [
+    {
+      "id": "melee",
+      "name": {
+        "en-US": "Melee",
+        "ru-RU": "Воин"
+      },
+      "damageClassNames": [
+        "Melee"
+      ]
+    },
+    {
+      "id": "ranged",
+      "name": {
+        "en-US": "Ranged",
+        "ru-RU": "Стрелок"
+      },
+      "damageClassNames": [
+        "Ranged"
+      ]
+    },
+    {
+      "id": "magic",
+      "name": {
+        "en-US": "Magic",
+        "ru-RU": "Маг"
+      },
+      "damageClassNames": [
+        "Magic"
+      ]
+    },
+    {
+      "id": "summoner",
+      "name": {
+        "en-US": "Summoner",
+        "ru-RU": "Призыватель"
+      },
+      "damageClassNames": [
+        "Summon"
+      ]
+    }
+  ],
+  "initialStations": [
+    "Terraria/WorkBenches",
+    "Terraria/Furnaces",
+    "Terraria/Anvils",
+    "Terraria/Bottles"
+  ],
+  "stages": [
+    {
+      "id": "start",
+      "name": {
+        "en-US": "Start",
+        "ru-RU": "Начало"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Guide",
+      "unlock": {
+        "type": "always"
+      }
+    },
+    {
+      "id": "mushroom-monarch",
+      "name": {
+        "en-US": "Mushroom Monarch",
+        "ru-RU": "Грибной монарх"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "MushroomMonarch",
+      "dropSources": [
+        "AAModClassic/MushroomMonarch"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "MushroomMonarch"
+      }
+    },
+    {
+      "id": "feudal-fungus",
+      "name": {
+        "en-US": "Feudal Fungus",
+        "ru-RU": "Феодальный гриб"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "FeudalFungus",
+      "dropSources": [
+        "AAModClassic/FeudalFungus"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "FeudalFungus"
+      }
+    },
+    {
+      "id": "king-slime",
+      "name": {
+        "en-US": "King Slime",
+        "ru-RU": "Король слизней"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "KingSlime",
+      "dropSources": [
+        "Terraria/KingSlime"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedSlimeKing"
+      }
+    },
+    {
+      "id": "eye-of-cthulhu",
+      "name": {
+        "en-US": "Eye of Cthulhu",
+        "ru-RU": "Глаз Ктулху"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "EyeofCthulhu",
+      "dropSources": [
+        "Terraria/EyeofCthulhu"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedBoss1"
+      }
+    },
+    {
+      "id": "grips-of-chaos",
+      "name": {
+        "en-US": "The Grips of Chaos",
+        "ru-RU": "Хватки Хаоса"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "GripOfChaosInferno",
+      "dropSources": [
+        "AAModClassic/GripOfChaosInferno",
+        "AAModClassic/GripOfChaosMire"
+      ],
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "AAModClassic",
+        "key": "downedGrips"
+      }
+    },
+    {
+      "id": "truffle-toad",
+      "name": {
+        "en-US": "Truffle Toad",
+        "ru-RU": "Трюфельная жаба"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "TruffleToad",
+      "dropSources": [
+        "AAModClassic/TruffleToad"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "TruffleToad"
+      }
+    },
+    {
+      "id": "world-evil",
+      "name": {
+        "en-US": "Eater of Worlds / Brain of Cthulhu",
+        "ru-RU": "Пожиратель миров / Мозг Ктулху"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "EaterofWorldsHead",
+      "dropSources": [
+        "Terraria/EaterofWorldsHead",
+        "Terraria/BrainofCthulhu"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedBoss2"
+      }
+    },
+    {
+      "id": "broodmother",
+      "name": {
+        "en-US": "The Broodmother",
+        "ru-RU": "Прародительница"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "Broodmother",
+      "dropSources": [
+        "AAModClassic/Broodmother"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "Broodmother"
+      }
+    },
+    {
+      "id": "hydra",
+      "name": {
+        "en-US": "The Hydra",
+        "ru-RU": "Гидра"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "HydraBody",
+      "dropSources": [
+        "AAModClassic/HydraBody"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "HydraBody"
+      }
+    },
+    {
+      "id": "queen-bee",
+      "name": {
+        "en-US": "Queen Bee",
+        "ru-RU": "Королева пчёл"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "QueenBee",
+      "dropSources": [
+        "Terraria/QueenBee"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedQueenBee"
+      }
+    },
+    {
+      "id": "skeletron",
+      "name": {
+        "en-US": "Skeletron",
+        "ru-RU": "Скелетрон"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "SkeletronHead",
+      "dropSources": [
+        "Terraria/SkeletronHead"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedBoss3"
+      }
+    },
+    {
+      "id": "subzero-serpent",
+      "name": {
+        "en-US": "Subzero Serpent",
+        "ru-RU": "Ледяной змей"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "SubzeroSerpent_Head",
+      "dropSources": [
+        "AAModClassic/SubzeroSerpent_Head"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "SubzeroSerpent_Head"
+      }
+    },
+    {
+      "id": "desert-djinn",
+      "name": {
+        "en-US": "Desert Djinn",
+        "ru-RU": "Пустынный джинн"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "DesertDjinn",
+      "dropSources": [
+        "AAModClassic/DesertDjinn"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "DesertDjinn"
+      }
+    },
+    {
+      "id": "sagittarius",
+      "name": {
+        "en-US": "Sagittarius",
+        "ru-RU": "Стрелец"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "Sagittarius",
+      "dropSources": [
+        "AAModClassic/Sagittarius"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "Sagittarius"
+      }
+    },
+    {
+      "id": "wall-of-flesh",
+      "name": {
+        "en-US": "Wall of Flesh",
+        "ru-RU": "Стена плоти"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "WallofFlesh",
+      "dropSources": [
+        "Terraria/WallofFlesh"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "hardMode"
+      }
+    },
+    {
+      "id": "queen-slime",
+      "name": {
+        "en-US": "Queen Slime",
+        "ru-RU": "Королева слизней"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "QueenSlimeBoss",
+      "dropSources": [
+        "Terraria/QueenSlimeBoss"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedQueenSlime"
+      }
+    },
+    {
+      "id": "techno-truffle",
+      "name": {
+        "en-US": "Techno Truffle",
+        "ru-RU": "Техно-трюфель"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "TechnoTruffle",
+      "dropSources": [
+        "AAModClassic/TechnoTruffle"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "TechnoTruffle"
+      }
+    },
+    {
+      "id": "destroyer",
+      "name": {
+        "en-US": "The Destroyer",
+        "ru-RU": "Уничтожитель"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "TheDestroyer",
+      "dropSources": [
+        "Terraria/TheDestroyer"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedMechBoss1"
+      }
+    },
+    {
+      "id": "retriever",
+      "name": {
+        "en-US": "The Retriever",
+        "ru-RU": "Ретривер"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "Retriever",
+      "dropSources": [
+        "AAModClassic/Retriever"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "Retriever"
+      }
+    },
+    {
+      "id": "twins",
+      "name": {
+        "en-US": "The Twins",
+        "ru-RU": "Близнецы"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Retinazer",
+      "dropSources": [
+        "Terraria/Retinazer",
+        "Terraria/Spazmatism"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedMechBoss2"
+      }
+    },
+    {
+      "id": "orthrus-x",
+      "name": {
+        "en-US": "Orthrus X",
+        "ru-RU": "Ортрус X"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "OrthrusXBody",
+      "dropSources": [
+        "AAModClassic/OrthrusXBody"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "OrthrusXBody"
+      }
+    },
+    {
+      "id": "skeletron-prime",
+      "name": {
+        "en-US": "Skeletron Prime",
+        "ru-RU": "Скелетрон Прайм"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "SkeletronPrime",
+      "dropSources": [
+        "Terraria/SkeletronPrime"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedMechBoss3"
+      }
+    },
+    {
+      "id": "raider-ultima",
+      "name": {
+        "en-US": "Raider Ultima",
+        "ru-RU": "Рейдер Ультима"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "RaiderUltima",
+      "dropSources": [
+        "AAModClassic/RaiderUltima"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "RaiderUltima"
+      }
+    },
+    {
+      "id": "anubis-legendscribe",
+      "name": {
+        "en-US": "Anubis, Legendscribe",
+        "ru-RU": "Анубис-летописец"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "Anubis",
+      "dropSources": [
+        "AAModClassic/Anubis"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "Anubis"
+      }
+    },
+    {
+      "id": "plantera",
+      "name": {
+        "en-US": "Plantera",
+        "ru-RU": "Плантера"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Plantera",
+      "dropSources": [
+        "Terraria/Plantera"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedPlantBoss"
+      }
+    },
+    {
+      "id": "biomite-core",
+      "name": {
+        "en-US": "Biomite Core",
+        "ru-RU": "Биомитное ядро"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "BiomiteCore",
+      "dropSources": [
+        "AAModClassic/BiomiteCore"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "BiomiteCore"
+      }
+    },
+    {
+      "id": "golem",
+      "name": {
+        "en-US": "Golem",
+        "ru-RU": "Голем"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Golem",
+      "dropSources": [
+        "Terraria/Golem",
+        "Terraria/GolemHead"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedGolemBoss"
+      }
+    },
+    {
+      "id": "athena",
+      "name": {
+        "en-US": "Athena",
+        "ru-RU": "Афина"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "Athena",
+      "dropSources": [
+        "AAModClassic/Athena"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "Athena"
+      }
+    },
+    {
+      "id": "greed",
+      "name": {
+        "en-US": "Greed",
+        "ru-RU": "Алчность"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "GreedHead",
+      "dropSources": [
+        "AAModClassic/GreedHead"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "GreedHead"
+      }
+    },
+    {
+      "id": "rajah-rabbit",
+      "name": {
+        "en-US": "Rajah Rabbit",
+        "ru-RU": "Раджа Кролик"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "RajahRabbit",
+      "dropSources": [
+        "AAModClassic/RajahRabbit"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "RajahRabbit"
+      }
+    },
+    {
+      "id": "duke-fishron",
+      "name": {
+        "en-US": "Duke Fishron",
+        "ru-RU": "Герцог Рыброн"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "DukeFishron",
+      "dropSources": [
+        "Terraria/DukeFishron"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedFishron"
+      }
+    },
+    {
+      "id": "empress-of-light",
+      "name": {
+        "en-US": "Empress of Light",
+        "ru-RU": "Императрица света"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "HallowBoss",
+      "dropSources": [
+        "Terraria/HallowBoss"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedEmpressOfLight"
+      }
+    },
+    {
+      "id": "lunatic-cultist",
+      "name": {
+        "en-US": "Lunatic Cultist",
+        "ru-RU": "Лунатик-культист"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "CultistBoss",
+      "dropSources": [
+        "Terraria/CultistBoss"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedAncientCultist"
+      }
+    },
+    {
+      "id": "moon-lord",
+      "name": {
+        "en-US": "Moon Lord",
+        "ru-RU": "Лунный лорд"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "MoonLordCore",
+      "dropSources": [
+        "Terraria/MoonLordCore"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedMoonlord"
+      }
+    },
+    {
+      "id": "forsaken-anubis",
+      "name": {
+        "en-US": "Anubis, Forsaken Judge",
+        "ru-RU": "Анубис, Покинутый судья"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "AnubisA",
+      "dropSources": [
+        "AAModClassic/AnubisA"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "AnubisA"
+      }
+    },
+    {
+      "id": "olympian-athena",
+      "name": {
+        "en-US": "Olympian Athena",
+        "ru-RU": "Олимпийская Афина"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "AthenaA",
+      "dropSources": [
+        "AAModClassic/AthenaA"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "AthenaA"
+      }
+    },
+    {
+      "id": "worm-king-greed",
+      "name": {
+        "en-US": "Worm King Greed",
+        "ru-RU": "Король червей Алчность"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "GreedAHead",
+      "dropSources": [
+        "AAModClassic/GreedAHead"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "GreedAHead"
+      }
+    },
+    {
+      "id": "equinox-worms",
+      "name": {
+        "en-US": "The Equinox Worms",
+        "ru-RU": "Черви равноденствия"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "DaybringerHead",
+      "dropSources": [
+        "AAModClassic/DaybringerHead",
+        "AAModClassic/NightcrawlerHead"
+      ],
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "AAModClassic",
+        "key": "downedEquinox"
+      }
+    },
+    {
+      "id": "sisters-of-discord",
+      "name": {
+        "en-US": "The Sisters of Discord",
+        "ru-RU": "Сёстры раздора"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "Ashe",
+      "dropSources": [
+        "AAModClassic/Ashe",
+        "AAModClassic/Haruka"
+      ],
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "AAModClassic",
+        "key": "downedSisters"
+      }
+    },
+    {
+      "id": "akuma",
+      "name": {
+        "en-US": "Akuma, Draconian Demon",
+        "ru-RU": "Акума, драконий демон"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "AkumaHead",
+      "dropSources": [
+        "AAModClassic/AkumaHead",
+        "AAModClassic/AkumaAHead"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "AkumaHead"
+      }
+    },
+    {
+      "id": "yamata",
+      "name": {
+        "en-US": "Yamata, Dread Nightmare",
+        "ru-RU": "Ямата, кошмар ужаса"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "YamataBody",
+      "dropSources": [
+        "AAModClassic/YamataBody",
+        "AAModClassic/YamataABody"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "YamataBody"
+      }
+    },
+    {
+      "id": "zero",
+      "name": {
+        "en-US": "Zero",
+        "ru-RU": "Зеро"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "Zero",
+      "dropSources": [
+        "AAModClassic/Zero",
+        "AAModClassic/ZeroA"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "Zero"
+      }
+    },
+    {
+      "id": "champion-rajah-rabbit",
+      "name": {
+        "en-US": "Rajah Rabbit, Champion of the Innocent",
+        "ru-RU": "Раджа Кролик, защитник невинных"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "RajahRabbitA",
+      "dropSources": [
+        "AAModClassic/RajahRabbitA"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "RajahRabbitA"
+      }
+    },
+    {
+      "id": "shen-doragon",
+      "name": {
+        "en-US": "Shen Doragon, Discordian Doomsayer",
+        "ru-RU": "Шэнь Дорагон, вестник раздора"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "ShenDoragon",
+      "dropSources": [
+        "AAModClassic/ShenDoragon",
+        "AAModClassic/ShenDoragonA"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "ShenDoragon"
+      }
+    },
+    {
+      "id": "infinity-zero",
+      "name": {
+        "en-US": "Infinity Zero",
+        "ru-RU": "Инфинити Зеро"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "InfinityZero",
+      "dropSources": [
+        "AAModClassic/InfinityZero"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "InfinityZero"
+      }
+    },
+    {
+      "id": "soul-of-cthulhu",
+      "name": {
+        "en-US": "Soul of Cthulhu",
+        "ru-RU": "Душа Ктулху"
+      },
+      "iconMod": "AAModClassic",
+      "iconNpc": "SoulOfCthulhu",
+      "dropSources": [
+        "AAModClassic/SoulOfCthulhu",
+        "AAModClassic/Cthulhu"
+      ],
+      "unlock": {
+        "type": "npc",
+        "mod": "AAModClassic",
+        "npc": "SoulOfCthulhu"
+      }
+    }
+  ],
+  "recommendationSource": {
+    "name": "Official Terraria Mods Wiki",
+    "url": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups"
+  },
+  "recommendationStageMap": {
+    "pre-boss": {
+      "stageId": "start",
+      "target": {
+        "en-US": "First bosses",
+        "ru-RU": "Первые боссы"
+      }
+    },
+    "pre-skeletron": {
+      "stageId": "queen-bee",
+      "target": {
+        "en-US": "Skeletron",
+        "ru-RU": "Скелетрон"
+      }
+    },
+    "pre-hardmode": {
+      "stageId": "skeletron",
+      "target": {
+        "en-US": "Wall of Flesh",
+        "ru-RU": "Стена плоти"
+      }
+    },
+    "pre-mechanical-bosses": {
+      "stageId": "wall-of-flesh",
+      "target": {
+        "en-US": "Mechanical bosses",
+        "ru-RU": "Механические боссы"
+      }
+    },
+    "pre-plantera": {
+      "stageId": "skeletron-prime",
+      "target": {
+        "en-US": "Plantera",
+        "ru-RU": "Плантера"
+      }
+    },
+    "pre-golem": {
+      "stageId": "plantera",
+      "target": {
+        "en-US": "Golem",
+        "ru-RU": "Голем"
+      }
+    },
+    "pre-celestial-events": {
+      "stageId": "duke-fishron",
+      "target": {
+        "en-US": "Celestial Events",
+        "ru-RU": "Небесные события"
+      }
+    },
+    "pre-moon-lord": {
+      "stageId": "lunatic-cultist",
+      "target": {
+        "en-US": "Moon Lord",
+        "ru-RU": "Лунный лорд"
+      }
+    },
+    "pre-anubis": {
+      "stageId": "moon-lord",
+      "target": {
+        "en-US": "Anubis, Forsaken Judge",
+        "ru-RU": "Анубис, Покинутый судья"
+      }
+    },
+    "pre-equinox-worms": {
+      "stageId": "worm-king-greed",
+      "target": {
+        "en-US": "The Equinox Worms",
+        "ru-RU": "Черви равноденствия"
+      }
+    },
+    "pre-sisters-of-discord": {
+      "stageId": "equinox-worms",
+      "target": {
+        "en-US": "The Sisters of Discord",
+        "ru-RU": "Сёстры раздора"
+      }
+    },
+    "pre-ancients": {
+      "stageId": "sisters-of-discord",
+      "target": {
+        "en-US": "The Ancients",
+        "ru-RU": "Древние"
+      }
+    },
+    "pre-superancients": {
+      "stageId": "zero",
+      "target": {
+        "en-US": "The Superancients",
+        "ru-RU": "Супердревние"
+      }
+    },
+    "endgame": {
+      "stageId": "shen-doragon",
+      "target": {
+        "en-US": "Endgame",
+        "ru-RU": "Финал"
+      }
+    }
+  }
+}
