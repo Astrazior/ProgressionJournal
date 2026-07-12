@@ -18,6 +18,7 @@ internal static class JournalFishingSourceResolver
     private const int ForcedRaritySeedCount = 64;
 
     private static readonly object SyncRoot = new();
+    private static readonly HashSet<string> LoggedProbeFailures = new(StringComparer.Ordinal);
     private static readonly FieldInfo? ModBiomeFlagsField = typeof(Player).GetField(
         "modBiomeFlags",
         BindingFlags.Instance | BindingFlags.NonPublic);
@@ -231,6 +232,7 @@ internal static class JournalFishingSourceResolver
         {
             var key = BuildCatalogKey();
             if (_catalog is not null && string.Equals(_catalogKey, key, StringComparison.Ordinal)) return _catalog;
+            LoggedProbeFailures.Clear();
             _catalog = BuildCatalog();
             _catalogKey = key;
 
@@ -316,8 +318,12 @@ internal static class JournalFishingSourceResolver
                     randomSeedCount);
             }
         }
-        catch
+        catch (Exception exception)
         {
+            LogDebugOnce(
+                "catalog",
+                $"Failed to build the runtime fishing source catalog for profile '{JournalRuntimeProgressionScenarios.CurrentProfile?.Id ?? "<none>"}'.",
+                exception);
             return new FishingCatalog([], [], environments, equipment, progressionScenarios);
         }
         finally
@@ -686,9 +692,14 @@ internal static class JournalFishingSourceResolver
                 AddCaughtItem(catalog.ItemContexts, player, itemDrop, context);
                 AddContext(catalog.NpcContexts, npcSpawn, context);
             }
-            catch
+            catch (Exception exception)
             {
-                // A broken third-party hook invalidates only this observed attempt.
+                LogDebugOnce(
+                    "fishing-attempt",
+                    $"Failed to probe fishing context {context} at fishing level {attempt.fishingLevel} "
+                    + $"with pole {equipment.PoleItemId}, bait {equipment.BaitItemId}, "
+                    + $"and enemy-spawn probing set to {includeEnemySpawns}.",
+                    exception);
             }
         }
     }
@@ -847,8 +858,12 @@ internal static class JournalFishingSourceResolver
         {
             PlayerLoader.ModifyCaughtFish(player, item);
         }
-        catch
+        catch (Exception exception)
         {
+            LogDebugOnce(
+                "modify-caught-fish",
+                $"Failed to apply ModifyCaughtFish while probing caught item {itemId} in fishing context {context}.",
+                exception);
             return;
         }
 
@@ -1210,6 +1225,20 @@ internal static class JournalFishingSourceResolver
     private static int GetModBiomeIndex(ModBiome biome)
     {
         return ModBiomeIndexProperty?.GetValue(biome) is int index ? index : -1;
+    }
+
+    private static void LogDebugOnce(string operation, string message, Exception exception)
+    {
+        var key = $"{operation}:{exception.GetType().FullName}:{exception.Message}";
+        lock (SyncRoot)
+        {
+            if (!LoggedProbeFailures.Add(key))
+            {
+                return;
+            }
+        }
+
+        ProgressionJournal.Instance?.Logger.Debug($"{message}{Environment.NewLine}{exception}");
     }
 
 }

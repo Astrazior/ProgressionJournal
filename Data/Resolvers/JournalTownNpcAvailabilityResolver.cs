@@ -14,6 +14,7 @@ namespace ProgressionJournal.Data.Resolvers;
 internal static class JournalTownNpcAvailabilityResolver
 {
     private static readonly object SyncRoot = new();
+    private static readonly HashSet<string> LoggedProbeFailures = new(StringComparer.Ordinal);
     private static readonly FieldInfo? ModBiomeFlagsField = typeof(Player).GetField(
         "modBiomeFlags",
         BindingFlags.Instance | BindingFlags.NonPublic);
@@ -146,6 +147,7 @@ internal static class JournalTownNpcAvailabilityResolver
         {
             var key = BuildCatalogKey();
             if (_catalog is not null && string.Equals(_catalogKey, key, StringComparison.Ordinal)) return _catalog;
+            LoggedProbeFailures.Clear();
             _catalog = BuildCatalog();
             _catalogKey = key;
 
@@ -303,8 +305,12 @@ internal static class JournalTownNpcAvailabilityResolver
                 inventoryScenarios);
             return new Catalog(availability, shopStages, stageNames);
         }
-        catch
+        catch (Exception exception)
         {
+            LogDebugOnce(
+                "catalog",
+                $"Failed to build the runtime town NPC availability catalog for profile '{JournalRuntimeProgressionScenarios.CurrentProfile?.Id ?? "<none>"}'.",
+                exception);
             return emptyCatalog;
         }
         finally
@@ -445,9 +451,13 @@ internal static class JournalTownNpcAvailabilityResolver
                                 inventoryScenario));
                         }
                     }
-                    catch
+                    catch (Exception exception)
                     {
-                        // A third-party world callback remains unproven instead of being guessed.
+                        LogDebugOnce(
+                            "transient-town-system",
+                            $"Failed to probe transient town NPC system '{system.GetType().FullName}' "
+                            + $"at stage {stageIndex} with seed {seed}.",
+                            exception);
                     }
                     finally
                     {
@@ -505,9 +515,13 @@ internal static class JournalTownNpcAvailabilityResolver
             {
                 result.Add(new StaticFieldState(field, field.GetValue(null)));
             }
-            catch
+            catch (Exception exception)
             {
-                // An inaccessible field does not prevent probing the remaining state.
+                LogDebugOnce(
+                    "capture-static-field",
+                    $"Failed to capture static field '{field.DeclaringType?.FullName}.{field.Name}' "
+                    + "while probing transient town NPC systems.",
+                    exception);
             }
         }
 
@@ -522,9 +536,13 @@ internal static class JournalTownNpcAvailabilityResolver
             {
                 state.Field.SetValue(null, state.Value);
             }
-            catch
+            catch (Exception exception)
             {
-                // Best-effort restoration for third-party static state.
+                LogDebugOnce(
+                    "restore-static-field",
+                    $"Failed to restore static field '{state.Field.DeclaringType?.FullName}.{state.Field.Name}' "
+                    + "after probing transient town NPC systems.",
+                    exception);
             }
         }
     }
@@ -765,9 +783,12 @@ internal static class JournalTownNpcAvailabilityResolver
                     }
                 }
             }
-            catch
+            catch (Exception exception)
             {
-                // One malformed third-party shop must not invalidate other observations.
+                LogDebugOnce(
+                    "shop",
+                    $"Failed to inspect shop '{shop.Name}' for NPC type {shop.NpcType} at stage {stageIndex}.",
+                    exception);
             }
         }
     }
@@ -1073,5 +1094,19 @@ internal static class JournalTownNpcAvailabilityResolver
     private static int GetModBiomeIndex(ModBiome biome)
     {
         return ModBiomeIndexProperty?.GetValue(biome) is int index ? index : -1;
+    }
+
+    private static void LogDebugOnce(string operation, string message, Exception exception)
+    {
+        var key = $"{operation}:{exception.GetType().FullName}:{exception.Message}";
+        lock (SyncRoot)
+        {
+            if (!LoggedProbeFailures.Add(key))
+            {
+                return;
+            }
+        }
+
+        ProgressionJournal.Instance?.Logger.Debug($"{message}{Environment.NewLine}{exception}");
     }
 }
