@@ -15,6 +15,7 @@ const expected = ["CalamityMod", "FargowiltasSouls", "ThoriumMod"];
 const requiredFiles = [
   "support.json",
   "snapshot.json",
+  "knowledge.json",
   "agent-rules.json",
   "recommendations.json",
   "review.json",
@@ -284,12 +285,19 @@ for (const modName of expected) {
   }
   const support = readJson(path.join(directory, "support.json"));
   const snapshot = readJson(path.join(directory, "snapshot.json"));
+  const knowledge = readJson(path.join(directory, "knowledge.json"));
   const profile = readJson(path.join(directory, "profile.json"));
   const review = readJson(path.join(directory, "review.json"));
   const report = readJson(path.join(directory, "report.json"));
   const supportWithVanillaSources = applyVanillaSourceCatalog(support, snapshot);
   assert.equal(support.targetMod, modName);
   assert.equal(snapshot.targetMod, modName);
+  assert.equal(knowledge.format, "ProgressionJournalKnowledge");
+  assert.equal(knowledge.version, 1);
+  assert.equal(knowledge.source.snapshotSha256.length, 64);
+  assert.equal(knowledge.summary.items, snapshot.items.length);
+  assert.equal(knowledge.summary.recipes, snapshot.recipes.length);
+  assert.equal(knowledge.summary.drops, snapshot.drops.length);
   assert.equal(profile.format, "ProgressionJournalProfile");
   const stageForFlag = key => supportWithVanillaSources.stages.find(stage =>
     stage.unlock?.type === "vanilla-flag" && stage.unlock.key === key);

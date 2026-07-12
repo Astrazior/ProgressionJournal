@@ -6,6 +6,10 @@ import {
   readJson,
   writeJson
 } from "./ProfileGeneratorCore.mjs";
+import {
+  buildKnowledgeBase,
+  createSnapshotView
+} from "./KnowledgeBase.mjs";
 import { applyVanillaSourceCatalog } from "./VanillaSourceCatalog.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
@@ -46,8 +50,10 @@ export function buildModProfile(modName) {
 
   const support = readJson(supportPath);
   validateSupport(support, modName);
-  const snapshot = readRequiredJson(directory, "snapshot.json");
-  validateSnapshot(snapshot, support);
+  const exportedSnapshot = readRequiredJson(directory, "snapshot.json");
+  validateSnapshot(exportedSnapshot, support);
+  const knowledge = buildKnowledgeBase(exportedSnapshot);
+  const snapshot = createSnapshotView(knowledge);
   const agentRules = readOptionalJson(
     directory,
     "agent-rules.json",
@@ -71,13 +77,13 @@ export function buildModProfile(modName) {
     wikiStageMap: support.recommendationStageMap ?? support.wikiStageMap
   };
   const { profile, report: generationReport, review } = generateProfile(
-    snapshot,
+    knowledge,
     manifest,
     recommendations,
     assignments);
   if (availabilityMigration.confirmed > 0) {
     const legacyProfile = generateProfile(
-      snapshot,
+      knowledge,
       manifest,
       recommendations,
       legacyAssignments).profile;
@@ -117,6 +123,7 @@ export function buildModProfile(modName) {
   const itemAudit = createItemAudit(snapshot, profile, generationReport, support);
 
   writeJson(path.join(directory, "profile.json"), profile);
+  writeJson(path.join(directory, "knowledge.json"), knowledge);
   writeJson(path.join(directory, "review.json"), review);
   writeJson(path.join(directory, "report.json"), report);
   writeJson(path.join(directory, "item-audit.json"), itemAudit);

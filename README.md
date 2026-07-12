@@ -83,9 +83,9 @@ the snapshot, support data, agent rules, recommendations, review, and report rem
 development files.
 
 1. Start tModLoader with the supported mods enabled.
-2. Run `/pjexport <InternalModName>` once for each supported mod.
-3. Fill unresolved decisions in that mod's `agent-rules.json`.
-4. Build one profile or all profiles:
+2. Run `/pjexport <InternalModName>` once for each supported mod or mod version.
+3. Build the stage-neutral `knowledge.json`, profile, and review.
+4. Fill unresolved decisions in that mod's `agent-rules.json` and rebuild:
 
 ```powershell
 node Tools\BuildModProfiles.mjs CalamityMod
@@ -99,6 +99,12 @@ and written to that mod's `review.json`. Every rule or ignored issue in `agent-r
 must contain an official source URL, source version or revision, check date, and explanation.
 The single build command applies those rules, writes the review and report, audits cross-mod
 paths, validates the result, and regenerates `profile.json`.
+
+`knowledge.json` preserves all exported items, NPCs, recipes, drops, shops, fishing facts,
+runtime availability observations, and vanilla classifications without assigning final stages.
+The stage generator consumes this knowledge layer; `snapshot.json` is only used to refresh it.
+Changing generator logic or manual rules only requires rerunning the Node build; `/pjexport` is
+needed again only when the loaded mod/runtime data changes or the snapshot schema gains new facts.
 
 `recommendations.json` is display-only data. It can annotate entries but never creates or
 moves availability evaluations. Boss order and other structural facts live in `support.json`;

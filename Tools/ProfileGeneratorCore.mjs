@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
+import { createSnapshotView } from "./KnowledgeBase.mjs";
 import { applyVanillaSourceCatalog } from "./VanillaSourceCatalog.mjs";
 
 export function readJson(file) {
@@ -13,10 +14,13 @@ export function writeJson(file, value) {
 }
 
 export function generateProfile(
-  snapshot,
+  source,
   manifest,
   wikiProfile = null,
   manualAssignments = null) {
+  const snapshot = source?.format === "ProgressionJournalKnowledge"
+    ? createSnapshotView(source)
+    : source;
   assert(snapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot format.");
   assert(
     snapshot.version === 4,
