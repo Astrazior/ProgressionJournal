@@ -10,7 +10,8 @@ const START_STATIONS = [
   "Terraria/CookingPots",
   "Terraria/Loom",
   "Terraria/Sawmill",
-  "Terraria/SkyMill"
+  "Terraria/SkyMill",
+  "Terraria/Tombstones"
 ];
 
 const START_ITEMS = [
@@ -176,7 +177,9 @@ const START_ITEMS = [
   "Terraria/TopHat",
   "Terraria/BowlofSoup",
   "Terraria/VilePowder",
-  "Terraria/ViciousPowder"
+  "Terraria/ViciousPowder",
+  "Terraria/AbigailsFlower",
+  "Terraria/Seed"
 ];
 
 const MILESTONE_FACTS = [
@@ -219,7 +222,10 @@ const MILESTONE_FACTS = [
     findStage: manifest => findEventStage(manifest, "GoblinArmy"),
     items: ["Terraria/TinkerersWorkshop"],
     stations: ["Terraria/TinkerersWorkbench"],
-    shops: ["Terraria/GoblinTinkerer"],
+    shops: ["Terraria/GoblinTinkerer"]
+  },
+  {
+    findStage: manifest => findEventStage(manifest, "BloodMoon"),
     enemies: [
       "Terraria/ZombieMerman",
       "Terraria/EyeballFlyingFish"
@@ -322,6 +328,7 @@ const MILESTONE_FACTS = [
       ,"Terraria/IchorDart"
       ,"Terraria/ExplodingBullet"
       ,"Terraria/GoldenBullet"
+      ,"Terraria/FinWings"
     ],
     enemies: [
       "Terraria/MossHornet",
@@ -362,7 +369,9 @@ const MILESTONE_FACTS = [
       "Terraria/BloodEelHead",
       "Terraria/GoblinShark",
       "Terraria/AngryNimbus",
-      "Terraria/Reaper"
+      "Terraria/SnowBalla",
+      "Terraria/SnowmanGangsta",
+      "Terraria/MisterStabby"
     ],
     shops: [
       "Terraria/Wizard",
@@ -383,7 +392,7 @@ const MILESTONE_FACTS = [
       "Terraria/DD2LightningAuraT2Popper"
     ],
     shops: ["Terraria/Steampunker"],
-    enemies: ["Terraria/RedDevil"]
+    enemies: ["Terraria/RedDevil", "Terraria/Vampire"]
   },
   {
     findStage: manifest => findVanillaFlagStage(manifest, "downedMechBoss2", "twins"),
@@ -397,7 +406,8 @@ const MILESTONE_FACTS = [
       "Terraria/Cog",
       "Terraria/ChlorophyteOre",
       "Terraria/ChlorophyteBar"
-    ]
+    ],
+    enemies: ["Terraria/Reaper"]
   },
   {
     findStage: manifest => findVanillaFlagStage(manifest, "downedPlantBoss", "plantera"),
@@ -444,8 +454,6 @@ const MILESTONE_FACTS = [
       "Terraria/RocketII"
     ],
     enemies: [
-      "Terraria/Vampire",
-      "Terraria/Reaper",
       "Terraria/Psycho",
       "Terraria/GiantCursedSkull",
       "Terraria/Mothron",
@@ -455,7 +463,10 @@ const MILESTONE_FACTS = [
       "Terraria/RustyArmoredBonesSword",
       "Terraria/BlueArmoredBones",
       "Terraria/DeadlySphere",
-      "Terraria/DrManFly"
+      "Terraria/DrManFly",
+      "Terraria/Lihzahrd",
+      "Terraria/LihzahrdCrawler",
+      "Terraria/FlyingSnake"
     ],
     shops: ["Terraria/Cyborg", "Terraria/Princess"]
   },
@@ -480,9 +491,6 @@ const MILESTONE_FACTS = [
       "Terraria/SnowmanCannon"
     ],
     enemies: [
-      "Terraria/SnowmanGangsta",
-      "Terraria/MisterStabby",
-      "Terraria/SnowBalla",
       "Terraria/PresentMimic",
       "Terraria/Yeti",
       "Terraria/ElfCopter",
@@ -505,7 +513,6 @@ const MILESTONE_FACTS = [
       "Terraria/FireworksLauncher"
     ],
     enemies: [
-      "Terraria/FlyingSnake",
       "Terraria/BrainScrambler",
       "Terraria/GigaZapper",
       "Terraria/GrayGrunt",
@@ -717,7 +724,9 @@ const START_VISIBLE_ITEMS = [
   "Terraria/FrogGear",
   "Terraria/FrogFlipper",
   "Terraria/HorseshoeBundle",
-  "Terraria/PainterPaintballGun"
+  "Terraria/PainterPaintballGun",
+  "Terraria/AbigailsFlower",
+  "Terraria/Seed"
 ];
 
 export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {

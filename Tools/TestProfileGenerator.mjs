@@ -126,6 +126,7 @@ const snapshot = {
     item("Test/Forge", { createTile: 1, placedTile: "Test/ForgeTile" }),
     item("Test/ForgeSword", { damageClass: "Melee", damage: 35 }),
     item("Test/SeedSword", { damageClass: "Melee", damage: 99 }),
+    item("Test/FirstPlanteraBlade", { damageClass: "Melee", damage: 36 }),
     item("Test/VanityAccessory", { accessory: true, vanity: true }),
     item("Test/NamespaceVanity", {
       accessory: true,
@@ -247,6 +248,15 @@ const snapshot = {
       conditions: [{ type: "Test.SpecialSeed", description: "Special seed only" }]
     },
     {
+      source: "Test/Boss",
+      sourceType: "npc",
+      item: "Test/FirstPlanteraBlade",
+      conditions: [{
+        type: "Terraria.GameContent.ItemDropRules.Conditions+FirstTimeKillingPlantera",
+        description: null
+      }]
+    },
+    {
       source: "Terraria/GlobalNPCDrops",
       sourceType: "global",
       item: "Test/GlobalBlade",
@@ -332,9 +342,15 @@ const manifest = {
     {
       id: "test-event",
       stageId: "boss",
+      eventCategory: "GoblinArmy",
       customEventName: "Test Event",
       eventIcon: "Test/Bestiary/EventIcon",
       enemies: ["Test/EventEnemy"]
+    },
+    {
+      id: "late-event",
+      stageId: "late",
+      eventCategory: "SolarEclipse"
     }
   ],
   stages: [
@@ -350,6 +366,11 @@ const manifest = {
       id: "late",
       name: { "en-US": "Late", "ru-RU": "Поздно" },
       dropSources: ["Test/LateBoss"]
+    },
+    {
+      id: "plantera",
+      name: { "en-US": "Plantera", "ru-RU": "Плантера" },
+      unlock: { type: "vanilla-flag", key: "downedPlantBoss" }
     }
   ],
   conditionUnlocks: [
@@ -592,6 +613,12 @@ assert(!report.excludedItems.some(entry =>
   entry.id === "Terraria/FilteredSword"));
 assert(report.emptyStages.includes("empty"));
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "UnknownShopBlade"));
+assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "FirstPlanteraBlade"
+  && entry.evaluations[0].stageId === "plantera"));
+assert(!review.issues.some(issue =>
+  issue.kind === "unresolved-condition"
+  && issue.affected.some(value => value.item === "Test/FirstPlanteraBlade")));
 assert(review.issues.some(issue =>
   issue.kind === "unresolved-condition"
   && issue.affected.some(value => value.item === "Test/UnknownShopBlade")));
@@ -698,7 +725,9 @@ const runtimeSnapshot = structuredClone(snapshot);
 runtimeSnapshot.version = 4;
 runtimeSnapshot.items.push(
   item("Test/RuntimeFishBlade", { damageClass: "Melee", damage: 31 }),
+  item("Test/UnknownStageFishBlade", { damageClass: "Melee", damage: 30 }),
   item("Test/RuntimeSpawnBlade", { damageClass: "Melee", damage: 32 }),
+  item("Test/RuntimeEventBlade", { damageClass: "Melee", damage: 33 }),
   item("Test/RuntimeShopBlade", { damageClass: "Melee", damage: 33 }),
   item("Test/EventFloorBlade", { damageClass: "Melee", damage: 34 }),
   item("Test/ManualFloorBlade", { damageClass: "Melee", damage: 35 }));
@@ -706,6 +735,11 @@ runtimeSnapshot.drops.push({
   source: "Test/RuntimeEnemy",
   sourceType: "npc",
   item: "Test/RuntimeSpawnBlade",
+  conditions: []
+}, {
+  source: "Test/RuntimeEventEnemy",
+  sourceType: "npc",
+  item: "Test/RuntimeEventBlade",
   conditions: []
 }, {
   source: "Test/EventEnemy",
@@ -727,13 +761,22 @@ runtimeSnapshot.shops.push({
   earliestStageIndex: 3,
   earliestStageName: "Late"
 });
-runtimeSnapshot.fishing = [{
-  targetType: "item",
-  target: "Test/RuntimeFishBlade",
-  earliestStageIndex: 1,
-  earliestStageName: "Boss",
-  conditions: ["In runtime fishing scenario"]
-}];
+runtimeSnapshot.fishing = [
+  {
+    targetType: "item",
+    target: "Test/RuntimeFishBlade",
+    earliestStageIndex: 1,
+    earliestStageName: "Boss",
+    conditions: ["In runtime fishing scenario"]
+  },
+  {
+    targetType: "item",
+    target: "Test/UnknownStageFishBlade",
+    earliestStageIndex: -1,
+    earliestStageName: "",
+    conditions: ["Observed in a synthetic mod biome"]
+  }
+];
 runtimeSnapshot.npcAvailability = [
   {
     npc: "Test/RuntimeEnemy",
@@ -752,6 +795,15 @@ runtimeSnapshot.npcAvailability = [
     conditions: []
   },
   {
+    npc: "Test/RuntimeEventEnemy",
+    kind: "spawn",
+    observed: true,
+    earliestStageIndex: 0,
+    earliestStageName: "Start",
+    conditions: [],
+    eventCategories: ["GoblinArmy"]
+  },
+  {
     npc: "Test/EventEnemy",
     kind: "spawn",
     observed: true,
@@ -765,21 +817,33 @@ runtimeSnapshot.npcAvailability = [
     observed: true,
     earliestStageIndex: 0,
     earliestStageName: "Start",
-    conditions: []
+    conditions: [],
+    eventCategories: ["SolarEclipse"]
   }
 ];
+const runtimeManualAssignments = structuredClone(manualAssignments);
+runtimeManualAssignments.itemStages["Test/UnknownStageFishBlade"] = "boss";
 const runtimeResult = generateProfile(
   runtimeSnapshot,
   manifest,
   wikiProfile,
-  manualAssignments);
+  runtimeManualAssignments);
 assert(runtimeResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "RuntimeFishBlade"
   && entry.evaluations[0].stageId === "boss"
   && entry.fishingSources[0]?.conditions[0] === "In runtime fishing scenario"));
 assert(runtimeResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "UnknownStageFishBlade"
+  && entry.evaluations[0].stageId === "boss"
+  && entry.fishingSources[0]?.conditions[0] === "Observed in a synthetic mod biome"));
+assert(runtimeResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "RuntimeSpawnBlade"
   && entry.evaluations[0].stageId === "boss"));
+assert(runtimeResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "RuntimeEventBlade"
+  && entry.evaluations[0].stageId === "boss"
+  && entry.eventCategory === "GoblinArmy"
+  && entry.customEventName === "Test Event"));
 assert(runtimeResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "RuntimeShopBlade"
   && entry.evaluations[0].stageId === "late"));

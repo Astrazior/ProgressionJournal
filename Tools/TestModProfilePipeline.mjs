@@ -521,12 +521,16 @@ for (const modName of expected) {
         `${itemId} has an incorrect availability stage`);
     }
     for (const [itemId, stageId] of Object.entries({
-      "Terraria/Katana": "king-slime",
+      "Terraria/Katana": "start",
       "Terraria/Trimarang": "desert-scourge"
     })) {
       assert.equal(stageOf(itemId), stageId,
         `${itemId} must follow its earliest available source`);
     }
+    assert.equal(
+      report.generation?.paths?.["Terraria/Katana"]?.via,
+      "shop:Terraria/TravellingMerchant",
+      "Katana must keep the pre-boss Travelling Merchant source");
     assert.equal(report.generation?.paths?.["Terraria/Shroomerang"]?.stage, "start",
       "Shroomerang must be available from pre-Hardmode Mushroom Chests");
     const gacruxianMollusk = profile.entries.find(entry =>
@@ -586,10 +590,11 @@ for (const modName of expected) {
         ?.stageId,
       "start",
       "Restoration Potion must be available from naturally growing Glowing Mushrooms");
-    assert(snapshot.fishing?.some(record =>
-      record.targetType === "item"
-      && record.target === "CalamityMod/SeaSpiritAmulet"),
-    "Sea Spirit Amulet fishing must remain present in the runtime snapshot");
+    const seaSpiritAmulet = profile.entries.find(entry =>
+      (entry.itemGroups ?? []).flat().some(reference =>
+        reference.mod === "CalamityMod" && reference.item === "SeaSpiritAmulet"));
+    assert((seaSpiritAmulet?.fishingSources?.length ?? 0) > 0,
+      "Sea Spirit Amulet must retain a visible fishing source");
   }
   const snapshotVersions = new Map(snapshot.mods.map(mod => [mod.name, mod.version]));
   for (const required of support.requiredMods ?? []) {
@@ -816,13 +821,19 @@ assert(invalid.problems.some(problem => problem.includes("checkedAt")));
 
 const vanillaSourceSupport = {
   initialStations: [],
-  events: [{ stageId: "goblin-stage", eventCategory: "GoblinArmy" }],
+  events: [
+    { stageId: "goblin-stage", eventCategory: "GoblinArmy" },
+    { stageId: "goblin-stage", eventCategory: "BloodMoon" },
+    { stageId: "plantera", eventCategory: "FrostMoon" }
+  ],
   stages: [
     { id: "start", unlock: { type: "always" } },
     { id: "goblin-stage", unlock: { type: "vanilla-flag", key: "downedBoss1" } },
     { id: "world-evil", unlock: { type: "vanilla-flag", key: "downedBoss2" } },
     { id: "dungeon", unlock: { type: "vanilla-flag", key: "downedBoss3" } },
     { id: "hardmode", unlock: { type: "vanilla-flag", key: "hardMode" } },
+    { id: "destroyer", unlock: { type: "vanilla-flag", key: "downedMechBoss1" } },
+    { id: "skeletron-prime", unlock: { type: "vanilla-flag", key: "downedMechBoss3" } },
     { id: "plantera", unlock: { type: "vanilla-flag", key: "downedPlantBoss" } }
   ]
 };
@@ -837,11 +848,10 @@ const vanillaSources = applyVanillaSourceCatalog(vanillaSourceSupport, {
     ["Terraria/Skeleton", "spawn", 0],
     ["Terraria/Harpy", "spawn", 0],
     ["Terraria/VampireBat", "spawn", 4],
-    ["Terraria/Reaper", "spawn", 5],
     ["Terraria/DD2Bartender", "town", 2],
     ["Terraria/ArmsDealer", "town", 0],
     ["Terraria/SkeletonMerchant", "town", 0],
-    ["Terraria/Cyborg", "town", 5]
+    ["Terraria/Cyborg", "town", 7]
   ].map(([npc, kind, earliestStageIndex]) => ({
     npc,
     kind,
@@ -852,11 +862,16 @@ const vanillaSources = applyVanillaSourceCatalog(vanillaSourceSupport, {
 });
 assert(vanillaSources.initialStations.includes("Terraria/DemonAltar"));
 assert(vanillaSources.initialStations.includes("Terraria/Hellforge"));
+assert(vanillaSources.initialStations.includes("Terraria/Tombstones"));
 assert(vanillaSources.initialItems.includes("Terraria/PinkGel"));
+assert(vanillaSources.initialItems.includes("Terraria/AbigailsFlower"));
+assert(vanillaSources.initialItems.includes("Terraria/Seed"));
 assert(vanillaSources.initialItems.includes("Terraria/JungleRose"));
 assert(vanillaSources.initialItems.includes("Terraria/GlowingMushroom"));
 assert(vanillaSources.initialItems.includes("Terraria/Shroomerang"));
 assert(vanillaSources.initialVisibleItems.includes("Terraria/Shroomerang"));
+assert(vanillaSources.initialVisibleItems.includes("Terraria/AbigailsFlower"));
+assert(vanillaSources.initialVisibleItems.includes("Terraria/Seed"));
 assert(vanillaSources.stages[0].enemies?.includes("Terraria/GiantWormHead"));
 assert(vanillaSources.stages[0].shops?.includes("Terraria/TravellingMerchant"));
 assert(!vanillaSources.stages[0].enemies?.includes("Terraria/Skeleton"));
@@ -872,22 +887,43 @@ assert(!vanillaSources.stages.find(stage => stage.id === "start")
   .enemies?.includes("Terraria/Harpy"));
 assert(vanillaSources.stages.find(stage => stage.id === "goblin-stage")
   .include.includes("Terraria/TinkerersWorkshop"));
+assert(vanillaSources.stages.find(stage => stage.id === "goblin-stage")
+  .enemies.includes("Terraria/ZombieMerman"));
 assert(vanillaSources.stages.find(stage => stage.id === "dungeon")
   .stations.includes("Terraria/AlchemyTable"));
 assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
   .include.includes("Terraria/AdamantiteForge"));
+assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
+  .include.includes("Terraria/FinWings"));
+assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
+  .enemies?.includes("Terraria/SnowmanGangsta"));
 assert(!vanillaSources.stages.find(stage => stage.id === "hardmode")
   .enemies?.includes("Terraria/VampireBat"));
+assert(vanillaSources.stages.find(stage => stage.id === "destroyer")
+  .enemies?.includes("Terraria/Vampire"));
+assert(vanillaSources.stages.find(stage => stage.id === "skeletron-prime")
+  .enemies?.includes("Terraria/Reaper"));
 assert(!vanillaSources.stages.find(stage => stage.id === "plantera")
   .enemies?.includes("Terraria/Reaper"));
 assert(!vanillaSources.stages.find(stage => stage.id === "plantera")
   .shops?.includes("Terraria/Cyborg"));
+assert(vanillaSources.stages.find(stage => stage.id === "plantera")
+  .enemies?.includes("Terraria/Lihzahrd"));
+assert(vanillaSources.stages.find(stage => stage.id === "plantera")
+  .enemies?.includes("Terraria/LihzahrdCrawler"));
+assert(vanillaSources.stages.find(stage => stage.id === "plantera")
+  .enemies?.includes("Terraria/FlyingSnake"));
+assert(vanillaSources.stages.find(stage => stage.id === "plantera")
+  .enemies?.includes("Terraria/Mothron"));
+assert(!vanillaSources.stages.find(stage => stage.id === "plantera")
+  .enemies?.includes("Terraria/SnowmanGangsta"));
 assert(!vanillaSources.stages.find(stage => stage.id === "destroyer")
   ?.include?.includes("Terraria/FireGauntlet"));
 assert.equal(vanillaSources.itemStageFloors["Terraria/FireGauntlet"], undefined);
 assert(vanillaSources.stages.find(stage => stage.id === "world-evil")
   .include.includes("Terraria/MeteoriteBar"));
 assert.equal(vanillaSources.itemStageFloors["Terraria/MeteoriteBar"], "world-evil");
+assert.equal(vanillaSources.itemStageFloors["Terraria/FinWings"], "hardmode");
 assert.equal(vanillaSources.stationStageFloors["Terraria/AlchemyTable"], "dungeon");
 
 const prefixedConditionSnapshot = {

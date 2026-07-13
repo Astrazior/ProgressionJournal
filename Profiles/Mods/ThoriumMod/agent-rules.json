@@ -100,17 +100,15 @@
         "ThoriumMod/StrangeCrate",
         "ThoriumMod/WondrousCrate",
         "ThoriumMod/AbyssalCrate",
-        "ThoriumMod/AstroBeetle",
         "ThoriumMod/BabySpider",
         "ThoriumMod/BabySpiderWall",
         "ThoriumMod/Blowfish",
         "ThoriumMod/Coldling",
+        "ThoriumMod/EarthenGolem",
         "ThoriumMod/FlamekinCaster",
         "ThoriumMod/GigaClam",
         "ThoriumMod/ManofWar",
         "ThoriumMod/Octopus",
-        "ThoriumMod/Tarantula",
-        "ThoriumMod/TarantulaWall",
         "ThoriumMod/UnderworldPot1",
         "ThoriumMod/UnderworldPot2",
         "ThoriumMod/VampireSquid",
@@ -124,28 +122,11 @@
       "reason": "These are ordinary pre-Hardmode enemies, critters, fishing crates, or naturally generated containers with no boss progression requirement."
     },
     {
-      "id": "goblin-army-sources",
-      "kind": "source-stage",
-      "sources": [
-        "Terraria/GoblinArcher",
-        "Terraria/GoblinPeon",
-        "Terraria/GoblinSorcerer",
-        "Terraria/GoblinThief",
-        "Terraria/GoblinWarrior"
-      ],
-      "stageId": "eye-of-cthulhu",
-      "sourceUrl": "https://terraria.wiki.gg/wiki/Goblin_Army",
-      "sourceVersion": "Terraria 1.4.4.9",
-      "checkedAt": "2026-06-14",
-      "reason": "The profile places the first Goblin Army availability after Eye of Cthulhu."
-    },
-    {
       "id": "post-skeletron-dungeon-and-lockbox-sources",
       "kind": "source-stage",
       "sources": [
         "Terraria/LockBox",
         "Terraria/ObsidianLockbox",
-        "ThoriumMod/LeFantome",
         "ThoriumMod/Illusionist"
       ],
       "stageId": "skeletron",
@@ -155,18 +136,24 @@
       "reason": "Dungeon access and Dungeon lock boxes are gated by Skeletron; the listed Thorium enemies use the normal Dungeon spawn pool."
     },
     {
-      "id": "blood-moon-miniboss-sources",
+      "id": "hardmode-blood-moon-smothering-shade-source",
       "kind": "source-stage",
-      "sources": [
-        "ThoriumMod/PatchWerk",
-        "ThoriumMod/GraveLimb",
-        "ThoriumMod/SmotheringShade"
-      ],
-      "stageId": "eye-of-cthulhu",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Patch_Werk",
-      "sourceVersion": "Thorium Mod 1.7.2.5",
-      "checkedAt": "2026-06-14",
-      "reason": "Patch Werk and its associated Blood Moon enemies are pre-Hardmode Blood Moon content; the profile starts Blood Moon progression at Eye of Cthulhu."
+      "source": "ThoriumMod/SmotheringShade",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Smothering_Shade",
+      "sourceVersion": "Thorium Mod 1.7.2.6",
+      "checkedAt": "2026-07-13",
+      "reason": "Smothering Shade is a Hardmode Blood Moon enemy."
+    },
+    {
+      "id": "solar-eclipse-le-fantome-source",
+      "kind": "source-stage",
+      "source": "ThoriumMod/LeFantome",
+      "stageId": "destroyer",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Le_Fantome",
+      "sourceVersion": "Thorium Mod 1.7.2.6; Terraria 1.4.4.9",
+      "checkedAt": "2026-07-13",
+      "reason": "Le Fantome is a Hardmode Solar Eclipse enemy, available after the first mechanical boss."
     },
     {
       "id": "corpse-bloom-progression",
@@ -194,20 +181,32 @@
         "Terraria/IceMimic",
         "Terraria/Mimic",
         "Terraria/RedDevil",
-        "Terraria/Vampire",
         "Terraria/VampireBat",
         "Terraria/IronCrateHard",
         "Terraria/JungleFishingCrateHard",
         "Terraria/CorruptFishingCrateHard",
         "Terraria/CrimsonFishingCrateHard",
+        "ThoriumMod/AstroBeetle",
         "ThoriumMod/ChilledSpitter",
-        "ThoriumMod/EarthenGolem",
         "ThoriumMod/Freezer",
         "ThoriumMod/FrozenGross",
         "ThoriumMod/HellBringerMimic",
         "ThoriumMod/Lycan",
         "ThoriumMod/MoltenMortar",
         "ThoriumMod/SubmergedMimic"
+      ]
+    },
+    {
+      "id": "post-borean-strider-tarantula-sources",
+      "kind": "source-stage",
+      "stageId": "borean-strider",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Tarantula",
+      "sourceVersion": "Thorium Mod 1.7.2.6",
+      "checkedAt": "2026-07-13",
+      "reason": "Tarantulas are Hardmode Spider Nest enemies that appear after Borean Strider is defeated.",
+      "sources": [
+        "ThoriumMod/Tarantula",
+        "ThoriumMod/TarantulaWall"
       ]
     },
     {
@@ -219,7 +218,6 @@
       "checkedAt": "2026-06-14",
       "reason": "The listed Dungeon and Temple enemies become reachable in the post-Plantera portion of progression.",
       "sources": [
-        "Terraria/MisterStabby",
         "Terraria/Psycho",
         "Terraria/SkeletonCommando",
         "Terraria/SkeletonSniper",
@@ -239,33 +237,44 @@
       "reason": "Thorium 1.7.2.5 removed the Thorium Desert Chest and Desert Key and moved Pharaoh's Slab to the vanilla Desert Chest alongside Desert Tiger Staff, so the vanilla dungeon Desert biome chest remains the authoritative source path."
     },
     {
-      "id": "frost-moon-sources",
+      "id": "hardmode-frost-legion-and-blizzard-sources",
       "kind": "source-stage",
       "sources": [
         "Terraria/SnowBalla",
         "Terraria/SnowmanGangsta",
+        "Terraria/MisterStabby",
         "ThoriumMod/SnowSinga",
         "ThoriumMod/FrostBurntFlayer"
       ],
-      "stageId": "plantera",
-      "sourceUrl": "https://terraria.wiki.gg/wiki/Frost_Moon",
-      "sourceVersion": "Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
-      "checkedAt": "2026-06-14",
-      "reason": "These sources belong to post-Plantera Frost Moon or equivalent blizzard content."
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Enemies",
+      "sourceVersion": "Terraria 1.4.4.9; Thorium Mod 1.7.2.6",
+      "checkedAt": "2026-07-13",
+      "reason": "Frost Legion and Thorium blizzard enemies require Hardmode, not the post-Plantera Frost Moon."
     },
     {
-      "id": "martian-sources",
+      "id": "hardmode-meteor-and-hallow-sources",
       "kind": "source-stage",
       "sources": [
         "ThoriumMod/MartianScout",
-        "ThoriumMod/UFO",
+        "ThoriumMod/MartianSentry",
         "ThoriumMod/Spectrumite"
       ],
-      "stageId": "golem",
-      "sourceUrl": "https://terraria.wiki.gg/wiki/Martian_Madness",
-      "sourceVersion": "Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
-      "checkedAt": "2026-06-14",
-      "reason": "Martian probes and Martian Madness become available after Golem."
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Enemies",
+      "sourceVersion": "Thorium Mod 1.7.2.6",
+      "checkedAt": "2026-07-13",
+      "reason": "These are normal Hardmode Meteorite or Underground Hallow enemies, not Martian Madness enemies."
+    },
+    {
+      "id": "pre-hardmode-meteor-ufo-source",
+      "kind": "source-stage",
+      "source": "ThoriumMod/UFO",
+      "stageId": "start",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Meteorite_(biome)",
+      "sourceVersion": "Thorium Mod 1.7.2.6",
+      "checkedAt": "2026-07-13",
+      "reason": "The U.F.O. is a pre-Hardmode Meteorite enemy, not a Martian Madness enemy."
     },
     {
       "id": "thorium-town-npc-arrival-stages",
@@ -691,16 +700,6 @@
       "reason": "The Nurse and Aquatic Depths Crown of Thorns are available without a boss requirement."
     },
     {
-      "id": "goblin-trapper-source-stage",
-      "kind": "source-stage",
-      "source": "ThoriumMod/GoblinTrapper",
-      "stageId": "eye-of-cthulhu",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Goblin_Army",
-      "sourceVersion": "Thorium Mod 1.7.2.5",
-      "checkedAt": "2026-06-14",
-      "reason": "Goblin Trapper spawns in the Goblin Army, which this profile opens at Eye of Cthulhu."
-    },
-    {
       "id": "pre-hardmode-condition",
       "kind": "condition-stage",
       "stageId": "start",
@@ -962,13 +961,13 @@
         "ThoriumMod/TechniqueSprint",
         "ThoriumMod/TechniqueSmokeBomb",
         "ThoriumMod/TechniqueMeteorStomp",
-        "ThoriumMod/TechniqueStickyExplosive",
+        "ThoriumMod/TechniquePaperExplosive",
         "ThoriumMod/TechniqueSoulPulse",
         "ThoriumMod/TechniqueBlindingDash",
         "ThoriumMod/TechniqueBloodLotus",
         "ThoriumMod/TechniqueStonePalm",
         "ThoriumMod/TechniqueGravityWell",
-        "ThoriumMod/TechniqueCobrasBite",
+        "ThoriumMod/TechniqueCobraBite",
         "ThoriumMod/TechniqueShadowDance",
         "ThoriumMod/TechniqueShadowClone",
         "ThoriumMod/TechniqueLastStand"
@@ -1002,7 +1001,7 @@
         "ThoriumMod/TechniqueDecoy",
         "ThoriumMod/TechniqueSprint",
         "ThoriumMod/TechniqueSmokeBomb",
-        "ThoriumMod/TechniqueStickyExplosive"
+        "ThoriumMod/TechniquePaperExplosive"
       ],
       "stageId": "grand-thunder-bird",
       "sourceUrl": "https://thoriummod.wiki.gg/wiki/Blank_Technique_Scroll",
@@ -1194,7 +1193,7 @@
     {
       "id": "technique-cobras-bite-all-mechs",
       "kind": "item-stage",
-      "item": "ThoriumMod/TechniqueCobrasBite",
+      "item": "ThoriumMod/TechniqueCobraBite",
       "stageId": "skeletron-prime",
       "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique%3A_Cobra%27s_Bite",
       "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",

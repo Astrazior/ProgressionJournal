@@ -21,6 +21,7 @@ internal static class JournalSnapshotNpcAvailabilityCollector
                     availability.Observed,
                     availability.EarliestStageIndex,
                     availability.EarliestStageName,
+                    [],
                     []);
             }
 
@@ -31,7 +32,8 @@ internal static class JournalSnapshotNpcAvailabilityCollector
                 spawnAvailability.Observed,
                 spawnAvailability.EarliestStageIndex,
                 spawnAvailability.EarliestStageName,
-                spawnAvailability.Conditions.ToList());
+                spawnAvailability.Conditions.ToList(),
+                spawnAvailability.EventCategories.ToList());
         }).ToList();
     }
 }

@@ -1745,6 +1745,27 @@
       "reason": "Ghost Bell spawns from the start in Sunken Sea water; its Voltaic Jelly drop remains gated by the Desert Scourge condition."
     },
     {
+      "id": "sunken-sea-spirit-amulet-fishing-source",
+      "kind": "fishing-source",
+      "items": [
+        "CalamityMod/SeaSpiritAmulet"
+      ],
+      "conditions": [
+        {
+          "en-US": "Very rare catch in the Sunken Sea",
+          "ru-RU": "Очень редкий улов в Затонувшем море"
+        },
+        {
+          "en-US": "Available after defeating the Desert Scourge",
+          "ru-RU": "Доступно после победы над Пустынным бичом"
+        }
+      ],
+      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Sea_Spirit_Amulet",
+      "sourceVersion": "Calamity Mod 2.2.1 wiki.gg",
+      "checkedAt": "2026-07-13",
+      "reason": "The isolated runtime snapshot cannot assign progression evidence to synthetic mod-biome fishing contexts; this source-backed fallback remains until a new export preserves the observed source with an unknown stage."
+    },
+    {
       "id": "astral-legendary-fishing-source",
       "kind": "fishing-source",
       "items": [
@@ -1932,16 +1953,6 @@
       "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
       "checkedAt": "2026-06-21",
       "reason": "The official wiki identifies Blood Orbs as materials dropped by Blood Moon enemies; Blood Moon timing is repeatable and not a boss milestone."
-    },
-    {
-      "id": "calamity-dragonfolly-effulgent-feather",
-      "kind": "item-stage",
-      "item": "CalamityMod/EffulgentFeather",
-      "stageId": "dragonfolly",
-      "sourceUrl": "https://calamitymod.wiki.gg/wiki/Effulgent_Feather",
-      "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
-      "checkedAt": "2026-06-21",
-      "reason": "The official wiki identifies Effulgent Feathers as crafting materials dropped by Draconic Swarmers and Dragonfolly."
     },
     {
       "id": "calamity-post-dog-ascendant-spirit-essence",

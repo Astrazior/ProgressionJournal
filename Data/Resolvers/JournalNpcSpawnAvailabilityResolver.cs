@@ -132,7 +132,8 @@ internal static class JournalNpcSpawnAvailabilityResolver
     private sealed record SpawnEvent(
         string Name,
         Action Apply,
-        Func<bool>? IsAvailable = null);
+        Func<bool>? IsAvailable = null,
+        string EventCategory = "");
 
     private sealed class StaticBooleanFlag(FieldInfo field)
     {
@@ -258,10 +259,11 @@ internal static class JournalNpcSpawnAvailabilityResolver
         {
             return new JournalNpcSpawnAvailability(
                 npcType,
-                observed: false,
+                observed: true,
                 earliestStageIndex: -1,
                 earliestStageName: string.Empty,
-                conditions: []);
+                BuildConditions(catalog, contexts, -1, string.Empty),
+                GetEventCategories(catalog, contexts));
         }
 
         var earliestStageIndex = stageEvidence.Min(static context => context.StageIndex);
@@ -273,7 +275,8 @@ internal static class JournalNpcSpawnAvailabilityResolver
             observed: true,
             earliestStageIndex,
             earliestStageName,
-            BuildConditions(catalog, stageEvidence, earliestStageIndex, earliestStageName));
+            BuildConditions(catalog, stageEvidence, earliestStageIndex, earliestStageName),
+            GetEventCategories(catalog, stageEvidence));
     }
 
     public static IReadOnlyList<string> GetConditions(int npcType)
@@ -497,11 +500,12 @@ internal static class JournalNpcSpawnAvailabilityResolver
             {
                 Main.dayTime = false;
                 Main.bloodMoon = true;
-            }),
+            }, EventCategory: "BloodMoon"),
             new(
                 Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnEclipse"),
                 static () => Main.eclipse = true,
-                static () => NPC.downedMechBossAny),
+                static () => NPC.downedMechBossAny,
+                "SolarEclipse"),
             new(Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnRain"), static () => Main.raining = true),
             new(Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnSandstorm"), static () =>
             {
@@ -509,7 +513,10 @@ internal static class JournalNpcSpawnAvailabilityResolver
                 Sandstorm.Severity = 1f;
             }),
             new(Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnSlimeRain"), static () => Main.slimeRain = true),
-            new(Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnGoblinArmy"), static () => ApplyInvasion(InvasionID.GoblinArmy)),
+            new(
+                Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnGoblinArmy"),
+                static () => ApplyInvasion(InvasionID.GoblinArmy),
+                EventCategory: "GoblinArmy"),
             new(
                 Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnFrostLegion"),
                 static () => ApplyInvasion(InvasionID.SnowLegion),
@@ -517,26 +524,28 @@ internal static class JournalNpcSpawnAvailabilityResolver
             new(
                 Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnPirates"),
                 static () => ApplyInvasion(InvasionID.PirateInvasion),
-                static () => Main.hardMode),
+                static () => Main.hardMode,
+                "PirateInvasion"),
             new(
                 Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnMartians"),
                 static () => ApplyInvasion(InvasionID.MartianMadness),
-                static () => NPC.downedGolemBoss),
+                static () => NPC.downedGolemBoss,
+                "MartianMadness"),
             new(Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnPumpkinMoon"), static () =>
             {
                 Main.dayTime = false;
                 Main.pumpkinMoon = true;
-            }, static () => NPC.downedPlantBoss),
+            }, static () => NPC.downedPlantBoss, "PumpkinMoon"),
             new(Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnFrostMoon"), static () =>
             {
                 Main.dayTime = false;
                 Main.snowMoon = true;
-            }, static () => NPC.downedPlantBoss),
+            }, static () => NPC.downedPlantBoss, "FrostMoon"),
             new(Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnOldOnesArmy"), static () =>
             {
                 DD2Event.Ongoing = true;
                 Dd2FindProperDifficultyMethod?.Invoke(null, null);
-            }, static () => NPC.downedBoss2)
+            }, static () => NPC.downedBoss2, "OldOnesArmy")
         ];
         // A discovered "active" flag proves how to enter an event, but not when
         // the event becomes available. Keep those NPCs unknown until the profile
@@ -1130,6 +1139,19 @@ internal static class JournalNpcSpawnAvailabilityResolver
             static context => context.PlayerInTown,
             "Mods.ProgressionJournal.UI.NpcSpawnTownCondition");
         return conditions.ToArray();
+    }
+
+    private static string[] GetEventCategories(
+        Catalog catalog,
+        IReadOnlyCollection<SpawnContext> contexts)
+    {
+        var categories = contexts
+            .Select(context => catalog.Events[context.EventIndex].EventCategory)
+            .Distinct(StringComparer.Ordinal)
+            .ToArray();
+        return categories.Length > 0 && categories.All(static category => category.Length > 0)
+            ? categories
+            : [];
     }
 
     private static void AppendBooleanCondition(

@@ -80,6 +80,10 @@ export function generateProfile(
   const legacyAvailableShops = new Set();
   const stageIndexes = new Map(manifest.stages.map((stage, index) => [stage.id, index]));
   const sourceStageFloors = collectSourceStageFloors(manifest, stageIndexes);
+  const eventsByCategory = groupBy(
+    (manifest.events ?? []).filter(event =>
+      event.eventCategory && stageIndexes.has(event.stageId)),
+    event => event.eventCategory);
   const sourceAvailabilityCorrections = [];
   const observedNpcAvailability = (snapshot.npcAvailability ?? [])
     .filter(record =>
@@ -87,22 +91,60 @@ export function generateProfile(
       && stageIndexes.has(manifest.stages[record.earliestStageIndex]?.id)
       && isAllowedProfileItem(record.npc, contentMods))
     .map(record => {
-      const floorIndex = sourceStageFloors.get(record.npc);
-      if (floorIndex === undefined || record.earliestStageIndex >= floorIndex) {
-        return record;
+      const sourceFloorIndex = sourceStageFloors.get(record.npc) ?? -1;
+      const eventFloorIndexes = (record.eventCategories ?? [])
+        .flatMap(category => (eventsByCategory.get(category) ?? [])
+          .map(event => stageIndexes.get(event.stageId)));
+      const eventFloorIndex = eventFloorIndexes.length > 0
+        ? Math.min(...eventFloorIndexes)
+        : -1;
+      const floorIndex = sourceFloorIndex >= 0 ? sourceFloorIndex : eventFloorIndex;
+      const effectiveStageIndex = Math.max(record.earliestStageIndex, floorIndex);
+      if (effectiveStageIndex > record.earliestStageIndex) {
+        sourceAvailabilityCorrections.push({
+          source: record.npc,
+          observedStageId: manifest.stages[record.earliestStageIndex]?.id ?? "",
+          effectiveStageId: manifest.stages[effectiveStageIndex]?.id ?? ""
+        });
       }
 
-      sourceAvailabilityCorrections.push({
-        source: record.npc,
-        observedStageId: manifest.stages[record.earliestStageIndex]?.id ?? "",
-        effectiveStageId: manifest.stages[floorIndex]?.id ?? ""
-      });
+      const matchedEvent = (record.eventCategories ?? [])
+        .flatMap(category => eventsByCategory.get(category) ?? [])
+        .filter(event => (stageIndexes.get(event.stageId) ?? Number.MAX_SAFE_INTEGER)
+          <= effectiveStageIndex)
+        .sort((left, right) =>
+          (stageIndexes.get(right.stageId) ?? -1) - (stageIndexes.get(left.stageId) ?? -1))[0];
       return {
         ...record,
-        earliestStageIndex: floorIndex,
-        earliestStageName: manifest.stages[floorIndex]?.name?.["en-US"] ?? ""
+        earliestStageIndex: effectiveStageIndex,
+        earliestStageName: manifest.stages[effectiveStageIndex]?.name?.["en-US"] ?? "",
+        eventMetadata: matchedEvent ? toEventMetadata(matchedEvent) : null
       };
     });
+  const observedSourceEventMetadata = new Map(observedNpcAvailability
+    .filter(record => record.kind === "spawn" && record.eventMetadata)
+    .map(record => [record.npc, record.eventMetadata]));
+  const manifestEventsBySource = new Map();
+  for (const event of manifest.events ?? []) {
+    for (const source of [
+      ...(event.dropSources ?? []),
+      ...(event.enemies ?? []),
+      ...(event.containers ?? [])
+    ]) {
+      const events = manifestEventsBySource.get(source) ?? [];
+      events.push(event);
+      manifestEventsBySource.set(source, events);
+    }
+  }
+  const eventMetadataForSource = (source, stageIndex) => {
+    const observedMetadata = observedSourceEventMetadata.get(source);
+    if (observedMetadata) return observedMetadata;
+    const event = (manifestEventsBySource.get(source) ?? [])
+      .filter(value => (stageIndexes.get(value.stageId) ?? Number.MAX_SAFE_INTEGER) <= stageIndex)
+      .sort((left, right) =>
+        (stageIndexes.get(right.stageId) ?? -1) - (stageIndexes.get(left.stageId) ?? -1))[0];
+    return event ? toEventMetadata(event) : {};
+  };
   const itemStageFloors = new Map(
     Object.entries(manifest.itemStageFloors ?? {})
       .filter(([, stageId]) => stageIndexes.has(stageId))
@@ -218,7 +260,11 @@ export function generateProfile(
           item: drop.item,
           available
         })) {
-          unlockAtStage(drop.item, stage.id, `${drop.sourceType}:${source}`);
+          unlockAtStage(
+            drop.item,
+            stage.id,
+            `${drop.sourceType}:${source}`,
+            eventMetadataForSource(source, stageIndex));
         }
       }
     }
@@ -915,6 +961,9 @@ function inferConditionTypeStageIndex(type, manifest, stageIndexes) {
     return stageIndexByFlagOrId(manifest, stageIndexes, "hardMode", "wall-of-flesh");
   }
   if (type.endsWith("+DownedPlantera")) {
+    return stageIndexByFlagOrId(manifest, stageIndexes, "downedPlantBoss", "plantera");
+  }
+  if (type.endsWith("+FirstTimeKillingPlantera")) {
     return stageIndexByFlagOrId(manifest, stageIndexes, "downedPlantBoss", "plantera");
   }
   if (type.endsWith("+DownedAllMechBosses") || type.endsWith("+MechdusaKill")) {
@@ -1955,10 +2004,18 @@ function inheritedEventMetadata(ingredients, stageId, acquiredBy) {
 
 function toFishingSources(records) {
   return records
-    .filter(record => record.earliestStageIndex >= 0)
+    .filter(record => (record.conditions ?? []).some(Boolean))
     .map(record => ({
       conditions: [...new Set((record.conditions ?? []).filter(Boolean))]
     }));
+}
+
+function toEventMetadata(event) {
+  return {
+    eventCategory: event.eventCategory ?? null,
+    customEventName: event.customEventName ?? "",
+    eventIcon: event.eventIcon ?? ""
+  };
 }
 
 function groupBy(values, selector) {

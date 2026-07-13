@@ -3,21 +3,21 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-07-12T19:51:23.177Z",
-  "snapshotGeneratedAtUtc": "2026-06-28T20:57:38.3439447Z",
+  "generatedAtUtc": "2026-07-13T10:07:01.987Z",
+  "snapshotGeneratedAtUtc": "2026-07-13T09:07:50.7863554Z",
   "summary": {
     "snapshotItems": 8330,
     "contentItems": 2875,
-    "profileEntries": 2073,
-    "profileBuffEntries": 165,
-    "profileItemReferences": 2259,
-    "equipmentReferences": 2094,
-    "buffReferences": 165,
-    "excluded": 3721,
+    "profileEntries": 2086,
+    "profileBuffEntries": 170,
+    "profileItemReferences": 2280,
+    "equipmentReferences": 2110,
+    "buffReferences": 170,
+    "excluded": 3641,
     "acquiredNonProfile": 131,
-    "unresolvedAvailability": 10,
+    "unresolvedAvailability": 7,
     "unavailableCombat": 2,
-    "noAcquisitionPath": 2207
+    "noAcquisitionPath": 2269
   },
   "items": [
     {
@@ -67,7 +67,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "recipe:Terraria/Deathweed",
+      "via": "initial",
       "reason": "Included in the generated profile."
     },
     {
@@ -157,7 +157,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:Terraria/JungleFishingCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -277,7 +277,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:Terraria/JungleFishingCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -327,7 +327,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/Lycan",
+      "via": "npc:Terraria/Werewolf",
       "reason": "not combat equipment"
     },
     {
@@ -775,10 +775,10 @@
       "name": "Машина террариан",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "npc:Terraria/Butcher",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/AmanitaFungifin",
@@ -1225,10 +1225,10 @@
       "name": "Древний кобальтовый нагрудник",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "start",
+      "via": "npc:Terraria/Hornet",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/AncientCobaltBrick",
@@ -1255,20 +1255,20 @@
       "name": "Древний кобальтовый шлем",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "start",
+      "via": "npc:Terraria/Hornet",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/AncientCobaltLeggings",
       "name": "Древние кобальтовые ботинки",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "start",
+      "via": "npc:Terraria/Hornet",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/AncientCopperBrick",
@@ -1477,7 +1477,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "skeletron",
-      "via": "npc:ThoriumMod/BigBone",
+      "via": "npc:Terraria/AngryBones",
       "reason": "not combat equipment"
     },
     {
@@ -1616,8 +1616,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/BigMimicJungle",
       "reason": "not combat equipment"
     },
     {
@@ -1635,10 +1635,10 @@
       "name": "Серьга рыбака",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/AnglerFishBanner",
@@ -1655,40 +1655,40 @@
       "name": "Шляпа рыбака",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/AnglerPants",
       "name": "Брюки рыбака",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/AnglerTackleBag",
       "name": "Чемоданчик рыбака",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "recipe:Terraria/HighTestFishingLine+Terraria/TackleBox+Terraria/AnglerEarring",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/AnglerVest",
       "name": "Куртка рыбака",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/AngryBonesBanner",
@@ -1735,20 +1735,20 @@
       "name": "Амулет анха",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/ArmorBracing+Terraria/MedicatedBandage+Terraria/ThePlan+Terraria/CountercurseMantra+Terraria/ReflectiveShades",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/AnkhShield",
       "name": "Щит анха",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/ObsidianShield+Terraria/AnkhCharm",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/AnkletoftheWind",
@@ -1787,7 +1787,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/BrainScrambler",
+      "via": "npc:Terraria/GigaZapper",
       "reason": "not combat equipment"
     },
     {
@@ -1845,10 +1845,10 @@
       "name": "Статуя наковальни",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Apple",
@@ -1875,10 +1875,10 @@
       "name": "Яблочный пирог",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/IlluminantBat",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/ApplePieSlice",
@@ -2186,7 +2186,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "plantera",
+      "stage": "wall-of-flesh",
       "via": "recipe:Terraria/ArmorPolish+Terraria/Vitamins",
       "reason": "Included in the generated profile."
     },
@@ -2226,8 +2226,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "plantera",
-      "via": "npc:Terraria/BlueArmoredBones",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/ArmoredSkeleton",
       "reason": "Included in the generated profile."
     },
     {
@@ -2655,10 +2655,10 @@
       "name": "Статуя топора",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/BabyBirdStaff",
@@ -3347,7 +3347,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "npc:Terraria/GiantBat",
+      "via": "npc:Terraria/CaveBat",
       "reason": "Included in the generated profile."
     },
     {
@@ -3367,7 +3367,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "recipe:Terraria/GoodieBag",
+      "via": "container:Terraria/GoodieBag",
       "reason": "not combat equipment"
     },
     {
@@ -3427,7 +3427,7 @@
       "contentItem": false,
       "status": "buff",
       "stage": "plantera",
-      "via": "npc:Terraria/SkeletonCommando",
+      "via": "npc:Terraria/TacticalSkeleton",
       "reason": "Included in the generated profile."
     },
     {
@@ -3447,7 +3447,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "npc:Terraria/ArmoredSkeleton",
       "reason": "Included in the generated profile."
     },
     {
@@ -3575,10 +3575,10 @@
       "name": "Пчелиная вагонетка",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/JungleFishingCrate",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Beenade",
@@ -3627,7 +3627,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "golem",
-      "via": "recipe:Terraria/BeetleHusk+Terraria/ChlorophyteMask",
+      "via": "recipe:Terraria/BeetleHusk+Terraria/TurtleHelmet",
       "reason": "Included in the generated profile."
     },
     {
@@ -3647,7 +3647,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "golem",
-      "via": "recipe:Terraria/BeetleHusk+Terraria/ChlorophyteGreaves",
+      "via": "recipe:Terraria/BeetleHusk+Terraria/TurtleLeggings",
       "reason": "Included in the generated profile."
     },
     {
@@ -3667,7 +3667,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "golem",
-      "via": "recipe:Terraria/BeetleHusk+Terraria/ChlorophytePlateMail",
+      "via": "recipe:Terraria/BeetleHusk+Terraria/TurtleScaleMail",
       "reason": "Included in the generated profile."
     },
     {
@@ -3677,7 +3677,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "golem",
-      "via": "recipe:Terraria/BeetleHusk+Terraria/ChlorophytePlateMail",
+      "via": "recipe:Terraria/BeetleHusk+Terraria/TurtleScaleMail",
       "reason": "Included in the generated profile."
     },
     {
@@ -3827,7 +3827,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "npc:Terraria/MossHornet",
+      "via": "npc:Terraria/Hornet",
       "reason": "Included in the generated profile."
     },
     {
@@ -3987,7 +3987,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "manifest",
+      "via": "npc:Terraria/BoneLee",
       "reason": "Included in the generated profile."
     },
     {
@@ -4215,10 +4215,10 @@
       "name": "Благословенное яблоко",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/Unicorn",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/BlessingfromTheHeavens",
@@ -4235,10 +4235,10 @@
       "name": "Повязка на глаза",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/CorruptSlime",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Blinkroot",
@@ -4266,8 +4266,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
-      "via": "container:Terraria/HerbBag",
+      "stage": "world-evil",
+      "via": "shop:ThoriumMod/Druid",
       "reason": "not combat equipment"
     },
     {
@@ -4426,8 +4426,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
-      "via": "npc:Terraria/ZombieMerman",
+      "stage": "start",
+      "via": "npc:Terraria/TheGroom",
       "reason": "not combat equipment"
     },
     {
@@ -4486,7 +4486,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "wall-of-flesh",
       "via": "recipe:Terraria/BottledWater+Terraria/CrimsandBlock+Terraria/CrimsonSeeds",
       "reason": "not combat equipment"
     },
@@ -4675,30 +4675,30 @@
       "name": "Синий кирпич",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "shop:Terraria/Clothier",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/BlueBrickPlatform",
       "name": "Синяя кирпичная платформа",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/BlueBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/BlueBrickWall",
       "name": "Стена из синего кирпича",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/BlueBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/BlueBrickWallUnsafe",
@@ -4845,10 +4845,10 @@
       "name": "Синий сундук темницы",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/BlueBrick+Terraria/IronBar",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/BlueDungeonDoor",
@@ -5235,10 +5235,10 @@
       "name": "Синяя плитка",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/BlueBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/BlueSlabWallUnsafe",
@@ -5305,10 +5305,10 @@
       "name": "Синяя черепица",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/BlueBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/BlueTiledWallUnsafe",
@@ -5365,10 +5365,10 @@
       "name": "Статуя бомбы",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Bomb+Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Bone",
@@ -5377,7 +5377,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "npc:Terraria/SkeletronHead",
+      "via": "npc:Terraria/AngryBones",
       "reason": "Included in the generated profile."
     },
     {
@@ -5396,7 +5396,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone",
       "reason": "not combat equipment"
     },
@@ -5406,7 +5406,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone+Terraria/Silk",
       "reason": "not combat equipment"
     },
@@ -5426,7 +5426,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone",
       "reason": "not combat equipment"
     },
@@ -5436,7 +5436,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone+Terraria/Book",
       "reason": "not combat equipment"
     },
@@ -5456,7 +5456,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone+Terraria/Torch",
       "reason": "not combat equipment"
     },
@@ -5466,7 +5466,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone",
       "reason": "not combat equipment"
     },
@@ -5476,7 +5476,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone+Terraria/Torch+Terraria/Chain",
       "reason": "not combat equipment"
     },
@@ -5486,7 +5486,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone+Terraria/IronBar",
       "reason": "not combat equipment"
     },
@@ -5496,7 +5496,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/Bone",
       "reason": "not combat equipment"
     },
@@ -5516,7 +5516,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone",
       "reason": "not combat equipment"
     },
@@ -5526,7 +5526,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone",
       "reason": "not combat equipment"
     },
@@ -5596,7 +5596,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Torch+Terraria/Bone",
       "reason": "not combat equipment"
     },
@@ -5606,7 +5606,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone+Terraria/Torch",
       "reason": "not combat equipment"
     },
@@ -5626,7 +5626,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone+Terraria/Book",
       "reason": "not combat equipment"
     },
@@ -5635,10 +5635,10 @@
       "name": "Костяная кирка",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "npc:Terraria/UndeadMiner",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/BonePlatform",
@@ -5696,7 +5696,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone+Terraria/Silk",
       "reason": "not combat equipment"
     },
@@ -5716,7 +5716,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone",
       "reason": "not combat equipment"
     },
@@ -5737,7 +5737,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "skeletron",
-      "via": "npc:ThoriumMod/BigBone",
+      "via": "npc:Terraria/AngryBones",
       "reason": "not combat equipment"
     },
     {
@@ -5756,8 +5756,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/DungeonFishingCrate+Terraria/GoldenKey",
+      "stage": "destroyer",
+      "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment"
     },
     {
@@ -5786,7 +5786,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone",
       "reason": "not combat equipment"
     },
@@ -5835,10 +5835,10 @@
       "name": "Статуя бумеранга",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Boomstick",
@@ -5865,10 +5865,10 @@
       "name": "Статуя ботинка",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/BorealBeam",
@@ -6315,10 +6315,10 @@
       "name": "Бездонное ведро воды",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/BottomlessHoneyBucket",
@@ -6345,10 +6345,10 @@
       "name": "Бездонное мерцающее ведро",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "moon-lord",
-      "via": "recipe:Terraria/LunarBar+Terraria/BottomlessBucket",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Boulder",
@@ -6455,10 +6455,10 @@
       "name": "Статуя лука",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/BowTopper",
@@ -6537,7 +6537,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/BrainScrambler",
+      "via": "npc:Terraria/ScutlixRider",
       "reason": "not combat equipment"
     },
     {
@@ -6556,7 +6556,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/CopperBrick",
       "reason": "not combat equipment"
     },
@@ -6645,10 +6645,10 @@
       "name": "Светлый голубой краситель",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "world-evil",
+      "via": "recipe:Terraria/CyanDye+Terraria/SilverDye",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/BrightGreenDye",
@@ -6705,10 +6705,10 @@
       "name": "Светлый красный краситель",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/RedDye+Terraria/SilverDye",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/BrightSilverDye",
@@ -6745,10 +6745,10 @@
       "name": "Светлый фиолетовый краситель",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/VioletDye+Terraria/SilverDye",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/BrightYellowDye",
@@ -6767,7 +6767,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/Vampire",
+      "via": "npc:Terraria/VampireBat",
       "reason": "not combat equipment"
     },
     {
@@ -6927,7 +6927,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -6937,7 +6937,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -6947,7 +6947,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -6956,7 +6956,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron-prime",
+      "stage": "destroyer",
       "via": "npc:Terraria/Frankenstein",
       "reason": "not combat equipment"
     },
@@ -7165,10 +7165,10 @@
       "name": "Окровавленный фартух мясника",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "npc:Terraria/Butcher",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/ButcherBanner",
@@ -7185,30 +7185,30 @@
       "name": "Маска мясника",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "npc:Terraria/Butcher",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/ButcherPants",
       "name": "Окровавленные брюки мясника",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "npc:Terraria/Butcher",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/ButchersChainsaw",
       "name": "Бензопила мясника",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "npc:Terraria/Butcher",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/ButterflyDust",
@@ -7765,10 +7765,10 @@
       "name": "Песня дождя",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "npc:Terraria/FlyingFish",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/Cardinal",
@@ -8115,10 +8115,10 @@
       "name": "Мобильный телефон",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "recipe:Terraria/PDA+Terraria/MagicMirror",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/CenxsBreastplate",
@@ -8257,7 +8257,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "golem",
-      "via": "npc:Terraria/BrainScrambler",
+      "via": "npc:Terraria/GigaZapper",
       "reason": "Included in the generated profile."
     },
     {
@@ -8817,7 +8817,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "skeletron",
-      "via": "npc:ThoriumMod/BigBone",
+      "via": "npc:Terraria/AngryBones",
       "reason": "not combat equipment"
     },
     {
@@ -8967,7 +8967,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:Terraria/IronCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -9077,7 +9077,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:Terraria/IronCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -9196,8 +9196,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "buff",
-      "stage": "wall-of-flesh",
-      "via": "npc:Terraria/AngryTrapper",
+      "stage": "start",
+      "via": "npc:Terraria/ManEater",
       "reason": "Included in the generated profile."
     },
     {
@@ -9237,7 +9237,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "Included in the generated profile."
     },
     {
@@ -9317,7 +9317,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "npc:Terraria/GiantShelly",
+      "via": "npc:Terraria/MotherSlime",
       "reason": "not combat equipment"
     },
     {
@@ -9957,7 +9957,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/BigMimicCorruption",
+      "via": "fishing",
       "reason": "not combat equipment"
     },
     {
@@ -10057,7 +10057,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/BigMimicCorruption",
+      "via": "global:Terraria/GlobalNPCDrops",
       "reason": "not combat equipment"
     },
     {
@@ -10285,30 +10285,30 @@
       "name": "Треснутый синий кирпич",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/BlueBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/CrackedGreenBrick",
       "name": "Треснутый зеленый кирпич",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/GreenBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/CrackedPinkBrick",
       "name": "Треснутый розовый кирпич",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/PinkBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/CratePotion",
@@ -10336,8 +10336,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "buff",
-      "stage": "plantera",
-      "via": "npc:Terraria/GiantCursedSkull",
+      "stage": "skeletron",
+      "via": "npc:Terraria/CursedSkull",
       "reason": "Included in the generated profile."
     },
     {
@@ -10527,7 +10527,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/BigMimicCrimson",
+      "via": "fishing",
       "reason": "not combat equipment"
     },
     {
@@ -10607,7 +10607,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/BigMimicCrimson",
+      "via": "global:Terraria/GlobalNPCDrops",
       "reason": "not combat equipment"
     },
     {
@@ -10686,7 +10686,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "wall-of-flesh",
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment"
     },
@@ -10835,10 +10835,10 @@
       "name": "Могильный крест",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Wood",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/CrossNecklace",
@@ -10847,7 +10847,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/IceMimic",
+      "via": "npc:Terraria/Mimic",
       "reason": "Included in the generated profile."
     },
     {
@@ -10855,10 +10855,10 @@
       "name": "Статуя креста",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/CrownoDevoursHisLunch",
@@ -11187,7 +11187,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "npc:ThoriumMod/GlitteringGolem",
       "reason": "not combat equipment"
     },
     {
@@ -11317,7 +11317,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "container:Terraria/CorruptFishingCrateHard",
+      "via": "npc:Terraria/SeekerHead",
       "reason": "not combat equipment"
     },
     {
@@ -11387,7 +11387,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "Included in the generated profile."
     },
     {
@@ -11395,20 +11395,20 @@
       "name": "Голубой и черный краситель",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "world-evil",
+      "via": "recipe:Terraria/CyanDye+Terraria/BlackDye",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/CyanandSilverDye",
       "name": "Голубой и серебристый краситель",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "world-evil",
+      "via": "recipe:Terraria/CyanDye+Terraria/SilverDye",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/CyanBeetleBanner",
@@ -11425,10 +11425,10 @@
       "name": "Голубой краситель",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "world-evil",
+      "via": "recipe:Terraria/CyanHusk",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/CyanGradientDye",
@@ -11445,10 +11445,10 @@
       "name": "Голубой хитин",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "world-evil",
+      "via": "npc:Terraria/CyanBeetle",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/CyanPaint",
@@ -11465,10 +11465,10 @@
       "name": "Голубая нитка",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "start",
+      "via": "recipe:Terraria/WhiteString+Terraria/CyanDye",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/CyborgHelmet",
@@ -11715,10 +11715,10 @@
       "name": "Семена цветка дня",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "eye-of-cthulhu",
-      "via": "container:Terraria/HerbBag",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/DayBreak",
@@ -12166,8 +12166,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
-      "via": "container:Terraria/HerbBag",
+      "stage": "world-evil",
+      "via": "shop:ThoriumMod/Druid",
       "reason": "not combat equipment"
     },
     {
@@ -12357,7 +12357,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "world-evil",
-      "via": "npc:Terraria/DD2DarkMageT1",
+      "via": "container:ThoriumMod/DarkMageTreasureBag",
       "reason": "not combat equipment"
     },
     {
@@ -12547,7 +12547,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "npc:Terraria/GiantBat",
+      "via": "npc:Terraria/CaveBat",
       "reason": "not combat equipment"
     },
     {
@@ -12615,20 +12615,20 @@
       "name": "Окаменелость из пустыни",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "npc:Terraria/DesertScorpionWalk",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/DesertFossilWall",
       "name": "Стена из окаменелости из пустыни",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/DesertGhoulBanner",
@@ -12655,10 +12655,10 @@
       "name": "Вагонетка пустыни",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/OasisCrate",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/DesertTorch",
@@ -13087,7 +13087,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -13557,7 +13557,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/IceMimic",
+      "via": "npc:Terraria/Mimic",
       "reason": "not combat equipment"
     },
     {
@@ -13707,7 +13707,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/SandElemental",
+      "via": "global:Terraria/GlobalNPCDrops",
       "reason": "not combat equipment"
     },
     {
@@ -13727,7 +13727,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "skeletron",
-      "via": "npc:Terraria/SkeletronHead",
+      "via": "fishing",
       "reason": "not combat equipment"
     },
     {
@@ -13746,7 +13746,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Wood",
       "reason": "not combat equipment"
     },
@@ -13817,7 +13817,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "npc:Terraria/Demolitionist",
+      "via": "shop:Terraria/Demolitionist",
       "reason": "not combat equipment"
     },
     {
@@ -14585,10 +14585,10 @@
       "name": "Шляпа эльфа",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "npc:Terraria/ZombieElfGirl",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/ElfMelter",
@@ -14605,20 +14605,20 @@
       "name": "Брюки эльфа",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "npc:Terraria/ZombieElfGirl",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/ElfShirt",
       "name": "Рубашка эльфа",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "npc:Terraria/ZombieElfGirl",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/Emerald",
@@ -14755,20 +14755,20 @@
       "name": "Призматическая златоглазка",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "shop:Terraria/BestiaryGirl",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/EmpressButterflyJar",
       "name": "Банка с призматической златоглазкой",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Bottle+Terraria/EmpressButterfly",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/EmpressFlightBooster",
@@ -14817,7 +14817,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/GoldenCrate",
+      "via": "recipe:Terraria/WoodenBoomerang+Terraria/FallenStar",
       "reason": "Included in the generated profile."
     },
     {
@@ -14855,10 +14855,10 @@
       "name": "Камень-утяжелитель",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/EndlessMusketPouch",
@@ -15197,7 +15197,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -15205,10 +15205,10 @@
       "name": "Глаз на пружинке",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "npc:Terraria/Eyezor",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/EyezorBanner",
@@ -15225,10 +15225,10 @@
       "name": "Голова Айзора",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "npc:Terraria/Eyezor",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/FaceMonsterBanner",
@@ -15256,8 +15256,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
-      "via": "recipe:Terraria/Bell+Terraria/PixieDust+Terraria/SoulofLight",
+      "stage": "twins",
+      "via": "recipe:Terraria/Bell+Terraria/PixieDust+Terraria/SoulofLight+Terraria/SoulofSight",
       "reason": "not combat equipment"
     },
     {
@@ -15266,8 +15266,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "wall-of-flesh",
-      "via": "recipe:Terraria/SpectreBoots+Terraria/FlowerBoots+Terraria/SoulofLight",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/SpectreBoots+Terraria/FlowerBoots",
       "reason": "Included in the generated profile."
     },
     {
@@ -15435,10 +15435,10 @@
       "name": "Фальшивый синий сундук темницы",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/BlueDungeonChest+Terraria/Wire",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Fake_BoneChest",
@@ -15446,7 +15446,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/BoneChest+Terraria/Wire",
       "reason": "not combat equipment"
     },
@@ -15635,10 +15635,10 @@
       "name": "Фальшивый зеленый сундук темницы",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/GreenDungeonChest+Terraria/Wire",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Fake_HallowedChest",
@@ -15656,7 +15656,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyChest+Terraria/Wire",
       "reason": "not combat equipment"
     },
@@ -15666,7 +15666,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceChest+Terraria/Wire",
       "reason": "not combat equipment"
     },
@@ -15825,10 +15825,10 @@
       "name": "Фальшивый розовый сундук темницы",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/PinkDungeonChest+Terraria/Wire",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Fake_PumpkinChest",
@@ -16026,8 +16026,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Silk",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment"
     },
     {
@@ -16036,8 +16036,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Silk",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment"
     },
     {
@@ -16046,8 +16046,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Silk",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment"
     },
     {
@@ -16117,7 +16117,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "npc:Terraria/Pixie",
       "reason": "Included in the generated profile."
     },
     {
@@ -16256,8 +16256,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
+      "stage": "wall-of-flesh",
+      "via": "manifest",
       "reason": "Included in the generated profile."
     },
     {
@@ -16286,8 +16286,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
-      "via": "container:Terraria/HerbBag",
+      "stage": "wall-of-flesh",
+      "via": "shop:ThoriumMod/Druid",
       "reason": "not combat equipment"
     },
     {
@@ -16337,7 +16337,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron-prime",
-      "via": "manifest",
+      "via": "recipe:Terraria/MagmaStone+Terraria/MechanicalGlove",
       "reason": "Included in the generated profile."
     },
     {
@@ -16367,7 +16367,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "world-evil",
-      "via": "recipe:Terraria/BugNet+Terraria/HellstoneBar",
+      "via": "recipe:Terraria/HellstoneBar+Terraria/BugNet",
       "reason": "not combat equipment"
     },
     {
@@ -16485,10 +16485,10 @@
       "name": "Карманное руководство рыбака",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/FisherofSouls",
@@ -16505,20 +16505,20 @@
       "name": "Эхолот",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "recipe:Terraria/FishermansGuide+Terraria/WeatherRadio+Terraria/Sextant",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/FishHook",
       "name": "Рыболовный крючок",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/FishingBobber",
@@ -16697,7 +16697,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "world-evil",
-      "via": "recipe:Terraria/EnchantedBoomerang+Terraria/HellstoneBar",
+      "via": "recipe:Terraria/HellstoneBar+Terraria/EnchantedBoomerang",
       "reason": "Included in the generated profile."
     },
     {
@@ -17247,7 +17247,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/WyvernHead",
+      "via": "fishing",
       "reason": "not combat equipment"
     },
     {
@@ -17527,7 +17527,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "npc:Terraria/DesertScorpionWalk",
+      "via": "container:Terraria/PyramidChest",
       "reason": "Included in the generated profile."
     },
     {
@@ -17855,10 +17855,10 @@
       "name": "Картофель фри",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "npc:Terraria/FlyingFish",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/FritzBanner",
@@ -18056,7 +18056,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceBlock",
       "reason": "not combat equipment"
     },
@@ -18066,7 +18066,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceBlock+Terraria/Silk",
       "reason": "not combat equipment"
     },
@@ -18076,7 +18076,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceBlock+Terraria/Book",
       "reason": "not combat equipment"
     },
@@ -18096,7 +18096,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceBlock+Terraria/IceTorch",
       "reason": "not combat equipment"
     },
@@ -18106,7 +18106,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceBlock+Terraria/IceTorch",
       "reason": "not combat equipment"
     },
@@ -18116,7 +18116,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceBlock",
       "reason": "not combat equipment"
     },
@@ -18126,7 +18126,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceBlock+Terraria/IceTorch+Terraria/Chain",
       "reason": "not combat equipment"
     },
@@ -18146,7 +18146,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/IceBlock",
       "reason": "not combat equipment"
     },
@@ -18167,7 +18167,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/IceGolem",
+      "via": "fishing",
       "reason": "not combat equipment"
     },
     {
@@ -18176,7 +18176,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceBlock",
       "reason": "not combat equipment"
     },
@@ -18186,7 +18186,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceBlock",
       "reason": "not combat equipment"
     },
@@ -18197,7 +18197,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/IceGolem",
+      "via": "global:Terraria/GlobalNPCDrops",
       "reason": "not combat equipment"
     },
     {
@@ -18216,7 +18216,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceTorch+Terraria/IceBlock",
       "reason": "not combat equipment"
     },
@@ -18226,7 +18226,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceBlock+Terraria/IceTorch",
       "reason": "not combat equipment"
     },
@@ -18236,7 +18236,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone+Terraria/IceBlock+Terraria/Book",
       "reason": "not combat equipment"
     },
@@ -18286,7 +18286,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceBlock+Terraria/Silk",
       "reason": "not combat equipment"
     },
@@ -18296,7 +18296,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceBlock",
       "reason": "not combat equipment"
     },
@@ -18305,10 +18305,10 @@
       "name": "Ледяной черепаший панцирь",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/IceTortoise",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/FrozenWings",
@@ -18326,7 +18326,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceBlock",
       "reason": "not combat equipment"
     },
@@ -18435,10 +18435,10 @@
       "name": "Пушистая морковь",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/GalaxyPearl",
@@ -18495,10 +18495,10 @@
       "name": "Статуя горгульи",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/GarlandHat",
@@ -18857,7 +18857,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "shop:Terraria/PartyGirl",
+      "via": "recipe:Terraria/BottledWater+Terraria/Daybloom+Terraria/Moonglow+Terraria/Blinkroot+Terraria/Waterleaf+Terraria/Deathweed+Terraria/Shiverthorn+Terraria/Fireblossom",
       "reason": "not combat equipment"
     },
     {
@@ -18867,7 +18867,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "fishing",
+      "via": "npc:Terraria/GraniteGolem",
       "reason": "not combat equipment"
     },
     {
@@ -19365,20 +19365,20 @@
       "name": "Цветок сумрачника",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/Derpling",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/GloomStatue",
       "name": "Статуя черепа",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/GloriousNight",
@@ -19447,7 +19447,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "npc:ThoriumMod/ManofWar",
+      "via": "npc:Terraria/FlyingFish",
       "reason": "not combat equipment"
     },
     {
@@ -19837,7 +19837,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -19847,7 +19847,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -19857,7 +19857,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -19865,10 +19865,10 @@
       "name": "Золотой сачок",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/GoldenBullet",
@@ -19887,7 +19887,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -19897,7 +19897,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -19917,7 +19917,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -19927,7 +19927,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -19937,7 +19937,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -19947,7 +19947,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -19987,7 +19987,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -19997,7 +19997,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -20005,10 +20005,10 @@
       "name": "Золотая удочка",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/GoldenKey",
@@ -20017,7 +20017,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "skeletron",
-      "via": "npc:ThoriumMod/RagingMinotaur",
+      "via": "npc:Terraria/AngryBones",
       "reason": "not combat equipment"
     },
     {
@@ -20027,7 +20027,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -20037,7 +20037,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -20047,7 +20047,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -20057,7 +20057,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -20077,7 +20077,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -20087,7 +20087,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -20097,7 +20097,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -20107,7 +20107,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -20117,7 +20117,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -20307,7 +20307,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -20515,10 +20515,10 @@
       "name": "Голубой мяч для гольфа",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "world-evil",
+      "via": "recipe:Terraria/GolfBall+Terraria/CyanDye",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/GolfBallDyedGreen",
@@ -20575,10 +20575,10 @@
       "name": "Красный мяч для гольфа",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/GolfBall+Terraria/RedDye",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/GolfBallDyedSkyBlue",
@@ -20605,10 +20605,10 @@
       "name": "Фиолетовый мяч для гольфа",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/GolfBall+Terraria/VioletDye",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/GolfBallDyedYellow",
@@ -21535,20 +21535,20 @@
       "name": "Надгробие",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Wood",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Gravestone",
       "name": "Могильная плита",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Graveyard",
@@ -21677,7 +21677,7 @@
       "contentItem": false,
       "status": "buff",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/HellBringerMimic",
+      "via": "npc:ThoriumMod/MyceliumMimic",
       "reason": "Included in the generated profile."
     },
     {
@@ -21687,7 +21687,7 @@
       "contentItem": false,
       "status": "buff",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/HellBringerMimic",
+      "via": "npc:ThoriumMod/MyceliumMimic",
       "reason": "Included in the generated profile."
     },
     {
@@ -21785,30 +21785,30 @@
       "name": "Зеленый кирпич",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "shop:Terraria/Clothier",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/GreenBrickPlatform",
       "name": "Зеленая кирпичная платформа",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/GreenBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/GreenBrickWall",
       "name": "Стена из зеленого кирпича",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/GreenBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/GreenBrickWallUnsafe",
@@ -21965,10 +21965,10 @@
       "name": "Зеленый сундук темницы",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/GreenBrick+Terraria/IronBar",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/GreenDungeonDoor",
@@ -22255,10 +22255,10 @@
       "name": "Зеленая плитка",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/GreenBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/GreenSlabWallUnsafe",
@@ -22315,40 +22315,40 @@
       "name": "Зеленая лепнина",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/SiltBlock+Terraria/StoneBlock+Terraria/GreenThread",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/GreenStuccoWall",
       "name": "Стена из зеленой лепнины",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/GreenStucco",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/GreenThread",
       "name": "Зеленые нитки",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/JungleGrassSeeds",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/GreenTiledWall",
       "name": "Зеленая черепица",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/GreenBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/GreenTiledWallUnsafe",
@@ -22647,7 +22647,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "destroyer",
-      "via": "manifest",
+      "via": "npc:Terraria/TheDestroyer",
       "reason": "not combat equipment"
     },
     {
@@ -22687,7 +22687,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/WallofFlesh",
+      "via": "fishing",
       "reason": "not combat equipment"
     },
     {
@@ -22747,7 +22747,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/BigMimicHallow",
+      "via": "global:Terraria/GlobalNPCDrops",
       "reason": "not combat equipment"
     },
     {
@@ -22895,10 +22895,10 @@
       "name": "Статуя молота",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Hammush",
@@ -23037,7 +23037,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "eye-of-cthulhu",
-      "via": "npc:Terraria/GoblinArcher",
+      "via": "npc:Terraria/GoblinThief",
       "reason": "Included in the generated profile."
     },
     {
@@ -23125,10 +23125,10 @@
       "name": "Могильный камень",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/HealingPotion",
@@ -23197,7 +23197,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "recipe:Terraria/LifeCrystal+Terraria/StoneBlock",
+      "via": "recipe:Terraria/StoneBlock+Terraria/LifeCrystal+ThoriumMod/LifeQuartz",
       "reason": "not combat equipment"
     },
     {
@@ -23325,10 +23325,10 @@
       "name": "Протекторы адского огня",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/FlameWakerBoots+Terraria/SpectreBoots",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/Hellforge",
@@ -23455,10 +23455,10 @@
       "name": "Мешок с растениями",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "eye-of-cthulhu",
-      "via": "npc:Terraria/Dryad",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/HerculesBeetle",
@@ -23485,10 +23485,10 @@
       "name": "Шляпа героя",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Silk+Terraria/GreenThread",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/HeroShield",
@@ -23505,20 +23505,20 @@
       "name": "Штаны героя",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Silk+Terraria/GreenThread",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/HerosShirt",
       "name": "Рубашка героя",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Silk+Terraria/GreenThread",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/HerplingBanner",
@@ -23545,10 +23545,10 @@
       "name": "Прочная леска",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/HighVelocityBullet",
@@ -23676,7 +23676,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyBlock",
       "reason": "not combat equipment"
     },
@@ -23686,7 +23686,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyBlock+Terraria/Silk",
       "reason": "not combat equipment"
     },
@@ -23716,7 +23716,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyBlock+Terraria/Book",
       "reason": "not combat equipment"
     },
@@ -23736,7 +23736,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyBlock+Terraria/Torch",
       "reason": "not combat equipment"
     },
@@ -23746,7 +23746,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyBlock+Terraria/Torch",
       "reason": "not combat equipment"
     },
@@ -23756,7 +23756,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyBlock",
       "reason": "not combat equipment"
     },
@@ -23766,7 +23766,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyBlock+Terraria/Torch+Terraria/Chain",
       "reason": "not combat equipment"
     },
@@ -23776,7 +23776,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyBlock+Terraria/IronBar",
       "reason": "not combat equipment"
     },
@@ -23786,7 +23786,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/HoneyBlock",
       "reason": "not combat equipment"
     },
@@ -23806,7 +23806,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyBlock",
       "reason": "not combat equipment"
     },
@@ -23816,8 +23816,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/JungleFishingCrate",
+      "stage": "destroyer",
+      "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment"
     },
     {
@@ -23826,7 +23826,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyBlock",
       "reason": "not combat equipment"
     },
@@ -23836,7 +23836,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyBlock",
       "reason": "not combat equipment"
     },
@@ -23886,7 +23886,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Torch+Terraria/HoneyBlock",
       "reason": "not combat equipment"
     },
@@ -23896,7 +23896,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyBlock+Terraria/Torch",
       "reason": "not combat equipment"
     },
@@ -23906,7 +23906,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone+Terraria/HoneyBlock+Terraria/Book",
       "reason": "not combat equipment"
     },
@@ -23946,7 +23946,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyBlock+Terraria/Silk",
       "reason": "not combat equipment"
     },
@@ -23956,7 +23956,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyBlock",
       "reason": "not combat equipment"
     },
@@ -23966,7 +23966,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyBlock",
       "reason": "not combat equipment"
     },
@@ -23977,7 +23977,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "npc:Terraria/GreekSkeleton",
+      "via": "npc:Terraria/Skeleton",
       "reason": "not combat equipment"
     },
     {
@@ -24065,10 +24065,10 @@
       "name": "Горящий рыболовный крючок",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/HoundiusShootius",
@@ -24266,7 +24266,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceBlock+Terraria/IronBar",
       "reason": "not combat equipment"
     },
@@ -24275,10 +24275,10 @@
       "name": "Мороженое",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "npc:Terraria/IceSlime",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/IceEcho",
@@ -24307,7 +24307,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/IceGolem",
+      "via": "npc:ThoriumMod/SnowyOwl",
       "reason": "not combat equipment"
     },
     {
@@ -24336,8 +24336,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/FrozenCrate",
+      "stage": "destroyer",
+      "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment"
     },
     {
@@ -24397,7 +24397,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/IceElemental",
+      "via": "npc:Terraria/IceTortoise",
       "reason": "Included in the generated profile."
     },
     {
@@ -24447,7 +24447,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "container:Terraria/CrimsonFishingCrateHard",
+      "via": "npc:Terraria/IchorSticker",
       "reason": "not combat equipment"
     },
     {
@@ -25275,10 +25275,10 @@
       "name": "Стена джунглей с листьями",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/JungleGrassSeeds",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Jungle3Echo",
@@ -25295,10 +25295,10 @@
       "name": "Стена с лозой джунглей",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/JungleGrassSeeds",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/JungleBatBanner",
@@ -25357,7 +25357,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/BigMimicJungle",
+      "via": "fishing",
       "reason": "not combat equipment"
     },
     {
@@ -25365,10 +25365,10 @@
       "name": "Семена травы джунглей",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "npc:Terraria/MossHornet",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/JungleHat",
@@ -25645,10 +25645,10 @@
       "name": "Статуя короля",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Throne+Terraria/TeleportationPotion+Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/KiteAngryTrapper",
@@ -26005,10 +26005,10 @@
       "name": "Божья коровка-вагонетка",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/WoodenCrate",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/LadyOfTheLake",
@@ -26197,7 +26197,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/BrainScrambler",
+      "via": "npc:Terraria/GigaZapper",
       "reason": "not combat equipment"
     },
     {
@@ -26347,7 +26347,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/WallofFlesh",
+      "via": "fishing",
       "reason": "not combat equipment"
     },
     {
@@ -27157,7 +27157,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "npc:Terraria/Nurse",
+      "via": "container:Terraria/GoldenCrate",
       "reason": "not combat equipment"
     },
     {
@@ -27197,7 +27197,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "plantera",
-      "via": "npc:Terraria/Plantera",
+      "via": "manifest",
       "reason": "not combat equipment"
     },
     {
@@ -27547,7 +27547,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "plantera",
-      "via": "npc:ThoriumMod/LihzardMimic",
+      "via": "npc:Terraria/Lihzahrd",
       "reason": "not combat equipment"
     },
     {
@@ -27807,7 +27807,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "recipe:Terraria/Loom+Terraria/Vine",
+      "via": "recipe:Terraria/Wood+ThoriumMod/LivingLeaf",
       "reason": "not combat equipment"
     },
     {
@@ -28086,8 +28086,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
-      "via": "npc:Terraria/FlyingSnake",
+      "stage": "plantera",
+      "via": "npc:Terraria/Lihzahrd",
       "reason": "not combat equipment"
     },
     {
@@ -28427,7 +28427,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -28627,7 +28627,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "plantera",
-      "via": "npc:ThoriumMod/LihzardMimic",
+      "via": "npc:Terraria/Lihzahrd",
       "reason": "not combat equipment"
     },
     {
@@ -28715,10 +28715,10 @@
       "name": "Волшебное тыквенное семечко",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Pumpkin",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/MagicConch",
@@ -29467,7 +29467,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/BrainScrambler",
+      "via": "npc:Terraria/GigaZapper",
       "reason": "not combat equipment"
     },
     {
@@ -30057,7 +30057,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "npc:Terraria/Nymph",
+      "via": "npc:Terraria/LostGirl",
       "reason": "not combat equipment"
     },
     {
@@ -30066,7 +30066,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/TinBrick",
       "reason": "not combat equipment"
     },
@@ -30117,7 +30117,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "world-evil",
-      "via": "manifest",
+      "via": "npc:Terraria/MeteorHead",
       "reason": "not combat equipment"
     },
     {
@@ -30395,10 +30395,10 @@
       "name": "Полуночное солнце",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "npc:Terraria/Fritz",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/MilkCarton",
@@ -30417,7 +30417,7 @@
       "contentItem": false,
       "status": "buff",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/IcyMerman",
+      "via": "npc:Terraria/IceTortoise",
       "reason": "Included in the generated profile."
     },
     {
@@ -30487,7 +30487,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "shop:Terraria/Merchant",
+      "via": "npc:Terraria/UndeadMiner",
       "reason": "not combat equipment"
     },
     {
@@ -30497,7 +30497,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "npc:Terraria/Merchant",
+      "via": "npc:Terraria/UndeadMiner",
       "reason": "not combat equipment"
     },
     {
@@ -30517,7 +30517,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "npc:Terraria/Merchant",
+      "via": "npc:Terraria/UndeadMiner",
       "reason": "not combat equipment"
     },
     {
@@ -30526,8 +30526,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "moon-lord",
-      "via": "recipe:Terraria/RocketIII+Terraria/LunarBar",
+      "stage": "plantera",
+      "via": "recipe:Terraria/RocketIII+Terraria/ShroomiteBar",
       "reason": "Included in the generated profile."
     },
     {
@@ -30536,8 +30536,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "moon-lord",
-      "via": "recipe:Terraria/RocketIV+Terraria/LunarBar",
+      "stage": "plantera",
+      "via": "recipe:Terraria/RocketIV+Terraria/ShroomiteBar",
       "reason": "Included in the generated profile."
     },
     {
@@ -30737,7 +30737,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "eye-of-cthulhu",
-      "via": "npc:Terraria/ZombieMerman",
+      "via": "npc:Terraria/BloodZombie",
       "reason": "not combat equipment"
     },
     {
@@ -30857,7 +30857,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/Lycan",
+      "via": "npc:Terraria/Werewolf",
       "reason": "Included in the generated profile."
     },
     {
@@ -30906,8 +30906,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
-      "via": "container:Terraria/HerbBag",
+      "stage": "queen-bee",
+      "via": "shop:ThoriumMod/Druid",
       "reason": "not combat equipment"
     },
     {
@@ -30945,10 +30945,10 @@
       "name": "Ноги Лунного лорда",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "moon-lord",
-      "via": "npc:Terraria/MoonLordCore",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/MoonLordMasterTrophy",
@@ -31026,7 +31026,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "skeletron-prime",
+      "stage": "destroyer",
       "via": "recipe:Terraria/MoonCharm+Terraria/NeptunesShell",
       "reason": "Included in the generated profile."
     },
@@ -31037,7 +31037,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "npc:Terraria/Vampire",
+      "via": "npc:Terraria/VampireBat",
       "reason": "Included in the generated profile."
     },
     {
@@ -31315,30 +31315,30 @@
       "name": "Маска мумии",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/Mummy",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/MummyPants",
       "name": "Штаны мумии",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/Mummy",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/MummyShirt",
       "name": "Рубашка мумии",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/Mummy",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/Muramasa",
@@ -31535,10 +31535,10 @@
       "name": "Семена грибной травы",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "npc:Terraria/SporeBat",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/MushroomHat",
@@ -31635,10 +31635,10 @@
       "name": "Статуя гриба",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "wall-of-flesh",
-      "via": "npc:Terraria/Truffle",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/MushroomTable",
@@ -31696,8 +31696,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
-      "via": "shop:Terraria/Merchant",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Wizard",
       "reason": "not combat equipment"
     },
     {
@@ -32667,7 +32667,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:Terraria/IronCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -32777,7 +32777,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:Terraria/IronCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -32877,7 +32877,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "npc:Terraria/Cyborg",
+      "via": "recipe:Terraria/EmptyBullet+Terraria/Nanites",
       "reason": "Included in the generated profile."
     },
     {
@@ -32897,7 +32897,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "plantera",
-      "via": "recipe:Terraria/Silk+Terraria/Ectoplasm",
+      "via": "recipe:Terraria/Silk+Terraria/Ectoplasm+Terraria/SoulofFright",
       "reason": "not combat equipment"
     },
     {
@@ -32907,7 +32907,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "npc:ThoriumMod/NecroPot",
+      "via": "npc:Terraria/CursedSkull",
       "reason": "Included in the generated profile."
     },
     {
@@ -33426,7 +33426,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "skeletron-prime",
+      "stage": "destroyer",
       "via": "npc:Terraria/CreatureFromTheDeep",
       "reason": "Included in the generated profile."
     },
@@ -33647,7 +33647,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/SandElemental",
+      "via": "fishing",
       "reason": "not combat equipment"
     },
     {
@@ -33665,10 +33665,10 @@
       "name": "Обелиск",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Obsidian",
@@ -34075,10 +34075,10 @@
       "name": "Окулярный резонанс",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "npc:Terraria/Eyezor",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/OgreMask",
@@ -34167,7 +34167,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "twins",
-      "via": "recipe:Terraria/BlackLens+Terraria/Lens+Terraria/SoulofSight",
+      "via": "recipe:Terraria/BlackLens+Terraria/Lens+Terraria/HallowedBar+Terraria/SoulofSight",
       "reason": "Included in the generated profile."
     },
     {
@@ -34317,7 +34317,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:Terraria/IronCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -34407,7 +34407,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:Terraria/IronCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -34777,7 +34777,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:Terraria/IronCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -34877,7 +34877,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:Terraria/IronCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -35435,10 +35435,10 @@
       "name": "КПК",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "recipe:Terraria/GPS+Terraria/FishFinder+Terraria/GoblinTech+Terraria/REK",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/PeaceCandle",
@@ -35925,20 +35925,20 @@
       "name": "Маска фараона",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "shop:Terraria/Clothier",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/PharaohsRobe",
       "name": "Платье фараона",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "shop:Terraria/Clothier",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/PhaseDye",
@@ -35967,7 +35967,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/IceMimic",
+      "via": "npc:Terraria/Mimic",
       "reason": "Included in the generated profile."
     },
     {
@@ -36015,10 +36015,10 @@
       "name": "Статуя кирки",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Picksaw",
@@ -36077,7 +36077,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "npc:ThoriumMod/Coldling",
+      "via": "npc:Terraria/EaterofSouls",
       "reason": "not combat equipment"
     },
     {
@@ -36135,10 +36135,10 @@
       "name": "Статуя башни",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/PinaColada",
@@ -36225,30 +36225,30 @@
       "name": "Розовый кирпич",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "shop:Terraria/Clothier",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/PinkBrickPlatform",
       "name": "Розовая кирпичная платформа",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/PinkBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/PinkBrickWall",
       "name": "Стена из розового кирпича",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/PinkBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/PinkBrickWallUnsafe",
@@ -36335,10 +36335,10 @@
       "name": "Розовый сундук темницы",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/PinkBrick+Terraria/IronBar",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/PinkDungeonDoor",
@@ -36575,10 +36575,10 @@
       "name": "Розовая плитка",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/PinkBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/PinkSlabWallUnsafe",
@@ -36625,10 +36625,10 @@
       "name": "Розовая черепица",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/PinkBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/PinkTiledWallUnsafe",
@@ -36827,7 +36827,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "Included in the generated profile."
     },
     {
@@ -36857,7 +36857,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "npc:Terraria/Pixie",
       "reason": "not combat equipment"
     },
     {
@@ -37465,20 +37465,20 @@
       "name": "Статуя зелья",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/PotStatue",
       "name": "Статуя горшка",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/PotSuspended",
@@ -37815,10 +37815,10 @@
       "name": "Подарок",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "plantera",
-      "via": "npc:Terraria/Everscream",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/PresentMimicBanner",
@@ -38257,7 +38257,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "plantera",
-      "via": "recipe:Terraria/Pumpkin+Terraria/Ectoplasm",
+      "via": "recipe:Terraria/Pumpkin+Terraria/Ectoplasm+Terraria/HallowedBar",
       "reason": "not combat equipment"
     },
     {
@@ -38805,10 +38805,10 @@
       "name": "Статуя королевы",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Throne+Terraria/TeleportationPotion+Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/RabbitOrder",
@@ -39235,10 +39235,10 @@
       "name": "Статуя жнеца",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/ReaverShark",
@@ -39276,8 +39276,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "plantera",
-      "via": "recipe:Terraria/RifleScope+Terraria/PutridScent",
+      "stage": "golem",
+      "via": "recipe:Terraria/SniperScope+Terraria/PutridScent",
       "reason": "Included in the generated profile."
     },
     {
@@ -39315,10 +39315,10 @@
       "name": "Красный и черный краситель",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/RedDye+Terraria/BlackDye",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/RedAndBlueLights",
@@ -39365,10 +39365,10 @@
       "name": "Красный и серебристый краситель",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/RedDye+Terraria/SilverDye",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/RedAndYellowBulb",
@@ -39485,10 +39485,10 @@
       "name": "Красный краситель",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/RedHusk",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/RedDynastyShingles",
@@ -39525,10 +39525,10 @@
       "name": "Красный хитин",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "npc:Terraria/CochinealBeetle",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/RedIceBlock",
@@ -39715,10 +39715,10 @@
       "name": "Красная нитка",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "start",
+      "via": "recipe:Terraria/WhiteString+Terraria/RedDye",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/RedStucco",
@@ -39845,10 +39845,10 @@
       "name": "Светоотражающие очки",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/Blindfold+Terraria/PocketMirror",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/ReflectiveSilverDye",
@@ -39966,7 +39966,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron-prime",
       "via": "npc:Terraria/Reaper",
       "reason": "not combat equipment"
     },
@@ -40015,50 +40015,50 @@
       "name": "Золотой могильный крест",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock+Terraria/GoldBar",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/RichGravestone2",
       "name": "Золотая надгробная плита",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock+Terraria/GoldBar",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/RichGravestone3",
       "name": "Золотое надгробие",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock+Terraria/GoldBar",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/RichGravestone4",
       "name": "Золотая могильная плита",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock+Terraria/GoldBar",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/RichGravestone5",
       "name": "Золотой могильный камень",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock+Terraria/GoldBar",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/RichMahogany",
@@ -40446,8 +40446,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "wall-of-flesh",
-      "via": "recipe:Terraria/IronBar+Terraria/EmptyBullet+Terraria/ExplosivePowder",
+      "stage": "plantera",
+      "via": "shop:Terraria/Cyborg",
       "reason": "Included in the generated profile."
     },
     {
@@ -40515,10 +40515,10 @@
       "name": "Голова каменного голема",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/RockGolem",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/RockLobster",
@@ -40575,10 +40575,10 @@
       "name": "Жезл раздора",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "npc:ThoriumMod/DissonanceSeer",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/RodOfHarmony",
@@ -41017,7 +41017,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -41027,7 +41027,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -41037,7 +41037,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/SeaShantySinger",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment"
     },
     {
@@ -41765,30 +41765,30 @@
       "name": "Шляпа пугала",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "npc:Terraria/Scarecrow2",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/ScarecrowPants",
       "name": "Штаны пугала",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "npc:Terraria/Scarecrow2",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/ScarecrowShirt",
       "name": "Рубаха пугала",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "npc:Terraria/Scarecrow2",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/ScarletMacaw",
@@ -42027,7 +42027,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "shop:Terraria/Merchant",
+      "via": "initial",
       "reason": "Included in the generated profile."
     },
     {
@@ -42075,10 +42075,10 @@
       "name": "Секстант",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Shackle",
@@ -42596,8 +42596,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "start",
-      "via": "npc:Terraria/Shark",
+      "stage": "eye-of-cthulhu",
+      "via": "npc:Terraria/BloodZombie",
       "reason": "Included in the generated profile."
     },
     {
@@ -42635,10 +42635,10 @@
       "name": "Ракушкофон",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "recipe:Terraria/CellPhone+Terraria/MagicConch+Terraria/DemonConch",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/ShellphoneHell",
@@ -42685,10 +42685,10 @@
       "name": "Статуя щита",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/ShiftingPearlSandsDye",
@@ -42926,8 +42926,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
-      "via": "container:Terraria/HerbBag",
+      "stage": "skeletron",
+      "via": "shop:ThoriumMod/Druid",
       "reason": "not combat equipment"
     },
     {
@@ -43855,10 +43855,10 @@
       "name": "Небесная мельница",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/FloatingIslandFishingCrate",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/SkywareBathtub",
@@ -44347,7 +44347,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "npc:Terraria/SlimedZombie",
+      "via": "npc:Terraria/BlueSlime",
       "reason": "Included in the generated profile."
     },
     {
@@ -44585,10 +44585,10 @@
       "name": "Снежкомет",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "npc:Terraria/SnowFlinx",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/SnowBlock",
@@ -45365,10 +45365,10 @@
       "name": "Спагетти",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "npc:Terraria/GraniteGolem",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/SparkleGuitar",
@@ -45435,10 +45435,10 @@
       "name": "Статуя копья",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/SpearTrap",
@@ -45806,8 +45806,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
-      "via": "npc:Terraria/BlackRecluse",
+      "stage": "plantera",
+      "via": "npc:Terraria/Pumpking",
       "reason": "not combat equipment"
     },
     {
@@ -45817,7 +45817,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:ThoriumMod/Tarantula",
+      "via": "npc:Terraria/BlackRecluse",
       "reason": "not combat equipment"
     },
     {
@@ -46007,7 +46007,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "eye-of-cthulhu",
-      "via": "npc:Terraria/GoblinArcher",
+      "via": "npc:Terraria/GoblinThief",
       "reason": "Included in the generated profile."
     },
     {
@@ -47146,8 +47146,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/ManaCrystal+Terraria/StoneBlock",
+      "stage": "world-evil",
+      "via": "recipe:Terraria/StoneBlock+Terraria/ManaCrystal+Terraria/MeteoriteBar",
       "reason": "not combat equipment"
     },
     {
@@ -47225,10 +47225,10 @@
       "name": "Стейк",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "npc:Terraria/UndeadMiner",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/SteampunkBathtub",
@@ -47755,40 +47755,40 @@
       "name": "Странное растение",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "wall-of-flesh",
-      "via": "shop:Terraria/Dryad",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/StrangePlant2",
       "name": "Странное растение",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "wall-of-flesh",
-      "via": "shop:Terraria/Dryad",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/StrangePlant3",
       "name": "Странное растение",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "wall-of-flesh",
-      "via": "shop:Terraria/Dryad",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/StrangePlant4",
       "name": "Странное растение",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "wall-of-flesh",
-      "via": "shop:Terraria/Dryad",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/StylistKilLaKillScissorsIWish",
@@ -47916,8 +47916,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
-      "via": "container:Terraria/GoldenCrate",
+      "stage": "wall-of-flesh",
+      "via": "container:Terraria/IronCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -47935,10 +47935,10 @@
       "name": "Вагонетка-подсолнух",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/WoodenCrate",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Sunflowers",
@@ -47955,10 +47955,10 @@
       "name": "Статуя подсолнуха",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Sunfury",
@@ -48035,10 +48035,10 @@
       "name": "Супервпитывающая губка",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/SuperDartTrap",
@@ -48075,30 +48075,30 @@
       "name": "Костюм супергероя",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Silk+Terraria/GreenThread",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/SuperHeroMask",
       "name": "Маска супергероя",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Silk+Terraria/GreenThread",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/SuperHeroTights",
       "name": "Штаны супергероя",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Silk+Terraria/GreenThread",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/SuperManaPotion",
@@ -48235,10 +48235,10 @@
       "name": "Статуя меча",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/SwordWhip",
@@ -48257,7 +48257,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "manifest",
+      "via": "npc:Terraria/BoneLee",
       "reason": "Included in the generated profile."
     },
     {
@@ -48265,10 +48265,10 @@
       "name": "Ящик рыбацких снастей",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/TacticalShotgun",
@@ -48307,7 +48307,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "skeletron",
-      "via": "npc:ThoriumMod/RagingMinotaur",
+      "via": "npc:Terraria/AngryBones",
       "reason": "not combat equipment"
     },
     {
@@ -48805,10 +48805,10 @@
       "name": "Клинок Земли",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
-      "stage": "",
-      "via": "",
-      "reason": "Combat item has no proven acquisition source."
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:Terraria/TrueNightsEdge+Terraria/TrueExcalibur+Terraria/BrokenHeroSword",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/TerraBladeChronicles",
@@ -48925,20 +48925,20 @@
       "name": "Свадебное платье",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "npc:Terraria/TheBride",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/TheBrideHat",
       "name": "Свадебная фата",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "npc:Terraria/TheBride",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/TheCreationoftheGuide",
@@ -49205,10 +49205,10 @@
       "name": "Ни-евероятно",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "npc:Terraria/ThePossessed",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/ThornChakram",
@@ -49687,7 +49687,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "world-evil",
-      "via": "npc:Terraria/BrainofCthulhu",
+      "via": "manifest",
       "reason": "not combat equipment"
     },
     {
@@ -49697,7 +49697,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/IceMimic",
+      "via": "npc:Terraria/Mimic",
       "reason": "Included in the generated profile."
     },
     {
@@ -49707,7 +49707,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:Terraria/JungleFishingCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -49797,7 +49797,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:Terraria/JungleFishingCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -49906,7 +49906,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Bone",
       "reason": "not combat equipment"
     },
@@ -49955,30 +49955,30 @@
       "name": "Синий унитаз темницы",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/BlueBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/ToiletDungeonGreen",
       "name": "Зеленый унитаз темницы",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/GreenBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/ToiletDungeonPink",
       "name": "Розовый унитаз темницы",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/PinkBrick",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/ToiletDynasty",
@@ -50016,7 +50016,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/IceBlock",
       "reason": "not combat equipment"
     },
@@ -50046,7 +50046,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "recipe:Terraria/HoneyBlock",
       "reason": "not combat equipment"
     },
@@ -50245,10 +50245,10 @@
       "name": "Надгробная плита",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Toolbelt",
@@ -50645,10 +50645,10 @@
       "name": "Статуя дерева",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/TreeTrunks",
@@ -50685,10 +50685,10 @@
       "name": "Тримаранг",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
-      "stage": "",
-      "via": "",
-      "reason": "Combat item has no proven acquisition source."
+      "status": "equipment",
+      "stage": "start",
+      "via": "recipe:Terraria/EnchantedBoomerang+Terraria/Shroomerang+Terraria/IceBoomerang",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/TrioSuperHeroes",
@@ -50755,20 +50755,20 @@
       "name": "Трюфельный червь",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "npc:Terraria/SporeBat",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/TruffleWormCage",
       "name": "Клетка с трюфельным червем",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/Terrarium+Terraria/TruffleWorm",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Tsunami",
@@ -51067,7 +51067,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "npc:Terraria/GiantTortoise",
       "reason": "not combat equipment"
     },
     {
@@ -51295,10 +51295,10 @@
       "name": "Шляпа-зонт",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "npc:Terraria/UmbrellaSlime",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/UmbrellaSlimeBanner",
@@ -51447,7 +51447,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "npc:Terraria/Unicorn",
       "reason": "not combat equipment"
     },
     {
@@ -51475,10 +51475,10 @@
       "name": "Единорог на палочке",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/Unicorn",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/UnicornPants",
@@ -51775,10 +51775,10 @@
       "name": "Шлем викинга",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "npc:Terraria/UndeadViking",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/VikingVoyage",
@@ -51855,30 +51855,30 @@
       "name": "Фиолетовый и черный краситель",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/VioletDye+Terraria/BlackDye",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/VioletandSilverDye",
       "name": "Фиолетовый и серебристый краситель",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/VioletDye+Terraria/SilverDye",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/VioletDye",
       "name": "Фиолетовый краситель",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/VioletHusk",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/VioletGradientDye",
@@ -51895,10 +51895,10 @@
       "name": "Фиолетовый хитин",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "npc:Terraria/LacBeetle",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/VioletMoss",
@@ -51945,10 +51945,10 @@
       "name": "Фиолетовая нитка",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "start",
+      "via": "recipe:Terraria/WhiteString+Terraria/VioletDye",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/VisitingThePyramids",
@@ -51966,8 +51966,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "start",
-      "via": "npc:Terraria/DevourerHead",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/Corruptor",
       "reason": "Included in the generated profile."
     },
     {
@@ -52736,8 +52736,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
-      "via": "container:Terraria/HerbBag",
+      "stage": "skeletron",
+      "via": "shop:ThoriumMod/Druid",
       "reason": "not combat equipment"
     },
     {
@@ -52805,10 +52805,10 @@
       "name": "Погодное радио",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "duke-fishron",
-      "via": "npc:Terraria/DukeFishron",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/WeatherVane",
@@ -53307,7 +53307,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "moon-lord",
-      "via": "recipe:Terraria/SoulofFlight+Terraria/FragmentNebula+Terraria/LunarBar",
+      "via": "recipe:Terraria/FragmentNebula+Terraria/LunarBar",
       "reason": "Included in the generated profile."
     },
     {
@@ -53316,7 +53316,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron-prime",
+      "stage": "plantera",
       "via": "npc:Terraria/Mothron",
       "reason": "not combat equipment"
     },
@@ -53327,7 +53327,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "moon-lord",
-      "via": "recipe:Terraria/SoulofFlight+Terraria/FragmentSolar+Terraria/LunarBar",
+      "via": "recipe:Terraria/FragmentSolar+Terraria/LunarBar",
       "reason": "Included in the generated profile."
     },
     {
@@ -53337,7 +53337,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "moon-lord",
-      "via": "recipe:Terraria/SoulofFlight+Terraria/FragmentStardust+Terraria/LunarBar",
+      "via": "recipe:Terraria/FragmentStardust+Terraria/LunarBar",
       "reason": "Included in the generated profile."
     },
     {
@@ -53347,7 +53347,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "moon-lord",
-      "via": "recipe:Terraria/SoulofFlight+Terraria/FragmentVortex+Terraria/LunarBar",
+      "via": "recipe:Terraria/FragmentVortex+Terraria/LunarBar",
       "reason": "Included in the generated profile."
     },
     {
@@ -53367,7 +53367,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "skeletron",
-      "via": "npc:Terraria/Mechanic",
+      "via": "shop:Terraria/Mechanic",
       "reason": "not combat equipment"
     },
     {
@@ -53555,10 +53555,10 @@
       "name": "Статуя женщины",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "Terraria/Wood",
@@ -53766,7 +53766,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "recipe:Terraria/Wood",
       "reason": "not combat equipment"
     },
@@ -53877,7 +53877,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "shop:Terraria/Merchant",
+      "via": "recipe:Terraria/BottledWater+Terraria/SpecularFish+Terraria/Blinkroot",
       "reason": "not combat equipment"
     },
     {
@@ -54485,10 +54485,10 @@
       "name": "Зенит",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
-      "stage": "",
-      "via": "",
-      "reason": "Combat item has no proven acquisition source."
+      "status": "equipment",
+      "stage": "moon-lord",
+      "via": "recipe:Terraria/TerraBlade+Terraria/Meowmere+Terraria/StarWrath+Terraria/InfluxWaver+Terraria/TheHorsemansBlade+Terraria/Seedler+Terraria/Starfury+Terraria/BeeKeeper+Terraria/EnchantedSword+Terraria/CopperShortsword",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/ZephyrFish",
@@ -55836,7 +55836,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "start",
+      "stage": "borean-strider",
       "via": "npc:ThoriumMod/Tarantula",
       "reason": "Included in the generated profile."
     },
@@ -55976,7 +55976,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "npc:ThoriumMod/AstroBeetle",
       "reason": "Included in the generated profile."
     },
@@ -56056,7 +56056,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "plantera",
+      "stage": "wall-of-flesh",
       "via": "npc:Terraria/MisterStabby",
       "reason": "Included in the generated profile."
     },
@@ -56386,7 +56386,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "npc:ThoriumMod/AstroBeetle",
       "reason": "not combat equipment"
     },
@@ -56555,10 +56555,10 @@
       "name": "Blister Sack",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "npc:ThoriumMod/BlisterPod",
+      "reason": "not combat equipment"
     },
     {
       "id": "ThoriumMod/Blitzzard",
@@ -56566,7 +56566,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "plantera",
+      "stage": "wall-of-flesh",
       "via": "npc:ThoriumMod/FrostBurntFlayer",
       "reason": "Included in the generated profile."
     },
@@ -57666,7 +57666,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "skeletron-prime",
+      "stage": "plantera",
       "via": "npc:Terraria/Mothron",
       "reason": "not combat equipment"
     },
@@ -58647,7 +58647,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/SporeBat",
+      "via": "npc:Terraria/ZombieMushroom",
       "reason": "not combat equipment"
     },
     {
@@ -59585,10 +59585,10 @@
       "name": "Cracked Battle Horn",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "npc:ThoriumMod/BloodyWarg",
+      "reason": "not combat equipment"
     },
     {
       "id": "ThoriumMod/Cranberry",
@@ -60517,7 +60517,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "plantera",
-      "via": "npc:Terraria/SkeletonCommando",
+      "via": "npc:Terraria/BoneLee",
       "reason": "not combat equipment"
     },
     {
@@ -60657,7 +60657,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateDeadeye",
+      "via": "npc:Terraria/PirateCrossbower",
       "reason": "Included in the generated profile."
     },
     {
@@ -61027,7 +61027,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/RainbowSlime",
+      "via": "npc:Terraria/Pixie",
       "reason": "not combat equipment"
     },
     {
@@ -61285,10 +61285,10 @@
       "name": "Desecrated Heart",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "npc:ThoriumMod/TheStarved",
+      "reason": "not combat equipment"
     },
     {
       "id": "ThoriumMod/DesertAcolyteBoots",
@@ -61396,7 +61396,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "golem",
+      "stage": "start",
       "via": "npc:ThoriumMod/UFO",
       "reason": "Included in the generated profile."
     },
@@ -62105,10 +62105,10 @@
       "name": "Dried Mask",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/MummyMask+Terraria/Skull",
+      "reason": "not combat equipment"
     },
     {
       "id": "ThoriumMod/DriftBoots",
@@ -63197,7 +63197,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/IceMimic",
+      "via": "npc:Terraria/Mimic",
       "reason": "not combat equipment"
     },
     {
@@ -63476,7 +63476,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BlankPainting+ThoriumMod/StrangeAlienTech",
       "reason": "not combat equipment"
     },
@@ -63835,10 +63835,10 @@
       "name": "Forgotten Letter",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "npc:ThoriumMod/SnowyOwl",
+      "reason": "not combat equipment"
     },
     {
       "id": "ThoriumMod/ForgottenOneMask",
@@ -63905,170 +63905,170 @@
       "name": "Fossil Bathtub",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilBed",
       "name": "Fossil Bed",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil+Terraria/Silk",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilBookcase",
       "name": "Fossil Bookcase",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/DesertFossil+Terraria/Book",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilCandelabra",
       "name": "Fossil Candelabra",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil+Terraria/Torch",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilCandle",
       "name": "Fossil Candle",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil+Terraria/Torch",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilChair",
       "name": "Fossil Chair",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilChandelier",
       "name": "Fossil Chandelier",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil+Terraria/Torch+Terraria/Chain",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilChest",
       "name": "Fossil Chest",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil+Terraria/IronBar",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilChest_Trapped",
       "name": "Trapped Fossil Chest",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:ThoriumMod/FossilChest+Terraria/Wire",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilClock",
       "name": "Fossil Clock",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/DesertFossil",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilCup",
       "name": "Fossil Cup",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilDoor",
       "name": "Fossil Door",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilDresser",
       "name": "Fossil Dresser",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilLamp",
       "name": "Fossil Lamp",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil+Terraria/Torch",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilLantern",
       "name": "Fossil Lantern",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil+Terraria/Torch",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilPiano",
       "name": "Fossil Piano",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/Bone+Terraria/DesertFossil+Terraria/Book",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilPlatform",
       "name": "Fossil Platform",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilSink",
@@ -64085,40 +64085,40 @@
       "name": "Fossil Sofa",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil+Terraria/Silk",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilTable",
       "name": "Fossil Table",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilToilet",
       "name": "Fossil Toilet",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FossilWorkbench",
       "name": "Fossil Work Bench",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
-      "via": "recipe:Terraria/DesertFossil",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/FragmentedRune",
@@ -65085,10 +65085,10 @@
       "name": "Glittering Chestplate",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "npc:ThoriumMod/GildedLycan",
+      "reason": "not combat equipment"
     },
     {
       "id": "ThoriumMod/GlitteringGolemBanner",
@@ -65105,20 +65105,20 @@
       "name": "Glittering Greaves",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "npc:ThoriumMod/GildedSlime",
+      "reason": "not combat equipment"
     },
     {
       "id": "ThoriumMod/GlitteringHelmet",
       "name": "Glittering Helmet",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "npc:ThoriumMod/GildedBat",
+      "reason": "not combat equipment"
     },
     {
       "id": "ThoriumMod/GlitteringScepter",
@@ -65405,10 +65405,10 @@
       "name": "Grand Flare Gun",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/IronBar+ThoriumMod/Talon",
+      "reason": "not combat equipment"
     },
     {
       "id": "ThoriumMod/GrandPiano",
@@ -66036,8 +66036,8 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "plantera",
-      "via": "npc:Terraria/MisterStabby",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/SnowmanGangsta",
       "reason": "Included in the generated profile."
     },
     {
@@ -66406,7 +66406,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "start",
       "via": "npc:ThoriumMod/EarthenGolem",
       "reason": "not combat equipment"
     },
@@ -67097,7 +67097,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "start",
-      "via": "npc:Terraria/ZombieEskimo",
+      "via": "npc:Terraria/IceSlime",
       "reason": "not combat equipment"
     },
     {
@@ -68216,7 +68216,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "plantera",
+      "stage": "wall-of-flesh",
       "via": "npc:Terraria/SnowBalla",
       "reason": "Included in the generated profile."
     },
@@ -70146,8 +70146,8 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
-      "via": "container:Terraria/HerbBag",
+      "stage": "world-evil",
+      "via": "shop:ThoriumMod/Druid",
       "reason": "not combat equipment"
     },
     {
@@ -70866,7 +70866,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BlankPainting+Terraria/BloodMoonStarter",
       "reason": "not combat equipment"
     },
@@ -71016,7 +71016,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "eye-of-cthulhu",
+      "stage": "wall-of-flesh",
       "via": "recipe:ThoriumMod/TideStone+ThoriumMod/SmotheringBand",
       "reason": "Included in the generated profile."
     },
@@ -71996,7 +71996,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "golem",
+      "stage": "wall-of-flesh",
       "via": "recipe:Terraria/AdamantiteBar+Terraria/MeteoriteBar+ThoriumMod/StrangeAlienTech",
       "reason": "Included in the generated profile."
     },
@@ -72977,7 +72977,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "start",
-      "via": "manifest",
+      "via": "npc:ThoriumMod/BloomMahoganyEnt",
       "reason": "not combat equipment"
     },
     {
@@ -73646,7 +73646,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "skeletron",
       "via": "recipe:ThoriumMod/StrangeAlienTech+ThoriumMod/aDarksteelAlloy+Terraria/HellstoneBar",
       "reason": "not combat equipment"
     },
@@ -73836,7 +73836,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "golem",
+      "stage": "wall-of-flesh",
       "via": "npc:ThoriumMod/Spectrumite",
       "reason": "Included in the generated profile."
     },
@@ -73877,7 +73877,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/IceMimic",
+      "via": "npc:Terraria/Mimic",
       "reason": "Included in the generated profile."
     },
     {
@@ -73957,7 +73957,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "plantera",
-      "via": "npc:Terraria/SkeletonCommando",
+      "via": "npc:Terraria/TacticalSkeleton",
       "reason": "Included in the generated profile."
     },
     {
@@ -74907,7 +74907,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "start",
-      "via": "npc:Terraria/Salamander",
+      "via": "npc:Terraria/Salamander7",
       "reason": "Included in the generated profile."
     },
     {
@@ -75586,7 +75586,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "golem",
+      "stage": "plantera",
       "via": "npc:Terraria/FlyingSnake",
       "reason": "Included in the generated profile."
     },
@@ -75727,7 +75727,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/GoblinArcher",
+      "via": "npc:Terraria/GoblinThief",
       "reason": "Included in the generated profile."
     },
     {
@@ -76717,7 +76717,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "start",
-      "via": "container:ThoriumMod/ScarletCrate",
+      "via": "npc:ThoriumMod/EarthenBat",
       "reason": "not combat equipment"
     },
     {
@@ -76746,7 +76746,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "eye-of-cthulhu",
+      "stage": "wall-of-flesh",
       "via": "npc:ThoriumMod/SmotheringShade",
       "reason": "Included in the generated profile."
     },
@@ -76876,7 +76876,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "plantera",
+      "stage": "wall-of-flesh",
       "via": "npc:ThoriumMod/SnowSinga",
       "reason": "Included in the generated profile."
     },
@@ -76937,7 +76937,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "plantera",
-      "via": "npc:ThoriumMod/LihzardMimic",
+      "via": "npc:Terraria/Lihzahrd",
       "reason": "not combat equipment"
     },
     {
@@ -77256,7 +77256,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "golem",
+      "stage": "plantera",
       "via": "npc:Terraria/FlyingSnake",
       "reason": "Included in the generated profile."
     },
@@ -77275,10 +77275,10 @@
       "name": "Spectral Fang",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "npc:Terraria/CursedSkull",
+      "reason": "not combat equipment"
     },
     {
       "id": "ThoriumMod/SpectralSymphonyPaint",
@@ -77447,7 +77447,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "skeletron",
-      "via": "npc:ThoriumMod/Illusionist",
+      "via": "npc:Terraria/DarkCaster",
       "reason": "not combat equipment"
     },
     {
@@ -77696,7 +77696,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "world-evil",
       "via": "recipe:Terraria/MeteoriteBar+ThoriumMod/StrangeAlienTech",
       "reason": "not combat equipment"
     },
@@ -78125,10 +78125,10 @@
       "name": "Storm Flare",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/IronBar+ThoriumMod/Talon+Terraria/FallenStar",
+      "reason": "not combat equipment"
     },
     {
       "id": "ThoriumMod/StormHatchlingStaff",
@@ -78156,7 +78156,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "npc:ThoriumMod/UFO",
       "reason": "not combat equipment"
     },
@@ -78376,7 +78376,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "npc:ThoriumMod/LeFantome",
       "reason": "Included in the generated profile."
     },
@@ -78426,7 +78426,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "npc:ThoriumMod/LeFantome",
       "reason": "Included in the generated profile."
     },
@@ -78516,7 +78516,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "skeletron-prime",
+      "stage": "destroyer",
       "via": "npc:Terraria/SwampThing",
       "reason": "Included in the generated profile."
     },
@@ -78615,10 +78615,10 @@
       "name": "Talon",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "npc:Terraria/Vulture",
+      "reason": "not combat equipment"
     },
     {
       "id": "ThoriumMod/TalonArrow",
@@ -78725,10 +78725,10 @@
       "name": "Technique: Cobra's Bite",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
+      "status": "equipment",
       "stage": "skeletron-prime",
-      "via": "recipe:ThoriumMod/TechniqueBlankScroll+Terraria/ChlorophyteBar",
-      "reason": "not combat equipment"
+      "via": "manifest",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "ThoriumMod/TechniqueDecoy",
@@ -78785,10 +78785,10 @@
       "name": "Technique: Sticky Explosive",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "world-evil",
-      "via": "recipe:ThoriumMod/TechniqueBlankScroll+Terraria/HellstoneBar",
-      "reason": "not combat equipment"
+      "status": "equipment",
+      "stage": "grand-thunder-bird",
+      "via": "manifest",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "ThoriumMod/TechniqueShadowClone",
@@ -78797,7 +78797,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "plantera",
-      "via": "manifest",
+      "via": "npc:Terraria/BoneLee",
       "reason": "Included in the generated profile."
     },
     {
@@ -78926,7 +78926,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "skeletron-prime",
+      "stage": "plantera",
       "via": "recipe:ThoriumMod/TrueCarnwennan+ThoriumMod/TrueEmbowelment",
       "reason": "Included in the generated profile."
     },
@@ -79165,10 +79165,10 @@
       "name": "Terrarium Whale Catcher",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "lunatic-cultist",
-      "via": "recipe:Terraria/GoldenFishingRod+ThoriumMod/TerrariumCore",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "ThoriumMod/TerrariumWings",
@@ -79186,7 +79186,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "skeletron-prime",
+      "stage": "plantera",
       "via": "recipe:ThoriumMod/TrueHallowedScythe+ThoriumMod/TrueFallingTwilight",
       "reason": "Included in the generated profile."
     },
@@ -79196,7 +79196,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "skeletron-prime",
+      "stage": "destroyer",
       "via": "npc:Terraria/Frankenstein",
       "reason": "Included in the generated profile."
     },
@@ -80325,10 +80325,10 @@
       "name": "Thunder over Desert Skies",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:ThoriumMod/BlankPainting+ThoriumMod/Talon",
+      "reason": "not combat equipment"
     },
     {
       "id": "ThoriumMod/Thunderstruck",
@@ -80686,7 +80686,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "plantera",
+      "stage": "wall-of-flesh",
       "via": "npc:Terraria/SnowmanGangsta",
       "reason": "Included in the generated profile."
     },
@@ -80725,10 +80725,10 @@
       "name": "Tortle Scute",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/GiantTortoise",
+      "reason": "not combat equipment"
     },
     {
       "id": "ThoriumMod/TotemCaller",
@@ -80896,7 +80896,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "skeletron-prime",
+      "stage": "plantera",
       "via": "recipe:ThoriumMod/BloodHarvest+ThoriumMod/BrokenHeroFragment",
       "reason": "Included in the generated profile."
     },
@@ -80906,7 +80906,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "skeletron-prime",
+      "stage": "plantera",
       "via": "recipe:ThoriumMod/Carnwennan+ThoriumMod/BrokenHeroFragment",
       "reason": "Included in the generated profile."
     },
@@ -80916,7 +80916,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "skeletron-prime",
+      "stage": "plantera",
       "via": "recipe:ThoriumMod/Embowelment+ThoriumMod/BrokenHeroFragment",
       "reason": "Included in the generated profile."
     },
@@ -80926,7 +80926,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "skeletron-prime",
+      "stage": "plantera",
       "via": "recipe:ThoriumMod/FallingTwilight+ThoriumMod/BrokenHeroFragment",
       "reason": "Included in the generated profile."
     },
@@ -80936,7 +80936,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "skeletron-prime",
+      "stage": "plantera",
       "via": "recipe:ThoriumMod/HallowedScythe+ThoriumMod/BrokenHeroFragment",
       "reason": "Included in the generated profile."
     },
@@ -80946,7 +80946,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "skeletron-prime",
+      "stage": "plantera",
       "via": "recipe:ThoriumMod/LightAnguish+ThoriumMod/BrokenHeroFragment",
       "reason": "Included in the generated profile."
     },
@@ -81796,7 +81796,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "golem",
+      "stage": "wall-of-flesh",
       "via": "npc:ThoriumMod/MartianScout",
       "reason": "Included in the generated profile."
     },
@@ -83187,7 +83187,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "eye-of-cthulhu",
-      "via": "npc:Terraria/GoblinArcher",
+      "via": "npc:Terraria/GoblinThief",
       "reason": "not combat equipment"
     },
     {

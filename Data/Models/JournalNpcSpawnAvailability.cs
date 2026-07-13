@@ -5,7 +5,8 @@ public sealed class JournalNpcSpawnAvailability(
     bool observed,
     int earliestStageIndex,
     string earliestStageName,
-    IEnumerable<string> conditions)
+    IEnumerable<string> conditions,
+    IEnumerable<string>? eventCategories = null)
 {
     public int NpcType { get; } = npcType;
 
@@ -18,5 +19,10 @@ public sealed class JournalNpcSpawnAvailability(
     public IReadOnlyList<string> Conditions { get; } = conditions
         .Where(static condition => !string.IsNullOrWhiteSpace(condition))
         .Distinct()
+        .ToArray();
+
+    public IReadOnlyList<string> EventCategories { get; } = (eventCategories ?? [])
+        .Where(static category => !string.IsNullOrWhiteSpace(category))
+        .Distinct(StringComparer.Ordinal)
         .ToArray();
 }

@@ -213,7 +213,7 @@ internal static class JournalFishingSourceResolver
         if (effectiveStageIndexes.Length == 0)
         {
             return new JournalFishingAvailability(
-                observed: false,
+                observed: true,
                 earliestStageIndex: -1,
                 earliestStageName: string.Empty,
                 conditions: BuildConditions(catalog, contexts));

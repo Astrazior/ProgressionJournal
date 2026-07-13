@@ -3,21 +3,21 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-12T21:43:53.727Z",
+  "generatedAtUtc": "2026-07-13T10:04:03.856Z",
   "snapshotGeneratedAtUtc": "2026-07-12T21:43:11.7316734Z",
   "summary": {
     "snapshotItems": 8126,
     "contentItems": 2671,
-    "profileEntries": 1943,
+    "profileEntries": 1946,
     "profileBuffEntries": 170,
-    "profileItemReferences": 2137,
-    "equipmentReferences": 1967,
+    "profileItemReferences": 2140,
+    "equipmentReferences": 1970,
     "buffReferences": 170,
     "excluded": 3560,
     "acquiredNonProfile": 131,
-    "unresolvedAvailability": 9,
+    "unresolvedAvailability": 7,
     "unavailableCombat": 2,
-    "noAcquisitionPath": 2287
+    "noAcquisitionPath": 2286
   },
   "items": [
     {
@@ -4656,7 +4656,7 @@
       "mod": "CalamityMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "dragonfolly",
+      "stage": "moon-lord",
       "via": "recipe:CalamityMod/PlaguedFuelPack+CalamityMod/EffulgentFeather",
       "reason": "Included in the generated profile."
     },
@@ -8626,7 +8626,7 @@
       "mod": "CalamityMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "dragonfolly",
+      "stage": "moon-lord",
       "via": "npc:CalamityMod/WildBumblebirb",
       "reason": "not combat equipment"
     },
@@ -9077,7 +9077,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/IceTortoise",
+      "via": "npc:Terraria/SnowmanGangsta",
       "reason": "not combat equipment"
     },
     {
@@ -13996,7 +13996,7 @@
       "mod": "CalamityMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "dragonfolly",
+      "stage": "moon-lord",
       "via": "recipe:Terraria/ToxicFlask+Terraria/BottledWater+Terraria/Leather+CalamityMod/EffulgentFeather+CalamityMod/CoreofCalamity",
       "reason": "Included in the generated profile."
     },
@@ -23366,7 +23366,7 @@
       "mod": "CalamityMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "dragonfolly",
+      "stage": "moon-lord",
       "via": "recipe:Terraria/LunarBar+CalamityMod/LifeAlloy+CalamityMod/EffulgentFeather",
       "reason": "Included in the generated profile."
     },
@@ -26636,7 +26636,7 @@
       "mod": "CalamityMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "dragonfolly",
+      "stage": "moon-lord",
       "via": "recipe:CalamityMod/LifeAlloy+CalamityMod/EffulgentFeather",
       "reason": "not combat equipment"
     },
@@ -26775,10 +26775,10 @@
       "name": "Цветок Эбигейл",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
-      "stage": "",
-      "via": "",
-      "reason": "Combat item has no proven acquisition source."
+      "status": "equipment",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/AccentSlab",
@@ -33666,7 +33666,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron-prime",
+      "stage": "destroyer",
       "via": "npc:Terraria/Frankenstein",
       "reason": "not combat equipment"
     },
@@ -42965,10 +42965,10 @@
       "name": "Плавниковые крылья",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "manifest",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Fireblossom",
@@ -52096,8 +52096,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
-      "via": "npc:Terraria/Lihzahrd",
+      "stage": "wall-of-flesh",
+      "via": "global:Terraria/GlobalNPCDrops",
       "reason": "not combat equipment"
     },
     {
@@ -54257,7 +54257,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "npc:Terraria/Lihzahrd",
+      "via": "npc:CalamityMod/Bohldohr",
       "reason": "not combat equipment"
     },
     {
@@ -54796,7 +54796,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "plantera",
       "via": "npc:Terraria/Lihzahrd",
       "reason": "not combat equipment"
     },
@@ -55337,7 +55337,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "npc:Terraria/Lihzahrd",
+      "via": "npc:CalamityMod/Bohldohr",
       "reason": "not combat equipment"
     },
     {
@@ -57736,7 +57736,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "skeletron-prime",
+      "stage": "destroyer",
       "via": "recipe:Terraria/MoonCharm+Terraria/NeptunesShell",
       "reason": "Included in the generated profile."
     },
@@ -60136,7 +60136,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "skeletron-prime",
+      "stage": "destroyer",
       "via": "npc:Terraria/CreatureFromTheDeep",
       "reason": "Included in the generated profile."
     },
@@ -66676,7 +66676,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron-prime",
       "via": "npc:Terraria/Reaper",
       "reason": "not combat equipment"
     },
@@ -68735,10 +68735,10 @@
       "name": "Семечко",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
-      "stage": "",
-      "via": "",
-      "reason": "Combat item has no proven acquisition source."
+      "status": "equipment",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Seedler",
@@ -80026,7 +80026,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron-prime",
+      "stage": "plantera",
       "via": "npc:Terraria/Mothron",
       "reason": "not combat equipment"
     },

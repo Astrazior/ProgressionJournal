@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-12T21:43:53.702Z",
+  "generatedAtUtc": "2026-07-13T10:04:03.832Z",
   "snapshot": {
     "version": 4,
     "generatedAtUtc": "2026-07-12T21:43:11.7316734Z",
@@ -889,6 +889,13 @@
         "reason": "Ghost Bell spawns from the start in Sunken Sea water; its Voltaic Jelly drop remains gated by the Desert Scourge condition."
       },
       {
+        "id": "sunken-sea-spirit-amulet-fishing-source",
+        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Sea_Spirit_Amulet",
+        "sourceVersion": "Calamity Mod 2.2.1 wiki.gg",
+        "checkedAt": "2026-07-13",
+        "reason": "The isolated runtime snapshot cannot assign progression evidence to synthetic mod-biome fishing contexts; this source-backed fallback remains until a new export preserves the observed source with an unknown stage."
+      },
+      {
         "id": "astral-legendary-fishing-source",
         "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
@@ -987,13 +994,6 @@
         "reason": "The official wiki identifies Blood Orbs as materials dropped by Blood Moon enemies; Blood Moon timing is repeatable and not a boss milestone."
       },
       {
-        "id": "calamity-dragonfolly-effulgent-feather",
-        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Effulgent_Feather",
-        "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
-        "checkedAt": "2026-06-21",
-        "reason": "The official wiki identifies Effulgent Feathers as crafting materials dropped by Draconic Swarmers and Dragonfolly."
-      },
-      {
         "id": "calamity-post-dog-ascendant-spirit-essence",
         "sourceUrl": "https://calamitymod.wiki.gg/wiki/Ascendant_Spirit_Essence",
         "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
@@ -1045,7 +1045,7 @@
     ],
     "availabilityMigration": {
       "confirmed": 27,
-      "pending": 82,
+      "pending": 83,
       "mismatched": 5,
       "confirmedRules": [
         {
@@ -1618,6 +1618,11 @@
           "expectedStageId": "start"
         },
         {
+          "id": "sunken-sea-spirit-amulet-fishing-source",
+          "kind": "fishing",
+          "target": "CalamityMod/SeaSpiritAmulet"
+        },
+        {
           "id": "astral-legendary-fishing-source",
           "kind": "fishing",
           "target": "CalamityMod/PolarisParrotfish"
@@ -1735,7 +1740,7 @@
         }
       ],
       "stageComparison": {
-        "compared": 2137,
+        "compared": 2140,
         "moved": 0
       }
     }
@@ -1748,7 +1753,7 @@
     "errors": [],
     "warnings": [
       "82 recommendations precede proven availability and were suppressed",
-      "188 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
+      "187 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
       "npcCount": 992,
@@ -4560,6 +4565,14 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/LihzahrdCrawler",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/LunarTowerNebula",
           "kinds": [
             "drop"
@@ -5884,14 +5897,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/LihzahrdCrawler",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Mechanic",
           "kinds": [
             "drop",
@@ -6536,7 +6541,7 @@
   "ready": true,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-07-12T21:43:42.213Z",
+    "generatedAtUtc": "2026-07-13T10:03:50.851Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -15038,26 +15043,6 @@
       },
       {
         "stage": "start",
-        "id": "Terraria/LizardEgg",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/LihzahrdPowerCell",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/LunarTabletFragment",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/JungleKey",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "Terraria/RedHusk",
         "reason": "not combat equipment"
       },
@@ -15114,6 +15099,16 @@
       {
         "stage": "start",
         "id": "CalamityMod/Stohne",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LunarTabletFragment",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LihzahrdPowerCell",
         "reason": "not combat equipment"
       },
       {
@@ -25558,12 +25553,12 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "Terraria/TurtleShell",
+        "id": "CalamityMod/EssenceofEleum",
         "reason": "not combat equipment"
       },
       {
         "stage": "wall-of-flesh",
-        "id": "CalamityMod/EssenceofEleum",
+        "id": "Terraria/TurtleShell",
         "reason": "not combat equipment"
       },
       {
@@ -25899,11 +25894,6 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/BloodHamaxe",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/Requiem",
         "reason": "not combat equipment"
       },
       {
@@ -26249,6 +26239,11 @@
       {
         "stage": "wall-of-flesh",
         "id": "CalamityMod/WeightlessCandle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/JungleKey",
         "reason": "not combat equipment"
       },
       {
@@ -27294,6 +27289,11 @@
       {
         "stage": "destroyer",
         "id": "Terraria/TatteredBeeWing",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/Buddies",
         "reason": "not combat equipment"
       },
       {
@@ -28378,7 +28378,7 @@
       },
       {
         "stage": "skeletron-prime",
-        "id": "Terraria/Buddies",
+        "id": "Terraria/Requiem",
         "reason": "not combat equipment"
       },
       {
@@ -28404,11 +28404,6 @@
       {
         "stage": "skeletron-prime",
         "id": "Terraria/SoulofFright",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron-prime",
-        "id": "Terraria/WingsofEvil",
         "reason": "not combat equipment"
       },
       {
@@ -28698,7 +28693,7 @@
       },
       {
         "stage": "plantera",
-        "id": "Terraria/BrokenHeroSword",
+        "id": "Terraria/LizardEgg",
         "reason": "not combat equipment"
       },
       {
@@ -28829,6 +28824,16 @@
       {
         "stage": "plantera",
         "id": "CalamityMod/LivingShard",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/WingsofEvil",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/BrokenHeroSword",
         "reason": "not combat equipment"
       },
       {
@@ -30743,6 +30748,11 @@
       },
       {
         "stage": "moon-lord",
+        "id": "CalamityMod/EffulgentFeather",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "moon-lord",
         "id": "Terraria/MoonLordBossBag",
         "reason": "not combat equipment"
       },
@@ -30988,6 +30998,11 @@
       },
       {
         "stage": "moon-lord",
+        "id": "CalamityMod/YharonEgg",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "moon-lord",
         "id": "CalamityMod/GenesisPickaxe",
         "reason": "not combat equipment"
       },
@@ -31123,11 +31138,6 @@
       },
       {
         "stage": "dragonfolly",
-        "id": "CalamityMod/EffulgentFeather",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "dragonfolly",
         "id": "CalamityMod/DragonfollyBag",
         "reason": "not combat equipment"
       },
@@ -31149,11 +31159,6 @@
       {
         "stage": "dragonfolly",
         "id": "CalamityMod/LoreDragonfolly",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "dragonfolly",
-        "id": "CalamityMod/YharonEgg",
         "reason": "not combat equipment"
       },
       {
@@ -32785,6 +32790,14 @@
         "via": "initial"
       },
       "Terraria/FrogGear": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/AbigailsFlower": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Seed": {
         "stage": "start",
         "via": "initial"
       },
@@ -34770,11 +34783,17 @@
       },
       "Terraria/Harpoon": {
         "stage": "eye-of-cthulhu",
-        "via": "npc:Terraria/GoblinPeon"
+        "via": "npc:Terraria/GoblinPeon",
+        "eventCategory": "GoblinArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpikyBall": {
         "stage": "eye-of-cthulhu",
-        "via": "npc:Terraria/GoblinPeon"
+        "via": "npc:Terraria/GoblinPeon",
+        "eventCategory": "GoblinArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/Laudanum": {
         "stage": "eye-of-cthulhu",
@@ -34794,7 +34813,10 @@
       },
       "CalamityMod/CausticCroakerStaff": {
         "stage": "eye-of-cthulhu",
-        "via": "npc:CalamityMod/NuclearToad"
+        "via": "npc:CalamityMod/NuclearToad",
+        "eventCategory": null,
+        "customEventName": "Acid Rain",
+        "eventIcon": "CalamityMod/BiomeManagers/AcidRainIcon"
       },
       "Terraria/VampireFrogStaff": {
         "stage": "eye-of-cthulhu",
@@ -34967,31 +34989,52 @@
       },
       "CalamityMod/SulphurousHelmet": {
         "stage": "eye-of-cthulhu",
-        "via": "recipe:CalamityMod/Acidwood+CalamityMod/SulphuricScale"
+        "via": "recipe:CalamityMod/Acidwood+CalamityMod/SulphuricScale",
+        "eventCategory": null,
+        "customEventName": "Acid Rain",
+        "eventIcon": "CalamityMod/BiomeManagers/AcidRainIcon"
       },
       "CalamityMod/SulphurousBreastplate": {
         "stage": "eye-of-cthulhu",
-        "via": "recipe:CalamityMod/Acidwood+CalamityMod/SulphuricScale"
+        "via": "recipe:CalamityMod/Acidwood+CalamityMod/SulphuricScale",
+        "eventCategory": null,
+        "customEventName": "Acid Rain",
+        "eventIcon": "CalamityMod/BiomeManagers/AcidRainIcon"
       },
       "CalamityMod/SulphurousLeggings": {
         "stage": "eye-of-cthulhu",
-        "via": "recipe:CalamityMod/Acidwood+CalamityMod/SulphuricScale"
+        "via": "recipe:CalamityMod/Acidwood+CalamityMod/SulphuricScale",
+        "eventCategory": null,
+        "customEventName": "Acid Rain",
+        "eventIcon": "CalamityMod/BiomeManagers/AcidRainIcon"
       },
       "CalamityMod/AcidGun": {
         "stage": "eye-of-cthulhu",
-        "via": "recipe:CalamityMod/Acidwood+CalamityMod/SulphuricScale"
+        "via": "recipe:CalamityMod/Acidwood+CalamityMod/SulphuricScale",
+        "eventCategory": null,
+        "customEventName": "Acid Rain",
+        "eventIcon": "CalamityMod/BiomeManagers/AcidRainIcon"
       },
       "CalamityMod/ParasiticSceptor": {
         "stage": "eye-of-cthulhu",
-        "via": "recipe:CalamityMod/Acidwood+CalamityMod/SulphuricScale"
+        "via": "recipe:CalamityMod/Acidwood+CalamityMod/SulphuricScale",
+        "eventCategory": null,
+        "customEventName": "Acid Rain",
+        "eventIcon": "CalamityMod/BiomeManagers/AcidRainIcon"
       },
       "CalamityMod/Basher": {
         "stage": "eye-of-cthulhu",
-        "via": "recipe:CalamityMod/Acidwood+CalamityMod/SulphuricScale"
+        "via": "recipe:CalamityMod/Acidwood+CalamityMod/SulphuricScale",
+        "eventCategory": null,
+        "customEventName": "Acid Rain",
+        "eventIcon": "CalamityMod/BiomeManagers/AcidRainIcon"
       },
       "CalamityMod/Toxibow": {
         "stage": "eye-of-cthulhu",
-        "via": "recipe:CalamityMod/Acidwood+CalamityMod/SulphuricScale"
+        "via": "recipe:CalamityMod/Acidwood+CalamityMod/SulphuricScale",
+        "eventCategory": null,
+        "customEventName": "Acid Rain",
+        "eventIcon": "CalamityMod/BiomeManagers/AcidRainIcon"
       },
       "CalamityMod/LemonNade": {
         "stage": "eye-of-cthulhu",
@@ -34999,7 +35042,10 @@
       },
       "CalamityMod/MetalMonstrosity": {
         "stage": "eye-of-cthulhu",
-        "via": "recipe:Terraria/SpikyBall+Terraria/Spike"
+        "via": "recipe:Terraria/SpikyBall+Terraria/Spike",
+        "eventCategory": "GoblinArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/MagnetFlower": {
         "stage": "eye-of-cthulhu",
@@ -35043,11 +35089,17 @@
       },
       "Terraria/SquireShield": {
         "stage": "world-evil",
-        "via": "npc:Terraria/DD2DarkMageT1"
+        "via": "npc:Terraria/DD2DarkMageT1",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ApprenticeScarf": {
         "stage": "world-evil",
-        "via": "npc:Terraria/DD2DarkMageT1"
+        "via": "npc:Terraria/DD2DarkMageT1",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/AleThrowingGlove": {
         "stage": "world-evil",
@@ -35995,15 +36047,24 @@
       },
       "Terraria/CoinGun": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/PirateStaff": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/Cutlass": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/IchorSpear": {
         "stage": "wall-of-flesh",
@@ -36357,6 +36418,10 @@
         "via": "manifest"
       },
       "Terraria/GoldenBullet": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "Terraria/FinWings": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
@@ -36956,33 +37021,61 @@
         "stage": "aquatic-scourge",
         "via": "recipe:CalamityMod/ContaminatedBile+CalamityMod/CorrodedFossil"
       },
+      "Terraria/NeptunesShell": {
+        "stage": "destroyer",
+        "via": "npc:Terraria/CreatureFromTheDeep",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
+      },
       "Terraria/HuntressBuckler": {
         "stage": "destroyer",
-        "via": "npc:Terraria/DD2OgreT2"
+        "via": "npc:Terraria/DD2OgreT2",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/MonkBelt": {
         "stage": "destroyer",
-        "via": "npc:Terraria/DD2OgreT2"
+        "via": "npc:Terraria/DD2OgreT2",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/BookStaff": {
         "stage": "destroyer",
-        "via": "npc:Terraria/DD2OgreT2"
+        "via": "npc:Terraria/DD2OgreT2",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DD2PhoenixBow": {
         "stage": "destroyer",
-        "via": "npc:Terraria/DD2OgreT2"
+        "via": "npc:Terraria/DD2OgreT2",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DD2SquireDemonSword": {
         "stage": "destroyer",
-        "via": "npc:Terraria/DD2OgreT2"
+        "via": "npc:Terraria/DD2OgreT2",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/MonkStaffT1": {
         "stage": "destroyer",
-        "via": "npc:Terraria/DD2OgreT2"
+        "via": "npc:Terraria/DD2OgreT2",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/MonkStaffT2": {
         "stage": "destroyer",
-        "via": "npc:Terraria/DD2OgreT2"
+        "via": "npc:Terraria/DD2OgreT2",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/UnholyTrident": {
         "stage": "destroyer",
@@ -37259,6 +37352,13 @@
       "Terraria/BeeWings": {
         "stage": "destroyer",
         "via": "recipe:Terraria/SoulofFlight+Terraria/TatteredBeeWing"
+      },
+      "Terraria/MoonShell": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/MoonCharm+Terraria/NeptunesShell",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/ElectriciansGlove": {
         "stage": "destroyer",
@@ -37616,17 +37716,16 @@
         "stage": "twins",
         "via": "recipe:Terraria/AdamantiteBar+Terraria/AncientBattleArmorMaterial+Terraria/Amethyst"
       },
-      "Terraria/DeathSickle": {
-        "stage": "skeletron-prime",
-        "via": "npc:Terraria/Reaper"
-      },
       "Terraria/WaffleIron": {
         "stage": "skeletron-prime",
         "via": "npc:Terraria/TheDestroyer"
       },
-      "Terraria/NeptunesShell": {
+      "Terraria/DeathSickle": {
         "stage": "skeletron-prime",
-        "via": "npc:Terraria/CreatureFromTheDeep"
+        "via": "npc:Terraria/Reaper",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/PulseBow": {
         "stage": "skeletron-prime",
@@ -37723,10 +37822,6 @@
       "Terraria/Flamethrower": {
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/IronBar+Terraria/IllegalGunParts+Terraria/SoulofFright"
-      },
-      "Terraria/MoonShell": {
-        "stage": "skeletron-prime",
-        "via": "recipe:Terraria/MoonCharm+Terraria/NeptunesShell"
       },
       "Terraria/AvengerEmblem": {
         "stage": "skeletron-prime",
@@ -37880,14 +37975,6 @@
         "stage": "plantera",
         "via": "npc:Terraria/VampireBat"
       },
-      "Terraria/MothronWings": {
-        "stage": "plantera",
-        "via": "npc:Terraria/Mothron"
-      },
-      "Terraria/TheEyeOfCthulhu": {
-        "stage": "plantera",
-        "via": "npc:Terraria/Mothron"
-      },
       "Terraria/MagnetSphere": {
         "stage": "plantera",
         "via": "npc:Terraria/RustyArmoredBonesAxe"
@@ -37980,65 +38067,124 @@
         "stage": "plantera",
         "via": "npc:Terraria/GiantCursedSkull"
       },
+      "Terraria/MothronWings": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Mothron",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
+      },
+      "Terraria/TheEyeOfCthulhu": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Mothron",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
+      },
       "Terraria/StakeLauncher": {
         "stage": "plantera",
-        "via": "npc:Terraria/MourningWood"
+        "via": "npc:Terraria/MourningWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/CandyCornRifle": {
         "stage": "plantera",
-        "via": "npc:Terraria/Pumpking"
+        "via": "npc:Terraria/Pumpking",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/JackOLanternLauncher": {
         "stage": "plantera",
-        "via": "npc:Terraria/Pumpking"
+        "via": "npc:Terraria/Pumpking",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/TheHorsemansBlade": {
         "stage": "plantera",
-        "via": "npc:Terraria/Pumpking"
+        "via": "npc:Terraria/Pumpking",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/BatScepter": {
         "stage": "plantera",
-        "via": "npc:Terraria/Pumpking"
+        "via": "npc:Terraria/Pumpking",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/RavenStaff": {
         "stage": "plantera",
-        "via": "npc:Terraria/Pumpking"
+        "via": "npc:Terraria/Pumpking",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ScytheWhip": {
         "stage": "plantera",
-        "via": "npc:Terraria/Pumpking"
+        "via": "npc:Terraria/Pumpking",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/FestiveWings": {
         "stage": "plantera",
-        "via": "npc:Terraria/Everscream"
+        "via": "npc:Terraria/Everscream",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ChristmasTreeSword": {
         "stage": "plantera",
-        "via": "npc:Terraria/Everscream"
+        "via": "npc:Terraria/Everscream",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/Razorpine": {
         "stage": "plantera",
-        "via": "npc:Terraria/Everscream"
+        "via": "npc:Terraria/Everscream",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ElfMelter": {
         "stage": "plantera",
-        "via": "npc:Terraria/SantaNK1"
+        "via": "npc:Terraria/SantaNK1",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ChainGun": {
         "stage": "plantera",
-        "via": "npc:Terraria/SantaNK1"
+        "via": "npc:Terraria/SantaNK1",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/BlizzardStaff": {
         "stage": "plantera",
-        "via": "npc:Terraria/IceQueen"
+        "via": "npc:Terraria/IceQueen",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SnowmanCannon": {
         "stage": "plantera",
-        "via": "npc:Terraria/IceQueen"
+        "via": "npc:Terraria/IceQueen",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/NorthPole": {
         "stage": "plantera",
-        "via": "npc:Terraria/IceQueen"
+        "via": "npc:Terraria/IceQueen",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/PiranhaGun": {
         "stage": "plantera",
@@ -38230,19 +38376,31 @@
       },
       "Terraria/SpookyHelmet": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood"
+        "via": "recipe:Terraria/SpookyWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyBreastplate": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood"
+        "via": "recipe:Terraria/SpookyWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyLeggings": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood"
+        "via": "recipe:Terraria/SpookyWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/TerraBlade": {
         "stage": "plantera",
-        "via": "recipe:Terraria/TrueNightsEdge+Terraria/TrueExcalibur+Terraria/BrokenHeroSword+CalamityMod/LivingShard"
+        "via": "recipe:Terraria/TrueNightsEdge+Terraria/TrueExcalibur+Terraria/BrokenHeroSword+CalamityMod/LivingShard",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ShroomiteHeadgear": {
         "stage": "plantera",
@@ -38286,11 +38444,17 @@
       },
       "Terraria/TatteredFairyWings": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SoulofFlight+Terraria/BlackFairyDust"
+        "via": "recipe:Terraria/SoulofFlight+Terraria/BlackFairyDust",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyWings": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SoulofFlight+Terraria/SpookyTwig"
+        "via": "recipe:Terraria/SoulofFlight+Terraria/SpookyTwig",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GhostWings": {
         "stage": "plantera",
@@ -38394,7 +38558,10 @@
       },
       "CalamityMod/BlightedCleaver": {
         "stage": "plantera",
-        "via": "recipe:CalamityMod/TrueCausticEdge+Terraria/BrokenHeroSword+Terraria/ChlorophyteBar+Terraria/VialofVenom"
+        "via": "recipe:CalamityMod/TrueCausticEdge+Terraria/BrokenHeroSword+Terraria/ChlorophyteBar+Terraria/VialofVenom",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/BotanicPiercer": {
         "stage": "plantera",
@@ -38414,7 +38581,10 @@
       },
       "CalamityMod/TrueArkoftheAncients": {
         "stage": "plantera",
-        "via": "recipe:CalamityMod/FracturedArk+Terraria/Starfury+Terraria/BrokenHeroSword"
+        "via": "recipe:CalamityMod/FracturedArk+Terraria/Starfury+Terraria/BrokenHeroSword",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/Tumbleweed": {
         "stage": "plantera",
@@ -39611,6 +39781,10 @@
         "stage": "moon-lord",
         "via": "recipe:Terraria/RocketIV+Terraria/LunarBar"
       },
+      "CalamityMod/BlunderBooster": {
+        "stage": "moon-lord",
+        "via": "recipe:CalamityMod/PlaguedFuelPack+CalamityMod/EffulgentFeather"
+      },
       "CalamityMod/DaawnlightSpiritOrigin": {
         "stage": "moon-lord",
         "via": "recipe:CalamityMod/DeadshotBrooch+CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+Terraria/LunarBar+Terraria/FragmentVortex"
@@ -39671,6 +39845,10 @@
         "stage": "moon-lord",
         "via": "recipe:Terraria/LaserRifle+Terraria/LunarBar+CalamityMod/LifeAlloy"
       },
+      "CalamityMod/MadAlchemistsCocktailGlove": {
+        "stage": "moon-lord",
+        "via": "recipe:Terraria/ToxicFlask+Terraria/BottledWater+Terraria/Leather+CalamityMod/EffulgentFeather+CalamityMod/CoreofCalamity"
+      },
       "CalamityMod/NuclearFury": {
         "stage": "moon-lord",
         "via": "recipe:Terraria/RazorbladeTyphoon+CalamityMod/Poseidon+Terraria/LunarBar"
@@ -39710,6 +39888,10 @@
       "CalamityMod/StellarStriker": {
         "stage": "moon-lord",
         "via": "recipe:CalamityMod/CometQuasher+Terraria/LunarBar"
+      },
+      "CalamityMod/Swordsplosion": {
+        "stage": "moon-lord",
+        "via": "recipe:Terraria/LunarBar+CalamityMod/LifeAlloy+CalamityMod/EffulgentFeather"
       },
       "CalamityMod/VanishingPoint": {
         "stage": "moon-lord",
@@ -39802,18 +39984,6 @@
       "CalamityMod/RedLightningContainer": {
         "stage": "dragonfolly",
         "via": "container:CalamityMod/DragonfollyBag"
-      },
-      "CalamityMod/BlunderBooster": {
-        "stage": "dragonfolly",
-        "via": "recipe:CalamityMod/PlaguedFuelPack+CalamityMod/EffulgentFeather"
-      },
-      "CalamityMod/MadAlchemistsCocktailGlove": {
-        "stage": "dragonfolly",
-        "via": "recipe:Terraria/ToxicFlask+Terraria/BottledWater+Terraria/Leather+CalamityMod/EffulgentFeather+CalamityMod/CoreofCalamity"
-      },
-      "CalamityMod/Swordsplosion": {
-        "stage": "dragonfolly",
-        "via": "recipe:Terraria/LunarBar+CalamityMod/LifeAlloy+CalamityMod/EffulgentFeather"
       },
       "CalamityMod/Hellkite": {
         "stage": "providence",
@@ -40609,7 +40779,10 @@
       },
       "CalamityMod/FaceMelter": {
         "stage": "devourer-of-gods",
-        "via": "recipe:Terraria/TheAxe+Terraria/SparkleGuitar+CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel"
+        "via": "recipe:Terraria/TheAxe+Terraria/SparkleGuitar+CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/IceBarrage": {
         "stage": "devourer-of-gods",
@@ -40617,11 +40790,17 @@
       },
       "CalamityMod/LightGodsBrilliance": {
         "stage": "devourer-of-gods",
-        "via": "recipe:CalamityMod/ShadecrystalBarrage+CalamityMod/AbyssalTome+Terraria/HolyWater+CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel+CalamityMod/EffulgentFeather+Terraria/SoulofLight"
+        "via": "recipe:CalamityMod/ShadecrystalBarrage+CalamityMod/AbyssalTome+Terraria/HolyWater+CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel+CalamityMod/EffulgentFeather+Terraria/SoulofLight",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/NebulousCataclysm": {
         "stage": "devourer-of-gods",
-        "via": "recipe:Terraria/NebulaArcanum+Terraria/NebulaBlaze+CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel"
+        "via": "recipe:Terraria/NebulaArcanum+Terraria/NebulaBlaze+CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/Omicron": {
         "stage": "devourer-of-gods",
@@ -40645,7 +40824,10 @@
       },
       "CalamityMod/DevilsDevastation": {
         "stage": "devourer-of-gods",
-        "via": "recipe:CalamityMod/ExaltedOathblade+CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel"
+        "via": "recipe:CalamityMod/ExaltedOathblade+CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/EssenceFlayer": {
         "stage": "devourer-of-gods",
@@ -40673,7 +40855,10 @@
       },
       "CalamityMod/AntiMaterielRifle": {
         "stage": "devourer-of-gods",
-        "via": "recipe:CalamityMod/Shroomer+CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel"
+        "via": "recipe:CalamityMod/Shroomer+CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/CleansingBlaze": {
         "stage": "devourer-of-gods",
@@ -40681,11 +40866,17 @@
       },
       "CalamityMod/Infinity": {
         "stage": "devourer-of-gods",
-        "via": "recipe:CalamityMod/Shredder+CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel"
+        "via": "recipe:CalamityMod/Shredder+CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/Karasawa": {
         "stage": "devourer-of-gods",
-        "via": "recipe:Terraria/LargeRuby+CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel"
+        "via": "recipe:Terraria/LargeRuby+CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/Norfleet": {
         "stage": "devourer-of-gods",
@@ -40697,7 +40888,10 @@
       },
       "CalamityMod/Riftburst": {
         "stage": "devourer-of-gods",
-        "via": "recipe:Terraria/Phantasm+CalamityMod/CosmiliteBar+CalamityMod/Necroplasm+CalamityMod/NightmareFuel"
+        "via": "recipe:Terraria/Phantasm+CalamityMod/CosmiliteBar+CalamityMod/Necroplasm+CalamityMod/NightmareFuel",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/ScorchedEarth": {
         "stage": "devourer-of-gods",
@@ -40737,11 +40931,17 @@
       },
       "CalamityMod/Penumbra": {
         "stage": "devourer-of-gods",
-        "via": "recipe:CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel+CalamityMod/RuinousSoul"
+        "via": "recipe:CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel+CalamityMod/RuinousSoul",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/CorvidHarbringerStaff": {
         "stage": "devourer-of-gods",
-        "via": "recipe:Terraria/RavenStaff+CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel"
+        "via": "recipe:Terraria/RavenStaff+CalamityMod/CosmiliteBar+CalamityMod/NightmareFuel",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/CosmicViperEngine": {
         "stage": "devourer-of-gods",
@@ -40797,7 +40997,10 @@
       },
       "CalamityMod/StatisVoidSash": {
         "stage": "devourer-of-gods",
-        "via": "recipe:CalamityMod/StatisNinjaBelt+CalamityMod/TwistingNether+CalamityMod/NightmareFuel"
+        "via": "recipe:CalamityMod/StatisNinjaBelt+CalamityMod/TwistingNether+CalamityMod/NightmareFuel",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/TheAmalgam": {
         "stage": "devourer-of-gods",
@@ -41915,22 +42118,6 @@
         "stage": "start",
         "via": "npc:Terraria/LostGirl"
       },
-      "Terraria/LizardEgg": {
-        "stage": "start",
-        "via": "npc:Terraria/Lihzahrd"
-      },
-      "Terraria/LihzahrdPowerCell": {
-        "stage": "start",
-        "via": "npc:Terraria/Lihzahrd"
-      },
-      "Terraria/LunarTabletFragment": {
-        "stage": "start",
-        "via": "npc:Terraria/Lihzahrd"
-      },
-      "Terraria/JungleKey": {
-        "stage": "start",
-        "via": "npc:Terraria/Lihzahrd"
-      },
       "Terraria/RedHusk": {
         "stage": "start",
         "via": "npc:Terraria/CochinealBeetle"
@@ -41976,6 +42163,14 @@
         "via": "npc:CalamityMod/MorayEel"
       },
       "CalamityMod/Stohne": {
+        "stage": "start",
+        "via": "npc:CalamityMod/Bohldohr"
+      },
+      "Terraria/LunarTabletFragment": {
+        "stage": "start",
+        "via": "npc:CalamityMod/Bohldohr"
+      },
+      "Terraria/LihzahrdPowerCell": {
         "stage": "start",
         "via": "npc:CalamityMod/Bohldohr"
       },
@@ -48517,7 +48712,10 @@
       },
       "CalamityMod/SulphuricScale": {
         "stage": "eye-of-cthulhu",
-        "via": "npc:CalamityMod/NuclearToad"
+        "via": "npc:CalamityMod/NuclearToad",
+        "eventCategory": null,
+        "customEventName": "Acid Rain",
+        "eventIcon": "CalamityMod/BiomeManagers/AcidRainIcon"
       },
       "Terraria/ChumBucket": {
         "stage": "eye-of-cthulhu",
@@ -48779,11 +48977,17 @@
       },
       "CalamityMod/AcidRainDye": {
         "stage": "eye-of-cthulhu",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/SulphuricScale"
+        "via": "recipe:Terraria/BottledWater+CalamityMod/SulphuricScale",
+        "eventCategory": null,
+        "customEventName": "Acid Rain",
+        "eventIcon": "CalamityMod/BiomeManagers/AcidRainIcon"
       },
       "CalamityMod/CausticTear": {
         "stage": "eye-of-cthulhu",
-        "via": "recipe:CalamityMod/SulphuricScale"
+        "via": "recipe:CalamityMod/SulphuricScale",
+        "eventCategory": null,
+        "customEventName": "Acid Rain",
+        "eventIcon": "CalamityMod/BiomeManagers/AcidRainIcon"
       },
       "CalamityMod/AntiCystOintment": {
         "stage": "eye-of-cthulhu",
@@ -48819,31 +49023,52 @@
       },
       "Terraria/BossMaskDarkMage": {
         "stage": "world-evil",
-        "via": "npc:Terraria/DD2DarkMageT1"
+        "via": "npc:Terraria/DD2DarkMageT1",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DarkMageBookMountItem": {
         "stage": "world-evil",
-        "via": "npc:Terraria/DD2DarkMageT1"
+        "via": "npc:Terraria/DD2DarkMageT1",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/WarTable": {
         "stage": "world-evil",
-        "via": "npc:Terraria/DD2DarkMageT1"
+        "via": "npc:Terraria/DD2DarkMageT1",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/WarTableBanner": {
         "stage": "world-evil",
-        "via": "npc:Terraria/DD2DarkMageT1"
+        "via": "npc:Terraria/DD2DarkMageT1",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DD2PetDragon": {
         "stage": "world-evil",
-        "via": "npc:Terraria/DD2DarkMageT1"
+        "via": "npc:Terraria/DD2DarkMageT1",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DD2PetGato": {
         "stage": "world-evil",
-        "via": "npc:Terraria/DD2DarkMageT1"
+        "via": "npc:Terraria/DD2DarkMageT1",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/BossTrophyDarkmage": {
         "stage": "world-evil",
-        "via": "npc:Terraria/DD2DarkMageT1"
+        "via": "npc:Terraria/DD2DarkMageT1",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ShadowScale": {
         "stage": "world-evil",
@@ -50337,13 +50562,13 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/Unicorn"
       },
+      "CalamityMod/EssenceofEleum": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/SnowmanGangsta"
+      },
       "Terraria/TurtleShell": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/GiantTortoise"
-      },
-      "CalamityMod/EssenceofEleum": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/IceTortoise"
       },
       "Terraria/SpiderFang": {
         "stage": "wall-of-flesh",
@@ -50355,123 +50580,213 @@
       },
       "Terraria/LuckyCoin": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DiscountCard": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldRing": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SailorHat": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/EyePatch": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SailorShirt": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SailorPants": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenChair": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenToilet": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenDoor": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenTable": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenBed": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenPiano": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenDresser": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenSofa": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenSink": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenChest": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenBathtub": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenPlatform": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenWorkbench": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenClock": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenLamp": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenBookcase": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenChandelier": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenLantern": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenCandelabra": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GoldenCandle": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/BuccaneerBandana": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/BuccaneerShirt": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/BuccaneerPants": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateDeckhand"
+        "via": "npc:Terraria/PirateDeckhand",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/RockGolemHead": {
         "stage": "wall-of-flesh",
@@ -50612,10 +50927,6 @@
       "Terraria/BloodHamaxe": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/BloodEelHead"
-      },
-      "Terraria/Requiem": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/Reaper"
       },
       "Terraria/PirateMinecart": {
         "stage": "wall-of-flesh",
@@ -50904,6 +51215,10 @@
       "CalamityMod/WeightlessCandle": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Wizard"
+      },
+      "Terraria/JungleKey": {
+        "stage": "wall-of-flesh",
+        "via": "global:Terraria/GlobalNPCDrops"
       },
       "Terraria/PirateMap": {
         "stage": "wall-of-flesh",
@@ -51367,7 +51682,10 @@
       },
       "Terraria/Fake_GoldenChest": {
         "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/GoldenChest+Terraria/Wire"
+        "via": "recipe:Terraria/GoldenChest+Terraria/Wire",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/Fake_SpiderChest": {
         "stage": "wall-of-flesh",
@@ -51439,11 +51757,17 @@
       },
       "Terraria/CoinRing": {
         "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/GoldRing+Terraria/LuckyCoin"
+        "via": "recipe:Terraria/GoldRing+Terraria/LuckyCoin",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GreedyRing": {
         "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/CoinRing+Terraria/DiscountCard"
+        "via": "recipe:Terraria/CoinRing+Terraria/DiscountCard",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/MechanicalEye": {
         "stage": "wall-of-flesh",
@@ -51741,6 +52065,13 @@
         "stage": "destroyer",
         "via": "npc:Terraria/MossHornet"
       },
+      "Terraria/Buddies": {
+        "stage": "destroyer",
+        "via": "npc:Terraria/Frankenstein",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
+      },
       "Terraria/EyeSpring": {
         "stage": "destroyer",
         "via": "npc:Terraria/Eyezor"
@@ -51763,15 +52094,24 @@
       },
       "Terraria/BossMaskOgre": {
         "stage": "destroyer",
-        "via": "npc:Terraria/DD2OgreT2"
+        "via": "npc:Terraria/DD2OgreT2",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DD2PetGhost": {
         "stage": "destroyer",
-        "via": "npc:Terraria/DD2OgreT2"
+        "via": "npc:Terraria/DD2OgreT2",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/BossTrophyOgre": {
         "stage": "destroyer",
-        "via": "npc:Terraria/DD2OgreT2"
+        "via": "npc:Terraria/DD2OgreT2",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DestroyerBossBag": {
         "stage": "destroyer",
@@ -52605,9 +52945,12 @@
         "stage": "twins",
         "via": "recipe:Terraria/CrystalBlock"
       },
-      "Terraria/Buddies": {
+      "Terraria/Requiem": {
         "stage": "skeletron-prime",
-        "via": "npc:Terraria/Frankenstein"
+        "via": "npc:Terraria/Reaper",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SkeletronPrimeBossBag": {
         "stage": "skeletron-prime",
@@ -52628,13 +52971,6 @@
       "Terraria/SoulofFright": {
         "stage": "skeletron-prime",
         "via": "npc:Terraria/SkeletronPrime"
-      },
-      "Terraria/WingsofEvil": {
-        "stage": "skeletron-prime",
-        "via": "npc:Terraria/Mothron",
-        "eventCategory": "SolarEclipse",
-        "customEventName": "",
-        "eventIcon": ""
       },
       "Terraria/RainbowHairDye": {
         "stage": "skeletron-prime",
@@ -52864,9 +53200,9 @@
         "stage": "plantera",
         "via": "npc:CalamityMod/Burrower"
       },
-      "Terraria/BrokenHeroSword": {
+      "Terraria/LizardEgg": {
         "stage": "plantera",
-        "via": "npc:Terraria/Mothron"
+        "via": "npc:Terraria/Lihzahrd"
       },
       "Terraria/BoneFeather": {
         "stage": "plantera",
@@ -52972,85 +53308,159 @@
         "stage": "plantera",
         "via": "npc:Terraria/Plantera"
       },
+      "Terraria/WingsofEvil": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Mothron",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
+      },
+      "Terraria/BrokenHeroSword": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Mothron",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
+      },
       "Terraria/SpookyHook": {
         "stage": "plantera",
-        "via": "npc:Terraria/MourningWood"
+        "via": "npc:Terraria/MourningWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyTwig": {
         "stage": "plantera",
-        "via": "npc:Terraria/MourningWood"
+        "via": "npc:Terraria/MourningWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/CursedSapling": {
         "stage": "plantera",
-        "via": "npc:Terraria/MourningWood"
+        "via": "npc:Terraria/MourningWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/NecromanticScroll": {
         "stage": "plantera",
-        "via": "npc:Terraria/MourningWood"
+        "via": "npc:Terraria/MourningWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/WitchBroom": {
         "stage": "plantera",
-        "via": "npc:Terraria/MourningWood"
+        "via": "npc:Terraria/MourningWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/MourningWoodMasterTrophy": {
         "stage": "plantera",
-        "via": "npc:Terraria/MourningWood"
+        "via": "npc:Terraria/MourningWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyWoodMountItem": {
         "stage": "plantera",
-        "via": "npc:Terraria/MourningWood"
+        "via": "npc:Terraria/MourningWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyWood": {
         "stage": "plantera",
-        "via": "npc:Terraria/MourningWood"
+        "via": "npc:Terraria/MourningWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/BlackFairyDust": {
         "stage": "plantera",
-        "via": "npc:Terraria/Pumpking"
+        "via": "npc:Terraria/Pumpking",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpiderEgg": {
         "stage": "plantera",
-        "via": "npc:Terraria/Pumpking"
+        "via": "npc:Terraria/Pumpking",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/PumpkingMasterTrophy": {
         "stage": "plantera",
-        "via": "npc:Terraria/Pumpking"
+        "via": "npc:Terraria/Pumpking",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/PumpkingPetItem": {
         "stage": "plantera",
-        "via": "npc:Terraria/Pumpking"
+        "via": "npc:Terraria/Pumpking",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ChristmasHook": {
         "stage": "plantera",
-        "via": "npc:Terraria/Everscream"
+        "via": "npc:Terraria/Everscream",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/EverscreamMasterTrophy": {
         "stage": "plantera",
-        "via": "npc:Terraria/Everscream"
+        "via": "npc:Terraria/Everscream",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/EverscreamPetItem": {
         "stage": "plantera",
-        "via": "npc:Terraria/Everscream"
+        "via": "npc:Terraria/Everscream",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SantankMasterTrophy": {
         "stage": "plantera",
-        "via": "npc:Terraria/SantaNK1"
+        "via": "npc:Terraria/SantaNK1",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SantankMountItem": {
         "stage": "plantera",
-        "via": "npc:Terraria/SantaNK1"
+        "via": "npc:Terraria/SantaNK1",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/BabyGrinchMischiefWhistle": {
         "stage": "plantera",
-        "via": "npc:Terraria/IceQueen"
+        "via": "npc:Terraria/IceQueen",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/IceQueenMasterTrophy": {
         "stage": "plantera",
-        "via": "npc:Terraria/IceQueen"
+        "via": "npc:Terraria/IceQueen",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/IceQueenPetItem": {
         "stage": "plantera",
-        "via": "npc:Terraria/IceQueen"
+        "via": "npc:Terraria/IceQueen",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/LandMine": {
         "stage": "plantera",
@@ -53202,7 +53612,10 @@
       },
       "Terraria/SpookyPlatform": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood"
+        "via": "recipe:Terraria/SpookyWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/EchoPlatform": {
         "stage": "plantera",
@@ -53214,83 +53627,143 @@
       },
       "Terraria/SpookyWoodWall": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood"
+        "via": "recipe:Terraria/SpookyWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyClock": {
         "stage": "plantera",
-        "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/SpookyWood"
+        "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/SpookyWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyDoor": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood"
+        "via": "recipe:Terraria/SpookyWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyChair": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood"
+        "via": "recipe:Terraria/SpookyWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyChest": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood+Terraria/IronBar"
+        "via": "recipe:Terraria/SpookyWood+Terraria/IronBar",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyTable": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood"
+        "via": "recipe:Terraria/SpookyWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyWorkBench": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood"
+        "via": "recipe:Terraria/SpookyWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyBookcase": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood+Terraria/Book"
+        "via": "recipe:Terraria/SpookyWood+Terraria/Book",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyBed": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood+Terraria/Silk"
+        "via": "recipe:Terraria/SpookyWood+Terraria/Silk",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyBathtub": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood"
+        "via": "recipe:Terraria/SpookyWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyLantern": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood+Terraria/Torch"
+        "via": "recipe:Terraria/SpookyWood+Terraria/Torch",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyCandle": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood+Terraria/Torch"
+        "via": "recipe:Terraria/SpookyWood+Terraria/Torch",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyChandelier": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood+Terraria/Torch+Terraria/Chain"
+        "via": "recipe:Terraria/SpookyWood+Terraria/Torch+Terraria/Chain",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyLamp": {
         "stage": "plantera",
-        "via": "recipe:Terraria/Torch+Terraria/SpookyWood"
+        "via": "recipe:Terraria/Torch+Terraria/SpookyWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyCandelabra": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood+Terraria/Torch"
+        "via": "recipe:Terraria/SpookyWood+Terraria/Torch",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyPiano": {
         "stage": "plantera",
-        "via": "recipe:Terraria/Bone+Terraria/SpookyWood+Terraria/Book"
+        "via": "recipe:Terraria/Bone+Terraria/SpookyWood+Terraria/Book",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookyDresser": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood"
+        "via": "recipe:Terraria/SpookyWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/SpookySofa": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood+Terraria/Silk"
+        "via": "recipe:Terraria/SpookyWood+Terraria/Silk",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ToiletSpooky": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyWood"
+        "via": "recipe:Terraria/SpookyWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/TerraToilet": {
         "stage": "plantera",
-        "via": "recipe:Terraria/Toilet+Terraria/BrokenHeroSword"
+        "via": "recipe:Terraria/Toilet+Terraria/BrokenHeroSword",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ShroomiteBar": {
         "stage": "plantera",
@@ -53326,7 +53799,10 @@
       },
       "Terraria/TerraFartMinecart": {
         "stage": "plantera",
-        "via": "recipe:Terraria/FartMinecart+Terraria/TerraToilet"
+        "via": "recipe:Terraria/FartMinecart+Terraria/TerraToilet",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/BoneWings": {
         "stage": "plantera",
@@ -53402,7 +53878,10 @@
       },
       "Terraria/Fake_SpookyChest": {
         "stage": "plantera",
-        "via": "recipe:Terraria/SpookyChest+Terraria/Wire"
+        "via": "recipe:Terraria/SpookyChest+Terraria/Wire",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/DepthCells": {
         "stage": "leviathan-anahita",
@@ -54509,6 +54988,10 @@
         "stage": "moon-lord",
         "via": "npc:CalamityMod/ScornEater"
       },
+      "CalamityMod/EffulgentFeather": {
+        "stage": "moon-lord",
+        "via": "npc:CalamityMod/WildBumblebirb"
+      },
       "Terraria/MoonLordBossBag": {
         "stage": "moon-lord",
         "via": "npc:Terraria/MoonLordCore"
@@ -54705,6 +55188,10 @@
         "stage": "moon-lord",
         "via": "recipe:Terraria/LunarBar+CalamityMod/UnholyEssence"
       },
+      "CalamityMod/YharonEgg": {
+        "stage": "moon-lord",
+        "via": "recipe:CalamityMod/LifeAlloy+CalamityMod/EffulgentFeather"
+      },
       "CalamityMod/GenesisPickaxe": {
         "stage": "moon-lord",
         "via": "recipe:CalamityMod/MeldBlob+Terraria/LunarBar"
@@ -54813,10 +55300,6 @@
         "stage": "profaned-guardians",
         "via": "recipe:CalamityMod/ProfanedGuardianTrophy"
       },
-      "CalamityMod/EffulgentFeather": {
-        "stage": "dragonfolly",
-        "via": "npc:CalamityMod/WildBumblebirb"
-      },
       "CalamityMod/DragonfollyBag": {
         "stage": "dragonfolly",
         "via": "npc:CalamityMod/Dragonfolly"
@@ -54836,10 +55319,6 @@
       "CalamityMod/LoreDragonfolly": {
         "stage": "dragonfolly",
         "via": "recipe:CalamityMod/DragonfollyTrophy"
-      },
-      "CalamityMod/YharonEgg": {
-        "stage": "dragonfolly",
-        "via": "recipe:CalamityMod/LifeAlloy+CalamityMod/EffulgentFeather"
       },
       "CalamityMod/Bloodstone": {
         "stage": "providence",
@@ -55483,7 +55962,10 @@
       },
       "CalamityMod/NightmareFuel": {
         "stage": "devourer-of-gods",
-        "via": "npc:Terraria/MourningWood"
+        "via": "npc:Terraria/MourningWood",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/EndothermicEnergy": {
         "stage": "devourer-of-gods",
@@ -55551,7 +56033,10 @@
       },
       "CalamityMod/NightmareDye": {
         "stage": "devourer-of-gods",
-        "via": "recipe:Terraria/BottledWater+CalamityMod/NightmareFuel"
+        "via": "recipe:Terraria/BottledWater+CalamityMod/NightmareFuel",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "CalamityMod/PinkCosmicFlameDye": {
         "stage": "devourer-of-gods",
@@ -59892,34 +60377,14 @@
         "effectiveStageId": "skeletron"
       },
       {
-        "source": "Terraria/SnowmanGangsta",
-        "observedStageId": "wall-of-flesh",
+        "source": "Terraria/Lihzahrd",
+        "observedStageId": "start",
         "effectiveStageId": "plantera"
-      },
-      {
-        "source": "Terraria/MisterStabby",
-        "observedStageId": "wall-of-flesh",
-        "effectiveStageId": "plantera"
-      },
-      {
-        "source": "Terraria/Vampire",
-        "observedStageId": "destroyer",
-        "effectiveStageId": "plantera"
-      },
-      {
-        "source": "Terraria/Frankenstein",
-        "observedStageId": "destroyer",
-        "effectiveStageId": "skeletron-prime"
-      },
-      {
-        "source": "Terraria/SwampThing",
-        "observedStageId": "destroyer",
-        "effectiveStageId": "skeletron-prime"
       },
       {
         "source": "Terraria/FlyingSnake",
         "observedStageId": "start",
-        "effectiveStageId": "golem"
+        "effectiveStageId": "plantera"
       },
       {
         "source": "Terraria/ZombieMushroom",
@@ -59945,11 +60410,6 @@
         "source": "Terraria/FungiBulb",
         "observedStageId": "start",
         "effectiveStageId": "wall-of-flesh"
-      },
-      {
-        "source": "Terraria/CreatureFromTheDeep",
-        "observedStageId": "destroyer",
-        "effectiveStageId": "skeletron-prime"
       },
       {
         "source": "Terraria/DeadlySphere",
@@ -60742,24 +61202,6 @@
         ]
       },
       {
-        "source": "Terraria/PirateCrossbower",
-        "sourceKind": "drop",
-        "items": [
-          "Terraria/CoinGun",
-          "Terraria/Cutlass",
-          "Terraria/PirateStaff"
-        ]
-      },
-      {
-        "source": "Terraria/PirateDeckhand",
-        "sourceKind": "drop",
-        "items": [
-          "Terraria/CoinGun",
-          "Terraria/Cutlass",
-          "Terraria/PirateStaff"
-        ]
-      },
-      {
         "source": "Terraria/Psycho",
         "sourceKind": "drop",
         "items": [
@@ -61255,16 +61697,6 @@
     ],
     "unresolvedAvailabilityItems": [
       {
-        "item": "Terraria/Seed",
-        "displayName": "Семечко",
-        "classification": {
-          "category": "Ammunition",
-          "classes": [
-            "ranged"
-          ]
-        }
-      },
-      {
         "item": "Terraria/RedsYoyo",
         "displayName": "Бросок Red",
         "classification": {
@@ -61315,16 +61747,6 @@
         }
       },
       {
-        "item": "Terraria/AbigailsFlower",
-        "displayName": "Цветок Эбигейл",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "summoner"
-          ]
-        }
-      },
-      {
         "item": "Terraria/ShimmerArrow",
         "displayName": "Мерцающая стрела",
         "classification": {
@@ -61360,6 +61782,6 @@
         ]
       }
     },
-    "unassignedVanillaNpcSourceCount": 151
+    "unassignedVanillaNpcSourceCount": 149
   }
 }

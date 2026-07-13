@@ -148,7 +148,10 @@
       "enemies": [
         "Terraria/BloodZombie",
         "Terraria/Drippler",
-        "Terraria/BloodNautilus"
+        "Terraria/BloodNautilus",
+        "ThoriumMod/EngorgedEye",
+        "ThoriumMod/GraveLimb",
+        "ThoriumMod/PatchWerk"
       ]
     },
     {
@@ -156,10 +159,13 @@
       "stageId": "eye-of-cthulhu",
       "eventCategory": "GoblinArmy",
       "enemies": [
+        "Terraria/GoblinArcher",
         "Terraria/GoblinPeon",
         "Terraria/GoblinThief",
         "Terraria/GoblinWarrior",
-        "Terraria/GoblinSorcerer"
+        "Terraria/GoblinSorcerer",
+        "ThoriumMod/GoblinDrummer",
+        "ThoriumMod/GoblinTrapper"
       ]
     },
     {
@@ -178,7 +184,9 @@
         "Terraria/PirateShip",
         "Terraria/PirateCaptain",
         "Terraria/PirateCorsair",
-        "Terraria/PirateDeadeye"
+        "Terraria/PirateDeadeye",
+        "Terraria/PirateDeckhand",
+        "Terraria/PirateCrossbower"
       ]
     },
     {
@@ -191,13 +199,28 @@
     },
     {
       "id": "solar-eclipse",
-      "stageId": "skeletron-prime",
+      "stageId": "destroyer",
       "eventCategory": "SolarEclipse",
       "enemies": [
-        "Terraria/Mothron",
         "Terraria/Frankenstein",
         "Terraria/SwampThing",
         "Terraria/CreatureFromTheDeep"
+      ]
+    },
+    {
+      "id": "solar-eclipse-all-mechs",
+      "stageId": "skeletron-prime",
+      "eventCategory": "SolarEclipse",
+      "enemies": [
+        "Terraria/Reaper"
+      ]
+    },
+    {
+      "id": "solar-eclipse-post-plantera",
+      "stageId": "plantera",
+      "eventCategory": "SolarEclipse",
+      "enemies": [
+        "Terraria/Mothron"
       ]
     },
     {

@@ -748,7 +748,8 @@ public sealed record SnapshotNpcAvailability(
     bool Observed,
     int EarliestStageIndex,
     string EarliestStageName,
-    List<string> Conditions);
+    List<string> Conditions,
+    List<string> EventCategories);
 public sealed record SnapshotNpcSpawnProbe(
     int Observed,
     int Total,
