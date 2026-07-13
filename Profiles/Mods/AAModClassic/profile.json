@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-07-13T19:16:30.325Z",
+  "generatedAtUtc": "2026-07-13T20:09:24.772Z",
   "requiredMods": [
     {
       "name": "AAModClassic",
@@ -12594,7 +12594,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -16851,7 +16851,10 @@
       "key": "new.terraria.clingerstaff",
       "category": "Weapon",
       "classes": [
-        "magic"
+        "magic",
+        "melee",
+        "ranged",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -21014,7 +21017,10 @@
       "key": "new.terraria.nimbusrod",
       "category": "Weapon",
       "classes": [
-        "magic"
+        "magic",
+        "melee",
+        "ranged",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -23943,7 +23949,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -34312,7 +34318,10 @@
       "key": "new.terraria.crimsonrod",
       "category": "Weapon",
       "classes": [
-        "magic"
+        "magic",
+        "melee",
+        "ranged",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -37427,7 +37436,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -47527,7 +47536,7 @@
     },
     {
       "key": "new.terraria.coingun",
-      "category": "Support",
+      "category": "Weapon",
       "classes": [
         "ranged"
       ],
@@ -47599,35 +47608,6 @@
             "mod": "Terraria",
             "item": "AshWoodGreaves",
             "displayName": "Ясеневые ботинки"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "start",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
-      "key": "new.terraria.confettigun",
-      "category": "Support",
-      "classes": [
-        "ranged"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "ConfettiGun",
-            "displayName": "Конфетти-пушка"
           }
         ]
       ],
@@ -48658,64 +48638,6 @@
       "evaluations": [
         {
           "stageId": "golem",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
-      "key": "new.terraria.worldglobe",
-      "category": "Support",
-      "classes": [
-        "ranged"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "WorldGlobe",
-            "displayName": "Глобус"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "start",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
-      "key": "new.terraria.treeglobe",
-      "category": "Support",
-      "classes": [
-        "ranged"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "TreeGlobe",
-            "displayName": "Глобус из дерева"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -50511,35 +50433,6 @@
       "evaluations": [
         {
           "stageId": "destroyer",
-          "tier": "FromGuide",
-          "scope": "StageOnly"
-        }
-      ],
-      "wiki": [],
-      "fishingSources": [],
-      "isSupportWeapon": false,
-      "eventCategory": null,
-      "customEventName": "",
-      "eventIcon": ""
-    },
-    {
-      "key": "new.terraria.moonglobe",
-      "category": "Support",
-      "classes": [
-        "ranged"
-      ],
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "MoonGlobe",
-            "displayName": "Лунный глобус"
-          }
-        ]
-      ],
-      "evaluations": [
-        {
-          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -57328,7 +57221,7 @@
     },
     {
       "key": "new.aamodclassic.flamevortexstaff",
-      "category": "Support",
+      "category": "Weapon",
       "classes": [
         "summoner"
       ],

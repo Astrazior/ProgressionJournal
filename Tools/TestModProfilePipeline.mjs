@@ -275,6 +275,9 @@ assert(!npcSpawnResolverSource.includes("NpcSpawnAvailabilityUnknown"),
   "Technical unknown diagnostics must not be shown in the player UI");
 assert(npcSpawnResolverSource.includes("ModContent.GetContent<ModBiome>()"),
   "ModBiome scenarios are missing from enemy availability");
+assert(npcSpawnResolverSource.includes("environment.IsAvailable?.Invoke()")
+  && npcSpawnResolverSource.includes("static () => NPC.downedBoss2"),
+"Synthetic Meteorite scenarios must not exist before the world-evil boss creates the biome");
 assert(npcSpawnResolverSource.includes("DD2Event.Ongoing")
   && npcSpawnResolverSource.includes("Main.invasionType")
   && npcSpawnResolverSource.includes("Main.pumpkinMoon"),
@@ -522,6 +525,17 @@ for (const modName of expected) {
       assert(!unresolvedSignatures.some(signature => signature.includes(token)),
         `${modName}: ${token} must be normalized automatically`);
     }
+  }
+  if (modName === "ThoriumMod") {
+    const ufoAvailability = snapshot.npcAvailability.find(record =>
+      record.npc === "ThoriumMod/UFO");
+    assert.equal(ufoAvailability?.earliestStageId, "world-evil",
+      "ThoriumMod: the corrected NPC probe snapshot must retain the Meteorite unlock stage");
+    assert.equal(generatedStageOf("ThoriumMod/DetachedBlaster"), "world-evil",
+      "ThoriumMod: the U.F.O. drop must follow automatic Meteorite biome availability");
+    assert(!readJson(path.join(directory, "agent-rules.json")).rules
+      .some(rule => rule.id === "pre-hardmode-meteor-ufo-source"),
+    "ThoriumMod: the U.F.O. stage must not be forced by a manual source rule");
   }
   assert(!review.issues.some(issue =>
     issue.kind === "ambiguous-classes"
@@ -789,6 +803,27 @@ const aaEntry = itemName => aaProfile.entries.find(entry =>
   entry.itemGroups.some(group => group.some(item => item.item === itemName)));
 const aaBuff = itemName => aaProfile.combatBuffs.find(entry =>
   entry.itemGroups.some(group => group.some(item => item.item === itemName)));
+assert(!aaProfile.entries.some(entry => entry.category === "Support"),
+  "AAModClassic must not invent a support-equipment category from zero-damage class items");
+for (const itemName of [
+  "WorldGlobe",
+  "TreeGlobe",
+  "MoonGlobe",
+  "ConfettiGun"
+]) {
+  assert(!aaEntry(itemName), `${itemName} is not combat equipment and must not enter the profile`);
+}
+assert.equal(aaEntry("FlameVortexStaff")?.category, "Weapon",
+  "Flame Vortex Staff is a combat summon and must remain in the profile");
+assert.equal(aaEntry("CoinGun")?.category, "Weapon",
+  "Authoritatively classified zero-damage vanilla weapons must remain weapons");
+for (const itemName of ["CandyCorn", "ExplosiveJackOLantern", "Stake"]) {
+  assert.equal(aaEntry(itemName)?.evaluations[0]?.stageId, "plantera",
+    `${itemName} must inherit the Pumpkin Moon weapon stage`);
+  assert.equal(aaReport.generation.paths[`Terraria/${itemName}`]?.via,
+    "shop:Terraria/ArmsDealer",
+  `${itemName} must resolve from its inventory-gated shop condition`);
+}
 assert.equal(aaStage("grips-of-chaos")?.unlock?.key, "downedGrips");
 assert.equal(aaStage("equinox-worms")?.unlock?.key, "downedEquinox");
 assert.equal(aaStage("sisters-of-discord")?.unlock?.key, "downedSisters");
@@ -856,7 +891,10 @@ for (const item of [
   "AAModClassic/TheDragonsBreath",
   "AAModClassic/FuryForger",
   "AAModClassic/SwimmingHydra",
-  "AAModClassic/TerraShard"
+  "AAModClassic/TerraShard",
+  "Terraria/CandyCorn",
+  "Terraria/ExplosiveJackOLantern",
+  "Terraria/Stake"
 ]) {
   assert(!aaManualStageItems.has(item), `${item} must resolve from acquisition evidence`);
 }

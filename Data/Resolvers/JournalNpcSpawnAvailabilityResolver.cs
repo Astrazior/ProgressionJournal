@@ -69,7 +69,8 @@ internal static class JournalNpcSpawnAvailabilityResolver
         string Name,
         int TileType,
         ModBiome? ModBiome,
-        Action<Player> Apply)
+        Action<Player> Apply,
+        Func<bool>? IsAvailable = null)
     {
         public int WallType { get; init; }
     }
@@ -443,6 +444,11 @@ internal static class JournalNpcSpawnAvailabilityResolver
                     {
                         progression.Reset();
                         progression.Apply(context.StageIndex, variantIndex);
+                        var environment = catalog.Environments[context.EnvironmentIndex];
+                        if (!(environment.IsAvailable?.Invoke() ?? true))
+                        {
+                            continue;
+                        }
                         ApplyContext(catalog, player, context);
                         if (!(catalog.Events[context.EventIndex].IsAvailable?.Invoke() ?? true))
                         {
@@ -526,13 +532,28 @@ internal static class JournalNpcSpawnAvailabilityResolver
             new(Language.GetTextValue("Bestiary_Biomes.Jungle"), TileID.JungleGrass, null, static p => p.ZoneJungle = true),
             new(Language.GetTextValue("Bestiary_Biomes.TheCorruption"), TileID.CorruptGrass, null, static p => p.ZoneCorrupt = true),
             new(Language.GetTextValue("Bestiary_Biomes.Crimson"), TileID.CrimsonGrass, null, static p => p.ZoneCrimson = true),
-            new(Language.GetTextValue("Bestiary_Biomes.TheHallow"), TileID.HallowedGrass, null, static p => p.ZoneHallow = true),
-            new(Language.GetTextValue("Bestiary_Biomes.TheDungeon"), TileID.BlueDungeonBrick, null, static p => p.ZoneDungeon = true)
+            new(
+                Language.GetTextValue("Bestiary_Biomes.TheHallow"),
+                TileID.HallowedGrass,
+                null,
+                static p => p.ZoneHallow = true,
+                static () => Main.hardMode),
+            new(
+                Language.GetTextValue("Bestiary_Biomes.TheDungeon"),
+                TileID.BlueDungeonBrick,
+                null,
+                static p => p.ZoneDungeon = true,
+                static () => NPC.downedBoss3)
             {
                 WallType = WallID.BlueDungeonUnsafe
             },
             new(Language.GetTextValue("Bestiary_Biomes.UndergroundMushroom"), TileID.MushroomGrass, null, static p => p.ZoneGlowshroom = true),
-            new(Language.GetTextValue("Bestiary_Biomes.Meteor"), TileID.Meteorite, null, static p => p.ZoneMeteor = true),
+            new(
+                Language.GetTextValue("Bestiary_Biomes.Meteor"),
+                TileID.Meteorite,
+                null,
+                static p => p.ZoneMeteor = true,
+                static () => NPC.downedBoss2),
             new(Language.GetTextValue("Bestiary_Biomes.Graveyard"), TileID.Stone, null, static p => p.ZoneGraveyard = true),
             new(Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnGranite"), TileID.Granite, null, static _ => { }),
             new(Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnMarble"), TileID.Marble, null, static _ => { }),
@@ -540,15 +561,40 @@ internal static class JournalNpcSpawnAvailabilityResolver
             {
                 WallType = WallID.SpiderUnsafe
             },
-            new(Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnTemple"), TileID.LihzahrdBrick, null, static _ => { })
+            new(
+                Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnTemple"),
+                TileID.LihzahrdBrick,
+                null,
+                static _ => { },
+                static () => NPC.downedPlantBoss)
             {
                 WallType = WallID.LihzahrdBrickUnsafe
             },
             new(Language.GetTextValue("Bestiary_Biomes.UndergroundDesert"), TileID.Sandstone, null, static p => p.ZoneDesert = true),
-            new(Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnSolarPillar"), TileID.Stone, null, static p => p.ZoneTowerSolar = true),
-            new(Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnVortexPillar"), TileID.Stone, null, static p => p.ZoneTowerVortex = true),
-            new(Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnNebulaPillar"), TileID.Stone, null, static p => p.ZoneTowerNebula = true),
-            new(Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnStardustPillar"), TileID.Stone, null, static p => p.ZoneTowerStardust = true)
+            new(
+                Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnSolarPillar"),
+                TileID.Stone,
+                null,
+                static p => p.ZoneTowerSolar = true,
+                static () => NPC.downedAncientCultist),
+            new(
+                Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnVortexPillar"),
+                TileID.Stone,
+                null,
+                static p => p.ZoneTowerVortex = true,
+                static () => NPC.downedAncientCultist),
+            new(
+                Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnNebulaPillar"),
+                TileID.Stone,
+                null,
+                static p => p.ZoneTowerNebula = true,
+                static () => NPC.downedAncientCultist),
+            new(
+                Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnStardustPillar"),
+                TileID.Stone,
+                null,
+                static p => p.ZoneTowerStardust = true,
+                static () => NPC.downedAncientCultist)
         };
 
         var profile = JournalRuntimeProgressionScenarios.CurrentProfile;

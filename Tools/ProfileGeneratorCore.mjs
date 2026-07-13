@@ -5,6 +5,8 @@ import { createSnapshotView } from "./KnowledgeBase.mjs";
 import { applyVanillaSourceCatalog } from "./VanillaSourceCatalog.mjs";
 import { resolveSnapshotStageIndex } from "./SnapshotStageResolver.mjs";
 
+const STANDARD_COMBAT_CLASS_IDS = new Set(["melee", "ranged", "magic", "summoner"]);
+
 export function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
 }
@@ -702,9 +704,23 @@ function classifyItem(item, manifest, report, context) {
     return null;
   }
 
+  const vanilla = item.id.startsWith("Terraria/")
+    ? context.vanillaItems?.get(item.id)
+    : null;
+  if (vanilla?.category === "Weapon" && item.ammo <= 0) {
+    const validClasses = new Set(allClasses(manifest));
+    const classes = override?.classes
+      ?? (vanilla.classes ?? []).filter(value => validClasses.has(value));
+    if (classes.length > 0) {
+      return {
+        category: override?.category ?? vanilla.category,
+        classes
+      };
+    }
+  }
+
   if (item.id.startsWith("Terraria/")
       && (item.accessory || item.headSlot >= 0 || item.bodySlot >= 0 || item.legSlot >= 0)) {
-    const vanilla = context.vanillaItems?.get(item.id);
     if (!vanilla) return null;
     const validClasses = new Set(allClasses(manifest));
     const isArmor = item.headSlot >= 0 || item.bodySlot >= 0 || item.legSlot >= 0;
@@ -726,9 +742,9 @@ function classifyItem(item, manifest, report, context) {
     };
   }
 
+  const wikiClassification = classifyWikiItem(context.wikiItems?.get(item.id));
   const classes = override?.classes ?? resolveClasses(item, manifest, report, context);
   if (classes.length === 0) {
-    const wikiClassification = classifyWikiItem(context.wikiItems?.get(item.id));
     if (wikiClassification
         && ((wikiClassification.category === "Accessory" && item.accessory)
             || (wikiClassification.category === "Armor"
@@ -749,12 +765,22 @@ function classifyItem(item, manifest, report, context) {
   if (override?.category) return { category: override.category, classes };
   if (item.ammo > 0) return { category: "Ammunition", classes };
   if (item.accessory) return { category: "Accessory", classes };
-  if (item.damage > 0 || item.sentry) return { category: "Weapon", classes };
+  if (item.damage > 0
+      || item.sentry
+      || (item.shoot > 0
+          && !item.consumable
+          && item.damageClass.endsWith("SummonDamageClass"))) {
+    return { category: "Weapon", classes };
+  }
   if (item.headSlot >= 0 || item.bodySlot >= 0 || item.legSlot >= 0) return { category: "Armor", classes };
   if (item.buffType > 0 && item.consumable) {
     return { buffCategory: "Potion", classes: allClasses(manifest) };
   }
-  if (classes.length < allClasses(manifest).length && item.damageClass) {
+  if (wikiClassification?.category === "Support") return wikiClassification;
+  if (classes.length < allClasses(manifest).length
+      && item.damageClass
+      && (!item.consumable
+          || classes.some(classId => !STANDARD_COMBAT_CLASS_IDS.has(classId)))) {
     return { category: "Support", classes };
   }
   return null;
@@ -965,6 +991,10 @@ function inferredConditionStageIndex(condition, manifest, stageIndexes) {
   const destroyerIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer");
   const skeletronPrimeIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss3", "skeletron-prime");
 
+  if (type.endsWith("+IsBloodMoonAndNotFromStatue")
+      || /blood moon|кровав(?:ой|ая) лун/u.test(description)) {
+    return stageIndexByEvent(manifest, stageIndexes, "BloodMoon");
+  }
   if (/(?:hardmode|hard mode|хардмод|сложн(?:ом|ого) режим)/u.test(description)) {
     return hardmodeIndex;
   }

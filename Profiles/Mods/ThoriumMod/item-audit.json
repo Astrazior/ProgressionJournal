@@ -3,17 +3,17 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-07-13T10:57:14.088Z",
+  "generatedAtUtc": "2026-07-13T20:09:19.904Z",
   "snapshotGeneratedAtUtc": "2026-07-13T09:07:50.7863554Z",
   "summary": {
     "snapshotItems": 8330,
     "contentItems": 2875,
-    "profileEntries": 2087,
-    "profileBuffEntries": 170,
-    "profileItemReferences": 2281,
-    "equipmentReferences": 2111,
-    "buffReferences": 170,
-    "excluded": 3640,
+    "profileEntries": 2083,
+    "profileBuffEntries": 171,
+    "profileItemReferences": 2278,
+    "equipmentReferences": 2107,
+    "buffReferences": 171,
+    "excluded": 3643,
     "acquiredNonProfile": 131,
     "unresolvedAvailability": 7,
     "unavailableCombat": 2,
@@ -1826,7 +1826,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/Sandstone+Terraria/AntlionMandible",
       "reason": "not combat equipment"
     },
@@ -3497,7 +3497,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/HoneyComb+Terraria/StarCloak",
       "reason": "Included in the generated profile."
     },
     {
@@ -4306,7 +4306,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "eye-of-cthulhu",
       "via": "shop:Terraria/DyeTrader",
       "reason": "not combat equipment"
     },
@@ -8267,7 +8267,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/BandofRegeneration+Terraria/PhilosophersStone",
       "reason": "Included in the generated profile."
     },
     {
@@ -9375,10 +9375,10 @@
       "name": "Конфетти-пушка",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "equipment",
+      "status": "excluded",
       "stage": "start",
       "via": "shop:Terraria/PartyGirl",
-      "reason": "Included in the generated profile."
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/ConfettiWall",
@@ -11267,7 +11267,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/WoodenArrow+Terraria/CursedFlame",
       "reason": "Included in the generated profile."
     },
     {
@@ -11277,7 +11277,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/MusketBall+Terraria/CursedFlame",
       "reason": "Included in the generated profile."
     },
     {
@@ -11297,7 +11297,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/CursedFlame",
       "reason": "Included in the generated profile."
     },
     {
@@ -12457,7 +12457,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "eye-of-cthulhu",
-      "via": "manifest",
+      "via": "recipe:Terraria/DemoniteOre",
       "reason": "not combat equipment"
     },
     {
@@ -12596,7 +12596,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/IronBar",
       "reason": "not combat equipment"
     },
@@ -15006,7 +15006,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "eye-of-cthulhu",
       "via": "shop:Terraria/Painter",
       "reason": "not combat equipment"
     },
@@ -19877,7 +19877,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/EmptyBullet+Terraria/GoldDust",
       "reason": "Included in the generated profile."
     },
     {
@@ -21436,7 +21436,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "buff",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "recipe:Terraria/Grapes+Terraria/Bottle",
       "reason": "Included in the generated profile."
     },
@@ -21445,10 +21445,10 @@
       "name": "Виноград",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "acquired-non-profile",
-      "stage": "start",
-      "via": "initial",
-      "reason": "Acquisition path resolved, but the item is not a profile entry."
+      "status": "buff",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/Derpling",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/GrapplingHook",
@@ -24457,7 +24457,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/WoodenArrow+Terraria/Ichor",
       "reason": "Included in the generated profile."
     },
     {
@@ -24467,7 +24467,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/MusketBall+Terraria/Ichor",
       "reason": "Included in the generated profile."
     },
     {
@@ -24487,7 +24487,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/Ichor",
       "reason": "Included in the generated profile."
     },
     {
@@ -27197,7 +27197,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "plantera",
-      "via": "manifest",
+      "via": "recipe:ThoriumMod/BioMatter+Terraria/ChlorophyteBar",
       "reason": "not combat equipment"
     },
     {
@@ -28457,7 +28457,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "moon-lord",
-      "via": "manifest",
+      "via": "recipe:Terraria/LunarOre",
       "reason": "not combat equipment"
     },
     {
@@ -29817,7 +29817,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "manifest",
+      "via": "recipe:Terraria/TigerClimbingGear+Terraria/Tabi+Terraria/BlackBelt",
       "reason": "Included in the generated profile."
     },
     {
@@ -29857,7 +29857,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron-prime",
-      "via": "manifest",
+      "via": "recipe:Terraria/PowerGlove+Terraria/AvengerEmblem",
       "reason": "Included in the generated profile."
     },
     {
@@ -29987,7 +29987,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "destroyer",
-      "via": "manifest",
+      "via": "recipe:Terraria/Minishark+Terraria/IllegalGunParts+Terraria/SharkFin+Terraria/SoulofMight",
       "reason": "Included in the generated profile."
     },
     {
@@ -30127,7 +30127,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "world-evil",
-      "via": "manifest",
+      "via": "recipe:Terraria/Meteorite",
       "reason": "not combat equipment"
     },
     {
@@ -30875,10 +30875,10 @@
       "name": "Лунный глобус",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "equipment",
+      "status": "excluded",
       "stage": "start",
       "via": "shop:Terraria/BestiaryGirl",
-      "reason": "Included in the generated profile."
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/Moonglow",
@@ -33487,7 +33487,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "manifest",
+      "via": "recipe:Terraria/LightsBane+Terraria/Muramasa+Terraria/BladeofGrass+Terraria/FieryGreatsword",
       "reason": "Included in the generated profile."
     },
     {
@@ -35267,7 +35267,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "manifest",
+      "via": "recipe:Terraria/NecromanticScroll+Terraria/HerculesBeetle",
       "reason": "Included in the generated profile."
     },
     {
@@ -35987,7 +35987,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "manifest",
+      "via": "recipe:Terraria/HellstoneBar+Terraria/Handgun",
       "reason": "Included in the generated profile."
     },
     {
@@ -41205,10 +41205,10 @@
       "name": "Песчаниковый блок",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "king-slime",
-      "via": "recipe:Terraria/SandBlock+Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "acquired-non-profile",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Acquisition path resolved, but the item is not a profile entry."
     },
     {
       "id": "Terraria/SandstoneBathtub",
@@ -41216,7 +41216,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -41226,7 +41226,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/Silk",
       "reason": "not combat equipment"
     },
@@ -41266,7 +41266,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/Torch",
       "reason": "not combat equipment"
     },
@@ -41276,7 +41276,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/Torch",
       "reason": "not combat equipment"
     },
@@ -41286,7 +41286,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -41296,7 +41296,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/Torch+Terraria/Chain",
       "reason": "not combat equipment"
     },
@@ -41306,7 +41306,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/IronBar+Terraria/Glass",
       "reason": "not combat equipment"
     },
@@ -41316,7 +41316,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -41326,7 +41326,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -41336,7 +41336,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -41346,7 +41346,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/Torch+Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -41356,7 +41356,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/Torch",
       "reason": "not combat equipment"
     },
@@ -41376,7 +41376,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -41406,7 +41406,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/Silk",
       "reason": "not combat equipment"
     },
@@ -41416,7 +41416,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -41426,7 +41426,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -41436,7 +41436,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/Sandstone",
       "reason": "not combat equipment"
     },
@@ -41456,7 +41456,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -44456,7 +44456,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/Sandstone",
       "reason": "not combat equipment"
     },
@@ -44466,7 +44466,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -47197,7 +47197,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/StarCloak+Terraria/CrossNecklace",
       "reason": "Included in the generated profile."
     },
     {
@@ -48117,7 +48117,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "destroyer",
-      "via": "manifest",
+      "via": "recipe:Terraria/HallowedBar+Terraria/StarCannon",
       "reason": "Included in the generated profile."
     },
     {
@@ -48177,7 +48177,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "queen-bee",
-      "via": "manifest",
+      "via": "recipe:Terraria/HoneyComb+Terraria/PanicNecklace",
       "reason": "Included in the generated profile."
     },
     {
@@ -49687,7 +49687,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "world-evil",
-      "via": "manifest",
+      "via": "container:Terraria/BrainOfCthulhuBossBag",
       "reason": "not combat equipment"
     },
     {
@@ -50595,10 +50595,10 @@
       "name": "Глобус из дерева",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "equipment",
+      "status": "excluded",
       "stage": "start",
       "via": "shop:Terraria/BestiaryGirl",
-      "reason": "Included in the generated profile."
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/TreeMask",
@@ -50747,7 +50747,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron-prime",
-      "via": "manifest",
+      "via": "recipe:Terraria/NightsEdge+Terraria/SoulofFright+Terraria/SoulofMight+Terraria/SoulofSight",
       "reason": "Included in the generated profile."
     },
     {
@@ -53825,10 +53825,10 @@
       "name": "Глобус",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "equipment",
+      "status": "excluded",
       "stage": "start",
       "via": "shop:Terraria/BestiaryGirl",
-      "reason": "Included in the generated profile."
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/Worm",
@@ -55806,7 +55806,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "eye-of-cthulhu",
       "via": "shop:ThoriumMod/Cook",
       "reason": "not combat equipment"
     },
@@ -55887,7 +55887,7 @@
       "contentItem": true,
       "status": "buff",
       "stage": "start",
-      "via": "manifest",
+      "via": "recipe:Terraria/BottledWater+Terraria/Blinkroot+ThoriumMod/FlamingCrackGut",
       "reason": "Included in the generated profile."
     },
     {
@@ -56646,7 +56646,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "npc:ThoriumMod/Biter",
       "reason": "not combat equipment"
     },
@@ -56796,7 +56796,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock",
       "reason": "not combat equipment"
     },
@@ -56806,7 +56806,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock+Terraria/Silk",
       "reason": "not combat equipment"
     },
@@ -56816,7 +56816,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:Terraria/StoneBlock+ThoriumMod/Blood",
       "reason": "not combat equipment"
     },
@@ -56836,7 +56836,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock+Terraria/Torch",
       "reason": "not combat equipment"
     },
@@ -56846,7 +56846,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock+Terraria/Torch",
       "reason": "not combat equipment"
     },
@@ -56856,7 +56856,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock",
       "reason": "not combat equipment"
     },
@@ -56866,7 +56866,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock+Terraria/Torch+Terraria/Chain",
       "reason": "not combat equipment"
     },
@@ -56876,7 +56876,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock+Terraria/IronBar",
       "reason": "not combat equipment"
     },
@@ -56896,7 +56896,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:Terraria/IronBar+Terraria/Glass+ThoriumMod/BloodstainedBlock",
       "reason": "not combat equipment"
     },
@@ -56906,7 +56906,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock",
       "reason": "not combat equipment"
     },
@@ -56916,7 +56916,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock",
       "reason": "not combat equipment"
     },
@@ -56926,7 +56926,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock",
       "reason": "not combat equipment"
     },
@@ -56936,7 +56936,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock+Terraria/Torch",
       "reason": "not combat equipment"
     },
@@ -56946,7 +56946,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock+Terraria/Torch",
       "reason": "not combat equipment"
     },
@@ -56966,7 +56966,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock",
       "reason": "not combat equipment"
     },
@@ -56986,7 +56986,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:Terraria/StoneBlock+ThoriumMod/Blood",
       "reason": "not combat equipment"
     },
@@ -56996,7 +56996,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedSlab",
       "reason": "not combat equipment"
     },
@@ -57006,7 +57006,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock+Terraria/Silk",
       "reason": "not combat equipment"
     },
@@ -57016,7 +57016,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock",
       "reason": "not combat equipment"
     },
@@ -57026,7 +57026,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock",
       "reason": "not combat equipment"
     },
@@ -57036,7 +57036,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock",
       "reason": "not combat equipment"
     },
@@ -57046,7 +57046,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedBlock",
       "reason": "not combat equipment"
     },
@@ -57056,7 +57056,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BloodstainedSlab",
       "reason": "not combat equipment"
     },
@@ -57436,7 +57436,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/Blood+Terraria/IronBar",
       "reason": "Included in the generated profile."
     },
@@ -57557,7 +57557,7 @@
       "contentItem": true,
       "status": "buff",
       "stage": "start",
-      "via": "manifest",
+      "via": "recipe:Terraria/BottledWater+Terraria/Daybloom+ThoriumMod/FlamingCrackGut",
       "reason": "Included in the generated profile."
     },
     {
@@ -61007,7 +61007,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/DD2ElderCrystal+Terraria/DefenderMedal+ThoriumMod/SentinelWand",
       "reason": "Included in the generated profile."
     },
     {
@@ -61396,7 +61396,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "npc:ThoriumMod/UFO",
       "reason": "Included in the generated profile."
     },
@@ -63347,7 +63347,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/PutridScent+ThoriumMod/PurifiedShards",
       "reason": "not combat equipment"
     },
     {
@@ -63476,7 +63476,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:ThoriumMod/BlankPainting+ThoriumMod/StrangeAlienTech",
       "reason": "not combat equipment"
     },
@@ -66107,7 +66107,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/PixieDust+Terraria/SoulofLight",
       "reason": "not combat equipment"
     },
     {
@@ -66727,7 +66727,7 @@
       "contentItem": true,
       "status": "buff",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/BottledWater+Terraria/Sunflower+Terraria/PixieDust",
       "reason": "Included in the generated profile."
     },
     {
@@ -70476,7 +70476,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:Terraria/StoneBlock+ThoriumMod/Blood",
       "reason": "not combat equipment"
     },
@@ -70486,7 +70486,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/MediciteBrick",
       "reason": "not combat equipment"
     },
@@ -70737,7 +70737,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "primordials",
-      "via": "manifest",
+      "via": "recipe:ThoriumMod/FamilyHeirloom+ThoriumMod/DormantHammer",
       "reason": "Included in the generated profile."
     },
     {
@@ -71097,7 +71097,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "star-scouter",
-      "via": "manifest",
+      "via": "recipe:Terraria/GreenPaint+ThoriumMod/MusicPlayerNotActivated+Terraria/Wire",
       "reason": "Included in the generated profile."
     },
     {
@@ -71117,7 +71117,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "plantera",
-      "via": "manifest",
+      "via": "recipe:Terraria/ShroomiteBar",
       "reason": "Included in the generated profile."
     },
     {
@@ -73156,7 +73156,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/Blood+Terraria/CopperBar",
       "reason": "Included in the generated profile."
     },
@@ -73676,7 +73676,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/TheGigaNeedle+Terraria/JungleSpores",
       "reason": "Included in the generated profile."
     },
@@ -73997,7 +73997,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "eye-of-cthulhu",
-      "via": "manifest",
+      "via": "recipe:ThoriumMod/UnholyShards",
       "reason": "not combat equipment"
     },
     {
@@ -74057,7 +74057,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "manifest",
+      "via": "recipe:ThoriumMod/ThoriumBar+Terraria/PurificationPowder+Terraria/Book",
       "reason": "Included in the generated profile."
     },
     {
@@ -74416,7 +74416,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BlankPainting+ThoriumMod/Blood",
       "reason": "not combat equipment"
     },
@@ -77347,7 +77347,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "start",
-      "via": "manifest",
+      "via": "recipe:Terraria/Shackle+Terraria/Spike",
       "reason": "Included in the generated profile."
     },
     {
@@ -77557,7 +77557,7 @@
       "contentItem": true,
       "status": "buff",
       "stage": "queen-bee",
-      "via": "manifest",
+      "via": "recipe:Terraria/BottledWater+Terraria/GlowingMushroom",
       "reason": "Included in the generated profile."
     },
     {
@@ -77567,7 +77567,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "plantera",
-      "via": "manifest",
+      "via": "recipe:Terraria/SpellTome+Terraria/ShroomiteBar",
       "reason": "Included in the generated profile."
     },
     {
@@ -78156,7 +78156,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "npc:ThoriumMod/UFO",
       "reason": "not combat equipment"
     },
@@ -78526,7 +78526,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "eye-of-cthulhu",
       "via": "shop:ThoriumMod/Cook",
       "reason": "not combat equipment"
     },
@@ -78586,7 +78586,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/Blood+Terraria/IronBar",
       "reason": "Included in the generated profile."
     },
@@ -78627,7 +78627,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "start",
-      "via": "manifest",
+      "via": "recipe:Terraria/WoodenArrow+ThoriumMod/Talon",
       "reason": "Included in the generated profile."
     },
     {
@@ -78707,7 +78707,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:ThoriumMod/TechniqueBlankScroll+Terraria/CrystalShard",
       "reason": "Included in the generated profile."
     },
     {
@@ -78717,7 +78717,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:ThoriumMod/TechniqueBlankScroll+ThoriumMod/BloodCell",
       "reason": "Included in the generated profile."
     },
     {
@@ -78737,7 +78737,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "grand-thunder-bird",
-      "via": "manifest",
+      "via": "recipe:ThoriumMod/TechniqueBlankScroll+ThoriumMod/LivingLeaf",
       "reason": "Included in the generated profile."
     },
     {
@@ -78747,7 +78747,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "coznix",
-      "via": "manifest",
+      "via": "recipe:ThoriumMod/TechniqueBlankScroll+ThoriumMod/ValadiumIngot",
       "reason": "Included in the generated profile."
     },
     {
@@ -78767,7 +78767,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "lunatic-cultist",
-      "via": "manifest",
+      "via": "recipe:ThoriumMod/TechniqueBlankScroll+ThoriumMod/WhiteDwarfFragment",
       "reason": "Included in the generated profile."
     },
     {
@@ -78777,7 +78777,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "world-evil",
-      "via": "manifest",
+      "via": "recipe:ThoriumMod/TechniqueBlankScroll+Terraria/MeteoriteBar",
       "reason": "Included in the generated profile."
     },
     {
@@ -78807,7 +78807,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "plantera",
-      "via": "manifest",
+      "via": "recipe:ThoriumMod/TechniqueBlankScroll+ThoriumMod/DarkMatter",
       "reason": "Included in the generated profile."
     },
     {
@@ -78817,7 +78817,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "grand-thunder-bird",
-      "via": "manifest",
+      "via": "recipe:ThoriumMod/TechniqueBlankScroll+Terraria/SmokeBomb",
       "reason": "Included in the generated profile."
     },
     {
@@ -78827,7 +78827,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "manifest",
+      "via": "recipe:ThoriumMod/TechniqueBlankScroll+ThoriumMod/SpiritDroplet",
       "reason": "Included in the generated profile."
     },
     {
@@ -78837,7 +78837,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "grand-thunder-bird",
-      "via": "manifest",
+      "via": "recipe:ThoriumMod/TechniqueBlankScroll+ThoriumMod/SandstoneIngot",
       "reason": "Included in the generated profile."
     },
     {
@@ -78847,7 +78847,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "coznix",
-      "via": "manifest",
+      "via": "recipe:ThoriumMod/TechniqueBlankScroll+ThoriumMod/LodeStoneIngot",
       "reason": "Included in the generated profile."
     },
     {
@@ -79016,8 +79016,8 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "moon-lord",
-      "via": "manifest",
+      "stage": "lunatic-cultist",
+      "via": "recipe:ThoriumMod/TerrariumCore+Terraria/AnkhShield+ThoriumMod/HolyAegis+Terraria/FrozenTurtleShell",
       "reason": "Included in the generated profile."
     },
     {
@@ -79466,7 +79466,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "recipe:ThoriumMod/Blood+Terraria/SilverBar",
       "reason": "Included in the generated profile."
     },
@@ -80316,7 +80316,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:ThoriumMod/BlankPainting+Terraria/Sandstone",
       "reason": "not combat equipment"
     },
@@ -80987,7 +80987,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "skeletron-prime",
-      "via": "manifest",
+      "via": "recipe:ThoriumMod/MusicPlayerMovementSpeed+Terraria/HallowedBar+Terraria/Cog",
       "reason": "Included in the generated profile."
     },
     {
@@ -81127,7 +81127,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "start",
-      "via": "manifest",
+      "via": "recipe:Terraria/PalmWood+Terraria/Starfish",
       "reason": "Included in the generated profile."
     },
     {
@@ -82757,7 +82757,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/Cloud+Terraria/RainCloud+Terraria/SoulofFlight",
       "reason": "Included in the generated profile."
     },
     {

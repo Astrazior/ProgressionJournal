@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "AAModClassic",
   "profileId": "builtin.aamodclassic",
-  "generatedAtUtc": "2026-07-13T19:16:33.503Z",
+  "generatedAtUtc": "2026-07-13T20:09:27.662Z",
   "snapshot": {
     "version": 4,
     "generatedAtUtc": "2026-07-13T19:10:20.3253784Z",
@@ -16,7 +16,7 @@
     ]
   },
   "agentRules": {
-    "rules": 59,
+    "rules": 58,
     "ignoredItems": 2,
     "ignoredIssues": 0,
     "evidence": [
@@ -355,13 +355,6 @@
         "sourceVersion": "Terraria 1.4.4.9; AAModClassic 1.0.12 installed assembly",
         "checkedAt": "2026-07-13",
         "reason": "Goblin Slayer's CanTownNPCSpawn requires NPC.downedGoblins, and the Goblin Tinkerer is rescued after the same pre-boss event."
-      },
-      {
-        "id": "vanilla-seasonal-item-stages",
-        "sourceUrl": "https://terraria.wiki.gg/wiki/Halloween",
-        "sourceVersion": "Terraria 1.4.4.9",
-        "checkedAt": "2026-07-12",
-        "reason": "These shop ammunition items are gated by the calendar event, not boss progression."
       },
       {
         "id": "vanilla-hardmode-blood-moon-source",
@@ -890,7 +883,7 @@
         }
       ],
       "stageComparison": {
-        "compared": 1596,
+        "compared": 1592,
         "moved": 0
       }
     }
@@ -5038,7 +5031,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.aamodclassic",
-    "generatedAtUtc": "2026-07-13T19:16:26.985Z",
+    "generatedAtUtc": "2026-07-13T20:09:21.466Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -10637,6 +10630,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/ConfettiGun",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/SmokeBomb",
         "reason": "not combat equipment"
       },
@@ -11128,6 +11126,21 @@
       {
         "stage": "start",
         "id": "Terraria/RabbitOrder",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/TreeGlobe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/WorldGlobe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MoonGlobe",
         "reason": "not combat equipment"
       },
       {
@@ -26252,6 +26265,14 @@
         "stage": "start",
         "via": "shop:Terraria/Merchant"
       },
+      "Terraria/SilverBullet": {
+        "stage": "start",
+        "via": "shop:Terraria/ArmsDealer"
+      },
+      "Terraria/TungstenBullet": {
+        "stage": "start",
+        "via": "shop:Terraria/ArmsDealer"
+      },
       "Terraria/FlintlockPistol": {
         "stage": "start",
         "via": "shop:Terraria/ArmsDealer"
@@ -26264,23 +26285,7 @@
         "stage": "start",
         "via": "shop:Terraria/Demolitionist"
       },
-      "Terraria/ConfettiGun": {
-        "stage": "start",
-        "via": "shop:Terraria/PartyGirl"
-      },
       "Terraria/BlandWhip": {
-        "stage": "start",
-        "via": "shop:Terraria/BestiaryGirl"
-      },
-      "Terraria/TreeGlobe": {
-        "stage": "start",
-        "via": "shop:Terraria/BestiaryGirl"
-      },
-      "Terraria/WorldGlobe": {
-        "stage": "start",
-        "via": "shop:Terraria/BestiaryGirl"
-      },
-      "Terraria/MoonGlobe": {
         "stage": "start",
         "via": "shop:Terraria/BestiaryGirl"
       },
@@ -26700,14 +26705,6 @@
       "Terraria/PoisonDart": {
         "stage": "start",
         "via": "recipe:Terraria/Stinger"
-      },
-      "Terraria/SilverBullet": {
-        "stage": "start",
-        "via": "recipe:Terraria/MusketBall+Terraria/SilverBar"
-      },
-      "Terraria/TungstenBullet": {
-        "stage": "start",
-        "via": "recipe:Terraria/MusketBall+Terraria/TungstenBar"
       },
       "Terraria/PoisonedKnife": {
         "stage": "start",
@@ -27472,18 +27469,6 @@
       "AAModClassic/TopazGreatsword": {
         "stage": "start",
         "via": "recipe:AAModClassic/TopazSaber+Terraria/LargeTopaz"
-      },
-      "Terraria/CandyCorn": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "Terraria/ExplosiveJackOLantern": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "Terraria/Stake": {
-        "stage": "start",
-        "via": "manifest"
       },
       "AAModClassic/AmberSaber": {
         "stage": "start",
@@ -30314,6 +30299,18 @@
       "Terraria/Nail": {
         "stage": "plantera",
         "via": "shop:Terraria/Merchant"
+      },
+      "Terraria/Stake": {
+        "stage": "plantera",
+        "via": "shop:Terraria/ArmsDealer"
+      },
+      "Terraria/CandyCorn": {
+        "stage": "plantera",
+        "via": "shop:Terraria/ArmsDealer"
+      },
+      "Terraria/ExplosiveJackOLantern": {
+        "stage": "plantera",
+        "via": "shop:Terraria/ArmsDealer"
       },
       "Terraria/PygmyNecklace": {
         "stage": "plantera",
@@ -33304,6 +33301,10 @@
         "stage": "start",
         "via": "shop:Terraria/PartyGirl"
       },
+      "Terraria/ConfettiGun": {
+        "stage": "start",
+        "via": "shop:Terraria/PartyGirl"
+      },
       "Terraria/SmokeBomb": {
         "stage": "start",
         "via": "shop:Terraria/PartyGirl"
@@ -33697,6 +33698,18 @@
         "via": "shop:Terraria/BestiaryGirl"
       },
       "Terraria/RabbitOrder": {
+        "stage": "start",
+        "via": "shop:Terraria/BestiaryGirl"
+      },
+      "Terraria/TreeGlobe": {
+        "stage": "start",
+        "via": "shop:Terraria/BestiaryGirl"
+      },
+      "Terraria/WorldGlobe": {
+        "stage": "start",
+        "via": "shop:Terraria/BestiaryGirl"
+      },
+      "Terraria/MoonGlobe": {
         "stage": "start",
         "via": "shop:Terraria/BestiaryGirl"
       },

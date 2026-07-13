@@ -26,6 +26,10 @@ const snapshot = {
     item("Test/ManualShopBlade", { damageClass: "Melee", damage: 17 }),
     item("Test/UnknownShopBlade", { damageClass: "Melee", damage: 19 }),
     item("Test/ClassTool", { damageClass: "Melee" }),
+    item("Test/ZeroDamageSummonStaff", {
+      damageClass: "Terraria/SummonDamageClass",
+      shoot: 3
+    }),
     item("Test/BossBag"),
     item("Test/BagBlade", { damageClass: "Melee", damage: 21 }),
     item("Test/ConditionalBagBlade", { damageClass: "Melee", damage: 22 }),
@@ -33,6 +37,7 @@ const snapshot = {
     item("Test/FlooredBlade", { damageClass: "Melee", damage: 24 }),
     item("Test/LateDrop", { damageClass: "Melee", damage: 40 }),
     item("Test/GlobalBlade", { damageClass: "Melee", damage: 37 }),
+    item("Test/BloodMoonBlade", { damageClass: "Melee", damage: 36 }),
     item("Test/ManualLateDrop", { damageClass: "Melee", damage: 39 }),
     item("Test/CollisionSource"),
     item("Test/CollisionBlade", { damageClass: "Melee", damage: 38 }),
@@ -41,6 +46,13 @@ const snapshot = {
     item("Terraria/ModifiedSword", { damageClass: "Melee", damage: 26 }),
     item("Terraria/UnknownVanillaSword", { damageClass: "Melee", damage: 24 }),
     item("Terraria/UnknownSourceSword", { damageClass: "Melee", damage: 23 }),
+    item("Terraria/ZeroDamageGun", { damageClass: "Melee", useAmmo: 1, shoot: 1 }),
+    item("Terraria/WorldGlobe", {
+      damageClass: "Magic",
+      damage: -1,
+      consumable: true,
+      shoot: 2
+    }),
     item("Terraria/WikiSword", {
       englishName: "Localized Wiki Sword",
       damageClass: "Melee",
@@ -217,6 +229,7 @@ const snapshot = {
     { source: "Test/Boss", sourceType: "npc", item: "Test/ExampleGreaves", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/SupportTool", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/ClassTool", conditions: [] },
+    { source: "Test/Boss", sourceType: "npc", item: "Test/ZeroDamageSummonStaff", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/BossBag", conditions: [] },
     { source: "Test/BossBag", sourceType: "container", item: "Test/BagBlade", conditions: [] },
     {
@@ -279,6 +292,12 @@ const snapshot = {
       item: "Test/GlobalBlade",
       conditions: [{ type: "Test.Condition", description: "After Boss" }]
     },
+    {
+      source: "Terraria/GlobalNPCDrops",
+      sourceType: "global",
+      item: "Test/BloodMoonBlade",
+      conditions: [{ type: "Test.BloodMoonCondition", description: "Drops during a Blood Moon" }]
+    },
     { source: "Test/EventEnemy", sourceType: "npc", item: "Test/EventMaterial", conditions: [] }
   ],
   shops: [
@@ -318,6 +337,11 @@ const snapshot = {
     conditions: ["Liquid: Honey"]
   }],
   vanillaItemClassifications: [
+    {
+      item: "Terraria/ZeroDamageGun",
+      category: "Weapon",
+      classes: ["melee"]
+    },
     {
       item: "Terraria/VanillaSummonerAccessory",
       category: "Accessory",
@@ -360,7 +384,8 @@ const manifest = {
   name: { "en-US": "Test", "ru-RU": "Тест" },
   requiredMods: [{ name: "Test", version: "" }],
   modifiedVanillaItems: ["Terraria/ModifiedSword"],
-  initialItems: ["Test/CollisionSource"],
+  initialItems: ["Test/CollisionSource", "Terraria/ZeroDamageGun", "Terraria/WorldGlobe"],
+  initialVisibleItems: ["Terraria/ZeroDamageGun", "Terraria/WorldGlobe"],
   wikiSource: { name: "Test Wiki", url: "https://example.invalid" },
   wikiStageMap: {
     guide: { stageId: "boss", target: { "en-US": "Boss", "ru-RU": "Босс" } },
@@ -368,7 +393,8 @@ const manifest = {
   },
   classes: [
     { id: "melee", name: { "en-US": "Melee", "ru-RU": "Воин" }, damageClassNames: ["Melee"] },
-    { id: "magic", name: { "en-US": "Magic", "ru-RU": "Маг" }, damageClassNames: ["Magic"] }
+    { id: "magic", name: { "en-US": "Magic", "ru-RU": "Маг" }, damageClassNames: ["Magic"] },
+    { id: "summoner", name: { "en-US": "Summoner", "ru-RU": "Призыватель" }, damageClassNames: ["Summon"] }
   ],
   events: [
     {
@@ -378,6 +404,11 @@ const manifest = {
       customEventName: "Test Event",
       eventIcon: "Test/Bestiary/EventIcon",
       enemies: ["Test/EventEnemy"]
+    },
+    {
+      id: "blood-moon",
+      stageId: "boss",
+      eventCategory: "BloodMoon"
     },
     {
       id: "late-event",
@@ -565,10 +596,20 @@ assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "GlobalBlade"
   && entry.evaluations[0].stageId === "boss"));
 assert.equal(report.paths["Test/GlobalBlade"].via, "global:Terraria/GlobalNPCDrops");
+assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "BloodMoonBlade"
+  && entry.evaluations[0].stageId === "boss"));
 assert.equal(report.paths["Test/ShopBlade"].via, "shop:Test/Merchant");
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "ClassTool"
   && entry.category === "Support"));
+assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "ZeroDamageSummonStaff"
+  && entry.category === "Weapon"));
+assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "ZeroDamageGun"
+  && entry.category === "Weapon"));
+assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "WorldGlobe"));
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "BagBlade"
   && entry.evaluations[0].stageId === "boss"));
@@ -597,13 +638,13 @@ assert.equal(
   "Accessory");
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "UniversalAccessory")?.classes,
-  ["melee", "magic"]);
+  ["melee", "magic", "summoner"]);
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "MixedAccessory")?.classes,
   ["melee", "magic"]);
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "GenericMeleeAccessory")?.classes,
-  ["melee", "magic"]);
+  ["melee", "magic", "summoner"]);
 assert(!profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "UtilityAccessory"));
 assert.deepEqual(
