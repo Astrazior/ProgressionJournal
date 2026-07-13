@@ -268,6 +268,14 @@ assert(npcSpawnResolverSource.includes("Array.Empty<GlobalNPC>()")
 assert(npcSpawnResolverSource.includes("class SpawnArena")
   && npcSpawnResolverSource.includes("spawnArena.Restore()"),
 "Vanilla spawn probing must provide and restore valid temporary tile geometry");
+assert(npcSpawnResolverSource.includes("tile.LiquidAmount = byte.MaxValue")
+  && npcSpawnResolverSource.includes("tile.LiquidType = LiquidID.Water")
+  && npcSpawnResolverSource.includes("context.Water"),
+"Aquatic vanilla NPC probing must provide real temporary water tiles");
+assert(npcSpawnResolverSource.includes("ObserveFullSpawnInTemporaryArena")
+  && npcSpawnResolverSource.includes("finally\n        {\n            spawnArena.Restore();")
+  && npcSpawnResolverSource.includes("_originalTiles.Clear();"),
+"Every temporary full-spawn arena must restore terrain and liquid immediately");
 assert(npcSpawnResolverSource.includes("GetEnvironmentDepths")
   && npcSpawnResolverSource.includes("VanillaProgressionStages"),
 "Vanilla spawn probing must combine biome depths and progression changes");
@@ -467,6 +475,12 @@ for (const modName of expected) {
     supportWithVanillaSources.stages[0]?.shops?.includes("Terraria/ArmsDealer") ?? false,
     expectsLegacySource("Terraria/ArmsDealer", 0, "town"),
     `${modName}: Arms Dealer fallback does not match runtime coverage`);
+  assert.equal(
+    supportWithVanillaSources.sourceStageFloors?.["Terraria/BloodNautilus"],
+    stageForFlag("hardMode")?.id,
+    `${modName}: Dreadnautilus must retain its shared Hardmode fishing-source floor`);
+  assert(stageForFlag("hardMode")?.enemies?.includes("Terraria/BloodNautilus"),
+    `${modName}: the shared Dreadnautilus source must activate in Hardmode`);
   for (const event of support.events ?? []) {
     if (event.customEventName) {
       assert(event.eventIcon,
@@ -505,6 +519,22 @@ for (const modName of expected) {
     generatedStageOf("Terraria/FireGauntlet"),
     modName === "CalamityMod" ? "golem" : "skeletron-prime",
     `${modName}: Fire Gauntlet must follow its actual recipe dependencies`);
+  assert.equal(generatedStageOf("Terraria/BloodRainBow"), "start",
+    `${modName}: pre-Hardmode Blood Moon fishing drops must follow observed event availability`);
+  assert.equal(generatedStageOf("Terraria/SanguineStaff"), "wall-of-flesh",
+    `${modName}: Dreadnautilus drops must not move with the pre-Hardmode Blood Moon event`);
+  assert(report.generation?.automaticEventPriority?.corrections?.some(entry =>
+    entry.eventCategory === "BloodMoon"
+    && entry.declaredStageId === "eye-of-cthulhu"
+    && entry.automaticStageId === "start"),
+  `${modName}: observed Blood Moon availability must supersede the stale event stage`);
+  assert.equal(generatedStageOf("Terraria/Harpoon"), "start",
+    `${modName}: pre-boss Goblin Army drops must not remain tied to Eye of Cthulhu`);
+  assert(report.generation?.automaticEventPriority?.corrections?.some(entry =>
+    entry.eventCategory === "GoblinArmy"
+    && entry.declaredStageId === "eye-of-cthulhu"
+    && entry.automaticStageId === "start"),
+  `${modName}: observed Goblin Army availability must supersede the stale event stage`);
   if (modName === "CalamityMod") {
     for (const [itemId, stageId] of Object.entries({
       "Terraria/Uzi": "wall-of-flesh",
@@ -525,6 +555,10 @@ for (const modName of expected) {
       assert(!unresolvedSignatures.some(signature => signature.includes(token)),
         `${modName}: ${token} must be normalized automatically`);
     }
+    assert.equal(
+      report.generation?.paths?.["CalamityMod/MeldBlob"]?.stage,
+      "lunatic-cultist",
+      "CalamityMod: exclusive Celestial Pillar biome evidence must floor NPC drops");
   }
   if (modName === "ThoriumMod") {
     const ufoAvailability = snapshot.npcAvailability.find(record =>
@@ -533,6 +567,12 @@ for (const modName of expected) {
       "ThoriumMod: the corrected NPC probe snapshot must retain the Meteorite unlock stage");
     assert.equal(generatedStageOf("ThoriumMod/DetachedBlaster"), "world-evil",
       "ThoriumMod: the U.F.O. drop must follow automatic Meteorite biome availability");
+    assert.equal(generatedStageOf("Terraria/TrifoldMap"), "wall-of-flesh",
+      "ThoriumMod: Giant Bat drops must follow observed Hardmode availability");
+    assert(report.generation?.manualAvailabilityPriority?.suppressed?.sourceStages
+      ?.some(entry => entry.value === "Terraria/GiantBat"
+        && entry.automaticStageId === "wall-of-flesh"),
+    "ThoriumMod: observed Giant Bat availability must supersede its stale source rule");
     assert(!readJson(path.join(directory, "agent-rules.json")).rules
       .some(rule => rule.id === "pre-hardmode-meteor-ufo-source"),
     "ThoriumMod: the U.F.O. stage must not be forced by a manual source rule");
@@ -686,6 +726,10 @@ for (const modName of expected) {
       "Katana must keep the pre-boss Travelling Merchant source");
     assert.equal(report.generation?.paths?.["Terraria/Shroomerang"]?.stage, "start",
       "Shroomerang must be available from pre-Hardmode Mushroom Chests");
+    assert.equal(report.generation?.paths?.["Terraria/LivingFireBlock"]?.stage, "wall-of-flesh",
+      "Automatic Living Fire Block drop evidence must override the legacy milestone catalog");
+    assert.equal(report.generation?.paths?.["CalamityMod/FlarewingBow"]?.stage, "wall-of-flesh",
+      "Flarewing Bow must follow its automatic Hardmode ingredient path");
     const gacruxianMollusk = profile.entries.find(entry =>
       (entry.itemGroups ?? []).flat().some(reference =>
         reference.mod === "CalamityMod" && reference.item === "GacruxianMollusk"));
@@ -697,8 +741,8 @@ for (const modName of expected) {
       "CalamityMod/Swordsplosion": "moon-lord",
       "CalamityMod/BlunderBooster": "moon-lord",
       "CalamityMod/MadAlchemistsCocktailGlove": "moon-lord",
-      "CalamityMod/OrnateShield": "destroyer",
-      "CalamityMod/DaedalusHeadMelee": "destroyer"
+      "CalamityMod/OrnateShield": "twins",
+      "CalamityMod/DaedalusHeadMelee": "twins"
     })) {
       assert.equal(stageOf(itemId), stageId,
         `${itemId} must include alternate sources and required crafting stations`);
@@ -838,6 +882,8 @@ assert(aaSupport.stages.findIndex(stage => stage.id === "deerclops")
 assert.equal(aaSupport.events.find(event => event.eventCategory === "BloodMoon")?.stageId, "start");
 assert(!aaAgentRules.rules.some(rule => rule.id === "vanilla-blood-moon-sources"),
   "Pre-Hardmode Blood Moon fishing enemies must follow the automatic event stage");
+assert(!aaAgentRules.rules.some(rule => rule.id === "vanilla-hardmode-blood-moon-source"),
+  "Dreadnautilus progression must come from the shared vanilla source catalog");
 assert.equal(aaReport.generation.paths["AAModClassic/TheDragonsBreath"]?.stage,
   "wall-of-flesh");
 assert.equal(aaReport.generation.paths["AAModClassic/FuryForger"]?.stage,
@@ -1160,6 +1206,9 @@ assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
   .include.includes("Terraria/AdamantiteForge"));
 assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
   .include.includes("Terraria/FinWings"));
+assert.equal(vanillaSources.sourceStageFloors["Terraria/BloodNautilus"], "hardmode");
+assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
+  .enemies.includes("Terraria/BloodNautilus"));
 assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
   .enemies?.includes("Terraria/SnowmanGangsta"));
 assert(!vanillaSources.stages.find(stage => stage.id === "hardmode")

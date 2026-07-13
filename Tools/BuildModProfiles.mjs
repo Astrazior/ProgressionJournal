@@ -91,12 +91,22 @@ export function buildModProfile(modName) {
     availabilityMigration.stageComparison =
       compareProfileStages(legacyProfile, profile);
   }
+  const effectiveAssignments = structuredClone(assignments);
+  for (const entry of generationReport.manualAvailabilityPriority?.suppressed?.itemStages ?? []) {
+    delete effectiveAssignments.itemStages[entry.value];
+  }
+  for (const entry of generationReport.manualAvailabilityPriority?.suppressed?.sourceStages ?? []) {
+    delete effectiveAssignments.sourceStages[entry.value];
+  }
+  for (const entry of generationReport.manualAvailabilityPriority?.suppressed?.stationStages ?? []) {
+    delete effectiveAssignments.stationStages[entry.value];
+  }
   const audit = auditProfile(
     profile,
     generationReport,
     support,
     snapshot,
-    assignments);
+    effectiveAssignments);
   const report = {
     format: "ProgressionJournalModProfileReport",
     version: 1,
@@ -311,6 +321,7 @@ export function normalizeAgentRules(document, support) {
     version: 1,
     profileId: support.id,
     itemStages: {},
+    itemStageFloors: {},
     sourceStages: {},
     stationStages: {},
     conditionStages: [],
@@ -333,12 +344,18 @@ export function normalizeAgentRules(document, support) {
     }
     switch (rule.kind) {
       case "item-stage":
+      case "item-floor":
         {
           const items = rule.items ?? (rule.item ? [rule.item] : []);
           if (items.length === 0) problems.push(`${label}: item or items is required`);
           for (const item of items) {
             requireText(item, `${label}: item`, problems);
-            if (item && rule.stageId) assignments.itemStages[item] = rule.stageId;
+            if (item && rule.stageId) {
+              assignments.itemStages[item] = rule.stageId;
+              if (rule.kind === "item-floor") {
+                assignments.itemStageFloors[item] = rule.stageId;
+              }
+            }
           }
         }
         break;

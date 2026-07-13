@@ -35,6 +35,7 @@ const snapshot = {
     item("Test/ConditionalBagBlade", { damageClass: "Melee", damage: 22 }),
     item("Test/ZeroRateBlade", { damageClass: "Melee", damage: 23 }),
     item("Test/FlooredBlade", { damageClass: "Melee", damage: 24 }),
+    item("Test/WorldFlooredBlade", { damageClass: "Melee", damage: 25 }),
     item("Test/LateDrop", { damageClass: "Melee", damage: 40 }),
     item("Test/GlobalBlade", { damageClass: "Melee", damage: 37 }),
     item("Test/BloodMoonBlade", { damageClass: "Melee", damage: 36 }),
@@ -255,6 +256,7 @@ const snapshot = {
       conditions: []
     },
     { source: "Test/Boss", sourceType: "npc", item: "Test/FlooredBlade", conditions: [] },
+    { source: "Test/Boss", sourceType: "npc", item: "Test/WorldFlooredBlade", conditions: [] },
     { source: "Test/LateBoss", sourceType: "npc", item: "Test/LateDrop", conditions: [] },
     { source: "Test/ManualLateBoss", sourceType: "npc", item: "Test/ManualLateDrop", conditions: [] },
     { source: "Test/CollisionSource", sourceType: "npc", item: "Test/CollisionBlade", conditions: [] },
@@ -737,13 +739,19 @@ const manualAssignments = {
   profileId: "test",
   itemStages: {
     "Test/CycleA": "boss",
-    "Test/FlooredBlade": "late"
+    "Test/FlooredBlade": "late",
+    "Test/WorldFlooredBlade": "late"
+  },
+  itemStageFloors: {
+    "Test/WorldFlooredBlade": "late"
   },
   sourceStages: {
     "Test/ManualLateBoss": "boss",
     "Test/ManualMerchant": "boss"
   },
-  stationStages: {},
+  stationStages: {
+    "Test/ForgeTile": "late"
+  },
   conditionStages: [{
     stageId: "boss",
     sources: ["shop"],
@@ -770,6 +778,20 @@ assert(manualResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "FlooredBlade"
   && entry.evaluations[0].stageId === "boss"));
 assert.equal(manualResult.report.paths["Test/FlooredBlade"].via, "npc:Test/Boss");
+assert(manualResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "WorldFlooredBlade"
+  && entry.evaluations[0].stageId === "late"));
+assert(manualResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "ForgeSword"
+  && entry.evaluations[0].stageId === "boss"));
+assert(manualResult.report.manualAvailabilityPriority.suppressed.itemStages.some(entry =>
+  entry.value === "Test/FlooredBlade"
+  && entry.manualStageId === "late"
+  && entry.automaticStageId === "boss"));
+assert(manualResult.report.manualAvailabilityPriority.suppressed.stationStages.some(entry =>
+  entry.value === "Test/ForgeTile"
+  && entry.manualStageId === "late"
+  && entry.automaticStageId === "boss"));
 assert(manualResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "ManualLateDrop"
   && entry.evaluations[0].stageId === "boss"));
@@ -819,6 +841,7 @@ runtimeSnapshot.items.push(
   item("Test/UnknownStageFishBlade", { damageClass: "Melee", damage: 30 }),
   item("Test/RuntimeSpawnBlade", { damageClass: "Melee", damage: 32 }),
   item("Test/RuntimeEventBlade", { damageClass: "Melee", damage: 33 }),
+  item("Test/DeferredEventBlade", { damageClass: "Melee", damage: 33 }),
   item("Test/RuntimeShopBlade", { damageClass: "Melee", damage: 33 }),
   item("Test/EventFloorBlade", { damageClass: "Melee", damage: 34 }),
   item("Test/ManualFloorBlade", { damageClass: "Melee", damage: 35 }));
@@ -831,6 +854,11 @@ runtimeSnapshot.drops.push({
   source: "Test/RuntimeEventEnemy",
   sourceType: "npc",
   item: "Test/RuntimeEventBlade",
+  conditions: []
+}, {
+  source: "Test/DeferredEventEnemy",
+  sourceType: "npc",
+  item: "Test/DeferredEventBlade",
   conditions: []
 }, {
   source: "Test/EventEnemy",
@@ -914,9 +942,12 @@ runtimeSnapshot.npcAvailability = [
 ];
 const runtimeManualAssignments = structuredClone(manualAssignments);
 runtimeManualAssignments.itemStages["Test/UnknownStageFishBlade"] = "boss";
+runtimeManualAssignments.sourceStages["Test/RuntimeEnemy"] = "late";
+const runtimeManifest = structuredClone(manifest);
+runtimeManifest.events[0].enemies.push("Test/DeferredEventEnemy");
 const runtimeResult = generateProfile(
   runtimeSnapshot,
-  manifest,
+  runtimeManifest,
   wikiProfile,
   runtimeManualAssignments);
 assert(runtimeResult.profile.entries.some(entry =>
@@ -932,22 +963,32 @@ assert(runtimeResult.profile.entries.some(entry =>
   && entry.evaluations[0].stageId === "boss"));
 assert(runtimeResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "RuntimeEventBlade"
-  && entry.evaluations[0].stageId === "boss"
+  && entry.evaluations[0].stageId === "start"
   && entry.eventCategory === "GoblinArmy"
   && entry.customEventName === "Test Event"));
+assert(runtimeResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "DeferredEventBlade"
+  && entry.evaluations[0].stageId === "boss"
+  && entry.eventCategory === "GoblinArmy"));
 assert(runtimeResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "RuntimeShopBlade"
   && entry.evaluations[0].stageId === "late"));
 assert(runtimeResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "EventFloorBlade"
-  && entry.evaluations[0].stageId === "boss"));
+  && entry.evaluations[0].stageId === "start"));
 assert(runtimeResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "ManualFloorBlade"
-  && entry.evaluations[0].stageId === "boss"));
-assert(runtimeResult.report.sourceAvailabilityCorrections.some(entry =>
-  entry.source === "Test/EventEnemy"
-  && entry.observedStageId === "start"
-  && entry.effectiveStageId === "boss"));
+  && entry.evaluations[0].stageId === "late"));
+assert(runtimeResult.report.automaticEventPriority.corrections.some(entry =>
+  entry.eventId === "test-event"
+  && entry.declaredStageId === "boss"
+  && entry.automaticStageId === "start"
+  && entry.deferredSources.some(source =>
+    source.source === "Test/DeferredEventEnemy" && source.stageId === "boss")));
+assert(runtimeResult.report.manualAvailabilityPriority.suppressed.sourceStages.some(entry =>
+  entry.value === "Test/RuntimeEnemy"
+  && entry.manualStageId === "late"
+  && entry.automaticStageId === "boss"));
 
 assert(report.wikiAvailabilityCorrections.some(entry =>
   entry.id === "Test/EarlyWikiSword"

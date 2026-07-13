@@ -737,6 +737,10 @@ const START_VISIBLE_ITEMS = [
 
 export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {
   const manifest = structuredClone(sourceManifest);
+  const conditionBackedGlobalDrops = new Set((snapshot?.drops ?? [])
+    .filter(drop => drop.sourceType === "global" && (drop.conditions ?? []).length > 0)
+    .map(drop => drop.item)
+    .filter(Boolean));
   manifest.itemOverrides ??= {};
   manifest.itemOverrides["Terraria/TitaniumHelmet"] = {
     ...(manifest.itemOverrides["Terraria/TitaniumHelmet"] ?? {}),
@@ -819,9 +823,10 @@ export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {
     const stage = stages.get(stageId);
     if (!stage) continue;
     const items = excludeWorldgenContainerItems(fact.items ?? []);
+    const legacyOnlyItems = items.filter(item => !conditionBackedGlobalDrops.has(item));
     manifest.itemStageFloors ??= {};
     manifest.stationStageFloors ??= {};
-    for (const item of items) {
+    for (const item of legacyOnlyItems) {
       manifest.itemStageFloors[item] ??= stageId;
     }
     for (const station of fact.stations ?? []) {
@@ -856,6 +861,22 @@ export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {
   const hardmodeStageId = findVanillaFlagStage(manifest, "hardMode", "wall-of-flesh");
   if (hardmodeStageId) {
     manifest.itemStageFloors["Terraria/Megaphone"] ??= hardmodeStageId;
+    // Fishing-spawn probes cannot observe Dreadnautilus, so keep this source-level fact shared.
+    manifest.sourceStageFloors ??= {};
+    const existingBloodNautilusStageId =
+      manifest.sourceStageFloors["Terraria/BloodNautilus"];
+    const existingBloodNautilusStageIndex = manifest.stages.findIndex(stage =>
+      stage.id === existingBloodNautilusStageId);
+    const hardmodeStageIndex = manifest.stages.findIndex(stage =>
+      stage.id === hardmodeStageId);
+    if (existingBloodNautilusStageIndex < hardmodeStageIndex) {
+      manifest.sourceStageFloors["Terraria/BloodNautilus"] = hardmodeStageId;
+    }
+    const hardmodeStage = stages.get(hardmodeStageId);
+    hardmodeStage.enemies = unique([
+      ...(hardmodeStage.enemies ?? []),
+      "Terraria/BloodNautilus"
+    ]);
   }
 
   const fireGauntletHasRecipe = (snapshot?.recipes ?? []).some(recipe =>

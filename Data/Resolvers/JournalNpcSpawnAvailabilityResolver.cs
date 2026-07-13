@@ -88,7 +88,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
     {
         private readonly Dictionary<long, Tile> _originalTiles = [];
 
-        public void Prepare(SpawnEnvironment environment, int depth, bool ocean)
+        public void Prepare(SpawnEnvironment environment, int depth, bool ocean, bool water)
         {
             var (centerX, centerY) = GetCoordinates(depth, ocean);
             var horizontalRadius = Math.Max(100, (int)(NPC.sWidth / 16f * 0.85f));
@@ -115,6 +115,17 @@ internal static class JournalNpcSpawnAvailabilityResolver
                         tile.WallType = (ushort)environment.WallType;
                     }
 
+                    if (water && y < floorY && x != left && x != right)
+                    {
+                        tile.LiquidAmount = byte.MaxValue;
+                        tile.LiquidType = LiquidID.Water;
+                    }
+
+                    if (water && y < floorY && (x == left || x == right))
+                    {
+                        tile.ResetToType((ushort)environment.TileType);
+                    }
+
                     if (y < floorY) continue;
                     tile.ResetToType((ushort)environment.TileType);
                     if (environment.WallType > 0)
@@ -133,6 +144,8 @@ internal static class JournalNpcSpawnAvailabilityResolver
                 var y = (int)key;
                 Main.tile[x, y].CopyFrom(tile);
             }
+
+            _originalTiles.Clear();
         }
 
         private void Backup(int x, int y)
@@ -475,11 +488,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
                         }
 
                         if (!ShouldRunFullSpawn(context, catalog)) continue;
-                        spawnArena.Prepare(
-                            catalog.Environments[context.EnvironmentIndex],
-                            context.Depth,
-                            context.EnvironmentIndex == 1);
-                        ObserveFullSpawn(catalog, player, context);
+                        ObserveFullSpawnInTemporaryArena(catalog, spawnArena, player, context);
                     }
                     catch (Exception exception)
                     {
@@ -1136,6 +1145,27 @@ internal static class JournalNpcSpawnAvailabilityResolver
         }
 
         return catalog.Environments[context.EnvironmentIndex].ModBiome is null;
+    }
+
+    private static void ObserveFullSpawnInTemporaryArena(
+        Catalog catalog,
+        SpawnArena spawnArena,
+        Player player,
+        SpawnContext context)
+    {
+        try
+        {
+            spawnArena.Prepare(
+                catalog.Environments[context.EnvironmentIndex],
+                context.Depth,
+                context.EnvironmentIndex == 1,
+                context.Water);
+            ObserveFullSpawn(catalog, player, context);
+        }
+        finally
+        {
+            spawnArena.Restore();
+        }
     }
 
     private static void ObserveFullSpawn(

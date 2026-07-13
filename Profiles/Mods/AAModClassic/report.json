@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "AAModClassic",
   "profileId": "builtin.aamodclassic",
-  "generatedAtUtc": "2026-07-13T20:09:27.662Z",
+  "generatedAtUtc": "2026-07-13T22:07:36.016Z",
   "snapshot": {
     "version": 4,
     "generatedAtUtc": "2026-07-13T19:10:20.3253784Z",
@@ -16,7 +16,7 @@
     ]
   },
   "agentRules": {
-    "rules": 58,
+    "rules": 57,
     "ignoredItems": 2,
     "ignoredIssues": 0,
     "evidence": [
@@ -357,13 +357,6 @@
         "reason": "Goblin Slayer's CanTownNPCSpawn requires NPC.downedGoblins, and the Goblin Tinkerer is rescued after the same pre-boss event."
       },
       {
-        "id": "vanilla-hardmode-blood-moon-source",
-        "sourceUrl": "https://terraria.wiki.gg/wiki/Dreadnautilus",
-        "sourceVersion": "Terraria 1.4.4.9",
-        "checkedAt": "2026-07-12",
-        "reason": "Dreadnautilus is a Hardmode Blood Moon fishing enemy."
-      },
-      {
         "id": "vanilla-pirate-source",
         "sourceUrl": "https://terraria.wiki.gg/wiki/Pirate_Invasion",
         "sourceVersion": "Terraria 1.4.4.9",
@@ -443,7 +436,7 @@
     ],
     "availabilityMigration": {
       "confirmed": 16,
-      "pending": 53,
+      "pending": 52,
       "mismatched": 3,
       "confirmedRules": [
         {
@@ -811,12 +804,6 @@
           "kind": "npc-source",
           "target": "Terraria/GoblinTinkerer",
           "expectedStageId": "start"
-        },
-        {
-          "id": "vanilla-hardmode-blood-moon-source",
-          "kind": "npc-source",
-          "target": "Terraria/BloodNautilus",
-          "expectedStageId": "wall-of-flesh"
         },
         {
           "id": "vanilla-pirate-source",
@@ -5031,7 +5018,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.aamodclassic",
-    "generatedAtUtc": "2026-07-13T20:09:21.466Z",
+    "generatedAtUtc": "2026-07-13T22:07:27.491Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -6535,15 +6522,6 @@
         "condition": {
           "type": "Terraria.Condition",
           "description": "Когда рядом с торговцем находится другой житель"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/BestiaryGirl",
-        "item": "Terraria/KiteCrawltipede",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "После победы над солнечной башней"
         }
       },
       {
@@ -20195,11 +20173,6 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "Terraria/BloodMoonMonolith",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "Terraria/FrostCore",
         "reason": "not combat equipment"
       },
@@ -20281,6 +20254,11 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/BloodHamaxe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/BloodMoonMonolith",
         "reason": "not combat equipment"
       },
       {
@@ -20625,6 +20603,11 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/LivingFireBlock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/PirateMap",
         "reason": "not combat equipment"
       },
@@ -20856,6 +20839,31 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/RainbowCampfire",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/LivingCursedFireBlock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/LivingDemonFireBlock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/LivingFrostFireBlock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/LivingIchorBlock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/LivingUltrabrightFireBlock",
         "reason": "not combat equipment"
       },
       {
@@ -22055,37 +22063,7 @@
       },
       {
         "stage": "destroyer",
-        "id": "Terraria/LivingFireBlock",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "destroyer",
         "id": "Terraria/MechanicalWagonPiece",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "destroyer",
-        "id": "Terraria/LivingCursedFireBlock",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "destroyer",
-        "id": "Terraria/LivingDemonFireBlock",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "destroyer",
-        "id": "Terraria/LivingFrostFireBlock",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "destroyer",
-        "id": "Terraria/LivingIchorBlock",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "destroyer",
-        "id": "Terraria/LivingUltrabrightFireBlock",
         "reason": "not combat equipment"
       },
       {
@@ -24170,6 +24148,11 @@
       },
       {
         "stage": "lunatic-cultist",
+        "id": "Terraria/KiteCrawltipede",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "lunatic-cultist",
         "id": "Terraria/WhiteLunaticHood",
         "reason": "not combat equipment"
       },
@@ -24745,6 +24728,16 @@
       },
       {
         "stage": "moon-lord",
+        "id": "AAModClassic/SearingSpark",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "moon-lord",
+        "id": "AAModClassic/TerrorSoul",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "moon-lord",
         "id": "AAModClassic/ApocalyptiteOre",
         "reason": "not combat equipment"
       },
@@ -25031,16 +25024,6 @@
       {
         "stage": "worm-king-greed",
         "id": "AAModClassic/WormKingGreedLore",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/SearingSpark",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/TerrorSoul",
         "reason": "not combat equipment"
       },
       {
@@ -28756,10 +28739,6 @@
         "stage": "wall-of-flesh",
         "via": "npc:AAModClassic/PigronMire"
       },
-      "Terraria/SanguineStaff": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BloodNautilus"
-      },
       "Terraria/GoldenShower": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/BigMimicJungle"
@@ -28859,6 +28838,10 @@
       "AAModClassic/ElectricityShard": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/AngryNimbus"
+      },
+      "Terraria/SanguineStaff": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BloodNautilus"
       },
       "Terraria/Shotgun": {
         "stage": "wall-of-flesh",
@@ -40962,10 +40945,6 @@
         "stage": "wall-of-flesh",
         "via": "npc:AAModClassic/Seraph"
       },
-      "Terraria/BloodMoonMonolith": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BloodNautilus"
-      },
       "Terraria/FrostCore": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/IceGolem"
@@ -41033,6 +41012,10 @@
       "Terraria/BloodHamaxe": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/BloodEelHead"
+      },
+      "Terraria/BloodMoonMonolith": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BloodNautilus"
       },
       "Terraria/DiscoBall": {
         "stage": "wall-of-flesh",
@@ -41309,6 +41292,10 @@
         "stage": "wall-of-flesh",
         "via": "global:Terraria/GlobalNPCDrops"
       },
+      "Terraria/LivingFireBlock": {
+        "stage": "wall-of-flesh",
+        "via": "global:Terraria/GlobalNPCDrops"
+      },
       "Terraria/PirateMap": {
         "stage": "wall-of-flesh",
         "via": "global:Terraria/GlobalNPCDrops"
@@ -41496,6 +41483,26 @@
       "Terraria/RainbowCampfire": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Wood+Terraria/RainbowTorch"
+      },
+      "Terraria/LivingCursedFireBlock": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/LivingFireBlock+Terraria/CursedFlame"
+      },
+      "Terraria/LivingDemonFireBlock": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/LivingFireBlock+Terraria/DemonTorch"
+      },
+      "Terraria/LivingFrostFireBlock": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/LivingFireBlock+Terraria/IceBlock"
+      },
+      "Terraria/LivingIchorBlock": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/LivingFireBlock+Terraria/Ichor"
+      },
+      "Terraria/LivingUltrabrightFireBlock": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/LivingFireBlock+Terraria/UltrabrightTorch"
       },
       "Terraria/HolyWater": {
         "stage": "wall-of-flesh",
@@ -42453,33 +42460,9 @@
         "stage": "destroyer",
         "via": "shop:Terraria/Steampunker"
       },
-      "Terraria/LivingFireBlock": {
-        "stage": "destroyer",
-        "via": "global:Terraria/GlobalNPCDrops"
-      },
       "Terraria/MechanicalWagonPiece": {
         "stage": "destroyer",
         "via": "container:Terraria/DestroyerBossBag"
-      },
-      "Terraria/LivingCursedFireBlock": {
-        "stage": "destroyer",
-        "via": "recipe:Terraria/LivingFireBlock+Terraria/CursedFlame"
-      },
-      "Terraria/LivingDemonFireBlock": {
-        "stage": "destroyer",
-        "via": "recipe:Terraria/LivingFireBlock+Terraria/DemonTorch"
-      },
-      "Terraria/LivingFrostFireBlock": {
-        "stage": "destroyer",
-        "via": "recipe:Terraria/LivingFireBlock+Terraria/IceBlock"
-      },
-      "Terraria/LivingIchorBlock": {
-        "stage": "destroyer",
-        "via": "recipe:Terraria/LivingFireBlock+Terraria/Ichor"
-      },
-      "Terraria/LivingUltrabrightFireBlock": {
-        "stage": "destroyer",
-        "via": "recipe:Terraria/LivingFireBlock+Terraria/UltrabrightTorch"
       },
       "Terraria/LivingWoodPlatform": {
         "stage": "destroyer",
@@ -44145,6 +44128,10 @@
         "stage": "lunatic-cultist",
         "via": "npc:Terraria/CultistBoss"
       },
+      "Terraria/KiteCrawltipede": {
+        "stage": "lunatic-cultist",
+        "via": "shop:Terraria/BestiaryGirl"
+      },
       "Terraria/WhiteLunaticHood": {
         "stage": "lunatic-cultist",
         "via": "shop:Terraria/Clothier"
@@ -44605,6 +44592,14 @@
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick"
       },
+      "AAModClassic/SearingSpark": {
+        "stage": "moon-lord",
+        "via": "npc:AAModClassic/AncientLungHead"
+      },
+      "AAModClassic/TerrorSoul": {
+        "stage": "moon-lord",
+        "via": "npc:AAModClassic/Soulsucker"
+      },
       "AAModClassic/ApocalyptiteOre": {
         "stage": "moon-lord",
         "via": "npc:AAModClassic/Searcher"
@@ -44836,14 +44831,6 @@
       "AAModClassic/WormKingGreedLore": {
         "stage": "worm-king-greed",
         "via": "recipe:AAModClassic/GreedATrophy"
-      },
-      "AAModClassic/SearingSpark": {
-        "stage": "equinox-worms",
-        "via": "npc:AAModClassic/AncientLungHead"
-      },
-      "AAModClassic/TerrorSoul": {
-        "stage": "equinox-worms",
-        "via": "npc:AAModClassic/Soulsucker"
       },
       "AAModClassic/EquinoxWormsTreasureBag": {
         "stage": "equinox-worms",
@@ -51166,7 +51153,19 @@
         "reason": "recommendation precedes proven availability"
       }
     ],
-    "snapshotStageCorrections": [],
+    "snapshotStageCorrections": [
+      {
+        "snapshotStageIndex": 0,
+        "resolvedStageId": "lunatic-cultist",
+        "resolvedStageIndex": 34,
+        "records": 4,
+        "examples": [
+          "npcAvailability[408] Terraria/StardustSpiderBig",
+          "npcAvailability[411] Terraria/SolarCrawltipedeHead",
+          "npcAvailability[422] Terraria/NebulaBeast"
+        ]
+      }
+    ],
     "sourceAvailabilityCorrections": [
       {
         "source": "Terraria/DungeonGuardian",
@@ -51217,16 +51216,6 @@
         "source": "Terraria/SporeSkeleton",
         "observedStageId": "start",
         "effectiveStageId": "wall-of-flesh"
-      },
-      {
-        "source": "AAModClassic/AncientLungHead",
-        "observedStageId": "moon-lord",
-        "effectiveStageId": "equinox-worms"
-      },
-      {
-        "source": "AAModClassic/Soulsucker",
-        "observedStageId": "moon-lord",
-        "effectiveStageId": "equinox-worms"
       }
     ],
     "staleRules": [],
@@ -52733,6 +52722,81 @@
         ]
       }
     },
-    "unassignedVanillaNpcSourceCount": 173
+    "unassignedVanillaNpcSourceCount": 173,
+    "manualAvailabilityPriority": {
+      "automaticItems": 4362,
+      "automaticSources": 272,
+      "automaticStations": 482,
+      "suppressed": {
+        "itemStages": [
+          {
+            "value": "AAModClassic/CharmOfDesire",
+            "manualStageId": "greed",
+            "automaticStageId": "greed",
+            "via": "container:AAModClassic/GreedTreasureBag"
+          },
+          {
+            "value": "AAModClassic/DragonSerpentNecklace",
+            "manualStageId": "queen-bee",
+            "automaticStageId": "hydra",
+            "via": "recipe:AAModClassic/DragontamersCloak+AAModClassic/HydraPendant+Terraria/SharkToothNecklace"
+          },
+          {
+            "value": "AAModClassic/HydraClaw_Item",
+            "manualStageId": "start",
+            "automaticStageId": "start",
+            "via": "npc:AAModClassic/HydraClaw_NPC"
+          },
+          {
+            "value": "AAModClassic/MadnessTruffle",
+            "manualStageId": "techno-truffle",
+            "automaticStageId": "techno-truffle",
+            "via": "recipe:AAModClassic/HeartyTruffle+AAModClassic/GlowingTruffle+AAModClassic/MetallicTruffle+AAModClassic/TruffleLegs"
+          },
+          {
+            "value": "AAModClassic/StoneSoldierChestplate",
+            "manualStageId": "greed",
+            "automaticStageId": "greed",
+            "via": "recipe:Terraria/MiningShirt+AAModClassic/StoneShell"
+          },
+          {
+            "value": "AAModClassic/StoneSoldierLeggings",
+            "manualStageId": "greed",
+            "automaticStageId": "greed",
+            "via": "recipe:Terraria/MiningPants+AAModClassic/StoneShell"
+          }
+        ],
+        "sourceStages": [
+          {
+            "value": "AAModClassic/AncientLungHead",
+            "manualStageId": "equinox-worms",
+            "automaticStageId": "moon-lord",
+            "via": "runtime"
+          },
+          {
+            "value": "AAModClassic/ScavengerHead",
+            "manualStageId": "wall-of-flesh",
+            "automaticStageId": "plantera",
+            "via": "runtime"
+          },
+          {
+            "value": "AAModClassic/Soulsucker",
+            "manualStageId": "equinox-worms",
+            "automaticStageId": "moon-lord",
+            "via": "runtime"
+          }
+        ],
+        "stationStages": []
+      },
+      "retained": {
+        "itemStages": 21,
+        "itemStageFloors": 0,
+        "sourceStages": 49,
+        "stationStages": 2
+      }
+    },
+    "automaticEventPriority": {
+      "corrections": []
+    }
   }
 }

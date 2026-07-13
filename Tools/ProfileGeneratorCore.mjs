@@ -21,6 +21,115 @@ export function generateProfile(
   manifest,
   wikiProfile = null,
   manualAssignments = null) {
+  const automaticEventPriority = prioritizeObservedEventAvailability(source, manifest);
+  manifest = automaticEventPriority.manifest;
+  if (!hasManualAvailabilityAssignments(manualAssignments)) {
+    const result = generateProfileCore(source, manifest, wikiProfile, manualAssignments);
+    result.report.automaticEventPriority = automaticEventPriority.report;
+    return result;
+  }
+
+  const automaticAssignments = withoutManualAvailabilityAssignments(manualAssignments);
+  const automaticResult = generateProfileCore(
+    source,
+    manifest,
+    wikiProfile,
+    automaticAssignments);
+  const priority = prioritizeAutomaticAvailability(
+    source,
+    manifest,
+    manualAssignments,
+    automaticResult.report);
+  const result = generateProfileCore(
+    source,
+    priority.manifest,
+    wikiProfile,
+    priority.manualAssignments);
+  result.report.manualAvailabilityPriority = priority.report;
+  result.report.automaticEventPriority = automaticEventPriority.report;
+  return result;
+}
+
+function prioritizeObservedEventAvailability(source, sourceManifest) {
+  const snapshot = source?.format === "ProgressionJournalKnowledge"
+    ? createSnapshotView(source)
+    : source;
+  const manifest = structuredClone(sourceManifest);
+  const stageIndexes = new Map(
+    (manifest.stages ?? []).map((stage, index) => [stage.id, index]));
+  const observedAvailability = new Map();
+  for (const record of snapshot?.npcAvailability ?? []) {
+    if (!record.observed || !record.npc) continue;
+    const stageIndex = resolveObservedStageIndex(
+      record,
+      manifest,
+      stageIndexes,
+      `event source ${record.npc}`);
+    if (stageIndex < 0 || !manifest.stages[stageIndex]) continue;
+    const existing = observedAvailability.get(record.npc);
+    if (!existing || stageIndex < existing.stageIndex) {
+      observedAvailability.set(record.npc, { record, stageIndex });
+    }
+  }
+
+  manifest.sourceStageFloors ??= {};
+  const corrections = [];
+  for (const event of manifest.events ?? []) {
+    const declaredStageIndex = stageIndexes.get(event.stageId);
+    if (declaredStageIndex === undefined) continue;
+    const spawnSources = [
+      ...(event.dropSources ?? []),
+      ...(event.enemies ?? [])
+    ];
+    const observedSpawnStages = spawnSources
+      .map(sourceId => observedAvailability.get(sourceId))
+      .filter(value => value?.record.kind === "spawn")
+      .map(value => value.stageIndex);
+    if (observedSpawnStages.length === 0) continue;
+    const observedEventStageIndex = Math.min(...observedSpawnStages);
+    if (observedEventStageIndex >= declaredStageIndex) continue;
+
+    const declaredStageId = event.stageId;
+    event.stageId = manifest.stages[observedEventStageIndex].id;
+    const deferredSources = [];
+    for (const property of ["dropSources", "enemies", "containers", "shops"]) {
+      for (const sourceId of event[property] ?? []) {
+        const observed = observedAvailability.get(sourceId);
+        const existingFloorIndex = stageIndexes.get(manifest.sourceStageFloors[sourceId]);
+        const sourceStageIndex = observed?.stageIndex
+          ?? existingFloorIndex
+          ?? declaredStageIndex;
+        const sourceStageId = manifest.stages[sourceStageIndex]?.id;
+        if (!sourceStageId) continue;
+        manifest.sourceStageFloors[sourceId] = sourceStageId;
+        if (sourceStageIndex <= observedEventStageIndex) continue;
+        const stage = manifest.stages[sourceStageIndex];
+        stage[property] = [...new Set([...(stage[property] ?? []), sourceId])];
+        deferredSources.push({ source: sourceId, stageId: sourceStageId });
+      }
+    }
+    corrections.push({
+      eventId: event.id ?? "",
+      eventCategory: event.eventCategory ?? null,
+      declaredStageId,
+      automaticStageId: event.stageId,
+      deferredSources
+    });
+  }
+
+  return {
+    manifest,
+    report: {
+      corrections
+    }
+  };
+}
+
+function generateProfileCore(
+  source,
+  manifest,
+  wikiProfile = null,
+  manualAssignments = null) {
   const snapshot = source?.format === "ProgressionJournalKnowledge"
     ? createSnapshotView(source)
     : source;
@@ -38,7 +147,11 @@ export function generateProfile(
   const stageIndexes = new Map(manifest.stages.map((stage, index) => [stage.id, index]));
   const snapshotStageCorrections = new Map();
   const normalizeObservedStage = (record, label) => {
-    const earliestStageIndex = resolveSnapshotStageIndex(record, manifest.stages, label);
+    const earliestStageIndex = resolveObservedStageIndex(
+      record,
+      manifest,
+      stageIndexes,
+      label);
     if (earliestStageIndex !== record.earliestStageIndex) {
       const correctionKey = `${record.earliestStageIndex}:${earliestStageIndex}`;
       const correction = snapshotStageCorrections.get(correctionKey) ?? {
@@ -125,7 +238,7 @@ export function generateProfile(
       const eventFloorIndex = eventFloorIndexes.length > 0
         ? Math.min(...eventFloorIndexes)
         : -1;
-      const floorIndex = sourceFloorIndex >= 0 ? sourceFloorIndex : eventFloorIndex;
+      const floorIndex = Math.max(sourceFloorIndex, eventFloorIndex);
       const effectiveStageIndex = Math.max(record.earliestStageIndex, floorIndex);
       if (effectiveStageIndex > record.earliestStageIndex) {
         sourceAvailabilityCorrections.push({
@@ -426,7 +539,9 @@ export function generateProfile(
             continue;
           }
           const item = itemById.get(result);
-          if (item?.placedTile) availableStations.add(item.placedTile);
+          if (item?.placedTile && stationAllowedAtStage(item.placedTile, stage.id)) {
+            availableStations.add(item.placedTile);
+          }
           changed = true;
         }
       }
@@ -554,6 +669,196 @@ export function generateProfile(
   return { profile, report, review };
 }
 
+function hasManualAvailabilityAssignments(manualAssignments) {
+  return [
+    manualAssignments?.itemStages,
+    manualAssignments?.itemStageFloors,
+    manualAssignments?.sourceStages,
+    manualAssignments?.stationStages
+  ].some(values => Object.keys(values ?? {}).length > 0);
+}
+
+function resolveObservedStageIndex(record, manifest, stageIndexes, label) {
+  const resolvedStageIndex = resolveSnapshotStageIndex(record, manifest.stages, label);
+  const conditionFloorIndexes = (record.conditions ?? [])
+    .map(condition => {
+      const normalizedCondition = typeof condition === "string"
+        ? { description: condition }
+        : condition;
+      const description = normalizeConditionText(normalizedCondition.description);
+      if (!/^(?:observed biome|наблюдаемый биом):/u.test(description)
+          || description.includes(",")
+          || !isCelestialPillarCondition(description)) {
+        return -1;
+      }
+      return inferredConditionStageIndex(normalizedCondition, manifest, stageIndexes);
+    })
+    .filter(index => index >= 0);
+  return Math.max(resolvedStageIndex, ...conditionFloorIndexes);
+}
+
+function withoutManualAvailabilityAssignments(manualAssignments) {
+  return {
+    ...structuredClone(manualAssignments),
+    itemStages: {},
+    sourceStages: {},
+    stationStages: {}
+  };
+}
+
+function prioritizeAutomaticAvailability(source, manifest, manualAssignments, automaticReport) {
+  const snapshot = source?.format === "ProgressionJournalKnowledge"
+    ? createSnapshotView(source)
+    : source;
+  const stageIds = new Set((manifest.stages ?? []).map(stage => stage.id));
+  const automaticItemStages = new Map(
+    Object.entries(automaticReport.paths ?? {})
+      .filter(([, acquisition]) =>
+        stageIds.has(acquisition?.stage) && isAutomaticAcquisition(acquisition?.via))
+      .map(([item, acquisition]) => [item, acquisition.stage]));
+  const stageIndexes = new Map(
+    (manifest.stages ?? []).map((stage, index) => [stage.id, index]));
+  const eventsByCategory = groupBy(
+    (manifest.events ?? []).filter(event => event.eventCategory),
+    event => event.eventCategory);
+  const eventFloorBySource = new Map();
+  for (const event of manifest.events ?? []) {
+    const stageIndex = stageIndexes.get(event.stageId);
+    if (stageIndex === undefined) continue;
+    for (const sourceId of [
+      ...(event.dropSources ?? []),
+      ...(event.enemies ?? []),
+      ...(event.containers ?? []),
+      ...(event.shops ?? [])
+    ]) {
+      const existing = eventFloorBySource.get(sourceId);
+      if (existing === undefined || stageIndex < existing) {
+        eventFloorBySource.set(sourceId, stageIndex);
+      }
+    }
+  }
+  const automaticSourceStages = new Map();
+  const sourcesWithUnobservedShops = new Set(
+    (snapshot.shops ?? [])
+      .filter(shop => shop.observed !== true)
+      .map(shop => shop.npc));
+  for (const record of snapshot.npcAvailability ?? []) {
+    if (!record.observed || sourcesWithUnobservedShops.has(record.npc)) continue;
+    const observedStageIndex = resolveObservedStageIndex(
+      record,
+      manifest,
+      stageIndexes,
+      `automatic source ${record.npc}`);
+    const categoryFloorIndexes = (record.eventCategories ?? [])
+      .flatMap(category => eventsByCategory.get(category) ?? [])
+      .map(event => stageIndexes.get(event.stageId))
+      .filter(index => index !== undefined);
+    const categoryFloorIndex = categoryFloorIndexes.length > 0
+      ? Math.min(...categoryFloorIndexes)
+      : -1;
+    const stageIndex = Math.max(
+      observedStageIndex,
+      eventFloorBySource.get(record.npc) ?? -1,
+      categoryFloorIndex);
+    const stageId = manifest.stages[stageIndex]?.id;
+    if (stageId) automaticSourceStages.set(record.npc, stageId);
+  }
+  const automaticStationStages = new Map();
+  for (const item of snapshot.items ?? []) {
+    const stageId = automaticItemStages.get(item.id);
+    if (item.placedTile && stageId) automaticStationStages.set(item.placedTile, stageId);
+  }
+
+  const prioritizedAssignments = structuredClone(manualAssignments);
+  const suppressed = {
+    itemStages: suppressAutomaticAssignments(
+      prioritizedAssignments.itemStages,
+      automaticItemStages,
+      stageIndexes,
+      automaticReport.paths),
+    sourceStages: suppressAutomaticAssignments(
+      prioritizedAssignments.sourceStages,
+      automaticSourceStages,
+      stageIndexes,
+      null,
+      true),
+    stationStages: suppressAutomaticAssignments(
+      prioritizedAssignments.stationStages,
+      automaticStationStages,
+      stageIndexes)
+  };
+  const automaticItemFloors = Object.fromEntries(
+    suppressed.itemStages.map(entry => [entry.value, entry.automaticStageId]));
+  const automaticSourceFloors = Object.fromEntries(
+    suppressed.sourceStages.map(entry => [entry.value, entry.automaticStageId]));
+  const automaticStationFloors = Object.fromEntries(
+    suppressed.stationStages.map(entry => [entry.value, entry.automaticStageId]));
+  const prioritizedManifest = {
+    ...manifest,
+    itemStageFloors: {
+      ...(manifest.itemStageFloors ?? {}),
+      ...automaticItemFloors
+    },
+    sourceStageFloors: {
+      ...(manifest.sourceStageFloors ?? {}),
+      ...automaticSourceFloors
+    },
+    stationStageFloors: {
+      ...(manifest.stationStageFloors ?? {}),
+      ...automaticStationFloors
+    }
+  };
+  return {
+    manifest: prioritizedManifest,
+    manualAssignments: prioritizedAssignments,
+    report: {
+      automaticItems: automaticItemStages.size,
+      automaticSources: automaticSourceStages.size,
+      automaticStations: automaticStationStages.size,
+      suppressed,
+      retained: {
+        itemStages: Object.keys(prioritizedAssignments.itemStages ?? {}).length,
+        itemStageFloors: Object.keys(prioritizedAssignments.itemStageFloors ?? {}).length,
+        sourceStages: Object.keys(prioritizedAssignments.sourceStages ?? {}).length,
+        stationStages: Object.keys(prioritizedAssignments.stationStages ?? {}).length
+      }
+    }
+  };
+}
+
+function suppressAutomaticAssignments(
+  assignments,
+  automaticStages,
+  stageIndexes,
+  paths = null,
+  alwaysPreferAutomatic = false) {
+  const suppressed = [];
+  for (const [value, manualStageId] of Object.entries(assignments ?? {})) {
+    const automaticStageId = automaticStages.get(value);
+    if (!automaticStageId) continue;
+    const manualStageIndex = stageIndexes.get(manualStageId);
+    const automaticStageIndex = stageIndexes.get(automaticStageId);
+    if (!alwaysPreferAutomatic
+        && (manualStageIndex === undefined
+            || automaticStageIndex === undefined
+            || automaticStageIndex > manualStageIndex)) {
+      continue;
+    }
+    suppressed.push({
+      value,
+      manualStageId,
+      automaticStageId,
+      via: paths?.[value]?.via ?? "runtime"
+    });
+    delete assignments[value];
+  }
+  return suppressed.sort((left, right) => left.value.localeCompare(right.value));
+}
+
+function isAutomaticAcquisition(via) {
+  return /^(?:container|fishing|global|npc|recipe|shop):?/u.test(via ?? "");
+}
+
 function applyManualAssignments(sourceManifest, manualAssignments) {
   const manifest = structuredClone(sourceManifest);
   const problems = [];
@@ -587,7 +892,8 @@ function applyManualAssignments(sourceManifest, manualAssignments) {
   applyStageMap(manualAssignments.sourceStages, "shops", "source-stage");
   applyStageMap(manualAssignments.stationStages, "stations", "station-stage");
   manifest.itemStageFloors = {
-    ...(manifest.itemStageFloors ?? {})
+    ...(manifest.itemStageFloors ?? {}),
+    ...(manualAssignments.itemStageFloors ?? {})
   };
   manifest.stationStageFloors = {
     ...(manifest.stationStageFloors ?? {}),
@@ -990,6 +1296,11 @@ function inferredConditionStageIndex(condition, manifest, stageIndexes) {
   const twinsIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss2", "twins");
   const destroyerIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer");
   const skeletronPrimeIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss3", "skeletron-prime");
+  const lunaticCultistIndex = stageIndexByFlagOrId(
+    manifest,
+    stageIndexes,
+    "downedAncientCultist",
+    "lunatic-cultist");
 
   if (type.endsWith("+IsBloodMoonAndNotFromStatue")
       || /blood moon|кровав(?:ой|ая) лун/u.test(description)) {
@@ -1015,6 +1326,9 @@ function inferredConditionStageIndex(condition, manifest, stageIndexes) {
   }
   if (/martian madness|марсианск(?:им|ого) безуми/u.test(description)) {
     return golemIndex;
+  }
+  if (isCelestialPillarCondition(description)) {
+    return lunaticCultistIndex;
   }
   if (/wave|волны/u.test(description)) {
     const pumpkinMoonIndex = stageIndexByEvent(manifest, stageIndexes, "PumpkinMoon");
@@ -1052,6 +1366,10 @@ function inferredConditionStageIndex(condition, manifest, stageIndexes) {
     return stage ? stageIndexes.get(stage.id) ?? -1 : -1;
   }
   return -1;
+}
+
+function isCelestialPillarCondition(description) {
+  return /(?:solar|vortex|nebula|stardust).*(?:pillar|tower)|(?:pillar|tower).*(?:solar|vortex|nebula|stardust)|башн.*(?:солнеч|вихр|туман|зв[её]здн)|(?:солнеч|вихр|туман|зв[её]здн).*башн/u.test(description);
 }
 
 function inferConditionTypeStageIndex(type, manifest, stageIndexes) {
