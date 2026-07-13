@@ -7,15 +7,15 @@
     "ru-RU": "Прогрессия Ancients Awakened: Classic"
   },
   "author": "Progression Journal",
-  "profileVersion": "1.0.11",
+  "profileVersion": "1.0.12",
   "readOnly": true,
   "sourceUrl": "",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-07-12T19:51:03.747Z",
+  "generatedAtUtc": "2026-07-13T11:25:16.781Z",
   "requiredMods": [
     {
       "name": "AAModClassic",
-      "version": "1.0.11"
+      "version": "1.0.12"
     }
   ],
   "classes": [
@@ -416,7 +416,7 @@
         "ru-RU": "Анубис-летописец"
       },
       "iconMod": "AAModClassic",
-      "iconNpc": "Anubis",
+      "iconNpc": "AnubisUnreleased",
       "accessorySlots": 5,
       "unlock": {
         "type": "npc",
@@ -460,7 +460,7 @@
         "ru-RU": "Голем"
       },
       "iconMod": "Terraria",
-      "iconNpc": "Golem",
+      "iconNpc": "GolemHead",
       "accessorySlots": 5,
       "unlock": {
         "type": "vanilla-flag",
@@ -561,7 +561,7 @@
         "ru-RU": "Лунный лорд"
       },
       "iconMod": "Terraria",
-      "iconNpc": "MoonLordCore",
+      "iconNpc": "MoonLordHead",
       "accessorySlots": 5,
       "unlock": {
         "type": "vanilla-flag",
@@ -3324,7 +3324,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "greed",
+          "stageId": "worm-king-greed",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -3954,7 +3954,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "golem",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -4238,7 +4238,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "greed",
+          "stageId": "worm-king-greed",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -6595,7 +6595,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "greed",
+          "stageId": "worm-king-greed",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -7110,24 +7110,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "plantera",
+          "stageId": "biomite-core",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
       "wiki": [
-        {
-          "stageId": "plantera",
-          "classes": [
-            "magic"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "Golem",
-            "ru-RU": "Голем"
-          }
-        },
         {
           "stageId": "duke-fishron",
           "classes": [
@@ -8307,7 +8295,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "plantera",
+          "stageId": "skeletron-prime",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -14430,7 +14418,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "shen-doragon",
+          "stageId": "champion-rajah-rabbit",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -15669,25 +15657,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "sagittarius",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [
-        {
-          "stageId": "skeletron",
-          "classes": [
-            "melee"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "Wall of Flesh",
-            "ru-RU": "Стена плоти"
-          }
-        }
-      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -19358,7 +19333,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "shen-doragon",
+          "stageId": "champion-rajah-rabbit",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -21098,7 +21073,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "shen-doragon",
+          "stageId": "champion-rajah-rabbit",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -22554,7 +22529,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "shen-doragon",
+          "stageId": "champion-rajah-rabbit",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -22602,7 +22577,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "shen-doragon",
+          "stageId": "champion-rajah-rabbit",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -24381,7 +24356,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "shen-doragon",
+          "stageId": "champion-rajah-rabbit",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -28234,24 +28209,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "sagittarius",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
       "wiki": [
-        {
-          "stageId": "skeletron",
-          "classes": [
-            "summoner"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "Wall of Flesh",
-            "ru-RU": "Стена плоти"
-          }
-        },
         {
           "stageId": "wall-of-flesh",
           "classes": [
@@ -30337,25 +30300,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "sagittarius",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [
-        {
-          "stageId": "skeletron",
-          "classes": [
-            "melee"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "Wall of Flesh",
-            "ru-RU": "Стена плоти"
-          }
-        }
-      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -35103,7 +35053,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "queen-bee",
+          "stageId": "grips-of-chaos",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -41474,7 +41424,10 @@
       "key": "new.aamodclassic.blazingchestplate",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -41487,25 +41440,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "sagittarius",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [
-        {
-          "stageId": "skeletron",
-          "classes": [
-            "melee"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "Wall of Flesh",
-            "ru-RU": "Стена плоти"
-          }
-        }
-      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -41516,7 +41456,10 @@
       "key": "new.aamodclassic.blazinghelmet",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -41529,25 +41472,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "sagittarius",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [
-        {
-          "stageId": "skeletron",
-          "classes": [
-            "melee"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "Wall of Flesh",
-            "ru-RU": "Стена плоти"
-          }
-        }
-      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -41558,7 +41488,10 @@
       "key": "new.aamodclassic.blazingleggings",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -41571,25 +41504,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "sagittarius",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [
-        {
-          "stageId": "skeletron",
-          "classes": [
-            "melee"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "Wall of Flesh",
-            "ru-RU": "Стена плоти"
-          }
-        }
-      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -41642,7 +41562,10 @@
       "key": "new.aamodclassic.dynaskullchestplate",
       "category": "Armor",
       "classes": [
-        "ranged"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -41655,25 +41578,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "sagittarius",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [
-        {
-          "stageId": "skeletron",
-          "classes": [
-            "ranged"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "Wall of Flesh",
-            "ru-RU": "Стена плоти"
-          }
-        }
-      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -42884,6 +42794,9 @@
       "key": "new.aamodclassic.doomiteleggings",
       "category": "Armor",
       "classes": [
+        "melee",
+        "ranged",
+        "magic",
         "summoner"
       ],
       "itemGroups": [
@@ -42897,25 +42810,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "sagittarius",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [
-        {
-          "stageId": "skeletron",
-          "classes": [
-            "summoner"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "Wall of Flesh",
-            "ru-RU": "Стена плоти"
-          }
-        }
-      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -42926,6 +42826,9 @@
       "key": "new.aamodclassic.doomitechestplate",
       "category": "Armor",
       "classes": [
+        "melee",
+        "ranged",
+        "magic",
         "summoner"
       ],
       "itemGroups": [
@@ -42939,25 +42842,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "sagittarius",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [
-        {
-          "stageId": "skeletron",
-          "classes": [
-            "summoner"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "Wall of Flesh",
-            "ru-RU": "Стена плоти"
-          }
-        }
-      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -42968,7 +42858,10 @@
       "key": "new.aamodclassic.dynaskullhelmet",
       "category": "Armor",
       "classes": [
-        "ranged"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -42981,25 +42874,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "sagittarius",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [
-        {
-          "stageId": "skeletron",
-          "classes": [
-            "ranged"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "Wall of Flesh",
-            "ru-RU": "Стена плоти"
-          }
-        }
-      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -43010,7 +42890,10 @@
       "key": "new.aamodclassic.dynaskullleggings",
       "category": "Armor",
       "classes": [
-        "ranged"
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -43023,25 +42906,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "sagittarius",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [
-        {
-          "stageId": "skeletron",
-          "classes": [
-            "ranged"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "Wall of Flesh",
-            "ru-RU": "Стена плоти"
-          }
-        }
-      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -43573,6 +43443,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.ancientcobaltleggings",
+      "category": "Armor",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "AncientCobaltLeggings",
+            "displayName": "Древние кобальтовые ботинки"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.ancientshadowgreaves",
       "category": "Armor",
       "classes": [
@@ -43587,6 +43486,35 @@
             "mod": "Terraria",
             "item": "AncientShadowGreaves",
             "displayName": "Древние теневые ботинки"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.ancientcobaltbreastplate",
+      "category": "Armor",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "AncientCobaltBreastplate",
+            "displayName": "Древний кобальтовый нагрудник"
           }
         ]
       ],
@@ -44324,6 +44252,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.abigailsflower",
+      "category": "Weapon",
+      "classes": [
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "AbigailsFlower",
+            "displayName": "Цветок Эбигейл"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.necrohelmet",
       "category": "Armor",
       "classes": [
@@ -44692,6 +44649,9 @@
       "key": "new.aamodclassic.doomitehelmet",
       "category": "Armor",
       "classes": [
+        "melee",
+        "ranged",
+        "magic",
         "summoner"
       ],
       "itemGroups": [
@@ -44705,25 +44665,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron",
+          "stageId": "sagittarius",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [
-        {
-          "stageId": "skeletron",
-          "classes": [
-            "summoner"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "Wall of Flesh",
-            "ru-RU": "Стена плоти"
-          }
-        }
-      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -45250,6 +45197,35 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.ancientcobalthelmet",
+      "category": "Armor",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "AncientCobaltHelmet",
+            "displayName": "Древний кобальтовый шлем"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -45912,7 +45888,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "queen-bee",
+          "stageId": "world-evil",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -45960,7 +45936,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "queen-bee",
+          "stageId": "world-evil",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -46008,7 +45984,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "queen-bee",
+          "stageId": "world-evil",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -46749,6 +46725,35 @@
       "evaluations": [
         {
           "stageId": "king-slime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.seed",
+      "category": "Ammunition",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Seed",
+            "displayName": "Семечко"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -50236,8 +50241,23 @@
           },
           {
             "mod": "Terraria",
+            "item": "RedString",
+            "displayName": "Красная нитка"
+          },
+          {
+            "mod": "Terraria",
+            "item": "CyanString",
+            "displayName": "Голубая нитка"
+          },
+          {
+            "mod": "Terraria",
             "item": "PurpleString",
             "displayName": "Пурпурная нитка"
+          },
+          {
+            "mod": "Terraria",
+            "item": "VioletString",
+            "displayName": "Фиолетовая нитка"
           },
           {
             "mod": "Terraria",
@@ -50566,6 +50586,35 @@
             "mod": "Terraria",
             "item": "FastClock",
             "displayName": "Быстрые часы"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.vitamins",
+      "category": "Accessory",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Vitamins",
+            "displayName": "Витамины"
           }
         ]
       ],
@@ -51091,6 +51140,38 @@
       "evaluations": [
         {
           "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.mooncharm",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "MoonCharm",
+            "displayName": "Зачарованная луна"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -52154,6 +52235,38 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.frozenturtleshell",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "FrozenTurtleShell",
+            "displayName": "Ледяной черепаший панцирь"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.frozenwings",
       "category": "Accessory",
       "classes": [
@@ -52916,7 +53029,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "plantera",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -53220,6 +53333,69 @@
         }
       ],
       "wiki": [
+        {
+          "stageId": "skeletron",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner"
+          ],
+          "sourceName": "Official Terraria Mods Wiki",
+          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
+          "target": {
+            "en-US": "Wall of Flesh",
+            "ru-RU": "Стена плоти"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.sharktoothnecklace",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "SharkToothNecklace",
+            "displayName": "Ожерелье из акульих зубов"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "start",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner"
+          ],
+          "sourceName": "Official Terraria Mods Wiki",
+          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
+          "target": {
+            "en-US": "First bosses",
+            "ru-RU": "Первые боссы"
+          }
+        },
         {
           "stageId": "skeletron",
           "classes": [
@@ -53733,6 +53909,36 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.titanglove",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "TitanGlove",
+            "displayName": "Перчатка титана"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.sandstorminabottle",
       "category": "Accessory",
       "classes": [
@@ -53797,6 +54003,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.blindfold",
+      "category": "Accessory",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Blindfold",
+            "displayName": "Повязка на глаза"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.armorpolish",
       "category": "Accessory",
       "classes": [
@@ -53813,7 +54048,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "plantera",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -53939,6 +54174,38 @@
       "evaluations": [
         {
           "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.neptunesshell",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "NeptunesShell",
+            "displayName": "Ракушка Нептуна"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "destroyer",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -56567,27 +56834,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "plantera",
+          "stageId": "greed",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
       "wiki": [
-        {
-          "stageId": "plantera",
-          "classes": [
-            "melee",
-            "ranged",
-            "magic",
-            "summoner"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "Golem",
-            "ru-RU": "Голем"
-          }
-        },
         {
           "stageId": "duke-fishron",
           "classes": [
@@ -57371,7 +57623,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "queen-bee",
+          "stageId": "broodmother",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -58331,7 +58583,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "queen-bee",
+          "stageId": "hydra",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -59761,7 +60013,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "greed",
+          "stageId": "worm-king-greed",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -59991,7 +60243,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "queen-bee",
+          "stageId": "truffle-toad",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -60181,6 +60433,106 @@
   ],
   "combatBuffs": [
     {
+      "key": "new.terraria.burger",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Burger",
+            "displayName": "Бургер"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.milkcarton",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "MilkCarton",
+            "displayName": "Пакет молока"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.hotdog",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Hotdog",
+            "displayName": "Хотдог"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.coffeecup",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "CoffeeCup",
+            "displayName": "кофе"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.steak",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Steak",
+            "displayName": "Стейк"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.terraria.chickennugget",
       "category": "Food",
       "classes": [
@@ -60256,6 +60608,66 @@
             "mod": "Terraria",
             "item": "Fries",
             "displayName": "Картофель фри"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.pizza",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Pizza",
+            "displayName": "Пицца"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.spaghetti",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Spaghetti",
+            "displayName": "Спагетти"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.potatochips",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "PotatoChips",
+            "displayName": "Чипсы"
           }
         ]
       ]
@@ -60421,86 +60833,6 @@
       ]
     },
     {
-      "key": "new.terraria.burger",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "Burger",
-            "displayName": "Бургер"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.hotdog",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "Hotdog",
-            "displayName": "Хотдог"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.potatochips",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "PotatoChips",
-            "displayName": "Чипсы"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.pizza",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "Pizza",
-            "displayName": "Пицца"
-          }
-        ]
-      ]
-    },
-    {
       "key": "new.terraria.shrimppoboy",
       "category": "Food",
       "classes": [
@@ -60516,26 +60848,6 @@
             "mod": "Terraria",
             "item": "ShrimpPoBoy",
             "displayName": "Бутерброд с креветкой"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.milkcarton",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "MilkCarton",
-            "displayName": "Пакет молока"
           }
         ]
       ]
@@ -61740,6 +62052,226 @@
       ]
     },
     {
+      "key": "new.aamodclassic.luckycalmingpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "grips-of-chaos",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckyCalmingPotion",
+            "displayName": "Lucky Calming Potion"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.aamodclassic.luckyendurancepotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "grips-of-chaos",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckyEndurancePotion",
+            "displayName": "Lucky Endurance Potion"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.aamodclassic.luckyironskinpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "grips-of-chaos",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckyIronskinPotion",
+            "displayName": "Lucky Ironskin Potion"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.aamodclassic.luckylifeforcepotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "grips-of-chaos",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckyLifeforcePotion",
+            "displayName": "Lucky Lifeforce Potion"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.aamodclassic.luckyragepotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "grips-of-chaos",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckyRagePotion",
+            "displayName": "Lucky Rage Potion"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.aamodclassic.luckyregenerationpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "grips-of-chaos",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckyRegenerationPotion",
+            "displayName": "Lucky Regeneration Potion"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.aamodclassic.luckysummoningpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "grips-of-chaos",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckySummoningPotion",
+            "displayName": "Lucky Summoning Potion"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.aamodclassic.luckyswiftnesspotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "grips-of-chaos",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckySwiftnessPotion",
+            "displayName": "Lucky Swiftness Potion"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.aamodclassic.luckythornspotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "grips-of-chaos",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckyThornsPotion",
+            "displayName": "Lucky Thorns Potion"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.aamodclassic.luckywrathpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "grips-of-chaos",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckyWrathPotion",
+            "displayName": "Lucky Wrath Potion"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.aamodclassic.roninpotion",
+      "category": "Basic",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "grips-of-chaos",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "RoninPotion",
+            "displayName": "Ronin Potion"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.aamodclassic.luckycracker",
       "category": "Potion",
       "classes": [
@@ -61820,6 +62352,26 @@
       ]
     },
     {
+      "key": "new.terraria.creamsoda",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "skeletron",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "CreamSoda",
+            "displayName": "Крем-сода"
+          }
+        ]
+      ]
+    },
+    {
       "key": "new.terraria.titanpotion",
       "category": "Potion",
       "classes": [
@@ -61855,6 +62407,46 @@
             "mod": "Terraria",
             "item": "Teacup",
             "displayName": "Чайная чашка"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.applepie",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "ApplePie",
+            "displayName": "Яблочный пирог"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "new.terraria.milkshake",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Milkshake",
+            "displayName": "Молочный коктейль"
           }
         ]
       ]
@@ -61920,8 +62512,8 @@
       ]
     },
     {
-      "key": "new.terraria.coffeecup",
-      "category": "Food",
+      "key": "new.aamodclassic.carrot",
+      "category": "Potion",
       "classes": [
         "melee",
         "ranged",
@@ -61932,29 +62524,9 @@
       "itemGroups": [
         [
           {
-            "mod": "Terraria",
-            "item": "CoffeeCup",
-            "displayName": "кофе"
-          }
-        ]
-      ]
-    },
-    {
-      "key": "new.terraria.milkshake",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "wall-of-flesh",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "Milkshake",
-            "displayName": "Молочный коктейль"
+            "mod": "AAModClassic",
+            "item": "Carrot",
+            "displayName": "Carrot"
           }
         ]
       ]
@@ -62074,7 +62646,7 @@
       ]
     },
     {
-      "key": "new.terraria.creamsoda",
+      "key": "new.terraria.bbqribs",
       "category": "Food",
       "classes": [
         "melee",
@@ -62087,8 +62659,8 @@
         [
           {
             "mod": "Terraria",
-            "item": "CreamSoda",
-            "displayName": "Крем-сода"
+            "item": "BBQRibs",
+            "displayName": "Ребрышки барбекю"
           }
         ]
       ]

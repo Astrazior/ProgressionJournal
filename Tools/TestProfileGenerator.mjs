@@ -19,6 +19,7 @@ const snapshot = {
     item("Test/Bar"),
     item("Test/Sword", { damageClass: "Melee", damage: 30 }),
     item("Test/Potion", { buffType: 1, consumable: true }),
+    item("Test/OrphanPotion", { buffType: 1, consumable: true }),
     item("Test/EventMaterial"),
     item("Test/EventGun", { damageClass: "Melee", damage: 20 }),
     item("Test/ShopBlade", { damageClass: "Melee", damage: 18 }),
@@ -657,6 +658,9 @@ assert(review.issues.some(issue =>
 assert(review.issues.some(issue =>
   issue.kind === "unassigned-combat-item"
   && issue.item === "Test/CycleA"));
+assert(review.issues.some(issue =>
+  issue.kind === "unassigned-combat-item"
+  && issue.item === "Test/OrphanPotion"));
 assert(review.issues.some(issue =>
   issue.kind === "unresolved-condition"
   && issue.affected.some(value => value.item === "Terraria/UnknownVanillaSword")));

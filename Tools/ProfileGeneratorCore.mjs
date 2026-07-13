@@ -1652,11 +1652,13 @@ function buildManualReview({
     value => JSON.stringify(value))
     .filter(record =>
       !ignoredItems.has(record.item)
-      && isEquipmentClassification(classifyItem(
+      && isReviewableClassification(
         itemById.get(record.item),
-        manifest,
-        conditionClassificationReport,
-        classificationContext)));
+        classifyItem(
+          itemById.get(record.item),
+          manifest,
+          conditionClassificationReport,
+          classificationContext)));
   const unresolvedConditionGroups = groupBy(
     unresolvedConditions,
     record => JSON.stringify({
@@ -1769,7 +1771,7 @@ function buildManualReview({
       manifest,
       classificationReport,
       classificationContext);
-    if (!isEquipmentClassification(classification)) continue;
+    if (!isReviewableClassification(item, classification)) continue;
 
     const drops = snapshot.drops
       .filter(drop => (drop.rate ?? 1) > 0 && drop.item === item.id)
@@ -1923,8 +1925,9 @@ function collectUnknownConditionRecords(snapshot, manifest, contentMods) {
       manifest));
 }
 
-function isEquipmentClassification(classification) {
-  return !!classification && !classification.buffCategory;
+function isReviewableClassification(item, classification) {
+  return !!classification
+    && (!classification.buffCategory || !item?.id?.startsWith("Terraria/"));
 }
 
 

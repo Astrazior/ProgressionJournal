@@ -1176,9 +1176,9 @@ assert.deepEqual(
     (entry.itemGroups ?? []).flat().some(item => `${item.mod}/${item.item}` === "Test/HybridBlade"))?.classes,
   ["melee", "ranged"],
   "Hybrid damage classes must keep all confirmed classes");
-assert(!conditionAlgebraResult.review.issues.some(issue =>
+assert(conditionAlgebraResult.review.issues.some(issue =>
   issue.kind === "unassigned-combat-item" && issue.item === "Test/Food"),
-"Food and basic buff items must not be reviewed as missing combat equipment");
+"Unassigned content-mod buff items must be surfaced for manual review");
 assert(!conditionAlgebraResult.review.issues.some(issue =>
   issue.kind === "unassigned-combat-item" && issue.item === "Test/NeverWeapon"),
 "NeverTrue-only items must not be reviewed as assignable combat equipment");

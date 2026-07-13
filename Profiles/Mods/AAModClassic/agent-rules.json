@@ -39,18 +39,11 @@
       "id": "class-setups-availability-pre-skeletron",
       "kind": "item-stage",
       "items": [
-        "AAModClassic/BiomiteChestplate",
-        "AAModClassic/BiomiteHelmet",
-        "AAModClassic/BiomiteLeggings",
         "AAModClassic/BulwarkOfChaos",
-        "AAModClassic/ClawBaton",
-        "AAModClassic/DragontamersCloak",
-        "AAModClassic/HydraPendant",
         "AAModClassic/ImpChestplate",
         "AAModClassic/ImpHelmet",
         "AAModClassic/ImpLeggings",
-        "AAModClassic/TheDragonsBreath",
-        "AAModClassic/TruffleLegs"
+        "AAModClassic/TheDragonsBreath"
       ],
       "stageId": "queen-bee",
       "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
@@ -65,15 +58,10 @@
         "AAModClassic/AbyssalChestplate",
         "AAModClassic/AbyssalHelmet",
         "AAModClassic/AbyssalLeggings",
-        "AAModClassic/AbyssalTwilight",
         "AAModClassic/AtlanteanChestplate",
         "AAModClassic/AtlanteanHelmet",
         "AAModClassic/AtlanteanLeggings",
         "AAModClassic/AtlanteanTrident",
-        "AAModClassic/BlazingChestplate",
-        "AAModClassic/BlazingDawn",
-        "AAModClassic/BlazingHelmet",
-        "AAModClassic/BlazingLeggings",
         "AAModClassic/DeathlyChestplate",
         "AAModClassic/DeathlyHelmet",
         "AAModClassic/DeathlyLeggings",
@@ -81,14 +69,7 @@
         "AAModClassic/DemonHelmet",
         "AAModClassic/DemonLeggings",
         "AAModClassic/DemonStaff",
-        "AAModClassic/DoomiteChestplate",
-        "AAModClassic/DoomiteHelmet",
-        "AAModClassic/DoomiteLeggings",
-        "AAModClassic/DoomiteRadio",
         "AAModClassic/DuskBringer",
-        "AAModClassic/DynaskullChestplate",
-        "AAModClassic/DynaskullHelmet",
-        "AAModClassic/DynaskullLeggings",
         "AAModClassic/FireFrostMedallion",
         "AAModClassic/FleshrendChestplate",
         "AAModClassic/FleshrendHelmet",
@@ -171,8 +152,6 @@
         "AAModClassic/ChaosRitual",
         "AAModClassic/ChaosWings",
         "AAModClassic/ChaosYari",
-        "AAModClassic/Chaos_Item",
-        "AAModClassic/CharmOfDesire",
         "AAModClassic/DragonsPike",
         "AAModClassic/OdinsBlade",
         "AAModClassic/SingularityCannon",
@@ -183,7 +162,6 @@
         "AAModClassic/TerraHelmetRanged",
         "AAModClassic/TerraHelmetSummoner",
         "AAModClassic/TerraLeggings",
-        "AAModClassic/TerraRose",
         "AAModClassic/TerraStaff"
       ],
       "stageId": "plantera",
@@ -301,12 +279,6 @@
         "AAModClassic/Apocalypse",
         "AAModClassic/Axis",
         "AAModClassic/BlizzardDragonStaff",
-        "AAModClassic/ChampionChestplate",
-        "AAModClassic/ChampionHelmetMage",
-        "AAModClassic/ChampionHelmetMelee",
-        "AAModClassic/ChampionHelmetRanged",
-        "AAModClassic/ChampionHelmetSummoner",
-        "AAModClassic/ChampionLeggings",
         "AAModClassic/ChaosSlayerChestplate",
         "AAModClassic/ChaosSlayerHelmetMage",
         "AAModClassic/ChaosSlayerHelmetMelee",
@@ -372,6 +344,16 @@
       "reason": "The current recipes combine Mining Shirt or Mining Pants with Stone Shell from Greed; the helmet already resolves through the same material at the Greed stage."
     },
     {
+      "id": "greed-charm-stage",
+      "kind": "item-stage",
+      "item": "AAModClassic/CharmOfDesire",
+      "stageId": "greed",
+      "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Charm_of_Desire",
+      "sourceVersion": "AAModClassic 1.0.12 snapshot and current wiki",
+      "checkedAt": "2026-07-13",
+      "reason": "Charm of Desire is guaranteed by Greed's expert treasure bag. That bag currently has no exported container records, so the profile records the verified stage directly."
+    },
+    {
       "id": "stripemans-lucky-armor-stage",
       "kind": "item-stage",
       "items": [
@@ -384,6 +366,38 @@
       "sourceVersion": "Ancients Awakened 1.0.3.2 guide; verified against AAModClassic 1.0.10 recipes",
       "checkedAt": "2026-07-12",
       "reason": "The wiki identifies the set as craftable pre-Hardmode; the current recipes require Lucky Cracker from Samurai, first observed at Grips of Chaos in this snapshot."
+    },
+    {
+      "id": "stripemans-lucky-consumables-stage",
+      "kind": "item-stage",
+      "items": [
+        "AAModClassic/LuckyCalmingPotion",
+        "AAModClassic/LuckyEndurancePotion",
+        "AAModClassic/LuckyIronskinPotion",
+        "AAModClassic/LuckyLifeforcePotion",
+        "AAModClassic/LuckyRagePotion",
+        "AAModClassic/LuckyRegenerationPotion",
+        "AAModClassic/LuckySummoningPotion",
+        "AAModClassic/LuckySwiftnessPotion",
+        "AAModClassic/LuckyThornsPotion",
+        "AAModClassic/LuckyWrathPotion",
+        "AAModClassic/RoninPotion"
+      ],
+      "stageId": "grips-of-chaos",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.12 installed assembly",
+      "checkedAt": "2026-07-13",
+      "reason": "The ten Lucky Potions are emitted by Stripeman's Lucky Chestplate tile logic, and Ronin Potion is added dynamically to Samurai's active shop. Both sources first become available at Grips of Chaos and are outside the snapshot's registered drop and shop tables."
+    },
+    {
+      "id": "hardmode-carrot-stage",
+      "kind": "item-stage",
+      "item": "AAModClassic/Carrot",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.12 installed assembly",
+      "checkedAt": "2026-07-13",
+      "reason": "The mod's global tile update creates Carrot tiles only while Main.hardMode is active, and the tile registers Carrot as its item drop. This acquisition path is not represented in the snapshot's registered drop table."
     },
     {
       "id": "grips-treasure-bag-source",
@@ -745,15 +759,22 @@
     {
       "id": "greed-segment-sources",
       "kind": "source-stage",
-      "sources": [
-        "AAModClassic/GreedABody",
-        "AAModClassic/GreedBody"
-      ],
+      "source": "AAModClassic/GreedBody",
       "stageId": "greed",
       "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Bosses",
-      "sourceVersion": "AAModClassic 1.0.10 snapshot",
-      "checkedAt": "2026-07-12",
-      "reason": "Both body IDs are variants of the Greed encounter."
+      "sourceVersion": "AAModClassic 1.0.12 snapshot",
+      "checkedAt": "2026-07-13",
+      "reason": "GreedBody is a body segment of the ordinary Greed encounter."
+    },
+    {
+      "id": "worm-king-greed-segment-source",
+      "kind": "source-stage",
+      "source": "AAModClassic/GreedABody",
+      "stageId": "worm-king-greed",
+      "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Greed",
+      "sourceVersion": "AAModClassic 1.0.12 snapshot",
+      "checkedAt": "2026-07-13",
+      "reason": "GreedABody is a body segment of the awakened Worm King Greed encounter and owns its upgraded weapon drops."
     },
     {
       "id": "equinox-worm-segment-sources",
