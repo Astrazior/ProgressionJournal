@@ -448,22 +448,42 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
 
     private static void RunEffectProbe(Player player, Item? item)
     {
-        Main.rand = new UnifiedRandom(0);
-        for (var tick = 0; tick < 2; tick++)
+        var playerIndex = Main.myPlayer;
+        var previousPlayer = Main.player[playerIndex];
+        player.whoAmI = playerIndex;
+        Main.player[playerIndex] = player;
+        try
         {
-            player.ResetEffects();
             if (item is not null)
             {
-                player.ApplyEquipFunctional(item, hideVisual: false);
+                player.armor[GetProbeEquipmentSlot(item)] = item;
             }
 
-            PlayerLoader.PostUpdateEquips(player);
-            PlayerLoader.PostUpdateMiscEffects(player);
-        }
+            Main.rand = new UnifiedRandom(0);
+            for (var tick = 0; tick < 2; tick++)
+            {
+                player.ResetEffects();
+                player.UpdateEquips(playerIndex);
+                PlayerLoader.PostUpdateEquips(player);
+                PlayerLoader.PostUpdateMiscEffects(player);
+            }
 
-        player.active = true;
-        player.dead = false;
+            player.active = true;
+            player.dead = false;
+        }
+        finally
+        {
+            Main.player[playerIndex] = previousPlayer;
+        }
     }
+
+    private static int GetProbeEquipmentSlot(Item item) => item switch
+    {
+        { headSlot: >= 0 } => 0,
+        { bodySlot: >= 0 } => 1,
+        { legSlot: >= 0 } => 2,
+        _ => 3
+    };
 
     private static IEnumerable<DamageClass> EnumerateDamageClasses()
     {

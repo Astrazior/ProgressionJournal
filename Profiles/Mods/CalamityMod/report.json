@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-13T10:04:03.832Z",
+  "generatedAtUtc": "2026-07-13T10:56:56.135Z",
   "snapshot": {
     "version": 4,
     "generatedAtUtc": "2026-07-12T21:43:11.7316734Z",
@@ -1740,7 +1740,7 @@
         }
       ],
       "stageComparison": {
-        "compared": 2140,
+        "compared": 2141,
         "moved": 0
       }
     }
@@ -6541,7 +6541,7 @@
   "ready": true,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-07-13T10:03:50.851Z",
+    "generatedAtUtc": "2026-07-13T10:56:42.491Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -28563,11 +28563,6 @@
       },
       {
         "stage": "skeletron-prime",
-        "id": "Terraria/ChlorophyteHelmet",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron-prime",
         "id": "Terraria/ChlorophyteDrill",
         "reason": "not combat equipment"
       },
@@ -37770,6 +37765,10 @@
       "Terraria/TrueExcalibur": {
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/Excalibur+Terraria/ChlorophyteBar"
+      },
+      "Terraria/ChlorophyteHelmet": {
+        "stage": "skeletron-prime",
+        "via": "recipe:Terraria/ChlorophyteBar"
       },
       "Terraria/ChlorophyteMask": {
         "stage": "skeletron-prime",
@@ -53096,10 +53095,6 @@
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/HallowedBar+Terraria/SoulofFright+Terraria/SoulofMight+Terraria/SoulofSight"
       },
-      "Terraria/ChlorophyteHelmet": {
-        "stage": "skeletron-prime",
-        "via": "recipe:Terraria/ChlorophyteBar"
-      },
       "Terraria/ChlorophyteDrill": {
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/ChlorophyteBar"
@@ -56907,14 +56902,6 @@
         ]
       },
       {
-        "id": "Terraria/ChlorophyteHelmet",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Chlorophyte armor"
-        ]
-      },
-      {
         "id": "Terraria/SharpeningStation",
         "wikiStage": "pre-plantera",
         "reason": "recommendation has no proven availability",
@@ -56923,27 +56910,11 @@
         ]
       },
       {
-        "id": "Terraria/ChlorophyteHelmet",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Chlorophyte armor"
-        ]
-      },
-      {
         "id": "Terraria/AmmoBox",
         "wikiStage": "pre-plantera",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/ChlorophyteHelmet",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Chlorophyte armor"
         ]
       },
       {
@@ -56984,14 +56955,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Rod of Discord"
-        ]
-      },
-      {
-        "id": "Terraria/ChlorophyteHelmet",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Chlorophyte armor"
         ]
       },
       {

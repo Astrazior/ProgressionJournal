@@ -238,6 +238,9 @@ assert(snapshotFishingCollectorSource.includes("JournalFishingSourceResolver.Get
 assert(snapshotExporterSource.includes("PlayerLoaderSetupPlayerMethod?.Invoke")
   && snapshotExporterSource.includes("PlayerLoader.PostUpdateMiscEffects(player)"),
 "Item class-effect probing must initialize ModPlayers and execute delayed equipment effects");
+assert(snapshotExporterSource.includes("player.armor[GetProbeEquipmentSlot(item)] = item")
+  && snapshotExporterSource.includes("player.UpdateEquips(playerIndex)"),
+"Item class-effect probing must execute the real equipment update path");
 assert(snapshotExporterSource.includes("DamageClassLoader.DamageClassCount"),
   "Modded damage classes are not fully enumerated for combat classification");
 assert(snapshotExporterSource.includes("VanillaItemClassifications = CreateVanillaItemClassifications()"),
@@ -401,6 +404,13 @@ for (const modName of expected) {
     && report.paths?.[item.id]),
   `${modName}: an acquired recommendation was lost from the generated profile`);
   for (const [itemId, expectedClasses] of Object.entries({
+    "Terraria/ChlorophyteHeadgear": ["magic"],
+    "Terraria/ChlorophyteHelmet": ["ranged"],
+    "Terraria/OrichalcumHelmet": ["ranged"],
+    "Terraria/OrichalcumMask": ["melee", "summoner"],
+    "Terraria/PalladiumHelmet": ["ranged"],
+    "Terraria/PalladiumMask": ["melee", "summoner"],
+    "Terraria/PalladiumHeadgear": ["magic"],
     "Terraria/TitaniumHelmet": ["ranged"],
     "Terraria/TitaniumMask": ["melee"],
     "Terraria/TitaniumHeadgear": ["magic"]

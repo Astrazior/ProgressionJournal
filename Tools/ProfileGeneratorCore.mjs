@@ -666,7 +666,13 @@ function classifyItem(item, manifest, report, context) {
     const vanilla = context.vanillaItems?.get(item.id);
     if (!vanilla) return null;
     const validClasses = new Set(allClasses(manifest));
-    let classes = (vanilla.classes ?? []).filter(value => validClasses.has(value));
+    const isArmor = item.headSlot >= 0 || item.bodySlot >= 0 || item.legSlot >= 0;
+    const runtimeArmorClasses = isArmor
+      ? resolveEffectClassEvidence(item, manifest).specificClasses
+      : [];
+    let classes = runtimeArmorClasses.length > 0
+      ? runtimeArmorClasses
+      : (vanilla.classes ?? []).filter(value => validClasses.has(value));
     const vanillaCombatClasses = ["melee", "ranged", "magic", "summoner"];
     if (item.accessory
         && vanillaCombatClasses.every(classId => classes.includes(classId))) {
@@ -734,14 +740,11 @@ function resolveClasses(item, manifest, report, context) {
     if (ammoClasses.size > 0) return [...ammoClasses];
   }
 
-  const effectClasses = new Set();
-  let hasGenericEffect = false;
-  for (const effect of item.classEffects ?? []) {
-    if (effect.damageClass.toLowerCase().includes("genericdamageclass")) {
-      hasGenericEffect = true;
-      continue;
-    }
-    for (const cls of resolveDamageClasses(effect.damageClass, manifest)) effectClasses.add(cls);
+  const { specificClasses, hasGenericEffect } = resolveEffectClassEvidence(item, manifest);
+  const effectClasses = new Set(specificClasses);
+  const isArmor = item.headSlot >= 0 || item.bodySlot >= 0 || item.legSlot >= 0;
+  if (isArmor && effectClasses.size > 0) {
+    return [...effectClasses];
   }
   if (!hasGenericEffect && effectClasses.size > 0) {
     return [...effectClasses];
@@ -754,6 +757,19 @@ function resolveClasses(item, manifest, report, context) {
   if (matches.length > 0) return matches;
   if (item.defense > 0 || item.buffType > 0) return allClasses(manifest);
   return [];
+}
+
+function resolveEffectClassEvidence(item, manifest) {
+  const effectClasses = new Set();
+  let hasGenericEffect = false;
+  for (const effect of item.classEffects ?? []) {
+    if (effect.damageClass.toLowerCase().includes("genericdamageclass")) {
+      hasGenericEffect = true;
+      continue;
+    }
+    for (const cls of resolveDamageClasses(effect.damageClass, manifest)) effectClasses.add(cls);
+  }
+  return { specificClasses: [...effectClasses], hasGenericEffect };
 }
 
 function createWikiClassificationMap(wikiProfile, wikiResolver) {

@@ -134,13 +134,13 @@ public static partial class JournalRepository
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
             Set("palladiumOrCobaltArmorRangedHardmodeEntry", JournalItemCategory.Armor, CombatClass.Ranged,
-                            Group(ItemID.PalladiumMask, ItemID.CobaltMask),
+                            Group(ItemID.PalladiumHelmet, ItemID.CobaltMask),
                             Group(ItemID.PalladiumBreastplate, ItemID.CobaltBreastplate),
                             Group(ItemID.PalladiumLeggings, ItemID.CobaltLeggings),
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
 
             Set("orichalcumOrMythrilArmorRangedHardmodeEntry", JournalItemCategory.Armor, CombatClass.Ranged,
-                            Group(ItemID.OrichalcumMask, ItemID.MythrilHat),
+                            Group(ItemID.OrichalcumHelmet, ItemID.MythrilHat),
                             Group(ItemID.OrichalcumBreastplate, ItemID.MythrilChainmail),
                             Group(ItemID.OrichalcumLeggings, ItemID.MythrilGreaves),
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
@@ -272,7 +272,7 @@ public static partial class JournalRepository
                             Eval(ProgressionStageId.PostMoonLord, RecommendationTier.Recommended)),
 
             Set("palladiumArmorHardmodeEntry", JournalItemCategory.Armor, CombatClass.Melee,
-                            ItemID.PalladiumHelmet, ItemID.PalladiumBreastplate, ItemID.PalladiumLeggings,
+                            ItemID.PalladiumMask, ItemID.PalladiumBreastplate, ItemID.PalladiumLeggings,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
 
             Set("cobaltArmorHardmodeEntry", JournalItemCategory.Armor, CombatClass.Melee,
@@ -284,7 +284,7 @@ public static partial class JournalRepository
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Useless)),
 
             Set("orichalcumOrMythrilArmorHardmodeEntry", JournalItemCategory.Armor, CombatClass.Melee,
-                            Group(ItemID.OrichalcumHelmet, ItemID.MythrilHelmet),
+                            Group(ItemID.OrichalcumMask, ItemID.MythrilHelmet),
                             Group(ItemID.OrichalcumBreastplate, ItemID.MythrilChainmail),
                             Group(ItemID.OrichalcumLeggings, ItemID.MythrilGreaves),
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.NotRecommended)),
@@ -322,7 +322,7 @@ public static partial class JournalRepository
                             Eval(ProgressionStageId.PostThreeMechBosses, RecommendationTier.Additional)),
 
             Set("chlorophyteArmorRangedPostThreeMechBosses", JournalItemCategory.Armor, CombatClass.Ranged,
-                            ItemID.ChlorophyteHeadgear, ItemID.ChlorophytePlateMail, ItemID.ChlorophyteGreaves,
+                            ItemID.ChlorophyteHelmet, ItemID.ChlorophytePlateMail, ItemID.ChlorophyteGreaves,
                             Eval(ProgressionStageId.PostThreeMechBosses, RecommendationTier.Additional)),
 
             Set("turtleArmorPostThreeMechBosses", JournalItemCategory.Armor, CombatClass.Melee,

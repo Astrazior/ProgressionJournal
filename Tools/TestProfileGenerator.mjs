@@ -51,6 +51,11 @@ const snapshot = {
     item("Terraria/VanillaUtilityAccessory", { accessory: true }),
     item("Terraria/VanillaMagicHelmet", { defense: 5, headSlot: 12 }),
     item("Terraria/VanillaMeleeHelmet", { defense: 8, headSlot: 13 }),
+    item("Terraria/VanillaRuntimeMagicHelmet", {
+      defense: 6,
+      headSlot: 14,
+      classEffects: [{ damageClass: "Magic", damage: true }]
+    }),
     item("Test/EarlyWikiSword", { damageClass: "Melee", damage: 28 }),
     item("Test/RenamedBlade", { name: "Renamed Blade", damageClass: "Melee", damage: 29 }),
     item("Test/ExampleHelmet", {
@@ -70,6 +75,15 @@ const snapshot = {
       englishName: "Example Greaves",
       defense: 2,
       legSlot: 1
+    }),
+    item("Test/GenericMagicHelmet", {
+      name: "Generic Magic Helmet",
+      defense: 5,
+      headSlot: 15,
+      classEffects: [
+        { damageClass: "GenericDamageClass", damage: true },
+        { damageClass: "Magic", damage: true }
+      ]
     }),
     item("Test/ExamplePartyHat", { name: "Example Party Hat", headSlot: 2 }),
     item("Test/BuffStation", {
@@ -239,6 +253,8 @@ const snapshot = {
     { source: "Test/Boss", sourceType: "npc", item: "Terraria/VanillaUtilityAccessory", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Terraria/VanillaMagicHelmet", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Terraria/VanillaMeleeHelmet", conditions: [] },
+    { source: "Test/Boss", sourceType: "npc", item: "Terraria/VanillaRuntimeMagicHelmet", conditions: [] },
+    { source: "Test/Boss", sourceType: "npc", item: "Test/GenericMagicHelmet", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Other/Material", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Other/Sword", conditions: [] },
     {
@@ -303,6 +319,11 @@ const snapshot = {
     },
     {
       item: "Terraria/VanillaMeleeHelmet",
+      category: "Armor",
+      classes: ["melee"]
+    },
+    {
+      item: "Terraria/VanillaRuntimeMagicHelmet",
       category: "Armor",
       classes: ["melee"]
     },
@@ -580,6 +601,14 @@ assert.deepEqual(
   profile.entries.find(entry =>
     entry.itemGroups[0][0].item === "VanillaMeleeHelmet")?.classes,
   ["melee"]);
+assert.deepEqual(
+  profile.entries.find(entry =>
+    entry.itemGroups[0][0].item === "VanillaRuntimeMagicHelmet")?.classes,
+  ["magic"]);
+assert.deepEqual(
+  profile.entries.find(entry =>
+    entry.itemGroups[0][0].item === "GenericMagicHelmet")?.classes,
+  ["magic"]);
 assert(!profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "VanillaUtilityAccessory"));
 const stringEntry = profile.entries.find(entry =>
