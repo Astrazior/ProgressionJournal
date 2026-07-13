@@ -35,6 +35,11 @@ public static class JournalContainerLootCatalog
         ["CalamityMod/RustyChest"] = new SourcePresentation("Rusty Chest", ["CalamityMod/RustyChest"]),
         ["ThoriumMod/AquaticDepthsBiomeChest"] = new SourcePresentation("Aquatic Depths Biome Chest", ["ThoriumMod/AquaticDepthsBiomeChest", "ThoriumMod/DepthChest"]),
         ["ThoriumMod/UnderworldBiomeChest"] = new SourcePresentation("Underworld Biome Chest", ["ThoriumMod/UnderworldBiomeChest"]),
+        ["AAModClassic/GreedChest"] = new SourcePresentation("Locked Greed Chest", ["AAModClassic/GreedChest"]),
+        ["AAModClassic/GreedTreasureBag"] = new SourcePresentation("Treasure Bag (Greed)", ["AAModClassic/GreedTreasureBag"]),
+        ["AAModClassic/InfernoChest"] = new SourcePresentation("Locked Inferno Chest", ["AAModClassic/InfernoChest"]),
+        ["AAModClassic/MireChest"] = new SourcePresentation("Locked Mire Chest", ["AAModClassic/MireChest"]),
+        ["AAModClassic/DoomsdayChest"] = new SourcePresentation("Locked Doomsday Chest", ["AAModClassic/DoomsdayChest"]),
     };
 
     public static IReadOnlyList<JournalContainerLootSource> GetSources(int targetItemId)
@@ -97,6 +102,7 @@ public static class JournalContainerLootCatalog
         AddVanilla(builders);
         AddCalamity(builders);
         AddThorium(builders);
+        AddAAModClassic(builders);
         AddFargo(builders);
         return builders;
     }
@@ -457,6 +463,86 @@ public static class JournalContainerLootCatalog
 
     private static void AddFargo(ICollection<EntryBuilder> builders)
     {
+    }
+
+    private static void AddAAModClassic(ICollection<EntryBuilder> builders)
+    {
+        const string hoardSource = "github.com/DiamondWalker/Ancients-Awakened-Patch@2ef96c5/Worldgeneration/ChaosBiome.cs; verified against installed AAModClassic 1.0.12 GreedChest_Tile style 1";
+        AddDrop(
+            builders,
+            hoardSource,
+            "AAModClassic/GreedChest",
+            "Locked Greed Chest",
+            ["AAModClassic/GreedChest"],
+            "AAModClassic/RomulusTazesaber",
+            1f / 14f);
+        AddDrop(
+            builders,
+            hoardSource,
+            "AAModClassic/GreedChest",
+            "Locked Greed Chest",
+            ["AAModClassic/GreedChest"],
+            "AAModClassic/OdinsBlade",
+            1f / 14f);
+        AddDrop(
+            builders,
+            hoardSource,
+            "AAModClassic/GreedChest",
+            "Locked Greed Chest",
+            ["AAModClassic/GreedChest"],
+            "AAModClassic/AncientGoldChestplate",
+            11f / 1400f);
+        AddDrop(
+            builders,
+            hoardSource,
+            "AAModClassic/GreedChest",
+            "Locked Greed Chest",
+            ["AAModClassic/GreedChest"],
+            "AAModClassic/AncientGoldLeggings",
+            11f / 1400f);
+
+        AddDrop(
+            builders,
+            "github.com/DiamondWalker/Ancients-Awakened-Patch@2ef96c5/Items/Boss/Greed/GreedBag.cs; verified against installed AAModClassic 1.0.12",
+            "AAModClassic/GreedTreasureBag",
+            "Treasure Bag (Greed)",
+            ["AAModClassic/GreedTreasureBag"],
+            "AAModClassic/CharmOfDesire",
+            1f);
+
+        const string lockedDungeonSource = "github.com/DiamondWalker/Ancients-Awakened-Patch@2ef96c5/AAWorld.cs; verified against installed AAModClassic 1.0.12 locked chest tiles at style 1";
+        AddDrop(
+            builders,
+            lockedDungeonSource,
+            "AAModClassic/InfernoChest",
+            "Locked Inferno Chest",
+            ["AAModClassic/InfernoChest"],
+            "AAModClassic/DragonsPike",
+            1f);
+        AddDrop(
+            builders,
+            lockedDungeonSource,
+            "AAModClassic/MireChest",
+            "Locked Mire Chest",
+            ["AAModClassic/MireChest"],
+            "AAModClassic/BogBomb",
+            1f);
+        AddDrop(
+            builders,
+            lockedDungeonSource,
+            "AAModClassic/DoomsdayChest",
+            "Locked Doomsday Chest",
+            ["AAModClassic/DoomsdayChest"],
+            "AAModClassic/SingularityCannon",
+            1f);
+        AddDrop(
+            builders,
+            lockedDungeonSource,
+            "Terraria/DungeonGoldChest",
+            "Dungeon Gold Chest",
+            ["Terraria/GoldChest"],
+            "AAModClassic/SkullWand",
+            1f / 3f);
     }
 
     private static Entry? TryCreateEntry(EntryBuilder builder)

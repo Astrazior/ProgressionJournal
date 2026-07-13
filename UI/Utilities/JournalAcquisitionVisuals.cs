@@ -12,7 +12,6 @@ public readonly record struct JournalConditionVisuals(
 public static class JournalAcquisitionVisuals
 {
     private const string MoonTexturePathPrefix = "Images/Moon_";
-    private const string HardmodeTexturePath = "achievement:ITS_HARD";
 #pragma warning disable SYSLIB1045 // tModLoader's in-game compiler does not run the GeneratedRegex source generator.
     private static readonly Regex LeadingItemTagRegex = new(
         @"^\s*\[i(?:/[^\]:]+)*:[^\]]+\]\s*",
@@ -113,7 +112,7 @@ public static class JournalAcquisitionVisuals
 
         if (drop.SourceItemId is { } itemId)
         {
-            token = new JournalSourceTokenData(JournalSourceTokenKind.Item, itemId, Lang.GetItemNameValue(itemId));
+            token = new JournalSourceTokenData(JournalSourceTokenKind.Item, itemId, drop.SourceName);
             return true;
         }
 
@@ -198,7 +197,13 @@ public static class JournalAcquisitionVisuals
                 (Tokens: new List<JournalSourceTokenData>(), RemainingText: new List<string>()),
                 static (result, condition) =>
                 {
-                    if (!TryCreateConditionTokens(condition, result.Tokens))
+                    if (IsHardmodeOnlyCondition(condition))
+                    {
+                        result.RemainingText.Add(Language.GetTextValue(
+                            "Mods.ProgressionJournal.UI.FishingWorldHardmode"));
+                    }
+                    else if (IsHardmodeCondition(condition)
+                             || !TryCreateConditionTokens(condition, result.Tokens))
                     {
                         result.RemainingText.Add(condition);
                     }
@@ -210,7 +215,9 @@ public static class JournalAcquisitionVisuals
             result.Tokens
                 .Distinct()
                 .ToArray(),
-            result.RemainingText.ToArray());
+            result.RemainingText
+                .Distinct(StringComparer.CurrentCultureIgnoreCase)
+                .ToArray());
     }
 
     private static string RemoveLeadingItemTag(string condition) =>
@@ -241,7 +248,6 @@ public static class JournalAcquisitionVisuals
         var normalized = condition.Trim().ToLowerInvariant();
         var countBefore = tokens.Count;
 
-        AddHardmodeToken(normalized, condition, tokens);
         AddMoonPhaseToken(normalized, condition, tokens);
         AddCombinedBiomeTokens(normalized, condition, tokens);
 
@@ -277,32 +283,25 @@ public static class JournalAcquisitionVisuals
         return tokens.Count > countBefore;
     }
 
-    private static void AddHardmodeToken(string normalized, string condition, ICollection<JournalSourceTokenData> tokens)
+    public static bool IsHardmodeCondition(string condition)
     {
-        var isHardmodeOnly = IsHardmodeOnlyCondition(normalized);
-        if (!isHardmodeOnly && !ContainsAny(normalized, "hardmode", "hard mode", "хардмод"))
-        {
-            return;
-        }
-
-        tokens.Add(new JournalSourceTokenData(
-            JournalSourceTokenKind.Texture,
-            0,
-            isHardmodeOnly
-                ? Language.GetTextValue("Mods.ProgressionJournal.Stages.HardmodeEntry")
-                : condition,
-            HardmodeTexturePath));
+        var normalized = condition.Trim().ToLowerInvariant();
+        return ContainsAny(normalized, "hardmode", "hard mode", "хардмод", "сложн");
     }
 
-    private static bool IsHardmodeOnlyCondition(string normalized) =>
-        normalized is
+    private static bool IsHardmodeOnlyCondition(string condition) =>
+        condition.Trim().ToLowerInvariant() is
             "hardmode"
             or "in hardmode"
             or "in hard mode"
+            or "world: hardmode"
+            or "available after: hardmode"
             or "drops in hardmode"
             or "drops in hard mode"
             or "хардмод"
             or "в хардмоде"
+            or "мир: хардмод"
+            or "доступно после этапа: hardmode"
             or "выпадает в сложном режиме";
 
     private static void AddMoonPhaseToken(string normalized, string condition, ICollection<JournalSourceTokenData> tokens)

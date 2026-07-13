@@ -65,6 +65,26 @@
     "Terraria/Anvils",
     "Terraria/Bottles"
   ],
+  "events": [
+    {
+      "id": "blood-moon",
+      "stageId": "start",
+      "eventCategory": "BloodMoon",
+      "enemies": [
+        "Terraria/BloodZombie",
+        "Terraria/Drippler"
+      ]
+    },
+    {
+      "id": "goblin-army",
+      "stageId": "start",
+      "eventCategory": "GoblinArmy",
+      "shops": [
+        "AAModClassic/GoblinSlayer",
+        "Terraria/GoblinTinkerer"
+      ]
+    }
+  ],
   "stages": [
     {
       "id": "start",
@@ -244,6 +264,22 @@
       "unlock": {
         "type": "vanilla-flag",
         "key": "downedQueenBee"
+      }
+    },
+    {
+      "id": "deerclops",
+      "name": {
+        "en-US": "Deerclops",
+        "ru-RU": "Циклоп-олень"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Deerclops",
+      "dropSources": [
+        "Terraria/Deerclops"
+      ],
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedDeerclops"
       }
     },
     {

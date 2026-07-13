@@ -6,7 +6,8 @@ public sealed class JournalCombatBuffEntry(
     IEnumerable<string> classIds,
     IEnumerable<JournalItemGroup> itemGroups,
     string stageId,
-    bool isClassSpecific = false)
+    bool isClassSpecific = false,
+    IEnumerable<JournalFishingSource>? fishingSources = null)
 {
     public JournalCombatBuffEntry(
         string key,
@@ -35,6 +36,8 @@ public sealed class JournalCombatBuffEntry(
         classIds.ToHashSet(StringComparer.OrdinalIgnoreCase);
 
     public IReadOnlyList<JournalItemGroup> ItemGroups { get; } = itemGroups.ToArray();
+
+    public IReadOnlyList<JournalFishingSource> FishingSources { get; } = fishingSources?.ToArray() ?? [];
 
     private string StageId { get; } = stageId;
 

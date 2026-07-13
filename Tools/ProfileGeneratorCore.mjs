@@ -3,6 +3,7 @@ import path from "node:path";
 import { createHash } from "node:crypto";
 import { createSnapshotView } from "./KnowledgeBase.mjs";
 import { applyVanillaSourceCatalog } from "./VanillaSourceCatalog.mjs";
+import { resolveSnapshotStageIndex } from "./SnapshotStageResolver.mjs";
 
 export function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -32,6 +33,31 @@ export function generateProfile(
   const contentMods = new Set(
     manifest.contentMods
     ?? (manifest.requiredMods ?? []).map(requiredMod => requiredMod.name));
+  const stageIndexes = new Map(manifest.stages.map((stage, index) => [stage.id, index]));
+  const snapshotStageCorrections = new Map();
+  const normalizeObservedStage = (record, label) => {
+    const earliestStageIndex = resolveSnapshotStageIndex(record, manifest.stages, label);
+    if (earliestStageIndex !== record.earliestStageIndex) {
+      const correctionKey = `${record.earliestStageIndex}:${earliestStageIndex}`;
+      const correction = snapshotStageCorrections.get(correctionKey) ?? {
+        snapshotStageIndex: record.earliestStageIndex,
+        resolvedStageId: manifest.stages[earliestStageIndex]?.id ?? "",
+        resolvedStageIndex: earliestStageIndex,
+        records: 0,
+        examples: []
+      };
+      correction.records++;
+      if (correction.examples.length < 3) correction.examples.push(label);
+      snapshotStageCorrections.set(correctionKey, correction);
+    }
+    return { ...record, earliestStageIndex };
+  };
+  const snapshotShops = (snapshot.shops ?? []).map((record, index) =>
+    normalizeObservedStage(record, `shop[${index}] ${record.npc}/${record.item}`));
+  const snapshotFishing = (snapshot.fishing ?? []).map((record, index) =>
+    normalizeObservedStage(record, `fishing[${index}] ${record.target}`));
+  const snapshotNpcAvailability = (snapshot.npcAvailability ?? []).map((record, index) =>
+    normalizeObservedStage(record, `npcAvailability[${index}] ${record.npc}`));
   const allowedItems = snapshot.items.filter(item => isAllowedProfileItem(item.id, contentMods));
   const itemById = new Map(snapshot.items.map(item => [item.id, item]));
   const recipesByResult = groupBy(
@@ -63,12 +89,12 @@ export function generateProfile(
       && isAllowedProfileItem(drop.source, contentMods)),
     drop => drop.source);
   const shopsByNpc = groupBy(
-    snapshot.shops.filter(shop =>
+    snapshotShops.filter(shop =>
       isAllowedProfileItem(shop.item, contentMods)
       && isAllowedProfileItem(shop.npc, contentMods)),
     shop => shop.npc);
   const fishingByItem = groupBy(
-    (snapshot.fishing ?? []).filter(record =>
+    snapshotFishing.filter(record =>
       record.targetType === "item"
       && isAllowedProfileItem(record.target, contentMods)),
     record => record.target);
@@ -78,14 +104,13 @@ export function generateProfile(
   const availableDropSources = new Set();
   const availableShops = new Set();
   const legacyAvailableShops = new Set();
-  const stageIndexes = new Map(manifest.stages.map((stage, index) => [stage.id, index]));
   const sourceStageFloors = collectSourceStageFloors(manifest, stageIndexes);
   const eventsByCategory = groupBy(
     (manifest.events ?? []).filter(event =>
       event.eventCategory && stageIndexes.has(event.stageId)),
     event => event.eventCategory);
   const sourceAvailabilityCorrections = [];
-  const observedNpcAvailability = (snapshot.npcAvailability ?? [])
+  const observedNpcAvailability = snapshotNpcAvailability
     .filter(record =>
       record.observed
       && stageIndexes.has(manifest.stages[record.earliestStageIndex]?.id)
@@ -129,7 +154,8 @@ export function generateProfile(
     for (const source of [
       ...(event.dropSources ?? []),
       ...(event.enemies ?? []),
-      ...(event.containers ?? [])
+      ...(event.containers ?? []),
+      ...(event.shops ?? [])
     ]) {
       const events = manifestEventsBySource.get(source) ?? [];
       events.push(event);
@@ -182,6 +208,7 @@ export function generateProfile(
     wikiAmbiguousItems: [],
     wikiUnresolvedItems: [],
     wikiAvailabilityCorrections: [],
+    snapshotStageCorrections: [...snapshotStageCorrections.values()],
     sourceAvailabilityCorrections,
     staleRules: [],
     unassignedVanillaNpcSources: [],
@@ -310,7 +337,11 @@ export function generateProfile(
           item: shop.item,
           available
         })) {
-          unlockAtStage(shop.item, stage.id, `shop:${npc}`);
+          unlockAtStage(
+            shop.item,
+            stage.id,
+            `shop:${npc}`,
+            eventMetadataForSource(npc, stageIndex));
         }
       }
     }
@@ -333,70 +364,77 @@ export function generateProfile(
         unlockAtStage(itemId, stage.id, "fishing");
       }
     }
-    for (const id of [...(stage.materials ?? []), ...(stage.include ?? [])]) {
+    for (const id of stage.materials ?? []) {
       unlockAtStage(id, stage.id, "manifest");
     }
     for (const station of stage.stations ?? []) {
       if (stationAllowedAtStage(station, stage.id)) availableStations.add(station);
     }
 
-    let changed = true;
-    while (changed) {
-      changed = false;
-      if (unlockPlacedStations(
-        available,
-        itemById,
-        availableStations,
-        station => stationAllowedAtStage(station, stage.id))) {
-        changed = true;
-      }
-      for (const container of [...available]) {
-        if (!sourceAllowedAtStage(container, stage.id)) continue;
-        for (const drop of containerDropsBySource.get(container) ?? []) {
-          if (!conditionsAllowed(drop.conditions, stage, manifest, report, {
-            sourceKind: "drop",
-            source: container,
-            item: drop.item,
-            available
-          })) {
-            continue;
-          }
-          if (!available.has(drop.item)) {
-            if (unlockAtStage(
-              drop.item,
-              stage.id,
-              `container:${container}`,
-              inheritedEventMetadata([{ item: container }], stage.id, acquiredBy))) {
-              changed = true;
+    const unlockTransitiveSources = () => {
+      let changed = true;
+      while (changed) {
+        changed = false;
+        if (unlockPlacedStations(
+          available,
+          itemById,
+          availableStations,
+          station => stationAllowedAtStage(station, stage.id))) {
+          changed = true;
+        }
+        for (const container of [...available]) {
+          if (!sourceAllowedAtStage(container, stage.id)) continue;
+          for (const drop of containerDropsBySource.get(container) ?? []) {
+            if (!conditionsAllowed(drop.conditions, stage, manifest, report, {
+              sourceKind: "drop",
+              source: container,
+              item: drop.item,
+              available
+            })) {
+              continue;
+            }
+            if (!available.has(drop.item)) {
+              if (unlockAtStage(
+                drop.item,
+                stage.id,
+                `container:${container}`,
+                inheritedContainerEventMetadata(container, stage.id, acquiredBy))) {
+                changed = true;
+              }
             }
           }
         }
-      }
-      for (const [result, recipes] of recipesByResult) {
-        if (available.has(result)) continue;
-        const openRecipe = recipes.find(recipe =>
-          recipe.ingredients.every(ingredient => available.has(ingredient.item))
-          && recipe.stations.every(station => availableStations.has(station))
-          && conditionsAllowed(recipe.conditions, stage, manifest, report, {
-            sourceKind: "recipe",
-            source: result,
-            item: result,
-            available
-          }));
-        if (!openRecipe) continue;
+        for (const [result, recipes] of recipesByResult) {
+          if (available.has(result)) continue;
+          const openRecipe = recipes.find(recipe =>
+            recipe.ingredients.every(ingredient => available.has(ingredient.item))
+            && recipe.stations.every(station => availableStations.has(station))
+            && conditionsAllowed(recipe.conditions, stage, manifest, report, {
+              sourceKind: "recipe",
+              source: result,
+              item: result,
+              available
+            }));
+          if (!openRecipe) continue;
 
-        if (!unlockAtStage(
-          result,
-          stage.id,
-          `recipe:${openRecipe.ingredients.map(value => value.item).join("+")}`,
-          inheritedEventMetadata(openRecipe.ingredients, stage.id, acquiredBy))) {
-          continue;
+          if (!unlockAtStage(
+            result,
+            stage.id,
+            `recipe:${openRecipe.ingredients.map(value => value.item).join("+")}`)) {
+            continue;
+          }
+          const item = itemById.get(result);
+          if (item?.placedTile) availableStations.add(item.placedTile);
+          changed = true;
         }
-        const item = itemById.get(result);
-        if (item?.placedTile) availableStations.add(item.placedTile);
-        changed = true;
       }
+    };
+
+    unlockTransitiveSources();
+    for (const id of stage.include ?? []) {
+      unlockAtStage(id, stage.id, "manifest");
     }
+    unlockTransitiveSources();
 
     for (const id of stage.exclude ?? []) available.delete(id);
     const delta = [...available].filter(id => !before.has(id));
@@ -421,7 +459,11 @@ export function generateProfile(
           category: classification.buffCategory,
           classes,
           stageId: stage.id,
-          itemGroups: [[itemReference]]
+          itemGroups: [[itemReference]],
+          fishingSources: [
+            ...toFishingSources(fishingByItem.get(id) ?? []),
+            ...(manifest.fishingSources?.[id] ?? [])
+          ]
         });
         buffItems.add(id);
       } else {
@@ -543,8 +585,7 @@ function applyManualAssignments(sourceManifest, manualAssignments) {
   applyStageMap(manualAssignments.sourceStages, "shops", "source-stage");
   applyStageMap(manualAssignments.stationStages, "stations", "station-stage");
   manifest.itemStageFloors = {
-    ...(manifest.itemStageFloors ?? {}),
-    ...(manualAssignments.itemStages ?? {})
+    ...(manifest.itemStageFloors ?? {})
   };
   manifest.stationStageFloors = {
     ...(manifest.stationStageFloors ?? {}),
@@ -899,6 +940,18 @@ function inferredConditionStageIndex(condition, manifest, stageIndexes) {
   const typeIndex = inferConditionTypeStageIndex(type, manifest, stageIndexes);
   if (typeIndex >= 0) return typeIndex;
 
+  if (type === "ProgressionJournal.AfterProgression") {
+    const match = /^(?:available after stage|доступно после этапа):?\s*(.+)$/u.exec(description);
+    if (match) {
+      const target = match[1];
+      const targetStage = manifest.stages.find(stage =>
+        stage.id.replaceAll("-", " ") === target
+        || Object.values(stage.name ?? {})
+          .some(name => normalizeConditionText(name) === target));
+      if (targetStage) return stageIndexes.get(targetStage.id) ?? -1;
+    }
+  }
+
   const hardmodeIndex = stageIndexByFlagOrId(manifest, stageIndexes, "hardMode", "wall-of-flesh");
   const allMechsIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss3", "skeletron-prime");
   const anyMechIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer");
@@ -1030,6 +1083,10 @@ function isProgressionNeutralCondition(condition) {
     return true;
   }
   return new Set([
+    "ProgressionJournal.BelowSurface",
+    "ProgressionJournal.Biome",
+    "ProgressionJournal.Event",
+    "ProgressionJournal.ZenithWorld",
     "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
     "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
     "Terraria.GameContent.ItemDropRules.Conditions+IsMasterMode",
@@ -1999,24 +2056,14 @@ function unlockPlacedStations(
   return changed;
 }
 
-function inheritedEventMetadata(ingredients, stageId, acquiredBy) {
-  const eventSources = ingredients
-    .map(ingredient => acquiredBy.get(ingredient.item))
-    .filter(source =>
-      source?.stage === stageId
-      && (source.eventCategory || source.customEventName));
-  if (eventSources.length === 0) return {};
-
-  const first = eventSources[0];
-  const sameEvent = eventSources.every(source =>
-    source.eventCategory === first.eventCategory
-    && source.customEventName === first.customEventName
-    && source.eventIcon === first.eventIcon);
-  return sameEvent
+function inheritedContainerEventMetadata(container, stageId, acquiredBy) {
+  const source = acquiredBy.get(container);
+  return source?.stage === stageId
+    && (source.eventCategory || source.customEventName)
     ? {
-        eventCategory: first.eventCategory ?? null,
-        customEventName: first.customEventName ?? "",
-        eventIcon: first.eventIcon ?? ""
+        eventCategory: source.eventCategory ?? null,
+        customEventName: source.customEventName ?? "",
+        eventIcon: source.eventIcon ?? ""
       }
     : {};
 }

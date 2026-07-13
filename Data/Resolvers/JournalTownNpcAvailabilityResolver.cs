@@ -624,6 +624,9 @@ internal static class JournalTownNpcAvailabilityResolver
              variantIndex < progression.GetVariantCount(scenario.StageIndex);
              variantIndex++)
         {
+            Main.BestiaryTracker = useMaxBestiary
+                ? CreateCompletedBestiaryTracker()
+                : new BestiaryUnlocksTracker();
             progression.Reset();
             progression.Apply(scenario.StageIndex, variantIndex);
             foreach (var flag in specialFlags)
@@ -638,9 +641,6 @@ internal static class JournalTownNpcAvailabilityResolver
 
             PrepareNpcArray(scenario.TownPopulation);
             ApplyInventoryScenario(player, scenario.InventoryScenario);
-            Main.BestiaryTracker = useMaxBestiary
-                ? CreateCompletedBestiaryTracker()
-                : new BestiaryUnlocksTracker();
             Array.Fill(Main.townNPCCanSpawn, false);
             Main.checkForSpawns = 7200;
             WorldGen.prioritizedTownNPCType = 0;

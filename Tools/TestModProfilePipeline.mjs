@@ -7,6 +7,7 @@ import {
   normalizeAgentRules
 } from "./BuildModProfiles.mjs";
 import { generateProfile, readJson } from "./ProfileGeneratorCore.mjs";
+import { resolveSnapshotStageIndex } from "./SnapshotStageResolver.mjs";
 import { applyVanillaSourceCatalog } from "./VanillaSourceCatalog.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
@@ -22,6 +23,24 @@ const requiredFiles = [
   "report.json",
   "profile.json"
 ];
+const shiftedStages = [
+  { id: "start", name: { "en-US": "Start", "ru-RU": "Начало" } },
+  { id: "deerclops", name: { "en-US": "Deerclops", "ru-RU": "Циклоп-олень" } },
+  { id: "wall-of-flesh", name: { "en-US": "Wall of Flesh", "ru-RU": "Стена плоти" } }
+];
+assert.equal(resolveSnapshotStageIndex({
+  earliestStageIndex: 1,
+  earliestStageName: "Стена плоти"
+}, shiftedStages), 2);
+assert.equal(resolveSnapshotStageIndex({
+  earliestStageIndex: 1,
+  earliestStageId: "wall-of-flesh",
+  earliestStageName: "Old localized name"
+}, shiftedStages), 2);
+assert.throws(() => resolveSnapshotStageIndex({
+  earliestStageIndex: 1,
+  earliestStageName: "Missing stage"
+}, shiftedStages), /Re-export the snapshot/u);
 const fishingResolverSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalFishingSourceResolver.cs"),
   "utf8");
@@ -46,13 +65,19 @@ assert(fishingResolverSource.includes("attempt.legendary = rarity == 4")
   "Fishing pipeline must deterministically probe every catch rarity");
 assert(fishingResolverSource.includes("progressionIndexes.Count == 0"),
   "Fishing conditions must tolerate observations with no trustworthy progression evidence");
-assert(fishingResolverSource.includes("hasSyntheticModEnvironment")
-  && fishingResolverSource.includes("? -1"),
-  "Synthetic ModBiome fishing observations must not invent progression evidence");
+assert(fishingResolverSource.includes(".Select(context => GetEffectiveProgressionIndex(catalog, context))")
+  && !fishingResolverSource.includes("hasSyntheticModEnvironment"),
+"Synthetic ModBiome fishing must preserve progression gates executed by CatchFish");
 assert(fishingResolverSource.includes("ModContent.GetContent<ModBiome>()"),
   "ModBiome scenarios are missing from the fishing pipeline");
 assert(fishingResolverSource.includes("ModContent.GetContent<ModWaterStyle>()"),
   "ModWaterStyle scenarios are missing from the fishing pipeline");
+assert(!fishingResolverSource.includes("FishingWaterStyleCondition"),
+  "Internal ModWaterStyle identifiers must not be rendered as player-facing conditions");
+assert(fishingResolverSource.includes("CreateLegacyBiomeFlags")
+  && fishingResolverSource.includes("JournalLegacyDirectDropAnalyzer.GetReferencedMembers(isBiomeActive)")
+  && fishingResolverSource.includes("MakeGenericMethod(field.DeclaringType!)"),
+"Fishing probes must activate legacy ModPlayer biome flags used by ModBiome.IsBiomeActive");
 assert(!fishingResolverSource.includes("FishingPoleCondition")
   && !fishingResolverSource.includes("FishingBaitCondition"),
 "Observed random catches must not be presented as mandatory pole or bait requirements");
@@ -71,6 +96,9 @@ assert(townNpcResolverSource.includes("shop.FillShop(items, npc)"),
   "Shop item conditions are not executed through FillShop");
 assert(townNpcResolverSource.includes("CreateCompletedBestiaryTracker"),
   "Bestiary-gated town NPC scenarios are missing");
+assert(townNpcResolverSource.indexOf("Main.BestiaryTracker = useMaxBestiary")
+  < townNpcResolverSource.indexOf("progression.Apply(scenario.StageIndex, variantIndex);"),
+"Town NPC scenarios must install their Bestiary before applying NPC defeat progression");
 assert(townNpcResolverSource.includes("BirthdayParty.GenuineParty"),
   "Event-gated town NPC scenarios are missing");
 assert(townNpcResolverSource.includes("ModContent.GetContent<ModSystem>()")
@@ -91,6 +119,24 @@ const itemSourceResolverSource = fs.readFileSync(
 const containerLootCatalogSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalContainerLootCatalog.cs"),
   "utf8");
+const legacyDirectDropAnalyzerSource = fs.readFileSync(
+  path.join(root, "Data", "Resolvers", "JournalLegacyDirectDropAnalyzer.cs"),
+  "utf8");
+const exactDropCatalogSource = fs.readFileSync(
+  path.join(root, "Data", "Resolvers", "JournalExactDropCatalog.cs"),
+  "utf8");
+const exactShopCatalogSource = fs.readFileSync(
+  path.join(root, "Data", "Resolvers", "JournalExactShopCatalog.cs"),
+  "utf8");
+const shopSourceModelSource = fs.readFileSync(
+  path.join(root, "Data", "Models", "JournalShopSource.cs"),
+  "utf8");
+const journalUiStateSource = fs.readFileSync(
+  path.join(root, "UI", "States", "JournalUIState.cs"),
+  "utf8");
+const acquisitionVisualsSource = fs.readFileSync(
+  path.join(root, "UI", "Utilities", "JournalAcquisitionVisuals.cs"),
+  "utf8");
 assert(containerLootCatalogSource.includes("JournalContainerLootCatalog")
   && containerLootCatalogSource.includes("AddVanilla")
   && containerLootCatalogSource.includes("AddCalamity")
@@ -107,6 +153,76 @@ assert(containerLootCatalogSource.includes("JournalContainerLootCatalog")
 assert(!itemSourceResolverSource.includes("JournalGeneratedContainerSourceSystem")
   && !itemSourceResolverSource.includes("Main.chest"),
   "Journal UI item sources must not fall back to scanning the current world's chests");
+assert(legacyDirectDropAnalyzerSource.includes('"OnKill"')
+  && legacyDirectDropAnalyzerSource.includes('"NPCLoot"')
+  && legacyDirectDropAnalyzerSource.includes('"OnChatButtonClicked"')
+  && legacyDirectDropAnalyzerSource.includes('"RightClick"')
+  && legacyDirectDropAnalyzerSource.includes('"OpenBossBag"')
+  && legacyDirectDropAnalyzerSource.includes('"PostUpdate"')
+  && legacyDirectDropAnalyzerSource.includes('string.Equals(method.Name, "DropLoot"')
+  && legacyDirectDropAnalyzerSource.includes("PositiveProbability")
+  && legacyDirectDropAnalyzerSource.includes(
+    'parameter.ParameterType.FullName != "Terraria.Utilities.UnifiedRandom"'),
+"Legacy direct drops must recover exact NPC, bag, chat-reward, and zero-stack probabilities");
+assert(itemSourceResolverSource.includes("AppendLegacyDirectNpcSources")
+  && itemSourceResolverSource.includes("AppendLegacyDirectItemSources")
+  && itemSourceResolverSource.includes("AppendExactSources"),
+"Journal UI must combine registered, legacy-direct, and audited exact sources");
+assert(itemSourceResolverSource.includes("GetRulesForNPCID(npcType, includeGlobalDrops: false)")
+  && itemSourceResolverSource.includes("GlobalNpcDropRulesField")
+  && itemSourceResolverSource.includes("SelectedItemFromAnyEnemy"),
+"Global drops must render once as 'from any enemy' instead of one card per NPC");
+assert(exactDropCatalogSource.includes('"AAModClassic/BugSwatter", 0.01f')
+  && exactDropCatalogSource.includes('NPCID.Drippler, "AAModClassic/BloodyMary", 0.005f')
+  && exactDropCatalogSource.includes('NPCID.EyeofCthulhu, "AAModClassic/CthulhusBlade", 0.25f')
+  && exactDropCatalogSource.includes('"AAModClassic/EnergyConduit", 0.03f')
+  && exactDropCatalogSource.includes('"AAModClassic/PirateBooty",\n            15f / 64f')
+  && exactDropCatalogSource.includes('"AAModClassic/SoulOfSpite",\n            1f / 5f')
+  && exactDropCatalogSource.includes('"AAModClassic/EquinoxWorm"')
+  && exactDropCatalogSource.includes('"AAModClassic/TerraPrism"'),
+"Audited AAMod fallback sources lost an exact chance or tile condition");
+assert(exactDropCatalogSource.includes('"HallamBag", "BigEBag", "BegBag"')
+  && exactDropCatalogSource.includes("1f / 250f")
+  && exactDropCatalogSource.includes("1f / 260f")
+  && exactDropCatalogSource.includes("1f / 290f")
+  && exactDropCatalogSource.includes("1f / 330f")
+  && exactDropCatalogSource.includes("1f / 660f")
+  && exactDropCatalogSource.includes("1f / 3300f")
+  && exactDropCatalogSource.includes('"AAModClassic/MonochromeApple"')
+  && exactDropCatalogSource.includes('"AAModClassic/ExtravagantTerratool"')
+  && exactDropCatalogSource.includes('const string furyForger = "AAModClassic/FuryForger"')
+  && exactDropCatalogSource.includes('postPlanteraSources, furyForger, 1f / 290f'),
+"Developer bag and nested reward probabilities must remain exact across all boss-bag tiers");
+assert(exactShopCatalogSource.includes('"FazerBag", "ShoxBag", "BegBag"')
+  && exactShopCatalogSource.includes('goblinSlayer, "GoblinSlayersHelmet"')
+  && exactShopCatalogSource.includes('goblinSlayer, "OldOneCharm"')
+  && exactShopCatalogSource.includes('goblinSlayer, "EnergyConduit"')
+  && exactShopCatalogSource.includes("GetAllSources()")
+  && !exactShopCatalogSource.includes("Price")
+  && !exactShopCatalogSource.includes("Currency")
+  && !exactShopCatalogSource.includes("ShopName")
+  && !shopSourceModelSource.includes("Price")
+  && !shopSourceModelSource.includes("ShopName")
+  && !journalUiStateSource.includes("shop.Price")
+  && !journalUiStateSource.includes("shop.ShopName")
+  && itemSourceResolverSource.includes("JournalExactShopCatalog.GetSources(itemId)"),
+"Dynamic ModifyActiveShop items must keep their exact seller and gate without inventing a price or shop label");
+assert(journalUiStateSource.includes("if (conditionIndex > 0)")
+  && journalUiStateSource.includes("top += 4f;")
+  && !journalUiStateSource.includes("JournalConditionDivider")
+  && !journalUiStateSource.includes('string.Join(" • ", conditions)'),
+"Independent source conditions must use separate lines with a small gap and no decorative divider");
+assert(!acquisitionVisualsSource.includes("HardmodeTexturePath")
+  && !acquisitionVisualsSource.includes("AddHardmodeToken")
+  && acquisitionVisualsSource.includes("IsHardmodeOnlyCondition")
+  && journalUiStateSource.includes("new Color(235, 91, 91)"),
+"Hardmode conditions must use canonical red text instead of an achievement icon");
+assert(containerLootCatalogSource.includes('"AAModClassic/RomulusTazesaber"')
+  && containerLootCatalogSource.includes('"AAModClassic/CharmOfDesire"')
+  && containerLootCatalogSource.includes('"AAModClassic/DragonsPike"')
+  && containerLootCatalogSource.includes('"AAModClassic/BogBomb"')
+  && containerLootCatalogSource.includes('"AAModClassic/SingularityCannon"'),
+"AAMod world-generation chests must keep their exact audited loot entries");
 for (const heavyResolver of [
   "JournalFishingSourceResolver.",
   "JournalTownNpcAvailabilityResolver.",
@@ -121,6 +237,9 @@ assert(fishingResolverSource.includes("JournalRuntimeProgressionScenarios")
 const npcSpawnResolverSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalNpcSpawnAvailabilityResolver.cs"),
   "utf8");
+const staticNpcSpawnConditionResolverSource = fs.readFileSync(
+  path.join(root, "Data", "Resolvers", "JournalStaticNpcSpawnConditionResolver.cs"),
+  "utf8");
 assert(npcSpawnResolverSource.includes("modNpc.SpawnChance(spawnInfo)"),
   "Enemy availability does not execute ModNPC.SpawnChance");
 assert(npcSpawnResolverSource.includes("ModContent.GetContent<ModNPC>()"),
@@ -131,8 +250,15 @@ assert(npcSpawnResolverSource.includes("NPCLoader.EditSpawnRate"),
   "Enemy availability does not execute GlobalNPC.EditSpawnRate");
 assert(npcSpawnResolverSource.includes("NPCLoader.ChooseSpawn(spawnInfo)"),
   "Enemy availability does not execute the final modded spawn selector");
+assert(npcSpawnResolverSource.includes("Main.GameMode = 0;")
+  && npcSpawnResolverSource.includes("Main.GameMode = state.GameMode;"),
+"Enemy availability must not inherit the export world's difficulty mode");
 assert(npcSpawnResolverSource.includes("NPC.SpawnNPC()"),
   "Enemy availability does not observe the full vanilla spawn pipeline");
+assert(npcSpawnResolverSource.includes("TryInferSimpleHardmodeSkyAvailability")
+  && staticNpcSpawnConditionResolverSource.includes("JournalLegacyDirectDropAnalyzer.GetReferencedMembers")
+  && staticNpcSpawnConditionResolverSource.includes("SpawnConditionSkyField"),
+"Simple Hardmode sky enemies must retain source-backed availability when runtime spawning cannot observe them");
 assert(npcSpawnResolverSource.includes("DefaultSpawnRateField?.SetValue(null, 1)")
   && npcSpawnResolverSource.includes("FocusedFullSpawnSeedCount"),
 "Vanilla spawn probing must bypass the spawn-timer roll and sample the real selector");
@@ -164,9 +290,11 @@ assert(npcSpawnResolverSource.includes("var player = CreateProbePlayer()")
   && npcSpawnResolverSource.includes("PlayerLoaderSetupPlayerMethod?.Invoke")
   && npcSpawnResolverSource.includes("player.ResetEffects()"),
 "Enemy availability must isolate spawn-rate hooks from the live player's ModPlayer effects");
-assert(npcSpawnResolverSource.includes(
-  "catalog.Environments[context.EnvironmentIndex].ModBiome is null"),
-"Synthetic ModBiome flags must not be treated as proof of progression stage");
+assert(npcSpawnResolverSource.includes("CreateLegacyBiomeFlags")
+  && npcSpawnResolverSource.includes("LegacyBiomeFlags.ByEnvironment.TryGetValue")
+  && npcSpawnResolverSource.includes("JournalLegacyDirectDropAnalyzer.GetReferencedMembers(isBiomeActive)")
+  && npcSpawnResolverSource.includes("var stageEvidence = contexts.ToArray()"),
+"NPC spawn probes must activate legacy ModPlayer biome flags and retain progression gates observed inside ModBiome contexts");
 assert(npcSpawnResolverSource.includes("RecordFailure(catalog")
   && npcSpawnResolverSource.includes("JournalNpcSpawnProbeDiagnostics"),
 "NPC probe failures must remain visible in snapshot diagnostics");
@@ -191,9 +319,9 @@ assert(progressionScenarioSource.includes("AddIsolationAccessors")
   && progressionScenarioSource.includes("IsProgressionFlagName"),
 "Runtime scenarios do not isolate progression flags from the current world");
 assert(progressionScenarioSource.includes("BuildNpcKillCountAccessors")
-  && progressionScenarioSource.includes("SetKillCountDirectly")
+  && progressionScenarioSource.includes("Main.BestiaryTracker.Kills.SetKillCountDirectly")
   && progressionScenarioSource.includes('case "npc"'),
-"Runtime scenarios do not reproduce NPC-backed progression conditions");
+"Runtime scenarios must apply NPC defeat progression to the currently active Bestiary");
 const snapshotExporterSource = fs.readFileSync(
   path.join(root, "Commands", "ExportProgressionSnapshotCommand.cs"),
   "utf8");
@@ -212,9 +340,10 @@ const snapshotNpcAvailabilityCollectorSource = fs.readFileSync(
   "utf8");
 assert(snapshotExporterSource.includes("Fishing = JournalSnapshotFishingCollector.Collect("),
   "Runtime fishing observations are not exported to snapshot.json");
-assert(snapshotExporterSource.includes("JournalSnapshotNpcAvailabilityCollector.Collect(npcIds")
+assert(snapshotExporterSource.includes("JournalSnapshotNpcAvailabilityCollector.Collect(")
   && snapshotExporterSource.includes("NpcAvailability = npcAvailability")
-  && snapshotExporterSource.includes("NpcSpawnProbe = new SnapshotNpcSpawnProbe"),
+  && snapshotExporterSource.includes("NpcSpawnProbe = new SnapshotNpcSpawnProbe")
+  && snapshotExporterSource.includes("string GetStageId(int stageIndex)"),
   "Runtime NPC availability is not exported to snapshot.json");
 assert(snapshotNpcDropCollectorSource.includes("includeGlobalDrops: false")
   && snapshotNpcDropCollectorSource.includes("\"Terraria/GlobalNPCDrops\""),
@@ -635,6 +764,7 @@ for (const name of requiredFiles) {
 }
 const aaSupport = readJson(path.join(aaDirectory, "support.json"));
 const aaSnapshot = readJson(path.join(aaDirectory, "snapshot.json"));
+const aaAgentRules = readJson(path.join(aaDirectory, "agent-rules.json"));
 const aaRecommendations = readJson(path.join(aaDirectory, "recommendations.json"));
 const aaProfile = readJson(path.join(aaDirectory, "profile.json"));
 const aaReport = readJson(path.join(aaDirectory, "report.json"));
@@ -646,12 +776,19 @@ assert(aaSupport.stages.length >= 40, "AAModClassic progression stages are incom
 assert(aaRecommendations.entries.length >= 1000,
   "AAModClassic class-setup recommendations are incomplete");
 assert.equal(aaReport.audit.errors.length, 0);
-assert.equal(aaReport.review.total, 0, "AAModClassic manual review is not resolved");
-assert.equal(aaReport.ready, true, "AAModClassic profile is not ready");
+const aaReview = readJson(path.join(aaDirectory, "review.json"));
+assert(aaReview.issues.every(issue => issue.kind === "unassigned-combat-item"),
+  "AAModClassic review contains a source, condition, or pipeline error");
+assert.equal(aaReport.ready, aaReport.review.total === 0,
+  "AAModClassic readiness must reflect unresolved source-backed availability review");
 assert.equal(aaReport.audit.sourceCoverage.uncovered
   .filter(entry => entry.source.startsWith("AAModClassic/"))
   .length, 0, "AAModClassic has uncovered mod NPC or shop sources");
 const aaStage = id => aaSupport.stages.find(stage => stage.id === id);
+const aaEntry = itemName => aaProfile.entries.find(entry =>
+  entry.itemGroups.some(group => group.some(item => item.item === itemName)));
+const aaBuff = itemName => aaProfile.combatBuffs.find(entry =>
+  entry.itemGroups.some(group => group.some(item => item.item === itemName)));
 assert.equal(aaStage("grips-of-chaos")?.unlock?.key, "downedGrips");
 assert.equal(aaStage("equinox-worms")?.unlock?.key, "downedEquinox");
 assert.equal(aaStage("sisters-of-discord")?.unlock?.key, "downedSisters");
@@ -659,6 +796,70 @@ assert(aaStage("akuma")?.dropSources?.includes("AAModClassic/AkumaAHead"));
 assert(aaStage("yamata")?.dropSources?.includes("AAModClassic/YamataABody"));
 assert(aaStage("zero")?.dropSources?.includes("AAModClassic/ZeroA"));
 assert(aaStage("shen-doragon")?.dropSources?.includes("AAModClassic/ShenDoragonA"));
+assert(aaSupport.stages.findIndex(stage => stage.id === "queen-bee")
+  < aaSupport.stages.findIndex(stage => stage.id === "deerclops"));
+assert(aaSupport.stages.findIndex(stage => stage.id === "deerclops")
+  < aaSupport.stages.findIndex(stage => stage.id === "skeletron"));
+assert.equal(aaSupport.events.find(event => event.eventCategory === "BloodMoon")?.stageId, "start");
+assert(!aaAgentRules.rules.some(rule => rule.id === "vanilla-blood-moon-sources"),
+  "Pre-Hardmode Blood Moon fishing enemies must follow the automatic event stage");
+assert.equal(aaReport.generation.paths["AAModClassic/TheDragonsBreath"]?.stage,
+  "wall-of-flesh");
+assert.equal(aaReport.generation.paths["AAModClassic/FuryForger"]?.stage,
+  "plantera");
+assert.equal(aaReport.generation.paths["AAModClassic/FuryForger"]?.via,
+  "shop:AAModClassic/LargeLetter");
+assert.deepEqual(aaReport.generation.paths["AAModClassic/BloodyMary"], {
+  stage: "start",
+  via: "npc:Terraria/Drippler",
+  eventCategory: "BloodMoon",
+  customEventName: "",
+  eventIcon: ""
+});
+assert.deepEqual(aaReport.generation.paths["Terraria/BloodRainBow"], {
+  stage: "start",
+  via: "npc:Terraria/ZombieMerman",
+  eventCategory: "BloodMoon",
+  customEventName: "",
+  eventIcon: ""
+});
+for (const itemName of ["SpectreBoots", "LightningBoots", "FrostsparkBoots", "FairyBoots"]) {
+  assert.equal(aaEntry(itemName)?.eventCategory, null,
+    `${itemName} must not inherit Goblin Army metadata through a recipe`);
+}
+assert.deepEqual(aaReport.generation.paths["AAModClassic/TerraShard"], {
+  stage: "world-evil",
+  via: "npc:AAModClassic/PurityCrawler"
+});
+assert.equal(aaReport.generation.paths["AAModClassic/HarmonyShortsword"]?.stage,
+  "world-evil");
+assert.equal(aaReport.generation.paths["AAModClassic/SwimmingHydra"]?.stage, "start");
+assert.equal(aaReport.generation.paths["AAModClassic/SwimmingHydra"]?.via, "fishing");
+assert.deepEqual(aaBuff("Honeyfin")?.fishingSources, [{ conditions: ["Жидкость: Мёд"] }],
+  "Fishing sources must survive when a caught item is classified as a combat buff");
+assert.equal(aaReport.generation.paths["AAModClassic/GoblinSlayersChestplate"]?.stage, "start");
+assert.equal(aaReport.generation.paths["AAModClassic/GoblinSlayersChestplate"]?.via,
+  "shop:AAModClassic/GoblinSlayer");
+assert(aaAgentRules.rules
+  .filter(rule => rule.id.startsWith("class-setups-availability-"))
+  .every(rule => rule.availabilityEvidence === false));
+const aaManualStageItems = new Set(aaAgentRules.rules
+  .filter(rule => rule.kind === "item-stage" && rule.availabilityEvidence !== false)
+  .flatMap(rule => rule.items ?? [rule.item]));
+for (const item of [
+  "AAModClassic/BugSwatter",
+  "AAModClassic/BloodyMary",
+  "AAModClassic/CthulhusBlade",
+  "AAModClassic/GoblinSlayersChestplate",
+  "AAModClassic/EnergyCell",
+  "AAModClassic/LaserRifle",
+  "AAModClassic/TheDragonsBreath",
+  "AAModClassic/FuryForger",
+  "AAModClassic/SwimmingHydra",
+  "AAModClassic/TerraShard"
+]) {
+  assert(!aaManualStageItems.has(item), `${item} must resolve from acquisition evidence`);
+}
 
 const fargoSupport = readJson(path.join(modsRoot, "FargowiltasSouls", "support.json"));
 assert(fargoSupport.requiredMods.some(mod => mod.name === "FargowiltasSouls"));
@@ -682,6 +883,17 @@ const validRule = {
       sourceVersion: "revision-1",
       checkedAt: "2026-06-13",
       reason: "The official source states that the sword is unlocked after the boss."
+    },
+    {
+      id: "recommendation-only-item",
+      kind: "item-stage",
+      availabilityEvidence: false,
+      item: "Test/GuideSword",
+      stageId: "boss",
+      sourceUrl: "https://example.invalid/wiki/Class_Setups",
+      sourceVersion: "revision-1",
+      checkedAt: "2026-06-13",
+      reason: "The guide recommends this item but does not prove its acquisition stage."
     },
     {
       id: "verified-sources",
@@ -720,6 +932,7 @@ const validRule = {
 const normalized = normalizeAgentRules(validRule, testSupport);
 assert.deepEqual(normalized.problems, []);
 assert.equal(normalized.assignments.itemStages["Test/Sword"], "boss");
+assert.equal(normalized.assignments.itemStages["Test/GuideSword"], undefined);
 assert.equal(normalized.assignments.sourceStages["Test/EnemyA"], "boss");
 assert.equal(normalized.assignments.sourceStages["Test/EnemyB"], "boss");
 assert.deepEqual(normalized.assignments.itemOverrides["Test/HelmetA"], { classes: ["melee"] });
@@ -833,7 +1046,7 @@ const vanillaSourceSupport = {
   initialStations: [],
   events: [
     { stageId: "goblin-stage", eventCategory: "GoblinArmy" },
-    { stageId: "goblin-stage", eventCategory: "BloodMoon" },
+    { stageId: "start", eventCategory: "BloodMoon" },
     { stageId: "plantera", eventCategory: "FrostMoon" }
   ],
   stages: [
@@ -879,6 +1092,8 @@ assert(vanillaSources.initialItems.includes("Terraria/Seed"));
 assert(vanillaSources.initialItems.includes("Terraria/JungleRose"));
 assert(vanillaSources.initialItems.includes("Terraria/GlowingMushroom"));
 assert(vanillaSources.initialItems.includes("Terraria/Shroomerang"));
+assert(!vanillaSources.initialItems.includes("Terraria/Grapes"),
+  "Hardmode enemy drops must not be treated as initially available");
 assert(vanillaSources.initialVisibleItems.includes("Terraria/Shroomerang"));
 assert(vanillaSources.initialVisibleItems.includes("Terraria/AbigailsFlower"));
 assert(vanillaSources.initialVisibleItems.includes("Terraria/Seed"));
@@ -897,7 +1112,9 @@ assert(!vanillaSources.stages.find(stage => stage.id === "start")
   .enemies?.includes("Terraria/Harpy"));
 assert(vanillaSources.stages.find(stage => stage.id === "goblin-stage")
   .include.includes("Terraria/TinkerersWorkshop"));
-assert(vanillaSources.stages.find(stage => stage.id === "goblin-stage")
+assert(vanillaSources.stages.find(stage => stage.id === "start")
+  .enemies.includes("Terraria/ZombieMerman"));
+assert(vanillaSources.events.find(event => event.eventCategory === "BloodMoon")
   .enemies.includes("Terraria/ZombieMerman"));
 assert(vanillaSources.stages.find(stage => stage.id === "dungeon")
   .stations.includes("Terraria/AlchemyTable"));
@@ -1008,8 +1225,8 @@ const prefixedConditionSupport = {
     conditionDescriptions: ["After defeating the Eye of Cthulhu"]
   }],
   stages: [
-    { id: "start", unlock: { type: "always" } },
-    { id: "eye", unlock: { type: "vanilla-flag", key: "downedBoss1" } }
+    { id: "start", name: { "en-US": "Start" }, unlock: { type: "always" } },
+    { id: "eye", name: { "en-US": "Eye" }, unlock: { type: "vanilla-flag", key: "downedBoss1" } }
   ]
 };
 const prefixedConditionResult = generateProfile(

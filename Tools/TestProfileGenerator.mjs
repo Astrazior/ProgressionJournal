@@ -288,7 +288,10 @@ const snapshot = {
       observed: true,
       earliestStageIndex: 1,
       earliestStageName: "Boss",
-      conditions: [{ type: "Test.Condition", description: "After Boss" }]
+      conditions: [{
+        type: "ProgressionJournal.AfterProgression",
+        description: "Доступно после этапа: Boss"
+      }]
     },
     {
       npc: "Test/Merchant",
@@ -307,6 +310,13 @@ const snapshot = {
       conditions: []
     }
   ],
+  fishing: [{
+    targetType: "item",
+    target: "Test/Potion",
+    earliestStageIndex: 1,
+    earliestStageName: "Boss",
+    conditions: ["Liquid: Honey"]
+  }],
   vanillaItemClassifications: [
     {
       item: "Terraria/VanillaSummonerAccessory",
@@ -493,6 +503,9 @@ assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "VanityAcc
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "NamespaceVanity"));
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "CycleA"));
 assert(profile.combatBuffs.some(entry => entry.itemGroups[0][0].item === "Potion"));
+assert.deepEqual(
+  profile.combatBuffs.find(entry => entry.itemGroups[0][0].item === "Potion")?.fishingSources,
+  [{ conditions: ["Liquid: Honey"] }]);
 assert(!profile.combatBuffs.some(entry =>
   entry.itemGroups[0][0].item === "BuffStation"));
 assert(report.wikiMissingItems.some(entry =>
@@ -500,11 +513,14 @@ assert(report.wikiMissingItems.some(entry =>
   && entry.reason === "recommendation has no proven availability"));
 assert(!profile.combatBuffs.some(entry => entry.itemGroups[0][0].item === "Forge"));
 assert.equal(
-  profile.entries.find(entry => entry.itemGroups[0][0].item === "EventGun")?.customEventName,
-  "Test Event");
+  profile.entries.find(entry => entry.itemGroups[0][0].item === "EventGun")?.eventCategory,
+  null);
 assert.equal(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "EventGun")?.eventIcon,
-  "Test/Bestiary/EventIcon");
+  "");
+assert.equal(
+  profile.entries.find(entry => entry.itemGroups[0][0].item === "EventGun")?.customEventName,
+  "");
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "FilteredSword"
   && entry.evaluations[0].stageId === "boss"));
@@ -711,7 +727,8 @@ assert(manualResult.profile.entries.some(entry =>
   && entry.evaluations[0].stageId === "boss"));
 assert(manualResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "FlooredBlade"
-  && entry.evaluations[0].stageId === "late"));
+  && entry.evaluations[0].stageId === "boss"));
+assert.equal(manualResult.report.paths["Test/FlooredBlade"].via, "npc:Test/Boss");
 assert(manualResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "ManualLateDrop"
   && entry.evaluations[0].stageId === "boss"));

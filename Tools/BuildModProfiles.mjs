@@ -6,6 +6,7 @@ import {
   readJson,
   writeJson
 } from "./ProfileGeneratorCore.mjs";
+import { resolveSnapshotStageIndex } from "./SnapshotStageResolver.mjs";
 import {
   buildKnowledgeBase,
   createSnapshotView
@@ -323,6 +324,9 @@ export function normalizeAgentRules(document, support) {
     const label = rule.id || `rules[${index}]`;
     validateEvidence(rule, label, problems);
     evidence.push(pickEvidence(rule, label));
+    if (rule.availabilityEvidence === false) {
+      continue;
+    }
     if (rule.stageId && !stages.has(rule.stageId)) {
       problems.push(`${label}: unknown stage '${rule.stageId}'`);
       continue;
@@ -478,7 +482,11 @@ export function applyConfirmedAvailabilityChecks(
       continue;
     }
 
-    const actualStageId = stageIds[observation.earliestStageIndex] ?? "";
+    const actualStageIndex = resolveSnapshotStageIndex(
+      observation,
+      support.stages,
+      `availability check ${check.id}`);
+    const actualStageId = stageIds[actualStageIndex] ?? "";
     if (actualStageId !== check.expectedStageId) {
       mismatched.push({ ...check, actualStageId });
       continue;

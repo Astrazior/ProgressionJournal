@@ -8,7 +8,8 @@ internal static class JournalSnapshotFishingCollector
         HashSet<int> includedItems,
         HashSet<int> includedNpcs,
         Func<int, string> getItemReference,
-        Func<int, string> getNpcReference)
+        Func<int, string> getNpcReference,
+        Func<int, string> getStageId)
     {
         var result = includedItems
             .Select(itemId => new
@@ -21,6 +22,7 @@ internal static class JournalSnapshotFishingCollector
                 "item",
                 getItemReference(value.Id),
                 value.Availability.EarliestStageIndex,
+                getStageId(value.Availability.EarliestStageIndex),
                 value.Availability.EarliestStageName,
                 value.Availability.Conditions.ToList()))
             .ToList();
@@ -35,6 +37,7 @@ internal static class JournalSnapshotFishingCollector
                 "npc",
                 getNpcReference(value.Id),
                 value.Availability.EarliestStageIndex,
+                getStageId(value.Availability.EarliestStageIndex),
                 value.Availability.EarliestStageName,
                 value.Availability.Conditions.ToList())));
         return result;

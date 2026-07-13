@@ -10,6 +10,9 @@ namespace ProgressionJournal.Data.Resolvers;
 
 public static class JournalItemSourceResolver
 {
+    private static readonly FieldInfo? GlobalNpcDropRulesField = typeof(ItemDropDatabase).GetField(
+        "_globalEntries",
+        BindingFlags.Instance | BindingFlags.NonPublic);
     private static readonly Dictionary<(string ProfileId, int ItemId), JournalItemAcquisitionInfo> Cache = new();
     private static readonly Dictionary<int, Item?> StationItemCache = new();
     private static readonly Dictionary<int, bool> RevengeanceExclusiveCache = new();
@@ -43,9 +46,13 @@ public static class JournalItemSourceResolver
             return [];
         }
 
-        return JournalProfileRegistry.Active.Entries
+        var profile = JournalProfileRegistry.Active;
+        return profile.Entries
             .Where(entry => entry.ItemIds.Contains(itemId))
-            .SelectMany(static entry => entry.FishingSources);
+            .SelectMany(static entry => entry.FishingSources)
+            .Concat(profile.CombatBuffEntries
+                .Where(entry => entry.ItemGroups.Any(group => group.ItemIds.Contains(itemId)))
+                .SelectMany(static entry => entry.FishingSources));
     }
 
     private static List<JournalRecipeSource> BuildRecipes(int itemId)
@@ -87,12 +94,20 @@ public static class JournalItemSourceResolver
         {
             AppendDropSources(
                 drops,
-                Main.ItemDropsDB.GetRulesForNPCID(npcType),
+                Main.ItemDropsDB.GetRulesForNPCID(npcType, includeGlobalDrops: false),
                 itemId,
                 GetNpcName(npcType),
                 sourceNpcType: npcType,
                 sourceItemId: null);
         }
+
+        AppendDropSources(
+            drops,
+            GlobalNpcDropRulesField?.GetValue(Main.ItemDropsDB) as List<IItemDropRule>,
+            itemId,
+            Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemFromAnyEnemy"),
+            sourceNpcType: null,
+            sourceItemId: null);
 
         for (var sourceItemType = 1; sourceItemType < ItemLoader.ItemCount; sourceItemType++)
         {
@@ -110,6 +125,9 @@ public static class JournalItemSourceResolver
                 sourceItemId: sourceItemType);
         }
 
+        AppendLegacyDirectNpcSources(drops, itemId);
+        AppendLegacyDirectItemSources(drops, itemId);
+        AppendExactSources(drops, itemId);
         AppendContainerCatalogSources(drops, itemId);
         return drops
             .GroupBy(static drop => new
@@ -134,6 +152,32 @@ public static class JournalItemSourceResolver
         Cache.Clear();
     }
 
+    private static void AppendLegacyDirectNpcSources(List<JournalDropSource> drops, int targetItemId)
+    {
+        drops.AddRange(JournalLegacyDirectDropAnalyzer.GetNpcDrops(targetItemId)
+            .Select(source => new JournalDropSource(
+                GetNpcName(source.SourceNpcType),
+                source.SourceNpcType,
+                sourceItemId: null,
+                source.DropRate,
+                source.StackMin,
+                source.StackMax,
+                JournalStaticNpcSpawnConditionResolver.GetConditions(source.SourceNpcType))));
+    }
+
+    private static void AppendLegacyDirectItemSources(List<JournalDropSource> drops, int targetItemId)
+    {
+        drops.AddRange(JournalLegacyDirectDropAnalyzer.GetItemDrops(targetItemId)
+            .Select(source => new JournalDropSource(
+                Lang.GetItemNameValue(source.SourceItemId),
+                sourceNpcType: null,
+                source.SourceItemId,
+                source.DropRate,
+                source.StackMin,
+                source.StackMax,
+                [])));
+    }
+
     private static void AppendContainerCatalogSources(List<JournalDropSource> drops, int targetItemId)
     {
         var catalogSources = JournalContainerLootCatalog.GetSources(targetItemId);
@@ -149,23 +193,42 @@ public static class JournalItemSourceResolver
             conditions: [])));
     }
 
+    private static void AppendExactSources(List<JournalDropSource> drops, int targetItemId)
+    {
+        drops.AddRange(JournalExactDropCatalog.GetSources(targetItemId)
+            .Select(source => new JournalDropSource(
+                source.SourceName,
+                source.SourceNpcType,
+                source.SourceItemId,
+                source.DropRate,
+                source.StackMin,
+                source.StackMax,
+                AppendNpcSpawnConditions(
+                    source.SourceNpcType,
+                    source.Conditions.Select(static condition => condition.Description)))));
+    }
+
     private static JournalShopSource[] BuildShops(int itemId)
     {
-        return NPCShopDatabase.AllShops
+        var sources = NPCShopDatabase.AllShops
             .SelectMany(
                 static shop => shop.ActiveEntries.Select(entry => new { shop, entry }))
             .Where(pair => pair.entry.Item is not null && !pair.entry.Item.IsAir && pair.entry.Item.type == itemId)
             .Select(pair => new JournalShopSource(
                 pair.shop.NpcType,
                 GetNpcName(pair.shop.NpcType),
-                pair.shop.Name,
                 EnumerateConditions(pair.entry.Conditions)
                     .Select(GetConditionDescription)))
+            .Concat(JournalExactShopCatalog.GetSources(itemId)
+                .Select(static source => new JournalShopSource(
+                    source.NpcType,
+                    source.NpcName,
+                    source.Conditions.Select(static condition => condition.Description))));
+        return sources
             .GroupBy(static shop => new
             {
                 shop.NpcType,
                 shop.NpcName,
-                shop.ShopName,
                 Conditions = string.Join('\n', shop.Conditions)
             })
             .Select(static group => group.First())
@@ -211,8 +274,19 @@ public static class JournalItemSourceResolver
                 drop.dropRate,
                 drop.stackMin,
                 drop.stackMax,
-                EnumerateConditions(drop.conditions)
-                    .Select(condition => GetDropConditionDescription(condition, targetItemId)))));
+                AppendNpcSpawnConditions(
+                    sourceNpcType,
+                    EnumerateConditions(drop.conditions)
+                        .Select(condition => GetDropConditionDescription(condition, targetItemId))))));
+    }
+
+    private static IEnumerable<string> AppendNpcSpawnConditions(
+        int? sourceNpcType,
+        IEnumerable<string> dropConditions)
+    {
+        return sourceNpcType is { } npcType
+            ? dropConditions.Concat(JournalStaticNpcSpawnConditionResolver.GetConditions(npcType))
+            : dropConditions;
     }
 
     private static string GetDropConditionDescription(object? condition, int targetItemId)

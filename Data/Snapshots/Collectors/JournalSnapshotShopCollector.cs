@@ -10,9 +10,10 @@ internal static class JournalSnapshotShopCollector
         HashSet<int> includedNpcs,
         Func<int, string> getItemReference,
         Func<int, string> getNpcReference,
-        Func<object?, SnapshotCondition> createCondition)
+        Func<object?, SnapshotCondition> createCondition,
+        Func<int, string> getStageId)
     {
-        return NPCShopDatabase.AllShops
+        var shops = NPCShopDatabase.AllShops
             .SelectMany(static shop => shop.ActiveEntries.Select(entry => new { shop, entry }))
             .Where(pair => pair.entry.Item is not null
                 && !pair.entry.Item.IsAir
@@ -33,9 +34,31 @@ internal static class JournalSnapshotShopCollector
                     EnumerateObjects(pair.entry.Conditions).Select(createCondition).ToList(),
                     observed,
                     stageIndex,
+                    getStageId(stageIndex),
                     stageName);
             })
             .ToList();
+
+        shops.AddRange(JournalExactShopCatalog.GetAllSources()
+            .Where(source => includedNpcs.Contains(source.NpcType)
+                && includedItems.Contains(source.TargetItemId))
+            .Select(source =>
+            {
+                var availability = JournalTownNpcAvailabilityResolver.GetAvailability(source.NpcType);
+                return new SnapshotShop(
+                    getNpcReference(source.NpcType),
+                    "Shop",
+                    getItemReference(source.TargetItemId),
+                    source.Conditions
+                        .Select(static condition => new SnapshotCondition(condition.Type, condition.Description))
+                        .ToList(),
+                    availability.Observed,
+                    availability.EarliestStageIndex,
+                    getStageId(availability.EarliestStageIndex),
+                    availability.EarliestStageName);
+            }));
+
+        return shops;
     }
 
     private static IEnumerable<object?> EnumerateObjects<T>(IEnumerable<T>? values)

@@ -25,6 +25,12 @@ internal static class JournalFishingSourceResolver
     private static readonly PropertyInfo? ModBiomeIndexProperty = typeof(ModBiome).GetProperty(
         "ZeroIndexType",
         BindingFlags.Instance | BindingFlags.NonPublic);
+    private static readonly MethodInfo? PlayerGetModPlayerMethod = typeof(Player).GetMethods(
+            BindingFlags.Instance | BindingFlags.Public)
+        .FirstOrDefault(static method => method.Name == nameof(Player.GetModPlayer)
+            && method.IsGenericMethodDefinition
+            && method.GetGenericArguments().Length == 1
+            && method.GetParameters().Length == 0);
     private static FishingCatalog? _catalog;
     private static string _catalogKey = string.Empty;
 
@@ -54,6 +60,15 @@ internal static class JournalFishingSourceResolver
         bool CombatBookUsed,
         bool UnlockedSlimeRed,
         HashSet<string> ConditionKeys);
+
+    private sealed record LegacyBiomeFlag(FieldInfo Field, ModPlayer ModPlayer, bool OriginalValue)
+    {
+        public void Set(bool value) => Field.SetValue(ModPlayer, value);
+    }
+
+    private sealed record LegacyBiomeFlagCatalog(
+        Dictionary<int, LegacyBiomeFlag[]> ByEnvironment,
+        LegacyBiomeFlag[] All);
 
     private sealed record ProbeWorld(
         bool Hardmode = false,
@@ -207,7 +222,7 @@ internal static class JournalFishingSourceResolver
         }
 
         var effectiveStageIndexes = contexts
-            .Select(context => GetEvidenceProgressionIndex(catalog, context))
+            .Select(context => GetEffectiveProgressionIndex(catalog, context))
             .Where(static index => index >= 0)
             .ToArray();
         if (effectiveStageIndexes.Length == 0)
@@ -286,6 +301,7 @@ internal static class JournalFishingSourceResolver
         var previousCombatBookUsed = NPC.combatBookWasUsed;
         var previousUnlockedSlimeRed = NPC.unlockedSlimeRedSpawn;
         var previousPlayerState = CapturePlayerState(player);
+        var legacyBiomeFlags = CreateLegacyBiomeFlags(player, environments);
 
         try
         {
@@ -322,7 +338,7 @@ internal static class JournalFishingSourceResolver
                 progression.Reset();
                 ApplyWorld(Worlds[context.WorldIndex]);
                 progression.Apply(context.ProgressionIndex, context.ProgressionVariantIndex);
-                ApplyEnvironment(player, environments[context.EnvironmentIndex]);
+                ApplyEnvironment(player, environments[context.EnvironmentIndex], context.EnvironmentIndex, legacyBiomeFlags);
                 ProbeContextDrops(
                     catalog,
                     pipeline,
@@ -352,6 +368,11 @@ internal static class JournalFishingSourceResolver
             NPC.downedBoss3 = previousDownedSkeletron;
             NPC.combatBookWasUsed = previousCombatBookUsed;
             NPC.unlockedSlimeRedSpawn = previousUnlockedSlimeRed;
+            foreach (var flag in legacyBiomeFlags.All)
+            {
+                flag.Set(flag.OriginalValue);
+            }
+
             RestorePlayerState(player, previousPlayerState);
         }
 
@@ -962,7 +983,7 @@ internal static class JournalFishingSourceResolver
             .Distinct()
             .ToArray();
         var progressionIndexes = contexts
-            .Select(context => GetEvidenceProgressionIndex(catalog, context))
+            .Select(context => GetEffectiveProgressionIndex(catalog, context))
             .Where(static index => index >= 0)
             .Distinct()
             .Order()
@@ -982,21 +1003,6 @@ internal static class JournalFishingSourceResolver
                 string.Join(
                     ", ",
                     environmentIndexes.Select(index => catalog.Environments[index].DisplayName))));
-        }
-
-        var waterStyles = environmentIndexes
-            .Select(index => catalog.Environments[index].WaterStyle)
-            .Where(static waterStyle => waterStyle is not null)
-            .Select(static style => style!.FullName)
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .Order(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
-        if (waterStyles.Length > 0
-            && environmentIndexes.All(index => catalog.Environments[index].WaterStyle is not null))
-        {
-            conditions.Add(Language.GetTextValue(
-                "Mods.ProgressionJournal.UI.FishingWaterStyleCondition",
-                string.Join(", ", waterStyles)));
         }
 
         if (depths.Length < DepthLocalizationKeys.Length)
@@ -1075,16 +1081,6 @@ internal static class JournalFishingSourceResolver
             && (!world.DownedSkeletron || progression.DownedSkeletron)
             && (!world.CombatBookUsed || progression.CombatBookUsed)
             && (!world.UnlockedSlimeRed || progression.UnlockedSlimeRed);
-    }
-
-    private static int GetEvidenceProgressionIndex(
-        FishingCatalog catalog,
-        ProbeContext context)
-    {
-        var hasSyntheticModEnvironment = catalog.Environments[context.EnvironmentIndex].ModBiome is not null;
-        return hasSyntheticModEnvironment
-            ? -1
-            : GetEffectiveProgressionIndex(catalog, context);
     }
 
     private static void AppendProgressionCondition(
@@ -1198,8 +1194,17 @@ internal static class JournalFishingSourceResolver
         NPC.unlockedSlimeRedSpawn = world.UnlockedSlimeRed;
     }
 
-    private static void ApplyEnvironment(Player player, ProbeEnvironment environment)
+    private static void ApplyEnvironment(
+        Player player,
+        ProbeEnvironment environment,
+        int environmentIndex,
+        LegacyBiomeFlagCatalog legacyBiomeFlags)
     {
+        foreach (var flag in legacyBiomeFlags.All)
+        {
+            flag.Set(false);
+        }
+
         ResetVanillaBiomes(player);
         var modBiomeFlags = GetModBiomeFlags(player);
         modBiomeFlags.SetAll(false);
@@ -1212,7 +1217,86 @@ internal static class JournalFishingSourceResolver
             modBiomeFlags[modBiomeIndex] = true;
         }
 
+        if (legacyBiomeFlags.ByEnvironment.TryGetValue(environmentIndex, out var activeFlags))
+        {
+            foreach (var flag in activeFlags)
+            {
+                flag.Set(true);
+            }
+        }
+
         Main.waterStyle = environment.WaterStyle?.Slot ?? 0;
+    }
+
+    private static LegacyBiomeFlagCatalog CreateLegacyBiomeFlags(
+        Player player,
+        IReadOnlyList<ProbeEnvironment> environments)
+    {
+        var byEnvironment = new Dictionary<int, LegacyBiomeFlag[]>();
+        var byField = new Dictionary<FieldInfo, LegacyBiomeFlag>();
+        if (PlayerGetModPlayerMethod is null)
+        {
+            return new LegacyBiomeFlagCatalog(byEnvironment, []);
+        }
+
+        for (var environmentIndex = 0; environmentIndex < environments.Count; environmentIndex++)
+        {
+            var biome = environments[environmentIndex].ModBiome;
+            var isBiomeActive = biome?.GetType().GetMethod(
+                nameof(ModBiome.IsBiomeActive),
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (isBiomeActive is null)
+            {
+                continue;
+            }
+
+            var flags = new List<LegacyBiomeFlag>();
+            foreach (var field in JournalLegacyDirectDropAnalyzer.GetReferencedMembers(isBiomeActive)
+                         .OfType<FieldInfo>()
+                         .Where(static field => !field.IsStatic
+                             && field.FieldType == typeof(bool)
+                             && field.DeclaringType is not null
+                             && typeof(ModPlayer).IsAssignableFrom(field.DeclaringType))
+                         .Distinct())
+            {
+                if (!byField.TryGetValue(field, out var flag))
+                {
+                    try
+                    {
+                        var modPlayer = PlayerGetModPlayerMethod
+                            .MakeGenericMethod(field.DeclaringType!)
+                            .Invoke(player, null) as ModPlayer;
+                        if (modPlayer is null)
+                        {
+                            continue;
+                        }
+
+                        flag = new LegacyBiomeFlag(
+                            field,
+                            modPlayer,
+                            (bool)(field.GetValue(modPlayer) ?? false));
+                        byField[field] = flag;
+                    }
+                    catch (Exception exception)
+                    {
+                        LogDebugOnce(
+                            $"legacy-biome-flag:{field.DeclaringType?.FullName}.{field.Name}",
+                            $"Failed to bind legacy ModPlayer biome flag '{field.DeclaringType?.FullName}.{field.Name}'.",
+                            exception);
+                        continue;
+                    }
+                }
+
+                flags.Add(flag);
+            }
+
+            if (flags.Count > 0)
+            {
+                byEnvironment[environmentIndex] = flags.ToArray();
+            }
+        }
+
+        return new LegacyBiomeFlagCatalog(byEnvironment, byField.Values.ToArray());
     }
 
     private static PlayerState CapturePlayerState(Player player)

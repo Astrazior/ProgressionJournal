@@ -69,7 +69,14 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             .Where(npcId => includedMods.Contains(GetNpcModName(npcId)))
             .ToHashSet();
 
-        var npcAvailability = JournalSnapshotNpcAvailabilityCollector.Collect(npcIds, GetNpcReference);
+        string GetStageId(int stageIndex) =>
+            stageIndex >= 0 && stageIndex < targetProfile.Stages.Count
+                ? targetProfile.Stages[stageIndex].Id
+                : string.Empty;
+        var npcAvailability = JournalSnapshotNpcAvailabilityCollector.Collect(
+            npcIds,
+            GetNpcReference,
+            GetStageId);
         var npcSpawnProbe = JournalNpcSpawnAvailabilityResolver.GetDiagnostics();
         var items = itemIds.Select(CreateItem).ToList();
         var npcs = npcIds.Select(CreateNpc).ToList();
@@ -113,12 +120,14 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                 npcIds,
                 GetItemReference,
                 GetNpcReference,
-                CreateCondition),
+                CreateCondition,
+                GetStageId),
             Fishing = JournalSnapshotFishingCollector.Collect(
                 itemIds,
                 npcIds,
                 GetItemReference,
-                GetNpcReference),
+                GetNpcReference,
+                GetStageId),
             NpcAvailability = npcAvailability,
             NpcSpawnProbe = new SnapshotNpcSpawnProbe(
                 npcAvailability.Count(static record => record is { Kind: "spawn", Observed: true }),
@@ -755,11 +764,13 @@ public sealed record SnapshotShop(
     List<SnapshotCondition> Conditions,
     bool Observed,
     int EarliestStageIndex,
+    string EarliestStageId,
     string EarliestStageName);
 public sealed record SnapshotFishingCatch(
     string TargetType,
     string Target,
     int EarliestStageIndex,
+    string EarliestStageId,
     string EarliestStageName,
     List<string> Conditions);
 public sealed record SnapshotNpcAvailability(
@@ -767,6 +778,7 @@ public sealed record SnapshotNpcAvailability(
     string Kind,
     bool Observed,
     int EarliestStageIndex,
+    string EarliestStageId,
     string EarliestStageName,
     List<string> Conditions,
     List<string> EventCategories);

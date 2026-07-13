@@ -40,6 +40,47 @@ internal static class JournalSnapshotNpcDropCollector
             getItemReference,
             createCondition,
             logDebug));
+        result.AddRange(JournalLegacyDirectDropAnalyzer.GetAllNpcDrops()
+            .Where(drop => includedNpcs.Contains(drop.SourceNpcType)
+                && includedItems.Contains(drop.TargetItemId))
+            .Select(drop => new SnapshotDrop(
+                "npc",
+                getNpcReference(drop.SourceNpcType),
+                getItemReference(drop.TargetItemId),
+                drop.DropRate,
+                drop.StackMin,
+                drop.StackMax,
+                [])));
+        result.AddRange(JournalExactDropCatalog.GetAllNpcDrops()
+            .Where(drop => drop.SourceNpcType is { } sourceNpcType
+                && includedNpcs.Contains(sourceNpcType)
+                && includedItems.Contains(drop.TargetItemId))
+            .Select(drop => new SnapshotDrop(
+                "npc",
+                getNpcReference(drop.SourceNpcType!.Value),
+                getItemReference(drop.TargetItemId),
+                drop.DropRate,
+                drop.StackMin,
+                drop.StackMax,
+                drop.Conditions
+                    .Select(static condition => new SnapshotCondition(
+                        condition.Type,
+                        condition.Description))
+                    .ToList())));
+        result.AddRange(JournalExactDropCatalog.GetAllGlobalDrops()
+            .Where(drop => includedItems.Contains(drop.TargetItemId))
+            .Select(drop => new SnapshotDrop(
+                "global",
+                "AAModClassic/GlobalNPCDrops",
+                getItemReference(drop.TargetItemId),
+                drop.DropRate,
+                drop.StackMin,
+                drop.StackMax,
+                drop.Conditions
+                    .Select(static condition => new SnapshotCondition(
+                        condition.Type,
+                        condition.Description))
+                    .ToList())));
         return result;
     }
 }

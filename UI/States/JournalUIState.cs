@@ -651,17 +651,6 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         var top = JournalUiMetrics.BlockVerticalPadding;
         top = AppendCenteredTokenRows(panel, [JournalAcquisitionVisuals.CreateSourceToken(shop)], top);
 
-        var lines = new List<string>();
-        if (!shop.ShopName.Equals("Shop", StringComparison.OrdinalIgnoreCase))
-        {
-            lines.Add($"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemShopName")}: {shop.ShopName}");
-        }
-
-        if (lines.Count > 0)
-        {
-            top = AppendCenteredTextLines(panel, lines, top + 8f);
-        }
-
         if (shop.Conditions.Count > 0)
         {
             top = AppendConditionContent(panel, shop.Conditions, top + 6f);
@@ -893,19 +882,31 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             return top;
         }
 
-        foreach (var line in JournalTextUtilities.WrapToPixelWidth(
-                     string.Join(" • ", conditions),
-                     maxWidth,
-                     JournalUiMetrics.AcquisitionPanelTextScale))
+        for (var conditionIndex = 0; conditionIndex < conditions.Count; conditionIndex++)
         {
-            var text = new UIText(line, JournalUiMetrics.AcquisitionPanelTextScale)
+            if (conditionIndex > 0)
             {
-                HAlign = 0.5f,
-                TextColor = new Color(238, 204, 94)
-            };
-            text.Top.Set(top, 0f);
-            parent.Append(text);
-            top += JournalUiMetrics.AcquisitionPanelTextLineHeight;
+                top += 4f;
+            }
+
+            var condition = conditions[conditionIndex];
+            var textColor = JournalAcquisitionVisuals.IsHardmodeCondition(condition)
+                ? new Color(235, 91, 91)
+                : new Color(238, 204, 94);
+            foreach (var line in JournalTextUtilities.WrapToPixelWidth(
+                         condition,
+                         maxWidth,
+                         JournalUiMetrics.AcquisitionPanelTextScale))
+            {
+                var text = new UIText(line, JournalUiMetrics.AcquisitionPanelTextScale)
+                {
+                    HAlign = 0.5f,
+                    TextColor = textColor
+                };
+                text.Top.Set(top, 0f);
+                parent.Append(text);
+                top += JournalUiMetrics.AcquisitionPanelTextLineHeight;
+            }
         }
 
         return top;

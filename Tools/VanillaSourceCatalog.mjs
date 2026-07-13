@@ -1,3 +1,5 @@
+import { resolveSnapshotStageIndex } from "./SnapshotStageResolver.mjs";
+
 const START_STATIONS = [
   "Terraria/WorkBenches",
   "Terraria/Furnaces",
@@ -112,6 +114,7 @@ const START_ITEMS = [
   "Terraria/Hive",
   "Terraria/HoneyBlock",
   "Terraria/BottledHoney",
+  "Terraria/Sandstone",
   "Terraria/IllegalGunParts",
   "Terraria/MusketBall",
   "Terraria/WoodenArrow",
@@ -153,7 +156,6 @@ const START_ITEMS = [
   "Terraria/TerrasparkBoots",
   "Terraria/SunplateBlock",
   "Terraria/ShimmerBlock",
-  "Terraria/Grapes",
   "Terraria/Lemon",
   "Terraria/Grapefruit",
   "Terraria/Plum",
@@ -219,12 +221,14 @@ const MILESTONE_FACTS = [
     shops: ["Terraria/WitchDoctor"]
   },
   {
+    eventCategory: "GoblinArmy",
     findStage: manifest => findEventStage(manifest, "GoblinArmy"),
     items: ["Terraria/TinkerersWorkshop"],
     stations: ["Terraria/TinkerersWorkbench"],
     shops: ["Terraria/GoblinTinkerer"]
   },
   {
+    eventCategory: "BloodMoon",
     findStage: manifest => findEventStage(manifest, "BloodMoon"),
     enemies: [
       "Terraria/ZombieMerman",
@@ -471,6 +475,7 @@ const MILESTONE_FACTS = [
     shops: ["Terraria/Cyborg", "Terraria/Princess"]
   },
   {
+    eventCategory: "PumpkinMoon",
     findStage: manifest => findEventStage(manifest, "PumpkinMoon"),
     items: [
       "Terraria/TheHorsemansBlade",
@@ -482,6 +487,7 @@ const MILESTONE_FACTS = [
     ]
   },
   {
+    eventCategory: "FrostMoon",
     findStage: manifest => findEventStage(manifest, "FrostMoon"),
     items: [
       "Terraria/ChainGun",
@@ -827,6 +833,16 @@ export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {
       ...(stage.enemies ?? []),
       ...filterLegacyNpcSources(fact.enemies ?? [], stageId, "spawn", manifest, snapshot)
     ]);
+    if (fact.eventCategory) {
+      const event = (manifest.events ?? []).find(value =>
+        value.eventCategory === fact.eventCategory);
+      if (event) {
+        event.enemies = unique([
+          ...(event.enemies ?? []),
+          ...filterLegacyNpcSources(fact.enemies ?? [], stageId, "spawn", manifest, snapshot)
+        ]);
+      }
+    }
     stage.containers = unique([
       ...(stage.containers ?? []),
       ...(fact.containers ?? [])
@@ -879,7 +895,10 @@ function filterLegacyNpcSources(sources, expectedStageId, kind, manifest, snapsh
     const observed = availability.get(source);
     if (!observed?.observed
         || observed.kind !== kind
-        || observed.earliestStageIndex !== expectedStageIndex) {
+        || resolveSnapshotStageIndex(
+          observed,
+          manifest.stages,
+          `vanilla source ${source}`) !== expectedStageIndex) {
       return true;
     }
     return kind === "town"

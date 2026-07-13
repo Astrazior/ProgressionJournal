@@ -26,6 +26,12 @@ internal static class JournalNpcSpawnAvailabilityResolver
     private static readonly PropertyInfo? ModBiomeIndexProperty = typeof(ModBiome).GetProperty(
         "ZeroIndexType",
         BindingFlags.Instance | BindingFlags.NonPublic);
+    private static readonly MethodInfo? PlayerGetModPlayerMethod = typeof(Player).GetMethods(
+            BindingFlags.Instance | BindingFlags.Public)
+        .FirstOrDefault(static method => method.Name == nameof(Player.GetModPlayer)
+            && method.IsGenericMethodDefinition
+            && method.GetGenericArguments().Length == 1
+            && method.GetParameters().Length == 0);
     private static readonly MethodInfo? SpawnHelperResetMethod = typeof(NPCLoader).Assembly
         .GetType("Terraria.ModLoader.Utilities.NPCSpawnHelper")
         ?.GetMethod("Reset", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
@@ -67,6 +73,15 @@ internal static class JournalNpcSpawnAvailabilityResolver
     {
         public int WallType { get; init; }
     }
+
+    private sealed record LegacyBiomeFlag(FieldInfo Field, ModPlayer ModPlayer, bool OriginalValue)
+    {
+        public void Set(bool value) => Field.SetValue(ModPlayer, value);
+    }
+
+    private sealed record LegacyBiomeFlagCatalog(
+        Dictionary<int, LegacyBiomeFlag[]> ByEnvironment,
+        LegacyBiomeFlag[] All);
 
     private sealed class SpawnArena
     {
@@ -167,6 +182,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
         IReadOnlyList<string> StageNames,
         HashSet<int> VanillaProgressionStages,
         SpawnEnvironment[] Environments,
+        LegacyBiomeFlagCatalog LegacyBiomeFlags,
         SpawnEvent[] Events,
         StaticBooleanFlag[] CustomEventFlags,
         HashSet<string> Failures,
@@ -227,7 +243,8 @@ internal static class JournalNpcSpawnAvailabilityResolver
         bool Dd2Ongoing,
         int Dd2Difficulty,
         UnifiedRandom Random,
-        int NetMode);
+        int NetMode,
+        int GameMode);
 
     public static JournalNpcSpawnAvailability GetAvailability(int npcType)
     {
@@ -244,6 +261,11 @@ internal static class JournalNpcSpawnAvailabilityResolver
         var catalog = GetCatalog();
         if (!catalog.Observations.TryGetValue(npcType, out var contexts) || contexts.Count == 0)
         {
+            if (TryInferSimpleHardmodeSkyAvailability(npcType, out var inferredAvailability))
+            {
+                return inferredAvailability;
+            }
+
             return new JournalNpcSpawnAvailability(
                 npcType,
                 observed: false,
@@ -252,19 +274,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
                 conditions: []);
         }
 
-        var stageEvidence = contexts
-            .Where(context => catalog.Environments[context.EnvironmentIndex].ModBiome is null)
-            .ToArray();
-        if (stageEvidence.Length == 0)
-        {
-            return new JournalNpcSpawnAvailability(
-                npcType,
-                observed: true,
-                earliestStageIndex: -1,
-                earliestStageName: string.Empty,
-                BuildConditions(catalog, contexts, -1, string.Empty),
-                GetEventCategories(catalog, contexts));
-        }
+        var stageEvidence = contexts.ToArray();
 
         var earliestStageIndex = stageEvidence.Min(static context => context.StageIndex);
         var earliestStageName = earliestStageIndex >= 0 && earliestStageIndex < catalog.StageNames.Count
@@ -282,6 +292,61 @@ internal static class JournalNpcSpawnAvailabilityResolver
     public static IReadOnlyList<string> GetConditions(int npcType)
     {
         return GetAvailability(npcType).Conditions;
+    }
+
+    private static bool TryInferSimpleHardmodeSkyAvailability(
+        int npcType,
+        out JournalNpcSpawnAvailability availability)
+    {
+        availability = null!;
+        if (!JournalStaticNpcSpawnConditionResolver.IsSimpleHardmodeSky(npcType))
+        {
+            return false;
+        }
+
+        var stageIndex = FindEarliestHardmodeStage();
+        var profile = JournalRuntimeProgressionScenarios.CurrentProfile;
+        if (stageIndex < 0 || profile is null || stageIndex >= profile.Stages.Count)
+        {
+            return false;
+        }
+
+        var stageName = profile.Stages[stageIndex].Name.Resolve();
+        availability = new JournalNpcSpawnAvailability(
+            npcType,
+            observed: true,
+            stageIndex,
+            stageName,
+            [
+                Language.GetTextValue(
+                    "Mods.ProgressionJournal.UI.NpcSpawnAvailableAfterCondition",
+                    stageName),
+                Language.GetTextValue(
+                    "Mods.ProgressionJournal.UI.FishingDepthCondition",
+                    Language.GetTextValue("Bestiary_Biomes.Sky"))
+            ]);
+        return true;
+    }
+
+    private static int FindEarliestHardmodeStage()
+    {
+        using var progression = new JournalRuntimeProgressionScenarios();
+        for (var stageIndex = 0; stageIndex < progression.Count; stageIndex++)
+        {
+            for (var variantIndex = 0;
+                 variantIndex < progression.GetVariantCount(stageIndex);
+                 variantIndex++)
+            {
+                progression.Reset();
+                progression.Apply(stageIndex, variantIndex);
+                if (Main.hardMode)
+                {
+                    return stageIndex;
+                }
+            }
+        }
+
+        return -1;
     }
 
     internal static JournalNpcSpawnProbeDiagnostics GetDiagnostics()
@@ -333,6 +398,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
     {
         var player = CreateProbePlayer();
         var environments = CreateEnvironments();
+        var legacyBiomeFlags = CreateLegacyBiomeFlags(player, environments);
         var customEventFlags = CreateCustomEventFlags();
         var events = CreateEvents(customEventFlags);
         using var progression = new JournalRuntimeProgressionScenarios();
@@ -344,6 +410,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
                 .Append(0)
                 .ToHashSet(),
             environments,
+            legacyBiomeFlags,
             events,
             customEventFlags,
             [],
@@ -362,6 +429,10 @@ internal static class JournalNpcSpawnAvailabilityResolver
         {
             PreparePlayers(player);
             Main.netMode = NetmodeID.SinglePlayer;
+            // Profiles describe one progression path, independent of the world used for export.
+            // Some mods derive defeat flags from different NPC variants in Expert mode, so a
+            // probe must not inherit the export world's difficulty and lose normal-mode sources.
+            Main.GameMode = 0;
             foreach (var context in CreateContexts(catalog))
             {
                 for (var variantIndex = 0;
@@ -429,6 +500,11 @@ internal static class JournalNpcSpawnAvailabilityResolver
             foreach (var flag in customEventFlags)
             {
                 flag.Restore();
+            }
+
+            foreach (var flag in legacyBiomeFlags.All)
+            {
+                flag.Set(flag.OriginalValue);
             }
         }
 
@@ -711,6 +787,11 @@ internal static class JournalNpcSpawnAvailabilityResolver
     {
         ResetWorldScenario(catalog);
         ResetPlayerZones(player);
+        foreach (var flag in catalog.LegacyBiomeFlags.All)
+        {
+            flag.Set(false);
+        }
+
         catalog.Events[context.EventIndex].Apply();
         var environment = catalog.Environments[context.EnvironmentIndex];
         environment.Apply(player);
@@ -724,8 +805,89 @@ internal static class JournalNpcSpawnAvailabilityResolver
             }
         }
 
+        if (catalog.LegacyBiomeFlags.ByEnvironment.TryGetValue(
+                context.EnvironmentIndex,
+                out var activeLegacyBiomeFlags))
+        {
+            foreach (var flag in activeLegacyBiomeFlags)
+            {
+                flag.Set(true);
+            }
+        }
+
         var (x, y) = GetCoordinates(context.Depth, context.EnvironmentIndex == 1);
         player.Center = new Vector2(x * 16f, y * 16f);
+    }
+
+    private static LegacyBiomeFlagCatalog CreateLegacyBiomeFlags(
+        Player player,
+        IReadOnlyList<SpawnEnvironment> environments)
+    {
+        var byEnvironment = new Dictionary<int, LegacyBiomeFlag[]>();
+        var byField = new Dictionary<FieldInfo, LegacyBiomeFlag>();
+        if (PlayerGetModPlayerMethod is null)
+        {
+            return new LegacyBiomeFlagCatalog(byEnvironment, []);
+        }
+
+        for (var environmentIndex = 0; environmentIndex < environments.Count; environmentIndex++)
+        {
+            var biome = environments[environmentIndex].ModBiome;
+            var isBiomeActive = biome?.GetType().GetMethod(
+                nameof(ModBiome.IsBiomeActive),
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (isBiomeActive is null)
+            {
+                continue;
+            }
+
+            var flags = new List<LegacyBiomeFlag>();
+            foreach (var field in JournalLegacyDirectDropAnalyzer.GetReferencedMembers(isBiomeActive)
+                         .OfType<FieldInfo>()
+                         .Where(static field => !field.IsStatic
+                             && field.FieldType == typeof(bool)
+                             && field.DeclaringType is not null
+                             && typeof(ModPlayer).IsAssignableFrom(field.DeclaringType))
+                         .Distinct())
+            {
+                if (!byField.TryGetValue(field, out var flag))
+                {
+                    try
+                    {
+                        var modPlayer = PlayerGetModPlayerMethod
+                            .MakeGenericMethod(field.DeclaringType!)
+                            .Invoke(player, null) as ModPlayer;
+                        if (modPlayer is null)
+                        {
+                            continue;
+                        }
+
+                        flag = new LegacyBiomeFlag(
+                            field,
+                            modPlayer,
+                            (bool)(field.GetValue(modPlayer) ?? false));
+                        byField[field] = flag;
+                    }
+                    catch (Exception exception)
+                    {
+                        ProgressionJournal.Instance?.Logger.Debug(
+                            $"Failed to bind legacy NPC probe biome flag "
+                            + $"'{field.DeclaringType?.FullName}.{field.Name}'."
+                            + $"{Environment.NewLine}{exception}");
+                        continue;
+                    }
+                }
+
+                flags.Add(flag);
+            }
+
+            if (flags.Count > 0)
+            {
+                byEnvironment[environmentIndex] = flags.ToArray();
+            }
+        }
+
+        return new LegacyBiomeFlagCatalog(byEnvironment, byField.Values.ToArray());
     }
 
     private static NPCSpawnInfo CreateSpawnInfo(Catalog catalog, Player player, SpawnContext context)
@@ -1357,7 +1519,8 @@ internal static class JournalNpcSpawnAvailabilityResolver
             DD2Event.Ongoing,
             DD2Event.OngoingDifficulty,
             Main.rand,
-            Main.netMode);
+            Main.netMode,
+            Main.GameMode);
     }
 
     private static void RestoreWorldState(WorldState state)
@@ -1379,6 +1542,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
         DD2Event.OngoingDifficulty = state.Dd2Difficulty;
         Main.rand = state.Random;
         Main.netMode = state.NetMode;
+        Main.GameMode = state.GameMode;
     }
 
     private static Player CreateProbePlayer()

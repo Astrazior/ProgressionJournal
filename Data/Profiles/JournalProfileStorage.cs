@@ -228,6 +228,9 @@ public static class JournalProfileStorage
         foreach (var buff in from buff in document.CombatBuffs let buffClasses = GetCombatBuffClasses(buff) where string.IsNullOrWhiteSpace(buff.Key)
                      || buffClasses.Count == 0
                      || !buffClasses.All(classIds.Contains) || !stageIds.Contains(buff.StageId)
+                     || buff.FishingSources.Any(source =>
+                         source.Conditions.Count == 0
+                         || source.Conditions.Any(static condition => condition.IsEmpty))
                      || buff.ItemGroups.Count == 0
                      || buff.ItemGroups.Any(static @group => @group.Count == 0)
                      || buff.ItemGroups.SelectMany(static @group => @group).Any(static reference =>
@@ -268,7 +271,14 @@ public static class JournalProfileStorage
                 .Select(static @group => new JournalItemGroup(@group))
                 .ToArray()
             where groups.Length != 0
-            select new JournalCombatBuffEntry(buffDocument.Key, buffDocument.Category, GetCombatBuffClasses(buffDocument), groups, buffDocument.StageId));
+            select new JournalCombatBuffEntry(
+                buffDocument.Key,
+                buffDocument.Category,
+                GetCombatBuffClasses(buffDocument),
+                groups,
+                buffDocument.StageId,
+                fishingSources: buffDocument.FishingSources.Select(static source =>
+                    new JournalFishingSource(source.Conditions.Select(static condition => condition.Resolve())))));
 
         return result;
     }

@@ -3,17 +3,17 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-13T10:56:56.157Z",
+  "generatedAtUtc": "2026-07-13T15:03:55.921Z",
   "snapshotGeneratedAtUtc": "2026-07-12T21:43:11.7316734Z",
   "summary": {
     "snapshotItems": 8126,
     "contentItems": 2671,
     "profileEntries": 1947,
-    "profileBuffEntries": 170,
-    "profileItemReferences": 2141,
+    "profileBuffEntries": 171,
+    "profileItemReferences": 2142,
     "equipmentReferences": 1971,
-    "buffReferences": 170,
-    "excluded": 3559,
+    "buffReferences": 171,
+    "excluded": 3558,
     "acquiredNonProfile": 131,
     "unresolvedAvailability": 7,
     "unavailableCombat": 2,
@@ -11276,7 +11276,7 @@
       "mod": "CalamityMod",
       "contentItem": true,
       "status": "buff",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "recipe:Terraria/Bottle+Terraria/Grapes",
       "reason": "Included in the generated profile."
     },
@@ -28536,7 +28536,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/Sandstone+Terraria/AntlionMandible",
       "reason": "not combat equipment"
     },
@@ -39306,7 +39306,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/IronBar",
       "reason": "not combat equipment"
     },
@@ -48146,7 +48146,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "buff",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "recipe:Terraria/Grapes+Terraria/Bottle",
       "reason": "Included in the generated profile."
     },
@@ -48155,10 +48155,10 @@
       "name": "Виноград",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "acquired-non-profile",
-      "stage": "start",
-      "via": "initial",
-      "reason": "Acquisition path resolved, but the item is not a profile entry."
+      "status": "buff",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/Derpling",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/GrapplingHook",
@@ -67915,10 +67915,10 @@
       "name": "Песчаниковый блок",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "king-slime",
-      "via": "recipe:Terraria/SandBlock+Terraria/StoneBlock",
-      "reason": "not combat equipment"
+      "status": "acquired-non-profile",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Acquisition path resolved, but the item is not a profile entry."
     },
     {
       "id": "Terraria/SandstoneBathtub",
@@ -67926,7 +67926,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -67936,7 +67936,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/Silk",
       "reason": "not combat equipment"
     },
@@ -67976,7 +67976,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/Torch",
       "reason": "not combat equipment"
     },
@@ -67986,7 +67986,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/Torch",
       "reason": "not combat equipment"
     },
@@ -67996,7 +67996,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -68006,7 +68006,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/Torch+Terraria/Chain",
       "reason": "not combat equipment"
     },
@@ -68016,7 +68016,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/IronBar+Terraria/Glass",
       "reason": "not combat equipment"
     },
@@ -68026,7 +68026,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -68036,7 +68036,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -68046,7 +68046,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -68056,7 +68056,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/Torch+Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -68066,7 +68066,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/Torch",
       "reason": "not combat equipment"
     },
@@ -68086,7 +68086,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -68116,7 +68116,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/Silk",
       "reason": "not combat equipment"
     },
@@ -68126,7 +68126,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -68136,7 +68136,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -68146,7 +68146,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/Sandstone",
       "reason": "not combat equipment"
     },
@@ -68166,7 +68166,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },
@@ -71166,7 +71166,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/Sandstone",
       "reason": "not combat equipment"
     },
@@ -71176,7 +71176,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "start",
       "via": "recipe:Terraria/SmoothSandstone",
       "reason": "not combat equipment"
     },

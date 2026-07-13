@@ -117,8 +117,9 @@ public sealed class JournalSourceToken : UIElement
                 return;
             }
 
+            hoverItem.SetNameOverride(_data.HoverText);
             Main.HoverItem = hoverItem;
-            Main.hoverItemName = hoverItem.HoverName;
+            Main.hoverItemName = _data.HoverText;
             return;
         }
 

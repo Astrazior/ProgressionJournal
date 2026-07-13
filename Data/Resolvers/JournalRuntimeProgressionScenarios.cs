@@ -302,7 +302,7 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
         var kills = Main.BestiaryTracker.Kills;
         accessor = new NpcKillCountAccessor(
             kills.GetKillCount(sample),
-            value => kills.SetKillCountDirectly(creditId, value));
+            value => Main.BestiaryTracker.Kills.SetKillCountDirectly(creditId, value));
         return true;
     }
 

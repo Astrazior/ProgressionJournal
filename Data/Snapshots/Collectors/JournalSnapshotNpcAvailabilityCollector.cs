@@ -7,7 +7,8 @@ internal static class JournalSnapshotNpcAvailabilityCollector
 {
     public static List<SnapshotNpcAvailability> Collect(
         HashSet<int> includedNpcs,
-        Func<int, string> getNpcReference)
+        Func<int, string> getNpcReference,
+        Func<int, string> getStageId)
     {
         return includedNpcs.Select(npcId =>
         {
@@ -20,6 +21,7 @@ internal static class JournalSnapshotNpcAvailabilityCollector
                     "town",
                     availability.Observed,
                     availability.EarliestStageIndex,
+                    getStageId(availability.EarliestStageIndex),
                     availability.EarliestStageName,
                     [],
                     []);
@@ -31,6 +33,7 @@ internal static class JournalSnapshotNpcAvailabilityCollector
                 "spawn",
                 spawnAvailability.Observed,
                 spawnAvailability.EarliestStageIndex,
+                getStageId(spawnAvailability.EarliestStageIndex),
                 spawnAvailability.EarliestStageName,
                 spawnAvailability.Conditions.ToList(),
                 spawnAvailability.EventCategories.ToList());

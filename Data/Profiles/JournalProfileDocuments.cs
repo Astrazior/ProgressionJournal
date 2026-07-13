@@ -176,4 +176,6 @@ public sealed class JournalProfileCombatBuffDocument
     public string StageId { get; set; } = string.Empty;
 
     public List<List<JournalItemReferenceDocument>> ItemGroups { get; set; } = [];
+
+    public List<JournalFishingSourceDocument> FishingSources { get; set; } = [];
 }
