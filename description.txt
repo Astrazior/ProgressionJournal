@@ -2,77 +2,65 @@
 
 [b]A client-side progression helper for Terraria/tModLoader.[/b]
 
-This mod adds an in-game journal with manually curated equipment recommendations for each class at every stage of progression.
-It is designed as a quick reference during gameplay, so you do not have to open the wiki every few minutes.
+The mod adds an in-game journal with equipment recommendations for every supported class and progression stage. It provides a quick reference during gameplay without requiring you to constantly check a wiki.
 
 [h2]Features[/h2]
 [list]
-[*]Equipment recommendations for melee, ranged, magic, and summoner at each progression stage
+[*]Equipment recommendations for every supported class at each progression stage
+[*]Support for modded classes defined by profiles, such as Rogue
 [*]Separate rating tiers: strong, usable, weak, and very weak
-[*]Combat buffs page with stations, passives, potions, food, flasks, and permanent upgrades
-[*]Item acquisition panel: drops, shops, recipes, crafting stations, and conditions
-[*]Visual condition icons for events, moon phases, and other progression checks
-[*]Fully usable in-game through a dedicated journal interface
-[*]Custom build system with saving, import, and export support
-[*]Build sharing through JSON format or directly through the in-game chat
+[*]Separate ratings for buffs
+[*]Item acquisition details, including drops, shops, recipes, crafting stations, and required conditions
+[*]Visual icons for events, moon phases, and other progression requirements
+[*]A dedicated in-game journal interface
+[*]Custom build creation, saving, importing, and exporting
+[*]Build sharing through JSON or the in-game chat
 [*]Support for items from other mods in custom builds
-[*]Search and filtering tools for easier build setup
-[*]Support for mods through separate profiles
+[*]Search and filtering tools for build setup
+[*]Support for content mods through separate profiles
 [/list]
 
 [h2]Build System[/h2]
 
-Starting with version [b]2.0.0[/b], the mod includes a full build system. You can now create your own custom character builds, adjust them to your playstyle, and share them directly with other players.
+Starting with version [b]2.0.0[/b], the mod allows you to create custom builds for different classes and playstyles.
 
 [img]https://i.imgur.com/PV7pm66.gif[/img]
 
-The build system allows you to create your own custom character builds: choose equipment, accessories, weapons, consumables, and other elements for a specific class or playstyle.
+Builds can include weapons, armor, accessories, consumables, and other equipment. They can be imported and exported through JSON or shared directly through the in-game chat.
 
-Builds can be shared in two ways:
-[list]
-[*]through JSON format for import and export;
-[*]directly through the in-game chat.
-[/list]
-
-Builds are attached to the active progression profile, class, and stage. Profiles can define modded classes such as Rogue and can be copied and edited in-game.
+Each build is linked to the active progression profile, class, and stage.
 
 [h2]Profile System[/h2]
 
-Starting with version [b]2.1.0[/b], the mod now includes a profile system.
+Starting with version [b]2.1.0[/b], the mod supports separate profiles for content mods. Profiles can be copied and edited directly in-game.
 
-Due to numerous requests, I decided to add profiles for content mods. I will say this right away: this is not full support, and as I have said before, there will be no complete manual support from me. I consider it madness to try to properly evaluate the sheer number of items large mods add, and then continue maintaining all of that after updates.
-
-That is why I made a system that approaches the problem differently.
-
-Mod profiles are structured somewhat differently. Instead of the usual division by item effectiveness, they rely on two blocks:
+Instead of manually rating thousands of modded items, profiles use two main sections:
 
 [list]
-[*][b]Recommendations[/b] — official recommendations from an official source. Usually this means the mod's wiki, provided it has ready-made class setups.
-[*][b]New Equipment and Buffs[/b] — items and buffs that are determined by the mod itself.
+[*][b]Recommendations[/b] — official recommendations from the mod's sources, such as its wiki
+[*][b]New Equipment and Buffs[/b] — items and buffs detected automatically through progression analysis
 [/list]
 
 [img]https://i.imgur.com/n7OK3RO.gif[/img]
 
-How does it work? The mod analyzes conditions, bosses, their loot, materials, recipes, and other progression connections. In an ideal case, it looks something like this:
+The system analyzes bosses, loot, materials, recipes, and other progression connections. A simple progression chain looks like this:
 
 [b]boss → new material → new armor or weapon[/b]
 
-And in most cases, that is indeed roughly how it works. However, not all modded progression is that straightforward:
+More complex chains may not always be detected correctly:
 
-[b]boss → new enemy or new drop from an old enemy → new material → new armor or weapon[/b]
+[b]boss → new enemy or new drop → material → equipment[/b]
 
-Such chains are already noticeably harder for the system to match correctly, which means the result may not always be accurate.
-
-This feature is experimental. It will be updated, refined, improved, or changed over time. Do not expect it to work flawlessly. It is not a cure-all — at least not yet.
+As a result, automatically generated data may contain inaccuracies or become outdated after content mod updates.
 
 [h2]Important[/h2]
 [list]
-[*]This is a [b]client-side[/b] mod
-[*]The server does not need to install it
-[*]It does not change vanilla progression balance; it works as a reference tool
-[*]Wiki and community profiles may be incomplete or become outdated after another mod updates
-[*][b]At the moment, the system supports Calamity, Thorium, and Fargo's Souls profiles. This is not full manual support for every item and class. I cannot guarantee perfect accuracy of recommendations, as major content mods add a huge amount of equipment, mechanics, and non-standard progression conditions.[/b]
+[*]This is a [b]client-side[/b] mod, so the server does not need to install it
+[*]The mod does not change progression or game balance and only works as a reference tool
+[*]Wiki-based and automatically generated profiles may be incomplete or inaccurate
 [/list]
+
+[b]Supported mod profiles:[/b] Calamity, Thorium, Fargo's Souls, and Ancients Awakened: Classic.
 
 [h1]Links[/h1]
 [url=https://github.com/Astrazior/ProgressionJournal]GitHub[/url]
