@@ -86,6 +86,9 @@ public static partial class JournalRepository
 
     public static IReadOnlyList<JournalEntry> GetAllVanillaEntries() => Entries.Value;
 
+    internal static IReadOnlyList<JournalCombatBuffEntry> GetAllVanillaCombatBuffEntries() =>
+        CombatBuffEntries.Value;
+
     private static List<JournalEntry> BuildEntries()
     {
         List<JournalEntry> entries = [];

@@ -135,7 +135,7 @@ function generateProfileCore(
     : source;
   assert(snapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot format.");
   assert(
-    snapshot.version === 4,
+    [4, 5].includes(snapshot.version),
     `Unsupported snapshot version '${snapshot.version}'.`);
 
   manifest = applyVanillaSourceCatalog(manifest, snapshot);
@@ -171,6 +171,10 @@ function generateProfileCore(
     normalizeObservedStage(record, `shop[${index}] ${record.npc}/${record.item}`));
   const snapshotFishing = (snapshot.fishing ?? []).map((record, index) =>
     normalizeObservedStage(record, `fishing[${index}] ${record.target}`));
+  const snapshotShimmerTransforms = (snapshot.shimmerTransforms ?? [])
+    .filter(transform =>
+      isAllowedProfileItem(transform.input, contentMods)
+      && isAllowedProfileItem(transform.output, contentMods));
   const snapshotNpcAvailability = (snapshot.npcAvailability ?? []).map((record, index) =>
     normalizeObservedStage(record, `npcAvailability[${index}] ${record.npc}`));
   const allowedItems = snapshot.items.filter(item => isAllowedProfileItem(item.id, contentMods));
@@ -345,7 +349,11 @@ function generateProfileCore(
     wikiItems: createWikiClassificationMap(wikiProfile, wikiResolver),
     vanillaItems: new Map(
       (snapshot.vanillaItemClassifications ?? [])
-        .map(value => [value.item, value]))
+        .map(value => [value.item, value])),
+    vanillaBuffs: new Map(
+      (snapshot.vanillaBuffClassifications ?? [])
+        .map(value => [value.item, value])),
+    shimmerOutputs: new Set(snapshotShimmerTransforms.map(staticTransform => staticTransform.output))
   };
   const wikiCompatibility = sourceCompatibility(wikiProfile, snapshot);
   report.officialSourceCompatibility = {
@@ -544,6 +552,17 @@ function generateProfileCore(
           }
           changed = true;
         }
+        if (available.has("Terraria/ShimmerBlock")) {
+          for (const transform of snapshotShimmerTransforms) {
+            if (available.has(transform.output) || !available.has(transform.input)) continue;
+            if (unlockAtStage(
+              transform.output,
+              stage.id,
+              `shimmer:${transform.input}`)) {
+              changed = true;
+            }
+          }
+        }
       }
     };
 
@@ -637,6 +656,7 @@ function generateProfileCore(
     contentMods,
     itemById,
     recipesByResult,
+    snapshotShimmerTransforms,
     dropsBySource,
     shopsByNpc
   });
@@ -990,6 +1010,16 @@ function classifyItem(item, manifest, report, context) {
   if (override?.buffCategory) {
     return { buffCategory: override.buffCategory, classes: override.classes ?? allClasses(manifest) };
   }
+  const vanillaBuff = item.id.startsWith("Terraria/")
+    ? context.vanillaBuffs?.get(item.id)
+    : null;
+  if (vanillaBuff) {
+    const classes = vanillaBuff.isClassSpecific
+      ? (vanillaBuff.classes ?? []).filter(classId =>
+        manifest.classes.some(profileClass => profileClass.id === classId))
+      : allClasses(manifest);
+    return { buffCategory: vanillaBuff.category, classes };
+  }
 
   if (item.placedTile && context.usedStations.has(item.placedTile)) {
     return null;
@@ -998,6 +1028,9 @@ function classifyItem(item, manifest, report, context) {
   if (item.food) return { buffCategory: "Food", classes: override?.classes ?? allClasses(manifest) };
   if (item.healLife > 0 || item.healMana > 0) {
     return { buffCategory: "Basic", classes: override?.classes ?? allClasses(manifest) };
+  }
+  if (isPermanentShimmerUpgrade(item, context)) {
+    return { buffCategory: "Eternal", classes: override?.classes ?? allClasses(manifest) };
   }
   if (item.consumable
       && item.maxStack === 1
@@ -1033,9 +1066,14 @@ function classifyItem(item, manifest, report, context) {
     const runtimeArmorClasses = isArmor
       ? resolveEffectClassEvidence(item, manifest).specificClasses
       : [];
-    let classes = runtimeArmorClasses.length > 0
-      ? runtimeArmorClasses
-      : (vanilla.classes ?? []).filter(value => validClasses.has(value));
+    const vanillaClasses = (vanilla.classes ?? []).filter(value => validClasses.has(value));
+    const overlapsVanillaClassification = runtimeArmorClasses.some(classId =>
+      vanillaClasses.includes(classId));
+    let classes = runtimeArmorClasses.length === 0
+      ? vanillaClasses
+      : overlapsVanillaClassification
+        ? [...new Set([...vanillaClasses, ...runtimeArmorClasses])]
+        : runtimeArmorClasses;
     const vanillaCombatClasses = ["melee", "ranged", "magic", "summoner"];
     if (item.accessory
         && vanillaCombatClasses.every(classId => classes.includes(classId))) {
@@ -1415,6 +1453,7 @@ function unlockContainsVanillaFlag(unlock, key) {
 function isProgressionNeutralCondition(condition) {
   const description = normalizeConditionText(condition.description);
   const type = condition.type ?? "";
+  if (isOneTimeUseEligibilityCondition(condition)) return true;
   if (/^not in world generation /u.test(description)
       || /^не в генерации мира /u.test(description)) {
     return true;
@@ -1450,6 +1489,31 @@ function isProgressionNeutralCondition(condition) {
     "Terraria.GameContent.ItemDropRules.Conditions+NotFromStatue",
     "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeDropCondition"
   ]).has(type);
+}
+
+function isOneTimeUseEligibilityCondition(condition) {
+  const type = condition.type ?? "";
+  const description = normalizeConditionText(condition.description);
+  return /(?:^|\+)NotUsed[A-Za-z0-9_]*$/u.test(type)
+    || /(?:has not|hasn't|not yet) used (?:the )?item|ещ[её] не (?:успел )?использова|не успел использовать предмет/u.test(description);
+}
+
+function isPermanentShimmerUpgrade(item, context) {
+  return context.shimmerOutputs?.has(item.id)
+    && item.consumable
+    && !item.accessory
+    && item.headSlot < 0
+    && item.bodySlot < 0
+    && item.legSlot < 0
+    && item.buffType <= 0
+    && item.healLife <= 0
+    && item.healMana <= 0
+    && item.createTile < 0
+    && item.createWall < 0
+    && item.shoot <= 0
+    && !item.sourceNamespace?.split(".").some(namespacePart =>
+      /^(?:Treasure|Grab)Bags?$/iu.test(namespacePart))
+    && item.damage <= 0;
 }
 
 function isUnavailableCondition(condition) {
@@ -2034,7 +2098,8 @@ function buildManualReview({
   entryByItem,
   contentMods,
   itemById,
-  recipesByResult
+  recipesByResult,
+  snapshotShimmerTransforms
 }) {
   const ignoredItems = new Set(manualAssignments?.ignoredItems ?? []);
   const ignoredIssues = new Set(manualAssignments?.ignoredIssues ?? []);
@@ -2045,7 +2110,11 @@ function buildManualReview({
       .flatMap(recipe => recipe.stations));
   const classificationContext = {
     usedStations,
-    items: snapshot.items.filter(item => isAllowedProfileItem(item.id, contentMods))
+    items: snapshot.items.filter(item => isAllowedProfileItem(item.id, contentMods)),
+    vanillaBuffs: new Map(
+      (snapshot.vanillaBuffClassifications ?? [])
+        .map(value => [value.item, value])),
+    shimmerOutputs: new Set((snapshotShimmerTransforms ?? []).map(transform => transform.output))
   };
   const conditionClassificationReport = { ambiguousClasses: [] };
 
@@ -2198,7 +2267,10 @@ function buildManualReview({
       stations: recipe.stations,
       conditions: recipe.conditions
     }));
-    const evidence = { drops, shops, recipes };
+    const shimmer = (snapshotShimmerTransforms ?? [])
+      .filter(transform => transform.output === item.id)
+      .map(transform => ({ sourceKind: "shimmer", source: transform.input, conditions: [] }));
+    const evidence = { drops, shops, recipes, shimmer };
     if (availabilityEvidenceIsUnavailable(evidence)) {
       report.unavailableCombatItems.push({
         item: item.id,
@@ -2340,7 +2412,8 @@ function availabilityEvidenceIsUnavailable(evidence) {
   const paths = [
     ...(evidence.drops ?? []),
     ...(evidence.shops ?? []),
-    ...(evidence.recipes ?? [])
+    ...(evidence.recipes ?? []),
+    ...(evidence.shimmer ?? [])
   ];
   return paths.length > 0 && paths.every(path =>
     (path.conditions ?? []).some(condition =>
@@ -2351,7 +2424,8 @@ function availabilityEvidenceIsAbsent(item, evidence) {
   return item.id?.startsWith("Terraria/")
     && (evidence.drops ?? []).length === 0
     && (evidence.shops ?? []).length === 0
-    && (evidence.recipes ?? []).length === 0;
+    && (evidence.recipes ?? []).length === 0
+    && (evidence.shimmer ?? []).length === 0;
 }
 
 function createReviewIssue(kind, values, identity = values) {

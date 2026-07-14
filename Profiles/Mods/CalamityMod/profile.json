@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bosses",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-07-13T22:34:44.282Z",
+  "generatedAtUtc": "2026-07-14T00:01:21.556Z",
   "requiredMods": [
     {
       "name": "CalamityMod",
@@ -37265,7 +37265,8 @@
       "key": "new.terraria.titaniummask",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -37378,7 +37379,8 @@
       "key": "new.terraria.adamantitehelmet",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -37531,6 +37533,7 @@
       "key": "new.terraria.monkshirt",
       "category": "Armor",
       "classes": [
+        "melee",
         "summoner",
         "rogue"
       ],
@@ -38036,6 +38039,7 @@
       "key": "new.terraria.squirealtshirt",
       "category": "Armor",
       "classes": [
+        "melee",
         "summoner"
       ],
       "itemGroups": [
@@ -40075,7 +40079,8 @@
       "key": "new.terraria.orichalcummask",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -43324,7 +43329,8 @@
       "key": "new.terraria.mythrilhelmet",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -43556,6 +43562,7 @@
       "key": "new.terraria.monkpants",
       "category": "Armor",
       "classes": [
+        "melee",
         "summoner",
         "rogue"
       ],
@@ -45775,7 +45782,8 @@
       "key": "new.terraria.cobalthelmet",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -46012,7 +46020,8 @@
       "key": "new.terraria.palladiummask",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -47413,7 +47422,8 @@
       "key": "new.terraria.frostleggings",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "ranged"
       ],
       "itemGroups": [
         [
@@ -48673,6 +48683,7 @@
       "key": "new.terraria.ancientbattlearmorshirt",
       "category": "Armor",
       "classes": [
+        "magic",
         "summoner"
       ],
       "itemGroups": [
@@ -48750,6 +48761,60 @@
         }
       ],
       "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.terraria.shimmerarrow",
+      "category": "Ammunition",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "ShimmerArrow",
+            "displayName": "Мерцающая стрела"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "classes": [
+            "ranged"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "World Evil",
+            "ru-RU": "Зло мира"
+          }
+        },
+        {
+          "stageId": "slime-god",
+          "classes": [
+            "ranged"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Wall of Flesh",
+            "ru-RU": "Стена плоти"
+          }
+        }
+      ],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -49031,6 +49096,7 @@
       "key": "new.terraria.huntresspants",
       "category": "Armor",
       "classes": [
+        "ranged",
         "summoner"
       ],
       "itemGroups": [
@@ -51879,7 +51945,10 @@
       "key": "new.terraria.crystalninjaleggings",
       "category": "Armor",
       "classes": [
-        "melee"
+        "magic",
+        "melee",
+        "ranged",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -54044,7 +54113,8 @@
       "key": "new.terraria.ancientbattlearmorpants",
       "category": "Armor",
       "classes": [
-        "magic"
+        "magic",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -55666,7 +55736,8 @@
       "key": "new.terraria.huntresswig",
       "category": "Armor",
       "classes": [
-        "ranged"
+        "ranged",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -55894,12 +55965,28 @@
       ],
       "evaluations": [
         {
-          "stageId": "world-evil",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
       "wiki": [
+        {
+          "stageId": "crabulon",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "World Evil",
+            "ru-RU": "Зло мира"
+          }
+        },
         {
           "stageId": "queen-bee",
           "classes": [
@@ -56035,7 +56122,8 @@
       "key": "new.terraria.apprenticehat",
       "category": "Armor",
       "classes": [
-        "magic"
+        "magic",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -57257,12 +57345,28 @@
       ],
       "evaluations": [
         {
-          "stageId": "world-evil",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
       "wiki": [
+        {
+          "stageId": "crabulon",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "World Evil",
+            "ru-RU": "Зло мира"
+          }
+        },
         {
           "stageId": "queen-bee",
           "classes": [
@@ -57306,12 +57410,28 @@
       ],
       "evaluations": [
         {
-          "stageId": "world-evil",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
       "wiki": [
+        {
+          "stageId": "crabulon",
+          "classes": [
+            "melee",
+            "ranged",
+            "magic",
+            "summoner",
+            "rogue"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "World Evil",
+            "ru-RU": "Зло мира"
+          }
+        },
         {
           "stageId": "queen-bee",
           "classes": [
@@ -62755,6 +62875,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.shimmerflare",
+      "category": "Ammunition",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "ShimmerFlare",
+            "displayName": "Мерцающий факел"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.tingreaves",
       "category": "Armor",
       "classes": [
@@ -65609,7 +65758,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -65947,7 +66096,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -69094,7 +69243,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -69531,7 +69680,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -83580,6 +83729,28 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.manacrystal",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "ManaCrystal",
+            "displayName": "Кристалл маны"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.calamitymod.effigyofdecay",
       "category": "Passive",
       "classes": [
@@ -83774,6 +83945,28 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.catbast",
+      "category": "Passive",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "CatBast",
+            "displayName": "Статуя Баст"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.christmaspudding",
       "category": "Food",
       "classes": [
@@ -83887,11 +84080,7 @@
       "key": "new.terraria.lessermanapotion",
       "category": "Basic",
       "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
+        "magic"
       ],
       "stageId": "start",
       "itemGroups": [
@@ -83966,6 +84155,28 @@
             "mod": "CalamityMod",
             "item": "CalciumPotion",
             "displayName": "Calcium Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.artisanloaf",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "ArtisanLoaf",
+            "displayName": "Батон мастера-пекаря"
           }
         ]
       ],
@@ -84105,6 +84316,36 @@
         {
           "conditions": [
             "Жидкость: Мёд"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "new.terraria.combatbook",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "CombatBook",
+            "displayName": "Передовые боевые техники"
+          }
+        ]
+      ],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Вода",
+            "Глубина: Поверхность",
+            "Мир: Кровавая луна, Ночь"
           ]
         }
       ]
@@ -84286,6 +84527,28 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.lifecrystal",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "LifeCrystal",
+            "displayName": "Кристалл жизни"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.shuckedoyster",
       "category": "Food",
       "classes": [
@@ -84308,14 +84571,33 @@
       "fishingSources": []
     },
     {
-      "key": "new.terraria.ale",
-      "category": "Food",
+      "key": "new.terraria.campfire",
+      "category": "Passive",
       "classes": [
         "melee",
         "ranged",
         "magic",
         "summoner",
         "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Campfire",
+            "displayName": "Костер"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.ale",
+      "category": "Basic",
+      "classes": [
+        "melee",
+        "summoner"
       ],
       "stageId": "start",
       "itemGroups": [
@@ -85123,6 +85405,46 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.starinabottle",
+      "category": "Passive",
+      "classes": [
+        "magic"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "StarinaBottle",
+            "displayName": "Звезда в бутылке"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.heartlantern",
+      "category": "Passive",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "HeartLantern",
+            "displayName": "Светильник-сердце"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.calamitymod.bloodymary",
       "category": "Food",
       "classes": [
@@ -85379,6 +85701,116 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.arcanecrystal",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "ArcaneCrystal",
+            "displayName": "Кристалл арканы"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.ambrosia",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Ambrosia",
+            "displayName": "Амброзия"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.aegiscrystal",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "AegisCrystal",
+            "displayName": "Жизненный кристалл"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.peddlerssatchel",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "PeddlersSatchel",
+            "displayName": "Торба торговца"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.galaxypearl",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "GalaxyPearl",
+            "displayName": "Галактическая жемчужина"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.fishingpotion",
       "category": "Potion",
       "classes": [
@@ -85511,6 +85943,28 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.sunflower",
+      "category": "Passive",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "eye-of-cthulhu",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Sunflower",
+            "displayName": "Подсолнух"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.calamitymod.mushroomplasmaroot",
       "category": "Eternal",
       "classes": [
@@ -85527,6 +85981,24 @@
             "mod": "CalamityMod",
             "item": "MushroomPlasmaRoot",
             "displayName": "Mushroom Plasma Root"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.wartable",
+      "category": "Station",
+      "classes": [
+        "summoner"
+      ],
+      "stageId": "world-evil",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "WarTable",
+            "displayName": "Стол войны"
           }
         ]
       ],
@@ -85633,6 +86105,24 @@
             "mod": "Terraria",
             "item": "TitanPotion",
             "displayName": "Зелье титана"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.bewitchingtable",
+      "category": "Station",
+      "classes": [
+        "summoner"
+      ],
+      "stageId": "skeletron",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "BewitchingTable",
+            "displayName": "Колдовской стол"
           }
         ]
       ],
@@ -85774,11 +86264,7 @@
       "key": "new.terraria.greatermanapotion",
       "category": "Basic",
       "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
+        "magic"
       ],
       "stageId": "wall-of-flesh",
       "itemGroups": [
@@ -85815,6 +86301,42 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.sharpeningstation",
+      "category": "Station",
+      "classes": [
+        "melee"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "SharpeningStation",
+            "displayName": "Точильный камень"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.ammobox",
+      "category": "Station",
+      "classes": [
+        "ranged"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "AmmoBox",
+            "displayName": "Ящик с боеприпасами"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.calamitymod.oddmushroom",
       "category": "Potion",
       "classes": [
@@ -85831,6 +86353,46 @@
             "mod": "CalamityMod",
             "item": "OddMushroom",
             "displayName": "Odd Mushroom"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.crystalball",
+      "category": "Station",
+      "classes": [
+        "magic"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "CrystalBall",
+            "displayName": "Хрустальный шар"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.demonheart",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "DemonHeart",
+            "displayName": "Сердце демона"
           }
         ]
       ],
@@ -85881,10 +86443,7 @@
       "category": "Flask",
       "classes": [
         "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
+        "summoner"
       ],
       "stageId": "wall-of-flesh",
       "itemGroups": [
@@ -86263,6 +86822,28 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.combatbookvolumetwo",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "CombatBookVolumeTwo",
+            "displayName": "Передовые боевые техники: выпуск 2"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.calamitymod.barberry",
       "category": "Food",
       "classes": [
@@ -86483,6 +87064,25 @@
       "category": "Flask",
       "classes": [
         "melee",
+        "summoner"
+      ],
+      "stageId": "plantera",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "FlaskofNanites",
+            "displayName": "Флакон с нанитами"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.lifefruit",
+      "category": "Eternal",
+      "classes": [
+        "melee",
         "ranged",
         "magic",
         "summoner",
@@ -86493,8 +87093,8 @@
         [
           {
             "mod": "Terraria",
-            "item": "FlaskofNanites",
-            "displayName": "Флакон с нанитами"
+            "item": "LifeFruit",
+            "displayName": "Фрукт жизни"
           }
         ]
       ],
@@ -86539,6 +87139,28 @@
             "mod": "CalamityMod",
             "item": "Moonshine",
             "displayName": "Moonshine"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.aegisfruit",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "plantera",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "AegisFruit",
+            "displayName": "Фрукт Эгиса"
           }
         ]
       ],

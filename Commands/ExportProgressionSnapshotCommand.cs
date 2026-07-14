@@ -114,6 +114,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             Items = items,
             Npcs = npcs,
             Recipes = recipes,
+            ShimmerTransforms = CreateShimmerTransforms(itemIds),
             Drops = drops,
             Shops = JournalSnapshotShopCollector.Collect(
                 itemIds,
@@ -169,7 +170,8 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                         detail.SpawnedNpcTypes.Select(GetNpcReference).ToList()))
                     .ToList(),
                 npcSpawnProbe.Failures.ToList()),
-            VanillaItemClassifications = CreateVanillaItemClassifications()
+            VanillaItemClassifications = CreateVanillaItemClassifications(),
+            VanillaBuffClassifications = CreateVanillaBuffClassifications()
         };
 
         var sourceFolder = ProgressionJournal.Instance?.SourceFolder;
@@ -531,6 +533,31 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             .ToList();
     }
 
+    private static List<SnapshotVanillaBuffClassification> CreateVanillaBuffClassifications()
+    {
+        string[] standardClassIds =
+        [
+            JournalClassIds.Melee,
+            JournalClassIds.Ranged,
+            JournalClassIds.Magic,
+            JournalClassIds.Summoner
+        ];
+
+        return JournalRepository.GetAllVanillaCombatBuffEntries()
+            .SelectMany(entry => entry.ItemGroups
+                .SelectMany(static group => group.ItemIds)
+                .Where(static itemId => itemId > ItemID.None && itemId < ItemID.Count)
+                .Select(itemId => new SnapshotVanillaBuffClassification(
+                    GetItemReference(itemId),
+                    entry.Category.ToString(),
+                    standardClassIds.Where(entry.AppliesToClass).ToList(),
+                    entry.IsClassSpecific)))
+            .GroupBy(static value => value.Item)
+            .Select(static group => group.First())
+            .OrderBy(static value => value.Item, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+    }
+
     private static bool StatModifierEquals(StatModifier left, StatModifier right)
     {
         return NearlyEqual(left.Base, right.Base)
@@ -584,6 +611,30 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         }
 
         return recipes;
+    }
+
+    private static List<SnapshotShimmerTransform> CreateShimmerTransforms(HashSet<int> includedItems)
+    {
+        List<SnapshotShimmerTransform> transforms = [];
+        foreach (var inputItemId in includedItems)
+        {
+            var outputItemId = ItemID.Sets.ShimmerTransformToItem[inputItemId];
+            if (outputItemId <= ItemID.None
+                || outputItemId == inputItemId
+                || !includedItems.Contains(outputItemId))
+            {
+                continue;
+            }
+
+            transforms.Add(new SnapshotShimmerTransform(
+                GetItemReference(inputItemId),
+                GetItemReference(outputItemId)));
+        }
+
+        return transforms
+            .OrderBy(static transform => transform.Input, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(static transform => transform.Output, StringComparer.OrdinalIgnoreCase)
+            .ToList();
     }
 
     private static SnapshotCondition CreateCondition(object? condition)
@@ -675,7 +726,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
 public sealed class ProgressionSnapshot
 {
     public string Format { get; set; } = "ProgressionJournalSnapshot";
-    public int Version { get; set; } = 4;
+    public int Version { get; set; } = 5;
     public string GeneratedAtUtc { get; set; } = string.Empty;
     public string TargetMod { get; set; } = string.Empty;
     public string ProfileId { get; set; } = string.Empty;
@@ -685,6 +736,7 @@ public sealed class ProgressionSnapshot
     public List<SnapshotItem> Items { get; set; } = [];
     public List<SnapshotNpc> Npcs { get; set; } = [];
     public List<SnapshotRecipe> Recipes { get; set; } = [];
+    public List<SnapshotShimmerTransform> ShimmerTransforms { get; set; } = [];
     public List<SnapshotDrop> Drops { get; set; } = [];
     public List<SnapshotShop> Shops { get; set; } = [];
     public List<SnapshotFishingCatch> Fishing { get; set; } = [];
@@ -692,6 +744,7 @@ public sealed class ProgressionSnapshot
     public SnapshotNpcSpawnProbe NpcSpawnProbe { get; set; } =
         new(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, [], []);
     public List<SnapshotVanillaItemClassification> VanillaItemClassifications { get; set; } = [];
+    public List<SnapshotVanillaBuffClassification> VanillaBuffClassifications { get; set; } = [];
 }
 
 public sealed record SnapshotMod(string Name, string Version);
@@ -699,6 +752,11 @@ public sealed record SnapshotVanillaItemClassification(
     string Item,
     string Category,
     List<string> Classes);
+public sealed record SnapshotVanillaBuffClassification(
+    string Item,
+    string Category,
+    List<string> Classes,
+    bool IsClassSpecific);
 public sealed record SnapshotItem(
     string Id,
     string Name,
@@ -749,6 +807,7 @@ public sealed record SnapshotRecipe(
     List<SnapshotStack> Ingredients,
     List<string> Stations,
     List<SnapshotCondition> Conditions);
+public sealed record SnapshotShimmerTransform(string Input, string Output);
 public sealed record SnapshotDrop(
     string SourceType,
     string Source,

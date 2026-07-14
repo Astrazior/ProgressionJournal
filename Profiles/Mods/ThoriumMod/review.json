@@ -2,10 +2,49 @@
   "format": "ProgressionJournalManualReview",
   "version": 1,
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-07-13T22:08:15.472Z",
+  "generatedAtUtc": "2026-07-14T00:01:44.258Z",
   "summary": {
-    "total": 0,
-    "byKind": {}
+    "total": 1,
+    "byKind": {
+      "unassigned-combat-item": 1
+    }
   },
-  "issues": []
+  "issues": [
+    {
+      "id": "unassigned-combat-item.d52584a56e03",
+      "kind": "unassigned-combat-item",
+      "item": "ThoriumMod/AstralWave",
+      "displayName": "Astral Wave",
+      "classification": {
+        "buffCategory": "Eternal",
+        "classes": [
+          "melee",
+          "ranged",
+          "magic",
+          "summoner",
+          "bard",
+          "healer",
+          "thrower"
+        ]
+      },
+      "evidence": {
+        "drops": [],
+        "shops": [],
+        "recipes": [],
+        "shimmer": [
+          {
+            "sourceKind": "shimmer",
+            "source": "ThoriumMod/CrystalWave",
+            "conditions": []
+          }
+        ]
+      },
+      "resolution": {
+        "itemStages": {
+          "ThoriumMod/AstralWave": "<stage-id>"
+        },
+        "sourceStages": {}
+      }
+    }
+  ]
 }

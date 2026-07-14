@@ -197,7 +197,11 @@ public static class JournalAcquisitionVisuals
                 (Tokens: new List<JournalSourceTokenData>(), RemainingText: new List<string>()),
                 static (result, condition) =>
                 {
-                    if (IsHardmodeOnlyCondition(condition))
+                    if (IsLabeledBiomeCondition(condition))
+                    {
+                        result.RemainingText.Add(condition);
+                    }
+                    else if (IsHardmodeOnlyCondition(condition))
                     {
                         result.RemainingText.Add(Language.GetTextValue(
                             "Mods.ProgressionJournal.UI.FishingWorldHardmode"));
@@ -222,6 +226,19 @@ public static class JournalAcquisitionVisuals
 
     private static string RemoveLeadingItemTag(string condition) =>
         LeadingItemTagRegex.Replace(condition, string.Empty);
+
+    private static bool IsLabeledBiomeCondition(string condition)
+    {
+        var separatorIndex = condition.IndexOf(':');
+        if (separatorIndex < 0)
+        {
+            return false;
+        }
+
+        var label = condition[..separatorIndex].Trim();
+        return label.Equals("Biome", StringComparison.OrdinalIgnoreCase)
+               || label.Equals("Биом", StringComparison.OrdinalIgnoreCase);
+    }
 
     private static string RemoveRedundantItemPrefix(string condition)
     {

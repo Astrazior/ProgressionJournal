@@ -32,6 +32,7 @@ public static class JournalItemSourceResolver
         info = new JournalItemAcquisitionInfo(
             itemId,
             BuildRecipes(itemId),
+            BuildShimmerSources(itemId),
             BuildDrops(itemId),
             BuildShops(itemId),
             FindProfileFishingSources(itemId));
@@ -84,6 +85,16 @@ public static class JournalItemSourceResolver
         }
 
         return recipes;
+    }
+
+    private static JournalShimmerSource[] BuildShimmerSources(int itemId)
+    {
+        var inputItems = Enumerable.Range(1, ItemLoader.ItemCount - 1)
+            .Where(inputItemId => ItemID.Sets.ShimmerTransformToItem[inputItemId] == itemId)
+            .Select(inputItemId => ContentSamples.ItemsByType[inputItemId])
+            .Where(static item => item is not null && !item.IsAir)
+            .ToArray();
+        return inputItems.Length == 0 ? [] : [new JournalShimmerSource(inputItems)];
     }
 
     private static JournalDropSource[] BuildDrops(int itemId)

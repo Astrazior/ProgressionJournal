@@ -2,7 +2,23 @@ import { createHash } from "node:crypto";
 
 export function buildKnowledgeBase(snapshot) {
   assert(snapshot?.format === "ProgressionJournalSnapshot", "Invalid snapshot format.");
-  assert(snapshot.version === 4, `Unsupported snapshot version '${snapshot.version}'.`);
+  assert([4, 5].includes(snapshot.version), `Unsupported snapshot version '${snapshot.version}'.`);
+
+  const acquisitions = {
+    recipes: structuredClone(snapshot.recipes ?? []),
+    drops: structuredClone(snapshot.drops ?? []),
+    shops: structuredClone(snapshot.shops ?? []),
+    fishing: structuredClone(snapshot.fishing ?? [])
+  };
+  if (snapshot.shimmerTransforms !== undefined) {
+    acquisitions.shimmerTransforms = structuredClone(snapshot.shimmerTransforms);
+  }
+  const classifications = {
+    vanillaItems: structuredClone(snapshot.vanillaItemClassifications ?? [])
+  };
+  if (snapshot.vanillaBuffClassifications !== undefined) {
+    classifications.vanillaBuffs = structuredClone(snapshot.vanillaBuffClassifications);
+  }
 
   const knowledge = {
     format: "ProgressionJournalKnowledge",
@@ -22,18 +38,11 @@ export function buildKnowledgeBase(snapshot) {
       items: structuredClone(snapshot.items ?? []),
       npcs: structuredClone(snapshot.npcs ?? [])
     },
-    acquisitions: {
-      recipes: structuredClone(snapshot.recipes ?? []),
-      drops: structuredClone(snapshot.drops ?? []),
-      shops: structuredClone(snapshot.shops ?? []),
-      fishing: structuredClone(snapshot.fishing ?? [])
-    },
+    acquisitions,
     availability: {
       npcs: structuredClone(snapshot.npcAvailability ?? [])
     },
-    classifications: {
-      vanillaItems: structuredClone(snapshot.vanillaItemClassifications ?? [])
-    },
+    classifications,
     diagnostics: {
       npcSpawnProbe: snapshot.npcSpawnProbe
         ? structuredClone(snapshot.npcSpawnProbe)
@@ -53,6 +62,14 @@ export function buildKnowledgeBase(snapshot) {
     hasNpcSpawnProbe: knowledge.diagnostics.npcSpawnProbe !== null
   };
 
+  if (knowledge.acquisitions.shimmerTransforms !== undefined) {
+    knowledge.summary.shimmerTransforms = knowledge.acquisitions.shimmerTransforms.length;
+  }
+
+  if (knowledge.classifications.vanillaBuffs !== undefined) {
+    knowledge.summary.vanillaBuffClassifications = knowledge.classifications.vanillaBuffs.length;
+  }
+
   return knowledge;
 }
 
@@ -71,16 +88,22 @@ export function createSnapshotView(knowledge) {
     environmentMods: knowledge.source.environmentMods,
     items: knowledge.entities.items,
     npcs: knowledge.entities.npcs,
-    recipes: knowledge.acquisitions.recipes,
-    drops: knowledge.acquisitions.drops,
-    shops: knowledge.acquisitions.shops,
-    fishing: knowledge.acquisitions.fishing,
-    npcAvailability: knowledge.availability.npcs
+    recipes: knowledge.acquisitions.recipes
   };
+  if (knowledge.acquisitions.shimmerTransforms !== undefined) {
+    snapshot.shimmerTransforms = knowledge.acquisitions.shimmerTransforms;
+  }
+  snapshot.drops = knowledge.acquisitions.drops;
+  snapshot.shops = knowledge.acquisitions.shops;
+  snapshot.fishing = knowledge.acquisitions.fishing;
+  snapshot.npcAvailability = knowledge.availability.npcs;
   if (knowledge.diagnostics.npcSpawnProbe !== null) {
     snapshot.npcSpawnProbe = knowledge.diagnostics.npcSpawnProbe;
   }
   snapshot.vanillaItemClassifications = knowledge.classifications.vanillaItems;
+  if (knowledge.classifications.vanillaBuffs !== undefined) {
+    snapshot.vanillaBuffClassifications = knowledge.classifications.vanillaBuffs;
+  }
 
   assert(
     hashSnapshot(snapshot) === knowledge.source.snapshotSha256,

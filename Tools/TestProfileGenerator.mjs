@@ -12,7 +12,7 @@ const item = (id, values = {}) => ({
 });
 const snapshot = {
   format: "ProgressionJournalSnapshot",
-  version: 4,
+  version: 5,
   mods: [{ name: "Test", version: "1.2.3" }],
   items: [
     item("Test/Ore"),
@@ -69,6 +69,11 @@ const snapshot = {
       defense: 6,
       headSlot: 14,
       classEffects: [{ damageClass: "Magic", damage: true }]
+    }),
+    item("Terraria/OrichalcumMask", {
+      defense: 19,
+      headSlot: 15,
+      classEffects: [{ damageClass: "Melee", damage: true, attackSpeed: true }]
     }),
     item("Test/EarlyWikiSword", { damageClass: "Melee", damage: 28 }),
     item("Test/RenamedBlade", { name: "Renamed Blade", damageClass: "Melee", damage: 29 }),
@@ -162,7 +167,24 @@ const snapshot = {
     }),
     item("Terraria/WhiteString", { accessory: true }),
     item("Terraria/BrownString", { accessory: true }),
-    item("Terraria/BlackString", { accessory: true })
+    item("Terraria/BlackString", { accessory: true }),
+    item("Terraria/HeartLantern", {
+      consumable: true,
+      createTile: 42,
+      placedTile: "Terraria/HangingLanterns",
+      maxStack: 9999
+    }),
+    item("Terraria/DemonHeart", { consumable: true, maxStack: 9999 }),
+    item("Terraria/AegisCrystal", { consumable: true, maxStack: 9999 }),
+    item("Test/ShimmerBooster", { consumable: true, maxStack: 9999 }),
+    item("Test/PowderInput"),
+    item("Terraria/PurificationPowder", { consumable: true, maxStack: 9999, shoot: 10 }),
+    item("Test/BagInput"),
+    item("Test/ShimmerGrabBag", {
+      consumable: true,
+      maxStack: 9999,
+      sourceNamespace: "Test.Items.TreasureBags"
+    })
   ],
   npcs: [],
   recipes: [
@@ -195,7 +217,28 @@ const snapshot = {
       ],
       stations: [],
       conditions: []
+    },
+    {
+      result: "Terraria/HeartLantern",
+      ingredients: [{ item: "Test/CollisionSource", stack: 1 }],
+      stations: [],
+      conditions: []
+    },
+    {
+      result: "Terraria/DemonHeart",
+      ingredients: [{ item: "Test/CollisionSource", stack: 1 }],
+      stations: [],
+      conditions: [{
+        type: "Terraria.GameContent.ItemDropRules.Conditions+NotUsedDemonHeart",
+        description: null
+      }]
     }
+  ],
+  shimmerTransforms: [
+    { input: "Terraria/WorldGlobe", output: "Terraria/AegisCrystal" },
+    { input: "Test/CollisionSource", output: "Test/ShimmerBooster" },
+    { input: "Test/PowderInput", output: "Terraria/PurificationPowder" },
+    { input: "Test/BagInput", output: "Test/ShimmerGrabBag" }
   ],
   drops: [
     {
@@ -270,6 +313,7 @@ const snapshot = {
     { source: "Test/Boss", sourceType: "npc", item: "Terraria/VanillaMagicHelmet", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Terraria/VanillaMeleeHelmet", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Terraria/VanillaRuntimeMagicHelmet", conditions: [] },
+    { source: "Test/Boss", sourceType: "npc", item: "Terraria/OrichalcumMask", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/GenericMagicHelmet", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Other/Material", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Other/Sword", conditions: [] },
@@ -365,6 +409,11 @@ const snapshot = {
       classes: ["melee"]
     },
     {
+      item: "Terraria/OrichalcumMask",
+      category: "Armor",
+      classes: ["melee", "summoner"]
+    },
+    {
       item: "Terraria/WhiteString",
       category: "Accessory",
       classes: ["melee"]
@@ -379,6 +428,26 @@ const snapshot = {
       category: "Accessory",
       classes: ["melee"]
     }
+  ],
+  vanillaBuffClassifications: [
+    {
+      item: "Terraria/HeartLantern",
+      category: "Passive",
+      classes: ["melee", "ranged", "magic", "summoner"],
+      isClassSpecific: false
+    },
+    {
+      item: "Terraria/DemonHeart",
+      category: "Eternal",
+      classes: ["melee", "ranged", "magic", "summoner"],
+      isClassSpecific: false
+    },
+    {
+      item: "Terraria/AegisCrystal",
+      category: "Eternal",
+      classes: ["melee", "ranged", "magic", "summoner"],
+      isClassSpecific: false
+    }
   ]
 };
 const manifest = {
@@ -386,7 +455,13 @@ const manifest = {
   name: { "en-US": "Test", "ru-RU": "Тест" },
   requiredMods: [{ name: "Test", version: "" }],
   modifiedVanillaItems: ["Terraria/ModifiedSword"],
-  initialItems: ["Test/CollisionSource", "Terraria/ZeroDamageGun", "Terraria/WorldGlobe"],
+  initialItems: [
+    "Test/CollisionSource",
+    "Test/PowderInput",
+    "Test/BagInput",
+    "Terraria/ZeroDamageGun",
+    "Terraria/WorldGlobe"
+  ],
   initialVisibleItems: ["Terraria/ZeroDamageGun", "Terraria/WorldGlobe"],
   wikiSource: { name: "Test Wiki", url: "https://example.invalid" },
   wikiStageMap: {
@@ -536,6 +611,20 @@ assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "VanityAcc
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "NamespaceVanity"));
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "CycleA"));
 assert(profile.combatBuffs.some(entry => entry.itemGroups[0][0].item === "Potion"));
+for (const [itemName, category, via] of [
+  ["HeartLantern", "Passive", "recipe:Test/CollisionSource"],
+  ["DemonHeart", "Eternal", "recipe:Test/CollisionSource"],
+  ["AegisCrystal", "Eternal", "shimmer:Terraria/WorldGlobe"],
+  ["ShimmerBooster", "Eternal", "shimmer:Test/CollisionSource"]
+]) {
+  const buff = profile.combatBuffs.find(entry => entry.itemGroups[0][0].item === itemName);
+  assert.equal(buff?.category, category, `${itemName} must be classified as ${category}`);
+  const mod = itemName === "ShimmerBooster" ? "Test" : "Terraria";
+  assert.equal(report.paths[`${mod}/${itemName}`]?.via, via);
+}
+assert(!report.unresolvedConditions.some(entry => entry.item === "Terraria/DemonHeart"));
+assert(!profile.combatBuffs.some(entry => ["PurificationPowder", "ShimmerGrabBag"]
+  .includes(entry.itemGroups[0][0].item)));
 assert.deepEqual(
   profile.combatBuffs.find(entry => entry.itemGroups[0][0].item === "Potion")?.fishingSources,
   [{ conditions: ["Liquid: Honey"] }]);
@@ -665,6 +754,10 @@ assert.deepEqual(
   profile.entries.find(entry =>
     entry.itemGroups[0][0].item === "VanillaRuntimeMagicHelmet")?.classes,
   ["magic"]);
+assert.deepEqual(
+  profile.entries.find(entry =>
+    entry.itemGroups[0][0].item === "OrichalcumMask")?.classes,
+  ["melee", "summoner"]);
 assert.deepEqual(
   profile.entries.find(entry =>
     entry.itemGroups[0][0].item === "GenericMagicHelmet")?.classes,
@@ -1001,7 +1094,7 @@ assert(report.wikiAvailabilityCorrections.some(entry =>
 
 const compoundBossConditionSnapshot = {
   format: "ProgressionJournalSnapshot",
-  version: 4,
+  version: 5,
   mods: [{ name: "Test", version: "1.2.3" }],
   items: [
     item("Test/DisjunctiveBlade", { damageClass: "Melee", damage: 20 }),

@@ -408,6 +408,12 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             builtEntries.AddRange(info.Recipes.Select(CreateRecipeSourceCard));
         }
 
+        if (info.ShimmerSources.Count > 0)
+        {
+            builtEntries.Add(CreateSourceSectionHeader("Mods.ProgressionJournal.UI.SelectedItemShimmer"));
+            builtEntries.AddRange(info.ShimmerSources.Select(CreateShimmerSourceCard));
+        }
+
         if (info.Drops.Count > 0)
         {
             builtEntries.Add(CreateSourceSectionHeader("Mods.ProgressionJournal.UI.SelectedItemDrops"));
@@ -445,6 +451,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         var (iconItemId, accent) = localizationKey switch
         {
             "Mods.ProgressionJournal.UI.SelectedItemCrafts" => (ItemID.WorkBench, new Color(220, 174, 92)),
+            "Mods.ProgressionJournal.UI.SelectedItemShimmer" => (ItemID.ShimmerBlock, new Color(166, 126, 224)),
             "Mods.ProgressionJournal.UI.SelectedItemDrops" => (ItemID.Gel, new Color(205, 116, 118)),
             "Mods.ProgressionJournal.UI.SelectedItemShops" => (ItemID.GoldCoin, new Color(232, 198, 92)),
             "Mods.ProgressionJournal.UI.SelectedItemFishing" => (ItemID.GoldenFishingRod, new Color(92, 176, 218)),
@@ -491,6 +498,22 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         {
             top = AppendConditionContent(panel, recipe.Conditions, top + 6f);
         }
+
+        panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
+        return panel;
+    }
+
+    private UIPanel CreateShimmerSourceCard(JournalShimmerSource shimmerSource)
+    {
+        var panel = CreateSourceCard(new Color(166, 126, 224));
+        panel.Width.Set(0f, 1f);
+
+        var top = JournalUiMetrics.BlockVerticalPadding;
+        top = AppendCenteredTextLines(
+            panel,
+            [Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemShimmerMethod")],
+            top);
+        top = AppendItemRows(panel, shimmerSource.InputItems, top + 6f);
 
         panel.Height.Set(top + JournalUiMetrics.BlockVerticalPadding, 0f);
         return panel;

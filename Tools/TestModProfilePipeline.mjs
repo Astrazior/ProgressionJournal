@@ -217,6 +217,10 @@ assert(!acquisitionVisualsSource.includes("HardmodeTexturePath")
   && acquisitionVisualsSource.includes("IsHardmodeOnlyCondition")
   && journalUiStateSource.includes("new Color(235, 91, 91)"),
 "Hardmode conditions must use canonical red text instead of an achievement icon");
+assert(acquisitionVisualsSource.includes("IsLabeledBiomeCondition(condition)")
+  && acquisitionVisualsSource.includes('label.Equals("Biome"')
+  && acquisitionVisualsSource.includes('label.Equals("Биом"'),
+"Explicit Biome labels must remain text instead of being replaced by a bestiary icon");
 assert(containerLootCatalogSource.includes('"AAModClassic/RomulusTazesaber"')
   && containerLootCatalogSource.includes('"AAModClassic/CharmOfDesire"')
   && containerLootCatalogSource.includes('"AAModClassic/DragonsPike"')
@@ -367,8 +371,8 @@ assert(itemCollectionIndex >= 0
     && npcDropCollectionIndex >= 0
     && itemCollectionIndex < npcDropCollectionIndex,
 "Item classification probes must run before drop reporting because mod drop rules can observe probe state");
-assert(snapshotExporterSource.includes("public int Version { get; set; } = 4"),
-  "The snapshot schema version was not advanced for runtime availability");
+assert(snapshotExporterSource.includes("public int Version { get; set; } = 5"),
+  "The snapshot schema version was not advanced for Shimmer sources");
 assert(snapshotShopCollectorSource.includes("TryGetShopStage"),
   "Observed shop stages are not exported to snapshot.json");
 assert(snapshotFishingCollectorSource.includes("JournalFishingSourceResolver.GetItemAvailability")
@@ -385,6 +389,9 @@ assert(snapshotExporterSource.includes("DamageClassLoader.DamageClassCount"),
   "Modded damage classes are not fully enumerated for combat classification");
 assert(snapshotExporterSource.includes("VanillaItemClassifications = CreateVanillaItemClassifications()"),
   "Vanilla combat item classifications are not exported for profile filtering");
+assert(snapshotExporterSource.includes("ShimmerTransforms = CreateShimmerTransforms(itemIds)")
+  && snapshotExporterSource.includes("VanillaBuffClassifications = CreateVanillaBuffClassifications()"),
+"Shimmer sources and vanilla buff classifications are not exported to snapshot.json");
 assert(!vanillaClassificationMethod.includes("entry.Evaluations"),
   "Vanilla combat classification must remain independent from recommendation tiers");
 const profileGeneratorSource = fs.readFileSync(
@@ -399,6 +406,10 @@ assert(profileGeneratorSource.includes("drop.sourceType === \"global\"")
 assert(profileGeneratorSource.includes("snapshot.vanillaItemClassifications")
   && profileGeneratorSource.includes("context.vanillaItems?.get(item.id)"),
 "ProfileGeneratorCore does not reuse the curated vanilla combat classification");
+assert(profileGeneratorSource.includes("snapshot.shimmerTransforms")
+  && profileGeneratorSource.includes("snapshot.vanillaBuffClassifications")
+  && profileGeneratorSource.includes("isPermanentShimmerUpgrade"),
+"ProfileGeneratorCore does not consume Shimmer sources and vanilla buff classifications");
 assert(profileGeneratorSource.includes("summonmeleespeeddamageclass"),
   "Whips must resolve exclusively to summoner instead of substring-matching melee");
 assert(profileGeneratorSource.includes("createWikiClassificationMap"),
@@ -587,15 +598,20 @@ for (const modName of expected) {
     && report.paths?.[item.id]),
   `${modName}: an acquired recommendation was lost from the generated profile`);
   for (const [itemId, expectedClasses] of Object.entries({
+    "Terraria/AdamantiteHelmet": ["melee", "summoner"],
+    "Terraria/ApprenticeHat": ["magic", "summoner"],
     "Terraria/ChlorophyteHeadgear": ["magic"],
     "Terraria/ChlorophyteHelmet": ["ranged"],
+    "Terraria/CobaltHelmet": ["melee", "summoner"],
+    "Terraria/HuntressWig": ["ranged", "summoner"],
+    "Terraria/MythrilHelmet": ["melee", "summoner"],
     "Terraria/OrichalcumHelmet": ["ranged"],
     "Terraria/OrichalcumMask": ["melee", "summoner"],
     "Terraria/PalladiumHelmet": ["ranged"],
     "Terraria/PalladiumMask": ["melee", "summoner"],
     "Terraria/PalladiumHeadgear": ["magic"],
     "Terraria/TitaniumHelmet": ["ranged"],
-    "Terraria/TitaniumMask": ["melee"],
+    "Terraria/TitaniumMask": ["melee", "summoner"],
     "Terraria/TitaniumHeadgear": ["magic"]
   })) {
     const [mod, item] = itemId.split("/");

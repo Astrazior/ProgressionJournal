@@ -3,10 +3,10 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-13T22:34:56.637Z",
+  "generatedAtUtc": "2026-07-14T00:01:35.120Z",
   "snapshot": {
-    "version": 4,
-    "generatedAtUtc": "2026-07-13T22:31:11.0338720Z",
+    "version": 5,
+    "generatedAtUtc": "2026-07-13T23:33:48.3841458Z",
     "targetMod": "CalamityMod",
     "mods": [
       {
@@ -16,7 +16,7 @@
     ]
   },
   "agentRules": {
-    "rules": 142,
+    "rules": 140,
     "ignoredItems": 3,
     "ignoredIssues": 1,
     "evidence": [
@@ -756,13 +756,6 @@
         "reason": "The official sources make these available through pre-boss Sulphurous Sea or Brimstone fishing, Acidwood fruit, the ungated Divine Swine, the Shady Salesman's blender, or an ordinary Forest critter."
       },
       {
-        "id": "sunken-sea-post-desert-scourge-fishing",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Sunken Sea fishing pool adds both very-rare catches after Desert Scourge."
-      },
-      {
         "id": "astral-biome-fruit-and-fishing",
         "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
@@ -887,13 +880,6 @@
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
         "checkedAt": "2026-06-15",
         "reason": "Ghost Bell spawns from the start in Sunken Sea water; its Voltaic Jelly drop remains gated by the Desert Scourge condition."
-      },
-      {
-        "id": "sunken-sea-spirit-amulet-fishing-source",
-        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Sea_Spirit_Amulet",
-        "sourceVersion": "Calamity Mod 2.2.1 wiki.gg",
-        "checkedAt": "2026-07-13",
-        "reason": "The isolated runtime snapshot cannot assign progression evidence to synthetic mod-biome fishing contexts; this source-backed fallback remains until a new export preserves the observed source with an unknown stage."
       },
       {
         "id": "astral-legendary-fishing-source",
@@ -1044,7 +1030,7 @@
       }
     ],
     "availabilityMigration": {
-      "confirmed": 31,
+      "confirmed": 30,
       "pending": 79,
       "mismatched": 14,
       "confirmedRules": [
@@ -1152,11 +1138,6 @@
           "target": "CalamityMod/GhostBell",
           "expectedStageId": "start",
           "actualStageId": "start"
-        },
-        {
-          "id": "sunken-sea-spirit-amulet-fishing-source",
-          "kind": "fishing",
-          "target": "CalamityMod/SeaSpiritAmulet"
         },
         {
           "id": "astral-legendary-fishing-source",
@@ -1750,7 +1731,7 @@
         }
       ],
       "stageComparison": {
-        "compared": 2138,
+        "compared": 2163,
         "moved": 0
       }
     }
@@ -1762,7 +1743,7 @@
   "audit": {
     "errors": [],
     "warnings": [
-      "70 recommendations precede proven availability and were suppressed",
+      "67 recommendations precede proven availability and were suppressed",
       "165 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
@@ -1773,6 +1754,7 @@
       "townCount": 46,
       "observedTownCount": 11,
       "fishingCount": 181,
+      "shimmerTransformCount": 377,
       "dropSourceCount": 577,
       "shopSourceCount": 28,
       "globalDropCount": 22,
@@ -6551,7 +6533,7 @@
   "ready": true,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-07-13T22:34:37.880Z",
+    "generatedAtUtc": "2026-07-14T00:01:14.583Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -8194,15 +8176,6 @@
       },
       {
         "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/ArtisanLoaf",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "Когда игрок ещё не успел использовать предмет «Хлеб мастера-пекаря»"
-        }
-      },
-      {
-        "sourceKind": "shop",
         "source": "Terraria/GoblinTinkerer",
         "item": "Terraria/Toolbox",
         "condition": {
@@ -9059,7 +9032,7 @@
       {
         "sourceKind": "drop",
         "source": "Terraria/EaterofWorldsHead",
-        "item": "CalamityMod/LoreCorruption",
+        "item": "CalamityMod/LoreCrimson",
         "condition": {
           "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
           "description": "Drops only on the first kill"
@@ -9068,7 +9041,7 @@
       {
         "sourceKind": "drop",
         "source": "Terraria/EaterofWorldsHead",
-        "item": "CalamityMod/LoreEaterofWorlds",
+        "item": "CalamityMod/LoreBrainofCthulhu",
         "condition": {
           "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
           "description": "Drops only on the first kill"
@@ -9104,7 +9077,7 @@
       {
         "sourceKind": "drop",
         "source": "Terraria/BrainofCthulhu",
-        "item": "CalamityMod/LoreCorruption",
+        "item": "CalamityMod/LoreCrimson",
         "condition": {
           "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
           "description": "Drops only on the first kill"
@@ -9113,7 +9086,7 @@
       {
         "sourceKind": "drop",
         "source": "Terraria/BrainofCthulhu",
-        "item": "CalamityMod/LoreEaterofWorlds",
+        "item": "CalamityMod/LoreBrainofCthulhu",
         "condition": {
           "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
           "description": "Drops only on the first kill"
@@ -10665,15 +10638,6 @@
         "condition": {
           "type": "Terraria.Condition",
           "description": "Когда рядом с торговцем находится другой житель"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/WallOfFleshBossBag",
-        "item": "Terraria/DemonHeart",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotUsedDemonHeart",
-          "description": null
         }
       },
       {
@@ -15963,11 +15927,6 @@
       },
       {
         "stage": "start",
-        "id": "Terraria/ManaCrystal",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "Terraria/Rope",
         "reason": "not combat equipment"
       },
@@ -16144,11 +16103,6 @@
       {
         "stage": "start",
         "id": "Terraria/AncientChisel",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/CatBast",
         "reason": "not combat equipment"
       },
       {
@@ -17953,11 +17907,6 @@
       },
       {
         "stage": "start",
-        "id": "Terraria/CombatBook",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "Terraria/ScarabFish",
         "reason": "not combat equipment"
       },
@@ -18204,11 +18153,6 @@
       {
         "stage": "start",
         "id": "Terraria/TartarSauce",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/LifeCrystal",
         "reason": "not combat equipment"
       },
       {
@@ -18568,11 +18512,6 @@
       },
       {
         "stage": "start",
-        "id": "Terraria/Campfire",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "Terraria/FrozenCampfire",
         "reason": "not combat equipment"
       },
@@ -18839,16 +18778,6 @@
       {
         "stage": "start",
         "id": "Terraria/TinBrick",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/StarinaBottle",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/HeartLantern",
         "reason": "not combat equipment"
       },
       {
@@ -22893,6 +22822,121 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/ShimmerTorch",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/PolypSand",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/EutrophicSandWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/Runestone",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/UnsafeNavystoneWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/Navyplate",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/VolcanicSand",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/Shellstone",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AridSoil",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientSmoothNavystone",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/Dunesand",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ShimmerCampfire",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientCopperBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PharaohsRobe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientGoldBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/HoneyBucket",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientObsidianBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/SandstoneWallUnsafe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PharaohsMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientSilverBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/SpiderWallUnsafe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PurificationPowder",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GasTrap",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/CapricornLegs",
         "reason": "not combat equipment"
       },
@@ -23044,6 +23088,26 @@
       {
         "stage": "start",
         "id": "Terraria/GreenStuccoWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientGoldBrickWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientSilverBrickWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientCopperBrickWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientObsidianBrickWall",
         "reason": "not combat equipment"
       },
       {
@@ -23438,7 +23502,17 @@
       },
       {
         "stage": "start",
+        "id": "CalamityMod/CagedFloodlightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "CalamityMod/MiniCagedBlacklightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/MiniCagedFloodlightItem",
         "reason": "not combat equipment"
       },
       {
@@ -23738,6 +23812,86 @@
       },
       {
         "stage": "start",
+        "id": "CalamityMod/AncientNavystoneBathtub",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientNavystoneBed",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientNavystoneBench",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientNavystoneCandelabra",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientNavystoneCandle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientNavystoneChair",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientNavystoneChandelier",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientNavystoneChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientNavystoneClock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientNavystoneDoor",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientNavystoneDresser",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientNavystoneLamp",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientNavystoneLantern",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientNavystonePlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientNavystoneTable",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientNavystoneWorkBench",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "CalamityMod/NavystoneBathtub",
         "reason": "not combat equipment"
       },
@@ -23819,6 +23973,11 @@
       {
         "stage": "start",
         "id": "CalamityMod/NavystoneWorkBench",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/ShellstoneSlab",
         "reason": "not combat equipment"
       },
       {
@@ -24043,7 +24202,17 @@
       },
       {
         "stage": "start",
-        "id": "CalamityMod/Navyplate",
+        "id": "CalamityMod/WaterTurret",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/HostileWaterTurret",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientSmoothNavystoneWall",
         "reason": "not combat equipment"
       },
       {
@@ -24063,7 +24232,67 @@
       },
       {
         "stage": "start",
+        "id": "CalamityMod/RunestoneWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/ShellstoneSlabWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/ShellstoneWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "CalamityMod/VoidstoneSlabWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/Basalt",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/Limestone",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AgedBlacklightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AgedFloodlightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/MossyStone",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/MiniAgedBlacklightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/MiniAgedFloodlightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/Cinderplate",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/WaterBucket",
         "reason": "not combat equipment"
       },
       {
@@ -24103,22 +24332,262 @@
       },
       {
         "stage": "start",
-        "id": "CalamityMod/CagedFloodlightItem",
+        "id": "Terraria/WoodenSink",
         "reason": "not combat equipment"
       },
       {
         "stage": "start",
-        "id": "CalamityMod/MiniCagedFloodlightItem",
+        "id": "Terraria/PalmWoodSink",
         "reason": "not combat equipment"
       },
       {
         "stage": "start",
-        "id": "CalamityMod/WaterTurret",
+        "id": "Terraria/BorealWoodSink",
         "reason": "not combat equipment"
       },
       {
         "stage": "start",
-        "id": "CalamityMod/HostileWaterTurret",
+        "id": "Terraria/RichMahoganySink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/EbonwoodSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ShadewoodSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AshWoodSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MarbleSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GraniteSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/SandstoneSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BambooSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CoralSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/DynastySink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GlassSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/SkywareSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CactusSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PumpkinSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MetalSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/CyanSeekingMechanism",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/CagedCinderlightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/MiniCagedCinderlightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/BasaltSlab",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/DriftwoodSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/MarniteSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AncientNavystoneSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/NavystoneSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/VoidSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AnodizedWulfrumSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/WulfrumSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/CinderplateWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/LimestoneWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AgedCinderlightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/Plagueplate",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/MiniAgedCinderlightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/Havocplate",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/CagedBiolightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/CagedFlamelightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/MiniCagedBiolightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/MiniCagedFlamelightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/HavocplateWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/PlagueContainmentCellsWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AgedBiolightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AgedFlamelightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/Elumplate",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/MiniAgedBiolightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/MiniAgedFlamelightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/CagedFrostlightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/MiniCagedFrostlightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/ElumplateWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AgedFrostlightItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/MiniAgedFrostlightItem",
         "reason": "not combat equipment"
       },
       {
@@ -24214,6 +24683,11 @@
       {
         "stage": "start",
         "id": "CalamityMod/AcidwoodPlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/AcidwoodSink",
         "reason": "not combat equipment"
       },
       {
@@ -24358,6 +24832,11 @@
       },
       {
         "stage": "king-slime",
+        "id": "Terraria/SlimeSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "king-slime",
         "id": "Terraria/ToiletSlime",
         "reason": "not combat equipment"
       },
@@ -24412,6 +24891,11 @@
         "reason": "not combat equipment"
       },
       {
+        "stage": "king-slime",
+        "id": "Terraria/HardenedSandWallUnsafe",
+        "reason": "not combat equipment"
+      },
+      {
         "stage": "desert-scourge",
         "id": "CalamityMod/DesertScourgeBag",
         "reason": "not combat equipment"
@@ -24459,6 +24943,11 @@
       {
         "stage": "desert-scourge",
         "id": "CalamityMod/SeaRemains",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "desert-scourge",
+        "id": "CalamityMod/EutrophicShelf",
         "reason": "not combat equipment"
       },
       {
@@ -24554,16 +25043,6 @@
       {
         "stage": "eye-of-cthulhu",
         "id": "Terraria/CorruptGrassEcho",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/PurificationPowder",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/Sunflower",
         "reason": "not combat equipment"
       },
       {
@@ -24808,11 +25287,6 @@
       },
       {
         "stage": "world-evil",
-        "id": "Terraria/WarTable",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "world-evil",
         "id": "Terraria/WarTableBanner",
         "reason": "not combat equipment"
       },
@@ -24993,6 +25467,11 @@
       },
       {
         "stage": "world-evil",
+        "id": "Terraria/MeteoriteSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
         "id": "Terraria/ToiletMeteor",
         "reason": "not combat equipment"
       },
@@ -25113,6 +25592,11 @@
       },
       {
         "stage": "world-evil",
+        "id": "Terraria/ObsidianSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
         "id": "Terraria/ToiletObsidian",
         "reason": "not combat equipment"
       },
@@ -25139,6 +25623,16 @@
       {
         "stage": "world-evil",
         "id": "CalamityMod/VoodooDemonVoodooDoll",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/AncientHellstoneBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/AncientHellstoneBrickWall",
         "reason": "not combat equipment"
       },
       {
@@ -26373,6 +26867,16 @@
       },
       {
         "stage": "skeletron",
+        "id": "CalamityMod/AncientNavystoneBookcase",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "CalamityMod/AncientNavystonePiano",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
         "id": "CalamityMod/NavystoneBookcase",
         "reason": "not combat equipment"
       },
@@ -26414,11 +26918,6 @@
       {
         "stage": "skeletron",
         "id": "Terraria/ShadowKey",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "Terraria/BewitchingTable",
         "reason": "not combat equipment"
       },
       {
@@ -26519,6 +27018,11 @@
       {
         "stage": "skeletron",
         "id": "CalamityMod/AbyssLantern",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "CalamityMod/AbyssSink",
         "reason": "not combat equipment"
       },
       {
@@ -26654,6 +27158,11 @@
       {
         "stage": "slime-god",
         "id": "CalamityMod/StatigelPlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "slime-god",
+        "id": "CalamityMod/StatigelSink",
         "reason": "not combat equipment"
       },
       {
@@ -27153,17 +27662,7 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "Terraria/SharpeningStation",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "Terraria/EmptyBullet",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/AmmoBox",
         "reason": "not combat equipment"
       },
       {
@@ -27414,11 +27913,6 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/DarkBlueSolution",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/CrystalBall",
         "reason": "not combat equipment"
       },
       {
@@ -27928,6 +28422,11 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/SpiderSinkSpiderSinkDoesWhateverASpiderSinkDoes",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/SpiderSofa",
         "reason": "not combat equipment"
       },
@@ -28073,36 +28572,6 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "CalamityMod/Cinderplate",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "CalamityMod/Elumplate",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "CalamityMod/Havocplate",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "CalamityMod/CinderplateWall",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "CalamityMod/ElumplateWall",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "CalamityMod/HavocplateWall",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "CalamityMod/CryoKey",
         "reason": "not combat equipment"
       },
@@ -28128,37 +28597,92 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/ShimmerMonolith",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/AncientCobaltBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/CorruptionChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/CrimsonChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/DungeonDesertChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/FrozenChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/HallowedChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/JungleChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/ShimmerCloak",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/Moondial",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/SpiderPlatform",
         "reason": "not combat equipment"
       },
       {
         "stage": "wall-of-flesh",
-        "id": "CalamityMod/CagedCinderlightItem",
+        "id": "Terraria/AncientCobaltBrickWall",
         "reason": "not combat equipment"
       },
       {
         "stage": "wall-of-flesh",
-        "id": "CalamityMod/CagedFlamelightItem",
+        "id": "Terraria/Fake_JungleChest",
         "reason": "not combat equipment"
       },
       {
         "stage": "wall-of-flesh",
-        "id": "CalamityMod/CagedFrostlightItem",
+        "id": "Terraria/Fake_CorruptionChest",
         "reason": "not combat equipment"
       },
       {
         "stage": "wall-of-flesh",
-        "id": "CalamityMod/MiniCagedCinderlightItem",
+        "id": "Terraria/Fake_CrimsonChest",
         "reason": "not combat equipment"
       },
       {
         "stage": "wall-of-flesh",
-        "id": "CalamityMod/MiniCagedFlamelightItem",
+        "id": "Terraria/Fake_HallowedChest",
         "reason": "not combat equipment"
       },
       {
         "stage": "wall-of-flesh",
-        "id": "CalamityMod/MiniCagedFrostlightItem",
+        "id": "Terraria/Fake_FrozenChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/Fake_DungeonDesertChest",
         "reason": "not combat equipment"
       },
       {
@@ -28219,6 +28743,11 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/PearlwoodChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/PearlwoodSink",
         "reason": "not combat equipment"
       },
       {
@@ -28409,6 +28938,11 @@
       {
         "stage": "wall-of-flesh",
         "id": "CalamityMod/MonolithPlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "CalamityMod/MonolithSink",
         "reason": "not combat equipment"
       },
       {
@@ -28883,6 +29417,11 @@
       },
       {
         "stage": "destroyer",
+        "id": "Terraria/LivingWoodSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
         "id": "Terraria/LivingWoodTable",
         "reason": "not combat equipment"
       },
@@ -28944,6 +29483,11 @@
       {
         "stage": "destroyer",
         "id": "Terraria/ToiletLivingWood",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FrozenSink",
         "reason": "not combat equipment"
       },
       {
@@ -29064,6 +29608,11 @@
       {
         "stage": "destroyer",
         "id": "Terraria/BoneWorkBench",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/BoneSink",
         "reason": "not combat equipment"
       },
       {
@@ -29312,6 +29861,16 @@
         "reason": "not combat equipment"
       },
       {
+        "stage": "destroyer",
+        "id": "Terraria/AncientMythrilBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/AncientMythrilBrickWall",
+        "reason": "not combat equipment"
+      },
+      {
         "stage": "brimstone-elemental",
         "id": "CalamityMod/InfernalSuevite",
         "reason": "not combat equipment"
@@ -29454,6 +30013,11 @@
       {
         "stage": "twins",
         "id": "Terraria/ToiletCrystal",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "twins",
+        "id": "Terraria/CrystalSink",
         "reason": "not combat equipment"
       },
       {
@@ -29703,6 +30267,11 @@
       },
       {
         "stage": "skeletron-prime",
+        "id": "Terraria/SteampunkSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron-prime",
         "id": "Terraria/SteampunkTable",
         "reason": "not combat equipment"
       },
@@ -29862,6 +30431,11 @@
         "reason": "not combat equipment"
       },
       {
+        "stage": "skeletron-prime",
+        "id": "CalamityMod/HallowedOre",
+        "reason": "not combat equipment"
+      },
+      {
         "stage": "calamitas-clone",
         "id": "CalamityMod/SolarVeil",
         "reason": "not combat equipment"
@@ -29909,11 +30483,6 @@
       {
         "stage": "calamitas-clone",
         "id": "CalamityMod/LoreCalamitasClone",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "plantera",
-        "id": "CalamityMod/HallowedOre",
         "reason": "not combat equipment"
       },
       {
@@ -30388,6 +30957,11 @@
       },
       {
         "stage": "plantera",
+        "id": "Terraria/SpookySink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
         "id": "Terraria/SpookyTable",
         "reason": "not combat equipment"
       },
@@ -30529,11 +31103,6 @@
       {
         "stage": "plantera",
         "id": "Terraria/SolarTablet",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "plantera",
-        "id": "Terraria/LifeFruit",
         "reason": "not combat equipment"
       },
       {
@@ -30948,6 +31517,11 @@
       },
       {
         "stage": "golem",
+        "id": "Terraria/MartianSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "golem",
         "id": "Terraria/ToiletMartian",
         "reason": "not combat equipment"
       },
@@ -31078,6 +31652,11 @@
       },
       {
         "stage": "golem",
+        "id": "CalamityMod/PlaguedPlateSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "golem",
         "id": "CalamityMod/PlaguedPlateSofa",
         "reason": "not combat equipment"
       },
@@ -31098,17 +31677,7 @@
       },
       {
         "stage": "golem",
-        "id": "CalamityMod/Plagueplate",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
         "id": "CalamityMod/ScoriaBrick",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "CalamityMod/PlagueContainmentCellsWall",
         "reason": "not combat equipment"
       },
       {
@@ -31138,27 +31707,17 @@
       },
       {
         "stage": "golem",
+        "id": "CalamityMod/BrokenPlaguedBed",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "golem",
         "id": "CalamityMod/VolcanicSinker",
         "reason": "not combat equipment"
       },
       {
         "stage": "golem",
         "id": "CalamityMod/LifeAlloy",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "CalamityMod/CagedBiolightItem",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "CalamityMod/MiniCagedBiolightItem",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "CalamityMod/BrokenPlaguedBed",
         "reason": "not combat equipment"
       },
       {
@@ -31553,6 +32112,11 @@
       },
       {
         "stage": "lunatic-cultist",
+        "id": "Terraria/SolarSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "lunatic-cultist",
         "id": "Terraria/SolarSofa",
         "reason": "not combat equipment"
       },
@@ -31644,6 +32208,11 @@
       {
         "stage": "lunatic-cultist",
         "id": "Terraria/VortexPiano",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "lunatic-cultist",
+        "id": "Terraria/VortexSink",
         "reason": "not combat equipment"
       },
       {
@@ -31743,6 +32312,11 @@
       },
       {
         "stage": "lunatic-cultist",
+        "id": "Terraria/NebulaSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "lunatic-cultist",
         "id": "Terraria/NebulaSofa",
         "reason": "not combat equipment"
       },
@@ -31834,6 +32408,11 @@
       {
         "stage": "lunatic-cultist",
         "id": "Terraria/StardustPiano",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "lunatic-cultist",
+        "id": "Terraria/StardustSink",
         "reason": "not combat equipment"
       },
       {
@@ -32603,6 +33182,11 @@
       },
       {
         "stage": "providence",
+        "id": "CalamityMod/BotanicSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "providence",
         "id": "CalamityMod/BotanicTable",
         "reason": "not combat equipment"
       },
@@ -32808,6 +33392,11 @@
       },
       {
         "stage": "signus",
+        "id": "CalamityMod/OtherworldlySink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "signus",
         "id": "CalamityMod/OtherworldlySofa",
         "reason": "not combat equipment"
       },
@@ -32924,6 +33513,11 @@
       {
         "stage": "polterghast",
         "id": "CalamityMod/StratusPlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "polterghast",
+        "id": "CalamityMod/StratusSink",
         "reason": "not combat equipment"
       },
       {
@@ -33208,6 +33802,11 @@
       },
       {
         "stage": "devourer-of-gods",
+        "id": "CalamityMod/CosmiliteSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "devourer-of-gods",
         "id": "CalamityMod/CosmiliteSofa",
         "reason": "not combat equipment"
       },
@@ -33254,6 +33853,11 @@
       {
         "stage": "devourer-of-gods",
         "id": "CalamityMod/SilvaPlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "devourer-of-gods",
+        "id": "CalamityMod/SilvaSink",
         "reason": "not combat equipment"
       },
       {
@@ -33473,6 +34077,46 @@
       },
       {
         "stage": "exo-mechs",
+        "id": "CalamityMod/ExoPrism",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/PhotonRipper",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/ExoThrone",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/DraedonMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/ThanatosMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/AresMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/ArtemisMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/ApolloMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
         "id": "CalamityMod/ThanatosTrophy",
         "reason": "not combat equipment"
       },
@@ -33508,46 +34152,6 @@
       },
       {
         "stage": "exo-mechs",
-        "id": "CalamityMod/ExoPrism",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/PhotonRipper",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/AresMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/ThanatosMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/ArtemisMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/ApolloMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/ExoThrone",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/DraedonMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
         "id": "CalamityMod/ExoDye",
         "reason": "not combat equipment"
       },
@@ -33574,6 +34178,11 @@
       {
         "stage": "exo-mechs",
         "id": "CalamityMod/ExoPrismPlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/ExoSink",
         "reason": "not combat equipment"
       },
       {
@@ -34112,6 +34721,10 @@
         "stage": "start",
         "via": "container:CalamityMod/StarterBag"
       },
+      "Terraria/ManaCrystal": {
+        "stage": "start",
+        "via": "container:CalamityMod/StarterBag"
+      },
       "CalamityMod/EffigyOfDecay": {
         "stage": "start",
         "via": "container:CalamityMod/SulphurousCrate"
@@ -34341,6 +34954,10 @@
         "stage": "start",
         "via": "container:Terraria/SandstoneChest"
       },
+      "Terraria/CatBast": {
+        "stage": "start",
+        "via": "container:Terraria/SandstoneChest"
+      },
       "Terraria/BabyBirdStaff": {
         "stage": "start",
         "via": "container:Terraria/LivingWoodChest"
@@ -34493,6 +35110,10 @@
         "stage": "start",
         "via": "shop:Terraria/SkeletonMerchant"
       },
+      "Terraria/ArtisanLoaf": {
+        "stage": "start",
+        "via": "shop:Terraria/SkeletonMerchant"
+      },
       "CalamityMod/GiantShell": {
         "stage": "start",
         "via": "shop:Terraria/SkeletonMerchant"
@@ -34613,6 +35234,10 @@
         "stage": "start",
         "via": "fishing"
       },
+      "Terraria/CombatBook": {
+        "stage": "start",
+        "via": "fishing"
+      },
       "CalamityMod/DragoonDrizzlefish": {
         "stage": "start",
         "via": "fishing"
@@ -34677,6 +35302,10 @@
         "stage": "start",
         "via": "container:Terraria/IronCrate"
       },
+      "Terraria/LifeCrystal": {
+        "stage": "start",
+        "via": "container:Terraria/GoldenCrate"
+      },
       "CalamityMod/EnchantedKnifeStaff": {
         "stage": "start",
         "via": "container:Terraria/GoldenCrate"
@@ -34700,6 +35329,10 @@
       "CalamityMod/SlagfireDouser": {
         "stage": "start",
         "via": "container:CalamityMod/SlagCrate"
+      },
+      "Terraria/Campfire": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood+Terraria/Torch"
       },
       "Terraria/StickyGrenade": {
         "stage": "start",
@@ -34892,6 +35525,14 @@
       "Terraria/PoisonedKnife": {
         "stage": "start",
         "via": "recipe:Terraria/ThrowingKnife+Terraria/VilePowder"
+      },
+      "Terraria/StarinaBottle": {
+        "stage": "start",
+        "via": "recipe:Terraria/Bottle+Terraria/FallenStar"
+      },
+      "Terraria/HeartLantern": {
+        "stage": "start",
+        "via": "recipe:Terraria/LifeCrystal+Terraria/Chain"
       },
       "Terraria/AshWoodHelmet": {
         "stage": "start",
@@ -35725,6 +36366,54 @@
         "stage": "start",
         "via": "recipe:Terraria/Dynamite"
       },
+      "Terraria/ArcaneCrystal": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/EnchantedStarfish"
+      },
+      "Terraria/ShadowGreaves": {
+        "stage": "start",
+        "via": "shimmer:Terraria/AncientShadowGreaves"
+      },
+      "Terraria/ShadowHelmet": {
+        "stage": "start",
+        "via": "shimmer:Terraria/AncientShadowHelmet"
+      },
+      "Terraria/ShadowScalemail": {
+        "stage": "start",
+        "via": "shimmer:Terraria/AncientShadowScalemail"
+      },
+      "Terraria/PocketMirror": {
+        "stage": "start",
+        "via": "shimmer:Terraria/Blindfold"
+      },
+      "Terraria/ShimmerFlare": {
+        "stage": "start",
+        "via": "shimmer:Terraria/BlueFlare"
+      },
+      "Terraria/Ambrosia": {
+        "stage": "start",
+        "via": "shimmer:Terraria/Grapefruit"
+      },
+      "Terraria/AegisCrystal": {
+        "stage": "start",
+        "via": "shimmer:Terraria/LifeCrystal"
+      },
+      "Terraria/PeddlersSatchel": {
+        "stage": "start",
+        "via": "shimmer:Terraria/PeddlersHat"
+      },
+      "Terraria/GalaxyPearl": {
+        "stage": "start",
+        "via": "shimmer:Terraria/PinkPearl"
+      },
+      "Terraria/ArmorPolish": {
+        "stage": "start",
+        "via": "shimmer:Terraria/Vitamins"
+      },
+      "Terraria/ShimmerArrow": {
+        "stage": "start",
+        "via": "shimmer:Terraria/WoodenArrow"
+      },
       "Terraria/MolotovCocktail": {
         "stage": "start",
         "via": "recipe:Terraria/Ale+Terraria/Gel+Terraria/Silk+Terraria/Torch"
@@ -35756,6 +36445,14 @@
       "Terraria/FrogWebbing": {
         "stage": "start",
         "via": "recipe:Terraria/FrogLeg+Terraria/TigerClimbingGear"
+      },
+      "Terraria/ArmorBracing": {
+        "stage": "start",
+        "via": "recipe:Terraria/ArmorPolish+Terraria/Vitamins"
+      },
+      "Terraria/ReflectiveShades": {
+        "stage": "start",
+        "via": "recipe:Terraria/Blindfold+Terraria/PocketMirror"
       },
       "CalamityMod/Crystalline": {
         "stage": "start",
@@ -36021,6 +36718,10 @@
         "stage": "eye-of-cthulhu",
         "via": "shop:Terraria/TravellingMerchant"
       },
+      "Terraria/Sunflower": {
+        "stage": "eye-of-cthulhu",
+        "via": "shop:Terraria/Dryad"
+      },
       "Terraria/EoCShield": {
         "stage": "eye-of-cthulhu",
         "via": "container:Terraria/EyeOfCthulhuBossBag"
@@ -36131,6 +36832,13 @@
         "customEventName": "",
         "eventIcon": ""
       },
+      "Terraria/WarTable": {
+        "stage": "world-evil",
+        "via": "npc:Terraria/DD2DarkMageT1",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
+      },
       "Terraria/AleThrowingGlove": {
         "stage": "world-evil",
         "via": "npc:Terraria/DD2Bartender"
@@ -36170,18 +36878,6 @@
       "Terraria/ObsidianPants": {
         "stage": "world-evil",
         "via": "recipe:Terraria/Silk+Terraria/Obsidian+Terraria/ShadowScale"
-      },
-      "Terraria/ShadowHelmet": {
-        "stage": "world-evil",
-        "via": "recipe:Terraria/DemoniteBar+Terraria/ShadowScale"
-      },
-      "Terraria/ShadowScalemail": {
-        "stage": "world-evil",
-        "via": "recipe:Terraria/DemoniteBar+Terraria/ShadowScale"
-      },
-      "Terraria/ShadowGreaves": {
-        "stage": "world-evil",
-        "via": "recipe:Terraria/DemoniteBar+Terraria/ShadowScale"
       },
       "Terraria/CrimsonHelmet": {
         "stage": "world-evil",
@@ -36831,6 +37527,10 @@
         "stage": "skeletron",
         "via": "recipe:CalamityMod/IronFrancisca+Terraria/FallenStar+CalamityMod/PearlShard+Terraria/Bone"
       },
+      "Terraria/BewitchingTable": {
+        "stage": "skeletron",
+        "via": "shimmer:Terraria/AlchemyTable"
+      },
       "Terraria/Teacup": {
         "stage": "skeletron",
         "via": "recipe:Terraria/BottledWater"
@@ -36983,10 +37683,6 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/ArmoredSkeleton"
       },
-      "Terraria/ArmorPolish": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/ArmoredSkeleton"
-      },
       "Terraria/MagicDagger": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/Mimic"
@@ -37127,10 +37823,6 @@
         "via": "npc:Terraria/BigMimicCorruption"
       },
       "Terraria/MedusaHead": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/Medusa"
-      },
-      "Terraria/PocketMirror": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/Medusa"
       },
@@ -37320,7 +38012,15 @@
         "customEventName": "",
         "eventIcon": ""
       },
+      "Terraria/SharpeningStation": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/Merchant"
+      },
       "Terraria/Shotgun": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/ArmsDealer"
+      },
+      "Terraria/AmmoBox": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/ArmsDealer"
       },
@@ -37360,6 +38060,10 @@
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Truffle"
       },
+      "Terraria/CrystalBall": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/Wizard"
+      },
       "Terraria/IceRod": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Wizard"
@@ -37395,6 +38099,10 @@
       "Terraria/Bladetongue": {
         "stage": "wall-of-flesh",
         "via": "fishing"
+      },
+      "Terraria/DemonHeart": {
+        "stage": "wall-of-flesh",
+        "via": "container:Terraria/WallOfFleshBossBag"
       },
       "Terraria/Anchor": {
         "stage": "wall-of-flesh",
@@ -37624,10 +38332,6 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/HoneyComb+Terraria/StarCloak"
       },
-      "Terraria/ArmorBracing": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/ArmorPolish+Terraria/Vitamins"
-      },
       "Terraria/ThePlan": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/FastClock+Terraria/TrifoldMap"
@@ -37635,10 +38339,6 @@
       "Terraria/CountercurseMantra": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Megaphone+Terraria/Nazar"
-      },
-      "Terraria/ReflectiveShades": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/Blindfold+Terraria/PocketMirror"
       },
       "Terraria/AnkhCharm": {
         "stage": "wall-of-flesh",
@@ -37815,6 +38515,10 @@
       "CalamityMod/LunicEye": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/CobaltBar+CalamityMod/StarblightSoot"
+      },
+      "Terraria/CombatBookVolumeTwo": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/SpellTome"
       },
       "Terraria/BerserkerGlove": {
         "stage": "wall-of-flesh",
@@ -39461,6 +40165,10 @@
         "stage": "plantera",
         "via": "recipe:Terraria/TigerClimbingGear+Terraria/Tabi+Terraria/BlackBelt"
       },
+      "Terraria/LifeFruit": {
+        "stage": "plantera",
+        "via": "recipe:CalamityMod/PlantyMush+CalamityMod/LivingShard"
+      },
       "CalamityMod/LivingDew": {
         "stage": "plantera",
         "via": "recipe:CalamityMod/HoneyDew+CalamityMod/LivingShard+CalamityMod/EssenceofSunlight"
@@ -39600,6 +40308,10 @@
       "CalamityMod/ViralSprout": {
         "stage": "plantera",
         "via": "recipe:CalamityMod/PerennialBar"
+      },
+      "Terraria/AegisFruit": {
+        "stage": "plantera",
+        "via": "shimmer:Terraria/LifeFruit"
       },
       "CalamityMod/AsgardsValor": {
         "stage": "plantera",
@@ -42268,33 +42980,33 @@
         "stage": "yharon",
         "via": "manifest"
       },
-      "CalamityMod/TheJailor": {
-        "stage": "exo-mechs",
-        "via": "container:CalamityMod/DraedonBag"
-      },
-      "CalamityMod/AresExoskeleton": {
-        "stage": "exo-mechs",
-        "via": "container:CalamityMod/DraedonBag"
-      },
       "CalamityMod/SpineOfThanatos": {
         "stage": "exo-mechs",
-        "via": "container:CalamityMod/DraedonBag"
+        "via": "npc:CalamityMod/AresBody"
       },
       "CalamityMod/RefractionRotor": {
         "stage": "exo-mechs",
-        "via": "container:CalamityMod/DraedonBag"
+        "via": "npc:CalamityMod/AresBody"
       },
       "CalamityMod/AtlasMunitionsBeacon": {
         "stage": "exo-mechs",
-        "via": "container:CalamityMod/DraedonBag"
+        "via": "npc:CalamityMod/AresBody"
       },
-      "CalamityMod/SurgeDriver": {
+      "CalamityMod/TheJailor": {
         "stage": "exo-mechs",
-        "via": "container:CalamityMod/DraedonBag"
+        "via": "npc:CalamityMod/AresBody"
+      },
+      "CalamityMod/AresExoskeleton": {
+        "stage": "exo-mechs",
+        "via": "npc:CalamityMod/AresBody"
       },
       "CalamityMod/TheAtomSplitter": {
         "stage": "exo-mechs",
-        "via": "container:CalamityMod/DraedonBag"
+        "via": "npc:CalamityMod/AresBody"
+      },
+      "CalamityMod/SurgeDriver": {
+        "stage": "exo-mechs",
+        "via": "npc:CalamityMod/AresBody"
       },
       "CalamityMod/DraedonsHeart": {
         "stage": "exo-mechs",
@@ -43283,10 +43995,6 @@
         "stage": "start",
         "via": "container:CalamityMod/StarterBag"
       },
-      "Terraria/ManaCrystal": {
-        "stage": "start",
-        "via": "container:CalamityMod/StarterBag"
-      },
       "Terraria/Rope": {
         "stage": "start",
         "via": "container:CalamityMod/StarterBag"
@@ -43434,10 +44142,6 @@
         "via": "container:Terraria/SandstoneChest"
       },
       "Terraria/AncientChisel": {
-        "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
-      },
-      "Terraria/CatBast": {
         "stage": "start",
         "via": "container:Terraria/SandstoneChest"
       },
@@ -44881,10 +45585,6 @@
         "stage": "start",
         "via": "fishing"
       },
-      "Terraria/CombatBook": {
-        "stage": "start",
-        "via": "fishing"
-      },
       "Terraria/ScarabFish": {
         "stage": "start",
         "via": "fishing"
@@ -45084,10 +45784,6 @@
       "Terraria/TartarSauce": {
         "stage": "start",
         "via": "container:Terraria/IronCrate"
-      },
-      "Terraria/LifeCrystal": {
-        "stage": "start",
-        "via": "container:Terraria/GoldenCrate"
       },
       "Terraria/HardySaddle": {
         "stage": "start",
@@ -45373,10 +46069,6 @@
         "stage": "start",
         "via": "recipe:Terraria/Torch+Terraria/Amber"
       },
-      "Terraria/Campfire": {
-        "stage": "start",
-        "via": "recipe:Terraria/Wood+Terraria/Torch"
-      },
       "Terraria/FrozenCampfire": {
         "stage": "start",
         "via": "recipe:Terraria/Wood+Terraria/IceTorch"
@@ -45592,14 +46284,6 @@
       "Terraria/TinBrick": {
         "stage": "start",
         "via": "recipe:Terraria/StoneBlock+Terraria/TinOre"
-      },
-      "Terraria/StarinaBottle": {
-        "stage": "start",
-        "via": "recipe:Terraria/Bottle+Terraria/FallenStar"
-      },
-      "Terraria/HeartLantern": {
-        "stage": "start",
-        "via": "recipe:Terraria/LifeCrystal+Terraria/Chain"
       },
       "Terraria/ChineseLantern": {
         "stage": "start",
@@ -48833,6 +49517,98 @@
         "stage": "start",
         "via": "recipe:CalamityMod/WulfrumMetalScrap"
       },
+      "Terraria/ShimmerTorch": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/AlgalPrismTorch"
+      },
+      "CalamityMod/PolypSand": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/EutrophicSand"
+      },
+      "CalamityMod/EutrophicSandWall": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/EutrophicSandWallSafe"
+      },
+      "CalamityMod/Runestone": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/Navystone"
+      },
+      "CalamityMod/UnsafeNavystoneWall": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/NavystoneWall"
+      },
+      "CalamityMod/Navyplate": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/Onyxplate"
+      },
+      "CalamityMod/VolcanicSand": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/PolypSand"
+      },
+      "CalamityMod/Shellstone": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/Runestone"
+      },
+      "CalamityMod/AridSoil": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/Shellstone"
+      },
+      "CalamityMod/AncientSmoothNavystone": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/SmoothNavystone"
+      },
+      "CalamityMod/Dunesand": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/VolcanicSand"
+      },
+      "Terraria/ShimmerCampfire": {
+        "stage": "start",
+        "via": "shimmer:Terraria/Campfire"
+      },
+      "Terraria/AncientCopperBrick": {
+        "stage": "start",
+        "via": "shimmer:Terraria/CopperBrick"
+      },
+      "Terraria/PharaohsRobe": {
+        "stage": "start",
+        "via": "shimmer:Terraria/FlyingCarpet"
+      },
+      "Terraria/AncientGoldBrick": {
+        "stage": "start",
+        "via": "shimmer:Terraria/GoldBrick"
+      },
+      "Terraria/HoneyBucket": {
+        "stage": "start",
+        "via": "shimmer:Terraria/LavaBucket"
+      },
+      "Terraria/AncientObsidianBrick": {
+        "stage": "start",
+        "via": "shimmer:Terraria/ObsidianBrick"
+      },
+      "Terraria/SandstoneWallUnsafe": {
+        "stage": "start",
+        "via": "shimmer:Terraria/SandstoneWall"
+      },
+      "Terraria/PharaohsMask": {
+        "stage": "start",
+        "via": "shimmer:Terraria/SandstorminaBottle"
+      },
+      "Terraria/AncientSilverBrick": {
+        "stage": "start",
+        "via": "shimmer:Terraria/SilverBrick"
+      },
+      "Terraria/SpiderWallUnsafe": {
+        "stage": "start",
+        "via": "shimmer:Terraria/SpiderEcho"
+      },
+      "Terraria/PurificationPowder": {
+        "stage": "start",
+        "via": "shimmer:Terraria/ViciousPowder"
+      },
+      "Terraria/GasTrap": {
+        "stage": "start",
+        "via": "shimmer:Terraria/WhoopieCushion"
+      },
       "Terraria/CapricornLegs": {
         "stage": "start",
         "via": "container:Terraria/CapricornTail"
@@ -48956,6 +49732,22 @@
       "Terraria/GreenStuccoWall": {
         "stage": "start",
         "via": "recipe:Terraria/GreenStucco"
+      },
+      "Terraria/AncientGoldBrickWall": {
+        "stage": "start",
+        "via": "recipe:Terraria/AncientGoldBrick"
+      },
+      "Terraria/AncientSilverBrickWall": {
+        "stage": "start",
+        "via": "recipe:Terraria/AncientSilverBrick"
+      },
+      "Terraria/AncientCopperBrickWall": {
+        "stage": "start",
+        "via": "recipe:Terraria/AncientCopperBrick"
+      },
+      "Terraria/AncientObsidianBrickWall": {
+        "stage": "start",
+        "via": "recipe:Terraria/AncientObsidianBrick"
       },
       "Terraria/TallGate": {
         "stage": "start",
@@ -49269,9 +50061,17 @@
         "stage": "start",
         "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Onyxplate"
       },
+      "CalamityMod/CagedFloodlightItem": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Navyplate"
+      },
       "CalamityMod/MiniCagedBlacklightItem": {
         "stage": "start",
         "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Onyxplate"
+      },
+      "CalamityMod/MiniCagedFloodlightItem": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Navyplate"
       },
       "CalamityMod/HazardChevronPanels": {
         "stage": "start",
@@ -49509,6 +50309,70 @@
         "stage": "start",
         "via": "recipe:CalamityMod/PolishedMarniteBlock"
       },
+      "CalamityMod/AncientNavystoneBathtub": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone"
+      },
+      "CalamityMod/AncientNavystoneBed": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone+Terraria/Silk"
+      },
+      "CalamityMod/AncientNavystoneBench": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone"
+      },
+      "CalamityMod/AncientNavystoneCandelabra": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone+Terraria/Torch"
+      },
+      "CalamityMod/AncientNavystoneCandle": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone+Terraria/Torch"
+      },
+      "CalamityMod/AncientNavystoneChair": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone"
+      },
+      "CalamityMod/AncientNavystoneChandelier": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone+Terraria/Torch+Terraria/Chain"
+      },
+      "CalamityMod/AncientNavystoneChest": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone+Terraria/IronBar"
+      },
+      "CalamityMod/AncientNavystoneClock": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone+Terraria/IronBar+Terraria/Glass"
+      },
+      "CalamityMod/AncientNavystoneDoor": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone"
+      },
+      "CalamityMod/AncientNavystoneDresser": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone"
+      },
+      "CalamityMod/AncientNavystoneLamp": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone+Terraria/Torch"
+      },
+      "CalamityMod/AncientNavystoneLantern": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone+Terraria/Torch"
+      },
+      "CalamityMod/AncientNavystonePlatform": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone"
+      },
+      "CalamityMod/AncientNavystoneTable": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone"
+      },
+      "CalamityMod/AncientNavystoneWorkBench": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone"
+      },
       "CalamityMod/NavystoneBathtub": {
         "stage": "start",
         "via": "recipe:CalamityMod/SmoothNavystone"
@@ -49576,6 +50440,10 @@
       "CalamityMod/NavystoneWorkBench": {
         "stage": "start",
         "via": "recipe:CalamityMod/SmoothNavystone"
+      },
+      "CalamityMod/ShellstoneSlab": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/Shellstone"
       },
       "CalamityMod/VoidBathtub": {
         "stage": "start",
@@ -49753,9 +50621,17 @@
         "stage": "start",
         "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/Onyxplate+CalamityMod/BlightedGel"
       },
-      "CalamityMod/Navyplate": {
+      "CalamityMod/WaterTurret": {
         "stage": "start",
-        "via": "recipe:Terraria/Obsidian+CalamityMod/SeaPrism"
+        "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/Navyplate"
+      },
+      "CalamityMod/HostileWaterTurret": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/Navyplate"
+      },
+      "CalamityMod/AncientSmoothNavystoneWall": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone"
       },
       "CalamityMod/AshenSlabWall": {
         "stage": "start",
@@ -49769,9 +50645,57 @@
         "stage": "start",
         "via": "recipe:CalamityMod/Navyplate"
       },
+      "CalamityMod/RunestoneWall": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/Runestone"
+      },
+      "CalamityMod/ShellstoneSlabWall": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/ShellstoneSlab"
+      },
+      "CalamityMod/ShellstoneWall": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/Shellstone"
+      },
       "CalamityMod/VoidstoneSlabWall": {
         "stage": "start",
         "via": "recipe:CalamityMod/VoidstoneSlab"
+      },
+      "CalamityMod/Basalt": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/AridSoil"
+      },
+      "CalamityMod/Limestone": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/Basalt"
+      },
+      "CalamityMod/AgedBlacklightItem": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/CagedBlacklightItem"
+      },
+      "CalamityMod/AgedFloodlightItem": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/CagedFloodlightItem"
+      },
+      "CalamityMod/MossyStone": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/Limestone"
+      },
+      "CalamityMod/MiniAgedBlacklightItem": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/MiniCagedBlacklightItem"
+      },
+      "CalamityMod/MiniAgedFloodlightItem": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/MiniCagedFloodlightItem"
+      },
+      "CalamityMod/Cinderplate": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/Navyplate"
+      },
+      "Terraria/WaterBucket": {
+        "stage": "start",
+        "via": "shimmer:Terraria/HoneyBucket"
       },
       "Terraria/AmethystEcho": {
         "stage": "start",
@@ -49801,21 +50725,213 @@
         "stage": "start",
         "via": "recipe:Terraria/AmberStoneBlock"
       },
-      "CalamityMod/CagedFloodlightItem": {
+      "Terraria/WoodenSink": {
         "stage": "start",
-        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Navyplate"
+        "via": "recipe:Terraria/Wood+Terraria/WaterBucket"
       },
-      "CalamityMod/MiniCagedFloodlightItem": {
+      "Terraria/PalmWoodSink": {
         "stage": "start",
-        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Navyplate"
+        "via": "recipe:Terraria/PalmWood+Terraria/WaterBucket"
       },
-      "CalamityMod/WaterTurret": {
+      "Terraria/BorealWoodSink": {
         "stage": "start",
-        "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/Navyplate"
+        "via": "recipe:Terraria/BorealWood+Terraria/WaterBucket"
       },
-      "CalamityMod/HostileWaterTurret": {
+      "Terraria/RichMahoganySink": {
         "stage": "start",
-        "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+CalamityMod/Navyplate"
+        "via": "recipe:Terraria/RichMahogany+Terraria/WaterBucket"
+      },
+      "Terraria/EbonwoodSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/Ebonwood+Terraria/WaterBucket"
+      },
+      "Terraria/ShadewoodSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/Shadewood+Terraria/WaterBucket"
+      },
+      "Terraria/AshWoodSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/AshWood+Terraria/WaterBucket"
+      },
+      "Terraria/MushroomSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom+Terraria/WaterBucket"
+      },
+      "Terraria/MarbleSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/MarbleBlock+Terraria/WaterBucket"
+      },
+      "Terraria/GraniteSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/GraniteBlock+Terraria/WaterBucket"
+      },
+      "Terraria/SandstoneSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/SmoothSandstone+Terraria/WaterBucket"
+      },
+      "Terraria/BambooSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/BambooBlock+Terraria/WaterBucket"
+      },
+      "Terraria/CoralSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/ReefBlock+Terraria/WaterBucket"
+      },
+      "Terraria/DynastySink": {
+        "stage": "start",
+        "via": "recipe:Terraria/DynastyWood+Terraria/WaterBucket"
+      },
+      "Terraria/GlassSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/Glass+Terraria/WaterBucket"
+      },
+      "Terraria/SkywareSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/SunplateBlock+Terraria/WaterBucket"
+      },
+      "Terraria/CactusSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/Cactus+Terraria/WaterBucket"
+      },
+      "Terraria/PumpkinSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/Pumpkin+Terraria/WaterBucket"
+      },
+      "Terraria/MetalSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/IronBar+Terraria/WaterBucket"
+      },
+      "CalamityMod/CyanSeekingMechanism": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/LabSeekingMechanism+Terraria/WaterBucket"
+      },
+      "CalamityMod/CagedCinderlightItem": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Cinderplate"
+      },
+      "CalamityMod/MiniCagedCinderlightItem": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Cinderplate"
+      },
+      "CalamityMod/BasaltSlab": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/Basalt"
+      },
+      "CalamityMod/DriftwoodSink": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/Driftwood+Terraria/WaterBucket"
+      },
+      "CalamityMod/MarniteSink": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/PolishedMarniteBlock+Terraria/WaterBucket"
+      },
+      "CalamityMod/AncientNavystoneSink": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone+Terraria/WaterBucket"
+      },
+      "CalamityMod/NavystoneSink": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/SmoothNavystone+Terraria/WaterBucket"
+      },
+      "CalamityMod/VoidSink": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/SmoothVoidstone+Terraria/WaterBucket"
+      },
+      "CalamityMod/AnodizedWulfrumSink": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/RoundedAnodizedWulfrumPanels+Terraria/WaterBucket"
+      },
+      "CalamityMod/WulfrumSink": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/WulfrumPlating+Terraria/WaterBucket"
+      },
+      "CalamityMod/CinderplateWall": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/Cinderplate"
+      },
+      "CalamityMod/LimestoneWall": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/Limestone"
+      },
+      "CalamityMod/AgedCinderlightItem": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/CagedCinderlightItem"
+      },
+      "CalamityMod/Plagueplate": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/Cinderplate"
+      },
+      "CalamityMod/MiniAgedCinderlightItem": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/MiniCagedCinderlightItem"
+      },
+      "CalamityMod/Havocplate": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/Plagueplate"
+      },
+      "CalamityMod/CagedBiolightItem": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Plagueplate"
+      },
+      "CalamityMod/CagedFlamelightItem": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Havocplate"
+      },
+      "CalamityMod/MiniCagedBiolightItem": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Plagueplate"
+      },
+      "CalamityMod/MiniCagedFlamelightItem": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Havocplate"
+      },
+      "CalamityMod/HavocplateWall": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/Havocplate"
+      },
+      "CalamityMod/PlagueContainmentCellsWall": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/Plagueplate"
+      },
+      "CalamityMod/AgedBiolightItem": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/CagedBiolightItem"
+      },
+      "CalamityMod/AgedFlamelightItem": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/CagedFlamelightItem"
+      },
+      "CalamityMod/Elumplate": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/Havocplate"
+      },
+      "CalamityMod/MiniAgedBiolightItem": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/MiniCagedBiolightItem"
+      },
+      "CalamityMod/MiniAgedFlamelightItem": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/MiniCagedFlamelightItem"
+      },
+      "CalamityMod/CagedFrostlightItem": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Elumplate"
+      },
+      "CalamityMod/MiniCagedFrostlightItem": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Elumplate"
+      },
+      "CalamityMod/ElumplateWall": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/Elumplate"
+      },
+      "CalamityMod/AgedFrostlightItem": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/CagedFrostlightItem"
+      },
+      "CalamityMod/MiniAgedFrostlightItem": {
+        "stage": "start",
+        "via": "shimmer:CalamityMod/MiniCagedFrostlightItem"
       },
       "CalamityMod/Acidwood": {
         "stage": "start",
@@ -49892,6 +51008,10 @@
       "CalamityMod/AcidwoodPlatform": {
         "stage": "start",
         "via": "recipe:CalamityMod/Acidwood"
+      },
+      "CalamityMod/AcidwoodSink": {
+        "stage": "start",
+        "via": "recipe:CalamityMod/Acidwood+Terraria/WaterBucket"
       },
       "CalamityMod/AcidwoodTable": {
         "stage": "start",
@@ -50005,6 +51125,10 @@
         "stage": "king-slime",
         "via": "recipe:Terraria/SlimeBlock+Terraria/Silk"
       },
+      "Terraria/SlimeSink": {
+        "stage": "king-slime",
+        "via": "recipe:Terraria/SlimeBlock+Terraria/WaterBucket"
+      },
       "Terraria/ToiletSlime": {
         "stage": "king-slime",
         "via": "recipe:Terraria/SlimeBlock"
@@ -50049,6 +51173,10 @@
         "stage": "king-slime",
         "via": "recipe:Terraria/HardenedSand"
       },
+      "Terraria/HardenedSandWallUnsafe": {
+        "stage": "king-slime",
+        "via": "shimmer:Terraria/HardenedSandWall"
+      },
       "CalamityMod/DesertScourgeBag": {
         "stage": "desert-scourge",
         "via": "npc:CalamityMod/DesertScourgeHead"
@@ -50088,6 +51216,10 @@
       "CalamityMod/SeaRemains": {
         "stage": "desert-scourge",
         "via": "recipe:CalamityMod/PearlShard+Terraria/Coral+Terraria/Starfish+Terraria/Seashell"
+      },
+      "CalamityMod/EutrophicShelf": {
+        "stage": "desert-scourge",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone+CalamityMod/SeaPrism+CalamityMod/PrismShard+CalamityMod/PearlShard"
       },
       "CalamityMod/Seafood": {
         "stage": "desert-scourge",
@@ -50171,14 +51303,6 @@
         "via": "shop:Terraria/Dryad"
       },
       "Terraria/CorruptGrassEcho": {
-        "stage": "eye-of-cthulhu",
-        "via": "shop:Terraria/Dryad"
-      },
-      "Terraria/PurificationPowder": {
-        "stage": "eye-of-cthulhu",
-        "via": "shop:Terraria/Dryad"
-      },
-      "Terraria/Sunflower": {
         "stage": "eye-of-cthulhu",
         "via": "shop:Terraria/Dryad"
       },
@@ -50380,13 +51504,6 @@
         "customEventName": "",
         "eventIcon": ""
       },
-      "Terraria/WarTable": {
-        "stage": "world-evil",
-        "via": "npc:Terraria/DD2DarkMageT1",
-        "eventCategory": "OldOnesArmy",
-        "customEventName": "",
-        "eventIcon": ""
-      },
       "Terraria/WarTableBanner": {
         "stage": "world-evil",
         "via": "npc:Terraria/DD2DarkMageT1",
@@ -50543,6 +51660,10 @@
         "stage": "world-evil",
         "via": "recipe:Terraria/MeteoriteBrick+Terraria/Silk"
       },
+      "Terraria/MeteoriteSink": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick+Terraria/WaterBucket"
+      },
       "Terraria/ToiletMeteor": {
         "stage": "world-evil",
         "via": "recipe:Terraria/MeteoriteBrick"
@@ -50639,6 +51760,10 @@
         "stage": "world-evil",
         "via": "recipe:Terraria/Obsidian+Terraria/Hellstone+Terraria/IronBar"
       },
+      "Terraria/ObsidianSink": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Obsidian+Terraria/Hellstone+Terraria/WaterBucket"
+      },
       "Terraria/ToiletObsidian": {
         "stage": "world-evil",
         "via": "recipe:Terraria/Obsidian+Terraria/Hellstone"
@@ -50662,6 +51787,14 @@
       "CalamityMod/VoodooDemonVoodooDoll": {
         "stage": "world-evil",
         "via": "recipe:Terraria/HellstoneBar+Terraria/Silk"
+      },
+      "Terraria/AncientHellstoneBrick": {
+        "stage": "world-evil",
+        "via": "shimmer:Terraria/HellstoneBrick"
+      },
+      "Terraria/AncientHellstoneBrickWall": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/AncientHellstoneBrick"
       },
       "CalamityMod/HiveMindBag": {
         "stage": "hive-mind-perforators",
@@ -51647,6 +52780,14 @@
         "stage": "skeletron",
         "via": "recipe:CalamityMod/PolishedMarniteBlock+Terraria/Bone+Terraria/Book"
       },
+      "CalamityMod/AncientNavystoneBookcase": {
+        "stage": "skeletron",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone+Terraria/Book"
+      },
+      "CalamityMod/AncientNavystonePiano": {
+        "stage": "skeletron",
+        "via": "recipe:CalamityMod/AncientSmoothNavystone+Terraria/Bone+Terraria/Book"
+      },
       "CalamityMod/NavystoneBookcase": {
         "stage": "skeletron",
         "via": "recipe:CalamityMod/SmoothNavystone+Terraria/Book"
@@ -51682,10 +52823,6 @@
       "Terraria/ShadowKey": {
         "stage": "skeletron",
         "via": "container:Terraria/LockBox"
-      },
-      "Terraria/BewitchingTable": {
-        "stage": "skeletron",
-        "via": "manifest"
       },
       "Terraria/CowboyHat": {
         "stage": "skeletron",
@@ -51766,6 +52903,10 @@
       "CalamityMod/AbyssLantern": {
         "stage": "skeletron",
         "via": "recipe:CalamityMod/SmoothAbyssGravel+Terraria/Torch"
+      },
+      "CalamityMod/AbyssSink": {
+        "stage": "skeletron",
+        "via": "recipe:CalamityMod/SmoothAbyssGravel+Terraria/WaterBucket"
       },
       "CalamityMod/AbyssSofa": {
         "stage": "skeletron",
@@ -51874,6 +53015,10 @@
       "CalamityMod/StatigelPlatform": {
         "stage": "slime-god",
         "via": "recipe:CalamityMod/StatigelBlock"
+      },
+      "CalamityMod/StatigelSink": {
+        "stage": "slime-god",
+        "via": "recipe:CalamityMod/StatigelBlock+Terraria/WaterBucket"
       },
       "CalamityMod/StatigelSofa": {
         "stage": "slime-god",
@@ -52376,15 +53521,7 @@
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Merchant"
       },
-      "Terraria/SharpeningStation": {
-        "stage": "wall-of-flesh",
-        "via": "shop:Terraria/Merchant"
-      },
       "Terraria/EmptyBullet": {
-        "stage": "wall-of-flesh",
-        "via": "shop:Terraria/ArmsDealer"
-      },
-      "Terraria/AmmoBox": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/ArmsDealer"
       },
@@ -52587,10 +53724,6 @@
       "Terraria/DarkBlueSolution": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Truffle"
-      },
-      "Terraria/CrystalBall": {
-        "stage": "wall-of-flesh",
-        "via": "shop:Terraria/Wizard"
       },
       "Terraria/Bell": {
         "stage": "wall-of-flesh",
@@ -52996,6 +54129,10 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/SpiderBlock+Terraria/Bone+Terraria/Book"
       },
+      "Terraria/SpiderSinkSpiderSinkDoesWhateverASpiderSinkDoes": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/SpiderBlock+Terraria/WaterBucket"
+      },
       "Terraria/SpiderSofa": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/SpiderBlock+Terraria/Silk"
@@ -53112,30 +54249,6 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/LivingFireBlock+CalamityMod/BrimstoneSlag"
       },
-      "CalamityMod/Cinderplate": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/Obsidian+CalamityMod/EssenceofSunlight"
-      },
-      "CalamityMod/Elumplate": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/Obsidian+CalamityMod/EssenceofEleum"
-      },
-      "CalamityMod/Havocplate": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/Obsidian+CalamityMod/EssenceofHavoc"
-      },
-      "CalamityMod/CinderplateWall": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:CalamityMod/Cinderplate"
-      },
-      "CalamityMod/ElumplateWall": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:CalamityMod/Elumplate"
-      },
-      "CalamityMod/HavocplateWall": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:CalamityMod/Havocplate"
-      },
       "CalamityMod/CryoKey": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/IceBlock+Terraria/SoulofLight+Terraria/SoulofNight+CalamityMod/EssenceofEleum"
@@ -53156,33 +54269,77 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/BottledWater+CalamityMod/StarblightSoot+CalamityMod/AstralGrassSeeds"
       },
+      "Terraria/ShimmerMonolith": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/AngelStatue"
+      },
+      "Terraria/AncientCobaltBrick": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/CobaltBrick"
+      },
+      "Terraria/CorruptionChest": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/CorruptionKey"
+      },
+      "Terraria/CrimsonChest": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/CrimsonKey"
+      },
+      "Terraria/DungeonDesertChest": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/DungeonDesertKey"
+      },
+      "Terraria/FrozenChest": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/FrozenKey"
+      },
+      "Terraria/HallowedChest": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/HallowedKey"
+      },
+      "Terraria/JungleChest": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/JungleKey"
+      },
+      "Terraria/ShimmerCloak": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/StarCloak"
+      },
+      "Terraria/Moondial": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/Sundial"
+      },
       "Terraria/SpiderPlatform": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/SpiderBlock"
       },
-      "CalamityMod/CagedCinderlightItem": {
+      "Terraria/AncientCobaltBrickWall": {
         "stage": "wall-of-flesh",
-        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Cinderplate"
+        "via": "recipe:Terraria/AncientCobaltBrick"
       },
-      "CalamityMod/CagedFlamelightItem": {
+      "Terraria/Fake_JungleChest": {
         "stage": "wall-of-flesh",
-        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Havocplate"
+        "via": "recipe:Terraria/JungleChest+Terraria/Wire"
       },
-      "CalamityMod/CagedFrostlightItem": {
+      "Terraria/Fake_CorruptionChest": {
         "stage": "wall-of-flesh",
-        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Elumplate"
+        "via": "recipe:Terraria/CorruptionChest+Terraria/Wire"
       },
-      "CalamityMod/MiniCagedCinderlightItem": {
+      "Terraria/Fake_CrimsonChest": {
         "stage": "wall-of-flesh",
-        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Cinderplate"
+        "via": "recipe:Terraria/CrimsonChest+Terraria/Wire"
       },
-      "CalamityMod/MiniCagedFlamelightItem": {
+      "Terraria/Fake_HallowedChest": {
         "stage": "wall-of-flesh",
-        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Havocplate"
+        "via": "recipe:Terraria/HallowedChest+Terraria/Wire"
       },
-      "CalamityMod/MiniCagedFrostlightItem": {
+      "Terraria/Fake_FrozenChest": {
         "stage": "wall-of-flesh",
-        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Elumplate"
+        "via": "recipe:Terraria/FrozenChest+Terraria/Wire"
+      },
+      "Terraria/Fake_DungeonDesertChest": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/DungeonDesertChest+Terraria/Wire"
       },
       "Terraria/AdamantiteForge": {
         "stage": "wall-of-flesh",
@@ -53231,6 +54388,10 @@
       "Terraria/PearlwoodChest": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Pearlwood+Terraria/IronBar"
+      },
+      "Terraria/PearlwoodSink": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/Pearlwood+Terraria/WaterBucket"
       },
       "Terraria/PearlwoodTable": {
         "stage": "wall-of-flesh",
@@ -53383,6 +54544,10 @@
       "CalamityMod/MonolithPlatform": {
         "stage": "wall-of-flesh",
         "via": "recipe:CalamityMod/AstralMonolith"
+      },
+      "CalamityMod/MonolithSink": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:CalamityMod/AstralMonolith+Terraria/WaterBucket"
       },
       "CalamityMod/MonolithTable": {
         "stage": "wall-of-flesh",
@@ -53787,6 +54952,10 @@
         "stage": "destroyer",
         "via": "recipe:Terraria/Wood"
       },
+      "Terraria/LivingWoodSink": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/Wood+Terraria/WaterBucket"
+      },
       "Terraria/LivingWoodTable": {
         "stage": "destroyer",
         "via": "recipe:Terraria/Wood"
@@ -53838,6 +55007,10 @@
       "Terraria/ToiletLivingWood": {
         "stage": "destroyer",
         "via": "recipe:Terraria/Wood"
+      },
+      "Terraria/FrozenSink": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/IceBlock+Terraria/WaterBucket"
       },
       "Terraria/FrozenTable": {
         "stage": "destroyer",
@@ -53934,6 +55107,10 @@
       "Terraria/BoneWorkBench": {
         "stage": "destroyer",
         "via": "recipe:Terraria/Bone"
+      },
+      "Terraria/BoneSink": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/Bone+Terraria/WaterBucket"
       },
       "Terraria/BoneTable": {
         "stage": "destroyer",
@@ -54131,6 +55308,14 @@
         "stage": "destroyer",
         "via": "recipe:CalamityMod/MysteriousCircuitry+CalamityMod/DubiousPlating+Terraria/MythrilBar+Terraria/Wire"
       },
+      "Terraria/AncientMythrilBrick": {
+        "stage": "destroyer",
+        "via": "shimmer:Terraria/MythrilBrick"
+      },
+      "Terraria/AncientMythrilBrickWall": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/AncientMythrilBrick"
+      },
       "CalamityMod/InfernalSuevite": {
         "stage": "brimstone-elemental",
         "via": "npc:CalamityMod/InfernalCongealment"
@@ -54246,6 +55431,10 @@
       "Terraria/ToiletCrystal": {
         "stage": "twins",
         "via": "recipe:Terraria/CrystalBlock"
+      },
+      "Terraria/CrystalSink": {
+        "stage": "twins",
+        "via": "recipe:Terraria/CrystalBlock+Terraria/WaterBucket"
       },
       "Terraria/CrystalTable": {
         "stage": "twins",
@@ -54446,6 +55635,10 @@
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/Cog"
       },
+      "Terraria/SteampunkSink": {
+        "stage": "skeletron-prime",
+        "via": "recipe:Terraria/Cog+Terraria/WaterBucket"
+      },
       "Terraria/SteampunkTable": {
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/Cog"
@@ -54574,6 +55767,10 @@
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/ChlorophyteBar+Terraria/Extractinator"
       },
+      "CalamityMod/HallowedOre": {
+        "stage": "skeletron-prime",
+        "via": "shimmer:Terraria/ChlorophyteOre"
+      },
       "CalamityMod/SolarVeil": {
         "stage": "calamitas-clone",
         "via": "npc:Terraria/VampireBat"
@@ -54613,10 +55810,6 @@
       "CalamityMod/LoreCalamitasClone": {
         "stage": "calamitas-clone",
         "via": "recipe:CalamityMod/CalamitasCloneTrophy"
-      },
-      "CalamityMod/HallowedOre": {
-        "stage": "plantera",
-        "via": "npc:CalamityMod/Burrower"
       },
       "CalamityMod/PerennialOre": {
         "stage": "plantera",
@@ -55099,6 +56292,10 @@
         "stage": "plantera",
         "via": "recipe:Terraria/SpookyWood+Terraria/IronBar"
       },
+      "Terraria/SpookySink": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/SpookyWood+Terraria/WaterBucket"
+      },
       "Terraria/SpookyTable": {
         "stage": "plantera",
         "via": "recipe:Terraria/SpookyWood"
@@ -55214,10 +56411,6 @@
       "Terraria/SolarTablet": {
         "stage": "plantera",
         "via": "recipe:Terraria/LunarTabletFragment"
-      },
-      "Terraria/LifeFruit": {
-        "stage": "plantera",
-        "via": "recipe:CalamityMod/PlantyMush+CalamityMod/LivingShard"
       },
       "CalamityMod/LivingShardDye": {
         "stage": "plantera",
@@ -55574,6 +56767,10 @@
         "stage": "golem",
         "via": "recipe:Terraria/MartianConduitPlating+Terraria/Silk"
       },
+      "Terraria/MartianSink": {
+        "stage": "golem",
+        "via": "recipe:Terraria/MartianConduitPlating+Terraria/WaterBucket"
+      },
       "Terraria/ToiletMartian": {
         "stage": "golem",
         "via": "recipe:Terraria/MartianConduitPlating"
@@ -55678,6 +56875,10 @@
         "stage": "golem",
         "via": "recipe:CalamityMod/PlaguedContainmentBrick"
       },
+      "CalamityMod/PlaguedPlateSink": {
+        "stage": "golem",
+        "via": "recipe:CalamityMod/PlaguedContainmentBrick+Terraria/WaterBucket"
+      },
       "CalamityMod/PlaguedPlateSofa": {
         "stage": "golem",
         "via": "recipe:CalamityMod/PlaguedContainmentBrick+Terraria/Silk"
@@ -55694,17 +56895,9 @@
         "stage": "golem",
         "via": "recipe:Terraria/LivingFireBlock+CalamityMod/PlagueCellCanister"
       },
-      "CalamityMod/Plagueplate": {
-        "stage": "golem",
-        "via": "recipe:Terraria/Obsidian+CalamityMod/PlagueCellCanister"
-      },
       "CalamityMod/ScoriaBrick": {
         "stage": "golem",
         "via": "recipe:Terraria/StoneBlock+CalamityMod/ScoriaOre"
-      },
-      "CalamityMod/PlagueContainmentCellsWall": {
-        "stage": "golem",
-        "via": "recipe:CalamityMod/Plagueplate"
       },
       "CalamityMod/PlaguedPlateWall": {
         "stage": "golem",
@@ -55726,6 +56919,10 @@
         "stage": "golem",
         "via": "recipe:CalamityMod/ScoriaBar"
       },
+      "CalamityMod/BrokenPlaguedBed": {
+        "stage": "golem",
+        "via": "shimmer:CalamityMod/PlaguedPlateBed"
+      },
       "CalamityMod/VolcanicSinker": {
         "stage": "golem",
         "via": "recipe:Terraria/FishingBobber+CalamityMod/ScoriaBar"
@@ -55733,18 +56930,6 @@
       "CalamityMod/LifeAlloy": {
         "stage": "golem",
         "via": "recipe:CalamityMod/CryonicBar+CalamityMod/PerennialBar+CalamityMod/ScoriaBar"
-      },
-      "CalamityMod/CagedBiolightItem": {
-        "stage": "golem",
-        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Plagueplate"
-      },
-      "CalamityMod/MiniCagedBiolightItem": {
-        "stage": "golem",
-        "via": "recipe:CalamityMod/DubiousPlating+CalamityMod/MysteriousCircuitry+CalamityMod/Plagueplate"
-      },
-      "CalamityMod/BrokenPlaguedBed": {
-        "stage": "golem",
-        "via": "recipe:CalamityMod/PlaguedContainmentBrick"
       },
       "CalamityMod/AdvancedDisplay": {
         "stage": "golem",
@@ -56088,6 +57273,10 @@
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick+Terraria/Bone+Terraria/Book"
       },
+      "Terraria/SolarSink": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:Terraria/SolarBrick+Terraria/WaterBucket"
+      },
       "Terraria/SolarSofa": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick+Terraria/Silk"
@@ -56163,6 +57352,10 @@
       "Terraria/VortexPiano": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick+Terraria/Bone+Terraria/Book"
+      },
+      "Terraria/VortexSink": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:Terraria/VortexBrick+Terraria/WaterBucket"
       },
       "Terraria/VortexSofa": {
         "stage": "lunatic-cultist",
@@ -56240,6 +57433,10 @@
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick+Terraria/Bone+Terraria/Book"
       },
+      "Terraria/NebulaSink": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:Terraria/NebulaBrick+Terraria/WaterBucket"
+      },
       "Terraria/NebulaSofa": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick+Terraria/Silk"
@@ -56315,6 +57512,10 @@
       "Terraria/StardustPiano": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick+Terraria/Bone+Terraria/Book"
+      },
+      "Terraria/StardustSink": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:Terraria/StardustBrick+Terraria/WaterBucket"
       },
       "Terraria/StardustSofa": {
         "stage": "lunatic-cultist",
@@ -56928,6 +58129,10 @@
         "stage": "providence",
         "via": "recipe:CalamityMod/UelibloomBrick"
       },
+      "CalamityMod/BotanicSink": {
+        "stage": "providence",
+        "via": "recipe:CalamityMod/UelibloomBrick+Terraria/HoneyBucket"
+      },
       "CalamityMod/BotanicTable": {
         "stage": "providence",
         "via": "recipe:CalamityMod/UelibloomBrick"
@@ -57092,6 +58297,10 @@
         "stage": "signus",
         "via": "recipe:CalamityMod/OtherworldlyStone"
       },
+      "CalamityMod/OtherworldlySink": {
+        "stage": "signus",
+        "via": "recipe:CalamityMod/OtherworldlyStone+Terraria/WaterBucket"
+      },
       "CalamityMod/OtherworldlySofa": {
         "stage": "signus",
         "via": "recipe:CalamityMod/OtherworldlyStone+Terraria/Silk"
@@ -57187,6 +58396,10 @@
       "CalamityMod/StratusPlatform": {
         "stage": "polterghast",
         "via": "recipe:CalamityMod/StratusBricks"
+      },
+      "CalamityMod/StratusSink": {
+        "stage": "polterghast",
+        "via": "recipe:CalamityMod/StratusBricks+Terraria/WaterBucket"
       },
       "CalamityMod/StratusSofa": {
         "stage": "polterghast",
@@ -57418,6 +58631,10 @@
         "stage": "devourer-of-gods",
         "via": "recipe:CalamityMod/CosmiliteBrick+Terraria/Torch"
       },
+      "CalamityMod/CosmiliteSink": {
+        "stage": "devourer-of-gods",
+        "via": "recipe:CalamityMod/CosmiliteBrick+Terraria/WaterBucket"
+      },
       "CalamityMod/CosmiliteSofa": {
         "stage": "devourer-of-gods",
         "via": "recipe:CalamityMod/CosmiliteBrick+Terraria/Silk"
@@ -57457,6 +58674,10 @@
       "CalamityMod/SilvaPlatform": {
         "stage": "devourer-of-gods",
         "via": "recipe:CalamityMod/SilvaCrystal"
+      },
+      "CalamityMod/SilvaSink": {
+        "stage": "devourer-of-gods",
+        "via": "recipe:CalamityMod/SilvaCrystal+Terraria/WaterBucket"
       },
       "CalamityMod/SilvaTable": {
         "stage": "devourer-of-gods",
@@ -57630,6 +58851,38 @@
         "stage": "yharon",
         "via": "recipe:Terraria/Zenith+Terraria/IronBar"
       },
+      "CalamityMod/ExoPrism": {
+        "stage": "exo-mechs",
+        "via": "npc:CalamityMod/AresBody"
+      },
+      "CalamityMod/PhotonRipper": {
+        "stage": "exo-mechs",
+        "via": "npc:CalamityMod/AresBody"
+      },
+      "CalamityMod/ExoThrone": {
+        "stage": "exo-mechs",
+        "via": "npc:CalamityMod/AresBody"
+      },
+      "CalamityMod/DraedonMask": {
+        "stage": "exo-mechs",
+        "via": "npc:CalamityMod/AresBody"
+      },
+      "CalamityMod/ThanatosMask": {
+        "stage": "exo-mechs",
+        "via": "npc:CalamityMod/AresBody"
+      },
+      "CalamityMod/AresMask": {
+        "stage": "exo-mechs",
+        "via": "npc:CalamityMod/AresBody"
+      },
+      "CalamityMod/ArtemisMask": {
+        "stage": "exo-mechs",
+        "via": "npc:CalamityMod/AresBody"
+      },
+      "CalamityMod/ApolloMask": {
+        "stage": "exo-mechs",
+        "via": "npc:CalamityMod/AresBody"
+      },
       "CalamityMod/ThanatosTrophy": {
         "stage": "exo-mechs",
         "via": "npc:CalamityMod/AresBody"
@@ -57658,38 +58911,6 @@
         "stage": "exo-mechs",
         "via": "npc:CalamityMod/AresBody"
       },
-      "CalamityMod/ExoPrism": {
-        "stage": "exo-mechs",
-        "via": "container:CalamityMod/DraedonBag"
-      },
-      "CalamityMod/PhotonRipper": {
-        "stage": "exo-mechs",
-        "via": "container:CalamityMod/DraedonBag"
-      },
-      "CalamityMod/AresMask": {
-        "stage": "exo-mechs",
-        "via": "container:CalamityMod/DraedonBag"
-      },
-      "CalamityMod/ThanatosMask": {
-        "stage": "exo-mechs",
-        "via": "container:CalamityMod/DraedonBag"
-      },
-      "CalamityMod/ArtemisMask": {
-        "stage": "exo-mechs",
-        "via": "container:CalamityMod/DraedonBag"
-      },
-      "CalamityMod/ApolloMask": {
-        "stage": "exo-mechs",
-        "via": "container:CalamityMod/DraedonBag"
-      },
-      "CalamityMod/ExoThrone": {
-        "stage": "exo-mechs",
-        "via": "container:CalamityMod/DraedonBag"
-      },
-      "CalamityMod/DraedonMask": {
-        "stage": "exo-mechs",
-        "via": "container:CalamityMod/DraedonBag"
-      },
       "CalamityMod/ExoDye": {
         "stage": "exo-mechs",
         "via": "recipe:Terraria/BottledWater+CalamityMod/ExoPrism"
@@ -57713,6 +58934,10 @@
       "CalamityMod/ExoPrismPlatform": {
         "stage": "exo-mechs",
         "via": "recipe:CalamityMod/ExoPrismPanel"
+      },
+      "CalamityMod/ExoSink": {
+        "stage": "exo-mechs",
+        "via": "recipe:CalamityMod/ExoPlating+Terraria/WaterBucket+Terraria/HoneyBucket+Terraria/LavaBucket"
       },
       "CalamityMod/ExoSofa": {
         "stage": "exo-mechs",
@@ -57873,30 +59098,6 @@
     },
     "wikiMissingItems": [
       {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-boss",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-evil1",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/ShimmerArrow",
-        "wikiStage": "pre-evil1",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Shimmer Arrow"
-        ]
-      },
-      {
         "id": "Terraria/MusketBall",
         "wikiStage": "pre-evil1",
         "reason": "recommendation has no proven availability",
@@ -57914,30 +59115,6 @@
         ]
       },
       {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-evil2",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-evil2",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
         "id": "Terraria/MusketBall",
         "wikiStage": "pre-skeletron",
         "reason": "recommendation has no proven availability",
@@ -57947,52 +59124,12 @@
         ]
       },
       {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-wof",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/ShimmerArrow",
-        "wikiStage": "pre-wof",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Shimmer Arrow"
-        ]
-      },
-      {
         "id": "Terraria/MusketBall",
         "wikiStage": "pre-wof",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Musket Ball",
           "Terraria/Tungsten Bullet"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-wof",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-wof",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
         ]
       },
       {
@@ -58012,46 +59149,6 @@
         ]
       },
       {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-mech",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-mech",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-mech",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-mech",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-mech",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
         "id": "Terraria/RodofDiscord",
         "wikiStage": "pre-mech",
         "reason": "recommendation has no proven availability",
@@ -58074,46 +59171,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "CalamityMod/InfernaCutter"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "post-mech1",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "post-mech1",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "post-mech1",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "post-mech1",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "post-mech1",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
         ]
       },
       {
@@ -58142,46 +59199,6 @@
         ]
       },
       {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "post-mech2",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "post-mech2",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "post-mech2",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "post-mech2",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "post-mech2",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
         "id": "Terraria/RodofDiscord",
         "wikiStage": "post-mech2",
         "reason": "recommendation has no proven availability",
@@ -58199,51 +59216,11 @@
         ]
       },
       {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
         "id": "Terraria/SoulofSight",
         "wikiStage": "pre-plantera",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Soul of Sight"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
         ]
       },
       {
@@ -58255,30 +59232,6 @@
         ]
       },
       {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
         "id": "Terraria/SoulofSight",
         "wikiStage": "pre-golem",
         "reason": "recommendation has no proven availability",
@@ -58287,35 +59240,11 @@
         ]
       },
       {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
         "id": "Terraria/RodofDiscord",
         "wikiStage": "pre-golem",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Rod of Discord"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "post-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
         ]
       },
       {
@@ -58335,51 +59264,11 @@
         ]
       },
       {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "post-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "post-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "post-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "post-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
         "id": "Terraria/RodofDiscord",
         "wikiStage": "post-golem",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Rod of Discord"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-lunar",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
         ]
       },
       {
@@ -58396,38 +59285,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sniper Scope"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-lunar",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-lunar",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-lunar",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-lunar",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
         ]
       },
       {
@@ -58447,14 +59304,6 @@
         ]
       },
       {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-moonlord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
         "id": "Terraria/ReconScope",
         "wikiStage": "pre-moonlord",
         "reason": "recommendation has no proven availability",
@@ -58468,38 +59317,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sniper Scope"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-moonlord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-moonlord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-moonlord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-moonlord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
         ]
       },
       {
@@ -58519,14 +59336,6 @@
         ]
       },
       {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-provi",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
         "id": "Terraria/ReconScope",
         "wikiStage": "pre-provi",
         "reason": "recommendation has no proven availability",
@@ -58543,51 +59352,11 @@
         ]
       },
       {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-provi",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-provi",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-provi",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-provi",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
         "id": "Terraria/RodofDiscord",
         "wikiStage": "pre-provi",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Rod of Discord"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
         ]
       },
       {
@@ -58607,51 +59376,11 @@
         ]
       },
       {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-polter",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
         "id": "Terraria/RodofDiscord",
         "wikiStage": "pre-polter",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Rod of Discord"
-        ]
-      },
-      {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-dog",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
         ]
       },
       {
@@ -58671,38 +59400,6 @@
         ]
       },
       {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-dog",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-dog",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-dog",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-dog",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
-        ]
-      },
-      {
         "id": "Terraria/RodofDiscord",
         "wikiStage": "pre-dog",
         "reason": "recommendation has no proven availability",
@@ -58711,51 +59408,11 @@
         ]
       },
       {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-yharon",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
         "id": "Terraria/SniperScope",
         "wikiStage": "pre-yharon",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sniper Scope"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-yharon",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-yharon",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-yharon",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-yharon",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
         ]
       },
       {
@@ -58775,51 +59432,11 @@
         ]
       },
       {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "pre-scal-exo",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
         "id": "Terraria/SniperScope",
         "wikiStage": "pre-scal-exo",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sniper Scope"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "pre-scal-exo",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "pre-scal-exo",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "pre-scal-exo",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "pre-scal-exo",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
         ]
       },
       {
@@ -58831,51 +59448,11 @@
         ]
       },
       {
-        "id": "Terraria/SharpeningStation",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Sharpening Station"
-        ]
-      },
-      {
         "id": "Terraria/SniperScope",
         "wikiStage": "endgame",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sniper Scope"
-        ]
-      },
-      {
-        "id": "Terraria/AmmoBox",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ammo Box"
-        ]
-      },
-      {
-        "id": "Terraria/CrystalBall",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Crystal Ball"
-        ]
-      },
-      {
-        "id": "Terraria/BewitchingTable",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bewitching Table"
-        ]
-      },
-      {
-        "id": "Terraria/WarTable",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/War Table"
         ]
       },
       {
@@ -61319,27 +61896,6 @@
         "reason": "recommendation precedes proven availability"
       },
       {
-        "id": "Terraria/ShadowHelmet",
-        "factualStage": "world-evil",
-        "recommendedStage": "crabulon",
-        "wikiStage": "pre-evil2",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "Terraria/ShadowScalemail",
-        "factualStage": "world-evil",
-        "recommendedStage": "crabulon",
-        "wikiStage": "pre-evil2",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "Terraria/ShadowGreaves",
-        "factualStage": "world-evil",
-        "recommendedStage": "crabulon",
-        "wikiStage": "pre-evil2",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
         "id": "Terraria/BrainOfConfusion",
         "factualStage": "world-evil",
         "recommendedStage": "crabulon",
@@ -62785,7 +63341,8 @@
             }
           ],
           "shops": [],
-          "recipes": []
+          "recipes": [],
+          "shimmer": []
         }
       },
       {
@@ -62811,7 +63368,8 @@
             }
           ],
           "shops": [],
-          "recipes": []
+          "recipes": [],
+          "shimmer": []
         }
       }
     ],
@@ -62865,26 +63423,6 @@
             "melee"
           ]
         }
-      },
-      {
-        "item": "Terraria/ShimmerArrow",
-        "displayName": "Мерцающая стрела",
-        "classification": {
-          "category": "Ammunition",
-          "classes": [
-            "ranged"
-          ]
-        }
-      },
-      {
-        "item": "Terraria/ShimmerFlare",
-        "displayName": "Мерцающий факел",
-        "classification": {
-          "category": "Ammunition",
-          "classes": [
-            "ranged"
-          ]
-        }
       }
     ],
     "manualAssignmentProblems": [],
@@ -62904,9 +63442,9 @@
     },
     "unassignedVanillaNpcSourceCount": 148,
     "manualAvailabilityPriority": {
-      "automaticItems": 5036,
+      "automaticItems": 5428,
       "automaticSources": 293,
-      "automaticStations": 748,
+      "automaticStations": 860,
       "suppressed": {
         "itemStages": [
           {
@@ -62925,7 +63463,7 @@
             "value": "CalamityMod/AresExoskeleton",
             "manualStageId": "exo-mechs",
             "automaticStageId": "exo-mechs",
-            "via": "container:CalamityMod/DraedonBag"
+            "via": "npc:CalamityMod/AresBody"
           },
           {
             "value": "CalamityMod/AscendantSpiritEssence",
@@ -62943,7 +63481,7 @@
             "value": "CalamityMod/AtlasMunitionsBeacon",
             "manualStageId": "exo-mechs",
             "automaticStageId": "exo-mechs",
-            "via": "container:CalamityMod/DraedonBag"
+            "via": "npc:CalamityMod/AresBody"
           },
           {
             "value": "CalamityMod/BlightedGel",
@@ -63057,7 +63595,7 @@
             "value": "CalamityMod/PhotonRipper",
             "manualStageId": "exo-mechs",
             "automaticStageId": "exo-mechs",
-            "via": "container:CalamityMod/DraedonBag"
+            "via": "npc:CalamityMod/AresBody"
           },
           {
             "value": "CalamityMod/PlantyMush",
@@ -63099,7 +63637,7 @@
             "value": "CalamityMod/RefractionRotor",
             "manualStageId": "exo-mechs",
             "automaticStageId": "exo-mechs",
-            "via": "container:CalamityMod/DraedonBag"
+            "via": "npc:CalamityMod/AresBody"
           },
           {
             "value": "CalamityMod/ScorchedBone",
@@ -63120,28 +63658,16 @@
             "via": "recipe:CalamityMod/PrismShard"
           },
           {
-            "value": "CalamityMod/SeaSpiritAmulet",
-            "manualStageId": "desert-scourge",
-            "automaticStageId": "desert-scourge",
-            "via": "fishing"
-          },
-          {
             "value": "CalamityMod/SmoothBrimstoneSlag",
             "manualStageId": "start",
             "automaticStageId": "start",
             "via": "recipe:CalamityMod/BrimstoneSlag"
           },
           {
-            "value": "CalamityMod/SparklingEmpress",
-            "manualStageId": "desert-scourge",
-            "automaticStageId": "desert-scourge",
-            "via": "fishing"
-          },
-          {
             "value": "CalamityMod/SpineOfThanatos",
             "manualStageId": "exo-mechs",
             "automaticStageId": "exo-mechs",
-            "via": "container:CalamityMod/DraedonBag"
+            "via": "npc:CalamityMod/AresBody"
           },
           {
             "value": "CalamityMod/SupremeHealingPotion",
@@ -63153,19 +63679,19 @@
             "value": "CalamityMod/SurgeDriver",
             "manualStageId": "exo-mechs",
             "automaticStageId": "exo-mechs",
-            "via": "container:CalamityMod/DraedonBag"
+            "via": "npc:CalamityMod/AresBody"
           },
           {
             "value": "CalamityMod/TheAtomSplitter",
             "manualStageId": "exo-mechs",
             "automaticStageId": "exo-mechs",
-            "via": "container:CalamityMod/DraedonBag"
+            "via": "npc:CalamityMod/AresBody"
           },
           {
             "value": "CalamityMod/TheJailor",
             "manualStageId": "exo-mechs",
             "automaticStageId": "exo-mechs",
-            "via": "container:CalamityMod/DraedonBag"
+            "via": "npc:CalamityMod/AresBody"
           },
           {
             "value": "CalamityMod/UnholyCore",

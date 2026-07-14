@@ -3,10 +3,10 @@
   "version": 1,
   "targetMod": "FargowiltasSouls",
   "profileId": "builtin.fargosouls",
-  "generatedAtUtc": "2026-07-13T22:08:09.526Z",
+  "generatedAtUtc": "2026-07-14T00:01:38.727Z",
   "snapshot": {
-    "version": 4,
-    "generatedAtUtc": "2026-07-13T09:06:01.8781004Z",
+    "version": 5,
+    "generatedAtUtc": "2026-07-13T23:42:54.8344689Z",
     "targetMod": "FargowiltasSouls",
     "mods": [
       {
@@ -696,22 +696,25 @@
     }
   },
   "review": {
-    "total": 0,
-    "byKind": {}
+    "total": 1,
+    "byKind": {
+      "unresolved-condition": 1
+    }
   },
   "audit": {
     "errors": [],
     "warnings": [
-      "136 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
+      "135 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
       "npcCount": 742,
       "availabilityCount": 742,
       "spawnCount": 698,
-      "observedSpawnCount": 212,
+      "observedSpawnCount": 221,
       "townCount": 44,
       "observedTownCount": 10,
-      "fishingCount": 123,
+      "fishingCount": 124,
+      "shimmerTransformCount": 266,
       "dropSourceCount": 425,
       "shopSourceCount": 29,
       "globalDropCount": 22,
@@ -723,6 +726,14 @@
           ],
           "availabilityKind": "town",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/AnglerFish",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 9
         },
         {
           "source": "Terraria/AngryBones",
@@ -773,60 +784,12 @@
           "earliestStageIndex": 0
         },
         {
-          "source": "Terraria/ArmedTorchZombie",
+          "source": "Terraria/Arapaima",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/ArmedZombie",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/ArmedZombieCenx",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/ArmedZombiePincussion",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/ArmedZombieSlimed",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/ArmedZombieSwamp",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/ArmedZombieTwiggy",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
+          "earliestStageIndex": 9
         },
         {
           "source": "Terraria/ArmoredSkeleton",
@@ -861,6 +824,14 @@
           "earliestStageIndex": 0
         },
         {
+          "source": "Terraria/BigMimicCorruption",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 9
+        },
+        {
           "source": "Terraria/BlackRecluse",
           "kinds": [
             "drop"
@@ -875,6 +846,22 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/BloodFeeder",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 9
+        },
+        {
+          "source": "Terraria/BloodJelly",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 9
         },
         {
           "source": "Terraria/BloodZombie",
@@ -917,6 +904,14 @@
           "earliestStageIndex": 16
         },
         {
+          "source": "Terraria/BlueJellyfish",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
           "source": "Terraria/BlueSlime",
           "kinds": [
             "drop"
@@ -934,22 +929,6 @@
         },
         {
           "source": "Terraria/BoneSerpentHead",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/BoneThrowingSkeleton",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/BoneThrowingSkeleton4",
           "kinds": [
             "drop"
           ],
@@ -1014,6 +993,14 @@
           "earliestStageIndex": 0
         },
         {
+          "source": "Terraria/CorruptGoldfish",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
           "source": "Terraria/Corruptor",
           "kinds": [
             "drop"
@@ -1028,6 +1015,22 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 9
+        },
+        {
+          "source": "Terraria/Crab",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Crawdad2",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
         },
         {
           "source": "Terraria/CreatureFromTheDeep",
@@ -1060,6 +1063,14 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 9
+        },
+        {
+          "source": "Terraria/CrimsonGoldfish",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
         },
         {
           "source": "Terraria/CursedHammer",
@@ -1216,14 +1227,6 @@
           "earliestStageIndex": 3
         },
         {
-          "source": "Terraria/DungeonGuardian",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
           "source": "Terraria/DungeonSlime",
           "kinds": [
             "drop"
@@ -1293,7 +1296,7 @@
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 0
+          "earliestStageIndex": 16
         },
         {
           "source": "Terraria/Frankenstein",
@@ -1320,6 +1323,14 @@
           "earliestStageIndex": 0
         },
         {
+          "source": "Terraria/FungoFish",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 9
+        },
+        {
           "source": "Terraria/GiantBat",
           "kinds": [
             "drop"
@@ -1334,22 +1345,6 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 9
-        },
-        {
-          "source": "Terraria/GiantShelly",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/GiantShelly2",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
         },
         {
           "source": "Terraria/GiantTortoise",
@@ -1438,6 +1433,14 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/GreenJellyfish",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 9
         },
         {
           "source": "Terraria/Guide",
@@ -1637,7 +1640,7 @@
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 0
+          "earliestStageIndex": 16
         },
         {
           "source": "Terraria/LostGirl",
@@ -1686,7 +1689,7 @@
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 0
+          "earliestStageIndex": 5
         },
         {
           "source": "Terraria/Mimic",
@@ -1729,6 +1732,14 @@
           "earliestStageIndex": 0
         },
         {
+          "source": "Terraria/Mothron",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 16
+        },
+        {
           "source": "Terraria/Mummy",
           "kinds": [
             "drop"
@@ -1762,6 +1773,22 @@
         },
         {
           "source": "Terraria/PincushionZombie",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/PinkJellyfish",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Piranha",
           "kinds": [
             "drop"
           ],
@@ -1857,7 +1884,7 @@
           "earliestStageIndex": 16
         },
         {
-          "source": "Terraria/Salamander7",
+          "source": "Terraria/Salamander",
           "kinds": [
             "drop"
           ],
@@ -1865,7 +1892,15 @@
           "earliestStageIndex": 0
         },
         {
-          "source": "Terraria/Salamander9",
+          "source": "Terraria/Salamander4",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Salamander6",
           "kinds": [
             "drop"
           ],
@@ -1874,6 +1909,14 @@
         },
         {
           "source": "Terraria/Scarecrow2",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 16
+        },
+        {
+          "source": "Terraria/Scarecrow6",
           "kinds": [
             "drop"
           ],
@@ -1897,6 +1940,14 @@
           "earliestStageIndex": 9
         },
         {
+          "source": "Terraria/Shark",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
           "source": "Terraria/Skeleton",
           "kinds": [
             "drop"
@@ -1911,6 +1962,14 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 9
+        },
+        {
+          "source": "Terraria/SkeletonCommando",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 16
         },
         {
           "source": "Terraria/SkeletonMerchant",
@@ -1991,6 +2050,14 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Squid",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 5
         },
         {
           "source": "Terraria/Steampunker",
@@ -2171,6 +2238,14 @@
           "earliestStageIndex": 0
         },
         {
+          "source": "Terraria/ZombieElf",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 16
+        },
+        {
           "source": "Terraria/ZombieElfGirl",
           "kinds": [
             "drop"
@@ -2341,14 +2416,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/BigMimicCorruption",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/BigMimicCrimson",
           "kinds": [
             "drop"
@@ -2405,14 +2472,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/BlueJellyfish",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/BrainofCthulhu",
           "kinds": [
             "drop"
@@ -2437,14 +2496,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/CorruptGoldfish",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/CorruptPenguin",
           "kinds": [
             "drop"
@@ -2461,23 +2512,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Crawdad2",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/CrimsonBunny",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/CrimsonGoldfish",
           "kinds": [
             "drop"
           ],
@@ -2541,6 +2576,14 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/DungeonGuardian",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/EaterofWorldsHead",
           "kinds": [
             "drop"
@@ -2573,7 +2616,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/FungoFish",
+          "source": "Terraria/GiantCursedSkull",
           "kinds": [
             "drop"
           ],
@@ -2581,7 +2624,15 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/GiantCursedSkull",
+          "source": "Terraria/GiantShelly",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/GiantShelly2",
           "kinds": [
             "drop"
           ],
@@ -2654,14 +2705,6 @@
         },
         {
           "source": "Terraria/GrayGrunt",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/GreenJellyfish",
           "kinds": [
             "drop"
           ],
@@ -2789,14 +2832,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Mothron",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/MourningWood",
           "kinds": [
             "drop"
@@ -2838,14 +2873,6 @@
         },
         {
           "source": "Terraria/PigronHallow",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/PinkJellyfish",
           "kinds": [
             "drop"
           ],
@@ -3005,14 +3032,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Shark",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/SkeletronHead",
           "kinds": [
             "drop"
@@ -3038,14 +3057,6 @@
         },
         {
           "source": "Terraria/Spazmatism",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Squid",
           "kinds": [
             "drop"
           ],
@@ -3178,14 +3189,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/AnglerFish",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Antlion",
           "kinds": [
             "drop"
@@ -3194,7 +3197,23 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Arapaima",
+          "source": "Terraria/ArmedTorchZombie",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/ArmedZombie",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/ArmedZombieCenx",
           "kinds": [
             "drop"
           ],
@@ -3203,6 +3222,38 @@
         },
         {
           "source": "Terraria/ArmedZombieEskimo",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/ArmedZombiePincussion",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/ArmedZombieSlimed",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/ArmedZombieSwamp",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/ArmedZombieTwiggy",
           "kinds": [
             "drop"
           ],
@@ -3226,23 +3277,15 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/BloodFeeder",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/BloodJelly",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/BloodMummy",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/BoneThrowingSkeleton",
           "kinds": [
             "drop"
           ],
@@ -3266,7 +3309,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/ChaosElemental",
+          "source": "Terraria/BoneThrowingSkeleton4",
           "kinds": [
             "drop"
           ],
@@ -3274,7 +3317,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Crab",
+          "source": "Terraria/ChaosElemental",
           "kinds": [
             "drop"
           ],
@@ -3736,14 +3779,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Piranha",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Pirate",
           "kinds": [
             "shop"
@@ -3809,14 +3844,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Salamander",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Salamander2",
           "kinds": [
             "drop"
@@ -3833,14 +3860,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Salamander4",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Salamander5",
           "kinds": [
             "drop"
@@ -3849,7 +3868,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Salamander6",
+          "source": "Terraria/Salamander7",
           "kinds": [
             "drop"
           ],
@@ -3858,6 +3877,14 @@
         },
         {
           "source": "Terraria/Salamander8",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/Salamander9",
           "kinds": [
             "drop"
           ],
@@ -3953,14 +3980,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Scarecrow6",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Scarecrow7",
           "kinds": [
             "drop"
@@ -4002,14 +4021,6 @@
         },
         {
           "source": "Terraria/SkeletonAstonaut",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/SkeletonCommando",
           "kinds": [
             "drop"
           ],
@@ -4171,14 +4182,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/ZombieElf",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/ZombieElfBeard",
           "kinds": [
             "drop"
@@ -4230,10 +4233,10 @@
       "errors": []
     }
   },
-  "ready": true,
+  "ready": false,
   "generation": {
     "profileId": "builtin.fargosouls",
-    "generatedAtUtc": "2026-07-13T22:08:08.257Z",
+    "generatedAtUtc": "2026-07-14T00:01:37.515Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -4400,6 +4403,24 @@
       },
       {
         "sourceKind": "drop",
+        "source": "Terraria/CorruptGoldfish",
+        "item": "Terraria/BiomeSightPotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Piranha",
+        "item": "Terraria/GillsPotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
         "source": "Terraria/LavaSlime",
         "item": "Terraria/WarmthPotion",
         "condition": {
@@ -4411,6 +4432,69 @@
         "sourceKind": "drop",
         "source": "Terraria/Hellbat",
         "item": "Terraria/SonarPotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/BlueJellyfish",
+        "item": "Terraria/KiteJellyfishBlue",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
+          "description": "Выпадает в ветренные дни"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/BlueJellyfish",
+        "item": "Terraria/ShinePotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/PinkJellyfish",
+        "item": "Terraria/KiteJellyfishPink",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
+          "description": "Выпадает в ветренные дни"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/PinkJellyfish",
+        "item": "Terraria/ShinePotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Shark",
+        "item": "Terraria/KiteShark",
+        "condition": {
+          "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
+          "description": "Выпадает в ветренные дни"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Shark",
+        "item": "Terraria/FlipperPotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Crab",
+        "item": "Terraria/CratePotion",
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
           "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
@@ -4571,6 +4655,15 @@
       },
       {
         "sourceKind": "drop",
+        "source": "Terraria/CrimsonGoldfish",
+        "item": "Terraria/BiomeSightPotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
         "source": "Terraria/GreekSkeleton",
         "item": "Terraria/AmmoReservationPotion",
         "condition": {
@@ -4616,6 +4709,42 @@
       },
       {
         "sourceKind": "drop",
+        "source": "Terraria/Salamander",
+        "item": "Terraria/InvisibilityPotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Salamander4",
+        "item": "Terraria/InvisibilityPotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Salamander6",
+        "item": "Terraria/InvisibilityPotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "Terraria/ShinePotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
         "source": "Terraria/GiantShelly",
         "item": "Terraria/ThornsPotion",
         "condition": {
@@ -4627,51 +4756,6 @@
         "sourceKind": "drop",
         "source": "Terraria/GiantShelly2",
         "item": "Terraria/ThornsPotion",
-        "condition": {
-          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
-          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/Salamander7",
-        "item": "Terraria/InvisibilityPotion",
-        "condition": {
-          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
-          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/Salamander9",
-        "item": "Terraria/InvisibilityPotion",
-        "condition": {
-          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
-          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/BlueJellyfish",
-        "item": "Terraria/KiteJellyfishBlue",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/BlueJellyfish",
-        "item": "Terraria/ShinePotion",
-        "condition": {
-          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
-          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "Terraria/ShinePotion",
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
           "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
@@ -4751,24 +4835,6 @@
       },
       {
         "sourceKind": "drop",
-        "source": "Terraria/CorruptGoldfish",
-        "item": "Terraria/BiomeSightPotion",
-        "condition": {
-          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
-          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/CrimsonGoldfish",
-        "item": "Terraria/BiomeSightPotion",
-        "condition": {
-          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
-          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
-        }
-      },
-      {
-        "sourceKind": "drop",
         "source": "Terraria/CorruptPenguin",
         "item": "Terraria/BiomeSightPotion",
         "condition": {
@@ -4780,42 +4846,6 @@
         "sourceKind": "drop",
         "source": "Terraria/CrimsonPenguin",
         "item": "Terraria/BiomeSightPotion",
-        "condition": {
-          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
-          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/PinkJellyfish",
-        "item": "Terraria/KiteJellyfishPink",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/PinkJellyfish",
-        "item": "Terraria/ShinePotion",
-        "condition": {
-          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
-          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/Shark",
-        "item": "Terraria/KiteShark",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/Shark",
-        "item": "Terraria/FlipperPotion",
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
           "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
@@ -6794,15 +6824,6 @@
       },
       {
         "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/ArtisanLoaf",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "Когда игрок ещё не успел использовать предмет «Хлеб мастера-пекаря»"
-        }
-      },
-      {
-        "sourceKind": "shop",
         "source": "Terraria/GoblinTinkerer",
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
@@ -7811,6 +7832,15 @@
       },
       {
         "sourceKind": "drop",
+        "source": "Terraria/Arapaima",
+        "item": "Terraria/GillsPotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
         "source": "Terraria/BlackRecluse",
         "item": "Terraria/TrapsightPotion",
         "condition": {
@@ -7831,6 +7861,15 @@
         "sourceKind": "drop",
         "source": "Terraria/JungleCreeper",
         "item": "Terraria/TrapsightPotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/BigMimicCorruption",
+        "item": "Terraria/LifeforcePotion",
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
           "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
@@ -7920,15 +7959,6 @@
       {
         "sourceKind": "drop",
         "source": "Terraria/BigMimicJungle",
-        "item": "Terraria/LifeforcePotion",
-        "condition": {
-          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
-          "description": "[i:FargowiltasSouls/TimsConcoction] Шанс выпадения со смесью Тима"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/BigMimicCorruption",
         "item": "Terraria/LifeforcePotion",
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
@@ -8203,15 +8233,6 @@
         "condition": {
           "type": "Terraria.Condition",
           "description": "Когда рядом с торговцем находится другой житель"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/WallOfFleshBossBag",
-        "item": "Terraria/DemonHeart",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+NotUsedDemonHeart",
-          "description": null
         }
       },
       {
@@ -9380,7 +9401,42 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/RobotHat",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AdhesiveBandage",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/JellyfishNecklace",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Glowstick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/DivingHelmet",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "FargowiltasSouls/HokeyBall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/GuideVoodooDoll",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Starfish",
         "reason": "not combat equipment"
       },
       {
@@ -9415,11 +9471,6 @@
       },
       {
         "stage": "start",
-        "id": "Terraria/Glowstick",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "Terraria/UmbrellaHat",
         "reason": "not combat equipment"
       },
@@ -9441,11 +9492,6 @@
       {
         "stage": "start",
         "id": "Terraria/Torch",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/JellyfishNecklace",
         "reason": "not combat equipment"
       },
       {
@@ -9475,27 +9521,12 @@
       },
       {
         "stage": "start",
-        "id": "Terraria/DivingHelmet",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "FargowiltasSouls/HokeyBall",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "Terraria/BlackInk",
         "reason": "not combat equipment"
       },
       {
         "stage": "start",
         "id": "FargowiltasSouls/SquidwardDoor",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/Starfish",
         "reason": "not combat equipment"
       },
       {
@@ -9576,11 +9607,6 @@
       {
         "stage": "start",
         "id": "Terraria/AncientChisel",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/CatBast",
         "reason": "not combat equipment"
       },
       {
@@ -11330,11 +11356,6 @@
       },
       {
         "stage": "start",
-        "id": "Terraria/CombatBook",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "Terraria/ScarabFish",
         "reason": "not combat equipment"
       },
@@ -11426,11 +11447,6 @@
       {
         "stage": "start",
         "id": "Terraria/MasterBait",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/LifeCrystal",
         "reason": "not combat equipment"
       },
       {
@@ -11671,11 +11687,6 @@
       {
         "stage": "start",
         "id": "Terraria/OrangeTorch",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/Campfire",
         "reason": "not combat equipment"
       },
       {
@@ -11961,16 +11972,6 @@
       {
         "stage": "start",
         "id": "Terraria/TinBrick",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/StarinaBottle",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/HeartLantern",
         "reason": "not combat equipment"
       },
       {
@@ -15175,11 +15176,6 @@
       },
       {
         "stage": "start",
-        "id": "Terraria/ManaCrystal",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "Terraria/TNTBarrel",
         "reason": "not combat equipment"
       },
@@ -15585,11 +15581,6 @@
       },
       {
         "stage": "start",
-        "id": "FargowiltasSouls/CoffinSummon",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "FargowiltasSouls/DevisCurse",
         "reason": "not combat equipment"
       },
@@ -15601,6 +15592,86 @@
       {
         "stage": "start",
         "id": "FargowiltasSouls/RazorContainer",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ShimmerMonolith",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ShimmerTorch",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ShimmerCampfire",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientCopperBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PharaohsRobe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientGoldBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomGrassSeeds",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/HoneyBucket",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientObsidianBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/SandstoneWallUnsafe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PharaohsMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientSilverBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/SpiderWallUnsafe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Moondial",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PurificationPowder",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GasTrap",
         "reason": "not combat equipment"
       },
       {
@@ -15761,6 +15832,26 @@
       {
         "stage": "start",
         "id": "Terraria/GreenStuccoWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientGoldBrickWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientSilverBrickWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientCopperBrickWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AncientObsidianBrickWall",
         "reason": "not combat equipment"
       },
       {
@@ -16375,6 +16466,16 @@
       },
       {
         "stage": "start",
+        "id": "Fargowiltas/PortableSundial",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/WaterBucket",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/AmethystEcho",
         "reason": "not combat equipment"
       },
@@ -16410,7 +16511,122 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/WoodenSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PalmWoodSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BorealWoodSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/RichMahoganySink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/EbonwoodSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ShadewoodSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/AshWoodSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MushroomSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MarbleSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GraniteSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/SandstoneSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BambooSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CoralSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/DynastySink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/GlassSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/HoneySink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/SkywareSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/FrozenSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CactusSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PumpkinSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MetalSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Fargowiltas/DoubleObsidianInstabridge",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Fargowiltas/MultitaskCenter",
         "reason": "not combat equipment"
       },
       {
@@ -16564,6 +16780,21 @@
         "reason": "not combat equipment"
       },
       {
+        "stage": "trojan-squirrel",
+        "id": "Terraria/CanOfWorms",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "trojan-squirrel",
+        "id": "Terraria/GoldWorm",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "trojan-squirrel",
+        "id": "Terraria/GoldWormCage",
+        "reason": "not combat equipment"
+      },
+      {
         "stage": "king-slime",
         "id": "Terraria/KingSlimeTrophy",
         "reason": "not combat equipment"
@@ -16686,6 +16917,11 @@
       {
         "stage": "king-slime",
         "id": "Terraria/SlimeSofa",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "king-slime",
+        "id": "Terraria/SlimeSink",
         "reason": "not combat equipment"
       },
       {
@@ -16814,6 +17050,11 @@
         "reason": "not combat equipment"
       },
       {
+        "stage": "king-slime",
+        "id": "Terraria/HardenedSandWallUnsafe",
+        "reason": "not combat equipment"
+      },
+      {
         "stage": "eye-of-cthulhu",
         "id": "FargowiltasSouls/PiranhaPlantVoodooDoll",
         "reason": "not combat equipment"
@@ -16875,17 +17116,7 @@
       },
       {
         "stage": "eye-of-cthulhu",
-        "id": "Terraria/PurificationPowder",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
         "id": "Terraria/GrassSeeds",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/Sunflower",
         "reason": "not combat equipment"
       },
       {
@@ -17085,16 +17316,6 @@
       },
       {
         "stage": "cursed-coffin",
-        "id": "Terraria/PharaohsMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "cursed-coffin",
-        "id": "Terraria/PharaohsRobe",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "cursed-coffin",
         "id": "FargowiltasSouls/CursedCoffinBag",
         "reason": "not combat equipment"
       },
@@ -17136,11 +17357,6 @@
       {
         "stage": "world-evil",
         "id": "Terraria/DarkMageBookMountItem",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "world-evil",
-        "id": "Terraria/WarTable",
         "reason": "not combat equipment"
       },
       {
@@ -17355,6 +17571,11 @@
       },
       {
         "stage": "world-evil",
+        "id": "Terraria/MeteoriteSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
         "id": "Terraria/ToiletMeteor",
         "reason": "not combat equipment"
       },
@@ -17495,6 +17716,11 @@
       },
       {
         "stage": "world-evil",
+        "id": "Terraria/ObsidianSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
         "id": "Terraria/ToiletObsidian",
         "reason": "not combat equipment"
       },
@@ -17511,6 +17737,16 @@
       {
         "stage": "world-evil",
         "id": "Terraria/FireproofBugNet",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/AncientHellstoneBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/AncientHellstoneBrickWall",
         "reason": "not combat equipment"
       },
       {
@@ -17725,11 +17961,6 @@
       },
       {
         "stage": "skeletron",
-        "id": "Terraria/BoneKey",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
         "id": "Terraria/SkeletronTrophy",
         "reason": "not combat equipment"
       },
@@ -17766,6 +17997,11 @@
       {
         "stage": "skeletron",
         "id": "Terraria/DungeonFishingCrate",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneKey",
         "reason": "not combat equipment"
       },
       {
@@ -18590,6 +18826,11 @@
       },
       {
         "stage": "skeletron",
+        "id": "Terraria/PinkDungeonSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
         "id": "Terraria/ToiletDungeonPink",
         "reason": "not combat equipment"
       },
@@ -18600,12 +18841,22 @@
       },
       {
         "stage": "skeletron",
+        "id": "Terraria/BlueDungeonSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
         "id": "Terraria/ToiletDungeonBlue",
         "reason": "not combat equipment"
       },
       {
         "stage": "skeletron",
         "id": "Terraria/GreenDungeonChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/GreenDungeonSink",
         "reason": "not combat equipment"
       },
       {
@@ -18770,17 +19021,72 @@
       },
       {
         "stage": "skeletron",
-        "id": "Terraria/BewitchingTable",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
         "id": "Fargowiltas/SuspiciousSkull",
         "reason": "not combat equipment"
       },
       {
         "stage": "skeletron",
         "id": "Fargowiltas/AbominationnPants",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/AncientBlueDungeonBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BlueBrickWallUnsafe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BlueSlabWallUnsafe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BlueTiledWallUnsafe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/AncientGreenDungeonBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/GreenBrickWallUnsafe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/GreenSlabWallUnsafe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/GreenTiledWallUnsafe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/AncientPinkDungeonBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/PinkBrickWallUnsafe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/PinkSlabWallUnsafe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/PinkTiledWallUnsafe",
         "reason": "not combat equipment"
       },
       {
@@ -18801,6 +19107,21 @@
       {
         "stage": "skeletron",
         "id": "Terraria/MetalShelf",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/AncientBlueDungeonBrickWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/AncientGreenDungeonBrickWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/AncientPinkDungeonBrickWall",
         "reason": "not combat equipment"
       },
       {
@@ -18846,6 +19167,11 @@
       {
         "stage": "skeletron",
         "id": "Terraria/BoneWorkBench",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/BoneSink",
         "reason": "not combat equipment"
       },
       {
@@ -18986,11 +19312,6 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/CursedFlame",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/AdhesiveBandage",
         "reason": "not combat equipment"
       },
       {
@@ -19175,17 +19496,22 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "Terraria/MushroomGrassSeeds",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "Terraria/TruffleWorm",
         "reason": "not combat equipment"
       },
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/Ichor",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/WormHook",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/CorruptFishingCrateHard",
         "reason": "not combat equipment"
       },
       {
@@ -19320,16 +19646,6 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "Terraria/WormHook",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/CorruptFishingCrateHard",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "Terraria/TendonHook",
         "reason": "not combat equipment"
       },
@@ -19405,17 +19721,7 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "Terraria/SharpeningStation",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "Terraria/EmptyBullet",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/AmmoBox",
         "reason": "not combat equipment"
       },
       {
@@ -19660,11 +19966,6 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "Terraria/CrystalBall",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "Terraria/Bell",
         "reason": "not combat equipment"
       },
@@ -19815,17 +20116,17 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/SoulofNight",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/SoulofLight",
         "reason": "not combat equipment"
       },
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/CrystalShard",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/SoulofNight",
         "reason": "not combat equipment"
       },
       {
@@ -20195,6 +20496,11 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/CrystalSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/CrystalTable",
         "reason": "not combat equipment"
       },
@@ -20276,6 +20582,11 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/SpiderPiano",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/SpiderSinkSpiderSinkDoesWhateverASpiderSinkDoes",
         "reason": "not combat equipment"
       },
       {
@@ -20580,11 +20891,6 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "Terraria/GoldWorm",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "Terraria/SquirrelGold",
         "reason": "not combat equipment"
       },
@@ -20615,12 +20921,97 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/AncientCobaltBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/CorruptionChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/CrimsonChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/DungeonDesertChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/FrozenChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/HallowedChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/JungleChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/AncientMythrilBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/ShimmerCloak",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/CrystalPlatform",
         "reason": "not combat equipment"
       },
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/SpiderPlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/AncientMythrilBrickWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/AncientCobaltBrickWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/Fake_JungleChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/Fake_CorruptionChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/Fake_CrimsonChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/Fake_HallowedChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/Fake_FrozenChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/Fake_DungeonDesertChest",
         "reason": "not combat equipment"
       },
       {
@@ -20636,11 +21027,6 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/GoldFrogCage",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/GoldWormCage",
         "reason": "not combat equipment"
       },
       {
@@ -20706,6 +21092,11 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/PearlwoodChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/PearlwoodSink",
         "reason": "not combat equipment"
       },
       {
@@ -21350,6 +21741,11 @@
       },
       {
         "stage": "skeletron-prime",
+        "id": "Terraria/SteampunkSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron-prime",
         "id": "Terraria/SteampunkTable",
         "reason": "not combat equipment"
       },
@@ -21421,11 +21817,6 @@
       {
         "stage": "skeletron-prime",
         "id": "Terraria/PickaxeAxe",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron-prime",
-        "id": "Terraria/MinecartPowerup",
         "reason": "not combat equipment"
       },
       {
@@ -21655,6 +22046,16 @@
       },
       {
         "stage": "plantera",
+        "id": "Terraria/WingsofEvil",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/BrokenHeroSword",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
         "id": "Terraria/PlanteraTrophy",
         "reason": "not combat equipment"
       },
@@ -21696,21 +22097,6 @@
       {
         "stage": "plantera",
         "id": "Terraria/ThornHook",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "plantera",
-        "id": "Terraria/LifeFruit",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "plantera",
-        "id": "Terraria/WingsofEvil",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "plantera",
-        "id": "Terraria/BrokenHeroSword",
         "reason": "not combat equipment"
       },
       {
@@ -22011,6 +22397,11 @@
       {
         "stage": "plantera",
         "id": "Terraria/SpookyChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/SpookySink",
         "reason": "not combat equipment"
       },
       {
@@ -22415,6 +22806,11 @@
       },
       {
         "stage": "golem",
+        "id": "Terraria/MartianSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "golem",
         "id": "Terraria/ToiletMartian",
         "reason": "not combat equipment"
       },
@@ -22810,6 +23206,11 @@
       },
       {
         "stage": "lunatic-cultist",
+        "id": "Terraria/SolarSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "lunatic-cultist",
         "id": "Terraria/SolarSofa",
         "reason": "not combat equipment"
       },
@@ -22901,6 +23302,11 @@
       {
         "stage": "lunatic-cultist",
         "id": "Terraria/VortexPiano",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "lunatic-cultist",
+        "id": "Terraria/VortexSink",
         "reason": "not combat equipment"
       },
       {
@@ -23000,6 +23406,11 @@
       },
       {
         "stage": "lunatic-cultist",
+        "id": "Terraria/NebulaSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "lunatic-cultist",
         "id": "Terraria/NebulaSofa",
         "reason": "not combat equipment"
       },
@@ -23091,6 +23502,11 @@
       {
         "stage": "lunatic-cultist",
         "id": "Terraria/StardustPiano",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "lunatic-cultist",
+        "id": "Terraria/StardustSink",
         "reason": "not combat equipment"
       },
       {
@@ -23790,6 +24206,10 @@
         "stage": "start",
         "via": "npc:Terraria/CaveBat"
       },
+      "FargowiltasSouls/SqueakyToy": {
+        "stage": "start",
+        "via": "npc:Terraria/CorruptGoldfish"
+      },
       "Terraria/LavaCharm": {
         "stage": "start",
         "via": "npc:Terraria/LavaSlime"
@@ -23797,6 +24217,10 @@
       "Terraria/DemonScythe": {
         "stage": "start",
         "via": "npc:Terraria/Demon"
+      },
+      "Terraria/ShrimpPoBoy": {
+        "stage": "start",
+        "via": "npc:Terraria/Shark"
       },
       "Terraria/IceCream": {
         "stage": "start",
@@ -23873,11 +24297,11 @@
       },
       "Terraria/PotatoChips": {
         "stage": "start",
-        "via": "npc:Terraria/GiantShelly"
+        "via": "npc:Terraria/Crawdad2"
       },
       "Terraria/Rally": {
         "stage": "start",
-        "via": "npc:Terraria/GiantShelly"
+        "via": "npc:Terraria/Crawdad2"
       },
       "Terraria/WizardHat": {
         "stage": "start",
@@ -23890,14 +24314,6 @@
       "FargowiltasSouls/SkullCharm": {
         "stage": "start",
         "via": "npc:Terraria/DoctorBones"
-      },
-      "FargowiltasSouls/SqueakyToy": {
-        "stage": "start",
-        "via": "npc:Terraria/CorruptBunny"
-      },
-      "Terraria/ShrimpPoBoy": {
-        "stage": "start",
-        "via": "npc:Terraria/Shark"
       },
       "Terraria/VampireFrogStaff": {
         "stage": "start",
@@ -24044,6 +24460,10 @@
         "via": "container:Terraria/SandstoneChest"
       },
       "Terraria/SandBoots": {
+        "stage": "start",
+        "via": "container:Terraria/SandstoneChest"
+      },
+      "Terraria/CatBast": {
         "stage": "start",
         "via": "container:Terraria/SandstoneChest"
       },
@@ -24199,6 +24619,10 @@
         "stage": "start",
         "via": "shop:Terraria/SkeletonMerchant"
       },
+      "Terraria/ArtisanLoaf": {
+        "stage": "start",
+        "via": "shop:Terraria/SkeletonMerchant"
+      },
       "Terraria/BlackCounterweight": {
         "stage": "start",
         "via": "shop:Terraria/TravellingMerchant"
@@ -24256,6 +24680,10 @@
         "via": "fishing"
       },
       "Terraria/FrostDaggerfish": {
+        "stage": "start",
+        "via": "fishing"
+      },
+      "Terraria/CombatBook": {
         "stage": "start",
         "via": "fishing"
       },
@@ -24339,6 +24767,10 @@
         "stage": "start",
         "via": "container:Terraria/IronCrate"
       },
+      "Terraria/LifeCrystal": {
+        "stage": "start",
+        "via": "container:Terraria/GoldenCrate"
+      },
       "Terraria/EnchantedBoomerang": {
         "stage": "start",
         "via": "container:Terraria/GoldenCrate"
@@ -24358,6 +24790,10 @@
       "Terraria/ShuckedOyster": {
         "stage": "start",
         "via": "container:Terraria/Oyster"
+      },
+      "Terraria/Campfire": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood+Terraria/Torch"
       },
       "Terraria/StickyGrenade": {
         "stage": "start",
@@ -24546,6 +24982,14 @@
       "Terraria/PoisonedKnife": {
         "stage": "start",
         "via": "recipe:Terraria/ThrowingKnife+Terraria/VilePowder"
+      },
+      "Terraria/StarinaBottle": {
+        "stage": "start",
+        "via": "recipe:Terraria/Bottle+Terraria/FallenStar"
+      },
+      "Terraria/HeartLantern": {
+        "stage": "start",
+        "via": "recipe:Terraria/LifeCrystal+Terraria/Chain"
       },
       "Terraria/AshWoodHelmet": {
         "stage": "start",
@@ -25127,9 +25571,17 @@
         "stage": "start",
         "via": "recipe:Terraria/ClimbingClaws+Terraria/ShoeSpikes"
       },
+      "Terraria/MedicatedBandage": {
+        "stage": "start",
+        "via": "recipe:Terraria/Bezoar+Terraria/AdhesiveBandage"
+      },
       "Terraria/Sandgun": {
         "stage": "start",
         "via": "recipe:Terraria/IllegalGunParts+Terraria/AntlionMandible+Terraria/Topaz"
+      },
+      "Terraria/ManaCrystal": {
+        "stage": "start",
+        "via": "recipe:Terraria/FallenStar"
       },
       "Terraria/CopperCoin": {
         "stage": "start",
@@ -25194,6 +25646,54 @@
       "FargowiltasSouls/PuffInABottle": {
         "stage": "start",
         "via": "recipe:Terraria/Bottle+Terraria/Cloud"
+      },
+      "FargowiltasSouls/CoffinSummon": {
+        "stage": "start",
+        "via": "recipe:Terraria/ClayBlock+Terraria/FossilOre+Terraria/Diamond"
+      },
+      "FargowiltasSouls/CoffinRoominator": {
+        "stage": "start",
+        "via": "shimmer:FargowiltasSouls/CoffinSummon"
+      },
+      "Terraria/ShadowGreaves": {
+        "stage": "start",
+        "via": "shimmer:Terraria/AncientShadowGreaves"
+      },
+      "Terraria/ShadowHelmet": {
+        "stage": "start",
+        "via": "shimmer:Terraria/AncientShadowHelmet"
+      },
+      "Terraria/ShadowScalemail": {
+        "stage": "start",
+        "via": "shimmer:Terraria/AncientShadowScalemail"
+      },
+      "Terraria/ShimmerFlare": {
+        "stage": "start",
+        "via": "shimmer:Terraria/BlueFlare"
+      },
+      "Terraria/Ambrosia": {
+        "stage": "start",
+        "via": "shimmer:Terraria/Grapefruit"
+      },
+      "Terraria/AegisCrystal": {
+        "stage": "start",
+        "via": "shimmer:Terraria/LifeCrystal"
+      },
+      "Terraria/ArcaneCrystal": {
+        "stage": "start",
+        "via": "shimmer:Terraria/ManaCrystal"
+      },
+      "Terraria/PeddlersSatchel": {
+        "stage": "start",
+        "via": "shimmer:Terraria/PeddlersHat"
+      },
+      "Terraria/GalaxyPearl": {
+        "stage": "start",
+        "via": "shimmer:Terraria/PinkPearl"
+      },
+      "Terraria/ShimmerArrow": {
+        "stage": "start",
+        "via": "shimmer:Terraria/WoodenArrow"
       },
       "Terraria/MolotovCocktail": {
         "stage": "start",
@@ -25303,6 +25803,10 @@
         "stage": "trojan-squirrel",
         "via": "recipe:Terraria/Squirrel"
       },
+      "Terraria/GummyWorm": {
+        "stage": "trojan-squirrel",
+        "via": "shimmer:Terraria/GoldWorm"
+      },
       "Terraria/NinjaHood": {
         "stage": "king-slime",
         "via": "npc:Terraria/KingSlime"
@@ -25346,6 +25850,10 @@
       "Terraria/Code1": {
         "stage": "eye-of-cthulhu",
         "via": "shop:Terraria/TravellingMerchant"
+      },
+      "Terraria/Sunflower": {
+        "stage": "eye-of-cthulhu",
+        "via": "shop:Terraria/Dryad"
       },
       "Terraria/EoCShield": {
         "stage": "eye-of-cthulhu",
@@ -25417,6 +25925,13 @@
         "customEventName": "",
         "eventIcon": ""
       },
+      "Terraria/WarTable": {
+        "stage": "world-evil",
+        "via": "npc:Terraria/DD2DarkMageT1",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
+      },
       "FargowiltasSouls/DarkTome": {
         "stage": "world-evil",
         "via": "npc:Terraria/DD2DarkMageT1",
@@ -25479,18 +25994,6 @@
       "Terraria/ObsidianPants": {
         "stage": "world-evil",
         "via": "recipe:Terraria/Silk+Terraria/Obsidian+Terraria/ShadowScale"
-      },
-      "Terraria/ShadowHelmet": {
-        "stage": "world-evil",
-        "via": "recipe:Terraria/DemoniteBar+Terraria/ShadowScale"
-      },
-      "Terraria/ShadowScalemail": {
-        "stage": "world-evil",
-        "via": "recipe:Terraria/DemoniteBar+Terraria/ShadowScale"
-      },
-      "Terraria/ShadowGreaves": {
-        "stage": "world-evil",
-        "via": "recipe:Terraria/DemoniteBar+Terraria/ShadowScale"
       },
       "Terraria/CrimsonHelmet": {
         "stage": "world-evil",
@@ -25708,13 +26211,13 @@
         "stage": "queen-bee",
         "via": "recipe:Terraria/BeeHeadgear+Terraria/BeeBreastplate+Terraria/BeeGreaves+Terraria/HiveBackpack+Terraria/BeeGun+Terraria/Honeyfin"
       },
+      "FargowiltasSouls/HiveStaff": {
+        "stage": "queen-bee",
+        "via": "shimmer:FargowiltasSouls/TheSmallSting"
+      },
       "Terraria/BalloonHorseshoeHoney": {
         "stage": "queen-bee",
         "via": "recipe:Terraria/HoneyBalloon+Terraria/LuckyHorseshoe"
-      },
-      "FargowiltasSouls/HiveStaff": {
-        "stage": "queen-bee",
-        "via": "manifest"
       },
       "Terraria/PewMaticHorn": {
         "stage": "deerclops",
@@ -25752,10 +26255,6 @@
         "stage": "skeletron",
         "via": "npc:Terraria/CursedSkull"
       },
-      "FargowiltasSouls/SinisterIcon": {
-        "stage": "skeletron",
-        "via": "npc:Terraria/DungeonGuardian"
-      },
       "Terraria/BookofSkulls": {
         "stage": "skeletron",
         "via": "npc:Terraria/SkeletronHead"
@@ -25771,6 +26270,10 @@
       "Fargowiltas/BrittleBone": {
         "stage": "skeletron",
         "via": "npc:Terraria/SkeletronHead"
+      },
+      "FargowiltasSouls/SinisterIcon": {
+        "stage": "skeletron",
+        "via": "npc:Terraria/DungeonGuardian"
       },
       "Terraria/Muramasa": {
         "stage": "skeletron",
@@ -25876,6 +26379,10 @@
         "stage": "skeletron",
         "via": "recipe:Terraria/CobaltShield+Terraria/ObsidianSkull"
       },
+      "Terraria/BewitchingTable": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/DungeonFishingCrate+Terraria/GoldenKey"
+      },
       "FargowiltasSouls/NecroEnchant": {
         "stage": "skeletron",
         "via": "recipe:Terraria/NecroHelmet+Terraria/NecroBreastplate+Terraria/NecroGreaves+Terraria/BoneWand+Terraria/BoneWhip+Terraria/StillLife"
@@ -25942,11 +26449,17 @@
       },
       "Terraria/KOCannon": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/Clown"
+        "via": "npc:Terraria/Clown",
+        "eventCategory": "BloodMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/Bananarang": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/Clown"
+        "via": "npc:Terraria/Clown",
+        "eventCategory": "BloodMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/Marrow": {
         "stage": "wall-of-flesh",
@@ -26008,6 +26521,30 @@
         "eventCategory": "PirateInvasion",
         "customEventName": "",
         "eventIcon": ""
+      },
+      "Terraria/DartRifle": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BigMimicCorruption"
+      },
+      "Terraria/ClingerStaff": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BigMimicCorruption"
+      },
+      "Terraria/ChainGuillotines": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BigMimicCorruption"
+      },
+      "Terraria/PutridScent": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BigMimicCorruption"
+      },
+      "Terraria/GreaterHealingPotion": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BigMimicCorruption"
+      },
+      "Terraria/GreaterManaPotion": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BigMimicCorruption"
       },
       "Terraria/PocketMirror": {
         "stage": "wall-of-flesh",
@@ -26096,30 +26633,6 @@
       "FargowiltasSouls/OvergrownKey": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/BigMimicJungle"
-      },
-      "Terraria/DartRifle": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BigMimicCorruption"
-      },
-      "Terraria/ClingerStaff": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BigMimicCorruption"
-      },
-      "Terraria/ChainGuillotines": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BigMimicCorruption"
-      },
-      "Terraria/PutridScent": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BigMimicCorruption"
-      },
-      "Terraria/GreaterHealingPotion": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BigMimicCorruption"
-      },
-      "Terraria/GreaterManaPotion": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BigMimicCorruption"
       },
       "Terraria/SoulDrain": {
         "stage": "wall-of-flesh",
@@ -26211,7 +26724,15 @@
         "customEventName": "",
         "eventIcon": ""
       },
+      "Terraria/SharpeningStation": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/Merchant"
+      },
       "Terraria/Shotgun": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/ArmsDealer"
+      },
+      "Terraria/AmmoBox": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/ArmsDealer"
       },
@@ -26247,6 +26768,10 @@
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/TravellingMerchant"
       },
+      "Terraria/CrystalBall": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/Wizard"
+      },
       "Terraria/IceRod": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Wizard"
@@ -26278,6 +26803,10 @@
       "Terraria/Bladetongue": {
         "stage": "wall-of-flesh",
         "via": "fishing"
+      },
+      "Terraria/DemonHeart": {
+        "stage": "wall-of-flesh",
+        "via": "container:Terraria/WallOfFleshBossBag"
       },
       "Terraria/Anchor": {
         "stage": "wall-of-flesh",
@@ -26707,10 +27236,6 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/ArmorPolish+Terraria/Vitamins"
       },
-      "Terraria/MedicatedBandage": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/Bezoar+Terraria/AdhesiveBandage"
-      },
       "Terraria/ThePlan": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/FastClock+Terraria/TrifoldMap"
@@ -26870,6 +27395,10 @@
       "FargowiltasSouls/TitaniumEnchant": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/TitaniumHelmet+Terraria/TitaniumBreastplate+Terraria/TitaniumLeggings+Terraria/Chik+Terraria/CrystalStorm+Terraria/CrystalVileShard"
+      },
+      "Terraria/CombatBookVolumeTwo": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/SpellTome"
       },
       "Terraria/BerserkerGlove": {
         "stage": "wall-of-flesh",
@@ -27229,7 +27758,7 @@
       },
       "FargowiltasSouls/DestroyerGun": {
         "stage": "destroyer",
-        "via": "manifest"
+        "via": "shimmer:FargowiltasSouls/ElectricWhip"
       },
       "FargowiltasSouls/FusedLens": {
         "stage": "twins",
@@ -27297,6 +27826,10 @@
       "Terraria/Flamethrower": {
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/IronBar+Terraria/IllegalGunParts+Terraria/SoulofFright"
+      },
+      "Terraria/MinecartPowerup": {
+        "stage": "skeletron-prime",
+        "via": "recipe:Terraria/MechanicalWheelPiece+Terraria/MechanicalWagonPiece+Terraria/MechanicalBatteryPiece"
       },
       "Terraria/AvengerEmblem": {
         "stage": "skeletron-prime",
@@ -27450,21 +27983,51 @@
         "stage": "plantera",
         "via": "npc:Terraria/TacticalSkeleton"
       },
+      "Terraria/RocketLauncher": {
+        "stage": "plantera",
+        "via": "npc:Terraria/SkeletonCommando"
+      },
       "Terraria/NailGun": {
         "stage": "plantera",
-        "via": "npc:Terraria/Nailhead"
+        "via": "npc:Terraria/Nailhead",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/PsychoKnife": {
         "stage": "plantera",
-        "via": "npc:Terraria/Psycho"
+        "via": "npc:Terraria/Psycho",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DeadlySphereStaff": {
         "stage": "plantera",
-        "via": "npc:Terraria/DeadlySphere"
+        "via": "npc:Terraria/DeadlySphere",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ToxicFlask": {
         "stage": "plantera",
-        "via": "npc:Terraria/DrManFly"
+        "via": "npc:Terraria/DrManFly",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
+      },
+      "Terraria/MothronWings": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Mothron",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
+      },
+      "Terraria/TheEyeOfCthulhu": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Mothron",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GrenadeLauncher": {
         "stage": "plantera",
@@ -27502,6 +28065,10 @@
         "stage": "plantera",
         "via": "npc:Terraria/Plantera"
       },
+      "Terraria/LifeFruit": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Plantera"
+      },
       "FargowiltasSouls/Dicer": {
         "stage": "plantera",
         "via": "npc:Terraria/Plantera"
@@ -27509,20 +28076,6 @@
       "Terraria/ShadowJoustingLance": {
         "stage": "plantera",
         "via": "npc:Terraria/GiantCursedSkull"
-      },
-      "Terraria/MothronWings": {
-        "stage": "plantera",
-        "via": "npc:Terraria/Mothron",
-        "eventCategory": "SolarEclipse",
-        "customEventName": "",
-        "eventIcon": ""
-      },
-      "Terraria/TheEyeOfCthulhu": {
-        "stage": "plantera",
-        "via": "npc:Terraria/Mothron",
-        "eventCategory": "SolarEclipse",
-        "customEventName": "",
-        "eventIcon": ""
       },
       "Terraria/StakeLauncher": {
         "stage": "plantera",
@@ -27879,6 +28432,10 @@
         "stage": "plantera",
         "via": "recipe:Terraria/PainterPaintballGun+Terraria/SnowballCannon+Terraria/BloodRainBow+Terraria/Harpoon+Terraria/PhoenixBlaster+Terraria/BeesKnees+Terraria/HellwingBow+Terraria/RangerEmblem+Terraria/HallowedBar"
       },
+      "Terraria/AegisFruit": {
+        "stage": "plantera",
+        "via": "shimmer:Terraria/LifeFruit"
+      },
       "Terraria/MiniNukeI": {
         "stage": "plantera",
         "via": "recipe:Terraria/RocketIII+Terraria/ShroomiteBar"
@@ -27896,10 +28453,6 @@
         "via": "recipe:Terraria/MiniNukeII"
       },
       "Terraria/SniperRifle": {
-        "stage": "plantera",
-        "via": "manifest"
-      },
-      "Terraria/RocketLauncher": {
         "stage": "plantera",
         "via": "manifest"
       },
@@ -27973,7 +28526,10 @@
       },
       "Terraria/ChargedBlasterCannon": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper"
+        "via": "npc:Terraria/GigaZapper",
+        "eventCategory": "MartianMadness",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/Stynger": {
         "stage": "golem",
@@ -28184,27 +28740,45 @@
       },
       "Terraria/DD2SquireBetsySword": {
         "stage": "betsy",
-        "via": "npc:Terraria/DD2Betsy"
+        "via": "npc:Terraria/DD2Betsy",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DD2BetsyBow": {
         "stage": "betsy",
-        "via": "npc:Terraria/DD2Betsy"
+        "via": "npc:Terraria/DD2Betsy",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ApprenticeStaffT3": {
         "stage": "betsy",
-        "via": "npc:Terraria/DD2Betsy"
+        "via": "npc:Terraria/DD2Betsy",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/MonkStaffT3": {
         "stage": "betsy",
-        "via": "npc:Terraria/DD2Betsy"
+        "via": "npc:Terraria/DD2Betsy",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "FargowiltasSouls/BetsysHeart": {
         "stage": "betsy",
-        "via": "npc:Terraria/DD2Betsy"
+        "via": "npc:Terraria/DD2Betsy",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "FargowiltasSouls/DragonBreath": {
         "stage": "betsy",
-        "via": "npc:Terraria/DD2Betsy"
+        "via": "npc:Terraria/DD2Betsy",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "FargowiltasSouls/RedRidingEnchant": {
         "stage": "betsy",
@@ -28522,6 +29096,10 @@
         "stage": "moon-lord",
         "via": "recipe:FargowiltasSouls/BarbariansEssence+Terraria/StingerNecklace+Terraria/YoyoBag+Terraria/FireGauntlet+Terraria/BerserkerGlove+Terraria/CelestialShell+Terraria/KOCannon+Terraria/IceSickle+Terraria/DripplerFlail+Terraria/ScourgeoftheCorruptor+Terraria/Kraken+Terraria/Flairon+Terraria/MonkStaffT3+Terraria/NorthPole+Terraria/Zenith"
       },
+      "FargowiltasSouls/ColossusSoul": {
+        "stage": "moon-lord",
+        "via": "recipe:Terraria/HandWarmer+Terraria/ObsidianHorseshoe+Terraria/WormScarf+Terraria/BrainOfConfusion+Terraria/CharmofMyths+Terraria/BeeCloak+Terraria/StarVeil+Terraria/ShinyStone+Terraria/HeroShield+Terraria/FrozenShield+Terraria/AnkhShield+Terraria/ShimmerCloak"
+      },
       "FargowiltasSouls/ConjuristsSoul": {
         "stage": "moon-lord",
         "via": "recipe:FargowiltasSouls/OccultistsEssence+Terraria/MonkBelt+Terraria/SquireShield+Terraria/HuntressBuckler+Terraria/ApprenticeScarf+Terraria/PygmyNecklace+Terraria/PapyrusScarab+Terraria/Smolstar+Terraria/OpticStaff+Terraria/DeadlySphereStaff+Terraria/StormTigerStaff+Terraria/StaffoftheFrostHydra+Terraria/TempestStaff+Terraria/MaceWhip+Terraria/XenoStaff+Terraria/EmpressBlade"
@@ -28547,10 +29125,6 @@
         "via": "recipe:Terraria/MagnetSphere+Terraria/FragmentVortex+Terraria/LunarBar+FargowiltasSouls/CelestialRune"
       },
       "FargowiltasSouls/BigBrainBuster": {
-        "stage": "moon-lord",
-        "via": "manifest"
-      },
-      "FargowiltasSouls/ColossusSoul": {
         "stage": "moon-lord",
         "via": "manifest"
       },
@@ -29398,9 +29972,37 @@
         "stage": "start",
         "via": "npc:Terraria/TheGroom"
       },
+      "Terraria/RobotHat": {
+        "stage": "start",
+        "via": "npc:Terraria/Piranha"
+      },
+      "Terraria/AdhesiveBandage": {
+        "stage": "start",
+        "via": "npc:Terraria/Piranha"
+      },
+      "Terraria/JellyfishNecklace": {
+        "stage": "start",
+        "via": "npc:Terraria/BlueJellyfish"
+      },
+      "Terraria/Glowstick": {
+        "stage": "start",
+        "via": "npc:Terraria/BlueJellyfish"
+      },
+      "Terraria/DivingHelmet": {
+        "stage": "start",
+        "via": "npc:Terraria/Shark"
+      },
+      "FargowiltasSouls/HokeyBall": {
+        "stage": "start",
+        "via": "npc:Terraria/Shark"
+      },
       "Terraria/GuideVoodooDoll": {
         "stage": "start",
         "via": "npc:Terraria/VoodooDemon"
+      },
+      "Terraria/Starfish": {
+        "stage": "start",
+        "via": "npc:Terraria/Crab"
       },
       "Terraria/VikingHelmet": {
         "stage": "start",
@@ -29423,10 +30025,6 @@
         "via": "npc:Terraria/LacBeetle"
       },
       "Terraria/CarbonGuitar": {
-        "stage": "start",
-        "via": "npc:Terraria/FlyingFish"
-      },
-      "Terraria/Glowstick": {
         "stage": "start",
         "via": "npc:Terraria/FlyingFish"
       },
@@ -29453,10 +30051,6 @@
         "stage": "start",
         "via": "npc:Terraria/TorchZombie"
       },
-      "Terraria/JellyfishNecklace": {
-        "stage": "start",
-        "via": "npc:Terraria/BlueJellyfish"
-      },
       "Terraria/ArchaeologistsHat": {
         "stage": "start",
         "via": "npc:Terraria/DoctorBones"
@@ -29477,23 +30071,11 @@
         "stage": "start",
         "via": "npc:Terraria/CorruptPenguin"
       },
-      "Terraria/DivingHelmet": {
-        "stage": "start",
-        "via": "npc:Terraria/Shark"
-      },
-      "FargowiltasSouls/HokeyBall": {
-        "stage": "start",
-        "via": "npc:Terraria/Shark"
-      },
       "Terraria/BlackInk": {
         "stage": "start",
         "via": "npc:Terraria/Squid"
       },
       "FargowiltasSouls/SquidwardDoor": {
-        "stage": "start",
-        "via": "npc:Terraria/Squid"
-      },
-      "Terraria/Starfish": {
         "stage": "start",
         "via": "npc:Terraria/Squid"
       },
@@ -29564,10 +30146,6 @@
         "via": "container:Terraria/SandstoneChest"
       },
       "Terraria/AncientChisel": {
-        "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
-      },
-      "Terraria/CatBast": {
         "stage": "start",
         "via": "container:Terraria/SandstoneChest"
       },
@@ -30967,10 +31545,6 @@
         "stage": "start",
         "via": "fishing"
       },
-      "Terraria/CombatBook": {
-        "stage": "start",
-        "via": "fishing"
-      },
       "Terraria/ScarabFish": {
         "stage": "start",
         "via": "fishing"
@@ -31046,10 +31620,6 @@
       "Terraria/MasterBait": {
         "stage": "start",
         "via": "container:Terraria/IronCrate"
-      },
-      "Terraria/LifeCrystal": {
-        "stage": "start",
-        "via": "container:Terraria/GoldenCrate"
       },
       "Terraria/HardySaddle": {
         "stage": "start",
@@ -31242,10 +31812,6 @@
       "Terraria/OrangeTorch": {
         "stage": "start",
         "via": "recipe:Terraria/Torch+Terraria/Amber"
-      },
-      "Terraria/Campfire": {
-        "stage": "start",
-        "via": "recipe:Terraria/Wood+Terraria/Torch"
       },
       "Terraria/FrozenCampfire": {
         "stage": "start",
@@ -31474,14 +32040,6 @@
       "Terraria/TinBrick": {
         "stage": "start",
         "via": "recipe:Terraria/StoneBlock+Terraria/TinOre"
-      },
-      "Terraria/StarinaBottle": {
-        "stage": "start",
-        "via": "recipe:Terraria/Bottle+Terraria/FallenStar"
-      },
-      "Terraria/HeartLantern": {
-        "stage": "start",
-        "via": "recipe:Terraria/LifeCrystal+Terraria/Chain"
       },
       "Terraria/ChineseLantern": {
         "stage": "start",
@@ -34043,10 +34601,6 @@
         "stage": "start",
         "via": "recipe:Terraria/BlackLens"
       },
-      "Terraria/ManaCrystal": {
-        "stage": "start",
-        "via": "recipe:Terraria/FallenStar"
-      },
       "Terraria/TNTBarrel": {
         "stage": "start",
         "via": "recipe:Terraria/Dynamite+Terraria/Barrel"
@@ -34371,10 +34925,6 @@
         "stage": "start",
         "via": "recipe:Terraria/Dynamite"
       },
-      "FargowiltasSouls/CoffinSummon": {
-        "stage": "start",
-        "via": "recipe:Terraria/ClayBlock+Terraria/FossilOre+Terraria/Diamond"
-      },
       "FargowiltasSouls/DevisCurse": {
         "stage": "start",
         "via": "recipe:Terraria/PinkGel+Terraria/GoldOre+Terraria/RottenChunk+Terraria/Stinger+Terraria/ChumBucket"
@@ -34386,6 +34936,70 @@
       "FargowiltasSouls/RazorContainer": {
         "stage": "start",
         "via": "recipe:Terraria/Wood+Terraria/IronBar+Terraria/Chain"
+      },
+      "Terraria/ShimmerMonolith": {
+        "stage": "start",
+        "via": "shimmer:Terraria/AngelStatue"
+      },
+      "Terraria/ShimmerTorch": {
+        "stage": "start",
+        "via": "shimmer:Terraria/BlueTorch"
+      },
+      "Terraria/ShimmerCampfire": {
+        "stage": "start",
+        "via": "shimmer:Terraria/Campfire"
+      },
+      "Terraria/AncientCopperBrick": {
+        "stage": "start",
+        "via": "shimmer:Terraria/CopperBrick"
+      },
+      "Terraria/PharaohsRobe": {
+        "stage": "start",
+        "via": "shimmer:Terraria/FlyingCarpet"
+      },
+      "Terraria/AncientGoldBrick": {
+        "stage": "start",
+        "via": "shimmer:Terraria/GoldBrick"
+      },
+      "Terraria/MushroomGrassSeeds": {
+        "stage": "start",
+        "via": "shimmer:Terraria/JungleGrassSeeds"
+      },
+      "Terraria/HoneyBucket": {
+        "stage": "start",
+        "via": "shimmer:Terraria/LavaBucket"
+      },
+      "Terraria/AncientObsidianBrick": {
+        "stage": "start",
+        "via": "shimmer:Terraria/ObsidianBrick"
+      },
+      "Terraria/SandstoneWallUnsafe": {
+        "stage": "start",
+        "via": "shimmer:Terraria/SandstoneWall"
+      },
+      "Terraria/PharaohsMask": {
+        "stage": "start",
+        "via": "shimmer:Terraria/SandstorminaBottle"
+      },
+      "Terraria/AncientSilverBrick": {
+        "stage": "start",
+        "via": "shimmer:Terraria/SilverBrick"
+      },
+      "Terraria/SpiderWallUnsafe": {
+        "stage": "start",
+        "via": "shimmer:Terraria/SpiderEcho"
+      },
+      "Terraria/Moondial": {
+        "stage": "start",
+        "via": "shimmer:Terraria/Sundial"
+      },
+      "Terraria/PurificationPowder": {
+        "stage": "start",
+        "via": "shimmer:Terraria/ViciousPowder"
+      },
+      "Terraria/GasTrap": {
+        "stage": "start",
+        "via": "shimmer:Terraria/WhoopieCushion"
       },
       "Terraria/CapricornLegs": {
         "stage": "start",
@@ -34514,6 +35128,22 @@
       "Terraria/GreenStuccoWall": {
         "stage": "start",
         "via": "recipe:Terraria/GreenStucco"
+      },
+      "Terraria/AncientGoldBrickWall": {
+        "stage": "start",
+        "via": "recipe:Terraria/AncientGoldBrick"
+      },
+      "Terraria/AncientSilverBrickWall": {
+        "stage": "start",
+        "via": "recipe:Terraria/AncientSilverBrick"
+      },
+      "Terraria/AncientCopperBrickWall": {
+        "stage": "start",
+        "via": "recipe:Terraria/AncientCopperBrick"
+      },
+      "Terraria/AncientObsidianBrickWall": {
+        "stage": "start",
+        "via": "recipe:Terraria/AncientObsidianBrick"
       },
       "Terraria/LivingWoodWall": {
         "stage": "start",
@@ -35003,6 +35633,14 @@
         "stage": "start",
         "via": "recipe:Terraria/Dynamite+Terraria/ObsidianPlatform+Terraria/FallenStar"
       },
+      "Fargowiltas/PortableSundial": {
+        "stage": "start",
+        "via": "recipe:Terraria/Sundial+Terraria/Moondial"
+      },
+      "Terraria/WaterBucket": {
+        "stage": "start",
+        "via": "shimmer:Terraria/HoneyBucket"
+      },
       "Terraria/AmethystEcho": {
         "stage": "start",
         "via": "recipe:Terraria/AmethystStoneBlock"
@@ -35031,9 +35669,101 @@
         "stage": "start",
         "via": "recipe:Terraria/AmberStoneBlock"
       },
+      "Terraria/WoodenSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood+Terraria/WaterBucket"
+      },
+      "Terraria/PalmWoodSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/PalmWood+Terraria/WaterBucket"
+      },
+      "Terraria/BorealWoodSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/BorealWood+Terraria/WaterBucket"
+      },
+      "Terraria/RichMahoganySink": {
+        "stage": "start",
+        "via": "recipe:Terraria/RichMahogany+Terraria/WaterBucket"
+      },
+      "Terraria/EbonwoodSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/Ebonwood+Terraria/WaterBucket"
+      },
+      "Terraria/ShadewoodSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/Shadewood+Terraria/WaterBucket"
+      },
+      "Terraria/AshWoodSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/AshWood+Terraria/WaterBucket"
+      },
+      "Terraria/MushroomSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/GlowingMushroom+Terraria/WaterBucket"
+      },
+      "Terraria/MarbleSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/MarbleBlock+Terraria/WaterBucket"
+      },
+      "Terraria/GraniteSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/GraniteBlock+Terraria/WaterBucket"
+      },
+      "Terraria/SandstoneSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/SmoothSandstone+Terraria/WaterBucket"
+      },
+      "Terraria/BambooSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/BambooBlock+Terraria/WaterBucket"
+      },
+      "Terraria/CoralSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/ReefBlock+Terraria/WaterBucket"
+      },
+      "Terraria/DynastySink": {
+        "stage": "start",
+        "via": "recipe:Terraria/DynastyWood+Terraria/WaterBucket"
+      },
+      "Terraria/LivingWoodSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood+Terraria/WaterBucket"
+      },
+      "Terraria/GlassSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/Glass+Terraria/WaterBucket"
+      },
+      "Terraria/HoneySink": {
+        "stage": "start",
+        "via": "recipe:Terraria/HoneyBlock+Terraria/WaterBucket"
+      },
+      "Terraria/SkywareSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/SunplateBlock+Terraria/WaterBucket"
+      },
+      "Terraria/FrozenSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/IceBlock+Terraria/WaterBucket"
+      },
+      "Terraria/CactusSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/Cactus+Terraria/WaterBucket"
+      },
+      "Terraria/PumpkinSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/Pumpkin+Terraria/WaterBucket"
+      },
+      "Terraria/MetalSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/IronBar+Terraria/WaterBucket"
+      },
       "Fargowiltas/DoubleObsidianInstabridge": {
         "stage": "start",
         "via": "recipe:Fargowiltas/ObsidianInstaBridge"
+      },
+      "Fargowiltas/MultitaskCenter": {
+        "stage": "start",
+        "via": "recipe:Terraria/WorkBench+Terraria/HeavyWorkBench+Terraria/Furnace+Terraria/IronAnvil+Terraria/Bottle+Terraria/Sawmill+Terraria/Loom+Terraria/WoodenTable+Terraria/WoodenChair+Terraria/CookingPot+Terraria/WoodenSink+Terraria/Keg"
       },
       "FargowiltasSouls/ParadoxWolfSoul": {
         "stage": "start",
@@ -35155,6 +35885,18 @@
         "stage": "trojan-squirrel",
         "via": "recipe:Terraria/Wood+Terraria/Squirrel"
       },
+      "Terraria/CanOfWorms": {
+        "stage": "trojan-squirrel",
+        "via": "shimmer:Terraria/HerbBag"
+      },
+      "Terraria/GoldWorm": {
+        "stage": "trojan-squirrel",
+        "via": "container:Terraria/CanOfWorms"
+      },
+      "Terraria/GoldWormCage": {
+        "stage": "trojan-squirrel",
+        "via": "recipe:Terraria/Terrarium+Terraria/GoldWorm"
+      },
       "Terraria/KingSlimeTrophy": {
         "stage": "king-slime",
         "via": "npc:Terraria/KingSlime"
@@ -35254,6 +35996,10 @@
       "Terraria/SlimeSofa": {
         "stage": "king-slime",
         "via": "recipe:Terraria/SlimeBlock+Terraria/Silk"
+      },
+      "Terraria/SlimeSink": {
+        "stage": "king-slime",
+        "via": "recipe:Terraria/SlimeBlock+Terraria/WaterBucket"
       },
       "Terraria/ToiletSlime": {
         "stage": "king-slime",
@@ -35355,6 +36101,10 @@
         "stage": "king-slime",
         "via": "recipe:Terraria/Terrarium+Terraria/GemSquirrelAmber"
       },
+      "Terraria/HardenedSandWallUnsafe": {
+        "stage": "king-slime",
+        "via": "shimmer:Terraria/HardenedSandWall"
+      },
       "FargowiltasSouls/PiranhaPlantVoodooDoll": {
         "stage": "eye-of-cthulhu",
         "via": "npc:Terraria/Dryad"
@@ -35403,15 +36153,7 @@
         "stage": "eye-of-cthulhu",
         "via": "shop:Terraria/Dryad"
       },
-      "Terraria/PurificationPowder": {
-        "stage": "eye-of-cthulhu",
-        "via": "shop:Terraria/Dryad"
-      },
       "Terraria/GrassSeeds": {
-        "stage": "eye-of-cthulhu",
-        "via": "shop:Terraria/Dryad"
-      },
-      "Terraria/Sunflower": {
         "stage": "eye-of-cthulhu",
         "via": "shop:Terraria/Dryad"
       },
@@ -35571,14 +36313,6 @@
         "stage": "cursed-coffin",
         "via": "npc:FargowiltasSouls/CursedCoffin"
       },
-      "Terraria/PharaohsMask": {
-        "stage": "cursed-coffin",
-        "via": "npc:FargowiltasSouls/CursedCoffin"
-      },
-      "Terraria/PharaohsRobe": {
-        "stage": "cursed-coffin",
-        "via": "npc:FargowiltasSouls/CursedCoffin"
-      },
       "FargowiltasSouls/CursedCoffinBag": {
         "stage": "cursed-coffin",
         "via": "npc:FargowiltasSouls/CursedCoffin"
@@ -35615,13 +36349,6 @@
         "eventIcon": ""
       },
       "Terraria/DarkMageBookMountItem": {
-        "stage": "world-evil",
-        "via": "npc:Terraria/DD2DarkMageT1",
-        "eventCategory": "OldOnesArmy",
-        "customEventName": "",
-        "eventIcon": ""
-      },
-      "Terraria/WarTable": {
         "stage": "world-evil",
         "via": "npc:Terraria/DD2DarkMageT1",
         "eventCategory": "OldOnesArmy",
@@ -35811,6 +36538,10 @@
         "stage": "world-evil",
         "via": "recipe:Terraria/MeteoriteBrick+Terraria/Silk"
       },
+      "Terraria/MeteoriteSink": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/MeteoriteBrick+Terraria/WaterBucket"
+      },
       "Terraria/ToiletMeteor": {
         "stage": "world-evil",
         "via": "recipe:Terraria/MeteoriteBrick"
@@ -35923,6 +36654,10 @@
         "stage": "world-evil",
         "via": "recipe:Terraria/Obsidian+Terraria/Hellstone+Terraria/IronBar"
       },
+      "Terraria/ObsidianSink": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Obsidian+Terraria/Hellstone+Terraria/WaterBucket"
+      },
       "Terraria/ToiletObsidian": {
         "stage": "world-evil",
         "via": "recipe:Terraria/Obsidian+Terraria/Hellstone"
@@ -35938,6 +36673,14 @@
       "Terraria/FireproofBugNet": {
         "stage": "world-evil",
         "via": "recipe:Terraria/HellstoneBar+Terraria/BugNet"
+      },
+      "Terraria/AncientHellstoneBrick": {
+        "stage": "world-evil",
+        "via": "shimmer:Terraria/HellstoneBrick"
+      },
+      "Terraria/AncientHellstoneBrickWall": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/AncientHellstoneBrick"
       },
       "Terraria/QueenBeeTrophy": {
         "stage": "queen-bee",
@@ -36107,10 +36850,6 @@
         "stage": "skeletron",
         "via": "npc:Terraria/Clothier"
       },
-      "Terraria/BoneKey": {
-        "stage": "skeletron",
-        "via": "npc:Terraria/DungeonGuardian"
-      },
       "Terraria/SkeletronTrophy": {
         "stage": "skeletron",
         "via": "npc:Terraria/SkeletronHead"
@@ -36142,6 +36881,10 @@
       "Terraria/DungeonFishingCrate": {
         "stage": "skeletron",
         "via": "npc:Terraria/SkeletronHead"
+      },
+      "Terraria/BoneKey": {
+        "stage": "skeletron",
+        "via": "npc:Terraria/DungeonGuardian"
       },
       "Terraria/TreasureMagnet": {
         "stage": "skeletron",
@@ -36799,6 +37542,10 @@
         "stage": "skeletron",
         "via": "recipe:Terraria/PinkBrick+Terraria/IronBar"
       },
+      "Terraria/PinkDungeonSink": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/PinkBrick+Terraria/WaterBucket"
+      },
       "Terraria/ToiletDungeonPink": {
         "stage": "skeletron",
         "via": "recipe:Terraria/PinkBrick"
@@ -36807,6 +37554,10 @@
         "stage": "skeletron",
         "via": "recipe:Terraria/BlueBrick+Terraria/IronBar"
       },
+      "Terraria/BlueDungeonSink": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/BlueBrick+Terraria/WaterBucket"
+      },
       "Terraria/ToiletDungeonBlue": {
         "stage": "skeletron",
         "via": "recipe:Terraria/BlueBrick"
@@ -36814,6 +37565,10 @@
       "Terraria/GreenDungeonChest": {
         "stage": "skeletron",
         "via": "recipe:Terraria/GreenBrick+Terraria/IronBar"
+      },
+      "Terraria/GreenDungeonSink": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/GreenBrick+Terraria/WaterBucket"
       },
       "Terraria/ToiletDungeonGreen": {
         "stage": "skeletron",
@@ -36943,10 +37698,6 @@
         "stage": "skeletron",
         "via": "recipe:Terraria/DungeonFishingCrate+Terraria/GoldenKey"
       },
-      "Terraria/BewitchingTable": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/DungeonFishingCrate+Terraria/GoldenKey"
-      },
       "Fargowiltas/SuspiciousSkull": {
         "stage": "skeletron",
         "via": "recipe:Terraria/ClothierVoodooDoll"
@@ -36954,6 +37705,54 @@
       "Fargowiltas/AbominationnPants": {
         "stage": "skeletron",
         "via": "recipe:Terraria/TreeTrunks+Terraria/FallenTuxedoPants"
+      },
+      "Terraria/AncientBlueDungeonBrick": {
+        "stage": "skeletron",
+        "via": "shimmer:Terraria/BlueBrick"
+      },
+      "Terraria/BlueBrickWallUnsafe": {
+        "stage": "skeletron",
+        "via": "shimmer:Terraria/BlueBrickWall"
+      },
+      "Terraria/BlueSlabWallUnsafe": {
+        "stage": "skeletron",
+        "via": "shimmer:Terraria/BlueSlabWall"
+      },
+      "Terraria/BlueTiledWallUnsafe": {
+        "stage": "skeletron",
+        "via": "shimmer:Terraria/BlueTiledWall"
+      },
+      "Terraria/AncientGreenDungeonBrick": {
+        "stage": "skeletron",
+        "via": "shimmer:Terraria/GreenBrick"
+      },
+      "Terraria/GreenBrickWallUnsafe": {
+        "stage": "skeletron",
+        "via": "shimmer:Terraria/GreenBrickWall"
+      },
+      "Terraria/GreenSlabWallUnsafe": {
+        "stage": "skeletron",
+        "via": "shimmer:Terraria/GreenSlabWall"
+      },
+      "Terraria/GreenTiledWallUnsafe": {
+        "stage": "skeletron",
+        "via": "shimmer:Terraria/GreenTiledWall"
+      },
+      "Terraria/AncientPinkDungeonBrick": {
+        "stage": "skeletron",
+        "via": "shimmer:Terraria/PinkBrick"
+      },
+      "Terraria/PinkBrickWallUnsafe": {
+        "stage": "skeletron",
+        "via": "shimmer:Terraria/PinkBrickWall"
+      },
+      "Terraria/PinkSlabWallUnsafe": {
+        "stage": "skeletron",
+        "via": "shimmer:Terraria/PinkSlabWall"
+      },
+      "Terraria/PinkTiledWallUnsafe": {
+        "stage": "skeletron",
+        "via": "shimmer:Terraria/PinkTiledWall"
       },
       "Terraria/WoodShelf": {
         "stage": "skeletron",
@@ -36970,6 +37769,18 @@
       "Terraria/MetalShelf": {
         "stage": "skeletron",
         "via": "recipe:Terraria/TinBrick"
+      },
+      "Terraria/AncientBlueDungeonBrickWall": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/AncientBlueDungeonBrick"
+      },
+      "Terraria/AncientGreenDungeonBrickWall": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/AncientGreenDungeonBrick"
+      },
+      "Terraria/AncientPinkDungeonBrickWall": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/AncientPinkDungeonBrick"
       },
       "Terraria/Fake_GreenDungeonChest": {
         "stage": "skeletron",
@@ -37006,6 +37817,10 @@
       "Terraria/BoneWorkBench": {
         "stage": "skeletron",
         "via": "recipe:Terraria/Bone"
+      },
+      "Terraria/BoneSink": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone+Terraria/WaterBucket"
       },
       "Terraria/BoneTable": {
         "stage": "skeletron",
@@ -37118,10 +37933,6 @@
       "Terraria/CursedFlame": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/SeekerHead"
-      },
-      "Terraria/AdhesiveBandage": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/Werewolf"
       },
       "FargowiltasSouls/OrdinaryCarrot": {
         "stage": "wall-of-flesh",
@@ -37357,10 +38168,6 @@
         "customEventName": "",
         "eventIcon": ""
       },
-      "Terraria/MushroomGrassSeeds": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/ZombieMushroom"
-      },
       "Terraria/TruffleWorm": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/ZombieMushroom"
@@ -37368,6 +38175,14 @@
       "Terraria/Ichor": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/IchorSticker"
+      },
+      "Terraria/WormHook": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BigMimicCorruption"
+      },
+      "Terraria/CorruptFishingCrateHard": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BigMimicCorruption"
       },
       "Terraria/RockGolemHead": {
         "stage": "wall-of-flesh",
@@ -37473,14 +38288,6 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/BigMimicJungle"
       },
-      "Terraria/WormHook": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BigMimicCorruption"
-      },
-      "Terraria/CorruptFishingCrateHard": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BigMimicCorruption"
-      },
       "Terraria/TendonHook": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/BigMimicCrimson"
@@ -37559,15 +38366,7 @@
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Merchant"
       },
-      "Terraria/SharpeningStation": {
-        "stage": "wall-of-flesh",
-        "via": "shop:Terraria/Merchant"
-      },
       "Terraria/EmptyBullet": {
-        "stage": "wall-of-flesh",
-        "via": "shop:Terraria/ArmsDealer"
-      },
-      "Terraria/AmmoBox": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/ArmsDealer"
       },
@@ -37763,10 +38562,6 @@
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Truffle"
       },
-      "Terraria/CrystalBall": {
-        "stage": "wall-of-flesh",
-        "via": "shop:Terraria/Wizard"
-      },
       "Terraria/Bell": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Wizard"
@@ -37849,43 +38644,47 @@
       },
       "Terraria/MythrilOre": {
         "stage": "wall-of-flesh",
-        "via": "container:Terraria/HallowedFishingCrateHard"
+        "via": "container:Terraria/CorruptFishingCrateHard"
       },
       "Terraria/OrichalcumOre": {
         "stage": "wall-of-flesh",
-        "via": "container:Terraria/HallowedFishingCrateHard"
+        "via": "container:Terraria/CorruptFishingCrateHard"
       },
       "Terraria/AdamantiteOre": {
         "stage": "wall-of-flesh",
-        "via": "container:Terraria/HallowedFishingCrateHard"
+        "via": "container:Terraria/CorruptFishingCrateHard"
       },
       "Terraria/TitaniumOre": {
         "stage": "wall-of-flesh",
-        "via": "container:Terraria/HallowedFishingCrateHard"
+        "via": "container:Terraria/CorruptFishingCrateHard"
       },
       "Terraria/CobaltBar": {
         "stage": "wall-of-flesh",
-        "via": "container:Terraria/HallowedFishingCrateHard"
+        "via": "container:Terraria/CorruptFishingCrateHard"
       },
       "Terraria/PalladiumBar": {
         "stage": "wall-of-flesh",
-        "via": "container:Terraria/HallowedFishingCrateHard"
+        "via": "container:Terraria/CorruptFishingCrateHard"
       },
       "Terraria/MythrilBar": {
         "stage": "wall-of-flesh",
-        "via": "container:Terraria/HallowedFishingCrateHard"
+        "via": "container:Terraria/CorruptFishingCrateHard"
       },
       "Terraria/OrichalcumBar": {
         "stage": "wall-of-flesh",
-        "via": "container:Terraria/HallowedFishingCrateHard"
+        "via": "container:Terraria/CorruptFishingCrateHard"
       },
       "Terraria/AdamantiteBar": {
         "stage": "wall-of-flesh",
-        "via": "container:Terraria/HallowedFishingCrateHard"
+        "via": "container:Terraria/CorruptFishingCrateHard"
       },
       "Terraria/TitaniumBar": {
         "stage": "wall-of-flesh",
-        "via": "container:Terraria/HallowedFishingCrateHard"
+        "via": "container:Terraria/CorruptFishingCrateHard"
+      },
+      "Terraria/SoulofNight": {
+        "stage": "wall-of-flesh",
+        "via": "container:Terraria/CorruptFishingCrateHard"
       },
       "Terraria/SoulofLight": {
         "stage": "wall-of-flesh",
@@ -37894,10 +38693,6 @@
       "Terraria/CrystalShard": {
         "stage": "wall-of-flesh",
         "via": "container:Terraria/HallowedFishingCrateHard"
-      },
-      "Terraria/SoulofNight": {
-        "stage": "wall-of-flesh",
-        "via": "container:Terraria/CorruptFishingCrateHard"
       },
       "Terraria/CursedTorch": {
         "stage": "wall-of-flesh",
@@ -38191,6 +38986,10 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/CrystalBlock"
       },
+      "Terraria/CrystalSink": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/CrystalBlock+Terraria/WaterBucket"
+      },
       "Terraria/CrystalTable": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/CrystalBlock"
@@ -38258,6 +39057,10 @@
       "Terraria/SpiderPiano": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/SpiderBlock+Terraria/Bone+Terraria/Book"
+      },
+      "Terraria/SpiderSinkSpiderSinkDoesWhateverASpiderSinkDoes": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/SpiderBlock+Terraria/WaterBucket"
       },
       "Terraria/SpiderSofa": {
         "stage": "wall-of-flesh",
@@ -38499,10 +39302,6 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/LadyBug+Terraria/GoldDust"
       },
-      "Terraria/GoldWorm": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/Worm+Terraria/GoldDust"
-      },
       "Terraria/SquirrelGold": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Squirrel+Terraria/GoldDust"
@@ -38527,6 +39326,42 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/MythrilBar+Terraria/EnchantedNightcrawler+Terraria/SoulofFlight+Terraria/ArmoredCavefish"
       },
+      "Terraria/AncientCobaltBrick": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/CobaltBrick"
+      },
+      "Terraria/CorruptionChest": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/CorruptionKey"
+      },
+      "Terraria/CrimsonChest": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/CrimsonKey"
+      },
+      "Terraria/DungeonDesertChest": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/DungeonDesertKey"
+      },
+      "Terraria/FrozenChest": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/FrozenKey"
+      },
+      "Terraria/HallowedChest": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/HallowedKey"
+      },
+      "Terraria/JungleChest": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/JungleKey"
+      },
+      "Terraria/AncientMythrilBrick": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/MythrilBrick"
+      },
+      "Terraria/ShimmerCloak": {
+        "stage": "wall-of-flesh",
+        "via": "shimmer:Terraria/StarCloak"
+      },
       "Terraria/CrystalPlatform": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/CrystalBlock"
@@ -38534,6 +39369,38 @@
       "Terraria/SpiderPlatform": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/SpiderBlock"
+      },
+      "Terraria/AncientMythrilBrickWall": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/AncientMythrilBrick"
+      },
+      "Terraria/AncientCobaltBrickWall": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/AncientCobaltBrick"
+      },
+      "Terraria/Fake_JungleChest": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/JungleChest+Terraria/Wire"
+      },
+      "Terraria/Fake_CorruptionChest": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/CorruptionChest+Terraria/Wire"
+      },
+      "Terraria/Fake_CrimsonChest": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/CrimsonChest+Terraria/Wire"
+      },
+      "Terraria/Fake_HallowedChest": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/HallowedChest+Terraria/Wire"
+      },
+      "Terraria/Fake_FrozenChest": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/FrozenChest+Terraria/Wire"
+      },
+      "Terraria/Fake_DungeonDesertChest": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/DungeonDesertChest+Terraria/Wire"
       },
       "Terraria/GoldBirdCage": {
         "stage": "wall-of-flesh",
@@ -38546,10 +39413,6 @@
       "Terraria/GoldFrogCage": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Terrarium+Terraria/GoldFrog"
-      },
-      "Terraria/GoldWormCage": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:Terraria/Terrarium+Terraria/GoldWorm"
       },
       "Terraria/GoldLadybugCage": {
         "stage": "wall-of-flesh",
@@ -38602,6 +39465,10 @@
       "Terraria/PearlwoodChest": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Pearlwood+Terraria/IronBar"
+      },
+      "Terraria/PearlwoodSink": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/Pearlwood+Terraria/WaterBucket"
       },
       "Terraria/PearlwoodTable": {
         "stage": "wall-of-flesh",
@@ -38788,23 +39655,38 @@
       },
       "Terraria/EyeSpring": {
         "stage": "destroyer",
-        "via": "npc:Terraria/Eyezor"
+        "via": "npc:Terraria/Eyezor",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/Eyezorhead": {
         "stage": "destroyer",
-        "via": "npc:Terraria/Eyezor"
+        "via": "npc:Terraria/Eyezor",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/OcularResonance": {
         "stage": "destroyer",
-        "via": "npc:Terraria/Eyezor"
+        "via": "npc:Terraria/Eyezor",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/MidnightSun": {
         "stage": "destroyer",
-        "via": "npc:Terraria/Fritz"
+        "via": "npc:Terraria/Fritz",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ThisIsGettingOutOfHand": {
         "stage": "destroyer",
-        "via": "npc:Terraria/ThePossessed"
+        "via": "npc:Terraria/ThePossessed",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/BossMaskOgre": {
         "stage": "destroyer",
@@ -39130,6 +40012,10 @@
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/Cog"
       },
+      "Terraria/SteampunkSink": {
+        "stage": "skeletron-prime",
+        "via": "recipe:Terraria/Cog+Terraria/WaterBucket"
+      },
       "Terraria/SteampunkTable": {
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/Cog"
@@ -39189,10 +40075,6 @@
       "Terraria/PickaxeAxe": {
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/HallowedBar+Terraria/SoulofFright+Terraria/SoulofMight+Terraria/SoulofSight"
-      },
-      "Terraria/MinecartPowerup": {
-        "stage": "skeletron-prime",
-        "via": "recipe:Terraria/MechanicalWheelPiece+Terraria/MechanicalWagonPiece+Terraria/MechanicalBatteryPiece"
       },
       "Terraria/LogicSensor_Water": {
         "stage": "skeletron-prime",
@@ -39324,55 +40206,108 @@
       },
       "Terraria/ScarecrowHat": {
         "stage": "plantera",
-        "via": "npc:Terraria/Scarecrow2"
+        "via": "npc:Terraria/Scarecrow2",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ScarecrowShirt": {
         "stage": "plantera",
-        "via": "npc:Terraria/Scarecrow2"
+        "via": "npc:Terraria/Scarecrow2",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ScarecrowPants": {
         "stage": "plantera",
-        "via": "npc:Terraria/Scarecrow2"
+        "via": "npc:Terraria/Scarecrow2",
+        "eventCategory": "PumpkinMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ElfHat": {
         "stage": "plantera",
-        "via": "npc:Terraria/ZombieElfGirl"
+        "via": "npc:Terraria/ZombieElf",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ElfShirt": {
         "stage": "plantera",
-        "via": "npc:Terraria/ZombieElfGirl"
+        "via": "npc:Terraria/ZombieElf",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ElfPants": {
         "stage": "plantera",
-        "via": "npc:Terraria/ZombieElfGirl"
+        "via": "npc:Terraria/ZombieElf",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/AMachineforTerrarians": {
         "stage": "plantera",
-        "via": "npc:Terraria/Butcher"
+        "via": "npc:Terraria/Butcher",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ButchersChainsaw": {
         "stage": "plantera",
-        "via": "npc:Terraria/Butcher"
+        "via": "npc:Terraria/Butcher",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ButcherMask": {
         "stage": "plantera",
-        "via": "npc:Terraria/Butcher"
+        "via": "npc:Terraria/Butcher",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ButcherApron": {
         "stage": "plantera",
-        "via": "npc:Terraria/Butcher"
+        "via": "npc:Terraria/Butcher",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/ButcherPants": {
         "stage": "plantera",
-        "via": "npc:Terraria/Butcher"
+        "via": "npc:Terraria/Butcher",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DrManFlyMask": {
         "stage": "plantera",
-        "via": "npc:Terraria/DrManFly"
+        "via": "npc:Terraria/DrManFly",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DrManFlyLabCoat": {
         "stage": "plantera",
-        "via": "npc:Terraria/DrManFly"
+        "via": "npc:Terraria/DrManFly",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
+      },
+      "Terraria/WingsofEvil": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Mothron",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
+      },
+      "Terraria/BrokenHeroSword": {
+        "stage": "plantera",
+        "via": "npc:Terraria/Mothron",
+        "eventCategory": "SolarEclipse",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/PlanteraTrophy": {
         "stage": "plantera",
@@ -39409,24 +40344,6 @@
       "Terraria/ThornHook": {
         "stage": "plantera",
         "via": "npc:Terraria/Plantera"
-      },
-      "Terraria/LifeFruit": {
-        "stage": "plantera",
-        "via": "npc:Terraria/Plantera"
-      },
-      "Terraria/WingsofEvil": {
-        "stage": "plantera",
-        "via": "npc:Terraria/Mothron",
-        "eventCategory": "SolarEclipse",
-        "customEventName": "",
-        "eventIcon": ""
-      },
-      "Terraria/BrokenHeroSword": {
-        "stage": "plantera",
-        "via": "npc:Terraria/Mothron",
-        "eventCategory": "SolarEclipse",
-        "customEventName": "",
-        "eventIcon": ""
       },
       "Terraria/SpookyHook": {
         "stage": "plantera",
@@ -39728,6 +40645,10 @@
         "stage": "plantera",
         "via": "recipe:Terraria/SpookyWood+Terraria/IronBar"
       },
+      "Terraria/SpookySink": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/SpookyWood+Terraria/WaterBucket"
+      },
       "Terraria/SpookyTable": {
         "stage": "plantera",
         "via": "recipe:Terraria/SpookyWood"
@@ -39878,27 +40799,45 @@
       },
       "Terraria/MartianConduitPlating": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper"
+        "via": "npc:Terraria/GigaZapper",
+        "eventCategory": "MartianMadness",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/LaserDrill": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper"
+        "via": "npc:Terraria/GigaZapper",
+        "eventCategory": "MartianMadness",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/AntiGravityHook": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper"
+        "via": "npc:Terraria/GigaZapper",
+        "eventCategory": "MartianMadness",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/MartianUniformHelmet": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper"
+        "via": "npc:Terraria/GigaZapper",
+        "eventCategory": "MartianMadness",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/MartianUniformTorso": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper"
+        "via": "npc:Terraria/GigaZapper",
+        "eventCategory": "MartianMadness",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/MartianUniformPants": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper"
+        "via": "npc:Terraria/GigaZapper",
+        "eventCategory": "MartianMadness",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/GolemTrophy": {
         "stage": "golem",
@@ -40060,6 +40999,10 @@
         "stage": "golem",
         "via": "recipe:Terraria/MartianConduitPlating+Terraria/Silk"
       },
+      "Terraria/MartianSink": {
+        "stage": "golem",
+        "via": "recipe:Terraria/MartianConduitPlating+Terraria/WaterBucket"
+      },
       "Terraria/ToiletMartian": {
         "stage": "golem",
         "via": "recipe:Terraria/MartianConduitPlating"
@@ -40090,39 +41033,66 @@
       },
       "Terraria/BossTrophyBetsy": {
         "stage": "betsy",
-        "via": "npc:Terraria/DD2Betsy"
+        "via": "npc:Terraria/DD2Betsy",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/BossBagBetsy": {
         "stage": "betsy",
-        "via": "npc:Terraria/DD2Betsy"
+        "via": "npc:Terraria/DD2Betsy",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/BetsyMasterTrophy": {
         "stage": "betsy",
-        "via": "npc:Terraria/DD2Betsy"
+        "via": "npc:Terraria/DD2Betsy",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DD2BetsyPetItem": {
         "stage": "betsy",
-        "via": "npc:Terraria/DD2Betsy"
+        "via": "npc:Terraria/DD2Betsy",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/BossMaskBetsy": {
         "stage": "betsy",
-        "via": "npc:Terraria/DD2Betsy"
+        "via": "npc:Terraria/DD2Betsy",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/BetsyWings": {
         "stage": "betsy",
-        "via": "npc:Terraria/DD2Betsy"
+        "via": "npc:Terraria/DD2Betsy",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DarkMageMasterTrophy": {
         "stage": "betsy",
-        "via": "npc:Terraria/DD2DarkMageT3"
+        "via": "npc:Terraria/DD2DarkMageT3",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/OgreMasterTrophy": {
         "stage": "betsy",
-        "via": "npc:Terraria/DD2OgreT3"
+        "via": "npc:Terraria/DD2OgreT3",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DD2OgrePetItem": {
         "stage": "betsy",
-        "via": "npc:Terraria/DD2OgreT3"
+        "via": "npc:Terraria/DD2OgreT3",
+        "eventCategory": "OldOnesArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DukeFishronTrophy": {
         "stage": "duke-fishron",
@@ -40388,6 +41358,10 @@
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick+Terraria/Bone+Terraria/Book"
       },
+      "Terraria/SolarSink": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:Terraria/SolarBrick+Terraria/WaterBucket"
+      },
       "Terraria/SolarSofa": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/SolarBrick+Terraria/Silk"
@@ -40463,6 +41437,10 @@
       "Terraria/VortexPiano": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/VortexBrick+Terraria/Bone+Terraria/Book"
+      },
+      "Terraria/VortexSink": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:Terraria/VortexBrick+Terraria/WaterBucket"
       },
       "Terraria/VortexSofa": {
         "stage": "lunatic-cultist",
@@ -40540,6 +41518,10 @@
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick+Terraria/Bone+Terraria/Book"
       },
+      "Terraria/NebulaSink": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:Terraria/NebulaBrick+Terraria/WaterBucket"
+      },
       "Terraria/NebulaSofa": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/NebulaBrick+Terraria/Silk"
@@ -40615,6 +41597,10 @@
       "Terraria/StardustPiano": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick+Terraria/Bone+Terraria/Book"
+      },
+      "Terraria/StardustSink": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:Terraria/StardustBrick+Terraria/WaterBucket"
       },
       "Terraria/StardustSofa": {
         "stage": "lunatic-cultist",
@@ -41034,35 +42020,8 @@
     "wikiAmbiguousItems": [],
     "wikiUnresolvedItems": [],
     "wikiAvailabilityCorrections": [],
-    "snapshotStageCorrections": [
-      {
-        "snapshotStageIndex": 0,
-        "resolvedStageId": "lunatic-cultist",
-        "resolvedStageIndex": 21,
-        "records": 4,
-        "examples": [
-          "npcAvailability[408] Terraria/StardustSpiderBig",
-          "npcAvailability[411] Terraria/SolarCrawltipedeHead",
-          "npcAvailability[422] Terraria/NebulaBeast"
-        ]
-      }
-    ],
+    "snapshotStageCorrections": [],
     "sourceAvailabilityCorrections": [
-      {
-        "source": "Terraria/DungeonGuardian",
-        "observedStageId": "start",
-        "effectiveStageId": "skeletron"
-      },
-      {
-        "source": "Terraria/Lihzahrd",
-        "observedStageId": "start",
-        "effectiveStageId": "plantera"
-      },
-      {
-        "source": "Terraria/FlyingSnake",
-        "observedStageId": "start",
-        "effectiveStageId": "plantera"
-      },
       {
         "source": "Terraria/ZombieMushroom",
         "observedStageId": "start",
@@ -41266,6 +42225,18 @@
         ]
       },
       {
+        "source": "Terraria/BigMimicCorruption",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/ChainGuillotines",
+          "Terraria/ClingerStaff",
+          "Terraria/DartRifle",
+          "Terraria/GreaterHealingPotion",
+          "Terraria/GreaterManaPotion",
+          "Terraria/LifeforcePotion"
+        ]
+      },
+      {
         "source": "Terraria/BlackRecluse",
         "sourceKind": "drop",
         "items": [
@@ -41323,6 +42294,13 @@
           "Terraria/MaceWhip",
           "Terraria/MagnetSphere",
           "Terraria/TitanPotion"
+        ]
+      },
+      {
+        "source": "Terraria/BlueJellyfish",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/ShinePotion"
         ]
       },
       {
@@ -41409,6 +42387,14 @@
         ]
       },
       {
+        "source": "Terraria/CorruptGoldfish",
+        "sourceKind": "drop",
+        "items": [
+          "FargowiltasSouls/SqueakyToy",
+          "Terraria/BiomeSightPotion"
+        ]
+      },
+      {
         "source": "Terraria/CorruptSlime",
         "sourceKind": "drop",
         "items": [
@@ -41424,6 +42410,14 @@
         ]
       },
       {
+        "source": "Terraria/Crawdad2",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/PotatoChips",
+          "Terraria/Rally"
+        ]
+      },
+      {
         "source": "Terraria/Crimera",
         "sourceKind": "drop",
         "items": [
@@ -41436,6 +42430,14 @@
         "sourceKind": "drop",
         "items": [
           "Terraria/Gel"
+        ]
+      },
+      {
+        "source": "Terraria/CrimsonGoldfish",
+        "sourceKind": "drop",
+        "items": [
+          "FargowiltasSouls/SqueakyToy",
+          "Terraria/BiomeSightPotion"
         ]
       },
       {
@@ -41644,24 +42646,6 @@
           "Terraria/BatBat",
           "Terraria/Grapes",
           "Terraria/SonarPotion"
-        ]
-      },
-      {
-        "source": "Terraria/GiantShelly",
-        "sourceKind": "drop",
-        "items": [
-          "Terraria/PotatoChips",
-          "Terraria/Rally",
-          "Terraria/ThornsPotion"
-        ]
-      },
-      {
-        "source": "Terraria/GiantShelly2",
-        "sourceKind": "drop",
-        "items": [
-          "Terraria/PotatoChips",
-          "Terraria/Rally",
-          "Terraria/ThornsPotion"
         ]
       },
       {
@@ -42020,6 +43004,13 @@
         ]
       },
       {
+        "source": "Terraria/Nurse",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/LifeCrystal"
+        ]
+      },
+      {
         "source": "Terraria/Paladin",
         "sourceKind": "drop",
         "items": [
@@ -42041,6 +43032,13 @@
         "items": [
           "Terraria/WoodenArrow",
           "Terraria/ZombieArm"
+        ]
+      },
+      {
+        "source": "Terraria/PinkJellyfish",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/ShinePotion"
         ]
       },
       {
@@ -42263,6 +43261,14 @@
           "Terraria/BallOHurt",
           "Terraria/Musket",
           "Terraria/Vilethorn"
+        ]
+      },
+      {
+        "source": "Terraria/Shark",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/FlipperPotion",
+          "Terraria/ShrimpPoBoy"
         ]
       },
       {
@@ -42591,7 +43597,8 @@
             }
           ],
           "shops": [],
-          "recipes": []
+          "recipes": [],
+          "shimmer": []
         }
       },
       {
@@ -42617,7 +43624,8 @@
             }
           ],
           "shops": [],
-          "recipes": []
+          "recipes": [],
+          "shimmer": []
         }
       }
     ],
@@ -42671,26 +43679,6 @@
             "melee"
           ]
         }
-      },
-      {
-        "item": "Terraria/ShimmerArrow",
-        "displayName": "Мерцающая стрела",
-        "classification": {
-          "category": "Ammunition",
-          "classes": [
-            "ranged"
-          ]
-        }
-      },
-      {
-        "item": "Terraria/ShimmerFlare",
-        "displayName": "Мерцающий факел",
-        "classification": {
-          "category": "Ammunition",
-          "classes": [
-            "ranged"
-          ]
-        }
       }
     ],
     "manualAssignmentProblems": [],
@@ -42701,10 +43689,10 @@
         "comparisons": []
       }
     },
-    "unassignedVanillaNpcSourceCount": 181,
+    "unassignedVanillaNpcSourceCount": 187,
     "manualAvailabilityPriority": {
-      "automaticItems": 4040,
-      "automaticSources": 212,
+      "automaticItems": 4095,
+      "automaticSources": 221,
       "automaticStations": 405,
       "suppressed": {
         "itemStages": [

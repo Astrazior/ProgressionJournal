@@ -287,7 +287,7 @@ function validateSupport(support, directoryName) {
 
 function validateSnapshot(snapshot, support) {
   assert(snapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot.json format.");
-  assert(snapshot.version === 4,
+  assert([4, 5].includes(snapshot.version),
     `Unsupported snapshot.json version '${snapshot.version}'.`);
   const target = snapshot.targetMod ?? support.targetMod;
   assert(target === support.targetMod,
@@ -736,6 +736,14 @@ export function auditRuntimeSourceCoverage(
         `fishing references unknown ${catchRecord.targetType} '${catchRecord.target}'`);
     }
   }
+  for (const transform of snapshot.shimmerTransforms ?? []) {
+    if (!itemIds.has(transform.input)) {
+      errors.push(`shimmer transform references unknown input item '${transform.input}'`);
+    }
+    if (!itemIds.has(transform.output)) {
+      errors.push(`shimmer transform references unknown output item '${transform.output}'`);
+    }
+  }
 
   const observed = [];
   const declared = [];
@@ -765,6 +773,7 @@ export function auditRuntimeSourceCoverage(
     townCount: townRecords.length,
     observedTownCount,
     fishingCount: (snapshot.fishing ?? []).length,
+    shimmerTransformCount: (snapshot.shimmerTransforms ?? []).length,
     dropSourceCount: new Set(
       (snapshot.drops ?? [])
         .filter(drop => drop.sourceType === "npc")

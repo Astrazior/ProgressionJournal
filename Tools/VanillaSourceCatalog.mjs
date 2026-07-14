@@ -741,54 +741,6 @@ export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {
     .filter(drop => drop.sourceType === "global" && (drop.conditions ?? []).length > 0)
     .map(drop => drop.item)
     .filter(Boolean));
-  manifest.itemOverrides ??= {};
-  manifest.itemOverrides["Terraria/TitaniumHelmet"] = {
-    ...(manifest.itemOverrides["Terraria/TitaniumHelmet"] ?? {}),
-    category: "Armor",
-    classes: ["ranged"]
-  };
-  manifest.itemOverrides["Terraria/TitaniumMask"] = {
-    ...(manifest.itemOverrides["Terraria/TitaniumMask"] ?? {}),
-    category: "Armor",
-    classes: ["melee"]
-  };
-  manifest.itemOverrides["Terraria/TitaniumHeadgear"] = {
-    ...(manifest.itemOverrides["Terraria/TitaniumHeadgear"] ?? {}),
-    category: "Armor",
-    classes: ["magic"]
-  };
-  manifest.itemOverrides ??= {};
-  manifest.itemOverrides["Terraria/TitaniumHelmet"] = {
-    ...(manifest.itemOverrides["Terraria/TitaniumHelmet"] ?? {}),
-    category: "Armor",
-    classes: ["ranged"]
-  };
-  manifest.itemOverrides["Terraria/TitaniumMask"] = {
-    ...(manifest.itemOverrides["Terraria/TitaniumMask"] ?? {}),
-    category: "Armor",
-    classes: ["melee"]
-  };
-  manifest.itemOverrides["Terraria/TitaniumHeadgear"] = {
-    ...(manifest.itemOverrides["Terraria/TitaniumHeadgear"] ?? {}),
-    category: "Armor",
-    classes: ["magic"]
-  };
-  manifest.itemOverrides ??= {};
-  manifest.itemOverrides["Terraria/TitaniumHelmet"] = {
-    ...(manifest.itemOverrides["Terraria/TitaniumHelmet"] ?? {}),
-    category: "Armor",
-    classes: ["ranged"]
-  };
-  manifest.itemOverrides["Terraria/TitaniumMask"] = {
-    ...(manifest.itemOverrides["Terraria/TitaniumMask"] ?? {}),
-    category: "Armor",
-    classes: ["melee"]
-  };
-  manifest.itemOverrides["Terraria/TitaniumHeadgear"] = {
-    ...(manifest.itemOverrides["Terraria/TitaniumHeadgear"] ?? {}),
-    category: "Armor",
-    classes: ["magic"]
-  };
   manifest.initialItems = unique([
     ...(manifest.initialItems ?? []),
     ...excludeWorldgenContainerItems(START_ITEMS)

@@ -2,10 +2,48 @@
   "format": "ProgressionJournalManualReview",
   "version": 1,
   "profileId": "builtin.fargosouls",
-  "generatedAtUtc": "2026-07-13T22:08:09.492Z",
+  "generatedAtUtc": "2026-07-14T00:01:38.701Z",
   "summary": {
-    "total": 0,
-    "byKind": {}
+    "total": 1,
+    "byKind": {
+      "unresolved-condition": 1
+    }
   },
-  "issues": []
+  "issues": [
+    {
+      "id": "unresolved-condition.b32e8f21afaa",
+      "kind": "unresolved-condition",
+      "sourceKind": "shop",
+      "conditions": [
+        {
+          "type": "Terraria.Condition",
+          "description": "После того, как босс был повержен"
+        }
+      ],
+      "affectedCount": 1,
+      "affected": [
+        {
+          "item": "FargowiltasSouls/CoffinSummon",
+          "source": "Fargowiltas/Mutant"
+        }
+      ],
+      "resolution": {
+        "conditionStages": [
+          {
+            "stageId": "<stage-id>",
+            "sources": [
+              "shop"
+            ],
+            "sourceIds": [
+              "Fargowiltas/Mutant"
+            ],
+            "conditionTypes": [],
+            "conditionDescriptions": [
+              "После того, как босс был повержен"
+            ]
+          }
+        ]
+      }
+    }
+  ]
 }
