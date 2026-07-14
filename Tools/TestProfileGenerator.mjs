@@ -10,6 +10,56 @@ const item = (id, values = {}) => ({
   hammer: 0, mountType: -1, shoot: 0, sentry: false, sourceNamespace: "",
   classEffects: [], ...values
 });
+const equivalentWeaponVariantGroups = [
+  [
+    "Terraria/WoodenSword",
+    "Terraria/BorealWoodSword",
+    "Terraria/RichMahoganySword",
+    "Terraria/PalmWoodSword",
+    "Terraria/EbonwoodSword",
+    "Terraria/ShadewoodSword",
+    "Terraria/AshWoodSword"
+  ],
+  [
+    "Terraria/WoodenBow",
+    "Terraria/BorealWoodBow",
+    "Terraria/RichMahoganyBow",
+    "Terraria/PalmWoodBow",
+    "Terraria/EbonwoodBow",
+    "Terraria/ShadewoodBow",
+    "Terraria/AshWoodBow"
+  ],
+  ["Terraria/CopperShortsword", "Terraria/TinShortsword"],
+  ["Terraria/CopperBroadsword", "Terraria/TinBroadsword"],
+  ["Terraria/CopperBow", "Terraria/TinBow"],
+  ["Terraria/IronShortsword", "Terraria/LeadShortsword"],
+  ["Terraria/IronBroadsword", "Terraria/LeadBroadsword"],
+  ["Terraria/IronBow", "Terraria/LeadBow"],
+  ["Terraria/SilverShortsword", "Terraria/TungstenShortsword"],
+  ["Terraria/SilverBroadsword", "Terraria/TungstenBroadsword"],
+  ["Terraria/SilverBow", "Terraria/TungstenBow"],
+  ["Terraria/GoldShortsword", "Terraria/PlatinumShortsword"],
+  ["Terraria/GoldBroadsword", "Terraria/PlatinumBroadsword"],
+  ["Terraria/GoldBow", "Terraria/PlatinumBow"]
+];
+const equivalentArmorVariantGroups = [
+  ["Terraria/CopperHelmet", "Terraria/TinHelmet"],
+  ["Terraria/CopperChainmail", "Terraria/TinChainmail"],
+  ["Terraria/CopperGreaves", "Terraria/TinGreaves"],
+  ["Terraria/IronHelmet", "Terraria/LeadHelmet"],
+  ["Terraria/IronChainmail", "Terraria/LeadChainmail"],
+  ["Terraria/IronGreaves", "Terraria/LeadGreaves"],
+  ["Terraria/SilverHelmet", "Terraria/TungstenHelmet"],
+  ["Terraria/SilverChainmail", "Terraria/TungstenChainmail"],
+  ["Terraria/SilverGreaves", "Terraria/TungstenGreaves"],
+  ["Terraria/GoldHelmet", "Terraria/PlatinumHelmet"],
+  ["Terraria/GoldChainmail", "Terraria/PlatinumChainmail"],
+  ["Terraria/GoldGreaves", "Terraria/PlatinumGreaves"]
+];
+const equivalentVariantGroups = [
+  ...equivalentWeaponVariantGroups,
+  ...equivalentArmorVariantGroups
+];
 const snapshot = {
   format: "ProgressionJournalSnapshot",
   version: 5,
@@ -168,6 +218,16 @@ const snapshot = {
     item("Terraria/WhiteString", { accessory: true }),
     item("Terraria/BrownString", { accessory: true }),
     item("Terraria/BlackString", { accessory: true }),
+    ...equivalentWeaponVariantGroups.flatMap(group => group.map(id => item(id, {
+      damageClass: "Melee",
+      damage: 5
+    }))),
+    ...equivalentArmorVariantGroups.flatMap(group => group.map(id => item(id, {
+      defense: 2,
+      headSlot: id.endsWith("Helmet") ? 20 : -1,
+      bodySlot: id.endsWith("Chainmail") ? 20 : -1,
+      legSlot: id.endsWith("Greaves") ? 20 : -1
+    }))),
     item("Terraria/HeartLantern", {
       consumable: true,
       createTile: 42,
@@ -218,6 +278,12 @@ const snapshot = {
       stations: [],
       conditions: []
     },
+    ...equivalentVariantGroups.flatMap(group => group.map(result => ({
+      result,
+      ingredients: [],
+      stations: [],
+      conditions: []
+    }))),
     {
       result: "Terraria/HeartLantern",
       ingredients: [{ item: "Test/CollisionSource", stack: 1 }],
@@ -383,6 +449,11 @@ const snapshot = {
     conditions: ["Liquid: Honey"]
   }],
   vanillaItemClassifications: [
+    ...equivalentArmorVariantGroups.flatMap(group => group.map(item => ({
+      item,
+      category: "Armor",
+      classes: ["melee"]
+    }))),
     {
       item: "Terraria/ZeroDamageGun",
       category: "Weapon",
@@ -775,6 +846,26 @@ assert.equal(
     entry.itemGroups[0].some(reference =>
       ["WhiteString", "BrownString", "BlackString"].includes(reference.item))).length,
   1);
+for (const group of equivalentVariantGroups) {
+  const entry = profile.entries.find(candidate =>
+    candidate.itemGroups[0].some(reference =>
+      `${reference.mod}/${reference.item}` === group[0]));
+  assert.deepEqual(
+    entry?.itemGroups[0].map(reference => `${reference.mod}/${reference.item}`),
+    group);
+  assert.equal(
+    profile.entries.filter(candidate => candidate.itemGroups[0].some(reference =>
+      group.includes(`${reference.mod}/${reference.item}`))).length,
+    1);
+}
+const equivalentVariantIds = equivalentVariantGroups.flat();
+assert.deepEqual(
+  profile.entries
+    .flatMap(entry => entry.itemGroups.flat())
+    .map(reference => `${reference.mod}/${reference.item}`)
+    .filter(id => equivalentVariantIds.includes(id))
+    .sort(),
+  [...equivalentVariantIds].sort());
 assert(report.wikiResolvedItems.some(entry =>
   entry.from === "Test/OldBlade"
   && entry.to.includes("Test/RenamedBlade")));
