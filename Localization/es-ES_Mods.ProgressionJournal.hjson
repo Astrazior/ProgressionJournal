@@ -1,0 +1,287 @@
+# This file will automatically update with entries for new content after a build and reload.
+
+UI: {
+	Title: Diario de progresión
+	Subtitle: Guía de equipamiento con perfiles de progresión seleccionables
+	Stage: Etapa
+	Class: Clase
+	InventoryButtonTooltip: Abrir Diario de progresión
+	OverviewTab: Equipo
+	PresetsTab: Builds
+	BuildBuilderTab: Constructor
+	StageSelectorTitle: Etapa de progresión
+	ProgressionModeToggleTooltip: Alternar modo de progresión. Cuando está activado, las etapas bloqueadas permanecen en la lista como entradas desconocidas.
+	LockedStageTooltip: Etapa desconocida. Derrota al jefe de esta etapa para desbloquearla.
+	StageConditionUnresolved: La condición de desbloqueo no está disponible; esta etapa sigue siendo accesible.
+	ClassSelectorTitle: Selección de clase
+	LegendTitle: Tipos de recomendación
+	OverviewHeadline: Equipamiento de la etapa actual
+	OverviewDescription: Todos los objetos calificados manualmente para esta clase en la etapa seleccionada.
+	RecommendedBlock: Fuerte
+	AdditionalBlock: Usable
+	NotRecommendedBlock: Débil
+	UselessBlock: Muy débil
+	FromGuideBlock: Desde la guía
+	WikiRecommendationsBlock: Recomendaciones
+	WikiRecommendationsTooltip: Esta sección se genera automáticamente a partir de "{0}". Las recomendaciones pueden ser subjetivas, contener errores o incluir objetos de etapas anteriores.
+	NewEquipmentBlock: Nuevo equipo
+	NoNewEquipment: No se encontraron nuevos objetos para esta etapa.
+	ProfileManagerTooltip: Seleccione un perfil de progresión
+	ProfileManagerTitle: Perfiles de progresión
+	ProfileClose: Cerrar
+	ProfileVersionWarning: "[versión diferente]"
+	ProfileManagerWarning: Los perfiles son una característica experimental temprana y pueden contener errores, revisarse o cambiar con el tiempo. Es posible que algunos elementos estén asignados a etapas incorrectas. Si no está seguro, consulte fuentes confiables hasta que esta función esté completa.
+	PresetsHeadline: Planificador de build
+	ClassPageTitle: Elige una clase
+	StageProgress: Etapa {0} de {1}
+	EntriesCount: Entradas: {0}
+	PresetsCount: Builds: {0}
+	TierLegendRecommended: una de las mejores opciones para esta etapa
+	TierLegendAdditional: una opción utilizable para esta etapa
+	TierLegendNotRecommended: una opción débil para esta etapa
+	TierLegendUseless: apenas vale la pena considerarlo
+	EntryContains: Incluye: {0}
+	EntrySingleItem: Objeto único
+	EntrySetCount: Conjunto: {0}
+	Weapons: Armas
+	ArmorLabel: Armadura
+	Accessories: Accesorios
+	SupportWeaponTag: Apoyo
+	CombatBuffClassSpecificTag: Específico de clase
+	None: Ninguno
+	EmptyState: Aún no existen entradas en la guía para esta clase y etapa.
+	VanillaCombatBuffsTitle: Mejoras
+	CombatBuffsTitle: Nuevos consumibles
+	CombatBuffStations: Estaciones
+	CombatBuffPassive: Pasivo
+	CombatBuffBasic: Básico
+	CombatBuffPotions: Pociones
+	CombatBuffEternal: Eterno
+	CombatBuffFood: Comida
+	CombatBuffFlasks: Frascos
+	SelectedItemEmpty: Ningún objeto seleccionado
+	SelectedItemSelectPrompt: Haga clic en un elemento de la lista para ver su adquisición.
+	ReadyBuildsEmpty: Las builds listas para esta clase y etapa aún no se han completado.
+	SelectedItemNoData: Aún no se han podido determinar datos de adquisición para este objeto.
+	SelectedItemCrafts: Elaboración
+	SelectedItemDrops: Drops
+	SelectedItemShops: Tiendas
+	SelectedItemFishing: Pesca
+	SelectedItemShimmer: Fulgor
+	SelectedItemIngredients: Ingredientes
+	SelectedItemStations: Estaciones
+	SelectedItemDemonAltar: Altar demoníaco / Altar carmesí
+	SelectedItemBottleStation: Botella colocada / Mesa de alquimia
+	SelectedItemConditions: Condiciones
+	SelectedItemFishingMethod: Se obtiene pescando.
+	SelectedItemShimmerMethod: Lanza uno de estos objetos al fulgor.
+	FishingLiquidCondition: Líquido: {0}
+	FishingBiomeCondition: Bioma: {0}
+	FishingDepthCondition: Profundidad: {0}
+	FishingPoleCondition: Caña de pescar: {0}
+	FishingBaitCondition: Cebo: {0}
+	FishingProgressionCondition: Disponible después de: {0}
+	FishingWorldCondition: Mundo: {0}
+	FishingLiquidWater: Agua
+	FishingLiquidLava: Lava
+	FishingLiquidHoney: Miel
+	FishingBiomeDefault: Sin bioma especial
+	FishingWorldPreHardmode: Pre-Hardmode
+	FishingWorldHardmode: Modo difícil
+	FishingWorldBloodMoon: Luna de Sangre
+	FishingWorldDay: Día
+	FishingWorldNight: Noche
+	FishingWorldPostSkeletron: Después de Esqueletrón
+	FishingWorldCombatBook: Después de Técnicas Avanzadas de Combate
+	FishingWorldRemix: Semilla Remix
+	FishingWorldNotTheBees: Semilla Not the bees
+	FishingAnglerQuestCondition: Disponible como pez de misión del Pescador.
+	TownNpcAvailableAfterCondition: El PNJ pasa a estar disponible después de: {0}
+	TownNpcSpecialUnlockCondition: El PNJ requiere un rescate u otro desbloqueo especial.
+	TownNpcInventoryCondition: Se observó la disponibilidad del PNJ con el inventario requerido del jugador.
+	TownNpcPopulationCondition: Se observó la disponibilidad del PNJ después de que otros PNJ de la ciudad se hubieran mudado.
+	TownNpcAvailabilityUnknown: No se observó la disponibilidad del PNJ en los escenarios de ejecución.
+	ShopObservedAfterCondition: Este objeto de tienda se observó por primera vez después de: {0}
+	NpcSpawnAvailabilityUnknown: El proceso de generación en tiempo de ejecución no reprodujo a este enemigo. Las condiciones de bioma conocidas se muestran mediante los iconos del Bestiario de arriba.
+	NpcSpawnAvailableAfterCondition: El enemigo se observó por primera vez después de: {0}
+	NpcSpawnBiomeCondition: Bioma observado: {0}
+	NpcSpawnEventCondition: Evento observado: {0}
+	NpcSpawnWaterCondition: Observado generándose en el agua.
+	NpcSpawnSafeCondition: Observado en un área segura/con paredes colocadas por el jugador.
+	NpcSpawnTownCondition: Observado mientras el jugador estaba en la ciudad.
+	NpcSpawnNoEvent: Sin evento
+	NpcSpawnEclipse: Eclipse Solar
+	NpcSpawnRain: Lluvia
+	NpcSpawnSandstorm: Tormenta de arena
+	NpcSpawnSlimeRain: Lluvia de Slimes
+	NpcSpawnGoblinArmy: Ejército de Duendes
+	NpcSpawnFrostLegion: Legión de Escarcha
+	NpcSpawnPirates: Invasión Pirata
+	NpcSpawnMartians: Locura Marciana
+	NpcSpawnPumpkinMoon: Luna de Calabaza
+	NpcSpawnFrostMoon: Luna Gélida
+	NpcSpawnOldOnesArmy: Ejército del Antiguo
+	NpcSpawnGranite: Cueva de Granito
+	NpcSpawnMarble: Cueva de Mármol
+	NpcSpawnSpiderCave: Nido de Arañas
+	NpcSpawnTemple: Templo de la Jungla
+	NpcSpawnSolarPillar: Pilar Solar
+	NpcSpawnVortexPillar: Pilar de Vórtice
+	NpcSpawnNebulaPillar: Pilar de Nebulosa
+	NpcSpawnStardustPillar: Pilar de Polvo Estelar
+	SelectedItemSource: Fuente
+	SelectedItemTrade: Intercambio
+	SelectedItemChance: Probabilidad
+	SelectedItemExpertModeCondition: Modo Experto o Maestro
+	SelectedItemRightClickTileCondition: Clic Derecho en {0}.
+	SelectedItemRightClickTileWithItemCondition: Clic Derecho en {0} con {1} en el Inventario.
+	SelectedItemBothEventsActiveCondition: Ambos eventos deben estar activos: {0}.
+	SelectedItemNoNpcAliveCondition: "{0} no debe estar presente."
+	SelectedItemChargedTileCondition: "{0} debe estar cargado."
+	SelectedItemBelowSurfaceCondition: Por debajo de la capa de la superficie
+	SelectedItemAfterAllMechanicalBossesCondition: Después de que los tres jefes mecánicos hayan sido derrotados
+	SelectedItemSpecialWorldGateCondition: Requiere ambas condiciones: {0}; {1}.
+	SelectedItemZenithWorldCondition: Mundo con semilla Zenith
+	SelectedItemWorldOptionCondition: Opción de mundo: {0}
+	SelectedItemStack: Cantidad
+	SelectedItemFromItem: Desde objeto
+	SelectedItemFromAnyEnemy: De cualquier enemigo
+	SelectedItemFromAnyBoss: De cualquier jefe
+	SelectedItemClearTooltip: Limpiar objeto seleccionado
+	AnyFoodWellFed: Cualquier comida con Bien alimentado
+	AnyFoodPlentySatisfied: Cualquier comida con Bastante satisfecho
+	AnyFoodExquisitelyStuffed: Cualquier comida con Exquisitamente saciado
+	CombatConsumablesTitle: Consumibles
+	CombatConsumablesButton: Mostrar consumibles
+	CombatConsumablesTooltip: Mostrar consumibles
+	BuildEquipmentTitle: Equipamiento
+	BuildConsumablesTitle: Consumibles
+	BuildAllItemsTooltip:
+		'''
+		Muestra todos los elementos cargados.
+		Incluye elementos ausentes del perfil de progresión.
+		'''
+	BuildProgressionItemsTooltip:
+		'''
+		Mostrar solo los objetos disponibles
+		en la etapa de progresión seleccionada.
+		'''
+	BuildSlotPrimaryWeapon: Arma primaria
+	BuildSlotSupportWeapon: Arma secundaria
+	BuildSlotClassSpecific: Ranura de Clase
+	BuildSlotRangedAmmo: Munición
+	BuildSlotSummonerUtility: Látigo o apoyo
+	BuildSlotMagicUtility: Utilidad mágica
+	BuildSlotArmorHead: Casco
+	BuildSlotArmorBody: Peto
+	BuildSlotArmorLegs: Grebas
+	BuildSlotAccessory: Accesorio
+	BuildSlotPotion: Pociones
+	BuildSlotFood: Alimento
+	BuildSlotFoodAlternative: Alternativa de comida
+	BuildAddAccessorySlotTooltip: Agregar ranura de accesorio
+	BuildAddPotionSlotTooltip: Agregar espacio para pociones
+	BuildAddFoodAlternativeTooltip: Agregar alternativa de comida
+	BuildPickerEmpty: Aún no existen objetos disponibles para este espacio.
+	BuildPickerSearchEmpty: Ningún objeto coincide con la búsqueda.
+	BuildPickerGuideTab: Vanilla
+	BuildPickerModTab: Mods
+	BuildPickerAllMods: Todo
+	BuildPickerPowerDescTooltip: Ordenar por poder ↑
+	BuildPickerPowerAscTooltip: Ordenar por poder ↓
+	BuildPickerSortResetTooltip: Restablecer ordenación
+	BuildPickerFilterResetTooltip: Restablecer filtros
+	BuildPickerSortMenuTooltip: Ordenación
+	BuildPickerFilterMenuTooltip: Filtros
+	BuildPickerDamageMeleeTooltip: Daño cuerpo a cuerpo
+	BuildPickerDamageRangedTooltip: Daño a distancia
+	BuildPickerDamageMagicTooltip: Daño mágico
+	BuildPickerDamageSummonTooltip: Daño de invocación
+	BuildPickerDamageOtherTooltip: Otros daños
+	BuildPickerSearchHint: Buscar elementos
+	BuildPickerAlreadySelected: ya seleccionado en otro espacio
+	BuildBackTooltip: Volver a builds
+	BuildSaveTooltip: Guardar la build actual como json
+	BuildSaveDialogTitle: Guardar build
+	BuildSaveDialogHint: Introduzca el nombre de la build
+	BuildSaveConfirm: Guardar
+	BuildSaveCancel: Cancelar
+	BuildSaveNameRequired: Ingrese un nombre de build antes de guardar.
+	BuildSaveNoItems: Seleccione al menos un elemento antes de guardar.
+	BuildSaveFailed: Error al guardar el archivo json de la build.
+	BuildImportTooltip: Importar
+	BuildImported: Build importada {0}
+	BuildImportFailed: Error al importar la build.
+	BuildExportTooltip: Exportar
+	BuildExportFileTooltip: Exportar a un archivo
+	BuildExportChatTooltip: Enviar build al chat
+	BuildExported: Build exportada {0}
+	BuildExportFailed: Error al exportar la build.
+	BuildSharedChatLabel: "[ ABRIR BUILD: {0} ]"
+	BuildSharedChatMessage: "[c/8FCFFF:Diario de progresión] {0}"
+	BuildSharedUnknownPlayer: Jugador
+	BuildSharedOpenTooltip: Haga clic para abrir la vista previa de la build
+	BuildSharedAdd: Agregar
+	BuildSharedInvalid: No se pudo abrir la build desde el chat.
+	BuildUnloadedItem: Objeto no cargado
+	BuildUnloadedItemTooltip: "{0} (objeto no cargado)"
+	BuildEditTooltip: Editar build
+	BuildFavoriteTooltip: Agregar a favoritos
+	BuildFavoriteActiveTooltip: Quitar de favoritos
+	BuildDeleteTooltip: Eliminar build
+	SavedBuildsEmpty: Aún no existen builds guardadas para esta clase y etapa.
+
+	ClassDescriptions: {
+		Melee: Corto alcance y durabilidad
+		Ranged: Distancia y daño constante
+		Magic: Maná, hechizos y ráfaga
+		Summoner: Súbditos, látigos, y apoyo
+	}
+}
+
+Classes: {
+	Melee: Cuerpo a cuerpo
+	Ranged: A distancia
+	Magic: Magia
+	Summoner: Invocador
+}
+
+Stages: {
+	PreBoss: Comienzo
+	PostKingSlime: Rey Slime
+	PostEyeOfCthulhu: Ojo de Cthulhu
+	PostWorldEvil: Maldad del mundo
+	PostQueenBee: Abeja Reina
+	PostSkeletron: Esqueletrón
+	PostDeerclops: Ciervíclope
+	HardmodeEntry: Modo difícil
+	PostQueenSlime: Reina Slime
+	PostOneMechBoss: 1 jefe mecánico
+	PostThreeMechBosses: 3 jefes mecánicos
+	PostPlantera: Plantera
+	PostDukeFishron: Duque Fishron
+	PostEmpressOfLight: Emperatriz de la Luz
+	PostGolem: Gólem
+	PostCelestialPillars: Pilares Celestiales
+	PostMoonLord: Señor de la Luna
+}
+
+Categories: {
+	Weapon: Arma
+	Armor: Armadura
+	Accessory: Accesorio
+	ClassSpecific: Específico de clase
+	Buff: Mejoras de combate
+	Ammunition: Munición
+	Support: Apoyo
+}
+
+Tiers: {
+	Recommended: Fuerte
+	Additional: Usable
+	NotRecommended: Débil
+	Useless: Muy débil
+	FromGuide: Desde la guía
+}
+
+Keybinds.ToggleProgressionJournal.DisplayName: Alternar Diario de progresión
