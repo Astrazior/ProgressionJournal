@@ -284,4 +284,143 @@ Tiers: {
 	FromGuide: Из гайда
 }
 
+ExternalConditions: {
+	CalamityMod: {
+		Misc: {
+			Tier1ArsenalRecipeCondition: Изучите незашифрованную схему из лаборатории возле Затонувшего моря
+			Tier2ArsenalRecipeCondition: Расшифруйте схему из лаборатории на большом планетоиде в небе
+			Tier3ArsenalRecipeCondition: Расшифруйте схему из лаборатории глубоко в джунглях
+			Tier4ArsenalRecipeCondition: Расшифруйте схему из лаборатории возле краёв преисподней
+			Tier5ArsenalRecipeCondition: Расшифруйте схему из лаборатории глубоко в ледяных пещерах
+			SunkenSeaSchematicRecipeCondition: Хотя бы раз положите в инвентарь схему из лаборатории возле Затонувшего моря
+			PlanetoidSchematicRecipeCondition: Хотя бы раз положите в инвентарь схему из лаборатории на большом планетоиде
+			JungleSchematicRecipeCondition: Хотя бы раз положите в инвентарь схему из лаборатории глубоко в джунглях
+			UnderworldSchematicRecipeCondition: Хотя бы раз положите в инвентарь схему из лаборатории возле краёв преисподней
+			IceSchematicRecipeCondition: Хотя бы раз положите в инвентарь схему из лаборатории в ледяных пещерах
+		}
+
+		Condition: {
+			Drops: {
+				CataclysmKilledLast: Выпадает, если Катаклизмическая конструкция побеждена последней
+				CatastropheKilledLast: Выпадает, если Катастрофическая конструкция побеждена последней
+				Cynosure: После победы над Дрейдоном и Каламитас
+				FirstKill: Выпадает только при первой победе
+				MechBoss: Выпадает при первой победе над последним механическим боссом
+				ProvidenceEnraged: Выпадает, если Провиденс была разгневана
+				ProvidenceChallenge: Выпадает, если Провиденс была побеждена только с Артефактом осквернённой души
+			}
+
+			HasFlareGun: При наличии улучшенной ракетницы в руках
+			LacewingBestiary: После заполнения не менее 40% Бестиария
+			CrescentMoons: Во время серповидной луны
+			GibbousMoons: Во время выпуклой луны
+			HasRogueArmor: При ношении брони разбойника
+			HasWings: При ношении крыльев
+			InAstral: В Астральном заражении
+			InCrag: В Серных скалах
+			InSulph: В Сернистом море
+			InSunken: В Затонувшем море
+			InRev: В режиме возмездия
+			InRevOrMM: В режиме возмездия или режиме мастера
+			HasFoundCorruptionEffigy: После получения Идола Искажения
+			HasFoundCrimsonEffigy: После получения Идола Багрянца
+			HasFoundUnstableGraniteCore: После получения Нестабильного гранитного ядра
+			HasFoundGladiatorsLocket: После получения Медальона гладиатора
+			HasFoundFrozenCube: После получения Замёрзшего куба
+			HasFoundTrinketOfChi: После получения Талисмана ци
+			HasFoundFungalSymbiote: После получения Грибного симбионта
+			HasFoundLuxorsGift: После получения Дара Луксора
+		}
+	}
+
+	AAModClassic: {
+		Common: {
+			Conditions: {
+				DownedRajah: После победы над Раджахом-кроликом
+				GoblinsDefeated: После победы над Армией гоблинов
+				GolemDefeated: После победы над Големом
+				InAnyInferno: В биоме Инферно
+				InAnyMire: В биоме Трясина
+				InAnyRedMushroom: В биоме Красных грибов
+				InAnyVoid: В биоме Пустота
+				InSunkenShipPreSoC: Возле затонувшего корабля после победы над всеми Древними
+				IsMaster: В режиме мастера
+				Unofficial: В неофициальных мирах
+				NotUnofficial: В обычных мирах
+				PostLateAncientsAndRemovedWorld: После поздних Древних
+				SpawnedBySubzeroSerpent: Когда Субнулевой змей отсутствует
+				OneMechDefeated: После победы над одним механическим боссом
+				SkeletronDefeated: После победы над Скелетроном
+			}
+		}
+	}
+
+	FargowiltasSouls: {
+		Conditions: {
+			RoombaPetSold: Когда в настройках включён питомец-румба
+			DownedEvilBoss: После победы над любым боссом зла
+			EMode: Шанс выпадения в режиме Вечности
+			EModeEarlyBirdHM: Шанс выпадения в хардмоде режима Вечности
+			EModeEarlyBirdPHM: Шанс выпадения до хардмода в режиме Вечности
+			EModeNotMaster: Шанс выпадения в режиме мастера или Вечности
+			NotEMode: Шанс выпадения вне режима Вечности
+			TimsConcoction: Шанс выпадения с Отваром Тима
+			Patreon: Награда Patreon
+			PatreonEMode: Награда Patreon в режиме Вечности
+			PatreonPlant: Награда Patreon в джунглях во время Кровавой луны
+			FirstKill: Выпадает при первой победе в режиме Вечности
+		}
+	}
+}
+
+ExternalConditionTypes: {
+	AAModClassic: {
+		GoblinsDefeated: После победы над Армией гоблинов
+		GolemDefeated: После победы над Големом
+		OneMechDefeated: После победы над одним механическим боссом
+		PostLateAncients: После поздних Древних
+		MasterMode: В режиме мастера
+		MasterModeDropRate: Шанс выпадения в режиме мастера
+		SkeletronDefeated: После победы над Скелетроном
+		SubzeroSerpentNotAlive: Когда Субнулевой змей отсутствует
+		OpenedDuringDay: При открытии днём
+		OpenedDuringNight: При открытии ночью
+		EquinoxWormsDefeated: После победы над Червями равноденствия
+	}
+
+	CalamityMod: {
+		Revengeance: Режим возмездия
+		ProvidenceChallenge:
+			'''
+			Выпадает, если Провиденс была побеждена только с Артефактом осквернённой души
+			Шанс выпадения в экспертном режиме
+			'''
+	}
+
+	FargowiltasSouls: {
+		FirstKill: Выпадает при первой победе в режиме Вечности
+		DownedEvilBoss: После победы над любым боссом зла
+		EMode: Шанс выпадения в режиме Вечности
+		EModeEarlyBirdHM: Шанс выпадения в хардмоде режима Вечности
+		EModeEarlyBirdPHM: Шанс выпадения до хардмода в режиме Вечности
+		EModeNotMaster: Шанс выпадения в режиме мастера или Вечности
+		NotEMode: Шанс выпадения вне режима Вечности
+		TimsConcoction: Шанс выпадения с Отваром Тима
+		PatreonPlant: Награда Patreon в джунглях во время Кровавой луны
+		Patreon: Награда Patreon
+		PatreonEMode: Награда Patreon в режиме Вечности
+	}
+
+	ThoriumMod: {
+		Underworld: Выпадает в Преисподней
+		AquaticDepthsHardmode: Выпадает в Водных глубинах в хардмоде
+		CookNotSellingEtherianGrog: Выпадает, пока Повар ещё не продаёт Этерианский грог
+		DownedFallenBeholder: Выпадает после победы над Павшим наблюдателем
+		DownedSkeletron: Выпадает после победы над Скелетроном
+		Desert: Выпадает в Пустыне
+		HardmodeUnderworld: Выпадает в Преисподней в хардмоде
+		BloodMoon: Выпадает во время Кровавой луны
+	}
+}
+
 Keybinds.ToggleProgressionJournal.DisplayName: Открыть журнал прогрессии

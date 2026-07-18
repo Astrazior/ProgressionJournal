@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 
 export function buildKnowledgeBase(snapshot) {
   assert(snapshot?.format === "ProgressionJournalSnapshot", "Invalid snapshot format.");
-  assert([4, 5].includes(snapshot.version), `Unsupported snapshot version '${snapshot.version}'.`);
+  assert([4, 5, 6].includes(snapshot.version), `Unsupported snapshot version '${snapshot.version}'.`);
 
   const acquisitions = {
     recipes: structuredClone(snapshot.recipes ?? []),

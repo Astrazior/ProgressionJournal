@@ -3,10 +3,10 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-18T11:24:26.724Z",
+  "generatedAtUtc": "2026-07-18T12:59:33.949Z",
   "snapshot": {
-    "version": 5,
-    "generatedAtUtc": "2026-07-13T23:33:48.3841458Z",
+    "version": 6,
+    "generatedAtUtc": "2026-07-18T12:22:48.4718500Z",
     "targetMod": "CalamityMod",
     "mods": [
       {
@@ -1745,7 +1745,7 @@
         }
       ],
       "stageComparison": {
-        "compared": 2164,
+        "compared": 2166,
         "moved": 0
       }
     }
@@ -1758,13 +1758,13 @@
     "errors": [],
     "warnings": [
       "67 recommendations precede proven availability and were suppressed",
-      "165 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
+      "163 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
       "npcCount": 992,
       "availabilityCount": 992,
       "spawnCount": 946,
-      "observedSpawnCount": 292,
+      "observedSpawnCount": 293,
       "townCount": 46,
       "observedTownCount": 11,
       "fishingCount": 181,
@@ -2631,22 +2631,6 @@
           "earliestStageIndex": 0
         },
         {
-          "source": "Terraria/Crawdad",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
-          "source": "Terraria/Crawdad2",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": 0
-        },
-        {
           "source": "Terraria/CreatureFromTheDeep",
           "kinds": [
             "drop"
@@ -2944,6 +2928,14 @@
         },
         {
           "source": "Terraria/GiantShelly",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/GiantShelly2",
           "kinds": [
             "drop"
           ],
@@ -3469,6 +3461,22 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 20
+        },
+        {
+          "source": "Terraria/Salamander7",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/Salamander9",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
         },
         {
           "source": "Terraria/Scarecrow2",
@@ -4515,6 +4523,22 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/Crawdad",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/Crawdad2",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/CrimsonBunny",
           "kinds": [
             "drop"
@@ -4644,14 +4668,6 @@
         },
         {
           "source": "Terraria/GiantCursedSkull",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/GiantShelly2",
           "kinds": [
             "drop"
           ],
@@ -6115,23 +6131,7 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Salamander7",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Salamander8",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Salamander9",
           "kinds": [
             "drop"
           ],
@@ -6547,7 +6547,7 @@
   "ready": true,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-07-18T11:24:06.817Z",
+    "generatedAtUtc": "2026-07-18T12:59:11.445Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -6556,7 +6556,7 @@
         "item": "Terraria/GreenCap",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+NamedNPC",
-          "description": "Выпадает у поселенцев с уникальными именами"
+          "description": "Drops from uniquely named NPCs"
         }
       },
       {
@@ -6565,7 +6565,7 @@
         "item": "Terraria/KiteBoneSerpent",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
+          "description": "Drops on Windy Days"
         }
       },
       {
@@ -6574,7 +6574,7 @@
         "item": "Terraria/KiteManEater",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
+          "description": "Drops on Windy Days"
         }
       },
       {
@@ -6583,7 +6583,7 @@
         "item": "Terraria/KiteJellyfishBlue",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
+          "description": "Drops on Windy Days"
         }
       },
       {
@@ -6592,7 +6592,7 @@
         "item": "Terraria/KiteJellyfishPink",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
+          "description": "Drops on Windy Days"
         }
       },
       {
@@ -6601,7 +6601,7 @@
         "item": "Terraria/KiteShark",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
+          "description": "Drops on Windy Days"
         }
       },
       {
@@ -6664,7 +6664,7 @@
         "item": "Terraria/KiteBunnyCorrupt",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
+          "description": "Drops on Windy Days"
         }
       },
       {
@@ -6673,7 +6673,7 @@
         "item": "Terraria/KiteBunnyCrimson",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
+          "description": "Drops on Windy Days"
         }
       },
       {
@@ -6682,25 +6682,7 @@
         "item": "Terraria/JimsCap",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+NamedNPC",
-          "description": "Выпадает у поселенцев с уникальными именами"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Merchant",
-        "item": "Terraria/Furnace",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "В джунглях"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Merchant",
-        "item": "Terraria/PinWheel",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "Во время счастливого ветреного дня"
+          "description": "Drops from uniquely named NPCs"
         }
       },
       {
@@ -6709,7 +6691,7 @@
         "item": "Terraria/AngelStatue",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда в мире присутствует Bandit"
+          "description": "When the Bandit is present"
         }
       },
       {
@@ -6718,7 +6700,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6727,7 +6709,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6736,7 +6718,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6745,7 +6727,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6754,7 +6736,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6763,7 +6745,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6772,7 +6754,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6781,7 +6763,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6790,7 +6772,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6799,7 +6781,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6808,7 +6790,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6817,7 +6799,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6826,7 +6808,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6835,7 +6817,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6844,7 +6826,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6853,7 +6835,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6862,7 +6844,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6871,7 +6853,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6880,7 +6862,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6889,7 +6871,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6898,7 +6880,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6907,7 +6889,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6916,7 +6898,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6925,7 +6907,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6934,7 +6916,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6943,7 +6925,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6952,7 +6934,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6961,7 +6943,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6970,7 +6952,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6979,7 +6961,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6988,7 +6970,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -6997,7 +6979,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7006,7 +6988,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7015,7 +6997,7 @@
         "item": "Terraria/TeamDye",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "В мультиплеере"
+          "description": "In multiplayer"
         }
       },
       {
@@ -7024,7 +7006,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7033,7 +7015,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7042,7 +7024,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7051,7 +7033,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7060,7 +7042,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7069,7 +7051,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7078,7 +7060,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7087,7 +7069,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7096,7 +7078,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7105,7 +7087,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7114,7 +7096,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7123,7 +7105,7 @@
         "item": "Terraria/Football",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 500 или более очков в гольфе"
+          "description": "When the player has a golf score of 500 or more"
         }
       },
       {
@@ -7132,7 +7114,7 @@
         "item": "Terraria/ReleaseLantern",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время ночи фонарей"
+          "description": "During a Lantern Night"
         }
       },
       {
@@ -7141,7 +7123,7 @@
         "item": "Terraria/ConfettiCannon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда в мире присутствует Пират"
+          "description": "When the Pirate is present"
         }
       },
       {
@@ -7150,7 +7132,7 @@
         "item": "Terraria/PartyPresent",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время вечеринки"
+          "description": "During an NPC birthday party"
         }
       },
       {
@@ -7159,7 +7141,7 @@
         "item": "Terraria/Pigronata",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время вечеринки"
+          "description": "During an NPC birthday party"
         }
       },
       {
@@ -7168,7 +7150,7 @@
         "item": "Terraria/SillyStreamerBlue",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время вечеринки"
+          "description": "During an NPC birthday party"
         }
       },
       {
@@ -7177,7 +7159,7 @@
         "item": "Terraria/SillyStreamerGreen",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время вечеринки"
+          "description": "During an NPC birthday party"
         }
       },
       {
@@ -7186,7 +7168,7 @@
         "item": "Terraria/SillyStreamerPink",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время вечеринки"
+          "description": "During an NPC birthday party"
         }
       },
       {
@@ -7195,7 +7177,7 @@
         "item": "Terraria/SillyBalloonPurple",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время вечеринки"
+          "description": "During an NPC birthday party"
         }
       },
       {
@@ -7204,7 +7186,7 @@
         "item": "Terraria/SillyBalloonGreen",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время вечеринки"
+          "description": "During an NPC birthday party"
         }
       },
       {
@@ -7213,7 +7195,7 @@
         "item": "Terraria/SillyBalloonPink",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время вечеринки"
+          "description": "During an NPC birthday party"
         }
       },
       {
@@ -7222,7 +7204,7 @@
         "item": "Terraria/SillyBalloonTiedGreen",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время вечеринки"
+          "description": "During an NPC birthday party"
         }
       },
       {
@@ -7231,7 +7213,7 @@
         "item": "Terraria/SillyBalloonTiedPurple",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время вечеринки"
+          "description": "During an NPC birthday party"
         }
       },
       {
@@ -7240,7 +7222,7 @@
         "item": "Terraria/SillyBalloonTiedPink",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время вечеринки"
+          "description": "During an NPC birthday party"
         }
       },
       {
@@ -7249,7 +7231,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7258,7 +7240,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7267,7 +7249,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7276,7 +7258,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7285,7 +7267,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7294,7 +7276,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7303,7 +7285,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7312,7 +7294,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7321,7 +7303,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7330,7 +7312,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7339,7 +7321,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7348,7 +7330,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7357,7 +7339,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7366,7 +7348,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7375,7 +7357,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7384,7 +7366,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7393,7 +7375,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7402,7 +7384,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7411,7 +7393,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7420,7 +7402,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7429,7 +7411,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7438,7 +7420,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7447,7 +7429,7 @@
         "item": "Terraria/ChristmasTreeWallpaper",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время Рождества"
+          "description": "During Christmas"
         }
       },
       {
@@ -7456,7 +7438,7 @@
         "item": "Terraria/OrnamentWallpaper",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время Рождества"
+          "description": "During Christmas"
         }
       },
       {
@@ -7465,7 +7447,7 @@
         "item": "Terraria/CandyCaneWallpaper",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время Рождества"
+          "description": "During Christmas"
         }
       },
       {
@@ -7474,7 +7456,7 @@
         "item": "Terraria/FestiveWallpaper",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время Рождества"
+          "description": "During Christmas"
         }
       },
       {
@@ -7483,7 +7465,7 @@
         "item": "Terraria/StarsWallpaper",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время Рождества"
+          "description": "During Christmas"
         }
       },
       {
@@ -7492,7 +7474,7 @@
         "item": "Terraria/SquigglesWallpaper",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время Рождества"
+          "description": "During Christmas"
         }
       },
       {
@@ -7501,7 +7483,7 @@
         "item": "Terraria/SnowflakeWallpaper",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время Рождества"
+          "description": "During Christmas"
         }
       },
       {
@@ -7510,7 +7492,7 @@
         "item": "Terraria/KrampusHornWallpaper",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время Рождества"
+          "description": "During Christmas"
         }
       },
       {
@@ -7519,7 +7501,7 @@
         "item": "Terraria/BluegreenWallpaper",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время Рождества"
+          "description": "During Christmas"
         }
       },
       {
@@ -7528,61 +7510,7 @@
         "item": "Terraria/GrinchFingerWallpaper",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время Рождества"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Painter",
-        "item": "Terraria/Purity",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "На поверхности и не в каком-либо крупном биоме"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Painter",
-        "item": "Terraria/DeadlandComesAlive",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "В багрянце"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Painter",
-        "item": "Terraria/LightlessChasms",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "В искажении"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Painter",
-        "item": "Terraria/TheLandofDeceivingLooks",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "В освящении"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Painter",
-        "item": "Terraria/DoNotStepontheGrass",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "В джунглях"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Painter",
-        "item": "Terraria/SecretoftheSands",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "В пустыне"
+          "description": "During Christmas"
         }
       },
       {
@@ -7591,7 +7519,7 @@
         "item": "Terraria/PlaceAbovetheClouds",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "В космосе"
+          "description": "In the Sky"
         }
       },
       {
@@ -7600,7 +7528,7 @@
         "item": "Terraria/Thunderbolt",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время грозы"
+          "description": "During a thunderstorm"
         }
       },
       {
@@ -7609,7 +7537,7 @@
         "item": "Terraria/LifeHairDye",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда у игрока не менее 400 ед. максимального здоровья"
+          "description": "When the player has at least 400 maximum life"
         }
       },
       {
@@ -7618,7 +7546,7 @@
         "item": "Terraria/ManaHairDye",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда у игрока не менее 200 ед. максимальной маны"
+          "description": "When the player has at least 200 maximum mana"
         }
       },
       {
@@ -7627,7 +7555,16 @@
         "item": "Terraria/MoneyHairDye",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда в инвентаре не менее 1 платиновой монеты"
+          "description": "When the player has at least 1 platinum coin in their inventory."
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Stylist",
+        "item": "Terraria/TimeHairDye",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "During the night and following day of moon phases Waning Gibbous, Waning Crescent, Waxing Crescent and Waxing Gibbous"
         }
       },
       {
@@ -7636,7 +7573,7 @@
         "item": "Terraria/TeamHairDye",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок находится в команде в мультиплеере"
+          "description": "When the player is on a team in multiplayer"
         }
       },
       {
@@ -7645,7 +7582,7 @@
         "item": "Terraria/PartyHairDye",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда в мире присутствует Тусовщица"
+          "description": "When the Party Girl is present"
         }
       },
       {
@@ -7690,7 +7627,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7699,7 +7636,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7708,7 +7645,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7717,7 +7654,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7726,7 +7663,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7735,7 +7672,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7744,7 +7681,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7753,7 +7690,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7762,7 +7699,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7771,7 +7708,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7780,7 +7717,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7789,7 +7726,7 @@
         "item": "Terraria/GolfClubIron",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 500 или более очков в гольфе"
+          "description": "When the player has a golf score of 500 or more"
         }
       },
       {
@@ -7798,7 +7735,7 @@
         "item": "Terraria/GolfClubDriver",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 500 или более очков в гольфе"
+          "description": "When the player has a golf score of 500 or more"
         }
       },
       {
@@ -7807,7 +7744,7 @@
         "item": "Terraria/GolfClubWedge",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 500 или более очков в гольфе"
+          "description": "When the player has a golf score of 500 or more"
         }
       },
       {
@@ -7816,7 +7753,7 @@
         "item": "Terraria/GolfClubPutter",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 500 или более очков в гольфе"
+          "description": "When the player has a golf score of 500 or more"
         }
       },
       {
@@ -7825,7 +7762,7 @@
         "item": "Terraria/GolfClubMythrilIron",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 1000 или более очков в гольфе"
+          "description": "When the player has a golf score of 1000 or more"
         }
       },
       {
@@ -7834,7 +7771,7 @@
         "item": "Terraria/GolfClubPearlwoodDriver",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 1000 или более очков в гольфе"
+          "description": "When the player has a golf score of 1000 or more"
         }
       },
       {
@@ -7843,7 +7780,7 @@
         "item": "Terraria/GolfClubGoldWedge",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 1000 или более очков в гольфе"
+          "description": "When the player has a golf score of 1000 or more"
         }
       },
       {
@@ -7852,7 +7789,7 @@
         "item": "Terraria/GolfClubLeadPutter",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 1000 или более очков в гольфе"
+          "description": "When the player has a golf score of 1000 or more"
         }
       },
       {
@@ -7861,7 +7798,7 @@
         "item": "Terraria/GolfChest",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 500 или более очков в гольфе"
+          "description": "When the player has a golf score of 500 or more"
         }
       },
       {
@@ -7870,7 +7807,7 @@
         "item": "Terraria/GolfClubTitaniumIron",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 2000 или более очков в гольфе"
+          "description": "When the player has a golf score of 2000 or more"
         }
       },
       {
@@ -7879,7 +7816,7 @@
         "item": "Terraria/GolfClubChlorophyteDriver",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 2000 или более очков в гольфе"
+          "description": "When the player has a golf score of 2000 or more"
         }
       },
       {
@@ -7888,7 +7825,7 @@
         "item": "Terraria/GolfClubDiamondWedge",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 2000 или более очков в гольфе"
+          "description": "When the player has a golf score of 2000 or more"
         }
       },
       {
@@ -7897,7 +7834,7 @@
         "item": "Terraria/GolfClubShroomitePutter",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 2000 или более очков в гольфе"
+          "description": "When the player has a golf score of 2000 or more"
         }
       },
       {
@@ -7906,7 +7843,7 @@
         "item": "Terraria/GolfCart",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 2000 или более очков в гольфе"
+          "description": "When the player has a golf score of 2000 or more"
         }
       },
       {
@@ -7915,7 +7852,7 @@
         "item": "Terraria/GolfTrophyBronze",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 500 или более очков в гольфе"
+          "description": "When the player has a golf score of 500 or more"
         }
       },
       {
@@ -7924,7 +7861,7 @@
         "item": "Terraria/GolfTrophySilver",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 1000 или более очков в гольфе"
+          "description": "When the player has a golf score of 1000 or more"
         }
       },
       {
@@ -7933,7 +7870,7 @@
         "item": "Terraria/GolfTrophyGold",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 2000 или более очков в гольфе"
+          "description": "When the player has a golf score of 2000 or more"
         }
       },
       {
@@ -7942,7 +7879,7 @@
         "item": "Terraria/GolfPainting1",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 2000 или более очков в гольфе"
+          "description": "When the player has a golf score of 2000 or more"
         }
       },
       {
@@ -7951,7 +7888,7 @@
         "item": "Terraria/GolfPainting2",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 2000 или более очков в гольфе"
+          "description": "When the player has a golf score of 2000 or more"
         }
       },
       {
@@ -7960,7 +7897,7 @@
         "item": "Terraria/GolfPainting3",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 2000 или более очков в гольфе"
+          "description": "When the player has a golf score of 2000 or more"
         }
       },
       {
@@ -7969,7 +7906,7 @@
         "item": "Terraria/GolfPainting4",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 2000 или более очков в гольфе"
+          "description": "When the player has a golf score of 2000 or more"
         }
       },
       {
@@ -7978,7 +7915,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7987,7 +7924,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -7996,7 +7933,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8005,7 +7942,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8014,7 +7951,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8023,7 +7960,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8032,7 +7969,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8041,7 +7978,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8050,7 +7987,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8059,7 +7996,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8068,7 +8005,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8077,7 +8014,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8086,7 +8023,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8095,7 +8032,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8104,7 +8041,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8113,7 +8050,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8122,7 +8059,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8131,7 +8068,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8140,7 +8077,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8149,7 +8086,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8158,7 +8095,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8167,7 +8104,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8176,7 +8113,7 @@
         "item": "Terraria/BoneTorch",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Периодически"
+          "description": "Periodically"
         }
       },
       {
@@ -8185,7 +8122,7 @@
         "item": "Terraria/Torch",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Периодически"
+          "description": "Periodically"
         }
       },
       {
@@ -8194,7 +8131,7 @@
         "item": "Terraria/Toolbox",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда в мире присутствует Механик"
+          "description": "When the Mechanic is present"
         }
       },
       {
@@ -8203,7 +8140,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8212,7 +8149,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8221,7 +8158,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8230,7 +8167,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8239,7 +8176,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8248,7 +8185,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8257,7 +8194,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8266,7 +8203,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8275,7 +8212,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8284,7 +8221,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8293,7 +8230,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8302,7 +8239,7 @@
         "item": "CalamityMod/CombatVoucher",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "После победы над армией гоблинов"
+          "description": "After defeating the Goblin Army"
         }
       },
       {
@@ -8311,7 +8248,7 @@
         "item": "CalamityMod/AggressiveVoucher",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "После победы над армией гоблинов"
+          "description": "After defeating the Goblin Army"
         }
       },
       {
@@ -8320,7 +8257,7 @@
         "item": "CalamityMod/OddVoucher",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "После победы над армией гоблинов"
+          "description": "After defeating the Goblin Army"
         }
       },
       {
@@ -8329,7 +8266,7 @@
         "item": "CalamityMod/UnbreakableVoucher",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "После победы над армией гоблинов"
+          "description": "After defeating the Goblin Army"
         }
       },
       {
@@ -8338,7 +8275,7 @@
         "item": "CalamityMod/HurriedVoucher",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "После победы над армией гоблинов"
+          "description": "After defeating the Goblin Army"
         }
       },
       {
@@ -8365,7 +8302,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8374,7 +8311,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8383,7 +8320,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8392,7 +8329,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8401,7 +8338,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8410,7 +8347,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8419,7 +8356,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8428,7 +8365,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8437,7 +8374,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8446,7 +8383,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8455,7 +8392,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8491,7 +8428,7 @@
         "item": "Terraria/Present",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+XmasPresentDrop",
-          "description": "Выпадает на раннем этапе игры во время Рождества"
+          "description": "Drops in early gameplay during Christmas"
         }
       },
       {
@@ -8500,7 +8437,7 @@
         "item": "Terraria/SoulofLight",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+SoulOfLight",
-          "description": "Выпадает под землей в Освящении"
+          "description": "Drops in Underground Hallow"
         }
       },
       {
@@ -8509,7 +8446,7 @@
         "item": "Terraria/SoulofNight",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+SoulOfNight",
-          "description": "Выпадает под землей в Багрянце или Порче"
+          "description": "Drops in Underground Crimson or Corruption"
         }
       },
       {
@@ -8608,7 +8545,7 @@
         "item": "Terraria/KingSlimeMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -8617,7 +8554,7 @@
         "item": "Terraria/KingSlimePetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -8635,7 +8572,7 @@
         "item": "CalamityMod/DesertScourgeRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -8653,7 +8590,7 @@
         "item": "CalamityMod/GiantClamRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -8662,7 +8599,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8671,7 +8608,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8680,7 +8617,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8689,7 +8626,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8698,7 +8635,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8707,7 +8644,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8716,7 +8653,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8725,7 +8662,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8734,7 +8671,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8743,7 +8680,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8752,7 +8689,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8788,7 +8725,7 @@
         "item": "Terraria/EyeofCthulhuMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -8797,7 +8734,7 @@
         "item": "Terraria/EyeOfCthulhuPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -8815,7 +8752,7 @@
         "item": "CalamityMod/CragmawMireRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -8824,7 +8761,7 @@
         "item": "Terraria/AshGrassSeeds",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "В преисподней"
+          "description": "In the Underworld"
         }
       },
       {
@@ -8833,16 +8770,7 @@
         "item": "Terraria/MushroomGrassSeeds",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Не в преисподней"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Dryad",
-        "item": "Terraria/DayBloomPlanterBox",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "После победы над Королём слизней"
+          "description": "Not in the Underworld"
         }
       },
       {
@@ -8851,7 +8779,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8860,7 +8788,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8869,7 +8797,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8878,7 +8806,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8887,7 +8815,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8896,7 +8824,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8905,7 +8833,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8914,7 +8842,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8923,7 +8851,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8932,7 +8860,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8941,7 +8869,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -8950,7 +8878,7 @@
         "item": "Terraria/CrimtaneOre",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+IsCrimson",
-          "description": "Выпадает в Багрянце"
+          "description": "Drops in the Crimson"
         }
       },
       {
@@ -8959,7 +8887,7 @@
         "item": "Terraria/CrimsonSeeds",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+IsCrimson",
-          "description": "Выпадает в Багрянце"
+          "description": "Drops in the Crimson"
         }
       },
       {
@@ -8968,7 +8896,7 @@
         "item": "CalamityMod/CrabulonRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -8986,7 +8914,7 @@
         "item": "Terraria/DarkMageBookMountItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -9022,7 +8950,7 @@
         "item": "Terraria/EaterofWorldsMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -9031,7 +8959,7 @@
         "item": "Terraria/EaterOfWorldsPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -9046,7 +8974,7 @@
       {
         "sourceKind": "drop",
         "source": "Terraria/EaterofWorldsHead",
-        "item": "CalamityMod/LoreCrimson",
+        "item": "CalamityMod/LoreCorruption",
         "condition": {
           "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
           "description": "Drops only on the first kill"
@@ -9055,7 +8983,7 @@
       {
         "sourceKind": "drop",
         "source": "Terraria/EaterofWorldsHead",
-        "item": "CalamityMod/LoreBrainofCthulhu",
+        "item": "CalamityMod/LoreEaterofWorlds",
         "condition": {
           "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
           "description": "Drops only on the first kill"
@@ -9076,7 +9004,7 @@
         "item": "Terraria/BrainofCthulhuMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -9085,13 +9013,13 @@
         "item": "Terraria/BrainOfCthulhuPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
         "sourceKind": "drop",
         "source": "Terraria/BrainofCthulhu",
-        "item": "CalamityMod/LoreCrimson",
+        "item": "CalamityMod/LoreCorruption",
         "condition": {
           "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
           "description": "Drops only on the first kill"
@@ -9100,7 +9028,7 @@
       {
         "sourceKind": "drop",
         "source": "Terraria/BrainofCthulhu",
-        "item": "CalamityMod/LoreBrainofCthulhu",
+        "item": "CalamityMod/LoreEaterofWorlds",
         "condition": {
           "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
           "description": "Drops only on the first kill"
@@ -9112,7 +9040,7 @@
         "item": "CalamityMod/HiveMindRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -9130,7 +9058,7 @@
         "item": "CalamityMod/PerforatorsRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -9157,7 +9085,7 @@
         "item": "Terraria/QueenBeeMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -9166,7 +9094,7 @@
         "item": "Terraria/QueenBeePetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -9184,7 +9112,7 @@
         "item": "Terraria/BewitchingTable",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда в мире присутствует Волшебник"
+          "description": "When the Wizard is present"
         }
       },
       {
@@ -9193,7 +9121,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9202,7 +9130,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9211,7 +9139,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9220,7 +9148,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9229,7 +9157,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9238,7 +9166,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9247,7 +9175,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9256,7 +9184,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9265,7 +9193,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9274,7 +9202,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9283,7 +9211,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9301,7 +9229,7 @@
         "item": "Terraria/DeerclopsMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -9310,7 +9238,7 @@
         "item": "Terraria/DeerclopsPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -9328,7 +9256,7 @@
         "item": "Terraria/SkeletronMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -9337,7 +9265,7 @@
         "item": "Terraria/SkeletronPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -9355,7 +9283,7 @@
         "item": "Terraria/ClownHat",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "После победы над клоуном"
+          "description": "After defeating a Clown"
         }
       },
       {
@@ -9364,7 +9292,7 @@
         "item": "Terraria/ClownShirt",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "После победы над клоуном"
+          "description": "After defeating a Clown"
         }
       },
       {
@@ -9373,7 +9301,7 @@
         "item": "Terraria/ClownPants",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "После победы над клоуном"
+          "description": "After defeating a Clown"
         }
       },
       {
@@ -9382,7 +9310,7 @@
         "item": "Terraria/TaxCollectorHat",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда в мире присутствует Сборщик налогов"
+          "description": "When the Tax Collector is present"
         }
       },
       {
@@ -9391,7 +9319,7 @@
         "item": "Terraria/TaxCollectorSuit",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда в мире присутствует Сборщик налогов"
+          "description": "When the Tax Collector is present"
         }
       },
       {
@@ -9400,7 +9328,7 @@
         "item": "Terraria/TaxCollectorPants",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда в мире присутствует Сборщик налогов"
+          "description": "When the Tax Collector is present"
         }
       },
       {
@@ -9409,7 +9337,7 @@
         "item": "Terraria/BallaHat",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "После победы над морозным легионом"
+          "description": "After defeating the Frost Legion"
         }
       },
       {
@@ -9418,7 +9346,7 @@
         "item": "Terraria/GangstaHat",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "После победы над морозным легионом"
+          "description": "After defeating the Frost Legion"
         }
       },
       {
@@ -9427,7 +9355,7 @@
         "item": "Terraria/PartyBundleOfBalloonsAccessory",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время вечеринки"
+          "description": "During an NPC birthday party"
         }
       },
       {
@@ -9436,7 +9364,7 @@
         "item": "Terraria/PartyBalloonAnimal",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время вечеринки"
+          "description": "During an NPC birthday party"
         }
       },
       {
@@ -9445,7 +9373,7 @@
         "item": "Terraria/FlowerBoyHat",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время вечеринки"
+          "description": "During an NPC birthday party"
         }
       },
       {
@@ -9454,7 +9382,7 @@
         "item": "Terraria/FlowerBoyShirt",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время вечеринки"
+          "description": "During an NPC birthday party"
         }
       },
       {
@@ -9463,7 +9391,7 @@
         "item": "Terraria/FlowerBoyPants",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Во время вечеринки"
+          "description": "During an NPC birthday party"
         }
       },
       {
@@ -9472,7 +9400,7 @@
         "item": "Terraria/HunterCloak",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда игрок набирает 2000 или более очков в гольфе"
+          "description": "When the player has a golf score of 2000 or more"
         }
       },
       {
@@ -9481,7 +9409,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9490,7 +9418,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9499,7 +9427,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9508,7 +9436,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9517,7 +9445,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9526,7 +9454,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9535,7 +9463,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9544,7 +9472,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9553,7 +9481,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9562,7 +9490,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9571,7 +9499,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9580,7 +9508,7 @@
         "item": "Terraria/MechanicsRod",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда в мире присутствует Рыбак"
+          "description": "When the Angler is present"
         }
       },
       {
@@ -9589,7 +9517,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9598,7 +9526,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9607,7 +9535,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9616,7 +9544,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9625,7 +9553,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9634,7 +9562,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9643,7 +9571,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9652,7 +9580,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9661,7 +9589,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9670,7 +9598,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9679,7 +9607,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9688,7 +9616,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9697,7 +9625,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9706,7 +9634,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9715,7 +9643,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9724,7 +9652,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9733,7 +9661,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9742,7 +9670,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9751,7 +9679,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9760,7 +9688,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9769,7 +9697,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9778,7 +9706,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -9787,7 +9715,7 @@
         "item": "CalamityMod/SlimeGodRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -9814,7 +9742,7 @@
         "item": "Terraria/KiteUnicorn",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
+          "description": "Drops on Windy Days"
         }
       },
       {
@@ -9823,7 +9751,7 @@
         "item": "Terraria/KiteWorldFeeder",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
+          "description": "Drops on Windy Days"
         }
       },
       {
@@ -9832,7 +9760,7 @@
         "item": "Terraria/KiteWanderingEye",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
+          "description": "Drops on Windy Days"
         }
       },
       {
@@ -9841,7 +9769,7 @@
         "item": "Terraria/KiteAngryTrapper",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
+          "description": "Drops on Windy Days"
         }
       },
       {
@@ -9859,7 +9787,7 @@
         "item": "Terraria/WallofFleshMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -9868,7 +9796,7 @@
         "item": "Terraria/WallOfFleshGoatMountItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -9904,7 +9832,7 @@
         "item": "Terraria/KiteWyvern",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
+          "description": "Drops on Windy Days"
         }
       },
       {
@@ -10381,7 +10309,7 @@
         "item": "Terraria/KitePigron",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
+          "description": "Drops on Windy Days"
         }
       },
       {
@@ -10390,7 +10318,7 @@
         "item": "Terraria/KitePigron",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
+          "description": "Drops on Windy Days"
         }
       },
       {
@@ -10399,7 +10327,7 @@
         "item": "Terraria/KitePigron",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
-          "description": "Выпадает в ветренные дни"
+          "description": "Drops on Windy Days"
         }
       },
       {
@@ -10417,7 +10345,7 @@
         "item": "Terraria/FlyingDutchmanMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -10426,7 +10354,7 @@
         "item": "Terraria/PirateShipMountItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -10435,25 +10363,7 @@
         "item": "Terraria/SkyGuardian",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "В космосе"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/WitchDoctor",
-        "item": "Terraria/TikiTotem",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "В джунглях"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/WitchDoctor",
-        "item": "Terraria/LeafWings",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "В джунглях"
+          "description": "In the Sky"
         }
       },
       {
@@ -10462,7 +10372,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10471,7 +10381,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10480,7 +10390,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10489,7 +10399,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10498,7 +10408,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10507,7 +10417,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10516,7 +10426,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10525,7 +10435,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10534,7 +10444,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10543,7 +10453,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10552,7 +10462,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10561,7 +10471,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10570,7 +10480,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10579,7 +10489,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10588,7 +10498,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10597,7 +10507,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10606,7 +10516,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10615,7 +10525,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10624,7 +10534,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10633,7 +10543,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10642,7 +10552,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -10651,7 +10561,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -13828,7 +13738,7 @@
         "item": "CalamityMod/CryogenRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -13846,7 +13756,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -13855,7 +13765,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -13864,7 +13774,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -13873,7 +13783,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -13882,7 +13792,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -13891,7 +13801,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -13900,7 +13810,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -13909,7 +13819,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -13918,7 +13828,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -13927,7 +13837,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -13936,7 +13846,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -13954,7 +13864,7 @@
         "item": "Terraria/QueenSlimeMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -13963,7 +13873,7 @@
         "item": "Terraria/QueenSlimePetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -13981,7 +13891,7 @@
         "item": "CalamityMod/AquaticScourgeRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -14026,7 +13936,7 @@
         "item": "Terraria/IvyGuitar",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+NamedNPC",
-          "description": "Выпадает у поселенцев с уникальными именами"
+          "description": "Drops from uniquely named NPCs"
         }
       },
       {
@@ -14044,7 +13954,7 @@
         "item": "Terraria/DestroyerMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14053,7 +13963,7 @@
         "item": "Terraria/DestroyerPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14086,37 +13996,10 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/Steampunker",
-        "item": "Terraria/HoneyDispenser",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "В джунглях"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Steampunker",
         "item": "Terraria/SkyMill",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "В космосе"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Steampunker",
-        "item": "Terraria/BlueSolution",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "В освящении"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Steampunker",
-        "item": "Terraria/GreenSolution",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "Не в освящении"
+          "description": "In the Sky"
         }
       },
       {
@@ -14125,7 +14008,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14134,7 +14017,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14143,7 +14026,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14152,7 +14035,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14161,7 +14044,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14170,7 +14053,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14179,7 +14062,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14188,7 +14071,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14197,7 +14080,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14206,7 +14089,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14215,7 +14098,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14224,7 +14107,7 @@
         "item": "CalamityMod/BrimstoneElementalRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -14296,7 +14179,7 @@
         "item": "Terraria/TwinsMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14305,7 +14188,7 @@
         "item": "Terraria/TwinsPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14395,7 +14278,7 @@
         "item": "Terraria/TwinsMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14404,7 +14287,7 @@
         "item": "Terraria/TwinsPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14458,7 +14341,7 @@
         "item": "Terraria/SkeletronPrimeMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14467,7 +14350,7 @@
         "item": "Terraria/SkeletronPrimePetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14503,7 +14386,7 @@
         "item": "CalamityMod/CalamitasCloneRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -14539,7 +14422,7 @@
         "item": "Terraria/PlanteraMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14548,7 +14431,7 @@
         "item": "Terraria/PlanteraPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14575,7 +14458,7 @@
         "item": "Terraria/MourningWoodMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14584,7 +14467,7 @@
         "item": "Terraria/SpookyWoodMountItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14602,7 +14485,7 @@
         "item": "Terraria/PumpkingMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14611,7 +14494,7 @@
         "item": "Terraria/PumpkingPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14620,7 +14503,7 @@
         "item": "Terraria/Present",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.Conditions+IsChristmas",
-          "description": "Выпадает во время Рождества"
+          "description": "Drops during Christmas"
         }
       },
       {
@@ -14638,7 +14521,7 @@
         "item": "Terraria/EverscreamMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14647,7 +14530,7 @@
         "item": "Terraria/EverscreamPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14665,7 +14548,7 @@
         "item": "Terraria/SantankMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14674,7 +14557,7 @@
         "item": "Terraria/SantankMountItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14689,19 +14572,10 @@
       {
         "sourceKind": "drop",
         "source": "Terraria/IceQueen",
-        "item": "Terraria/ReindeerBells",
-        "condition": {
-          "type": "Terraria.GameContent.ItemDropRules.Conditions+FromCertainWaveAndAbove",
-          "description": "Выпадает внутри или над волной 15"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/IceQueen",
         "item": "Terraria/IceQueenMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14710,16 +14584,7 @@
         "item": "Terraria/IceQueenPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/WitchDoctor",
-        "item": "Terraria/HerculesBeetle",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "В джунглях"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -14728,7 +14593,7 @@
         "item": "Terraria/PortalGunStation",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда в инвентаре находится Портальная пушка или Держатель портальной пушки"
+          "description": "When the player has a Portal Gun or Portal Gun Station in the inventory"
         }
       },
       {
@@ -14737,7 +14602,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14746,7 +14611,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14755,7 +14620,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14764,7 +14629,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14773,7 +14638,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14782,7 +14647,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14791,7 +14656,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14800,7 +14665,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14809,7 +14674,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14818,7 +14683,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14827,16 +14692,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/RoyalRomance",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "После победы над Королём слизней"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14845,7 +14701,7 @@
         "item": "CalamityMod/ForgivenessPainting",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда в мире присутствует Brimstone Witch"
+          "description": "When the Brimstone Witch is present"
         }
       },
       {
@@ -14854,7 +14710,7 @@
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14863,7 +14719,7 @@
         "item": "Terraria/TeleportationPylonSnow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14872,7 +14728,7 @@
         "item": "Terraria/TeleportationPylonDesert",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14881,7 +14737,7 @@
         "item": "Terraria/TeleportationPylonUnderground",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14890,7 +14746,7 @@
         "item": "Terraria/TeleportationPylonOcean",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14899,7 +14755,7 @@
         "item": "Terraria/TeleportationPylonJungle",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14908,7 +14764,7 @@
         "item": "Terraria/TeleportationPylonHallow",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14917,7 +14773,7 @@
         "item": "Terraria/TeleportationPylonMushroom",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14926,7 +14782,7 @@
         "item": "CalamityMod/AstralPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14935,7 +14791,7 @@
         "item": "CalamityMod/SulphurPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14944,7 +14800,7 @@
         "item": "CalamityMod/SunkenPylon",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "Когда рядом с торговцем находится другой житель"
+          "description": "When the vendor has another Town NPC nearby"
         }
       },
       {
@@ -14953,7 +14809,7 @@
         "item": "CalamityMod/LeviathanAnahitaRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -14962,7 +14818,7 @@
         "item": "CalamityMod/LeviathanAnahitaRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -14971,7 +14827,7 @@
         "item": "CalamityMod/AstrumAureusRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -14998,7 +14854,7 @@
         "item": "Terraria/GolemMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15007,7 +14863,7 @@
         "item": "Terraria/GolemPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15061,7 +14917,7 @@
         "item": "Terraria/UFOMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15070,7 +14926,7 @@
         "item": "Terraria/MartianPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15079,7 +14935,7 @@
         "item": "CalamityMod/PlaguebringerGoliathRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15106,7 +14962,7 @@
         "item": "CalamityMod/RavagerRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15124,7 +14980,7 @@
         "item": "Terraria/BetsyMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15133,7 +14989,7 @@
         "item": "Terraria/DD2BetsyPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15142,7 +14998,7 @@
         "item": "Terraria/DarkMageMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15151,7 +15007,7 @@
         "item": "Terraria/DarkMageBookMountItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15160,7 +15016,7 @@
         "item": "Terraria/OgreMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15169,7 +15025,7 @@
         "item": "Terraria/DD2OgrePetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15187,7 +15043,7 @@
         "item": "Terraria/DukeFishronMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15196,7 +15052,7 @@
         "item": "Terraria/DukeFishronPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15223,7 +15079,7 @@
         "item": "Terraria/FairyQueenMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15232,7 +15088,7 @@
         "item": "Terraria/FairyQueenPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15259,7 +15115,7 @@
         "item": "Terraria/LunaticCultistMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15268,7 +15124,7 @@
         "item": "Terraria/LunaticCultistPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15286,7 +15142,7 @@
         "item": "CalamityMod/AstrumDeusRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15304,7 +15160,7 @@
         "item": "Terraria/MoonLordMasterTrophy",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15313,7 +15169,7 @@
         "item": "Terraria/MoonLordPetItem",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode"
+          "description": "Drops: In Revengeance Mode"
         }
       },
       {
@@ -15340,7 +15196,7 @@
         "item": "CalamityMod/ProfanedGuardiansRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15358,7 +15214,7 @@
         "item": "CalamityMod/DragonfollyRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15403,7 +15259,7 @@
         "item": "CalamityMod/ProvidenceRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15421,7 +15277,7 @@
         "item": "CalamityMod/StormWeaverRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15439,7 +15295,7 @@
         "item": "CalamityMod/CeaselessVoidRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15457,7 +15313,7 @@
         "item": "CalamityMod/SignusRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15475,7 +15331,7 @@
         "item": "CalamityMod/PolterghastRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15502,7 +15358,7 @@
         "item": "CalamityMod/MaulerRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15511,7 +15367,7 @@
         "item": "CalamityMod/NuclearTerrorRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15520,7 +15376,7 @@
         "item": "CalamityMod/OldDukeRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15538,7 +15394,7 @@
         "item": "CalamityMod/DevourerOfGodsRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15556,7 +15412,7 @@
         "item": "CalamityMod/YharonRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15574,7 +15430,7 @@
         "item": "CalamityMod/DraedonRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15583,7 +15439,7 @@
         "item": "CalamityMod/ExoArmamentsKit",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15592,7 +15448,7 @@
         "item": "CalamityMod/DraedonRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15601,7 +15457,7 @@
         "item": "CalamityMod/ExoArmamentsKit",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15610,7 +15466,7 @@
         "item": "CalamityMod/DraedonRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15619,7 +15475,7 @@
         "item": "CalamityMod/ExoArmamentsKit",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       },
       {
@@ -15628,7 +15484,7 @@
         "item": "CalamityMod/CalamitasRelic",
         "condition": {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Предметы: In Revengeance Mode or in Master Mode"
+          "description": "Drops: In Revengeance Mode or in Master Mode"
         }
       }
     ],
@@ -16556,6 +16412,16 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/Furnace",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/PinWheel",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/MusicBox",
         "reason": "not combat equipment"
       },
@@ -16886,7 +16752,37 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/Purity",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/DeadlandComesAlive",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LightlessChasms",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/TheLandofDeceivingLooks",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/DoNotStepontheGrass",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/ColdWatersintheWhiteLand",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/SecretoftheSands",
         "reason": "not combat equipment"
       },
       {
@@ -16942,11 +16838,6 @@
       {
         "stage": "start",
         "id": "Terraria/DepthHairDye",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/TimeHairDye",
         "reason": "not combat equipment"
       },
       {
@@ -21231,11 +21122,6 @@
       },
       {
         "stage": "start",
-        "id": "Terraria/Furnace",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "Terraria/ArmorStatue",
         "reason": "not combat equipment"
       },
@@ -25061,6 +24947,11 @@
       },
       {
         "stage": "eye-of-cthulhu",
+        "id": "Terraria/DayBloomPlanterBox",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
         "id": "Terraria/BlinkrootPlanterBox",
         "reason": "not combat equipment"
       },
@@ -27816,6 +27707,11 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/TikiTotem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/TamOShanter",
         "reason": "not combat equipment"
       },
@@ -29291,6 +29187,11 @@
       },
       {
         "stage": "destroyer",
+        "id": "Terraria/HoneyDispenser",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
         "id": "Terraria/IceMachine",
         "reason": "not combat equipment"
       },
@@ -29311,7 +29212,17 @@
       },
       {
         "stage": "destroyer",
+        "id": "Terraria/BlueSolution",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
         "id": "CalamityMod/AstralSolution",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/GreenSolution",
         "reason": "not combat equipment"
       },
       {
@@ -29492,6 +29403,106 @@
       {
         "stage": "destroyer",
         "id": "Terraria/ToiletLivingWood",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyChair",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyDoor",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneySink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyTable",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyWorkBench",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyBed",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyPiano",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyBathtub",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyClock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyBookcase",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyLantern",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyCandle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyChandelier",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyCandelabra",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyLamp",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyCup",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneyDresser",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/HoneySofa",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/ToiletHoney",
         "reason": "not combat equipment"
       },
       {
@@ -29767,6 +29778,11 @@
       {
         "stage": "destroyer",
         "id": "Terraria/Fake_LivingWoodChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/Fake_HoneyChest",
         "reason": "not combat equipment"
       },
       {
@@ -30746,6 +30762,11 @@
       },
       {
         "stage": "plantera",
+        "id": "Terraria/ReindeerBells",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
         "id": "Terraria/BabyGrinchMischiefWhistle",
         "reason": "not combat equipment"
       },
@@ -30912,6 +30933,11 @@
       {
         "stage": "plantera",
         "id": "Terraria/TerraBladeChronicles",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Terraria/RoyalRomance",
         "reason": "not combat equipment"
       },
       {
@@ -34086,46 +34112,6 @@
       },
       {
         "stage": "exo-mechs",
-        "id": "CalamityMod/ExoPrism",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/PhotonRipper",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/ExoThrone",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/DraedonMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/ThanatosMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/AresMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/ArtemisMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
-        "id": "CalamityMod/ApolloMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "exo-mechs",
         "id": "CalamityMod/ThanatosTrophy",
         "reason": "not combat equipment"
       },
@@ -34157,6 +34143,46 @@
       {
         "stage": "exo-mechs",
         "id": "CalamityMod/DraedonBag",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/ExoPrism",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/PhotonRipper",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/AresMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/ThanatosMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/ArtemisMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/ApolloMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/ExoThrone",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "exo-mechs",
+        "id": "CalamityMod/DraedonMask",
         "reason": "not combat equipment"
       },
       {
@@ -34640,11 +34666,11 @@
       },
       "Terraria/PotatoChips": {
         "stage": "start",
-        "via": "npc:Terraria/Crawdad"
+        "via": "npc:Terraria/GiantShelly"
       },
       "Terraria/Rally": {
         "stage": "start",
-        "via": "npc:Terraria/Crawdad"
+        "via": "npc:Terraria/GiantShelly"
       },
       "CalamityMod/InkBomb": {
         "stage": "start",
@@ -40018,6 +40044,14 @@
         "stage": "plantera",
         "via": "shop:Terraria/WitchDoctor"
       },
+      "Terraria/HerculesBeetle": {
+        "stage": "plantera",
+        "via": "shop:Terraria/WitchDoctor"
+      },
+      "Terraria/LeafWings": {
+        "stage": "plantera",
+        "via": "shop:Terraria/WitchDoctor"
+      },
       "CalamityMod/GloveOfPrecision": {
         "stage": "plantera",
         "via": "shop:CalamityMod/Bandit"
@@ -40174,6 +40208,10 @@
         "stage": "plantera",
         "via": "recipe:Terraria/SoulofFlight+Terraria/ShroomiteBar"
       },
+      "Terraria/PapyrusScarab": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/NecromanticScroll+Terraria/HerculesBeetle"
+      },
       "Terraria/MasterNinjaGear": {
         "stage": "plantera",
         "via": "recipe:Terraria/TigerClimbingGear+Terraria/Tabi+Terraria/BlackBelt"
@@ -40185,6 +40223,10 @@
       "CalamityMod/LivingDew": {
         "stage": "plantera",
         "via": "recipe:CalamityMod/HoneyDew+CalamityMod/LivingShard+CalamityMod/EssenceofSunlight"
+      },
+      "CalamityMod/StatisBlessing": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/PapyrusScarab+Terraria/PygmyNecklace+Terraria/SummonerEmblem+Terraria/HolyWater+CalamityMod/EssenceofSunlight"
       },
       "CalamityMod/DryadsTear": {
         "stage": "plantera",
@@ -40390,10 +40432,6 @@
         "stage": "plantera",
         "via": "manifest"
       },
-      "Terraria/PapyrusScarab": {
-        "stage": "plantera",
-        "via": "manifest"
-      },
       "Terraria/InfernoFork": {
         "stage": "plantera",
         "via": "manifest"
@@ -40409,10 +40447,6 @@
       "CalamityMod/SandSharkToothNecklace": {
         "stage": "plantera",
         "via": "recipe:Terraria/SharkToothNecklace+Terraria/AvengerEmblem+CalamityMod/GrandScale"
-      },
-      "CalamityMod/StatisBlessing": {
-        "stage": "plantera",
-        "via": "recipe:Terraria/PapyrusScarab+Terraria/PygmyNecklace+Terraria/SummonerEmblem+Terraria/HolyWater+CalamityMod/EssenceofSunlight"
       },
       "CalamityMod/ShiftingSands": {
         "stage": "plantera",
@@ -42993,33 +43027,33 @@
         "stage": "yharon",
         "via": "manifest"
       },
-      "CalamityMod/SpineOfThanatos": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/RefractionRotor": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/AtlasMunitionsBeacon": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
       "CalamityMod/TheJailor": {
         "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
+        "via": "container:CalamityMod/DraedonBag"
       },
       "CalamityMod/AresExoskeleton": {
         "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
+        "via": "container:CalamityMod/DraedonBag"
       },
-      "CalamityMod/TheAtomSplitter": {
+      "CalamityMod/SpineOfThanatos": {
         "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
+        "via": "container:CalamityMod/DraedonBag"
+      },
+      "CalamityMod/RefractionRotor": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
+      },
+      "CalamityMod/AtlasMunitionsBeacon": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
       },
       "CalamityMod/SurgeDriver": {
         "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
+        "via": "container:CalamityMod/DraedonBag"
+      },
+      "CalamityMod/TheAtomSplitter": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
       },
       "CalamityMod/DraedonsHeart": {
         "stage": "exo-mechs",
@@ -44506,6 +44540,14 @@
         "stage": "start",
         "via": "shop:Terraria/Merchant"
       },
+      "Terraria/Furnace": {
+        "stage": "start",
+        "via": "shop:Terraria/Merchant"
+      },
+      "Terraria/PinWheel": {
+        "stage": "start",
+        "via": "shop:Terraria/Merchant"
+      },
       "Terraria/MusicBox": {
         "stage": "start",
         "via": "shop:Terraria/Merchant"
@@ -44770,7 +44812,31 @@
         "stage": "start",
         "via": "shop:Terraria/Painter"
       },
+      "Terraria/Purity": {
+        "stage": "start",
+        "via": "shop:Terraria/Painter"
+      },
+      "Terraria/DeadlandComesAlive": {
+        "stage": "start",
+        "via": "shop:Terraria/Painter"
+      },
+      "Terraria/LightlessChasms": {
+        "stage": "start",
+        "via": "shop:Terraria/Painter"
+      },
+      "Terraria/TheLandofDeceivingLooks": {
+        "stage": "start",
+        "via": "shop:Terraria/Painter"
+      },
+      "Terraria/DoNotStepontheGrass": {
+        "stage": "start",
+        "via": "shop:Terraria/Painter"
+      },
       "Terraria/ColdWatersintheWhiteLand": {
+        "stage": "start",
+        "via": "shop:Terraria/Painter"
+      },
+      "Terraria/SecretoftheSands": {
         "stage": "start",
         "via": "shop:Terraria/Painter"
       },
@@ -44815,10 +44881,6 @@
         "via": "shop:Terraria/Stylist"
       },
       "Terraria/DepthHairDye": {
-        "stage": "start",
-        "via": "shop:Terraria/Stylist"
-      },
-      "Terraria/TimeHairDye": {
         "stage": "start",
         "via": "shop:Terraria/Stylist"
       },
@@ -48246,10 +48308,6 @@
         "stage": "start",
         "via": "recipe:Terraria/GrayBrick+Terraria/Wood+Terraria/Torch"
       },
-      "Terraria/Furnace": {
-        "stage": "start",
-        "via": "recipe:Terraria/StoneBlock+Terraria/Wood+Terraria/Torch"
-      },
       "Terraria/ArmorStatue": {
         "stage": "start",
         "via": "recipe:Terraria/StoneBlock"
@@ -51319,6 +51377,10 @@
         "stage": "eye-of-cthulhu",
         "via": "shop:Terraria/Dryad"
       },
+      "Terraria/DayBloomPlanterBox": {
+        "stage": "eye-of-cthulhu",
+        "via": "shop:Terraria/Dryad"
+      },
       "Terraria/BlinkrootPlanterBox": {
         "stage": "eye-of-cthulhu",
         "via": "shop:Terraria/Dryad"
@@ -53646,6 +53708,10 @@
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Dryad"
       },
+      "Terraria/TikiTotem": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/WitchDoctor"
+      },
       "Terraria/TamOShanter": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Clothier"
@@ -54853,6 +54919,10 @@
         "stage": "destroyer",
         "via": "shop:Terraria/Steampunker"
       },
+      "Terraria/HoneyDispenser": {
+        "stage": "destroyer",
+        "via": "shop:Terraria/Steampunker"
+      },
       "Terraria/IceMachine": {
         "stage": "destroyer",
         "via": "shop:Terraria/Steampunker"
@@ -54869,7 +54939,15 @@
         "stage": "destroyer",
         "via": "shop:Terraria/Steampunker"
       },
+      "Terraria/BlueSolution": {
+        "stage": "destroyer",
+        "via": "shop:Terraria/Steampunker"
+      },
       "CalamityMod/AstralSolution": {
+        "stage": "destroyer",
+        "via": "shop:Terraria/Steampunker"
+      },
+      "Terraria/GreenSolution": {
         "stage": "destroyer",
         "via": "shop:Terraria/Steampunker"
       },
@@ -55016,6 +55094,86 @@
       "Terraria/ToiletLivingWood": {
         "stage": "destroyer",
         "via": "recipe:Terraria/Wood"
+      },
+      "Terraria/HoneyChair": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock"
+      },
+      "Terraria/HoneyDoor": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock"
+      },
+      "Terraria/HoneySink": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock+Terraria/WaterBucket"
+      },
+      "Terraria/HoneyTable": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock"
+      },
+      "Terraria/HoneyWorkBench": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock"
+      },
+      "Terraria/HoneyBed": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock+Terraria/Silk"
+      },
+      "Terraria/HoneyPiano": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/Bone+Terraria/HoneyBlock+Terraria/Book"
+      },
+      "Terraria/HoneyBathtub": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock"
+      },
+      "Terraria/HoneyChest": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock+Terraria/IronBar"
+      },
+      "Terraria/HoneyClock": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/HoneyBlock"
+      },
+      "Terraria/HoneyBookcase": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock+Terraria/Book"
+      },
+      "Terraria/HoneyLantern": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock+Terraria/Torch"
+      },
+      "Terraria/HoneyCandle": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock+Terraria/Torch"
+      },
+      "Terraria/HoneyChandelier": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock+Terraria/Torch+Terraria/Chain"
+      },
+      "Terraria/HoneyCandelabra": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock+Terraria/Torch"
+      },
+      "Terraria/HoneyLamp": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/Torch+Terraria/HoneyBlock"
+      },
+      "Terraria/HoneyCup": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock"
+      },
+      "Terraria/HoneyDresser": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock"
+      },
+      "Terraria/HoneySofa": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock+Terraria/Silk"
+      },
+      "Terraria/ToiletHoney": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyBlock"
       },
       "Terraria/FrozenSink": {
         "stage": "destroyer",
@@ -55236,6 +55394,10 @@
       "Terraria/Fake_LivingWoodChest": {
         "stage": "destroyer",
         "via": "recipe:Terraria/LivingWoodChest+Terraria/Wire"
+      },
+      "Terraria/Fake_HoneyChest": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/HoneyChest+Terraria/Wire"
       },
       "Terraria/Fake_BoneChest": {
         "stage": "destroyer",
@@ -56116,6 +56278,13 @@
         "customEventName": "",
         "eventIcon": ""
       },
+      "Terraria/ReindeerBells": {
+        "stage": "plantera",
+        "via": "npc:Terraria/IceQueen",
+        "eventCategory": "FrostMoon",
+        "customEventName": "",
+        "eventIcon": ""
+      },
       "Terraria/BabyGrinchMischiefWhistle": {
         "stage": "plantera",
         "via": "npc:Terraria/IceQueen",
@@ -56258,6 +56427,10 @@
         "via": "shop:Terraria/Princess"
       },
       "Terraria/TerraBladeChronicles": {
+        "stage": "plantera",
+        "via": "shop:Terraria/Princess"
+      },
+      "Terraria/RoyalRomance": {
         "stage": "plantera",
         "via": "shop:Terraria/Princess"
       },
@@ -58860,38 +59033,6 @@
         "stage": "yharon",
         "via": "recipe:Terraria/Zenith+Terraria/IronBar"
       },
-      "CalamityMod/ExoPrism": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/PhotonRipper": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/ExoThrone": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/DraedonMask": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/ThanatosMask": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/AresMask": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/ArtemisMask": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
-      "CalamityMod/ApolloMask": {
-        "stage": "exo-mechs",
-        "via": "npc:CalamityMod/AresBody"
-      },
       "CalamityMod/ThanatosTrophy": {
         "stage": "exo-mechs",
         "via": "npc:CalamityMod/AresBody"
@@ -58919,6 +59060,38 @@
       "CalamityMod/DraedonBag": {
         "stage": "exo-mechs",
         "via": "npc:CalamityMod/AresBody"
+      },
+      "CalamityMod/ExoPrism": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
+      },
+      "CalamityMod/PhotonRipper": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
+      },
+      "CalamityMod/AresMask": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
+      },
+      "CalamityMod/ThanatosMask": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
+      },
+      "CalamityMod/ArtemisMask": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
+      },
+      "CalamityMod/ApolloMask": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
+      },
+      "CalamityMod/ExoThrone": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
+      },
+      "CalamityMod/DraedonMask": {
+        "stage": "exo-mechs",
+        "via": "container:CalamityMod/DraedonBag"
       },
       "CalamityMod/ExoDye": {
         "stage": "exo-mechs",
@@ -59536,7 +59709,7 @@
         "to": [
           "Terraria/PainterPaintballGun"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Fossil armor",
@@ -59626,7 +59799,7 @@
         "to": [
           "Terraria/ThunderStaff"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Diamond Robe",
@@ -59642,7 +59815,7 @@
         "to": [
           "Terraria/GypsyRobe"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Wizard Hat",
@@ -59674,7 +59847,7 @@
         "to": [
           "Terraria/BlandWhip"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Flinx Fur Coat",
@@ -59874,7 +60047,7 @@
         "to": [
           "Terraria/ZapinatorGray"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Jungle armor",
@@ -59924,7 +60097,7 @@
         "to": [
           "Terraria/ThornWhip"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Summoning Potion",
@@ -59940,7 +60113,7 @@
         "to": [
           "Terraria/CreativeWings"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Lightning Boots",
@@ -59956,7 +60129,7 @@
         "to": [
           "Terraria/EoCShield"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "CalamityMod/FungalClumpBuff",
@@ -60197,7 +60370,7 @@
         "to": [
           "Terraria/HiveBackpack"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Pygmy Necklace",
@@ -60213,7 +60386,7 @@
         "to": [
           "Terraria/HorseshoeBundle"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Warmth Potion",
@@ -60255,7 +60428,7 @@
         "to": [
           "Terraria/BoneWhip"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Bewitching Table",
@@ -60519,7 +60692,7 @@
         "to": [
           "Terraria/SharpTears"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Meteor Staff",
@@ -60607,7 +60780,7 @@
         "to": [
           "Terraria/FireWhip"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Spider armor",
@@ -60797,7 +60970,7 @@
         "to": [
           "Terraria/DD2PhoenixBow"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Holy Arrow",
@@ -60928,7 +61101,7 @@
         "to": [
           "Terraria/SwordWhip"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Vampire Knives",
@@ -61007,7 +61180,7 @@
         "to": [
           "Terraria/StormTigerStaff"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Staff of the Frost Hydra",
@@ -61023,7 +61196,7 @@
         "to": [
           "Terraria/MaceWhip"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Tiki armor",
@@ -61065,7 +61238,7 @@
         "to": [
           "Terraria/GhostWings"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Master Ninja Gear",
@@ -61229,7 +61402,7 @@
         "to": [
           "Terraria/ScytheWhip"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Papyrus Scarab",
@@ -61263,7 +61436,7 @@
         "to": [
           "Terraria/DD2SquireBetsySword"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Aerial Bane",
@@ -61271,7 +61444,7 @@
         "to": [
           "Terraria/DD2BetsyBow"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Bubble Gun",
@@ -61287,7 +61460,7 @@
         "to": [
           "Terraria/SparkleGuitar"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Kaleidoscope",
@@ -61295,7 +61468,7 @@
         "to": [
           "Terraria/RainbowWhip"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Betsy's Wrath",
@@ -61303,7 +61476,7 @@
         "to": [
           "Terraria/ApprenticeStaffT3"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Betsy's Wings",
@@ -61311,7 +61484,7 @@
         "to": [
           "Terraria/BetsyWings"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Empress Wings",
@@ -61319,7 +61492,7 @@
         "to": [
           "Terraria/RainbowWings"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Fishron Wings",
@@ -61335,7 +61508,7 @@
         "to": [
           "Terraria/EmpressFlightBooster"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Exploding Bullet",
@@ -61401,7 +61574,7 @@
         "to": [
           "Terraria/WingsSolar"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Vortex armor",
@@ -61419,7 +61592,7 @@
         "to": [
           "Terraria/WingsVortex"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Wooden Arrow",
@@ -61445,7 +61618,7 @@
         "to": [
           "Terraria/WingsNebula"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "CalamityMod/FlowersOfMortalityBuff",
@@ -61469,7 +61642,7 @@
         "to": [
           "Terraria/MoonlordTurretStaff"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Rainbow Crystal Staff",
@@ -61495,7 +61668,7 @@
         "to": [
           "Terraria/WingsStardust"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Luminite Bullet",
@@ -61503,7 +61676,7 @@
         "to": [
           "Terraria/MoonlordBullet"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Celestial Starboard",
@@ -61511,7 +61684,7 @@
         "to": [
           "Terraria/LongRainbowTrailWings"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "Terraria/Luminite Arrow",
@@ -61519,7 +61692,7 @@
         "to": [
           "Terraria/MoonlordArrow"
         ],
-        "method": "english-display-name"
+        "method": "display-name"
       },
       {
         "from": "CalamityMod/SnakeEyesBuff",
@@ -62389,24 +62562,6 @@
         ]
       },
       {
-        "source": "Terraria/Crawdad",
-        "sourceKind": "drop",
-        "items": [
-          "CalamityMod/CrawCarapace",
-          "Terraria/PotatoChips",
-          "Terraria/Rally"
-        ]
-      },
-      {
-        "source": "Terraria/Crawdad2",
-        "sourceKind": "drop",
-        "items": [
-          "CalamityMod/CrawCarapace",
-          "Terraria/PotatoChips",
-          "Terraria/Rally"
-        ]
-      },
-      {
         "source": "Terraria/Crimera",
         "sourceKind": "drop",
         "items": [
@@ -62580,6 +62735,15 @@
       },
       {
         "source": "Terraria/GiantShelly",
+        "sourceKind": "drop",
+        "items": [
+          "CalamityMod/GiantShell",
+          "Terraria/PotatoChips",
+          "Terraria/Rally"
+        ]
+      },
+      {
+        "source": "Terraria/GiantShelly2",
         "sourceKind": "drop",
         "items": [
           "CalamityMod/GiantShell",
@@ -63329,7 +63493,7 @@
     "unavailableCombatItems": [
       {
         "item": "Terraria/PaperAirplaneA",
-        "displayName": "Бумажный самолет",
+        "displayName": "Paper Airplane",
         "classification": {
           "category": "Weapon",
           "classes": [
@@ -63356,7 +63520,7 @@
       },
       {
         "item": "Terraria/PaperAirplaneB",
-        "displayName": "Белый бумажный самолет",
+        "displayName": "White Paper Airplane",
         "classification": {
           "category": "Weapon",
           "classes": [
@@ -63385,7 +63549,7 @@
     "unresolvedAvailabilityItems": [
       {
         "item": "Terraria/RedsYoyo",
-        "displayName": "Бросок Red",
+        "displayName": "Red's Throw",
         "classification": {
           "category": "Weapon",
           "classes": [
@@ -63395,7 +63559,7 @@
       },
       {
         "item": "Terraria/ValkyrieYoyo",
-        "displayName": "Йо-йо валькирии",
+        "displayName": "Valkyrie Yoyo",
         "classification": {
           "category": "Weapon",
           "classes": [
@@ -63405,7 +63569,7 @@
       },
       {
         "item": "Terraria/Arkhalis",
-        "displayName": "Аркалис",
+        "displayName": "Arkhalis",
         "classification": {
           "category": "Weapon",
           "classes": [
@@ -63449,11 +63613,11 @@
         ]
       }
     },
-    "unassignedVanillaNpcSourceCount": 148,
+    "unassignedVanillaNpcSourceCount": 147,
     "manualAvailabilityPriority": {
-      "automaticItems": 5427,
-      "automaticSources": 293,
-      "automaticStations": 859,
+      "automaticItems": 5464,
+      "automaticSources": 294,
+      "automaticStations": 861,
       "suppressed": {
         "itemStages": [
           {
@@ -63472,7 +63636,7 @@
             "value": "CalamityMod/AresExoskeleton",
             "manualStageId": "exo-mechs",
             "automaticStageId": "exo-mechs",
-            "via": "npc:CalamityMod/AresBody"
+            "via": "container:CalamityMod/DraedonBag"
           },
           {
             "value": "CalamityMod/AscendantSpiritEssence",
@@ -63490,7 +63654,7 @@
             "value": "CalamityMod/AtlasMunitionsBeacon",
             "manualStageId": "exo-mechs",
             "automaticStageId": "exo-mechs",
-            "via": "npc:CalamityMod/AresBody"
+            "via": "container:CalamityMod/DraedonBag"
           },
           {
             "value": "CalamityMod/BlightedGel",
@@ -63604,7 +63768,7 @@
             "value": "CalamityMod/PhotonRipper",
             "manualStageId": "exo-mechs",
             "automaticStageId": "exo-mechs",
-            "via": "npc:CalamityMod/AresBody"
+            "via": "container:CalamityMod/DraedonBag"
           },
           {
             "value": "CalamityMod/PlantyMush",
@@ -63646,7 +63810,7 @@
             "value": "CalamityMod/RefractionRotor",
             "manualStageId": "exo-mechs",
             "automaticStageId": "exo-mechs",
-            "via": "npc:CalamityMod/AresBody"
+            "via": "container:CalamityMod/DraedonBag"
           },
           {
             "value": "CalamityMod/ScorchedBone",
@@ -63676,7 +63840,7 @@
             "value": "CalamityMod/SpineOfThanatos",
             "manualStageId": "exo-mechs",
             "automaticStageId": "exo-mechs",
-            "via": "npc:CalamityMod/AresBody"
+            "via": "container:CalamityMod/DraedonBag"
           },
           {
             "value": "CalamityMod/SupremeHealingPotion",
@@ -63688,19 +63852,19 @@
             "value": "CalamityMod/SurgeDriver",
             "manualStageId": "exo-mechs",
             "automaticStageId": "exo-mechs",
-            "via": "npc:CalamityMod/AresBody"
+            "via": "container:CalamityMod/DraedonBag"
           },
           {
             "value": "CalamityMod/TheAtomSplitter",
             "manualStageId": "exo-mechs",
             "automaticStageId": "exo-mechs",
-            "via": "npc:CalamityMod/AresBody"
+            "via": "container:CalamityMod/DraedonBag"
           },
           {
             "value": "CalamityMod/TheJailor",
             "manualStageId": "exo-mechs",
             "automaticStageId": "exo-mechs",
-            "via": "npc:CalamityMod/AresBody"
+            "via": "container:CalamityMod/DraedonBag"
           },
           {
             "value": "CalamityMod/UnholyCore",

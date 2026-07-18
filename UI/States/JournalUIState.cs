@@ -853,7 +853,6 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
 
     private float AppendConditionContent(UIElement parent, IReadOnlyList<string> conditions, float top)
     {
-        var visuals = JournalAcquisitionVisuals.SplitConditions(conditions);
         var area = new JournalConditionPanel();
         area.Left.Set(10f, 0f);
         area.Top.Set(top, 0f);
@@ -868,26 +867,11 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
 
         var contentTop = 54f;
         var contentWidth = MathF.Max(50f, GetSourceTextMaxWidth() - 20f);
-
-        if (visuals.Tokens.Count > 0)
-        {
-            contentTop = AppendTokenRows(
-                area,
-                visuals.Tokens,
-                contentTop,
-                10f,
-                contentWidth,
-                centerRows: true);
-        }
-
-        if (visuals.RemainingText.Count > 0)
-        {
-            contentTop = AppendConditionTextList(
-                area,
-                visuals.RemainingText,
-                visuals.Tokens.Count > 0 ? contentTop + 3f : contentTop,
-                contentWidth);
-        }
+        contentTop = AppendConditionTextList(
+            area,
+            JournalAcquisitionVisuals.SplitConditions(conditions).RemainingText,
+            contentTop,
+            contentWidth);
 
         area.Height.Set(contentTop + 10f, 0f);
         parent.Append(area);

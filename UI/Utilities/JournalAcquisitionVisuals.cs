@@ -11,7 +11,6 @@ public readonly record struct JournalConditionVisuals(
 
 public static class JournalAcquisitionVisuals
 {
-    private const string MoonTexturePathPrefix = "Images/Moon_";
 #pragma warning disable SYSLIB1045 // tModLoader's in-game compiler does not run the GeneratedRegex source generator.
     private static readonly Regex LeadingItemTagRegex = new(
         @"^\s*\[i(?:/[^\]:]+)*:[^\]]+\]\s*",
@@ -87,18 +86,6 @@ public static class JournalAcquisitionVisuals
         ["Bestiary_Biomes.NebulaPillar"] = 58,
         ["Bestiary_Biomes.StardustPillar"] = 59
     };
-
-    private static readonly (int TextureIndex, string[] Keywords)[] MoonPhaseTokens =
-    [
-        (0, ["full moon", "полнолуние", "полная луна"]),
-        (1, ["waning gibbous", "убывающая луна", "убывающий месяц"]),
-        (2, ["third quarter", "last quarter", "последняя четверть", "третья четверть"]),
-        (3, ["waning crescent", "старый месяц", "убывающий серп"]),
-        (4, ["new moon", "новолуние", "новая луна"]),
-        (5, ["waxing crescent", "растущий серп", "молодой месяц"]),
-        (6, ["first quarter", "первая четверть"]),
-        (7, ["waxing gibbous", "растущая луна"])
-    ];
     private static readonly Dictionary<int, JournalSourceTokenData[]> NpcBestiaryTokenCache = new();
     private static readonly Dictionary<int, JournalSourceTokenData[]> NpcLocationTokenCache = new();
 
@@ -189,56 +176,21 @@ public static class JournalAcquisitionVisuals
 
     public static JournalConditionVisuals SplitConditions(IEnumerable<string> conditions)
     {
-        var result = conditions
+        var normalizedConditions = conditions
             .Where(static condition => !string.IsNullOrWhiteSpace(condition))
             .Select(static condition => RemoveLeadingItemTag(RemoveRedundantItemPrefix(condition)))
             .Where(static condition => !string.IsNullOrWhiteSpace(condition))
-            .Aggregate(
-                (Tokens: new List<JournalSourceTokenData>(), RemainingText: new List<string>()),
-                static (result, condition) =>
-                {
-                    if (IsLabeledBiomeCondition(condition))
-                    {
-                        result.RemainingText.Add(condition);
-                    }
-                    else if (IsHardmodeOnlyCondition(condition))
-                    {
-                        result.RemainingText.Add(Language.GetTextValue(
-                            "Mods.ProgressionJournal.UI.FishingWorldHardmode"));
-                    }
-                    else if (IsHardmodeCondition(condition)
-                             || !TryCreateConditionTokens(condition, result.Tokens))
-                    {
-                        result.RemainingText.Add(condition);
-                    }
+            .Select(static condition => IsHardmodeOnlyCondition(condition)
+                ? Language.GetTextValue("Mods.ProgressionJournal.UI.FishingWorldHardmode")
+                : condition)
+            .Distinct(StringComparer.CurrentCultureIgnoreCase)
+            .ToArray();
 
-                    return result;
-                });
-
-        return new JournalConditionVisuals(
-            result.Tokens
-                .Distinct()
-                .ToArray(),
-            result.RemainingText
-                .Distinct(StringComparer.CurrentCultureIgnoreCase)
-                .ToArray());
+        return new JournalConditionVisuals([], normalizedConditions);
     }
 
     private static string RemoveLeadingItemTag(string condition) =>
         LeadingItemTagRegex.Replace(condition, string.Empty);
-
-    private static bool IsLabeledBiomeCondition(string condition)
-    {
-        var separatorIndex = condition.IndexOf(':');
-        if (separatorIndex < 0)
-        {
-            return false;
-        }
-
-        var label = condition[..separatorIndex].Trim();
-        return label.Equals("Biome", StringComparison.OrdinalIgnoreCase)
-               || label.Equals("Биом", StringComparison.OrdinalIgnoreCase);
-    }
 
     private static string RemoveRedundantItemPrefix(string condition)
     {
@@ -258,46 +210,6 @@ public static class JournalAcquisitionVisuals
         }
 
         return condition[(separatorIndex + 1)..].TrimStart();
-    }
-
-    private static bool TryCreateConditionTokens(string condition, ICollection<JournalSourceTokenData> tokens)
-    {
-        var normalized = condition.Trim().ToLowerInvariant();
-        var countBefore = tokens.Count;
-
-        AddMoonPhaseToken(normalized, condition, tokens);
-        AddCombinedBiomeTokens(normalized, condition, tokens);
-
-        AddIfMatch(tokens, normalized, condition, 55, "old one");
-        AddIfMatch(tokens, normalized, condition, 54, "frost legion");
-        AddIfMatch(tokens, normalized, condition, 53, "martian");
-        AddIfMatch(tokens, normalized, condition, 52, "frost moon");
-        AddIfMatch(tokens, normalized, condition, 51, "pumpkin moon");
-        AddIfMatch(tokens, normalized, condition, 50, "pirate");
-        AddIfMatch(tokens, normalized, condition, 49, "goblin");
-        AddIfMatch(tokens, normalized, condition, 48, "party");
-        AddIfMatch(tokens, normalized, condition, 47, "slime rain");
-        AddIfMatch(tokens, normalized, condition, 46, "christmas");
-        AddIfMatch(tokens, normalized, condition, 45, "halloween");
-        AddIfMatch(tokens, normalized, condition, 43, "sandstorm");
-        AddIfMatch(tokens, normalized, condition, 42, "blizzard");
-        AddIfMatch(tokens, normalized, condition, 41, "windy");
-        AddIfMatch(tokens, normalized, condition, 40, "rain");
-        AddIfMatch(tokens, normalized, condition, 39, "eclipse");
-        AddIfMatch(tokens, normalized, condition, 38, "blood moon");
-
-        if (ContainsAny(normalized, "daytime", "during daytime", "during the day", "day only"))
-        {
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, 36, condition));
-        }
-
-        if (ContainsAny(normalized, "nighttime", "during nighttime", "during the night", "at night", "night only"))
-        {
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, 37, condition));
-        }
-
-        AddBiomeToken(tokens, normalized, condition);
-        return tokens.Count > countBefore;
     }
 
     public static bool IsHardmodeCondition(string condition)
@@ -320,183 +232,6 @@ public static class JournalAcquisitionVisuals
             or "мир: хардмод"
             or "доступно после этапа: hardmode"
             or "выпадает в сложном режиме";
-
-    private static void AddMoonPhaseToken(string normalized, string condition, ICollection<JournalSourceTokenData> tokens)
-    {
-        foreach (var (textureIndex, keywords) in MoonPhaseTokens)
-        {
-            if (!keywords.Any(normalized.Contains))
-            {
-                continue;
-            }
-
-            tokens.Add(new JournalSourceTokenData(
-                JournalSourceTokenKind.Texture,
-                textureIndex,
-                condition,
-                $"{MoonTexturePathPrefix}{textureIndex}"));
-            return;
-        }
-    }
-
-    private static void AddCombinedBiomeTokens(string normalized, string condition, ICollection<JournalSourceTokenData> tokens)
-    {
-        if (!normalized.Contains("crimson") || !normalized.Contains("corruption")) return;
-        var crimsonFrame = normalized.Contains("underground") ? 13 : 12;
-        var corruptionFrame = normalized.Contains("underground") ? 8 : 7;
-        tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, crimsonFrame, condition));
-        tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, corruptionFrame, condition));
-    }
-
-    private static void AddBiomeToken(ICollection<JournalSourceTokenData> tokens, string normalized, string condition)
-    {
-        if (ContainsAny(normalized, "ocean", "water", "beach"))
-        {
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, 28, condition));
-            return;
-        }
-
-        if (normalized.Contains("oasis"))
-        {
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, 27, condition));
-            return;
-        }
-
-        if (normalized.Contains("graveyard"))
-        {
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, 35, condition));
-            return;
-        }
-
-        if (ContainsAny(normalized, "underworld", "hell"))
-        {
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, 33, condition));
-            return;
-        }
-
-        if (normalized.Contains("dungeon"))
-        {
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, 32, condition));
-            return;
-        }
-
-        if (normalized.Contains("temple"))
-        {
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, 31, condition));
-            return;
-        }
-
-        if (ContainsAny(normalized, "sky", "space", "floating island"))
-        {
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, 26, condition));
-            return;
-        }
-
-        if (normalized.Contains("jungle"))
-        {
-            var biomeFrame = normalized.Contains("underground") ? 23 : 22;
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, biomeFrame, condition));
-            return;
-        }
-
-        if (normalized.Contains("hallow"))
-        {
-            if (normalized.Contains("desert"))
-            {
-                tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, normalized.Contains("underground") ? 20 : 19, condition));
-                return;
-            }
-
-            if (ContainsAny(normalized, "ice", "snow"))
-            {
-                tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, 21, condition));
-                return;
-            }
-
-            var biomeFrame = normalized.Contains("underground") ? 18 : 17;
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, biomeFrame, condition));
-            return;
-        }
-
-        if (normalized.Contains("crimson"))
-        {
-            if (normalized.Contains("desert"))
-            {
-                tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, normalized.Contains("underground") ? 15 : 14, condition));
-                return;
-            }
-
-            if (ContainsAny(normalized, "ice", "snow"))
-            {
-                tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, 16, condition));
-                return;
-            }
-
-            var biomeFrame = normalized.Contains("underground") ? 13 : 12;
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, biomeFrame, condition));
-            return;
-        }
-
-        if (ContainsAny(normalized, "corruption", "corrupt"))
-        {
-            if (normalized.Contains("desert"))
-            {
-                tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, normalized.Contains("underground") ? 10 : 9, condition));
-                return;
-            }
-
-            if (ContainsAny(normalized, "ice", "snow"))
-            {
-                tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, 11, condition));
-                return;
-            }
-
-            var biomeFrame = normalized.Contains("underground") ? 8 : 7;
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, biomeFrame, condition));
-            return;
-        }
-
-        if (ContainsAny(normalized, "ice", "snow"))
-        {
-            var biomeFrame = normalized.Contains("underground") ? 6 : 5;
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, biomeFrame, condition));
-            return;
-        }
-
-        if (normalized.Contains("desert"))
-        {
-            var biomeFrame = normalized.Contains("underground") ? 4 : 3;
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, biomeFrame, condition));
-            return;
-        }
-
-        if (normalized.Contains("cavern"))
-        {
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, 2, condition));
-            return;
-        }
-
-        if (normalized.Contains("underground"))
-        {
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, 1, condition));
-            return;
-        }
-
-        if (ContainsAny(normalized, "surface", "above ground"))
-        {
-            tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, 0, condition));
-        }
-    }
-
-    private static void AddIfMatch(ICollection<JournalSourceTokenData> tokens, string normalized, string condition, int frame, string keyword)
-    {
-        if (!normalized.Contains(keyword))
-        {
-            return;
-        }
-
-        tokens.Add(new JournalSourceTokenData(JournalSourceTokenKind.Bestiary, frame, condition));
-    }
 
     private static bool ContainsAny(string source, params string[] patterns)
     {

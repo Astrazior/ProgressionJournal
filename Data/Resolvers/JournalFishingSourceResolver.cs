@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Reflection;
 using Microsoft.Xna.Framework;
+using ProgressionJournal.Data.Profiles;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
@@ -42,7 +42,7 @@ internal static class JournalFishingSourceResolver
     }
 
     private sealed record ProbeEnvironment(
-        string DisplayName,
+        JournalLocalizedText DisplayName,
         bool IsOcean,
         ModBiome? ModBiome,
         ModWaterStyle? WaterStyle,
@@ -51,7 +51,7 @@ internal static class JournalFishingSourceResolver
     private sealed record ProbeEquipment(int PoleItemId, int BaitItemId, int RandomSeedCount);
 
     private sealed record ProbeProgression(
-        string DisplayName,
+        JournalLocalizedText DisplayName,
         ProbeProgressionVariant[] Variants);
 
     private sealed record ProbeProgressionVariant(
@@ -153,7 +153,8 @@ internal static class JournalFishingSourceResolver
         if (Main.anglerQuestItemNetIDs?.Contains(itemId) == true)
         {
             sources.Add(new JournalFishingSource(
-                [Language.GetTextValue("Mods.ProgressionJournal.UI.FishingAnglerQuestCondition")]));
+                [JournalLocalizedText.FromKey(
+                    "Mods.ProgressionJournal.UI.FishingAnglerQuestCondition").Resolve()]));
         }
 
         var catalog = GetCatalog();
@@ -170,11 +171,12 @@ internal static class JournalFishingSourceResolver
                 observed: true,
                 earliestStageIndex: 0,
                 earliestStageName: catalog.Progression.Count > 0
-                    ? catalog.Progression[0].DisplayName
+                    ? catalog.Progression[0].DisplayName.Resolve()
                     : string.Empty,
                 conditions:
                 [
-                    Language.GetTextValue("Mods.ProgressionJournal.UI.FishingAnglerQuestCondition")
+                    JournalLocalizedText.FromKey(
+                        "Mods.ProgressionJournal.UI.FishingAnglerQuestCondition")
                 ]);
         }
 
@@ -203,7 +205,9 @@ internal static class JournalFishingSourceResolver
     {
         if (observations.TryGetValue(contentId, out var contexts) && contexts.Count > 0)
         {
-            sources.Add(new JournalFishingSource(BuildConditions(catalog, contexts)));
+            sources.Add(new JournalFishingSource(
+                BuildConditions(catalog, contexts)
+                    .Select(static condition => condition.Resolve())));
         }
     }
 
@@ -237,7 +241,7 @@ internal static class JournalFishingSourceResolver
         var earliestStageIndex = effectiveStageIndexes.Min();
         var earliestStageName = earliestStageIndex >= 0
             && earliestStageIndex < catalog.Progression.Count
-            ? catalog.Progression[earliestStageIndex].DisplayName
+            ? catalog.Progression[earliestStageIndex].DisplayName.Resolve()
             : string.Empty;
         return new JournalFishingAvailability(
             observed: true,
@@ -279,7 +283,7 @@ internal static class JournalFishingSourceResolver
         var environments = CreateEnvironments();
         var equipment = CreateEquipment();
         using var progression = new JournalRuntimeProgressionScenarios();
-        var progressionScenarios = progression.StageNames
+        var progressionScenarios = progression.StageLocalizedNames
             .Select(static name => new ProbeProgression(
                 name,
                 [new ProbeProgressionVariant(false, false, false, false, [])]))
@@ -305,7 +309,7 @@ internal static class JournalFishingSourceResolver
 
         try
         {
-            progressionScenarios = progression.StageNames
+            progressionScenarios = progression.StageLocalizedNames
                 .Select((name, index) =>
                 {
                     return new ProbeProgression(
@@ -519,61 +523,61 @@ internal static class JournalFishingSourceResolver
         var environments = new List<ProbeEnvironment>
         {
             new(
-                Language.GetTextValue("Mods.ProgressionJournal.UI.FishingBiomeDefault"),
+                JournalLocalizedText.FromKey("Mods.ProgressionJournal.UI.FishingBiomeDefault"),
                 false,
                 null,
                 null,
                 static _ => { }),
             new(
-                Language.GetTextValue("Bestiary_Biomes.Ocean"),
+                JournalLocalizedText.FromKey("Bestiary_Biomes.Ocean"),
                 true,
                 null,
                 null,
                 static player => player.ZoneBeach = true),
             new(
-                Language.GetTextValue("Bestiary_Biomes.Desert"),
+                JournalLocalizedText.FromKey("Bestiary_Biomes.Desert"),
                 false,
                 null,
                 null,
                 static player => player.ZoneDesert = true),
             new(
-                Language.GetTextValue("Bestiary_Biomes.Snow"),
+                JournalLocalizedText.FromKey("Bestiary_Biomes.Snow"),
                 false,
                 null,
                 null,
                 static player => player.ZoneSnow = true),
             new(
-                Language.GetTextValue("Bestiary_Biomes.Jungle"),
+                JournalLocalizedText.FromKey("Bestiary_Biomes.Jungle"),
                 false,
                 null,
                 null,
                 static player => player.ZoneJungle = true),
             new(
-                Language.GetTextValue("Bestiary_Biomes.TheCorruption"),
+                JournalLocalizedText.FromKey("Bestiary_Biomes.TheCorruption"),
                 false,
                 null,
                 null,
                 static player => player.ZoneCorrupt = true),
             new(
-                Language.GetTextValue("Bestiary_Biomes.Crimson"),
+                JournalLocalizedText.FromKey("Bestiary_Biomes.Crimson"),
                 false,
                 null,
                 null,
                 static player => player.ZoneCrimson = true),
             new(
-                Language.GetTextValue("Bestiary_Biomes.TheHallow"),
+                JournalLocalizedText.FromKey("Bestiary_Biomes.TheHallow"),
                 false,
                 null,
                 null,
                 static player => player.ZoneHallow = true),
             new(
-                Language.GetTextValue("Bestiary_Biomes.TheDungeon"),
+                JournalLocalizedText.FromKey("Bestiary_Biomes.TheDungeon"),
                 false,
                 null,
                 null,
                 static player => player.ZoneDungeon = true),
             new(
-                Language.GetTextValue("Bestiary_Biomes.UndergroundMushroom"),
+                JournalLocalizedText.FromKey("Bestiary_Biomes.UndergroundMushroom"),
                 false,
                 null,
                 null,
@@ -586,7 +590,7 @@ internal static class JournalFishingSourceResolver
             .OrderBy(static biome => biome.FullName, StringComparer.OrdinalIgnoreCase)
             .ToArray();
         environments.AddRange(modBiomes.Select(static biome => new ProbeEnvironment(
-            biome.DisplayName.Value,
+            JournalLocalizedText.FromKey(biome.DisplayName.Key),
             false,
             biome,
             biome.WaterStyle,
@@ -602,7 +606,7 @@ internal static class JournalFishingSourceResolver
             .Where(style => !representedWaterStyles.Contains(style.Slot))
             .OrderBy(static style => style.FullName, StringComparer.OrdinalIgnoreCase)
             .Select(static waterStyle => new ProbeEnvironment(
-                waterStyle.FullName,
+                JournalLocalizedText.FromLiteral(waterStyle.FullName),
                 false,
                 null,
                 waterStyle,
@@ -966,11 +970,11 @@ internal static class JournalFishingSourceResolver
         return Main.rand.NextBool(2) ? 1 : 2;
     }
 
-    private static List<string> BuildConditions(
+    private static List<JournalLocalizedText> BuildConditions(
         FishingCatalog catalog,
         IReadOnlyCollection<ProbeContext> contexts)
     {
-        var conditions = new List<string>();
+        var conditions = new List<JournalLocalizedText>();
         var liquids = contexts.Select(static context => context.Liquid).Distinct().Order().ToArray();
         var environmentIndexes = contexts
             .Select(static context => context.EnvironmentIndex)
@@ -991,25 +995,25 @@ internal static class JournalFishingSourceResolver
 
         if (liquids.Length < Enum.GetValues<ProbeLiquid>().Length)
         {
-            conditions.Add(Language.GetTextValue(
+            conditions.Add(JournalLocalizedText.FromKey(
                 "Mods.ProgressionJournal.UI.FishingLiquidCondition",
-                string.Join(", ", liquids.Select(GetLiquidName))));
+                JournalLocalizedText.Join(liquids.Select(GetLiquidText))));
         }
 
         if (environmentIndexes.Length < catalog.Environments.Count)
         {
-            conditions.Add(Language.GetTextValue(
+            conditions.Add(JournalLocalizedText.FromKey(
                 "Mods.ProgressionJournal.UI.FishingBiomeCondition",
-                string.Join(
-                    ", ",
-                    environmentIndexes.Select(index => catalog.Environments[index].DisplayName))));
+                JournalLocalizedText.Join(environmentIndexes
+                    .Select(index => catalog.Environments[index].DisplayName))));
         }
 
         if (depths.Length < DepthLocalizationKeys.Length)
         {
-            conditions.Add(Language.GetTextValue(
+            conditions.Add(JournalLocalizedText.FromKey(
                 "Mods.ProgressionJournal.UI.FishingDepthCondition",
-                string.Join(", ", depths.Select(static depth => Language.GetTextValue(DepthLocalizationKeys[depth])))));
+                JournalLocalizedText.Join(depths.Select(static depth =>
+                    JournalLocalizedText.FromKey(DepthLocalizationKeys[depth])))));
         }
 
         AppendProgressionCondition(conditions, catalog, progressionIndexes);
@@ -1084,7 +1088,7 @@ internal static class JournalFishingSourceResolver
     }
 
     private static void AppendProgressionCondition(
-        List<string> conditions,
+        List<JournalLocalizedText> conditions,
         FishingCatalog catalog,
         IReadOnlyCollection<int> progressionIndexes)
     {
@@ -1097,72 +1101,81 @@ internal static class JournalFishingSourceResolver
 
         var firstIndex = progressionIndexes.Min();
         var stageName = catalog.Progression[firstIndex].DisplayName;
-        if (!string.IsNullOrWhiteSpace(stageName))
+        if (!stageName.IsEmpty)
         {
-            conditions.Add(Language.GetTextValue(
+            conditions.Add(JournalLocalizedText.FromKey(
                 "Mods.ProgressionJournal.UI.FishingProgressionCondition",
                 stageName));
         }
     }
 
     private static void AppendWorldConditions(
-        List<string> conditions,
+        List<JournalLocalizedText> conditions,
         IReadOnlyCollection<ProbeWorld> worlds)
     {
-        var worldConditions = new List<string>();
+        var worldConditions = new List<JournalLocalizedText>();
 
         if (worlds.All(static world => world.Hardmode))
         {
-            worldConditions.Add(Language.GetTextValue("Mods.ProgressionJournal.UI.FishingWorldHardmode"));
+            worldConditions.Add(JournalLocalizedText.FromKey(
+                "Mods.ProgressionJournal.UI.FishingWorldHardmode"));
         }
         else if (worlds.All(static world => !world.Hardmode))
         {
-            worldConditions.Add(Language.GetTextValue("Mods.ProgressionJournal.UI.FishingWorldPreHardmode"));
+            worldConditions.Add(JournalLocalizedText.FromKey(
+                "Mods.ProgressionJournal.UI.FishingWorldPreHardmode"));
         }
 
         if (worlds.All(static world => world.BloodMoon))
         {
-            worldConditions.Add(Language.GetTextValue("Mods.ProgressionJournal.UI.FishingWorldBloodMoon"));
+            worldConditions.Add(JournalLocalizedText.FromKey(
+                "Mods.ProgressionJournal.UI.FishingWorldBloodMoon"));
         }
 
         if (worlds.All(static world => world.DayTime))
         {
-            worldConditions.Add(Language.GetTextValue("Mods.ProgressionJournal.UI.FishingWorldDay"));
+            worldConditions.Add(JournalLocalizedText.FromKey(
+                "Mods.ProgressionJournal.UI.FishingWorldDay"));
         }
         else if (worlds.All(static world => !world.DayTime))
         {
-            worldConditions.Add(Language.GetTextValue("Mods.ProgressionJournal.UI.FishingWorldNight"));
+            worldConditions.Add(JournalLocalizedText.FromKey(
+                "Mods.ProgressionJournal.UI.FishingWorldNight"));
         }
 
         if (worlds.All(static world => world.DownedSkeletron))
         {
-            worldConditions.Add(Language.GetTextValue("Mods.ProgressionJournal.UI.FishingWorldPostSkeletron"));
+            worldConditions.Add(JournalLocalizedText.FromKey(
+                "Mods.ProgressionJournal.UI.FishingWorldPostSkeletron"));
         }
 
         if (worlds.All(static world => world.CombatBookUsed))
         {
-            worldConditions.Add(Language.GetTextValue("Mods.ProgressionJournal.UI.FishingWorldCombatBook"));
+            worldConditions.Add(JournalLocalizedText.FromKey(
+                "Mods.ProgressionJournal.UI.FishingWorldCombatBook"));
         }
 
         if (worlds.All(static world => world.Remix))
         {
-            worldConditions.Add(Language.GetTextValue("Mods.ProgressionJournal.UI.FishingWorldRemix"));
+            worldConditions.Add(JournalLocalizedText.FromKey(
+                "Mods.ProgressionJournal.UI.FishingWorldRemix"));
         }
 
         if (worlds.All(static world => world.NotTheBees))
         {
-            worldConditions.Add(Language.GetTextValue("Mods.ProgressionJournal.UI.FishingWorldNotTheBees"));
+            worldConditions.Add(JournalLocalizedText.FromKey(
+                "Mods.ProgressionJournal.UI.FishingWorldNotTheBees"));
         }
 
         if (worldConditions.Count > 0)
         {
-            conditions.Add(Language.GetTextValue(
+            conditions.Add(JournalLocalizedText.FromKey(
                 "Mods.ProgressionJournal.UI.FishingWorldCondition",
-                string.Join(", ", worldConditions)));
+                JournalLocalizedText.Join(worldConditions)));
         }
     }
 
-    private static string GetLiquidName(ProbeLiquid liquid)
+    private static JournalLocalizedText GetLiquidText(ProbeLiquid liquid)
     {
         var key = liquid switch
         {
@@ -1171,7 +1184,7 @@ internal static class JournalFishingSourceResolver
             ProbeLiquid.Honey => "FishingLiquidHoney",
             _ => throw new ArgumentOutOfRangeException(nameof(liquid), liquid, null)
         };
-        return Language.GetTextValue($"Mods.ProgressionJournal.UI.{key}");
+        return JournalLocalizedText.FromKey($"Mods.ProgressionJournal.UI.{key}");
     }
 
     private static Player? GetProbePlayer()

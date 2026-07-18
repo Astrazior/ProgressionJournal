@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-07-18T10:27:31.573Z",
+  "generatedAtUtc": "2026-07-18T12:58:52.147Z",
   "requiredMods": [
     {
       "name": "AAModClassic",
@@ -11196,10 +11196,51 @@
       "fishingSources": [
         {
           "conditions": [
-            "Liquid: Lava",
-            "Biome: No special biome",
-            "Depth: Surface",
-            "Available after: Wall of Flesh"
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingLiquidCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingLiquidLava"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingBiomeCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingBiomeDefault"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingDepthCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Bestiary_Biomes.Surface"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingProgressionCondition",
+              "args": [
+                {
+                  "en-US": "Wall of Flesh",
+                  "ru-RU": "Стена плоти"
+                }
+              ]
+            }
           ]
         }
       ],
@@ -13385,10 +13426,51 @@
       "fishingSources": [
         {
           "conditions": [
-            "Liquid: Water",
-            "Biome: The Crimson",
-            "Depth: Surface",
-            "Available after: Wall of Flesh"
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingLiquidCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingLiquidWater"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingBiomeCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Bestiary_Biomes.Crimson"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingDepthCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Bestiary_Biomes.Surface"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingProgressionCondition",
+              "args": [
+                {
+                  "en-US": "Wall of Flesh",
+                  "ru-RU": "Стена плоти"
+                }
+              ]
+            }
           ]
         }
       ],
@@ -16934,10 +17016,51 @@
       "fishingSources": [
         {
           "conditions": [
-            "Liquid: Water",
-            "Biome: The Corruption",
-            "Depth: Surface",
-            "Available after: Wall of Flesh"
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingLiquidCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingLiquidWater"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingBiomeCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Bestiary_Biomes.TheCorruption"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingDepthCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Bestiary_Biomes.Surface"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingProgressionCondition",
+              "args": [
+                {
+                  "en-US": "Wall of Flesh",
+                  "ru-RU": "Стена плоти"
+                }
+              ]
+            }
           ]
         }
       ],
@@ -17393,10 +17516,51 @@
       "fishingSources": [
         {
           "conditions": [
-            "Liquid: Water",
-            "Biome: The Hallow",
-            "Depth: Surface",
-            "Available after: Wall of Flesh"
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingLiquidCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingLiquidWater"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingBiomeCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Bestiary_Biomes.TheHallow"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingDepthCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Bestiary_Biomes.Surface"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingProgressionCondition",
+              "args": [
+                {
+                  "en-US": "Wall of Flesh",
+                  "ru-RU": "Стена плоти"
+                }
+              ]
+            }
           ]
         }
       ],
@@ -19654,8 +19818,30 @@
       "fishingSources": [
         {
           "conditions": [
-            "Liquid: Water",
-            "Biome: The Corruption"
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingLiquidCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingLiquidWater"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingBiomeCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Bestiary_Biomes.TheCorruption"
+                    }
+                  ]
+                }
+              ]
+            }
           ]
         }
       ],
@@ -28067,7 +28253,18 @@
       "fishingSources": [
         {
           "conditions": [
-            "Biome: The Mire"
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingBiomeCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.AAModClassic.Biomes.MireBiome.DisplayName"
+                    }
+                  ]
+                }
+              ]
+            }
           ]
         }
       ],
@@ -28584,9 +28781,45 @@
       "fishingSources": [
         {
           "conditions": [
-            "Liquid: Water",
-            "Biome: Ocean",
-            "Depth: Sky, Surface"
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingLiquidCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingLiquidWater"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingBiomeCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Bestiary_Biomes.Ocean"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingDepthCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Bestiary_Biomes.Sky"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.Surface"
+                    }
+                  ]
+                }
+              ]
+            }
           ]
         }
       ],
@@ -29682,8 +29915,30 @@
       "fishingSources": [
         {
           "conditions": [
-            "Liquid: Water",
-            "Biome: Snow"
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingLiquidCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingLiquidWater"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingBiomeCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Bestiary_Biomes.Snow"
+                    }
+                  ]
+                }
+              ]
+            }
           ]
         }
       ],
@@ -47760,8 +48015,99 @@
       "fishingSources": [
         {
           "conditions": [
-            "Liquid: Water",
-            "Biome: No special biome, Ocean, Desert, Snow, The Jungle, The Corruption, The Crimson, The Hallow, The Dungeon, Underground Mushroom, The Acropolis, The Hoard, The Lost Keep, The Parthenan, Red Mushroom, The Rising Moon Lake, The Rising Sun Pagoda, Celestial Stars, The Sunken Ship, The Terrarium, Underground Inferno, Underground Mire, The Void, AAModClassic/MireWaterStyle"
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingLiquidCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingLiquidWater"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingBiomeCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingBiomeDefault"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.Ocean"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.Desert"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.Snow"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.Jungle"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.TheCorruption"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.Crimson"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.TheHallow"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.TheDungeon"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.UndergroundMushroom"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.AcropolisBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.HoardBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.LostKeepBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.ParthenanBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.RedMushroomBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.RisingMoonLakeBiomeZone.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.RisingSunPagodaBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.StarsBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.SunkenShipBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.TerrariumBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.UndergroundInfernoBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.UndergroundMireBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.VoidBiome.DisplayName"
+                    },
+                    {
+                      "literal": "AAModClassic/MireWaterStyle"
+                    }
+                  ]
+                }
+              ]
+            }
           ]
         }
       ],
@@ -51553,8 +51899,99 @@
       "fishingSources": [
         {
           "conditions": [
-            "Liquid: Water",
-            "Biome: No special biome, Ocean, Desert, Snow, The Jungle, The Corruption, The Crimson, The Hallow, The Dungeon, Underground Mushroom, The Acropolis, The Hoard, The Lost Keep, The Parthenan, Red Mushroom, The Rising Moon Lake, The Rising Sun Pagoda, Celestial Stars, The Sunken Ship, The Terrarium, Underground Inferno, Underground Mire, The Void, AAModClassic/MireWaterStyle"
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingLiquidCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingLiquidWater"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingBiomeCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingBiomeDefault"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.Ocean"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.Desert"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.Snow"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.Jungle"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.TheCorruption"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.Crimson"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.TheHallow"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.TheDungeon"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.UndergroundMushroom"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.AcropolisBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.HoardBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.LostKeepBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.ParthenanBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.RedMushroomBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.RisingMoonLakeBiomeZone.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.RisingSunPagodaBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.StarsBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.SunkenShipBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.TerrariumBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.UndergroundInfernoBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.UndergroundMireBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.VoidBiome.DisplayName"
+                    },
+                    {
+                      "literal": "AAModClassic/MireWaterStyle"
+                    }
+                  ]
+                }
+              ]
+            }
           ]
         }
       ],
@@ -59294,7 +59731,18 @@
       "fishingSources": [
         {
           "conditions": [
-            "Liquid: Honey"
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingLiquidCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingLiquidHoney"
+                    }
+                  ]
+                }
+              ]
+            }
           ]
         }
       ]
@@ -59321,10 +59769,126 @@
       "fishingSources": [
         {
           "conditions": [
-            "Liquid: Water",
-            "Biome: No special biome, Ocean, Desert, Snow, The Jungle, The Corruption, The Crimson, The Hallow, The Dungeon, Underground Mushroom, The Acropolis, The Hoard, The Lost Keep, The Parthenan, Red Mushroom, The Rising Moon Lake, The Rising Sun Pagoda, Celestial Stars, The Sunken Ship, The Terrarium, Underground Inferno, Underground Mire, The Void, AAModClassic/MireWaterStyle",
-            "Depth: Surface",
-            "World: Blood Moon, Night"
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingLiquidCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingLiquidWater"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingBiomeCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingBiomeDefault"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.Ocean"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.Desert"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.Snow"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.Jungle"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.TheCorruption"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.Crimson"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.TheHallow"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.TheDungeon"
+                    },
+                    {
+                      "key": "Bestiary_Biomes.UndergroundMushroom"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.AcropolisBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.HoardBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.LostKeepBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.ParthenanBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.RedMushroomBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.RisingMoonLakeBiomeZone.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.RisingSunPagodaBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.StarsBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.SunkenShipBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.TerrariumBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.UndergroundInfernoBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.UndergroundMireBiome.DisplayName"
+                    },
+                    {
+                      "key": "Mods.AAModClassic.Biomes.VoidBiome.DisplayName"
+                    },
+                    {
+                      "literal": "AAModClassic/MireWaterStyle"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingDepthCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Bestiary_Biomes.Surface"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "Mods.ProgressionJournal.UI.FishingWorldCondition",
+              "args": [
+                {
+                  "join": [
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingWorldBloodMoon"
+                    },
+                    {
+                      "key": "Mods.ProgressionJournal.UI.FishingWorldNight"
+                    }
+                  ]
+                }
+              ]
+            }
           ]
         }
       ]

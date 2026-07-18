@@ -284,4 +284,143 @@ Tiers: {
 	FromGuide: From guide
 }
 
+ExternalConditions: {
+	CalamityMod: {
+		Misc: {
+			Tier1ArsenalRecipeCondition: View an unencrypted schematic from the lab near the Sunken Sea
+			Tier2ArsenalRecipeCondition: Decrypt a schematic from the lab in the large planetoid in the sky
+			Tier3ArsenalRecipeCondition: Decrypt a schematic from the lab deep within the jungle
+			Tier4ArsenalRecipeCondition: Decrypt a schematic from the lab near the edges of the underworld
+			Tier5ArsenalRecipeCondition: Decrypt a schematic from the lab deep within the frozen caverns
+			SunkenSeaSchematicRecipeCondition: Place a schematic from the lab near the Sunken Sea in your inventory at least once
+			PlanetoidSchematicRecipeCondition: Place a schematic from the lab in the large planetoid in your inventory at least once
+			JungleSchematicRecipeCondition: Place a schematic from the lab deep within the jungle in your inventory at least once
+			UnderworldSchematicRecipeCondition: Place a schematic from the lab near the edges of the underworld in your inventory at least once
+			IceSchematicRecipeCondition: Place a schematic from the lab within the frozen caverns in your inventory at least once
+		}
+
+		Condition: {
+			Drops: {
+				CataclysmKilledLast: Drops if defeated after Catastrophic Construct
+				CatastropheKilledLast: Drops if defeated after Cataclysmic Construct
+				Cynosure: After defeating both Draedon and Calamitas
+				FirstKill: Drops only on the first kill
+				MechBoss: Drops on the first kill of the final Mechanical Boss
+				ProvidenceEnraged: Drops if Providence has been enraged
+				ProvidenceChallenge: Drops if Providence was defeated only with the Profaned Soul Artifact
+			}
+
+			HasFlareGun: While holding a Flare Gun upgrade
+			LacewingBestiary: When at least 40% of the Bestiary has been completed
+			CrescentMoons: During a crescent moon
+			GibbousMoons: During a gibbous moon
+			HasRogueArmor: While wearing rogue armor
+			HasWings: While wearing wings
+			InAstral: In the Astral Infection
+			InCrag: In the Brimstone Crags
+			InSulph: In the Sulphurous Sea
+			InSunken: In the Sunken Sea
+			InRev: In Revengeance Mode
+			InRevOrMM: In Revengeance Mode or in Master Mode
+			HasFoundCorruptionEffigy: After obtaining Corruption Effigy
+			HasFoundCrimsonEffigy: After obtaining Crimson Effigy
+			HasFoundUnstableGraniteCore: After obtaining Unstable Granite Core
+			HasFoundGladiatorsLocket: After obtaining Gladiator's Locket
+			HasFoundFrozenCube: After obtaining Frozen Cube
+			HasFoundTrinketOfChi: After obtaining Trinket of Chi
+			HasFoundFungalSymbiote: After obtaining Fungal Symbiote
+			HasFoundLuxorsGift: After obtaining Luxor's Gift
+		}
+	}
+
+	AAModClassic: {
+		Common: {
+			Conditions: {
+				DownedRajah: After defeating Rajah Rabbit
+				GoblinsDefeated: If the Goblin Army has been defeated
+				GolemDefeated: If Golem has been defeated
+				InAnyInferno: In the Inferno biome
+				InAnyMire: In the Mire biome
+				InAnyRedMushroom: In the Red Mushroom biome
+				InAnyVoid: In the Void biome
+				InSunkenShipPreSoC: Near the Sunken Ship after defeating all Ancients
+				IsMaster: In Master Mode
+				Unofficial: In unofficial worlds
+				NotUnofficial: In non-unofficial worlds
+				PostLateAncientsAndRemovedWorld: Post-Late Ancients
+				SpawnedBySubzeroSerpent: If Subzero Serpent is not currently alive
+				OneMechDefeated: If one mechanical boss has been defeated
+				SkeletronDefeated: If Skeletron has been defeated
+			}
+		}
+	}
+
+	FargowiltasSouls: {
+		Conditions: {
+			RoombaPetSold: When the Roomba config is enabled
+			DownedEvilBoss: After any Evil Boss has been defeated
+			EMode: Eternity Mode drop rate
+			EModeEarlyBirdHM: Hardmode Eternity Mode drop rate
+			EModeEarlyBirdPHM: Pre-Hardmode Eternity Mode drop rate
+			EModeNotMaster: This is a Master/Eternity Mode drop rate
+			NotEMode: Non-Eternity Mode drop rate
+			TimsConcoction: Tim's Concoction drop rate
+			Patreon: Patreon Drop
+			PatreonEMode: Patreon Drop in Eternity Mode
+			PatreonPlant: Patreon Drop in Jungle on Blood Moon
+			FirstKill: Dropped in Eternity Mode on first kill
+		}
+	}
+}
+
+ExternalConditionTypes: {
+	AAModClassic: {
+		GoblinsDefeated: If the Goblin Army has been defeated
+		GolemDefeated: If Golem has been defeated
+		OneMechDefeated: If one mechanical boss has been defeated
+		PostLateAncients: Post-Late Ancients
+		MasterMode: In Master Mode
+		MasterModeDropRate: This is a Master Mode drop rate
+		SkeletronDefeated: If Skeletron has been defeated
+		SubzeroSerpentNotAlive: If Subzero Serpent is not currently alive
+		OpenedDuringDay: If opened during the Day
+		OpenedDuringNight: If opened during the Night
+		EquinoxWormsDefeated: If the Equinox Worms have been defeated
+	}
+
+	CalamityMod: {
+		Revengeance: Revengeance Mode
+		ProvidenceChallenge:
+			'''
+			Drops if Providence was defeated only with the Profaned Soul Artifact
+			This is an Expert Mode drop rate
+			'''
+	}
+
+	FargowiltasSouls: {
+		FirstKill: Dropped in Eternity Mode on first kill
+		DownedEvilBoss: After any Evil Boss has been defeated
+		EMode: Eternity Mode drop rate
+		EModeEarlyBirdHM: Hardmode Eternity Mode drop rate
+		EModeEarlyBirdPHM: Pre-Hardmode Eternity Mode drop rate
+		EModeNotMaster: This is a Master/Eternity Mode drop rate
+		NotEMode: Non-Eternity Mode drop rate
+		TimsConcoction: Tim's Concoction drop rate
+		PatreonPlant: Patreon Drop in Jungle on Blood Moon
+		Patreon: Patreon Drop
+		PatreonEMode: Patreon Drop in Eternity Mode
+	}
+
+	ThoriumMod: {
+		Underworld: Drops in The Underworld
+		AquaticDepthsHardmode: Drops in the Aquatic Depths in Hardmode
+		CookNotSellingEtherianGrog: Drops if Cook is not selling Etherian Grog yet
+		DownedFallenBeholder: Drops if Fallen Beholder has been defeated
+		DownedSkeletron: Drops if Skeletron has been defeated
+		Desert: Drops in The Desert
+		HardmodeUnderworld: Drops in Hardmode Underworld
+		BloodMoon: Drops during a Blood Moon
+	}
+}
+
 Keybinds.ToggleProgressionJournal.DisplayName: Toggle Progression Journal

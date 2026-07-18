@@ -32,9 +32,12 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
             .ToArray();
         _accessors = BuildAccessors(_stages, profile);
         _npcKillCounts = BuildNpcKillCountAccessors(_stages);
-        StageNames = _stages.Length == 0
-            ? [string.Empty]
-            : _stages.Select(stage => stage.Name.Resolve()).ToArray();
+        StageLocalizedNames = _stages.Length == 0
+            ? [new JournalLocalizedText()]
+            : _stages.Select(static stage => stage.Name).ToArray();
+        StageNames = StageLocalizedNames
+            .Select(static name => name.Resolve())
+            .ToArray();
     }
 
     internal static JournalProfile? CurrentProfile => _profileOverride
@@ -50,6 +53,8 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
     public int Count => StageNames.Count;
 
     public IReadOnlyList<string> StageNames { get; }
+
+    public IReadOnlyList<JournalLocalizedText> StageLocalizedNames { get; }
 
     public bool ChangesVanillaProgression(int stageIndex)
     {

@@ -1019,10 +1019,11 @@ const ignoredReviewResult = generateProfile(snapshot, manifest, wikiProfile, {
 assert(!ignoredReviewResult.review.issues.some(issue => issue.id === ignoredIssueId));
 
 const runtimeSnapshot = structuredClone(snapshot);
-runtimeSnapshot.version = 4;
+runtimeSnapshot.version = 6;
 runtimeSnapshot.items.push(
   item("Test/RuntimeFishBlade", { damageClass: "Melee", damage: 31 }),
   item("Test/BiomeFlooredFishBlade", { damageClass: "Melee", damage: 32 }),
+  item("Test/MultiBiomeFishBlade", { damageClass: "Melee", damage: 32 }),
   item("Test/PreHardmodeFishBlade", { damageClass: "Melee", damage: 29 }),
   item("Test/UnknownStageFishBlade", { damageClass: "Melee", damage: 30 }),
   item("Test/RuntimeSpawnBlade", { damageClass: "Melee", damage: 32 }),
@@ -1035,7 +1036,10 @@ runtimeSnapshot.drops.push({
   source: "Test/RuntimeEnemy",
   sourceType: "npc",
   item: "Test/RuntimeSpawnBlade",
-  conditions: []
+  conditions: [{
+    type: "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
+    description: "Drops: Not in a Remix world"
+  }]
 }, {
   source: "Test/RuntimeEventEnemy",
   sourceType: "npc",
@@ -1066,6 +1070,14 @@ runtimeSnapshot.shops.push({
   earliestStageIndex: 3,
   earliestStageName: "Late"
 });
+const localizedBiomeCondition = {
+  key: "Mods.ProgressionJournal.UI.FishingBiomeCondition",
+  args: [{
+    join: [{
+      key: "Mods.Test.Biomes.SyntheticLateBiome.DisplayName"
+    }]
+  }]
+};
 runtimeSnapshot.fishing = [
   {
     targetType: "item",
@@ -1079,7 +1091,22 @@ runtimeSnapshot.fishing = [
     target: "Test/BiomeFlooredFishBlade",
     earliestStageIndex: 0,
     earliestStageName: "Start",
-    conditions: ["Biome: Synthetic Late Biome"]
+    conditions: [localizedBiomeCondition]
+  },
+  {
+    targetType: "item",
+    target: "Test/MultiBiomeFishBlade",
+    earliestStageIndex: 0,
+    earliestStageName: "Start",
+    conditions: [{
+      key: "Mods.ProgressionJournal.UI.FishingBiomeCondition",
+      args: [{
+        join: [
+          { key: "Mods.ProgressionJournal.UI.FishingBiomeDefault" },
+          { key: "Mods.Test.Biomes.SyntheticLateBiome.DisplayName" }
+        ]
+      }]
+    }]
   },
   {
     targetType: "item",
@@ -1148,6 +1175,7 @@ runtimeManualAssignments.conditionStages.push({
   sources: ["fishing"],
   sourceIds: [],
   conditionTypes: [],
+  conditionKeys: ["Mods.Test.Biomes.SyntheticLateBiome.DisplayName"],
   conditionDescriptions: ["Biome: Synthetic Late Biome"]
 });
 const runtimeManifest = structuredClone(manifest);
@@ -1164,7 +1192,11 @@ assert(runtimeResult.profile.entries.some(entry =>
 assert(runtimeResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "BiomeFlooredFishBlade"
   && entry.evaluations[0].stageId === "boss"
-  && entry.fishingSources[0]?.conditions[0] === "Biome: Synthetic Late Biome"));
+  && JSON.stringify(entry.fishingSources[0]?.conditions[0])
+    === JSON.stringify(localizedBiomeCondition)));
+assert(runtimeResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "MultiBiomeFishBlade"
+  && entry.evaluations[0].stageId === "start"));
 assert(runtimeResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "PreHardmodeFishBlade"
   && entry.evaluations[0].stageId === "start"

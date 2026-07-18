@@ -16,6 +16,68 @@ public static class JournalItemSourceResolver
     private static readonly Dictionary<(string ProfileId, int ItemId), JournalItemAcquisitionInfo> Cache = new();
     private static readonly Dictionary<int, Item?> StationItemCache = new();
     private static readonly Dictionary<int, bool> RevengeanceExclusiveCache = new();
+    private static readonly Dictionary<Type, MemberInfo?> LocalizedTextMemberCache = new();
+    private static readonly Dictionary<string, string> ConditionTypeLocalizationKeys =
+        new(StringComparer.Ordinal)
+        {
+            ["AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+GoblinsDefated"] = "AAModClassic.GoblinsDefeated",
+            ["AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+GolemDefated"] = "AAModClassic.GolemDefeated",
+            ["AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+OneMechDefated"] = "AAModClassic.OneMechDefeated",
+            ["AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+PostLateAncientsAndRemovedWorld"] = "AAModClassic.PostLateAncients",
+            ["AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+PostLateAncientsAndRemovedWorldAndExpert"] = "AAModClassic.PostLateAncients",
+            ["AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+PostLateAncientsAndRemovedWorldAndNotExpert"] = "AAModClassic.PostLateAncients",
+            ["AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+RevOrMaster"] = "AAModClassic.MasterMode",
+            ["AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+SkeletronDefated"] = "AAModClassic.SkeletronDefeated",
+            ["AAModClassic.Utilities.MasterRevDropRule"] = "AAModClassic.MasterModeDropRate",
+            ["AAModClassic._Content.Chaos._PostMoonlord.NPCs.__BossSistersOfDiscord.Ashe.Ashe+MissingSisterInMaster"] = "AAModClassic.MasterMode",
+            ["AAModClassic._Content.Chaos.___PreHardmode.NPCs.__BossGripsOfChaos.GripOfChaosAbstract+MissingGripMaster"] = "AAModClassic.MasterMode",
+            ["AAModClassic._Content.Snow.___PreHardmode.NPCs._Night._SnowSerpent.SnowSerpentHead+SpawnedBySubzeroSerpent"] = "AAModClassic.SubzeroSerpentNotAlive",
+            ["AAModClassic._Content.Stars._PostMoonlord.Items._BossEquinoxWorms.BossStandard.EquinoxWormsTreasureBag+Daytime"] = "AAModClassic.OpenedDuringDay",
+            ["AAModClassic._Content.Stars._PostMoonlord.Items._BossEquinoxWorms.BossStandard.EquinoxWormsTreasureBag+Nighttime"] = "AAModClassic.OpenedDuringNight",
+            ["AAModClassic._Content.Stars._PostMoonlord.NPCs._Day.SunWatcher+EquinoxWormsDefeated"] = "AAModClassic.EquinoxWormsDefeated",
+            ["AAModClassic._Content.Stars._PostMoonlord.NPCs.__BossEquinoxWorms.Daybringer.DaybringerHead+LastWormInMaster"] = "AAModClassic.MasterMode",
+            ["CalamityMod.DropHelper+LambdaDropRuleCondition2"] = "CalamityMod.ProvidenceChallenge",
+            ["FargowiltasSouls.Core.Globals.FirstKillCondition"] = "FargowiltasSouls.FirstKill",
+            ["FargowiltasSouls.Core.ItemDropRules.Conditions.DownedEvilBossDropCondition"] = "FargowiltasSouls.DownedEvilBoss",
+            ["FargowiltasSouls.Core.ItemDropRules.Conditions.EModeDropCondition"] = "FargowiltasSouls.EMode",
+            ["FargowiltasSouls.Core.ItemDropRules.Conditions.EModeEarlyBirdLockDropCondition"] = "FargowiltasSouls.EModeEarlyBirdHM",
+            ["FargowiltasSouls.Core.ItemDropRules.Conditions.EModeEarlyBirdRewardDropCondition"] = "FargowiltasSouls.EModeEarlyBirdPHM",
+            ["FargowiltasSouls.Core.ItemDropRules.Conditions.EModeNotMasterDropCondition"] = "FargowiltasSouls.EModeNotMaster",
+            ["FargowiltasSouls.Core.ItemDropRules.Conditions.NotEModeDropCondition"] = "FargowiltasSouls.NotEMode",
+            ["FargowiltasSouls.Core.ItemDropRules.Conditions.PatreonPlantDropCondition"] = "FargowiltasSouls.PatreonPlant",
+            ["FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition"] = "FargowiltasSouls.TimsConcoction",
+            ["ThoriumMod.Core.ItemDropRules.DropConditions.AbyssalWhistleCondition"] = "ThoriumMod.Underworld",
+            ["ThoriumMod.Core.ItemDropRules.DropConditions.AquaticDepthsKeyCondition"] = "ThoriumMod.AquaticDepthsHardmode",
+            ["ThoriumMod.Core.ItemDropRules.DropConditions.CookIsNotSellingEtherianGrogCondition"] = "ThoriumMod.CookNotSellingEtherianGrog",
+            ["ThoriumMod.Core.ItemDropRules.DropConditions.DownedFallenBeholderCondition"] = "ThoriumMod.DownedFallenBeholder",
+            ["ThoriumMod.Core.ItemDropRules.DropConditions.DownedSkeletronCondition"] = "ThoriumMod.DownedSkeletron",
+            ["ThoriumMod.Core.ItemDropRules.DropConditions.PharaohsBreathCondition"] = "ThoriumMod.Desert",
+            ["ThoriumMod.Core.ItemDropRules.DropConditions.SoulofPlightCondition"] = "ThoriumMod.HardmodeUnderworld",
+            ["ThoriumMod.Core.ItemDropRules.DropConditions.UnderworldKeyCondition"] = "ThoriumMod.HardmodeUnderworld",
+            ["ThoriumMod.Core.ItemDropRules.DropConditions.UnholyShardsCondition"] = "ThoriumMod.BloodMoon"
+        };
+    private static readonly Dictionary<(string TypeName, string Description), string>
+        KeylessConditionLocalizationKeys = new()
+        {
+            [("CalamityMod.DropHelper+LambdaDropRuleCondition", "After defeating both Draedon and Calamitas")] =
+                "ExternalConditions.CalamityMod.Condition.Drops.Cynosure",
+            [("CalamityMod.DropHelper+LambdaDropRuleCondition", "Drops if Providence has been enraged")] =
+                "ExternalConditions.CalamityMod.Condition.Drops.ProvidenceEnraged",
+            [("CalamityMod.DropHelper+LambdaDropRuleCondition", "Drops if defeated after Cataclysmic Construct")] =
+                "ExternalConditions.CalamityMod.Condition.Drops.CatastropheKilledLast",
+            [("CalamityMod.DropHelper+LambdaDropRuleCondition", "Drops if defeated after Catastrophic Construct")] =
+                "ExternalConditions.CalamityMod.Condition.Drops.CataclysmKilledLast",
+            [("CalamityMod.DropHelper+LambdaDropRuleCondition", "Drops on the first kill of the final Mechanical Boss")] =
+                "ExternalConditions.CalamityMod.Condition.Drops.MechBoss",
+            [("CalamityMod.DropHelper+LambdaDropRuleCondition", "Drops only on the first kill")] =
+                "ExternalConditions.CalamityMod.Condition.Drops.FirstKill",
+            [("FargowiltasSouls.Core.ItemDropRules.Conditions.RuntimeDropCondition",
+                "[i:FargowiltasSouls/RoombaPet] Patreon Drop")] =
+                "ExternalConditionTypes.FargowiltasSouls.Patreon",
+            [("FargowiltasSouls.Core.ItemDropRules.Conditions.RuntimeDropCondition",
+                "[i:FargowiltasSouls/RoombaPet] Patreon Drop in Eternity Mode")] =
+                "ExternalConditionTypes.FargowiltasSouls.PatreonEMode"
+        };
 #pragma warning disable SYSLIB1045 // tModLoader's in-game compiler does not run the GeneratedRegex source generator.
     private static readonly Regex InternalNameWordBoundaryRegex = new("(?<=[a-z])(?=[A-Z])", RegexOptions.Compiled);
 #pragma warning restore SYSLIB1045
@@ -311,7 +373,8 @@ public static class JournalItemSourceResolver
         if (condition?.GetType().FullName == "CalamityMod.DropHelper+LambdaDropRuleCondition"
             && IsRevengeanceExclusive(targetItemId))
         {
-            return Language.GetTextValue("Mods.CalamityMod.UI.Revengeance");
+            return Language.GetTextValue(
+                "Mods.ProgressionJournal.ExternalConditionTypes.CalamityMod.Revengeance");
         }
 
         return string.Empty;
@@ -413,17 +476,29 @@ public static class JournalItemSourceResolver
 
     private static string GetConditionDescription(object? condition)
     {
-        switch (condition)
+        if (condition is null)
         {
-            case null:
-                return string.Empty;
-            case IProvideItemConditionDescription itemConditionDescription:
-                return itemConditionDescription.GetConditionDescription();
+            return string.Empty;
         }
 
-        var descriptionProperty = condition.GetType().GetProperty("Description", BindingFlags.Public | BindingFlags.Instance);
+        var conditionType = condition.GetType();
+        if (conditionType.FullName is { } conditionTypeName
+            && ConditionTypeLocalizationKeys.TryGetValue(conditionTypeName, out var conditionLocalizationKey))
+        {
+            return Language.GetTextValue(
+                $"Mods.ProgressionJournal.ExternalConditionTypes.{conditionLocalizationKey}");
+        }
+
+        var descriptionProperty = conditionType.GetProperty(
+            "Description",
+            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
         if (descriptionProperty?.GetValue(condition) is { } descriptionValue)
         {
+            if (descriptionValue is LocalizedText localizedText)
+            {
+                return ResolveConditionDescription(localizedText);
+            }
+
             if (descriptionValue is string stringDescription)
             {
                 return stringDescription;
@@ -438,13 +513,80 @@ public static class JournalItemSourceResolver
             return descriptionValue.ToString() ?? string.Empty;
         }
 
-        var getterMethod = condition.GetType().GetMethod("GetConditionDescription", BindingFlags.Public | BindingFlags.Instance);
+        if (GetLocalizedTextMember(conditionType)?.GetValue(condition) is LocalizedText embeddedLocalizedText)
+        {
+            return ResolveConditionDescription(embeddedLocalizedText);
+        }
+
+        if (condition is IProvideItemConditionDescription itemConditionDescription)
+        {
+            return ResolveKeylessConditionDescription(
+                conditionType.FullName,
+                itemConditionDescription.GetConditionDescription());
+        }
+
+        var getterMethod = conditionType.GetMethod(
+            "GetConditionDescription",
+            BindingFlags.Public | BindingFlags.Instance);
         if (getterMethod?.Invoke(condition, null) is string reflectedDescription)
         {
-            return reflectedDescription;
+            return ResolveKeylessConditionDescription(conditionType.FullName, reflectedDescription);
         }
 
         return string.Empty;
+    }
+
+    private static string ResolveConditionDescription(LocalizedText description)
+    {
+        const string modKeyPrefix = "Mods.";
+        if (description.Key.StartsWith(modKeyPrefix, StringComparison.Ordinal))
+        {
+            var overrideKey =
+                $"Mods.ProgressionJournal.ExternalConditions.{description.Key[modKeyPrefix.Length..]}";
+            if (Language.Exists(overrideKey))
+            {
+                return Language.GetTextValue(overrideKey);
+            }
+        }
+
+        return description.Value;
+    }
+
+    private static string ResolveKeylessConditionDescription(string? typeName, string description)
+    {
+        return typeName is not null
+               && KeylessConditionLocalizationKeys.TryGetValue((typeName, description), out var localizationKey)
+            ? Language.GetTextValue($"Mods.ProgressionJournal.{localizationKey}")
+            : description;
+    }
+
+    private static MemberInfo? GetLocalizedTextMember(Type conditionType)
+    {
+        if (LocalizedTextMemberCache.TryGetValue(conditionType, out var cached))
+        {
+            return cached;
+        }
+
+        var member = conditionType
+                         .GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                         .FirstOrDefault(static property =>
+                             property.PropertyType == typeof(LocalizedText)
+                             && property.GetIndexParameters().Length == 0)
+                     ?? (MemberInfo?)conditionType
+                         .GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                         .FirstOrDefault(static field => field.FieldType == typeof(LocalizedText));
+        LocalizedTextMemberCache[conditionType] = member;
+        return member;
+    }
+
+    private static object? GetValue(this MemberInfo member, object instance)
+    {
+        return member switch
+        {
+            PropertyInfo property => property.GetValue(instance),
+            FieldInfo field => field.GetValue(instance),
+            _ => null
+        };
     }
 
     private static IEnumerable<object?> EnumerateConditions<T>(IEnumerable<T>? conditions)

@@ -196,42 +196,37 @@ public static partial class JournalRepository
 
     private static string FishingLiquid(string liquidLocalizationKey)
     {
-        return FishingCondition(
-            "FishingLiquidCondition",
+        return Language.GetTextValue(
+            "Mods.ProgressionJournal.UI.FishingLiquidCondition",
             Language.GetTextValue($"Mods.ProgressionJournal.UI.{liquidLocalizationKey}"));
     }
 
     private static string FishingBiome(string biomeLocalizationKey)
     {
-        return FishingCondition(
-            "FishingBiomeCondition",
+        return Language.GetTextValue(
+            "Mods.ProgressionJournal.UI.FishingBiomeCondition",
             Language.GetTextValue(biomeLocalizationKey));
     }
 
     private static string FishingBiomeDefault()
     {
-        return FishingCondition(
-            "FishingBiomeCondition",
+        return Language.GetTextValue(
+            "Mods.ProgressionJournal.UI.FishingBiomeCondition",
             Language.GetTextValue("Mods.ProgressionJournal.UI.FishingBiomeDefault"));
     }
 
     private static string FishingDepth(params string[] depthLocalizationKeys)
     {
-        return FishingCondition(
-            "FishingDepthCondition",
+        return Language.GetTextValue(
+            "Mods.ProgressionJournal.UI.FishingDepthCondition",
             string.Join(", ", depthLocalizationKeys.Select(static key => Language.GetTextValue(key))));
     }
 
     private static string FishingProgression(ProgressionStageId stageId)
     {
-        return FishingCondition(
-            "FishingProgressionCondition",
+        return Language.GetTextValue(
+            "Mods.ProgressionJournal.UI.FishingProgressionCondition",
             Language.GetTextValue(ProgressionStageCatalog.Get(stageId).LocalizationKey));
-    }
-
-    private static string FishingCondition(string key, string value)
-    {
-        return Language.GetTextValue($"Mods.ProgressionJournal.UI.{key}", value);
     }
 }
 

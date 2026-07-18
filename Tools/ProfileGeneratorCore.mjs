@@ -135,7 +135,7 @@ function generateProfileCore(
     : source;
   assert(snapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot format.");
   assert(
-    [4, 5].includes(snapshot.version),
+    [4, 5, 6].includes(snapshot.version),
     `Unsupported snapshot version '${snapshot.version}'.`);
 
   manifest = applyVanillaSourceCatalog(manifest, snapshot);
@@ -950,6 +950,7 @@ function applyManualAssignments(sourceManifest, manualAssignments) {
       sources: assignment.sources ?? ["drop", "shop", "recipe"],
       sourceIds: assignment.sourceIds ?? [],
       conditionTypes: assignment.conditionTypes ?? [],
+      conditionKeys: assignment.conditionKeys ?? [],
       conditionDescriptions: assignment.conditionDescriptions ?? []
     });
   }
@@ -959,9 +960,29 @@ function applyManualAssignments(sourceManifest, manualAssignments) {
 
 function conditionMatchesUnlockRule(condition, rule) {
   if ((rule.conditionTypes ?? []).includes(condition.type)) return true;
+  const expectedLocalizationKeys = [...new Set(rule.conditionKeys ?? [])].sort();
+  if (expectedLocalizationKeys.length > 0) {
+    const localizationKeys = [...new Set(collectLocalizationLeafKeys(condition))].sort();
+    if (localizationKeys.length === expectedLocalizationKeys.length
+        && localizationKeys.every((key, index) => key === expectedLocalizationKeys[index])) {
+      return true;
+    }
+  }
   const description = normalizeConditionText(condition.description);
   return (rule.conditionDescriptions ?? [])
     .some(value => normalizeConditionText(value) === description);
+}
+
+function collectLocalizationLeafKeys(value, result = []) {
+  if (!value || typeof value !== "object") return result;
+  const children = [...(value.args ?? []), ...(value.join ?? [])];
+  if (children.length === 0 && typeof value.key === "string" && value.key) {
+    result.push(value.key);
+  }
+  for (const child of children) {
+    collectLocalizationLeafKeys(child, result);
+  }
+  return result;
 }
 
 function normalizeConditionText(value) {
@@ -1486,7 +1507,7 @@ function isProgressionNeutralCondition(condition) {
   const description = normalizeConditionText(condition.description);
   const type = condition.type ?? "";
   if (isOneTimeUseEligibilityCondition(condition)) return true;
-  if (/^not in world generation /u.test(description)
+  if (/^not in (?:a remix world|world generation )/u.test(description)
       || /^не в генерации мира /u.test(description)) {
     return true;
   }
@@ -2237,6 +2258,7 @@ function buildManualReview({
           conditionTypes: !record.condition.description && record.condition.type
             ? [record.condition.type]
             : [],
+          conditionKeys: collectLocalizationLeafKeys(record.condition),
           conditionDescriptions: record.condition.description
             ? [record.condition.description]
             : []
@@ -2572,7 +2594,11 @@ function toFishingSources(records) {
   return records
     .filter(record => (record.conditions ?? []).some(Boolean))
     .map(record => ({
-      conditions: [...new Set((record.conditions ?? []).filter(Boolean))]
+      conditions: uniqueBy(
+        (record.conditions ?? []).filter(Boolean),
+        condition => typeof condition === "string"
+          ? `string:${condition}`
+          : `json:${JSON.stringify(condition)}`)
     }));
 }
 

@@ -1008,7 +1008,11 @@
         "В генерации мира «Remix»",
         "Не в генерации мира «Remix»",
         "Рядом с мерцанием",
-        "На кладбище"
+        "На кладбище",
+        "In a Remix world",
+        "Not in a Remix world",
+        "Near shimmer",
+        "In a Graveyard"
       ],
       "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
       "sourceVersion": "tModLoader 1.4.4",
@@ -1029,7 +1033,8 @@
         "Во время полнолуния, последней четверти, новолуния или первой четверти",
         "Во время растущей или убывающей луны",
         "Во время полнолуния, старой полной луны, последней четверти или старой луны",
-        "Когда в мире присутствует Медсестра"
+        "Когда в мире присутствует Медсестра",
+        "When the Nurse is present"
       ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/TownNPCs/ShadySalesman.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
@@ -1090,7 +1095,10 @@
       "conditionDescriptions": [
         "После победы над вечнозлой ели",
         "После победы над Сантой-NK1",
-        "После победы над ледяной королевой"
+        "После победы над ледяной королевой",
+        "After defeating Everscream",
+        "After defeating Santa-NK1",
+        "After defeating Ice Queen"
       ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/TownNPCs/Archmage.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
@@ -1164,7 +1172,8 @@
         "CalamityMod/Providence"
       ],
       "conditionDescriptions": [
-        "Drops if Providence was defeated only with the [i:CalamityMod/ProfanedSoulArtifact] Profaned Soul Artifact\nЭто шанс выпадения в режиме эксперта"
+        "Drops if Providence was defeated only with the [i:CalamityMod/ProfanedSoulArtifact] Profaned Soul Artifact\nЭто шанс выпадения в режиме эксперта",
+        "Drops if Providence was defeated only with the [i:CalamityMod/ProfanedSoulArtifact] Profaned Soul Artifact\nThis is an Expert Mode drop rate"
       ],
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Providence/Providence.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
@@ -1548,6 +1557,9 @@
         "fishing"
       ],
       "stageId": "wall-of-flesh",
+      "conditionKeys": [
+        "Mods.CalamityMod.Biomes.AstralInfectionBiome.DisplayName"
+      ],
       "conditionDescriptions": [
         "Biome: Astral Infection",
         "Биом: Astral Infection"

@@ -81,6 +81,10 @@ assert(fishingResolverSource.includes("CreateLegacyBiomeFlags")
 assert(!fishingResolverSource.includes("FishingPoleCondition")
   && !fishingResolverSource.includes("FishingBaitCondition"),
 "Observed random catches must not be presented as mandatory pole or bait requirements");
+assert(fishingResolverSource.includes("JournalLocalizedText.FromKey(")
+  && fishingResolverSource.includes("biome.DisplayName.Key")
+  && fishingResolverSource.includes("JournalLocalizedText.Join("),
+"Fishing conditions must retain localization keys and structured arguments");
 const townNpcResolverSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalTownNpcAvailabilityResolver.cs"),
   "utf8");
@@ -131,11 +135,17 @@ const exactShopCatalogSource = fs.readFileSync(
 const shopSourceModelSource = fs.readFileSync(
   path.join(root, "Data", "Models", "JournalShopSource.cs"),
   "utf8");
+const profileStorageSource = fs.readFileSync(
+  path.join(root, "Data", "Profiles", "JournalProfileStorage.cs"),
+  "utf8");
 const journalUiStateSource = fs.readFileSync(
   path.join(root, "UI", "States", "JournalUIState.cs"),
   "utf8");
 const acquisitionVisualsSource = fs.readFileSync(
   path.join(root, "UI", "Utilities", "JournalAcquisitionVisuals.cs"),
+  "utf8");
+const russianLocalizationSource = fs.readFileSync(
+  path.join(root, "Localization", "ru-RU_Mods.ProgressionJournal.hjson"),
   "utf8");
 assert(containerLootCatalogSource.includes("JournalContainerLootCatalog")
   && containerLootCatalogSource.includes("AddVanilla")
@@ -168,6 +178,30 @@ assert(itemSourceResolverSource.includes("AppendLegacyDirectNpcSources")
   && itemSourceResolverSource.includes("AppendLegacyDirectItemSources")
   && itemSourceResolverSource.includes("AppendExactSources"),
 "Journal UI must combine registered, legacy-direct, and audited exact sources");
+assert(itemSourceResolverSource.includes("descriptionValue is LocalizedText localizedText")
+  && itemSourceResolverSource.includes("ResolveConditionDescription(localizedText)")
+  && itemSourceResolverSource.includes("Mods.ProgressionJournal.ExternalConditions.")
+  && itemSourceResolverSource.includes("description.Key[modKeyPrefix.Length..]")
+  && russianLocalizationSource.includes(
+    "Tier1ArsenalRecipeCondition: Изучите незашифрованную схему"),
+"External recipe conditions must retain their source localization key and use available journal translations");
+assert(itemSourceResolverSource.includes("ConditionTypeLocalizationKeys")
+  && itemSourceResolverSource.includes("KeylessConditionLocalizationKeys")
+  && itemSourceResolverSource.includes(
+    "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeDropCondition")
+  && itemSourceResolverSource.includes(
+    "ThoriumMod.Core.ItemDropRules.DropConditions.DownedSkeletronCondition")
+  && itemSourceResolverSource.includes(
+    "AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+GoblinsDefated")
+  && itemSourceResolverSource.includes(
+    '("CalamityMod.DropHelper+LambdaDropRuleCondition", "Drops only on the first kill")')
+  && itemSourceResolverSource.includes(
+    '"FargowiltasSouls.Core.ItemDropRules.Conditions.RuntimeDropCondition"')
+  && russianLocalizationSource.includes("CrescentMoons: Во время серповидной луны")
+  && russianLocalizationSource.includes("Revengeance: Режим возмездия")
+  && russianLocalizationSource.includes("EMode: Шанс выпадения в режиме Вечности")
+  && russianLocalizationSource.includes("DownedSkeletron: Выпадает после победы над Скелетроном"),
+"Known keyless condition types from every bundled profile must use journal localization keys");
 assert(itemSourceResolverSource.includes("GetRulesForNPCID(npcType, includeGlobalDrops: false)")
   && itemSourceResolverSource.includes("GlobalNpcDropRulesField")
   && itemSourceResolverSource.includes("SelectedItemFromAnyEnemy"),
@@ -217,10 +251,16 @@ assert(!acquisitionVisualsSource.includes("HardmodeTexturePath")
   && acquisitionVisualsSource.includes("IsHardmodeOnlyCondition")
   && journalUiStateSource.includes("new Color(235, 91, 91)"),
 "Hardmode conditions must use canonical red text instead of an achievement icon");
-assert(acquisitionVisualsSource.includes("IsLabeledBiomeCondition(condition)")
-  && acquisitionVisualsSource.includes('label.Equals("Biome"')
-  && acquisitionVisualsSource.includes('label.Equals("Биом"'),
-"Explicit Biome labels must remain text instead of being replaced by a bestiary icon");
+assert(acquisitionVisualsSource.includes("return new JournalConditionVisuals([], normalizedConditions)")
+  && !acquisitionVisualsSource.includes("TryCreateConditionTokens")
+  && !journalUiStateSource.includes("visuals.Tokens"),
+"All framed acquisition conditions must remain text instead of being replaced by token subcards");
+assert(profileStorageSource.includes(
+    "source.Conditions.Select(static condition => condition.Resolve())")
+  && journalUiStateSource.includes("fishingSource.Conditions")
+  && !journalUiStateSource.includes(
+    "fishingSource.Conditions.Select(static condition => condition.Resolve())"),
+"Fishing localization expressions must be resolved while profiles are assembled, not while a card is rendered");
 assert(containerLootCatalogSource.includes('"AAModClassic/RomulusTazesaber"')
   && containerLootCatalogSource.includes('"AAModClassic/CharmOfDesire"')
   && containerLootCatalogSource.includes('"AAModClassic/DragonsPike"')
@@ -371,8 +411,9 @@ assert(itemCollectionIndex >= 0
     && npcDropCollectionIndex >= 0
     && itemCollectionIndex < npcDropCollectionIndex,
 "Item classification probes must run before drop reporting because mod drop rules can observe probe state");
-assert(snapshotExporterSource.includes("public int Version { get; set; } = 5"),
-  "The snapshot schema version was not advanced for Shimmer sources");
+assert(snapshotExporterSource.includes("public int Version { get; set; } = 6")
+  && snapshotExporterSource.includes("List<JournalLocalizedText> Conditions"),
+  "The snapshot schema must preserve localized fishing condition expressions");
 assert(snapshotShopCollectorSource.includes("TryGetShopStage"),
   "Observed shop stages are not exported to snapshot.json");
 assert(snapshotFishingCollectorSource.includes("JournalFishingSourceResolver.GetItemAvailability")
@@ -750,8 +791,8 @@ for (const modName of expected) {
         reference.mod === "CalamityMod" && reference.item === "GacruxianMollusk"));
     assert(gacruxianMollusk?.fishingSources?.some(source =>
       source.conditions?.some(condition =>
-        condition["en-US"] === "Legendary catch in the Astral Infection"
-        || (typeof condition === "string" && condition.endsWith("Astral Infection")))),
+        JSON.stringify(condition).includes(
+          "Mods.CalamityMod.Biomes.AstralInfectionBiome.DisplayName"))),
     "Gacruxian Mollusk must display its Astral legendary fishing source");
     for (const [itemId, stageId] of Object.entries({
       "CalamityMod/Swordsplosion": "moon-lord",
@@ -932,7 +973,16 @@ assert.equal(aaReport.generation.paths["AAModClassic/HarmonyShortsword"]?.stage,
   "world-evil");
 assert.equal(aaReport.generation.paths["AAModClassic/SwimmingHydra"]?.stage, "start");
 assert.equal(aaReport.generation.paths["AAModClassic/SwimmingHydra"]?.via, "fishing");
-assert.deepEqual(aaBuff("Honeyfin")?.fishingSources, [{ conditions: ["Жидкость: Мёд"] }],
+assert.deepEqual(aaBuff("Honeyfin")?.fishingSources, [{
+  conditions: [{
+    key: "Mods.ProgressionJournal.UI.FishingLiquidCondition",
+    args: [{
+      join: [{
+        key: "Mods.ProgressionJournal.UI.FishingLiquidHoney"
+      }]
+    }]
+  }]
+}],
   "Fishing sources must survive when a caught item is classified as a combat buff");
 assert.equal(aaReport.generation.paths["AAModClassic/GoblinSlayersChestplate"]?.stage, "start");
 assert.equal(aaReport.generation.paths["AAModClassic/GoblinSlayersChestplate"]?.via,

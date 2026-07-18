@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Text.Json;
+using ProgressionJournal.Data.Profiles;
 using ProgressionJournal.Data.Snapshots.Collectors;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
@@ -726,7 +727,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
 public sealed class ProgressionSnapshot
 {
     public string Format { get; set; } = "ProgressionJournalSnapshot";
-    public int Version { get; set; } = 5;
+    public int Version { get; set; } = 6;
     public string GeneratedAtUtc { get; set; } = string.Empty;
     public string TargetMod { get; set; } = string.Empty;
     public string ProfileId { get; set; } = string.Empty;
@@ -831,7 +832,7 @@ public sealed record SnapshotFishingCatch(
     int EarliestStageIndex,
     string EarliestStageId,
     string EarliestStageName,
-    List<string> Conditions);
+    List<JournalLocalizedText> Conditions);
 public sealed record SnapshotNpcAvailability(
     string Npc,
     string Kind,

@@ -287,7 +287,7 @@ function validateSupport(support, directoryName) {
 
 function validateSnapshot(snapshot, support) {
   assert(snapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot.json format.");
-  assert([4, 5].includes(snapshot.version),
+  assert([4, 5, 6].includes(snapshot.version),
     `Unsupported snapshot.json version '${snapshot.version}'.`);
   const target = snapshot.targetMod ?? support.targetMod;
   assert(target === support.targetMod,
@@ -387,6 +387,7 @@ export function normalizeAgentRules(document, support) {
           sources: rule.sources ?? ["drop", "shop", "recipe"],
           sourceIds: rule.sourceIds ?? [],
           conditionTypes: rule.conditionTypes ?? [],
+          conditionKeys: rule.conditionKeys ?? [],
           conditionDescriptions: rule.conditionDescriptions ?? []
         });
         break;
