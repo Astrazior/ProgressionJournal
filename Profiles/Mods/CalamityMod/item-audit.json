@@ -3,17 +3,17 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-14T12:38:22.782Z",
+  "generatedAtUtc": "2026-07-18T11:24:26.747Z",
   "snapshotGeneratedAtUtc": "2026-07-13T23:33:48.3841458Z",
   "summary": {
     "snapshotItems": 8126,
     "contentItems": 2671,
-    "profileEntries": 1909,
+    "profileEntries": 1910,
     "profileBuffEntries": 194,
-    "profileItemReferences": 2163,
-    "equipmentReferences": 1969,
+    "profileItemReferences": 2164,
+    "equipmentReferences": 1970,
     "buffReferences": 194,
-    "excluded": 3752,
+    "excluded": 3751,
     "acquiredNonProfile": 131,
     "unresolvedAvailability": 5,
     "unavailableCombat": 2,
@@ -1156,7 +1156,7 @@
       "mod": "CalamityMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "fishing",
       "reason": "not combat equipment"
     },
@@ -2386,7 +2386,7 @@
       "mod": "CalamityMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "fishing",
       "reason": "not combat equipment"
     },
@@ -3346,8 +3346,8 @@
       "mod": "CalamityMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
-      "via": "container:CalamityMod/MonolithCrate",
+      "stage": "wall-of-flesh",
+      "via": "container:CalamityMod/AstralCrate",
       "reason": "not combat equipment"
     },
     {
@@ -10576,7 +10576,7 @@
       "mod": "CalamityMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "fishing",
       "reason": "Included in the generated profile."
     },
@@ -15026,7 +15026,7 @@
       "mod": "CalamityMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "fishing",
       "reason": "not combat equipment"
     },
@@ -17706,7 +17706,7 @@
       "mod": "CalamityMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "fishing",
       "reason": "Included in the generated profile."
     },
@@ -18016,7 +18016,7 @@
       "mod": "CalamityMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "fishing",
       "reason": "not combat equipment"
     },
@@ -24636,7 +24636,7 @@
       "mod": "CalamityMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "fishing",
       "reason": "not combat equipment"
     },
@@ -24905,10 +24905,10 @@
       "name": "Ursa Sergeant",
       "mod": "CalamityMod",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "start",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
       "via": "fishing",
-      "reason": "not combat equipment"
+      "reason": "Included in the generated profile."
     },
     {
       "id": "CalamityMod/UtensilPoker",
@@ -74636,8 +74636,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "buff",
-      "stage": "eye-of-cthulhu",
-      "via": "shop:Terraria/Dryad",
+      "stage": "start",
+      "via": "initial",
       "reason": "Included in the generated profile."
     },
     {

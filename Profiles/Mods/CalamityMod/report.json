@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-14T00:01:35.120Z",
+  "generatedAtUtc": "2026-07-18T11:24:26.724Z",
   "snapshot": {
     "version": 5,
     "generatedAtUtc": "2026-07-13T23:33:48.3841458Z",
@@ -16,7 +16,7 @@
     ]
   },
   "agentRules": {
-    "rules": 140,
+    "rules": 142,
     "ignoredItems": 3,
     "ignoredIssues": 1,
     "evidence": [
@@ -761,6 +761,20 @@
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
         "checkedAt": "2026-06-14",
         "reason": "These are Astral biome tree fruit or legendary fishing catches; the Astral biome appears when Hardmode begins."
+      },
+      {
+        "id": "ursa-sergeant-combat-accessory",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Fishing/AstralCatches/UrsaSergeant.cs",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-07-18",
+        "reason": "Ursa Sergeant is a combat accessory whose custom typeless claw attack is not represented by vanilla stat probes."
+      },
+      {
+        "id": "astral-infection-fishing-stage",
+        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs",
+        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+        "checkedAt": "2026-06-14",
+        "reason": "Synthetic fishing probes can activate Astral Infection before it exists naturally; its catches become available only after Hardmode creates the biome."
       },
       {
         "id": "post-providence-brimstone-fishing",
@@ -1731,7 +1745,7 @@
         }
       ],
       "stageComparison": {
-        "compared": 2163,
+        "compared": 2164,
         "moved": 0
       }
     }
@@ -6533,7 +6547,7 @@
   "ready": true,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-07-14T00:01:14.583Z",
+    "generatedAtUtc": "2026-07-18T11:24:06.817Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -17977,36 +17991,6 @@
       },
       {
         "stage": "start",
-        "id": "CalamityMod/AldebaranAlewife",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/ArcturusAstroidean",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/MonolithCrate",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/ProcyonidPrawn",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/TwinklingPollox",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/UrsaSergeant",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "CalamityMod/Brimlish",
         "reason": "not combat equipment"
       },
@@ -18333,11 +18317,6 @@
       {
         "stage": "start",
         "id": "Terraria/SandcastleBucket",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/AstrophageItem",
         "reason": "not combat equipment"
       },
       {
@@ -28052,7 +28031,32 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "CalamityMod/AldebaranAlewife",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "CalamityMod/ArcturusAstroidean",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "CalamityMod/AstralCrate",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "CalamityMod/MonolithCrate",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "CalamityMod/ProcyonidPrawn",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "CalamityMod/TwinklingPollox",
         "reason": "not combat equipment"
       },
       {
@@ -28108,6 +28112,11 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/SoulofLight",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "CalamityMod/AstrophageItem",
         "reason": "not combat equipment"
       },
       {
@@ -34451,6 +34460,10 @@
         "stage": "start",
         "via": "initial"
       },
+      "Terraria/Sunflower": {
+        "stage": "start",
+        "via": "initial"
+      },
       "Terraria/Seed": {
         "stage": "start",
         "via": "initial"
@@ -35239,14 +35252,6 @@
         "via": "fishing"
       },
       "CalamityMod/DragoonDrizzlefish": {
-        "stage": "start",
-        "via": "fishing"
-      },
-      "CalamityMod/PolarisParrotfish": {
-        "stage": "start",
-        "via": "fishing"
-      },
-      "CalamityMod/GacruxianMollusk": {
         "stage": "start",
         "via": "fishing"
       },
@@ -36718,10 +36723,6 @@
         "stage": "eye-of-cthulhu",
         "via": "shop:Terraria/TravellingMerchant"
       },
-      "Terraria/Sunflower": {
-        "stage": "eye-of-cthulhu",
-        "via": "shop:Terraria/Dryad"
-      },
       "Terraria/EoCShield": {
         "stage": "eye-of-cthulhu",
         "via": "container:Terraria/EyeOfCthulhuBossBag"
@@ -38097,6 +38098,18 @@
         "via": "fishing"
       },
       "Terraria/Bladetongue": {
+        "stage": "wall-of-flesh",
+        "via": "fishing"
+      },
+      "CalamityMod/UrsaSergeant": {
+        "stage": "wall-of-flesh",
+        "via": "fishing"
+      },
+      "CalamityMod/PolarisParrotfish": {
+        "stage": "wall-of-flesh",
+        "via": "fishing"
+      },
+      "CalamityMod/GacruxianMollusk": {
         "stage": "wall-of-flesh",
         "via": "fishing"
       },
@@ -45641,30 +45654,6 @@
         "stage": "start",
         "via": "fishing"
       },
-      "CalamityMod/AldebaranAlewife": {
-        "stage": "start",
-        "via": "fishing"
-      },
-      "CalamityMod/ArcturusAstroidean": {
-        "stage": "start",
-        "via": "fishing"
-      },
-      "CalamityMod/MonolithCrate": {
-        "stage": "start",
-        "via": "fishing"
-      },
-      "CalamityMod/ProcyonidPrawn": {
-        "stage": "start",
-        "via": "fishing"
-      },
-      "CalamityMod/TwinklingPollox": {
-        "stage": "start",
-        "via": "fishing"
-      },
-      "CalamityMod/UrsaSergeant": {
-        "stage": "start",
-        "via": "fishing"
-      },
       "CalamityMod/Brimlish": {
         "stage": "start",
         "via": "fishing"
@@ -45928,10 +45917,6 @@
       "Terraria/SandcastleBucket": {
         "stage": "start",
         "via": "container:Terraria/OceanCrate"
-      },
-      "CalamityMod/AstrophageItem": {
-        "stage": "start",
-        "via": "container:CalamityMod/MonolithCrate"
       },
       "CalamityMod/ScorchedBone": {
         "stage": "start",
@@ -53833,7 +53818,27 @@
         "stage": "wall-of-flesh",
         "via": "fishing"
       },
+      "CalamityMod/AldebaranAlewife": {
+        "stage": "wall-of-flesh",
+        "via": "fishing"
+      },
+      "CalamityMod/ArcturusAstroidean": {
+        "stage": "wall-of-flesh",
+        "via": "fishing"
+      },
       "CalamityMod/AstralCrate": {
+        "stage": "wall-of-flesh",
+        "via": "fishing"
+      },
+      "CalamityMod/MonolithCrate": {
+        "stage": "wall-of-flesh",
+        "via": "fishing"
+      },
+      "CalamityMod/ProcyonidPrawn": {
+        "stage": "wall-of-flesh",
+        "via": "fishing"
+      },
+      "CalamityMod/TwinklingPollox": {
         "stage": "wall-of-flesh",
         "via": "fishing"
       },
@@ -53880,6 +53885,10 @@
       "Terraria/SoulofLight": {
         "stage": "wall-of-flesh",
         "via": "container:Terraria/HallowedFishingCrateHard"
+      },
+      "CalamityMod/AstrophageItem": {
+        "stage": "wall-of-flesh",
+        "via": "container:CalamityMod/AstralCrate"
       },
       "Terraria/CursedTorch": {
         "stage": "wall-of-flesh",
@@ -63442,9 +63451,9 @@
     },
     "unassignedVanillaNpcSourceCount": 148,
     "manualAvailabilityPriority": {
-      "automaticItems": 5428,
+      "automaticItems": 5427,
       "automaticSources": 293,
-      "automaticStations": 860,
+      "automaticStations": 859,
       "suppressed": {
         "itemStages": [
           {
@@ -63546,7 +63555,7 @@
           {
             "value": "CalamityMod/GacruxianMollusk",
             "manualStageId": "wall-of-flesh",
-            "automaticStageId": "start",
+            "automaticStageId": "wall-of-flesh",
             "via": "fishing"
           },
           {
@@ -63606,7 +63615,7 @@
           {
             "value": "CalamityMod/PolarisParrotfish",
             "manualStageId": "wall-of-flesh",
-            "automaticStageId": "start",
+            "automaticStageId": "wall-of-flesh",
             "via": "fishing"
           },
           {
@@ -63618,7 +63627,7 @@
           {
             "value": "CalamityMod/ProcyonidPrawn",
             "manualStageId": "wall-of-flesh",
-            "automaticStageId": "start",
+            "automaticStageId": "wall-of-flesh",
             "via": "fishing"
           },
           {
@@ -63702,7 +63711,7 @@
           {
             "value": "CalamityMod/UrsaSergeant",
             "manualStageId": "wall-of-flesh",
-            "automaticStageId": "start",
+            "automaticStageId": "wall-of-flesh",
             "via": "fishing"
           },
           {

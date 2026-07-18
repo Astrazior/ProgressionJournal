@@ -1523,6 +1523,41 @@
       "reason": "These are Astral biome tree fruit or legendary fishing catches; the Astral biome appears when Hardmode begins."
     },
     {
+      "id": "ursa-sergeant-combat-accessory",
+      "kind": "item-override",
+      "item": "CalamityMod/UrsaSergeant",
+      "override": {
+        "category": "Accessory",
+        "classes": [
+          "melee",
+          "ranged",
+          "magic",
+          "summoner",
+          "rogue"
+        ]
+      },
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Fishing/AstralCatches/UrsaSergeant.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-07-18",
+      "reason": "Ursa Sergeant is a combat accessory whose custom typeless claw attack is not represented by vanilla stat probes."
+    },
+    {
+      "id": "astral-infection-fishing-stage",
+      "kind": "condition-stage",
+      "sources": [
+        "fishing"
+      ],
+      "stageId": "wall-of-flesh",
+      "conditionDescriptions": [
+        "Biome: Astral Infection",
+        "Биом: Astral Infection"
+      ],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs",
+      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-06-14",
+      "reason": "Synthetic fishing probes can activate Astral Infection before it exists naturally; its catches become available only after Hardmode creates the biome."
+    },
+    {
       "id": "post-providence-brimstone-fishing",
       "kind": "item-stage",
       "item": "CalamityMod/Bloodfin",

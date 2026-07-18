@@ -1022,6 +1022,8 @@ const runtimeSnapshot = structuredClone(snapshot);
 runtimeSnapshot.version = 4;
 runtimeSnapshot.items.push(
   item("Test/RuntimeFishBlade", { damageClass: "Melee", damage: 31 }),
+  item("Test/BiomeFlooredFishBlade", { damageClass: "Melee", damage: 32 }),
+  item("Test/PreHardmodeFishBlade", { damageClass: "Melee", damage: 29 }),
   item("Test/UnknownStageFishBlade", { damageClass: "Melee", damage: 30 }),
   item("Test/RuntimeSpawnBlade", { damageClass: "Melee", damage: 32 }),
   item("Test/RuntimeEventBlade", { damageClass: "Melee", damage: 33 }),
@@ -1071,6 +1073,20 @@ runtimeSnapshot.fishing = [
     earliestStageIndex: 1,
     earliestStageName: "Boss",
     conditions: ["In runtime fishing scenario"]
+  },
+  {
+    targetType: "item",
+    target: "Test/BiomeFlooredFishBlade",
+    earliestStageIndex: 0,
+    earliestStageName: "Start",
+    conditions: ["Biome: Synthetic Late Biome"]
+  },
+  {
+    targetType: "item",
+    target: "Test/PreHardmodeFishBlade",
+    earliestStageIndex: 0,
+    earliestStageName: "Start",
+    conditions: ["World: Pre-Hardmode"]
   },
   {
     targetType: "item",
@@ -1127,6 +1143,13 @@ runtimeSnapshot.npcAvailability = [
 const runtimeManualAssignments = structuredClone(manualAssignments);
 runtimeManualAssignments.itemStages["Test/UnknownStageFishBlade"] = "boss";
 runtimeManualAssignments.sourceStages["Test/RuntimeEnemy"] = "late";
+runtimeManualAssignments.conditionStages.push({
+  stageId: "boss",
+  sources: ["fishing"],
+  sourceIds: [],
+  conditionTypes: [],
+  conditionDescriptions: ["Biome: Synthetic Late Biome"]
+});
 const runtimeManifest = structuredClone(manifest);
 runtimeManifest.events[0].enemies.push("Test/DeferredEventEnemy");
 const runtimeResult = generateProfile(
@@ -1138,6 +1161,14 @@ assert(runtimeResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "RuntimeFishBlade"
   && entry.evaluations[0].stageId === "boss"
   && entry.fishingSources[0]?.conditions[0] === "In runtime fishing scenario"));
+assert(runtimeResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "BiomeFlooredFishBlade"
+  && entry.evaluations[0].stageId === "boss"
+  && entry.fishingSources[0]?.conditions[0] === "Biome: Synthetic Late Biome"));
+assert(runtimeResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "PreHardmodeFishBlade"
+  && entry.evaluations[0].stageId === "start"
+  && entry.fishingSources[0]?.conditions[0] === "World: Pre-Hardmode"));
 assert(runtimeResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "UnknownStageFishBlade"
   && entry.evaluations[0].stageId === "boss"

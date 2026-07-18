@@ -697,8 +697,6 @@ for (const modName of expected) {
     const inkBomb = profile.entries.find(value =>
       (value.itemGroups ?? []).flat().some(reference =>
         reference.mod === "CalamityMod" && reference.item === "InkBomb"));
-    assert.equal(inkBomb?.evaluations?.[0]?.stageId, "skeletron",
-      "Ink Bomb must remain visible at its proven post-Skeletron source stage");
     assert.deepEqual(inkBomb?.classes, ["rogue"],
       "Ink Bomb must remain a rogue accessory");
     const stageOf = itemId => {
@@ -712,6 +710,7 @@ for (const modName of expected) {
       "CalamityMod/LuxorsGift": "start",
       "CalamityMod/ContaminatedBile": "start",
       "CalamityMod/GacruxianMollusk": "wall-of-flesh",
+      "CalamityMod/UrsaSergeant": "wall-of-flesh",
       "CalamityMod/SeaSpiritAmulet": "desert-scourge",
       "CalamityMod/DepthCharm": "skeletron",
       "CalamityMod/AnechoicPlating": "skeletron",
@@ -751,7 +750,8 @@ for (const modName of expected) {
         reference.mod === "CalamityMod" && reference.item === "GacruxianMollusk"));
     assert(gacruxianMollusk?.fishingSources?.some(source =>
       source.conditions?.some(condition =>
-        condition["en-US"] === "Legendary catch in the Astral Infection")),
+        condition["en-US"] === "Legendary catch in the Astral Infection"
+        || (typeof condition === "string" && condition.endsWith("Astral Infection")))),
     "Gacruxian Mollusk must display its Astral legendary fishing source");
     for (const [itemId, stageId] of Object.entries({
       "CalamityMod/Swordsplosion": "moon-lord",

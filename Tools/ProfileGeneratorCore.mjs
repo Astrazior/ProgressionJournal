@@ -480,9 +480,10 @@ function generateProfileCore(
       }
     }
     for (const [itemId, catches] of fishingByItem) {
-      const observedCatch = catches.find(catchRecord =>
-        catchRecord.earliestStageIndex >= 0
-        && catchRecord.earliestStageIndex <= stageIndex);
+      const observedCatch = catches.find(catchRecord => {
+        const catchStageIndex = fishingCatchStageIndex(catchRecord, manifest, stageIndexes);
+        return catchStageIndex >= 0 && catchStageIndex <= stageIndex;
+      });
       if (observedCatch) {
         unlockAtStage(itemId, stage.id, "fishing");
       }
@@ -1277,15 +1278,43 @@ function assignedConditionStageIndex(
   stageIndexes) {
   const indexes = [
     inferredConditionStageIndex(condition, manifest, stageIndexes),
-    ...(manifest.conditionUnlocks ?? [])
+    configuredConditionStageIndex(
+      condition,
+      sourceKind,
+      source,
+      manifest,
+      stageIndexes)
+  ]
+    .filter(index => index >= 0);
+  return indexes.length === 0 ? -1 : Math.max(...indexes);
+}
+
+function configuredConditionStageIndex(
+  condition,
+  sourceKind,
+  source,
+  manifest,
+  stageIndexes) {
+  const indexes = (manifest.conditionUnlocks ?? [])
     .filter(rule =>
       (rule.sources ?? ["drop", "shop", "recipe"]).includes(sourceKind)
       && ((rule.sourceIds ?? []).length === 0 || rule.sourceIds.includes(source))
       && conditionMatchesUnlockRule(condition, rule))
     .map(rule => stageIndexes.get(rule.stageId) ?? -1)
-  ]
     .filter(index => index >= 0);
   return indexes.length === 0 ? -1 : Math.max(...indexes);
+}
+
+function fishingCatchStageIndex(catchRecord, manifest, stageIndexes) {
+  const conditionStageIndexes = (catchRecord.conditions ?? [])
+    .map(condition => configuredConditionStageIndex(
+      typeof condition === "string" ? { description: condition } : condition,
+      "fishing",
+      catchRecord.target,
+      manifest,
+      stageIndexes))
+    .filter(index => index >= 0);
+  return Math.max(catchRecord.earliestStageIndex ?? -1, ...conditionStageIndexes);
 }
 
 function conditionHasAssignment(condition, sourceKind, source, manifest) {

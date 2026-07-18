@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bosses",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-07-14T12:38:08.074Z",
+  "generatedAtUtc": "2026-07-18T11:24:13.370Z",
   "requiredMods": [
     {
       "name": "CalamityMod",
@@ -29874,7 +29874,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -30571,7 +30571,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -81677,6 +81677,46 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.ursasergeant",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "UrsaSergeant",
+            "displayName": "Ursa Sergeant"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "wall-of-flesh",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [
+        {
+          "conditions": [
+            "Жидкость: Вода",
+            "Биом: Astral Infection"
+          ]
+        }
+      ],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.v8engine",
       "category": "Accessory",
       "classes": [
@@ -82427,6 +82467,28 @@
     }
   ],
   "combatBuffs": [
+    {
+      "key": "new.terraria.sunflower",
+      "category": "Passive",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Sunflower",
+            "displayName": "Подсолнух"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
     {
       "key": "new.terraria.burger",
       "category": "Food",
@@ -84944,28 +85006,6 @@
             "mod": "CalamityMod",
             "item": "ShroomBowl",
             "displayName": "Shroom Bowl"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.sunflower",
-      "category": "Passive",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "eye-of-cthulhu",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "Sunflower",
-            "displayName": "Подсолнух"
           }
         ]
       ],
