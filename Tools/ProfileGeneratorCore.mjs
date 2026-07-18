@@ -1311,7 +1311,7 @@ function inferredConditionStageIndex(condition, manifest, stageIndexes) {
   if (typeIndex >= 0) return typeIndex;
 
   if (type === "ProgressionJournal.AfterProgression") {
-    const match = /^(?:available after stage|доступно после этапа):?\s*(.+)$/u.exec(description);
+    const match = /^(?:available after(?: stage)?|доступно после этапа):?\s*(.+)$/u.exec(description);
     if (match) {
       const target = match[1];
       const targetStage = manifest.stages.find(stage =>
@@ -1359,10 +1359,10 @@ function inferredConditionStageIndex(condition, manifest, stageIndexes) {
   if (/shadow orb|crimson heart|тенев(?:ой|ую) сфер|багрян(?:ого|ое) серд/u.test(description)) {
     return worldEvilIndex;
   }
-  if (/pirate invasion|вторжен(?:ия|ием) пират/u.test(description)) {
+  if (/pirate invasion|after defeating (?:the )?pirates|вторжен(?:ия|ием) пират/u.test(description)) {
     return hardmodeIndex;
   }
-  if (/martian madness|марсианск(?:им|ого) безуми/u.test(description)) {
+  if (/martian madness|after defeating (?:the )?martians|марсианск(?:им|ого) безуми/u.test(description)) {
     return golemIndex;
   }
   if (isCelestialPillarCondition(description)) {
@@ -1424,6 +1424,9 @@ function inferConditionTypeStageIndex(type, manifest, stageIndexes) {
   if (type.endsWith("+DownedAllMechBosses") || type.endsWith("+MechdusaKill")) {
     return stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss3", "skeletron-prime");
   }
+  if (type.endsWith("+OneMechDefated")) {
+    return stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer");
+  }
   return -1;
 }
 
@@ -1458,12 +1461,14 @@ function isProgressionNeutralCondition(condition) {
       || /^не в генерации мира /u.test(description)) {
     return true;
   }
-  if (/blood moon|solar eclipse|halloween|ночью|дн[её]м|кровав(?:ой|ая) лун|солнечн(?:ого|ое) затмени|луны|лун[аеы]|полнолуни|четверт|новолуни|graveyard|кладбищ|honey|water|lava|м[её]д|вод[ауы]|лав[аы]|snow|снег|biome|бестиар|bestiary|happy|pylon|пилон|достаточно счастлив|wave|волны|хэллоуин|императриц[аы] света атакована в дневное время|выпадает в порче/u.test(description)) {
+  if (/blood moon|solar eclipse|halloween|during daytime|at night|not currently alive|\b(?:full|new|waxing|waning|quarter|gibbous|crescent) moon\b|ночью|дн[её]м|кровав(?:ой|ая) лун|солнечн(?:ого|ое) затмени|луны|лун[аеы]|полнолуни|четверт|новолуни|graveyard|кладбищ|honey|water|lava|м[её]д|вод[ауы]|лав[аы]|snow|снег|biome|бестиар|bestiary|happy|pylon|пилон|достаточно счастлив|wave|волны|хэллоуин|императриц[аы] света атакована в дневное время|выпадает в порче/u.test(description)) {
     return true;
   }
   if (type === "Terraria.Condition"
       && (/^between \d/u.test(description)
           || /^player is in /u.test(description)
+          || /^in a world with /u.test(description)
+          || /^not in a remix world$/u.test(description)
           || /^world (?:with|has) /u.test(description)
           || /^мир с /u.test(description)
           || /^enabled in .* configuration$/u.test(description))) {
@@ -1495,7 +1500,7 @@ function isOneTimeUseEligibilityCondition(condition) {
   const type = condition.type ?? "";
   const description = normalizeConditionText(condition.description);
   return /(?:^|\+)NotUsed[A-Za-z0-9_]*$/u.test(type)
-    || /(?:has not|hasn't|not yet) used (?:the )?item|ещ[её] не (?:успел )?использова|не успел использовать предмет/u.test(description);
+    || /(?:has not|hasn't|not yet) (?:used (?:the )?item|consumed .+ before)|ещ[её] не (?:успел )?использова|не успел использовать предмет/u.test(description);
 }
 
 function isPermanentShimmerUpgrade(item, context) {
@@ -1530,8 +1535,10 @@ function isDefaultExcludedVariantCondition(condition) {
   if (type === "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed"
       || type === "Terraria.GameContent.ItemDropRules.Conditions+RemixSeedEasymode"
       || type === "Terraria.GameContent.ItemDropRules.Conditions+RemixSeedHardmode"
+      || type.endsWith("+Unofficial")
       || type === "Terraria.GameContent.ItemDropRules.Conditions+DontStarveIsUp") return true;
-  return /zenith|get fixed boi|gfb|celebration|mk 10|don't starve|dontstarve|^в генерации мира [«"]?(?:zenith|remix|celebration|get fixed boi)|^in world generation [«"]?(?:zenith|remix|celebration|get fixed boi)/u.test(description);
+  return /^in (?:an? )?(?:remix|unoffifical) worlds?$/u.test(description)
+    || /zenith|get fixed boi|gfb|celebration|mk 10|don't starve|dontstarve|^в генерации мира [«"]?(?:zenith|remix|celebration|get fixed boi)|^in world generation [«"]?(?:zenith|remix|celebration|get fixed boi)/u.test(description);
 }
 
 function isSafeOpaqueDropCondition(condition, context) {
@@ -1572,7 +1579,7 @@ function conditionDependencyIds(condition, manifest) {
 function extractConditionDependencyNames(condition) {
   const description = normalizeConditionText(condition.description);
   const patterns = [
-    /(?:while holding|when holding|when in inventory|when carried|inventory contains|когда в инвентаре находится|если в инвентаре есть|при наличии)\s+(?:a |an |the )?(.+)$/u
+    /(?:while holding|when holding|when in inventory|when carried|when the player has|inventory contains|когда в инвентаре находится|если в инвентаре есть|при наличии)\s+(?:a |an |the )?(.+?)(?:\s+in (?:their|the) inventory)?$/u
   ];
   const names = [];
   for (const pattern of patterns) {

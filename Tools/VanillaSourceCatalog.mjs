@@ -181,6 +181,7 @@ const START_ITEMS = [
   "Terraria/VilePowder",
   "Terraria/ViciousPowder",
   "Terraria/AbigailsFlower",
+  "Terraria/Sunflower",
   "Terraria/Seed"
 ];
 
@@ -732,6 +733,7 @@ const START_VISIBLE_ITEMS = [
   "Terraria/HorseshoeBundle",
   "Terraria/PainterPaintballGun",
   "Terraria/AbigailsFlower",
+  "Terraria/Sunflower",
   "Terraria/Seed"
 ];
 

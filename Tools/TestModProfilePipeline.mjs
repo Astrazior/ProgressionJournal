@@ -1188,6 +1188,7 @@ assert(vanillaSources.initialStations.includes("Terraria/Hellforge"));
 assert(vanillaSources.initialStations.includes("Terraria/Tombstones"));
 assert(vanillaSources.initialItems.includes("Terraria/PinkGel"));
 assert(vanillaSources.initialItems.includes("Terraria/AbigailsFlower"));
+assert(vanillaSources.initialItems.includes("Terraria/Sunflower"));
 assert(vanillaSources.initialItems.includes("Terraria/Seed"));
 assert(vanillaSources.initialItems.includes("Terraria/JungleRose"));
 assert(vanillaSources.initialItems.includes("Terraria/GlowingMushroom"));
@@ -1196,6 +1197,7 @@ assert(!vanillaSources.initialItems.includes("Terraria/Grapes"),
   "Hardmode enemy drops must not be treated as initially available");
 assert(vanillaSources.initialVisibleItems.includes("Terraria/Shroomerang"));
 assert(vanillaSources.initialVisibleItems.includes("Terraria/AbigailsFlower"));
+assert(vanillaSources.initialVisibleItems.includes("Terraria/Sunflower"));
 assert(vanillaSources.initialVisibleItems.includes("Terraria/Seed"));
 assert(vanillaSources.stages[0].enemies?.includes("Terraria/GiantWormHead"));
 assert(vanillaSources.stages[0].shops?.includes("Terraria/TravellingMerchant"));

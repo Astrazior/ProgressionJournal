@@ -1238,4 +1238,83 @@ assert.equal(
   compoundBossConditionResult.report.paths["Test/ConjunctiveBlade"]?.stage,
   "skeletron");
 
+const englishConditionSnapshot = structuredClone(compoundBossConditionSnapshot);
+englishConditionSnapshot.items.push(
+  {
+    id: "Test/InventoryAmmo",
+    name: "Inventory Ammo",
+    damageClass: "Test/Ranged",
+    damage: 1,
+    accessory: false
+  },
+  {
+    id: "Test/InventoryWeapon",
+    name: "Inventory Weapon",
+    damageClass: "Test/Ranged",
+    damage: 10,
+    accessory: false
+  },
+  {
+    id: "Test/MoonItem",
+    name: "Moon Item",
+    damageClass: "Test/Melee",
+    damage: 10,
+    accessory: false
+  },
+  {
+    id: "Test/OneTimeItem",
+    name: "One Time Item",
+    damageClass: "Test/Melee",
+    damage: 10,
+    accessory: false
+  });
+englishConditionSnapshot.shops = [
+  {
+    npc: "Terraria/TravellingMerchant",
+    item: "Test/InventoryWeapon",
+    conditions: [],
+    observed: true,
+    earliestStageIndex: 0
+  },
+  {
+    npc: "Terraria/TravellingMerchant",
+    item: "Test/InventoryAmmo",
+    conditions: [{
+      type: "Terraria.Condition",
+      description: "When the player has an Inventory Weapon in their inventory"
+    }],
+    observed: false,
+    earliestStageIndex: -1
+  },
+  {
+    npc: "Terraria/TravellingMerchant",
+    item: "Test/MoonItem",
+    conditions: [{
+      type: "Terraria.Condition",
+      description: "During a waning gibbous moon"
+    }, {
+      type: "Test.ActiveEncounterCondition",
+      description: "If the boss is not currently alive"
+    }],
+    observed: false,
+    earliestStageIndex: -1
+  },
+  {
+    npc: "Terraria/TravellingMerchant",
+    item: "Test/OneTimeItem",
+    conditions: [{
+      type: "Terraria.Condition",
+      description: "When the player has not consumed a One Time Item before"
+    }],
+    observed: false,
+    earliestStageIndex: -1
+  }
+];
+const englishConditionResult = generateProfile(
+  englishConditionSnapshot,
+  compoundBossConditionManifest);
+assert.equal(englishConditionResult.report.paths["Test/InventoryAmmo"]?.stage, "start");
+assert.equal(englishConditionResult.report.paths["Test/MoonItem"]?.stage, "start");
+assert.equal(englishConditionResult.report.paths["Test/OneTimeItem"]?.stage, "start");
+
 console.log("Profile generator tests: OK");
