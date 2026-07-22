@@ -1,5 +1,6 @@
 using ProgressionJournal.Commands;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ProgressionJournal.Data.Snapshots.Collectors;
@@ -18,7 +19,9 @@ internal static class JournalSnapshotWorldContainerCollector
                 drop.DropRate,
                 drop.StackMin,
                 drop.StackMax,
-                []))
+                drop.ConditionLocalizationKeys
+                    .Select(static key => new SnapshotCondition(key, Language.GetTextValue(key)))
+                    .ToList()))
             .ToList();
     }
 

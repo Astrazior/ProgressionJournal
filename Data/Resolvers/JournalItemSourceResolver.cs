@@ -263,7 +263,7 @@ public static class JournalItemSourceResolver
             source.DropRate,
             source.StackMin,
             source.StackMax,
-            conditions: [])));
+            source.ConditionLocalizationKeys.Select(static key => Language.GetTextValue(key)))));
     }
 
     private static void AppendExactSources(List<JournalDropSource> drops, int targetItemId)

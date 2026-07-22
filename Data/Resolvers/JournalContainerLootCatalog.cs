@@ -33,6 +33,7 @@ public static class JournalContainerLootCatalog
         ["CalamityMod/AbyssTreasureChest"] = new SourcePresentation("Abyss Treasure Chest", ["CalamityMod/AbyssTreasureChest", "CalamityMod/AncientTreasureChest"]),
         ["CalamityMod/AstralChest"] = new SourcePresentation("Astral Chest", ["CalamityMod/AstralChest"]),
         ["CalamityMod/RustyChest"] = new SourcePresentation("Rusty Chest", ["CalamityMod/RustyChest"]),
+        ["CalamityMod/SecurityChest"] = new SourcePresentation("Security Chest (Underworld Bio-center Lab)", ["CalamityMod/SecurityChest"]),
         ["ThoriumMod/AquaticDepthsBiomeChest"] = new SourcePresentation("Aquatic Depths Biome Chest", ["ThoriumMod/AquaticDepthsBiomeChest", "ThoriumMod/DepthChest"]),
         ["ThoriumMod/UnderworldBiomeChest"] = new SourcePresentation("Underworld Biome Chest", ["ThoriumMod/UnderworldBiomeChest"]),
         ["AAModClassic/GreedChest"] = new SourcePresentation("Locked Greed Chest", ["AAModClassic/GreedChest"]),
@@ -53,6 +54,7 @@ public static class JournalContainerLootCatalog
                 entry.DropRate,
                 entry.StackMin,
                 entry.StackMax,
+                entry.ConditionLocalizationKeys.ToArray(),
                 entry.Provenance))
             .ToArray();
     }
@@ -68,6 +70,7 @@ public static class JournalContainerLootCatalog
                 entry.DropRate,
                 entry.StackMin,
                 entry.StackMax,
+                entry.ConditionLocalizationKeys.ToArray(),
                 entry.Provenance))
             .ToArray();
     }
@@ -391,6 +394,16 @@ public static class JournalContainerLootCatalog
 
     private static void AddCalamity(ICollection<EntryBuilder> builders)
     {
+        AddDrop(
+            builders,
+            "calamitymod-wiki.gg/murasama",
+            "CalamityMod/SecurityChest",
+            "Security Chest (Underworld Bio-center Lab)",
+            ["CalamityMod/SecurityChest"],
+            "CalamityMod/Murasama",
+            1f,
+            conditionLocalizationKeys: ["Mods.ProgressionJournal.UI.MurasamaSecurityChestCondition"]);
+
         AddEqualPool(
             builders,
             "calamitymod-wiki.gg/rusty-chest",
@@ -565,6 +578,7 @@ public static class JournalContainerLootCatalog
             builder.DropRate,
             builder.StackMin,
             builder.StackMax,
+            builder.ConditionLocalizationKeys,
             builder.Provenance);
     }
 
@@ -592,7 +606,8 @@ public static class JournalContainerLootCatalog
         string targetReference,
         float dropRate,
         int stackMin = 1,
-        int stackMax = 1)
+        int stackMax = 1,
+        IReadOnlyList<string>? conditionLocalizationKeys = null)
     {
         var sourcePresentation = ResolveSourcePresentation(sourceReference, sourceDisplayName, sourceItemReferences);
         builders.Add(new EntryBuilder(
@@ -603,6 +618,7 @@ public static class JournalContainerLootCatalog
             dropRate,
             stackMin,
             stackMax,
+            conditionLocalizationKeys ?? [],
             provenance));
     }
 
@@ -675,6 +691,7 @@ public static class JournalContainerLootCatalog
         float DropRate,
         int StackMin,
         int StackMax,
+        IReadOnlyList<string> ConditionLocalizationKeys,
         string Provenance);
 
     private sealed record Entry(
@@ -686,6 +703,7 @@ public static class JournalContainerLootCatalog
         float DropRate,
         int StackMin,
         int StackMax,
+        IReadOnlyList<string> ConditionLocalizationKeys,
         string Provenance);
 }
 
@@ -696,6 +714,7 @@ public sealed record JournalContainerLootSource(
     float DropRate,
     int StackMin,
     int StackMax,
+    string[] ConditionLocalizationKeys,
     string Provenance);
 
 public sealed record JournalContainerLootDrop(
@@ -706,6 +725,7 @@ public sealed record JournalContainerLootDrop(
     float DropRate,
     int StackMin,
     int StackMax,
+    string[] ConditionLocalizationKeys,
     string Provenance);
 
 public sealed record JournalContainerLootCatalogProblem(

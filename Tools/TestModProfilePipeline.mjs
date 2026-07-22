@@ -123,6 +123,9 @@ const itemSourceResolverSource = fs.readFileSync(
 const containerLootCatalogSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalContainerLootCatalog.cs"),
   "utf8");
+const worldContainerCollectorSource = fs.readFileSync(
+  path.join(root, "Data", "Snapshots", "Collectors", "JournalSnapshotWorldContainerCollector.cs"),
+  "utf8");
 const legacyDirectDropAnalyzerSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalLegacyDirectDropAnalyzer.cs"),
   "utf8");
@@ -157,9 +160,16 @@ assert(containerLootCatalogSource.includes("JournalContainerLootCatalog")
   && containerLootCatalogSource.includes("\"Terraria/DarkLance\"")
   && containerLootCatalogSource.includes("\"CalamityMod/AbyssTreasureChest\"")
   && containerLootCatalogSource.includes("\"CalamityMod/RustyChest\"")
+  && containerLootCatalogSource.includes("\"CalamityMod/SecurityChest\"")
+  && containerLootCatalogSource.includes("\"CalamityMod/Murasama\"")
+  && containerLootCatalogSource.includes("MurasamaSecurityChestCondition")
   && containerLootCatalogSource.includes("\"CalamityMod/EffigyOfDecay\"")
   && containerLootCatalogSource.includes("\"CalamityMod/RustyBeaconPrototype\""),
   "Container loot must come from a strict multi-mod catalog instead of a generated-world sample");
+assert(itemSourceResolverSource.includes("source.ConditionLocalizationKeys")
+  && worldContainerCollectorSource.includes("new SnapshotCondition(key, Language.GetTextValue(key))")
+  && russianLocalizationSource.includes("Мурасама находится только в сундуке безопасности лаборатории Биоцентра в Преисподней."),
+  "Murasama's 100% Security Chest source must remain scoped to the Underworld Bio-center Arsenal Lab");
 assert(!itemSourceResolverSource.includes("JournalGeneratedContainerSourceSystem")
   && !itemSourceResolverSource.includes("Main.chest"),
   "Journal UI item sources must not fall back to scanning the current world's chests");
