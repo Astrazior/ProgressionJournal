@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.UI.Chat;
 
 namespace ProgressionJournal.UI.Visuals.Elements;
 
@@ -11,20 +12,23 @@ internal static class JournalTooltip
     private const float TextScale = 1f;
     private const int Padding = 10;
     private const int Offset = 16;
+    private const int FramedTextPadding = 12;
+    private const int FramedTextGap = 8;
 
     private static string? _pendingText;
+    private static string? _pendingFramedText;
 
-    public static void Request(string? text)
+    public static void Request(string? text, string? framedText = null)
     {
-        if (!string.IsNullOrWhiteSpace(text))
-        {
-            _pendingText = text;
-        }
+        if (string.IsNullOrWhiteSpace(text)) return;
+        _pendingText = text;
+        _pendingFramedText = framedText;
     }
 
     public static void Clear()
     {
         _pendingText = null;
+        _pendingFramedText = null;
     }
 
     public static bool DrawPending(SpriteBatch spriteBatch)
@@ -34,24 +38,37 @@ internal static class JournalTooltip
             return true;
         }
 
-        Draw(spriteBatch, _pendingText);
+        Draw(spriteBatch, _pendingText, _pendingFramedText);
         _pendingText = null;
+        _pendingFramedText = null;
         return true;
     }
 
-    private static void Draw(SpriteBatch spriteBatch, string text)
+    private static void Draw(SpriteBatch spriteBatch, string text, string? framedText)
     {
-        var font = FontAssets.MouseText.Value;
-        var lines = JournalTextUtilities.WrapToPixelWidth(text, MaxWidth, TextScale);
-        if (lines.Count == 0)
+        var mainText = CreateTextBlock(text, MaxWidth);
+        if (mainText.Snippets.Length == 0)
         {
             return;
         }
 
-        var lineHeight = font.LineSpacing * TextScale;
-        var textWidth = lines.Max(line => font.MeasureString(line).X * TextScale);
-        var width = (int)MathF.Ceiling(textWidth) + Padding * 2;
-        var height = (int)MathF.Ceiling(lineHeight * lines.Count) + Padding * 2;
+        var framedTextMaxWidth = MaxWidth - FramedTextPadding * 2;
+        var framedTextBlock = string.IsNullOrWhiteSpace(framedText)
+            ? TextBlock.Empty
+            : CreateTextBlock(framedText, framedTextMaxWidth);
+        var framedTextWidth = framedTextBlock.Snippets.Length == 0
+            ? 0f
+            : framedTextBlock.Size.X + FramedTextPadding * 2;
+        var contentWidth = MathF.Max(mainText.Size.X, framedTextWidth);
+        var width = (int)MathF.Ceiling(contentWidth) + Padding * 2;
+        var mainTextHeight = mainText.Size.Y;
+        var framedTextHeight = framedTextBlock.Snippets.Length == 0
+            ? 0f
+            : framedTextBlock.Size.Y + FramedTextPadding * 2;
+        var framedSectionHeight = framedTextBlock.Snippets.Length == 0
+            ? 0f
+            : FramedTextGap + framedTextHeight;
+        var height = (int)MathF.Ceiling(mainTextHeight + framedSectionHeight) + Padding * 2;
         var mouse = Main.MouseScreen;
         var x = mouse.X + Offset;
         var y = mouse.Y + Offset;
@@ -74,17 +91,72 @@ internal static class JournalTooltip
             new Rectangle((int)x, (int)y, width, height),
             JournalUiTheme.PresetPanelBorder);
 
-        for (var index = 0; index < lines.Count; index++)
+        DrawTextBlock(
+            spriteBatch,
+            mainText,
+            new Vector2(x + Padding, y + Padding),
+            MaxWidth);
+
+        if (framedTextBlock.Snippets.Length == 0)
         {
-            Utils.DrawBorderStringFourWay(
-                spriteBatch,
-                font,
-                lines[index],
-                x + Padding,
-                y + Padding + index * lineHeight,
-                JournalUiTheme.ContentDescriptionText,
-                Color.Black * 0.75f,
-                Vector2.Zero);
+            return;
         }
+
+        var framedBounds = new Rectangle(
+            (int)x + Padding,
+            (int)MathF.Ceiling(y + Padding + mainTextHeight + FramedTextGap),
+            width - Padding * 2,
+            (int)MathF.Ceiling(framedTextHeight));
+        JournalSourceCardRenderer.Draw(
+            spriteBatch,
+            framedBounds,
+            JournalUiTheme.GetCategoryStyle(JournalItemCategory.Armor).Border,
+            highlighted: true);
+
+        DrawTextBlock(
+            spriteBatch,
+            framedTextBlock,
+            new Vector2(
+                framedBounds.X + FramedTextPadding,
+                framedBounds.Y + FramedTextPadding),
+            framedTextMaxWidth);
+    }
+
+    private static TextBlock CreateTextBlock(string text, float maxWidth)
+    {
+        var snippets = ChatManager
+            .ParseMessage(text, JournalUiTheme.ContentDescriptionText)
+            .ToArray();
+        ChatManager.ConvertNormalSnippets(snippets);
+        var size = ChatManager.GetStringSize(
+            FontAssets.MouseText.Value,
+            snippets,
+            new Vector2(TextScale),
+            maxWidth);
+        return new TextBlock(snippets, size);
+    }
+
+    private static void DrawTextBlock(
+        SpriteBatch spriteBatch,
+        TextBlock textBlock,
+        Vector2 position,
+        float maxWidth)
+    {
+        ChatManager.DrawColorCodedStringWithShadow(
+            spriteBatch,
+            FontAssets.MouseText.Value,
+            textBlock.Snippets,
+            position,
+            0f,
+            Vector2.Zero,
+            new Vector2(TextScale),
+            out _,
+            maxWidth,
+            2f);
+    }
+
+    private readonly record struct TextBlock(TextSnippet[] Snippets, Vector2 Size)
+    {
+        public static TextBlock Empty { get; } = new([], Vector2.Zero);
     }
 }

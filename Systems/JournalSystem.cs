@@ -54,6 +54,8 @@ public sealed class JournalSystem : ModSystem
 
     public string? ActiveBuildSlotKey { get; private set; }
 
+    internal JournalArmorSetFamily? ActiveArmorSet { get; private set; }
+
     public string? EditingBuildName => _editingBuild?.Name;
 
     private readonly Dictionary<string, int> _buildSelections = new();
@@ -91,6 +93,7 @@ public sealed class JournalSystem : ModSystem
         HasSelectedClass = false;
 
         ActiveBuildSlotKey = null;
+        ActiveArmorSet = null;
         _editingBuild = null;
         _exportingBuild = null;
         SharedBuildPreview = null;
@@ -177,6 +180,7 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildExportDialog = false;
         ShowingProfileManager = false;
         ActiveBuildSlotKey = null;
+        ActiveArmorSet = null;
         _editingBuild = null;
         _exportingBuild = null;
         SharedBuildPreview = null;
@@ -192,6 +196,7 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildSaveDialog = false;
         ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
+        ActiveArmorSet = null;
         _editingBuild = null;
         _exportingBuild = null;
         SharedBuildPreview = null;
@@ -203,6 +208,7 @@ public sealed class JournalSystem : ModSystem
     {
         var classOrder = JournalProfileRegistry.Active.Classes.Select(static value => value.Id).ToArray();
         SelectedClassId = Cycle(classOrder, SelectedClassId, direction);
+        ActiveArmorSet = null;
         RefreshView();
     }
 
@@ -226,6 +232,7 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildSaveDialog = false;
         ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
+        ActiveArmorSet = null;
         _editingBuild = null;
         _exportingBuild = null;
         CoerceBuildSelections();
@@ -239,6 +246,7 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildSaveDialog = false;
         ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
+        ActiveArmorSet = null;
         _editingBuild = null;
         _exportingBuild = null;
         RefreshView();
@@ -247,6 +255,7 @@ public sealed class JournalSystem : ModSystem
     public void CycleStage(int direction)
     {
         SelectedStageId = Cycle(GetAvailableStageOrder(), SelectedStageId, direction);
+        ActiveArmorSet = null;
         RefreshView();
     }
 
@@ -268,6 +277,7 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildSaveDialog = false;
         ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
+        ActiveArmorSet = null;
         _editingBuild = null;
         _exportingBuild = null;
         CoerceBuildSelections();
@@ -281,6 +291,7 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildSaveDialog = false;
         ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
+        ActiveArmorSet = null;
         _editingBuild = null;
         _exportingBuild = null;
         CoerceBuildSelections();
@@ -301,6 +312,7 @@ public sealed class JournalSystem : ModSystem
         ShowingPresets = false;
         ShowingBuildBuilder = false;
         ActiveBuildSlotKey = null;
+        ActiveArmorSet = null;
         _editingBuild = null;
         _exportingBuild = null;
         _buildSelections.Clear();
@@ -314,6 +326,7 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildSaveDialog = false;
         ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
+        ActiveArmorSet = null;
         RefreshView();
     }
 
@@ -332,6 +345,7 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildExportDialog = false;
         ShowingProfileManager = false;
         ActiveBuildSlotKey = null;
+        ActiveArmorSet = null;
         _editingBuild = null;
         _exportingBuild = null;
         RefreshView();
@@ -345,6 +359,7 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildSaveDialog = false;
         ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
+        ActiveArmorSet = null;
         _editingBuild = null;
         _exportingBuild = null;
         JournalBuildStorage.Reload();
@@ -359,6 +374,7 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildSaveDialog = false;
         ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
+        ActiveArmorSet = null;
         _editingBuild = null;
         _exportingBuild = null;
         RefreshView();
@@ -421,6 +437,26 @@ public sealed class JournalSystem : ModSystem
         RefreshView();
     }
 
+    internal void OpenArmorSet(JournalArmorSetFamily armorSet)
+    {
+        ArgumentNullException.ThrowIfNull(armorSet);
+
+        ActiveArmorSet = armorSet;
+        SelectedItemId = armorSet.Variants[0].IconItemId;
+        RefreshView();
+    }
+
+    internal void CloseArmorSet()
+    {
+        if (ActiveArmorSet is null)
+        {
+            return;
+        }
+
+        ActiveArmorSet = null;
+        RefreshView();
+    }
+
     public void ClearSelectedItem()
     {
         if (SelectedItemId == ItemID.None)
@@ -450,7 +486,8 @@ public sealed class JournalSystem : ModSystem
             ShowingBuildBuilder,
             ProgressionModeEnabled,
             HasSelectedClass,
-            SelectedItemId);
+            SelectedItemId,
+            ActiveArmorSet);
     }
 
     public void OpenBuildSlot(string slotKey)
@@ -800,6 +837,7 @@ public sealed class JournalSystem : ModSystem
         ShowingBuildSaveDialog = false;
         ShowingBuildExportDialog = false;
         ActiveBuildSlotKey = null;
+        ActiveArmorSet = null;
         _editingBuild = null;
         _exportingBuild = null;
         SharedBuildPreview = null;

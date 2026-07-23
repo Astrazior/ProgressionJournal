@@ -23,7 +23,7 @@ public sealed class JournalEntrySlot : UIElement
     private const int SupportIconSize = 12;
     private const int SupportIconPadding = 3;
 
-    private readonly JournalStageEntry _entry;
+    private readonly JournalItemGroup[] _sourceGroups;
     private readonly Item[][] _itemGroups;
     private readonly int? _eventBadgeFrame;
     private readonly Asset<Texture2D>? _eventIcon;
@@ -32,35 +32,49 @@ public sealed class JournalEntrySlot : UIElement
     private readonly string? _supportLabel;
     private readonly Action<int>? _onItemSelected;
     private readonly Color _blockAccent;
+    private readonly bool _hasEvent;
+    private readonly bool _isSupportWeapon;
 
     public JournalEntrySlot(
         JournalStageEntry entry,
         Color blockAccent,
-        Action<int>? onItemSelected = null)
+        Action<int>? onItemSelected = null) : this(
+        entry.Entry.ItemGroups,
+        blockAccent,
+        onItemSelected)
     {
-        _entry = entry;
-        _onItemSelected = onItemSelected;
-        _blockAccent = blockAccent;
-        _itemGroups = entry.Entry.ItemGroups
-            .Select(group => group.ItemIds.Select(JournalItemUtilities.CreateItem).ToArray())
-            .ToArray();
         if (entry.Entry.EventCategory is { } eventCategory)
         {
+            _hasEvent = true;
             _eventBadgeFrame = eventCategory.GetBestiaryFilterFrame();
             _eventLabel = eventCategory.GetDisplayName();
         }
         else if (!string.IsNullOrWhiteSpace(entry.Entry.CustomEventName))
         {
+            _hasEvent = true;
             _eventLabel = entry.Entry.CustomEventName;
             _hasCustomEvent = true;
             _eventIcon = TryResolveEventIcon(entry.Entry.EventIcon);
         }
 
-        if (entry.Entry.IsSupportWeapon)
+        _isSupportWeapon = entry.Entry.IsSupportWeapon;
+        if (_isSupportWeapon)
         {
             _supportLabel = Language.GetTextValue("Mods.ProgressionJournal.UI.SupportWeaponTag");
         }
+    }
 
+    internal JournalEntrySlot(
+        IReadOnlyList<JournalItemGroup> itemGroups,
+        Color blockAccent,
+        Action<int>? onItemSelected = null)
+    {
+        _sourceGroups = itemGroups.ToArray();
+        _onItemSelected = onItemSelected;
+        _blockAccent = blockAccent;
+        _itemGroups = _sourceGroups
+            .Select(group => group.ItemIds.Select(JournalItemUtilities.CreateItem).ToArray())
+            .ToArray();
         Width.Set(GetVisualWidth(_itemGroups.Length), 0f);
         Height.Set(TextureAssets.InventoryBack9.Height(), 0f);
         OnLeftClick += HandleLeftClick;
@@ -106,7 +120,7 @@ public sealed class JournalEntrySlot : UIElement
                 DrawSupportBadge(spriteBatch, slotPosition);
                 DrawEventBadge(spriteBatch, slotPosition);
 
-                if (_entry.Entry.ItemGroups[index].HasAlternatives)
+                if (_sourceGroups[index].HasAlternatives)
                 {
                     DrawAlternativeMarker(spriteBatch, slotPosition);
                 }
@@ -128,7 +142,7 @@ public sealed class JournalEntrySlot : UIElement
         }
 
         var hoverItem = GetDisplayedItem(hoveredIndex).Clone();
-        var hoverName = _entry.Entry.ItemGroups[hoveredIndex].GetDisplayName();
+        var hoverName = _sourceGroups[hoveredIndex].GetDisplayName();
         var tagLabels = new List<string>(2);
 
         if (!string.IsNullOrWhiteSpace(_eventLabel))
@@ -205,8 +219,7 @@ public sealed class JournalEntrySlot : UIElement
 
     private void DrawVanillaSlot(SpriteBatch spriteBatch, ref Item displayItem, Vector2 slotPosition)
     {
-        var hasEvent = _entry.Entry.EventCategory is not null || _hasCustomEvent;
-        var accent = hasEvent
+        var accent = _hasEvent
             ? JournalUiTheme.EventBadgeBorder
             : _blockAccent;
         var rectangle = new Rectangle(
@@ -220,7 +233,7 @@ public sealed class JournalEntrySlot : UIElement
             rectangle,
             accent,
             rectangle.Contains(Main.MouseScreen.ToPoint()),
-            emphasizeOuterAccent: hasEvent,
+            emphasizeOuterAccent: _hasEvent,
             accentStrength: 0.30f);
     }
 
@@ -240,7 +253,7 @@ public sealed class JournalEntrySlot : UIElement
 
     private void DrawSupportBadge(SpriteBatch spriteBatch, Vector2 slotPosition)
     {
-        if (!_entry.Entry.IsSupportWeapon)
+        if (!_isSupportWeapon)
         {
             return;
         }

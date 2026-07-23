@@ -41,6 +41,17 @@ public static class JournalContentBuilder
         IReadOnlyList<JournalStageEntry> entries,
         Action<int>? onItemSelected = null)
     {
+        PopulateEntries(entryList, profileId, stageId, entries, onItemSelected, null);
+    }
+
+    internal static void PopulateEntries(
+        UIList entryList,
+        string profileId,
+        string stageId,
+        IReadOnlyList<JournalStageEntry> entries,
+        Action<int>? onItemSelected,
+        Action<JournalArmorSetFamily>? onArmorSetSelected)
+    {
         var wikiEntries = entries.Where(static entry => entry.IsWikiRecommendation).ToArray();
         var newEntries = entries.Where(static entry => !entry.IsWikiRecommendation).ToArray();
 
@@ -58,6 +69,7 @@ public static class JournalContentBuilder
                 group.ToArray(),
                 palette,
                 onItemSelected,
+                onArmorSetSelected,
                 hoverText));
         }
 
@@ -80,7 +92,12 @@ public static class JournalContentBuilder
             var title = tier == RecommendationTier.FromGuide
                 ? Language.GetTextValue("Mods.ProgressionJournal.UI.NewEquipmentBlock")
                 : GetTierTitle(tier);
-            entryList.Add(CreateRecommendationBlock(title, tierEntries, palette, onItemSelected));
+            entryList.Add(CreateRecommendationBlock(
+                title,
+                tierEntries,
+                palette,
+                onItemSelected,
+                onArmorSetSelected));
         }
     }
 
@@ -824,6 +841,7 @@ public static class JournalContentBuilder
         IReadOnlyList<JournalStageEntry> entries,
         JournalPanelStyle palette,
         Action<int>? onItemSelected,
+        Action<JournalArmorSetFamily>? onArmorSetSelected,
         string? headerHoverText = null)
     {
         var block = JournalUiElementFactory.CreatePanel();
@@ -862,7 +880,11 @@ public static class JournalContentBuilder
 
             foreach (var rowEntries in ChunkEntries(categoryEntries, JournalUiMetrics.EntrySlotsPerRow))
             {
-                var row = CreateSlotRow(rowEntries, onItemSelected, palette.Border);
+                var row = CreateSlotRow(
+                    rowEntries,
+                    onItemSelected,
+                    palette.Border,
+                    onArmorSetSelected);
                 row.Left.Set(JournalUiMetrics.BlockHorizontalPadding + JournalUiMetrics.CategoryContentIndent, 0f);
                 row.Top.Set(top, 0f);
                 block.Append(row);
@@ -888,7 +910,7 @@ public static class JournalContentBuilder
 
         foreach (var entry in entries)
         {
-            var entrySlots = Math.Max(1, entry.Entry.ItemGroups.Count);
+            var entrySlots = GetEntrySlotCount(entry);
 
             if (row.Count > 0 && occupiedSlots + entrySlots > maxSlotsPerRow)
             {
@@ -935,7 +957,8 @@ public static class JournalContentBuilder
     private static UIElement CreateSlotRow(
         JournalStageEntry[] entries,
         Action<int>? onItemSelected,
-        Color blockAccent)
+        Color blockAccent,
+        Action<JournalArmorSetFamily>? onArmorSetSelected = null)
     {
         var row = new UIElement();
         row.Width.Set(GetRowWidth(entries), 0f);
@@ -944,10 +967,12 @@ public static class JournalContentBuilder
         var left = 0f;
         foreach (var entry in entries)
         {
-            var slot = new JournalEntrySlot(entry, blockAccent, onItemSelected);
+            UIElement slot = entry.ArmorSet is { } armorSet
+                ? new JournalArmorSetSlot(armorSet, blockAccent, onArmorSetSelected)
+                : new JournalEntrySlot(entry, blockAccent, onItemSelected);
             slot.Left.Set(left, 0f);
             row.Append(slot);
-            left += JournalEntrySlot.GetVisualWidth(entry.Entry.ItemGroups.Count) + JournalUiMetrics.EntrySpacing;
+            left += GetEntryVisualWidth(entry) + JournalUiMetrics.EntrySpacing;
         }
 
         return row;
@@ -960,20 +985,29 @@ public static class JournalContentBuilder
             return 0f;
         }
 
-        return entries.Sum(entry => JournalEntrySlot.GetVisualWidth(entry.Entry.ItemGroups.Count))
+        return entries.Sum(GetEntryVisualWidth)
             + JournalUiMetrics.EntrySpacing * (entries.Count - 1);
+    }
+
+    private static int GetEntrySlotCount(JournalStageEntry entry)
+    {
+        return entry.ArmorSet is null ? Math.Max(1, entry.Entry.ItemGroups.Count) : 1;
+    }
+
+    private static float GetEntryVisualWidth(JournalStageEntry entry)
+    {
+        return entry.ArmorSet is null
+            ? JournalEntrySlot.GetVisualWidth(GetEntrySlotCount(entry))
+            : JournalArmorSetSlot.GetVisualWidth();
     }
 
     private static float GetCategoryHeaderHeight() => JournalUiTheme.CategoryHeaderStyle switch
     {
-        JournalCategoryHeaderStyle.AccentTag => 24f,
-        JournalCategoryHeaderStyle.SideRail => 22f,
         _ => 20f
     };
 
     private static float GetCategoryHeaderBottomSpacing() => JournalUiTheme.CategoryHeaderStyle switch
     {
-        JournalCategoryHeaderStyle.AccentTag => 7f,
         _ => 6f
     };
 

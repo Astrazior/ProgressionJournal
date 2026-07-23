@@ -30,6 +30,8 @@ public sealed class ProgressionJournal : Mod
 		IsUnloading = true;
 
 		JournalBuildChat.Unload();
+		JournalArmorSetBonusResolver.Clear();
+		JournalArmorSetOverviewResolver.ClearCaches();
 
 		JournalRepository.ClearExternalContent();
 		ToggleJournalKeybind = null;

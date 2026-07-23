@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Reflection;
 using Microsoft.Xna.Framework;
-using ProgressionJournal.Data.Profiles;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;

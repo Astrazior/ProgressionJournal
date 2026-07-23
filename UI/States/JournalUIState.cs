@@ -66,6 +66,9 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
     private UIText _sourceItemName = null!;
     private UIList _sourceList = null!;
     private UIScrollbar _sourceScrollbar = null!;
+    private UIElement _armorSetOverlayContainer = null!;
+    private JournalDimOverlay _armorSetDimOverlay = null!;
+    private UIElement? _armorSetDetailContainer;
     private JournalDimOverlay _buildPickerOverlay = null!;
     private UIPanel _buildPickerPanel = null!;
     private UIText _buildPickerTitle = null!;
@@ -154,6 +157,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         InitializeHeader();
         InitializeStagePanel();
         InitializeMainPanel();
+        InitializeArmorSetOverlay();
         InitializeBuildPickerOverlay();
         InitializeBuildSaveOverlay();
         InitializeBuildExportOverlay();
@@ -221,6 +225,12 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             return;
         }
 
+        if (JournalSystem.ActiveArmorSet is not null)
+        {
+            JournalSystem.CloseArmorSet();
+            return;
+        }
+
         JournalSystem.HideView();
     }
 
@@ -234,6 +244,31 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         bool progressionModeEnabled,
         bool hasSelectedClass,
         int selectedItemId)
+    {
+        Refresh(
+            profileId,
+            classId,
+            stageId,
+            selectingClass,
+            showingPresets,
+            showingBuildBuilder,
+            progressionModeEnabled,
+            hasSelectedClass,
+            selectedItemId,
+            null);
+    }
+
+    internal void Refresh(
+        string profileId,
+        string classId,
+        string stageId,
+        bool selectingClass,
+        bool showingPresets,
+        bool showingBuildBuilder,
+        bool progressionModeEnabled,
+        bool hasSelectedClass,
+        int selectedItemId,
+        JournalArmorSetFamily? activeArmorSet)
     {
         var profile = JournalProfileRegistry.TryGet(profileId, out var registeredProfile)
             ? registeredProfile
@@ -252,6 +287,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         UpdateNavigationStyles(selectingClass, showingPresets);
         JournalStageButtonPresenter.Refresh(profile, _stageButtons, stageId, progressionModeEnabled);
         RefreshContent(profile, classId, stageId, selectingClass, showingPresets, showingBuildBuilder, selectedItemId);
+        RefreshArmorSetOverlay(activeArmorSet, selectingClass, showingPresets);
         RefreshBuildPickerOverlay(profile.Id, classId, stageId, showingPresets, showingBuildBuilder);
         RefreshBuildSaveOverlay(showingPresets, showingBuildBuilder);
         RefreshBuildExportOverlay(showingPresets, showingBuildBuilder);
@@ -267,6 +303,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _windowPositionInitialized = false;
         _acquisitionViewCache.Clear();
         _root.ResetDragState();
+        HideArmorSetOverlay();
         HideBuildPickerOverlay();
         HideBuildSaveOverlay(clearInput: true);
         HideBuildExportOverlay();
@@ -342,8 +379,9 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             _entryList,
             profile.Id,
             stageId,
-            GetEntries(profile.Id, stageId, classId),
-            JournalSystem.SelectItem);
+            JournalArmorSetOverviewResolver.Resolve(GetEntries(profile.Id, stageId, classId)),
+            JournalSystem.SelectItem,
+            JournalSystem.OpenArmorSet);
         JournalContentBuilder.PopulateCombatBuffs(
             _entryList,
             profile.Id,
@@ -2516,6 +2554,97 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _sourceList.SetScrollbar(_sourceScrollbar);
     }
 
+    private void InitializeArmorSetOverlay()
+    {
+        _armorSetOverlayContainer = new UIElement();
+        _armorSetOverlayContainer.Left.Set(JournalUiMetrics.ContentBodyLeft, 0f);
+        _armorSetOverlayContainer.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
+        _armorSetOverlayContainer.Width.Set(-JournalUiMetrics.EntryListWidthInset, 1f);
+        _armorSetOverlayContainer.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
+
+        _armorSetDimOverlay = new JournalDimOverlay(JournalSystem.CloseArmorSet);
+        _armorSetOverlayContainer.Append(_armorSetDimOverlay);
+    }
+
+    private void RefreshArmorSetOverlay(
+        JournalArmorSetFamily? armorSet,
+        bool selectingClass,
+        bool showingPresets)
+    {
+        if (armorSet is null || selectingClass || showingPresets)
+        {
+            HideArmorSetOverlay();
+            return;
+        }
+
+        if (_armorSetDetailContainer is not null
+            && _armorSetDetailContainer.Parent is not null)
+        {
+            _armorSetOverlayContainer.RemoveChild(_armorSetDetailContainer);
+        }
+
+        var itemGroups = CreateArmorSetDetailGroups(armorSet);
+        var detailWidth = JournalEntrySlot.GetVisualWidth(itemGroups.Length);
+        var detailHeight = TextureAssets.InventoryBack9.Height();
+
+        _armorSetDetailContainer = new UIElement
+        {
+            Width = { Pixels = detailWidth },
+            Height = { Pixels = detailHeight },
+            HAlign = 0.5f,
+            VAlign = 0.5f
+        };
+        _armorSetDetailContainer.Append(new JournalEntrySlot(
+            itemGroups,
+            JournalUiTheme.ItemSlotDefaultAccent,
+            JournalSystem.SelectItem));
+
+        _armorSetOverlayContainer.Append(_armorSetDetailContainer);
+
+        if (_armorSetOverlayContainer.Parent is null)
+        {
+            _contentPanel.Append(_armorSetOverlayContainer);
+        }
+    }
+
+    private static JournalItemGroup[] CreateArmorSetDetailGroups(
+        JournalArmorSetFamily armorSet)
+    {
+        var result = new List<JournalItemGroup>();
+        AppendArmorSlotGroup(
+            result,
+            armorSet.Variants.Select(static variant => variant.HeadItemId));
+        AppendArmorSlotGroup(
+            result,
+            armorSet.Variants.Select(static variant => variant.BodyItemId));
+        AppendArmorSlotGroup(
+            result,
+            armorSet.Variants.Select(static variant => variant.LegItemId));
+        return result.ToArray();
+    }
+
+    private static void AppendArmorSlotGroup(
+        List<JournalItemGroup> result,
+        IEnumerable<int> itemIds)
+    {
+        var alternatives = itemIds
+            .Where(static itemId => itemId > ItemID.None)
+            .Distinct()
+            .ToArray();
+        if (alternatives.Length > 0)
+        {
+            result.Add(new JournalItemGroup(alternatives));
+        }
+    }
+
+    private void HideArmorSetOverlay()
+    {
+        if (_armorSetOverlayContainer.Parent is not null)
+        {
+            _contentPanel.RemoveChild(_armorSetOverlayContainer);
+        }
+    }
+
     private void InitializeBuildPickerOverlay()
     {
         const float filterButtonSize = 34f;
@@ -3130,6 +3259,9 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
 
             _sourcePanel.Width.Set(sourceWidth, 0f);
             _entryList.Width.Set(-(JournalUiMetrics.EntryListWidthInset + sourceWidth + JournalUiMetrics.ContentColumnGap), 1f);
+            _armorSetOverlayContainer.Width.Set(
+                -(JournalUiMetrics.EntryListWidthInset + sourceWidth + JournalUiMetrics.ContentColumnGap),
+                1f);
             _scrollbar.Left.Set(-(sourceWidth
                 + JournalUiMetrics.ContentColumnGap * 1.33f
                 + JournalUiMetrics.ScrollbarWidth * 0.5f), 1f);
@@ -3143,6 +3275,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         else
         {
             _entryList.Width.Set(-JournalUiMetrics.EntryListWidthInset, 1f);
+            _armorSetOverlayContainer.Width.Set(-JournalUiMetrics.EntryListWidthInset, 1f);
             _scrollbar.Left.Set(-JournalUiMetrics.ScrollbarOffset, 1f);
 
             if (_sourcePanel.Parent is not null)

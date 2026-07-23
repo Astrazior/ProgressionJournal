@@ -4,6 +4,8 @@ namespace ProgressionJournal.Data.Repositories;
 
 public static partial class JournalRepository
 {
+    internal const string WizardRobeEntryKey = "wizardHatAndGemRobesPreBoss";
+
     private static void AddArmorEntries(List<JournalEntry> entries)
     {
         entries.AddRange(
@@ -30,22 +32,20 @@ public static partial class JournalRepository
                             Group(ItemID.GoldGreaves, ItemID.PlatinumGreaves),
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
-            new JournalEntry("amethystOrTopazOrSapphireRobePreBoss", JournalItemCategory.Armor, CombatClass.Magic,
-                            [Group(ItemID.AmethystRobe, ItemID.TopazRobe, ItemID.SapphireRobe)],
-                            [Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)]),
-
-            new JournalEntry("emeraldOrRubyOrAmberRobePreBoss", JournalItemCategory.Armor, CombatClass.Magic,
-                            [Group(ItemID.EmeraldRobe, ItemID.RubyRobe, ItemID.AmberRobe)],
-                            [Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)]),
-
-            Entry("diamondRobePreBoss", JournalItemCategory.Armor, CombatClass.Magic, ItemID.DiamondRobe,
+            Set(WizardRobeEntryKey, JournalItemCategory.Armor, CombatClass.Magic,
+                            Group(ItemID.WizardHat),
+                            Group(
+                                ItemID.AmethystRobe,
+                                ItemID.TopazRobe,
+                                ItemID.SapphireRobe,
+                                ItemID.EmeraldRobe,
+                                ItemID.RubyRobe,
+                                ItemID.AmberRobe,
+                                ItemID.DiamondRobe),
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.Additional)),
 
-            new JournalEntry("mysticRobeAndMagicHatPreBoss", JournalItemCategory.Armor, CombatClass.Magic,
-                            [Group(2279), Group(ItemID.MagicHat)],
-                            [Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)]),
-
-            Entry("wizardHatPreBoss", JournalItemCategory.Armor, CombatClass.Magic, ItemID.WizardHat,
+            Set("mysticRobeAndMagicHatPreBoss", JournalItemCategory.Armor, CombatClass.Magic,
+                            ItemID.MagicHat, ItemID.GypsyRobe,
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
             Set("jungleArmorPreBoss", JournalItemCategory.Armor, CombatClass.Magic,
@@ -124,8 +124,9 @@ public static partial class JournalRepository
                             Group(805, 980),
                             Eval(ProgressionStageId.PreBoss, RecommendationTier.NotRecommended)),
 
-            new JournalEntry("rainArmorPreBoss", JournalItemCategory.Armor, CombatClass.All, [ItemID.RainHat, ItemID.RainCoat],
-                            [Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)]),
+            Set("rainArmorPreBoss", JournalItemCategory.Armor, CombatClass.All,
+                            ItemID.RainHat, ItemID.RainCoat,
+                            Eval(ProgressionStageId.PreBoss, RecommendationTier.Useless)),
 
             Set("earlyWoodArmorPreBoss", JournalItemCategory.Armor, CombatClass.All,
                             Group(ItemID.WoodHelmet, ItemID.BorealWoodHelmet, ItemID.RichMahoganyHelmet, ItemID.PalmWoodHelmet, ItemID.EbonwoodHelmet, ItemID.ShadewoodHelmet, ItemID.AshWoodHelmet),

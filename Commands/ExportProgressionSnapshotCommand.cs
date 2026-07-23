@@ -1,6 +1,5 @@
 using System.Reflection;
 using System.Text.Json;
-using ProgressionJournal.Data.Profiles;
 using ProgressionJournal.Data.Snapshots.Collectors;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;

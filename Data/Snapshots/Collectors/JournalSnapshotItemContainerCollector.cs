@@ -1,5 +1,4 @@
 using ProgressionJournal.Commands;
-using ProgressionJournal.Data.Resolvers;
 using Terraria;
 
 namespace ProgressionJournal.Data.Snapshots.Collectors;

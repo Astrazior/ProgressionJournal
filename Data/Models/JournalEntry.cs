@@ -18,11 +18,37 @@ public sealed class JournalEntry
 		: this(
 			key,
 			category,
+			classes,
+			itemIds,
+			evaluations,
+			false,
+			eventCategory,
+			isSupportWeapon)
+	{
+	}
+
+	internal JournalEntry(
+		string key,
+		JournalItemCategory category,
+		CombatClass classes,
+		IEnumerable<int> itemIds,
+		IEnumerable<StageEvaluation> evaluations,
+		bool isArmorSet,
+		JournalEventCategory? eventCategory = null,
+		bool isSupportWeapon = false)
+		: this(
+			key,
+			category,
 			JournalClassIds.FromLegacyFlags(classes),
 			itemIds.Select(itemId => new JournalItemGroup([itemId])),
 			evaluations,
+			isArmorSet,
 			eventCategory,
-			isSupportWeapon)
+			isSupportWeapon,
+			null,
+			null,
+			null,
+			null)
 	{
 	}
 
@@ -37,11 +63,37 @@ public sealed class JournalEntry
 		: this(
 			key,
 			category,
+			classes,
+			itemGroups,
+			evaluations,
+			false,
+			eventCategory,
+			isSupportWeapon)
+	{
+	}
+
+	internal JournalEntry(
+		string key,
+		JournalItemCategory category,
+		CombatClass classes,
+		IEnumerable<JournalItemGroup> itemGroups,
+		IEnumerable<StageEvaluation> evaluations,
+		bool isArmorSet,
+		JournalEventCategory? eventCategory = null,
+		bool isSupportWeapon = false)
+		: this(
+			key,
+			category,
 			JournalClassIds.FromLegacyFlags(classes),
 			itemGroups,
 			evaluations,
+			isArmorSet,
 			eventCategory,
-			isSupportWeapon)
+			isSupportWeapon,
+			null,
+			null,
+			null,
+			null)
 	{
 	}
 
@@ -57,6 +109,35 @@ public sealed class JournalEntry
 		string? eventIcon = null,
 		IEnumerable<JournalWikiRecommendation>? wikiRecommendations = null,
 		IEnumerable<JournalFishingSource>? fishingSources = null)
+		: this(
+			key,
+			category,
+			classIds,
+			itemGroups,
+			evaluations,
+			false,
+			eventCategory,
+			isSupportWeapon,
+			customEventName,
+			eventIcon,
+			wikiRecommendations,
+			fishingSources)
+	{
+	}
+
+	private JournalEntry(
+		string key,
+		JournalItemCategory category,
+		IEnumerable<string> classIds,
+		IEnumerable<JournalItemGroup> itemGroups,
+		IEnumerable<StageEvaluation> evaluations,
+		bool isArmorSet,
+		JournalEventCategory? eventCategory,
+		bool isSupportWeapon,
+		string? customEventName,
+		string? eventIcon,
+		IEnumerable<JournalWikiRecommendation>? wikiRecommendations,
+		IEnumerable<JournalFishingSource>? fishingSources)
 	{
 		Key = key;
 		Category = category;
@@ -66,6 +147,7 @@ public sealed class JournalEntry
 		CustomEventName = customEventName?.Trim() ?? string.Empty;
 		EventIcon = eventIcon?.Trim() ?? string.Empty;
 		IsSupportWeapon = isSupportWeapon;
+		IsArmorSet = isArmorSet;
 		ItemGroups = itemGroups.ToArray();
 
 		if (ItemGroups.Count == 0) {
@@ -95,6 +177,8 @@ public sealed class JournalEntry
 	public string EventIcon { get; }
 
 	public bool IsSupportWeapon { get; }
+
+	internal bool IsArmorSet { get; }
 
 	public IReadOnlyList<JournalItemGroup> ItemGroups { get; }
 

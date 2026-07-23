@@ -1,15 +1,34 @@
 namespace ProgressionJournal.Data.Models;
 
-public sealed class JournalStageEntry(
-    JournalEntry entry,
-    StageEvaluation evaluation,
-    JournalWikiRecommendation? wikiRecommendation = null)
+public sealed class JournalStageEntry
 {
-	public JournalEntry Entry { get; } = entry;
+	public JournalStageEntry(
+		JournalEntry entry,
+		StageEvaluation evaluation,
+		JournalWikiRecommendation? wikiRecommendation = null)
+		: this(entry, evaluation, wikiRecommendation, null)
+	{
+	}
 
-	public StageEvaluation Evaluation { get; } = evaluation;
+	internal JournalStageEntry(
+		JournalEntry entry,
+		StageEvaluation evaluation,
+		JournalWikiRecommendation? wikiRecommendation,
+		JournalArmorSetFamily? armorSet)
+	{
+		Entry = entry;
+		Evaluation = evaluation;
+		WikiRecommendation = wikiRecommendation;
+		ArmorSet = armorSet;
+	}
 
-	public JournalWikiRecommendation? WikiRecommendation { get; } = wikiRecommendation;
+	public JournalEntry Entry { get; }
+
+	public StageEvaluation Evaluation { get; }
+
+	public JournalWikiRecommendation? WikiRecommendation { get; }
+
+	internal JournalArmorSetFamily? ArmorSet { get; }
 
 	public bool IsWikiRecommendation => WikiRecommendation is not null;
 }
