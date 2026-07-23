@@ -72,7 +72,14 @@ internal sealed class JournalArmorSetSlot : UIElement
         Main.hoverItemName = string.Empty;
         Main.mouseText = true;
         var tooltip = GetTooltip(_armorSet);
-        JournalTooltip.Request(tooltip.Text, tooltip.FramedBonusText);
+        JournalTooltip.RequestArmorSet(
+            tooltip.Title,
+            tooltip.DefenseLabel,
+            tooltip.TotalDefense,
+            tooltip.EffectsTitle,
+            tooltip.Effects,
+            tooltip.BonusTitle,
+            tooltip.BonusText);
     }
 
     private ArmorSetTooltip GetTooltip(JournalArmorSetDefinition armorSet)
@@ -85,33 +92,20 @@ internal sealed class JournalArmorSetSlot : UIElement
         }
 
         var bonusText = armorSet.ResolveBonusText().Trim();
-        var lines = new List<string>
-        {
-            armorSet.ResolveDisplayName(),
-            Language.GetTextValue(
-                "Mods.ProgressionJournal.UI.ArmorSetTotalDefense",
-                armorSet.TotalDefense)
-        };
         var items = armorSet.ItemIds
             .Select(JournalItemUtilities.CreateItem)
             .Where(static item => !item.IsAir)
             .ToArray();
         var effects = JournalItemTooltipUtilities.GetAggregatedNumericEffectLines(items);
-        if (effects.Count > 0)
-        {
-            lines.Add(string.Empty);
-            lines.Add(Language.GetTextValue("Mods.ProgressionJournal.UI.ArmorSetTotalStats"));
-            lines.AddRange(effects.Select(static effect => $"• {effect}"));
-        }
 
         var tooltip = new ArmorSetTooltip(
-            string.Join(Environment.NewLine, lines),
-            string.IsNullOrWhiteSpace(bonusText)
-                ? string.Empty
-                : string.Join(
-                    Environment.NewLine,
-                    Language.GetTextValue("Mods.ProgressionJournal.UI.ArmorSetBonus"),
-                    bonusText));
+            armorSet.ResolveDisplayName(),
+            Language.GetTextValue("Mods.ProgressionJournal.UI.ArmorSetDefenseLabel"),
+            armorSet.TotalDefense,
+            Language.GetTextValue("Mods.ProgressionJournal.UI.ArmorSetTotalStats"),
+            effects.ToArray(),
+            Language.GetTextValue("Mods.ProgressionJournal.UI.ArmorSetBonus"),
+            bonusText);
         _tooltipCache[cacheKey] = tooltip;
         return tooltip;
     }
@@ -121,5 +115,12 @@ internal sealed class JournalArmorSetSlot : UIElement
         _onArmorSetSelected?.Invoke(_armorSetFamily);
     }
 
-    private readonly record struct ArmorSetTooltip(string Text, string FramedBonusText);
+    private readonly record struct ArmorSetTooltip(
+        string Title,
+        string DefenseLabel,
+        int TotalDefense,
+        string EffectsTitle,
+        string[] Effects,
+        string BonusTitle,
+        string BonusText);
 }
