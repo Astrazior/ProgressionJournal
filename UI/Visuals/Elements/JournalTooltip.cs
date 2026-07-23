@@ -22,6 +22,7 @@ internal static class JournalTooltip
     private const int ArmorSectionGap = 12;
     private const int ArmorInnerPadding = 10;
     private const int ArmorEffectIndent = 14;
+    private const int ArmorEffectMarkerSize = 7;
     private const int ArmorRowGap = 6;
 
     private static string? _pendingText;
@@ -170,8 +171,7 @@ internal static class JournalTooltip
         var height = (int)MathF.Ceiling(contentHeight) + ArmorOuterPadding * 2;
         var bounds = ResolveBounds(width, height);
 
-        DrawTooltipShadow(spriteBatch, bounds);
-        JournalSourceCardRenderer.Draw(spriteBatch, bounds, armorAccent);
+        JournalTooltipRenderer.DrawPanel(spriteBatch, bounds, armorAccent);
 
         var contentX = bounds.X + ArmorOuterPadding;
         var cursorY = (float)(bounds.Y + ArmorOuterPadding);
@@ -195,7 +195,6 @@ internal static class JournalTooltip
             (int)MathF.Ceiling(cursorY),
             (int)ArmorContentWidth,
             (int)MathF.Ceiling(defenseRowHeight));
-        DrawInsetPanel(spriteBatch, defenseBounds, armorAccent, 0.10f);
         DrawTextBlock(
             spriteBatch,
             defenseLabelBlock,
@@ -229,8 +228,7 @@ internal static class JournalTooltip
                     spriteBatch,
                     effectBlock,
                     new Vector2(contentX, cursorY),
-                    ArmorContentWidth,
-                    armorAccent);
+                    ArmorContentWidth);
                 cursorY += effectBlock.Size.Y + ArmorRowGap;
             }
 
@@ -273,8 +271,7 @@ internal static class JournalTooltip
                 spriteBatch,
                 bonusBlock,
                 new Vector2(bonusX, bonusY),
-                bonusBounds.Width - ArmorInnerPadding * 2,
-                bonusAccent);
+                bonusBounds.Width - ArmorInnerPadding * 2);
             bonusY += bonusBlock.Size.Y + ArmorRowGap;
         }
     }
@@ -291,7 +288,7 @@ internal static class JournalTooltip
         var height = (int)MathF.Ceiling(mainText.Size.Y) + Padding * 2;
         var bounds = ResolveBounds(width, height);
 
-        JournalSourceCardRenderer.DrawTooltip(
+        JournalTooltipRenderer.DrawPanel(
             spriteBatch,
             bounds,
             JournalUiTheme.PresetPanelBorder);
@@ -345,30 +342,18 @@ internal static class JournalTooltip
                     StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
     }
 
-    private static void DrawTooltipShadow(SpriteBatch spriteBatch, Rectangle bounds)
-    {
-        var shadow = bounds;
-        shadow.Offset(5, 6);
-        shadow.Inflate(2, 2);
-        spriteBatch.Draw(TextureAssets.MagicPixel.Value, shadow, Color.Black * 0.48f);
-    }
-
     private static void DrawInsetPanel(
         SpriteBatch spriteBatch,
         Rectangle bounds,
         Color accent,
         float accentStrength)
     {
-        var pixel = TextureAssets.MagicPixel.Value;
-        var background = Color.Lerp(JournalUiTheme.RootBackground, accent, accentStrength);
-        spriteBatch.Draw(pixel, bounds, background * 0.96f);
-        DrawBorder(spriteBatch, bounds, 1, Color.Lerp(accent, Color.Black, 0.20f) * 0.90f);
-
-        var highlight = new Rectangle(bounds.X + 1, bounds.Y + 1, bounds.Width - 2, 1);
-        if (highlight.Width > 0)
-        {
-            spriteBatch.Draw(pixel, highlight, Color.Lerp(accent, Color.White, 0.16f) * 0.58f);
-        }
+        JournalTooltipRenderer.DrawPanel(
+            spriteBatch,
+            bounds,
+            accent,
+            drawShadow: false,
+            accentStrength: accentStrength);
     }
 
     private static void DrawSectionTitle(
@@ -402,14 +387,19 @@ internal static class JournalTooltip
         SpriteBatch spriteBatch,
         TextBlock text,
         Vector2 position,
-        float availableWidth,
-        Color accent)
+        float availableWidth)
     {
-        var markerY = (int)MathF.Ceiling(position.Y + Math.Min(9f, text.Size.Y * 0.5f));
-        spriteBatch.Draw(
-            TextureAssets.MagicPixel.Value,
-            new Rectangle((int)position.X + 2, markerY, 4, 4),
-            accent * 0.86f);
+        var markerY = (int)MathF.Ceiling(
+            position.Y
+            + Math.Min(9f, text.Size.Y * 0.5f)
+            - ArmorEffectMarkerSize * 0.5f);
+        JournalTooltipRenderer.DrawMarker(
+            spriteBatch,
+            new Rectangle(
+                (int)position.X + 1,
+                markerY,
+                ArmorEffectMarkerSize,
+                ArmorEffectMarkerSize));
         DrawTextBlock(
             spriteBatch,
             text,
@@ -427,34 +417,7 @@ internal static class JournalTooltip
             return;
         }
 
-        spriteBatch.Draw(TextureAssets.MagicPixel.Value, bounds, color);
-    }
-
-    private static void DrawBorder(
-        SpriteBatch spriteBatch,
-        Rectangle bounds,
-        int thickness,
-        Color color)
-    {
-        if (bounds.Width <= thickness * 2 || bounds.Height <= thickness * 2)
-        {
-            return;
-        }
-
-        var pixel = TextureAssets.MagicPixel.Value;
-        spriteBatch.Draw(pixel, new Rectangle(bounds.X, bounds.Y, bounds.Width, thickness), color);
-        spriteBatch.Draw(
-            pixel,
-            new Rectangle(bounds.X, bounds.Bottom - thickness, bounds.Width, thickness),
-            color);
-        spriteBatch.Draw(
-            pixel,
-            new Rectangle(bounds.X, bounds.Y + thickness, thickness, bounds.Height - thickness * 2),
-            color);
-        spriteBatch.Draw(
-            pixel,
-            new Rectangle(bounds.Right - thickness, bounds.Y + thickness, thickness, bounds.Height - thickness * 2),
-            color);
+        JournalTooltipRenderer.DrawRule(spriteBatch, bounds, color);
     }
 
     private static TextBlock CreateTextBlock(string text, float maxWidth)
