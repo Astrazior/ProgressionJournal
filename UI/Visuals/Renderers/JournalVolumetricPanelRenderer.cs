@@ -6,7 +6,7 @@ namespace ProgressionJournal.UI.Visuals.Renderers;
 
 internal static class JournalVolumetricPanelRenderer
 {
-    private const string FrameTexturePath =
+    private const string DefaultFrameTexturePath =
         "ProgressionJournal/Assets/UI/Panels/VolumetricPanelFrame";
     private const string BackgroundTexturePath =
         "ProgressionJournal/Assets/UI/Panels/VolumetricPanelBackground";
@@ -21,19 +21,27 @@ internal static class JournalVolumetricPanelRenderer
         Rectangle bounds,
         Color background,
         Color border,
-        bool drawShadow = true)
+        bool drawShadow = true,
+        bool preservePalette = false,
+        string? frameTextureOverridePath = null)
     {
         if (bounds is not { Width: > 0, Height: > 0 })
         {
             return;
         }
 
-        var frameTexture = ModContent.Request<Texture2D>(FrameTexturePath).Value;
+        var frameTexture = ModContent.Request<Texture2D>(
+            frameTextureOverridePath ?? DefaultFrameTexturePath).Value;
         var backgroundTexture = ModContent.Request<Texture2D>(BackgroundTexturePath).Value;
         var stoneBorder = Color.Lerp(border, new Color(92, 88, 82), 0.35f);
         var stoneBackground = Color.Lerp(background, new Color(54, 52, 49), 0.25f);
-        var frameTint = Color.Lerp(Color.White, stoneBorder, 0.08f);
-        var backgroundTint = Color.Lerp(stoneBackground, Color.White, 0.055f);
+        var opaqueBorder = new Color(border.R, border.G, border.B);
+        var frameTint = preservePalette
+            ? opaqueBorder
+            : Color.Lerp(Color.White, stoneBorder, 0.08f);
+        var backgroundTint = preservePalette
+            ? background
+            : Color.Lerp(stoneBackground, Color.White, 0.055f);
 
         if (drawShadow)
         {

@@ -8,9 +8,12 @@ namespace ProgressionJournal.UI.Composition;
 
 public static class JournalUiElementFactory
 {
-    public static UIPanel CreatePanel()
+    public static UIPanel CreatePanel(bool preservePalette = false)
     {
-        var panel = new JournalVolumetricPanel();
+        var panel = new JournalVolumetricPanel
+        {
+            PreservePalette = preservePalette
+        };
         panel.SetPadding(0f);
         panel.BackgroundColor = JournalUiTheme.PanelBackground;
         panel.BorderColor = JournalUiTheme.PanelBorder;

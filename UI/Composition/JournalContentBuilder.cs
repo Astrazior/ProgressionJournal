@@ -136,7 +136,7 @@ public static class JournalContentBuilder
         Action<int> onItemSelected)
     {
         var palette = JournalUiTheme.GetRecommendationBlockStyle(tier);
-        var block = JournalUiElementFactory.CreatePanel();
+        var block = JournalUiElementFactory.CreatePanel(preservePalette: true);
         block.Width.Set(0f, 1f);
         block.SetPadding(0f);
         block.BackgroundColor = palette.Background;
@@ -844,7 +844,7 @@ public static class JournalContentBuilder
         Action<JournalArmorSetFamily>? onArmorSetSelected,
         string? headerHoverText = null)
     {
-        var block = JournalUiElementFactory.CreatePanel();
+        var block = JournalUiElementFactory.CreatePanel(preservePalette: true);
         block.Width.Set(0f, 1f);
         block.SetPadding(0f);
         block.BackgroundColor = palette.Background;

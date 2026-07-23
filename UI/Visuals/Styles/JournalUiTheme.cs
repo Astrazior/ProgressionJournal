@@ -14,6 +14,8 @@ public static class JournalUiTheme
     public static readonly Color RootTitleText = new(236, 240, 245);
     public static readonly Color ContentDescriptionText = new(198, 214, 229);
     public static readonly Color SectionHeaderText = new(248, 204, 15);
+    public static readonly Color WarningAccent = new(247, 213, 15);
+    public static readonly Color WarningBackground = new(96, 83, 6);
     public static readonly Color PresetPanelBackground = new(24, 43, 58);
     public static readonly Color PresetPanelBorder = new(104, 138, 168);
     public static readonly Color PresetPanelText = new(220, 228, 236);
@@ -79,7 +81,9 @@ public static class JournalUiTheme
 
     public static JournalPanelStyle GetWikiRecommendationBlockStyle()
     {
-        return new JournalPanelStyle(new Color(76, 65, 18), new Color(232, 196, 66));
+        return new JournalPanelStyle(
+            WarningBackground,
+            WarningAccent);
     }
 
     public static JournalCategoryStyle GetCategoryStyle(JournalItemCategory category) => category switch

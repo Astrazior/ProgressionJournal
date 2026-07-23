@@ -6,6 +6,8 @@ namespace ProgressionJournal.UI.Visuals.Elements;
 public class JournalVolumetricPanel : UIPanel
 {
     public bool DrawShadow { get; init; } = true;
+    public bool PreservePalette { get; init; }
+    public string? FrameTextureOverridePath { get; init; }
 
     protected override void DrawSelf(SpriteBatch spriteBatch)
     {
@@ -14,6 +16,8 @@ public class JournalVolumetricPanel : UIPanel
             GetDimensions().ToRectangle(),
             BackgroundColor,
             BorderColor,
-            DrawShadow);
+            DrawShadow,
+            PreservePalette,
+            FrameTextureOverridePath);
     }
 }

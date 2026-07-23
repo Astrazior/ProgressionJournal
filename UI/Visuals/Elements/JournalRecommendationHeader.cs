@@ -39,6 +39,7 @@ public sealed class JournalRecommendationHeader(
             spriteBatch,
             plaqueRectangle,
             accentColor,
+            emphasizeOuterAccent: true,
             accentStrength: 0.30f);
 
         var textX = plaqueRectangle.Center.X - titleSize.X * 0.5f;
