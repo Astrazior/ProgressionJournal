@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace ProgressionJournal.UI.Visuals.Renderers;
@@ -24,7 +25,11 @@ public readonly record struct JournalSlotMarker(
 
 public static class JournalItemSlotRenderer
 {
+    private const string ItemSlotTexturePath =
+        "ProgressionJournal/Assets/UI/Slots/ItemSlot";
     private const float ItemSizeLimit = 32f;
+    private const int SourceCornerSize = 16;
+    private const int DestinationCornerSize = 10;
 
     public static void Draw(
         SpriteBatch spriteBatch,
@@ -83,43 +88,24 @@ public static class JournalItemSlotRenderer
         bool emphasizeOuterAccent = false,
         float accentStrength = 0.08f)
     {
-        var outerShadow = JournalUiTheme.ItemSlotOuterShadow;
-
-        var outerEdge = Color.Lerp(
-            JournalUiTheme.ItemSlotOuterEdge,
-            accent,
-            emphasizeOuterAccent ? 0.72f : accentStrength);
-
-        var well = JournalUiTheme.ItemSlotWell;
+        var texture = ModContent.Request<Texture2D>(ItemSlotTexturePath).Value;
+        var tintStrength = emphasizeOuterAccent
+            ? 0.42f
+            : MathHelper.Clamp(accentStrength * 0.9f, 0.06f, 0.30f);
+        var tint = Color.Lerp(Color.White, accent, tintStrength);
 
         if (hovered)
         {
-            outerEdge = Lighten(outerEdge, 0.12f);
+            tint = Color.Lerp(tint, Color.White, 0.14f);
         }
 
-        var topBevel = Lighten(outerEdge, hovered ? 0.25f : 0.15f);
-        var bottomBevel = Color.Lerp(outerEdge, Color.Black, hovered ? 0.34f : 0.46f);
-
-        if (disabled)
-        {
-            outerShadow *= 0.55f;
-            outerEdge *= 0.55f;
-            well *= 0.55f;
-            topBevel *= 0.55f;
-            bottomBevel *= 0.55f;
-        }
-
-        var shadowRect = rectangle;
-        shadowRect.Offset(2, 3);
-        DrawChamferedRectangle(spriteBatch, shadowRect, 5, outerShadow * 0.70f);
-
-        DrawChamferedRectangle(spriteBatch, rectangle, 5, outerEdge);
-        DrawBevel(spriteBatch, rectangle, 5, topBevel, bottomBevel);
-
-        var wellRect = rectangle;
-        wellRect.Inflate(-5, -5);
-        DrawChamferedRectangle(spriteBatch, wellRect, 2, well);
-        DrawSoftInnerHighlight(spriteBatch, wellRect, disabled);
+        JournalNineSliceRenderer.Draw(
+            spriteBatch,
+            texture,
+            rectangle,
+            SourceCornerSize,
+            DestinationCornerSize,
+            disabled ? tint * 0.55f : tint);
     }
 
     private static void DrawMarker(
@@ -203,21 +189,6 @@ public static class JournalItemSlotRenderer
             Color.Black * (disabled ? 0.48f : 0.95f),
             Vector2.Zero,
             textScale);
-    }
-
-    private static void DrawSoftInnerHighlight(SpriteBatch spriteBatch, Rectangle wellRect, bool disabled)
-    {
-        var gloss = new Rectangle(
-            wellRect.X + 2,
-            wellRect.Y + 2,
-            Math.Max(1, wellRect.Width - 4),
-            Math.Max(1, wellRect.Height / 3));
-
-        DrawChamferedRectangle(
-            spriteBatch,
-            gloss,
-            2,
-            Color.White * (disabled ? 0.018f : 0.045f));
     }
 
     private static void DrawBevel(

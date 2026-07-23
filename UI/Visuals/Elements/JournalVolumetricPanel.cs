@@ -5,12 +5,15 @@ namespace ProgressionJournal.UI.Visuals.Elements;
 
 public class JournalVolumetricPanel : UIPanel
 {
+    public bool DrawShadow { get; init; } = true;
+
     protected override void DrawSelf(SpriteBatch spriteBatch)
     {
         JournalVolumetricPanelRenderer.Draw(
             spriteBatch,
             GetDimensions().ToRectangle(),
             BackgroundColor,
-            BorderColor);
+            BorderColor,
+            DrawShadow);
     }
 }

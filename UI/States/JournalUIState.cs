@@ -147,7 +147,10 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
 
     public override void OnInitialize()
     {
-        _root = new JournalDraggablePanel();
+        _root = new JournalDraggablePanel
+        {
+            DrawShadow = false
+        };
         _root.SetPadding(0f);
         _root.BackgroundColor = JournalUiTheme.RootBackground * JournalUiTheme.RootBackgroundOpacity;
         _root.BorderColor = JournalUiTheme.RootBorder;
