@@ -186,8 +186,7 @@ internal static class JournalTooltip
 
         DrawHorizontalRule(
             spriteBatch,
-            new Rectangle(contentX, (int)MathF.Ceiling(cursorY), (int)ArmorContentWidth, 2),
-            armorAccent);
+            new Rectangle(contentX, (int)MathF.Ceiling(cursorY), (int)ArmorContentWidth, 2));
         cursorY += 2f + ArmorRowGap;
 
         var defenseBounds = new Rectangle(
@@ -218,8 +217,7 @@ internal static class JournalTooltip
                 spriteBatch,
                 effectsTitleBlock,
                 new Vector2(contentX, cursorY),
-                ArmorContentWidth,
-                armorAccent);
+                ArmorContentWidth);
             cursorY += effectsTitleBlock.Size.Y + ArmorRowGap;
 
             foreach (var effectBlock in effectBlocks)
@@ -261,8 +259,7 @@ internal static class JournalTooltip
                 bonusX,
                 (int)MathF.Ceiling(bonusY),
                 bonusBounds.Width - ArmorInnerPadding * 2,
-                1),
-            bonusAccent * 0.72f);
+                1));
         bonusY += 1f + ArmorRowGap;
 
         foreach (var bonusBlock in bonusBlocks)
@@ -360,8 +357,7 @@ internal static class JournalTooltip
         SpriteBatch spriteBatch,
         TextBlock title,
         Vector2 position,
-        float availableWidth,
-        Color accent)
+        float availableWidth)
     {
         DrawTextBlock(spriteBatch, title, position, availableWidth);
 
@@ -377,10 +373,9 @@ internal static class JournalTooltip
             spriteBatch,
             new Rectangle(
                 (int)MathF.Ceiling(ruleX),
-                (int)MathF.Ceiling(position.Y + title.Size.Y * 0.56f),
+                (int)MathF.Ceiling(position.Y + title.Size.Y * 0.43f),
                 (int)MathF.Floor(ruleWidth),
-                1),
-            accent * 0.50f);
+                1));
     }
 
     private static void DrawEffectRow(
@@ -409,15 +404,14 @@ internal static class JournalTooltip
 
     private static void DrawHorizontalRule(
         SpriteBatch spriteBatch,
-        Rectangle bounds,
-        Color color)
+        Rectangle bounds)
     {
         if (bounds.Width <= 0 || bounds.Height <= 0)
         {
             return;
         }
 
-        JournalTooltipRenderer.DrawRule(spriteBatch, bounds, color);
+        JournalTooltipRenderer.DrawRule(spriteBatch, bounds);
     }
 
     private static TextBlock CreateTextBlock(string text, float maxWidth)

@@ -70,7 +70,7 @@ public sealed class JournalSourceSectionHeader : UIElement
                 dividerTexture,
                 new Rectangle(
                     (int)lineX,
-                    (int)(bounds.Y + bounds.Height * 0.5f),
+                    (int)(bounds.Y + bounds.Height * 0.5f - dividerTexture.Height * 0.5f),
                     lineWidth,
                     dividerTexture.Height));
         }

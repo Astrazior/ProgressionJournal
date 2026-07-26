@@ -10,9 +10,13 @@ internal static class JournalTooltipRenderer
         "ProgressionJournal/Assets/UI/Tooltips/TooltipFrame";
     private const string MarkerTexturePath =
         "ProgressionJournal/Assets/UI/Tooltips/TooltipMarker";
+    private const string DividerTexturePath =
+        "ProgressionJournal/Assets/UI/Sources/SourceHeaderDivider";
     private const int TextureSize = 64;
     private const int SourceCornerSize = 12;
     private const int DestinationCornerSize = 12;
+    private const int DividerLeftCapWidth = 6;
+    private const int DividerRightCapWidth = 22;
 
     public static void DrawPanel(
         SpriteBatch spriteBatch,
@@ -41,24 +45,64 @@ internal static class JournalTooltipRenderer
 
     public static void DrawRule(
         SpriteBatch spriteBatch,
-        Rectangle bounds,
-        Color color)
+        Rectangle bounds)
     {
         if (bounds is not { Width: > 0, Height: > 0 })
         {
             return;
         }
 
-        var source = new Rectangle(
-            SourceCornerSize,
-            1,
-            TextureSize - SourceCornerSize * 2,
-            3);
-        spriteBatch.Draw(
-            GetFrameTexture(),
-            bounds,
-            source,
-            Color.Lerp(color, Color.White, 0.65f));
+        var texture = ModContent.Request<Texture2D>(DividerTexturePath).Value;
+        var destination = new Rectangle(
+            bounds.X,
+            bounds.Center.Y - texture.Height / 2,
+            bounds.Width,
+            texture.Height);
+        var leftWidth = Math.Min(DividerLeftCapWidth, destination.Width);
+        var remainingWidth = Math.Max(0, destination.Width - leftWidth);
+        var rightWidth = Math.Min(DividerRightCapWidth, remainingWidth);
+        var middleWidth = remainingWidth - rightWidth;
+        var sourceMiddleWidth =
+            texture.Width - DividerLeftCapWidth - DividerRightCapWidth;
+
+        DrawSlice(
+            spriteBatch,
+            texture,
+            new Rectangle(0, 0, DividerLeftCapWidth, texture.Height),
+            new Rectangle(
+                destination.X,
+                destination.Y,
+                leftWidth,
+                destination.Height),
+            Color.White);
+        DrawSlice(
+            spriteBatch,
+            texture,
+            new Rectangle(
+                DividerLeftCapWidth,
+                0,
+                sourceMiddleWidth,
+                texture.Height),
+            new Rectangle(
+                destination.X + leftWidth,
+                destination.Y,
+                middleWidth,
+                destination.Height),
+            Color.White);
+        DrawSlice(
+            spriteBatch,
+            texture,
+            new Rectangle(
+                texture.Width - DividerRightCapWidth,
+                0,
+                DividerRightCapWidth,
+                texture.Height),
+            new Rectangle(
+                destination.Right - rightWidth,
+                destination.Y,
+                rightWidth,
+                destination.Height),
+            Color.White);
     }
 
     public static void DrawMarker(
