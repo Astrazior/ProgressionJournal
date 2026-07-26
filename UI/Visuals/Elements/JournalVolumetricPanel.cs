@@ -7,7 +7,8 @@ public class JournalVolumetricPanel : UIPanel
 {
     public bool DrawShadow { get; init; } = true;
     public bool PreservePalette { get; init; }
-    public string? FrameTextureOverridePath { get; init; }
+    protected string? FrameTextureOverridePath { get; init; }
+    public string? BackgroundTextureOverridePath { get; init; }
 
     protected override void DrawSelf(SpriteBatch spriteBatch)
     {
@@ -18,6 +19,7 @@ public class JournalVolumetricPanel : UIPanel
             BorderColor,
             DrawShadow,
             PreservePalette,
-            FrameTextureOverridePath);
+            FrameTextureOverridePath,
+            BackgroundTextureOverridePath);
     }
 }

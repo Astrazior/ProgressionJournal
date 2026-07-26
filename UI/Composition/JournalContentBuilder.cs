@@ -11,6 +11,7 @@ namespace ProgressionJournal.UI.Composition;
 
 public static class JournalContentBuilder
 {
+    private const string SavedBuildBackgroundTexturePath = "Images/MapBG5";
     private const float SavedBuildPreviewWidth = 126f;
     private const float SavedBuildPreviewHeight = 178f;
 
@@ -637,7 +638,11 @@ public static class JournalContentBuilder
         JournalClassPalette palette,
         UIElement focusContainer)
     {
-        var previewPanel = JournalUiElementFactory.CreatePanel();
+        var previewPanel = new JournalVolumetricPanel
+        {
+            BackgroundTextureOverridePath = SavedBuildBackgroundTexturePath
+        };
+        previewPanel.SetPadding(0f);
         previewPanel.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
         previewPanel.Top.Set(top, 0f);
         previewPanel.Width.Set(SavedBuildPreviewWidth, 0f);
