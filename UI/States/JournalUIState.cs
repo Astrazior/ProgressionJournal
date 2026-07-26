@@ -15,7 +15,8 @@ namespace ProgressionJournal.UI.States;
 
 public sealed class JournalUiState(JournalSystem journalSystem) : UIState
 {
-    private const string BestiarySearchCancelTexturePath = "Images/UI/SearchCancel";
+    private const string CloseIconTexturePath =
+        "ProgressionJournal/Assets/UI/Icons/Close";
     private const string BestiaryBackButtonTexturePath = "Images/UI/Bestiary/Button_Back";
     private const string CraftingWindowToggleTexturePath = "Images/UI/Craft_Toggle_0";
     private const string BuildPickerFilterIconTexturePath = "Images/UI/Bestiary/Button_Filtering";
@@ -1455,7 +1456,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         AddBuildPickerMenuButton(
             _buildPickerFilterMenuPanel,
             showDamageFilters ? sourceRow * BuildPickerMenuMaxColumns : index,
-            CreateBuildPickerAssetIconButton(ResetBuildPickerFilters, BestiarySearchCancelTexturePath),
+            CreateBuildPickerAssetIconButton(ResetBuildPickerFilters, CloseIconTexturePath),
             Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerFilterResetTooltip"),
             HasBuildPickerFilters());
     }
@@ -1466,7 +1467,15 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         Rectangle? sourceRectangle = null)
     {
         var button = new JournalBuildFilterIconButton(onClick);
-        button.SetIconAsset(texturePath, sourceRectangle);
+        if (texturePath.StartsWith("ProgressionJournal/", StringComparison.Ordinal))
+        {
+            button.SetIconTexture(ModContent.Request<Texture2D>(texturePath).Value, sourceRectangle);
+        }
+        else
+        {
+            button.SetIconAsset(texturePath, sourceRectangle);
+        }
+
         return button;
     }
 
@@ -1533,7 +1542,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         AddBuildPickerMenuButton(
             _buildPickerSortMenuPanel,
             2,
-            CreateBuildPickerAssetIconButton(ResetBuildPickerPowerSort, BestiarySearchCancelTexturePath),
+            CreateBuildPickerAssetIconButton(ResetBuildPickerPowerSort, CloseIconTexturePath),
             Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerSortResetTooltip"),
             _buildPickerPowerSort != BuildPickerPowerSort.None);
     }
@@ -2298,7 +2307,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
     private void InitializeHeader()
     {
         _closeButton = JournalUiElementFactory.CreateIconButton(
-            BestiarySearchCancelTexturePath,
+            CloseIconTexturePath,
             JournalUiMetrics.CloseTabWidth,
             JournalUiMetrics.ActionTabHeight,
             () => JournalSystem.HideView(),
@@ -2510,7 +2519,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _sourcePanel.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
 
         _sourceClearButton = JournalUiElementFactory.CreateIconButton(
-            BestiarySearchCancelTexturePath,
+            CloseIconTexturePath,
             24f,
             24f,
             () => JournalSystem.ClearSelectedItem(),
@@ -2672,7 +2681,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _buildPickerPanel.Append(_buildPickerTitle);
 
         _buildPickerCloseButton = JournalUiElementFactory.CreateIconButton(
-            BestiarySearchCancelTexturePath,
+            CloseIconTexturePath,
             24f,
             24f,
             () => JournalSystem.CloseBuildSlotPicker(),
@@ -2829,7 +2838,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _buildExportPanel.BorderColor = JournalUiTheme.RootBorder;
 
         _buildExportCloseButton = JournalUiElementFactory.CreateIconButton(
-            BestiarySearchCancelTexturePath,
+            CloseIconTexturePath,
             24f,
             24f,
             () => JournalSystem.CloseBuildExportDialog(),
@@ -2887,7 +2896,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _sharedBuildPanel.Append(_sharedBuildMeta);
 
         _sharedBuildCloseIconButton = JournalUiElementFactory.CreateIconButton(
-            BestiarySearchCancelTexturePath,
+            CloseIconTexturePath,
             24f,
             24f,
             () => JournalSystem.CloseSharedBuildPreview(),

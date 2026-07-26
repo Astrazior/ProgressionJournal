@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ModLoader;
 
 namespace ProgressionJournal.UI.Composition;
 
@@ -30,7 +31,10 @@ public static class JournalUiElementFactory
 
     public static JournalIconButton CreateIconButton(string texturePath, float width, float height, Action onClick, float iconScale = 1f, float iconRotation = 0f)
     {
-        var button = new JournalIconButton(Main.Assets.Request<Texture2D>(texturePath), iconScale, onClick, iconRotation);
+        var texture = texturePath.StartsWith("ProgressionJournal/", StringComparison.Ordinal)
+            ? ModContent.Request<Texture2D>(texturePath)
+            : Main.Assets.Request<Texture2D>(texturePath);
+        var button = new JournalIconButton(texture, iconScale, onClick, iconRotation);
         button.Width.Set(width, 0f);
         button.Height.Set(height, 0f);
         return button;

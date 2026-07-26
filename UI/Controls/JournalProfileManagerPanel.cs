@@ -1,6 +1,4 @@
-using Microsoft.Xna.Framework.Graphics;
 using ProgressionJournal.Systems;
-using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Localization;
 using Terraria.UI;
@@ -9,7 +7,8 @@ namespace ProgressionJournal.UI.Controls;
 
 public sealed class JournalProfileManagerPanel : JournalVolumetricPanel
 {
-    private const string CloseIconTexturePath = "Images/UI/SearchCancel";
+    private const string CloseIconTexturePath =
+        "ProgressionJournal/Assets/UI/Icons/Close";
     private const float WarningAreaHeight = 138f;
     private const float WarningTextScale = 0.68f;
     private const float WarningLineHeight = 20f;
@@ -42,7 +41,7 @@ public sealed class JournalProfileManagerPanel : JournalVolumetricPanel
         Append(title);
 
         var closeButton = JournalUiElementFactory.CreateIconButton(
-            Main.Assets.Request<Texture2D>(CloseIconTexturePath),
+            CloseIconTexturePath,
             36f,
             36f,
             system.CloseProfileManager,

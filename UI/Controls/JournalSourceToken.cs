@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Terraria.UI;
 
@@ -27,6 +28,11 @@ public sealed class JournalSourceToken : UIElement
 {
     private const string AchievementTexturePrefix = "achievement:";
     private const string AchievementsTexturePath = "Images/UI/Achievements";
+    private const string ConditionFrameTexturePath =
+        "ProgressionJournal/Assets/UI/Sources/SourceTokenConditionFrame";
+    private const string ConditionBackgroundTexturePath =
+        "ProgressionJournal/Assets/UI/Panels/VolumetricPanelBackground";
+    private const int ConditionFrameSourceCornerSize = 12;
     private const int AchievementIconSize = 64;
     private const string BestiaryFilterIconTexturePath = "Images/UI/Bestiary/Icon_Tags_Shadow";
     private const int BestiaryFilterIconColumns = 16;
@@ -345,103 +351,67 @@ public sealed class JournalSourceToken : UIElement
 
     private void DrawTokenFrame(SpriteBatch spriteBatch, Rectangle bounds)
     {
-        var (background, border) = GetFrameColors(_data.Kind);
+        if (_data.Kind is JournalSourceTokenKind.Bestiary
+            or JournalSourceTokenKind.Texture)
+        {
+            DrawConditionTokenFrame(spriteBatch, bounds);
+            return;
+        }
+
+        JournalItemSlotRenderer.DrawBackground(
+            spriteBatch,
+            bounds,
+            JournalUiTheme.ItemSlotDefaultAccent,
+            IsMouseHovering);
+    }
+
+    private void DrawConditionTokenFrame(
+        SpriteBatch spriteBatch,
+        Rectangle bounds)
+    {
+        var background = _data.Kind == JournalSourceTokenKind.Bestiary
+            ? new Color(17, 39, 39)
+            : new Color(42, 34, 20);
+        var border = _data.Kind == JournalSourceTokenKind.Bestiary
+            ? new Color(82, 166, 153)
+            : new Color(210, 165, 73);
         if (IsMouseHovering)
         {
             background = Color.Lerp(background, Color.White, 0.10f);
             border = Color.Lerp(border, Color.White, 0.24f);
         }
 
-        var cornerCut = _data.Kind switch
-        {
-            JournalSourceTokenKind.Npc => 7,
-            JournalSourceTokenKind.Bestiary => 11,
-            JournalSourceTokenKind.Texture => 8,
-            JournalSourceTokenKind.Tile => 5,
-            _ => 6
-        };
-
+        var cornerSize = _data.Kind == JournalSourceTokenKind.Bestiary
+            ? 11
+            : 8;
+        var frameTexture = ModContent.Request<Texture2D>(
+            ConditionFrameTexturePath).Value;
+        var backgroundTexture = ModContent.Request<Texture2D>(
+            ConditionBackgroundTexturePath).Value;
         var shadow = bounds;
         shadow.Offset(2, 3);
-        DrawChamferedRectangle(spriteBatch, shadow, cornerCut, Color.Black * 0.36f);
-        DrawChamferedRectangle(spriteBatch, bounds, cornerCut, border);
-        DrawBevel(spriteBatch, bounds, cornerCut, Color.Lerp(border, Color.White, 0.28f), Color.Lerp(border, Color.Black, 0.52f));
+        JournalNineSliceRenderer.Draw(
+            spriteBatch,
+            frameTexture,
+            shadow,
+            ConditionFrameSourceCornerSize,
+            cornerSize,
+            Color.Black * 0.42f);
 
         var inner = bounds;
         inner.Inflate(-4, -4);
-        DrawChamferedRectangle(spriteBatch, inner, Math.Max(2, cornerCut - 3), background);
-
-        var highlight = inner;
-        highlight.Inflate(-2, -2);
-        highlight.Height = Math.Max(1, highlight.Height / 3);
-        DrawChamferedRectangle(spriteBatch, highlight, Math.Max(1, cornerCut - 5), Color.White * 0.035f);
-
-    }
-
-    private static (Color Background, Color Border) GetFrameColors(JournalSourceTokenKind kind)
-    {
-        return kind switch
+        if (inner is { Width: > 0, Height: > 0 })
         {
-            JournalSourceTokenKind.Item => (new Color(18, 31, 43), new Color(91, 145, 184)),
-            JournalSourceTokenKind.Npc => (new Color(43, 25, 28), new Color(190, 100, 91)),
-            JournalSourceTokenKind.Bestiary => (new Color(17, 39, 39), new Color(82, 166, 153)),
-            JournalSourceTokenKind.Texture => (new Color(42, 34, 20), new Color(210, 165, 73)),
-            JournalSourceTokenKind.Tile => (new Color(43, 36, 24), new Color(190, 149, 76)),
-            _ => (JournalUiTheme.PanelBackground, JournalUiTheme.PanelBorder)
-        };
-    }
-
-    private static void DrawBevel(
-        SpriteBatch spriteBatch,
-        Rectangle rectangle,
-        int cornerCut,
-        Color topLeft,
-        Color bottomRight)
-    {
-        var pixel = TextureAssets.MagicPixel.Value;
-        var horizontalWidth = rectangle.Width - cornerCut * 2;
-        var verticalHeight = rectangle.Height - cornerCut * 2;
-        if (horizontalWidth <= 0 || verticalHeight <= 0)
-        {
-            return;
+            spriteBatch.Draw(backgroundTexture, inner, background);
         }
 
-        spriteBatch.Draw(pixel, new Rectangle(rectangle.X + cornerCut, rectangle.Y, horizontalWidth, 2), topLeft * 0.72f);
-        spriteBatch.Draw(pixel, new Rectangle(rectangle.X, rectangle.Y + cornerCut, 2, verticalHeight), topLeft * 0.52f);
-        spriteBatch.Draw(pixel, new Rectangle(rectangle.X + cornerCut, rectangle.Bottom - 2, horizontalWidth, 2), bottomRight * 0.80f);
-        spriteBatch.Draw(pixel, new Rectangle(rectangle.Right - 2, rectangle.Y + cornerCut, 2, verticalHeight), bottomRight * 0.72f);
-    }
-
-    private static void DrawChamferedRectangle(
-        SpriteBatch spriteBatch,
-        Rectangle rectangle,
-        int cornerCut,
-        Color color)
-    {
-        if (rectangle.Width <= 0 || rectangle.Height <= 0)
-        {
-            return;
-        }
-
-        var pixel = TextureAssets.MagicPixel.Value;
-        cornerCut = Math.Min(cornerCut, Math.Min(rectangle.Width, rectangle.Height) / 2);
-        spriteBatch.Draw(
-            pixel,
-            new Rectangle(rectangle.X, rectangle.Y + cornerCut, rectangle.Width, rectangle.Height - cornerCut * 2),
-            color);
-
-        for (var row = 0; row < cornerCut; row++)
-        {
-            var inset = cornerCut - row;
-            var width = rectangle.Width - inset * 2;
-            if (width <= 0)
-            {
-                continue;
-            }
-
-            spriteBatch.Draw(pixel, new Rectangle(rectangle.X + inset, rectangle.Y + row, width, 1), color);
-            spriteBatch.Draw(pixel, new Rectangle(rectangle.X + inset, rectangle.Bottom - row - 1, width, 1), color);
-        }
+        JournalNineSliceRenderer.Draw(
+            spriteBatch,
+            frameTexture,
+            bounds,
+            ConditionFrameSourceCornerSize,
+            cornerSize,
+            Color.Lerp(Color.White, border, 0.65f));
     }
 
 }
