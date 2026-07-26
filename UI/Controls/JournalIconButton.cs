@@ -15,6 +15,7 @@ public sealed class JournalIconButton : JournalHoverPanel
     private readonly float _iconRotation;
     private string? _hoverText;
     private bool _showChrome;
+    private bool _showSlotChrome;
     private bool _showCloseStyle;
     private Color? _flatHoverColor;
     private string _badgeText = string.Empty;
@@ -52,6 +53,12 @@ public sealed class JournalIconButton : JournalHoverPanel
         _chromeStyle = style;
     }
 
+    public void EnableSlotChrome(JournalButtonStyle style)
+    {
+        _showSlotChrome = true;
+        _chromeStyle = style;
+    }
+
     public void EnableCloseStyle()
     {
         _showCloseStyle = true;
@@ -71,7 +78,17 @@ public sealed class JournalIconButton : JournalHoverPanel
     protected override void DrawSelf(SpriteBatch spriteBatch)
     {
         var dimensions = GetDimensions().ToRectangle();
-        if (_showChrome && !_showCloseStyle)
+        if (_showSlotChrome && !_showCloseStyle)
+        {
+            JournalItemSlotRenderer.DrawBackground(
+                spriteBatch,
+                dimensions,
+                _chromeStyle.Border,
+                IsMouseHovering,
+                emphasizeOuterAccent: true,
+                accentStrength: 0.16f);
+        }
+        else if (_showChrome && !_showCloseStyle)
         {
             BackgroundColor = IsMouseHovering
                 ? Color.Lerp(_chromeStyle.Background, Color.White, 0.14f)

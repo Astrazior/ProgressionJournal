@@ -2426,7 +2426,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             30f,
             30f,
             () => JournalSystem.ShowPresetsTab(),
-            1.15f);
+            1.65f);
         _buildBackButton.Left.Set(-76f, 1f);
         _buildBackButton.Top.Set(8f, 0f);
         _buildBackButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildBackTooltip"));
@@ -2525,7 +2525,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             24f,
             24f,
             () => JournalSystem.ClearSelectedItem(),
-            0.72f);
+            1f);
         _sourceClearButton.Left.Set(-30f, 1f);
         _sourceClearButton.Top.Set(6f, 0f);
         _sourcePanel.Append(_sourceClearButton);
@@ -2687,7 +2687,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             24f,
             24f,
             () => JournalSystem.CloseBuildSlotPicker(),
-            0.8f);
+            1.12f);
         _buildPickerCloseButton.Left.Set(-34f, 1f);
         _buildPickerCloseButton.Top.Set(8f, 0f);
         _buildPickerPanel.Append(_buildPickerCloseButton);
@@ -2813,6 +2813,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _buildSaveCancelButton.Top.Set(-50f, 1f);
         _buildSaveCancelButton.Width.Set(-18f, 0.5f);
         _buildSaveCancelButton.SetStyle(JournalUiTheme.GetDefaultTextButtonStyle());
+        _buildSaveCancelButton.EnableSlotFrame();
         _buildSavePanel.Append(_buildSaveCancelButton);
 
         _buildSaveConfirmButton = JournalUiElementFactory.CreateTextButton(
@@ -2825,6 +2826,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _buildSaveConfirmButton.Top.Set(-50f, 1f);
         _buildSaveConfirmButton.Width.Set(-30f, 0.5f);
         _buildSaveConfirmButton.SetStyle(JournalUiTheme.GetOverlayActionButtonStyle());
+        _buildSaveConfirmButton.EnableSlotFrame();
         _buildSavePanel.Append(_buildSaveConfirmButton);
     }
 
@@ -2842,7 +2844,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             24f,
             24f,
             () => JournalSystem.CloseBuildExportDialog(),
-            0.8f);
+            1.12f);
         _buildExportCloseButton.Left.Set(-30f, 1f);
         _buildExportCloseButton.Top.Set(6f, 0f);
         _buildExportPanel.Append(_buildExportCloseButton);
@@ -2855,7 +2857,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             0.78f);
         _buildExportFileButton.Left.Set(24f, 0f);
         _buildExportFileButton.Top.Set(32f, 0f);
-        _buildExportFileButton.EnableChrome(JournalUiTheme.GetDefaultTextButtonStyle());
+        _buildExportFileButton.EnableSlotChrome(JournalUiTheme.GetDefaultTextButtonStyle());
         _buildExportPanel.Append(_buildExportFileButton);
 
         _buildExportChatButton = JournalUiElementFactory.CreateIconButton(
@@ -2866,7 +2868,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             0.82f);
         _buildExportChatButton.Left.Set(86f, 0f);
         _buildExportChatButton.Top.Set(32f, 0f);
-        _buildExportChatButton.EnableChrome(JournalUiTheme.GetDefaultTextButtonStyle());
+        _buildExportChatButton.EnableSlotChrome(JournalUiTheme.GetDefaultTextButtonStyle());
         _buildExportPanel.Append(_buildExportChatButton);
     }
 
@@ -2900,7 +2902,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             24f,
             24f,
             () => JournalSystem.CloseSharedBuildPreview(),
-            0.8f);
+            1.12f);
         _sharedBuildCloseIconButton.Left.Set(-34f, 1f);
         _sharedBuildCloseIconButton.Top.Set(8f, 0f);
         _sharedBuildPanel.Append(_sharedBuildCloseIconButton);

@@ -12,6 +12,7 @@ public sealed class JournalTextButton : JournalHoverPanel
     private JournalButtonStyle _style;
     private string? _hoverText;
     private bool _useTopTabFrame;
+    private bool _useSlotFrame;
 
     public JournalTextButton(string text, float textScale, Action onClick)
     {
@@ -30,6 +31,8 @@ public sealed class JournalTextButton : JournalHoverPanel
     public void SetHoverText(string hoverText) => _hoverText = hoverText;
 
     public void EnableTopTabFrame() => _useTopTabFrame = true;
+
+    public void EnableSlotFrame() => _useSlotFrame = true;
 
     public void SetStyle(JournalButtonStyle style)
     {
@@ -60,6 +63,16 @@ public sealed class JournalTextButton : JournalHoverPanel
                 GetDimensions().ToRectangle(),
                 _style,
                 IsMouseHovering);
+        }
+        else if (_useSlotFrame)
+        {
+            JournalItemSlotRenderer.DrawBackground(
+                spriteBatch,
+                GetDimensions().ToRectangle(),
+                _style.Border,
+                IsMouseHovering,
+                emphasizeOuterAccent: true,
+                accentStrength: 0.16f);
         }
         else
         {

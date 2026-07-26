@@ -10,9 +10,13 @@ internal static class JournalClassCardRenderer
         "ProgressionJournal/Assets/UI/Panels/VolumetricPanelFrame";
     private const string BackgroundTexturePath =
         "ProgressionJournal/Assets/UI/Panels/VolumetricPanelBackground";
+    private const string TitleShadeTexturePath =
+        "ProgressionJournal/Assets/UI/Classes/ClassTitleShade";
     private const int FrameSourceCornerSize = 10;
     private const int FrameDestinationCornerSize = 10;
     private const int FrameInset = 5;
+    private const int TitleShadeSourceCornerSize = 12;
+    private const int TitleShadeDestinationCornerSize = 9;
 
     public static void Draw(
         SpriteBatch spriteBatch,
@@ -76,11 +80,18 @@ internal static class JournalClassCardRenderer
         var plate = new Rectangle(face.X + 11, face.Y + 6, face.Width - 22, 28);
         if (plate is { Width: > 0, Height: > 0 })
         {
-            var plateBackground = Color.Lerp(palette.Background, Color.Black, selected ? 0.30f : 0.40f);
-            spriteBatch.Draw(
-                backgroundTexture,
+            var plateBackground = Color.Lerp(
+                palette.Background,
+                Color.Black,
+                selected ? 0.18f : 0.26f);
+            var titleShadeTexture = ModContent.Request<Texture2D>(TitleShadeTexturePath).Value;
+            JournalNineSliceRenderer.Draw(
+                spriteBatch,
+                titleShadeTexture,
                 plate,
-                plateBackground * 0.94f);
+                TitleShadeSourceCornerSize,
+                TitleShadeDestinationCornerSize,
+                plateBackground * 0.88f);
         }
     }
 }

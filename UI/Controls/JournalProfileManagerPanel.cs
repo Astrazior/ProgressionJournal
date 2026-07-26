@@ -45,7 +45,7 @@ public sealed class JournalProfileManagerPanel : JournalVolumetricPanel
             36f,
             36f,
             system.CloseProfileManager,
-            0.78f);
+            1.08f);
         closeButton.Left.Set(-44f, 1f);
         closeButton.Top.Set(52f, 0f);
         closeButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.ProfileClose"));
