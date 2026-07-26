@@ -2,49 +2,10 @@
   "format": "ProgressionJournalManualReview",
   "version": 1,
   "profileId": "builtin.fargosouls",
-  "generatedAtUtc": "2026-07-26T18:15:13.278Z",
+  "generatedAtUtc": "2026-07-26T19:00:06.874Z",
   "summary": {
-    "total": 1,
-    "byKind": {
-      "unresolved-condition": 1
-    }
+    "total": 0,
+    "byKind": {}
   },
-  "issues": [
-    {
-      "id": "unresolved-condition.04b789073f46",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "After the boss has been defeated"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "FargowiltasSouls/CoffinSummon",
-          "source": "Fargowiltas/Mutant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Fargowiltas/Mutant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "After the boss has been defeated"
-            ]
-          }
-        ]
-      }
-    }
-  ]
+  "issues": []
 }

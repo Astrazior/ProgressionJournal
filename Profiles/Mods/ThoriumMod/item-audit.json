@@ -3,21 +3,21 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-07-26T18:15:23.287Z",
+  "generatedAtUtc": "2026-07-26T19:00:18.921Z",
   "snapshotGeneratedAtUtc": "2026-07-18T12:41:20.8818076Z",
   "summary": {
     "snapshotItems": 8330,
     "contentItems": 2875,
     "profileEntries": 2049,
-    "profileBuffEntries": 224,
-    "profileItemReferences": 2333,
+    "profileBuffEntries": 225,
+    "profileItemReferences": 2334,
     "equipmentReferences": 2109,
-    "buffReferences": 224,
-    "excluded": 3759,
-    "acquiredNonProfile": 126,
+    "buffReferences": 225,
+    "excluded": 3760,
+    "acquiredNonProfile": 127,
     "unresolvedAvailability": 5,
     "unavailableCombat": 2,
-    "noAcquisitionPath": 2105
+    "noAcquisitionPath": 2102
   },
   "items": [
     {
@@ -47035,10 +47035,10 @@
       "name": "Starfish",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
+      "status": "acquired-non-profile",
       "stage": "start",
-      "via": "npc:Terraria/Squid",
-      "reason": "not combat equipment"
+      "via": "initial",
+      "reason": "Acquisition path resolved, but the item is not a profile entry."
     },
     {
       "id": "Terraria/Starfruit",
@@ -55955,10 +55955,10 @@
       "name": "Astral Wave",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "shimmer:ThoriumMod/CrystalWave",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "ThoriumMod/AstroBeetleBanner",
@@ -59845,10 +59845,10 @@
       "name": "Crystal Wave",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "not combat equipment"
     },
     {
       "id": "ThoriumMod/CrystalWish",
@@ -81155,10 +81155,10 @@
       "name": "Undersea Bounty",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:ThoriumMod/BlankPainting+ThoriumMod/CrystalWave",
+      "reason": "not combat equipment"
     },
     {
       "id": "ThoriumMod/UnderworldBiomeChest",

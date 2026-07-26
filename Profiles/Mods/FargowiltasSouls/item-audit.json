@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "FargowiltasSouls",
   "profileId": "builtin.fargosouls",
-  "generatedAtUtc": "2026-07-26T18:15:13.339Z",
+  "generatedAtUtc": "2026-07-26T19:00:06.939Z",
   "snapshotGeneratedAtUtc": "2026-07-18T12:47:18.3352186Z",
   "summary": {
     "snapshotItems": 6132,
@@ -13,8 +13,8 @@
     "profileItemReferences": 1318,
     "equipmentReferences": 1157,
     "buffReferences": 161,
-    "excluded": 2994,
-    "acquiredNonProfile": 126,
+    "excluded": 2993,
+    "acquiredNonProfile": 127,
     "unresolvedAvailability": 5,
     "unavailableCombat": 2,
     "noAcquisitionPath": 1687
@@ -53805,10 +53805,10 @@
       "name": "Starfish",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
+      "status": "acquired-non-profile",
       "stage": "start",
-      "via": "npc:Terraria/Crab",
-      "reason": "not combat equipment"
+      "via": "initial",
+      "reason": "Acquisition path resolved, but the item is not a profile entry."
     },
     {
       "id": "Terraria/Starfruit",

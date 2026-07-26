@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "FargowiltasSouls",
   "profileId": "builtin.fargosouls",
-  "generatedAtUtc": "2026-07-26T18:15:13.312Z",
+  "generatedAtUtc": "2026-07-26T19:00:06.914Z",
   "snapshot": {
     "version": 6,
     "generatedAtUtc": "2026-07-18T12:47:18.3352186Z",
@@ -24,7 +24,7 @@
     ]
   },
   "agentRules": {
-    "rules": 93,
+    "rules": 94,
     "ignoredItems": 1,
     "ignoredIssues": 0,
     "evidence": [
@@ -680,6 +680,13 @@
         "reason": "Abominationn sells the scythe only after the celestial towers have been defeated."
       },
       {
+        "id": "mutant-cursed-coffin-summon-shop-condition",
+        "sourceUrl": "https://fargosmods.wiki.gg/wiki/Cursed_Coffin",
+        "sourceVersion": "Fargowiltas Souls snapshot shop condition for CoffinSummon",
+        "checkedAt": "2026-07-26",
+        "reason": "For the Mutant's Coffin Summon shop entry, the otherwise generic condition refers specifically to defeating the Cursed Coffin."
+      },
+      {
         "id": "internal-inactive-test-and-projectile-items",
         "sourceUrl": "https://github.com/Fargowilta/FargowiltasSouls",
         "sourceVersion": "Fargo's Souls 1.7.3.9",
@@ -696,10 +703,8 @@
     }
   },
   "review": {
-    "total": 1,
-    "byKind": {
-      "unresolved-condition": 1
-    }
+    "total": 0,
+    "byKind": {}
   },
   "audit": {
     "errors": [],
@@ -4233,10 +4238,10 @@
       "errors": []
     }
   },
-  "ready": false,
+  "ready": true,
   "generation": {
     "profileId": "builtin.fargosouls",
-    "generatedAtUtc": "2026-07-26T18:15:11.915Z",
+    "generatedAtUtc": "2026-07-26T19:00:05.582Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -8964,11 +8969,6 @@
       {
         "stage": "start",
         "id": "Terraria/GuideVoodooDoll",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/Starfish",
         "reason": "not combat equipment"
       },
       {
@@ -29415,6 +29415,10 @@
         "stage": "start",
         "via": "initial"
       },
+      "Terraria/Starfish": {
+        "stage": "start",
+        "via": "initial"
+      },
       "Terraria/WhitePearl": {
         "stage": "start",
         "via": "initial"
@@ -29890,10 +29894,6 @@
       "Terraria/GuideVoodooDoll": {
         "stage": "start",
         "via": "npc:Terraria/VoodooDemon"
-      },
-      "Terraria/Starfish": {
-        "stage": "start",
-        "via": "npc:Terraria/Crab"
       },
       "Terraria/VikingHelmet": {
         "stage": "start",
@@ -43799,9 +43799,9 @@
     },
     "unassignedVanillaNpcSourceCount": 188,
     "manualAvailabilityPriority": {
-      "automaticItems": 4161,
+      "automaticItems": 4160,
       "automaticSources": 221,
-      "automaticStations": 406,
+      "automaticStations": 405,
       "suppressed": {
         "itemStages": [
           {

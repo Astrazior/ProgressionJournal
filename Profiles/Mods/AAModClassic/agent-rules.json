@@ -1012,6 +1012,149 @@
       "sourceVersion": "AAModClassic 1.0.16 snapshot",
       "checkedAt": "2026-07-12",
       "reason": "These conditions select a world-edition loot branch, time variant, or first-kill reward; the defeated NPC or opened boss bag remains the progression gate."
+    },
+    {
+      "id": "aamodclassic-start-world-and-interaction-roots",
+      "kind": "item-stage",
+      "items": [
+        "AAModClassic/AshProofVest0",
+        "AAModClassic/AshProofVest1",
+        "AAModClassic/AshProofVest2",
+        "AAModClassic/BlackLotus",
+        "AAModClassic/Prism",
+        "AAModClassic/ShinyCharmFish"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.17 installed assembly IL",
+      "checkedAt": "2026-07-26",
+      "reason": "Prism Ore and Mire foliage are generated with the world, the Shiny Charm Fish can be caught before any boss, and the three vest variants transform from the craftable Ash-Proof Vest in the pre-Hardmode Inferno."
+    },
+    {
+      "id": "aamodclassic-shiny-charm-fish-source",
+      "kind": "fishing-source",
+      "item": "AAModClassic/ShinyCharmFish",
+      "conditions": [
+        {
+          "en-US": "Caught in water with at least 100 fishing power: 1-in-4096 chance, or 1-in-2048 while both the Angler Earring and Tackle Box effects are active",
+          "ru-RU": "Ловится в воде при силе рыбалки не ниже 100: шанс 1 к 4096 либо 1 к 2048 при одновременных эффектах серьги рыбака и ящика для снастей"
+        }
+      ],
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.17 ZAAPlayer.CatchFish IL",
+      "checkedAt": "2026-07-26",
+      "reason": "The catch hook explicitly rolls this fish only in ordinary water and records both probability branches."
+    },
+    {
+      "id": "aamodclassic-equinox-ore-roots",
+      "kind": "item-stage",
+      "items": [
+        "AAModClassic/DarkmatterOre",
+        "AAModClassic/RadiumOre"
+      ],
+      "stageId": "equinox-worms",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.17 AAWorld.PostUpdateWorld and RadiumOre_Tile.KillTile IL",
+      "checkedAt": "2026-07-26",
+      "reason": "Defeating the Equinox Worms generates Radium Ore tiles, which yield Radium Ore or Darkmatter Ore when mined."
+    },
+    {
+      "id": "aamodclassic-developer-bag-wing-roots",
+      "kind": "item-stage",
+      "items": [
+        "AAModClassic/AvesWings",
+        "AAModClassic/BigEWings",
+        "AAModClassic/BlazenWings",
+        "AAModClassic/CharlieWings",
+        "AAModClassic/GibsWings",
+        "AAModClassic/GroxWings",
+        "AAModClassic/MoonWings"
+      ],
+      "stageId": "mushroom-monarch",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.17 developer-bag RightClick and boss-bag source IL",
+      "checkedAt": "2026-07-26",
+      "reason": "Each wing is obtained from its matching developer bag; the earliest verified source for those bags is the Mushroom Monarch Treasure Bag."
+    },
+    {
+      "id": "aamodclassic-rune-page-root",
+      "kind": "item-stage",
+      "item": "AAModClassic/APageOfTheRuneBook",
+      "stageId": "greed",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.17 ZAAPlayer.DropDevArmor IL",
+      "checkedAt": "2026-07-26",
+      "reason": "The page is a rare direct developer reward from the post-Plantera treasure-bag branch; Greed is the earliest boss in that branch."
+    },
+    {
+      "id": "aamodclassic-soul-stone-root",
+      "kind": "item-stage",
+      "item": "AAModClassic/SoulStone",
+      "stageId": "zero",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.17 GoblinTinkererDoll.PostUpdate and AAConditions IL",
+      "checkedAt": "2026-07-26",
+      "reason": "The doll required for the lava ritual drops only after all Late Ancients in the required Removed-content world; Zero is the last corresponding profile stage."
+    },
+    {
+      "id": "aamodclassic-hardmode-biome-chests",
+      "kind": "source-stage",
+      "sources": [
+        "AAModClassic/DoomsdayChest",
+        "AAModClassic/InfernoChest",
+        "AAModClassic/MireChest"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.17 chest UnlockChest and key-drop IL",
+      "checkedAt": "2026-07-26",
+      "reason": "These chests use biome keys whose global enemy drops begin in Hardmode, with no later chest-unlock gate."
+    },
+    {
+      "id": "aamodclassic-greed-chest",
+      "kind": "source-stage",
+      "source": "AAModClassic/GreedChest",
+      "stageId": "plantera",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.17 GreedChest_Tile and Scavenger drop IL",
+      "checkedAt": "2026-07-26",
+      "reason": "The Greed Chest requires a Gilded Key, whose earliest verified source is the post-Plantera Scavenger."
+    },
+    {
+      "id": "aamodclassic-segmented-and-hardmode-npc-sources",
+      "kind": "source-stage",
+      "sources": [
+        "AAModClassic/PurityWeaverBody",
+        "AAModClassic/PurityWeaverHead",
+        "AAModClassic/PurityWeaverTail"
+      ],
+      "stageId": "world-evil",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.17 Purity Weaver NPC IL",
+      "checkedAt": "2026-07-26",
+      "reason": "All three segmented NPC records belong to one Purity Weaver spawn and inherit the head's world-evil availability."
+    },
+    {
+      "id": "aamodclassic-shadow-ghoul-source",
+      "kind": "source-stage",
+      "source": "AAModClassic/ShadowGhoul",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.17 ShadowGhoul spawn IL",
+      "checkedAt": "2026-07-26",
+      "reason": "The Shadow Ghoul spawn check explicitly requires Hardmode in the underground Mire."
+    },
+    {
+      "id": "aamodclassic-unobtainable-doragonburedo",
+      "kind": "item-override",
+      "item": "AAModClassic/Doragonburedo",
+      "override": {
+        "exclude": true
+      },
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.17 installed assembly registration and reference audit",
+      "checkedAt": "2026-07-26",
+      "reason": "The item is registered but has no recipe, drop, shop, fishing, bag-content, or runtime reference that can make it obtainable in 1.0.17."
     }
   ],
   "ignoredItems": [

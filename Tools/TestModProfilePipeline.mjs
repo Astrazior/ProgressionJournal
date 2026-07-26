@@ -12,6 +12,17 @@ import { applyVanillaSourceCatalog } from "./VanillaSourceCatalog.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
 const modsRoot = path.join(root, "Profiles", "Mods");
+const buildPlannerSource = fs.readFileSync(
+  path.join(root, "Data", "Repositories", "JournalRepository.BuildPlanner.cs"),
+  "utf8");
+assert(buildPlannerSource.includes(".Take(profile.GetStageIndex(stageId) + 1)")
+  && buildPlannerSource.includes(
+    ".SelectMany(stage => GetCombatBuffEntries(profile.Id, stage.Id, classId))"),
+"Build picker must include potion and food entries from every previous profile stage");
+assert(buildPlannerSource.includes(
+  ".Where(itemId => MatchesArmorPiece(itemId, slotKind))")
+  && !buildPlannerSource.includes("var fallbackIndex = slotKind switch"),
+"Armor build slots must include only items that equip in the requested slot");
 const expected = ["CalamityMod", "FargowiltasSouls", "ThoriumMod"];
 const requiredFiles = [
   "support.json",

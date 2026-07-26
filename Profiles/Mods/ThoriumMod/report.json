@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-07-26T18:15:23.259Z",
+  "generatedAtUtc": "2026-07-26T19:00:18.894Z",
   "snapshot": {
     "version": 6,
     "generatedAtUtc": "2026-07-18T12:41:20.8818076Z",
@@ -16,7 +16,7 @@
     ]
   },
   "agentRules": {
-    "rules": 88,
+    "rules": 89,
     "ignoredItems": 5,
     "ignoredIssues": 2,
     "evidence": [
@@ -635,6 +635,13 @@
         "sourceVersion": "Terraria 1.4.4.9",
         "checkedAt": "2026-06-21",
         "reason": "The exported Thorium recipe requires Night's Edge, Souls of Fright, Might and Sight, and a Mythril Anvil, placing it after all mechanical bosses in this profile."
+      },
+      {
+        "id": "thorium-crystal-wave-ocean-crystal-source",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Ocean_Crystal",
+        "sourceVersion": "Thorium Mod 1.7.2.6 snapshot and Ocean Crystal tile source",
+        "checkedAt": "2026-07-26",
+        "reason": "Crystal Wave drops from naturally generated Ocean Crystals in the Aquatic Depths; shimmer then converts it into Astral Wave."
       },
       {
         "id": "unobtainable-legacy-items",
@@ -1874,16 +1881,14 @@
         }
       ],
       "stageComparison": {
-        "compared": 2333,
+        "compared": 2334,
         "moved": 0
       }
     }
   },
   "review": {
-    "total": 1,
-    "byKind": {
-      "unassigned-combat-item": 1
-    }
+    "total": 0,
+    "byKind": {}
   },
   "audit": {
     "errors": [],
@@ -6622,10 +6627,10 @@
       "errors": []
     }
   },
-  "ready": false,
+  "ready": true,
   "generation": {
     "profileId": "builtin.thorium",
-    "generatedAtUtc": "2026-07-26T18:15:16.326Z",
+    "generatedAtUtc": "2026-07-26T19:00:10.654Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -11054,11 +11059,6 @@
       {
         "stage": "start",
         "id": "Terraria/PedguinPants",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/Starfish",
         "reason": "not combat equipment"
       },
       {
@@ -18853,6 +18853,11 @@
       },
       {
         "stage": "start",
+        "id": "ThoriumMod/CrystalWave",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/LivingLoom",
         "reason": "not combat equipment"
       },
@@ -18919,6 +18924,11 @@
       {
         "stage": "start",
         "id": "ThoriumMod/TeatimePaint",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "ThoriumMod/UnderseaBountyPaint",
         "reason": "not combat equipment"
       },
       {
@@ -32334,6 +32344,10 @@
         "stage": "start",
         "via": "recipe:ThoriumMod/LivingLeaf+Terraria/Wood"
       },
+      "ThoriumMod/AstralWave": {
+        "stage": "start",
+        "via": "shimmer:ThoriumMod/CrystalWave"
+      },
       "ThoriumMod/MagickStaff": {
         "stage": "start",
         "via": "recipe:ThoriumMod/Siphon+ThoriumMod/Ignite+ThoriumMod/Dissolve+ThoriumMod/Poison+ThoriumMod/Stun+ThoriumMod/Freeze+ThoriumMod/Confuse+ThoriumMod/Charm+ThoriumMod/Pierce"
@@ -39170,6 +39184,10 @@
         "stage": "start",
         "via": "initial"
       },
+      "Terraria/Starfish": {
+        "stage": "start",
+        "via": "initial"
+      },
       "Terraria/WhitePearl": {
         "stage": "start",
         "via": "initial"
@@ -39926,10 +39944,6 @@
       "Terraria/PedguinPants": {
         "stage": "start",
         "via": "npc:Terraria/CorruptPenguin"
-      },
-      "Terraria/Starfish": {
-        "stage": "start",
-        "via": "npc:Terraria/Squid"
       },
       "Terraria/PurpleMucos": {
         "stage": "start",
@@ -46169,6 +46183,10 @@
         "stage": "start",
         "via": "manifest"
       },
+      "ThoriumMod/CrystalWave": {
+        "stage": "start",
+        "via": "manifest"
+      },
       "Terraria/LivingLoom": {
         "stage": "start",
         "via": "recipe:Terraria/Wood+ThoriumMod/LivingLeaf"
@@ -46224,6 +46242,10 @@
       "ThoriumMod/TeatimePaint": {
         "stage": "start",
         "via": "recipe:ThoriumMod/BlankPainting+ThoriumMod/LivingLeaf"
+      },
+      "ThoriumMod/UnderseaBountyPaint": {
+        "stage": "start",
+        "via": "recipe:ThoriumMod/BlankPainting+ThoriumMod/CrystalWave"
       },
       "ThoriumMod/AquaiteScaleBlock": {
         "stage": "start",
@@ -58452,9 +58474,9 @@
     },
     "unassignedVanillaNpcSourceCount": 138,
     "manualAvailabilityPriority": {
-      "automaticItems": 5683,
+      "automaticItems": 5682,
       "automaticSources": 306,
-      "automaticStations": 509,
+      "automaticStations": 508,
       "suppressed": {
         "itemStages": [
           {
@@ -58770,7 +58792,7 @@
         ]
       },
       "retained": {
-        "itemStages": 57,
+        "itemStages": 58,
         "itemStageFloors": 0,
         "sourceStages": 127,
         "stationStages": 1

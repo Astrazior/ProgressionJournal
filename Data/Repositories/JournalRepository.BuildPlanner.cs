@@ -211,7 +211,7 @@ public static partial class JournalRepository
     {
         Dictionary<int, BuildCandidateAccumulator> candidates = new();
 
-        foreach (var buffEntry in GetCombatBuffEntries(profileId, stageId, classId))
+        foreach (var buffEntry in GetBuildBuffEntries(profileId, stageId, classId))
         {
             if (!MatchesBuildBuffSlot(buffEntry, slotKind))
             {
@@ -241,6 +241,22 @@ public static partial class JournalRepository
             .ThenBy(candidate => Lang.GetItemNameValue(candidate.ItemId), StringComparer.CurrentCultureIgnoreCase)
             .Select(static candidate => new JournalBuildCandidate(candidate.ItemId))
             .ToArray();
+    }
+
+    private static IEnumerable<JournalCombatBuffEntry> GetBuildBuffEntries(
+        string profileId,
+        string stageId,
+        string classId)
+    {
+        if (!JournalProfileRegistry.TryGet(profileId, out var profile)
+            || string.Equals(profile.Id, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase))
+        {
+            return GetCombatBuffEntries(profileId, stageId, classId);
+        }
+
+        return profile.Stages
+            .Take(profile.GetStageIndex(stageId) + 1)
+            .SelectMany(stage => GetCombatBuffEntries(profile.Id, stage.Id, classId));
     }
 
     private static IReadOnlyList<JournalBuildCandidate> BuildFoodCandidates()
@@ -313,25 +329,9 @@ public static partial class JournalRepository
             return [];
         }
 
-        foreach (var group in entry.ItemGroups)
-        {
-            if (group.ItemIds.Any(itemId => MatchesArmorPiece(itemId, slotKind)))
-            {
-                return group.ItemIds;
-            }
-        }
-
-        var fallbackIndex = slotKind switch
-        {
-            JournalBuildSlotKind.ArmorHead => 0,
-            JournalBuildSlotKind.ArmorBody => 1,
-            JournalBuildSlotKind.ArmorLegs => 2,
-            _ => -1
-        };
-
-        return fallbackIndex >= 0 && entry.ItemGroups.Count > fallbackIndex
-            ? entry.ItemGroups[fallbackIndex].ItemIds
-            : [];
+        return entry.ItemGroups
+            .SelectMany(static group => group.ItemIds)
+            .Where(itemId => MatchesArmorPiece(itemId, slotKind));
     }
 
     private static bool MatchesArmorPiece(int itemId, JournalBuildSlotKind slotKind)

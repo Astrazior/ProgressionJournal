@@ -75,6 +75,7 @@ const START_ITEMS = [
   "Terraria/Cactus",
   "Terraria/Coral",
   "Terraria/Seashell",
+  "Terraria/Starfish",
   "Terraria/WhitePearl",
   "Terraria/BlackPearl",
   "Terraria/PinkPearl",

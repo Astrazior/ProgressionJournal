@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "AAModClassic",
   "profileId": "builtin.aamodclassic",
-  "generatedAtUtc": "2026-07-26T18:14:39.600Z",
+  "generatedAtUtc": "2026-07-26T18:57:01.830Z",
   "snapshot": {
     "version": 6,
     "generatedAtUtc": "2026-07-26T17:13:49.4238019Z",
@@ -16,7 +16,7 @@
     ]
   },
   "agentRules": {
-    "rules": 57,
+    "rules": 68,
     "ignoredItems": 2,
     "ignoredIssues": 0,
     "evidence": [
@@ -420,6 +420,83 @@
         "reason": "These conditions select a world-edition loot branch, time variant, or first-kill reward; the defeated NPC or opened boss bag remains the progression gate."
       },
       {
+        "id": "aamodclassic-start-world-and-interaction-roots",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 installed assembly IL",
+        "checkedAt": "2026-07-26",
+        "reason": "Prism Ore and Mire foliage are generated with the world, the Shiny Charm Fish can be caught before any boss, and the three vest variants transform from the craftable Ash-Proof Vest in the pre-Hardmode Inferno."
+      },
+      {
+        "id": "aamodclassic-shiny-charm-fish-source",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 ZAAPlayer.CatchFish IL",
+        "checkedAt": "2026-07-26",
+        "reason": "The catch hook explicitly rolls this fish only in ordinary water and records both probability branches."
+      },
+      {
+        "id": "aamodclassic-equinox-ore-roots",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 AAWorld.PostUpdateWorld and RadiumOre_Tile.KillTile IL",
+        "checkedAt": "2026-07-26",
+        "reason": "Defeating the Equinox Worms generates Radium Ore tiles, which yield Radium Ore or Darkmatter Ore when mined."
+      },
+      {
+        "id": "aamodclassic-developer-bag-wing-roots",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 developer-bag RightClick and boss-bag source IL",
+        "checkedAt": "2026-07-26",
+        "reason": "Each wing is obtained from its matching developer bag; the earliest verified source for those bags is the Mushroom Monarch Treasure Bag."
+      },
+      {
+        "id": "aamodclassic-rune-page-root",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 ZAAPlayer.DropDevArmor IL",
+        "checkedAt": "2026-07-26",
+        "reason": "The page is a rare direct developer reward from the post-Plantera treasure-bag branch; Greed is the earliest boss in that branch."
+      },
+      {
+        "id": "aamodclassic-soul-stone-root",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 GoblinTinkererDoll.PostUpdate and AAConditions IL",
+        "checkedAt": "2026-07-26",
+        "reason": "The doll required for the lava ritual drops only after all Late Ancients in the required Removed-content world; Zero is the last corresponding profile stage."
+      },
+      {
+        "id": "aamodclassic-hardmode-biome-chests",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 chest UnlockChest and key-drop IL",
+        "checkedAt": "2026-07-26",
+        "reason": "These chests use biome keys whose global enemy drops begin in Hardmode, with no later chest-unlock gate."
+      },
+      {
+        "id": "aamodclassic-greed-chest",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 GreedChest_Tile and Scavenger drop IL",
+        "checkedAt": "2026-07-26",
+        "reason": "The Greed Chest requires a Gilded Key, whose earliest verified source is the post-Plantera Scavenger."
+      },
+      {
+        "id": "aamodclassic-segmented-and-hardmode-npc-sources",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 Purity Weaver NPC IL",
+        "checkedAt": "2026-07-26",
+        "reason": "All three segmented NPC records belong to one Purity Weaver spawn and inherit the head's world-evil availability."
+      },
+      {
+        "id": "aamodclassic-shadow-ghoul-source",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 ShadowGhoul spawn IL",
+        "checkedAt": "2026-07-26",
+        "reason": "The Shadow Ghoul spawn check explicitly requires Hardmode in the underground Mire."
+      },
+      {
+        "id": "aamodclassic-unobtainable-doragonburedo",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 installed assembly registration and reference audit",
+        "checkedAt": "2026-07-26",
+        "reason": "The item is registered but has no recipe, drop, shop, fishing, bag-content, or runtime reference that can make it obtainable in 1.0.17."
+      },
+      {
         "id": "legacy-class-setup-identifiers",
         "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
         "sourceVersion": "Ancients Awakened 1.0.3.2 guide; checked against AAModClassic 1.0.10 snapshot",
@@ -435,8 +512,8 @@
       }
     ],
     "availabilityMigration": {
-      "confirmed": 16,
-      "pending": 52,
+      "confirmed": 17,
+      "pending": 60,
       "mismatched": 3,
       "confirmedRules": [
         {
@@ -550,6 +627,13 @@
           "target": "AAModClassic/WyrmHead",
           "expectedStageId": "wall-of-flesh",
           "actualStageId": "wall-of-flesh"
+        },
+        {
+          "id": "aamodclassic-segmented-and-hardmode-npc-sources",
+          "kind": "npc-source",
+          "target": "AAModClassic/PurityWeaverHead",
+          "expectedStageId": "world-evil",
+          "actualStageId": "world-evil"
         }
       ],
       "pendingRules": [
@@ -848,6 +932,53 @@
           "expectedStageId": "golem"
         },
         {
+          "id": "aamodclassic-shiny-charm-fish-source",
+          "kind": "fishing",
+          "target": "AAModClassic/ShinyCharmFish"
+        },
+        {
+          "id": "aamodclassic-hardmode-biome-chests",
+          "kind": "npc-source",
+          "target": "AAModClassic/DoomsdayChest",
+          "expectedStageId": "wall-of-flesh"
+        },
+        {
+          "id": "aamodclassic-hardmode-biome-chests",
+          "kind": "npc-source",
+          "target": "AAModClassic/InfernoChest",
+          "expectedStageId": "wall-of-flesh"
+        },
+        {
+          "id": "aamodclassic-hardmode-biome-chests",
+          "kind": "npc-source",
+          "target": "AAModClassic/MireChest",
+          "expectedStageId": "wall-of-flesh"
+        },
+        {
+          "id": "aamodclassic-greed-chest",
+          "kind": "npc-source",
+          "target": "AAModClassic/GreedChest",
+          "expectedStageId": "plantera"
+        },
+        {
+          "id": "aamodclassic-segmented-and-hardmode-npc-sources",
+          "kind": "npc-source",
+          "target": "AAModClassic/PurityWeaverBody",
+          "expectedStageId": "world-evil"
+        },
+        {
+          "id": "aamodclassic-segmented-and-hardmode-npc-sources",
+          "kind": "npc-source",
+          "target": "AAModClassic/PurityWeaverTail",
+          "expectedStageId": "world-evil"
+        },
+        {
+          "id": "aamodclassic-shadow-ghoul-source",
+          "kind": "npc-source",
+          "target": "AAModClassic/ShadowGhoul",
+          "expectedStageId": "wall-of-flesh"
+        },
+        {
           "id": "hardmode-chaos-biome-sources",
           "kind": "npc-source",
           "target": "AAModClassic/ScavengerHead",
@@ -870,22 +1001,20 @@
         }
       ],
       "stageComparison": {
-        "compared": 1652,
+        "compared": 1716,
         "moved": 0
       }
     }
   },
   "review": {
-    "total": 65,
-    "byKind": {
-      "unassigned-combat-item": 65
-    }
+    "total": 0,
+    "byKind": {}
   },
   "audit": {
     "errors": [],
     "warnings": [
-      "58 recommendations precede proven availability and were suppressed",
-      "162 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
+      "62 recommendations precede proven availability and were suppressed",
+      "159 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
       "npcCount": 1007,
@@ -3251,6 +3380,22 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "AAModClassic/PurityWeaverBody",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "AAModClassic/PurityWeaverTail",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "AAModClassic/RaiderUltima",
           "kinds": [
             "drop"
@@ -3316,6 +3461,14 @@
         },
         {
           "source": "AAModClassic/SeraphA",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "AAModClassic/ShadowGhoul",
           "kinds": [
             "drop"
           ],
@@ -4109,30 +4262,6 @@
         }
       ],
       "uncovered": [
-        {
-          "source": "AAModClassic/PurityWeaverBody",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "AAModClassic/PurityWeaverTail",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "AAModClassic/ShadowGhoul",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
         {
           "source": "Terraria/Antlion",
           "kinds": [
@@ -5417,10 +5546,10 @@
       "errors": []
     }
   },
-  "ready": false,
+  "ready": true,
   "generation": {
     "profileId": "builtin.aamodclassic",
-    "generatedAtUtc": "2026-07-26T18:14:32.026Z",
+    "generatedAtUtc": "2026-07-26T18:56:52.649Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -15815,6 +15944,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/MusicBoxOcean",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/MusicBoxUnderground",
         "reason": "not combat equipment"
       },
@@ -16851,6 +16985,21 @@
       {
         "stage": "start",
         "id": "AAModClassic/Razewood",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/BlackLotus",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/Prism",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/ShinyCharmFish",
         "reason": "not combat equipment"
       },
       {
@@ -25694,6 +25843,91 @@
         "reason": "not combat equipment"
       },
       {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/DarkmatterOre",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/RadiumOre",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/DarkmatterBar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/RadiumBar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/DarkmatterBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/DarkmatterBrickWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/RadiumBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/RadiumBrickWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/StarsBox",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/QuantumFusionAccelerator",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/RadiantArcanum",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/DarkmatterPitchet",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/RadiumHammaxe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/Starminer",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/DoomsdayTesseract",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/EquinoxBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "equinox-worms",
+        "id": "AAModClassic/EquinoxBrickWall",
+        "reason": "not combat equipment"
+      },
+      {
         "stage": "sisters-of-discord",
         "id": "AAModClassic/DaybreakIncineriteOre",
         "reason": "not combat equipment"
@@ -25810,7 +26044,17 @@
       },
       {
         "stage": "sisters-of-discord",
+        "id": "AAModClassic/DraconianSunSigil",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
         "id": "AAModClassic/DreadMoonAltar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DreadMoonSigil",
         "reason": "not combat equipment"
       },
       {
@@ -25906,6 +26150,11 @@
       {
         "stage": "yamata",
         "id": "AAModClassic/YamataAMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "yamata",
+        "id": "AAModClassic/ChaosSigil",
         "reason": "not combat equipment"
       },
       {
@@ -26011,6 +26260,11 @@
       {
         "stage": "zero",
         "id": "AAModClassic/VoidPreIZBox",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "zero",
+        "id": "AAModClassic/InfinityBeacon",
         "reason": "not combat equipment"
       },
       {
@@ -27957,13 +28211,37 @@
         "stage": "start",
         "via": "recipe:AAModClassic/HydraClaw_Item"
       },
+      "AAModClassic/OceanChestplate": {
+        "stage": "start",
+        "via": "recipe:Terraria/Coral+Terraria/Starfish+Terraria/Seashell"
+      },
+      "AAModClassic/OceanHelmet": {
+        "stage": "start",
+        "via": "recipe:Terraria/Coral+Terraria/Starfish+Terraria/Seashell"
+      },
+      "AAModClassic/OceanLeggings": {
+        "stage": "start",
+        "via": "recipe:Terraria/Coral+Terraria/Starfish+Terraria/Seashell"
+      },
       "AAModClassic/CoralBow": {
         "stage": "start",
         "via": "recipe:Terraria/Coral+Terraria/IronBow"
       },
+      "AAModClassic/OceanRazor": {
+        "stage": "start",
+        "via": "recipe:Terraria/Coral+Terraria/Starfish"
+      },
+      "AAModClassic/OceanTrident": {
+        "stage": "start",
+        "via": "recipe:Terraria/Coral+Terraria/Starfish+Terraria/Seashell+Terraria/FallenStar"
+      },
       "AAModClassic/OceanWhaler": {
         "stage": "start",
         "via": "recipe:Terraria/Coral+Terraria/Harpoon"
+      },
+      "AAModClassic/SaltwaterSpear": {
+        "stage": "start",
+        "via": "recipe:Terraria/Coral+Terraria/Starfish"
       },
       "AAModClassic/CloudEdge": {
         "stage": "start",
@@ -28113,6 +28391,18 @@
         "stage": "start",
         "via": "recipe:AAModClassic/TopazSaber+Terraria/LargeTopaz"
       },
+      "AAModClassic/AshProofVest0": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "AAModClassic/AshProofVest1": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "AAModClassic/AshProofVest2": {
+        "stage": "start",
+        "via": "manifest"
+      },
       "AAModClassic/AmberSaber": {
         "stage": "start",
         "via": "recipe:Terraria/Amber+AAModClassic/DynaskullFossil"
@@ -28144,6 +28434,10 @@
       "AAModClassic/BogwoodLeggings": {
         "stage": "start",
         "via": "recipe:AAModClassic/Bogwood"
+      },
+      "AAModClassic/Poppy": {
+        "stage": "start",
+        "via": "recipe:Terraria/Ruby+Terraria/Sapphire+Terraria/Emerald+Terraria/Topaz+Terraria/Amber+Terraria/Diamond+Terraria/Amethyst+AAModClassic/Prism+Terraria/GoldBar"
       },
       "AAModClassic/OuroborosChestplate": {
         "stage": "start",
@@ -28192,6 +28486,38 @@
       "AAModClassic/MushiumLeggings": {
         "stage": "mushroom-monarch",
         "via": "recipe:AAModClassic/MushiumBar"
+      },
+      "AAModClassic/AvesWings": {
+        "stage": "mushroom-monarch",
+        "via": "manifest"
+      },
+      "AAModClassic/BigEWings": {
+        "stage": "mushroom-monarch",
+        "via": "manifest"
+      },
+      "AAModClassic/BlazenWings": {
+        "stage": "mushroom-monarch",
+        "via": "manifest"
+      },
+      "AAModClassic/CharlieWings": {
+        "stage": "mushroom-monarch",
+        "via": "manifest"
+      },
+      "AAModClassic/GibsWings": {
+        "stage": "mushroom-monarch",
+        "via": "manifest"
+      },
+      "AAModClassic/GroxWings": {
+        "stage": "mushroom-monarch",
+        "via": "manifest"
+      },
+      "AAModClassic/MoonWings": {
+        "stage": "mushroom-monarch",
+        "via": "manifest"
+      },
+      "AAModClassic/BigEWingsS": {
+        "stage": "mushroom-monarch",
+        "via": "recipe:AAModClassic/BigEWings+AAModClassic/ShinyCharm"
       },
       "AAModClassic/GlowingTruffle": {
         "stage": "feudal-fungus",
@@ -28400,6 +28726,10 @@
       "AAModClassic/StripemansLuckyHelmet": {
         "stage": "grips-of-chaos",
         "via": "recipe:Terraria/MiningHelmet+Terraria/MiningShirt+Terraria/MiningPants+Terraria/BonePickaxe+Terraria/ArchitectGizmoPack+AAModClassic/LuckyCracker"
+      },
+      "AAModClassic/StripemansLuckyLeggings": {
+        "stage": "grips-of-chaos",
+        "via": "recipe:Terraria/AnglerHat+Terraria/AnglerVest+Terraria/AnglerPants+Terraria/AnglerTackleBag+AAModClassic/ShinyCharmFish+AAModClassic/LuckyCracker"
       },
       "AAModClassic/MushrockStaff": {
         "stage": "truffle-toad",
@@ -29137,6 +29467,22 @@
         "stage": "sagittarius",
         "via": "recipe:AAModClassic/DepthLeggings+AAModClassic/RelicBar+Terraria/Coral+AAModClassic/DoomiteBar"
       },
+      "AAModClassic/AtlanteanChestplate": {
+        "stage": "sagittarius",
+        "via": "recipe:AAModClassic/OceanChestplate+AAModClassic/HydraHide+AAModClassic/RelicBar+AAModClassic/DoomiteBar"
+      },
+      "AAModClassic/AtlanteanHelmet": {
+        "stage": "sagittarius",
+        "via": "recipe:AAModClassic/OceanHelmet+AAModClassic/HydraHide+AAModClassic/RelicBar+AAModClassic/DoomiteBar"
+      },
+      "AAModClassic/AtlanteanLeggings": {
+        "stage": "sagittarius",
+        "via": "recipe:AAModClassic/OceanLeggings+AAModClassic/HydraHide+AAModClassic/RelicBar+AAModClassic/DoomiteBar"
+      },
+      "AAModClassic/AtlanteanTrident": {
+        "stage": "sagittarius",
+        "via": "recipe:AAModClassic/OceanTrident+AAModClassic/BlazePike+AAModClassic/SandLamp+AAModClassic/NeutronRod"
+      },
       "AAModClassic/RaiderChestplate": {
         "stage": "sagittarius",
         "via": "recipe:AAModClassic/VikingChestplate+Terraria/Coral+AAModClassic/HydraHide+AAModClassic/DoomiteBar"
@@ -29197,9 +29543,21 @@
         "stage": "sagittarius",
         "via": "recipe:Terraria/BoneJavelin+AAModClassic/DragonsSpine+AAModClassic/Winterbreak+AAModClassic/Incapacitator"
       },
+      "AAModClassic/BlazingDawn": {
+        "stage": "sagittarius",
+        "via": "recipe:AAModClassic/FlamingFury+AAModClassic/OceanRazor+AAModClassic/DoomiteSaber+AAModClassic/DesertScimitar"
+      },
       "AAModClassic/AbyssalPentashot": {
         "stage": "sagittarius",
         "via": "recipe:AAModClassic/HydraTrishot+AAModClassic/OceanWhaler+AAModClassic/DoomiteAssaultBlaster+Terraria/SnowballCannon"
+      },
+      "AAModClassic/AbyssalTwilight": {
+        "stage": "sagittarius",
+        "via": "recipe:AAModClassic/ExilesKatana+AAModClassic/OceanRazor+AAModClassic/DoomiteSaber+AAModClassic/IceLongsword"
+      },
+      "AAModClassic/RaiderLance": {
+        "stage": "sagittarius",
+        "via": "recipe:AAModClassic/VikingPolearm+AAModClassic/HydrasSpear+AAModClassic/SaltwaterSpear+AAModClassic/Executioner"
       },
       "AAModClassic/DoomiteRadio": {
         "stage": "sagittarius",
@@ -29355,14 +29713,6 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/Medusa"
       },
-      "AAModClassic/BlazingDawn": {
-        "stage": "wall-of-flesh",
-        "via": "npc:AAModClassic/ChaoticDawn"
-      },
-      "AAModClassic/AbyssalTwilight": {
-        "stage": "wall-of-flesh",
-        "via": "npc:AAModClassic/ChaoticTwilight"
-      },
       "Terraria/WarriorEmblem": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/WallofFlesh"
@@ -29418,6 +29768,18 @@
       "Terraria/Bacon": {
         "stage": "wall-of-flesh",
         "via": "npc:AAModClassic/PigronInferno"
+      },
+      "AAModClassic/SingularityCannon": {
+        "stage": "wall-of-flesh",
+        "via": "container:AAModClassic/DoomsdayChest"
+      },
+      "AAModClassic/DragonsPike": {
+        "stage": "wall-of-flesh",
+        "via": "container:AAModClassic/InfernoChest"
+      },
+      "AAModClassic/BogBomb": {
+        "stage": "wall-of-flesh",
+        "via": "container:AAModClassic/MireChest"
       },
       "Terraria/GoldenShower": {
         "stage": "wall-of-flesh",
@@ -30163,6 +30525,10 @@
         "stage": "wall-of-flesh",
         "via": "recipe:AAModClassic/DragonSpirit"
       },
+      "AAModClassic/PrismaticGreatsword": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:AAModClassic/Poppy+AAModClassic/AmethystGreatsword+AAModClassic/TopazGreatsword+AAModClassic/SapphireGreatsword+AAModClassic/EmeraldGreatsword+AAModClassic/RubyGreatsword+AAModClassic/AmberGreatsword+AAModClassic/DiamondGreatsword+Terraria/BeamSword"
+      },
       "AAModClassic/AdamantiteHelmetSummoner": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/AdamantiteBar+Terraria/BottledWater"
@@ -30619,6 +30985,10 @@
         "stage": "skeletron-prime",
         "via": "recipe:AAModClassic/AbyssalTwilight+Terraria/SoulofFright+Terraria/SoulofMight+Terraria/SoulofSight"
       },
+      "AAModClassic/AsgardianLance": {
+        "stage": "skeletron-prime",
+        "via": "recipe:AAModClassic/RaiderLance+Terraria/SoulofSight+Terraria/SoulofMight+Terraria/SoulofFright"
+      },
       "AAModClassic/OverloadedDoomiteRadio": {
         "stage": "skeletron-prime",
         "via": "recipe:AAModClassic/DoomiteRadio+Terraria/SoulofFright"
@@ -30939,6 +31309,14 @@
         "stage": "plantera",
         "via": "npc:Terraria/SantaNK1"
       },
+      "AAModClassic/RomulusTazesaber": {
+        "stage": "plantera",
+        "via": "container:AAModClassic/GreedChest"
+      },
+      "AAModClassic/OdinsBlade": {
+        "stage": "plantera",
+        "via": "container:AAModClassic/GreedChest"
+      },
       "Terraria/ShadowJoustingLance": {
         "stage": "plantera",
         "via": "npc:Terraria/GiantCursedSkull"
@@ -31155,6 +31533,10 @@
         "stage": "plantera",
         "via": "recipe:AAModClassic/BlazingChestplate+AAModClassic/ChaosPrism"
       },
+      "AAModClassic/ChaosHelmetMage": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/AtlanteanHelmet+AAModClassic/ChaosPrism"
+      },
       "AAModClassic/ChaosHelmetMelee": {
         "stage": "plantera",
         "via": "recipe:AAModClassic/BlazingHelmet+AAModClassic/ChaosPrism"
@@ -31187,6 +31569,10 @@
         "stage": "plantera",
         "via": "recipe:AAModClassic/DoomiteRadio+AAModClassic/ChaosPrism"
       },
+      "AAModClassic/ChaosYari": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/AsgardianLance+Terraria/Gungnir+AAModClassic/ChaosPrism"
+      },
       "AAModClassic/CarnalCrusher": {
         "stage": "plantera",
         "via": "recipe:AAModClassic/FleshrendClaymore+Terraria/LunarTabletFragment"
@@ -31206,6 +31592,10 @@
       "AAModClassic/TrueManaRose": {
         "stage": "plantera",
         "via": "recipe:AAModClassic/ManaRose+AAModClassic/PlanteraPetal+Terraria/ChlorophyteBar"
+      },
+      "AAModClassic/BlackLotusEmblem": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/ManaFlower+Terraria/CelestialEmblem+AAModClassic/BlackLotus+AAModClassic/ShadowBand+AAModClassic/SoulOfSpite"
       },
       "AAModClassic/AbyssalArc": {
         "stage": "plantera",
@@ -31619,7 +32009,7 @@
         "stage": "greed",
         "via": "recipe:Terraria/MiningPants+AAModClassic/StoneShell"
       },
-      "AAModClassic/RomulusTazesaber": {
+      "AAModClassic/APageOfTheRuneBook": {
         "stage": "greed",
         "via": "manifest"
       },
@@ -32051,6 +32441,106 @@
         "stage": "equinox-worms",
         "via": "recipe:Terraria/CelestialShell+AAModClassic/RadiantStar+AAModClassic/DarkVoid+AAModClassic/RadiantPhoton+AAModClassic/DarkEnergy"
       },
+      "AAModClassic/BreakingDawn": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiantPhoton+AAModClassic/RadiumBar"
+      },
+      "AAModClassic/DarkmatterKunai": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkEnergy+AAModClassic/DarkmatterBar"
+      },
+      "AAModClassic/DarkmatterSlasher": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkEnergy+AAModClassic/DarkmatterBar"
+      },
+      "AAModClassic/DarkmatterSpinblade": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkEnergy+AAModClassic/DarkmatterBar"
+      },
+      "AAModClassic/RealityShredders": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkEnergy+AAModClassic/DarkmatterBar"
+      },
+      "AAModClassic/ShootingStar": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiantPhoton+AAModClassic/RadiumBar"
+      },
+      "AAModClassic/StarStaff": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiantPhoton+AAModClassic/RadiumBar"
+      },
+      "AAModClassic/Void": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkEnergy+AAModClassic/DarkmatterBar"
+      },
+      "AAModClassic/DwarvenGauntlet": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DemonGauntlet+Terraria/FragmentNebula+Terraria/FragmentSolar+Terraria/FragmentVortex+Terraria/FragmentStardust+AAModClassic/DarkmatterBar+AAModClassic/RadiumBar"
+      },
+      "AAModClassic/DarkmatterWings": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkmatterBar+AAModClassic/DarkEnergy"
+      },
+      "AAModClassic/RadiumWings": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiumBar+AAModClassic/RadiantPhoton"
+      },
+      "AAModClassic/DarkmatterArrow": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkEnergy+AAModClassic/DarkmatterBar"
+      },
+      "AAModClassic/RadiumArrow": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiantPhoton+AAModClassic/RadiumBar"
+      },
+      "AAModClassic/DarkmatterChestplate": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkmatterBar+AAModClassic/DarkEnergy"
+      },
+      "AAModClassic/DarkmatterHelmetMage": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkmatterBar+AAModClassic/DarkEnergy"
+      },
+      "AAModClassic/DarkmatterHelmetMelee": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkmatterBar+AAModClassic/DarkEnergy"
+      },
+      "AAModClassic/DarkmatterHelmetRanged": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkmatterBar+AAModClassic/DarkEnergy"
+      },
+      "AAModClassic/DarkmatterHelmetSummoner": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkmatterBar+AAModClassic/DarkEnergy"
+      },
+      "AAModClassic/DarkmatterLeggings": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkmatterBar+AAModClassic/DarkEnergy"
+      },
+      "AAModClassic/RadiumChestplate": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiumBar+AAModClassic/RadiantPhoton"
+      },
+      "AAModClassic/RadiumHelmetMage": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiumBar+AAModClassic/RadiantPhoton"
+      },
+      "AAModClassic/RadiumHelmetMelee": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiumBar+AAModClassic/RadiantPhoton"
+      },
+      "AAModClassic/RadiumHelmetRanged": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiumBar+AAModClassic/RadiantPhoton"
+      },
+      "AAModClassic/RadiumHelmetSummoner": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiumBar+AAModClassic/RadiantPhoton"
+      },
+      "AAModClassic/RadiumLeggings": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiumBar+AAModClassic/RadiantPhoton"
+      },
       "AAModClassic/AshRain": {
         "stage": "sisters-of-discord",
         "via": "npc:AAModClassic/Ashe"
@@ -32383,6 +32873,14 @@
         "stage": "zero",
         "via": "recipe:AAModClassic/ApocalyptitePlate+AAModClassic/UnstableSingularity"
       },
+      "AAModClassic/SoulStone": {
+        "stage": "zero",
+        "via": "manifest"
+      },
+      "AAModClassic/InfinityGauntlet": {
+        "stage": "zero",
+        "via": "recipe:AAModClassic/DwarvenGauntlet+AAModClassic/RealityStone+AAModClassic/SoulStone+AAModClassic/MindStone+AAModClassic/TimeStone+AAModClassic/SpaceStone+AAModClassic/PowerStone"
+      },
       "AAModClassic/Excalihare": {
         "stage": "champion-rajah-rabbit",
         "via": "npc:AAModClassic/RajahRabbitA"
@@ -32495,6 +32993,10 @@
         "stage": "shen-doragon",
         "via": "recipe:Terraria/RazorbladeTyphoon+AAModClassic/EXSoul"
       },
+      "AAModClassic/TheBookOfRunes": {
+        "stage": "shen-doragon",
+        "via": "recipe:AAModClassic/APageOfTheRuneBook+Terraria/Book+AAModClassic/DreadScale+AAModClassic/EXSoul"
+      },
       "AAModClassic/Aerodrake": {
         "stage": "shen-doragon",
         "via": "recipe:Terraria/DD2SquireBetsySword+AAModClassic/EXSoul"
@@ -32606,6 +33108,10 @@
       "AAModClassic/PerfectChaosRitual": {
         "stage": "shen-doragon",
         "via": "recipe:AAModClassic/ChaosRitual+AAModClassic/EXSoul"
+      },
+      "AAModClassic/PerfectChaosYari": {
+        "stage": "shen-doragon",
+        "via": "recipe:AAModClassic/ChaosYari+AAModClassic/EXSoul"
       },
       "AAModClassic/PoniumUltiscepter": {
         "stage": "shen-doragon",
@@ -32771,6 +33277,10 @@
         "stage": "infinity-zero",
         "via": "npc:AAModClassic/InfinityZero"
       },
+      "Terraria/Zenith": {
+        "stage": "infinity-zero",
+        "via": "recipe:AAModClassic/TrueTerraBlade+AAModClassic/TheLolkat+AAModClassic/CosmicFury+Terraria/InfluxWaver+AAModClassic/Apocalypse+Terraria/Seedler+Terraria/Starfury+Terraria/BeeKeeper+Terraria/Terragrim+AAModClassic/PrismaticGreatsword+AAModClassic/BladeOfEvil+AAModClassic/Ikari+AAModClassic/InfinityBlade+AAModClassic/Verdict+AAModClassic/SagittariusLeg+AAModClassic/RomulusTazesaber+AAModClassic/SubzeroSlasher+AAModClassic/Olympia+AAModClassic/Excalihare+AAModClassic/CarnalCrusher+AAModClassic/UltimaShortsword+AAModClassic/EXSoul"
+      },
       "AAModClassic/InfinitySlayerChestplate": {
         "stage": "infinity-zero",
         "via": "recipe:AAModClassic/DoomsdayChestplate+AAModClassic/Infinitium"
@@ -32924,6 +33434,10 @@
         "via": "initial"
       },
       "Terraria/Seashell": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Starfish": {
         "stage": "start",
         "via": "initial"
       },
@@ -38225,6 +38739,10 @@
         "stage": "start",
         "via": "recipe:Terraria/MusicBox+Terraria/SandBlock+Terraria/Cactus"
       },
+      "Terraria/MusicBoxOcean": {
+        "stage": "start",
+        "via": "recipe:Terraria/MusicBox+Terraria/Coral+Terraria/Starfish+Terraria/Seashell"
+      },
       "Terraria/MusicBoxUnderground": {
         "stage": "start",
         "via": "recipe:Terraria/MusicBox+Terraria/DirtBlock+Terraria/IronOre+Terraria/StoneBlock"
@@ -39054,6 +39572,18 @@
         "via": "manifest"
       },
       "AAModClassic/Razewood": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "AAModClassic/BlackLotus": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "AAModClassic/Prism": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "AAModClassic/ShinyCharmFish": {
         "stage": "start",
         "via": "manifest"
       },
@@ -46132,6 +46662,74 @@
         "stage": "equinox-worms",
         "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
       },
+      "AAModClassic/DarkmatterOre": {
+        "stage": "equinox-worms",
+        "via": "manifest"
+      },
+      "AAModClassic/RadiumOre": {
+        "stage": "equinox-worms",
+        "via": "manifest"
+      },
+      "AAModClassic/DarkmatterBar": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkmatterOre"
+      },
+      "AAModClassic/RadiumBar": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiumOre"
+      },
+      "AAModClassic/DarkmatterBrick": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkmatterOre+Terraria/StoneBlock"
+      },
+      "AAModClassic/DarkmatterBrickWall": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkmatterBrick"
+      },
+      "AAModClassic/RadiumBrick": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiumOre+Terraria/StoneBlock"
+      },
+      "AAModClassic/RadiumBrickWall": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiumBrick"
+      },
+      "AAModClassic/StarsBox": {
+        "stage": "equinox-worms",
+        "via": "recipe:Terraria/MusicBox+AAModClassic/DarkmatterOre+AAModClassic/RadiumOre"
+      },
+      "AAModClassic/QuantumFusionAccelerator": {
+        "stage": "equinox-worms",
+        "via": "recipe:Terraria/LunarCraftingStation+AAModClassic/DarkmatterOre+AAModClassic/DarkEnergy"
+      },
+      "AAModClassic/RadiantArcanum": {
+        "stage": "equinox-worms",
+        "via": "recipe:Terraria/LunarCraftingStation+AAModClassic/RadiumOre+AAModClassic/RadiantPhoton"
+      },
+      "AAModClassic/DarkmatterPitchet": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/DarkmatterBar+AAModClassic/DarkEnergy"
+      },
+      "AAModClassic/RadiumHammaxe": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiantPhoton+AAModClassic/RadiumBar"
+      },
+      "AAModClassic/Starminer": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiumBar+AAModClassic/RadiantPhoton"
+      },
+      "AAModClassic/DoomsdayTesseract": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/ApocalyptitePlate+AAModClassic/DarkmatterBar"
+      },
+      "AAModClassic/EquinoxBrick": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/RadiumBrick+AAModClassic/DarkmatterBrick"
+      },
+      "AAModClassic/EquinoxBrickWall": {
+        "stage": "equinox-worms",
+        "via": "recipe:AAModClassic/EquinoxBrick"
+      },
       "AAModClassic/DaybreakIncineriteOre": {
         "stage": "sisters-of-discord",
         "via": "npc:AAModClassic/BlazeClaw"
@@ -46224,9 +46822,17 @@
         "stage": "sisters-of-discord",
         "via": "recipe:AAModClassic/DaybreakIncineriteBar"
       },
+      "AAModClassic/DraconianSunSigil": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DaybreakIncineriteBar+AAModClassic/RadiumBar"
+      },
       "AAModClassic/DreadMoonAltar": {
         "stage": "sisters-of-discord",
         "via": "recipe:AAModClassic/EventideAbyssiumBar"
+      },
+      "AAModClassic/DreadMoonSigil": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/EventideAbyssiumBar+AAModClassic/DarkmatterBar"
       },
       "AAModClassic/AkumaTrophy": {
         "stage": "akuma",
@@ -46303,6 +46909,10 @@
       "AAModClassic/YamataAMask": {
         "stage": "yamata",
         "via": "container:AAModClassic/YamataTreasureBag"
+      },
+      "AAModClassic/ChaosSigil": {
+        "stage": "yamata",
+        "via": "recipe:AAModClassic/DraconianSunSigil+AAModClassic/DreadMoonSigil+AAModClassic/CrucibleScale+AAModClassic/DreadScale+AAModClassic/DiscordiumBar"
       },
       "AAModClassic/DreadMoonAltarA": {
         "stage": "yamata",
@@ -46387,6 +46997,10 @@
       "AAModClassic/VoidPreIZBox": {
         "stage": "zero",
         "via": "recipe:AAModClassic/VoidBox+AAModClassic/UnstableSingularity"
+      },
+      "AAModClassic/InfinityBeacon": {
+        "stage": "zero",
+        "via": "recipe:AAModClassic/UnstableSingularity+AAModClassic/ApocalyptitePlate+AAModClassic/FulguriteBar+AAModClassic/OuroborosWood+AAModClassic/DoomsdayTesseract"
       },
       "AAModClassic/ZeroAwakenedBox": {
         "stage": "zero",
@@ -46499,75 +47113,11 @@
         ]
       },
       {
-        "id": "AAModClassic/OceanTrident",
-        "wikiStage": "pre-boss",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Ocean_Trident"
-        ]
-      },
-      {
-        "id": "AAModClassic/OceanHelmet",
-        "wikiStage": "pre-boss",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Ocean_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/OceanChestplate",
-        "wikiStage": "pre-boss",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Ocean_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/OceanLeggings",
-        "wikiStage": "pre-boss",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Ocean_armor"
-        ]
-      },
-      {
         "id": "Terraria/Arkhalis",
         "wikiStage": "pre-skeletron",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Arkhalis"
-        ]
-      },
-      {
-        "id": "AAModClassic/OceanTrident",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Ocean_Trident"
-        ]
-      },
-      {
-        "id": "AAModClassic/OceanHelmet",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Ocean_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/OceanChestplate",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Ocean_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/OceanLeggings",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Ocean_armor"
         ]
       },
       {
@@ -46683,59 +47233,11 @@
         ]
       },
       {
-        "id": "AAModClassic/AtlanteanTrident",
-        "wikiStage": "pre-hardmode",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Atlantean_Trident"
-        ]
-      },
-      {
-        "id": "AAModClassic/AtlanteanHelmet",
-        "wikiStage": "pre-hardmode",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Atlantean_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/AtlanteanChestplate",
-        "wikiStage": "pre-hardmode",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Atlantean_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/AtlanteanLeggings",
-        "wikiStage": "pre-hardmode",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Atlantean_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/PrismaticGreatsword",
-        "wikiStage": "pre-mechanical-bosses",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Prismatic_Greatsword"
-        ]
-      },
-      {
         "id": "Terraria/SummonerEmblem",
         "wikiStage": "pre-mechanical-bosses",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Summoner_Emblem"
-        ]
-      },
-      {
-        "id": "AAModClassic/AsgardianLance",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Asgardian_Lance"
         ]
       },
       {
@@ -46747,80 +47249,11 @@
         ]
       },
       {
-        "id": "AAModClassic/ChaosYari",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Chaos_Yari"
-        ]
-      },
-      {
-        "id": "AAModClassic/SingularityCannon",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Singularity_Cannon"
-        ]
-      },
-      {
-        "id": "AAModClassic/OdinsBlade",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Odin's_Iceblade"
-        ]
-      },
-      {
-        "id": "AAModClassic/BogBomb",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Bog_Bomb"
-        ]
-      },
-      {
-        "id": "AAModClassic/BlackLotusEmblem",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Black_Lotus_Emblem"
-        ]
-      },
-      {
-        "id": "AAModClassic/DragonsPike",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Dragon's_Pike"
-        ]
-      },
-      {
         "id": "Terraria/SummonerEmblem",
         "wikiStage": "pre-golem",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Summoner_Emblem"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosHelmetMage",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/SingularityCannon",
-        "wikiStage": "pre-celestial-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Singularity_Cannon"
         ]
       },
       {
@@ -46832,32 +47265,11 @@
         ]
       },
       {
-        "id": "AAModClassic/BlackLotusEmblem",
-        "wikiStage": "pre-celestial-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Black_Lotus_Emblem"
-        ]
-      },
-      {
         "id": "Terraria/SummonerEmblem",
         "wikiStage": "pre-celestial-events",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Summoner_Emblem"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosHelmetMage",
-        "wikiStage": "pre-celestial-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
         ]
       },
       {
@@ -46869,32 +47281,11 @@
         ]
       },
       {
-        "id": "AAModClassic/BlackLotusEmblem",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Black_Lotus_Emblem"
-        ]
-      },
-      {
         "id": "Terraria/SummonerEmblem",
         "wikiStage": "pre-moon-lord",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Summoner_Emblem"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosHelmetMage",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
         ]
       },
       {
@@ -46914,14 +47305,6 @@
         ]
       },
       {
-        "id": "AAModClassic/BlackLotusEmblem",
-        "wikiStage": "pre-anubis",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Black_Lotus_Emblem"
-        ]
-      },
-      {
         "id": "Terraria/SummonerEmblem",
         "wikiStage": "pre-anubis",
         "reason": "recommendation has no proven availability",
@@ -46938,62 +47321,6 @@
         ]
       },
       {
-        "id": "AAModClassic/BlackLotusEmblem",
-        "wikiStage": "pre-equinox-worms",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Black_Lotus_Emblem"
-        ]
-      },
-      {
-        "id": "AAModClassic/BreakingDawn",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Breaking_Dawn"
-        ]
-      },
-      {
-        "id": "AAModClassic/Void",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Void"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterSpinblade",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_Spinblade"
-        ]
-      },
-      {
-        "id": "AAModClassic/RealityShredders",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Reality_Shredders"
-        ]
-      },
-      {
-        "id": "AAModClassic/ShootingStar",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Shooting_Star"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterKunai",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_Kunai"
-        ]
-      },
-      {
         "id": "Terraria/SniperScope",
         "wikiStage": "pre-sisters-of-discord",
         "reason": "recommendation has no proven availability",
@@ -47002,315 +47329,11 @@
         ]
       },
       {
-        "id": "AAModClassic/StarStaff",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Star_Staff"
-        ]
-      },
-      {
-        "id": "AAModClassic/BlackLotusEmblem",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Black_Lotus_Emblem"
-        ]
-      },
-      {
-        "id": "AAModClassic/RadiumHelmetMage",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Radium_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/RadiumHelmetMelee",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Radium_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/RadiumHelmetRanged",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Radium_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/RadiumHelmetSummoner",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Radium_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/RadiumChestplate",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Radium_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/RadiumLeggings",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Radium_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterHelmetMage",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterHelmetMelee",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterHelmetRanged",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterHelmetSummoner",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterChestplate",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterLeggings",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/RadiumWings",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Radium_Wings"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterWings",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_Booster"
-        ]
-      },
-      {
-        "id": "AAModClassic/BreakingDawn",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Breaking_Dawn"
-        ]
-      },
-      {
-        "id": "AAModClassic/Void",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Void"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterSpinblade",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_Spinblade"
-        ]
-      },
-      {
-        "id": "AAModClassic/RealityShredders",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Reality_Shredders"
-        ]
-      },
-      {
-        "id": "AAModClassic/ShootingStar",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Shooting_Star"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterKunai",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_Kunai"
-        ]
-      },
-      {
         "id": "Terraria/SniperScope",
         "wikiStage": "pre-ancients",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sniper_Scope"
-        ]
-      },
-      {
-        "id": "AAModClassic/StarStaff",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Star_Staff"
-        ]
-      },
-      {
-        "id": "AAModClassic/BlackLotusEmblem",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Black_Lotus_Emblem"
-        ]
-      },
-      {
-        "id": "AAModClassic/RadiumHelmetMage",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Radium_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/RadiumHelmetMelee",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Radium_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/RadiumHelmetRanged",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Radium_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/RadiumHelmetSummoner",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Radium_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/RadiumChestplate",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Radium_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/RadiumLeggings",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Radium_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterHelmetMage",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterHelmetMelee",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterHelmetRanged",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterHelmetSummoner",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterChestplate",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterLeggings",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_armor"
-        ]
-      },
-      {
-        "id": "AAModClassic/RadiumWings",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Radium_Wings"
-        ]
-      },
-      {
-        "id": "AAModClassic/DarkmatterWings",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Darkmatter_Booster"
         ]
       },
       {
@@ -47322,51 +47345,11 @@
         ]
       },
       {
-        "id": "AAModClassic/StarStaff",
-        "wikiStage": "pre-superancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Star_Staff"
-        ]
-      },
-      {
-        "id": "AAModClassic/BlackLotusEmblem",
-        "wikiStage": "pre-superancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Black_Lotus_Emblem"
-        ]
-      },
-      {
-        "id": "AAModClassic/PerfectChaosYari",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Perfect_Chaos_Yari"
-        ]
-      },
-      {
         "id": "Terraria/SniperScope",
         "wikiStage": "endgame",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sniper_Scope"
-        ]
-      },
-      {
-        "id": "AAModClassic/BlackLotusEmblem",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Black_Lotus_Emblem"
-        ]
-      },
-      {
-        "id": "AAModClassic/TheBookOfRunes",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/The_Book_of_Runes"
         ]
       }
     ],
@@ -51517,14 +51500,14 @@
       },
       {
         "id": "AAModClassic/BlazingDawn",
-        "factualStage": "wall-of-flesh",
+        "factualStage": "sagittarius",
         "recommendedStage": "skeletron",
         "wikiStage": "pre-hardmode",
         "reason": "recommendation precedes proven availability"
       },
       {
         "id": "AAModClassic/AbyssalTwilight",
-        "factualStage": "wall-of-flesh",
+        "factualStage": "sagittarius",
         "recommendedStage": "skeletron",
         "wikiStage": "pre-hardmode",
         "reason": "recommendation precedes proven availability"
@@ -51671,6 +51654,34 @@
       },
       {
         "id": "AAModClassic/DynaskullLeggings",
+        "factualStage": "sagittarius",
+        "recommendedStage": "skeletron",
+        "wikiStage": "pre-hardmode",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "AAModClassic/AtlanteanTrident",
+        "factualStage": "sagittarius",
+        "recommendedStage": "skeletron",
+        "wikiStage": "pre-hardmode",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "AAModClassic/AtlanteanHelmet",
+        "factualStage": "sagittarius",
+        "recommendedStage": "skeletron",
+        "wikiStage": "pre-hardmode",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "AAModClassic/AtlanteanChestplate",
+        "factualStage": "sagittarius",
+        "recommendedStage": "skeletron",
+        "wikiStage": "pre-hardmode",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "AAModClassic/AtlanteanLeggings",
         "factualStage": "sagittarius",
         "recommendedStage": "skeletron",
         "wikiStage": "pre-hardmode",
@@ -53527,7 +53538,7 @@
     },
     "unassignedVanillaNpcSourceCount": 180,
     "manualAvailabilityPriority": {
-      "automaticItems": 4473,
+      "automaticItems": 4488,
       "automaticSources": 290,
       "automaticStations": 511,
       "suppressed": {
@@ -53598,9 +53609,9 @@
         "stationStages": []
       },
       "retained": {
-        "itemStages": 20,
+        "itemStages": 37,
         "itemStageFloors": 0,
-        "sourceStages": 49,
+        "sourceStages": 56,
         "stationStages": 2
       }
     },

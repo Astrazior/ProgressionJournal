@@ -137,6 +137,7 @@ public static class JournalExactDropCatalog
         AddVanillaTreeFruits(builders);
         AddAAModClassic(builders);
         AddCalamity(builders);
+        AddThorium(builders);
         return builders
             .Select(TryCreateEntry)
             .OfType<Entry>()
@@ -224,6 +225,24 @@ public static class JournalExactDropCatalog
                 conditions,
                 showDropRate: false);
         }
+    }
+
+    private static void AddThorium(ICollection<EntryBuilder> builders)
+    {
+        AddWorld(
+            builders,
+            "Thorium Mod 1.7.2.6 OceanCrystal tile source",
+            "Ocean Crystal",
+            sourceItemReference: null,
+            "ThoriumMod/CrystalWave",
+            [
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.ThoriumCrystalWaveOceanCrystalCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ],
+            sourceReference: "ThoriumMod/OceanCrystal",
+            includeInSnapshot: true);
     }
 
     private static void AddCalamity(ICollection<EntryBuilder> builders)
@@ -560,6 +579,7 @@ public static class JournalExactDropCatalog
             ]);
 
         AddDeveloperBagSources(builders);
+        AddAAModClassicReviewSources(builders);
     }
 
     private static void AddDeveloperBagSources(ICollection<EntryBuilder> builders)
@@ -640,6 +660,182 @@ public static class JournalExactDropCatalog
         const string extravagantTerratool = "AAModClassic/ExtravagantTerratool";
         AddItemSources(builders, provenance, superAncientSources, extravagantTerratool, 1f / 330f);
         AddItemSources(builders, provenance, rareSuperAncientSources, extravagantTerratool, 1f / 3300f);
+
+        ConditionBuilder[] developerBagCondition =
+        [
+            new ConditionBuilder(
+                "Mods.ProgressionJournal.UI.AAModClassicDeveloperBagCondition",
+                ConditionKind.LocalizationKey,
+                [])
+        ];
+        foreach (var (source, target) in new[]
+                 {
+                     ("AvesBag", "AvesWings"),
+                     ("BigEBag", "BigEWings"),
+                     ("BlazenBag", "BlazenWings"),
+                     ("CharlieBag", "CharlieWings"),
+                     ("GibsBag", "GibsWings"),
+                     ("GroxBag", "GroxWings"),
+                     ("MoonBag", "MoonWings")
+                 })
+        {
+            AddWorld(
+                builders,
+                "AAModClassic 1.0.17 developer-bag RightClick IL",
+                sourceName: string.Empty,
+                $"AAModClassic/{source}",
+                $"AAModClassic/{target}",
+                developerBagCondition,
+                showDropRate: false,
+                includeInSnapshot: true);
+        }
+
+        ConditionBuilder[] developerPageCondition =
+        [
+            new ConditionBuilder(
+                "Mods.ProgressionJournal.UI.AAModClassicDeveloperPageCondition",
+                ConditionKind.LocalizationKey,
+                [])
+        ];
+        foreach (var source in postPlanteraSources
+                     .Concat(postMoonLordSources)
+                     .Concat(superAncientSources)
+                     .Concat(rareSuperAncientSources))
+        {
+            AddWorld(
+                builders,
+                "AAModClassic 1.0.17 ZAAPlayer.DropDevArmor IL",
+                sourceName: string.Empty,
+                $"AAModClassic/{source}",
+                "AAModClassic/APageOfTheRuneBook",
+                developerPageCondition,
+                showDropRate: false,
+                includeInSnapshot: true);
+        }
+    }
+
+    private static void AddAAModClassicReviewSources(ICollection<EntryBuilder> builders)
+    {
+        const string provenance = "AAModClassic 1.0.17 installed assembly IL";
+        AddWorld(
+            builders,
+            provenance,
+            "Ocean floor",
+            sourceItemReference: null,
+            "Terraria/Starfish",
+            [
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.AAModClassicStarfishOceanFloorCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ],
+            sourceReference: "Terraria/OceanFloorPickup",
+            includeInSnapshot: true);
+        AddWorld(
+            builders,
+            provenance,
+            "Prism Ore",
+            sourceItemReference: null,
+            "AAModClassic/Prism",
+            [
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.AAModClassicPrismOreCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ],
+            sourceReference: "AAModClassic/PrismOre_Tile",
+            includeInSnapshot: true);
+
+        ConditionBuilder[] equinoxOreCondition =
+        [
+            new ConditionBuilder(
+                "Mods.ProgressionJournal.UI.AAModClassicEquinoxOreCondition",
+                ConditionKind.LocalizationKey,
+                [])
+        ];
+        AddWorld(
+            builders,
+            provenance,
+            "Radium Ore",
+            sourceItemReference: null,
+            "AAModClassic/RadiumOre",
+            equinoxOreCondition,
+            0.5f,
+            sourceReference: "AAModClassic/RadiumOre_Tile",
+            includeInSnapshot: true);
+        AddWorld(
+            builders,
+            provenance,
+            "Radium Ore",
+            sourceItemReference: null,
+            "AAModClassic/DarkmatterOre",
+            equinoxOreCondition,
+            0.5f,
+            sourceReference: "AAModClassic/RadiumOre_Tile",
+            includeInSnapshot: true);
+        AddWorld(
+            builders,
+            provenance,
+            "Mire foliage",
+            sourceItemReference: null,
+            "AAModClassic/BlackLotus",
+            [
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.AAModClassicBlackLotusCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ],
+            sourceReference: "AAModClassic/MireFoliage_Tile",
+            includeInSnapshot: true);
+
+        ConditionBuilder[] ashProofVestCondition =
+        [
+            new ConditionBuilder(
+                "Mods.ProgressionJournal.UI.AAModClassicAshProofVestCondition",
+                ConditionKind.LocalizationKey,
+                [])
+        ];
+        AddWorld(
+            builders,
+            provenance,
+            sourceName: string.Empty,
+            "AAModClassic/AshProofVest3",
+            "AAModClassic/AshProofVest2",
+            ashProofVestCondition,
+            1f / 3600f,
+            includeInSnapshot: true);
+        AddWorld(
+            builders,
+            provenance,
+            sourceName: string.Empty,
+            "AAModClassic/AshProofVest2",
+            "AAModClassic/AshProofVest1",
+            ashProofVestCondition,
+            1f / 3600f,
+            includeInSnapshot: true);
+        AddWorld(
+            builders,
+            provenance,
+            sourceName: string.Empty,
+            "AAModClassic/AshProofVest1",
+            "AAModClassic/AshProofVest0",
+            ashProofVestCondition,
+            1f / 3600f,
+            includeInSnapshot: true);
+        AddWorld(
+            builders,
+            provenance,
+            sourceName: string.Empty,
+            "AAModClassic/GoblinTinkererDoll",
+            "AAModClassic/SoulStone",
+            [
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.AAModClassicSoulStoneCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ],
+            showDropRate: false,
+            includeInSnapshot: true);
     }
 
     private static void AddItemSources(
