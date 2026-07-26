@@ -18,6 +18,7 @@ public sealed class JournalIconTextButton : JournalHoverPanel
     private readonly UIText _label;
     private JournalButtonStyle _style;
     private string? _hoverText;
+    private bool _useProfileFrame;
 
     public JournalIconTextButton(
         Asset<Texture2D> iconTexture,
@@ -52,6 +53,8 @@ public sealed class JournalIconTextButton : JournalHoverPanel
 
     public void SetHoverText(string hoverText) => _hoverText = hoverText;
 
+    public void EnableProfileFrame() => _useProfileFrame = true;
+
     public void SetStyle(JournalButtonStyle style)
     {
         _style = style;
@@ -72,7 +75,18 @@ public sealed class JournalIconTextButton : JournalHoverPanel
             ? Color.Lerp(_style.Text, Color.White, 0.18f)
             : _style.Text;
 
-        base.DrawSelf(spriteBatch);
+        if (_useProfileFrame)
+        {
+            JournalNavigationButtonRenderer.DrawProfile(
+                spriteBatch,
+                GetDimensions().ToRectangle(),
+                _style,
+                IsMouseHovering);
+        }
+        else
+        {
+            base.DrawSelf(spriteBatch);
+        }
 
         var dimensions = GetDimensions().ToRectangle();
         var texture = _iconTexture.Value;

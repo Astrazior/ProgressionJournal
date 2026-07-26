@@ -78,6 +78,7 @@ public sealed class JournalProfileManagerPanel : JournalVolumetricPanel
                 0.78f,
                 profileIcon.SourceRectangle);
             button.Width.Set(0f, 1f);
+            button.EnableProfileFrame();
             button.SetStyle(JournalUiTheme.GetTabButtonStyle(
                 string.Equals(profile.Id, JournalProfileRegistry.Active.Id, StringComparison.OrdinalIgnoreCase)));
             _profileList.Add(button);

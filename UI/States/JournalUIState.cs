@@ -2372,6 +2372,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             JournalUiMetrics.ProfileButtonHeight,
             () => JournalSystem.OpenProfileManager(),
             JournalUiMetrics.ProfileButtonTextScale);
+        _profileButton.EnableProfileFrame();
         Append(_profileButton);
     }
 
@@ -3039,18 +3040,21 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _classButton.Left.Set(0f, 0f);
         _classButton.Top.Set(JournalUiMetrics.TopTabsButtonTop, 0f);
         _classButton.Width.Set(widthOffset, 1f / 3f);
+        _classButton.EnableTopTabFrame();
         _contentTabsPanel.Append(_classButton);
 
         _overviewTabButton = JournalUiElementFactory.CreateTextButton(string.Empty, 0f, JournalUiMetrics.TopTabsButtonHeight, () => JournalSystem.ShowOverviewTab(), 0.92f);
         _overviewTabButton.Left.Set(JournalUiMetrics.TopTabsGap / 3f, 1f / 3f);
         _overviewTabButton.Top.Set(JournalUiMetrics.TopTabsButtonTop, 0f);
         _overviewTabButton.Width.Set(widthOffset, 1f / 3f);
+        _overviewTabButton.EnableTopTabFrame();
         _contentTabsPanel.Append(_overviewTabButton);
 
         _presetsTabButton = JournalUiElementFactory.CreateTextButton(string.Empty, 0f, JournalUiMetrics.TopTabsButtonHeight, () => JournalSystem.ShowPresetsTab(), 0.92f);
         _presetsTabButton.Left.Set(JournalUiMetrics.TopTabsGap * 2f / 3f, 2f / 3f);
         _presetsTabButton.Top.Set(JournalUiMetrics.TopTabsButtonTop, 0f);
         _presetsTabButton.Width.Set(widthOffset, 1f / 3f);
+        _presetsTabButton.EnableTopTabFrame();
         _contentTabsPanel.Append(_presetsTabButton);
     }
 

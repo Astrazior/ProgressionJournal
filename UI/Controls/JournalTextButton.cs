@@ -11,6 +11,7 @@ public sealed class JournalTextButton : JournalHoverPanel
     private readonly UIText _label;
     private JournalButtonStyle _style;
     private string? _hoverText;
+    private bool _useTopTabFrame;
 
     public JournalTextButton(string text, float textScale, Action onClick)
     {
@@ -27,6 +28,8 @@ public sealed class JournalTextButton : JournalHoverPanel
     public void SetText(string text) => _label.SetText(text);
 
     public void SetHoverText(string hoverText) => _hoverText = hoverText;
+
+    public void EnableTopTabFrame() => _useTopTabFrame = true;
 
     public void SetStyle(JournalButtonStyle style)
     {
@@ -50,7 +53,18 @@ public sealed class JournalTextButton : JournalHoverPanel
             ? Color.Lerp(_style.Text, Color.White, 0.18f)
             : _style.Text;
 
-        base.DrawSelf(spriteBatch);
+        if (_useTopTabFrame)
+        {
+            JournalNavigationButtonRenderer.DrawTab(
+                spriteBatch,
+                GetDimensions().ToRectangle(),
+                _style,
+                IsMouseHovering);
+        }
+        else
+        {
+            base.DrawSelf(spriteBatch);
+        }
 
         if (IsMouseHovering && !string.IsNullOrWhiteSpace(_hoverText))
         {
