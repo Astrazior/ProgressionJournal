@@ -23,7 +23,7 @@ public sealed class JournalProfileManagerPanel : JournalVolumetricPanel
         BorderColor = JournalUiTheme.RootBorder;
 
         _profileList = new JournalSmoothScrollList { ListPadding = 6f };
-        _profileScrollbar = new UIScrollbar();
+        _profileScrollbar = new JournalScrollbar();
         _profileList.SetScrollbar(_profileScrollbar);
     }
 

@@ -46,6 +46,13 @@ internal static class JournalNavigationButtonRenderer
                 Background = new Color(74, 138, 86)
             };
         }
+        else if (style == JournalUiTheme.GetDefaultTextButtonStyle())
+        {
+            style = style with
+            {
+                Background = new Color(28, 40, 62)
+            };
+        }
 
         Draw(
             spriteBatch,

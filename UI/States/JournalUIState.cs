@@ -2357,7 +2357,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _stageListContainer.Height.Set(-JournalUiMetrics.StageListBottomInset, 1f);
         _stagePanel.Append(_stageListContainer);
 
-        _stageScrollbar = new UIScrollbar();
+        _stageScrollbar = new JournalScrollbar();
         _stageScrollbar.Width.Set(JournalUiMetrics.ScrollbarWidth, 0f);
         _stageScrollbar.Left.Set(-JournalUiMetrics.StageScrollbarOffset, 1f);
         _stageScrollbar.Top.Set(JournalUiMetrics.StageListTop, 0f);
@@ -2458,7 +2458,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _classSelectionContainer.Height.Set(-JournalUiMetrics.ContentBodyBottomInset, 1f);
         _contentPanel.Append(_classSelectionContainer);
 
-        _classSelectionScrollbar = new UIScrollbar();
+        _classSelectionScrollbar = new JournalScrollbar();
         _classSelectionScrollbar.Width.Set(JournalUiMetrics.ScrollbarWidth, 0f);
         _classSelectionScrollbar.Left.Set(-JournalUiMetrics.ScrollbarOffset, 1f);
         _classSelectionScrollbar.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
@@ -2475,7 +2475,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _entryList.ListPadding = JournalUiMetrics.EntryListPadding;
         _contentPanel.Append(_entryList);
 
-        _scrollbar = new UIScrollbar();
+        _scrollbar = new JournalScrollbar();
         _scrollbar.Width.Set(JournalUiMetrics.ScrollbarWidth, 0f);
         _scrollbar.Left.Set(-JournalUiMetrics.ScrollbarOffset, 1f);
         _scrollbar.Top.Set(JournalUiMetrics.ContentBodyTop, 0f);
@@ -2559,7 +2559,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _sourceList.ListPadding = JournalUiMetrics.EntryListPadding;
         _sourcePanel.Append(_sourceList);
 
-        _sourceScrollbar = new UIScrollbar();
+        _sourceScrollbar = new JournalScrollbar();
         _sourceScrollbar.Width.Set(JournalUiMetrics.ScrollbarWidth, 0f);
         _sourceScrollbar.Left.Set(-(JournalUiMetrics.ScrollbarWidth + 4f), 1f);
         _sourceScrollbar.Top.Set(JournalUiMetrics.AcquisitionPanelContentTop, 0f);
@@ -2754,7 +2754,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _buildPickerList.ListPadding = JournalUiMetrics.EntryListPadding;
         _buildPickerPanel.Append(_buildPickerList);
 
-        _buildPickerScrollbar = new UIScrollbar();
+        _buildPickerScrollbar = new JournalScrollbar();
         _buildPickerScrollbar.Width.Set(JournalUiMetrics.ScrollbarWidth, 0f);
         _buildPickerScrollbar.Left.Set(-(JournalUiMetrics.ScrollbarWidth + JournalUiMetrics.BuildPickerInset), 1f);
         _buildPickerScrollbar.Top.Set(JournalUiMetrics.BuildPickerListTop, 0f);
@@ -2915,7 +2915,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _sharedBuildList.ListPadding = JournalUiMetrics.EntryListPadding;
         _sharedBuildPanel.Append(_sharedBuildList);
 
-        _sharedBuildScrollbar = new UIScrollbar();
+        _sharedBuildScrollbar = new JournalScrollbar();
         _sharedBuildScrollbar.Width.Set(JournalUiMetrics.ScrollbarWidth, 0f);
         _sharedBuildScrollbar.Left.Set(-(JournalUiMetrics.ScrollbarWidth + 18f), 1f);
         _sharedBuildScrollbar.Top.Set(78f, 0f);

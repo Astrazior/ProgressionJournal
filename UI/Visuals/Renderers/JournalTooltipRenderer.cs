@@ -51,10 +51,14 @@ internal static class JournalTooltipRenderer
 
         var source = new Rectangle(
             SourceCornerSize,
-            4,
+            1,
             TextureSize - SourceCornerSize * 2,
             3);
-        spriteBatch.Draw(GetFrameTexture(), bounds, source, color);
+        spriteBatch.Draw(
+            GetFrameTexture(),
+            bounds,
+            source,
+            Color.Lerp(color, Color.White, 0.65f));
     }
 
     public static void DrawMarker(

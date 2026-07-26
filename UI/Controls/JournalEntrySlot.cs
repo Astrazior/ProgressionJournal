@@ -19,7 +19,6 @@ public sealed class JournalEntrySlot : UIElement
     private const int BestiaryFilterIconRows = 5;
     private const int EventBadgeSize = 18;
     private const int EventBadgePadding = 2;
-    private const int EventBadgeInnerPadding = 1;
     private const int SupportIconSize = 12;
     private const int SupportIconPadding = 3;
 
@@ -275,21 +274,17 @@ public sealed class JournalEntrySlot : UIElement
             return;
         }
 
-        var texture = TextureAssets.MagicPixel.Value;
         var badgeRectangle = new Rectangle(
             (int)slotPosition.X + (int)WidthPixels - EventBadgeSize - EventBadgePadding,
             (int)slotPosition.Y + TextureAssets.InventoryBack9.Height() - EventBadgeSize - EventBadgePadding,
             EventBadgeSize,
             EventBadgeSize);
 
-        spriteBatch.Draw(texture, badgeRectangle, JournalUiTheme.EventBadgeBackground);
-        DrawRectangleOutline(spriteBatch, texture, badgeRectangle, JournalUiTheme.EventBadgeBorder);
-
         if (_eventBadgeFrame is { } frame)
         {
             var itemTexture = Main.Assets.Request<Texture2D>(BestiaryFilterIconTexturePath).Value;
             var sourceRectangle = GetBestiaryFilterSourceRectangle(itemTexture, frame);
-            const int maxIconSize = EventBadgeSize - EventBadgeInnerPadding * 2;
+            const int maxIconSize = EventBadgeSize;
             var scale = MathF.Min(maxIconSize / (float)sourceRectangle.Width, maxIconSize / (float)sourceRectangle.Height);
             var drawPosition = new Vector2(badgeRectangle.Center.X, badgeRectangle.Center.Y);
 
@@ -309,7 +304,7 @@ public sealed class JournalEntrySlot : UIElement
         if (_eventIcon is not null)
         {
             var itemTexture = _eventIcon.Value;
-            const int maxIconSize = EventBadgeSize - EventBadgeInnerPadding * 2;
+            const int maxIconSize = EventBadgeSize;
             var scale = MathF.Min(maxIconSize / (float)itemTexture.Width, maxIconSize / (float)itemTexture.Height);
 
             spriteBatch.Draw(
@@ -370,16 +365,4 @@ public sealed class JournalEntrySlot : UIElement
         return new Rectangle(frameX * frameWidth, frameY * frameHeight, frameWidth, frameHeight);
     }
 
-    private static void DrawRectangleOutline(SpriteBatch spriteBatch, Texture2D texture, Rectangle rectangle, Color color)
-    {
-        if (rectangle.Width <= 0 || rectangle.Height <= 0)
-        {
-            return;
-        }
-
-        spriteBatch.Draw(texture, new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, 1), color);
-        spriteBatch.Draw(texture, new Rectangle(rectangle.X, rectangle.Bottom - 1, rectangle.Width, 1), color);
-        spriteBatch.Draw(texture, new Rectangle(rectangle.X, rectangle.Y, 1, rectangle.Height), color);
-        spriteBatch.Draw(texture, new Rectangle(rectangle.Right - 1, rectangle.Y, 1, rectangle.Height), color);
-    }
 }
