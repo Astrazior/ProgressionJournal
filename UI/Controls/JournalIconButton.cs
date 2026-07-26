@@ -15,6 +15,7 @@ public sealed class JournalIconButton : JournalHoverPanel
     private readonly float _iconRotation;
     private string? _hoverText;
     private bool _showChrome;
+    private bool _showCloseStyle;
     private string _badgeText = string.Empty;
     private JournalButtonStyle _chromeStyle = JournalUiTheme.GetDefaultTextButtonStyle();
 
@@ -50,6 +51,11 @@ public sealed class JournalIconButton : JournalHoverPanel
         _chromeStyle = style;
     }
 
+    public void EnableCloseStyle()
+    {
+        _showCloseStyle = true;
+    }
+
     public void SetBadgeText(string text)
     {
         _badgeText = text;
@@ -57,7 +63,8 @@ public sealed class JournalIconButton : JournalHoverPanel
 
     protected override void DrawSelf(SpriteBatch spriteBatch)
     {
-        if (_showChrome)
+        var dimensions = GetDimensions().ToRectangle();
+        if (_showChrome && !_showCloseStyle)
         {
             BackgroundColor = IsMouseHovering
                 ? Color.Lerp(_chromeStyle.Background, Color.White, 0.14f)
@@ -68,12 +75,11 @@ public sealed class JournalIconButton : JournalHoverPanel
             base.DrawSelf(spriteBatch);
         }
 
-        var dimensions = GetDimensions().ToRectangle();
         var texture = _iconTexture.Value;
         var availableWidth = Math.Max(1f, dimensions.Width - IconPadding * 2f);
         var availableHeight = Math.Max(1f, dimensions.Height - IconPadding * 2f);
         var scale = MathF.Min(availableWidth / texture.Width, availableHeight / texture.Height) * _iconScale;
-        if (IsMouseHovering)
+        if (IsMouseHovering && !_showCloseStyle)
         {
             var glowScale = scale * 1.08f;
             var glowColor = Color.White * 0.2f;
@@ -87,7 +93,9 @@ public sealed class JournalIconButton : JournalHoverPanel
             scale *= 1.04f;
         }
 
-        var drawColor = IsMouseHovering ? Color.White : Color.White * 0.95f;
+        var drawColor = _showCloseStyle && IsMouseHovering
+            ? new Color(255, 92, 92)
+            : Color.White * 0.95f;
         var drawOrigin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
 
         spriteBatch.Draw(

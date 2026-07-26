@@ -9,6 +9,9 @@ namespace ProgressionJournal.UI.Composition;
 
 public static class JournalUiElementFactory
 {
+    private const string CloseIconTexturePath =
+        "ProgressionJournal/Assets/UI/Icons/Close";
+
     public static UIPanel CreatePanel(bool preservePalette = false)
     {
         var panel = new JournalVolumetricPanel
@@ -35,6 +38,11 @@ public static class JournalUiElementFactory
             ? ModContent.Request<Texture2D>(texturePath)
             : Main.Assets.Request<Texture2D>(texturePath);
         var button = new JournalIconButton(texture, iconScale, onClick, iconRotation);
+        if (string.Equals(texturePath, CloseIconTexturePath, StringComparison.Ordinal))
+        {
+            button.EnableCloseStyle();
+        }
+
         button.Width.Set(width, 0f);
         button.Height.Set(height, 0f);
         return button;
