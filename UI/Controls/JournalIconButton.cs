@@ -16,6 +16,7 @@ public sealed class JournalIconButton : JournalHoverPanel
     private string? _hoverText;
     private bool _showChrome;
     private bool _showCloseStyle;
+    private Color? _flatHoverColor;
     private string _badgeText = string.Empty;
     private JournalButtonStyle _chromeStyle = JournalUiTheme.GetDefaultTextButtonStyle();
 
@@ -54,6 +55,12 @@ public sealed class JournalIconButton : JournalHoverPanel
     public void EnableCloseStyle()
     {
         _showCloseStyle = true;
+        _flatHoverColor = new Color(255, 92, 92);
+    }
+
+    public void EnableFlatGlyphStyle(Color hoverColor)
+    {
+        _flatHoverColor = hoverColor;
     }
 
     public void SetBadgeText(string text)
@@ -79,7 +86,7 @@ public sealed class JournalIconButton : JournalHoverPanel
         var availableWidth = Math.Max(1f, dimensions.Width - IconPadding * 2f);
         var availableHeight = Math.Max(1f, dimensions.Height - IconPadding * 2f);
         var scale = MathF.Min(availableWidth / texture.Width, availableHeight / texture.Height) * _iconScale;
-        if (IsMouseHovering && !_showCloseStyle)
+        if (IsMouseHovering && !_flatHoverColor.HasValue)
         {
             var glowScale = scale * 1.08f;
             var glowColor = Color.White * 0.2f;
@@ -93,8 +100,8 @@ public sealed class JournalIconButton : JournalHoverPanel
             scale *= 1.04f;
         }
 
-        var drawColor = _showCloseStyle && IsMouseHovering
-            ? new Color(255, 92, 92)
+        var drawColor = _flatHoverColor.HasValue && IsMouseHovering
+            ? _flatHoverColor.Value
             : Color.White * 0.95f;
         var drawOrigin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
 

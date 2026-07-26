@@ -17,12 +17,17 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
 {
     private const string CloseIconTexturePath =
         "ProgressionJournal/Assets/UI/Icons/Close";
-    private const string BestiaryBackButtonTexturePath = "Images/UI/Bestiary/Button_Back";
+    private const string BackButtonTexturePath =
+        "ProgressionJournal/Assets/UI/Icons/Back";
     private const string CraftingWindowToggleTexturePath = "Images/UI/Craft_Toggle_0";
-    private const string BuildPickerFilterIconTexturePath = "Images/UI/Bestiary/Button_Filtering";
-    private const string BuildPickerSortIconTexturePath = "Images/UI/Bestiary/Button_Sorting";
-    private const string BuildPickerSortDescendingIconTexturePath = "Images/UI/Sort_1";
-    private const string BuildPickerSortAscendingIconTexturePath = "Images/UI/Sort_0";
+    private const string BuildPickerFilterIconTexturePath =
+        "ProgressionJournal/Assets/UI/Icons/BuildFilter";
+    private const string BuildPickerSortIconTexturePath =
+        "ProgressionJournal/Assets/UI/Icons/BuildSort";
+    private const string BuildPickerSortDescendingIconTexturePath =
+        "ProgressionJournal/Assets/UI/Icons/BuildSortDescending";
+    private const string BuildPickerSortAscendingIconTexturePath =
+        "ProgressionJournal/Assets/UI/Icons/BuildSortAscending";
     private const string BuildPickerMagicIconTexturePath = "Images/Mana";
     private const int BuildPickerVanillaIconItemId = ItemID.Book;
     private const int BuildPickerModsIconItemId = ItemID.Wrench;
@@ -32,8 +37,6 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
     private const float BuildPickerMenuPadding = 5f;
     private const float BuildPickerMenuButtonSize = 40f;
     private const float BuildPickerMenuGap = 5f;
-    private static readonly Rectangle BuildPickerBestiaryButtonIconSourceRectangle = new(4, 4, 22, 22);
-
     private readonly Dictionary<string, JournalStageButton> _stageButtons =
         new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<int, CachedAcquisitionView> _acquisitionViewCache = new();
@@ -1283,8 +1286,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         if (selectedModGroup is null)
         {
             _buildPickerFilterButton.SetIconAsset(
-                BuildPickerFilterIconTexturePath,
-                BuildPickerBestiaryButtonIconSourceRectangle);
+                BuildPickerFilterIconTexturePath);
             _buildPickerFilterButton.SetItemIcon(0);
         }
         else
@@ -1293,8 +1295,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         }
 
         _buildPickerSortButton.SetIconAsset(
-            BuildPickerSortIconTexturePath,
-            BuildPickerBestiaryButtonIconSourceRectangle);
+            BuildPickerSortIconTexturePath);
         _buildPickerSortButton.SetItemIcon(0);
 
         _buildPickerSearchInput.HintText = Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerSearchHint");
@@ -2420,11 +2421,11 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _buildBuilderButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildBuilderTab"));
 
         _buildBackButton = JournalUiElementFactory.CreateIconButton(
-            BestiaryBackButtonTexturePath,
+            BackButtonTexturePath,
             30f,
             30f,
             () => JournalSystem.ShowPresetsTab(),
-            0.9f);
+            1.15f);
         _buildBackButton.Left.Set(-76f, 1f);
         _buildBackButton.Top.Set(8f, 0f);
         _buildBackButton.SetHoverText(Language.GetTextValue("Mods.ProgressionJournal.UI.BuildBackTooltip"));
@@ -2692,8 +2693,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
 
         _buildPickerFilterButton = new JournalBuildFilterIconButton(ToggleBuildPickerFilterMenu);
         _buildPickerFilterButton.SetIconAsset(
-            BuildPickerFilterIconTexturePath,
-            BuildPickerBestiaryButtonIconSourceRectangle);
+            BuildPickerFilterIconTexturePath);
         _buildPickerFilterButton.Left.Set(filterButtonLeft, 0f);
         _buildPickerFilterButton.Top.Set(84f, 0f);
         _buildPickerFilterButton.Width.Set(filterButtonSize, 0f);
@@ -2710,8 +2710,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
 
         _buildPickerSortButton = new JournalBuildFilterIconButton(ToggleBuildPickerSortMenu);
         _buildPickerSortButton.SetIconAsset(
-            BuildPickerSortIconTexturePath,
-            BuildPickerBestiaryButtonIconSourceRectangle);
+            BuildPickerSortIconTexturePath);
         _buildPickerSortButton.Left.Set(sortButtonLeft, 1f);
         _buildPickerSortButton.Top.Set(84f, 0f);
         _buildPickerSortButton.Width.Set(filterButtonSize, 0f);

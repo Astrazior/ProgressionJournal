@@ -11,6 +11,8 @@ public static class JournalUiElementFactory
 {
     private const string CloseIconTexturePath =
         "ProgressionJournal/Assets/UI/Icons/Close";
+    private const string BackIconTexturePath =
+        "ProgressionJournal/Assets/UI/Icons/Back";
 
     public static UIPanel CreatePanel(bool preservePalette = false)
     {
@@ -41,6 +43,10 @@ public static class JournalUiElementFactory
         if (string.Equals(texturePath, CloseIconTexturePath, StringComparison.Ordinal))
         {
             button.EnableCloseStyle();
+        }
+        else if (string.Equals(texturePath, BackIconTexturePath, StringComparison.Ordinal))
+        {
+            button.EnableFlatGlyphStyle(new Color(154, 204, 240));
         }
 
         button.Width.Set(width, 0f);

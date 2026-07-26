@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ModLoader;
 
 namespace ProgressionJournal.UI.Controls;
 
@@ -77,21 +78,13 @@ public sealed class JournalBuildFilterIconButton : JournalHoverPanel
             return;
         }
 
-        var background = _active ? new Color(38, 54, 48) : new Color(22, 30, 38);
-        BackgroundColor = IsMouseHovering
-            ? Color.Lerp(background, Color.White, _active ? 0.16f : 0.1f)
-            : background;
         BorderColor = Color.Transparent;
-
-        base.DrawSelf(spriteBatch);
-
         var bounds = GetDimensions().ToRectangle();
-        if (_active)
-        {
-            DrawSoftAccent(spriteBatch, bounds);
-        }
-
-        var iconColor = _active ? JournalUiTheme.SectionHeaderText : JournalUiTheme.RootTitleText * 0.86f;
+        var iconColor = _active
+            ? JournalUiTheme.SectionHeaderText
+            : IsMouseHovering
+                ? Color.White
+                : JournalUiTheme.RootTitleText * 0.86f;
         DrawDynamicIcon(spriteBatch, bounds, iconColor);
 
         if (IsMouseHovering && !string.IsNullOrWhiteSpace(_hoverText))
@@ -146,7 +139,9 @@ public sealed class JournalBuildFilterIconButton : JournalHoverPanel
         {
             try
             {
-                var iconTexture = Main.Assets.Request<Texture2D>(_iconTexturePath).Value;
+                var iconTexture = _iconTexturePath.StartsWith("ProgressionJournal/", StringComparison.Ordinal)
+                    ? ModContent.Request<Texture2D>(_iconTexturePath).Value
+                    : Main.Assets.Request<Texture2D>(_iconTexturePath).Value;
                 DrawTextureCentered(spriteBatch, iconTexture, _iconSourceRectangle, bounds, color, 0.7f);
                 return;
             }
@@ -177,13 +172,6 @@ public sealed class JournalBuildFilterIconButton : JournalHoverPanel
         var position = new Vector2(bounds.X + bounds.Width * 0.5f, bounds.Y + bounds.Height * 0.5f);
         var origin = new Vector2(sourceWidth * 0.5f, sourceHeight * 0.5f);
         spriteBatch.Draw(texture, position, sourceRectangle, color, 0f, origin, scale, SpriteEffects.None, 0f);
-    }
-
-    private static void DrawSoftAccent(SpriteBatch spriteBatch, Rectangle bounds)
-    {
-        var accent = JournalUiTheme.SectionHeaderText * 0.72f;
-        Fill(spriteBatch, bounds.X + 5, bounds.Bottom - 4, bounds.Width - 10, 2, accent);
-        Fill(spriteBatch, bounds.X + 7, bounds.Y + 4, bounds.Width - 14, 1, accent * 0.22f);
     }
 
     private static void Fill(SpriteBatch spriteBatch, int x, int y, int width, int height, Color color)
