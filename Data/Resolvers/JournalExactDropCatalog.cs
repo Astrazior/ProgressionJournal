@@ -28,7 +28,27 @@ public static class JournalExactDropCatalog
     public static IReadOnlyList<JournalExactDropSource> GetAllGlobalDrops()
     {
         return Entries.Value
-            .Where(static entry => entry is { IncludeInSnapshot: true, SourceNpcType: null, SourceItemId: null })
+            .Where(static entry => entry is
+            {
+                IncludeInSnapshot: true,
+                SourceNpcType: null,
+                SourceItemId: null,
+                SourceReference: null
+            })
+            .Select(ToSource)
+            .ToArray();
+    }
+
+    public static IReadOnlyList<JournalExactDropSource> GetAllWorldDrops()
+    {
+        return Entries.Value
+            .Where(static entry => entry is
+            {
+                IncludeInSnapshot: true,
+                SourceNpcType: null,
+                SourceItemId: null,
+                SourceReference: not null
+            })
             .Select(ToSource)
             .ToArray();
     }
@@ -51,12 +71,14 @@ public static class JournalExactDropCatalog
             entry.DropRate,
             entry.StackMin,
             entry.StackMax,
+            entry.ShowDropRate,
             entry.Conditions
                 .Select(static condition => new JournalExactDropCondition(
                     condition.Type,
                     ResolveConditionDescription(condition)))
                 .ToArray(),
-            entry.Provenance);
+            entry.Provenance,
+            entry.SourceReference);
     }
 
     private static string ResolveConditionDescription(ConditionBuilder condition)
@@ -102,6 +124,9 @@ public static class JournalExactDropCatalog
                 condition.Arguments),
             ConditionKind.ZenithWorld => Language.GetTextValue(
                 "Mods.ProgressionJournal.UI.SelectedItemZenithWorldCondition"),
+            ConditionKind.LocalizationKey => Language.GetTextValue(
+                condition.Type,
+                condition.Arguments),
             _ => string.Empty
         };
     }
@@ -109,11 +134,177 @@ public static class JournalExactDropCatalog
     private static Entry[] CreateEntries()
     {
         List<EntryBuilder> builders = [];
+        AddVanillaTreeFruits(builders);
         AddAAModClassic(builders);
+        AddCalamity(builders);
         return builders
             .Select(TryCreateEntry)
             .OfType<Entry>()
             .ToArray();
+    }
+
+    private static void AddVanillaTreeFruits(ICollection<EntryBuilder> builders)
+    {
+        const string provenance = "Terraria 1.4 vanilla tree fruit drops; terraria.wiki.gg/wiki/Fruits";
+        AddVanillaTreeFruitGroup(
+            builders,
+            provenance,
+            "Mods.ProgressionJournal.UI.VanillaForestFruitTreeSource",
+            "Terraria/Apple",
+            "Terraria/Apricot",
+            "Terraria/Grapefruit",
+            "Terraria/Lemon",
+            "Terraria/Peach");
+        AddVanillaTreeFruitGroup(
+            builders,
+            provenance,
+            "Mods.ProgressionJournal.UI.VanillaBorealFruitTreeSource",
+            "Terraria/Cherry",
+            "Terraria/Plum");
+        AddVanillaTreeFruitGroup(
+            builders,
+            provenance,
+            "Mods.ProgressionJournal.UI.VanillaEbonwoodFruitTreeSource",
+            "Terraria/BlackCurrant",
+            "Terraria/Elderberry");
+        AddVanillaTreeFruitGroup(
+            builders,
+            provenance,
+            "Mods.ProgressionJournal.UI.VanillaShadewoodFruitTreeSource",
+            "Terraria/BloodOrange",
+            "Terraria/Rambutan");
+        AddVanillaTreeFruitGroup(
+            builders,
+            provenance,
+            "Mods.ProgressionJournal.UI.VanillaMahoganyFruitTreeSource",
+            "Terraria/Mango",
+            "Terraria/Pineapple");
+        AddVanillaTreeFruitGroup(
+            builders,
+            provenance,
+            "Mods.ProgressionJournal.UI.VanillaPalmFruitTreeSource",
+            "Terraria/Banana",
+            "Terraria/Coconut");
+        AddVanillaTreeFruitGroup(
+            builders,
+            provenance,
+            "Mods.ProgressionJournal.UI.VanillaPearlwoodFruitTreeSource",
+            "Terraria/Dragonfruit",
+            "Terraria/Starfruit");
+        AddVanillaTreeFruitGroup(
+            builders,
+            provenance,
+            "Mods.ProgressionJournal.UI.VanillaAshFruitTreeSource",
+            "Terraria/Pomegranate",
+            "Terraria/SpicyPepper");
+    }
+
+    private static void AddVanillaTreeFruitGroup(
+        ICollection<EntryBuilder> builders,
+        string provenance,
+        string sourceLocalizationKey,
+        params string[] targetReferences)
+    {
+        var sourceName = Language.GetTextValue(sourceLocalizationKey);
+        ConditionBuilder[] conditions =
+        [
+            new(
+                "Mods.ProgressionJournal.UI.VanillaFruitTreeCuttingCondition",
+                ConditionKind.LocalizationKey,
+                [sourceName])
+        ];
+        foreach (var targetReference in targetReferences)
+        {
+            AddWorld(
+                builders,
+                provenance,
+                sourceName,
+                sourceItemReference: null,
+                targetReference,
+                conditions,
+                showDropRate: false);
+        }
+    }
+
+    private static void AddCalamity(ICollection<EntryBuilder> builders)
+    {
+        const string acidwoodFruitProvenance =
+            "CalamityMod 2.2.1 Acidwood tree shaking; calamitymod.wiki.gg/wiki/Plants";
+        ConditionBuilder[] acidwoodFruitConditions =
+        [
+            new(
+                "Mods.ProgressionJournal.UI.AcidwoodFruitTreeShakingCondition",
+                ConditionKind.LocalizationKey,
+                [])
+        ];
+        var acidwoodTreeSourceName =
+            Language.GetTextValue("Mods.ProgressionJournal.UI.AcidwoodTreeShakingSource");
+        AddWorld(
+            builders,
+            acidwoodFruitProvenance,
+            acidwoodTreeSourceName,
+            sourceItemReference: null,
+            "CalamityMod/Jackfruit",
+            acidwoodFruitConditions,
+            dropRate: 1f / 31f,
+            sourceReference: "CalamityMod/AcidwoodTreeShaking",
+            includeInSnapshot: true);
+        AddWorld(
+            builders,
+            acidwoodFruitProvenance,
+            acidwoodTreeSourceName,
+            sourceItemReference: null,
+            "CalamityMod/Salak",
+            acidwoodFruitConditions,
+            dropRate: 1f / 31f,
+            sourceReference: "CalamityMod/AcidwoodTreeShaking",
+            includeInSnapshot: true);
+
+        const string provenance =
+            "CalamityMod 2.2.1 Divine Swine interaction; calamitymod.wiki.gg/wiki/Divine_Swine";
+        AddModNpc(
+            builders,
+            provenance,
+            "CalamityMod/DivineSwine",
+            "CalamityMod/DeliciousMeat",
+            1f,
+            conditions:
+            [
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.DeliciousMeatDivineSwineOfferingCondition",
+                    ConditionKind.LocalizationKey,
+                    []),
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.DeliciousMeatDivineSwineAvailabilityCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ]);
+
+        const string gluttonyBlenderProvenance =
+            "CalamityMod 2.2.1 Gluttony Blender interaction; calamitymod.wiki.gg/wiki/Gluttony_Blender";
+        AddWorld(
+            builders,
+            gluttonyBlenderProvenance,
+            sourceName: string.Empty,
+            "CalamityMod/GluttonyBlender",
+            "CalamityMod/QualitySlop",
+            [
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.QualitySlopGluttonyBlenderInteractionCondition",
+                    ConditionKind.LocalizationKey,
+                    []),
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.QualitySlopGluttonyBlenderChanceCondition",
+                    ConditionKind.LocalizationKey,
+                    []),
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.GluttonyBlenderAvailabilityCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ],
+            dropRate: 0.005f,
+            showDropRate: false,
+            includeInSnapshot: true);
     }
 
     private static void AddAAModClassic(ICollection<EntryBuilder> builders)
@@ -481,9 +672,11 @@ public static class JournalExactDropCatalog
             dropRate,
             1,
             1,
+            ShowDropRate: true,
             conditions ?? [],
             provenance,
-            IncludeInSnapshot: true));
+            IncludeInSnapshot: true,
+            SourceReference: null));
     }
 
     private static void AddNpc(
@@ -504,9 +697,37 @@ public static class JournalExactDropCatalog
             dropRate,
             stackMin,
             stackMax,
+            ShowDropRate: true,
             conditions ?? [],
             provenance,
-            IncludeInSnapshot: true));
+            IncludeInSnapshot: true,
+            SourceReference: null));
+    }
+
+    private static void AddModNpc(
+        ICollection<EntryBuilder> builders,
+        string provenance,
+        string sourceNpcReference,
+        string targetReference,
+        float dropRate,
+        int stackMin = 1,
+        int stackMax = 1,
+        ConditionBuilder[]? conditions = null)
+    {
+        if (!TryResolveNpcReference(sourceNpcReference, out var sourceNpcType))
+        {
+            return;
+        }
+
+        AddNpc(
+            builders,
+            provenance,
+            sourceNpcType,
+            targetReference,
+            dropRate,
+            stackMin,
+            stackMax,
+            conditions);
     }
 
     private static void AddGlobal(
@@ -527,9 +748,11 @@ public static class JournalExactDropCatalog
             dropRate,
             stackMin,
             stackMax,
+            ShowDropRate: true,
             conditions ?? [],
             provenance,
-            IncludeInSnapshot: true));
+            IncludeInSnapshot: true,
+            SourceReference: null));
     }
 
     private static void AddWorld(
@@ -538,19 +761,25 @@ public static class JournalExactDropCatalog
         string sourceName,
         string? sourceItemReference,
         string targetReference,
-        ConditionBuilder[] conditions)
+        ConditionBuilder[] conditions,
+        float dropRate = 1f,
+        bool showDropRate = true,
+        string? sourceReference = null,
+        bool includeInSnapshot = false)
     {
         builders.Add(new EntryBuilder(
             sourceName,
             SourceNpcType: null,
             sourceItemReference,
             targetReference,
-            1f,
+            dropRate,
             1,
             1,
+            showDropRate,
             conditions,
             provenance,
-            IncludeInSnapshot: false));
+            includeInSnapshot,
+            sourceReference));
     }
 
     private static Entry? TryCreateEntry(EntryBuilder builder)
@@ -577,9 +806,11 @@ public static class JournalExactDropCatalog
             builder.DropRate,
             builder.StackMin,
             builder.StackMax,
+            builder.ShowDropRate,
             builder.Conditions,
             builder.Provenance,
-            builder.IncludeInSnapshot);
+            builder.IncludeInSnapshot,
+            builder.SourceReference);
     }
 
     private static bool TryResolveItemReference(string reference, out int itemId)
@@ -607,6 +838,26 @@ public static class JournalExactDropCatalog
         return true;
     }
 
+    private static bool TryResolveNpcReference(string reference, out int npcType)
+    {
+        npcType = NPCID.None;
+        var separator = reference.IndexOf('/');
+        if (separator <= 0 || separator >= reference.Length - 1)
+        {
+            return false;
+        }
+
+        var modName = reference[..separator];
+        var npcName = reference[(separator + 1)..];
+        if (!ModContent.TryFind<ModNPC>($"{modName}/{npcName}", out var modNpc))
+        {
+            return false;
+        }
+
+        npcType = modNpc.Type;
+        return true;
+    }
+
     private sealed record EntryBuilder(
         string SourceName,
         int? SourceNpcType,
@@ -615,9 +866,11 @@ public static class JournalExactDropCatalog
         float DropRate,
         int StackMin,
         int StackMax,
+        bool ShowDropRate,
         ConditionBuilder[] Conditions,
         string Provenance,
-        bool IncludeInSnapshot);
+        bool IncludeInSnapshot,
+        string? SourceReference);
 
     private sealed record Entry(
         string SourceName,
@@ -627,9 +880,11 @@ public static class JournalExactDropCatalog
         float DropRate,
         int StackMin,
         int StackMax,
+        bool ShowDropRate,
         ConditionBuilder[] Conditions,
         string Provenance,
-        bool IncludeInSnapshot);
+        bool IncludeInSnapshot,
+        string? SourceReference);
 
     private sealed record ConditionBuilder(string Type, ConditionKind Kind, object[] Arguments);
 
@@ -649,7 +904,8 @@ public static class JournalExactDropCatalog
         Event,
         AfterAllMechanicalBosses,
         SpecialWorldGate,
-        ZenithWorld
+        ZenithWorld,
+        LocalizationKey
     }
 }
 
@@ -661,7 +917,35 @@ public sealed record JournalExactDropSource(
     float DropRate,
     int StackMin,
     int StackMax,
+    bool ShowDropRate,
     JournalExactDropCondition[] Conditions,
-    string Provenance);
+    string Provenance,
+    string? SourceReference)
+{
+    public JournalExactDropSource(
+        string sourceName,
+        int? sourceNpcType,
+        int? sourceItemId,
+        int targetItemId,
+        float dropRate,
+        int stackMin,
+        int stackMax,
+        JournalExactDropCondition[] conditions,
+        string provenance)
+        : this(
+            sourceName,
+            sourceNpcType,
+            sourceItemId,
+            targetItemId,
+            dropRate,
+            stackMin,
+            stackMax,
+            ShowDropRate: true,
+            conditions,
+            provenance,
+            SourceReference: null)
+    {
+    }
+}
 
 public sealed record JournalExactDropCondition(string Type, string Description);

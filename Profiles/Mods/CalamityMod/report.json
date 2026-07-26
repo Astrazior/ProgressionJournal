@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-18T12:59:33.949Z",
+  "generatedAtUtc": "2026-07-26T18:15:09.620Z",
   "snapshot": {
     "version": 6,
     "generatedAtUtc": "2026-07-18T12:22:48.4718500Z",
@@ -1745,7 +1745,7 @@
         }
       ],
       "stageComparison": {
-        "compared": 2166,
+        "compared": 2195,
         "moved": 0
       }
     }
@@ -6547,7 +6547,7 @@
   "ready": true,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-07-18T12:59:11.445Z",
+    "generatedAtUtc": "2026-07-26T18:14:47.716Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -34462,6 +34462,74 @@
         "stage": "start",
         "via": "initial"
       },
+      "Terraria/Apple": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Apricot": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Grapefruit": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Lemon": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Peach": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Cherry": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Plum": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/BlackCurrant": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Elderberry": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/BloodOrange": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Rambutan": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Mango": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Pineapple": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Banana": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Coconut": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Pomegranate": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/SpicyPepper": {
+        "stage": "start",
+        "via": "initial"
+      },
       "Terraria/BouncyGrenade": {
         "stage": "start",
         "via": "initial"
@@ -35413,9 +35481,41 @@
         "stage": "start",
         "via": "recipe:Terraria/RockLobster"
       },
+      "Terraria/AppleJuice": {
+        "stage": "start",
+        "via": "recipe:Terraria/Apple+Terraria/Bottle"
+      },
+      "Terraria/BananaDaiquiri": {
+        "stage": "start",
+        "via": "recipe:Terraria/Banana+Terraria/Bottle+Terraria/SnowBlock"
+      },
       "Terraria/Lemonade": {
         "stage": "start",
         "via": "recipe:Terraria/Lemon+Terraria/Bottle"
+      },
+      "Terraria/PeachSangria": {
+        "stage": "start",
+        "via": "recipe:Terraria/Peach+Terraria/Bottle"
+      },
+      "Terraria/PinaColada": {
+        "stage": "start",
+        "via": "recipe:Terraria/Pineapple+Terraria/Coconut+Terraria/Bottle"
+      },
+      "Terraria/TropicalSmoothie": {
+        "stage": "start",
+        "via": "recipe:Terraria/Mango+Terraria/Pineapple+Terraria/Bottle"
+      },
+      "Terraria/BloodyMoscato": {
+        "stage": "start",
+        "via": "recipe:Terraria/BloodOrange+Terraria/Rambutan+Terraria/Bottle"
+      },
+      "Terraria/SmoothieofDarkness": {
+        "stage": "start",
+        "via": "recipe:Terraria/BlackCurrant+Terraria/Elderberry+Terraria/Bottle"
+      },
+      "Terraria/FruitJuice": {
+        "stage": "start",
+        "via": "recipe:Terraria/Apple+Terraria/Bottle"
       },
       "Terraria/SeafoodDinner": {
         "stage": "start",
@@ -36241,10 +36341,6 @@
         "stage": "start",
         "via": "recipe:Terraria/Bottle+Terraria/Diamond"
       },
-      "CalamityMod/StarBeamRye": {
-        "stage": "start",
-        "via": "recipe:Terraria/Bottle+Terraria/Starfruit"
-      },
       "CalamityMod/Whiskey": {
         "stage": "start",
         "via": "recipe:Terraria/Bottle+Terraria/SpicyPepper"
@@ -36413,6 +36509,10 @@
         "stage": "start",
         "via": "shimmer:Terraria/AncientShadowScalemail"
       },
+      "Terraria/Ambrosia": {
+        "stage": "start",
+        "via": "shimmer:Terraria/Apple"
+      },
       "Terraria/PocketMirror": {
         "stage": "start",
         "via": "shimmer:Terraria/Blindfold"
@@ -36420,10 +36520,6 @@
       "Terraria/ShimmerFlare": {
         "stage": "start",
         "via": "shimmer:Terraria/BlueFlare"
-      },
-      "Terraria/Ambrosia": {
-        "stage": "start",
-        "via": "shimmer:Terraria/Grapefruit"
       },
       "Terraria/AegisCrystal": {
         "stage": "start",
@@ -36448,6 +36544,10 @@
       "Terraria/MolotovCocktail": {
         "stage": "start",
         "via": "recipe:Terraria/Ale+Terraria/Gel+Terraria/Silk+Terraria/Torch"
+      },
+      "Terraria/FruitSalad": {
+        "stage": "start",
+        "via": "recipe:Terraria/Apple+Terraria/Bowl"
       },
       "Terraria/FishingPotion": {
         "stage": "start",
@@ -38567,6 +38667,14 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/ObsidianShield+Terraria/AnkhCharm"
       },
+      "Terraria/Dragonfruit": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "Terraria/Starfruit": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
       "Terraria/SpiritFlame": {
         "stage": "wall-of-flesh",
         "via": "manifest"
@@ -38594,6 +38702,10 @@
       "CalamityMod/Mangosteen": {
         "stage": "wall-of-flesh",
         "via": "manifest"
+      },
+      "Terraria/PrismaticPunch": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/Starfruit+Terraria/Dragonfruit+Terraria/Bottle"
       },
       "Terraria/PearlwoodHelmet": {
         "stage": "wall-of-flesh",
@@ -38634,6 +38746,10 @@
       "CalamityMod/Margarita": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Bottle+Terraria/DarkShard+CalamityMod/StarblightSoot"
+      },
+      "CalamityMod/StarBeamRye": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/Bottle+Terraria/Starfruit"
       },
       "CalamityMod/TequilaSunrise": {
         "stage": "wall-of-flesh",
@@ -43716,26 +43832,6 @@
         "via": "initial"
       },
       "Terraria/ShimmerBlock": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/Lemon": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/Grapefruit": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/Plum": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/Starfruit": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/SpicyPepper": {
         "stage": "start",
         "via": "initial"
       },
@@ -63615,7 +63711,7 @@
     },
     "unassignedVanillaNpcSourceCount": 147,
     "manualAvailabilityPriority": {
-      "automaticItems": 5464,
+      "automaticItems": 5474,
       "automaticSources": 294,
       "automaticStations": 861,
       "suppressed": {

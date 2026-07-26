@@ -132,6 +132,9 @@ const legacyDirectDropAnalyzerSource = fs.readFileSync(
 const exactDropCatalogSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalExactDropCatalog.cs"),
   "utf8");
+const npcDropCollectorSource = fs.readFileSync(
+  path.join(root, "Data", "Snapshots", "Collectors", "JournalSnapshotNpcDropCollector.cs"),
+  "utf8");
 const exactShopCatalogSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalExactShopCatalog.cs"),
   "utf8");
@@ -146,6 +149,9 @@ const journalUiStateSource = fs.readFileSync(
   "utf8");
 const acquisitionVisualsSource = fs.readFileSync(
   path.join(root, "UI", "Utilities", "JournalAcquisitionVisuals.cs"),
+  "utf8");
+const englishLocalizationSource = fs.readFileSync(
+  path.join(root, "Localization", "en-US_Mods.ProgressionJournal.hjson"),
   "utf8");
 const russianLocalizationSource = fs.readFileSync(
   path.join(root, "Localization", "ru-RU_Mods.ProgressionJournal.hjson"),
@@ -170,6 +176,34 @@ assert(itemSourceResolverSource.includes("source.ConditionLocalizationKeys")
   && worldContainerCollectorSource.includes("new SnapshotCondition(key, Language.GetTextValue(key))")
   && russianLocalizationSource.includes("Мурасама находится только в сундуке безопасности лаборатории Биоцентра в Преисподней."),
   "Murasama's 100% Security Chest source must remain scoped to the Underworld Bio-center Arsenal Lab");
+assert(exactDropCatalogSource.includes("\"CalamityMod/DivineSwine\"")
+  && exactDropCatalogSource.includes("\"CalamityMod/DeliciousMeat\"")
+  && exactDropCatalogSource.includes("DeliciousMeatDivineSwineOfferingCondition")
+  && exactDropCatalogSource.includes("DeliciousMeatDivineSwineAvailabilityCondition")
+  && englishLocalizationSource.includes("The coin is consumed, and the creature transforms into this item.")
+  && russianLocalizationSource.includes("Монета будет потрачена, а существо превратится в этот предмет."),
+  "Delicious Meat must retain its localized Divine Swine interaction source");
+assert(exactDropCatalogSource.includes("\"CalamityMod/Jackfruit\"")
+  && exactDropCatalogSource.includes("\"CalamityMod/Salak\"")
+  && exactDropCatalogSource.includes("\"CalamityMod/AcidwoodTreeShaking\"")
+  && exactDropCatalogSource.includes("dropRate: 1f / 31f")
+  && exactDropCatalogSource.includes("\"CalamityMod/GluttonyBlender\"")
+  && exactDropCatalogSource.includes("\"CalamityMod/QualitySlop\"")
+  && exactDropCatalogSource.includes("showDropRate: false")
+  && npcDropCollectorSource.includes("JournalExactDropCatalog.GetAllWorldDrops()")
+  && npcDropCollectorSource.includes("\"world\"")
+  && englishLocalizationSource.includes("Can drop while cutting down Acidwood Trees in the Sulphurous Sea.")
+  && russianLocalizationSource.includes("Может выпасть при рубке кислотных деревьев в Сернистом море.")
+  && englishLocalizationSource.includes("food buff duration in minutes × 0.5%")
+  && russianLocalizationSource.includes("длительность пищевого бафа в минутах × 0,5%"),
+  "Start-stage Calamity foods must retain their localized non-standard acquisition sources");
+assert(exactDropCatalogSource.includes("AddVanillaTreeFruits(builders)")
+  && exactDropCatalogSource.includes("\"Terraria/Apricot\"")
+  && exactDropCatalogSource.includes("\"Terraria/Dragonfruit\"")
+  && exactDropCatalogSource.includes("VanillaFruitTreeCuttingCondition")
+  && englishLocalizationSource.includes("Can drop while cutting down trees of this type")
+  && russianLocalizationSource.includes("Может выпасть при рубке деревьев этого типа"),
+  "Vanilla tree fruits must retain localized cutting sources");
 assert(!itemSourceResolverSource.includes("JournalGeneratedContainerSourceSystem")
   && !itemSourceResolverSource.includes("Main.chest"),
   "Journal UI item sources must not fall back to scanning the current world's chests");
@@ -566,6 +600,32 @@ for (const modName of expected) {
           reference.mod === mod && reference.item === item))
         ?.stageId;
   };
+  for (const fruit of [
+    "Apple",
+    "Apricot",
+    "Grapefruit",
+    "Lemon",
+    "Peach",
+    "Cherry",
+    "Plum",
+    "BlackCurrant",
+    "Elderberry",
+    "BloodOrange",
+    "Rambutan",
+    "Mango",
+    "Pineapple",
+    "Banana",
+    "Coconut",
+    "Pomegranate",
+    "SpicyPepper"
+  ]) {
+    assert.equal(generatedStageOf(`Terraria/${fruit}`), "start",
+      `${modName}: ${fruit} must be visible before Hardmode`);
+  }
+  for (const fruit of ["Dragonfruit", "Starfruit"]) {
+    assert.equal(generatedStageOf(`Terraria/${fruit}`), stageForFlag("hardMode")?.id,
+      `${modName}: ${fruit} must become visible in Hardmode`);
+  }
   for (const [itemId, stageId] of Object.entries({
     "Terraria/DD2BallistraTowerT1Popper": "world-evil",
     "Terraria/DD2BallistraTowerT2Popper": "destroyer",
@@ -1259,6 +1319,36 @@ assert(vanillaSources.initialVisibleItems.includes("Terraria/Shroomerang"));
 assert(vanillaSources.initialVisibleItems.includes("Terraria/AbigailsFlower"));
 assert(vanillaSources.initialVisibleItems.includes("Terraria/Sunflower"));
 assert(vanillaSources.initialVisibleItems.includes("Terraria/Seed"));
+for (const fruit of [
+  "Apple",
+  "Apricot",
+  "Grapefruit",
+  "Lemon",
+  "Peach",
+  "Cherry",
+  "Plum",
+  "BlackCurrant",
+  "Elderberry",
+  "BloodOrange",
+  "Rambutan",
+  "Mango",
+  "Pineapple",
+  "Banana",
+  "Coconut",
+  "Pomegranate",
+  "SpicyPepper"
+]) {
+  assert(vanillaSources.initialItems.includes(`Terraria/${fruit}`),
+    `${fruit} must be available before Hardmode`);
+  assert(vanillaSources.initialVisibleItems.includes(`Terraria/${fruit}`),
+    `${fruit} must be visible before Hardmode`);
+}
+assert(!vanillaSources.initialItems.includes("Terraria/Dragonfruit"));
+assert(!vanillaSources.initialItems.includes("Terraria/Starfruit"));
+assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
+  .include.includes("Terraria/Dragonfruit"));
+assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
+  .include.includes("Terraria/Starfruit"));
 assert(vanillaSources.stages[0].enemies?.includes("Terraria/GiantWormHead"));
 assert(vanillaSources.stages[0].shops?.includes("Terraria/TravellingMerchant"));
 assert(!vanillaSources.stages[0].enemies?.includes("Terraria/Skeleton"));

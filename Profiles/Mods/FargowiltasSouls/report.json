@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "FargowiltasSouls",
   "profileId": "builtin.fargosouls",
-  "generatedAtUtc": "2026-07-18T13:00:16.929Z",
+  "generatedAtUtc": "2026-07-26T18:15:13.312Z",
   "snapshot": {
     "version": 6,
     "generatedAtUtc": "2026-07-18T12:47:18.3352186Z",
@@ -4236,7 +4236,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.fargosouls",
-    "generatedAtUtc": "2026-07-18T13:00:16.055Z",
+    "generatedAtUtc": "2026-07-26T18:15:11.915Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -15193,6 +15193,11 @@
       },
       {
         "stage": "start",
+        "id": "Fargowiltas/Eggplant",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Fargowiltas/HeartChocolate",
         "reason": "not combat equipment"
       },
@@ -23862,6 +23867,74 @@
         "stage": "start",
         "via": "initial"
       },
+      "Terraria/Apple": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Apricot": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Grapefruit": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Lemon": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Peach": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Cherry": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Plum": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/BlackCurrant": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Elderberry": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/BloodOrange": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Rambutan": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Mango": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Pineapple": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Banana": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Coconut": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Pomegranate": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/SpicyPepper": {
+        "stage": "start",
+        "via": "initial"
+      },
       "Terraria/BouncyGrenade": {
         "stage": "start",
         "via": "initial"
@@ -24629,9 +24702,41 @@
         "stage": "start",
         "via": "recipe:Terraria/RockLobster"
       },
+      "Terraria/AppleJuice": {
+        "stage": "start",
+        "via": "recipe:Terraria/Apple+Terraria/Bottle"
+      },
+      "Terraria/BananaDaiquiri": {
+        "stage": "start",
+        "via": "recipe:Terraria/Banana+Terraria/Bottle+Terraria/SnowBlock"
+      },
       "Terraria/Lemonade": {
         "stage": "start",
         "via": "recipe:Terraria/Lemon+Terraria/Bottle"
+      },
+      "Terraria/PeachSangria": {
+        "stage": "start",
+        "via": "recipe:Terraria/Peach+Terraria/Bottle"
+      },
+      "Terraria/PinaColada": {
+        "stage": "start",
+        "via": "recipe:Terraria/Pineapple+Terraria/Coconut+Terraria/Bottle"
+      },
+      "Terraria/TropicalSmoothie": {
+        "stage": "start",
+        "via": "recipe:Terraria/Mango+Terraria/Pineapple+Terraria/Bottle"
+      },
+      "Terraria/BloodyMoscato": {
+        "stage": "start",
+        "via": "recipe:Terraria/BloodOrange+Terraria/Rambutan+Terraria/Bottle"
+      },
+      "Terraria/SmoothieofDarkness": {
+        "stage": "start",
+        "via": "recipe:Terraria/BlackCurrant+Terraria/Elderberry+Terraria/Bottle"
+      },
+      "Terraria/FruitJuice": {
+        "stage": "start",
+        "via": "recipe:Terraria/Apple+Terraria/Bottle"
       },
       "Terraria/SeafoodDinner": {
         "stage": "start",
@@ -25405,13 +25510,29 @@
         "stage": "start",
         "via": "recipe:Terraria/GladiatorHelmet+Terraria/GladiatorBreastplate+Terraria/GladiatorLeggings+Terraria/Spear+Terraria/Gladius+Terraria/BoneJavelin"
       },
+      "FargowiltasSouls/IronEnchant": {
+        "stage": "start",
+        "via": "recipe:Terraria/IronHelmet+Terraria/IronChainmail+Terraria/IronGreaves+Terraria/IronHammer+Terraria/IronAnvil+Terraria/Apricot"
+      },
       "FargowiltasSouls/JungleEnchant": {
         "stage": "start",
         "via": "recipe:Terraria/JungleHat+Terraria/JungleShirt+Terraria/JunglePants+Terraria/ThornChakram+Terraria/IvyWhip+Terraria/JungleRose"
       },
+      "FargowiltasSouls/LeadEnchant": {
+        "stage": "start",
+        "via": "recipe:Terraria/LeadHelmet+Terraria/LeadChainmail+Terraria/LeadGreaves+Terraria/LeadShortsword+Terraria/GrayPaint+Terraria/Peach"
+      },
       "FargowiltasSouls/MinerEnchant": {
         "stage": "start",
         "via": "recipe:Terraria/UltrabrightHelmet+Terraria/MiningShirt+Terraria/MiningPants+Terraria/AncientChisel+Terraria/CopperPickaxe+Terraria/GravediggerShovel"
+      },
+      "FargowiltasSouls/PalmWoodEnchant": {
+        "stage": "start",
+        "via": "recipe:Terraria/PalmWoodHelmet+Terraria/PalmWoodBreastplate+Terraria/PalmWoodGreaves+Terraria/Coral+Terraria/Banana+Terraria/Coconut"
+      },
+      "FargowiltasSouls/RichMahoganyEnchant": {
+        "stage": "start",
+        "via": "recipe:Terraria/RichMahoganyHelmet+Terraria/RichMahoganyBreastplate+Terraria/RichMahoganyGreaves+Terraria/Moonglow+Terraria/Pineapple+Terraria/GrapplingHook"
       },
       "FargowiltasSouls/SilverEnchant": {
         "stage": "start",
@@ -25457,13 +25578,13 @@
         "stage": "start",
         "via": "shimmer:Terraria/AncientShadowScalemail"
       },
+      "Terraria/Ambrosia": {
+        "stage": "start",
+        "via": "shimmer:Terraria/Apple"
+      },
       "Terraria/ShimmerFlare": {
         "stage": "start",
         "via": "shimmer:Terraria/BlueFlare"
-      },
-      "Terraria/Ambrosia": {
-        "stage": "start",
-        "via": "shimmer:Terraria/Grapefruit"
       },
       "Terraria/AegisCrystal": {
         "stage": "start",
@@ -25488,6 +25609,10 @@
       "Terraria/MolotovCocktail": {
         "stage": "start",
         "via": "recipe:Terraria/Ale+Terraria/Gel+Terraria/Silk+Terraria/Torch"
+      },
+      "Terraria/FruitSalad": {
+        "stage": "start",
+        "via": "recipe:Terraria/Apple+Terraria/Bowl"
       },
       "Terraria/FishingPotion": {
         "stage": "start",
@@ -25533,27 +25658,11 @@
         "stage": "start",
         "via": "manifest"
       },
-      "FargowiltasSouls/IronEnchant": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "FargowiltasSouls/LeadEnchant": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "FargowiltasSouls/PalmWoodEnchant": {
-        "stage": "start",
-        "via": "manifest"
-      },
       "FargowiltasSouls/PlatinumEnchant": {
         "stage": "start",
         "via": "manifest"
       },
       "FargowiltasSouls/RainEnchant": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "FargowiltasSouls/RichMahoganyEnchant": {
         "stage": "start",
         "via": "manifest"
       },
@@ -27190,6 +27299,14 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/ObsidianShield+Terraria/AnkhCharm"
       },
+      "Terraria/Dragonfruit": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "Terraria/Starfruit": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
       "Terraria/SpiritFlame": {
         "stage": "wall-of-flesh",
         "via": "manifest"
@@ -27213,6 +27330,10 @@
       "FargowiltasSouls/WizardEnchant": {
         "stage": "wall-of-flesh",
         "via": "manifest"
+      },
+      "Terraria/PrismaticPunch": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/Starfruit+Terraria/Dragonfruit+Terraria/Bottle"
       },
       "Terraria/PearlwoodHelmet": {
         "stage": "wall-of-flesh",
@@ -29611,26 +29732,6 @@
         "via": "initial"
       },
       "Terraria/ShimmerBlock": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/Lemon": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/Grapefruit": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/Plum": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/Starfruit": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/SpicyPepper": {
         "stage": "start",
         "via": "initial"
       },
@@ -34778,6 +34879,10 @@
       "Fargowiltas/SuperDummy": {
         "stage": "start",
         "via": "recipe:Terraria/TargetDummy+Terraria/FallenStar"
+      },
+      "Fargowiltas/Eggplant": {
+        "stage": "start",
+        "via": "recipe:Terraria/Mango+Terraria/JungleSpores+Terraria/Vine+Terraria/JungleGrassSeeds"
       },
       "Fargowiltas/HeartChocolate": {
         "stage": "start",
@@ -43694,7 +43799,7 @@
     },
     "unassignedVanillaNpcSourceCount": 188,
     "manualAvailabilityPriority": {
-      "automaticItems": 4150,
+      "automaticItems": 4161,
       "automaticSources": 221,
       "automaticStations": 406,
       "suppressed": {
@@ -43940,10 +44045,22 @@
             "via": "recipe:Terraria/HuntressWig+Terraria/HuntressJerkin+Terraria/HuntressPants+Terraria/IceBow+Terraria/ShadowFlameBow+Terraria/DD2PhoenixBow"
           },
           {
+            "value": "FargowiltasSouls/IronEnchant",
+            "manualStageId": "start",
+            "automaticStageId": "start",
+            "via": "recipe:Terraria/IronHelmet+Terraria/IronChainmail+Terraria/IronGreaves+Terraria/IronHammer+Terraria/IronAnvil+Terraria/Apricot"
+          },
+          {
             "value": "FargowiltasSouls/JungleEnchant",
             "manualStageId": "start",
             "automaticStageId": "start",
             "via": "recipe:Terraria/JungleHat+Terraria/JungleShirt+Terraria/JunglePants+Terraria/ThornChakram+Terraria/IvyWhip+Terraria/JungleRose"
+          },
+          {
+            "value": "FargowiltasSouls/LeadEnchant",
+            "manualStageId": "start",
+            "automaticStageId": "start",
+            "via": "recipe:Terraria/LeadHelmet+Terraria/LeadChainmail+Terraria/LeadGreaves+Terraria/LeadShortsword+Terraria/GrayPaint+Terraria/Peach"
           },
           {
             "value": "FargowiltasSouls/MasochistSoul",
@@ -44012,6 +44129,12 @@
             "via": "recipe:Terraria/PalladiumHelmet+Terraria/PalladiumBreastplate+Terraria/PalladiumLeggings+Terraria/BatBat+Terraria/SoulDrain+Terraria/UndergroundReward"
           },
           {
+            "value": "FargowiltasSouls/PalmWoodEnchant",
+            "manualStageId": "start",
+            "automaticStageId": "start",
+            "via": "recipe:Terraria/PalmWoodHelmet+Terraria/PalmWoodBreastplate+Terraria/PalmWoodGreaves+Terraria/Coral+Terraria/Banana+Terraria/Coconut"
+          },
+          {
             "value": "FargowiltasSouls/PumpkinEnchant",
             "manualStageId": "start",
             "automaticStageId": "start",
@@ -44028,6 +44151,12 @@
             "manualStageId": "betsy",
             "automaticStageId": "betsy",
             "via": "recipe:Terraria/HuntressAltHead+Terraria/HuntressAltShirt+Terraria/HuntressAltPants+FargowiltasSouls/HuntressEnchant+Terraria/Marrow+Terraria/DD2BetsyBow"
+          },
+          {
+            "value": "FargowiltasSouls/RichMahoganyEnchant",
+            "manualStageId": "start",
+            "automaticStageId": "start",
+            "via": "recipe:Terraria/RichMahoganyHelmet+Terraria/RichMahoganyBreastplate+Terraria/RichMahoganyGreaves+Terraria/Moonglow+Terraria/Pineapple+Terraria/GrapplingHook"
           },
           {
             "value": "FargowiltasSouls/ShadowEnchant",
@@ -44142,7 +44271,7 @@
         "stationStages": []
       },
       "retained": {
-        "itemStages": 62,
+        "itemStages": 58,
         "itemStageFloors": 0,
         "sourceStages": 0,
         "stationStages": 1

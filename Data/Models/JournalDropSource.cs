@@ -7,8 +7,29 @@ public sealed class JournalDropSource(
     float dropRate,
     int stackMin,
     int stackMax,
-    IEnumerable<string> conditions)
+    IEnumerable<string> conditions,
+    bool showDropRate = true)
 {
+    public JournalDropSource(
+        string sourceName,
+        int? sourceNpcType,
+        int? sourceItemId,
+        float dropRate,
+        int stackMin,
+        int stackMax,
+        IEnumerable<string> conditions)
+        : this(
+            sourceName,
+            sourceNpcType,
+            sourceItemId,
+            dropRate,
+            stackMin,
+            stackMax,
+            conditions,
+            showDropRate: true)
+    {
+    }
+
     public string SourceName { get; } = sourceName;
 
     public int? SourceNpcType { get; } = sourceNpcType;
@@ -16,6 +37,8 @@ public sealed class JournalDropSource(
     public int? SourceItemId { get; } = sourceItemId;
 
     public float DropRate { get; } = dropRate;
+
+    public bool ShowDropRate { get; } = showDropRate;
 
     public int StackMin { get; } = stackMin;
 

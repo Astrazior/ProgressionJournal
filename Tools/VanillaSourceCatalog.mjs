@@ -16,6 +16,31 @@ const START_STATIONS = [
   "Terraria/Tombstones"
 ];
 
+const PRE_HARDMODE_TREE_FRUITS = [
+  "Terraria/Apple",
+  "Terraria/Apricot",
+  "Terraria/Grapefruit",
+  "Terraria/Lemon",
+  "Terraria/Peach",
+  "Terraria/Cherry",
+  "Terraria/Plum",
+  "Terraria/BlackCurrant",
+  "Terraria/Elderberry",
+  "Terraria/BloodOrange",
+  "Terraria/Rambutan",
+  "Terraria/Mango",
+  "Terraria/Pineapple",
+  "Terraria/Banana",
+  "Terraria/Coconut",
+  "Terraria/Pomegranate",
+  "Terraria/SpicyPepper"
+];
+
+const HARDMODE_TREE_FRUITS = [
+  "Terraria/Dragonfruit",
+  "Terraria/Starfruit"
+];
+
 const START_ITEMS = [
   "Terraria/Wood",
   "Terraria/BorealWood",
@@ -156,11 +181,7 @@ const START_ITEMS = [
   "Terraria/TerrasparkBoots",
   "Terraria/SunplateBlock",
   "Terraria/ShimmerBlock",
-  "Terraria/Lemon",
-  "Terraria/Grapefruit",
-  "Terraria/Plum",
-  "Terraria/Starfruit",
-  "Terraria/SpicyPepper",
+  ...PRE_HARDMODE_TREE_FRUITS,
   "Terraria/GiantHarpyFeather",
   "Terraria/BouncyGrenade",
   "Terraria/Grenade",
@@ -285,6 +306,7 @@ const MILESTONE_FACTS = [
       "Terraria/TitaniumBar",
       "Terraria/CrystalShard",
       "Terraria/Pearlwood",
+      ...HARDMODE_TREE_FRUITS,
       "Terraria/CursedFlame",
       "Terraria/Ichor",
       "Terraria/RainbowBrick",
@@ -714,6 +736,7 @@ function excludeWorldgenContainerItems(items) {
 }
 
 const START_VISIBLE_ITEMS = [
+  ...PRE_HARDMODE_TREE_FRUITS,
   "Terraria/Gel",
   "Terraria/WoodenArrow",
   "Terraria/Shroomerang",

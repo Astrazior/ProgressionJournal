@@ -3,21 +3,21 @@
   "version": 1,
   "targetMod": "FargowiltasSouls",
   "profileId": "builtin.fargosouls",
-  "generatedAtUtc": "2026-07-18T13:00:16.946Z",
+  "generatedAtUtc": "2026-07-26T18:15:13.339Z",
   "snapshotGeneratedAtUtc": "2026-07-18T12:47:18.3352186Z",
   "summary": {
     "snapshotItems": 6132,
     "contentItems": 677,
     "profileEntries": 1097,
-    "profileBuffEntries": 132,
-    "profileItemReferences": 1289,
+    "profileBuffEntries": 161,
+    "profileItemReferences": 1318,
     "equipmentReferences": 1157,
-    "buffReferences": 132,
-    "excluded": 2993,
-    "acquiredNonProfile": 131,
+    "buffReferences": 161,
+    "excluded": 2994,
+    "acquiredNonProfile": 126,
     "unresolvedAvailability": 5,
     "unavailableCombat": 2,
-    "noAcquisitionPath": 1712
+    "noAcquisitionPath": 1687
   },
   "items": [
     {
@@ -755,10 +755,10 @@
       "name": "Eggplant",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/Mango+Terraria/JungleSpores+Terraria/Vine+Terraria/JungleGrassSeeds",
+      "reason": "not combat equipment"
     },
     {
       "id": "Fargowiltas/ElderSlime",
@@ -4657,7 +4657,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "start",
-      "via": "manifest",
+      "via": "recipe:Terraria/IronHelmet+Terraria/IronChainmail+Terraria/IronGreaves+Terraria/IronHammer+Terraria/IronAnvil+Terraria/Apricot",
       "reason": "Included in the generated profile."
     },
     {
@@ -4697,7 +4697,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "start",
-      "via": "manifest",
+      "via": "recipe:Terraria/LeadHelmet+Terraria/LeadChainmail+Terraria/LeadGreaves+Terraria/LeadShortsword+Terraria/GrayPaint+Terraria/Peach",
       "reason": "Included in the generated profile."
     },
     {
@@ -5427,7 +5427,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "start",
-      "via": "manifest",
+      "via": "recipe:Terraria/PalmWoodHelmet+Terraria/PalmWoodBreastplate+Terraria/PalmWoodGreaves+Terraria/Coral+Terraria/Banana+Terraria/Coconut",
       "reason": "Included in the generated profile."
     },
     {
@@ -5687,7 +5687,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "start",
-      "via": "manifest",
+      "via": "recipe:Terraria/RichMahoganyHelmet+Terraria/RichMahoganyBreastplate+Terraria/RichMahoganyGreaves+Terraria/Moonglow+Terraria/Pineapple+Terraria/GrapplingHook",
       "reason": "Included in the generated profile."
     },
     {
@@ -7707,7 +7707,7 @@
       "contentItem": false,
       "status": "buff",
       "stage": "start",
-      "via": "shimmer:Terraria/Grapefruit",
+      "via": "shimmer:Terraria/Apple",
       "reason": "Included in the generated profile."
     },
     {
@@ -8625,20 +8625,20 @@
       "name": "Apple",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/AppleJuice",
       "name": "Apple Juice",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/Apple+Terraria/Bottle",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/ApplePie",
@@ -8755,10 +8755,10 @@
       "name": "Apricot",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/AquaScepter",
@@ -9985,20 +9985,20 @@
       "name": "Banana",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/BananaDaiquiri",
       "name": "Frozen Banana Daiquiri",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/Banana+Terraria/Bottle+Terraria/SnowBlock",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Bananarang",
@@ -10775,10 +10775,10 @@
       "name": "Blackcurrant",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/BlackDragonfly",
@@ -11225,10 +11225,10 @@
       "name": "Blood Orange",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/BloodRainBow",
@@ -11305,10 +11305,10 @@
       "name": "Bloody Moscato",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/BloodOrange+Terraria/Rambutan+Terraria/Bottle",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/BloodySpine",
@@ -15075,10 +15075,10 @@
       "name": "Cherry",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Chest",
@@ -15935,10 +15935,10 @@
       "name": "Coconut",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Code1",
@@ -20105,10 +20105,10 @@
       "name": "Dragon Fruit",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "wall-of-flesh",
+      "via": "manifest",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Drax",
@@ -21315,10 +21315,10 @@
       "name": "Elderberry",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/ElectrosphereLauncher",
@@ -25115,20 +25115,20 @@
       "name": "Fruit Juice",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/Apple+Terraria/Bottle",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/FruitSalad",
       "name": "Fruit Salad",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/Apple+Terraria/Bowl",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/FullMoonSqueakyToy",
@@ -28195,10 +28195,10 @@
       "name": "Grapefruit",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "acquired-non-profile",
+      "status": "buff",
       "stage": "start",
       "via": "initial",
-      "reason": "Acquisition path resolved, but the item is not a profile entry."
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/GrapeJuice",
@@ -33555,10 +33555,10 @@
       "name": "Lemon",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "acquired-non-profile",
+      "status": "buff",
       "stage": "start",
       "via": "initial",
-      "reason": "Acquisition path resolved, but the item is not a profile entry."
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Lemonade",
@@ -35865,10 +35865,10 @@
       "name": "Mango",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Mannequin",
@@ -42225,20 +42225,20 @@
       "name": "Peach",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/PeachSangria",
       "name": "Peach Sangria",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/Peach+Terraria/Bottle",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/PearlsandBlock",
@@ -42915,20 +42915,20 @@
       "name": "Piña Colada",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/Pineapple+Terraria/Coconut+Terraria/Bottle",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Pineapple",
       "name": "Pineapple",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/PineChair",
@@ -44015,10 +44015,10 @@
       "name": "Plum",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "acquired-non-profile",
+      "status": "buff",
       "stage": "start",
       "via": "initial",
-      "reason": "Acquisition path resolved, but the item is not a profile entry."
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/PlumbersHat",
@@ -44125,10 +44125,10 @@
       "name": "Pomegranate",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/PoopBlock",
@@ -44745,10 +44745,10 @@
       "name": "Prismatic Punch",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/Starfruit+Terraria/Dragonfruit+Terraria/Bottle",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Prismite",
@@ -45875,10 +45875,10 @@
       "name": "Rambutan",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/RangerEmblem",
@@ -51215,10 +51215,10 @@
       "name": "Smoothie of Darkness",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/BlackCurrant+Terraria/Elderberry+Terraria/Bottle",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/SmoothSandstone",
@@ -52415,10 +52415,10 @@
       "name": "Spicy Pepper",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "acquired-non-profile",
+      "status": "buff",
       "stage": "start",
       "via": "initial",
-      "reason": "Acquisition path resolved, but the item is not a profile entry."
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/SpiderBanner",
@@ -53815,10 +53815,10 @@
       "name": "Star Fruit",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "acquired-non-profile",
-      "stage": "start",
-      "via": "initial",
-      "reason": "Acquisition path resolved, but the item is not a profile entry."
+      "status": "buff",
+      "stage": "wall-of-flesh",
+      "via": "manifest",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Starfury",
@@ -57485,10 +57485,10 @@
       "name": "Tropical Smoothie",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/Mango+Terraria/Pineapple+Terraria/Bottle",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Trout",

@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-07-18T13:00:33.160Z",
+  "generatedAtUtc": "2026-07-26T18:15:23.259Z",
   "snapshot": {
     "version": 6,
     "generatedAtUtc": "2026-07-18T12:41:20.8818076Z",
@@ -1874,7 +1874,7 @@
         }
       ],
       "stageComparison": {
-        "compared": 2304,
+        "compared": 2333,
         "moved": 0
       }
     }
@@ -6625,7 +6625,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.thorium",
-    "generatedAtUtc": "2026-07-18T13:00:24.654Z",
+    "generatedAtUtc": "2026-07-26T18:15:16.326Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -29433,6 +29433,74 @@
         "stage": "start",
         "via": "initial"
       },
+      "Terraria/Apple": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Apricot": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Grapefruit": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Lemon": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Peach": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Cherry": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Plum": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/BlackCurrant": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Elderberry": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/BloodOrange": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Rambutan": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Mango": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Pineapple": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Banana": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Coconut": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Pomegranate": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/SpicyPepper": {
+        "stage": "start",
+        "via": "initial"
+      },
       "Terraria/BouncyGrenade": {
         "stage": "start",
         "via": "initial"
@@ -30446,9 +30514,41 @@
         "stage": "start",
         "via": "recipe:Terraria/RockLobster"
       },
+      "Terraria/AppleJuice": {
+        "stage": "start",
+        "via": "recipe:Terraria/Apple+Terraria/Bottle"
+      },
+      "Terraria/BananaDaiquiri": {
+        "stage": "start",
+        "via": "recipe:Terraria/Banana+Terraria/Bottle+Terraria/SnowBlock"
+      },
       "Terraria/Lemonade": {
         "stage": "start",
         "via": "recipe:Terraria/Lemon+Terraria/Bottle"
+      },
+      "Terraria/PeachSangria": {
+        "stage": "start",
+        "via": "recipe:Terraria/Peach+Terraria/Bottle"
+      },
+      "Terraria/PinaColada": {
+        "stage": "start",
+        "via": "recipe:Terraria/Pineapple+Terraria/Coconut+Terraria/Bottle"
+      },
+      "Terraria/TropicalSmoothie": {
+        "stage": "start",
+        "via": "recipe:Terraria/Mango+Terraria/Pineapple+Terraria/Bottle"
+      },
+      "Terraria/BloodyMoscato": {
+        "stage": "start",
+        "via": "recipe:Terraria/BloodOrange+Terraria/Rambutan+Terraria/Bottle"
+      },
+      "Terraria/SmoothieofDarkness": {
+        "stage": "start",
+        "via": "recipe:Terraria/BlackCurrant+Terraria/Elderberry+Terraria/Bottle"
+      },
+      "Terraria/FruitJuice": {
+        "stage": "start",
+        "via": "recipe:Terraria/Apple+Terraria/Bottle"
       },
       "Terraria/SeafoodDinner": {
         "stage": "start",
@@ -31926,13 +32026,13 @@
         "stage": "start",
         "via": "shimmer:Terraria/AncientShadowScalemail"
       },
+      "Terraria/Ambrosia": {
+        "stage": "start",
+        "via": "shimmer:Terraria/Apple"
+      },
       "Terraria/ShimmerFlare": {
         "stage": "start",
         "via": "shimmer:Terraria/BlueFlare"
-      },
-      "Terraria/Ambrosia": {
-        "stage": "start",
-        "via": "shimmer:Terraria/Grapefruit"
       },
       "Terraria/ShimmerArrow": {
         "stage": "start",
@@ -31961,6 +32061,10 @@
       "Terraria/MolotovCocktail": {
         "stage": "start",
         "via": "recipe:Terraria/Ale+Terraria/Gel+Terraria/Silk+Terraria/Torch"
+      },
+      "Terraria/FruitSalad": {
+        "stage": "start",
+        "via": "recipe:Terraria/Apple+Terraria/Bowl"
       },
       "Terraria/FishingPotion": {
         "stage": "start",
@@ -35590,6 +35694,14 @@
         "stage": "wall-of-flesh",
         "via": "recipe:ThoriumMod/HallowedCharm+ThoriumMod/PurifiedShards"
       },
+      "Terraria/Dragonfruit": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "Terraria/Starfruit": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
       "Terraria/SpiritFlame": {
         "stage": "wall-of-flesh",
         "via": "manifest"
@@ -35613,6 +35725,10 @@
       "ThoriumMod/SupportSash": {
         "stage": "wall-of-flesh",
         "via": "manifest"
+      },
+      "Terraria/PrismaticPunch": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/Starfruit+Terraria/Dragonfruit+Terraria/Bottle"
       },
       "Terraria/PearlwoodHelmet": {
         "stage": "wall-of-flesh",
@@ -39371,26 +39487,6 @@
         "via": "initial"
       },
       "Terraria/ShimmerBlock": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/Lemon": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/Grapefruit": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/Plum": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/Starfruit": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/SpicyPepper": {
         "stage": "start",
         "via": "initial"
       },
@@ -58356,7 +58452,7 @@
     },
     "unassignedVanillaNpcSourceCount": 138,
     "manualAvailabilityPriority": {
-      "automaticItems": 5673,
+      "automaticItems": 5683,
       "automaticSources": 306,
       "automaticStations": 509,
       "suppressed": {

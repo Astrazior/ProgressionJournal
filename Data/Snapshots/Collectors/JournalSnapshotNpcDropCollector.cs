@@ -81,6 +81,20 @@ internal static class JournalSnapshotNpcDropCollector
                         condition.Type,
                         condition.Description))
                     .ToList())));
+        result.AddRange(JournalExactDropCatalog.GetAllWorldDrops()
+            .Where(drop => includedItems.Contains(drop.TargetItemId))
+            .Select(drop => new SnapshotDrop(
+                "world",
+                drop.SourceReference!,
+                getItemReference(drop.TargetItemId),
+                drop.DropRate,
+                drop.StackMin,
+                drop.StackMax,
+                drop.Conditions
+                    .Select(static condition => new SnapshotCondition(
+                        condition.Type,
+                        condition.Description))
+                    .ToList())));
         return result;
     }
 }

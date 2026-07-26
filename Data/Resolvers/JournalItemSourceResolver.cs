@@ -278,7 +278,8 @@ public static class JournalItemSourceResolver
                 source.StackMax,
                 AppendNpcSpawnConditions(
                     source.SourceNpcType,
-                    source.Conditions.Select(static condition => condition.Description)))));
+                    source.Conditions.Select(static condition => condition.Description)),
+                source.ShowDropRate)));
     }
 
     private static JournalShopSource[] BuildShops(int itemId)

@@ -3,21 +3,21 @@
   "version": 1,
   "targetMod": "AAModClassic",
   "profileId": "builtin.aamodclassic",
-  "generatedAtUtc": "2026-07-18T12:59:00.696Z",
-  "snapshotGeneratedAtUtc": "2026-07-18T12:19:56.0140576Z",
+  "generatedAtUtc": "2026-07-26T18:14:39.624Z",
+  "snapshotGeneratedAtUtc": "2026-07-26T17:13:49.4238019Z",
   "summary": {
-    "snapshotItems": 7044,
-    "contentItems": 1589,
-    "profileEntries": 1418,
-    "profileBuffEntries": 143,
-    "profileItemReferences": 1621,
-    "equipmentReferences": 1478,
-    "buffReferences": 143,
-    "excluded": 3269,
-    "acquiredNonProfile": 131,
+    "snapshotItems": 7066,
+    "contentItems": 1611,
+    "profileEntries": 1420,
+    "profileBuffEntries": 172,
+    "profileItemReferences": 1652,
+    "equipmentReferences": 1480,
+    "buffReferences": 172,
+    "excluded": 3291,
+    "acquiredNonProfile": 126,
     "unresolvedAvailability": 5,
     "unavailableCombat": 4,
-    "noAcquisitionPath": 2014
+    "noAcquisitionPath": 1988
   },
   "items": [
     {
@@ -192,7 +192,7 @@
     },
     {
       "id": "AAModClassic/AbyssiumOre",
-      "name": "Abyssium",
+      "name": "Abyssium Ore",
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
@@ -742,7 +742,7 @@
     },
     {
       "id": "AAModClassic/ApocalyptiteOre",
-      "name": "Apocalyptite",
+      "name": "Apocalyptite Ore",
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
@@ -1167,7 +1167,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "champion-rajah-rabbit",
-      "via": "container:AAModClassic/RajahRabbitATreasureBag",
+      "via": "npc:AAModClassic/RajahRabbitA",
       "reason": "Included in the generated profile."
     },
     {
@@ -1596,8 +1596,8 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
-      "via": "container:AAModClassic/EventideCrate",
+      "stage": "wall-of-flesh",
+      "via": "npc:AAModClassic/Kappa",
       "reason": "not combat equipment"
     },
     {
@@ -1606,7 +1606,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "recipe:Terraria/Torch+AAModClassic/Bogtoxin",
       "reason": "not combat equipment"
     },
@@ -2845,10 +2845,10 @@
       "name": "Cotton Cane",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "rajah-rabbit",
+      "via": "npc:AAModClassic/RajahRabbit",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "AAModClassic/CovetiteBar",
@@ -3232,7 +3232,7 @@
     },
     {
       "id": "AAModClassic/DarkmatterBar",
-      "name": "Dark Matter",
+      "name": "Darkmatter Bar",
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "no-acquisition-path",
@@ -3496,13 +3496,13 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "fishing",
       "reason": "not combat equipment"
     },
     {
       "id": "AAModClassic/DaybreakIncineriteBar",
-      "name": "Daybreak Incinerite",
+      "name": "Daybreak Incinerite Bar",
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
@@ -4042,7 +4042,7 @@
     },
     {
       "id": "AAModClassic/DiscordiumBar",
-      "name": "Discordium",
+      "name": "Discordium Bar",
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
@@ -4737,7 +4737,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "start",
-      "via": "manifest",
+      "via": "npc:AAModClassic/DragonClaw_NPC",
       "reason": "not combat equipment"
     },
     {
@@ -4776,8 +4776,8 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "stage": "wall-of-flesh",
+      "via": "npc:AAModClassic/BlazePhoenix",
       "reason": "not combat equipment"
     },
     {
@@ -4816,7 +4816,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "recipe:Terraria/Torch+AAModClassic/DragonFire",
       "reason": "not combat equipment"
     },
@@ -4897,7 +4897,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "start",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:AAModClassic/InfernoCrate",
       "reason": "Included in the generated profile."
     },
     {
@@ -4927,7 +4927,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "start",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:AAModClassic/InfernoCrate",
       "reason": "not combat equipment"
     },
     {
@@ -4976,7 +4976,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "equipment",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "recipe:Terraria/TerrasparkBoots+Terraria/TigerClimbingGear+Terraria/Flipper+AAModClassic/ShadowBand+AAModClassic/SoulOfSmite+AAModClassic/SoulOfSpite",
       "reason": "Included in the generated profile."
     },
@@ -5422,7 +5422,7 @@
     },
     {
       "id": "AAModClassic/EventideAbyssiumBar",
-      "name": "Eventide Abyssium",
+      "name": "Eventide Abyssium Bar",
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
@@ -5486,7 +5486,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "fishing",
       "reason": "not combat equipment"
     },
@@ -5807,7 +5807,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "start",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:AAModClassic/InfernoCrate",
       "reason": "Included in the generated profile."
     },
     {
@@ -5946,7 +5946,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "buff",
-      "stage": "queen-bee",
+      "stage": "wall-of-flesh",
       "via": "recipe:Terraria/BottledWater+AAModClassic/DragonFire",
       "reason": "Included in the generated profile."
     },
@@ -5956,7 +5956,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "buff",
-      "stage": "queen-bee",
+      "stage": "wall-of-flesh",
       "via": "recipe:Terraria/BottledWater+AAModClassic/Bogtoxin",
       "reason": "Included in the generated profile."
     },
@@ -7495,10 +7495,10 @@
       "name": "Hydra Bite",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "excluded",
-      "stage": "wall-of-flesh",
-      "via": "npc:AAModClassic/MireMimic",
-      "reason": "not combat equipment"
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved."
     },
     {
       "id": "AAModClassic/HydraBox",
@@ -7892,7 +7892,7 @@
     },
     {
       "id": "AAModClassic/IncineriteOre",
-      "name": "Incinerite",
+      "name": "Incinerite Ore",
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
@@ -7957,7 +7957,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "start",
-      "via": "shimmer:AAModClassic/DaybreakCrate",
+      "via": "fishing",
       "reason": "not combat equipment"
     },
     {
@@ -8042,7 +8042,7 @@
     },
     {
       "id": "AAModClassic/Infinitium",
-      "name": "Infinitium",
+      "name": "Infinitium Bar",
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
@@ -8476,7 +8476,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "recipe:AAModClassic/SoulOfSmite",
       "reason": "not combat equipment"
     },
@@ -8486,7 +8486,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "recipe:AAModClassic/SoulOfSpite",
       "reason": "not combat equipment"
     },
@@ -9287,7 +9287,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "start",
-      "via": "shimmer:AAModClassic/EventideCrate",
+      "via": "fishing",
       "reason": "not combat equipment"
     },
     {
@@ -10066,7 +10066,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "fishing",
       "reason": "not combat equipment"
     },
@@ -10997,7 +10997,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "start",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:AAModClassic/InfernoCrate",
       "reason": "Included in the generated profile."
     },
     {
@@ -11435,10 +11435,10 @@
       "name": "Rajah's Rage",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "champion-rajah-rabbit",
+      "via": "npc:AAModClassic/RajahRabbitA",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "AAModClassic/RasScepter",
@@ -11771,6 +11771,166 @@
       "reason": "No acquisition path was resolved."
     },
     {
+      "id": "AAModClassic/RedmushBed",
+      "name": "Mushroom Bed",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock+Terraria/Silk",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushBench",
+      "name": "Mushroom Bench",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushBookcase",
+      "name": "Mushroom Bookcase",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "recipe:AAModClassic/MushroomBlock+Terraria/Book",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushCandelabra",
+      "name": "Mushroom Candelabra",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock+Terraria/Torch",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushCandle",
+      "name": "Mushroom Candle",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock+Terraria/Torch",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushChair",
+      "name": "Mushroom Chair",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushChandelier",
+      "name": "Mushroom Chandelier",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock+Terraria/Torch+Terraria/Chain",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushChest",
+      "name": "Mushroom Chest",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock+Terraria/IronBar",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushClock",
+      "name": "Mushroom Clock",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/IronBar+Terraria/Glass+AAModClassic/MushroomBlock",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushCouch",
+      "name": "Mushroom Couch",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock+Terraria/Silk",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushDoor",
+      "name": "Mushroom Door",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushDresser",
+      "name": "Mushroom Dresser",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushLamp",
+      "name": "Mushroom Lamp",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/Torch+AAModClassic/MushroomBlock",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushLantern",
+      "name": "Mushroom Lantern",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock+Terraria/Torch",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushPiano",
+      "name": "Mushroom Piano",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "recipe:Terraria/Bone+AAModClassic/MushroomBlock+Terraria/Book",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushPlatform",
+      "name": "Mushroom Platform",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock",
+      "reason": "not combat equipment"
+    },
+    {
       "id": "AAModClassic/RedMushroomPylon",
       "name": "Red Mushroom Pylon",
       "mod": "AAModClassic",
@@ -11779,6 +11939,66 @@
       "stage": "",
       "via": "",
       "reason": "No acquisition path was resolved."
+    },
+    {
+      "id": "AAModClassic/RedmushSink",
+      "name": "Mushroom Sink",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock+Terraria/WaterBucket",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushTable",
+      "name": "Mushroom Table",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushToilet",
+      "name": "Mushroom Toilet",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushTub",
+      "name": "Mushroom Tub",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushWall",
+      "name": "Mushroom Wall",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock",
+      "reason": "not combat equipment"
+    },
+    {
+      "id": "AAModClassic/RedmushWorkbench",
+      "name": "Mushroom Workbench",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/MushroomBlock",
+      "reason": "not combat equipment"
     },
     {
       "id": "AAModClassic/RedOrthrusXMask",
@@ -11987,7 +12207,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "champion-rajah-rabbit",
-      "via": "container:AAModClassic/RajahRabbitATreasureBag",
+      "via": "npc:AAModClassic/RajahRabbitA",
       "reason": "Included in the generated profile."
     },
     {
@@ -12007,7 +12227,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "champion-rajah-rabbit",
-      "via": "container:AAModClassic/RajahRabbitATreasureBag",
+      "via": "npc:AAModClassic/RajahRabbitA",
       "reason": "Included in the generated profile."
     },
     {
@@ -13136,8 +13356,8 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "stage": "wall-of-flesh",
+      "via": "global:AAModClassic/GlobalNPCDrops",
       "reason": "not combat equipment"
     },
     {
@@ -13146,8 +13366,8 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
-      "via": "container:AAModClassic/EventideCrate",
+      "stage": "wall-of-flesh",
+      "via": "global:AAModClassic/GlobalNPCDrops",
       "reason": "not combat equipment"
     },
     {
@@ -14457,7 +14677,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "champion-rajah-rabbit",
-      "via": "container:AAModClassic/RajahRabbitATreasureBag",
+      "via": "npc:AAModClassic/RajahRabbitA",
       "reason": "Included in the generated profile."
     },
     {
@@ -15407,7 +15627,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "start",
-      "via": "shimmer:AAModClassic/NullCrate",
+      "via": "fishing",
       "reason": "not combat equipment"
     },
     {
@@ -15557,7 +15777,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "start",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:AAModClassic/InfernoCrate",
       "reason": "Included in the generated profile."
     },
     {
@@ -15815,10 +16035,10 @@
       "name": "Zero Protocol Trophy",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "zero",
+      "via": "npc:AAModClassic/ZeroA",
+      "reason": "not combat equipment"
     },
     {
       "id": "AAModClassic/ZeroAwakenedBox",
@@ -16047,7 +16267,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:Terraria/GoldenCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -16167,7 +16387,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:Terraria/GoldenCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -16827,7 +17047,7 @@
       "contentItem": false,
       "status": "buff",
       "stage": "start",
-      "via": "shimmer:Terraria/Grapefruit",
+      "via": "shimmer:Terraria/Apple",
       "reason": "Included in the generated profile."
     },
     {
@@ -17745,20 +17965,20 @@
       "name": "Apple",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/AppleJuice",
       "name": "Apple Juice",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/Apple+Terraria/Bottle",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/ApplePie",
@@ -17875,10 +18095,10 @@
       "name": "Apricot",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/AquaScepter",
@@ -19105,20 +19325,20 @@
       "name": "Banana",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/BananaDaiquiri",
       "name": "Frozen Banana Daiquiri",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/Banana+Terraria/Bottle+Terraria/SnowBlock",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Bananarang",
@@ -19895,10 +20115,10 @@
       "name": "Blackcurrant",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/BlackDragonfly",
@@ -20345,10 +20565,10 @@
       "name": "Blood Orange",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/BloodRainBow",
@@ -20425,10 +20645,10 @@
       "name": "Bloody Moscato",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/BloodOrange+Terraria/Rambutan+Terraria/Bottle",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/BloodySpine",
@@ -24195,10 +24415,10 @@
       "name": "Cherry",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Chest",
@@ -24857,7 +25077,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:Terraria/WoodenCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -24967,7 +25187,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:Terraria/WoodenCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -25055,10 +25275,10 @@
       "name": "Coconut",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Code1",
@@ -29225,10 +29445,10 @@
       "name": "Dragon Fruit",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "wall-of-flesh",
+      "via": "manifest",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Drax",
@@ -30435,10 +30655,10 @@
       "name": "Elderberry",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/ElectrosphereLauncher",
@@ -34235,20 +34455,20 @@
       "name": "Fruit Juice",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/Apple+Terraria/Bottle",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/FruitSalad",
       "name": "Fruit Salad",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/Apple+Terraria/Bowl",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/FullMoonSqueakyToy",
@@ -37315,10 +37535,10 @@
       "name": "Grapefruit",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "acquired-non-profile",
+      "status": "buff",
       "stage": "start",
       "via": "initial",
-      "reason": "Acquisition path resolved, but the item is not a profile entry."
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/GrapeJuice",
@@ -42675,10 +42895,10 @@
       "name": "Lemon",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "acquired-non-profile",
+      "status": "buff",
       "stage": "start",
       "via": "initial",
-      "reason": "Acquisition path resolved, but the item is not a profile entry."
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Lemonade",
@@ -44985,10 +45205,10 @@
       "name": "Mango",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Mannequin",
@@ -48557,7 +48777,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:Terraria/IronCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -48667,7 +48887,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:Terraria/IronCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -50207,7 +50427,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:Terraria/IronCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -50297,7 +50517,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:Terraria/IronCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -50667,7 +50887,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:Terraria/WoodenCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -50767,7 +50987,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:Terraria/WoodenCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -51345,20 +51565,20 @@
       "name": "Peach",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/PeachSangria",
       "name": "Peach Sangria",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/Peach+Terraria/Bottle",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/PearlsandBlock",
@@ -52035,20 +52255,20 @@
       "name": "Piña Colada",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/Pineapple+Terraria/Coconut+Terraria/Bottle",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Pineapple",
       "name": "Pineapple",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/PineChair",
@@ -53135,10 +53355,10 @@
       "name": "Plum",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "acquired-non-profile",
+      "status": "buff",
       "stage": "start",
       "via": "initial",
-      "reason": "Acquisition path resolved, but the item is not a profile entry."
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/PlumbersHat",
@@ -53245,10 +53465,10 @@
       "name": "Pomegranate",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/PoopBlock",
@@ -53865,10 +54085,10 @@
       "name": "Prismatic Punch",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/Starfruit+Terraria/Dragonfruit+Terraria/Bottle",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Prismite",
@@ -54995,10 +55215,10 @@
       "name": "Rambutan",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "initial",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/RangerEmblem",
@@ -58717,7 +58937,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "shimmer:AAModClassic/BogtoxinTorch",
+      "via": "shimmer:Terraria/BlueTorch",
       "reason": "not combat equipment"
     },
     {
@@ -60335,10 +60555,10 @@
       "name": "Smoothie of Darkness",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/BlackCurrant+Terraria/Elderberry+Terraria/Bottle",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/SmoothSandstone",
@@ -61535,10 +61755,10 @@
       "name": "Spicy Pepper",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "acquired-non-profile",
+      "status": "buff",
       "stage": "start",
       "via": "initial",
-      "reason": "Acquisition path resolved, but the item is not a profile entry."
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/SpiderBanner",
@@ -62935,10 +63155,10 @@
       "name": "Star Fruit",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "acquired-non-profile",
-      "stage": "start",
-      "via": "initial",
-      "reason": "Acquisition path resolved, but the item is not a profile entry."
+      "status": "buff",
+      "stage": "wall-of-flesh",
+      "via": "manifest",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Starfury",
@@ -65597,7 +65817,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:Terraria/GoldenCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -65687,7 +65907,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "container:AAModClassic/DaybreakCrate",
+      "via": "container:Terraria/GoldenCrateHard",
       "reason": "not combat equipment"
     },
     {
@@ -66605,10 +66825,10 @@
       "name": "Tropical Smoothie",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "recipe:Terraria/Mango+Terraria/Pineapple+Terraria/Bottle",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Trout",

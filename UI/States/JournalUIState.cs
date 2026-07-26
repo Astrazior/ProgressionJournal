@@ -591,17 +591,22 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             top = AppendCenteredTextLines(panel, [$"{Language.GetTextValue(sourceLabelKey)}: {drop.SourceName}"], top);
         }
 
-        var lines = new List<string>
+        var lines = new List<string>();
+        if (drop.ShowDropRate)
         {
-            $"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemChance")}: {FormatDropRate(drop.DropRate)}"
-        };
+            lines.Add(
+                $"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemChance")}: {FormatDropRate(drop.DropRate)}");
+        }
 
         if (drop.StackMax > 1 || drop.StackMin > 1)
         {
             lines.Add($"{Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemStack")}: {FormatStackRange(drop.StackMin, drop.StackMax)}");
         }
 
-        top = AppendCenteredTextLines(panel, lines, top + 8f);
+        if (lines.Count > 0)
+        {
+            top = AppendCenteredTextLines(panel, lines, top + 8f);
+        }
 
         if (drop.Conditions.Count > 0)
         {
@@ -865,6 +870,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             .GroupBy(static drop => new
             {
                 drop.DropRate,
+                drop.ShowDropRate,
                 drop.StackMin,
                 drop.StackMax,
                 Conditions = CreateConditionGroupSignature(drop.Conditions),

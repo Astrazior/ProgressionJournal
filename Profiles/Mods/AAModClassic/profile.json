@@ -11,11 +11,11 @@
   "readOnly": true,
   "sourceUrl": "",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-07-18T12:58:52.147Z",
+  "generatedAtUtc": "2026-07-26T18:14:34.665Z",
   "requiredMods": [
     {
       "name": "AAModClassic",
-      "version": "1.0.16"
+      "version": "1.0.17"
     }
   ],
   "classes": [
@@ -3373,6 +3373,48 @@
           "stageId": "shen-doragon",
           "classes": [
             "magic"
+          ],
+          "sourceName": "Official Terraria Mods Wiki",
+          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
+          "target": {
+            "en-US": "Endgame",
+            "ru-RU": "Финал"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.aamodclassic.rajahsrage",
+      "category": "Weapon",
+      "classes": [
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "RajahsRage",
+            "displayName": "Rajah's Rage"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "champion-rajah-rabbit",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "shen-doragon",
+          "classes": [
+            "summoner"
           ],
           "sourceName": "Official Terraria Mods Wiki",
           "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
@@ -9160,6 +9202,60 @@
           "target": {
             "en-US": "The Ancients",
             "ru-RU": "Древние"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.aamodclassic.cottoncane",
+      "category": "Weapon",
+      "classes": [
+        "summoner"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "CottonCane",
+            "displayName": "Cotton Cane"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "rajah-rabbit",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "duke-fishron",
+          "classes": [
+            "summoner"
+          ],
+          "sourceName": "Official Terraria Mods Wiki",
+          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
+          "target": {
+            "en-US": "Celestial Events",
+            "ru-RU": "Небесные события"
+          }
+        },
+        {
+          "stageId": "lunatic-cultist",
+          "classes": [
+            "summoner"
+          ],
+          "sourceName": "Official Terraria Mods Wiki",
+          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
+          "target": {
+            "en-US": "Moon Lord",
+            "ru-RU": "Лунный лорд"
           }
         }
       ],
@@ -22680,7 +22776,7 @@
       "key": "new.aamodclassic.doomsdayhelmetsummoner",
       "category": "Armor",
       "classes": [
-        "magic"
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -48078,7 +48174,7 @@
                       "key": "Mods.AAModClassic.Biomes.RedMushroomBiome.DisplayName"
                     },
                     {
-                      "key": "Mods.AAModClassic.Biomes.RisingMoonLakeBiomeZone.DisplayName"
+                      "key": "Mods.AAModClassic.Biomes.RisingMoonLakeBiome.DisplayName"
                     },
                     {
                       "key": "Mods.AAModClassic.Biomes.RisingSunPagodaBiome.DisplayName"
@@ -50596,7 +50692,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -51962,7 +52058,7 @@
                       "key": "Mods.AAModClassic.Biomes.RedMushroomBiome.DisplayName"
                     },
                     {
-                      "key": "Mods.AAModClassic.Biomes.RisingMoonLakeBiomeZone.DisplayName"
+                      "key": "Mods.AAModClassic.Biomes.RisingMoonLakeBiome.DisplayName"
                     },
                     {
                       "key": "Mods.AAModClassic.Biomes.RisingSunPagodaBiome.DisplayName"
@@ -58984,6 +59080,363 @@
   ],
   "combatBuffs": [
     {
+      "key": "new.terraria.apple",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Apple",
+            "displayName": "Apple"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.apricot",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Apricot",
+            "displayName": "Apricot"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.grapefruit",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Grapefruit",
+            "displayName": "Grapefruit"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.lemon",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Lemon",
+            "displayName": "Lemon"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.peach",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Peach",
+            "displayName": "Peach"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.cherry",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Cherry",
+            "displayName": "Cherry"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.plum",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Plum",
+            "displayName": "Plum"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.blackcurrant",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "BlackCurrant",
+            "displayName": "Blackcurrant"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.elderberry",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Elderberry",
+            "displayName": "Elderberry"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.bloodorange",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "BloodOrange",
+            "displayName": "Blood Orange"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.rambutan",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Rambutan",
+            "displayName": "Rambutan"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.mango",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Mango",
+            "displayName": "Mango"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.pineapple",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Pineapple",
+            "displayName": "Pineapple"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.banana",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Banana",
+            "displayName": "Banana"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.coconut",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Coconut",
+            "displayName": "Coconut"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.pomegranate",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Pomegranate",
+            "displayName": "Pomegranate"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.spicypepper",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "SpicyPepper",
+            "displayName": "Spicy Pepper"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.sunflower",
       "category": "Passive",
       "classes": [
@@ -59832,7 +60285,7 @@
                       "key": "Mods.AAModClassic.Biomes.RedMushroomBiome.DisplayName"
                     },
                     {
-                      "key": "Mods.AAModClassic.Biomes.RisingMoonLakeBiomeZone.DisplayName"
+                      "key": "Mods.AAModClassic.Biomes.RisingMoonLakeBiome.DisplayName"
                     },
                     {
                       "key": "Mods.AAModClassic.Biomes.RisingSunPagodaBiome.DisplayName"
@@ -60354,6 +60807,48 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.applejuice",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "AppleJuice",
+            "displayName": "Apple Juice"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.bananadaiquiri",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "BananaDaiquiri",
+            "displayName": "Frozen Banana Daiquiri"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.lemonade",
       "category": "Food",
       "classes": [
@@ -60369,6 +60864,132 @@
             "mod": "Terraria",
             "item": "Lemonade",
             "displayName": "Lemonade"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.peachsangria",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "PeachSangria",
+            "displayName": "Peach Sangria"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.pinacolada",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "PinaColada",
+            "displayName": "Piña Colada"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.tropicalsmoothie",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "TropicalSmoothie",
+            "displayName": "Tropical Smoothie"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.bloodymoscato",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "BloodyMoscato",
+            "displayName": "Bloody Moscato"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.smoothieofdarkness",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "SmoothieofDarkness",
+            "displayName": "Smoothie of Darkness"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.fruitjuice",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "FruitJuice",
+            "displayName": "Fruit Juice"
           }
         ]
       ],
@@ -61047,6 +61668,27 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.fruitsalad",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "FruitSalad",
+            "displayName": "Fruit Salad"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.fishingpotion",
       "category": "Potion",
       "classes": [
@@ -61442,48 +62084,6 @@
       "fishingSources": []
     },
     {
-      "key": "new.aamodclassic.flaskofdragonfire",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "queen-bee",
-      "itemGroups": [
-        [
-          {
-            "mod": "AAModClassic",
-            "item": "FlaskOfDragonfire",
-            "displayName": "Flask of Dragonfire"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.aamodclassic.flaskofhydratoxin",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "queen-bee",
-      "itemGroups": [
-        [
-          {
-            "mod": "AAModClassic",
-            "item": "FlaskOfHydratoxin",
-            "displayName": "Flask of Hydratoxin"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
       "key": "new.terraria.creamsoda",
       "category": "Food",
       "classes": [
@@ -61836,6 +62436,48 @@
       "fishingSources": []
     },
     {
+      "key": "new.aamodclassic.flaskofdragonfire",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "FlaskOfDragonfire",
+            "displayName": "Flask of Dragonfire"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.aamodclassic.flaskofhydratoxin",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "FlaskOfHydratoxin",
+            "displayName": "Flask of Hydratoxin"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.combatbookvolumetwo",
       "category": "Eternal",
       "classes": [
@@ -61857,6 +62499,48 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.dragonfruit",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Dragonfruit",
+            "displayName": "Dragon Fruit"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.starfruit",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Starfruit",
+            "displayName": "Star Fruit"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.aamodclassic.carrot",
       "category": "Potion",
       "classes": [
@@ -61872,6 +62556,27 @@
             "mod": "AAModClassic",
             "item": "Carrot",
             "displayName": "Carrot"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.prismaticpunch",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "PrismaticPunch",
+            "displayName": "Prismatic Punch"
           }
         ]
       ],

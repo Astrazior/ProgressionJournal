@@ -3,15 +3,15 @@
   "version": 1,
   "targetMod": "AAModClassic",
   "profileId": "builtin.aamodclassic",
-  "generatedAtUtc": "2026-07-18T12:59:00.657Z",
+  "generatedAtUtc": "2026-07-26T18:14:39.600Z",
   "snapshot": {
     "version": 6,
-    "generatedAtUtc": "2026-07-18T12:19:56.0140576Z",
+    "generatedAtUtc": "2026-07-26T17:13:49.4238019Z",
     "targetMod": "AAModClassic",
     "mods": [
       {
         "name": "AAModClassic",
-        "version": "1.0.16"
+        "version": "1.0.17"
       }
     ]
   },
@@ -870,15 +870,15 @@
         }
       ],
       "stageComparison": {
-        "compared": 1621,
+        "compared": 1652,
         "moved": 0
       }
     }
   },
   "review": {
-    "total": 67,
+    "total": 65,
     "byKind": {
-      "unassigned-combat-item": 67
+      "unassigned-combat-item": 65
     }
   },
   "audit": {
@@ -895,8 +895,8 @@
       "townCount": 47,
       "observedTownCount": 15,
       "fishingCount": 137,
-      "shimmerTransformCount": 258,
-      "dropSourceCount": 548,
+      "shimmerTransformCount": 309,
+      "dropSourceCount": 549,
       "shopSourceCount": 26,
       "globalDropCount": 38,
       "observed": [
@@ -955,6 +955,14 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 20
+        },
+        {
+          "source": "AAModClassic/DragonClaw_NPC",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
         },
         {
           "source": "AAModClassic/DustDjinn",
@@ -5412,7 +5420,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.aamodclassic",
-    "generatedAtUtc": "2026-07-18T12:58:49.234Z",
+    "generatedAtUtc": "2026-07-26T18:14:32.026Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -9842,6 +9850,11 @@
       },
       {
         "stage": "start",
+        "id": "AAModClassic/DragonClaw_Item",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "AAModClassic/DragonScale",
         "reason": "not combat equipment"
       },
@@ -11862,12 +11875,12 @@
       },
       {
         "stage": "start",
-        "id": "AAModClassic/Fishmother",
+        "id": "AAModClassic/InfernoCrate",
         "reason": "not combat equipment"
       },
       {
         "stage": "start",
-        "id": "AAModClassic/DaybreakCrate",
+        "id": "AAModClassic/Fishmother",
         "reason": "not combat equipment"
       },
       {
@@ -11877,12 +11890,12 @@
       },
       {
         "stage": "start",
-        "id": "AAModClassic/TriHeadedKoi",
+        "id": "AAModClassic/MireCrate",
         "reason": "not combat equipment"
       },
       {
         "stage": "start",
-        "id": "AAModClassic/EventideCrate",
+        "id": "AAModClassic/TriHeadedKoi",
         "reason": "not combat equipment"
       },
       {
@@ -11892,12 +11905,12 @@
       },
       {
         "stage": "start",
-        "id": "AAModClassic/GlitchFish",
+        "id": "AAModClassic/VoidCrate",
         "reason": "not combat equipment"
       },
       {
         "stage": "start",
-        "id": "AAModClassic/NullCrate",
+        "id": "AAModClassic/GlitchFish",
         "reason": "not combat equipment"
       },
       {
@@ -12168,26 +12181,6 @@
       {
         "stage": "start",
         "id": "AAModClassic/DragonSoul",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "AAModClassic/SoulOfSmite",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "AAModClassic/DragonFire",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "AAModClassic/SoulOfSpite",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "AAModClassic/Bogtoxin",
         "reason": "not combat equipment"
       },
       {
@@ -15927,6 +15920,11 @@
       },
       {
         "stage": "start",
+        "id": "AAModClassic/CuriousLookingClaw",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "AAModClassic/InterestingLookingClaw",
         "reason": "not combat equipment"
       },
@@ -15938,16 +15936,6 @@
       {
         "stage": "start",
         "id": "AAModClassic/HellCrate",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "AAModClassic/KeyOfSmite",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "AAModClassic/DragonfireTorch",
         "reason": "not combat equipment"
       },
       {
@@ -15978,16 +15966,6 @@
       {
         "stage": "start",
         "id": "AAModClassic/MadnessPickaxe",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "AAModClassic/KeyOfSpite",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "AAModClassic/BogtoxinTorch",
         "reason": "not combat equipment"
       },
       {
@@ -16037,32 +16015,17 @@
       },
       {
         "stage": "start",
-        "id": "Terraria/ShimmerTorch",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "AAModClassic/InfernoCrate",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "AAModClassic/MireCrate",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "AAModClassic/VoidCrate",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "AAModClassic/ScorchedDynastyWoodUnsafe",
         "reason": "not combat equipment"
       },
       {
         "stage": "start",
         "id": "Terraria/AdhesiveBandage",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ShimmerTorch",
         "reason": "not combat equipment"
       },
       {
@@ -16637,6 +16600,101 @@
       },
       {
         "stage": "start",
+        "id": "AAModClassic/RedmushBed",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushBench",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushCandelabra",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushCandle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushChair",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushChandelier",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushClock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushCouch",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushDoor",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushDresser",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushLamp",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushLantern",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushPlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushTable",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushToilet",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushTub",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "AAModClassic/RedmushWorkbench",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/WaterBucket",
         "reason": "not combat equipment"
       },
@@ -16772,12 +16830,12 @@
       },
       {
         "stage": "start",
-        "id": "AAModClassic/Bogwood",
+        "id": "AAModClassic/RedmushSink",
         "reason": "not combat equipment"
       },
       {
         "stage": "start",
-        "id": "AAModClassic/DragonClaw_Item",
+        "id": "AAModClassic/Bogwood",
         "reason": "not combat equipment"
       },
       {
@@ -16793,11 +16851,6 @@
       {
         "stage": "start",
         "id": "AAModClassic/Razewood",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "AAModClassic/CuriousLookingClaw",
         "reason": "not combat equipment"
       },
       {
@@ -19857,6 +19910,16 @@
       },
       {
         "stage": "skeletron",
+        "id": "AAModClassic/RedmushBookcase",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "AAModClassic/RedmushPiano",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
         "id": "AAModClassic/RelicBar",
         "reason": "not combat equipment"
       },
@@ -20272,7 +20335,17 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "AAModClassic/DragonFire",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/SoulofFlight",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "AAModClassic/Bogtoxin",
         "reason": "not combat equipment"
       },
       {
@@ -20308,11 +20381,6 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/SummonerEmblem",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "AAModClassic/HydraBite",
         "reason": "not combat equipment"
       },
       {
@@ -20762,6 +20830,16 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "AAModClassic/SoulOfSpite",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "AAModClassic/SoulOfSmite",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "AAModClassic/MireKey",
         "reason": "not combat equipment"
       },
@@ -20852,67 +20930,22 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "AAModClassic/DaybreakCrate",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "AAModClassic/ScorchShark",
         "reason": "not combat equipment"
       },
       {
         "stage": "wall-of-flesh",
-        "id": "Terraria/CobaltOre",
+        "id": "AAModClassic/EventideCrate",
         "reason": "not combat equipment"
       },
       {
         "stage": "wall-of-flesh",
-        "id": "Terraria/PalladiumOre",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/MythrilOre",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/OrichalcumOre",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/AdamantiteOre",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/TitaniumOre",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/CobaltBar",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/PalladiumBar",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/MythrilBar",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/OrichalcumBar",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/AdamantiteBar",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/TitaniumBar",
+        "id": "AAModClassic/NullCrate",
         "reason": "not combat equipment"
       },
       {
@@ -20933,6 +20966,66 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/Sundial",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/CobaltOre",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/PalladiumOre",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/CobaltBar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/PalladiumBar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/MythrilOre",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/OrichalcumOre",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/MythrilBar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/OrichalcumBar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/AdamantiteOre",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/TitaniumOre",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/AdamantiteBar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/TitaniumBar",
         "reason": "not combat equipment"
       },
       {
@@ -21673,6 +21766,26 @@
       {
         "stage": "wall-of-flesh",
         "id": "AAModClassic/HoardBox",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "AAModClassic/KeyOfSmite",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "AAModClassic/DragonfireTorch",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "AAModClassic/KeyOfSpite",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "AAModClassic/BogtoxinTorch",
         "reason": "not combat equipment"
       },
       {
@@ -25877,6 +25990,11 @@
       },
       {
         "stage": "zero",
+        "id": "AAModClassic/ZeroATrophy",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "zero",
         "id": "AAModClassic/TenCaratCarrot",
         "reason": "not combat equipment"
       },
@@ -26066,6 +26184,74 @@
         "via": "initial"
       },
       "Terraria/NaturesGift": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Apple": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Apricot": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Grapefruit": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Lemon": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Peach": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Cherry": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Plum": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/BlackCurrant": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Elderberry": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/BloodOrange": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Rambutan": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Mango": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Pineapple": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Banana": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Coconut": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/Pomegranate": {
+        "stage": "start",
+        "via": "initial"
+      },
+      "Terraria/SpicyPepper": {
         "stage": "start",
         "via": "initial"
       },
@@ -26865,19 +27051,19 @@
       },
       "AAModClassic/Pyrosphere": {
         "stage": "start",
-        "via": "container:AAModClassic/DaybreakCrate"
+        "via": "container:AAModClassic/InfernoCrate"
       },
       "AAModClassic/Firebuster": {
         "stage": "start",
-        "via": "container:AAModClassic/DaybreakCrate"
+        "via": "container:AAModClassic/InfernoCrate"
       },
       "AAModClassic/Volley": {
         "stage": "start",
-        "via": "container:AAModClassic/DaybreakCrate"
+        "via": "container:AAModClassic/InfernoCrate"
       },
       "AAModClassic/DragonsGuard": {
         "stage": "start",
-        "via": "container:AAModClassic/DaybreakCrate"
+        "via": "container:AAModClassic/InfernoCrate"
       },
       "Terraria/Campfire": {
         "stage": "start",
@@ -26931,9 +27117,41 @@
         "stage": "start",
         "via": "recipe:Terraria/RockLobster"
       },
+      "Terraria/AppleJuice": {
+        "stage": "start",
+        "via": "recipe:Terraria/Apple+Terraria/Bottle"
+      },
+      "Terraria/BananaDaiquiri": {
+        "stage": "start",
+        "via": "recipe:Terraria/Banana+Terraria/Bottle+Terraria/SnowBlock"
+      },
       "Terraria/Lemonade": {
         "stage": "start",
         "via": "recipe:Terraria/Lemon+Terraria/Bottle"
+      },
+      "Terraria/PeachSangria": {
+        "stage": "start",
+        "via": "recipe:Terraria/Peach+Terraria/Bottle"
+      },
+      "Terraria/PinaColada": {
+        "stage": "start",
+        "via": "recipe:Terraria/Pineapple+Terraria/Coconut+Terraria/Bottle"
+      },
+      "Terraria/TropicalSmoothie": {
+        "stage": "start",
+        "via": "recipe:Terraria/Mango+Terraria/Pineapple+Terraria/Bottle"
+      },
+      "Terraria/BloodyMoscato": {
+        "stage": "start",
+        "via": "recipe:Terraria/BloodOrange+Terraria/Rambutan+Terraria/Bottle"
+      },
+      "Terraria/SmoothieofDarkness": {
+        "stage": "start",
+        "via": "recipe:Terraria/BlackCurrant+Terraria/Elderberry+Terraria/Bottle"
+      },
+      "Terraria/FruitJuice": {
+        "stage": "start",
+        "via": "recipe:Terraria/Apple+Terraria/Bottle"
       },
       "Terraria/SeafoodDinner": {
         "stage": "start",
@@ -27691,10 +27909,6 @@
         "stage": "start",
         "via": "recipe:Terraria/ManaCrystal+Terraria/SilverBar"
       },
-      "AAModClassic/DragonstrideBoots": {
-        "stage": "start",
-        "via": "recipe:Terraria/TerrasparkBoots+Terraria/TigerClimbingGear+Terraria/Flipper+AAModClassic/ShadowBand+AAModClassic/SoulOfSmite+AAModClassic/SoulOfSpite"
-      },
       "AAModClassic/SandScimitar": {
         "stage": "start",
         "via": "recipe:Terraria/Sandstone+Terraria/Ruby+Terraria/Sapphire"
@@ -27710,6 +27924,10 @@
       "AAModClassic/ImpLeggings": {
         "stage": "start",
         "via": "recipe:AAModClassic/DevilSilk"
+      },
+      "AAModClassic/Lantern": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/DragonClaw_Item"
       },
       "AAModClassic/GrassSpear": {
         "stage": "start",
@@ -27799,13 +28017,13 @@
         "stage": "start",
         "via": "shimmer:Terraria/AncientShadowScalemail"
       },
+      "Terraria/Ambrosia": {
+        "stage": "start",
+        "via": "shimmer:Terraria/Apple"
+      },
       "Terraria/ShimmerFlare": {
         "stage": "start",
         "via": "shimmer:Terraria/BlueFlare"
-      },
-      "Terraria/Ambrosia": {
-        "stage": "start",
-        "via": "shimmer:Terraria/Grapefruit"
       },
       "Terraria/AegisCrystal": {
         "stage": "start",
@@ -27830,6 +28048,10 @@
       "Terraria/MolotovCocktail": {
         "stage": "start",
         "via": "recipe:Terraria/Ale+Terraria/Gel+Terraria/Silk+Terraria/Torch"
+      },
+      "Terraria/FruitSalad": {
+        "stage": "start",
+        "via": "recipe:Terraria/Apple+Terraria/Bowl"
       },
       "Terraria/FishingPotion": {
         "stage": "start",
@@ -27898,10 +28120,6 @@
       "AAModClassic/FossilBoneslinger": {
         "stage": "start",
         "via": "recipe:AAModClassic/DynaskullFossil"
-      },
-      "AAModClassic/Lantern": {
-        "stage": "start",
-        "via": "recipe:AAModClassic/DragonClaw_Item"
       },
       "AAModClassic/RazewoodChestplate": {
         "stage": "start",
@@ -28502,14 +28720,6 @@
       "Terraria/SweetheartNecklace": {
         "stage": "queen-bee",
         "via": "recipe:Terraria/HoneyComb+Terraria/PanicNecklace"
-      },
-      "AAModClassic/FlaskOfDragonfire": {
-        "stage": "queen-bee",
-        "via": "recipe:Terraria/BottledWater+AAModClassic/DragonFire"
-      },
-      "AAModClassic/FlaskOfHydratoxin": {
-        "stage": "queen-bee",
-        "via": "recipe:Terraria/BottledWater+AAModClassic/Bogtoxin"
       },
       "Terraria/BalloonHorseshoeHoney": {
         "stage": "queen-bee",
@@ -29841,6 +30051,10 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/GoldBar+Terraria/FlaskofGold"
       },
+      "AAModClassic/DragonstrideBoots": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/TerrasparkBoots+Terraria/TigerClimbingGear+Terraria/Flipper+AAModClassic/ShadowBand+AAModClassic/SoulOfSmite+AAModClassic/SoulOfSpite"
+      },
       "AAModClassic/Scourge": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/CursedFlame+Terraria/SoulofNight+Terraria/DemoniteBar+Terraria/Musket+Terraria/IllegalGunParts"
@@ -29889,6 +30103,10 @@
         "stage": "wall-of-flesh",
         "via": "recipe:AAModClassic/DragonFire"
       },
+      "AAModClassic/FlaskOfDragonfire": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/BottledWater+AAModClassic/DragonFire"
+      },
       "AAModClassic/Blastshot": {
         "stage": "wall-of-flesh",
         "via": "recipe:AAModClassic/DragonFire+AAModClassic/IncineriteBar+AAModClassic/SoulOfSmite"
@@ -29912,6 +30130,10 @@
       "AAModClassic/HydratoxinDart": {
         "stage": "wall-of-flesh",
         "via": "recipe:AAModClassic/Bogtoxin"
+      },
+      "AAModClassic/FlaskOfHydratoxin": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/BottledWater+AAModClassic/Bogtoxin"
       },
       "AAModClassic/DeathDaggers": {
         "stage": "wall-of-flesh",
@@ -29985,6 +30207,14 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/ObsidianShield+Terraria/AnkhCharm"
       },
+      "Terraria/Dragonfruit": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "Terraria/Starfruit": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
       "Terraria/SpiritFlame": {
         "stage": "wall-of-flesh",
         "via": "manifest"
@@ -29996,6 +30226,10 @@
       "AAModClassic/Carrot": {
         "stage": "wall-of-flesh",
         "via": "manifest"
+      },
+      "Terraria/PrismaticPunch": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/Starfruit+Terraria/Dragonfruit+Terraria/Bottle"
       },
       "Terraria/PearlwoodHelmet": {
         "stage": "wall-of-flesh",
@@ -31405,6 +31639,10 @@
         "stage": "rajah-rabbit",
         "via": "npc:AAModClassic/RajahRabbit"
       },
+      "AAModClassic/CottonCane": {
+        "stage": "rajah-rabbit",
+        "via": "npc:AAModClassic/RajahRabbit"
+      },
       "AAModClassic/RabbitcopterWings": {
         "stage": "rajah-rabbit",
         "via": "npc:AAModClassic/RajahRabbit"
@@ -32157,23 +32395,27 @@
         "stage": "champion-rajah-rabbit",
         "via": "npc:AAModClassic/RajahRabbitA"
       },
-      "AAModClassic/RajahRabbitsCloakOfSupremacy": {
-        "stage": "champion-rajah-rabbit",
-        "via": "container:AAModClassic/RajahRabbitATreasureBag"
-      },
       "AAModClassic/BaneOfTheSlaughterer": {
         "stage": "champion-rajah-rabbit",
-        "via": "container:AAModClassic/RajahRabbitATreasureBag"
+        "via": "npc:AAModClassic/RajahRabbitA"
       },
       "AAModClassic/RPG": {
         "stage": "champion-rajah-rabbit",
-        "via": "container:AAModClassic/RajahRabbitATreasureBag"
+        "via": "npc:AAModClassic/RajahRabbitA"
       },
       "AAModClassic/RoyalStaff": {
         "stage": "champion-rajah-rabbit",
-        "via": "container:AAModClassic/RajahRabbitATreasureBag"
+        "via": "npc:AAModClassic/RajahRabbitA"
       },
       "AAModClassic/TheAvenger": {
+        "stage": "champion-rajah-rabbit",
+        "via": "npc:AAModClassic/RajahRabbitA"
+      },
+      "AAModClassic/RajahsRage": {
+        "stage": "champion-rajah-rabbit",
+        "via": "npc:AAModClassic/RajahRabbitA"
+      },
+      "AAModClassic/RajahRabbitsCloakOfSupremacy": {
         "stage": "champion-rajah-rabbit",
         "via": "container:AAModClassic/RajahRabbitATreasureBag"
       },
@@ -33005,26 +33247,6 @@
         "stage": "start",
         "via": "initial"
       },
-      "Terraria/Lemon": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/Grapefruit": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/Plum": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/Starfruit": {
-        "stage": "start",
-        "via": "initial"
-      },
-      "Terraria/SpicyPepper": {
-        "stage": "start",
-        "via": "initial"
-      },
       "Terraria/GiantHarpyFeather": {
         "stage": "start",
         "via": "initial"
@@ -33215,6 +33437,10 @@
       "Terraria/Torch": {
         "stage": "start",
         "via": "npc:Terraria/TorchZombie"
+      },
+      "AAModClassic/DragonClaw_Item": {
+        "stage": "start",
+        "via": "npc:AAModClassic/DragonClaw_NPC"
       },
       "AAModClassic/DragonScale": {
         "stage": "start",
@@ -34847,11 +35073,11 @@
         "stage": "start",
         "via": "fishing"
       },
-      "AAModClassic/Fishmother": {
+      "AAModClassic/InfernoCrate": {
         "stage": "start",
         "via": "fishing"
       },
-      "AAModClassic/DaybreakCrate": {
+      "AAModClassic/Fishmother": {
         "stage": "start",
         "via": "fishing"
       },
@@ -34859,11 +35085,11 @@
         "stage": "start",
         "via": "fishing"
       },
-      "AAModClassic/TriHeadedKoi": {
+      "AAModClassic/MireCrate": {
         "stage": "start",
         "via": "fishing"
       },
-      "AAModClassic/EventideCrate": {
+      "AAModClassic/TriHeadedKoi": {
         "stage": "start",
         "via": "fishing"
       },
@@ -34871,11 +35097,11 @@
         "stage": "start",
         "via": "fishing"
       },
-      "AAModClassic/GlitchFish": {
+      "AAModClassic/VoidCrate": {
         "stage": "start",
         "via": "fishing"
       },
-      "AAModClassic/NullCrate": {
+      "AAModClassic/GlitchFish": {
         "stage": "start",
         "via": "fishing"
       },
@@ -35093,23 +35319,7 @@
       },
       "AAModClassic/DragonSoul": {
         "stage": "start",
-        "via": "container:AAModClassic/DaybreakCrate"
-      },
-      "AAModClassic/SoulOfSmite": {
-        "stage": "start",
-        "via": "container:AAModClassic/DaybreakCrate"
-      },
-      "AAModClassic/DragonFire": {
-        "stage": "start",
-        "via": "container:AAModClassic/DaybreakCrate"
-      },
-      "AAModClassic/SoulOfSpite": {
-        "stage": "start",
-        "via": "container:AAModClassic/EventideCrate"
-      },
-      "AAModClassic/Bogtoxin": {
-        "stage": "start",
-        "via": "container:AAModClassic/EventideCrate"
+        "via": "container:AAModClassic/InfernoCrate"
       },
       "Terraria/IceTorch": {
         "stage": "start",
@@ -38099,6 +38309,10 @@
         "stage": "start",
         "via": "recipe:Terraria/Sunglasses+Terraria/SunplateBlock"
       },
+      "AAModClassic/CuriousLookingClaw": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/DragonClaw_Item"
+      },
       "AAModClassic/InterestingLookingClaw": {
         "stage": "start",
         "via": "recipe:AAModClassic/HydraClaw_Item"
@@ -38110,14 +38324,6 @@
       "AAModClassic/HellCrate": {
         "stage": "start",
         "via": "recipe:Terraria/WoodenCrate+AAModClassic/DevilSilk"
-      },
-      "AAModClassic/KeyOfSmite": {
-        "stage": "start",
-        "via": "recipe:AAModClassic/SoulOfSmite"
-      },
-      "AAModClassic/DragonfireTorch": {
-        "stage": "start",
-        "via": "recipe:Terraria/Torch+AAModClassic/DragonFire"
       },
       "AAModClassic/ScorchedDynastyWood": {
         "stage": "start",
@@ -38142,14 +38348,6 @@
       "AAModClassic/MadnessPickaxe": {
         "stage": "start",
         "via": "recipe:AAModClassic/MadnessFragment"
-      },
-      "AAModClassic/KeyOfSpite": {
-        "stage": "start",
-        "via": "recipe:AAModClassic/SoulOfSpite"
-      },
-      "AAModClassic/BogtoxinTorch": {
-        "stage": "start",
-        "via": "recipe:Terraria/Torch+AAModClassic/Bogtoxin"
       },
       "AAModClassic/CoralAxe": {
         "stage": "start",
@@ -38187,22 +38385,6 @@
         "stage": "start",
         "via": "recipe:Terraria/DynastyWood"
       },
-      "Terraria/ShimmerTorch": {
-        "stage": "start",
-        "via": "shimmer:AAModClassic/BogtoxinTorch"
-      },
-      "AAModClassic/InfernoCrate": {
-        "stage": "start",
-        "via": "shimmer:AAModClassic/DaybreakCrate"
-      },
-      "AAModClassic/MireCrate": {
-        "stage": "start",
-        "via": "shimmer:AAModClassic/EventideCrate"
-      },
-      "AAModClassic/VoidCrate": {
-        "stage": "start",
-        "via": "shimmer:AAModClassic/NullCrate"
-      },
       "AAModClassic/ScorchedDynastyWoodUnsafe": {
         "stage": "start",
         "via": "shimmer:AAModClassic/ScorchedDynastyWood"
@@ -38210,6 +38392,10 @@
       "Terraria/AdhesiveBandage": {
         "stage": "start",
         "via": "shimmer:Terraria/Bezoar"
+      },
+      "Terraria/ShimmerTorch": {
+        "stage": "start",
+        "via": "shimmer:Terraria/BlueTorch"
       },
       "Terraria/ShimmerCampfire": {
         "stage": "start",
@@ -38667,6 +38853,82 @@
         "stage": "start",
         "via": "recipe:Terraria/LuckyHorseshoe+Terraria/ObsidianSkull"
       },
+      "AAModClassic/RedmushBed": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock+Terraria/Silk"
+      },
+      "AAModClassic/RedmushBench": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock"
+      },
+      "AAModClassic/RedmushCandelabra": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock+Terraria/Torch"
+      },
+      "AAModClassic/RedmushCandle": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock+Terraria/Torch"
+      },
+      "AAModClassic/RedmushChair": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock"
+      },
+      "AAModClassic/RedmushChandelier": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock+Terraria/Torch+Terraria/Chain"
+      },
+      "AAModClassic/RedmushChest": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock+Terraria/IronBar"
+      },
+      "AAModClassic/RedmushClock": {
+        "stage": "start",
+        "via": "recipe:Terraria/IronBar+Terraria/Glass+AAModClassic/MushroomBlock"
+      },
+      "AAModClassic/RedmushCouch": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock+Terraria/Silk"
+      },
+      "AAModClassic/RedmushDoor": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock"
+      },
+      "AAModClassic/RedmushDresser": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock"
+      },
+      "AAModClassic/RedmushLamp": {
+        "stage": "start",
+        "via": "recipe:Terraria/Torch+AAModClassic/MushroomBlock"
+      },
+      "AAModClassic/RedmushLantern": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock+Terraria/Torch"
+      },
+      "AAModClassic/RedmushPlatform": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock"
+      },
+      "AAModClassic/RedmushTable": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock"
+      },
+      "AAModClassic/RedmushToilet": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock"
+      },
+      "AAModClassic/RedmushTub": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock"
+      },
+      "AAModClassic/RedmushWall": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock"
+      },
+      "AAModClassic/RedmushWorkbench": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/MushroomBlock"
+      },
       "Terraria/WaterBucket": {
         "stage": "start",
         "via": "shimmer:Terraria/HoneyBucket"
@@ -38775,11 +39037,11 @@
         "stage": "start",
         "via": "recipe:Terraria/IronBar+Terraria/WaterBucket"
       },
-      "AAModClassic/Bogwood": {
+      "AAModClassic/RedmushSink": {
         "stage": "start",
-        "via": "manifest"
+        "via": "recipe:AAModClassic/MushroomBlock+Terraria/WaterBucket"
       },
-      "AAModClassic/DragonClaw_Item": {
+      "AAModClassic/Bogwood": {
         "stage": "start",
         "via": "manifest"
       },
@@ -38794,10 +39056,6 @@
       "AAModClassic/Razewood": {
         "stage": "start",
         "via": "manifest"
-      },
-      "AAModClassic/CuriousLookingClaw": {
-        "stage": "start",
-        "via": "recipe:AAModClassic/DragonClaw_Item"
       },
       "AAModClassic/RazewoodBed": {
         "stage": "start",
@@ -41243,6 +41501,14 @@
         "stage": "skeletron",
         "via": "recipe:AAModClassic/Bogwood+Terraria/Book+Terraria/Bone"
       },
+      "AAModClassic/RedmushBookcase": {
+        "stage": "skeletron",
+        "via": "recipe:AAModClassic/MushroomBlock+Terraria/Book"
+      },
+      "AAModClassic/RedmushPiano": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone+AAModClassic/MushroomBlock+Terraria/Book"
+      },
       "AAModClassic/RelicBar": {
         "stage": "skeletron",
         "via": "recipe:AAModClassic/VikingRelic"
@@ -41575,9 +41841,17 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/RockGolem"
       },
+      "AAModClassic/DragonFire": {
+        "stage": "wall-of-flesh",
+        "via": "npc:AAModClassic/BlazePhoenix"
+      },
       "Terraria/SoulofFlight": {
         "stage": "wall-of-flesh",
         "via": "npc:AAModClassic/WyrmHead"
+      },
+      "AAModClassic/Bogtoxin": {
+        "stage": "wall-of-flesh",
+        "via": "npc:AAModClassic/Kappa"
       },
       "AAModClassic/DragonSpirit": {
         "stage": "wall-of-flesh",
@@ -41606,10 +41880,6 @@
       "Terraria/SummonerEmblem": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/WallofFlesh"
-      },
-      "AAModClassic/HydraBite": {
-        "stage": "wall-of-flesh",
-        "via": "npc:AAModClassic/MireMimic"
       },
       "AAModClassic/CovetiteCrystal": {
         "stage": "wall-of-flesh",
@@ -41970,6 +42240,14 @@
         "stage": "wall-of-flesh",
         "via": "global:Terraria/GlobalNPCDrops"
       },
+      "AAModClassic/SoulOfSpite": {
+        "stage": "wall-of-flesh",
+        "via": "global:AAModClassic/GlobalNPCDrops"
+      },
+      "AAModClassic/SoulOfSmite": {
+        "stage": "wall-of-flesh",
+        "via": "global:AAModClassic/GlobalNPCDrops"
+      },
       "AAModClassic/MireKey": {
         "stage": "wall-of-flesh",
         "via": "global:AAModClassic/GlobalNPCDrops"
@@ -42042,57 +42320,21 @@
         "stage": "wall-of-flesh",
         "via": "fishing"
       },
+      "AAModClassic/DaybreakCrate": {
+        "stage": "wall-of-flesh",
+        "via": "fishing"
+      },
       "AAModClassic/ScorchShark": {
         "stage": "wall-of-flesh",
         "via": "fishing"
       },
-      "Terraria/CobaltOre": {
+      "AAModClassic/EventideCrate": {
         "stage": "wall-of-flesh",
-        "via": "container:AAModClassic/DaybreakCrate"
+        "via": "fishing"
       },
-      "Terraria/PalladiumOre": {
+      "AAModClassic/NullCrate": {
         "stage": "wall-of-flesh",
-        "via": "container:AAModClassic/DaybreakCrate"
-      },
-      "Terraria/MythrilOre": {
-        "stage": "wall-of-flesh",
-        "via": "container:AAModClassic/DaybreakCrate"
-      },
-      "Terraria/OrichalcumOre": {
-        "stage": "wall-of-flesh",
-        "via": "container:AAModClassic/DaybreakCrate"
-      },
-      "Terraria/AdamantiteOre": {
-        "stage": "wall-of-flesh",
-        "via": "container:AAModClassic/DaybreakCrate"
-      },
-      "Terraria/TitaniumOre": {
-        "stage": "wall-of-flesh",
-        "via": "container:AAModClassic/DaybreakCrate"
-      },
-      "Terraria/CobaltBar": {
-        "stage": "wall-of-flesh",
-        "via": "container:AAModClassic/DaybreakCrate"
-      },
-      "Terraria/PalladiumBar": {
-        "stage": "wall-of-flesh",
-        "via": "container:AAModClassic/DaybreakCrate"
-      },
-      "Terraria/MythrilBar": {
-        "stage": "wall-of-flesh",
-        "via": "container:AAModClassic/DaybreakCrate"
-      },
-      "Terraria/OrichalcumBar": {
-        "stage": "wall-of-flesh",
-        "via": "container:AAModClassic/DaybreakCrate"
-      },
-      "Terraria/AdamantiteBar": {
-        "stage": "wall-of-flesh",
-        "via": "container:AAModClassic/DaybreakCrate"
-      },
-      "Terraria/TitaniumBar": {
-        "stage": "wall-of-flesh",
-        "via": "container:AAModClassic/DaybreakCrate"
+        "via": "fishing"
       },
       "AAModClassic/FazerHelmet": {
         "stage": "wall-of-flesh",
@@ -42109,6 +42351,54 @@
       "Terraria/Sundial": {
         "stage": "wall-of-flesh",
         "via": "container:Terraria/WoodenCrateHard"
+      },
+      "Terraria/CobaltOre": {
+        "stage": "wall-of-flesh",
+        "via": "container:Terraria/WoodenCrateHard"
+      },
+      "Terraria/PalladiumOre": {
+        "stage": "wall-of-flesh",
+        "via": "container:Terraria/WoodenCrateHard"
+      },
+      "Terraria/CobaltBar": {
+        "stage": "wall-of-flesh",
+        "via": "container:Terraria/WoodenCrateHard"
+      },
+      "Terraria/PalladiumBar": {
+        "stage": "wall-of-flesh",
+        "via": "container:Terraria/WoodenCrateHard"
+      },
+      "Terraria/MythrilOre": {
+        "stage": "wall-of-flesh",
+        "via": "container:Terraria/IronCrateHard"
+      },
+      "Terraria/OrichalcumOre": {
+        "stage": "wall-of-flesh",
+        "via": "container:Terraria/IronCrateHard"
+      },
+      "Terraria/MythrilBar": {
+        "stage": "wall-of-flesh",
+        "via": "container:Terraria/IronCrateHard"
+      },
+      "Terraria/OrichalcumBar": {
+        "stage": "wall-of-flesh",
+        "via": "container:Terraria/IronCrateHard"
+      },
+      "Terraria/AdamantiteOre": {
+        "stage": "wall-of-flesh",
+        "via": "container:Terraria/GoldenCrateHard"
+      },
+      "Terraria/TitaniumOre": {
+        "stage": "wall-of-flesh",
+        "via": "container:Terraria/GoldenCrateHard"
+      },
+      "Terraria/AdamantiteBar": {
+        "stage": "wall-of-flesh",
+        "via": "container:Terraria/GoldenCrateHard"
+      },
+      "Terraria/TitaniumBar": {
+        "stage": "wall-of-flesh",
+        "via": "container:Terraria/GoldenCrateHard"
       },
       "Terraria/SoulofNight": {
         "stage": "wall-of-flesh",
@@ -42701,6 +42991,22 @@
       "AAModClassic/HoardBox": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/MusicBox+AAModClassic/CovetiteCrystal"
+      },
+      "AAModClassic/KeyOfSmite": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:AAModClassic/SoulOfSmite"
+      },
+      "AAModClassic/DragonfireTorch": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/Torch+AAModClassic/DragonFire"
+      },
+      "AAModClassic/KeyOfSpite": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:AAModClassic/SoulOfSpite"
+      },
+      "AAModClassic/BogtoxinTorch": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/Torch+AAModClassic/Bogtoxin"
       },
       "AAModClassic/DragonPickaxe": {
         "stage": "wall-of-flesh",
@@ -46062,6 +46368,10 @@
         "stage": "zero",
         "via": "npc:AAModClassic/ZeroA"
       },
+      "AAModClassic/ZeroATrophy": {
+        "stage": "zero",
+        "via": "npc:AAModClassic/ZeroA"
+      },
       "AAModClassic/TenCaratCarrot": {
         "stage": "zero",
         "via": "recipe:AAModClassic/GoldenCarrot+AAModClassic/UnstableSingularity+AAModClassic/CrucibleScale+AAModClassic/DreadScale+Terraria/Diamond"
@@ -46530,14 +46840,6 @@
         ]
       },
       {
-        "id": "AAModClassic/CottonCane",
-        "wikiStage": "pre-celestial-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Cotton_Cane"
-        ]
-      },
-      {
         "id": "Terraria/SummonerEmblem",
         "wikiStage": "pre-celestial-events",
         "reason": "recommendation has no proven availability",
@@ -46572,14 +46874,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "AAModClassic/Black_Lotus_Emblem"
-        ]
-      },
-      {
-        "id": "AAModClassic/CottonCane",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Cotton_Cane"
         ]
       },
       {
@@ -47065,14 +47359,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "AAModClassic/Black_Lotus_Emblem"
-        ]
-      },
-      {
-        "id": "AAModClassic/RajahsRage",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Rajah's_Rage"
         ]
       },
       {
@@ -53233,7 +53519,7 @@
           {
             "mod": "AAModClassic",
             "sourceVersion": "1.0",
-            "snapshotVersion": "1.0.16",
+            "snapshotVersion": "1.0.17",
             "compatible": true
           }
         ]
@@ -53241,9 +53527,9 @@
     },
     "unassignedVanillaNpcSourceCount": 180,
     "manualAvailabilityPriority": {
-      "automaticItems": 4429,
+      "automaticItems": 4473,
       "automaticSources": 290,
-      "automaticStations": 486,
+      "automaticStations": 511,
       "suppressed": {
         "itemStages": [
           {
@@ -53251,6 +53537,12 @@
             "manualStageId": "greed",
             "automaticStageId": "greed",
             "via": "container:AAModClassic/GreedTreasureBag"
+          },
+          {
+            "value": "AAModClassic/DragonClaw_Item",
+            "manualStageId": "start",
+            "automaticStageId": "start",
+            "via": "npc:AAModClassic/DragonClaw_NPC"
           },
           {
             "value": "AAModClassic/DragonSerpentNecklace",
@@ -53306,7 +53598,7 @@
         "stationStages": []
       },
       "retained": {
-        "itemStages": 21,
+        "itemStages": 20,
         "itemStageFloors": 0,
         "sourceStages": 49,
         "stationStages": 2
