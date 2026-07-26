@@ -65,7 +65,7 @@ public static partial class JournalRepository
     {
         return
         [
-            Buff("warTable", JournalBuffCategory.Station, CombatClass.All, ItemID.WarTable, ProgressionStageId.PreBoss),
+            Buff("warTable", JournalBuffCategory.Station, CombatClass.All, ItemID.WarTable, ProgressionStageId.PostWorldEvil),
             ClassSpecificBuff("sharpeningStation", JournalBuffCategory.Station, CombatClass.Melee | CombatClass.Summoner, ItemID.SharpeningStation, ProgressionStageId.PreBoss),
             ClassSpecificBuff("ammoBox", JournalBuffCategory.Station, CombatClass.Ranged, ItemID.AmmoBox, ProgressionStageId.PreBoss),
             Buff("bewitchingTable", JournalBuffCategory.Station, CombatClass.All, ItemID.BewitchingTable, ProgressionStageId.PostSkeletron),

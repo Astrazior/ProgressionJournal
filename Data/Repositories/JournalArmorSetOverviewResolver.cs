@@ -16,7 +16,9 @@ internal static class JournalArmorSetOverviewResolver
     private static readonly Dictionary<ArmorSetKey, bool> ModArmorSetCache = [];
     private static readonly HashSet<string> LoggedHookFailures = new(StringComparer.Ordinal);
 
-    public static IReadOnlyList<JournalStageEntry> Resolve(IReadOnlyList<JournalStageEntry> entries)
+    public static IReadOnlyList<JournalStageEntry> Resolve(
+        IReadOnlyList<JournalStageEntry> entries,
+        string classId)
     {
         if (entries.Count == 0)
         {
@@ -37,7 +39,9 @@ internal static class JournalArmorSetOverviewResolver
             matches.AddRange(FindModArmorSets(groupEntries));
         }
 
-        return matches.Count == 0 ? entries : ComposeOverview(indexedEntries, matches);
+        return matches.Count == 0
+            ? entries.Where(entry => AppliesToClass(entry, classId)).ToArray()
+            : ComposeOverview(indexedEntries, matches, classId);
     }
 
     public static void ClearCaches()
@@ -173,10 +177,16 @@ internal static class JournalArmorSetOverviewResolver
                 .SelectMany(itemId => itemEntries[itemId])
                 .DistinctBy(static value => value.Index)
                 .ToArray();
+            var classIds = ResolveArmorSetClassIds(availableFamily, itemEntries);
+            if (classIds.Count == 0)
+            {
+                continue;
+            }
+
             var anchor = components.MinBy(static value => value.Index)!;
             availableVariants[0].PrimeBonus();
 
-            yield return new ArmorSetMatch(availableFamily, anchor, components);
+            yield return new ArmorSetMatch(availableFamily, anchor, components, classIds);
         }
     }
 
@@ -213,14 +223,60 @@ internal static class JournalArmorSetOverviewResolver
                     .SelectMany(itemId => itemEntries[itemId])
                     .DistinctBy(static value => value.Index)
                     .ToArray();
+                var family = new JournalArmorSetFamily([definition]);
+                var classIds = ResolveArmorSetClassIds(family, itemEntries);
+                if (classIds.Count == 0)
+                {
+                    continue;
+                }
+
                 var anchor = components.MinBy(static value => value.Index)!;
                 definition.PrimeBonus();
                 yield return new ArmorSetMatch(
-                    new JournalArmorSetFamily([definition]),
+                    family,
                     anchor,
-                    components);
+                    components,
+                    classIds);
             }
         }
+    }
+
+    private static HashSet<string> ResolveArmorSetClassIds(
+        JournalArmorSetFamily family,
+        Dictionary<int, List<IndexedEntry>> itemEntries)
+    {
+        var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var variant in family.Variants)
+        {
+            HashSet<string>? variantClassIds = null;
+            foreach (var itemId in variant.ItemIds)
+            {
+                var itemClassIds = itemEntries[itemId]
+                    .SelectMany(static entry => GetClassIds(entry.Entry))
+                    .ToHashSet(StringComparer.OrdinalIgnoreCase);
+                if (variantClassIds is null)
+                {
+                    variantClassIds = itemClassIds;
+                }
+                else
+                {
+                    variantClassIds.IntersectWith(itemClassIds);
+                }
+            }
+
+            if (variantClassIds is not null)
+            {
+                result.UnionWith(variantClassIds);
+            }
+        }
+
+        return result;
+    }
+
+    private static IReadOnlySet<string> GetClassIds(JournalStageEntry entry)
+    {
+        return entry.WikiRecommendation?.ClassIds ?? entry.Entry.ClassIds;
     }
 
     private static IEnumerable<JournalArmorSetDefinition> ResolveModArmorSetDefinitions(
@@ -406,7 +462,8 @@ internal static class JournalArmorSetOverviewResolver
 
     private static JournalStageEntry[] ComposeOverview(
         IndexedEntry[] entries,
-        IReadOnlyList<ArmorSetMatch> matches)
+        IReadOnlyList<ArmorSetMatch> matches,
+        string classId)
     {
         var uniqueMatches = matches
             .GroupBy(static match => new MatchKey(
@@ -430,10 +487,14 @@ internal static class JournalArmorSetOverviewResolver
                 var anchor = components.MinBy(static component => component.Index)!;
                 var family = new JournalArmorSetFamily(group
                     .SelectMany(static match => match.Family.Variants));
-                return new ArmorSetMatch(family, anchor, components);
+                var classIds = group
+                    .SelectMany(static match => match.ClassIds)
+                    .ToHashSet(StringComparer.OrdinalIgnoreCase);
+                return new ArmorSetMatch(family, anchor, components, classIds);
             })
             .ToArray();
         var matchesByAnchor = uniqueMatches
+            .Where(match => match.ClassIds.Contains(classId))
             .GroupBy(static match => match.Anchor.Index)
             .ToDictionary(static group => group.Key, static group => group.ToArray());
         var coveredItems = new Dictionary<int, HashSet<int>>();
@@ -464,6 +525,11 @@ internal static class JournalArmorSetOverviewResolver
                     match.Family)));
             }
 
+            if (!AppliesToClass(indexedEntry.Entry, classId))
+            {
+                continue;
+            }
+
             if (!coveredItems.TryGetValue(indexedEntry.Index, out var coveredItemIds))
             {
                 result.Add(indexedEntry.Entry);
@@ -478,6 +544,11 @@ internal static class JournalArmorSetOverviewResolver
         }
 
         return result.ToArray();
+    }
+
+    private static bool AppliesToClass(JournalStageEntry entry, string classId)
+    {
+        return GetClassIds(entry).Contains(classId);
     }
 
     private static JournalStageEntry? CreateRemainderEntry(
@@ -545,5 +616,6 @@ internal static class JournalArmorSetOverviewResolver
     private sealed record ArmorSetMatch(
         JournalArmorSetFamily Family,
         IndexedEntry Anchor,
-        IReadOnlyList<IndexedEntry> Components);
+        IReadOnlyList<IndexedEntry> Components,
+        HashSet<string> ClassIds);
 }

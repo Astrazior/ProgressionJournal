@@ -386,7 +386,9 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             _entryList,
             profile.Id,
             stageId,
-            JournalArmorSetOverviewResolver.Resolve(GetEntries(profile.Id, stageId, classId)),
+            JournalArmorSetOverviewResolver.Resolve(
+                GetEntriesForArmorSetOverview(profile.Id, stageId),
+                classId),
             JournalSystem.SelectItem,
             JournalSystem.OpenArmorSet);
         JournalContentBuilder.PopulateCombatBuffs(

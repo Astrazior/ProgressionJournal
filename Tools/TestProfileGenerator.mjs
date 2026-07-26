@@ -408,7 +408,10 @@ const snapshot = {
       source: "Terraria/GlobalNPCDrops",
       sourceType: "global",
       item: "Test/BloodMoonBlade",
-      conditions: [{ type: "Test.BloodMoonCondition", description: "Drops during a Blood Moon" }]
+      conditions: [{
+        type: "Terraria.GameContent.ItemDropRules.Conditions+IsBloodMoonAndNotFromStatue",
+        description: "This text is not used for progression"
+      }]
     },
     { source: "Test/EventEnemy", sourceType: "npc", item: "Test/EventMaterial", conditions: [] }
   ],
@@ -421,15 +424,15 @@ const snapshot = {
       earliestStageName: "Boss",
       conditions: [{
         type: "ProgressionJournal.AfterProgression",
-        description: "Доступно после этапа: Boss"
+        description: "Before hardmode"
       }]
     },
     {
       npc: "Test/Merchant",
       item: "Test/UnknownShopBlade",
-      observed: true,
-      earliestStageIndex: 1,
-      earliestStageName: "Boss",
+      observed: false,
+      earliestStageIndex: -1,
+      earliestStageName: null,
       conditions: [{ type: "Test.UnknownCondition", description: "After unknown event" }]
     },
     {
@@ -646,6 +649,12 @@ const wikiProfile = {
       evaluations: [{ stageId: "earlyGuide" }]
     },
     {
+      category: "Buff",
+      classes: ["melee"],
+      itemGroups: [[{ mod: "Terraria", item: "HeartLantern" }]],
+      evaluations: [{ stageId: "earlyGuide" }]
+    },
+    {
       category: "Weapon",
       classes: ["magic"],
       itemGroups: [[{ mod: "Test", item: "Chime", displayName: "Chime" }]],
@@ -693,6 +702,10 @@ for (const [itemName, category, via] of [
   const mod = itemName === "ShimmerBooster" ? "Test" : "Terraria";
   assert.equal(report.paths[`${mod}/${itemName}`]?.via, via);
 }
+assert.deepEqual(
+  profile.combatBuffs.find(entry => entry.itemGroups[0][0].item === "HeartLantern")?.classes,
+  ["melee", "magic", "summoner"],
+  "Wiki recommendations must not narrow authoritative vanilla buff classes");
 assert(!report.unresolvedConditions.some(entry => entry.item === "Terraria/DemonHeart"));
 assert(!profile.combatBuffs.some(entry => ["PurificationPowder", "ShimmerGrabBag"]
   .includes(entry.itemGroups[0][0].item)));
@@ -1037,8 +1050,8 @@ runtimeSnapshot.drops.push({
   sourceType: "npc",
   item: "Test/RuntimeSpawnBlade",
   conditions: [{
-    type: "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-    description: "Drops: Not in a Remix world"
+    type: "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
+    description: "This text is not used for progression"
   }]
 }, {
   source: "Test/RuntimeEventEnemy",
@@ -1294,26 +1307,26 @@ const compoundBossConditionManifest = {
 const compoundBossConditionResult = generateProfile(
   compoundBossConditionSnapshot,
   compoundBossConditionManifest);
-assert.equal(
-  compoundBossConditionResult.report.paths["Test/DisjunctiveBlade"]?.stage,
-  "eye-of-cthulhu");
-assert.equal(
-  compoundBossConditionResult.report.paths["Test/ConjunctiveBlade"]?.stage,
-  "skeletron");
+for (const itemId of ["Test/DisjunctiveBlade", "Test/ConjunctiveBlade"]) {
+  assert.equal(compoundBossConditionResult.report.paths[itemId], undefined);
+  assert(compoundBossConditionResult.review.issues.some(issue =>
+    issue.kind === "unresolved-condition"
+    && issue.affected.some(value => value.item === itemId)));
+}
 
 const englishConditionSnapshot = structuredClone(compoundBossConditionSnapshot);
 englishConditionSnapshot.items.push(
   {
     id: "Test/InventoryAmmo",
     name: "Inventory Ammo",
-    damageClass: "Test/Ranged",
+    damageClass: "Test/Melee",
     damage: 1,
     accessory: false
   },
   {
     id: "Test/InventoryWeapon",
     name: "Inventory Weapon",
-    damageClass: "Test/Ranged",
+    damageClass: "Test/Melee",
     damage: 10,
     accessory: false
   },
@@ -1376,8 +1389,11 @@ englishConditionSnapshot.shops = [
 const englishConditionResult = generateProfile(
   englishConditionSnapshot,
   compoundBossConditionManifest);
-assert.equal(englishConditionResult.report.paths["Test/InventoryAmmo"]?.stage, "start");
-assert.equal(englishConditionResult.report.paths["Test/MoonItem"]?.stage, "start");
-assert.equal(englishConditionResult.report.paths["Test/OneTimeItem"]?.stage, "start");
+for (const itemId of ["Test/InventoryAmmo", "Test/MoonItem", "Test/OneTimeItem"]) {
+  assert.equal(englishConditionResult.report.paths[itemId], undefined);
+  assert(englishConditionResult.review.issues.some(issue =>
+    issue.kind === "unresolved-condition"
+    && issue.affected.some(value => value.item === itemId)));
+}
 
 console.log("Profile generator tests: OK");

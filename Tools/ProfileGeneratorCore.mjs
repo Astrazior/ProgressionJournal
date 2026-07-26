@@ -336,7 +336,6 @@ function generateProfileCore(
     manualAssignmentProblems: manualResult.problems
   };
   Object.defineProperty(manifest, "_stageIndexes", { value: stageIndexes });
-  Object.defineProperty(manifest, "_itemNameIndex", { value: createItemNameIndex(allowedItems) });
   Object.defineProperty(report, "_unresolvedConditionSignatures", { value: new Set() });
   const usedStations = new Set(
     snapshot.recipes
@@ -454,7 +453,7 @@ function generateProfileCore(
             || (shop.observed && shop.earliestStageIndex > stageIndex)) {
           continue;
         }
-        if (conditionsAllowed(shop.conditions, stage, manifest, report, {
+        if (shop.observed || conditionsAllowed(shop.conditions, stage, manifest, report, {
           sourceKind: "shop",
           source: npc,
           item: shop.item,
@@ -643,7 +642,8 @@ function generateProfileCore(
     buffItems,
     report,
     wikiResolver,
-    itemById);
+    itemById,
+    classificationContext.vanillaBuffs);
   mergeEquivalentVariantEntries(profileEntries, entryByItem, itemById, manifest);
   narrowUnclassifiedEquipmentClasses(profileEntries, manifest);
   validateManualRules(manifest, itemById, report);
@@ -700,22 +700,7 @@ function hasManualAvailabilityAssignments(manualAssignments) {
 }
 
 function resolveObservedStageIndex(record, manifest, stageIndexes, label) {
-  const resolvedStageIndex = resolveSnapshotStageIndex(record, manifest.stages, label);
-  const conditionFloorIndexes = (record.conditions ?? [])
-    .map(condition => {
-      const normalizedCondition = typeof condition === "string"
-        ? { description: condition }
-        : condition;
-      const description = normalizeConditionText(normalizedCondition.description);
-      if (!/^(?:observed biome|наблюдаемый биом):/u.test(description)
-          || description.includes(",")
-          || !isCelestialPillarCondition(description)) {
-        return -1;
-      }
-      return inferredConditionStageIndex(normalizedCondition, manifest, stageIndexes);
-    })
-    .filter(index => index >= 0);
-  return Math.max(resolvedStageIndex, ...conditionFloorIndexes);
+  return resolveSnapshotStageIndex(record, manifest.stages, label);
 }
 
 function withoutManualAvailabilityAssignments(manualAssignments) {
@@ -1246,11 +1231,6 @@ function conditionsAllowed(conditions, stage, manifest, report, context) {
     if (!condition.type && !condition.description) continue;
     if (isAlternativeEarlyContainerCondition(condition, context)) continue;
     if (isUnavailableCondition(condition) || isDefaultExcludedVariantCondition(condition)) return false;
-    const dependencyIds = conditionDependencyIds(condition, manifest);
-    if (dependencyIds.length > 0) {
-      if (context.available && dependencyIds.some(id => context.available.has(id))) continue;
-      return false;
-    }
     const assignedStageIndex = assignedConditionStageIndex(
       condition,
       context.sourceKind,
@@ -1298,7 +1278,7 @@ function assignedConditionStageIndex(
   manifest,
   stageIndexes) {
   const indexes = [
-    inferredConditionStageIndex(condition, manifest, stageIndexes),
+    inferConditionTypeStageIndex(condition.type ?? "", manifest, stageIndexes),
     configuredConditionStageIndex(
       condition,
       sourceKind,
@@ -1343,141 +1323,70 @@ function conditionHasAssignment(condition, sourceKind, source, manifest) {
       || isDefaultExcludedVariantCondition(condition)
       || isProgressionNeutralCondition(condition)
       || isSafeOpaqueDropCondition(condition, { source })) return true;
-  if (conditionDependencyIds(condition, manifest).length > 0) return true;
   if (manifest.conditionRules?.[condition.type]) return true;
   const stageIndexes = manifest._stageIndexes
     ?? new Map(manifest.stages.map((stage, index) => [stage.id, index]));
-  if (inferredConditionStageIndex(condition, manifest, stageIndexes) >= 0) return true;
+  if (inferConditionTypeStageIndex(condition.type ?? "", manifest, stageIndexes) >= 0) return true;
   return (manifest.conditionUnlocks ?? []).some(rule =>
     (rule.sources ?? ["drop", "shop", "recipe"]).includes(sourceKind)
     && ((rule.sourceIds ?? []).length === 0 || rule.sourceIds.includes(source))
     && conditionMatchesUnlockRule(condition, rule));
 }
 
-function inferredConditionStageIndex(condition, manifest, stageIndexes) {
-  const type = condition.type ?? "";
-  const description = normalizeConditionText(condition.description);
-  const typeIndex = inferConditionTypeStageIndex(type, manifest, stageIndexes);
-  if (typeIndex >= 0) return typeIndex;
-
-  if (type === "ProgressionJournal.AfterProgression") {
-    const match = /^(?:available after(?: stage)?|доступно после этапа):?\s*(.+)$/u.exec(description);
-    if (match) {
-      const target = match[1];
-      const targetStage = manifest.stages.find(stage =>
-        stage.id.replaceAll("-", " ") === target
-        || Object.values(stage.name ?? {})
-          .some(name => normalizeConditionText(name) === target));
-      if (targetStage) return stageIndexes.get(targetStage.id) ?? -1;
-    }
-  }
-
-  const hardmodeIndex = stageIndexByFlagOrId(manifest, stageIndexes, "hardMode", "wall-of-flesh");
-  const allMechsIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss3", "skeletron-prime");
-  const anyMechIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer");
-  const planteraIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedPlantBoss", "plantera");
-  const golemIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedGolemBoss", "golem");
-  const skeletronIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedBoss3", "skeletron");
-  const eyeIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedBoss1", "eye-of-cthulhu");
-  const worldEvilIndex = stageIndexById(manifest, stageIndexes, "world-evil");
-  const queenBeeIndex = stageIndexById(manifest, stageIndexes, "queen-bee");
-  const twinsIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss2", "twins");
-  const destroyerIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer");
-  const skeletronPrimeIndex = stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss3", "skeletron-prime");
-  const lunaticCultistIndex = stageIndexByFlagOrId(
-    manifest,
-    stageIndexes,
-    "downedAncientCultist",
-    "lunatic-cultist");
-
-  if (type.endsWith("+IsBloodMoonAndNotFromStatue")
-      || /blood moon|кровав(?:ой|ая) лун/u.test(description)) {
-    return stageIndexByEvent(manifest, stageIndexes, "BloodMoon");
-  }
-  if (/(?:hardmode|hard mode|хардмод|сложн(?:ом|ого) режим)/u.test(description)) {
-    return hardmodeIndex;
-  }
-  if (/all mech|all mechanical|всем[и]? механическ/u.test(description)) {
-    return allMechsIndex;
-  }
-  if (/mechdusa/u.test(description)) {
-    return allMechsIndex;
-  }
-  if (/any mech|any mechanical|люб(?:ым|ого) механическ/u.test(description)) {
-    return anyMechIndex;
-  }
-  if (/shadow orb|crimson heart|тенев(?:ой|ую) сфер|багрян(?:ого|ое) серд/u.test(description)) {
-    return worldEvilIndex;
-  }
-  if (/pirate invasion|after defeating (?:the )?pirates|вторжен(?:ия|ием) пират/u.test(description)) {
-    return hardmodeIndex;
-  }
-  if (/martian madness|after defeating (?:the )?martians|марсианск(?:им|ого) безуми/u.test(description)) {
-    return golemIndex;
-  }
-  if (isCelestialPillarCondition(description)) {
-    return lunaticCultistIndex;
-  }
-  if (/wave|волны/u.test(description)) {
-    const pumpkinMoonIndex = stageIndexByEvent(manifest, stageIndexes, "PumpkinMoon");
-    const frostMoonIndex = stageIndexByEvent(manifest, stageIndexes, "FrostMoon");
-    const indexes = [pumpkinMoonIndex, frostMoonIndex, planteraIndex].filter(index => index >= 0);
-    if (indexes.length > 0) return Math.min(...indexes);
-  }
-
-  const candidates = [];
-  const add = index => {
-    if (index >= 0) candidates.push(index);
-  };
-  if (/eye of cthulhu|глаз(?:ом)? ктулху/u.test(description)) add(eyeIndex);
-  if (/eater of worlds|brain of cthulhu|пожирател(?:я|ем) миров|мозг(?:а|ом) ктулху/u.test(description)) add(worldEvilIndex);
-  if (/queen bee|королев(?:ы|ой) пч/u.test(description)) add(queenBeeIndex);
-  if (/skeletron prime|скелетрон(?:ом)? прайм/u.test(description)) add(skeletronPrimeIndex);
-  if (/skeletron|скелетрон/u.test(description)) add(skeletronIndex);
-  if (/destroyer|уничтожител/u.test(description)) add(destroyerIndex);
-  if (/twins|близнец/u.test(description)) add(twinsIndex);
-  if (/plantera|плантер/u.test(description)) add(planteraIndex);
-  if (/golem|голем/u.test(description)) add(golemIndex);
-  if (candidates.length > 0) {
-    return /\bor\b| или /u.test(description)
-      ? Math.min(...candidates)
-      : Math.max(...candidates);
-  }
-
-  const match = /^after defeating (?:the )?(.+)$/u.exec(description);
-  if (match) {
-    const target = match[1];
-    const stage = manifest.stages.find(value =>
-      Object.values(value.name ?? {})
-        .some(name => normalizeConditionText(name) === target)
-      || value.id.replaceAll("-", " ") === target);
-    return stage ? stageIndexes.get(stage.id) ?? -1 : -1;
-  }
-  return -1;
-}
-
-function isCelestialPillarCondition(description) {
-  return /(?:solar|vortex|nebula|stardust).*(?:pillar|tower)|(?:pillar|tower).*(?:solar|vortex|nebula|stardust)|башн.*(?:солнеч|вихр|туман|зв[её]здн)|(?:солнеч|вихр|туман|зв[её]здн).*башн/u.test(description);
-}
-
 function inferConditionTypeStageIndex(type, manifest, stageIndexes) {
   if (!type) return -1;
-  if (type.endsWith("+IsHardmode") || type.endsWith("+RemixSeedHardmode")) {
+  if (type === "ProgressionJournal.BloodMoon"
+      || type.endsWith("+IsBloodMoonAndNotFromStatue")) {
+    return stageIndexByEventCategory(manifest, stageIndexes, "BloodMoon");
+  }
+  if (type === "ProgressionJournal.Hardmode"
+      || type.endsWith("+IsHardmode")
+      || type.endsWith("+RemixSeedHardmode")
+      || type.endsWith("+JungleKeyCondition")
+      || type.endsWith("+CorruptKeyCondition")
+      || type.endsWith("+CrimsonKeyCondition")
+      || type.endsWith("+HallowKeyCondition")
+      || type.endsWith("+FrozenKeyCondition")
+      || type.endsWith("+DesertKeyCondition")
+      || type.endsWith("+LivingFlames")
+      || type.endsWith("+SoulOfLight")
+      || type.endsWith("+SoulOfNight")
+      || type.endsWith("+PirateMap")
+      || type.endsWith("+YoyosAmarok")
+      || type.endsWith("+YoyosHelFire")) {
     return stageIndexByFlagOrId(manifest, stageIndexes, "hardMode", "wall-of-flesh");
   }
-  if (type.endsWith("+DownedPlantera")) {
+  if (type.endsWith("+DownedPlantera") || type.endsWith("+YoyosKraken")) {
     return stageIndexByFlagOrId(manifest, stageIndexes, "downedPlantBoss", "plantera");
   }
   if (type.endsWith("+FirstTimeKillingPlantera")) {
     return stageIndexByFlagOrId(manifest, stageIndexes, "downedPlantBoss", "plantera");
   }
-  if (type.endsWith("+DownedAllMechBosses") || type.endsWith("+MechdusaKill")) {
+  if (type === "ProgressionJournal.AfterAllMechanicalBosses"
+      || type.endsWith("+DownedAllMechBosses")
+      || type.endsWith("+MechdusaKill")) {
     return stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss3", "skeletron-prime");
   }
-  if (type.endsWith("+OneMechDefated")) {
+  if (type.endsWith("+OneMechDefated")
+      || type.endsWith("+BeatAnyMechBoss")
+      || type.endsWith("+YoyosYelets")) {
     return stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer");
   }
+  if (type.endsWith("+SkeletronDefated") || type.endsWith("+YoyoCascade")) {
+    return stageIndexByFlagOrId(manifest, stageIndexes, "downedBoss3", "skeletron");
+  }
+  if (type.endsWith("+GolemDefated")) {
+    return stageIndexByFlagOrId(manifest, stageIndexes, "downedGolemBoss", "golem");
+  }
   return -1;
+}
+
+function stageIndexByEventCategory(manifest, stageIndexes, eventCategory) {
+  const indexes = (manifest.events ?? [])
+    .filter(event => event.eventCategory === eventCategory)
+    .map(event => stageIndexes.get(event.stageId))
+    .filter(index => index !== undefined);
+  return indexes.length === 0 ? -1 : Math.min(...indexes);
 }
 
 function stageIndexByFlagOrId(manifest, stageIndexes, flag, id) {
@@ -1491,11 +1400,6 @@ function stageIndexById(manifest, stageIndexes, id) {
   return stage ? stageIndexes.get(stage.id) ?? -1 : -1;
 }
 
-function stageIndexByEvent(manifest, stageIndexes, eventCategory) {
-  const event = (manifest.events ?? []).find(value => value.eventCategory === eventCategory);
-  return event ? stageIndexes.get(event.stageId) ?? -1 : -1;
-}
-
 function unlockContainsVanillaFlag(unlock, key) {
   if (!unlock) return false;
   if (unlock.type === "vanilla-flag" && unlock.key === key) return true;
@@ -1504,53 +1408,46 @@ function unlockContainsVanillaFlag(unlock, key) {
 }
 
 function isProgressionNeutralCondition(condition) {
-  const description = normalizeConditionText(condition.description);
   const type = condition.type ?? "";
   if (isOneTimeUseEligibilityCondition(condition)) return true;
-  if (/^not in (?:a remix world|world generation )/u.test(description)
-      || /^не в генерации мира /u.test(description)) {
-    return true;
-  }
-  if (/blood moon|solar eclipse|halloween|during daytime|at night|not currently alive|\b(?:full|new|waxing|waning|quarter|gibbous|crescent) moon\b|ночью|дн[её]м|кровав(?:ой|ая) лун|солнечн(?:ого|ое) затмени|луны|лун[аеы]|полнолуни|четверт|новолуни|graveyard|кладбищ|honey|water|lava|м[её]д|вод[ауы]|лав[аы]|snow|снег|biome|бестиар|bestiary|happy|pylon|пилон|достаточно счастлив|wave|волны|хэллоуин|императриц[аы] света атакована в дневное время|выпадает в порче/u.test(description)) {
-    return true;
-  }
-  if (type === "Terraria.Condition"
-      && (/^between \d/u.test(description)
-          || /^player is in /u.test(description)
-          || /^in a world with /u.test(description)
-          || /^not in a remix world$/u.test(description)
-          || /^world (?:with|has) /u.test(description)
-          || /^мир с /u.test(description)
-          || /^enabled in .* configuration$/u.test(description))) {
-    return true;
-  }
   return new Set([
     "ProgressionJournal.BelowSurface",
     "ProgressionJournal.Biome",
     "ProgressionJournal.Event",
-    "ProgressionJournal.ZenithWorld",
     "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
     "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
     "Terraria.GameContent.ItemDropRules.Conditions+IsMasterMode",
     "Terraria.GameContent.ItemDropRules.Conditions+NotMasterMode",
     "Terraria.GameContent.ItemDropRules.Conditions+LegacyHack_IsBossAndNotExpert",
+    "Terraria.GameContent.ItemDropRules.Conditions+LegacyHack_IsABoss",
+    "Terraria.GameContent.ItemDropRules.Conditions+MissingTwin",
+    "Terraria.GameContent.ItemDropRules.Conditions+NamedNPC",
     "Terraria.GameContent.ItemDropRules.Conditions+NotRemixSeed",
     "Terraria.GameContent.ItemDropRules.Conditions+DontStarveIsNotUp",
     "Terraria.GameContent.ItemDropRules.Conditions+HalloweenWeapons",
+    "Terraria.GameContent.ItemDropRules.Conditions+HalloweenGoodieBagDrop",
+    "Terraria.GameContent.ItemDropRules.Conditions+XmasPresentDrop",
+    "Terraria.GameContent.ItemDropRules.Conditions+IsChristmas",
+    "Terraria.GameContent.ItemDropRules.Conditions+WindyEnoughForKiteDrops",
+    "Terraria.GameContent.ItemDropRules.Conditions+PumpkinMoonDropGatingChance",
+    "Terraria.GameContent.ItemDropRules.Conditions+PumpkinMoonDropGateForTrophies",
+    "Terraria.GameContent.ItemDropRules.Conditions+FrostMoonDropGatingChance",
+    "Terraria.GameContent.ItemDropRules.Conditions+FrostMoonDropGateForTrophies",
     "Terraria.GameContent.ItemDropRules.Conditions+EmpressOfLightIsGenuinelyEnraged",
     "Terraria.GameContent.ItemDropRules.Conditions+IsCorruption",
     "Terraria.GameContent.ItemDropRules.Conditions+IsCorruptionAndNotExpert",
+    "Terraria.GameContent.ItemDropRules.Conditions+IsCrimson",
+    "Terraria.GameContent.ItemDropRules.Conditions+IsCrimsonAndNotExpert",
     "Terraria.GameContent.ItemDropRules.Conditions+IsBloodMoonAndNotFromStatue",
     "Terraria.GameContent.ItemDropRules.Conditions+NotFromStatue",
+    "Terraria.GameContent.ItemDropRules.Conditions+NoPortalGun",
     "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeDropCondition"
   ]).has(type);
 }
 
 function isOneTimeUseEligibilityCondition(condition) {
   const type = condition.type ?? "";
-  const description = normalizeConditionText(condition.description);
-  return /(?:^|\+)NotUsed[A-Za-z0-9_]*$/u.test(type)
-    || /(?:has not|hasn't|not yet) (?:used (?:the )?item|consumed .+ before)|ещ[её] не (?:успел )?использова|не успел использовать предмет/u.test(description);
+  return /(?:^|\+)NotUsed[A-Za-z0-9_]*$/u.test(type);
 }
 
 function isPermanentShimmerUpgrade(item, context) {
@@ -1576,19 +1473,13 @@ function isUnavailableCondition(condition) {
 }
 
 function isDefaultExcludedVariantCondition(condition) {
-  const description = normalizeConditionText(condition.description);
   const type = condition.type ?? "";
-  if (/^not in world generation /u.test(description)
-      || /^не в генерации мира /u.test(description)) {
-    return false;
-  }
-  if (type === "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed"
+  return type === "ProgressionJournal.ZenithWorld"
+      || type === "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed"
       || type === "Terraria.GameContent.ItemDropRules.Conditions+RemixSeedEasymode"
       || type === "Terraria.GameContent.ItemDropRules.Conditions+RemixSeedHardmode"
       || type.endsWith("+Unofficial")
-      || type === "Terraria.GameContent.ItemDropRules.Conditions+DontStarveIsUp") return true;
-  return /^in (?:an? )?(?:remix|unoffifical) worlds?$/u.test(description)
-    || /zenith|get fixed boi|gfb|celebration|mk 10|don't starve|dontstarve|^в генерации мира [«"]?(?:zenith|remix|celebration|get fixed boi)|^in world generation [«"]?(?:zenith|remix|celebration|get fixed boi)/u.test(description);
+      || type === "Terraria.GameContent.ItemDropRules.Conditions+DontStarveIsUp";
 }
 
 function isSafeOpaqueDropCondition(condition, context) {
@@ -1605,78 +1496,6 @@ function isSafeOpaqueDropCondition(condition, context) {
   ]).has(context.source);
 }
 
-function conditionDependencyIds(condition, manifest) {
-  const names = extractConditionDependencyNames(condition);
-  if (names.length === 0) return [];
-  const index = manifest._itemNameIndex;
-  if (!index) return [];
-  const ids = [];
-  for (const name of names) {
-    const variants = [
-      name,
-      name.replace(/\s+upgrade$/u, ""),
-      name.replace(/^an?\s+/u, ""),
-      name.replace(/^the\s+/u, "")
-    ];
-    for (const variant of variants) {
-      const id = index.get(normalizeLookupText(variant));
-      if (id && !ids.includes(id)) ids.push(id);
-    }
-  }
-  return ids;
-}
-
-function extractConditionDependencyNames(condition) {
-  const description = normalizeConditionText(condition.description);
-  const patterns = [
-    /(?:while holding|when holding|when in inventory|when carried|when the player has|inventory contains|когда в инвентаре находится|если в инвентаре есть|при наличии)\s+(?:a |an |the )?(.+?)(?:\s+in (?:their|the) inventory)?$/u
-  ];
-  const names = [];
-  for (const pattern of patterns) {
-    const match = pattern.exec(description);
-    if (!match) continue;
-    const value = match[1]
-      .replace(/[.;]+$/u, "")
-      .replace(/^оружи[ея],?\s*/u, "")
-      .trim();
-    if (value) names.push(value);
-  }
-  if (/uses seeds as ammo|использует семена как боеприпасы/u.test(description)) {
-    names.push("Blowpipe", "Blowgun", "Блуопайп", "Духовая трубка");
-  }
-  return names;
-}
-
-function createItemNameIndex(items) {
-  const result = new Map();
-  const add = (key, id) => {
-    const normalized = normalizeLookupText(key);
-    if (normalized && !result.has(normalized)) result.set(normalized, id);
-  };
-  for (const item of items ?? []) {
-    const localId = item.id?.split("/").pop() ?? "";
-    add(item.id, item.id);
-    add(localId, item.id);
-    add(decamelize(localId), item.id);
-    for (const value of [item.name, item.displayName, item.localizedName]) add(value, item.id);
-  }
-  return result;
-}
-
-function decamelize(value) {
-  return (value ?? "")
-    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
-    .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2")
-    .replace(/_/g, " ");
-}
-
-function normalizeLookupText(value) {
-  return normalizeConditionText(value)
-    .replace(/[«»“”"']/gu, "")
-    .replace(/\s+/gu, " ")
-    .trim();
-}
-
 function applyWikiRecommendations(
   wikiProfile,
   manifest,
@@ -1686,7 +1505,8 @@ function applyWikiRecommendations(
   buffItems,
   report,
   wikiResolver,
-  itemById) {
+  itemById,
+  authoritativeVanillaBuffs) {
   if (!wikiProfile) return;
   const buffByItem = new Map(
     profileBuffs.flatMap(buff => buff.itemGroups
@@ -1778,9 +1598,8 @@ function applyWikiRecommendations(
   const profileClasses = allClasses(manifest);
   for (const [id, classes] of wikiBuffClasses) {
     const buff = buffByItem.get(id);
-    if (buff) {
-      buff.classes = profileClasses.filter(classId => classes.has(classId));
-    }
+    if (!buff || authoritativeVanillaBuffs.has(id)) continue;
+    buff.classes = profileClasses.filter(classId => classes.has(classId));
   }
 }
 
@@ -2476,7 +2295,7 @@ function collectUnknownConditionRecords(snapshot, manifest, contentMods) {
         condition
       }))),
     ...snapshot.shops
-      .filter(shop => isAllowedProfileItem(shop.item, contentMods))
+      .filter(shop => !shop.observed && isAllowedProfileItem(shop.item, contentMods))
       .flatMap(shop => (shop.conditions ?? []).map(condition => ({
         sourceKind: "shop",
         source: shop.npc,

@@ -60,6 +60,38 @@ public static partial class JournalRepository
             .ToArray();
     }
 
+    internal static IReadOnlyList<JournalStageEntry> GetEntriesForArmorSetOverview(
+        string profileId,
+        string stageId)
+    {
+        if (!JournalProfileRegistry.TryGet(profileId, out var profile))
+        {
+            if (!JournalProfileRegistry.IsLoaded
+                && string.Equals(profileId, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase))
+            {
+                return Entries.Value
+                    .Where(entry => entry.TryGetEvaluation(profileId, stageId, out _))
+                    .Select(entry => new JournalStageEntry(entry, entry.GetEvaluation(profileId, stageId)))
+                    .OrderBy(entry => JournalOrdering.GetTierOrder(entry.Evaluation.Tier))
+                    .ThenBy(entry => JournalOrdering.GetCategoryOrder(entry.Entry.Category))
+                    .ThenBy(entry => GetDisplayOrderOverride(profileId, stageId, entry.Entry.Key))
+                    .ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
+                    .ToArray();
+            }
+
+            profile = JournalProfileRegistry.Active;
+        }
+
+        return profile.Entries
+            .SelectMany(entry => CreateAllClassStageEntries(profile.Id, stageId, entry))
+            .OrderByDescending(static entry => entry.IsWikiRecommendation)
+            .ThenBy(entry => JournalOrdering.GetTierOrder(entry.Evaluation.Tier))
+            .ThenBy(entry => JournalOrdering.GetCategoryOrder(entry.Entry.Category))
+            .ThenBy(entry => GetDisplayOrderOverride(profile.Id, stageId, entry.Entry.Key))
+            .ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
+            .ToArray();
+    }
+
     private static IEnumerable<JournalStageEntry> CreateStageEntries(
         string profileId,
         string stageId,
@@ -79,6 +111,26 @@ public static partial class JournalRepository
 
         if (entry.AppliesToClass(classId)
             && entry.TryGetEvaluation(profileId, stageId, out var evaluation))
+        {
+            yield return new JournalStageEntry(entry, evaluation);
+        }
+    }
+
+    private static IEnumerable<JournalStageEntry> CreateAllClassStageEntries(
+        string profileId,
+        string stageId,
+        JournalEntry entry)
+    {
+        foreach (var wiki in entry.WikiRecommendations.Where(value =>
+                     string.Equals(value.StageId, stageId, StringComparison.OrdinalIgnoreCase)))
+        {
+            yield return new JournalStageEntry(
+                entry,
+                new StageEvaluation(stageId, RecommendationTier.FromGuide, scope: JournalEvaluationScope.StageOnly),
+                wiki);
+        }
+
+        if (entry.TryGetEvaluation(profileId, stageId, out var evaluation))
         {
             yield return new JournalStageEntry(entry, evaluation);
         }

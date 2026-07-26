@@ -666,12 +666,15 @@ public static class JournalExactDropCatalog
             new ConditionBuilder(
                 "Mods.ProgressionJournal.UI.AAModClassicDeveloperBagCondition",
                 ConditionKind.LocalizationKey,
+                []),
+            new ConditionBuilder(
+                "ProgressionJournal.Hardmode",
+                ConditionKind.Hardmode,
                 [])
         ];
         foreach (var (source, target) in new[]
                  {
                      ("AvesBag", "AvesWings"),
-                     ("BigEBag", "BigEWings"),
                      ("BlazenBag", "BlazenWings"),
                      ("CharlieBag", "CharlieWings"),
                      ("GibsBag", "GibsWings"),
@@ -689,6 +692,37 @@ public static class JournalExactDropCatalog
                 showDropRate: false,
                 includeInSnapshot: true);
         }
+
+        AddWorld(
+            builders,
+            "AAModClassic 1.0.17 BigEBag.RightClick and ZAAPlayer.ShinyCheck IL",
+            sourceName: string.Empty,
+            "AAModClassic/BigEBag",
+            "AAModClassic/BigEWings",
+            [
+                .. developerBagCondition,
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.AAModClassicBigEWingsCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ],
+            showDropRate: false,
+            includeInSnapshot: true);
+        AddWorld(
+            builders,
+            "AAModClassic 1.0.17 BigEBag.RightClick and ZAAPlayer.ShinyCheck IL",
+            sourceName: string.Empty,
+            "AAModClassic/BigEBag",
+            "AAModClassic/BigEWingsS",
+            [
+                .. developerBagCondition,
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.AAModClassicBigEWingsSCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ],
+            showDropRate: false,
+            includeInSnapshot: true);
 
         ConditionBuilder[] developerPageCondition =
         [

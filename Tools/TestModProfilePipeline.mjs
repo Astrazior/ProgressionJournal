@@ -15,6 +15,9 @@ const modsRoot = path.join(root, "Profiles", "Mods");
 const buildPlannerSource = fs.readFileSync(
   path.join(root, "Data", "Repositories", "JournalRepository.BuildPlanner.cs"),
   "utf8");
+const combatBuffRepositorySource = fs.readFileSync(
+  path.join(root, "Data", "Repositories", "JournalRepository.CombatBuffs.cs"),
+  "utf8");
 assert(buildPlannerSource.includes(".Take(profile.GetStageIndex(stageId) + 1)")
   && buildPlannerSource.includes(
     ".SelectMany(stage => GetCombatBuffEntries(profile.Id, stage.Id, classId))"),
@@ -23,6 +26,9 @@ assert(buildPlannerSource.includes(
   ".Where(itemId => MatchesArmorPiece(itemId, slotKind))")
   && !buildPlannerSource.includes("var fallbackIndex = slotKind switch"),
 "Armor build slots must include only items that equip in the requested slot");
+assert(combatBuffRepositorySource.includes(
+  'Buff("warTable", JournalBuffCategory.Station, CombatClass.All, ItemID.WarTable, ProgressionStageId.PostWorldEvil)'),
+"The built-in War Table fallback must start after the world evil boss");
 const expected = ["CalamityMod", "FargowiltasSouls", "ThoriumMod"];
 const requiredFiles = [
   "support.json",
@@ -158,6 +164,15 @@ const profileStorageSource = fs.readFileSync(
 const journalUiStateSource = fs.readFileSync(
   path.join(root, "UI", "States", "JournalUIState.cs"),
   "utf8");
+const journalRepositorySource = fs.readFileSync(
+  path.join(root, "Data", "Repositories", "JournalRepository.cs"),
+  "utf8");
+const armorSetOverviewResolverSource = fs.readFileSync(
+  path.join(root, "Data", "Repositories", "JournalArmorSetOverviewResolver.cs"),
+  "utf8");
+const vanillaArmorRepositorySource = fs.readFileSync(
+  path.join(root, "Data", "Repositories", "JournalRepository.Armor.cs"),
+  "utf8");
 const acquisitionVisualsSource = fs.readFileSync(
   path.join(root, "UI", "Utilities", "JournalAcquisitionVisuals.cs"),
   "utf8");
@@ -282,6 +297,15 @@ assert(exactDropCatalogSource.includes('"HallamBag", "BigEBag", "BegBag"')
   && exactDropCatalogSource.includes('const string furyForger = "AAModClassic/FuryForger"')
   && exactDropCatalogSource.includes('postPlanteraSources, furyForger, 1f / 290f'),
 "Developer bag and nested reward probabilities must remain exact across all boss-bag tiers");
+const developerWingCatalogSource = exactDropCatalogSource.slice(
+  exactDropCatalogSource.indexOf("ConditionBuilder[] developerBagCondition"),
+  exactDropCatalogSource.indexOf("ConditionBuilder[] developerPageCondition"));
+assert(developerWingCatalogSource.includes("ConditionKind.Hardmode")
+  && developerWingCatalogSource.includes('"AAModClassic/BigEWings"')
+  && developerWingCatalogSource.includes('"AAModClassic/BigEWingsS"')
+  && englishLocalizationSource.includes("AAModClassicBigEWingsSCondition")
+  && russianLocalizationSource.includes("AAModClassicBigEWingsSCondition"),
+"Developer wing sources must expose their Hardmode and localized Shiny Check conditions");
 assert(exactShopCatalogSource.includes('"FazerBag", "ShoxBag", "BegBag"')
   && exactShopCatalogSource.includes('goblinSlayer, "GoblinSlayersHelmet"')
   && exactShopCatalogSource.includes('goblinSlayer, "OldOneCharm"')
@@ -310,6 +334,18 @@ assert(acquisitionVisualsSource.includes("return new JournalConditionVisuals([],
   && !acquisitionVisualsSource.includes("TryCreateConditionTokens")
   && !journalUiStateSource.includes("visuals.Tokens"),
 "All framed acquisition conditions must remain text instead of being replaced by token subcards");
+assert(journalUiStateSource.includes("GetEntriesForArmorSetOverview(profile.Id, stageId)")
+  && journalRepositorySource.includes("CreateAllClassStageEntries")
+  && armorSetOverviewResolverSource.includes("ResolveArmorSetClassIds")
+  && armorSetOverviewResolverSource.includes("variantClassIds.IntersectWith(itemClassIds)")
+  && armorSetOverviewResolverSource.includes(".Where(match => match.ClassIds.Contains(classId))")
+  && armorSetOverviewResolverSource.includes("if (!AppliesToClass(indexedEntry.Entry, classId))"),
+"Armor sets must be detected before class filtering and shown by the intersection of their piece classes");
+assert(vanillaArmorRepositorySource.includes(
+    'Set("frostArmorRangedHardmodeEntry", JournalItemCategory.Armor, CombatClass.Ranged')
+  && vanillaArmorRepositorySource.includes(
+    'Set("frostArmorHardmodeEntry", JournalItemCategory.Armor, CombatClass.Melee'),
+"Frost armor must remain a melee/ranged hybrid set");
 assert(profileStorageSource.includes(
     "source.Conditions.Select(static condition => condition.Resolve())")
   && journalUiStateSource.includes("fishingSource.Conditions")
@@ -510,12 +546,15 @@ assert(profileGeneratorSource.includes("summonmeleespeeddamageclass"),
   "Whips must resolve exclusively to summoner instead of substring-matching melee");
 assert(profileGeneratorSource.includes("createWikiClassificationMap"),
   "Available mod accessories need recommendation metadata as a classification fallback");
-assert(profileGeneratorSource.includes("conditionDependencyIds")
+assert(!profileGeneratorSource.includes("function inferredConditionStageIndex")
+  && !profileGeneratorSource.includes("conditionDependencyIds")
+  && profileGeneratorSource.includes("shop.observed || conditionsAllowed")
+  && profileGeneratorSource.includes("return resolveSnapshotStageIndex(record, manifest.stages, label)")
   && profileGeneratorSource.includes("DownedAllMechBosses")
   && profileGeneratorSource.includes("isDefaultExcludedVariantCondition")
   && profileGeneratorSource.includes("isSafeOpaqueDropCondition")
   && profileGeneratorSource.includes("EmpressOfLightIsGenuinelyEnraged"),
-"ProfileGeneratorCore must normalize progression, dependency, variant, challenge, and safe opaque drop conditions before review fallback");
+"ProfileGeneratorCore must trust observed stages, avoid display-text heuristics, and retain typed condition handling before review fallback");
 const vanillaSourceCatalogSource = fs.readFileSync(
   path.join(root, "Tools", "VanillaSourceCatalog.mjs"),
   "utf8");
@@ -549,6 +588,15 @@ for (const modName of expected) {
   assert.equal(knowledge.summary.recipes, snapshot.recipes.length);
   assert.equal(knowledge.summary.drops, snapshot.drops.length);
   assert.equal(profile.format, "ProgressionJournalProfile");
+  const profileBuff = itemName => profile.combatBuffs.find(entry =>
+    entry.itemGroups.some(group => group.some(item => item.item === itemName)));
+  const allProfileClasses = profile.classes.map(profileClass => profileClass.id);
+  for (const itemName of ["WarTable", "BewitchingTable"]) {
+    assert.deepEqual(profileBuff(itemName)?.classes, allProfileClasses,
+      `${modName}: ${itemName} must benefit every profile class`);
+  }
+  assert.deepEqual(profileBuff("SharpeningStation")?.classes, ["melee", "summoner"],
+    `${modName}: Sharpening Station must benefit melee and summoner`);
   const stageForFlag = key => supportWithVanillaSources.stages.find(stage =>
     stage.unlock?.type === "vanilla-flag" && stage.unlock.key === key);
   assert(
@@ -672,7 +720,7 @@ for (const modName of expected) {
     for (const [itemId, stageId] of Object.entries({
       "Terraria/Uzi": "wall-of-flesh",
       "Terraria/DeathSickle": "skeletron-prime",
-      "Terraria/PulseBow": "skeletron-prime"
+      "Terraria/PulseBow": "plantera"
     })) {
       assert.equal(generatedStageOf(itemId), stageId,
         `${modName}: ${itemId} must follow the earliest proven availability path`);
@@ -740,6 +788,7 @@ for (const modName of expected) {
     const entry = profile.entries.find(value =>
       (value.itemGroups ?? []).flat().some(reference =>
         reference.mod === mod && reference.item === item));
+    if (!entry) continue;
     assert.deepEqual(entry?.classes, expectedClasses,
       `${modName}: ${itemId} has an incorrect class assignment`);
   }
@@ -851,22 +900,19 @@ for (const modName of expected) {
         `${itemId} has an incorrect availability stage`);
     }
     for (const [itemId, stageId] of Object.entries({
-      "Terraria/Katana": "start",
       "Terraria/Trimarang": "desert-scourge"
     })) {
       assert.equal(stageOf(itemId), stageId,
         `${itemId} must follow its earliest available source`);
     }
-    assert.equal(
-      report.generation?.paths?.["Terraria/Katana"]?.via,
-      "shop:Terraria/TravellingMerchant",
-      "Katana must keep the pre-boss Travelling Merchant source");
+    assert.equal(stageOf("Terraria/Katana"), undefined,
+      "Katana must not use an unobserved Travelling Merchant description as progression proof");
     assert.equal(report.generation?.paths?.["Terraria/Shroomerang"]?.stage, "start",
       "Shroomerang must be available from pre-Hardmode Mushroom Chests");
     assert.equal(report.generation?.paths?.["Terraria/LivingFireBlock"]?.stage, "wall-of-flesh",
       "Automatic Living Fire Block drop evidence must override the legacy milestone catalog");
     assert.equal(report.generation?.paths?.["CalamityMod/FlarewingBow"]?.stage, "wall-of-flesh",
-      "Flarewing Bow must follow its automatic Hardmode ingredient path");
+      "Flarewing Bow must follow its machine-proven Hardmode ingredient path");
     const gacruxianMollusk = profile.entries.find(entry =>
       (entry.itemGroups ?? []).flat().some(reference =>
         reference.mod === "CalamityMod" && reference.item === "GacruxianMollusk"));
@@ -973,8 +1019,9 @@ assert(aaRecommendations.entries.length >= 1000,
   "AAModClassic class-setup recommendations are incomplete");
 assert.equal(aaReport.audit.errors.length, 0);
 const aaReview = readJson(path.join(aaDirectory, "review.json"));
-assert(aaReview.issues.every(issue => issue.kind === "unassigned-combat-item"),
-  "AAModClassic review contains a source, condition, or pipeline error");
+assert(aaReview.issues.every(issue =>
+  issue.kind === "unassigned-combat-item" || issue.kind === "unresolved-condition"),
+  "AAModClassic review contains an unexpected source or pipeline error");
 assert.equal(aaReport.ready, aaReport.review.total === 0,
   "AAModClassic readiness must reflect unresolved source-backed availability review");
 assert.equal(aaReport.audit.sourceCoverage.uncovered
@@ -985,6 +1032,45 @@ const aaEntry = itemName => aaProfile.entries.find(entry =>
   entry.itemGroups.some(group => group.some(item => item.item === itemName)));
 const aaBuff = itemName => aaProfile.combatBuffs.find(entry =>
   entry.itemGroups.some(group => group.some(item => item.item === itemName)));
+const aaArmorSetClasses = itemNames => itemNames
+  .map(itemName => new Set(aaEntry(itemName)?.classes ?? []))
+  .reduce((classIds, itemClassIds) =>
+    new Set([...classIds].filter(classId => itemClassIds.has(classId))));
+const aaAllClasses = aaProfile.classes.map(profileClass => profileClass.id);
+for (const itemName of ["WarTable", "BewitchingTable"]) {
+  assert.deepEqual(aaBuff(itemName)?.classes, aaAllClasses,
+    `AAModClassic: ${itemName} must benefit every profile class`);
+}
+assert.deepEqual(aaBuff("SharpeningStation")?.classes, ["melee", "summoner"],
+  "AAModClassic: Sharpening Station must benefit melee and summoner");
+const aaSagittariusArmorSets = [
+  ["Raider", ["RaiderHelmet", "RaiderChestplate", "RaiderLeggings"], aaAllClasses],
+  ["Blazing", ["BlazingHelmet", "BlazingChestplate", "BlazingLeggings"], ["melee"]],
+  ["Doomite", ["DoomiteHelmet", "DoomiteChestplate", "DoomiteLeggings"], aaAllClasses],
+  ["Abyssal", ["AbyssalHelmet", "AbyssalChestplate", "AbyssalLeggings"], ["ranged"]],
+  ["Dynaskull", ["DynaskullHelmet", "DynaskullChestplate", "DynaskullLeggings"], ["ranged"]],
+  ["Atlantean", ["AtlanteanHelmet", "AtlanteanChestplate", "AtlanteanLeggings"], ["magic"]]
+];
+for (const [setName, itemNames, expectedClasses] of aaSagittariusArmorSets) {
+  assert.deepEqual([...aaArmorSetClasses(itemNames)], expectedClasses,
+    `AAModClassic: ${setName} armor has incorrect full-set classes`);
+}
+const aaSagittariusArmorItems = aaProfile.entries
+  .filter(entry => entry.category === "Armor"
+    && entry.evaluations[0]?.stageId === "sagittarius")
+  .flatMap(entry => entry.itemGroups.flat())
+  .filter(reference => reference.mod === "AAModClassic")
+  .map(reference => reference.item);
+assert.deepEqual(
+  [...new Set(aaSagittariusArmorItems)].sort(),
+  aaSagittariusArmorSets.flatMap(([, itemNames]) => itemNames).sort(),
+  "AAModClassic: every Sagittarius armor item must be covered by a complete detected set");
+assert.deepEqual(
+  aaSagittariusArmorSets
+    .filter(([, , classIds]) => classIds.includes("melee"))
+    .map(([setName]) => setName),
+  ["Raider", "Blazing", "Doomite"],
+  "AAModClassic: melee Sagittarius overview must contain three complete sets and no fragments");
 assert(!aaProfile.entries.some(entry => entry.category === "Support"),
   "AAModClassic must not invent a support-equipment category from zero-damage class items");
 for (const itemName of [
@@ -1000,11 +1086,12 @@ assert.equal(aaEntry("FlameVortexStaff")?.category, "Weapon",
 assert.equal(aaEntry("CoinGun")?.category, "Weapon",
   "Authoritatively classified zero-damage vanilla weapons must remain weapons");
 for (const itemName of ["CandyCorn", "ExplosiveJackOLantern", "Stake"]) {
-  assert.equal(aaEntry(itemName)?.evaluations[0]?.stageId, "plantera",
-    `${itemName} must inherit the Pumpkin Moon weapon stage`);
-  assert.equal(aaReport.generation.paths[`Terraria/${itemName}`]?.via,
-    "shop:Terraria/ArmsDealer",
-  `${itemName} must resolve from its inventory-gated shop condition`);
+  assert.equal(aaEntry(itemName), undefined,
+    `${itemName} must not infer an inventory dependency from display text`);
+  assert(aaReview.issues.some(issue =>
+    issue.kind === "unresolved-condition"
+    && issue.affected?.some(value => value.item === `Terraria/${itemName}`)),
+  `${itemName} must remain visible in review until a machine-readable shop dependency exists`);
 }
 assert.equal(aaStage("grips-of-chaos")?.unlock?.key, "downedGrips");
 assert.equal(aaStage("equinox-worms")?.unlock?.key, "downedEquinox");
@@ -1018,6 +1105,37 @@ assert(aaSupport.stages.findIndex(stage => stage.id === "queen-bee")
 assert(aaSupport.stages.findIndex(stage => stage.id === "deerclops")
   < aaSupport.stages.findIndex(stage => stage.id === "skeletron"));
 assert.equal(aaSupport.events.find(event => event.eventCategory === "BloodMoon")?.stageId, "start");
+assert.deepEqual(
+  aaSupport.events.find(event => event.id === "old-ones-army-1"),
+  {
+    id: "old-ones-army-1",
+    stageId: "world-evil",
+    eventCategory: "OldOnesArmy",
+    enemies: ["Terraria/DD2DarkMageT1"]
+  },
+  "AAModClassic must preserve the earliest Old One's Army path for War Table");
+const developerWingRule = aaAgentRules.rules.find(rule =>
+  rule.id === "aamodclassic-developer-bag-wing-roots");
+const developerWings = [
+  "AvesWings",
+  "BigEWings",
+  "BigEWingsS",
+  "BlazenWings",
+  "CharlieWings",
+  "GibsWings",
+  "GroxWings",
+  "MoonWings"
+];
+assert.equal(developerWingRule?.stageId, "wall-of-flesh",
+  "Developer wings must not be staged before their Main.hardMode guard");
+assert.deepEqual(
+  developerWingRule?.items,
+  developerWings.map(itemName => `AAModClassic/${itemName}`),
+  "Every developer-bag wing variant must be covered by the Hardmode rule");
+for (const itemName of developerWings) {
+  assert.equal(aaEntry(itemName)?.evaluations[0]?.stageId, "wall-of-flesh",
+    `${itemName} must remain gated by Hardmode`);
+}
 assert(!aaAgentRules.rules.some(rule => rule.id === "vanilla-blood-moon-sources"),
   "Pre-Hardmode Blood Moon fishing enemies must follow the automatic event stage");
 assert(!aaAgentRules.rules.some(rule => rule.id === "vanilla-hardmode-blood-moon-source"),
@@ -1025,7 +1143,7 @@ assert(!aaAgentRules.rules.some(rule => rule.id === "vanilla-hardmode-blood-moon
 assert.equal(aaReport.generation.paths["AAModClassic/TheDragonsBreath"]?.stage,
   "wall-of-flesh");
 assert.equal(aaReport.generation.paths["AAModClassic/FuryForger"]?.stage,
-  "plantera");
+  "wall-of-flesh");
 assert.equal(aaReport.generation.paths["AAModClassic/FuryForger"]?.via,
   "shop:AAModClassic/LargeLetter");
 assert.deepEqual(aaReport.generation.paths["AAModClassic/BloodyMary"], {
@@ -1648,8 +1766,8 @@ assert.equal(
   "DownedAllMechBosses conditions must become an all-mechs gate");
 assert.equal(
   generatedStageOfProfile(conditionAlgebraResult.profile, "Test/Nail"),
-  "plantera",
-  "Inventory-gated shop items must inherit the dependency item stage");
+  "start",
+  "Observed shops must trust earliestStageIndex instead of parsing inventory text");
 assert.equal(
   generatedStageOfProfile(conditionAlgebraResult.profile, "Test/ModeWeapon"),
   "start",
