@@ -32,8 +32,10 @@ public sealed class JournalCombatBuffPanel : JournalVolumetricPanel
         _onItemSelected = onItemSelected;
         _onAddCategory = onAddCategory;
         SetPadding(0f);
-        BackgroundColor = JournalUiTheme.PresetPanelBackground;
-        BorderColor = JournalUiTheme.PresetPanelBorder;
+        var palette = JournalUiTheme.GetRecommendationBlockStyle(RecommendationTier.FromGuide);
+        BackgroundColor = palette.Background;
+        BorderColor = palette.Border;
+        PreservePalette = true;
     }
 
     public bool HasEntries { get; private set; }
