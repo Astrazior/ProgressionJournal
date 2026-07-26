@@ -3141,13 +3141,23 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             var capturedStageId = stage.Id;
             var button = JournalUiElementFactory.CreateStageButton(() => JournalSystem.SelectStage(capturedStageId));
             button.Left.Set(0f, 0f);
-            button.Width.Set(-JournalUiMetrics.StageButtonColumnGap * 0.5f, 0.5f);
+            button.Width.Set(
+                -(JournalUiMetrics.StageButtonColumnGap + JournalUiMetrics.StageButtonRightSafeInset) * 0.5f,
+                0.5f);
             button.Height.Set(JournalUiMetrics.StageButtonDefaultHeight, 0f);
             _stageButtons[capturedStageId] = button;
             buttons.Add(button);
         }
 
         _stageListContainer.AddRange(buttons);
+        var bottomSpacer = new UIElement
+        {
+            IgnoresMouseInteraction = true
+        };
+        bottomSpacer.Width.Set(0f, 1f);
+        bottomSpacer.Height.Set(JournalUiMetrics.StageListBottomContentPadding, 0f);
+        _stageListContainer.Add(bottomSpacer);
+
         if (_stageButtons.TryGetValue(selectedStageId, out var selectedButton))
         {
             _stageListContainer.Goto(
