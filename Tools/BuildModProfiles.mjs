@@ -240,8 +240,7 @@ export function createItemAudit(snapshot, profile, generationReport, support) {
         status,
         stage,
         via,
-        reason,
-        evidence: pathInfo?.evidence ?? null
+        reason
       };
     })
     .sort((left, right) => left.id.localeCompare(right.id));
@@ -249,7 +248,7 @@ export function createItemAudit(snapshot, profile, generationReport, support) {
 
   return {
     format: "ProgressionJournalItemAudit",
-    version: 2,
+    version: 1,
     targetMod: snapshot.targetMod ?? support.targetMod,
     profileId: profile.id ?? support.id,
     generatedAtUtc: new Date().toISOString(),
@@ -288,7 +287,7 @@ function validateSupport(support, directoryName) {
 
 function validateSnapshot(snapshot, support) {
   assert(snapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot.json format.");
-  assert([4, 5, 6, 7].includes(snapshot.version),
+  assert([4, 5, 6].includes(snapshot.version),
     `Unsupported snapshot.json version '${snapshot.version}'.`);
   const target = snapshot.targetMod ?? support.targetMod;
   assert(target === support.targetMod,

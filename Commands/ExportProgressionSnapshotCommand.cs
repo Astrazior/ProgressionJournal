@@ -4,7 +4,6 @@ using ProgressionJournal.Data.Snapshots.Collectors;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
@@ -15,9 +14,6 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
     private static readonly MethodInfo? PlayerLoaderSetupPlayerMethod = typeof(PlayerLoader).GetMethod(
         "SetupPlayer",
         BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-    private static IReadOnlyDictionary<string, string> ItemReferencesByLocalizationKey =
-        new Dictionary<string, string>(StringComparer.Ordinal);
-
     public override CommandType Type => CommandType.Chat;
 
     public override string Command => "pjexport";
@@ -69,7 +65,6 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         var itemIds = Enumerable.Range(1, ItemLoader.ItemCount - 1)
             .Where(itemId => includedMods.Contains(GetItemModName(itemId)))
             .ToHashSet();
-        ItemReferencesByLocalizationKey = BuildItemReferencesByLocalizationKey(itemIds);
         var npcIds = Enumerable.Range(1, NPCLoader.NPCCount - 1)
             .Where(npcId => includedMods.Contains(GetNpcModName(npcId)))
             .ToHashSet();
@@ -646,73 +641,13 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
     {
         if (condition is null)
         {
-            return new SnapshotCondition(string.Empty, string.Empty, string.Empty, []);
+            return new SnapshotCondition(string.Empty, string.Empty);
         }
 
-        var localizedDescription = condition is Terraria.Condition runtimeCondition
-            ? runtimeCondition.Description
-            : GetReflectedLocalizedText(condition);
         var description = condition is IProvideItemConditionDescription provider
             ? provider.GetConditionDescription()
-            : localizedDescription?.Value ?? GetReflectedConditionDescription(condition);
-        return new SnapshotCondition(
-            condition.GetType().FullName ?? condition.GetType().Name,
-            description,
-            localizedDescription?.Key ?? string.Empty,
-            CreateConditionFacts(localizedDescription));
-    }
-
-    private static LocalizedText? GetReflectedLocalizedText(object condition)
-    {
-        return condition.GetType()
-            .GetProperty("Description", BindingFlags.Public | BindingFlags.Instance)
-            ?.GetValue(condition) as LocalizedText;
-    }
-
-    private static List<SnapshotConditionFact> CreateConditionFacts(LocalizedText? description)
-    {
-        if (description?.Key != "Conditions.PlayerCarriesItem")
-        {
-            return [];
-        }
-
-        foreach (var argument in description.BoundArgs)
-        {
-            if (argument is LocalizedText itemName
-                && ItemReferencesByLocalizationKey.TryGetValue(itemName.Key, out var itemReference))
-            {
-                return [new SnapshotConditionFact("item-owned", itemReference)];
-            }
-
-            if (argument is int itemId && itemId > ItemID.None && itemId < ItemLoader.ItemCount)
-            {
-                return [new SnapshotConditionFact("item-owned", GetItemReference(itemId))];
-            }
-        }
-
-        return [];
-    }
-
-    private static IReadOnlyDictionary<string, string> BuildItemReferencesByLocalizationKey(
-        IEnumerable<int> itemIds)
-    {
-        return itemIds
-            .Select(itemId => new
-            {
-                Key = Lang.GetItemName(itemId).Key,
-                Reference = GetItemReference(itemId)
-            })
-            .Where(value => !string.IsNullOrWhiteSpace(value.Key))
-            .GroupBy(value => value.Key, StringComparer.Ordinal)
-            // Ambiguous localization keys are deliberately omitted: an unresolved
-            // condition is safer than silently binding it to the wrong item.
-            .Where(group => group.Select(value => value.Reference)
-                .Distinct(StringComparer.Ordinal)
-                .Count() == 1)
-            .ToDictionary(
-                group => group.Key,
-                group => group.First().Reference,
-                StringComparer.Ordinal);
+            : GetReflectedConditionDescription(condition);
+        return new SnapshotCondition(condition.GetType().FullName ?? condition.GetType().Name, description);
     }
 
     private static string GetReflectedConditionDescription(object condition)
@@ -791,7 +726,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
 public sealed class ProgressionSnapshot
 {
     public string Format { get; set; } = "ProgressionJournalSnapshot";
-    public int Version { get; set; } = 7;
+    public int Version { get; set; } = 6;
     public string GeneratedAtUtc { get; set; } = string.Empty;
     public string TargetMod { get; set; } = string.Empty;
     public string ProfileId { get; set; } = string.Empty;
@@ -865,12 +800,7 @@ public sealed record SnapshotClassEffect(
     bool Knockback);
 public sealed record SnapshotNpc(string Id, string Name, bool Boss, int BossHeadSlot);
 public sealed record SnapshotStack(string Item, int Stack);
-public sealed record SnapshotCondition(
-    string Type,
-    string Description,
-    string Key = "",
-    List<SnapshotConditionFact>? Facts = null);
-public sealed record SnapshotConditionFact(string Kind, string Item);
+public sealed record SnapshotCondition(string Type, string Description);
 public sealed record SnapshotRecipe(
     string Result,
     int ResultStack,

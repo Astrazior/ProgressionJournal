@@ -62,7 +62,7 @@ const equivalentVariantGroups = [
 ];
 const snapshot = {
   format: "ProgressionJournalSnapshot",
-  version: 7,
+  version: 5,
   mods: [{ name: "Test", version: "1.2.3" }],
   items: [
     item("Test/Ore"),
@@ -491,9 +491,7 @@ const snapshot = {
       earliestStageName: "Boss",
       conditions: [{
         type: "Terraria.Condition",
-        description: "Opaque inventory condition",
-        key: "Conditions.PlayerCarriesItem",
-        facts: [{ kind: "item-owned", item: "Test/ObservedAmmoWeapon" }]
+        description: "Opaque inventory condition"
       }]
     },
     {
@@ -863,10 +861,6 @@ assert(profile.entries.some(entry =>
   && entry.evaluations[0].stageId === "boss"));
 assert.equal(report.paths["Test/ObservedAmmoWeapon"]?.stage, "late");
 assert.equal(report.paths["Test/ObservedAmmo"]?.stage, "late");
-assert.equal(report.paths["Test/ObservedAmmo"]?.evidence?.kind, "observed-shop");
-assert.deepEqual(
-  report.paths["Test/ObservedAmmo"]?.evidence?.conditions[0]?.facts,
-  [{ kind: "item-owned", item: "Test/ObservedAmmoWeapon" }]);
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "ClassTool"
   && entry.category === "Support"));
