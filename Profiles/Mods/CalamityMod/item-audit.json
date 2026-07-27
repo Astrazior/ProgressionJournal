@@ -3,21 +3,21 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-26T21:57:33.308Z",
+  "generatedAtUtc": "2026-07-27T12:12:23.252Z",
   "snapshotGeneratedAtUtc": "2026-07-18T12:22:48.4718500Z",
   "summary": {
     "snapshotItems": 8126,
     "contentItems": 2671,
-    "profileEntries": 1882,
-    "profileBuffEntries": 220,
-    "profileItemReferences": 2162,
-    "equipmentReferences": 1942,
-    "buffReferences": 220,
+    "profileEntries": 1887,
+    "profileBuffEntries": 222,
+    "profileItemReferences": 2169,
+    "equipmentReferences": 1947,
+    "buffReferences": 222,
     "excluded": 3615,
     "acquiredNonProfile": 127,
     "unresolvedAvailability": 5,
     "unavailableCombat": 2,
-    "noAcquisitionPath": 2215
+    "noAcquisitionPath": 2208
   },
   "items": [
     {
@@ -1195,10 +1195,10 @@
       "name": "Alpha Draconis",
       "mod": "CalamityMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "polterghast",
+      "via": "recipe:CalamityMod/WyvernsCall+CalamityMod/Lumenyl+CalamityMod/RuinousSoul+CalamityMod/ExodiumCluster",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "CalamityMod/AltarOfTheAccursedItem",
@@ -3895,10 +3895,10 @@
       "name": "Bacon Oil",
       "mod": "CalamityMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "shop:CalamityMod/ShadySalesman",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "CalamityMod/BadgeofBravery",
@@ -4476,7 +4476,7 @@
       "mod": "CalamityMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "cryogen",
+      "stage": "devourer-of-gods",
       "via": "shop:CalamityMod/Archmage",
       "reason": "Included in the generated profile."
     },
@@ -16275,10 +16275,10 @@
       "name": "Omniblade",
       "mod": "CalamityMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "golem",
+      "via": "recipe:Terraria/Katana+CalamityMod/LifeAlloy+CalamityMod/CoreofCalamity",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "CalamityMod/OmniGun",
@@ -21205,10 +21205,10 @@
       "name": "Sky Glaze",
       "mod": "CalamityMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "npc:Terraria/Harpy",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "CalamityMod/SkylineWings",
@@ -24165,10 +24165,10 @@
       "name": "The Sandwich",
       "mod": "CalamityMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "start",
+      "via": "shop:CalamityMod/ShadySalesman",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "CalamityMod/TheSevensStriker",
@@ -26545,10 +26545,10 @@
       "name": "Wyvern's Call",
       "mod": "CalamityMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "destroyer",
+      "via": "recipe:CalamityMod/SkyGlaze+Terraria/MythrilBar+Terraria/SoulofFlight",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "CalamityMod/XyksBlessingBlue",
@@ -52265,10 +52265,10 @@
       "name": "Katana",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "start",
+      "via": "shop:Terraria/TravellingMerchant",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Keg",

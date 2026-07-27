@@ -719,7 +719,9 @@
       "conditionTypes": [
         "Terraria.GameContent.ItemDropRules.Conditions+IsHardmode"
       ],
-      "conditionDescriptions": [],
+      "conditionDescriptions": [
+        "In hardmode"
+      ],
       "sourceUrl": "https://terraria.wiki.gg/wiki/Hardmode",
       "sourceVersion": "Terraria 1.4.4.9",
       "checkedAt": "2026-06-14",
@@ -822,7 +824,12 @@
         "Crawdads cannot spawn in the world",
         "Giant Shellys cannot spawn in the world",
         "Salamanders cannot spawn in the world",
-        "Player has 20 or more total inspiration"
+        "Player has 20 or more total inspiration",
+        "During a waning gibbous moon",
+        "When the Bestiary has been filled to at least 40%",
+        "Between 4:30 AM and 12:00 PM",
+        "In a world with The Crimson",
+        "In a world with The Corruption"
       ],
       "sourceUrl": "https://terraria.wiki.gg/wiki/NPCs",
       "sourceVersion": "Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
@@ -1367,6 +1374,78 @@
       "sourceVersion": "Thorium Mod 1.7.2.6 snapshot and Ocean Crystal tile source",
       "checkedAt": "2026-07-26",
       "reason": "Crystal Wave drops from naturally generated Ocean Crystals in the Aquatic Depths; shimmer then converts it into Astral Wave."
+    },
+    {
+      "id": "travelling-merchant-post-destroyer-stock",
+      "stageId": "destroyer",
+      "sourceIds": [
+        "Terraria/TravellingMerchant"
+      ],
+      "conditionDescriptions": [
+        "After defeating The Destroyer"
+      ],
+      "reason": "This exact Travelling Merchant stock condition requires The Destroyer to have been defeated.",
+      "kind": "condition-stage",
+      "sources": [
+        "shop"
+      ],
+      "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+      "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-07-27"
+    },
+    {
+      "id": "travelling-merchant-post-twins-stock",
+      "stageId": "twins",
+      "sourceIds": [
+        "Terraria/TravellingMerchant"
+      ],
+      "conditionDescriptions": [
+        "After defeating The Twins"
+      ],
+      "reason": "This exact Travelling Merchant stock condition requires The Twins to have been defeated.",
+      "kind": "condition-stage",
+      "sources": [
+        "shop"
+      ],
+      "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+      "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-07-27"
+    },
+    {
+      "id": "travelling-merchant-post-prime-stock",
+      "stageId": "skeletron-prime",
+      "sourceIds": [
+        "Terraria/TravellingMerchant"
+      ],
+      "conditionDescriptions": [
+        "After defeating Skeletron Prime"
+      ],
+      "reason": "This exact Travelling Merchant stock condition requires Skeletron Prime to have been defeated.",
+      "kind": "condition-stage",
+      "sources": [
+        "shop"
+      ],
+      "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+      "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
+      "checkedAt": "2026-07-27"
+    },
+    {
+      "id": "princess-post-empress-stock",
+      "kind": "condition-stage",
+      "stageId": "empress-of-light",
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "Terraria/Princess"
+      ],
+      "conditionDescriptions": [
+        "After defeating Empress of Light"
+      ],
+      "sourceUrl": "https://github.com/Thorium-Mod/ThoriumMod/tree/1.7.2.6",
+      "sourceVersion": "Thorium Mod 1.7.2.5 snapshot / repository 1.7.2.6",
+      "checkedAt": "2026-07-27",
+      "reason": "Chromatic Fury is Princess stock explicitly gated by Empress of Light."
     }
   ],
   "ignoredItems": [

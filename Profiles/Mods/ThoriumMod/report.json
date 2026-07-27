@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-07-26T21:57:41.067Z",
+  "generatedAtUtc": "2026-07-27T12:12:35.634Z",
   "snapshot": {
     "version": 6,
     "generatedAtUtc": "2026-07-18T12:41:20.8818076Z",
@@ -16,7 +16,7 @@
     ]
   },
   "agentRules": {
-    "rules": 89,
+    "rules": 93,
     "ignoredItems": 5,
     "ignoredIssues": 2,
     "evidence": [
@@ -642,6 +642,34 @@
         "sourceVersion": "Thorium Mod 1.7.2.6 snapshot and Ocean Crystal tile source",
         "checkedAt": "2026-07-26",
         "reason": "Crystal Wave drops from naturally generated Ocean Crystals in the Aquatic Depths; shimmer then converts it into Astral Wave."
+      },
+      {
+        "id": "travelling-merchant-post-destroyer-stock",
+        "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+        "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
+        "checkedAt": "2026-07-27",
+        "reason": "This exact Travelling Merchant stock condition requires The Destroyer to have been defeated."
+      },
+      {
+        "id": "travelling-merchant-post-twins-stock",
+        "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+        "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
+        "checkedAt": "2026-07-27",
+        "reason": "This exact Travelling Merchant stock condition requires The Twins to have been defeated."
+      },
+      {
+        "id": "travelling-merchant-post-prime-stock",
+        "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+        "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9; Thorium Mod 1.7.2.5",
+        "checkedAt": "2026-07-27",
+        "reason": "This exact Travelling Merchant stock condition requires Skeletron Prime to have been defeated."
+      },
+      {
+        "id": "princess-post-empress-stock",
+        "sourceUrl": "https://github.com/Thorium-Mod/ThoriumMod/tree/1.7.2.6",
+        "sourceVersion": "Thorium Mod 1.7.2.5 snapshot / repository 1.7.2.6",
+        "checkedAt": "2026-07-27",
+        "reason": "Chromatic Fury is Princess stock explicitly gated by Empress of Light."
       },
       {
         "id": "unobtainable-legacy-items",
@@ -1881,16 +1909,16 @@
         }
       ],
       "stageComparison": {
-        "compared": 2293,
+        "compared": 2302,
         "moved": 0
       }
     }
   },
   "review": {
-    "total": 78,
+    "total": 60,
     "byKind": {
-      "unassigned-combat-item": 35,
-      "unresolved-condition": 43
+      "unassigned-combat-item": 26,
+      "unresolved-condition": 34
     }
   },
   "audit": {
@@ -6633,7 +6661,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.thorium",
-    "generatedAtUtc": "2026-07-26T21:57:36.922Z",
+    "generatedAtUtc": "2026-07-27T12:12:27.429Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -7210,24 +7238,6 @@
         "condition": {
           "type": "Terraria.Condition",
           "description": "During a Lantern Night"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/PartyGirl",
-        "item": "Terraria/PartyGirlGrenade",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "When the player has a Happy Grenade in their inventory"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/PartyGirl",
-        "item": "Terraria/ConfettiCannon",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "When the Pirate is present"
         }
       },
       {
@@ -8340,15 +8350,6 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/BestiaryGirl",
-        "item": "Terraria/RabbitOrder",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "When the Bestiary has been filled to at least 40%"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/BestiaryGirl",
         "item": "Terraria/TreeGlobe",
         "condition": {
           "type": "Terraria.Condition",
@@ -8547,33 +8548,6 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/WoodenBoomerang",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a full moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/Umbrella",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a waning gibbous moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/WandofSparking",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a third quarter moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
         "item": "Terraria/MagicDagger",
         "condition": {
           "type": "Terraria.Condition",
@@ -8592,24 +8566,6 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/Aglet",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a new moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/ClimbingClaws",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a waxing crescent moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
         "item": "Terraria/CordageGuide",
         "condition": {
           "type": "Terraria.Condition",
@@ -8619,28 +8575,10 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/Radar",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a waxing gibbous moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
         "item": "Terraria/StrangeBrew",
         "condition": {
           "type": "Terraria.Condition",
           "description": "During a full, third quarter, new or first quarter moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/LesserHealingPotion",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a gibbous or crescent moon"
         }
       },
       {
@@ -8664,25 +8602,7 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/Glowstick",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During daytime, during any moon phase except full"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
         "item": "Terraria/BoneTorch",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "Periodically"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/Torch",
         "condition": {
           "type": "Terraria.Condition",
           "description": "Periodically"
@@ -8695,15 +8615,6 @@
         "condition": {
           "type": "Terraria.Condition",
           "description": "During a full, waning gibbous, new or waxing crescent moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/WoodenArrow",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a third quarter, waning crescent, first quarter or waxing gibbous moon"
         }
       },
       {
@@ -8758,24 +8669,6 @@
         "condition": {
           "type": "Terraria.Condition",
           "description": "When the player has not consumed an Artisan Loaf before"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/TravellingMerchant",
-        "item": "Terraria/PulseBow",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "After defeating The Destroyer"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/TravellingMerchant",
-        "item": "Terraria/Revolver",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "After smashing a Shadow Orb or Crimson Heart"
         }
       },
       {
@@ -8881,33 +8774,6 @@
         "sourceKind": "shop",
         "source": "ThoriumMod/Cobbler",
         "item": "ThoriumMod/CrashBoots",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "After defeating Eater of Worlds or Brain of Cthulhu"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "ThoriumMod/Cobbler",
-        "item": "Terraria/IceSkates",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "After defeating Deerclops"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "ThoriumMod/Cobbler",
-        "item": "Terraria/FlowerBoots",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "Corpse Bloom has been defeated"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "ThoriumMod/Cobbler",
-        "item": "Terraria/Aglet",
         "condition": {
           "type": "Terraria.Condition",
           "description": "After defeating Eater of Worlds or Brain of Cthulhu"
@@ -9519,33 +9385,6 @@
       {
         "sourceKind": "shop",
         "source": "ThoriumMod/Cook",
-        "item": "ThoriumMod/StackofPancakes",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "Between 4:30 AM and 12:00 PM"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "ThoriumMod/Cook",
-        "item": "ThoriumMod/QuestionableStew",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a world with The Corruption"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "ThoriumMod/Cook",
-        "item": "ThoriumMod/ObjectionableStock",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a world with The Crimson"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "ThoriumMod/Cook",
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
@@ -9694,15 +9533,6 @@
         "condition": {
           "type": "Terraria.Condition",
           "description": "When the vendor is happy enough to sell pylons"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Dryad",
-        "item": "Terraria/ViciousPowder",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a Blood Moon"
         }
       },
       {
@@ -10580,42 +10410,6 @@
       },
       {
         "sourceKind": "shop",
-        "source": "ThoriumMod/Cobbler",
-        "item": "Terraria/SailfishBoots",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Ocean biome"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "ThoriumMod/Cobbler",
-        "item": "Terraria/FlurryBoots",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Snow biome"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "ThoriumMod/Cobbler",
-        "item": "Terraria/SandBoots",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Desert biome"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "ThoriumMod/Cobbler",
-        "item": "Terraria/HermesBoots",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "Player is not in Map.Biome.Ocean, Map.Biome.Snow, Map.Biome.Desert"
-        }
-      },
-      {
-        "sourceKind": "shop",
         "source": "Terraria/Clothier",
         "item": "Terraria/ClownHat",
         "condition": {
@@ -10657,15 +10451,6 @@
         "condition": {
           "type": "Terraria.Condition",
           "description": "After defeating the Frost Legion"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Clothier",
-        "item": "Terraria/HunterCloak",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "When the player has a golf score of 2000 or more"
         }
       },
       {
@@ -10909,24 +10694,6 @@
         "condition": {
           "type": "Terraria.Condition",
           "description": "During a Blood Moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/BestiaryGirl",
-        "item": "ThoriumMod/SnarkyGun",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "When the Bestiary has been filled to at least 40%"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/HealingPotion",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a gibbous or crescent moon"
         }
       },
       {
@@ -11301,28 +11068,10 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/Steampunker",
-        "item": "Terraria/FleshCloningVaat",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a world with The Crimson"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Steampunker",
         "item": "Terraria/SkyMill",
         "condition": {
           "type": "Terraria.Condition",
           "description": "In the Sky"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Steampunker",
-        "item": "Terraria/LivingLoom",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "When the player has a Living Wood Wand in their inventory"
         }
       },
       {
@@ -11446,15 +11195,6 @@
         "sourceKind": "recipe",
         "source": "Terraria/MetalShelf",
         "item": "Terraria/MetalShelf",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Graveyard biome"
-        }
-      },
-      {
-        "sourceKind": "recipe",
-        "source": "Terraria/FleshCloningVaat",
-        "item": "Terraria/FleshCloningVaat",
         "condition": {
           "type": "Terraria.Condition",
           "description": "In a Graveyard biome"
@@ -11589,15 +11329,6 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/Cyborg",
-        "item": "Terraria/NightVisionHelmet",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "After defeating the Martians"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Cyborg",
         "item": "Terraria/PortalGunStation",
         "condition": {
           "type": "Terraria.Condition",
@@ -11692,96 +11423,6 @@
         "condition": {
           "type": "Terraria.Condition",
           "description": "After defeating Moon Lord"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/SlimeStaff",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/HeartLantern",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/FlaskofParty",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/SandstorminaBottle",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/Terragrim",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/PirateStaff",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/DiscountCard",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/LuckyCoin",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/CoinGun",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "ThoriumMod/ChromaticFury",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "After defeating Empress of Light"
         }
       },
       {
@@ -13284,6 +12925,11 @@
       {
         "stage": "start",
         "id": "Terraria/LicenseCat",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/RabbitOrder",
         "reason": "not combat equipment"
       },
       {
@@ -25618,6 +25264,11 @@
       },
       {
         "stage": "destroyer",
+        "id": "Terraria/FleshCloningVaat",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
         "id": "Terraria/LesionStation",
         "reason": "not combat equipment"
       },
@@ -30966,6 +30617,10 @@
         "stage": "start",
         "via": "shop:Terraria/Stylist"
       },
+      "Terraria/Umbrella": {
+        "stage": "start",
+        "via": "shop:Terraria/SkeletonMerchant"
+      },
       "ThoriumMod/Trapper": {
         "stage": "start",
         "via": "shop:Terraria/SkeletonMerchant"
@@ -32318,6 +31973,10 @@
         "stage": "start",
         "via": "recipe:ThoriumMod/AquaiteBar+ThoriumMod/DepthScale"
       },
+      "ThoriumMod/Bellerose": {
+        "stage": "start",
+        "via": "recipe:Terraria/GoldBar+Terraria/Obsidian+Terraria/Umbrella"
+      },
       "ThoriumMod/LifeQuartzClaymore": {
         "stage": "start",
         "via": "recipe:Terraria/LifeCrystal+ThoriumMod/LifeQuartz"
@@ -32954,6 +32613,10 @@
         "stage": "king-slime",
         "via": "npc:Terraria/KingSlime"
       },
+      "ThoriumMod/StackofPancakes": {
+        "stage": "king-slime",
+        "via": "shop:ThoriumMod/Cook"
+      },
       "ThoriumMod/CherryPie": {
         "stage": "king-slime",
         "via": "shop:ThoriumMod/Cook"
@@ -32995,6 +32658,14 @@
         "via": "shop:ThoriumMod/Cook"
       },
       "ThoriumMod/PricklyJam": {
+        "stage": "king-slime",
+        "via": "shop:ThoriumMod/Cook"
+      },
+      "ThoriumMod/QuestionableStew": {
+        "stage": "king-slime",
+        "via": "shop:ThoriumMod/Cook"
+      },
+      "ThoriumMod/ObjectionableStock": {
         "stage": "king-slime",
         "via": "shop:ThoriumMod/Cook"
       },
@@ -35134,6 +34805,10 @@
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/ArmsDealer"
       },
+      "ThoriumMod/SnarkyGun": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/BestiaryGirl"
+      },
       "Terraria/YoYoGlove": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/SkeletonMerchant"
@@ -36906,6 +36581,10 @@
         "stage": "skeletron-prime",
         "via": "shop:Terraria/PartyGirl"
       },
+      "Terraria/PulseBow": {
+        "stage": "skeletron-prime",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
       "ThoriumMod/SnotBall": {
         "stage": "skeletron-prime",
         "via": "shop:ThoriumMod/ConfusedZombie"
@@ -38462,6 +38141,10 @@
         "stage": "plantera",
         "via": "recipe:Terraria/Keybrand+ThoriumMod/HolyKnightsAlloy+Terraria/DarkShard"
       },
+      "ThoriumMod/ShadowFlareBow": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/ShadowbeamStaff+Terraria/PulseBow"
+      },
       "ThoriumMod/StrawberryHeart": {
         "stage": "plantera",
         "via": "recipe:ThoriumMod/IllumiteIngot+Terraria/PixieDust+ThoriumMod/LifeQuartz"
@@ -39030,6 +38713,10 @@
       "Terraria/EmpressBlade": {
         "stage": "empress-of-light",
         "via": "npc:Terraria/HallowBoss"
+      },
+      "ThoriumMod/ChromaticFury": {
+        "stage": "empress-of-light",
+        "via": "shop:Terraria/Princess"
       },
       "Terraria/EmpressFlightBooster": {
         "stage": "empress-of-light",
@@ -41242,6 +40929,10 @@
         "via": "shop:Terraria/BestiaryGirl"
       },
       "Terraria/LicenseCat": {
+        "stage": "start",
+        "via": "shop:Terraria/BestiaryGirl"
+      },
+      "Terraria/RabbitOrder": {
         "stage": "start",
         "via": "shop:Terraria/BestiaryGirl"
       },
@@ -51286,6 +50977,10 @@
         "stage": "destroyer",
         "via": "shop:Terraria/Steampunker"
       },
+      "Terraria/FleshCloningVaat": {
+        "stage": "destroyer",
+        "via": "shop:Terraria/Steampunker"
+      },
       "Terraria/LesionStation": {
         "stage": "destroyer",
         "via": "shop:Terraria/Steampunker"
@@ -58543,9 +58238,9 @@
     },
     "unassignedVanillaNpcSourceCount": 138,
     "manualAvailabilityPriority": {
-      "automaticItems": 5449,
+      "automaticItems": 5457,
       "automaticSources": 306,
-      "automaticStations": 471,
+      "automaticStations": 472,
       "suppressed": {
         "itemStages": [
           {

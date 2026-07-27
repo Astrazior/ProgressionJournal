@@ -1996,6 +1996,64 @@
       "sourceVersion": "CalamityModPublic 1.4.4-release",
       "checkedAt": "2026-06-20",
       "reason": "The official source gates Horrible Hog behind Eye of Cthulhu progression during Blood Moon, and Horrible Hog drops Laudanum."
+    },
+    {
+      "id": "sky-glaze-post-eye-drop",
+      "kind": "condition-stage",
+      "stageId": "eye-of-cthulhu",
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "Terraria/Harpy"
+      ],
+      "conditionDescriptions": [
+        "Drops: After defeating the Eye of Cthulhu"
+      ],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "sourceVersion": "Calamity Mod 2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-07-27",
+      "reason": "The Harpy drop condition for Sky Glaze explicitly requires Eye of Cthulhu."
+    },
+    {
+      "id": "katana-default-world-sources",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": [
+        "drop",
+        "shop"
+      ],
+      "sourceIds": [
+        "Terraria/KingSlime",
+        "Terraria/TravellingMerchant"
+      ],
+      "conditionDescriptions": [
+        "Not in a Remix world",
+        "Drops: Not in a Remix world"
+      ],
+      "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+      "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9",
+      "checkedAt": "2026-07-27",
+      "reason": "The default-world branch does not add a progression milestone; source availability remains authoritative."
+    },
+    {
+      "id": "shady-salesman-moon-cycle-stock",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "CalamityMod/ShadySalesman"
+      ],
+      "conditionDescriptions": [
+        "During a full, waning gibbous, third quarter or waning crescent moon",
+        "During a new, waxing crescent, first quarter or waxing gibbous moon"
+      ],
+      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/TownNPCs/ShadySalesman.cs",
+      "sourceVersion": "Calamity Mod 2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
+      "checkedAt": "2026-07-27",
+      "reason": "These two stocks alternate by moon phase; the Shady Salesman's source stage determines progression."
     }
   ],
   "ignoredItems": [

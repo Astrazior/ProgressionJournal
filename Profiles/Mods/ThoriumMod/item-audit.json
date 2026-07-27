@@ -3,21 +3,21 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-07-26T21:57:41.088Z",
+  "generatedAtUtc": "2026-07-27T12:12:35.658Z",
   "snapshotGeneratedAtUtc": "2026-07-18T12:41:20.8818076Z",
   "summary": {
     "snapshotItems": 8330,
     "contentItems": 2875,
-    "profileEntries": 2012,
-    "profileBuffEntries": 221,
-    "profileItemReferences": 2293,
-    "equipmentReferences": 2072,
-    "buffReferences": 221,
-    "excluded": 3644,
+    "profileEntries": 2018,
+    "profileBuffEntries": 224,
+    "profileItemReferences": 2302,
+    "equipmentReferences": 2078,
+    "buffReferences": 224,
+    "excluded": 3646,
     "acquiredNonProfile": 127,
     "unresolvedAvailability": 5,
     "unavailableCombat": 2,
-    "noAcquisitionPath": 2259
+    "noAcquisitionPath": 2248
   },
   "items": [
     {
@@ -17035,10 +17035,10 @@
       "name": "Flesh Cloning Vat",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "shop:Terraria/Steampunker",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/FleshDoor",
@@ -38035,10 +38035,10 @@
       "name": "Pulse Bow",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "skeletron-prime",
+      "via": "shop:Terraria/TravellingMerchant",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/Pumpkin",
@@ -38815,10 +38815,10 @@
       "name": "Rabbit Perch",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "excluded",
+      "stage": "start",
+      "via": "shop:Terraria/BestiaryGirl",
+      "reason": "not combat equipment"
     },
     {
       "id": "Terraria/Radar",
@@ -51285,10 +51285,10 @@
       "name": "Umbrella",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "start",
+      "via": "shop:Terraria/SkeletonMerchant",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "Terraria/UmbrellaHat",
@@ -56325,10 +56325,10 @@
       "name": "Bellerose",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "start",
+      "via": "recipe:Terraria/GoldBar+Terraria/Obsidian+Terraria/Umbrella",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "ThoriumMod/BeltoftheQuickResponse",
@@ -58915,10 +58915,10 @@
       "name": "Chromatic Fury",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "empress-of-light",
+      "via": "shop:Terraria/Princess",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "ThoriumMod/ChronoOcarina",
@@ -71845,10 +71845,10 @@
       "name": "Objectionable Stock",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "king-slime",
+      "via": "shop:ThoriumMod/Cook",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "ThoriumMod/Obliterator",
@@ -74235,10 +74235,10 @@
       "name": "Questionable Stew",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "king-slime",
+      "via": "shop:ThoriumMod/Cook",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "ThoriumMod/RagingMinotaurBanner",
@@ -75695,10 +75695,10 @@
       "name": "Shadow-Flare Bow",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:Terraria/ShadowbeamStaff+Terraria/PulseBow",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "ThoriumMod/ShadowOrbStaff",
@@ -76805,10 +76805,10 @@
       "name": "Snarky Gun",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/BestiaryGirl",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "ThoriumMod/SnotBall",
@@ -77635,10 +77635,10 @@
       "name": "Stack of Pancakes",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved."
+      "status": "buff",
+      "stage": "king-slime",
+      "via": "shop:ThoriumMod/Cook",
+      "reason": "Included in the generated profile."
     },
     {
       "id": "ThoriumMod/StaffofMycelium",

@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "AAModClassic",
   "profileId": "builtin.aamodclassic",
-  "generatedAtUtc": "2026-07-26T21:57:14.973Z",
+  "generatedAtUtc": "2026-07-27T15:19:17.951Z",
   "snapshot": {
     "version": 6,
     "generatedAtUtc": "2026-07-26T17:13:49.4238019Z",
@@ -16,7 +16,7 @@
     ]
   },
   "agentRules": {
-    "rules": 68,
+    "rules": 76,
     "ignoredItems": 2,
     "ignoredIssues": 0,
     "evidence": [
@@ -152,6 +152,13 @@
         "sourceVersion": "Ancients Awakened 1.0.3.2 guide; verified against AAModClassic 1.0.10 item namespaces",
         "checkedAt": "2026-07-12",
         "reason": "The wiki identifies these as pre-Hardmode world, fishing, or biome items; their current snapshot types remain in pre-Hardmode content namespaces."
+      },
+      {
+        "id": "ancient-gold-hybrid-armor-classification",
+        "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Ancient_Gold_armor",
+        "sourceVersion": "Ancients Awakened 1.0.3.2 guide; verified against AAModClassic 1.0.10 item namespaces",
+        "checkedAt": "2026-07-27",
+        "reason": "Ancients Awakened uses Terraria/AncientGoldHelmet together with AAModClassic/AncientGoldChestplate and AAModClassic/AncientGoldLeggings as one complete pre-Hardmode armor set. The vanilla helmet must remain combat armor in this profile so the armor-set overview can assemble all three pieces."
       },
       {
         "id": "early-event-and-boss-special-acquisitions",
@@ -495,6 +502,55 @@
         "sourceVersion": "AAModClassic 1.0.17 installed assembly registration and reference audit",
         "checkedAt": "2026-07-26",
         "reason": "The item is registered but has no recipe, drop, shop, fishing, bag-content, or runtime reference that can make it obtainable in 1.0.17."
+      },
+      {
+        "id": "vanilla-repeatable-shop-timing",
+        "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+        "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9",
+        "checkedAt": "2026-07-27",
+        "reason": "Moon phase, daytime, and Blood Moon availability are repeatable timing conditions; the seller and other exact gates determine progression."
+      },
+      {
+        "id": "vanilla-skeleton-merchant-hardmode-stock",
+        "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+        "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9",
+        "checkedAt": "2026-07-27",
+        "reason": "Hardmode begins after Wall of Flesh; the Blood Moon condition remains a repeatable timing restriction."
+      },
+      {
+        "id": "travelling-merchant-post-destroyer-stock",
+        "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+        "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9",
+        "checkedAt": "2026-07-27",
+        "reason": "This exact Travelling Merchant stock condition requires The Destroyer to have been defeated."
+      },
+      {
+        "id": "travelling-merchant-post-twins-stock",
+        "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+        "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9",
+        "checkedAt": "2026-07-27",
+        "reason": "This exact Travelling Merchant stock condition requires The Twins to have been defeated."
+      },
+      {
+        "id": "travelling-merchant-post-prime-stock",
+        "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+        "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9",
+        "checkedAt": "2026-07-27",
+        "reason": "This exact Travelling Merchant stock condition requires Skeletron Prime to have been defeated."
+      },
+      {
+        "id": "vanilla-living-loom-start-station",
+        "sourceUrl": "https://terraria.wiki.gg/wiki/Living_Loom",
+        "sourceVersion": "Terraria 1.4.4.9; verified against AAModClassic 1.0.17 recipe snapshot",
+        "checkedAt": "2026-07-27",
+        "reason": "Living Loom is a pre-boss world-generation crafting station found in Living Trees. Jungle Reaper requires only Gold Bars at this station, so its earliest profile stage is Start; the station requirement remains visible on the recipe."
+      },
+      {
+        "id": "aamodclassic-unofficial-world-kappa-recipes",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 recipe snapshot and world-generation options",
+        "checkedAt": "2026-07-27",
+        "reason": "The exact recipe condition selects the mod's Unofficial world variant; it is an availability badge, not a progression milestone. The ingredients and Tinkerer's Workshop still determine practical acquisition, while the profile stage remains Start because this profile has no separate Goblin Army milestone."
       },
       {
         "id": "legacy-class-setup-identifiers",
@@ -1001,22 +1057,22 @@
         }
       ],
       "stageComparison": {
-        "compared": 1626,
+        "compared": 1660,
         "moved": 0
       }
     }
   },
   "review": {
-    "total": 103,
+    "total": 65,
     "byKind": {
-      "unassigned-combat-item": 60,
-      "unresolved-condition": 43
+      "unassigned-combat-item": 29,
+      "unresolved-condition": 36
     }
   },
   "audit": {
     "errors": [],
     "warnings": [
-      "69 recommendations precede proven availability and were suppressed",
+      "59 recommendations precede proven availability and were suppressed",
       "159 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
@@ -5552,7 +5608,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.aamodclassic",
-    "generatedAtUtc": "2026-07-26T21:57:08.987Z",
+    "generatedAtUtc": "2026-07-27T15:19:12.338Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -5571,15 +5627,6 @@
         "condition": {
           "type": "AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+GoblinsDefated",
           "description": "If the Goblin Army has been defeated"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/UndeadViking",
-        "item": "AAModClassic/VikingRelic",
-        "condition": {
-          "type": "ProgressionJournal.AfterProgression",
-          "description": "Available after: Skeletron"
         }
       },
       {
@@ -5972,15 +6019,6 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/Demolitionist",
-        "item": "AAModClassic/M79Round",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During daytime"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Demolitionist",
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
@@ -6134,15 +6172,6 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/DyeTrader",
-        "item": "Terraria/BloodbathDye",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a Blood Moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/DyeTrader",
         "item": "Terraria/FogboundDye",
         "condition": {
           "type": "Terraria.Condition",
@@ -6269,15 +6298,6 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/PartyGirl",
-        "item": "Terraria/BubbleMachine",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During daytime"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/PartyGirl",
         "item": "Terraria/FogMachine",
         "condition": {
           "type": "Terraria.Condition",
@@ -6300,24 +6320,6 @@
         "condition": {
           "type": "Terraria.Condition",
           "description": "During a Lantern Night"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/PartyGirl",
-        "item": "Terraria/PartyGirlGrenade",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "When the player has a Happy Grenade in their inventory"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/PartyGirl",
-        "item": "Terraria/ConfettiCannon",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "When the Pirate is present"
         }
       },
       {
@@ -6930,15 +6932,6 @@
         "condition": {
           "type": "Terraria.Condition",
           "description": "In a Desert biome"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Painter",
-        "item": "Terraria/EvilPresence",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a Blood Moon"
         }
       },
       {
@@ -7952,28 +7945,10 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/WoodenBoomerang",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a full moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
         "item": "Terraria/Umbrella",
         "condition": {
           "type": "Terraria.Condition",
           "description": "During a waning gibbous moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/WandofSparking",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a third quarter moon"
         }
       },
       {
@@ -7997,24 +7972,6 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/Aglet",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a new moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/ClimbingClaws",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a waxing crescent moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
         "item": "Terraria/CordageGuide",
         "condition": {
           "type": "Terraria.Condition",
@@ -8024,37 +7981,10 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/Radar",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a waxing gibbous moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
         "item": "Terraria/StrangeBrew",
         "condition": {
           "type": "Terraria.Condition",
           "description": "During a full, third quarter, new or first quarter moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/LesserHealingPotion",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a gibbous or crescent moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/HealingPotion",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In hardmode"
         }
       },
       {
@@ -8078,46 +8008,10 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/Glowstick",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During daytime, during any moon phase except full"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
         "item": "Terraria/BoneTorch",
         "condition": {
           "type": "Terraria.Condition",
           "description": "Periodically"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/Torch",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "Periodically"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/BoneArrow",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a full, waning gibbous, new or waxing crescent moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/WoodenArrow",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a third quarter, waning crescent, first quarter or waxing gibbous moon"
         }
       },
       {
@@ -8159,42 +8053,6 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/Gradient",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In hardmode"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/FormatC",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In hardmode"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/YoYoGlove",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In hardmode"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
-        "item": "Terraria/SlapHand",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In hardmode"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/SkeletonMerchant",
         "item": "Terraria/MagicLantern",
         "condition": {
           "type": "Terraria.Condition",
@@ -8231,15 +8089,6 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/TravellingMerchant",
-        "item": "Terraria/PulseBow",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "After defeating The Destroyer"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/TravellingMerchant",
         "item": "Terraria/SittingDucksFishingRod",
         "condition": {
           "type": "Terraria.Condition",
@@ -8253,15 +8102,6 @@
         "condition": {
           "type": "Terraria.Condition",
           "description": "In hardmode"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/TravellingMerchant",
-        "item": "Terraria/Revolver",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "After smashing a Shadow Orb or Crimson Heart"
         }
       },
       {
@@ -8815,15 +8655,6 @@
       },
       {
         "sourceKind": "recipe",
-        "source": "AAModClassic/KappaFins",
-        "item": "AAModClassic/KappaFins",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In Unoffifical worlds"
-        }
-      },
-      {
-        "sourceKind": "recipe",
         "source": "AAModClassic/CursedCompass",
         "item": "AAModClassic/CursedCompass",
         "condition": {
@@ -8996,19 +8827,10 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/Dryad",
-        "item": "Terraria/ViciousPowder",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a Blood Moon"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Dryad",
         "item": "Terraria/CrimsonGrassEcho",
         "condition": {
           "type": "Terraria.Condition",
-          "description": "During a Blood Moon"
+          "description": "In a world with The Crimson"
         }
       },
       {
@@ -9815,15 +9637,6 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/Clothier",
-        "item": "Terraria/HunterCloak",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "When the player has a golf score of 2000 or more"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Clothier",
         "item": "Terraria/TeleportationPylonPurity",
         "condition": {
           "type": "Terraria.Condition",
@@ -10093,20 +9906,29 @@
       },
       {
         "sourceKind": "drop",
-        "source": "Terraria/ArmoredViking",
-        "item": "AAModClassic/VikingRelic",
-        "condition": {
-          "type": "ProgressionJournal.AfterProgression",
-          "description": "Available after: Skeletron"
-        }
-      },
-      {
-        "sourceKind": "drop",
         "source": "Terraria/GoblinSummoner",
         "item": "AAModClassic/GoblinTinkererDoll",
         "condition": {
           "type": "ProgressionJournal.SpecialWorldGate",
           "description": "Requires both conditions: all Ancients defeated; Apocalyptic world option enabled."
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/SkeletonMerchant",
+        "item": "Terraria/Gradient",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "During a full, waning gibbous, third quarter or waning crescent moon"
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/SkeletonMerchant",
+        "item": "Terraria/FormatC",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "During a new, waxing crescent, first quarter or waxing gibbous moon"
         }
       },
       {
@@ -10458,24 +10280,6 @@
         "condition": {
           "type": "Terraria.Condition",
           "description": "When the vendor is happy enough to sell pylons"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "AAModClassic/GlobalNPCDrops",
-        "item": "AAModClassic/TerraPrism",
-        "condition": {
-          "type": "ProgressionJournal.AfterProgression",
-          "description": "Available after: Plantera"
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "AAModClassic/GlobalNPCDrops",
-        "item": "AAModClassic/ChaosPrism",
-        "condition": {
-          "type": "ProgressionJournal.AfterProgression",
-          "description": "Available after: Plantera"
         }
       },
       {
@@ -10904,15 +10708,6 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/Cyborg",
-        "item": "Terraria/NightVisionHelmet",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "After defeating the Martians"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Cyborg",
         "item": "Terraria/PortalGunStation",
         "condition": {
           "type": "Terraria.Condition",
@@ -11043,87 +10838,6 @@
         "condition": {
           "type": "Terraria.Condition",
           "description": "In hardmode"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/SlimeStaff",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/HeartLantern",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/FlaskofParty",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/SandstorminaBottle",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/Terragrim",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/PirateStaff",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/DiscountCard",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/LuckyCoin",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/Princess",
-        "item": "Terraria/CoinGun",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
         }
       },
       {
@@ -11706,11 +11420,6 @@
       {
         "stage": "start",
         "id": "Terraria/AncientIronHelmet",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/AncientGoldHelmet",
         "reason": "not combat equipment"
       },
       {
@@ -12535,6 +12244,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/BloodbathDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/BeachBall",
         "reason": "not combat equipment"
       },
@@ -12546,6 +12260,11 @@
       {
         "stage": "start",
         "id": "Terraria/SmokeBomb",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BubbleMachine",
         "reason": "not combat equipment"
       },
       {
@@ -12731,6 +12450,11 @@
       {
         "stage": "start",
         "id": "Terraria/StarlitHeavenWallpaper",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/EvilPresence",
         "reason": "not combat equipment"
       },
       {
@@ -14225,6 +13949,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/LivingWoodPlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/HoneyPlatform",
         "reason": "not combat equipment"
       },
@@ -14671,6 +14400,16 @@
       {
         "stage": "start",
         "id": "Terraria/StoneWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingLeafWall",
         "reason": "not combat equipment"
       },
       {
@@ -16021,6 +15760,86 @@
       {
         "stage": "start",
         "id": "Terraria/DynastyCup",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodClock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodChair",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodDoor",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodDresser",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodTable",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodBed",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodBathtub",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodLantern",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodCandle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodChandelier",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodLamp",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodCandelabra",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodSofa",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodWorkBench",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/ToiletLivingWood",
         "reason": "not combat equipment"
       },
       {
@@ -18156,6 +17975,11 @@
       {
         "stage": "start",
         "id": "Terraria/DynastySink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/LivingWoodSink",
         "reason": "not combat equipment"
       },
       {
@@ -21030,6 +20854,11 @@
       },
       {
         "stage": "skeletron",
+        "id": "Terraria/Fake_LivingWoodChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
         "id": "Terraria/Fake_SkywareChest",
         "reason": "not combat equipment"
       },
@@ -21131,6 +20960,16 @@
       {
         "stage": "skeletron",
         "id": "Terraria/DynastyBookcase",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/LivingWoodPiano",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/LivingWoodBookcase",
         "reason": "not combat equipment"
       },
       {
@@ -25105,6 +24944,16 @@
       },
       {
         "stage": "plantera",
+        "id": "AAModClassic/TerraPrism",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "AAModClassic/ChaosPrism",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
         "id": "Terraria/SpookyPlatform",
         "reason": "not combat equipment"
       },
@@ -25376,11 +25225,6 @@
       {
         "stage": "plantera",
         "id": "Terraria/MusicBoxFrostMoon",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "biomite-core",
-        "id": "AAModClassic/TerraPrism",
         "reason": "not combat equipment"
       },
       {
@@ -27484,7 +27328,9 @@
         "reason": "not combat equipment"
       }
     ],
-    "emptyStages": [],
+    "emptyStages": [
+      "biomite-core"
+    ],
     "paths": {
       "Terraria/Gel": {
         "stage": "start",
@@ -27663,6 +27509,10 @@
         "via": "npc:Terraria/EaterofSouls"
       },
       "Terraria/MilkCarton": {
+        "stage": "start",
+        "via": "npc:Terraria/Skeleton"
+      },
+      "Terraria/AncientGoldHelmet": {
         "stage": "start",
         "via": "npc:Terraria/Skeleton"
       },
@@ -28142,6 +27992,14 @@
       "Terraria/Minishark": {
         "stage": "start",
         "via": "shop:Terraria/ArmsDealer"
+      },
+      "AAModClassic/M79Round": {
+        "stage": "start",
+        "via": "shop:Terraria/Demolitionist"
+      },
+      "Terraria/BoneArrow": {
+        "stage": "start",
+        "via": "shop:Terraria/SkeletonMerchant"
       },
       "Terraria/BlackCounterweight": {
         "stage": "start",
@@ -29212,6 +29070,10 @@
         "stage": "start",
         "via": "recipe:Terraria/Stinger+Terraria/JungleSpores"
       },
+      "AAModClassic/JungleReaper": {
+        "stage": "start",
+        "via": "recipe:Terraria/GoldBar"
+      },
       "AAModClassic/MagicFlower": {
         "stage": "start",
         "via": "recipe:Terraria/JungleSpores+Terraria/NaturesGift"
@@ -29307,6 +29169,14 @@
       "AAModClassic/DarkDoomiteLeggings": {
         "stage": "start",
         "via": "recipe:AAModClassic/DoomiteScrap"
+      },
+      "AAModClassic/KappaFins": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/ShadowBand+Terraria/Flipper"
+      },
+      "AAModClassic/KappaGear": {
+        "stage": "start",
+        "via": "recipe:AAModClassic/KappaFins+Terraria/TigerClimbingGear"
       },
       "Terraria/ShadowGreaves": {
         "stage": "start",
@@ -30871,6 +30741,14 @@
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/ArmsDealer"
       },
+      "Terraria/YoYoGlove": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/SkeletonMerchant"
+      },
+      "Terraria/SlapHand": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/SkeletonMerchant"
+      },
       "AAModClassic/PineBreaker": {
         "stage": "wall-of-flesh",
         "via": "shop:AAModClassic/LargeLetter"
@@ -31098,6 +30976,10 @@
       "Terraria/Chik": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/WoodYoyo+Terraria/CrystalShard+Terraria/SoulofLight"
+      },
+      "Terraria/YoyoBag": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/WhiteString+Terraria/YoYoGlove+Terraria/BlackCounterweight"
       },
       "Terraria/BluePhasesaber": {
         "stage": "wall-of-flesh",
@@ -31984,6 +31866,10 @@
         "stage": "skeletron-prime",
         "via": "npc:Terraria/Reaper"
       },
+      "Terraria/PulseBow": {
+        "stage": "skeletron-prime",
+        "via": "shop:Terraria/TravellingMerchant"
+      },
       "Terraria/HighVelocityBullet": {
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/EmptyBullet+Terraria/Cog"
@@ -32003,6 +31889,10 @@
       "Terraria/AvengerEmblem": {
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/WarriorEmblem+Terraria/SoulofMight+Terraria/SoulofSight+Terraria/SoulofFright"
+      },
+      "AAModClassic/ApollosWrath": {
+        "stage": "skeletron-prime",
+        "via": "recipe:Terraria/PulseBow+Terraria/SoulofMight"
       },
       "AAModClassic/FlareMinigun": {
         "stage": "skeletron-prime",
@@ -32532,6 +32422,54 @@
         "stage": "plantera",
         "via": "recipe:Terraria/PhoenixBlaster+Terraria/FlaskofGold"
       },
+      "AAModClassic/ChaosWings": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/ChaosPrism+Terraria/SoulofFlight"
+      },
+      "AAModClassic/ChaosChestplate": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/BlazingChestplate+AAModClassic/ChaosPrism"
+      },
+      "AAModClassic/ChaosHelmetMage": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/AtlanteanHelmet+AAModClassic/ChaosPrism"
+      },
+      "AAModClassic/ChaosHelmetMelee": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/BlazingHelmet+AAModClassic/ChaosPrism"
+      },
+      "AAModClassic/ChaosHelmetRanged": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/AbyssalHelmet+AAModClassic/ChaosPrism"
+      },
+      "AAModClassic/ChaosHelmetSummoner": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/DoomiteHelmet+AAModClassic/ChaosPrism"
+      },
+      "AAModClassic/ChaosLeggings": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/BlazingLeggings+AAModClassic/ChaosPrism"
+      },
+      "AAModClassic/ChaosBustershot": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/AbyssalShadowshot+AAModClassic/ChaosPrism"
+      },
+      "AAModClassic/ChaosChain": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/Ryusei+AAModClassic/ChaosPrism"
+      },
+      "AAModClassic/ChaosJavelin": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/PrimevalJavelin+AAModClassic/ChaosPrism"
+      },
+      "AAModClassic/ChaosRitual": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/DoomiteRadio+AAModClassic/ChaosPrism"
+      },
+      "AAModClassic/ChaosYari": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/AsgardianLance+Terraria/Gungnir+AAModClassic/ChaosPrism"
+      },
       "AAModClassic/CarnalCrusher": {
         "stage": "plantera",
         "via": "recipe:AAModClassic/FleshrendClaymore+Terraria/LunarTabletFragment"
@@ -32575,6 +32513,46 @@
       "AAModClassic/SpookySawblade": {
         "stage": "plantera",
         "via": "recipe:Terraria/ChlorophyteBar+Terraria/SpookyWood"
+      },
+      "AAModClassic/TerraChestplate": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/NightsChestplate+AAModClassic/TerraPrism"
+      },
+      "AAModClassic/TerraHelmetMage": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/TribalHelmet+AAModClassic/TerraPrism"
+      },
+      "AAModClassic/TerraHelmetMelee": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/NightsHelmet+AAModClassic/TerraPrism"
+      },
+      "AAModClassic/TerraHelmetRanged": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/DeathlyHelmet+AAModClassic/TerraPrism"
+      },
+      "AAModClassic/TerraHelmetSummoner": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/DemonHelmet+AAModClassic/TerraPrism"
+      },
+      "AAModClassic/TerraLeggings": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/FleshrendLeggings+AAModClassic/TerraPrism"
+      },
+      "AAModClassic/TerraBallista": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/TrueDeathlyLongbow+Terraria/HallowedRepeater+AAModClassic/TerraPrism"
+      },
+      "AAModClassic/TerraRose": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/TrueManaRose+Terraria/RainbowRod+AAModClassic/TerraPrism"
+      },
+      "AAModClassic/TerraStaff": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/TrueHallowStaff+AAModClassic/DevilStaff+AAModClassic/TerraPrism"
+      },
+      "AAModClassic/TerraWings": {
+        "stage": "plantera",
+        "via": "recipe:AAModClassic/TerraPrism+Terraria/SoulofFlight"
       },
       "AAModClassic/TrueCopperShortsword": {
         "stage": "plantera",
@@ -32660,6 +32638,10 @@
         "stage": "plantera",
         "via": "recipe:Terraria/PaladinsShield+Terraria/FleshKnuckles"
       },
+      "AAModClassic/ReaperArrow": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/BoneArrow+Terraria/Ectoplasm"
+      },
       "AAModClassic/Dragonkite": {
         "stage": "plantera",
         "via": "recipe:AAModClassic/RadiantIncineriteBar+Terraria/Ectoplasm"
@@ -32668,49 +32650,13 @@
         "stage": "plantera",
         "via": "recipe:AAModClassic/DeepAbyssiumBar+Terraria/Ectoplasm"
       },
+      "AAModClassic/TerraArrow": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/HolyArrow+AAModClassic/ReaperArrow"
+      },
       "Terraria/AegisFruit": {
         "stage": "plantera",
         "via": "shimmer:Terraria/LifeFruit"
-      },
-      "AAModClassic/TerraChestplate": {
-        "stage": "biomite-core",
-        "via": "recipe:AAModClassic/NightsChestplate+AAModClassic/TerraPrism"
-      },
-      "AAModClassic/TerraHelmetMage": {
-        "stage": "biomite-core",
-        "via": "recipe:AAModClassic/TribalHelmet+AAModClassic/TerraPrism"
-      },
-      "AAModClassic/TerraHelmetMelee": {
-        "stage": "biomite-core",
-        "via": "recipe:AAModClassic/NightsHelmet+AAModClassic/TerraPrism"
-      },
-      "AAModClassic/TerraHelmetRanged": {
-        "stage": "biomite-core",
-        "via": "recipe:AAModClassic/DeathlyHelmet+AAModClassic/TerraPrism"
-      },
-      "AAModClassic/TerraHelmetSummoner": {
-        "stage": "biomite-core",
-        "via": "recipe:AAModClassic/DemonHelmet+AAModClassic/TerraPrism"
-      },
-      "AAModClassic/TerraLeggings": {
-        "stage": "biomite-core",
-        "via": "recipe:AAModClassic/FleshrendLeggings+AAModClassic/TerraPrism"
-      },
-      "AAModClassic/TerraBallista": {
-        "stage": "biomite-core",
-        "via": "recipe:AAModClassic/TrueDeathlyLongbow+Terraria/HallowedRepeater+AAModClassic/TerraPrism"
-      },
-      "AAModClassic/TerraRose": {
-        "stage": "biomite-core",
-        "via": "recipe:AAModClassic/TrueManaRose+Terraria/RainbowRod+AAModClassic/TerraPrism"
-      },
-      "AAModClassic/TerraStaff": {
-        "stage": "biomite-core",
-        "via": "recipe:AAModClassic/TrueHallowStaff+AAModClassic/DevilStaff+AAModClassic/TerraPrism"
-      },
-      "AAModClassic/TerraWings": {
-        "stage": "biomite-core",
-        "via": "recipe:AAModClassic/TerraPrism+Terraria/SoulofFlight"
       },
       "Terraria/ChargedBlasterCannon": {
         "stage": "golem",
@@ -33896,6 +33842,30 @@
         "stage": "shen-doragon",
         "via": "recipe:Terraria/RavenStaff+AAModClassic/EXSoul"
       },
+      "AAModClassic/PerfectChaos": {
+        "stage": "shen-doragon",
+        "via": "recipe:AAModClassic/ReignOfFire+AAModClassic/Masamune+AAModClassic/Chaos_Item+AAModClassic/EXSoul+AAModClassic/ChaosPrism"
+      },
+      "AAModClassic/PerfectChaosBustershot": {
+        "stage": "shen-doragon",
+        "via": "recipe:AAModClassic/ChaosBustershot+AAModClassic/EXSoul"
+      },
+      "AAModClassic/PerfectChaosChain": {
+        "stage": "shen-doragon",
+        "via": "recipe:AAModClassic/ChaosChain+AAModClassic/EXSoul"
+      },
+      "AAModClassic/PerfectChaosJavelin": {
+        "stage": "shen-doragon",
+        "via": "recipe:AAModClassic/ChaosJavelin+AAModClassic/EXSoul"
+      },
+      "AAModClassic/PerfectChaosRitual": {
+        "stage": "shen-doragon",
+        "via": "recipe:AAModClassic/ChaosRitual+AAModClassic/EXSoul"
+      },
+      "AAModClassic/PerfectChaosYari": {
+        "stage": "shen-doragon",
+        "via": "recipe:AAModClassic/ChaosYari+AAModClassic/EXSoul"
+      },
       "AAModClassic/PoniumUltiscepter": {
         "stage": "shen-doragon",
         "via": "recipe:AAModClassic/PoniumStaff+AAModClassic/EXSoul"
@@ -33919,6 +33889,10 @@
       "AAModClassic/Skystrike": {
         "stage": "shen-doragon",
         "via": "recipe:Terraria/DD2BetsyBow+Terraria/DaedalusStormbow+AAModClassic/EXSoul"
+      },
+      "AAModClassic/SlapBone": {
+        "stage": "shen-doragon",
+        "via": "recipe:Terraria/SlapHand+AAModClassic/EXSoul"
       },
       "AAModClassic/SoccOnAStick": {
         "stage": "shen-doragon",
@@ -34028,6 +34002,10 @@
         "stage": "shen-doragon",
         "via": "recipe:AAModClassic/MagicAcorn+AAModClassic/EXSoul"
       },
+      "AAModClassic/Ikari": {
+        "stage": "shen-doragon",
+        "via": "recipe:AAModClassic/ChaosSlayer+AAModClassic/PerfectChaos+AAModClassic/EXSoul"
+      },
       "AAModClassic/Genocide": {
         "stage": "infinity-zero",
         "via": "npc:AAModClassic/InfinityZero"
@@ -34051,6 +34029,10 @@
       "AAModClassic/InfinityBlade": {
         "stage": "infinity-zero",
         "via": "npc:AAModClassic/InfinityZero"
+      },
+      "Terraria/Zenith": {
+        "stage": "infinity-zero",
+        "via": "recipe:AAModClassic/TrueTerraBlade+AAModClassic/TheLolkat+AAModClassic/CosmicFury+Terraria/InfluxWaver+AAModClassic/Apocalypse+Terraria/Seedler+Terraria/Starfury+Terraria/BeeKeeper+Terraria/Terragrim+AAModClassic/PrismaticGreatsword+AAModClassic/BladeOfEvil+AAModClassic/Ikari+AAModClassic/InfinityBlade+AAModClassic/Verdict+AAModClassic/SagittariusLeg+AAModClassic/RomulusTazesaber+AAModClassic/SubzeroSlasher+AAModClassic/Olympia+AAModClassic/Excalihare+AAModClassic/CarnalCrusher+AAModClassic/UltimaShortsword+AAModClassic/EXSoul"
       },
       "AAModClassic/InfinitySlayerChestplate": {
         "stage": "infinity-zero",
@@ -34609,10 +34591,6 @@
         "via": "npc:Terraria/MotherSlime"
       },
       "Terraria/AncientIronHelmet": {
-        "stage": "start",
-        "via": "npc:Terraria/Skeleton"
-      },
-      "Terraria/AncientGoldHelmet": {
         "stage": "start",
         "via": "npc:Terraria/Skeleton"
       },
@@ -35281,6 +35259,10 @@
         "stage": "start",
         "via": "shop:Terraria/DyeTrader"
       },
+      "Terraria/BloodbathDye": {
+        "stage": "start",
+        "via": "shop:Terraria/DyeTrader"
+      },
       "Terraria/BeachBall": {
         "stage": "start",
         "via": "shop:Terraria/PartyGirl"
@@ -35290,6 +35272,10 @@
         "via": "shop:Terraria/PartyGirl"
       },
       "Terraria/SmokeBomb": {
+        "stage": "start",
+        "via": "shop:Terraria/PartyGirl"
+      },
+      "Terraria/BubbleMachine": {
         "stage": "start",
         "via": "shop:Terraria/PartyGirl"
       },
@@ -35438,6 +35424,10 @@
         "via": "shop:Terraria/Painter"
       },
       "Terraria/StarlitHeavenWallpaper": {
+        "stage": "start",
+        "via": "shop:Terraria/Painter"
+      },
+      "Terraria/EvilPresence": {
         "stage": "start",
         "via": "shop:Terraria/Painter"
       },
@@ -36642,6 +36632,10 @@
         "stage": "start",
         "via": "recipe:Terraria/SunplateBlock"
       },
+      "Terraria/LivingWoodPlatform": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood"
+      },
       "Terraria/HoneyPlatform": {
         "stage": "start",
         "via": "recipe:Terraria/HoneyBlock"
@@ -37001,6 +36995,14 @@
       "Terraria/StoneWall": {
         "stage": "start",
         "via": "recipe:Terraria/StoneBlock"
+      },
+      "Terraria/LivingWoodWall": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood"
+      },
+      "Terraria/LivingLeafWall": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood"
       },
       "Terraria/WoodWall": {
         "stage": "start",
@@ -38081,6 +38083,70 @@
       "Terraria/DynastyCup": {
         "stage": "start",
         "via": "recipe:Terraria/DynastyWood"
+      },
+      "Terraria/LivingWoodClock": {
+        "stage": "start",
+        "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/Wood"
+      },
+      "Terraria/LivingWoodChair": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood"
+      },
+      "Terraria/LivingWoodChest": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood+Terraria/IronBar"
+      },
+      "Terraria/LivingWoodDoor": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood"
+      },
+      "Terraria/LivingWoodDresser": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood"
+      },
+      "Terraria/LivingWoodTable": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood"
+      },
+      "Terraria/LivingWoodBed": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood+Terraria/Silk"
+      },
+      "Terraria/LivingWoodBathtub": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood"
+      },
+      "Terraria/LivingWoodLantern": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood+Terraria/Torch"
+      },
+      "Terraria/LivingWoodCandle": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood+Terraria/Torch"
+      },
+      "Terraria/LivingWoodChandelier": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood+Terraria/Torch+Terraria/Chain"
+      },
+      "Terraria/LivingWoodLamp": {
+        "stage": "start",
+        "via": "recipe:Terraria/Torch+Terraria/Wood"
+      },
+      "Terraria/LivingWoodCandelabra": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood+Terraria/Torch"
+      },
+      "Terraria/LivingWoodSofa": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood+Terraria/Silk"
+      },
+      "Terraria/LivingWoodWorkBench": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood"
+      },
+      "Terraria/ToiletLivingWood": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood"
       },
       "Terraria/CrispyHoneyBlock": {
         "stage": "start",
@@ -39789,6 +39855,10 @@
       "Terraria/DynastySink": {
         "stage": "start",
         "via": "recipe:Terraria/DynastyWood+Terraria/WaterBucket"
+      },
+      "Terraria/LivingWoodSink": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood+Terraria/WaterBucket"
       },
       "Terraria/GlassSink": {
         "stage": "start",
@@ -42104,6 +42174,10 @@
         "stage": "skeletron",
         "via": "recipe:Terraria/RichMahoganyChest+Terraria/Wire"
       },
+      "Terraria/Fake_LivingWoodChest": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/LivingWoodChest+Terraria/Wire"
+      },
       "Terraria/Fake_SkywareChest": {
         "stage": "skeletron",
         "via": "recipe:Terraria/SkywareChest+Terraria/Wire"
@@ -42187,6 +42261,14 @@
       "Terraria/DynastyBookcase": {
         "stage": "skeletron",
         "via": "recipe:Terraria/DynastyWood+Terraria/Book"
+      },
+      "Terraria/LivingWoodPiano": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone+Terraria/Wood+Terraria/Book"
+      },
+      "Terraria/LivingWoodBookcase": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Wood+Terraria/Book"
       },
       "Terraria/GlassPiano": {
         "stage": "skeletron",
@@ -45373,6 +45455,14 @@
         "stage": "plantera",
         "via": "shop:Terraria/Princess"
       },
+      "AAModClassic/TerraPrism": {
+        "stage": "plantera",
+        "via": "global:AAModClassic/GlobalNPCDrops"
+      },
+      "AAModClassic/ChaosPrism": {
+        "stage": "plantera",
+        "via": "global:AAModClassic/GlobalNPCDrops"
+      },
       "Terraria/SpookyPlatform": {
         "stage": "plantera",
         "via": "recipe:Terraria/SpookyWood"
@@ -45592,10 +45682,6 @@
       "Terraria/MusicBoxFrostMoon": {
         "stage": "plantera",
         "via": "recipe:Terraria/MusicBox+Terraria/NaughtyPresent"
-      },
-      "AAModClassic/TerraPrism": {
-        "stage": "biomite-core",
-        "via": "npc:AAModClassic/BiomiteCore"
       },
       "Terraria/MartianConduitPlating": {
         "stage": "golem",
@@ -47550,22 +47636,6 @@
         ]
       },
       {
-        "id": "Terraria/BoneArrow",
-        "wikiStage": "pre-hardmode",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bone_Arrow"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-mechanical-bosses",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo_Bag"
-        ]
-      },
-      {
         "id": "Terraria/SummonerEmblem",
         "wikiStage": "pre-mechanical-bosses",
         "reason": "recommendation has no proven availability",
@@ -47579,14 +47649,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Leaf_Wings"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo_Bag"
         ]
       },
       {
@@ -47670,62 +47732,6 @@
         ]
       },
       {
-        "id": "AAModClassic/ChaosYari",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Chaos_Yari"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosChain",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Chaos_Chain"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo_Bag"
-        ]
-      },
-      {
-        "id": "AAModClassic/ApollosWrath",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Apollo's_Wrath"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosBustershot",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Chaos_Bustershot"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosJavelin",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Chaos_Javelin"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosRitual",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Chaos_Ritual"
-        ]
-      },
-      {
         "id": "Terraria/SummonerEmblem",
         "wikiStage": "pre-golem",
         "reason": "recommendation has no proven availability",
@@ -47734,129 +47740,11 @@
         ]
       },
       {
-        "id": "AAModClassic/ChaosHelmetMelee",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosHelmetRanged",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosHelmetMage",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosHelmetSummoner",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosChestplate",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosLeggings",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosWings",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Chaos_Wings"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-celestial-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo_Bag"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosBustershot",
-        "wikiStage": "pre-celestial-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Chaos_Bustershot"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosJavelin",
-        "wikiStage": "pre-celestial-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Chaos_Javelin"
-        ]
-      },
-      {
         "id": "Terraria/SniperScope",
         "wikiStage": "pre-celestial-events",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sniper_Scope"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosRitual",
-        "wikiStage": "pre-celestial-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Chaos_Ritual"
         ]
       },
       {
@@ -47940,100 +47828,6 @@
         ]
       },
       {
-        "id": "AAModClassic/ChaosHelmetMelee",
-        "wikiStage": "pre-celestial-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosHelmetRanged",
-        "wikiStage": "pre-celestial-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosHelmetMage",
-        "wikiStage": "pre-celestial-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosHelmetSummoner",
-        "wikiStage": "pre-celestial-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosChestplate",
-        "wikiStage": "pre-celestial-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosLeggings",
-        "wikiStage": "pre-celestial-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosWings",
-        "wikiStage": "pre-celestial-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Chaos_Wings"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo_Bag"
-        ]
-      },
-      {
         "id": "Terraria/SniperScope",
         "wikiStage": "pre-moon-lord",
         "reason": "recommendation has no proven availability",
@@ -48098,105 +47892,11 @@
         ]
       },
       {
-        "id": "AAModClassic/ChaosHelmetMelee",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosHelmetRanged",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosHelmetMage",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosHelmetSummoner",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosChestplate",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosLeggings",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/ChaosHelmetMelee",
-          "AAModClassic/ChaosHelmetRanged",
-          "AAModClassic/ChaosHelmetMage",
-          "AAModClassic/ChaosHelmetSummoner",
-          "AAModClassic/ChaosChestplate",
-          "AAModClassic/ChaosLeggings"
-        ]
-      },
-      {
         "id": "Terraria/BetsyWings",
         "wikiStage": "pre-moon-lord",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Betsy's_Wings"
-        ]
-      },
-      {
-        "id": "AAModClassic/ChaosWings",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Chaos_Wings"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-anubis",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo_Bag"
         ]
       },
       {
@@ -48240,27 +47940,11 @@
         ]
       },
       {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-equinox-worms",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo_Bag"
-        ]
-      },
-      {
         "id": "Terraria/SniperScope",
         "wikiStage": "pre-equinox-worms",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sniper_Scope"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-sisters-of-discord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo_Bag"
         ]
       },
       {
@@ -48272,27 +47956,11 @@
         ]
       },
       {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo_Bag"
-        ]
-      },
-      {
         "id": "Terraria/SniperScope",
         "wikiStage": "pre-ancients",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sniper_Scope"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-superancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo_Bag"
         ]
       },
       {
@@ -48304,67 +47972,11 @@
         ]
       },
       {
-        "id": "AAModClassic/Ikari",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Ikari"
-        ]
-      },
-      {
-        "id": "AAModClassic/PerfectChaosYari",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Perfect_Chaos_Yari"
-        ]
-      },
-      {
-        "id": "AAModClassic/PerfectChaosChain",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Perfect_Chaos_Chain"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo_Bag"
-        ]
-      },
-      {
-        "id": "AAModClassic/PerfectChaosBustershot",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Perfect_Chaos_Bustershot"
-        ]
-      },
-      {
-        "id": "AAModClassic/PerfectChaosJavelin",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Perfect_Chaos_Javelin"
-        ]
-      },
-      {
         "id": "Terraria/SniperScope",
         "wikiStage": "endgame",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Sniper_Scope"
-        ]
-      },
-      {
-        "id": "AAModClassic/PerfectChaosRitual",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "AAModClassic/Perfect_Chaos_Ritual"
         ]
       }
     ],
@@ -52822,29 +52434,8 @@
         "reason": "recommendation precedes proven availability"
       },
       {
-        "id": "AAModClassic/TerraBallista",
-        "factualStage": "biomite-core",
-        "recommendedStage": "plantera",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "AAModClassic/TerraRose",
-        "factualStage": "biomite-core",
-        "recommendedStage": "plantera",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
         "id": "AAModClassic/GaleOfWings",
         "factualStage": "athena",
-        "recommendedStage": "plantera",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "AAModClassic/TerraStaff",
-        "factualStage": "biomite-core",
         "recommendedStage": "plantera",
         "wikiStage": "pre-golem",
         "reason": "recommendation precedes proven availability"
@@ -52878,48 +52469,6 @@
         "reason": "recommendation precedes proven availability"
       },
       {
-        "id": "AAModClassic/TerraHelmetMage",
-        "factualStage": "biomite-core",
-        "recommendedStage": "plantera",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "AAModClassic/TerraHelmetMelee",
-        "factualStage": "biomite-core",
-        "recommendedStage": "plantera",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "AAModClassic/TerraHelmetRanged",
-        "factualStage": "biomite-core",
-        "recommendedStage": "plantera",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "AAModClassic/TerraHelmetSummoner",
-        "factualStage": "biomite-core",
-        "recommendedStage": "plantera",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "AAModClassic/TerraChestplate",
-        "factualStage": "biomite-core",
-        "recommendedStage": "plantera",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "AAModClassic/TerraLeggings",
-        "factualStage": "biomite-core",
-        "recommendedStage": "plantera",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
         "id": "AAModClassic/CharmOfDesire",
         "factualStage": "greed",
         "recommendedStage": "plantera",
@@ -52929,13 +52478,6 @@
       {
         "id": "AAModClassic/OlympianWings",
         "factualStage": "athena",
-        "recommendedStage": "plantera",
-        "wikiStage": "pre-golem",
-        "reason": "recommendation precedes proven availability"
-      },
-      {
-        "id": "AAModClassic/TerraWings",
-        "factualStage": "biomite-core",
         "recommendedStage": "plantera",
         "wikiStage": "pre-golem",
         "reason": "recommendation precedes proven availability"
@@ -53200,6 +52742,7 @@
         "source": "Terraria/BoneThrowingSkeleton",
         "sourceKind": "drop",
         "items": [
+          "Terraria/AncientGoldHelmet",
           "Terraria/BoneSword",
           "Terraria/MilkCarton"
         ]
@@ -53208,6 +52751,7 @@
         "source": "Terraria/BoneThrowingSkeleton2",
         "sourceKind": "drop",
         "items": [
+          "Terraria/AncientGoldHelmet",
           "Terraria/BoneSword",
           "Terraria/MilkCarton"
         ]
@@ -53216,6 +52760,7 @@
         "source": "Terraria/BoneThrowingSkeleton3",
         "sourceKind": "drop",
         "items": [
+          "Terraria/AncientGoldHelmet",
           "Terraria/BoneSword",
           "Terraria/MilkCarton"
         ]
@@ -53224,6 +52769,7 @@
         "source": "Terraria/BoneThrowingSkeleton4",
         "sourceKind": "drop",
         "items": [
+          "Terraria/AncientGoldHelmet",
           "Terraria/BoneSword",
           "Terraria/MilkCarton"
         ]
@@ -53580,6 +53126,7 @@
         "source": "Terraria/HeadacheSkeleton",
         "sourceKind": "drop",
         "items": [
+          "Terraria/AncientGoldHelmet",
           "Terraria/BoneSword",
           "Terraria/MilkCarton"
         ]
@@ -53761,6 +53308,7 @@
         "source": "Terraria/MisassembledSkeleton",
         "sourceKind": "drop",
         "items": [
+          "Terraria/AncientGoldHelmet",
           "Terraria/BoneSword",
           "Terraria/MilkCarton"
         ]
@@ -53813,6 +53361,7 @@
         "source": "Terraria/PantlessSkeleton",
         "sourceKind": "drop",
         "items": [
+          "Terraria/AncientGoldHelmet",
           "Terraria/BoneSword",
           "Terraria/MilkCarton"
         ]
@@ -54097,6 +53646,7 @@
         "source": "Terraria/Skeleton",
         "sourceKind": "drop",
         "items": [
+          "Terraria/AncientGoldHelmet",
           "Terraria/BoneSword",
           "Terraria/MilkCarton"
         ]
@@ -54105,6 +53655,7 @@
         "source": "Terraria/SkeletonAlien",
         "sourceKind": "drop",
         "items": [
+          "Terraria/AncientGoldHelmet",
           "Terraria/BoneSword",
           "Terraria/MilkCarton"
         ]
@@ -54120,6 +53671,7 @@
         "source": "Terraria/SkeletonAstonaut",
         "sourceKind": "drop",
         "items": [
+          "Terraria/AncientGoldHelmet",
           "Terraria/BoneSword",
           "Terraria/MilkCarton"
         ]
@@ -54144,6 +53696,7 @@
         "source": "Terraria/SkeletonTopHat",
         "sourceKind": "drop",
         "items": [
+          "Terraria/AncientGoldHelmet",
           "Terraria/BoneSword",
           "Terraria/MilkCarton"
         ]
@@ -54513,9 +54066,9 @@
     },
     "unassignedVanillaNpcSourceCount": 179,
     "manualAvailabilityPriority": {
-      "automaticItems": 4250,
+      "automaticItems": 4274,
       "automaticSources": 290,
-      "automaticStations": 473,
+      "automaticStations": 474,
       "suppressed": {
         "itemStages": [
           {
@@ -54587,7 +54140,7 @@
         "itemStages": 38,
         "itemStageFloors": 0,
         "sourceStages": 56,
-        "stationStages": 2
+        "stationStages": 3
       }
     },
     "automaticEventPriority": {

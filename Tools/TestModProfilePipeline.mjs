@@ -548,13 +548,18 @@ assert(profileGeneratorSource.includes("createWikiClassificationMap"),
   "Available mod accessories need recommendation metadata as a classification fallback");
 assert(!profileGeneratorSource.includes("function inferredConditionStageIndex")
   && !profileGeneratorSource.includes("conditionDependencyIds")
-  && profileGeneratorSource.includes("shop.observed || conditionsAllowed")
+  && profileGeneratorSource.includes("observedShopConditionsAllowed")
+  && profileGeneratorSource.includes("collectObservedShopPrerequisites")
+  && profileGeneratorSource.includes("item.damageClass !== \"Terraria/DefaultDamageClass\"")
+  && profileGeneratorSource.includes("candidate.shoot ?? 0) === item.shoot")
+  && profileGeneratorSource.includes("const unlockAvailableShopItems = () =>")
+  && profileGeneratorSource.includes("if (unlockAvailableShopItems())")
   && profileGeneratorSource.includes("return resolveSnapshotStageIndex(record, manifest.stages, label)")
   && profileGeneratorSource.includes("DownedAllMechBosses")
   && profileGeneratorSource.includes("isDefaultExcludedVariantCondition")
   && profileGeneratorSource.includes("isSafeOpaqueDropCondition")
   && profileGeneratorSource.includes("EmpressOfLightIsGenuinelyEnraged"),
-"ProfileGeneratorCore must trust observed stages, avoid display-text heuristics, and retain typed condition handling before review fallback");
+"ProfileGeneratorCore must treat observed shop stages as lower bounds, retain exact typed/configured gates, derive exact ammo prerequisites from item metadata, and avoid display-text stage heuristics");
 const vanillaSourceCatalogSource = fs.readFileSync(
   path.join(root, "Tools", "VanillaSourceCatalog.mjs"),
   "utf8");
@@ -720,7 +725,14 @@ for (const modName of expected) {
     for (const [itemId, stageId] of Object.entries({
       "Terraria/Uzi": "wall-of-flesh",
       "Terraria/DeathSickle": "skeletron-prime",
-      "Terraria/PulseBow": "plantera"
+      "Terraria/PulseBow": "plantera",
+      "Terraria/Katana": "start",
+      "CalamityMod/SkyGlaze": "eye-of-cthulhu",
+      "CalamityMod/WyvernsCall": "destroyer",
+      "CalamityMod/AlphaDraconis": "polterghast",
+      "CalamityMod/Omniblade": "golem",
+      "CalamityMod/BaconOil": "start",
+      "CalamityMod/TheSandwich": "start"
     })) {
       assert.equal(generatedStageOf(itemId), stageId,
         `${modName}: ${itemId} must follow the earliest proven availability path`);
@@ -748,6 +760,20 @@ for (const modName of expected) {
       "ThoriumMod: the corrected NPC probe snapshot must retain the Meteorite unlock stage");
     assert.equal(generatedStageOf("ThoriumMod/DetachedBlaster"), "world-evil",
       "ThoriumMod: the U.F.O. drop must follow automatic Meteorite biome availability");
+    for (const [itemId, stageId] of Object.entries({
+      "Terraria/PulseBow": "skeletron-prime",
+      "ThoriumMod/ShadowFlareBow": "plantera",
+      "Terraria/Umbrella": "start",
+      "ThoriumMod/Bellerose": "start",
+      "ThoriumMod/ChromaticFury": "empress-of-light",
+      "ThoriumMod/ObjectionableStock": "king-slime",
+      "ThoriumMod/QuestionableStew": "king-slime",
+      "ThoriumMod/SnarkyGun": "wall-of-flesh",
+      "ThoriumMod/StackofPancakes": "king-slime"
+    })) {
+      assert.equal(generatedStageOf(itemId), stageId,
+        `ThoriumMod: ${itemId} must follow its exact source conditions`);
+    }
     assert.equal(generatedStageOf("Terraria/TrifoldMap"), "wall-of-flesh",
       "ThoriumMod: Giant Bat drops must follow observed Hardmode availability");
     assert(report.generation?.manualAvailabilityPriority?.suppressed?.sourceStages
@@ -905,8 +931,8 @@ for (const modName of expected) {
       assert.equal(stageOf(itemId), stageId,
         `${itemId} must follow its earliest available source`);
     }
-    assert.equal(stageOf("Terraria/Katana"), undefined,
-      "Katana must not use an unobserved Travelling Merchant description as progression proof");
+    assert.equal(stageOf("Terraria/Katana"), "start",
+      "Katana's exact default-world rule must retain its pre-boss Travelling Merchant source");
     assert.equal(report.generation?.paths?.["Terraria/Shroomerang"]?.stage, "start",
       "Shroomerang must be available from pre-Hardmode Mushroom Chests");
     assert.equal(report.generation?.paths?.["Terraria/LivingFireBlock"]?.stage, "wall-of-flesh",
@@ -1037,6 +1063,36 @@ const aaArmorSetClasses = itemNames => itemNames
   .reduce((classIds, itemClassIds) =>
     new Set([...classIds].filter(classId => itemClassIds.has(classId))));
 const aaAllClasses = aaProfile.classes.map(profileClass => profileClass.id);
+const aaAncientGoldSet = [
+  "AncientGoldHelmet",
+  "AncientGoldChestplate",
+  "AncientGoldLeggings"
+];
+for (const itemName of aaAncientGoldSet) {
+  assert.equal(aaEntry(itemName)?.evaluations?.[0]?.stageId, "start",
+    `AAModClassic: ${itemName} must be present at Start for the complete Ancient Gold set`);
+  assert.deepEqual(aaEntry(itemName)?.classes, aaAllClasses,
+    `AAModClassic: ${itemName} must apply to every class in the Ancient Gold set`);
+}
+const aaRecoveredRecipeItems = [
+  ["JungleReaper", ["melee"], "recipe:Terraria/GoldBar"],
+  ["KappaFins", aaAllClasses, "recipe:AAModClassic/ShadowBand+Terraria/Flipper"],
+  ["KappaGear", aaAllClasses, "recipe:AAModClassic/KappaFins+Terraria/TigerClimbingGear"]
+];
+for (const [itemName, expectedClasses, expectedVia] of aaRecoveredRecipeItems) {
+  assert.equal(aaEntry(itemName)?.evaluations?.[0]?.stageId, "start",
+    `AAModClassic: ${itemName} must resolve at Start from its recipe requirements`);
+  assert.deepEqual(aaEntry(itemName)?.classes, expectedClasses,
+    `AAModClassic: ${itemName} has incorrect classes`);
+  assert.equal(aaReport.generation.paths[`AAModClassic/${itemName}`]?.via, expectedVia,
+    `AAModClassic: ${itemName} must be recovered through its recipe, not a forced item stage`);
+}
+for (const itemName of ["KappaFins", "KappaGear"]) {
+  const recipe = aaSnapshot.recipes.find(value => value.result === `AAModClassic/${itemName}`);
+  assert(recipe?.conditions?.some(condition =>
+    condition.description === "In Unoffifical worlds"),
+  `AAModClassic: ${itemName} must preserve the Unofficial-world availability condition`);
+}
 for (const itemName of ["WarTable", "BewitchingTable"]) {
   assert.deepEqual(aaBuff(itemName)?.classes, aaAllClasses,
     `AAModClassic: ${itemName} must benefit every profile class`);
@@ -1208,6 +1264,39 @@ for (const item of [
   "Terraria/Stake"
 ]) {
   assert(!aaManualStageItems.has(item), `${item} must resolve from acquisition evidence`);
+}
+
+for (const [itemName, stageId] of Object.entries({
+  ChaosBustershot: "plantera",
+  ChaosChain: "plantera",
+  ChaosChestplate: "plantera",
+  ChaosHelmetMage: "plantera",
+  ChaosHelmetMelee: "plantera",
+  ChaosHelmetRanged: "plantera",
+  ChaosHelmetSummoner: "plantera",
+  ChaosJavelin: "plantera",
+  ChaosLeggings: "plantera",
+  ChaosRitual: "plantera",
+  ChaosWings: "plantera",
+  ChaosYari: "plantera",
+  Ikari: "shen-doragon",
+  PerfectChaos: "shen-doragon",
+  PerfectChaosBustershot: "shen-doragon",
+  PerfectChaosChain: "shen-doragon",
+  PerfectChaosJavelin: "shen-doragon",
+  PerfectChaosRitual: "shen-doragon",
+  PerfectChaosYari: "shen-doragon",
+  BoneArrow: "start",
+  ReaperArrow: "plantera",
+  TerraArrow: "plantera",
+  PulseBow: "skeletron-prime",
+  ApollosWrath: "skeletron-prime",
+  SlapHand: "wall-of-flesh",
+  SlapBone: "shen-doragon",
+  M79Round: "start"
+})) {
+  assert.equal(aaEntry(itemName)?.evaluations?.[0]?.stageId, stageId,
+    `AAModClassic: ${itemName} must follow its recovered acquisition chain`);
 }
 
 const fargoSupport = readJson(path.join(modsRoot, "FargowiltasSouls", "support.json"));

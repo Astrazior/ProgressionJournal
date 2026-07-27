@@ -179,6 +179,10 @@ function generateProfileCore(
     normalizeObservedStage(record, `npcAvailability[${index}] ${record.npc}`));
   const allowedItems = snapshot.items.filter(item => isAllowedProfileItem(item.id, contentMods));
   const itemById = new Map(snapshot.items.map(item => [item.id, item]));
+  const observedShopPrerequisites = collectObservedShopPrerequisites(
+    snapshotShops,
+    snapshot.items,
+    itemById);
   const recipesByResult = groupBy(
     snapshot.recipes.filter(recipe =>
       isAllowedProfileItem(recipe.result, contentMods)
@@ -446,27 +450,50 @@ function generateProfileCore(
         }
       }
     }
-    for (const npc of availableShops) {
-      if (!sourceAllowedAtStage(npc, stage.id)) continue;
-      for (const shop of shopsByNpc.get(npc) ?? []) {
-        if ((!shop.observed && !legacyAvailableShops.has(npc))
-            || (shop.observed && shop.earliestStageIndex > stageIndex)) {
-          continue;
-        }
-        if (shop.observed || conditionsAllowed(shop.conditions, stage, manifest, report, {
-          sourceKind: "shop",
-          source: npc,
-          item: shop.item,
-          available
-        })) {
-          unlockAtStage(
+    const unlockAvailableShopItems = () => {
+      let changed = false;
+      for (const npc of availableShops) {
+        if (!sourceAllowedAtStage(npc, stage.id)) continue;
+        for (const shop of shopsByNpc.get(npc) ?? []) {
+          if (available.has(shop.item)
+              || (!shop.observed && !legacyAvailableShops.has(npc))
+              || (shop.observed && shop.earliestStageIndex > stageIndex)) {
+            continue;
+          }
+          const conditionContext = {
+            sourceKind: "shop",
+            source: npc,
+            item: shop.item,
+            available
+          };
+          const shopAllowed = shop.observed
+            ? observedShopConditionsAllowed(
+              shop.conditions,
+              stage,
+              manifest,
+              {
+                ...conditionContext,
+                prerequisites: observedShopPrerequisites.get(shop.item) ?? []
+              })
+            : conditionsAllowed(
+              shop.conditions,
+              stage,
+              manifest,
+              report,
+              conditionContext);
+          if (shopAllowed && unlockAtStage(
             shop.item,
             stage.id,
             `shop:${npc}`,
-            eventMetadataForSource(npc, stageIndex));
+            eventMetadataForSource(npc, stageIndex))) {
+            changed = true;
+          }
         }
       }
-    }
+      return changed;
+    };
+
+    unlockAvailableShopItems();
     for (const drop of globalDrops) {
       if (!sourceAllowedAtStage(drop.source, stage.id)) continue;
       if (conditionsAllowed(drop.conditions, stage, manifest, report, {
@@ -503,6 +530,9 @@ function generateProfileCore(
           itemById,
           availableStations,
           station => stationAllowedAtStage(station, stage.id))) {
+          changed = true;
+        }
+        if (unlockAvailableShopItems()) {
           changed = true;
         }
         for (const container of [...available]) {
@@ -1067,29 +1097,30 @@ function classifyItem(item, manifest, report, context) {
 
   if (item.id.startsWith("Terraria/")
       && (item.accessory || item.headSlot >= 0 || item.bodySlot >= 0 || item.legSlot >= 0)) {
-    if (!vanilla) return null;
+    if (!vanilla && !override) return null;
     const validClasses = new Set(allClasses(manifest));
     const isArmor = item.headSlot >= 0 || item.bodySlot >= 0 || item.legSlot >= 0;
     const runtimeArmorClasses = isArmor
       ? resolveEffectClassEvidence(item, manifest).specificClasses
       : [];
-    const vanillaClasses = (vanilla.classes ?? []).filter(value => validClasses.has(value));
+    const vanillaClasses = (vanilla?.classes ?? []).filter(value => validClasses.has(value));
     const overlapsVanillaClassification = runtimeArmorClasses.some(classId =>
       vanillaClasses.includes(classId));
-    let classes = runtimeArmorClasses.length === 0
+    let classes = override?.classes ?? (runtimeArmorClasses.length === 0
       ? vanillaClasses
       : overlapsVanillaClassification
         ? [...new Set([...vanillaClasses, ...runtimeArmorClasses])]
-        : runtimeArmorClasses;
+        : runtimeArmorClasses);
     const vanillaCombatClasses = ["melee", "ranged", "magic", "summoner"];
-    if (item.accessory
+    if (!override?.classes
+        && item.accessory
         && vanillaCombatClasses.every(classId => classes.includes(classId))) {
       classes = allClasses(manifest);
     }
     if (classes.length === 0) return null;
     return {
-      category: override?.category ?? vanilla.category,
-      classes: override?.classes ?? classes
+      category: override?.category ?? vanilla?.category,
+      classes
     };
   }
 
@@ -1223,6 +1254,61 @@ function resolveDamageClasses(damageClass, manifest) {
   return matches;
 }
 
+function collectObservedShopPrerequisites(shops, items, itemById) {
+  const ammoUsers = groupBy(
+    items.filter(item => (item.useAmmo ?? 0) > 0),
+    item => item.useAmmo);
+  const prerequisites = new Map();
+  for (const shop of shops) {
+    if (!shop.observed || (shop.conditions ?? []).length === 0) continue;
+    const item = itemById.get(shop.item);
+    if (!item
+        || (item.ammo ?? 0) <= 0
+        || (item.damage ?? 0) <= 0
+        || (item.shoot ?? 0) <= 0
+        || item.damageClass !== "Terraria/DefaultDamageClass") {
+      continue;
+    }
+    const matchingUsers = (ammoUsers.get(item.ammo) ?? [])
+      .filter(candidate => candidate.id !== item.id
+        && (candidate.shoot ?? 0) === item.shoot);
+    if (matchingUsers.length !== 1) continue;
+    prerequisites.set(shop.item, [matchingUsers[0].id]);
+  }
+  return prerequisites;
+}
+
+function observedShopConditionsAllowed(conditions, stage, manifest, context) {
+  const stageIndexes = manifest._stageIndexes
+    ?? new Map(manifest.stages.map((value, index) => [value.id, index]));
+  const currentStageIndex = stageIndexes.get(stage.id) ?? -1;
+  for (const condition of conditions ?? []) {
+    if (!condition.type && !condition.description) continue;
+    if (isUnavailableCondition(condition) || isDefaultExcludedVariantCondition(condition)) {
+      return false;
+    }
+    const assignedStageIndex = observedConditionStageIndex(
+      condition,
+      context.sourceKind,
+      context.source,
+      manifest,
+      stageIndexes);
+    if (assignedStageIndex >= 0) {
+      if (currentStageIndex < assignedStageIndex) return false;
+      continue;
+    }
+    const rule = manifest.conditionRules?.[condition.type];
+    if (rule === "allow") continue;
+    if (rule?.stages && !rule.stages.includes(stage.id)) return false;
+    // The runtime observation proves the offer at its earliest stage. Exported
+    // ProgressionJournal.AfterProgression annotations must not override that
+    // observation; exact runtime types, explicit configuration, and
+    // machine-readable item prerequisites may still move the lower bound.
+  }
+  return (context.prerequisites ?? [])
+    .every(itemId => context.available.has(itemId));
+}
+
 function conditionsAllowed(conditions, stage, manifest, report, context) {
   const stageIndexes = manifest._stageIndexes
     ?? new Map(manifest.stages.map((value, index) => [value.id, index]));
@@ -1271,6 +1357,25 @@ function isAlternativeEarlyContainerCondition(condition, context) {
     && type.endsWith("+IsHardmode");
 }
 
+function observedConditionStageIndex(
+  condition,
+  sourceKind,
+  source,
+  manifest,
+  stageIndexes) {
+  const indexes = [
+    inferConditionTypeStageIndex(condition.type ?? "", manifest, stageIndexes),
+    configuredConditionStageIndex(
+      condition,
+      sourceKind,
+      source,
+      manifest,
+      stageIndexes)
+  ]
+    .filter(index => index >= 0);
+  return indexes.length === 0 ? -1 : Math.max(...indexes);
+}
+
 function assignedConditionStageIndex(
   condition,
   sourceKind,
@@ -1278,6 +1383,7 @@ function assignedConditionStageIndex(
   manifest,
   stageIndexes) {
   const indexes = [
+    structuredConditionStageIndex(condition, manifest, stageIndexes),
     inferConditionTypeStageIndex(condition.type ?? "", manifest, stageIndexes),
     configuredConditionStageIndex(
       condition,
@@ -1326,11 +1432,36 @@ function conditionHasAssignment(condition, sourceKind, source, manifest) {
   if (manifest.conditionRules?.[condition.type]) return true;
   const stageIndexes = manifest._stageIndexes
     ?? new Map(manifest.stages.map((stage, index) => [stage.id, index]));
+  if (structuredConditionStageIndex(condition, manifest, stageIndexes) >= 0) return true;
   if (inferConditionTypeStageIndex(condition.type ?? "", manifest, stageIndexes) >= 0) return true;
   return (manifest.conditionUnlocks ?? []).some(rule =>
     (rule.sources ?? ["drop", "shop", "recipe"]).includes(sourceKind)
     && ((rule.sourceIds ?? []).length === 0 || rule.sourceIds.includes(source))
     && conditionMatchesUnlockRule(condition, rule));
+}
+
+function structuredConditionStageIndex(condition, manifest, stageIndexes) {
+  if (condition.type !== "ProgressionJournal.AfterProgression") return -1;
+  const match = /^(?:available after|доступно после)\s*:\s*(.+)$/iu.exec(
+    (condition.description ?? "").trim());
+  if (!match) return -1;
+  const expected = normalizeStageLabel(match[1]);
+  if (!expected) return -1;
+  const matches = manifest.stages
+    .filter(stage => [stage.id, ...Object.values(stage.name ?? {})]
+      .some(value => normalizeStageLabel(value) === expected))
+    .map(stage => stageIndexes.get(stage.id) ?? -1)
+    .filter(index => index >= 0);
+  return matches.length === 1 ? matches[0] : -1;
+}
+
+function normalizeStageLabel(value) {
+  return (value ?? "")
+    .trim()
+    .toLocaleLowerCase()
+    .replace(/[’']/gu, "")
+    .replace(/[^\p{L}\p{N}]+/gu, "-")
+    .replace(/^-+|-+$/gu, "");
 }
 
 function inferConditionTypeStageIndex(type, manifest, stageIndexes) {

@@ -2,271 +2,15 @@
   "format": "ProgressionJournalManualReview",
   "version": 1,
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-26T21:57:24.292Z",
+  "generatedAtUtc": "2026-07-27T12:12:10.870Z",
   "summary": {
-    "total": 73,
+    "total": 65,
     "byKind": {
-      "unassigned-combat-item": 27,
-      "unresolved-condition": 46
+      "unassigned-combat-item": 20,
+      "unresolved-condition": 45
     }
   },
   "issues": [
-    {
-      "id": "unassigned-combat-item.3d3e716f736b",
-      "kind": "unassigned-combat-item",
-      "item": "CalamityMod/AlphaDraconis",
-      "displayName": "Alpha Draconis",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "magic"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "CalamityMod/WyvernsCall",
-                "stack": 1
-              },
-              {
-                "item": "CalamityMod/Lumenyl",
-                "stack": 6
-              },
-              {
-                "item": "CalamityMod/RuinousSoul",
-                "stack": 5
-              },
-              {
-                "item": "CalamityMod/ExodiumCluster",
-                "stack": 10
-              }
-            ],
-            "stations": [
-              "Terraria/MythrilAnvil"
-            ],
-            "conditions": []
-          }
-        ],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "CalamityMod/AlphaDraconis": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.e8b8ef6fe236",
-      "kind": "unassigned-combat-item",
-      "item": "CalamityMod/BaconOil",
-      "displayName": "Bacon Oil",
-      "classification": {
-        "buffCategory": "Food",
-        "classes": [
-          "melee",
-          "ranged",
-          "magic",
-          "summoner",
-          "rogue"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "CalamityMod/ShadySalesman",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "During a full, waning gibbous, third quarter or waning crescent moon"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "CalamityMod/BaconOil": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.7a411af16e37",
-      "kind": "unassigned-combat-item",
-      "item": "CalamityMod/Omniblade",
-      "displayName": "Omniblade",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "melee"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/Katana",
-                "stack": 1
-              },
-              {
-                "item": "CalamityMod/LifeAlloy",
-                "stack": 5
-              },
-              {
-                "item": "CalamityMod/CoreofCalamity",
-                "stack": 2
-              }
-            ],
-            "stations": [
-              "Terraria/MythrilAnvil"
-            ],
-            "conditions": []
-          }
-        ],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "CalamityMod/Omniblade": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.d026c88fc691",
-      "kind": "unassigned-combat-item",
-      "item": "CalamityMod/SkyGlaze",
-      "displayName": "Sky Glaze",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "magic"
-        ]
-      },
-      "evidence": {
-        "drops": [
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/Harpy",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-                "description": "Drops: After defeating the Eye of Cthulhu"
-              }
-            ]
-          }
-        ],
-        "shops": [],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "CalamityMod/SkyGlaze": "<stage-id>"
-        },
-        "sourceStages": {
-          "Terraria/Harpy": "<stage-id>"
-        }
-      }
-    },
-    {
-      "id": "unassigned-combat-item.c379b342651e",
-      "kind": "unassigned-combat-item",
-      "item": "CalamityMod/TheSandwich",
-      "displayName": "The Sandwich",
-      "classification": {
-        "buffCategory": "Food",
-        "classes": [
-          "melee",
-          "ranged",
-          "magic",
-          "summoner",
-          "rogue"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "CalamityMod/ShadySalesman",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "During a new, waxing crescent, first quarter or waxing gibbous moon"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "CalamityMod/TheSandwich": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.9af84c3bac33",
-      "kind": "unassigned-combat-item",
-      "item": "CalamityMod/WyvernsCall",
-      "displayName": "Wyvern's Call",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "magic"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "CalamityMod/SkyGlaze",
-                "stack": 1
-              },
-              {
-                "item": "Terraria/MythrilBar",
-                "stack": 5
-              },
-              {
-                "item": "Terraria/SoulofFlight",
-                "stack": 15
-              }
-            ],
-            "stations": [
-              "Terraria/MythrilAnvil"
-            ],
-            "conditions": []
-          }
-        ],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "CalamityMod/WyvernsCall": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
     {
       "id": "unassigned-combat-item.1bcd4a763e38",
       "kind": "unassigned-combat-item",
@@ -790,418 +534,6 @@
           "Terraria/JoustingLance": "<stage-id>"
         },
         "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.e8a70f53e9d6",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/Katana",
-      "displayName": "Katana",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "melee"
-        ]
-      },
-      "evidence": {
-        "drops": [
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/KingSlime",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
-                "description": ""
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-                "description": "Drops: Not in a Remix world"
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/RustyArmoredBonesAxe",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
-                "description": "This is a Master Mode drop rate"
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/RustyArmoredBonesAxe",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
-                "description": ""
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/RustyArmoredBonesFlail",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
-                "description": "This is a Master Mode drop rate"
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/RustyArmoredBonesFlail",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
-                "description": ""
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/RustyArmoredBonesSword",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
-                "description": "This is a Master Mode drop rate"
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/RustyArmoredBonesSword",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
-                "description": ""
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/RustyArmoredBonesSwordNoArmor",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
-                "description": "This is a Master Mode drop rate"
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/RustyArmoredBonesSwordNoArmor",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
-                "description": ""
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/BlueArmoredBones",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
-                "description": "This is a Master Mode drop rate"
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/BlueArmoredBones",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
-                "description": ""
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/BlueArmoredBonesMace",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
-                "description": "This is a Master Mode drop rate"
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/BlueArmoredBonesMace",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
-                "description": ""
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/BlueArmoredBonesNoPants",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
-                "description": "This is a Master Mode drop rate"
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/BlueArmoredBonesNoPants",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
-                "description": ""
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/BlueArmoredBonesSword",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
-                "description": "This is a Master Mode drop rate"
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/BlueArmoredBonesSword",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
-                "description": ""
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/HellArmoredBones",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
-                "description": "This is a Master Mode drop rate"
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/HellArmoredBones",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
-                "description": ""
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/HellArmoredBonesSpikeShield",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
-                "description": "This is a Master Mode drop rate"
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/HellArmoredBonesSpikeShield",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
-                "description": ""
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/HellArmoredBonesMace",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
-                "description": "This is a Master Mode drop rate"
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/HellArmoredBonesMace",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
-                "description": ""
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/HellArmoredBonesSword",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
-                "description": "This is a Master Mode drop rate"
-              }
-            ]
-          },
-          {
-            "sourceKind": "npc",
-            "source": "Terraria/HellArmoredBonesSword",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed",
-                "description": null
-              },
-              {
-                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
-                "description": ""
-              }
-            ]
-          },
-          {
-            "sourceKind": "container",
-            "source": "Terraria/KingSlimeBossBag",
-            "conditions": [
-              {
-                "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-                "description": "Drops: Not in a Remix world"
-              }
-            ]
-          }
-        ],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/TravellingMerchant",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "Not in a Remix world"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/Katana": "<stage-id>"
-        },
-        "sourceStages": {
-          "Terraria/KingSlime": "<stage-id>",
-          "Terraria/RustyArmoredBonesAxe": "<stage-id>",
-          "Terraria/RustyArmoredBonesFlail": "<stage-id>",
-          "Terraria/RustyArmoredBonesSword": "<stage-id>",
-          "Terraria/RustyArmoredBonesSwordNoArmor": "<stage-id>",
-          "Terraria/BlueArmoredBones": "<stage-id>",
-          "Terraria/BlueArmoredBonesMace": "<stage-id>",
-          "Terraria/BlueArmoredBonesNoPants": "<stage-id>",
-          "Terraria/BlueArmoredBonesSword": "<stage-id>",
-          "Terraria/HellArmoredBones": "<stage-id>",
-          "Terraria/HellArmoredBonesSpikeShield": "<stage-id>",
-          "Terraria/HellArmoredBonesMace": "<stage-id>",
-          "Terraria/HellArmoredBonesSword": "<stage-id>",
-          "Terraria/KingSlimeBossBag": "<stage-id>"
-        }
       }
     },
     {
@@ -1968,11 +1300,11 @@
       "affectedCount": 2,
       "affected": [
         {
-          "item": "Terraria/WandofSparking",
+          "item": "Terraria/MagicDagger",
           "source": "Terraria/SkeletonMerchant"
         },
         {
-          "item": "Terraria/MagicDagger",
+          "item": "Terraria/WandofSparking",
           "source": "Terraria/SkeletonMerchant"
         }
       ],
@@ -2298,12 +1630,8 @@
           "description": "Not in a Remix world"
         }
       ],
-      "affectedCount": 2,
+      "affectedCount": 1,
       "affected": [
-        {
-          "item": "Terraria/Katana",
-          "source": "Terraria/TravellingMerchant"
-        },
         {
           "item": "Terraria/WandofSparking",
           "source": "Terraria/SkeletonMerchant"
@@ -2317,7 +1645,6 @@
               "shop"
             ],
             "sourceIds": [
-              "Terraria/TravellingMerchant",
               "Terraria/SkeletonMerchant"
             ],
             "conditionTypes": [],
@@ -2531,15 +1858,11 @@
           "description": "During a full, waning gibbous, third quarter or waning crescent moon"
         }
       ],
-      "affectedCount": 3,
+      "affectedCount": 2,
       "affected": [
         {
           "item": "CalamityMod/CalciumPotion",
           "source": "Terraria/SkeletonMerchant"
-        },
-        {
-          "item": "CalamityMod/BaconOil",
-          "source": "CalamityMod/ShadySalesman"
         },
         {
           "item": "Terraria/Gradient",
@@ -2554,8 +1877,7 @@
               "shop"
             ],
             "sourceIds": [
-              "Terraria/SkeletonMerchant",
-              "CalamityMod/ShadySalesman"
+              "Terraria/SkeletonMerchant"
             ],
             "conditionTypes": [],
             "conditionKeys": [],
@@ -2771,42 +2093,6 @@
             "conditionKeys": [],
             "conditionDescriptions": [
               "In a Remix world"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.d0da984ee7e9",
-      "kind": "unresolved-condition",
-      "sourceKind": "drop",
-      "conditions": [
-        {
-          "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Drops: After defeating the Eye of Cthulhu"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "CalamityMod/SkyGlaze",
-          "source": "Terraria/Harpy"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "drop"
-            ],
-            "sourceIds": [
-              "Terraria/Harpy"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "Drops: After defeating the Eye of Cthulhu"
             ]
           }
         ]
@@ -3047,12 +2333,8 @@
           "description": "Drops: Not in a Remix world"
         }
       ],
-      "affectedCount": 2,
+      "affectedCount": 1,
       "affected": [
-        {
-          "item": "Terraria/Katana",
-          "source": "Terraria/KingSlime"
-        },
         {
           "item": "Terraria/Katana",
           "source": "Terraria/KingSlimeBossBag"
@@ -3066,7 +2348,6 @@
               "drop"
             ],
             "sourceIds": [
-              "Terraria/KingSlime",
               "Terraria/KingSlimeBossBag"
             ],
             "conditionTypes": [],
@@ -3374,12 +2655,8 @@
           "description": "During a new, waxing crescent, first quarter or waxing gibbous moon"
         }
       ],
-      "affectedCount": 2,
+      "affectedCount": 1,
       "affected": [
-        {
-          "item": "CalamityMod/TheSandwich",
-          "source": "CalamityMod/ShadySalesman"
-        },
         {
           "item": "Terraria/FormatC",
           "source": "Terraria/SkeletonMerchant"
@@ -3393,7 +2670,6 @@
               "shop"
             ],
             "sourceIds": [
-              "CalamityMod/ShadySalesman",
               "Terraria/SkeletonMerchant"
             ],
             "conditionTypes": [],

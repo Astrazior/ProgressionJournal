@@ -73,6 +73,23 @@ const snapshot = {
     item("Test/EventMaterial"),
     item("Test/EventGun", { damageClass: "Melee", damage: 20 }),
     item("Test/ShopBlade", { damageClass: "Melee", damage: 18 }),
+    item("Test/ObservedTypedShopBlade", { damageClass: "Melee", damage: 20 }),
+    item("Test/ObservedManualShopBlade", { damageClass: "Melee", damage: 21 }),
+    item("Test/ObservedAmmo", {
+      damageClass: "Terraria/DefaultDamageClass",
+      damage: 1,
+      ammo: 7001,
+      consumable: true,
+      maxStack: 9999,
+      shoot: 7002
+    }),
+    item("Test/ObservedAmmoWeapon", {
+      damageClass: "Magic",
+      damage: 100,
+      useAmmo: 7001,
+      shoot: 7002
+    }),
+    item("Test/ObservedAmmoMaterial"),
     item("Test/ManualShopBlade", { damageClass: "Melee", damage: 17 }),
     item("Test/UnknownShopBlade", { damageClass: "Melee", damage: 19 }),
     item("Test/ClassTool", { damageClass: "Melee" }),
@@ -88,6 +105,7 @@ const snapshot = {
     item("Test/WorldFlooredBlade", { damageClass: "Melee", damage: 25 }),
     item("Test/LateDrop", { damageClass: "Melee", damage: 40 }),
     item("Test/GlobalBlade", { damageClass: "Melee", damage: 37 }),
+    item("Test/StructuredProgressionBlade", { damageClass: "Melee", damage: 38 }),
     item("Test/BloodMoonBlade", { damageClass: "Melee", damage: 36 }),
     item("Test/ManualLateDrop", { damageClass: "Melee", damage: 39 }),
     item("Test/CollisionSource"),
@@ -115,6 +133,7 @@ const snapshot = {
     item("Terraria/VanillaUtilityAccessory", { accessory: true }),
     item("Terraria/VanillaMagicHelmet", { defense: 5, headSlot: 12 }),
     item("Terraria/VanillaMeleeHelmet", { defense: 8, headSlot: 13 }),
+    item("Terraria/VanillaOverriddenHelmet", { defense: 4, headSlot: 16 }),
     item("Terraria/VanillaRuntimeMagicHelmet", {
       defense: 6,
       headSlot: 14,
@@ -250,6 +269,12 @@ const snapshot = {
   recipes: [
     { result: "Test/Bar", ingredients: [{ item: "Test/Ore", stack: 1 }], stations: [], conditions: [] },
     { result: "Test/Sword", ingredients: [{ item: "Test/Bar", stack: 1 }], stations: [], conditions: [] },
+    {
+      result: "Test/ObservedAmmoWeapon",
+      ingredients: [{ item: "Test/ObservedAmmoMaterial", stack: 1 }],
+      stations: [],
+      conditions: []
+    },
     { result: "Test/EarlyWikiSword", ingredients: [{ item: "Test/Ore", stack: 1 }], stations: [], conditions: [] },
     { result: "Test/EventGun", ingredients: [{ item: "Test/EventMaterial", stack: 1 }], stations: [], conditions: [] },
     { result: "Test/ForeignRecipeSword", ingredients: [{ item: "Other/Material", stack: 1 }], stations: [], conditions: [] },
@@ -407,6 +432,15 @@ const snapshot = {
     {
       source: "Terraria/GlobalNPCDrops",
       sourceType: "global",
+      item: "Test/StructuredProgressionBlade",
+      conditions: [{
+        type: "ProgressionJournal.AfterProgression",
+        description: "Available after: Plantera"
+      }]
+    },
+    {
+      source: "Terraria/GlobalNPCDrops",
+      sourceType: "global",
       item: "Test/BloodMoonBlade",
       conditions: [{
         type: "Terraria.GameContent.ItemDropRules.Conditions+IsBloodMoonAndNotFromStatue",
@@ -424,7 +458,40 @@ const snapshot = {
       earliestStageName: "Boss",
       conditions: [{
         type: "ProgressionJournal.AfterProgression",
-        description: "Before hardmode"
+        description: "Available after: Plantera"
+      }]
+    },
+    {
+      npc: "Test/Merchant",
+      item: "Test/ObservedTypedShopBlade",
+      observed: true,
+      earliestStageIndex: 1,
+      earliestStageName: "Boss",
+      conditions: [{
+        type: "Test.Conditions+DownedPlantera",
+        description: "This display text is not used for progression"
+      }]
+    },
+    {
+      npc: "Test/Merchant",
+      item: "Test/ObservedManualShopBlade",
+      observed: true,
+      earliestStageIndex: 1,
+      earliestStageName: "Boss",
+      conditions: [{
+        type: "Terraria.Condition",
+        description: "After observed manual gate"
+      }]
+    },
+    {
+      npc: "Test/Merchant",
+      item: "Test/ObservedAmmo",
+      observed: true,
+      earliestStageIndex: 1,
+      earliestStageName: "Boss",
+      conditions: [{
+        type: "Terraria.Condition",
+        description: "Opaque inventory condition"
       }]
     },
     {
@@ -534,9 +601,14 @@ const manifest = {
     "Test/PowderInput",
     "Test/BagInput",
     "Terraria/ZeroDamageGun",
-    "Terraria/WorldGlobe"
+    "Terraria/WorldGlobe",
+    "Terraria/VanillaOverriddenHelmet"
   ],
-  initialVisibleItems: ["Terraria/ZeroDamageGun", "Terraria/WorldGlobe"],
+  initialVisibleItems: [
+    "Terraria/ZeroDamageGun",
+    "Terraria/WorldGlobe",
+    "Terraria/VanillaOverriddenHelmet"
+  ],
   wikiSource: { name: "Test Wiki", url: "https://example.invalid" },
   wikiStageMap: {
     guide: { stageId: "boss", target: { "en-US": "Boss", "ru-RU": "Босс" } },
@@ -579,7 +651,8 @@ const manifest = {
     {
       id: "late",
       name: { "en-US": "Late", "ru-RU": "Поздно" },
-      dropSources: ["Test/LateBoss"]
+      dropSources: ["Test/LateBoss"],
+      materials: ["Test/ObservedAmmoMaterial"]
     },
     {
       id: "plantera",
@@ -772,9 +845,22 @@ assert(profile.entries.some(entry =>
   && entry.evaluations[0].stageId === "boss"));
 assert.equal(report.paths["Test/GlobalBlade"].via, "global:Terraria/GlobalNPCDrops");
 assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "StructuredProgressionBlade"
+  && entry.evaluations[0].stageId === "plantera"));
+assert.equal(report.paths["Test/StructuredProgressionBlade"].via,
+  "global:Terraria/GlobalNPCDrops");
+assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "BloodMoonBlade"
   && entry.evaluations[0].stageId === "boss"));
 assert.equal(report.paths["Test/ShopBlade"].via, "shop:Test/Merchant");
+assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "ObservedTypedShopBlade"
+  && entry.evaluations[0].stageId === "plantera"));
+assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "ObservedManualShopBlade"
+  && entry.evaluations[0].stageId === "boss"));
+assert.equal(report.paths["Test/ObservedAmmoWeapon"]?.stage, "late");
+assert.equal(report.paths["Test/ObservedAmmo"]?.stage, "late");
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "ClassTool"
   && entry.category === "Support"));
@@ -955,9 +1041,19 @@ const manualAssignments = {
     sourceIds: ["Test/Merchant"],
     conditionTypes: ["Test.UnknownCondition"],
     conditionDescriptions: []
+  }, {
+    stageId: "late",
+    sources: ["shop"],
+    sourceIds: ["Test/Merchant"],
+    conditionTypes: [],
+    conditionDescriptions: ["After observed manual gate"]
   }],
   itemOverrides: {
-    "Test/MixedAccessory": { classes: ["melee"] }
+    "Test/MixedAccessory": { classes: ["melee"] },
+    "Terraria/VanillaOverriddenHelmet": {
+      category: "Armor",
+      classes: ["melee", "magic", "summoner"]
+    }
   },
   fishingSources: {
     "Test/MixedAccessory": [{
@@ -996,12 +1092,23 @@ assert(manualResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "ManualShopBlade"
   && entry.evaluations[0].stageId === "boss"));
 assert(manualResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "ObservedManualShopBlade"
+  && entry.evaluations[0].stageId === "late"));
+assert(manualResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "UnknownShopBlade"
   && entry.evaluations[0].stageId === "boss"));
 assert.deepEqual(
   manualResult.profile.entries.find(entry =>
     entry.itemGroups[0][0].item === "MixedAccessory")?.classes,
   ["melee"]);
+assert.deepEqual(
+  manualResult.profile.entries.find(entry =>
+    entry.itemGroups[0][0].item === "VanillaOverriddenHelmet")?.classes,
+  ["melee", "magic", "summoner"]);
+assert.equal(
+  manualResult.profile.entries.find(entry =>
+    entry.itemGroups[0][0].item === "VanillaOverriddenHelmet")?.evaluations?.[0]?.stageId,
+  "start");
 assert.deepEqual(
   manualResult.profile.entries.find(entry =>
     entry.itemGroups[0][0].item === "MixedAccessory")?.fishingSources,

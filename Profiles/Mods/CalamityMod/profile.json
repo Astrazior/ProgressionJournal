@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bosses",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-07-26T21:57:24.292Z",
+  "generatedAtUtc": "2026-07-27T12:12:10.871Z",
   "requiredMods": [
     {
       "name": "CalamityMod",
@@ -9976,6 +9976,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.calamitymod.alphadraconis",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "AlphaDraconis",
+            "displayName": "Alpha Draconis"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "polterghast",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.astralblaster",
       "category": "Weapon",
       "classes": [
@@ -14137,6 +14166,48 @@
           "target": {
             "en-US": "World Evil",
             "ru-RU": "Зло мира"
+          }
+        }
+      ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.omniblade",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "Omniblade",
+            "displayName": "Omniblade"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "golem",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [
+        {
+          "stageId": "ravager",
+          "classes": [
+            "melee"
+          ],
+          "sourceName": "Official Calamity Mod Wiki",
+          "sourceUrl": "https://calamitymod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Lunatic Cultist",
+            "ru-RU": "Лунатик-культист"
           }
         }
       ],
@@ -20315,6 +20386,35 @@
       "evaluations": [
         {
           "stageId": "plantera",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.wyvernscall",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "WyvernsCall",
+            "displayName": "Wyvern's Call"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "destroyer",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -41470,6 +41570,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.terraria.katana",
+      "category": "Weapon",
+      "classes": [
+        "melee"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Katana",
+            "displayName": "Katana"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.calamitymod.luniccorpsboots",
       "category": "Armor",
       "classes": [
@@ -50398,6 +50527,35 @@
           }
         }
       ],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.calamitymod.skyglaze",
+      "category": "Weapon",
+      "classes": [
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "SkyGlaze",
+            "displayName": "Sky Glaze"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "eye-of-cthulhu",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -61560,7 +61718,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "cryogen",
+          "stageId": "devourer-of-gods",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -83696,6 +83854,50 @@
             "mod": "Terraria",
             "item": "Sake",
             "displayName": "Sake"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.calamitymod.baconoil",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "BaconOil",
+            "displayName": "Bacon Oil"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.calamitymod.thesandwich",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "TheSandwich",
+            "displayName": "The Sandwich"
           }
         ]
       ],

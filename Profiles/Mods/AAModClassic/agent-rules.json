@@ -445,6 +445,24 @@
       "reason": "The wiki identifies these as pre-Hardmode world, fishing, or biome items; their current snapshot types remain in pre-Hardmode content namespaces."
     },
     {
+      "id": "ancient-gold-hybrid-armor-classification",
+      "kind": "item-override",
+      "item": "Terraria/AncientGoldHelmet",
+      "override": {
+        "category": "Armor",
+        "classes": [
+          "melee",
+          "ranged",
+          "magic",
+          "summoner"
+        ]
+      },
+      "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Ancient_Gold_armor",
+      "sourceVersion": "Ancients Awakened 1.0.3.2 guide; verified against AAModClassic 1.0.10 item namespaces",
+      "checkedAt": "2026-07-27",
+      "reason": "Ancients Awakened uses Terraria/AncientGoldHelmet together with AAModClassic/AncientGoldChestplate and AAModClassic/AncientGoldLeggings as one complete pre-Hardmode armor set. The vanilla helmet must remain combat armor in this profile so the armor-set overview can assemble all three pieces."
+    },
+    {
       "id": "early-event-and-boss-special-acquisitions",
       "kind": "item-stage",
       "availabilityEvidence": false,
@@ -1156,6 +1174,124 @@
       "sourceVersion": "AAModClassic 1.0.17 installed assembly registration and reference audit",
       "checkedAt": "2026-07-26",
       "reason": "The item is registered but has no recipe, drop, shop, fishing, bag-content, or runtime reference that can make it obtainable in 1.0.17."
+    },
+    {
+      "id": "vanilla-repeatable-shop-timing",
+      "stageId": "start",
+      "sources": [
+        "shop"
+      ],
+      "conditionDescriptions": [
+        "During a full, waning gibbous, new or waxing crescent moon",
+        "During daytime",
+        "During a Blood Moon"
+      ],
+      "reason": "Moon phase, daytime, and Blood Moon availability are repeatable timing conditions; the seller and other exact gates determine progression.",
+      "kind": "condition-stage",
+      "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+      "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9",
+      "checkedAt": "2026-07-27"
+    },
+    {
+      "id": "vanilla-skeleton-merchant-hardmode-stock",
+      "stageId": "wall-of-flesh",
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "Terraria/SkeletonMerchant"
+      ],
+      "conditionDescriptions": [
+        "In hardmode"
+      ],
+      "reason": "Hardmode begins after Wall of Flesh; the Blood Moon condition remains a repeatable timing restriction.",
+      "kind": "condition-stage",
+      "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+      "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9",
+      "checkedAt": "2026-07-27"
+    },
+    {
+      "id": "travelling-merchant-post-destroyer-stock",
+      "stageId": "destroyer",
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "Terraria/TravellingMerchant"
+      ],
+      "conditionDescriptions": [
+        "After defeating The Destroyer"
+      ],
+      "reason": "This exact Travelling Merchant stock condition requires The Destroyer to have been defeated.",
+      "kind": "condition-stage",
+      "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+      "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9",
+      "checkedAt": "2026-07-27"
+    },
+    {
+      "id": "travelling-merchant-post-twins-stock",
+      "stageId": "twins",
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "Terraria/TravellingMerchant"
+      ],
+      "conditionDescriptions": [
+        "After defeating The Twins"
+      ],
+      "reason": "This exact Travelling Merchant stock condition requires The Twins to have been defeated.",
+      "kind": "condition-stage",
+      "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+      "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9",
+      "checkedAt": "2026-07-27"
+    },
+    {
+      "id": "travelling-merchant-post-prime-stock",
+      "stageId": "skeletron-prime",
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "Terraria/TravellingMerchant"
+      ],
+      "conditionDescriptions": [
+        "After defeating Skeletron Prime"
+      ],
+      "reason": "This exact Travelling Merchant stock condition requires Skeletron Prime to have been defeated.",
+      "kind": "condition-stage",
+      "sourceUrl": "https://github.com/tModLoader/tModLoader/blob/1.4.4/patches/tModLoader/Terraria/Condition.cs",
+      "sourceVersion": "tModLoader 1.4.4 / Terraria 1.4.4.9",
+      "checkedAt": "2026-07-27"
+    },
+    {
+      "id": "vanilla-living-loom-start-station",
+      "kind": "station-stage",
+      "station": "Terraria/LivingLoom",
+      "stageId": "start",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Living_Loom",
+      "sourceVersion": "Terraria 1.4.4.9; verified against AAModClassic 1.0.17 recipe snapshot",
+      "checkedAt": "2026-07-27",
+      "reason": "Living Loom is a pre-boss world-generation crafting station found in Living Trees. Jungle Reaper requires only Gold Bars at this station, so its earliest profile stage is Start; the station requirement remains visible on the recipe."
+    },
+    {
+      "id": "aamodclassic-unofficial-world-kappa-recipes",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": [
+        "recipe"
+      ],
+      "sourceIds": [
+        "AAModClassic/KappaFins",
+        "AAModClassic/KappaGear"
+      ],
+      "conditionDescriptions": [
+        "In Unoffifical worlds"
+      ],
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.17 recipe snapshot and world-generation options",
+      "checkedAt": "2026-07-27",
+      "reason": "The exact recipe condition selects the mod's Unofficial world variant; it is an availability badge, not a progression milestone. The ingredients and Tinkerer's Workshop still determine practical acquisition, while the profile stage remains Start because this profile has no separate Goblin Army milestone."
     }
   ],
   "ignoredItems": [

@@ -2,12 +2,12 @@
   "format": "ProgressionJournalManualReview",
   "version": 1,
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-07-26T21:57:38.260Z",
+  "generatedAtUtc": "2026-07-27T12:12:29.595Z",
   "summary": {
-    "total": 78,
+    "total": 60,
     "byKind": {
-      "unassigned-combat-item": 35,
-      "unresolved-condition": 43
+      "unassigned-combat-item": 26,
+      "unresolved-condition": 34
     }
   },
   "issues": [
@@ -1086,50 +1086,6 @@
       }
     },
     {
-      "id": "unassigned-combat-item.dc2921813ad2",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/PulseBow",
-      "displayName": "Pulse Bow",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/TravellingMerchant",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "After defeating The Destroyer"
-              },
-              {
-                "type": "Terraria.Condition",
-                "description": "After defeating The Twins"
-              },
-              {
-                "type": "Terraria.Condition",
-                "description": "After defeating Skeletron Prime"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/PulseBow": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
       "id": "unassigned-combat-item.52e9eb90b816",
       "kind": "unassigned-combat-item",
       "item": "Terraria/RainbowFlare",
@@ -1393,42 +1349,6 @@
       }
     },
     {
-      "id": "unassigned-combat-item.53dcd2f1845d",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/Umbrella",
-      "displayName": "Umbrella",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "melee"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/SkeletonMerchant",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "During a waning gibbous moon"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/Umbrella": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
       "id": "unassigned-combat-item.1be601072470",
       "kind": "unassigned-combat-item",
       "item": "Terraria/WetRocket",
@@ -1500,328 +1420,6 @@
       "resolution": {
         "itemStages": {
           "Terraria/ZapinatorGray": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.77215a8c596b",
-      "kind": "unassigned-combat-item",
-      "item": "ThoriumMod/Bellerose",
-      "displayName": "Bellerose",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "melee"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/GoldBar",
-                "stack": 16
-              },
-              {
-                "item": "Terraria/Obsidian",
-                "stack": 20
-              },
-              {
-                "item": "Terraria/Umbrella",
-                "stack": 1
-              }
-            ],
-            "stations": [
-              "Terraria/Anvils"
-            ],
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "Enabled in the Thorium Mod Configuration"
-              }
-            ]
-          }
-        ],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "ThoriumMod/Bellerose": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.73f9579527b8",
-      "kind": "unassigned-combat-item",
-      "item": "ThoriumMod/ChromaticFury",
-      "displayName": "Chromatic Fury",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "magic"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/Princess",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "After defeating Empress of Light"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "ThoriumMod/ChromaticFury": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.136d244b34fe",
-      "kind": "unassigned-combat-item",
-      "item": "ThoriumMod/ObjectionableStock",
-      "displayName": "Objectionable Stock",
-      "classification": {
-        "buffCategory": "Food",
-        "classes": [
-          "melee",
-          "ranged",
-          "magic",
-          "summoner",
-          "bard",
-          "healer",
-          "thrower"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "ThoriumMod/Cook",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "Player supplied enough ingredients to the Cook"
-              },
-              {
-                "type": "Terraria.Condition",
-                "description": "In a world with The Crimson"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": [
-          {
-            "sourceKind": "shimmer",
-            "source": "ThoriumMod/QuestionableStew",
-            "conditions": []
-          }
-        ]
-      },
-      "resolution": {
-        "itemStages": {
-          "ThoriumMod/ObjectionableStock": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.dff7e09b9a06",
-      "kind": "unassigned-combat-item",
-      "item": "ThoriumMod/QuestionableStew",
-      "displayName": "Questionable Stew",
-      "classification": {
-        "buffCategory": "Food",
-        "classes": [
-          "melee",
-          "ranged",
-          "magic",
-          "summoner",
-          "bard",
-          "healer",
-          "thrower"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "ThoriumMod/Cook",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "Player supplied enough ingredients to the Cook"
-              },
-              {
-                "type": "Terraria.Condition",
-                "description": "In a world with The Corruption"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": [
-          {
-            "sourceKind": "shimmer",
-            "source": "ThoriumMod/ObjectionableStock",
-            "conditions": []
-          }
-        ]
-      },
-      "resolution": {
-        "itemStages": {
-          "ThoriumMod/QuestionableStew": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.603d46f74aa5",
-      "kind": "unassigned-combat-item",
-      "item": "ThoriumMod/ShadowFlareBow",
-      "displayName": "Shadow-Flare Bow",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/ShadowbeamStaff",
-                "stack": 1
-              },
-              {
-                "item": "Terraria/PulseBow",
-                "stack": 1
-              }
-            ],
-            "stations": [
-              "Terraria/MythrilAnvil"
-            ],
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "Enabled in the Thorium Mod Configuration"
-              }
-            ]
-          }
-        ],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "ThoriumMod/ShadowFlareBow": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.abf7d9b46587",
-      "kind": "unassigned-combat-item",
-      "item": "ThoriumMod/SnarkyGun",
-      "displayName": "Snarky Gun",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/BestiaryGirl",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "In hardmode"
-              },
-              {
-                "type": "Terraria.Condition",
-                "description": "When the Bestiary has been filled to at least 40%"
-              },
-              {
-                "type": "Terraria.Condition",
-                "description": "Enabled in the Thorium Mod Configuration"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "ThoriumMod/SnarkyGun": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.7ec47073f858",
-      "kind": "unassigned-combat-item",
-      "item": "ThoriumMod/StackofPancakes",
-      "displayName": "Stack of Pancakes",
-      "classification": {
-        "buffCategory": "Food",
-        "classes": [
-          "melee",
-          "ranged",
-          "magic",
-          "summoner",
-          "bard",
-          "healer",
-          "thrower"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "ThoriumMod/Cook",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "Between 4:30 AM and 12:00 PM"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "ThoriumMod/StackofPancakes": "<stage-id>"
         },
         "sourceStages": {}
       }
@@ -2062,78 +1660,6 @@
       }
     },
     {
-      "id": "unresolved-condition.305a66017bc3",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "After defeating The Destroyer"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/PulseBow",
-          "source": "Terraria/TravellingMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/TravellingMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "After defeating The Destroyer"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.3073f6d251bb",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "After defeating Empress of Light"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "ThoriumMod/ChromaticFury",
-          "source": "Terraria/Princess"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/Princess"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "After defeating Empress of Light"
-            ]
-          }
-        ]
-      }
-    },
-    {
       "id": "unresolved-condition.37aaa5bd9454",
       "kind": "unresolved-condition",
       "sourceKind": "shop",
@@ -2218,11 +1744,11 @@
       "affectedCount": 2,
       "affected": [
         {
-          "item": "Terraria/WandofSparking",
+          "item": "Terraria/MagicDagger",
           "source": "Terraria/SkeletonMerchant"
         },
         {
-          "item": "Terraria/MagicDagger",
+          "item": "Terraria/WandofSparking",
           "source": "Terraria/SkeletonMerchant"
         }
       ],
@@ -2556,78 +2082,6 @@
       }
     },
     {
-      "id": "unresolved-condition.6e382bff1745",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "In a world with The Corruption"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "ThoriumMod/QuestionableStew",
-          "source": "ThoriumMod/Cook"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "ThoriumMod/Cook"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "In a world with The Corruption"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.8d5edbd77505",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "After defeating The Twins"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/PulseBow",
-          "source": "Terraria/TravellingMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/TravellingMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "After defeating The Twins"
-            ]
-          }
-        ]
-      }
-    },
-    {
       "id": "unresolved-condition.9906fbabca0e",
       "kind": "unresolved-condition",
       "sourceKind": "shop",
@@ -2745,42 +2199,6 @@
       }
     },
     {
-      "id": "unresolved-condition.a46a37a4d750",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "When the Bestiary has been filled to at least 40%"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "ThoriumMod/SnarkyGun",
-          "source": "Terraria/BestiaryGirl"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/BestiaryGirl"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "When the Bestiary has been filled to at least 40%"
-            ]
-          }
-        ]
-      }
-    },
-    {
       "id": "unresolved-condition.a7a6f439a1f5",
       "kind": "unresolved-condition",
       "sourceKind": "shop",
@@ -2811,42 +2229,6 @@
             "conditionKeys": [],
             "conditionDescriptions": [
               "During a full, waning gibbous, third quarter or waning crescent moon"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.b1330efead76",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "In a world with The Crimson"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "ThoriumMod/ObjectionableStock",
-          "source": "ThoriumMod/Cook"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "ThoriumMod/Cook"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "In a world with The Crimson"
             ]
           }
         ]
@@ -2919,42 +2301,6 @@
             "conditionKeys": [],
             "conditionDescriptions": [
               "Drops: After defeating Eater of Worlds or Brain of Cthulhu"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.bde8bb6f7bf3",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "Between 4:30 AM and 12:00 PM"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "ThoriumMod/StackofPancakes",
-          "source": "ThoriumMod/Cook"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "ThoriumMod/Cook"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "Between 4:30 AM and 12:00 PM"
             ]
           }
         ]
@@ -3115,42 +2461,6 @@
       }
     },
     {
-      "id": "unresolved-condition.dabe99796d7c",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "After defeating Skeletron Prime"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/PulseBow",
-          "source": "Terraria/TravellingMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/TravellingMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "After defeating Skeletron Prime"
-            ]
-          }
-        ]
-      }
-    },
-    {
       "id": "unresolved-condition.dc58be1b089d",
       "kind": "unresolved-condition",
       "sourceKind": "shop",
@@ -3221,42 +2531,6 @@
             "conditionKeys": [],
             "conditionDescriptions": [
               "During a Blood Moon, or anytime in Hardmode"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.e1b10941bb56",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a waning gibbous moon"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/Umbrella",
-          "source": "Terraria/SkeletonMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/SkeletonMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "During a waning gibbous moon"
             ]
           }
         ]
