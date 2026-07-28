@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
 import {
   generateProfile,
@@ -16,34 +17,17 @@ import { applyVanillaSourceCatalog } from "./VanillaSourceCatalog.mjs";
 const root = path.resolve(import.meta.dirname, "..");
 const modsRoot = path.join(root, "Profiles", "Mods");
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  run(process.argv[2]);
+  const result = spawnSync(
+    process.execPath,
+    [path.join(import.meta.dirname, "BuildModProfilesSafely.mjs"), ...process.argv.slice(2)],
+    { cwd: root, stdio: "inherit" });
+  if (result.error) throw result.error;
+  process.exitCode = result.status ?? 1;
 }
 
-function run(requested) {
-  if (!requested || (requested.startsWith("--") && requested !== "--all")) {
-    throw new Error("Usage: node Tools/BuildModProfiles.mjs <InternalModName|--all>");
-  }
-  const modNames = requested === "--all"
-    ? fs.readdirSync(modsRoot, { withFileTypes: true })
-      .filter(entry => entry.isDirectory())
-      .map(entry => entry.name)
-      .filter(name => fs.existsSync(path.join(modsRoot, name, "support.json")))
-      .sort()
-    : [requested];
-  let failed = false;
-  for (const modName of modNames) {
-    try {
-      buildModProfile(modName);
-    } catch (error) {
-      failed = true;
-      console.error(`${modName}: ${error.message}`);
-    }
-  }
-  if (failed) process.exitCode = 1;
-}
-
-export function buildModProfile(modName) {
+export function buildModProfile(modName, options = {}) {
   const directory = path.join(modsRoot, modName);
+  const outputDirectory = options.outputDirectory ?? directory;
   const supportPath = path.join(directory, "support.json");
   if (!fs.existsSync(supportPath)) {
     throw new Error(`Missing Profiles/Mods/${modName}/support.json.`);
@@ -133,11 +117,12 @@ export function buildModProfile(modName) {
   };
   const itemAudit = createItemAudit(snapshot, profile, generationReport, support);
 
-  writeJson(path.join(directory, "profile.json"), profile);
-  writeJson(path.join(directory, "knowledge.json"), knowledge);
-  writeJson(path.join(directory, "review.json"), review);
-  writeJson(path.join(directory, "report.json"), report);
-  writeJson(path.join(directory, "item-audit.json"), itemAudit);
+  fs.mkdirSync(outputDirectory, { recursive: true });
+  writeJson(path.join(outputDirectory, "profile.json"), profile);
+  writeJson(path.join(outputDirectory, "knowledge.json"), knowledge);
+  writeJson(path.join(outputDirectory, "review.json"), review);
+  writeJson(path.join(outputDirectory, "report.json"), report);
+  writeJson(path.join(outputDirectory, "item-audit.json"), itemAudit);
 
   const state = report.ready ? "READY" : "needs review";
   console.log(
