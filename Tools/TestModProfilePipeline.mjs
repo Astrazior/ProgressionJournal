@@ -343,6 +343,9 @@ assert(exactShopCatalogSource.includes('"FazerBag", "ShoxBag", "BegBag"')
   && exactShopCatalogSource.includes('goblinSlayer, "OldOneCharm"')
   && exactShopCatalogSource.includes('goblinSlayer, "EnergyConduit"')
   && exactShopCatalogSource.includes("GetAllSources()")
+  && exactShopCatalogSource.includes('"wall-of-flesh"')
+  && exactShopCatalogSource.includes('"plantera"')
+  && exactShopCatalogSource.includes('"moon-lord"')
   && !exactShopCatalogSource.includes("Price")
   && !exactShopCatalogSource.includes("Currency")
   && !exactShopCatalogSource.includes("ShopName")
@@ -615,8 +618,11 @@ assert(snapshotExporterSource.includes("localizedDescription?.Key")
   && snapshotExporterSource.includes("Conditions.PlayerCarriesItem")
   && snapshotExporterSource.includes('new SnapshotConditionFact("item-owned", itemReference)'),
 "Snapshot conditions must retain exact localization keys and item-owned facts");
-assert(snapshotShopCollectorSource.includes("TryGetShopStage"),
-  "Observed shop stages are not exported to snapshot.json");
+assert(snapshotShopCollectorSource.includes("TryGetShopStage")
+  && snapshotShopCollectorSource.includes("conditionStageIndex")
+  && snapshotShopCollectorSource.includes("Math.Max(")
+  && snapshotShopCollectorSource.includes("ProgressionJournal.Stage."),
+"Observed and exact item-specific shop stages are not exported to snapshot.json");
 assert(snapshotFishingCollectorSource.includes("JournalFishingSourceResolver.GetItemAvailability")
   && snapshotNpcAvailabilityCollectorSource.includes("JournalTownNpcAvailabilityResolver.GetAvailability")
   && snapshotNpcAvailabilityCollectorSource.includes("JournalNpcSpawnAvailabilityResolver.GetAvailability"),
@@ -803,6 +809,14 @@ for (const modName of expected) {
     assert.equal(generatedStageOf(`Terraria/${fruit}`), stageForFlag("hardMode")?.id,
       `${modName}: ${fruit} must become visible in Hardmode`);
   }
+  assert.equal(
+    generatedStageOf("Terraria/TaxCollectorsStickOfDoom"),
+    stageForFlag("hardMode")?.id,
+    `${modName}: Classy Cane must follow the Tax Collector's Hardmode unlock`);
+  assert.equal(
+    report.generation?.paths?.["Terraria/TaxCollectorsStickOfDoom"]?.via,
+    "npc:Terraria/TaxCollector",
+    `${modName}: Classy Cane must retain its Tax Collector drop source`);
   for (const [itemId, stageId] of Object.entries({
     "Terraria/DD2BallistraTowerT1Popper": "world-evil",
     "Terraria/DD2BallistraTowerT2Popper": "destroyer",
@@ -820,6 +834,10 @@ for (const modName of expected) {
     `${modName}: Fire Gauntlet must follow its actual recipe dependencies`);
   assert.equal(generatedStageOf("Terraria/BloodRainBow"), "start",
     `${modName}: pre-Hardmode Blood Moon fishing drops must follow observed event availability`);
+  for (const itemId of ["Terraria/PygmyNecklace", "Terraria/HerculesBeetle"]) {
+    assert.equal(generatedStageOf(itemId), "plantera",
+      `${modName}: ${itemId} must follow its item-specific Witch Doctor shop gate`);
+  }
   assert.equal(generatedStageOf("Terraria/SanguineStaff"), "wall-of-flesh",
     `${modName}: Dreadnautilus drops must not move with the pre-Hardmode Blood Moon event`);
   assert(report.generation?.automaticEventPriority?.corrections?.some(entry =>
@@ -1319,10 +1337,49 @@ assert(!aaAgentRules.rules.some(rule => rule.id === "vanilla-hardmode-blood-moon
   "Dreadnautilus progression must come from the shared vanilla source catalog");
 assert.equal(aaReport.generation.paths["AAModClassic/TheDragonsBreath"]?.stage,
   "wall-of-flesh");
-assert.equal(aaReport.generation.paths["AAModClassic/FuryForger"]?.stage,
-  "wall-of-flesh");
-assert.equal(aaReport.generation.paths["AAModClassic/FuryForger"]?.via,
-  "shop:AAModClassic/LargeLetter");
+for (const itemName of ["AleisterStaff", "FuryForger", "GameRaider"]) {
+  assert.equal(aaReport.generation.paths[`AAModClassic/${itemName}`]?.stage,
+    "plantera",
+    `${itemName} must follow its item-specific Large Letter shop gate`);
+  assert.equal(aaReport.generation.paths[`AAModClassic/${itemName}`]?.via,
+    "shop:AAModClassic/LargeLetter");
+}
+for (const itemName of [
+  "BladeOfNight",
+  "ConflagrateStaff",
+  "CursedSickle",
+  "Demise",
+  "DuckstepLauncher",
+  "Ethereal",
+  "ExtravagantLongsword",
+  "GentlemansRapier",
+  "GibsFemur",
+  "MagicAcorn",
+  "MobianBuster",
+  "Placeholder",
+  "PoniumStaff",
+  "Prismeow",
+  "ScytheOfTheGrimReaper",
+  "SkrallStaff",
+  "Skullshot",
+  "SockStaff",
+  "SoulSiphon",
+  "StormRifle",
+  "TimeTeller",
+  "TitanAxe",
+  "UmbralReaper"
+]) {
+  assert.equal(aaReport.generation.paths[`AAModClassic/${itemName}`]?.stage,
+    "moon-lord",
+    `${itemName} must follow its item-specific Large Letter shop gate`);
+  assert.equal(aaReport.generation.paths[`AAModClassic/${itemName}`]?.via,
+    "shop:AAModClassic/LargeLetter");
+}
+for (const itemName of ["PygmyNecklace", "HerculesBeetle"]) {
+  assert.equal(aaReport.generation.paths[`Terraria/${itemName}`]?.stage,
+    "plantera",
+    `${itemName} must follow its item-specific Witch Doctor shop gate`);
+}
 assert.deepEqual(aaReport.generation.paths["AAModClassic/BloodyMary"], {
   stage: "start",
   via: "npc:Terraria/Drippler",

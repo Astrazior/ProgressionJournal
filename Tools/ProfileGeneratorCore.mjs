@@ -1375,10 +1375,9 @@ function observedShopConditionsAllowed(conditions, stage, manifest, context) {
     const rule = manifest.conditionRules?.[condition.type];
     if (rule === "allow") continue;
     if (rule?.stages && !rule.stages.includes(stage.id)) return false;
-    // The runtime observation proves the offer at its earliest stage. Exported
-    // ProgressionJournal.AfterProgression annotations must not override that
-    // observation; exact runtime types, explicit configuration, and
-    // machine-readable item prerequisites may still move the lower bound.
+    // The runtime observation proves the offer at its earliest stage. Exact
+    // runtime types, explicit configuration, and machine-readable item
+    // prerequisites may still move the lower bound.
   }
   return (context.prerequisites ?? [])
     .every(itemId => context.available.has(itemId));
@@ -1446,6 +1445,7 @@ function observedConditionStageIndex(
   manifest,
   stageIndexes) {
   const indexes = [
+    structuredConditionStageIndex(condition, manifest, stageIndexes),
     conditionKeyStageIndex(condition.key ?? "", manifest, stageIndexes),
     inferConditionTypeStageIndex(condition.type ?? "", manifest, stageIndexes),
     configuredConditionStageIndex(
@@ -1559,6 +1559,13 @@ function normalizeStageLabel(value) {
 }
 
 function conditionKeyStageIndex(key, manifest, stageIndexes) {
+  const exactStagePrefix = "ProgressionJournal.Stage.";
+  if (key.startsWith(exactStagePrefix)) {
+    return stageIndexById(
+      manifest,
+      stageIndexes,
+      key.slice(exactStagePrefix.length));
+  }
   switch (key) {
     case "Conditions.InHardmode":
       return stageIndexByFlagOrId(manifest, stageIndexes, "hardMode", "wall-of-flesh");

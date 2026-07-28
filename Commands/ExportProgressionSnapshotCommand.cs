@@ -186,6 +186,24 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             stageIndex >= 0 && stageIndex < targetProfile.Stages.Count
                 ? targetProfile.Stages[stageIndex].Id
                 : string.Empty;
+        string GetStageName(int stageIndex) =>
+            stageIndex >= 0 && stageIndex < targetProfile.Stages.Count
+                ? targetProfile.Stages[stageIndex].Name.Resolve()
+                : string.Empty;
+        int GetStageIndex(string stageId)
+        {
+            for (var index = 0; index < targetProfile.Stages.Count; index++)
+            {
+                if (targetProfile.Stages[index].Id.Equals(
+                        stageId,
+                        StringComparison.OrdinalIgnoreCase))
+                {
+                    return index;
+                }
+            }
+
+            return -1;
+        }
         var npcAvailability = JournalSnapshotNpcAvailabilityCollector.Collect(
             npcIds,
             GetNpcReference,
@@ -235,7 +253,9 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                 GetItemReference,
                 GetNpcReference,
                 CreateCondition,
-                GetStageId),
+                GetStageId,
+                GetStageName,
+                GetStageIndex),
             Fishing = JournalSnapshotFishingCollector.Collect(
                 itemIds,
                 npcIds,

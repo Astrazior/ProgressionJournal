@@ -866,7 +866,7 @@ assert(profile.entries.some(entry =>
   && entry.isSupportWeapon));
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "ShopBlade"
-  && entry.evaluations[0].stageId === "boss"));
+  && entry.evaluations[0].stageId === "plantera"));
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "GlobalBlade"
   && entry.evaluations[0].stageId === "boss"));

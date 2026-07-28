@@ -11,7 +11,9 @@ internal static class JournalSnapshotShopCollector
         Func<int, string> getItemReference,
         Func<int, string> getNpcReference,
         Func<object?, SnapshotCondition> createCondition,
-        Func<int, string> getStageId)
+        Func<int, string> getStageId,
+        Func<int, string> getStageName,
+        Func<string, int> getStageIndex)
     {
         var shops = NPCShopDatabase.AllShops
             .SelectMany(static shop => shop.ActiveEntries.Select(entry => new { shop, entry }))
@@ -49,17 +51,29 @@ internal static class JournalSnapshotShopCollector
             .Select(source =>
             {
                 var availability = JournalTownNpcAvailabilityResolver.GetAvailability(source.NpcType);
+                var conditionStageIndex = source.Conditions
+                    .Select(condition => getStageIndex(condition.StageId))
+                    .DefaultIfEmpty(-1)
+                    .Max();
+                var earliestStageIndex = Math.Max(
+                    availability.EarliestStageIndex,
+                    conditionStageIndex);
                 return new SnapshotShop(
                     getNpcReference(source.NpcType),
                     "Shop",
                     getItemReference(source.TargetItemId),
                     source.Conditions
-                        .Select(static condition => new SnapshotCondition(condition.Type, condition.Description))
+                        .Select(static condition => new SnapshotCondition(
+                            condition.Type,
+                            condition.Description,
+                            string.IsNullOrEmpty(condition.StageId)
+                                ? string.Empty
+                                : $"ProgressionJournal.Stage.{condition.StageId}"))
                         .ToList(),
                     availability.Observed,
-                    availability.EarliestStageIndex,
-                    getStageId(availability.EarliestStageIndex),
-                    availability.EarliestStageName);
+                    earliestStageIndex,
+                    getStageId(earliestStageIndex),
+                    getStageName(earliestStageIndex));
             }));
 
         return shops;

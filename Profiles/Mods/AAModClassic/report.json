@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "AAModClassic",
   "profileId": "builtin.aamodclassic",
-  "generatedAtUtc": "2026-07-28T16:13:17.601Z",
+  "generatedAtUtc": "2026-07-28T17:11:22.412Z",
   "snapshot": {
     "version": 7,
     "generatedAtUtc": "2026-07-28T14:48:22.0929402Z",
@@ -5613,7 +5613,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.aamodclassic",
-    "generatedAtUtc": "2026-07-28T16:13:11.473Z",
+    "generatedAtUtc": "2026-07-28T17:11:15.139Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -21996,11 +21996,6 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "AAModClassic/AleisterStaff",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "Terraria/Bell",
         "reason": "not combat equipment"
       },
@@ -24922,6 +24917,11 @@
       {
         "stage": "plantera",
         "id": "Terraria/TruffleWorm",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "AAModClassic/AleisterStaff",
         "reason": "not combat equipment"
       },
       {
@@ -28092,10 +28092,6 @@
       "Terraria/StylistKilLaKillScissorsIWish": {
         "stage": "start",
         "via": "npc:Terraria/Stylist"
-      },
-      "Terraria/TaxCollectorsStickOfDoom": {
-        "stage": "start",
-        "via": "npc:Terraria/TaxCollector"
       },
       "Terraria/LesserHealingPotion": {
         "stage": "start",
@@ -31365,6 +31361,10 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/BloodNautilus"
       },
+      "Terraria/TaxCollectorsStickOfDoom": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/TaxCollector"
+      },
       "Terraria/SharpeningStation": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Merchant",
@@ -31574,406 +31574,6 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Hardmode",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/FuryForger": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Plantera",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/GameRaider": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Plantera",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/ExtravagantLongsword": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/TimeTeller": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/CursedSickle": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/Demise": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/DuckstepLauncher": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/ConflagrateStaff": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/Ethereal": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/MobianBuster": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/GentlemansRapier": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/GibsFemur": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/Skullshot": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/ScytheOfTheGrimReaper": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/Prismeow": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/MagicAcorn": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/Placeholder": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/PoniumStaff": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/SkrallStaff": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/SockStaff": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/SoulSiphon": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/StormRifle": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/TitanAxe": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/UmbralReaper": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/BladeOfNight": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Moon Lord",
               "key": "",
               "facts": null
             }
@@ -32491,10 +32091,6 @@
       "Terraria/CursedFlames": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/SpellTome+Terraria/CursedFlame+Terraria/SoulofNight"
-      },
-      "AAModClassic/ExtravagantLongswordS": {
-        "stage": "wall-of-flesh",
-        "via": "recipe:AAModClassic/ExtravagantLongsword+AAModClassic/ShinyCharm"
       },
       "AAModClassic/MidasClub": {
         "stage": "wall-of-flesh",
@@ -34055,6 +33651,38 @@
           "prerequisites": []
         }
       },
+      "AAModClassic/FuryForger": {
+        "stage": "plantera",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Plantera",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/GameRaider": {
+        "stage": "plantera",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Plantera",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
       "Terraria/RocketI": {
         "stage": "plantera",
         "via": "shop:Terraria/Cyborg",
@@ -35265,6 +34893,374 @@
         "stage": "moon-lord",
         "via": "npc:Terraria/MoonLordCore"
       },
+      "AAModClassic/ExtravagantLongsword": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/TimeTeller": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/CursedSickle": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/Demise": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/DuckstepLauncher": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/ConflagrateStaff": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/Ethereal": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/MobianBuster": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/GentlemansRapier": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/GibsFemur": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/Skullshot": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/ScytheOfTheGrimReaper": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/Prismeow": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/MagicAcorn": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/Placeholder": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/PoniumStaff": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/SkrallStaff": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/SockStaff": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/SoulSiphon": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/StormRifle": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/TitanAxe": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/UmbralReaper": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/BladeOfNight": {
+        "stage": "moon-lord",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Moon Lord",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
       "Terraria/LongRainbowTrailWings": {
         "stage": "moon-lord",
         "via": "container:Terraria/MoonLordBossBag"
@@ -35340,6 +35336,10 @@
       "Terraria/WingsStardust": {
         "stage": "moon-lord",
         "via": "recipe:Terraria/FragmentStardust+Terraria/LunarBar"
+      },
+      "AAModClassic/ExtravagantLongswordS": {
+        "stage": "moon-lord",
+        "via": "recipe:AAModClassic/ExtravagantLongsword+AAModClassic/ShinyCharm"
       },
       "AAModClassic/Verdict": {
         "stage": "forsaken-anubis",
@@ -48697,22 +48697,6 @@
           "prerequisites": []
         }
       },
-      "AAModClassic/AleisterStaff": {
-        "stage": "wall-of-flesh",
-        "via": "shop:AAModClassic/LargeLetter",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.AfterProgression",
-              "description": "Available after: Plantera",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
       "Terraria/Bell": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/Wizard",
@@ -51615,6 +51599,22 @@
               "description": "After defeating Plantera",
               "key": "Conditions.DownedPlantera",
               "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/AleisterStaff": {
+        "stage": "plantera",
+        "via": "shop:AAModClassic/LargeLetter",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: Plantera",
+              "key": "",
+              "facts": null
             }
           ],
           "prerequisites": []

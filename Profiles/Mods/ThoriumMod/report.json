@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-07-28T16:14:04.227Z",
+  "generatedAtUtc": "2026-07-28T16:52:14.782Z",
   "snapshot": {
     "version": 7,
     "generatedAtUtc": "2026-07-28T14:45:37.6456204Z",
@@ -6676,7 +6676,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.thorium",
-    "generatedAtUtc": "2026-07-28T16:13:55.678Z",
+    "generatedAtUtc": "2026-07-28T16:52:03.203Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -30725,10 +30725,6 @@
         "stage": "start",
         "via": "npc:Terraria/DyeTrader"
       },
-      "Terraria/TaxCollectorsStickOfDoom": {
-        "stage": "start",
-        "via": "npc:Terraria/TaxCollector"
-      },
       "Terraria/LesserHealingPotion": {
         "stage": "start",
         "via": "shop:Terraria/Merchant",
@@ -36285,6 +36281,10 @@
         "eventCategory": "BloodMoon",
         "customEventName": "",
         "eventIcon": ""
+      },
+      "Terraria/TaxCollectorsStickOfDoom": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/TaxCollector"
       },
       "ThoriumMod/TheJuggernaut": {
         "stage": "wall-of-flesh",

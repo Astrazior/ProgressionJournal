@@ -40,17 +40,20 @@ public static class JournalExactShopCatalog
                 "ProgressionJournal.AfterProgression",
                 Language.GetTextValue(
                     "Mods.ProgressionJournal.UI.FishingProgressionCondition",
-                    condition.Arguments)),
+                    condition.Arguments),
+                condition.StageId),
             ConditionKind.WorldOption => new JournalExactShopCondition(
                 "ProgressionJournal.WorldOption",
                 Language.GetTextValue(
                     "Mods.ProgressionJournal.UI.SelectedItemWorldOptionCondition",
-                    condition.Arguments)),
+                    condition.Arguments),
+                string.Empty),
             ConditionKind.ThoriumTrackerContract => new JournalExactShopCondition(
                 "Mods.ThoriumMod.Conditions.CompletedMonsterContract",
                 Language.GetTextValue(
-                    "Mods.ProgressionJournal.UI.ThoriumDamselTrackerContractCondition")),
-            _ => new JournalExactShopCondition(string.Empty, string.Empty)
+                    "Mods.ProgressionJournal.UI.ThoriumDamselTrackerContractCondition"),
+                string.Empty),
+            _ => new JournalExactShopCondition(string.Empty, string.Empty, string.Empty)
         };
     }
 
@@ -100,7 +103,10 @@ public static class JournalExactShopCatalog
             provenance,
             largeLetter,
             "PineBreaker",
-            new ConditionBuilder(ConditionKind.AfterProgression, ["Hardmode"]));
+            new ConditionBuilder(
+                ConditionKind.AfterProgression,
+                ["Hardmode"],
+                "wall-of-flesh"));
         foreach (var item in new[] { "FuryForger", "GameRaider", "AleisterStaff" })
         {
             AddShop(
@@ -108,7 +114,10 @@ public static class JournalExactShopCatalog
                 provenance,
                 largeLetter,
                 item,
-                new ConditionBuilder(ConditionKind.AfterProgression, ["Plantera"]));
+                new ConditionBuilder(
+                    ConditionKind.AfterProgression,
+                    ["Plantera"],
+                    "plantera"));
         }
 
         foreach (var item in new[]
@@ -125,7 +134,10 @@ public static class JournalExactShopCatalog
                 provenance,
                 largeLetter,
                 item,
-                new ConditionBuilder(ConditionKind.AfterProgression, ["Moon Lord"]));
+                new ConditionBuilder(
+                    ConditionKind.AfterProgression,
+                    ["Moon Lord"],
+                    "moon-lord"));
         }
 
         const string goblinSlayer = "AAModClassic/GoblinSlayer";
@@ -240,7 +252,10 @@ public static class JournalExactShopCatalog
         ConditionBuilder[] Conditions,
         string Provenance);
 
-    private sealed record ConditionBuilder(ConditionKind Kind, object[] Arguments);
+    private sealed record ConditionBuilder(
+        ConditionKind Kind,
+        object[] Arguments,
+        string StageId = "");
 
     private enum ConditionKind
     {
@@ -257,4 +272,13 @@ public sealed record JournalExactShopSource(
     JournalExactShopCondition[] Conditions,
     string Provenance);
 
-public sealed record JournalExactShopCondition(string Type, string Description);
+public sealed record JournalExactShopCondition(
+    string Type,
+    string Description,
+    string StageId)
+{
+    public JournalExactShopCondition(string type, string description)
+        : this(type, description, string.Empty)
+    {
+    }
+}

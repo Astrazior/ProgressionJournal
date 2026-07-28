@@ -401,9 +401,11 @@ const MILESTONE_FACTS = [
       "Terraria/SnowmanGangsta",
       "Terraria/MisterStabby"
     ],
+    // Purifying the Tortured Soul is a separate unlock that town-NPC probes cannot observe.
     shops: [
       "Terraria/Wizard",
-      "Terraria/Truffle"
+      "Terraria/Truffle",
+      "Terraria/TaxCollector"
     ]
   },
   {
@@ -636,8 +638,7 @@ const START_SHOPS = [
   "Terraria/Golfer",
   "Terraria/BestiaryGirl",
   "Terraria/SkeletonMerchant",
-  "Terraria/TravellingMerchant",
-  "Terraria/TaxCollector"
+  "Terraria/TravellingMerchant"
 ];
 
 const START_CONTAINERS = [

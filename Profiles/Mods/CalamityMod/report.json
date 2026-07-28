@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-28T16:13:45.226Z",
+  "generatedAtUtc": "2026-07-28T16:51:55.723Z",
   "snapshot": {
     "version": 7,
     "generatedAtUtc": "2026-07-28T14:42:32.1196436Z",
@@ -6585,7 +6585,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-07-28T16:13:26.822Z",
+    "generatedAtUtc": "2026-07-28T16:51:34.044Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -38105,10 +38105,6 @@
         "stage": "start",
         "via": "npc:Terraria/Stylist"
       },
-      "Terraria/TaxCollectorsStickOfDoom": {
-        "stage": "start",
-        "via": "npc:Terraria/TaxCollector"
-      },
       "Terraria/LesserHealingPotion": {
         "stage": "start",
         "via": "shop:Terraria/Merchant",
@@ -41719,6 +41715,10 @@
         "eventCategory": "BloodMoon",
         "customEventName": "",
         "eventIcon": ""
+      },
+      "Terraria/TaxCollectorsStickOfDoom": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/TaxCollector"
       },
       "CalamityMod/MidasPrime": {
         "stage": "wall-of-flesh",
