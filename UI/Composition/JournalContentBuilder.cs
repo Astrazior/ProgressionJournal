@@ -820,10 +820,22 @@ public static class JournalContentBuilder
             .Where(entry => entry.Evaluation.Tier == tier)
             .Select((entry, index) => new { Entry = entry, OriginalIndex = index })
             .OrderBy(value => JournalOrdering.GetCategoryOrder(value.Entry.Entry.Category))
+            .ThenByDescending(value => tier == RecommendationTier.FromGuide
+                ? GetNewEquipmentSortStrength(value.Entry)
+                : 0)
             .ThenBy(value => value.OriginalIndex)
             .Select(value => value.Entry)
             .ToArray();
     }
+
+    private static int GetNewEquipmentSortStrength(JournalStageEntry entry) =>
+        entry.Entry.Category switch
+        {
+            JournalItemCategory.Armor when entry.ArmorSet is { Variants.Count: > 0 } armorSet =>
+                armorSet.Variants.Max(static variant => variant.TotalDefense),
+            JournalItemCategory.Armor or JournalItemCategory.Weapon => entry.Entry.CategoryStrength,
+            _ => 0
+        };
 
     private static UIElement CreateEmptyStateNotice(string text)
     {

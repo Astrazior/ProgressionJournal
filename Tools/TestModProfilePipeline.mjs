@@ -18,6 +18,9 @@ const buildPlannerSource = fs.readFileSync(
 const combatBuffRepositorySource = fs.readFileSync(
   path.join(root, "Data", "Repositories", "JournalRepository.CombatBuffs.cs"),
   "utf8");
+const journalContentBuilderSource = fs.readFileSync(
+  path.join(root, "UI", "Composition", "JournalContentBuilder.cs"),
+  "utf8");
 assert(buildPlannerSource.includes(".Take(profile.GetStageIndex(stageId) + 1)")
   && buildPlannerSource.includes(
     ".SelectMany(stage => GetCombatBuffEntries(profile.Id, stage.Id, classId))"),
@@ -29,6 +32,16 @@ assert(buildPlannerSource.includes(
 assert(combatBuffRepositorySource.includes(
   'Buff("warTable", JournalBuffCategory.Station, CombatClass.All, ItemID.WarTable, ProgressionStageId.PostWorldEvil)'),
 "The built-in War Table fallback must start after the world evil boss");
+assert(journalContentBuilderSource.includes(
+  "tier == RecommendationTier.FromGuide")
+  && journalContentBuilderSource.includes(
+    ".ThenByDescending(value => tier == RecommendationTier.FromGuide")
+  && journalContentBuilderSource.includes(
+    "JournalItemCategory.Armor or JournalItemCategory.Weapon")
+  && journalContentBuilderSource.includes(
+    "armorSet.Variants.Max(static variant => variant.TotalDefense)")
+  && journalContentBuilderSource.includes("_ => 0"),
+"Only New equipment must sort armor and weapons by descending strength");
 const expected = ["CalamityMod", "FargowiltasSouls", "ThoriumMod"];
 const requiredFiles = [
   "support.json",
