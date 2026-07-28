@@ -178,6 +178,140 @@ try {
   assert.equal(identical.blocked, false);
   assert.equal(identical.itemChanges.length, 0);
 
+  const legacyEvidenceDirectory = path.join(temporaryRoot, "legacy-evidence");
+  const enrichedEvidenceDirectory = path.join(temporaryRoot, "enriched-evidence");
+  const legacyEvidence = structuredClone(defaultAcquisitions());
+  legacyEvidence.shops[0].conditions = [{
+    type: "Terraria.Condition",
+    description: "Available after a machine-readable condition."
+  }];
+  const enrichedEvidence = structuredClone(legacyEvidence);
+  enrichedEvidence.shops[0].conditions[0] = {
+    ...enrichedEvidence.shops[0].conditions[0],
+    key: "Conditions.InHardmode",
+    facts: [{ kind: "item-owned", item: "Terraria/GuideVoodooDoll" }]
+  };
+  writeState(legacyEvidenceDirectory, { acquisitions: legacyEvidence });
+  writeState(enrichedEvidenceDirectory, { acquisitions: enrichedEvidence });
+  const evidenceEnrichment = compareDirectories(
+    legacyEvidenceDirectory,
+    enrichedEvidenceDirectory);
+  assert.equal(evidenceEnrichment.blocked, false);
+  assert.equal(
+    evidenceEnrichment.acquisitionChanges[0].kind,
+    "acquisition-evidence-enriched");
+
+  const evidenceRegression = compareDirectories(
+    enrichedEvidenceDirectory,
+    legacyEvidenceDirectory);
+  assert.equal(evidenceRegression.blocked, true);
+  assert.equal(
+    evidenceRegression.acquisitionChanges[0].kind,
+    "acquisition-evidence-regressed");
+
+  const quantityBaselineDirectory = path.join(temporaryRoot, "quantity-baseline");
+  const quantityChangedDirectory = path.join(temporaryRoot, "quantity-changed");
+  const quantityBaselineAcquisitions = structuredClone(defaultAcquisitions());
+  quantityBaselineAcquisitions.shops = [];
+  quantityBaselineAcquisitions.drops = [{
+    sourceType: "npc",
+    source: "TestMod/Monster",
+    item: "TestMod/GuardedItem",
+    rate: 0.5,
+    stackMin: 1,
+    stackMax: 2,
+    conditions: []
+  }];
+  const quantityChangedAcquisitions = structuredClone(quantityBaselineAcquisitions);
+  quantityChangedAcquisitions.drops[0].rate = 0.25;
+  quantityChangedAcquisitions.drops[0].stackMax = 1;
+  writeState(quantityBaselineDirectory, { acquisitions: quantityBaselineAcquisitions });
+  writeState(quantityChangedDirectory, { acquisitions: quantityChangedAcquisitions });
+  const quantityChange = compareDirectories(
+    quantityBaselineDirectory,
+    quantityChangedDirectory);
+  assert.equal(quantityChange.blocked, false);
+  assert.equal(
+    quantityChange.acquisitionChanges[0].kind,
+    "acquisition-metadata-changed");
+
+  const shopMetadataDirectory = path.join(temporaryRoot, "shop-metadata");
+  const shopMetadataAcquisitions = structuredClone(defaultAcquisitions());
+  shopMetadataAcquisitions.shops[0] = {
+    ...shopMetadataAcquisitions.shops[0],
+    observed: false,
+    earliestStageIndex: -1,
+    earliestStageId: "",
+    earliestStageName: "Localized stage name"
+  };
+  writeState(shopMetadataDirectory, { acquisitions: shopMetadataAcquisitions });
+  const shopMetadataChange = compareDirectories(beforeDirectory, shopMetadataDirectory);
+  assert.equal(shopMetadataChange.blocked, false);
+  assert.equal(
+    shopMetadataChange.acquisitionChanges[0].kind,
+    "acquisition-metadata-changed");
+
+  const duplicateDropDirectory = path.join(temporaryRoot, "duplicate-drop");
+  const singleDropDirectory = path.join(temporaryRoot, "single-drop");
+  const duplicateDropAcquisitions = structuredClone(defaultAcquisitions());
+  duplicateDropAcquisitions.shops = [];
+  duplicateDropAcquisitions.drops = [
+    quantityBaselineAcquisitions.drops[0],
+    structuredClone(quantityBaselineAcquisitions.drops[0])
+  ];
+  const singleDropAcquisitions = structuredClone(duplicateDropAcquisitions);
+  singleDropAcquisitions.drops.pop();
+  writeState(duplicateDropDirectory, { acquisitions: duplicateDropAcquisitions });
+  writeState(singleDropDirectory, { acquisitions: singleDropAcquisitions });
+  const duplicateDropRemoval = compareDirectories(
+    duplicateDropDirectory,
+    singleDropDirectory);
+  assert.equal(duplicateDropRemoval.blocked, false);
+  assert.equal(
+    duplicateDropRemoval.acquisitionChanges[0].kind,
+    "acquisition-duplicates-removed");
+  assert.equal(
+    duplicateDropRemoval.metricChanges.find(change => change.metric === "drops").blocking,
+    false);
+
+  const legacyReviewDirectory = path.join(temporaryRoot, "legacy-review");
+  const enrichedReviewDirectory = path.join(temporaryRoot, "enriched-review");
+  const legacyReviewIssue = {
+    id: "unresolved-condition.legacy",
+    kind: "unresolved-condition",
+    sourceKind: "shop",
+    affected: [{ item: "TestMod/GuardedItem", source: "TestMod/Merchant" }],
+    affectedCount: 1,
+    conditions: [{
+      type: "Terraria.Condition",
+      description: "In hardmode"
+    }],
+    resolution: {
+      conditionStages: [{
+        conditionDescriptions: ["In hardmode"],
+        conditionKeys: [],
+        conditionTypes: [],
+        sourceIds: ["TestMod/Merchant"],
+        sources: ["shop"],
+        stageId: "<stage-id>"
+      }]
+    }
+  };
+  const enrichedReviewIssue = structuredClone(legacyReviewIssue);
+  enrichedReviewIssue.id = "unresolved-condition.enriched";
+  enrichedReviewIssue.conditions[0].key = "Conditions.InHardmode";
+  enrichedReviewIssue.conditions[0].facts = [];
+  enrichedReviewIssue.resolution.conditionStages[0].conditionKeys = [
+    "Conditions.InHardmode"
+  ];
+  writeState(legacyReviewDirectory, { reviewIssues: [legacyReviewIssue] });
+  writeState(enrichedReviewDirectory, { reviewIssues: [enrichedReviewIssue] });
+  const reviewEvidenceEnrichment = compareDirectories(
+    legacyReviewDirectory,
+    enrichedReviewDirectory);
+  assert.equal(reviewEvidenceEnrichment.blocked, false);
+  assert.equal(reviewEvidenceEnrichment.reviewChanges.added.length, 0);
+
   const removedDirectory = path.join(temporaryRoot, "removed");
   writeState(removedDirectory, {
     profileItems: [],
@@ -351,6 +485,23 @@ try {
       throw new Error("Synthetic candidate build failure");
     }
   }), /Synthetic candidate build failure/u);
+  assert.deepEqual(
+    fs.readFileSync(path.join(safeProfileDirectory, "profile.json")),
+    originalProfile);
+
+  let resetProbeEvidenceForwarded = false;
+  const resetDryRun = runSafeBuild(
+    ["TestMod", "--dry-run", "--reset-probe-evidence"],
+    {
+      root: safeRoot,
+      buildModProfile: (_modName, options) => {
+        resetProbeEvidenceForwarded = options.resetProbeEvidence === true;
+        writeState(options.outputDirectory);
+      }
+    });
+  assert.equal(resetDryRun.accepted, true);
+  assert.equal(resetDryRun.dryRun, true);
+  assert.equal(resetProbeEvidenceForwarded, true);
   assert.deepEqual(
     fs.readFileSync(path.join(safeProfileDirectory, "profile.json")),
     originalProfile);

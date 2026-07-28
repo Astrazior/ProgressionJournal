@@ -46,6 +46,10 @@ public static class JournalExactShopCatalog
                 Language.GetTextValue(
                     "Mods.ProgressionJournal.UI.SelectedItemWorldOptionCondition",
                     condition.Arguments)),
+            ConditionKind.ThoriumTrackerContract => new JournalExactShopCondition(
+                "Mods.ThoriumMod.Conditions.CompletedMonsterContract",
+                Language.GetTextValue(
+                    "Mods.ProgressionJournal.UI.ThoriumDamselTrackerContractCondition")),
             _ => new JournalExactShopCondition(string.Empty, string.Empty)
         };
     }
@@ -54,6 +58,7 @@ public static class JournalExactShopCatalog
     {
         List<EntryBuilder> builders = [];
         AddAAModClassic(builders);
+        AddThorium(builders);
         return builders
             .Select(TryCreateEntry)
             .OfType<Entry>()
@@ -145,6 +150,29 @@ public static class JournalExactShopCatalog
             provenance));
     }
 
+    private static void AddThorium(ICollection<EntryBuilder> builders)
+    {
+        const string provenance =
+            "ThoriumMod 1.7.2.6 installed shop snapshots: world-evil-selected "
+            + "Grim Pedestal variants share the Damsel of Distress Tracker contract";
+        ConditionBuilder[] conditions =
+        [
+            new(ConditionKind.ThoriumTrackerContract, [])
+        ];
+        foreach (var target in new[]
+                 {
+                     "ThoriumMod/GrimPedestal",
+                     "ThoriumMod/GrimPedestalCrimson"
+                 })
+        {
+            builders.Add(new EntryBuilder(
+                "ThoriumMod/Tracker",
+                target,
+                conditions,
+                provenance));
+        }
+    }
+
     private static Entry? TryCreateEntry(EntryBuilder builder)
     {
         if (!TryResolveNpcReference(builder.SourceNpcReference, out var sourceNpcType)
@@ -217,7 +245,8 @@ public static class JournalExactShopCatalog
     private enum ConditionKind
     {
         AfterProgression,
-        WorldOption
+        WorldOption,
+        ThoriumTrackerContract
     }
 }
 

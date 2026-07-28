@@ -138,6 +138,8 @@ UI: {
 	TownNpcSpecialUnlockCondition: NPC требует спасения или другого особого разблокирования.
 	TownNpcInventoryCondition: Доступность NPC обнаружена при наличии требуемых предметов у игрока.
 	TownNpcPopulationCondition: Доступность NPC обнаружена после заселения других городских NPC.
+	TownNpcExpertModeCondition: NPC требует мир режима эксперта или мастера.
+	TownNpcMasterModeCondition: NPC требует мир режима мастера.
 	TownNpcAvailabilityUnknown: Доступность NPC не обнаружена в runtime-сценариях.
 	ShopObservedAfterCondition: Этот товар впервые обнаружен в магазине после этапа: {0}
 	NpcSpawnAvailabilityUnknown: Runtime-проверка не воспроизвела появление этого врага. Известные условия биома показаны значками бестиария выше.
@@ -158,6 +160,8 @@ UI: {
 	NpcSpawnMartians: Марсианское безумие
 	NpcSpawnPumpkinMoon: Тыквенная луна
 	NpcSpawnFrostMoon: Морозная луна
+	NpcSpawnFullMoon: Полнолуние
+	ThoriumDamselTrackerContractCondition: Выполнить контракт Следопыта «Дева в беде»
 	NpcSpawnOldOnesArmy: Армия Древнего
 	NpcSpawnGranite: Гранитная пещера
 	NpcSpawnMarble: Мраморная пещера
@@ -461,4 +465,7 @@ ExternalConditionTypes: {
 	}
 }
 
-Keybinds.ToggleProgressionJournal.DisplayName: Открыть журнал прогрессии
+Keybinds: {
+	ToggleProgressionJournal.DisplayName: Открыть журнал прогрессии
+	ExportActiveSnapshot.DisplayName: Разработка: экспортировать снапшот активного профиля
+}

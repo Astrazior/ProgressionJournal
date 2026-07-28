@@ -41,7 +41,11 @@ internal static class JournalSnapshotShopCollector
 
         shops.AddRange(JournalExactShopCatalog.GetAllSources()
             .Where(source => includedNpcs.Contains(source.NpcType)
-                && includedItems.Contains(source.TargetItemId))
+                && includedItems.Contains(source.TargetItemId)
+                && !shops.Any(shop =>
+                    shop.Npc == getNpcReference(source.NpcType)
+                    && shop.Shop == "Shop"
+                    && shop.Item == getItemReference(source.TargetItemId)))
             .Select(source =>
             {
                 var availability = JournalTownNpcAvailabilityResolver.GetAvailability(source.NpcType);

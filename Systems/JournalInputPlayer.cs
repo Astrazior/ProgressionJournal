@@ -13,17 +13,17 @@ public sealed class JournalInputPlayer : ModPlayer
             return;
         }
 
-        var keybind = ProgressionJournal.ToggleJournalKeybind;
-        if (keybind is null)
-        {
-            return;
-        }
-
         try
         {
-            if (keybind.JustPressed)
+            if (ProgressionJournal.ToggleJournalKeybind?.JustPressed == true)
             {
                 ModContent.GetInstance<JournalSystem>().ToggleView();
+            }
+
+            if (ProgressionJournal.ExportActiveSnapshotKeybind?.JustPressed == true)
+            {
+                Commands.ExportProgressionSnapshotCommand
+                    .ExportActiveDevelopmentSnapshot(static message => Main.NewText(message));
             }
         }
         catch (KeyNotFoundException)

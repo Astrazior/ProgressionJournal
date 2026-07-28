@@ -4,6 +4,7 @@ using ProgressionJournal.Data.Snapshots.Collectors;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
@@ -14,44 +15,155 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
     private static readonly MethodInfo? PlayerLoaderSetupPlayerMethod = typeof(PlayerLoader).GetMethod(
         "SetupPlayer",
         BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+    private static Dictionary<string, string> ItemReferencesByLocalizationKey =
+        new(StringComparer.Ordinal);
+
     public override CommandType Type => CommandType.Chat;
 
     public override string Command => "pjexport";
 
-    public override string Usage => "/pjexport <InternalModName>";
+    public override string Usage => "/pjexport [mod name]";
 
     public override string Description => "Exports loaded content for the Progression Journal profile generator.";
 
     public override void Action(CommandCaller caller, string input, string[] args)
     {
-        if (args.Length != 1)
+        if (args.Length == 0)
         {
-            caller.Reply($"Usage: {Usage}");
+            ExportActiveDevelopmentSnapshot(message => caller.Reply(message));
             return;
         }
 
-        var targetModName = args[0].Trim();
-        if (!ModLoader.TryGetMod(targetModName, out var targetMod))
+        var targetModName = string.Join(" ", args).Trim();
+        if (!TryResolveLoadedMod(targetModName, out var targetMod, out var resolutionError))
         {
-            caller.Reply($"Loaded mod '{targetModName}' was not found. Use its internal mod name.");
+            caller.Reply(resolutionError);
             return;
         }
 
         var matchingProfiles = JournalProfileRegistry.All
-            .Where(profile => profile.Document.RequiredMods.Any(requirement =>
-                string.Equals(requirement.Name, targetMod.Name, StringComparison.OrdinalIgnoreCase)))
+            .Where(profile => string.Equals(
+                profile.Document.RequiredMods.FirstOrDefault()?.Name,
+                targetMod.Name,
+                StringComparison.OrdinalIgnoreCase))
             .ToArray();
-        if (matchingProfiles.Length != 1)
+        if (matchingProfiles.Length > 1)
         {
             caller.Reply(
-                matchingProfiles.Length == 0
-                    ? $"No loaded Progression Journal profile targets '{targetMod.Name}'."
-                    : $"More than one loaded profile targets '{targetMod.Name}': "
-                      + string.Join(", ", matchingProfiles.Select(static profile => profile.Id)));
+                $"More than one loaded profile targets '{targetMod.Name}': "
+                + string.Join(", ", matchingProfiles.Select(static profile => profile.Id)));
             return;
         }
 
-        var targetProfile = matchingProfiles[0];
+        var bootstrap = matchingProfiles.Length == 0;
+        JournalProfile targetProfile;
+        if (bootstrap)
+        {
+            if (!JournalProfileRegistry.TryGet(JournalProfileIds.Vanilla, out targetProfile))
+            {
+                caller.Reply("The vanilla progression profile is unavailable for new-mod bootstrap.");
+                return;
+            }
+        }
+        else
+        {
+            targetProfile = matchingProfiles[0];
+        }
+
+        var profileId = bootstrap
+            ? $"mod.{targetMod.Name.ToLowerInvariant()}"
+            : targetProfile.Id;
+        if (bootstrap)
+        {
+            caller.Reply(
+                $"No profile exists for {targetMod.Name}; exporting against the vanilla "
+                + "progression stages and creating a development support scaffold.");
+        }
+
+        try
+        {
+            ExportSnapshot(
+                targetMod,
+                targetProfile,
+                profileId,
+                message => caller.Reply(message));
+        }
+        catch (Exception exception)
+        {
+            ProgressionJournal.Instance?.Logger.Error(
+                $"Failed to export snapshot for '{targetMod.Name}'.",
+                exception);
+            caller.Reply($"Snapshot export failed for {targetMod.Name}: {exception.Message}");
+            return;
+        }
+
+        if (bootstrap)
+        {
+            caller.Reply(
+                $"Bootstrap created for {targetMod.Name}. Add its classes and stages to support.json, "
+                + "then generate the profile with "
+                + $"`node Tools/BuildModProfiles.mjs {targetMod.Name} --dry-run`, "
+                + "inspect the report, repeat with `--accept-changes`, then Build + Reload "
+                + "and export the selected profile again.");
+        }
+    }
+
+    internal static void ExportActiveDevelopmentSnapshot(Action<string> reply)
+    {
+        var sourceFolder = ProgressionJournal.Instance?.SourceFolder;
+        if (string.IsNullOrWhiteSpace(sourceFolder) || !Directory.Exists(sourceFolder))
+        {
+            reply("Snapshot export hotkey is available only from a local ModSources build.");
+            return;
+        }
+
+        if (!JournalProfileRegistry.IsLoaded)
+        {
+            reply("Journal profiles are not loaded yet.");
+            return;
+        }
+
+        var profile = JournalProfileRegistry.Active;
+        var targetModName = profile.Document.RequiredMods.FirstOrDefault()?.Name;
+        if (string.IsNullOrWhiteSpace(targetModName))
+        {
+            reply("Select a mod progression profile before exporting its snapshot.");
+            return;
+        }
+
+        var supportPath = Path.Combine(
+            sourceFolder,
+            "Profiles",
+            "Mods",
+            targetModName,
+            "support.json");
+        if (!File.Exists(supportPath)
+            || !ModLoader.TryGetMod(targetModName, out var targetMod))
+        {
+            reply($"The active profile target '{targetModName}' has no loaded development scaffold.");
+            return;
+        }
+
+        reply($"Exporting active profile target {targetMod.Name}...");
+        try
+        {
+            ExportSnapshot(targetMod, profile, profile.Id, reply);
+        }
+        catch (Exception exception)
+        {
+            ProgressionJournal.Instance?.Logger.Error(
+                $"Failed to export active development snapshot for '{targetMod.Name}'.",
+                exception);
+            reply($"Snapshot export failed for {targetMod.Name}: {exception.Message}");
+        }
+    }
+
+    private static void ExportSnapshot(
+        Mod targetMod,
+        JournalProfile targetProfile,
+        string profileId,
+        Action<string> reply)
+    {
         using var profileScope = JournalRuntimeProgressionScenarios.UseProfile(targetProfile);
         var dependencyMods = ResolveTransitiveDependencies(targetMod);
         var contentMods = dependencyMods
@@ -65,6 +177,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         var itemIds = Enumerable.Range(1, ItemLoader.ItemCount - 1)
             .Where(itemId => includedMods.Contains(GetItemModName(itemId)))
             .ToHashSet();
+        ItemReferencesByLocalizationKey = BuildItemReferencesByLocalizationKey(itemIds);
         var npcIds = Enumerable.Range(1, NPCLoader.NPCCount - 1)
             .Where(npcId => includedMods.Contains(GetNpcModName(npcId)))
             .ToHashSet();
@@ -99,7 +212,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         {
             GeneratedAtUtc = DateTime.UtcNow.ToString("O"),
             TargetMod = targetMod.Name,
-            ProfileId = targetProfile.Id,
+            ProfileId = profileId,
             ContentMods = contentMods
                 .OrderBy(static name => name, StringComparer.OrdinalIgnoreCase)
                 .ToList(),
@@ -169,6 +282,8 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                         detail.SpawnRateHookTrace.ToList(),
                         detail.SpawnedNpcTypes.Select(GetNpcReference).ToList()))
                     .ToList(),
+                npcSpawnProbe.GameModes.ToList(),
+                npcSpawnProbe.WorldScenarios.ToList(),
                 npcSpawnProbe.Failures.ToList()),
             VanillaItemClassifications = CreateVanillaItemClassifications(),
             VanillaBuffClassifications = CreateVanillaBuffClassifications()
@@ -188,8 +303,13 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         Directory.CreateDirectory(directory);
         var path = Path.Combine(directory, "snapshot.json");
         WriteAtomically(path, JsonSerializer.Serialize(snapshot, SnapshotJsonOptions));
-        CreateSupportTemplateIfMissing(directory, targetMod, dependencyMods);
-        caller.Reply(
+        CreateSupportTemplateIfMissing(
+            directory,
+            targetMod,
+            dependencyMods,
+            targetProfile,
+            profileId);
+        reply(
             $"Progression Journal snapshot exported: {path}. "
             + $"Profile: {snapshot.ProfileId}. "
             + $"Content mods: {string.Join(", ", snapshot.ContentMods)}. "
@@ -198,6 +318,8 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             + $"contexts/rate-blocked: {snapshot.NpcSpawnProbe.Contexts}/{snapshot.NpcSpawnProbe.RateBlocked}; "
             + $"positive/chosen/full: {snapshot.NpcSpawnProbe.PositiveSpawnChance}/"
             + $"{snapshot.NpcSpawnProbe.ChosenSpawn}/{snapshot.NpcSpawnProbe.FullSpawn}. "
+            + $"World isolation: {snapshot.NpcSpawnProbe.GameModes.Count} difficulties, "
+            + $"{snapshot.NpcSpawnProbe.WorldScenarios.Count} world scenarios. "
             + $"Probe failures: {snapshot.NpcSpawnProbe.Failures.Count}.");
     }
 
@@ -206,6 +328,49 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         WriteIndented = true
     };
+
+    private static bool TryResolveLoadedMod(
+        string query,
+        out Mod targetMod,
+        out string error)
+    {
+        targetMod = ModLoader.Mods.FirstOrDefault(mod =>
+            string.Equals(mod.Name, query, StringComparison.OrdinalIgnoreCase))!;
+        if (targetMod is not null)
+        {
+            error = string.Empty;
+            return true;
+        }
+
+        var matches = ModLoader.Mods
+            .Where(mod =>
+                string.Equals(mod.DisplayNameClean, query, StringComparison.CurrentCultureIgnoreCase))
+            .ToArray();
+        if (matches.Length == 0)
+        {
+            matches = ModLoader.Mods
+                .Where(mod =>
+                    mod.Name.Contains(query, StringComparison.OrdinalIgnoreCase)
+                    || mod.DisplayNameClean.Contains(
+                        query,
+                        StringComparison.CurrentCultureIgnoreCase))
+                .ToArray();
+        }
+
+        if (matches.Length == 1)
+        {
+            targetMod = matches[0];
+            error = string.Empty;
+            return true;
+        }
+
+        targetMod = null!;
+        error = matches.Length == 0
+            ? $"No loaded mod matches '{query}'. You can use its visible or internal name."
+            : $"More than one loaded mod matches '{query}': "
+              + string.Join(", ", matches.Select(static mod => $"{mod.DisplayNameClean} ({mod.Name})"));
+        return false;
+    }
 
     private static Mod[] ResolveTransitiveDependencies(Mod targetMod)
     {
@@ -260,7 +425,9 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
     private static void CreateSupportTemplateIfMissing(
         string directory,
         Mod targetMod,
-        Mod[] dependencyMods)
+        Mod[] dependencyMods,
+        JournalProfile progressionTemplate,
+        string profileId)
     {
         var path = Path.Combine(directory, "support.json");
         if (File.Exists(path))
@@ -273,7 +440,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             format = "ProgressionJournalModSupport",
             version = 1,
             targetMod = targetMod.Name,
-            id = $"mod.{targetMod.Name.ToLowerInvariant()}",
+            id = profileId,
             name = new Dictionary<string, string>
             {
                 ["en-US"] = $"{targetMod.DisplayName} progression",
@@ -284,8 +451,15 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                 mod.Name,
                 mod.Version.ToString())),
             contentMods = dependencyMods.Select(static mod => mod.Name).ToArray(),
-            classes = Array.Empty<object>(),
-            stages = Array.Empty<object>()
+            classes = progressionTemplate.Document.Classes,
+            initialStations = new[]
+            {
+                "Terraria/WorkBenches",
+                "Terraria/Furnaces",
+                "Terraria/Anvils",
+                "Terraria/Bottles"
+            },
+            stages = progressionTemplate.Document.Stages
         };
         WriteAtomically(path, JsonSerializer.Serialize(template, SnapshotJsonOptions));
     }
@@ -388,6 +562,8 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
 
         try
         {
+            using var worldStateIsolation = new JournalWorldStateIsolation();
+            JournalWorldStateIsolation.ApplyNeutralBaseline();
             var baseline = CreateEffectProbePlayer();
             var equipped = CreateEffectProbePlayer();
             var item = sourceItem.Clone();
@@ -610,26 +786,49 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             }
         }
 
+        AppendExactRecipes(recipes, includedItems);
         return recipes;
+    }
+
+    private static void AppendExactRecipes(
+        ICollection<SnapshotRecipe> recipes,
+        HashSet<int> includedItems)
+    {
+        if (!ModContent.TryFind<ModItem>(
+                "AAModClassic/ZeroAwakenedBox",
+                out var result)
+            || !ModContent.TryFind<ModItem>("AAModClassic/ZeroBox", out var zeroBox)
+            || !ModContent.TryFind<ModItem>("AAModClassic/BrokenCode", out var brokenCode)
+            || !includedItems.Contains(result.Type)
+            || !includedItems.Contains(zeroBox.Type)
+            || !includedItems.Contains(brokenCode.Type)
+            || recipes.Any(recipe =>
+                recipe.Result.Equals(result.FullName, StringComparison.OrdinalIgnoreCase)))
+        {
+            return;
+        }
+
+        recipes.Add(new SnapshotRecipe(
+            result.FullName,
+            1,
+            [
+                new SnapshotStack(GetItemReference(ItemID.MusicBox), 1),
+                new SnapshotStack(zeroBox.FullName, 1),
+                new SnapshotStack(brokenCode.FullName, 1)
+            ],
+            [GetTileReference(TileID.Sawmill)],
+            [
+                new SnapshotCondition(
+                    "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
+                    Language.GetTextValue(
+                        "Mods.ProgressionJournal.UI.SelectedItemExpertModeCondition"))
+            ]));
     }
 
     private static List<SnapshotShimmerTransform> CreateShimmerTransforms(HashSet<int> includedItems)
     {
         List<SnapshotShimmerTransform> transforms = [];
-        foreach (var inputItemId in includedItems)
-        {
-            var outputItemId = ItemID.Sets.ShimmerTransformToItem[inputItemId];
-            if (outputItemId <= ItemID.None
-                || outputItemId == inputItemId
-                || !includedItems.Contains(outputItemId))
-            {
-                continue;
-            }
-
-            transforms.Add(new SnapshotShimmerTransform(
-                GetItemReference(inputItemId),
-                GetItemReference(outputItemId)));
-        }
+        transforms.AddRange(from inputItemId in includedItems let outputItemId = ItemID.Sets.ShimmerTransformToItem[inputItemId] where outputItemId > ItemID.None && outputItemId != inputItemId && includedItems.Contains(outputItemId) select new SnapshotShimmerTransform(GetItemReference(inputItemId), GetItemReference(outputItemId)));
 
         return transforms
             .OrderBy(static transform => transform.Input, StringComparer.OrdinalIgnoreCase)
@@ -644,10 +843,69 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             return new SnapshotCondition(string.Empty, string.Empty);
         }
 
+        var localizedDescription = condition is Condition runtimeCondition
+            ? runtimeCondition.Description
+            : GetReflectedLocalizedText(condition);
         var description = condition is IProvideItemConditionDescription provider
             ? provider.GetConditionDescription()
-            : GetReflectedConditionDescription(condition);
-        return new SnapshotCondition(condition.GetType().FullName ?? condition.GetType().Name, description);
+            : localizedDescription?.Value ?? GetReflectedConditionDescription(condition);
+        return new SnapshotCondition(
+            condition.GetType().FullName ?? condition.GetType().Name,
+            description,
+            localizedDescription?.Key ?? string.Empty,
+            CreateConditionFacts(localizedDescription));
+    }
+
+    private static LocalizedText? GetReflectedLocalizedText(object condition)
+    {
+        return condition.GetType()
+            .GetProperty("Description", BindingFlags.Public | BindingFlags.Instance)
+            ?.GetValue(condition) as LocalizedText;
+    }
+
+    private static List<SnapshotConditionFact> CreateConditionFacts(LocalizedText? description)
+    {
+        if (description?.Key != "Conditions.PlayerCarriesItem")
+        {
+            return [];
+        }
+
+        foreach (var argument in description.BoundArgs)
+        {
+            switch (argument)
+            {
+                case LocalizedText itemName
+                    when ItemReferencesByLocalizationKey.TryGetValue(itemName.Key, out var itemReference):
+                    return [new SnapshotConditionFact("item-owned", itemReference)];
+                case int itemId and > ItemID.None when itemId < ItemLoader.ItemCount:
+                    return [new SnapshotConditionFact("item-owned", GetItemReference(itemId))];
+            }
+        }
+
+        return [];
+    }
+
+    private static Dictionary<string, string> BuildItemReferencesByLocalizationKey(
+        IEnumerable<int> itemIds)
+    {
+        return itemIds
+            .Select(itemId => new
+            {
+                Key = Lang.GetItemName(itemId).Key,
+                Reference = GetItemReference(itemId)
+            })
+            .Where(static value => !string.IsNullOrWhiteSpace(value.Key))
+            .GroupBy(static value => value.Key, StringComparer.Ordinal)
+            // Ambiguous localization keys are deliberately omitted: unresolved
+            // evidence is safer than binding the condition to the wrong item.
+            .Where(static group => group
+                .Select(static value => value.Reference)
+                .Distinct(StringComparer.Ordinal)
+                .Count() == 1)
+            .ToDictionary(
+                static group => group.Key,
+                static group => group.First().Reference,
+                StringComparer.Ordinal);
     }
 
     private static string GetReflectedConditionDescription(object condition)
@@ -726,7 +984,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
 public sealed class ProgressionSnapshot
 {
     public string Format { get; set; } = "ProgressionJournalSnapshot";
-    public int Version { get; set; } = 6;
+    public int Version { get; set; } = 7;
     public string GeneratedAtUtc { get; set; } = string.Empty;
     public string TargetMod { get; set; } = string.Empty;
     public string ProfileId { get; set; } = string.Empty;
@@ -742,7 +1000,7 @@ public sealed class ProgressionSnapshot
     public List<SnapshotFishingCatch> Fishing { get; set; } = [];
     public List<SnapshotNpcAvailability> NpcAvailability { get; set; } = [];
     public SnapshotNpcSpawnProbe NpcSpawnProbe { get; set; } =
-        new(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, [], []);
+        new(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, [], [], [], []);
     public List<SnapshotVanillaItemClassification> VanillaItemClassifications { get; set; } = [];
     public List<SnapshotVanillaBuffClassification> VanillaBuffClassifications { get; set; } = [];
 }
@@ -800,7 +1058,12 @@ public sealed record SnapshotClassEffect(
     bool Knockback);
 public sealed record SnapshotNpc(string Id, string Name, bool Boss, int BossHeadSlot);
 public sealed record SnapshotStack(string Item, int Stack);
-public sealed record SnapshotCondition(string Type, string Description);
+public sealed record SnapshotCondition(
+    string Type,
+    string Description,
+    string Key = "",
+    List<SnapshotConditionFact>? Facts = null);
+public sealed record SnapshotConditionFact(string Kind, string Item);
 public sealed record SnapshotRecipe(
     string Result,
     int ResultStack,
@@ -857,6 +1120,8 @@ public sealed record SnapshotNpcSpawnProbe(
     int FullSpawnSuccessfulAttempts,
     int FullSpawnedNpcInstances,
     List<SnapshotNpcFullSpawnContext> FullSpawnContextDetails,
+    List<int> GameModes,
+    List<string> WorldScenarios,
     List<string> Failures);
 public sealed record SnapshotNpcFullSpawnContext(
     int StageIndex,

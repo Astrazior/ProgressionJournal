@@ -122,6 +122,11 @@ assert(townNpcResolverSource.indexOf("Main.BestiaryTracker = useMaxBestiary")
 "Town NPC scenarios must install their Bestiary before applying NPC defeat progression");
 assert(townNpcResolverSource.includes("BirthdayParty.GenuineParty"),
   "Event-gated town NPC scenarios are missing");
+assert(townNpcResolverSource.includes("GameModeID.Normal")
+  && townNpcResolverSource.includes("GameModeID.Expert")
+  && townNpcResolverSource.includes("GameModeID.Master")
+  && townNpcResolverSource.includes("Main.GameMode = previousGameMode;"),
+"Town NPC availability must probe and restore world difficulty instead of inheriting the export world");
 assert(townNpcResolverSource.includes("ModContent.GetContent<ModSystem>()")
   && townNpcResolverSource.includes("system.PreUpdateWorld()")
   && townNpcResolverSource.includes("CaptureStaticFieldState"),
@@ -154,6 +159,12 @@ const npcDropCollectorSource = fs.readFileSync(
   "utf8");
 const exactShopCatalogSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalExactShopCatalog.cs"),
+  "utf8");
+const worldStateIsolationSource = fs.readFileSync(
+  path.join(root, "Data", "Resolvers", "JournalWorldStateIsolation.cs"),
+  "utf8");
+const dropRuleReporterSource = fs.readFileSync(
+  path.join(root, "Data", "Snapshots", "Collectors", "JournalSnapshotDropRuleReporter.cs"),
   "utf8");
 const shopSourceModelSource = fs.readFileSync(
   path.join(root, "Data", "Models", "JournalShopSource.cs"),
@@ -209,6 +220,14 @@ assert(exactDropCatalogSource.includes("\"CalamityMod/DivineSwine\"")
   && englishLocalizationSource.includes("The coin is consumed, and the creature transforms into this item.")
   && russianLocalizationSource.includes("Монета будет потрачена, а существо превратится в этот предмет."),
   "Delicious Meat must retain its localized Divine Swine interaction source");
+assert(exactDropCatalogSource.includes("\"CalamityMod/LoreCorruption\"")
+  && exactDropCatalogSource.includes("\"CalamityMod/LoreEaterofWorlds\"")
+  && exactDropCatalogSource.includes("ConditionKind.CalamityFirstKill"),
+  "Calamity world-evil lore drops hidden from ReportDroprates must retain exact IL-backed sources");
+assert(exactShopCatalogSource.includes("\"ThoriumMod/GrimPedestal\"")
+  && exactShopCatalogSource.includes("\"ThoriumMod/GrimPedestalCrimson\"")
+  && exactShopCatalogSource.includes("ConditionKind.ThoriumTrackerContract"),
+  "Thorium's world-evil-selected Grim Pedestal shop variants must retain exact sources");
 assert(exactDropCatalogSource.includes("\"CalamityMod/Jackfruit\"")
   && exactDropCatalogSource.includes("\"CalamityMod/Salak\"")
   && exactDropCatalogSource.includes("\"CalamityMod/AcidwoodTreeShaking\"")
@@ -369,25 +388,95 @@ for (const heavyResolver of [
 assert(fishingResolverSource.includes("JournalRuntimeProgressionScenarios")
   && townNpcResolverSource.includes("JournalRuntimeProgressionScenarios"),
 "Fishing and town NPC probes must share the progression scenario model");
+assert(worldStateIsolationSource.includes("ComprehensiveScenarios")
+  && worldStateIsolationSource.includes("\"drunkWorld\"")
+  && worldStateIsolationSource.includes("\"getGoodWorld\"")
+  && worldStateIsolationSource.includes("\"remixWorld\"")
+  && worldStateIsolationSource.includes("\"zenithWorld\"")
+  && worldStateIsolationSource.includes("new(\"Afternoon\", GameModeID.Normal, Time: 36000d)")
+  && worldStateIsolationSource.includes("Main.time = _time;")
+  && worldStateIsolationSource.includes("WorldGen.crimson = _crimson;"),
+"World-state isolation must cover and restore difficulty, time, world evil, and special seeds");
+assert(dropRuleReporterSource.includes(
+  "JournalWorldStateIsolation.ComprehensiveScenarios")
+  && dropRuleReporterSource.includes(".DistinctBy(BuildIdentity)"),
+"Drop reporting must union machine data across isolated world variants");
+assert(fishingResolverSource.includes("JournalWorldStateIsolation.ApplyNeutralBaseline()")
+  && fishingResolverSource.includes("WorldGen.crimson = world.Crimson;")
+  && fishingResolverSource.includes("WorldGen.crimson = true;"),
+"Fishing probes must set their own world identity instead of inheriting the export world");
+assert(townNpcResolverSource.includes("JournalWorldStateIsolation.ApplyNeutralWorldIdentity()")
+  && townNpcResolverSource.includes("static _ => WorldGen.crimson = true")
+  && townNpcResolverSource.includes("static _ => Main.time = 36000d")
+  && townNpcResolverSource.includes("Main.time = 0d;")
+  && townNpcResolverSource.includes("SetIdentityFlag(\"noTrapsWorld\", true)"),
+"Town NPC and shop probes must cover isolated world identities and time windows");
 const npcSpawnResolverSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalNpcSpawnAvailabilityResolver.cs"),
   "utf8");
 const staticNpcSpawnConditionResolverSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalStaticNpcSpawnConditionResolver.cs"),
   "utf8");
+assert(!fishingResolverSource.includes("Main.worldID")
+  && !townNpcResolverSource.includes("Main.worldID")
+  && !npcSpawnResolverSource.includes("Main.worldID"),
+"Runtime probe caches must be keyed by profile and mod versions, not by the active world");
 assert(npcSpawnResolverSource.includes("modNpc.SpawnChance(spawnInfo)"),
   "Enemy availability does not execute ModNPC.SpawnChance");
 assert(npcSpawnResolverSource.includes("ModContent.GetContent<ModNPC>()"),
   "Enemy availability must enumerate ModNPC through the public content API");
 assert(npcSpawnResolverSource.includes("globalNpc.EditSpawnPool(pool, spawnInfo)"),
   "Enemy availability does not execute GlobalNPC.EditSpawnPool");
-assert(npcSpawnResolverSource.includes("NPCLoader.EditSpawnRate"),
-  "Enemy availability does not execute GlobalNPC.EditSpawnRate");
+assert(npcSpawnResolverSource.includes("globalNpc.EditSpawnRate(player, ref spawnRate, ref maxSpawns)"),
+  "Enemy availability diagnostics do not inspect GlobalNPC.EditSpawnRate");
 assert(npcSpawnResolverSource.includes("NPCLoader.ChooseSpawn(spawnInfo)"),
   "Enemy availability does not execute the final modded spawn selector");
-assert(npcSpawnResolverSource.includes("Main.GameMode = 0;")
+assert(npcSpawnResolverSource.includes("ProbeGameModes")
+  && npcSpawnResolverSource.includes("GameModeID.Normal")
+  && npcSpawnResolverSource.includes("GameModeID.Expert")
+  && npcSpawnResolverSource.includes("GameModeID.Master")
+  && npcSpawnResolverSource.includes("gameMode != GameModeID.Normal")
   && npcSpawnResolverSource.includes("Main.GameMode = state.GameMode;"),
-"Enemy availability must not inherit the export world's difficulty mode");
+"Enemy availability must probe every difficulty while limiting expensive full spawns to Normal");
+assert(npcSpawnResolverSource.includes("JournalWorldStateIsolation.IdentityScenarios")
+  && npcSpawnResolverSource.includes("ApplyWorldIdentityScenario(worldScenario)")
+  && npcSpawnResolverSource.includes("worldScenarioIndex != 0"),
+"Enemy availability must union special-world spawn rules without repeating full vanilla spawns");
+assert(npcSpawnResolverSource.includes(
+  "JournalWorldStateIsolation.ApplyNeutralWorldIdentity();")
+  && npcSpawnResolverSource.includes("Main.time = 0d;")
+  && !npcSpawnResolverSource.includes(
+    "private static void ResetWorldScenario(Catalog catalog)\n    {\n        JournalWorldStateIsolation.ApplyNeutralBaseline();"),
+"Spawn context reset must neutralize world identity without erasing the applied progression stage");
+assert(snapshotExporterClassificationSource.includes("npcSpawnProbe.GameModes.ToList()")
+  && snapshotExporterClassificationSource.includes("npcSpawnProbe.WorldScenarios.ToList()")
+  && snapshotExporterClassificationSource.includes("World isolation:"),
+"Fresh snapshots must expose the executed difficulty and world-state matrices for verification");
+assert(npcSpawnResolverSource.includes("Main.moonPhase = 0;")
+  && npcSpawnResolverSource.includes("Main.moonPhase = state.MoonPhase;")
+  && englishLocalizationSource.includes("NpcSpawnFullMoon: Full moon"),
+"Full-moon enemies must be probed explicitly without inheriting or leaking the export world's moon phase");
+assert(npcSpawnResolverSource.includes("EquivalentWorldVariantGroups")
+  && npcSpawnResolverSource.includes("NPCID.GiantShelly")
+  && npcSpawnResolverSource.includes("NPCID.Salamander9"),
+"World-selected cavern NPC variants must share exact vanilla spawn-stage evidence");
+assert(npcSpawnResolverSource.includes("ObserveVanillaInvasionMembers(catalog, context)")
+  && npcSpawnResolverSource.includes("NPCID.Sets.BelongsToInvasionGoblinArmy")
+  && npcSpawnResolverSource.includes("NPCID.Sets.BelongsToInvasionFrostLegion")
+  && npcSpawnResolverSource.includes("NPCID.Sets.BelongsToInvasionPirate")
+  && npcSpawnResolverSource.includes("NPCID.Sets.BelongsToInvasionMartianMadness")
+  && npcSpawnResolverSource.includes(
+    "npcType is not (NPCID.GoblinSummoner or NPCID.ShadowFlameApparition)")
+  && npcSpawnResolverSource.match(/!context\.Invasion && IsOrdinaryNpc/g)?.length >= 2
+  && npcSpawnResolverSource.includes("Main.invasionX = x;")
+  && !npcSpawnResolverSource.includes("Main.invasionX = Main.spawnTileX;"),
+"Vanilla invasion membership and stages must not depend on the export world's spawn point or random spawn selection");
+assert(snapshotExporterClassificationSource.includes("\"AAModClassic/ZeroAwakenedBox\"")
+  && snapshotExporterClassificationSource.includes("\"AAModClassic/ZeroBox\"")
+  && snapshotExporterClassificationSource.includes("\"AAModClassic/BrokenCode\"")
+  && snapshotExporterClassificationSource.includes(
+    "\"Terraria.GameContent.ItemDropRules.Conditions+IsExpert\""),
+"AA's load-time Expert-only Zero Awakened Box recipe must remain in snapshots with exact difficulty evidence");
 assert(npcSpawnResolverSource.includes("NPC.SpawnNPC()"),
   "Enemy availability does not observe the full vanilla spawn pipeline");
 assert(npcSpawnResolverSource.includes("TryInferSimpleHardmodeSkyAvailability")
@@ -452,9 +541,11 @@ assert(npcSpawnResolverSource.includes("PositiveSpawnChanceTypes")
   && npcSpawnResolverSource.includes("FullSpawnContextDetails")
   && npcSpawnResolverSource.includes("SpawnRateBlockedContextCount"),
 "NPC probe stages must expose measurable runtime diagnostics");
+assert(!npcSpawnResolverSource.includes("NPCLoader.EditSpawnRate(player, ref spawnRate, ref maxSpawns);"),
+  "A frequency-only GlobalNPC.EditSpawnRate hook must not gate availability probes");
 assert(npcSpawnResolverSource.indexOf("ObserveExactSpawnPool(catalog, spawnInfo, context);")
-  < npcSpawnResolverSource.indexOf("NPCLoader.EditSpawnRate(player, ref spawnRate, ref maxSpawns);"),
-"Per-NPC spawn APIs must run before the global spawn-rate gate");
+  < npcSpawnResolverSource.indexOf("ObserveFullSpawnInTemporaryArena(catalog, spawnArena, player, context);"),
+"Per-NPC spawn APIs must run before the isolated full-spawn probe");
 const progressionScenarioSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalRuntimeProgressionScenarios.cs"),
   "utf8");
@@ -494,6 +585,8 @@ assert(snapshotExporterSource.includes("JournalSnapshotNpcAvailabilityCollector.
 assert(snapshotNpcDropCollectorSource.includes("includeGlobalDrops: false")
   && snapshotNpcDropCollectorSource.includes("\"Terraria/GlobalNPCDrops\""),
 "Global NPC drops must be exported once instead of being duplicated for every NPC");
+assert(snapshotNpcDropCollectorSource.includes("ContainsEquivalentDrop"),
+"Exact IL-derived NPC drops must not duplicate equivalent runtime drops");
 const itemCollectionIndex = snapshotExporterSource.indexOf(
   "var items = itemIds.Select(CreateItem).ToList()");
 const npcDropCollectionIndex = snapshotExporterSource.indexOf(
@@ -502,9 +595,13 @@ assert(itemCollectionIndex >= 0
     && npcDropCollectionIndex >= 0
     && itemCollectionIndex < npcDropCollectionIndex,
 "Item classification probes must run before drop reporting because mod drop rules can observe probe state");
-assert(snapshotExporterSource.includes("public int Version { get; set; } = 6")
+assert(snapshotExporterSource.includes("public int Version { get; set; } = 7")
   && snapshotExporterSource.includes("List<JournalLocalizedText> Conditions"),
   "The snapshot schema must preserve localized fishing condition expressions");
+assert(snapshotExporterSource.includes("localizedDescription?.Key")
+  && snapshotExporterSource.includes("Conditions.PlayerCarriesItem")
+  && snapshotExporterSource.includes('new SnapshotConditionFact("item-owned", itemReference)'),
+"Snapshot conditions must retain exact localization keys and item-owned facts");
 assert(snapshotShopCollectorSource.includes("TryGetShopStage"),
   "Observed shop stages are not exported to snapshot.json");
 assert(snapshotFishingCollectorSource.includes("JournalFishingSourceResolver.GetItemAvailability")
@@ -549,7 +646,10 @@ assert(profileGeneratorSource.includes("createWikiClassificationMap"),
 assert(!profileGeneratorSource.includes("function inferredConditionStageIndex")
   && !profileGeneratorSource.includes("conditionDependencyIds")
   && profileGeneratorSource.includes("observedShopConditionsAllowed")
-  && profileGeneratorSource.includes("collectObservedShopPrerequisites")
+  && profileGeneratorSource.includes("collectShopPrerequisites")
+  && profileGeneratorSource.includes("conditionItemPrerequisites")
+  && profileGeneratorSource.includes("conditionKeyStageIndex")
+  && profileGeneratorSource.includes('"Conditions.DownedEyeOfCthulhu"')
   && profileGeneratorSource.includes("item.damageClass !== \"Terraria/DefaultDamageClass\"")
   && profileGeneratorSource.includes("candidate.shoot ?? 0) === item.shoot")
   && profileGeneratorSource.includes("const unlockAvailableShopItems = () =>")
@@ -559,7 +659,7 @@ assert(!profileGeneratorSource.includes("function inferredConditionStageIndex")
   && profileGeneratorSource.includes("isDefaultExcludedVariantCondition")
   && profileGeneratorSource.includes("isSafeOpaqueDropCondition")
   && profileGeneratorSource.includes("EmpressOfLightIsGenuinelyEnraged"),
-"ProfileGeneratorCore must treat observed shop stages as lower bounds, retain exact typed/configured gates, derive exact ammo prerequisites from item metadata, and avoid display-text stage heuristics");
+"ProfileGeneratorCore must use observed stages, exact typed/keyed/configured gates and machine item prerequisites without display-text stage heuristics");
 const vanillaSourceCatalogSource = fs.readFileSync(
   path.join(root, "Tools", "VanillaSourceCatalog.mjs"),
   "utf8");
@@ -725,7 +825,7 @@ for (const modName of expected) {
     for (const [itemId, stageId] of Object.entries({
       "Terraria/Uzi": "wall-of-flesh",
       "Terraria/DeathSickle": "skeletron-prime",
-      "Terraria/PulseBow": "plantera",
+      "Terraria/PulseBow": "skeletron-prime",
       "Terraria/Katana": "start",
       "CalamityMod/SkyGlaze": "eye-of-cthulhu",
       "CalamityMod/WyvernsCall": "destroyer",
@@ -1141,13 +1241,21 @@ assert.equal(aaEntry("FlameVortexStaff")?.category, "Weapon",
   "Flame Vortex Staff is a combat summon and must remain in the profile");
 assert.equal(aaEntry("CoinGun")?.category, "Weapon",
   "Authoritatively classified zero-damage vanilla weapons must remain weapons");
-for (const itemName of ["CandyCorn", "ExplosiveJackOLantern", "Stake"]) {
-  assert.equal(aaEntry(itemName), undefined,
-    `${itemName} must not infer an inventory dependency from display text`);
-  assert(aaReview.issues.some(issue =>
+for (const [itemName, prerequisite] of Object.entries({
+  CandyCorn: "Terraria/CandyCornRifle",
+  ExplosiveJackOLantern: "Terraria/JackOLanternLauncher",
+  Stake: "Terraria/StakeLauncher"
+})) {
+  assert.equal(aaEntry(itemName)?.evaluations[0]?.stageId, "plantera",
+    `${itemName} must follow its exact machine-readable launcher prerequisite`);
+  assert.deepEqual(
+    aaReport.generation?.paths?.[`Terraria/${itemName}`]?.evidence?.prerequisites,
+    [prerequisite],
+    `${itemName} must not infer its inventory dependency from display text`);
+  assert(!aaReview.issues.some(issue =>
     issue.kind === "unresolved-condition"
     && issue.affected?.some(value => value.item === `Terraria/${itemName}`)),
-  `${itemName} must remain visible in review until a machine-readable shop dependency exists`);
+  `${itemName} has a machine-readable shop dependency and must leave review`);
 }
 assert.equal(aaStage("grips-of-chaos")?.unlock?.key, "downedGrips");
 assert.equal(aaStage("equinox-worms")?.unlock?.key, "downedEquinox");
@@ -1890,8 +1998,34 @@ assert(!registry.includes("Profiles/Builtin/"));
 const exporter = fs.readFileSync(
   path.join(root, "Commands", "ExportProgressionSnapshotCommand.cs"),
   "utf8");
+const modEntryPoint = fs.readFileSync(path.join(root, "ProgressionJournal.cs"), "utf8");
+const inputPlayer = fs.readFileSync(
+  path.join(root, "Systems", "JournalInputPlayer.cs"),
+  "utf8");
 const builder = fs.readFileSync(path.join(root, "Tools", "BuildModProfiles.mjs"), "utf8");
-assert(exporter.includes('public override string Usage => "/pjexport <InternalModName>"'));
+assert(exporter.includes('public override string Usage => "/pjexport [mod name]"'));
+assert(modEntryPoint.includes("ExportActiveSnapshotKeybind")
+  && modEntryPoint.includes("Directory.Exists(SourceFolder)")
+  && modEntryPoint.includes('ExportActiveSnapshotKeybindName, "None"')
+  && inputPlayer.includes("ExportActiveDevelopmentSnapshot")
+  && exporter.includes("internal static void ExportActiveDevelopmentSnapshot")
+  && exporter.includes("JournalProfileRegistry.Active"),
+"Development snapshot hotkey must be source-only, unbound by default, and export only the active profile");
+assert(!exporter.includes("ExportAllDevelopmentSnapshots")
+  && !inputPlayer.includes("ExportAllDevelopmentSnapshots"),
+"Snapshot export must never batch profiles from different mod environments");
+assert(exporter.includes("TryResolveLoadedMod")
+  && exporter.includes("DisplayNameClean")
+  && exporter.includes("JournalProfileIds.Vanilla")
+  && exporter.includes("creating a development support scaffold")
+  && exporter.includes("classes = progressionTemplate.Document.Classes")
+  && exporter.includes("stages = progressionTemplate.Document.Stages"),
+"New mods must bootstrap from vanilla stages without requiring an existing profile or internal-name lookup");
+assert(englishLocalizationSource.includes("Keybinds:")
+  && englishLocalizationSource.includes("ExportActiveSnapshot.DisplayName:")
+  && russianLocalizationSource.includes("Keybinds:")
+  && russianLocalizationSource.includes("ExportActiveSnapshot.DisplayName:"),
+"The development snapshot keybind must have English and Russian labels");
 assert(exporter.includes('Path.Combine(directory, "snapshot.json")'));
 assert(exporter.includes("ResolveTransitiveDependencies(targetMod)"));
 assert(exporter.includes('!mod.Name.Equals("ModLoader"'));

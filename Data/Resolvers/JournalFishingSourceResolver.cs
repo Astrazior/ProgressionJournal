@@ -77,7 +77,9 @@ internal static class JournalFishingSourceResolver
         bool CombatBookUsed = false,
         bool UnlockedSlimeRed = false,
         bool Remix = false,
-        bool NotTheBees = false);
+        bool NotTheBees = false,
+        bool Crimson = false,
+        string[]? IdentityFlags = null);
 
     private sealed record FishingPipeline(
         MethodInfo RollDropLevels,
@@ -142,7 +144,15 @@ internal static class JournalFishingSourceResolver
         new(Remix: true),
         new(Hardmode: true, Remix: true),
         new(NotTheBees: true),
-        new(Hardmode: true, NotTheBees: true)
+        new(Hardmode: true, NotTheBees: true),
+        new(Crimson: true),
+        new(Hardmode: true, Crimson: true),
+        new(IdentityFlags: ["drunkWorld"]),
+        new(IdentityFlags: ["getGoodWorld"]),
+        new(IdentityFlags: ["tenthAnniversaryWorld"]),
+        new(IdentityFlags: ["dontStarveWorld"]),
+        new(IdentityFlags: ["noTrapsWorld"]),
+        new(IdentityFlags: ["getGoodWorld", "remixWorld", "zenithWorld"])
     ];
 
     public static IReadOnlyList<JournalFishingSource> FindSources(int itemId)
@@ -272,7 +282,7 @@ internal static class JournalFishingSourceResolver
                 .Where(static mod => mod.Code is not null)
                 .OrderBy(static mod => mod.Name, StringComparer.OrdinalIgnoreCase)
                 .Select(static mod => $"{mod.Name}@{mod.Version}"));
-        return $"{Main.worldID}:{Main.maxTilesX}x{Main.maxTilesY}:{profileId}:{mods}";
+        return $"{profileId}:{mods}";
     }
 
     private static FishingCatalog BuildCatalog()
@@ -305,6 +315,7 @@ internal static class JournalFishingSourceResolver
         var previousUnlockedSlimeRed = NPC.unlockedSlimeRedSpawn;
         var previousPlayerState = CapturePlayerState(player);
         var legacyBiomeFlags = CreateLegacyBiomeFlags(player, environments);
+        using var worldStateIsolation = new JournalWorldStateIsolation();
 
         try
         {
@@ -1196,11 +1207,17 @@ internal static class JournalFishingSourceResolver
 
     private static void ApplyWorld(ProbeWorld world)
     {
+        JournalWorldStateIsolation.ApplyNeutralBaseline();
         Main.hardMode = world.Hardmode;
         Main.bloodMoon = world.BloodMoon;
         Main.dayTime = world.DayTime;
         Main.remixWorld = world.Remix;
         Main.notTheBeesWorld = world.NotTheBees;
+        WorldGen.crimson = world.Crimson;
+        foreach (var identityFlag in world.IdentityFlags ?? [])
+        {
+            JournalWorldStateIsolation.SetIdentityFlag(identityFlag, true);
+        }
         NPC.downedBoss3 = world.DownedSkeletron;
         NPC.combatBookWasUsed = world.CombatBookUsed;
         NPC.unlockedSlimeRedSpawn = world.UnlockedSlimeRed;
@@ -1221,6 +1238,14 @@ internal static class JournalFishingSourceResolver
         var modBiomeFlags = GetModBiomeFlags(player);
         modBiomeFlags.SetAll(false);
         environment.ApplyVanillaBiome(player);
+        if (player.ZoneCrimson)
+        {
+            WorldGen.crimson = true;
+        }
+        else if (player.ZoneCorrupt)
+        {
+            WorldGen.crimson = false;
+        }
         var modBiomeIndex = environment.ModBiome is null
             ? -1
             : GetModBiomeIndex(environment.ModBiome);

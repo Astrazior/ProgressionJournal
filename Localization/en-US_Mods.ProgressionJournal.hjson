@@ -138,6 +138,8 @@ UI: {
 	TownNpcSpecialUnlockCondition: NPC requires a rescue or another special unlock.
 	TownNpcInventoryCondition: NPC availability was observed with the required player inventory.
 	TownNpcPopulationCondition: NPC availability was observed after other town NPCs had moved in.
+	TownNpcExpertModeCondition: NPC requires an Expert Mode or Master Mode world.
+	TownNpcMasterModeCondition: NPC requires a Master Mode world.
 	TownNpcAvailabilityUnknown: NPC availability was not observed in the runtime scenarios.
 	ShopObservedAfterCondition: This shop item was first observed after: {0}
 	NpcSpawnAvailabilityUnknown: The runtime spawn pipeline did not reproduce this enemy. Known biome conditions are shown by the Bestiary icons above.
@@ -158,6 +160,8 @@ UI: {
 	NpcSpawnMartians: Martian Madness
 	NpcSpawnPumpkinMoon: Pumpkin Moon
 	NpcSpawnFrostMoon: Frost Moon
+	NpcSpawnFullMoon: Full moon
+	ThoriumDamselTrackerContractCondition: Complete the Damsel of Distress Tracker contract
 	NpcSpawnOldOnesArmy: Old One's Army
 	NpcSpawnGranite: Granite Cave
 	NpcSpawnMarble: Marble Cave
@@ -461,4 +465,7 @@ ExternalConditionTypes: {
 	}
 }
 
-Keybinds.ToggleProgressionJournal.DisplayName: Toggle Progression Journal
+Keybinds: {
+	ToggleProgressionJournal.DisplayName: Toggle Progression Journal
+	ExportActiveSnapshot.DisplayName: Developer: Export Active Profile Snapshot
+}

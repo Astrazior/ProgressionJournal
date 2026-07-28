@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { isDeepStrictEqual } from "node:util";
 import {
+  accumulatePositiveProbeEvidence,
   buildKnowledgeBase,
   createSnapshotView
 } from "./KnowledgeBase.mjs";
@@ -145,6 +145,75 @@ assert.equal(knowledge.acquisitions.fishing[0].conditions[0], "Exact localized c
 assert.equal(knowledge.diagnostics.npcSpawnProbe, null);
 assert.equal(knowledge.summary.hasNpcSpawnProbe, false);
 
+const positiveFixture = structuredClone(fixture);
+positiveFixture.shops[0] = {
+  ...positiveFixture.shops[0],
+  observed: true,
+  earliestStageIndex: 1,
+  earliestStageId: "early",
+  earliestStageName: "Early"
+};
+positiveFixture.npcAvailability[0] = {
+  ...positiveFixture.npcAvailability[0],
+  observed: true,
+  earliestStageIndex: 1,
+  earliestStageId: "early",
+  earliestStageName: "Early"
+};
+positiveFixture.fishing[0] = {
+  ...positiveFixture.fishing[0],
+  earliestStageIndex: 1,
+  earliestStageId: "early",
+  earliestStageName: "Early"
+};
+const missedFixture = structuredClone(fixture);
+missedFixture.fishing = [];
+const accumulated = accumulatePositiveProbeEvidence(
+  missedFixture,
+  buildKnowledgeBase(positiveFixture),
+  [{ id: "start" }, { id: "early" }, { id: "late" }]);
+assert.equal(accumulated.report.compatible, true);
+assert.equal(accumulated.report.npcAvailability, 1);
+assert.equal(accumulated.report.shops, 1);
+assert.equal(accumulated.report.fishing, 1);
+assert.equal(accumulated.snapshot.npcAvailability[0].observed, true);
+assert.equal(accumulated.snapshot.npcAvailability[0].earliestStageId, "early");
+assert.equal(accumulated.snapshot.shops[0].observed, true);
+assert.equal(accumulated.snapshot.shops[0].earliestStageId, "early");
+assert.equal(accumulated.snapshot.fishing[0].target, "ExampleMod/Result");
+assert.equal(accumulated.snapshot.fishing[0].earliestStageId, "early");
+
+const missingAvailabilityFixture = structuredClone(missedFixture);
+missingAvailabilityFixture.npcAvailability = [];
+const restoredMissingAvailability = accumulatePositiveProbeEvidence(
+  missingAvailabilityFixture,
+  buildKnowledgeBase(positiveFixture),
+  [{ id: "start" }, { id: "early" }, { id: "late" }]);
+assert.equal(restoredMissingAvailability.report.npcAvailability, 1);
+assert.equal(restoredMissingAvailability.snapshot.npcAvailability.length, 1);
+assert.equal(restoredMissingAvailability.snapshot.npcAvailability[0].observed, true);
+assert.equal(restoredMissingAvailability.snapshot.npcAvailability[0].earliestStageId, "early");
+
+const incompatibleFixture = structuredClone(missedFixture);
+incompatibleFixture.mods[0].version = "2.0";
+const incompatible = accumulatePositiveProbeEvidence(
+  incompatibleFixture,
+  buildKnowledgeBase(positiveFixture),
+  [{ id: "start" }, { id: "early" }, { id: "late" }]);
+assert.equal(incompatible.report.compatible, false);
+assert.equal(incompatible.snapshot.npcAvailability[0].observed, false);
+assert.equal(incompatible.snapshot.shops[0].observed, false);
+assert.equal(incompatible.snapshot.fishing.length, 0);
+
+const changedStages = accumulatePositiveProbeEvidence(
+  missedFixture,
+  buildKnowledgeBase(positiveFixture),
+  [{ id: "start" }, { id: "replacement" }]);
+assert.equal(changedStages.report.compatible, true);
+assert.equal(changedStages.snapshot.npcAvailability[0].observed, false);
+assert.equal(changedStages.snapshot.shops[0].observed, false);
+assert.equal(changedStages.snapshot.fishing.length, 0);
+
 for (const modName of fs.readdirSync(modsRoot)) {
   const snapshotPath = path.join(modsRoot, modName, "snapshot.json");
   if (!fs.existsSync(snapshotPath)) continue;
@@ -156,11 +225,10 @@ for (const modName of fs.readdirSync(modsRoot)) {
     `${modName}: knowledge facts are not lossless`);
   const knowledgePath = path.join(modsRoot, modName, "knowledge.json");
   if (fs.existsSync(knowledgePath)) {
-    assert.ok(
-      isDeepStrictEqual(
-        JSON.parse(fs.readFileSync(knowledgePath, "utf8")),
-        actual),
-      `${modName}: knowledge.json is stale`);
+    const storedKnowledge = JSON.parse(fs.readFileSync(knowledgePath, "utf8"));
+    assert.doesNotThrow(
+      () => createSnapshotView(storedKnowledge),
+      `${modName}: accepted knowledge.json is internally inconsistent`);
   }
   assert.equal(actual.summary.items, snapshot.items.length, `${modName}: item loss`);
   assert.equal(actual.summary.npcs, snapshot.npcs.length, `${modName}: NPC loss`);

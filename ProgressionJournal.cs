@@ -8,10 +8,13 @@ namespace ProgressionJournal;
 public sealed class ProgressionJournal : Mod
 {
 	internal const string ToggleJournalKeybindName = "ToggleProgressionJournal";
+	internal const string ExportActiveSnapshotKeybindName = "ExportActiveSnapshot";
 
 	public static ProgressionJournal? Instance { get; private set; }
 
 	internal static ModKeybind? ToggleJournalKeybind { get; private set; }
+
+	internal static ModKeybind? ExportActiveSnapshotKeybind { get; private set; }
 
 	internal static bool IsUnloading { get; private set; }
 
@@ -22,6 +25,11 @@ public sealed class ProgressionJournal : Mod
 
 		if (Main.dedServ) return;
 		ToggleJournalKeybind = KeybindLoader.RegisterKeybind(this, ToggleJournalKeybindName, "P");
+		if (!string.IsNullOrWhiteSpace(SourceFolder) && Directory.Exists(SourceFolder))
+		{
+			ExportActiveSnapshotKeybind =
+				KeybindLoader.RegisterKeybind(this, ExportActiveSnapshotKeybindName, "None");
+		}
 		JournalBuildChat.RegisterTags();
 	}
 
@@ -35,6 +43,7 @@ public sealed class ProgressionJournal : Mod
 
 		JournalRepository.ClearExternalContent();
 		ToggleJournalKeybind = null;
+		ExportActiveSnapshotKeybind = null;
 		Instance = null;
 	}
 

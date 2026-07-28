@@ -15,8 +15,32 @@ internal static class JournalNpcSpawnAvailabilityResolver
 {
     private const int FullSpawnSeedCount = 48;
     private const int FocusedFullSpawnSeedCount = 192;
+    private static readonly int[] ProbeGameModes =
+    [
+        GameModeID.Normal,
+        GameModeID.Expert,
+        GameModeID.Master
+    ];
 
     private static readonly object SyncRoot = new();
+    private static readonly int[][] EquivalentWorldVariantGroups =
+    [
+        [
+            NPCID.Crawdad,
+            NPCID.Crawdad2,
+            NPCID.GiantShelly,
+            NPCID.GiantShelly2,
+            NPCID.Salamander,
+            NPCID.Salamander2,
+            NPCID.Salamander3,
+            NPCID.Salamander4,
+            NPCID.Salamander5,
+            NPCID.Salamander6,
+            NPCID.Salamander7,
+            NPCID.Salamander8,
+            NPCID.Salamander9
+        ]
+    ];
     private static readonly MethodInfo? PlayerLoaderSetupPlayerMethod = typeof(PlayerLoader).GetMethod(
         "SetupPlayer",
         BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
@@ -28,10 +52,9 @@ internal static class JournalNpcSpawnAvailabilityResolver
         BindingFlags.Instance | BindingFlags.NonPublic);
     private static readonly MethodInfo? PlayerGetModPlayerMethod = typeof(Player).GetMethods(
             BindingFlags.Instance | BindingFlags.Public)
-        .FirstOrDefault(static method => method.Name == nameof(Player.GetModPlayer)
-            && method.IsGenericMethodDefinition
-            && method.GetGenericArguments().Length == 1
-            && method.GetParameters().Length == 0);
+        .FirstOrDefault(static method => method is { Name: nameof(Player.GetModPlayer), IsGenericMethodDefinition: true }
+                                         && method.GetGenericArguments().Length == 1
+                                         && method.GetParameters().Length == 0);
     private static readonly MethodInfo? SpawnHelperResetMethod = typeof(NPCLoader).Assembly
         .GetType("Terraria.ModLoader.Utilities.NPCSpawnHelper")
         ?.GetMethod("Reset", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
@@ -242,6 +265,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
 
     private readonly record struct WorldState(
         bool DayTime,
+        int MoonPhase,
         bool BloodMoon,
         bool Eclipse,
         bool Raining,
@@ -253,6 +277,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
         int InvasionType,
         double InvasionX,
         int InvasionSize,
+        int InvasionDelay,
         bool Sandstorm,
         bool Dd2Ongoing,
         int Dd2Difficulty,
@@ -380,6 +405,10 @@ internal static class JournalNpcSpawnAvailabilityResolver
             catalog.Counters.FullSpawnSuccessfulAttemptCount,
             catalog.Counters.FullSpawnedNpcInstanceCount,
             catalog.Counters.FullSpawnContextDetails,
+            ProbeGameModes,
+            JournalWorldStateIsolation.ComprehensiveScenarios
+                .Select(static scenario => scenario.Name)
+                .ToArray(),
             catalog.Failures.Order(StringComparer.Ordinal).ToArray());
     }
 
@@ -405,7 +434,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
                 .Where(static mod => mod.Code is not null)
                 .OrderBy(static mod => mod.Name, StringComparer.OrdinalIgnoreCase)
                 .Select(static mod => $"{mod.Name}@{mod.Version}"));
-        return $"{Main.worldID}:{Main.maxTilesX}x{Main.maxTilesY}:{profileId}:{mods}";
+        return $"{profileId}:{mods}";
     }
 
     private static Catalog BuildCatalog()
@@ -438,61 +467,74 @@ internal static class JournalNpcSpawnAvailabilityResolver
         var originalNpcReferences = Main.npc.ToArray();
         var originalPlayerReferences = Main.player.ToArray();
         var spawnArena = new SpawnArena();
+        using var worldStateIsolation = new JournalWorldStateIsolation();
 
         try
         {
             PreparePlayers(player);
             Main.netMode = NetmodeID.SinglePlayer;
-            // Profiles describe one progression path, independent of the world used for export.
-            // Some mods derive defeat flags from different NPC variants in Expert mode, so a
-            // probe must not inherit the export world's difficulty and lose normal-mode sources.
-            Main.GameMode = 0;
             foreach (var context in CreateContexts(catalog))
             {
                 for (var variantIndex = 0;
                      variantIndex < progression.GetVariantCount(context.StageIndex);
                      variantIndex++)
                 {
-                    try
+                    var worldScenarios = context is { EventIndex: 0, PlayerSafe: false }
+                        ? JournalWorldStateIsolation.IdentityScenarios
+                        : JournalWorldStateIsolation.IdentityScenarios[..1];
+                    for (var worldScenarioIndex = 0;
+                         worldScenarioIndex < worldScenarios.Length;
+                         worldScenarioIndex++)
                     {
-                        progression.Reset();
-                        progression.Apply(context.StageIndex, variantIndex);
-                        var environment = catalog.Environments[context.EnvironmentIndex];
-                        if (!(environment.IsAvailable?.Invoke() ?? true))
+                        var gameModes = worldScenarioIndex == 0
+                            ? ProbeGameModes
+                            : ProbeGameModes[..1];
+                        foreach (var gameMode in gameModes)
                         {
-                            continue;
+                            try
+                            {
+                                progression.Reset();
+                                progression.Apply(context.StageIndex, variantIndex);
+                                var environment = catalog.Environments[context.EnvironmentIndex];
+                                if (!(environment.IsAvailable?.Invoke() ?? true))
+                                {
+                                    continue;
+                                }
+                                ApplyContext(
+                                    catalog,
+                                    player,
+                                    context,
+                                    gameMode,
+                                    worldScenarios[worldScenarioIndex]);
+                                if (!(catalog.Events[context.EventIndex].IsAvailable?.Invoke() ?? true))
+                                {
+                                    continue;
+                                }
+                                var spawnInfo = CreateSpawnInfo(catalog, player, context);
+                                catalog.Counters.ContextCount++;
+
+                                // SpawnChance/EditSpawnPool and Terraria's invasion membership sets are
+                                // exhaustive for the current context. Random selectors remain supplemental:
+                                // an unsuccessful finite sample must not erase an invasion member.
+                                ObserveExactSpawnPool(catalog, spawnInfo, context);
+                                ObserveChosenSpawn(catalog, spawnInfo, context);
+                                ObserveVanillaInvasionMembers(catalog, context);
+                                ObserveDd2WaveEnemies(catalog, context);
+
+                                if (gameMode != GameModeID.Normal
+                                    || worldScenarioIndex != 0
+                                    || !ShouldRunFullSpawn(context, catalog))
+                                {
+                                    continue;
+                                }
+
+                                ObserveFullSpawnInTemporaryArena(catalog, spawnArena, player, context);
+                            }
+                            catch (Exception exception)
+                            {
+                                RecordFailure(catalog, "spawn scenario", exception);
+                            }
                         }
-                        ApplyContext(catalog, player, context);
-                        if (!(catalog.Events[context.EventIndex].IsAvailable?.Invoke() ?? true))
-                        {
-                            continue;
-                        }
-                        var spawnInfo = CreateSpawnInfo(catalog, player, context);
-                        catalog.Counters.ContextCount++;
-
-                        // SpawnChance/EditSpawnPool describe which NPC is valid for this context.
-                        // EditSpawnRate only controls whether the shared spawn cycle runs at all and
-                        // must not prevent the availability probe from reaching those per-NPC APIs.
-                        ObserveExactSpawnPool(catalog, spawnInfo, context);
-                        ObserveChosenSpawn(catalog, spawnInfo, context);
-                        ObserveDd2WaveEnemies(catalog, context);
-
-                        var spawnRate = 600;
-                        var maxSpawns = 5;
-                        NPCLoader.EditSpawnRate(player, ref spawnRate, ref maxSpawns);
-
-                        if (spawnRate <= 0 || maxSpawns <= 0)
-                        {
-                            catalog.Counters.SpawnRateBlockedContextCount++;
-                            continue;
-                        }
-
-                        if (!ShouldRunFullSpawn(context, catalog)) continue;
-                        ObserveFullSpawnInTemporaryArena(catalog, spawnArena, player, context);
-                    }
-                    catch (Exception exception)
-                    {
-                        RecordFailure(catalog, "spawn scenario", exception);
                     }
                 }
             }
@@ -523,7 +565,32 @@ internal static class JournalNpcSpawnAvailabilityResolver
             }
         }
 
+        PropagateEquivalentWorldVariantObservations(catalog.Observations);
         return catalog;
+    }
+
+    private static void PropagateEquivalentWorldVariantObservations(
+        Dictionary<int, HashSet<SpawnContext>> observations)
+    {
+        foreach (var group in EquivalentWorldVariantGroups)
+        {
+            var sharedContexts = group
+                .Where(observations.ContainsKey)
+                .SelectMany(npcType => observations[npcType])
+                .ToHashSet();
+            if (sharedContexts.Count == 0)
+            {
+                continue;
+            }
+
+            // A world seed chooses which members of this vanilla cavern family can
+            // spawn. Observing one member proves the same progression availability
+            // for the alternatives that exist in other worlds.
+            foreach (var npcType in group)
+            {
+                observations[npcType] = [.. sharedContexts];
+            }
+        }
     }
 
     private static SpawnEnvironment[] CreateEnvironments()
@@ -678,6 +745,13 @@ internal static class JournalNpcSpawnAvailabilityResolver
                 Dd2FindProperDifficultyMethod?.Invoke(null, null);
             }, static () => NPC.downedBoss2, "OldOnesArmy")
         ];
+        events.Add(new SpawnEvent(
+            Language.GetTextValue("Mods.ProgressionJournal.UI.NpcSpawnFullMoon"),
+            static () =>
+            {
+                Main.dayTime = false;
+                Main.moonPhase = 0;
+            }));
         // A discovered "active" flag proves how to enter an event, but not when
         // the event becomes available. Keep those NPCs unknown until the profile
         // declares the event stage or a structured prerequisite is available.
@@ -838,9 +912,16 @@ internal static class JournalNpcSpawnAvailabilityResolver
             Sky: depth == 0);
     }
 
-    private static void ApplyContext(Catalog catalog, Player player, SpawnContext context)
+    private static void ApplyContext(
+        Catalog catalog,
+        Player player,
+        SpawnContext context,
+        int gameMode,
+        JournalWorldProbeScenario worldScenario)
     {
         ResetWorldScenario(catalog);
+        JournalWorldStateIsolation.ApplyWorldIdentityScenario(worldScenario);
+        Main.GameMode = gameMode;
         ResetPlayerZones(player);
         foreach (var flag in catalog.LegacyBiomeFlags.All)
         {
@@ -850,6 +931,14 @@ internal static class JournalNpcSpawnAvailabilityResolver
         catalog.Events[context.EventIndex].Apply();
         var environment = catalog.Environments[context.EnvironmentIndex];
         environment.Apply(player);
+        if (player.ZoneCrimson)
+        {
+            WorldGen.crimson = true;
+        }
+        else if (player.ZoneCorrupt)
+        {
+            WorldGen.crimson = false;
+        }
         var modBiomeFlags = GetModBiomeFlags(player);
         if (environment.ModBiome is not null)
         {
@@ -872,6 +961,11 @@ internal static class JournalNpcSpawnAvailabilityResolver
 
         var (x, y) = GetCoordinates(context.Depth, context.EnvironmentIndex == 1);
         player.Center = new Vector2(x * 16f, y * 16f);
+        if (context.Invasion)
+        {
+            Main.invasionX = x;
+            Main.invasionDelay = 0;
+        }
     }
 
     private static LegacyBiomeFlagCatalog CreateLegacyBiomeFlags(
@@ -1085,7 +1179,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
                     )
                 {
                     catalog.Counters.ChosenSpawnTypes.Add(npcType);
-                    if (IsOrdinaryNpc(npcType))
+                    if (!context.Invasion && IsOrdinaryNpc(npcType))
                     {
                         AddObservation(catalog.Observations, npcType, context);
                     }
@@ -1130,6 +1224,41 @@ internal static class JournalNpcSpawnAvailabilityResolver
         {
             RecordFailure(catalog, "Old One's Army wave", exception);
         }
+    }
+
+    private static void ObserveVanillaInvasionMembers(
+        Catalog catalog,
+        SpawnContext context)
+    {
+        bool[]? members = Main.invasionType switch
+        {
+            InvasionID.GoblinArmy => NPCID.Sets.BelongsToInvasionGoblinArmy,
+            InvasionID.SnowLegion => NPCID.Sets.BelongsToInvasionFrostLegion,
+            InvasionID.PirateInvasion => NPCID.Sets.BelongsToInvasionPirate,
+            InvasionID.MartianMadness => NPCID.Sets.BelongsToInvasionMartianMadness,
+            _ => null
+        };
+        if (members is null)
+        {
+            return;
+        }
+
+        for (var npcType = 1; npcType < members.Length; npcType++)
+        {
+            if (members[npcType]
+                && IsVanillaInvasionMemberAvailable(npcType)
+                && IsOrdinaryNpc(npcType))
+            {
+                AddObservation(catalog.Observations, npcType, context);
+            }
+        }
+    }
+
+    private static bool IsVanillaInvasionMemberAvailable(int npcType)
+    {
+        return Main.invasionType != InvasionID.GoblinArmy
+            || Main.hardMode
+            || npcType is not (NPCID.GoblinSummoner or NPCID.ShadowFlameApparition);
     }
 
     private static bool ShouldRunFullSpawn(SpawnContext context, Catalog catalog)
@@ -1234,7 +1363,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
                     {
                         spawnedNpcTypes.Add(npc.type);
                         catalog.Counters.FullSpawnTypes.Add(npc.type);
-                        if (IsOrdinaryNpc(npc.type))
+                        if (!context.Invasion && IsOrdinaryNpc(npc.type))
                         {
                             AddObservation(catalog.Observations, npc.type, context);
                         }
@@ -1484,7 +1613,10 @@ internal static class JournalNpcSpawnAvailabilityResolver
 
     private static void ResetWorldScenario(Catalog catalog)
     {
+        JournalWorldStateIsolation.ApplyNeutralWorldIdentity();
         Main.dayTime = true;
+        Main.time = 0d;
+        Main.moonPhase = 1;
         Main.bloodMoon = false;
         Main.eclipse = false;
         Main.raining = false;
@@ -1496,6 +1628,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
         Main.invasionType = InvasionID.None;
         Main.invasionX = 0d;
         Main.invasionSize = 0;
+        Main.invasionDelay = 0;
         Sandstorm.Happening = false;
         Sandstorm.Severity = 0f;
         DD2Event.Ongoing = false;
@@ -1509,8 +1642,9 @@ internal static class JournalNpcSpawnAvailabilityResolver
     private static void ApplyInvasion(int invasionType)
     {
         Main.invasionType = invasionType;
-        Main.invasionX = Main.spawnTileX;
+        Main.invasionX = Main.maxTilesX / 2d;
         Main.invasionSize = 1000;
+        Main.invasionDelay = 0;
     }
 
     private static (int X, int Y) GetCoordinates(int depth, bool ocean)
@@ -1580,6 +1714,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
     {
         return new WorldState(
             Main.dayTime,
+            Main.moonPhase,
             Main.bloodMoon,
             Main.eclipse,
             Main.raining,
@@ -1591,6 +1726,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
             Main.invasionType,
             Main.invasionX,
             Main.invasionSize,
+            Main.invasionDelay,
             Sandstorm.Happening,
             DD2Event.Ongoing,
             DD2Event.OngoingDifficulty,
@@ -1602,6 +1738,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
     private static void RestoreWorldState(WorldState state)
     {
         Main.dayTime = state.DayTime;
+        Main.moonPhase = state.MoonPhase;
         Main.bloodMoon = state.BloodMoon;
         Main.eclipse = state.Eclipse;
         Main.raining = state.Raining;
@@ -1613,6 +1750,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
         Main.invasionType = state.InvasionType;
         Main.invasionX = state.InvasionX;
         Main.invasionSize = state.InvasionSize;
+        Main.invasionDelay = state.InvasionDelay;
         Sandstorm.Happening = state.Sandstorm;
         DD2Event.Ongoing = state.Dd2Ongoing;
         DD2Event.OngoingDifficulty = state.Dd2Difficulty;
@@ -1675,6 +1813,8 @@ internal sealed record JournalNpcSpawnProbeDiagnostics(
     int FullSpawnSuccessfulAttemptCount,
     int FullSpawnedNpcInstanceCount,
     IReadOnlyList<JournalNpcFullSpawnContextDiagnostics> FullSpawnContextDetails,
+    IReadOnlyList<int> GameModes,
+    IReadOnlyList<string> WorldScenarios,
     IReadOnlyList<string> Failures);
 
 internal sealed record JournalNpcFullSpawnContextDiagnostics(

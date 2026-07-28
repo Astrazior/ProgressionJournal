@@ -18,7 +18,8 @@ function parseArgs(values) {
   const result = {
     target: "",
     acceptChanges: false,
-    dryRun: false
+    dryRun: false,
+    resetProbeEvidence: false
   };
   for (const value of values) {
     if (value === "--accept-changes") {
@@ -27,6 +28,10 @@ function parseArgs(values) {
     }
     if (value === "--dry-run") {
       result.dryRun = true;
+      continue;
+    }
+    if (value === "--reset-probe-evidence") {
+      result.resetProbeEvidence = true;
       continue;
     }
     if (value.startsWith("--") && value !== "--all") {
@@ -40,7 +45,7 @@ function parseArgs(values) {
   if (!result.target) {
     throw new Error(
       "Usage: node Tools/BuildModProfiles.mjs <InternalModName|--all> "
-      + "[--dry-run] [--accept-changes]");
+      + "[--dry-run] [--accept-changes] [--reset-probe-evidence]");
   }
   if (result.dryRun && result.acceptChanges) {
     throw new Error("--dry-run and --accept-changes cannot be used together.");
@@ -185,7 +190,10 @@ export function runSafeBuild(values, options = {}) {
     const profileDirectory = path.join(profilesRoot, modName);
     const candidateDirectory = path.join(candidateRoot, modName);
     const before = captureProfileState(profileDirectory);
-    build(modName, { outputDirectory: candidateDirectory });
+    build(modName, {
+      outputDirectory: candidateDirectory,
+      resetProbeEvidence: args.resetProbeEvidence
+    });
     const after = captureProfileState(candidateDirectory);
     comparisons.push(compareProfileStates(modName, before, after));
   }

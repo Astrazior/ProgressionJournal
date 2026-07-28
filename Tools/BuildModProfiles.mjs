@@ -9,6 +9,7 @@ import {
 } from "./ProfileGeneratorCore.mjs";
 import { resolveSnapshotStageIndex } from "./SnapshotStageResolver.mjs";
 import {
+  accumulatePositiveProbeEvidence,
   buildKnowledgeBase,
   createSnapshotView
 } from "./KnowledgeBase.mjs";
@@ -37,7 +38,14 @@ export function buildModProfile(modName, options = {}) {
   validateSupport(support, modName);
   const exportedSnapshot = readRequiredJson(directory, "snapshot.json");
   validateSnapshot(exportedSnapshot, support);
-  const knowledge = buildKnowledgeBase(exportedSnapshot);
+  const previousKnowledge = options.resetProbeEvidence
+    ? null
+    : readOptionalJson(directory, "knowledge.json", null);
+  const accumulatedEvidence = accumulatePositiveProbeEvidence(
+    exportedSnapshot,
+    previousKnowledge,
+    support.stages ?? []);
+  const knowledge = buildKnowledgeBase(accumulatedEvidence.snapshot);
   const snapshot = createSnapshotView(knowledge);
   const agentRules = readOptionalJson(
     directory,
@@ -101,7 +109,8 @@ export function buildModProfile(modName, options = {}) {
       version: snapshot.version,
       generatedAtUtc: snapshot.generatedAtUtc,
       targetMod: snapshot.targetMod ?? support.targetMod,
-      mods: snapshot.mods ?? []
+      mods: snapshot.mods ?? [],
+      accumulatedProbeEvidence: accumulatedEvidence.report
     },
     agentRules: {
       rules: agentRules.rules?.length ?? 0,
@@ -139,7 +148,12 @@ export function buildModProfile(modName, options = {}) {
     + `/${audit.sourceCoverage.spawnCount}, town ${audit.sourceCoverage.observedTownCount}`
     + `/${audit.sourceCoverage.townCount}; sources: ${audit.sourceCoverage.observed.length} observed, `
     + `${audit.sourceCoverage.declared.length} manual, ${audit.sourceCoverage.uncovered.length} uncovered; `
-    + `probe failures: ${(snapshot.npcSpawnProbe?.failures ?? []).length}`);
+      + `probe failures: ${(snapshot.npcSpawnProbe?.failures ?? []).length}`);
+  if (accumulatedEvidence.report.compatible) {
+    console.log(
+      `  Retained positive probe evidence: NPC ${accumulatedEvidence.report.npcAvailability}, `
+      + `shops ${accumulatedEvidence.report.shops}, fishing ${accumulatedEvidence.report.fishing}`);
+  }
   if (snapshot.npcSpawnProbe) {
     console.log(
       `  Probe stages: candidates ${snapshot.npcSpawnProbe.candidates}, `
@@ -225,7 +239,8 @@ export function createItemAudit(snapshot, profile, generationReport, support) {
         status,
         stage,
         via,
-        reason
+        reason,
+        evidence: pathInfo?.evidence ?? null
       };
     })
     .sort((left, right) => left.id.localeCompare(right.id));
@@ -233,7 +248,7 @@ export function createItemAudit(snapshot, profile, generationReport, support) {
 
   return {
     format: "ProgressionJournalItemAudit",
-    version: 1,
+    version: 2,
     targetMod: snapshot.targetMod ?? support.targetMod,
     profileId: profile.id ?? support.id,
     generatedAtUtc: new Date().toISOString(),
@@ -272,7 +287,7 @@ function validateSupport(support, directoryName) {
 
 function validateSnapshot(snapshot, support) {
   assert(snapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot.json format.");
-  assert([4, 5, 6].includes(snapshot.version),
+  assert([4, 5, 6, 7].includes(snapshot.version),
     `Unsupported snapshot.json version '${snapshot.version}'.`);
   const target = snapshot.targetMod ?? support.targetMod;
   assert(target === support.targetMod,

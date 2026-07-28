@@ -51,7 +51,7 @@ internal static class JournalSnapshotNpcDropCollector
                 drop.StackMin,
                 drop.StackMax,
                 [])));
-        result.AddRange(JournalExactDropCatalog.GetAllNpcDrops()
+        var exactNpcDrops = JournalExactDropCatalog.GetAllNpcDrops()
             .Where(drop => drop.SourceNpcType is { } sourceNpcType
                 && includedNpcs.Contains(sourceNpcType)
                 && includedItems.Contains(drop.TargetItemId))
@@ -66,7 +66,9 @@ internal static class JournalSnapshotNpcDropCollector
                     .Select(static condition => new SnapshotCondition(
                         condition.Type,
                         condition.Description))
-                    .ToList())));
+                    .ToList()))
+            .ToArray();
+        result.AddRange(exactNpcDrops.Where(drop => !ContainsEquivalentDrop(result, drop)));
         result.AddRange(JournalExactDropCatalog.GetAllGlobalDrops()
             .Where(drop => includedItems.Contains(drop.TargetItemId))
             .Select(drop => new SnapshotDrop(
@@ -96,5 +98,22 @@ internal static class JournalSnapshotNpcDropCollector
                         condition.Description))
                     .ToList())));
         return result;
+    }
+
+    private static bool ContainsEquivalentDrop(
+        IEnumerable<SnapshotDrop> existingDrops,
+        SnapshotDrop candidate)
+    {
+        return existingDrops.Any(existing =>
+            existing.SourceType == candidate.SourceType
+            && existing.Source == candidate.Source
+            && existing.Item == candidate.Item
+            && Math.Abs(existing.Rate - candidate.Rate) < 0.000001f
+            && existing.StackMin == candidate.StackMin
+            && existing.StackMax == candidate.StackMax
+            && existing.Conditions
+                .Select(static condition => (condition.Type, condition.Description))
+                .SequenceEqual(candidate.Conditions.Select(
+                    static condition => (condition.Type, condition.Description))));
     }
 }

@@ -2,930 +2,30 @@
   "format": "ProgressionJournalManualReview",
   "version": 1,
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-27T12:12:10.870Z",
+  "generatedAtUtc": "2026-07-28T16:13:32.967Z",
   "summary": {
-    "total": 65,
+    "total": 13,
     "byKind": {
-      "unassigned-combat-item": 20,
-      "unresolved-condition": 45
+      "unresolved-condition": 13
     }
   },
   "issues": [
     {
-      "id": "unassigned-combat-item.1bcd4a763e38",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/BlandWhip",
-      "displayName": "Leather Whip",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "summoner"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/BestiaryGirl",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "When the Bestiary has been filled to at least 10%"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/BlandWhip": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.f4238e19bf58",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/BoneArrow",
-      "displayName": "Bone Arrow",
-      "classification": {
-        "category": "Ammunition",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/SkeletonMerchant",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "During a full, waning gibbous, new or waxing crescent moon"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/BoneArrow": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.d56d8f6f35fa",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/CandyCorn",
-      "displayName": "Candy Corn",
-      "classification": {
-        "category": "Ammunition",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/ArmsDealer",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "When the player has a Candy Corn Rifle in their inventory"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/CandyCorn": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.a35fa1bfdab0",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/ClusterRocketI",
-      "displayName": "Cluster Rocket I",
-      "classification": {
-        "category": "Ammunition",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/Cyborg",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "After defeating the Martians"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/ClusterRocketI": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.51051319f4b4",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/ClusterRocketII",
-      "displayName": "Cluster Rocket II",
-      "classification": {
-        "category": "Ammunition",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/Cyborg",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "After defeating the Martians"
-              },
-              {
-                "type": "Terraria.Condition",
-                "description": "During a Blood Moon or Solar Eclipse"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/ClusterRocketII": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.592172addb72",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/Code1",
-      "displayName": "Code 1",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "melee"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/TravellingMerchant",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "After defeating the Eye of Cthulhu"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/Code1": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.325c56c54b6a",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/ExplosiveJackOLantern",
-      "displayName": "Explosive Jack 'O Lantern",
-      "classification": {
-        "category": "Ammunition",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/ArmsDealer",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "When the player has a Jack 'O Lantern Launcher in their inventory"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/ExplosiveJackOLantern": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.2a7209cdcb38",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/Flymeal",
-      "displayName": "Flymeal",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "melee"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/PlatinumBroadsword",
-                "stack": 1
-              },
-              {
-                "item": "Terraria/Stinkbug",
-                "stack": 5
-              }
-            ],
-            "stations": [],
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "Near honey"
-              }
-            ]
-          },
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/GoldBroadsword",
-                "stack": 1
-              },
-              {
-                "item": "Terraria/Stinkbug",
-                "stack": 5
-              }
-            ],
-            "stations": [],
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "Near honey"
-              }
-            ]
-          }
-        ],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/Flymeal": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.9ccd742bb61f",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/FormatC",
-      "displayName": "Format:C",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "melee"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/SkeletonMerchant",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "In hardmode"
-              },
-              {
-                "type": "Terraria.Condition",
-                "description": "During a new, waxing crescent, first quarter or waxing gibbous moon"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/FormatC": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.3f253902e53a",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/Gradient",
-      "displayName": "Gradient",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "melee"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/SkeletonMerchant",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "In hardmode"
-              },
-              {
-                "type": "Terraria.Condition",
-                "description": "During a full, waning gibbous, third quarter or waning crescent moon"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/Gradient": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.1c9d7151044b",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/GravediggerShovel",
-      "displayName": "Gravedigger's Shovel",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "melee"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/IronBar",
-                "stack": 12
-              },
-              {
-                "item": "Terraria/Wood",
-                "stack": 3
-              }
-            ],
-            "stations": [
-              "Terraria/Anvils"
-            ],
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "In a Graveyard biome"
-              }
-            ]
-          }
-        ],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/GravediggerShovel": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.df1644cd2d2b",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/HoneyRocket",
-      "displayName": "Honey Rocket",
-      "classification": {
-        "category": "Ammunition",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/DryRocket",
-                "stack": 1
-              }
-            ],
-            "stations": [],
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "Near honey"
-              }
-            ]
-          }
-        ],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/HoneyRocket": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.a6babc6a58ab",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/JoustingLance",
-      "displayName": "Jousting Lance",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "melee"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/BestiaryGirl",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "When the Bestiary has been filled to at least 30%"
-              },
-              {
-                "type": "Terraria.Condition",
-                "description": "In hardmode"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/JoustingLance": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.e45b3e5f787b",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/LavaRocket",
-      "displayName": "Lava Rocket",
-      "classification": {
-        "category": "Ammunition",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/DryRocket",
-                "stack": 1
-              }
-            ],
-            "stations": [],
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "Near lava"
-              }
-            ]
-          }
-        ],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/LavaRocket": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.50f259675a1d",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/Nail",
-      "displayName": "Nail",
-      "classification": {
-        "category": "Ammunition",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/Merchant",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "When the player has a Nail Gun in their inventory"
-              }
-            ]
-          },
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/ArmsDealer",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "When the player has a Nail Gun in their inventory"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/Nail": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.71d10bdd33af",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/SlapHand",
-      "displayName": "Slap Hand",
-      "classification": {
-        "category": "Weapon",
-        "classes": [
-          "melee"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/SkeletonMerchant",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "In hardmode"
-              },
-              {
-                "type": "Terraria.Condition",
-                "description": "During a Blood Moon"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/SlapHand": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.abe6c688d97a",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/SpelunkerFlare",
-      "displayName": "Spelunker Flare",
-      "classification": {
-        "category": "Ammunition",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/SkeletonMerchant",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "At night, or all day during a full moon"
-              },
-              {
-                "type": "Terraria.Condition",
-                "description": "When the player has a Flare Gun in their inventory"
-              }
-            ]
-          },
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/SkeletonMerchant",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "At night, or all day during a full moon"
-              },
-              {
-                "type": "Terraria.Condition",
-                "description": "While holding a Flare Gun upgrade"
-              }
-            ]
-          }
-        ],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/Flare",
-                "stack": 1
-              },
-              {
-                "item": "Terraria/SpelunkerGlowstick",
-                "stack": 1
-              }
-            ],
-            "stations": [],
-            "conditions": []
-          }
-        ],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/SpelunkerFlare": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.39d06d1f4f3e",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/Stake",
-      "displayName": "Stake",
-      "classification": {
-        "category": "Ammunition",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/ArmsDealer",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "When the player has a Stake Launcher in their inventory"
-              }
-            ]
-          },
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/WitchDoctor",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "When the player has a Stake Launcher in their inventory"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/Stake": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.82360e36b9bb",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/StyngerBolt",
-      "displayName": "Stynger Bolt",
-      "classification": {
-        "category": "Ammunition",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/ArmsDealer",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "When the player has a Stynger in their inventory"
-              }
-            ]
-          },
-          {
-            "sourceKind": "shop",
-            "source": "Terraria/WitchDoctor",
-            "shop": "Shop",
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "When the player has a Stynger in their inventory"
-              }
-            ]
-          }
-        ],
-        "recipes": [],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/StyngerBolt": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unassigned-combat-item.1be601072470",
-      "kind": "unassigned-combat-item",
-      "item": "Terraria/WetRocket",
-      "displayName": "Wet Rocket",
-      "classification": {
-        "category": "Ammunition",
-        "classes": [
-          "ranged"
-        ]
-      },
-      "evidence": {
-        "drops": [],
-        "shops": [],
-        "recipes": [
-          {
-            "ingredients": [
-              {
-                "item": "Terraria/DryRocket",
-                "stack": 1
-              }
-            ],
-            "stations": [],
-            "conditions": [
-              {
-                "type": "Terraria.Condition",
-                "description": "Near water"
-              }
-            ]
-          }
-        ],
-        "shimmer": []
-      },
-      "resolution": {
-        "itemStages": {
-          "Terraria/WetRocket": "<stage-id>"
-        },
-        "sourceStages": {}
-      }
-    },
-    {
-      "id": "unresolved-condition.134c215ea171",
+      "id": "unresolved-condition.0315be6ad41f",
       "kind": "unresolved-condition",
       "sourceKind": "shop",
       "conditions": [
         {
           "type": "Terraria.Condition",
-          "description": "When the player has a Stynger in their inventory"
+          "description": "During a full or waning gibbous moon",
+          "key": "Conditions.MoonPhasesQuarter0",
+          "facts": []
         }
       ],
-      "affectedCount": 2,
+      "affectedCount": 1,
       "affected": [
         {
-          "item": "Terraria/StyngerBolt",
-          "source": "Terraria/ArmsDealer"
-        },
-        {
-          "item": "Terraria/StyngerBolt",
-          "source": "Terraria/WitchDoctor"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/ArmsDealer",
-              "Terraria/WitchDoctor"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "When the player has a Stynger in their inventory"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.14f75778576d",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a Blood Moon"
-        }
-      ],
-      "affectedCount": 2,
-      "affected": [
-        {
-          "item": "Terraria/SlapHand",
-          "source": "Terraria/SkeletonMerchant"
-        },
-        {
-          "item": "Terraria/Terragrim",
+          "item": "Terraria/PirateStaff",
           "source": "Terraria/Princess"
         }
       ],
@@ -937,37 +37,36 @@
               "shop"
             ],
             "sourceIds": [
-              "Terraria/SkeletonMerchant",
               "Terraria/Princess"
             ],
             "conditionTypes": [],
-            "conditionKeys": [],
+            "conditionKeys": [
+              "Conditions.MoonPhasesQuarter0"
+            ],
             "conditionDescriptions": [
-              "During a Blood Moon"
+              "During a full or waning gibbous moon"
             ]
           }
         ]
       }
     },
     {
-      "id": "unresolved-condition.183c57246308",
+      "id": "unresolved-condition.2c015e3aa646",
       "kind": "unresolved-condition",
       "sourceKind": "shop",
       "conditions": [
         {
           "type": "Terraria.Condition",
-          "description": "After defeating the Martians"
+          "description": "During a first quarter or waxing gibbous moon",
+          "key": "Conditions.MoonPhasesQuarter3",
+          "facts": []
         }
       ],
-      "affectedCount": 2,
+      "affectedCount": 1,
       "affected": [
         {
-          "item": "Terraria/ClusterRocketI",
-          "source": "Terraria/Cyborg"
-        },
-        {
-          "item": "Terraria/ClusterRocketII",
-          "source": "Terraria/Cyborg"
+          "item": "Terraria/CoinGun",
+          "source": "Terraria/Princess"
         }
       ],
       "resolution": {
@@ -978,25 +77,29 @@
               "shop"
             ],
             "sourceIds": [
-              "Terraria/Cyborg"
+              "Terraria/Princess"
             ],
             "conditionTypes": [],
-            "conditionKeys": [],
+            "conditionKeys": [
+              "Conditions.MoonPhasesQuarter3"
+            ],
             "conditionDescriptions": [
-              "After defeating the Martians"
+              "During a first quarter or waxing gibbous moon"
             ]
           }
         ]
       }
     },
     {
-      "id": "unresolved-condition.19ff4da297a6",
+      "id": "unresolved-condition.460067764866",
       "kind": "unresolved-condition",
       "sourceKind": "shop",
       "conditions": [
         {
           "type": "Terraria.Condition",
-          "description": "While holding a Flare Gun upgrade"
+          "description": "While holding a Flare Gun upgrade",
+          "key": "Mods.CalamityMod.Condition.HasFlareGun",
+          "facts": []
         }
       ],
       "affectedCount": 1,
@@ -1017,7 +120,9 @@
               "Terraria/SkeletonMerchant"
             ],
             "conditionTypes": [],
-            "conditionKeys": [],
+            "conditionKeys": [
+              "Mods.CalamityMod.Condition.HasFlareGun"
+            ],
             "conditionDescriptions": [
               "While holding a Flare Gun upgrade"
             ]
@@ -1026,162 +131,15 @@
       }
     },
     {
-      "id": "unresolved-condition.1b84600f8fcc",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "At night, or all day during a full moon"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/SpelunkerFlare",
-          "source": "Terraria/SkeletonMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/SkeletonMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "At night, or all day during a full moon"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.2a5eadfe870f",
-      "kind": "unresolved-condition",
-      "sourceKind": "recipe",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "Near honey"
-        }
-      ],
-      "affectedCount": 2,
-      "affected": [
-        {
-          "item": "Terraria/Flymeal",
-          "source": "Terraria/Flymeal"
-        },
-        {
-          "item": "Terraria/HoneyRocket",
-          "source": "Terraria/HoneyRocket"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "recipe"
-            ],
-            "sourceIds": [
-              "Terraria/Flymeal",
-              "Terraria/HoneyRocket"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "Near honey"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.2b01d33df653",
-      "kind": "unresolved-condition",
-      "sourceKind": "recipe",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "Near water"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/WetRocket",
-          "source": "Terraria/WetRocket"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "recipe"
-            ],
-            "sourceIds": [
-              "Terraria/WetRocket"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "Near water"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.305a66017bc3",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "After defeating The Destroyer"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/PulseBow",
-          "source": "Terraria/TravellingMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/TravellingMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "After defeating The Destroyer"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.35699be9f38a",
+      "id": "unresolved-condition.56ba030a73c6",
       "kind": "unresolved-condition",
       "sourceKind": "drop",
       "conditions": [
         {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Drops: In a Remix world"
+          "description": "Drops: In a Remix world",
+          "key": "Bestiary_ItemDropConditions.SimpleCondition",
+          "facts": []
         }
       ],
       "affectedCount": 2,
@@ -1207,7 +165,9 @@
               "Terraria/KingSlimeBossBag"
             ],
             "conditionTypes": [],
-            "conditionKeys": [],
+            "conditionKeys": [
+              "Bestiary_ItemDropConditions.SimpleCondition"
+            ],
             "conditionDescriptions": [
               "Drops: In a Remix world"
             ]
@@ -1216,722 +176,325 @@
       }
     },
     {
-      "id": "unresolved-condition.37aaa5bd9454",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "When the player has a Happy Grenade in their inventory"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/PartyGirlGrenade",
-          "source": "Terraria/PartyGirl"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/PartyGirl"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "When the player has a Happy Grenade in their inventory"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.3828317b5101",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a full moon"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/WoodenBoomerang",
-          "source": "Terraria/SkeletonMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/SkeletonMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "During a full moon"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.3ec74b2078fa",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a third quarter moon"
-        }
-      ],
-      "affectedCount": 2,
-      "affected": [
-        {
-          "item": "Terraria/MagicDagger",
-          "source": "Terraria/SkeletonMerchant"
-        },
-        {
-          "item": "Terraria/WandofSparking",
-          "source": "Terraria/SkeletonMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/SkeletonMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "During a third quarter moon"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.44d05b9aae5c",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a full or waning gibbous moon"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/PirateStaff",
-          "source": "Terraria/Princess"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/Princess"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "During a full or waning gibbous moon"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.4940c112e58e",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "When the player has a Stake Launcher in their inventory"
-        }
-      ],
-      "affectedCount": 2,
-      "affected": [
-        {
-          "item": "Terraria/Stake",
-          "source": "Terraria/ArmsDealer"
-        },
-        {
-          "item": "Terraria/Stake",
-          "source": "Terraria/WitchDoctor"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/ArmsDealer",
-              "Terraria/WitchDoctor"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "When the player has a Stake Launcher in their inventory"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.4ff82363c5e0",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a gibbous or crescent moon"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "CalamityMod/StressPills",
-          "source": "CalamityMod/ShadySalesman"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "CalamityMod/ShadySalesman"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "During a gibbous or crescent moon"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.521e792668d9",
-      "kind": "unresolved-condition",
-      "sourceKind": "recipe",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "Near lava"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/LavaRocket",
-          "source": "Terraria/LavaRocket"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "recipe"
-            ],
-            "sourceIds": [
-              "Terraria/LavaRocket"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "Near lava"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.559a0195ff6f",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "When the player has a Candy Corn Rifle in their inventory"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/CandyCorn",
-          "source": "Terraria/ArmsDealer"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/ArmsDealer"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "When the player has a Candy Corn Rifle in their inventory"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.55b2ae045ad1",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "After defeating the Eye of Cthulhu, Eater of Worlds, Brain of Cthulhu, Queen Bee, Skeletron or Wall of Flesh"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/ZapinatorGray",
-          "source": "Terraria/TravellingMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/TravellingMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "After defeating the Eye of Cthulhu, Eater of Worlds, Brain of Cthulhu, Queen Bee, Skeletron or Wall of Flesh"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.5a95c4052625",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a first quarter or waxing gibbous moon"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/CoinGun",
-          "source": "Terraria/Princess"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/Princess"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "During a first quarter or waxing gibbous moon"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.680e6041dc44",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "After defeating the Eye of Cthulhu"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/Code1",
-          "source": "Terraria/TravellingMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/TravellingMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "After defeating the Eye of Cthulhu"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.6bdc5641fa9f",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "Not in a Remix world"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/WandofSparking",
-          "source": "Terraria/SkeletonMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/SkeletonMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "Not in a Remix world"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.6c70d8c8b4bf",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "In a Celebration Mk 10 world"
-        }
-      ],
-      "affectedCount": 4,
-      "affected": [
-        {
-          "item": "Terraria/SlimeStaff",
-          "source": "Terraria/Princess"
-        },
-        {
-          "item": "Terraria/Terragrim",
-          "source": "Terraria/Princess"
-        },
-        {
-          "item": "Terraria/PirateStaff",
-          "source": "Terraria/Princess"
-        },
-        {
-          "item": "Terraria/CoinGun",
-          "source": "Terraria/Princess"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/Princess"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "In a Celebration Mk 10 world"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.8d5edbd77505",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "After defeating The Twins"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/PulseBow",
-          "source": "Terraria/TravellingMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/TravellingMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "After defeating The Twins"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.9906fbabca0e",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a third quarter, waning crescent, first quarter or waxing gibbous moon"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/WoodenArrow",
-          "source": "Terraria/SkeletonMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/SkeletonMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "During a third quarter, waning crescent, first quarter or waxing gibbous moon"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.9ea6bed82ae3",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "When the player has a Flare Gun in their inventory"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/SpelunkerFlare",
-          "source": "Terraria/SkeletonMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/SkeletonMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "When the player has a Flare Gun in their inventory"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.a33859af8458",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "After smashing a Shadow Orb or Crimson Heart"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/Revolver",
-          "source": "Terraria/TravellingMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/TravellingMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "After smashing a Shadow Orb or Crimson Heart"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.a7a6f439a1f5",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a full, waning gibbous, third quarter or waning crescent moon"
-        }
-      ],
-      "affectedCount": 2,
-      "affected": [
-        {
-          "item": "CalamityMod/CalciumPotion",
-          "source": "Terraria/SkeletonMerchant"
-        },
-        {
-          "item": "Terraria/Gradient",
-          "source": "Terraria/SkeletonMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/SkeletonMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "During a full, waning gibbous, third quarter or waning crescent moon"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.b36af521e4fb",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a full, waning gibbous, new or waxing crescent moon"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/BoneArrow",
-          "source": "Terraria/SkeletonMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/SkeletonMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "During a full, waning gibbous, new or waxing crescent moon"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.b6658032ccc5",
+      "id": "unresolved-condition.6a7f9c5059e4",
       "kind": "unresolved-condition",
       "sourceKind": "drop",
       "conditions": [
         {
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Drops: In a Zenith world"
+          "description": "Drops: Not in a Remix world",
+          "key": "Bestiary_ItemDropConditions.SimpleCondition",
+          "facts": []
+        }
+      ],
+      "affectedCount": 1,
+      "affected": [
+        {
+          "item": "Terraria/Katana",
+          "source": "Terraria/KingSlimeBossBag"
+        }
+      ],
+      "resolution": {
+        "conditionStages": [
+          {
+            "stageId": "<stage-id>",
+            "sources": [
+              "drop"
+            ],
+            "sourceIds": [
+              "Terraria/KingSlimeBossBag"
+            ],
+            "conditionTypes": [],
+            "conditionKeys": [
+              "Bestiary_ItemDropConditions.SimpleCondition"
+            ],
+            "conditionDescriptions": [
+              "Drops: Not in a Remix world"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "unresolved-condition.82af4d791ccc",
+      "kind": "unresolved-condition",
+      "sourceKind": "drop",
+      "conditions": [
+        {
+          "type": "Mods.ProgressionJournal.UI.QualitySlopGluttonyBlenderInteractionCondition",
+          "description": "Use or attack the placed Gluttony Blender while holding a food item. The food is consumed, and Quality Slop or Disgusting Slop drops after 2 seconds.",
+          "key": "",
+          "facts": null
+        }
+      ],
+      "affectedCount": 1,
+      "affected": [
+        {
+          "item": "CalamityMod/QualitySlop",
+          "source": "CalamityMod/GluttonyBlender"
+        }
+      ],
+      "resolution": {
+        "conditionStages": [
+          {
+            "stageId": "<stage-id>",
+            "sources": [
+              "drop"
+            ],
+            "sourceIds": [
+              "CalamityMod/GluttonyBlender"
+            ],
+            "conditionTypes": [],
+            "conditionKeys": [],
+            "conditionDescriptions": [
+              "Use or attack the placed Gluttony Blender while holding a food item. The food is consumed, and Quality Slop or Disgusting Slop drops after 2 seconds."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "unresolved-condition.8cbe2353d653",
+      "kind": "unresolved-condition",
+      "sourceKind": "drop",
+      "conditions": [
+        {
+          "type": "Mods.ProgressionJournal.UI.DeliciousMeatDivineSwineAvailabilityCondition",
+          "description": "The creature naturally appears in Space or at high altitudes. It can also be created by using Purification Powder on a Piggy or Gold Piggy.",
+          "key": "",
+          "facts": null
+        }
+      ],
+      "affectedCount": 1,
+      "affected": [
+        {
+          "item": "CalamityMod/DeliciousMeat",
+          "source": "CalamityMod/DivineSwine"
+        }
+      ],
+      "resolution": {
+        "conditionStages": [
+          {
+            "stageId": "<stage-id>",
+            "sources": [
+              "drop"
+            ],
+            "sourceIds": [
+              "CalamityMod/DivineSwine"
+            ],
+            "conditionTypes": [],
+            "conditionKeys": [],
+            "conditionDescriptions": [
+              "The creature naturally appears in Space or at high altitudes. It can also be created by using Purification Powder on a Piggy or Gold Piggy."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "unresolved-condition.99ec8a134778",
+      "kind": "unresolved-condition",
+      "sourceKind": "drop",
+      "conditions": [
+        {
+          "type": "Mods.ProgressionJournal.UI.DeliciousMeatDivineSwineOfferingCondition",
+          "description": "Interact with the creature while carrying 1 Platinum Coin. The coin is consumed, and the creature transforms into this item.",
+          "key": "",
+          "facts": null
+        }
+      ],
+      "affectedCount": 1,
+      "affected": [
+        {
+          "item": "CalamityMod/DeliciousMeat",
+          "source": "CalamityMod/DivineSwine"
+        }
+      ],
+      "resolution": {
+        "conditionStages": [
+          {
+            "stageId": "<stage-id>",
+            "sources": [
+              "drop"
+            ],
+            "sourceIds": [
+              "CalamityMod/DivineSwine"
+            ],
+            "conditionTypes": [],
+            "conditionKeys": [],
+            "conditionDescriptions": [
+              "Interact with the creature while carrying 1 Platinum Coin. The coin is consumed, and the creature transforms into this item."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "unresolved-condition.cdbeabf9952e",
+      "kind": "unresolved-condition",
+      "sourceKind": "drop",
+      "conditions": [
+        {
+          "type": "Mods.ProgressionJournal.UI.GluttonyBlenderAvailabilityCondition",
+          "description": "The Shady Salesman always sells the Gluttony Blender for 10 Gold Coins.",
+          "key": "",
+          "facts": null
+        }
+      ],
+      "affectedCount": 1,
+      "affected": [
+        {
+          "item": "CalamityMod/QualitySlop",
+          "source": "CalamityMod/GluttonyBlender"
+        }
+      ],
+      "resolution": {
+        "conditionStages": [
+          {
+            "stageId": "<stage-id>",
+            "sources": [
+              "drop"
+            ],
+            "sourceIds": [
+              "CalamityMod/GluttonyBlender"
+            ],
+            "conditionTypes": [],
+            "conditionKeys": [],
+            "conditionDescriptions": [
+              "The Shady Salesman always sells the Gluttony Blender for 10 Gold Coins."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "unresolved-condition.cf446b93e4e9",
+      "kind": "unresolved-condition",
+      "sourceKind": "drop",
+      "conditions": [
+        {
+          "type": "Mods.ProgressionJournal.UI.AcidwoodFruitTreeShakingCondition",
+          "description": "Can drop while cutting down Acidwood Trees in the Sulphurous Sea.",
+          "key": "",
+          "facts": null
+        }
+      ],
+      "affectedCount": 2,
+      "affected": [
+        {
+          "item": "CalamityMod/Jackfruit",
+          "source": "CalamityMod/AcidwoodTreeShaking"
+        },
+        {
+          "item": "CalamityMod/Salak",
+          "source": "CalamityMod/AcidwoodTreeShaking"
+        }
+      ],
+      "resolution": {
+        "conditionStages": [
+          {
+            "stageId": "<stage-id>",
+            "sources": [
+              "drop"
+            ],
+            "sourceIds": [
+              "CalamityMod/AcidwoodTreeShaking"
+            ],
+            "conditionTypes": [],
+            "conditionKeys": [],
+            "conditionDescriptions": [
+              "Can drop while cutting down Acidwood Trees in the Sulphurous Sea."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "unresolved-condition.d82b0c6f784b",
+      "kind": "unresolved-condition",
+      "sourceKind": "drop",
+      "conditions": [
+        {
+          "type": "Mods.ProgressionJournal.UI.MurasamaSecurityChestCondition",
+          "description": "Murasama is found only in the Security Chest in the Underworld Bio-center Arsenal Lab.",
+          "key": "",
+          "facts": null
+        }
+      ],
+      "affectedCount": 1,
+      "affected": [
+        {
+          "item": "CalamityMod/Murasama",
+          "source": "CalamityMod/SecurityChest"
+        }
+      ],
+      "resolution": {
+        "conditionStages": [
+          {
+            "stageId": "<stage-id>",
+            "sources": [
+              "drop"
+            ],
+            "sourceIds": [
+              "CalamityMod/SecurityChest"
+            ],
+            "conditionTypes": [],
+            "conditionKeys": [],
+            "conditionDescriptions": [
+              "Murasama is found only in the Security Chest in the Underworld Bio-center Arsenal Lab."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "unresolved-condition.e512bdfcabd4",
+      "kind": "unresolved-condition",
+      "sourceKind": "drop",
+      "conditions": [
+        {
+          "type": "Mods.ProgressionJournal.UI.QualitySlopGluttonyBlenderChanceCondition",
+          "description": "Quality Slop chance: food buff duration in minutes × 0.5% for Well Fed, × 0.75% for Plenty Satisfied, or × 1% for Exquisitely Stuffed.",
+          "key": "",
+          "facts": null
+        }
+      ],
+      "affectedCount": 1,
+      "affected": [
+        {
+          "item": "CalamityMod/QualitySlop",
+          "source": "CalamityMod/GluttonyBlender"
+        }
+      ],
+      "resolution": {
+        "conditionStages": [
+          {
+            "stageId": "<stage-id>",
+            "sources": [
+              "drop"
+            ],
+            "sourceIds": [
+              "CalamityMod/GluttonyBlender"
+            ],
+            "conditionTypes": [],
+            "conditionKeys": [],
+            "conditionDescriptions": [
+              "Quality Slop chance: food buff duration in minutes × 0.5% for Well Fed, × 0.75% for Plenty Satisfied, or × 1% for Exquisitely Stuffed."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "unresolved-condition.eec5019ce806",
+      "kind": "unresolved-condition",
+      "sourceKind": "drop",
+      "conditions": [
+        {
+          "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
+          "description": "Drops: In a Zenith world",
+          "key": "Bestiary_ItemDropConditions.SimpleCondition",
+          "facts": []
         }
       ],
       "affectedCount": 53,
@@ -2049,669 +612,11 @@
               "CalamityMod/AstrumAureus"
             ],
             "conditionTypes": [],
-            "conditionKeys": [],
+            "conditionKeys": [
+              "Bestiary_ItemDropConditions.SimpleCondition"
+            ],
             "conditionDescriptions": [
               "Drops: In a Zenith world"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.d0c8d2a5d156",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "In a Remix world"
-        }
-      ],
-      "affectedCount": 2,
-      "affected": [
-        {
-          "item": "Terraria/Keybrand",
-          "source": "Terraria/TravellingMerchant"
-        },
-        {
-          "item": "Terraria/MagicDagger",
-          "source": "Terraria/SkeletonMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/TravellingMerchant",
-              "Terraria/SkeletonMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "In a Remix world"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.d4f9e252078d",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a full, third quarter, new or first quarter moon"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "CalamityMod/HeartofDarkness",
-          "source": "CalamityMod/ShadySalesman"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "CalamityMod/ShadySalesman"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "During a full, third quarter, new or first quarter moon"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.d53019348269",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "In a world with Silver Ore"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/SilverBullet",
-          "source": "Terraria/ArmsDealer"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/ArmsDealer"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "In a world with Silver Ore"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.d74611b83986",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "When the Bestiary has been filled to at least 10%"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/BlandWhip",
-          "source": "Terraria/BestiaryGirl"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/BestiaryGirl"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "When the Bestiary has been filled to at least 10%"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.d88b42f4c4ef",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "When the player has a Nail Gun in their inventory"
-        }
-      ],
-      "affectedCount": 2,
-      "affected": [
-        {
-          "item": "Terraria/Nail",
-          "source": "Terraria/Merchant"
-        },
-        {
-          "item": "Terraria/Nail",
-          "source": "Terraria/ArmsDealer"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/Merchant",
-              "Terraria/ArmsDealer"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "When the player has a Nail Gun in their inventory"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.dabe99796d7c",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "After defeating Skeletron Prime"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/PulseBow",
-          "source": "Terraria/TravellingMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/TravellingMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "After defeating Skeletron Prime"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.dc58be1b089d",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "After defeating the Pirates"
-        }
-      ],
-      "affectedCount": 2,
-      "affected": [
-        {
-          "item": "Terraria/PirateStaff",
-          "source": "Terraria/Princess"
-        },
-        {
-          "item": "Terraria/CoinGun",
-          "source": "Terraria/Princess"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/Princess"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "After defeating the Pirates"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.ddcf0724b2b5",
-      "kind": "unresolved-condition",
-      "sourceKind": "drop",
-      "conditions": [
-        {
-          "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
-          "description": "Drops: Not in a Remix world"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/Katana",
-          "source": "Terraria/KingSlimeBossBag"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "drop"
-            ],
-            "sourceIds": [
-              "Terraria/KingSlimeBossBag"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "Drops: Not in a Remix world"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.de7914b48323",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a third quarter or first quarter moon"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/Marrow",
-          "source": "Terraria/SkeletonMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/SkeletonMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "During a third quarter or first quarter moon"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.e0c94a498550",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a Blood Moon, or anytime in Hardmode"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/SilverBullet",
-          "source": "Terraria/ArmsDealer"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/ArmsDealer"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "During a Blood Moon, or anytime in Hardmode"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.e1b10941bb56",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a waning gibbous moon"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/Umbrella",
-          "source": "Terraria/SkeletonMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/SkeletonMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "During a waning gibbous moon"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.e22f6aeed049",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a Blood Moon or Solar Eclipse"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/ClusterRocketII",
-          "source": "Terraria/Cyborg"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/Cyborg"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "During a Blood Moon or Solar Eclipse"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.e2847389f2d3",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "When the Bestiary has been filled to at least 30%"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/JoustingLance",
-          "source": "Terraria/BestiaryGirl"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/BestiaryGirl"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "When the Bestiary has been filled to at least 30%"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.e690df6e23c1",
-      "kind": "unresolved-condition",
-      "sourceKind": "recipe",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "In a Graveyard biome"
-        }
-      ],
-      "affectedCount": 15,
-      "affected": [
-        {
-          "item": "Terraria/GravediggerShovel",
-          "source": "Terraria/GravediggerShovel"
-        },
-        {
-          "item": "Terraria/CrimsonRod",
-          "source": "Terraria/CrimsonRod"
-        },
-        {
-          "item": "Terraria/Vilethorn",
-          "source": "Terraria/Vilethorn"
-        },
-        {
-          "item": "Terraria/TheRottedFork",
-          "source": "Terraria/TheRottedFork"
-        },
-        {
-          "item": "Terraria/BallOHurt",
-          "source": "Terraria/BallOHurt"
-        },
-        {
-          "item": "Terraria/TheUndertaker",
-          "source": "Terraria/TheUndertaker"
-        },
-        {
-          "item": "Terraria/Musket",
-          "source": "Terraria/Musket"
-        },
-        {
-          "item": "Terraria/DartPistol",
-          "source": "Terraria/DartPistol"
-        },
-        {
-          "item": "Terraria/DartRifle",
-          "source": "Terraria/DartRifle"
-        },
-        {
-          "item": "Terraria/ChainGuillotines",
-          "source": "Terraria/ChainGuillotines"
-        },
-        {
-          "item": "Terraria/FetidBaghnakhs",
-          "source": "Terraria/FetidBaghnakhs"
-        },
-        {
-          "item": "Terraria/ClingerStaff",
-          "source": "Terraria/ClingerStaff"
-        },
-        {
-          "item": "Terraria/SoulDrain",
-          "source": "Terraria/SoulDrain"
-        },
-        {
-          "item": "CalamityMod/BloodyWormTooth",
-          "source": "CalamityMod/BloodyWormTooth"
-        },
-        {
-          "item": "CalamityMod/RottenBrain",
-          "source": "CalamityMod/RottenBrain"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "recipe"
-            ],
-            "sourceIds": [
-              "Terraria/GravediggerShovel",
-              "Terraria/CrimsonRod",
-              "Terraria/Vilethorn",
-              "Terraria/TheRottedFork",
-              "Terraria/BallOHurt",
-              "Terraria/TheUndertaker",
-              "Terraria/Musket",
-              "Terraria/DartPistol",
-              "Terraria/DartRifle",
-              "Terraria/ChainGuillotines",
-              "Terraria/FetidBaghnakhs",
-              "Terraria/ClingerStaff",
-              "Terraria/SoulDrain",
-              "CalamityMod/BloodyWormTooth",
-              "CalamityMod/RottenBrain"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "In a Graveyard biome"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.eaffbfb3d7ac",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a new, waxing crescent, first quarter or waxing gibbous moon"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/FormatC",
-          "source": "Terraria/SkeletonMerchant"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/SkeletonMerchant"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "During a new, waxing crescent, first quarter or waxing gibbous moon"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.eebecd4443ca",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "When the player has a Jack 'O Lantern Launcher in their inventory"
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/ExplosiveJackOLantern",
-          "source": "Terraria/ArmsDealer"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/ArmsDealer"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "When the player has a Jack 'O Lantern Launcher in their inventory"
             ]
           }
         ]

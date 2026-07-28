@@ -62,7 +62,7 @@ const equivalentVariantGroups = [
 ];
 const snapshot = {
   format: "ProgressionJournalSnapshot",
-  version: 5,
+  version: 7,
   mods: [{ name: "Test", version: "1.2.3" }],
   items: [
     item("Test/Ore"),
@@ -92,6 +92,8 @@ const snapshot = {
     item("Test/ObservedAmmoMaterial"),
     item("Test/ManualShopBlade", { damageClass: "Melee", damage: 17 }),
     item("Test/UnknownShopBlade", { damageClass: "Melee", damage: 19 }),
+    item("Test/KeyedEyeBlade", { damageClass: "Melee", damage: 22 }),
+    item("Test/NeutralRecipeBlade", { damageClass: "Melee", damage: 23 }),
     item("Test/ClassTool", { damageClass: "Melee" }),
     item("Test/ZeroDamageSummonStaff", {
       damageClass: "Terraria/SummonDamageClass",
@@ -274,6 +276,16 @@ const snapshot = {
       ingredients: [{ item: "Test/ObservedAmmoMaterial", stack: 1 }],
       stations: [],
       conditions: []
+    },
+    {
+      result: "Test/NeutralRecipeBlade",
+      ingredients: [],
+      stations: [],
+      conditions: [{
+        type: "Terraria.Condition",
+        description: "Near water",
+        key: "Conditions.NearWater"
+      }]
     },
     { result: "Test/EarlyWikiSword", ingredients: [{ item: "Test/Ore", stack: 1 }], stations: [], conditions: [] },
     { result: "Test/EventGun", ingredients: [{ item: "Test/EventMaterial", stack: 1 }], stations: [], conditions: [] },
@@ -491,7 +503,21 @@ const snapshot = {
       earliestStageName: "Boss",
       conditions: [{
         type: "Terraria.Condition",
-        description: "Opaque inventory condition"
+        description: "Opaque inventory condition",
+        key: "Conditions.PlayerCarriesItem",
+        facts: [{ kind: "item-owned", item: "Test/ObservedAmmoWeapon" }]
+      }]
+    },
+    {
+      npc: "Test/Merchant",
+      item: "Test/KeyedEyeBlade",
+      observed: false,
+      earliestStageIndex: -1,
+      earliestStageName: null,
+      conditions: [{
+        type: "Terraria.Condition",
+        description: "This display text is not used for progression",
+        key: "Conditions.DownedEyeOfCthulhu"
       }]
     },
     {
@@ -645,7 +671,8 @@ const manifest = {
       id: "boss",
       name: { "en-US": "Boss", "ru-RU": "Босс" },
       dropSources: ["Test/Boss", "Test/CollisionSource"],
-      shops: ["Test/Merchant"]
+      shops: ["Test/Merchant"],
+      unlock: { type: "vanilla-flag", key: "downedBoss1" }
     },
     { id: "empty", name: { "en-US": "Empty", "ru-RU": "Пусто" } },
     {
@@ -861,6 +888,10 @@ assert(profile.entries.some(entry =>
   && entry.evaluations[0].stageId === "boss"));
 assert.equal(report.paths["Test/ObservedAmmoWeapon"]?.stage, "late");
 assert.equal(report.paths["Test/ObservedAmmo"]?.stage, "late");
+assert.equal(report.paths["Test/ObservedAmmo"]?.evidence?.kind, "observed-shop");
+assert.deepEqual(
+  report.paths["Test/ObservedAmmo"]?.evidence?.conditions[0]?.facts,
+  [{ kind: "item-owned", item: "Test/ObservedAmmoWeapon" }]);
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "ClassTool"
   && entry.category === "Support"));
@@ -985,6 +1016,12 @@ assert(!report.excludedItems.some(entry =>
   entry.id === "Terraria/FilteredSword"));
 assert(report.emptyStages.includes("empty"));
 assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "UnknownShopBlade"));
+assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "KeyedEyeBlade"
+  && entry.evaluations[0].stageId === "boss"));
+assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "NeutralRecipeBlade"
+  && entry.evaluations[0].stageId === "start"));
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "FirstPlanteraBlade"
   && entry.evaluations[0].stageId === "plantera"));
@@ -1422,6 +1459,7 @@ for (const itemId of ["Test/DisjunctiveBlade", "Test/ConjunctiveBlade"]) {
 }
 
 const englishConditionSnapshot = structuredClone(compoundBossConditionSnapshot);
+englishConditionSnapshot.version = 7;
 englishConditionSnapshot.items.push(
   {
     id: "Test/InventoryAmmo",
@@ -1464,7 +1502,9 @@ englishConditionSnapshot.shops = [
     item: "Test/InventoryAmmo",
     conditions: [{
       type: "Terraria.Condition",
-      description: "When the player has an Inventory Weapon in their inventory"
+      description: "When the player has an Inventory Weapon in their inventory",
+      key: "Conditions.PlayerCarriesItem",
+      facts: [{ kind: "item-owned", item: "Test/InventoryWeapon" }]
     }],
     observed: false,
     earliestStageIndex: -1
@@ -1496,11 +1536,171 @@ englishConditionSnapshot.shops = [
 const englishConditionResult = generateProfile(
   englishConditionSnapshot,
   compoundBossConditionManifest);
-for (const itemId of ["Test/InventoryAmmo", "Test/MoonItem", "Test/OneTimeItem"]) {
+assert.equal(englishConditionResult.report.paths["Test/InventoryAmmo"]?.stage, "start");
+assert(!englishConditionResult.review.issues.some(issue =>
+  issue.kind === "unresolved-condition"
+  && issue.affected.some(value => value.item === "Test/InventoryAmmo")));
+for (const itemId of ["Test/MoonItem", "Test/OneTimeItem"]) {
   assert.equal(englishConditionResult.report.paths[itemId], undefined);
   assert(englishConditionResult.review.issues.some(issue =>
     issue.kind === "unresolved-condition"
     && issue.affected.some(value => value.item === itemId)));
 }
+
+const exactStaticEvidenceSnapshot = {
+  format: "ProgressionJournalSnapshot",
+  version: 7,
+  mods: [{ name: "Test", version: "1.2.3" }],
+  items: [
+    item("Test/SpawnMerchantBlade", { damageClass: "Melee", damage: 20 }),
+    item("Test/TownMerchantBlade", { damageClass: "Melee", damage: 21 }),
+    item("Test/UnknownStaticShopBlade", { damageClass: "Melee", damage: 22 }),
+    item("Test/FargoHardmodeBlade", { damageClass: "Melee", damage: 23 }),
+    item("Test/MartianShopBlade", { damageClass: "Melee", damage: 24 })
+  ],
+  npcs: [],
+  recipes: [],
+  drops: [{
+    source: "Test/HardmodeEnemy",
+    sourceType: "npc",
+    item: "Test/FargoHardmodeBlade",
+    conditions: [{
+      type:
+        "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeEarlyBirdLockDropCondition",
+      description: "Display text must not be used"
+    }]
+  }],
+  shops: [
+    {
+      npc: "Test/SpawnMerchant",
+      shop: "Shop",
+      item: "Test/SpawnMerchantBlade",
+      observed: false,
+      earliestStageIndex: -1,
+      conditions: [
+        {
+          type: "Terraria.Condition",
+          description: "Display text must not be used",
+          key: "Conditions.MoonPhases04"
+        },
+        {
+          type: "Terraria.Condition",
+          description: "Display text must not be used",
+          key: "Conditions.NoAteLoaf"
+        }
+      ]
+    },
+    {
+      npc: "Test/TownMerchant",
+      shop: "Shop",
+      item: "Test/TownMerchantBlade",
+      observed: false,
+      earliestStageIndex: -1,
+      conditions: [{
+        type: "Terraria.Condition",
+        description: "Display text must not be used",
+        key: "Conditions.DownedEyeOfCthulhu"
+      }]
+    },
+    {
+      npc: "Test/TownMerchant",
+      shop: "Shop",
+      item: "Test/UnknownStaticShopBlade",
+      observed: false,
+      earliestStageIndex: -1,
+      conditions: [{
+        type: "Test.UnknownCondition",
+        description: "After defeating every boss"
+      }]
+    },
+    {
+      npc: "Test/TownMerchant",
+      shop: "Shop",
+      item: "Test/MartianShopBlade",
+      observed: false,
+      earliestStageIndex: -1,
+      conditions: [
+        {
+          type: "Terraria.Condition",
+          description: "Display text must not be used",
+          key: "Conditions.DownedMartians"
+        },
+        {
+          type: "Terraria.Condition",
+          description: "Display text must not be used",
+          key: "Conditions.BloodOrSun"
+        }
+      ]
+    }
+  ],
+  fishing: [],
+  npcAvailability: [
+    {
+      npc: "Test/SpawnMerchant",
+      kind: "spawn",
+      observed: true,
+      earliestStageIndex: 0,
+      earliestStageId: "start",
+      earliestStageName: "Start",
+      conditions: []
+    },
+    {
+      npc: "Test/TownMerchant",
+      kind: "town",
+      observed: true,
+      earliestStageIndex: 0,
+      earliestStageId: "start",
+      earliestStageName: "Start",
+      conditions: []
+    }
+  ]
+};
+const exactStaticEvidenceManifest = {
+  id: "test.exact-static-evidence",
+  name: { "en-US": "Test", "ru-RU": "Тест" },
+  requiredMods: [{ name: "Test", version: "" }],
+  classes: [{
+    id: "melee",
+    name: { "en-US": "Melee", "ru-RU": "Воин" },
+    damageClassNames: ["Melee"]
+  }],
+  stages: [
+    { id: "start", name: { "en-US": "Start", "ru-RU": "Начало" } },
+    {
+      id: "eye-of-cthulhu",
+      name: { "en-US": "Eye of Cthulhu", "ru-RU": "Глаз Ктулху" },
+      unlock: { type: "vanilla-flag", key: "downedBoss1" }
+    },
+    {
+      id: "wall-of-flesh",
+      name: { "en-US": "Wall of Flesh", "ru-RU": "Стена плоти" },
+      dropSources: ["Test/HardmodeEnemy"],
+      unlock: { type: "vanilla-flag", key: "hardMode" }
+    },
+    {
+      id: "golem",
+      name: { "en-US": "Golem", "ru-RU": "Голем" },
+      unlock: { type: "vanilla-flag", key: "downedGolemBoss" }
+    }
+  ]
+};
+const exactStaticEvidenceResult = generateProfile(
+  exactStaticEvidenceSnapshot,
+  exactStaticEvidenceManifest);
+assert.equal(
+  exactStaticEvidenceResult.report.paths["Test/SpawnMerchantBlade"]?.stage,
+  "start");
+assert.equal(
+  exactStaticEvidenceResult.report.paths["Test/TownMerchantBlade"]?.stage,
+  "eye-of-cthulhu");
+assert.equal(
+  exactStaticEvidenceResult.report.paths["Test/FargoHardmodeBlade"]?.stage,
+  "wall-of-flesh");
+assert.equal(
+  exactStaticEvidenceResult.report.paths["Test/MartianShopBlade"]?.stage,
+  "golem");
+assert.equal(
+  exactStaticEvidenceResult.report.paths["Test/UnknownStaticShopBlade"],
+  undefined);
 
 console.log("Profile generator tests: OK");

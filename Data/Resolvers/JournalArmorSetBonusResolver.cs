@@ -49,9 +49,11 @@ internal static class JournalArmorSetBonusResolver
         var probeIndex = Math.Min(Main.maxPlayers, Main.player.Length - 1);
         var previousPlayer = Main.player[probeIndex];
         var previousRandom = Main.rand;
+        using var worldStateIsolation = new JournalWorldStateIsolation();
 
         try
         {
+            JournalWorldStateIsolation.ApplyNeutralBaseline();
             var probe = new Player
             {
                 whoAmI = probeIndex,

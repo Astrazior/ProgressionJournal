@@ -38,6 +38,12 @@ const HIGHER_IS_BAD_METRICS = new Set([
   "auditWarnings",
   "uncoveredSources"
 ]);
+const NON_BLOCKING_ACQUISITION_TARGETS = new Set([
+  "Terraria/CopperCoin",
+  "Terraria/SilverCoin",
+  "Terraria/GoldCoin",
+  "Terraria/PlatinumCoin"
+]);
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -58,6 +64,59 @@ function canonicalValue(value) {
 
 function stableJson(value) {
   return JSON.stringify(canonicalValue(value));
+}
+
+function isConditionRecord(value) {
+  return value
+    && typeof value === "object"
+    && !Array.isArray(value)
+    && ("type" in value || "key" in value || "facts" in value)
+    && "description" in value;
+}
+
+function acquisitionCoreValue(value) {
+  if (Array.isArray(value)) return value.map(acquisitionCoreValue);
+  if (!value || typeof value !== "object") return value;
+  const excluded = new Set();
+  if (isConditionRecord(value)) {
+    excluded.add("description");
+    excluded.add("key");
+    excluded.add("facts");
+  }
+  if ("sourceType" in value && "source" in value && "item" in value) {
+    excluded.add("rate");
+    excluded.add("stackMin");
+    excluded.add("stackMax");
+  }
+  if ("npc" in value && "shop" in value && "item" in value) {
+    excluded.add("observed");
+    excluded.add("earliestStageIndex");
+    excluded.add("earliestStageId");
+    excluded.add("earliestStageName");
+  }
+  return Object.fromEntries(
+    Object.keys(value)
+      .filter(key => !excluded.has(key))
+      .sort()
+      .map(key => [key, acquisitionCoreValue(value[key])]));
+}
+
+function acquisitionMachineEvidence(value, result = []) {
+  if (Array.isArray(value)) {
+    for (const entry of value) acquisitionMachineEvidence(entry, result);
+    return result;
+  }
+  if (!value || typeof value !== "object") return result;
+  if (isConditionRecord(value)) {
+    if (value.key) result.push(`key:${value.key}`);
+    for (const fact of value.facts ?? []) {
+      result.push(`fact:${stableJson(fact)}`);
+    }
+  }
+  for (const entry of Object.values(value)) {
+    acquisitionMachineEvidence(entry, result);
+  }
+  return sortedUnique(result);
 }
 
 function sortedUnique(values) {
@@ -224,7 +283,7 @@ function collectAcquisitionEvidence(knowledge) {
     add(acquisitionEntry(
       "fishing",
       target,
-      stableJson(fishing.conditions ?? []),
+      "catch",
       `fishing -> ${target}`,
       fishing));
   }
@@ -247,10 +306,25 @@ function collectAcquisitionEvidence(knowledge) {
 function collectReviewIssues(review) {
   const result = new Map();
   for (const issue of review?.issues ?? []) {
-    const key = issue.id || stableJson(issue);
+    const key = stableJson(reviewIssueCoreValue(issue));
     result.set(key, canonicalValue(issue));
   }
   return result;
+}
+
+function reviewIssueCoreValue(value) {
+  if (Array.isArray(value)) return value.map(reviewIssueCoreValue);
+  if (!value || typeof value !== "object") return value;
+  const excluded = new Set(["id"]);
+  if (isConditionRecord(value)) {
+    excluded.add("key");
+    excluded.add("facts");
+  }
+  return Object.fromEntries(
+    Object.keys(value)
+      .filter(key => !excluded.has(key) && key !== "conditionKeys")
+      .sort()
+      .map(key => [key, reviewIssueCoreValue(value[key])]));
 }
 
 function collectMetrics(itemAudit, knowledge, review, report) {
@@ -484,7 +558,6 @@ function compareItems(beforeState, afterState) {
     const afterIndex = firstStageIndex(afterState, after);
     const blocking = kind === "removed-from-profile"
       || kind === "stage-changed"
-      || kind === "source-path-changed"
       || kind === "metadata-changed"
       || (kind === "evidence-changed" && Boolean(before.via) && !after.via);
     changes.push({
@@ -574,24 +647,89 @@ function compareAcquisitions(beforeState, afterState) {
     const before = beforeState.acquisitions.get(key) ?? missingAcquisition(key);
     const after = afterState.acquisitions.get(key) ?? missingAcquisition(key);
     if (stableJson(before.records) === stableJson(after.records)) continue;
-    const beforeSignatures = before.records.map(stableJson);
-    const afterSignatures = after.records.map(stableJson);
-    const removedRecords = before.records.filter((_, index) =>
-      !afterSignatures.includes(beforeSignatures[index]));
-    const addedRecords = after.records.filter((_, index) =>
-      !beforeSignatures.includes(afterSignatures[index]));
+    const unmatchedAfter = new Set(after.records.map((_, index) => index));
+    const matched = [];
+    const removedRecords = [];
+    for (const beforeRecord of before.records) {
+      const core = stableJson(acquisitionCoreValue(beforeRecord));
+      const candidates = [...unmatchedAfter]
+        .filter(index =>
+          stableJson(acquisitionCoreValue(after.records[index])) === core)
+        .map(index => {
+          const beforeEvidence = acquisitionMachineEvidence(beforeRecord);
+          const afterEvidence = acquisitionMachineEvidence(after.records[index]);
+          return {
+            index,
+            lostEvidence: beforeEvidence.filter(value => !afterEvidence.includes(value)),
+            addedEvidence: afterEvidence.filter(value => !beforeEvidence.includes(value))
+          };
+        })
+        .sort((left, right) =>
+          left.lostEvidence.length - right.lostEvidence.length
+          || left.addedEvidence.length - right.addedEvidence.length);
+      const best = candidates[0];
+      if (!best) {
+        removedRecords.push(beforeRecord);
+        continue;
+      }
+      unmatchedAfter.delete(best.index);
+      matched.push({
+        before: beforeRecord,
+        after: after.records[best.index],
+        lostEvidence: best.lostEvidence,
+        addedEvidence: best.addedEvidence
+      });
+    }
+    const addedRecords = [...unmatchedAfter].map(index => after.records[index]);
+    const redundantRemovedRecords = [];
+    const substantiveRemovedRecords = removedRecords.filter(beforeRecord => {
+      const core = stableJson(acquisitionCoreValue(beforeRecord));
+      const beforeEvidence = acquisitionMachineEvidence(beforeRecord);
+      const replacement = after.records.find(afterRecord =>
+        stableJson(acquisitionCoreValue(afterRecord)) === core
+        && beforeEvidence.every(value =>
+          acquisitionMachineEvidence(afterRecord).includes(value)));
+      if (!replacement) return true;
+      redundantRemovedRecords.push(beforeRecord);
+      return false;
+    });
+    const evidenceRegressions = matched.filter(record => record.lostEvidence.length > 0);
+    const evidenceEnrichments = matched.filter(record => record.addedEvidence.length > 0);
+    const coreChanged = substantiveRemovedRecords.length > 0 || addedRecords.length > 0;
+    const target = after.target || before.target;
+    const blocking = !NON_BLOCKING_ACQUISITION_TARGETS.has(target)
+      && (substantiveRemovedRecords.length > 0 || evidenceRegressions.length > 0);
+    const evidenceOnly = !coreChanged;
     changes.push({
       key,
       kind: before.records.length === 0
         ? "acquisition-added"
         : after.records.length === 0
           ? "acquisition-removed"
-          : "acquisition-changed",
-      target: after.target || before.target,
+          : evidenceOnly && evidenceRegressions.length > 0
+            ? "acquisition-evidence-regressed"
+            : evidenceOnly && evidenceEnrichments.length > 0
+              ? "acquisition-evidence-enriched"
+              : evidenceOnly && redundantRemovedRecords.length > 0
+                ? "acquisition-duplicates-removed"
+              : evidenceOnly
+                ? "acquisition-metadata-changed"
+                : "acquisition-changed",
+      target,
       description: after.description !== "<missing>" ? after.description : before.description,
-      blocking: removedRecords.length > 0,
-      removedRecords,
-      addedRecords,
+      blocking,
+      removedRecords: [
+        ...substantiveRemovedRecords,
+        ...evidenceRegressions.map(record => record.before)
+      ],
+      redundantRemovedRecords,
+      addedRecords: [
+        ...addedRecords,
+        ...evidenceRegressions.map(record => record.after),
+        ...evidenceEnrichments.map(record => record.after)
+      ],
+      lostEvidence: evidenceRegressions.flatMap(record => record.lostEvidence),
+      addedEvidence: evidenceEnrichments.flatMap(record => record.addedEvidence),
       beforeCount: before.records.length,
       afterCount: after.records.length
     });
@@ -637,6 +775,20 @@ export function compareProfileStates(modName, beforeState, afterState) {
   const sourceChanges = compareSources(beforeState, afterState);
   const acquisitionChanges = compareAcquisitions(beforeState, afterState);
   const metricChanges = compareMetrics(beforeState, afterState);
+  const acquisitionMetricPrefixes = new Map([
+    ["recipes", "recipe|"],
+    ["drops", "drop|"],
+    ["shops", "shop|"],
+    ["fishing", "fishing|"]
+  ]);
+  for (const change of metricChanges) {
+    const prefix = acquisitionMetricPrefixes.get(change.metric);
+    if (prefix && change.blocking && !acquisitionChanges.some(acquisition =>
+      acquisition.blocking && acquisition.key.startsWith(prefix))) {
+      change.blocking = false;
+      change.explainedByNonBlockingAcquisitionChanges = true;
+    }
+  }
   const reviewChanges = compareNamedRecords(beforeState.reviewIssues, afterState.reviewIssues);
   const newAuditErrors = addedArrayRecords(beforeState.auditErrors, afterState.auditErrors);
   const newAuditWarnings = addedArrayRecords(beforeState.auditWarnings, afterState.auditWarnings);

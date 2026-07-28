@@ -27,6 +27,12 @@ internal static class JournalTownNpcAvailabilityResolver
         209, 227, 228, 229, 353, 369, 441, 550, 588, 633, 637, 638, 656, 663,
         670, 678, 679, 680, 681, 682, 683, 684
     ];
+    private static readonly int[] ProbeGameModes =
+    [
+        GameModeID.Normal,
+        GameModeID.Expert,
+        GameModeID.Master
+    ];
     private static Catalog? _catalog;
     private static string _catalogKey = string.Empty;
 
@@ -39,6 +45,7 @@ internal static class JournalTownNpcAvailabilityResolver
         bool Inventory,
         bool TownPopulation,
         InventoryScenario InventoryScenario,
+        int GameMode,
         int ProgressionVariantIndex = -1);
 
     private sealed record ShopKey(int NpcType, string ShopName, int ItemId);
@@ -95,7 +102,9 @@ internal static class JournalTownNpcAvailabilityResolver
                 earliestStageName: string.Empty,
                 requiresSpecialUnlock: false,
                 requiresInventory: false,
-                requiresTownPopulation: false);
+                requiresTownPopulation: false,
+                requiresExpertMode: false,
+                requiresMasterMode: false);
     }
 
     public static IReadOnlyList<string> GetShopConditions(int npcType, string shopName, int itemId)
@@ -165,7 +174,7 @@ internal static class JournalTownNpcAvailabilityResolver
                 .Where(static mod => mod.Code is not null)
                 .OrderBy(static mod => mod.Name, StringComparer.OrdinalIgnoreCase)
                 .Select(static mod => $"{mod.Name}@{mod.Version}"));
-        return $"{Main.worldID}:{profileId}:{mods}";
+        return $"{profileId}:{mods}";
     }
 
     private static Catalog BuildCatalog()
@@ -190,6 +199,7 @@ internal static class JournalTownNpcAvailabilityResolver
         var previousCheckForSpawns = Main.checkForSpawns;
         var previousPrioritizedTownNpcType = WorldGen.prioritizedTownNPCType;
         var previousNetMode = Main.netMode;
+        var previousGameMode = Main.GameMode;
         var previousDesiredWorldTilesUpdateRate = Main.desiredWorldTilesUpdateRate;
         var previousBestiaryTracker = Main.BestiaryTracker;
         var previousDayTime = Main.dayTime;
@@ -210,6 +220,7 @@ internal static class JournalTownNpcAvailabilityResolver
         var freezeTime = CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>();
         var previousFreezeTime = freezeTime.Enabled;
         var specialFlags = CreateSpecialUnlockFlags();
+        using var worldStateIsolation = new JournalWorldStateIsolation();
 
         try
         {
@@ -221,23 +232,7 @@ internal static class JournalTownNpcAvailabilityResolver
 
             for (var stageIndex = 0; stageIndex < progression.Count; stageIndex++)
             {
-                RunTownScenario(
-                    updateTownNpcAvailability,
-                    progression,
-                    player,
-                    townNpcTypes,
-                    observations,
-                    new TownProbeScenario(
-                        stageIndex,
-                        SpecialUnlocks: false,
-                        SpecialWorld: false,
-                        Inventory: false,
-                        TownPopulation: false,
-                        inventoryScenarios[0]),
-                    specialFlags,
-                    useMaxBestiary: false);
-
-                foreach (var inventoryScenario in inventoryScenarios.Skip(1))
+                foreach (var gameMode in ProbeGameModes)
                 {
                     RunTownScenario(
                         updateTownNpcAvailability,
@@ -249,44 +244,67 @@ internal static class JournalTownNpcAvailabilityResolver
                             stageIndex,
                             SpecialUnlocks: false,
                             SpecialWorld: false,
-                            Inventory: true,
+                            Inventory: false,
                             TownPopulation: false,
-                            inventoryScenario),
+                            inventoryScenarios[0],
+                            gameMode),
                         specialFlags,
                         useMaxBestiary: false);
+
+                    foreach (var inventoryScenario in inventoryScenarios.Skip(1))
+                    {
+                        RunTownScenario(
+                            updateTownNpcAvailability,
+                            progression,
+                            player,
+                            townNpcTypes,
+                            observations,
+                            new TownProbeScenario(
+                                stageIndex,
+                                SpecialUnlocks: false,
+                                SpecialWorld: false,
+                                Inventory: true,
+                                TownPopulation: false,
+                                inventoryScenario,
+                                gameMode),
+                            specialFlags,
+                            useMaxBestiary: false);
+                    }
+
+                    RunTownScenario(
+                        updateTownNpcAvailability,
+                        progression,
+                        player,
+                        townNpcTypes,
+                        observations,
+                        new TownProbeScenario(
+                            stageIndex,
+                            SpecialUnlocks: true,
+                            SpecialWorld: true,
+                            Inventory: true,
+                            TownPopulation: false,
+                            inventoryScenarios[1],
+                            gameMode),
+                        specialFlags,
+                        useMaxBestiary: true);
+
+                    RunTownScenario(
+                        updateTownNpcAvailability,
+                        progression,
+                        player,
+                        townNpcTypes,
+                        observations,
+                        new TownProbeScenario(
+                            stageIndex,
+                            SpecialUnlocks: true,
+                            SpecialWorld: true,
+                            Inventory: true,
+                            TownPopulation: true,
+                            inventoryScenarios[1],
+                            gameMode),
+                        specialFlags,
+                        useMaxBestiary: true);
                 }
-
-                RunTownScenario(
-                    updateTownNpcAvailability,
-                    progression,
-                    player,
-                    townNpcTypes,
-                    observations,
-                    new TownProbeScenario(
-                        stageIndex,
-                        SpecialUnlocks: true,
-                        SpecialWorld: true,
-                        Inventory: true,
-                        TownPopulation: false,
-                        inventoryScenarios[1]),
-                    specialFlags,
-                    useMaxBestiary: true);
-
-                RunTownScenario(
-                    updateTownNpcAvailability,
-                    progression,
-                    player,
-                    townNpcTypes,
-                    observations,
-                    new TownProbeScenario(
-                        stageIndex,
-                        SpecialUnlocks: true,
-                        SpecialWorld: true,
-                        Inventory: true,
-                        TownPopulation: true,
-                        inventoryScenarios[1]),
-                    specialFlags,
-                    useMaxBestiary: true);
             }
 
             ObserveTransientTownNpcSystems(
@@ -331,6 +349,7 @@ internal static class JournalTownNpcAvailabilityResolver
             Main.checkForSpawns = previousCheckForSpawns;
             WorldGen.prioritizedTownNPCType = previousPrioritizedTownNpcType;
             Main.netMode = previousNetMode;
+            Main.GameMode = previousGameMode;
             Main.desiredWorldTilesUpdateRate = previousDesiredWorldTilesUpdateRate;
             Main.BestiaryTracker = previousBestiaryTracker;
             Main.dayTime = previousDayTime;
@@ -397,77 +416,84 @@ internal static class JournalTownNpcAvailabilityResolver
         var knownTownNpcTypes = townNpcTypes.ToHashSet();
         for (var stageIndex = 0; stageIndex < progression.Count; stageIndex++)
         {
-            foreach (var system in systems)
+            foreach (var gameMode in ProbeGameModes)
             {
-                for (var seed = 0; seed < 8; seed++)
+                foreach (var system in systems)
                 {
-                    for (var variantIndex = 0;
-                         variantIndex < progression.GetVariantCount(stageIndex);
-                         variantIndex++)
+                    for (var seed = 0; seed < 8; seed++)
                     {
-                        progression.Reset();
-                        progression.Apply(stageIndex, variantIndex);
-                        PrepareTransientTown(
-                            player,
-                            inventoryScenario,
-                            system,
-                            townNpcTypes);
-                        var staticState = CaptureStaticFieldState(system.GetType());
-                        try
+                        for (var variantIndex = 0;
+                             variantIndex < progression.GetVariantCount(stageIndex);
+                             variantIndex++)
                         {
-                            Main.eclipse = false;
-                            Main.invasionType = 0;
-                            Main.invasionSize = 0;
-                            Main.invasionDelay = 0;
-                            Main.dayTime = true;
-                            Main.time = 0d;
-                            system.PreUpdateWorld();
-
-                            var beforeTypes = Main.npc
-                                .Select(static npc => npc is { active: true } ? npc.type : -1)
-                                .ToArray();
-                            Main.dayTime = false;
-                            Main.time = 0d;
-                            Main.rand = new UnifiedRandom(seed);
-                            system.PreUpdateWorld();
-
-                            for (var index = 0; index < Main.npc.Length; index++)
+                            JournalWorldStateIsolation.ApplyNeutralBaseline();
+                            progression.Reset();
+                            progression.Apply(stageIndex, variantIndex);
+                            Main.GameMode = gameMode;
+                            PrepareTransientTown(
+                                player,
+                                inventoryScenario,
+                                system,
+                                townNpcTypes);
+                            var staticState = CaptureStaticFieldState(system.GetType());
+                            try
                             {
-                                var npc = Main.npc[index];
-                                if (npc is not { active: true, townNPC: true }
-                                    || npc.type == beforeTypes[index]
-                                    || !knownTownNpcTypes.Contains(npc.type))
-                                {
-                                    continue;
-                                }
+                                Main.eclipse = false;
+                                Main.invasionType = 0;
+                                Main.invasionSize = 0;
+                                Main.invasionDelay = 0;
+                                Main.dayTime = true;
+                                Main.time = 0d;
+                                system.PreUpdateWorld();
 
-                                if (!observations.TryGetValue(npc.type, out var values))
-                                {
-                                    values = [];
-                                    observations[npc.type] = values;
-                                }
+                                var beforeTypes = Main.npc
+                                    .Select(static npc => npc is { active: true } ? npc.type : -1)
+                                    .ToArray();
+                                Main.dayTime = false;
+                                Main.time = 0d;
+                                Main.rand = new UnifiedRandom(seed);
+                                system.PreUpdateWorld();
 
-                                values.Add(new TownProbeScenario(
-                                    stageIndex,
-                                    SpecialUnlocks: false,
-                                    SpecialWorld: false,
-                                    Inventory: true,
-                                    TownPopulation: true,
-                                    inventoryScenario,
-                                    ProgressionVariantIndex: variantIndex));
+                                for (var index = 0; index < Main.npc.Length; index++)
+                                {
+                                    var npc = Main.npc[index];
+                                    if (npc is not { active: true, townNPC: true }
+                                        || npc.type == beforeTypes[index]
+                                        || !knownTownNpcTypes.Contains(npc.type))
+                                    {
+                                        continue;
+                                    }
+
+                                    if (!observations.TryGetValue(npc.type, out var values))
+                                    {
+                                        values = [];
+                                        observations[npc.type] = values;
+                                    }
+
+                                    values.Add(new TownProbeScenario(
+                                        stageIndex,
+                                        SpecialUnlocks: false,
+                                        SpecialWorld: false,
+                                        Inventory: true,
+                                        TownPopulation: true,
+                                        inventoryScenario,
+                                        gameMode,
+                                        ProgressionVariantIndex: variantIndex));
+                                }
                             }
-                        }
-                        catch (Exception exception)
-                        {
-                            LogDebugOnce(
-                                "transient-town-system",
-                                $"Failed to probe transient town NPC system '{system.GetType().FullName}' "
-                                + $"at stage {stageIndex}, variant {variantIndex}, and seed {seed}.",
-                                exception);
-                        }
-                        finally
-                        {
-                            RestoreStaticFieldState(staticState);
+                            catch (Exception exception)
+                            {
+                                LogDebugOnce(
+                                    "transient-town-system",
+                                    $"Failed to probe transient town NPC system '{system.GetType().FullName}' "
+                                    + $"at stage {stageIndex}, variant {variantIndex}, seed {seed}, "
+                                    + $"and game mode {gameMode}.",
+                                    exception);
+                            }
+                            finally
+                            {
+                                RestoreStaticFieldState(staticState);
+                            }
                         }
                     }
                 }
@@ -506,8 +532,8 @@ internal static class JournalTownNpcAvailabilityResolver
         foreach (var npc in Main.npc.Where(static npc => npc is { active: true, townNPC: true }))
         {
             npc.homeless = false;
-            npc.homeTileX = Main.spawnTileX;
-            npc.homeTileY = Main.spawnTileY;
+            npc.homeTileX = Main.maxTilesX / 2;
+            npc.homeTileY = Math.Clamp((int)Main.worldSurface, 10, Main.maxTilesY - 10);
         }
     }
 
@@ -624,11 +650,13 @@ internal static class JournalTownNpcAvailabilityResolver
              variantIndex < progression.GetVariantCount(scenario.StageIndex);
              variantIndex++)
         {
+            JournalWorldStateIsolation.ApplyNeutralBaseline();
             Main.BestiaryTracker = useMaxBestiary
                 ? CreateCompletedBestiaryTracker()
                 : new BestiaryUnlocksTracker();
             progression.Reset();
             progression.Apply(scenario.StageIndex, variantIndex);
+            Main.GameMode = scenario.GameMode;
             foreach (var flag in specialFlags)
             {
                 flag.Set(scenario.SpecialUnlocks);
@@ -637,6 +665,16 @@ internal static class JournalTownNpcAvailabilityResolver
             Main.halloween = scenario.SpecialWorld;
             Main.tenthAnniversaryWorld = scenario.SpecialWorld;
             Main.remixWorld = scenario.SpecialWorld;
+            if (scenario.SpecialWorld)
+            {
+                foreach (var worldScenario in JournalWorldStateIsolation.IdentityScenarios)
+                {
+                    foreach (var identityFlag in worldScenario.EnabledIdentityFlags ?? [])
+                    {
+                        JournalWorldStateIsolation.SetIdentityFlag(identityFlag, true);
+                    }
+                }
+            }
             BirthdayParty.GenuineParty = scenario.SpecialWorld;
 
             PrepareNpcArray(scenario.TownPopulation);
@@ -679,7 +717,9 @@ internal static class JournalTownNpcAvailabilityResolver
                 earliestStageName: string.Empty,
                 requiresSpecialUnlock: false,
                 requiresInventory: false,
-                requiresTownPopulation: false);
+                requiresTownPopulation: false,
+                requiresExpertMode: false,
+                requiresMasterMode: false);
         }
 
         var stageEvidence = values
@@ -699,11 +739,14 @@ internal static class JournalTownNpcAvailabilityResolver
                 earliestStageName: string.Empty,
                 requiresSpecialUnlock: true,
                 requiresInventory: special.Inventory,
-                requiresTownPopulation: special.TownPopulation);
+                requiresTownPopulation: special.TownPopulation,
+                requiresExpertMode: special.GameMode >= GameModeID.Expert,
+                requiresMasterMode: special.GameMode == GameModeID.Master);
         }
 
         var best = stageEvidence
             .OrderBy(static value => value.StageIndex)
+            .ThenBy(static value => value.GameMode)
             .ThenBy(static value => value.Inventory)
             .ThenBy(static value => value.TownPopulation)
             .First();
@@ -716,7 +759,9 @@ internal static class JournalTownNpcAvailabilityResolver
                 : string.Empty,
             best.SpecialUnlocks || best.SpecialWorld,
             best.Inventory,
-            best.TownPopulation);
+            best.TownPopulation,
+            best.GameMode >= GameModeID.Expert,
+            best.GameMode == GameModeID.Master);
     }
 
     private static Dictionary<ShopKey, int> BuildShopStages(
@@ -738,31 +783,36 @@ internal static class JournalTownNpcAvailabilityResolver
                 progression.Reset();
                 progression.Apply(stageIndex, variantIndex);
 
-                foreach (var environment in environmentScenarios)
+                foreach (var gameMode in ProbeGameModes)
                 {
-                    ResetShopEnvironment(player);
-                    ApplyInventoryScenario(player, inventoryScenarios[1]);
-                    environment(player);
-                    ObserveShops(
-                        shops,
-                        observations,
-                        progression,
-                        result,
-                        stageIndex,
-                        variantIndex);
-                }
+                    foreach (var environment in environmentScenarios)
+                    {
+                        ResetShopEnvironment(player, gameMode);
+                        ApplyInventoryScenario(player, inventoryScenarios[1]);
+                        environment(player);
+                        ObserveShops(
+                            shops,
+                            observations,
+                            progression,
+                            result,
+                            stageIndex,
+                            variantIndex,
+                            gameMode);
+                    }
 
-                foreach (var inventoryScenario in inventoryScenarios.Skip(2))
-                {
-                    ResetShopEnvironment(player);
-                    ApplyInventoryScenario(player, inventoryScenario);
-                    ObserveShops(
-                        shops,
-                        observations,
-                        progression,
-                        result,
-                        stageIndex,
-                        variantIndex);
+                    foreach (var inventoryScenario in inventoryScenarios.Skip(2))
+                    {
+                        ResetShopEnvironment(player, gameMode);
+                        ApplyInventoryScenario(player, inventoryScenario);
+                        ObserveShops(
+                            shops,
+                            observations,
+                            progression,
+                            result,
+                            stageIndex,
+                            variantIndex,
+                            gameMode);
+                    }
                 }
             }
         }
@@ -776,7 +826,8 @@ internal static class JournalTownNpcAvailabilityResolver
         JournalRuntimeProgressionScenarios progression,
         IDictionary<ShopKey, int> result,
         int stageIndex,
-        int variantIndex)
+        int variantIndex,
+        int gameMode)
     {
         foreach (var shop in shops)
         {
@@ -796,7 +847,8 @@ internal static class JournalTownNpcAvailabilityResolver
                     shop.NpcType,
                     progression,
                     stageIndex,
-                    variantIndex))
+                    variantIndex,
+                    gameMode))
             {
                 continue;
             }
@@ -832,11 +884,13 @@ internal static class JournalTownNpcAvailabilityResolver
         int npcType,
         JournalRuntimeProgressionScenarios progression,
         int stageIndex,
-        int variantIndex)
+        int variantIndex,
+        int gameMode)
     {
         return observations.TryGetValue(npcType, out var scenarios)
             && scenarios.Any(scenario =>
                 scenario is { SpecialUnlocks: false, SpecialWorld: false }
+                && scenario.GameMode == gameMode
                 && scenario.StageIndex <= stageIndex
                 && progression.IsVariantContinuation(
                     stageIndex,
@@ -850,6 +904,7 @@ internal static class JournalTownNpcAvailabilityResolver
         var scenarios = new List<Action<Player>>
         {
             static _ => { },
+            static _ => Main.time = 36000d,
             static _ => Main.dayTime = false,
             static _ =>
             {
@@ -862,6 +917,18 @@ internal static class JournalTownNpcAvailabilityResolver
             static _ => Main.halloween = true,
             static _ => Main.tenthAnniversaryWorld = true,
             static _ => Main.remixWorld = true,
+            static _ => WorldGen.crimson = true,
+            static _ => JournalWorldStateIsolation.SetIdentityFlag("drunkWorld", true),
+            static _ => JournalWorldStateIsolation.SetIdentityFlag("getGoodWorld", true),
+            static _ => JournalWorldStateIsolation.SetIdentityFlag("dontStarveWorld", true),
+            static _ => JournalWorldStateIsolation.SetIdentityFlag("notTheBeesWorld", true),
+            static _ => JournalWorldStateIsolation.SetIdentityFlag("noTrapsWorld", true),
+            static _ =>
+            {
+                JournalWorldStateIsolation.SetIdentityFlag("getGoodWorld", true);
+                JournalWorldStateIsolation.SetIdentityFlag("remixWorld", true);
+                JournalWorldStateIsolation.SetIdentityFlag("zenithWorld", true);
+            },
             static _ => BirthdayParty.GenuineParty = true,
             static player => player.ZoneBeach = true,
             static player => player.ZoneDesert = true,
@@ -936,6 +1003,17 @@ internal static class JournalTownNpcAvailabilityResolver
         {
             conditions.Add(Language.GetTextValue(
                 "Mods.ProgressionJournal.UI.TownNpcPopulationCondition"));
+        }
+
+        if (availability.RequiresMasterMode)
+        {
+            conditions.Add(Language.GetTextValue(
+                "Mods.ProgressionJournal.UI.TownNpcMasterModeCondition"));
+        }
+        else if (availability.RequiresExpertMode)
+        {
+            conditions.Add(Language.GetTextValue(
+                "Mods.ProgressionJournal.UI.TownNpcExpertModeCondition"));
         }
 
         return conditions;
@@ -1024,9 +1102,12 @@ internal static class JournalTownNpcAvailabilityResolver
         return Enumerable.Range(0, count).Select(static _ => new Item()).ToArray();
     }
 
-    private static void ResetShopEnvironment(Player player)
+    private static void ResetShopEnvironment(Player player, int gameMode)
     {
+        JournalWorldStateIsolation.ApplyNeutralWorldIdentity();
+        Main.GameMode = gameMode;
         Main.dayTime = true;
+        Main.time = 0d;
         Main.bloodMoon = false;
         Main.eclipse = false;
         Main.raining = false;

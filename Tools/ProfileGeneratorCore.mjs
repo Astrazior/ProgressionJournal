@@ -6,6 +6,38 @@ import { applyVanillaSourceCatalog } from "./VanillaSourceCatalog.mjs";
 import { resolveSnapshotStageIndex } from "./SnapshotStageResolver.mjs";
 
 const STANDARD_COMBAT_CLASS_IDS = new Set(["melee", "ranged", "magic", "summoner"]);
+const PROGRESSION_NEUTRAL_CONDITION_KEYS = new Set([
+  "Conditions.BestiaryPercentage",
+  "Conditions.FullMoon",
+  "Conditions.InJungle",
+  "Conditions.InGraveyard",
+  "Conditions.MoonPhases04",
+  "Conditions.MoonPhases15",
+  "Conditions.MoonPhases26",
+  "Conditions.MoonPhases37",
+  "Conditions.MoonPhasesEven",
+  "Conditions.MoonPhasesEvenQuarters",
+  "Conditions.MoonPhasesHalf0",
+  "Conditions.MoonPhasesHalf1",
+  "Conditions.MoonPhasesNearNew",
+  "Conditions.MoonPhasesOdd",
+  "Conditions.MoonPhasesOddQuarters",
+  "Conditions.NearHoney",
+  "Conditions.NearLava",
+  "Conditions.NearWater",
+  "Conditions.NightDayFullMoon",
+  "Conditions.OddQuarters",
+  "Conditions.Quarter0",
+  "Conditions.Quarter3",
+  "Conditions.Quarter0Moon",
+  "Conditions.Quarter3Moon",
+  "Conditions.ThirdQuarterMoon",
+  "Conditions.TimeNight",
+  "Conditions.WaningGibbousMoon",
+  "Conditions.NoAteLoaf",
+  "Conditions.WorldGenSilver",
+  "Conditions.WorldNotRemix"
+]);
 
 export function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -135,7 +167,7 @@ function generateProfileCore(
     : source;
   assert(snapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot format.");
   assert(
-    [4, 5, 6].includes(snapshot.version),
+    [4, 5, 6, 7].includes(snapshot.version),
     `Unsupported snapshot version '${snapshot.version}'.`);
 
   manifest = applyVanillaSourceCatalog(manifest, snapshot);
@@ -179,7 +211,7 @@ function generateProfileCore(
     normalizeObservedStage(record, `npcAvailability[${index}] ${record.npc}`));
   const allowedItems = snapshot.items.filter(item => isAllowedProfileItem(item.id, contentMods));
   const itemById = new Map(snapshot.items.map(item => [item.id, item]));
-  const observedShopPrerequisites = collectObservedShopPrerequisites(
+  const shopPrerequisites = collectShopPrerequisites(
     snapshotShops,
     snapshot.items,
     itemById);
@@ -382,8 +414,10 @@ function generateProfileCore(
     }
     for (const availability of observedNpcAvailability) {
       if (availability.earliestStageIndex !== stageIndex) continue;
-      if (availability.kind === "town") {
+      if (availability.kind === "town" || shopsByNpc.has(availability.npc)) {
         availableShops.add(availability.npc);
+      }
+      if (availability.kind === "town") {
         availableDropSources.add(availability.npc);
       } else if (availability.kind === "spawn") {
         availableDropSources.add(availability.npc);
@@ -455,8 +489,12 @@ function generateProfileCore(
       for (const npc of availableShops) {
         if (!sourceAllowedAtStage(npc, stage.id)) continue;
         for (const shop of shopsByNpc.get(npc) ?? []) {
+          const machineReadableUnobservedShop =
+            hasMachineReadableShopConditions(shop, manifest);
           if (available.has(shop.item)
-              || (!shop.observed && !legacyAvailableShops.has(npc))
+              || (!shop.observed
+                && !legacyAvailableShops.has(npc)
+                && !machineReadableUnobservedShop)
               || (shop.observed && shop.earliestStageIndex > stageIndex)) {
             continue;
           }
@@ -464,17 +502,15 @@ function generateProfileCore(
             sourceKind: "shop",
             source: npc,
             item: shop.item,
-            available
+            available,
+            prerequisites: shopPrerequisites.get(shop) ?? []
           };
           const shopAllowed = shop.observed
             ? observedShopConditionsAllowed(
               shop.conditions,
               stage,
               manifest,
-              {
-                ...conditionContext,
-                prerequisites: observedShopPrerequisites.get(shop.item) ?? []
-              })
+              conditionContext)
             : conditionsAllowed(
               shop.conditions,
               stage,
@@ -485,7 +521,14 @@ function generateProfileCore(
             shop.item,
             stage.id,
             `shop:${npc}`,
-            eventMetadataForSource(npc, stageIndex))) {
+            {
+              ...eventMetadataForSource(npc, stageIndex),
+              evidence: {
+                kind: shop.observed ? "observed-shop" : "shop",
+                conditions: shop.conditions ?? [],
+                prerequisites: conditionContext.prerequisites
+              }
+            })) {
             changed = true;
           }
         }
@@ -1254,12 +1297,18 @@ function resolveDamageClasses(damageClass, manifest) {
   return matches;
 }
 
-function collectObservedShopPrerequisites(shops, items, itemById) {
+function collectShopPrerequisites(shops, items, itemById) {
   const ammoUsers = groupBy(
     items.filter(item => (item.useAmmo ?? 0) > 0),
     item => item.useAmmo);
   const prerequisites = new Map();
   for (const shop of shops) {
+    const explicitPrerequisites = (shop.conditions ?? [])
+      .flatMap(conditionItemPrerequisites);
+    if (explicitPrerequisites.length > 0) {
+      prerequisites.set(shop, [...new Set(explicitPrerequisites)]);
+      continue;
+    }
     if (!shop.observed || (shop.conditions ?? []).length === 0) continue;
     const item = itemById.get(shop.item);
     if (!item
@@ -1273,9 +1322,26 @@ function collectObservedShopPrerequisites(shops, items, itemById) {
       .filter(candidate => candidate.id !== item.id
         && (candidate.shoot ?? 0) === item.shoot);
     if (matchingUsers.length !== 1) continue;
-    prerequisites.set(shop.item, [matchingUsers[0].id]);
+    prerequisites.set(shop, [matchingUsers[0].id]);
   }
   return prerequisites;
+}
+
+function conditionItemPrerequisites(condition) {
+  const facts = condition.facts ?? [];
+  if (facts.length === 0
+      || facts.some(fact =>
+        fact?.kind !== "item-owned"
+        || typeof fact.item !== "string"
+        || !fact.item)) {
+    return [];
+  }
+  return facts.map(fact => fact.item);
+}
+
+function conditionHasSupportedFacts(condition) {
+  return (condition.facts ?? []).length > 0
+    && conditionItemPrerequisites(condition).length === condition.facts.length;
 }
 
 function observedShopConditionsAllowed(conditions, stage, manifest, context) {
@@ -1283,7 +1349,12 @@ function observedShopConditionsAllowed(conditions, stage, manifest, context) {
     ?? new Map(manifest.stages.map((value, index) => [value.id, index]));
   const currentStageIndex = stageIndexes.get(stage.id) ?? -1;
   for (const condition of conditions ?? []) {
-    if (!condition.type && !condition.description) continue;
+    if (!condition.type
+        && !condition.description
+        && !condition.key
+        && (condition.facts ?? []).length === 0) {
+      continue;
+    }
     if (isUnavailableCondition(condition) || isDefaultExcludedVariantCondition(condition)) {
       return false;
     }
@@ -1295,6 +1366,10 @@ function observedShopConditionsAllowed(conditions, stage, manifest, context) {
       stageIndexes);
     if (assignedStageIndex >= 0) {
       if (currentStageIndex < assignedStageIndex) return false;
+      continue;
+    }
+    if (isProgressionNeutralCondition(condition)
+        || conditionHasSupportedFacts(condition)) {
       continue;
     }
     const rule = manifest.conditionRules?.[condition.type];
@@ -1314,7 +1389,12 @@ function conditionsAllowed(conditions, stage, manifest, report, context) {
     ?? new Map(manifest.stages.map((value, index) => [value.id, index]));
   const currentStageIndex = stageIndexes.get(stage.id) ?? -1;
   for (const condition of conditions ?? []) {
-    if (!condition.type && !condition.description) continue;
+    if (!condition.type
+        && !condition.description
+        && !condition.key
+        && (condition.facts ?? []).length === 0) {
+      continue;
+    }
     if (isAlternativeEarlyContainerCondition(condition, context)) continue;
     if (isUnavailableCondition(condition) || isDefaultExcludedVariantCondition(condition)) return false;
     const assignedStageIndex = assignedConditionStageIndex(
@@ -1327,7 +1407,8 @@ function conditionsAllowed(conditions, stage, manifest, report, context) {
       if (currentStageIndex < assignedStageIndex) return false;
       continue;
     }
-    if (isProgressionNeutralCondition(condition)) continue;
+    if (isProgressionNeutralCondition(condition)
+        || conditionHasSupportedFacts(condition)) continue;
     if (isSafeOpaqueDropCondition(condition, context)) continue;
     const rule = manifest.conditionRules?.[condition.type];
     if (rule === "allow") continue;
@@ -1346,7 +1427,8 @@ function conditionsAllowed(conditions, stage, manifest, report, context) {
     }
     return false;
   }
-  return true;
+  return (context.prerequisites ?? [])
+    .every(itemId => context.available.has(itemId));
 }
 
 function isAlternativeEarlyContainerCondition(condition, context) {
@@ -1364,6 +1446,7 @@ function observedConditionStageIndex(
   manifest,
   stageIndexes) {
   const indexes = [
+    conditionKeyStageIndex(condition.key ?? "", manifest, stageIndexes),
     inferConditionTypeStageIndex(condition.type ?? "", manifest, stageIndexes),
     configuredConditionStageIndex(
       condition,
@@ -1384,6 +1467,7 @@ function assignedConditionStageIndex(
   stageIndexes) {
   const indexes = [
     structuredConditionStageIndex(condition, manifest, stageIndexes),
+    conditionKeyStageIndex(condition.key ?? "", manifest, stageIndexes),
     inferConditionTypeStageIndex(condition.type ?? "", manifest, stageIndexes),
     configuredConditionStageIndex(
       condition,
@@ -1428,16 +1512,26 @@ function conditionHasAssignment(condition, sourceKind, source, manifest) {
   if (isUnavailableCondition(condition)
       || isDefaultExcludedVariantCondition(condition)
       || isProgressionNeutralCondition(condition)
-      || isSafeOpaqueDropCondition(condition, { source })) return true;
+      || conditionHasSupportedFacts(condition)
+      || (sourceKind === "drop" && isSafeOpaqueDropCondition(condition, { source }))) return true;
   if (manifest.conditionRules?.[condition.type]) return true;
   const stageIndexes = manifest._stageIndexes
     ?? new Map(manifest.stages.map((stage, index) => [stage.id, index]));
   if (structuredConditionStageIndex(condition, manifest, stageIndexes) >= 0) return true;
+  if (conditionKeyStageIndex(condition.key ?? "", manifest, stageIndexes) >= 0) return true;
   if (inferConditionTypeStageIndex(condition.type ?? "", manifest, stageIndexes) >= 0) return true;
   return (manifest.conditionUnlocks ?? []).some(rule =>
     (rule.sources ?? ["drop", "shop", "recipe"]).includes(sourceKind)
     && ((rule.sourceIds ?? []).length === 0 || rule.sourceIds.includes(source))
     && conditionMatchesUnlockRule(condition, rule));
+}
+
+function hasMachineReadableShopConditions(shop, manifest) {
+  const conditions = shop.conditions ?? [];
+  return !shop.observed
+    && conditions.length > 0
+    && conditions.every(condition =>
+      conditionHasAssignment(condition, "shop", shop.npc, manifest));
 }
 
 function structuredConditionStageIndex(condition, manifest, stageIndexes) {
@@ -1464,8 +1558,82 @@ function normalizeStageLabel(value) {
     .replace(/^-+|-+$/gu, "");
 }
 
+function conditionKeyStageIndex(key, manifest, stageIndexes) {
+  switch (key) {
+    case "Conditions.InHardmode":
+      return stageIndexByFlagOrId(manifest, stageIndexes, "hardMode", "wall-of-flesh");
+    case "Conditions.DownedEyeOfCthulhu":
+    case "Conditions.DownedEarlygameBoss":
+      return stageIndexByFlagOrId(manifest, stageIndexes, "downedBoss1", "eye-of-cthulhu");
+    case "Conditions.DownedBoss2":
+      return stageIndexByFlagOrId(manifest, stageIndexes, "downedBoss2", "world-evil");
+    case "Conditions.DownedSkeletron":
+      return stageIndexByFlagOrId(manifest, stageIndexes, "downedBoss3", "skeletron");
+    case "Conditions.DownedMechBossAny":
+      return stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer");
+    case "Conditions.DownedDestroyer":
+      return stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer");
+    case "Conditions.DownedTwins":
+      return stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss2", "twins");
+    case "Conditions.DownedSkeletronPrime":
+    case "Conditions.DownedMechBossAll":
+      return stageIndexByFlagOrId(
+        manifest,
+        stageIndexes,
+        "downedMechBoss3",
+        "skeletron-prime");
+    case "Conditions.DownedPlantera":
+      return stageIndexByFlagOrId(manifest, stageIndexes, "downedPlantBoss", "plantera");
+    case "Conditions.DownedGolem":
+      return stageIndexByFlagOrId(manifest, stageIndexes, "downedGolemBoss", "golem");
+    case "Conditions.DownedPirates":
+      return firstKnownStageIndex(
+        stageIndexByEventCategory(manifest, stageIndexes, "PirateInvasion"),
+        stageIndexByFlagOrId(manifest, stageIndexes, "hardMode", "wall-of-flesh"));
+    case "Conditions.DownedMartians":
+      return firstKnownStageIndex(
+        stageIndexByEventCategory(manifest, stageIndexes, "MartianMadness"),
+        stageIndexByFlagOrId(manifest, stageIndexes, "downedGolemBoss", "golem"));
+    case "Conditions.BloodMoon":
+      return firstKnownStageIndex(
+        stageIndexByEventCategory(manifest, stageIndexes, "BloodMoon"),
+        stageIndexById(manifest, stageIndexes, "start"));
+    case "Conditions.BloodOrSun":
+      return earliestStageIndex([
+        firstKnownStageIndex(
+          stageIndexByEventCategory(manifest, stageIndexes, "BloodMoon"),
+          stageIndexById(manifest, stageIndexes, "start")),
+        stageIndexByEventCategory(manifest, stageIndexes, "SolarEclipse")
+      ]);
+    case "Conditions.BloodMoonOrHardmode":
+      return earliestStageIndex([
+        firstKnownStageIndex(
+          stageIndexByEventCategory(manifest, stageIndexes, "BloodMoon"),
+          stageIndexById(manifest, stageIndexes, "start")),
+        stageIndexByFlagOrId(manifest, stageIndexes, "hardMode", "wall-of-flesh")
+      ]);
+    case "Conditions.SmashedShadowOrb":
+      return stageIndexById(manifest, stageIndexes, "start");
+    default:
+      return -1;
+  }
+}
+
+function firstKnownStageIndex(primary, fallback) {
+  return primary >= 0 ? primary : fallback;
+}
+
+function earliestStageIndex(indexes) {
+  const availableIndexes = indexes.filter(index => index >= 0);
+  return availableIndexes.length === 0 ? -1 : Math.min(...availableIndexes);
+}
+
 function inferConditionTypeStageIndex(type, manifest, stageIndexes) {
   if (!type) return -1;
+  if (type
+      === "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeEarlyBirdLockDropCondition") {
+    return stageIndexByFlagOrId(manifest, stageIndexes, "hardMode", "wall-of-flesh");
+  }
   if (type === "ProgressionJournal.BloodMoon"
       || type.endsWith("+IsBloodMoonAndNotFromStatue")) {
     return stageIndexByEventCategory(manifest, stageIndexes, "BloodMoon");
@@ -1540,7 +1708,10 @@ function unlockContainsVanillaFlag(unlock, key) {
 
 function isProgressionNeutralCondition(condition) {
   const type = condition.type ?? "";
-  if (isOneTimeUseEligibilityCondition(condition)) return true;
+  if (isOneTimeUseEligibilityCondition(condition)
+      || PROGRESSION_NEUTRAL_CONDITION_KEYS.has(condition.key ?? "")) {
+    return true;
+  }
   return new Set([
     "ProgressionJournal.BelowSurface",
     "ProgressionJournal.Biome",
@@ -1606,6 +1777,8 @@ function isUnavailableCondition(condition) {
 function isDefaultExcludedVariantCondition(condition) {
   const type = condition.type ?? "";
   return type === "ProgressionJournal.ZenithWorld"
+      || condition.key === "Conditions.WorldAnniversary"
+      || condition.key === "Conditions.WorldRemix"
       || type === "Terraria.GameContent.ItemDropRules.Conditions+RemixSeed"
       || type === "Terraria.GameContent.ItemDropRules.Conditions+RemixSeedEasymode"
       || type === "Terraria.GameContent.ItemDropRules.Conditions+RemixSeedHardmode"

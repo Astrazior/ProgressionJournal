@@ -124,6 +124,8 @@ public static class JournalExactDropCatalog
                 condition.Arguments),
             ConditionKind.ZenithWorld => Language.GetTextValue(
                 "Mods.ProgressionJournal.UI.SelectedItemZenithWorldCondition"),
+            ConditionKind.CalamityFirstKill => Language.GetTextValue(
+                "Mods.ProgressionJournal.ExternalConditions.CalamityMod.Condition.Drops.FirstKill"),
             ConditionKind.LocalizationKey => Language.GetTextValue(
                 condition.Type,
                 condition.Arguments),
@@ -247,6 +249,40 @@ public static class JournalExactDropCatalog
 
     private static void AddCalamity(ICollection<EntryBuilder> builders)
     {
+        const string worldEvilLoreProvenance =
+            "CalamityMod 2.2.1 CalamityGlobalNPC.ModifyNPCLoot IL; "
+            + "world-evil alternatives are hidden from ReportDroprates";
+        ConditionBuilder[] firstKill =
+        [
+            new(
+                "CalamityMod.DropHelper+LambdaDropRuleCondition",
+                ConditionKind.CalamityFirstKill,
+                [])
+        ];
+        foreach (var npcType in new[]
+                 {
+                     NPCID.EaterofWorldsHead,
+                     NPCID.EaterofWorldsBody,
+                     NPCID.EaterofWorldsTail,
+                     NPCID.BrainofCthulhu
+                 })
+        {
+            AddNpc(
+                builders,
+                worldEvilLoreProvenance,
+                npcType,
+                "CalamityMod/LoreCorruption",
+                1f,
+                conditions: firstKill);
+            AddNpc(
+                builders,
+                worldEvilLoreProvenance,
+                npcType,
+                "CalamityMod/LoreEaterofWorlds",
+                1f,
+                conditions: firstKill);
+        }
+
         const string acidwoodFruitProvenance =
             "CalamityMod 2.2.1 Acidwood tree shaking; calamitymod.wiki.gg/wiki/Plants";
         ConditionBuilder[] acidwoodFruitConditions =
@@ -1135,6 +1171,7 @@ public static class JournalExactDropCatalog
         AfterAllMechanicalBosses,
         SpecialWorldGate,
         ZenithWorld,
+        CalamityFirstKill,
         LocalizationKey
     }
 }

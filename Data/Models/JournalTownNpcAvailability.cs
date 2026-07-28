@@ -7,7 +7,9 @@ public sealed class JournalTownNpcAvailability(
     string earliestStageName,
     bool requiresSpecialUnlock,
     bool requiresInventory,
-    bool requiresTownPopulation)
+    bool requiresTownPopulation,
+    bool requiresExpertMode,
+    bool requiresMasterMode)
 {
     public int NpcType { get; } = npcType;
 
@@ -22,4 +24,8 @@ public sealed class JournalTownNpcAvailability(
     public bool RequiresInventory { get; } = requiresInventory;
 
     public bool RequiresTownPopulation { get; } = requiresTownPopulation;
+
+    public bool RequiresExpertMode { get; } = requiresExpertMode;
+
+    public bool RequiresMasterMode { get; } = requiresMasterMode;
 }
