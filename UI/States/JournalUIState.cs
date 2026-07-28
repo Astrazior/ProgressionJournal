@@ -493,7 +493,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         _sourceList.Add(CreateSourceNotice(Language.GetTextValue("Mods.ProgressionJournal.UI.SelectedItemSelectPrompt")));
     }
 
-    private static UIElement CreateSourceSectionHeader(string localizationKey)
+    private static JournalSourceSectionHeader CreateSourceSectionHeader(string localizationKey)
     {
         var (iconItemId, accent) = localizationKey switch
         {
@@ -581,10 +581,10 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
 
             if (drop.SourceNpcType is { } sourceNpcType)
             {
-                var npcLocationTokens = JournalAcquisitionVisuals.GetNpcLocationTokens(sourceNpcType);
-                if (npcLocationTokens.Count > 0)
+                var npcContextTokens = JournalAcquisitionVisuals.GetNpcContextTokens(sourceNpcType);
+                if (npcContextTokens.Count > 0)
                 {
-                    top = AppendCenteredTokenRows(panel, npcLocationTokens, top + 6f);
+                    top = AppendCenteredTokenRows(panel, npcContextTokens, top + 6f);
                 }
             }
         }
@@ -657,10 +657,10 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             .Select(static npcType => npcType!.Value)
             .Distinct()
             .ToArray();
-        var commonLocationTokens = JournalAcquisitionVisuals.GetCommonNpcLocationTokens(npcTypes);
-        if (commonLocationTokens.Count > 0)
+        var commonContextTokens = JournalAcquisitionVisuals.GetCommonNpcContextTokens(npcTypes);
+        if (commonContextTokens.Count > 0)
         {
-            top = AppendCenteredTokenRows(panel, commonLocationTokens, top + 6f);
+            top = AppendCenteredTokenRows(panel, commonContextTokens, top + 6f);
         }
 
         var primaryDrop = drops[0];
@@ -685,7 +685,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         return panel;
     }
 
-    private UIPanel CreateAggregatedBossDropSourceCard(IReadOnlyList<JournalDropSource> drops)
+    private JournalSourceCard CreateAggregatedBossDropSourceCard(IReadOnlyList<JournalDropSource> drops)
     {
         var panel = CreateSourceCard(new Color(205, 116, 118));
         panel.Width.Set(0f, 1f);
@@ -725,6 +725,12 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
 
         var top = JournalUiMetrics.BlockVerticalPadding;
         top = AppendCenteredTokenRows(panel, [JournalAcquisitionVisuals.CreateSourceToken(shop)], top);
+
+        var npcContextTokens = JournalAcquisitionVisuals.GetNpcContextTokens(shop.NpcType);
+        if (npcContextTokens.Count > 0)
+        {
+            top = AppendCenteredTokenRows(panel, npcContextTokens, top + 6f);
+        }
 
         if (shop.Conditions.Count > 0)
         {
@@ -855,12 +861,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
                     return CreateDropSourceCard(group[0]);
                 }
 
-                if (group.All(static drop => drop is { SourceNpcType: not null, SourceItemId: null }))
-                {
-                    return CreateAggregatedNpcDropSourceCard(group);
-                }
-
-                return CreateAggregatedBossDropSourceCard(group);
+                return group.All(static drop => drop is { SourceNpcType: not null, SourceItemId: null }) ? CreateAggregatedNpcDropSourceCard(group) : CreateAggregatedBossDropSourceCard(group);
             });
     }
 
@@ -1403,7 +1404,6 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
 
         var index = 0;
         var sourceRow = 0;
-        int NextSourceIndex() => showDamageFilters ? sourceRow++ * BuildPickerMenuMaxColumns : index++;
 
         AddBuildPickerMenuButton(
             _buildPickerFilterMenuPanel,
@@ -1468,6 +1468,9 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             CreateBuildPickerAssetIconButton(ResetBuildPickerFilters, CloseIconTexturePath),
             Language.GetTextValue("Mods.ProgressionJournal.UI.BuildPickerFilterResetTooltip"),
             HasBuildPickerFilters());
+        return;
+
+        int NextSourceIndex() => showDamageFilters ? sourceRow++ * BuildPickerMenuMaxColumns : index++;
     }
 
     private static JournalBuildFilterIconButton CreateBuildPickerAssetIconButton(

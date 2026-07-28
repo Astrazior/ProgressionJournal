@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import { createSnapshotView } from "./KnowledgeBase.mjs";
 import { applyVanillaSourceCatalog } from "./VanillaSourceCatalog.mjs";
 import { resolveSnapshotStageIndex } from "./SnapshotStageResolver.mjs";
+import { isVanillaSupportItem } from "./VanillaSupportItemCatalog.mjs";
 
 const STANDARD_COMBAT_CLASS_IDS = new Set(["melee", "ranged", "magic", "summoner"]);
 const KNOWN_AVAILABLE_NEVER_TRUE_DROPS = new Set([
@@ -700,7 +701,7 @@ function generateProfileCore(
             ...toFishingSources(fishingByItem.get(id) ?? []),
             ...(manifest.fishingSources?.[id] ?? [])
           ],
-          isSupportWeapon: false,
+          isSupportWeapon: isVanillaSupportItem(id),
           eventCategory: acquiredBy.get(id)?.eventCategory ?? null,
           customEventName: acquiredBy.get(id)?.customEventName ?? "",
           eventIcon: acquiredBy.get(id)?.eventIcon ?? ""

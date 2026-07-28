@@ -1,5 +1,9 @@
 import assert from "node:assert/strict";
 import { generateProfile } from "./ProfileGeneratorCore.mjs";
+import {
+  isVanillaSupportItem,
+  VanillaSupportItemIds
+} from "./VanillaSupportItemCatalog.mjs";
 
 const item = (id, values = {}) => ({
   id, name: id, englishName: "", damageClass: "", damage: 0, defense: 0,
@@ -1369,11 +1373,16 @@ assert(runtimeResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "RuntimeEventBlade"
   && entry.evaluations[0].stageId === "start"
   && entry.eventCategory === "GoblinArmy"
-  && entry.customEventName === "Test Event"));
+  && entry.customEventName === "Test Event"
+  && entry.eventIcon === "Test/Bestiary/EventIcon"));
 assert(runtimeResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "DeferredEventBlade"
   && entry.evaluations[0].stageId === "boss"
   && entry.eventCategory === "GoblinArmy"));
+assert.equal(VanillaSupportItemIds.size, 25);
+assert(isVanillaSupportItem("Terraria/NimbusRod"));
+assert(isVanillaSupportItem("Terraria/ClingerStaff"));
+assert(!isVanillaSupportItem("Terraria/Zenith"));
 assert(runtimeResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "RuntimeShopBlade"
   && entry.evaluations[0].stageId === "late"));

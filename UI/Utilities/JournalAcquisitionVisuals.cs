@@ -16,12 +16,6 @@ public static class JournalAcquisitionVisuals
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 #pragma warning restore SYSLIB1045
 
-    private static readonly HashSet<int> BestiaryLocationFrames =
-    [
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-        22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 44, 56, 57, 58, 59
-    ];
-
     private static readonly Dictionary<string, int> BestiaryDisplayKeyFrames = new()
     {
         ["Bestiary_Biomes.Surface"] = 0,
@@ -86,7 +80,7 @@ public static class JournalAcquisitionVisuals
         ["Bestiary_Biomes.StardustPillar"] = 59
     };
     private static readonly Dictionary<int, JournalSourceTokenData[]> NpcBestiaryTokenCache = new();
-    private static readonly Dictionary<int, JournalSourceTokenData[]> NpcLocationTokenCache = new();
+    private static readonly Dictionary<int, JournalSourceTokenData[]> NpcContextTokenCache = new();
 
     public static bool TryCreateSourceToken(JournalDropSource drop, out JournalSourceTokenData token)
     {
@@ -136,28 +130,27 @@ public static class JournalAcquisitionVisuals
         return tokens;
     }
 
-    public static IReadOnlyList<JournalSourceTokenData> GetNpcLocationTokens(int npcType)
+    public static IReadOnlyList<JournalSourceTokenData> GetNpcContextTokens(int npcType)
     {
-        if (NpcLocationTokenCache.TryGetValue(npcType, out var cachedTokens))
+        if (NpcContextTokenCache.TryGetValue(npcType, out var cachedTokens))
         {
             return cachedTokens;
         }
 
         var tokens = GetNpcBestiaryTokens(npcType)
-            .Where(static token => IsLocationFrame(token.Value))
             .OrderBy(static token => token.Value)
             .ToArray();
-        NpcLocationTokenCache[npcType] = tokens;
+        NpcContextTokenCache[npcType] = tokens;
         return tokens;
     }
 
-    public static IReadOnlyList<JournalSourceTokenData> GetCommonNpcLocationTokens(IEnumerable<int> npcTypes)
+    public static IReadOnlyList<JournalSourceTokenData> GetCommonNpcContextTokens(IEnumerable<int> npcTypes)
     {
         JournalSourceTokenData[]? intersection = null;
 
         foreach (var npcType in npcTypes.Distinct())
         {
-            var currentTokens = GetNpcLocationTokens(npcType);
+            var currentTokens = GetNpcContextTokens(npcType);
             intersection = intersection is null
                 ? currentTokens.ToArray()
                 : intersection
@@ -250,8 +243,4 @@ public static class JournalAcquisitionVisuals
             Language.GetTextValue(displayNameKey));
     }
 
-    private static bool IsLocationFrame(int frame)
-    {
-        return BestiaryLocationFrames.Contains(frame);
-    }
 }
