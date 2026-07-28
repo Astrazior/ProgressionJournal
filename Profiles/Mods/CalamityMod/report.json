@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-28T16:51:55.723Z",
+  "generatedAtUtc": "2026-07-28T17:58:12.259Z",
   "snapshot": {
     "version": 7,
     "generatedAtUtc": "2026-07-28T14:42:32.1196436Z",
@@ -1773,7 +1773,7 @@
         }
       ],
       "stageComparison": {
-        "compared": 2196,
+        "compared": 2201,
         "moved": 0
       }
     }
@@ -1788,7 +1788,7 @@
     "errors": [],
     "warnings": [
       "67 recommendations precede proven availability and were suppressed",
-      "154 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
+      "153 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
       "npcCount": 992,
@@ -5249,6 +5249,14 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/WindyBalloon",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/Wizard",
           "kinds": [
             "shop"
@@ -6555,14 +6563,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/WindyBalloon",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Wolf",
           "kinds": [
             "drop"
@@ -6585,7 +6585,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-07-28T16:51:34.044Z",
+    "generatedAtUtc": "2026-07-28T17:57:54.411Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -18262,6 +18262,136 @@
     ],
     "ambiguousClasses": [],
     "excludedItems": [
+      {
+        "stage": "",
+        "id": "Terraria/FirstFractal",
+        "reason": "Unobtainable internal vanilla item."
+      },
+      {
+        "stage": "",
+        "id": "Terraria/SkeletonBow",
+        "reason": "Unobtainable internal vanilla item."
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/AlluringBait",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/AcrobaticBobber",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/EnchantedPearl",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/FeralBobber",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/SunkenSinker",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/VolcanicSinker",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/WulfrumBobber",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/AbandonedWulfrumHelmet",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/GhostBracelet",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/GlimmeringRibbon",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/HapuFruit",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/LittleE",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/LucisSight",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/OracleHeadphones",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/Popo",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/SharkyPlush",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/TheComb",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/XyksBlessingBlue",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/XyksBlessingOrange",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/SupremeBaitTackleBoxFishingStation",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/ZenPotion",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/ZergPotion",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/PotionofOmniscience",
+        "reason": "explicitly excluded"
+      },
+      {
+        "stage": "",
+        "id": "CalamityMod/AnechoicCoating",
+        "reason": "explicitly excluded"
+      },
       {
         "stage": "start",
         "id": "Terraria/SpiffoPlush",
@@ -37896,6 +38026,14 @@
         "stage": "start",
         "via": "npc:Terraria/TombCrawlerHead"
       },
+      "Terraria/PaperAirplaneA": {
+        "stage": "start",
+        "via": "npc:Terraria/WindyBalloon"
+      },
+      "Terraria/PaperAirplaneB": {
+        "stage": "start",
+        "via": "npc:Terraria/WindyBalloon"
+      },
       "Terraria/VampireFrogStaff": {
         "stage": "start",
         "via": "npc:Terraria/ZombieMerman",
@@ -42440,6 +42578,18 @@
         "via": "manifest"
       },
       "Terraria/CelestialEmblem": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "Terraria/Arkhalis": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "Terraria/RedsYoyo": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "Terraria/ValkyrieYoyo": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
@@ -72731,14 +72881,6 @@
         ]
       },
       {
-        "source": "Terraria/WindyBalloon",
-        "sourceKind": "drop",
-        "items": [
-          "Terraria/PaperAirplaneA",
-          "Terraria/PaperAirplaneB"
-        ]
-      },
-      {
         "source": "Terraria/Zombie",
         "sourceKind": "drop",
         "items": [
@@ -72746,118 +72888,8 @@
         ]
       }
     ],
-    "unavailableCombatItems": [
-      {
-        "item": "Terraria/PaperAirplaneA",
-        "displayName": "Paper Airplane",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "ranged"
-          ]
-        },
-        "evidence": {
-          "drops": [
-            {
-              "sourceKind": "npc",
-              "source": "Terraria/WindyBalloon",
-              "conditions": [
-                {
-                  "type": "Terraria.GameContent.ItemDropRules.Conditions+NeverTrue",
-                  "description": null,
-                  "key": "",
-                  "facts": []
-                }
-              ]
-            }
-          ],
-          "shops": [],
-          "recipes": [],
-          "shimmer": []
-        }
-      },
-      {
-        "item": "Terraria/PaperAirplaneB",
-        "displayName": "White Paper Airplane",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "ranged"
-          ]
-        },
-        "evidence": {
-          "drops": [
-            {
-              "sourceKind": "npc",
-              "source": "Terraria/WindyBalloon",
-              "conditions": [
-                {
-                  "type": "Terraria.GameContent.ItemDropRules.Conditions+NeverTrue",
-                  "description": null,
-                  "key": "",
-                  "facts": []
-                }
-              ]
-            }
-          ],
-          "shops": [],
-          "recipes": [],
-          "shimmer": []
-        }
-      }
-    ],
-    "unresolvedAvailabilityItems": [
-      {
-        "item": "Terraria/RedsYoyo",
-        "displayName": "Red's Throw",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "melee"
-          ]
-        }
-      },
-      {
-        "item": "Terraria/ValkyrieYoyo",
-        "displayName": "Valkyrie Yoyo",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "melee"
-          ]
-        }
-      },
-      {
-        "item": "Terraria/Arkhalis",
-        "displayName": "Arkhalis",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "melee"
-          ]
-        }
-      },
-      {
-        "item": "Terraria/SkeletonBow",
-        "displayName": "",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "ranged"
-          ]
-        }
-      },
-      {
-        "item": "Terraria/FirstFractal",
-        "displayName": "",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "melee"
-          ]
-        }
-      }
-    ],
+    "unavailableCombatItems": [],
+    "unresolvedAvailabilityItems": [],
     "manualAssignmentProblems": [],
     "officialSourceCompatibility": {
       "recommendations": {
@@ -72873,9 +72905,9 @@
         ]
       }
     },
-    "unassignedVanillaNpcSourceCount": 149,
+    "unassignedVanillaNpcSourceCount": 148,
     "manualAvailabilityPriority": {
-      "automaticItems": 5526,
+      "automaticItems": 5528,
       "automaticSources": 307,
       "automaticStations": 858,
       "suppressed": {

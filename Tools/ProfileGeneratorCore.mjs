@@ -6,6 +6,10 @@ import { applyVanillaSourceCatalog } from "./VanillaSourceCatalog.mjs";
 import { resolveSnapshotStageIndex } from "./SnapshotStageResolver.mjs";
 
 const STANDARD_COMBAT_CLASS_IDS = new Set(["melee", "ranged", "magic", "summoner"]);
+const KNOWN_AVAILABLE_NEVER_TRUE_DROPS = new Set([
+  "Terraria/WindyBalloon|Terraria/PaperAirplaneA",
+  "Terraria/WindyBalloon|Terraria/PaperAirplaneB"
+]);
 const PROGRESSION_NEUTRAL_CONDITION_KEYS = new Set([
   "Conditions.BestiaryPercentage",
   "Conditions.FullMoon",
@@ -355,7 +359,16 @@ function generateProfileCore(
     unknownReferences: [],
     unresolvedConditions: [],
     ambiguousClasses: [],
-    excludedItems: [],
+    excludedItems: Object.entries(manifest.itemOverrides ?? {})
+      .filter(([id, override]) =>
+        override?.exclude
+        && itemById.has(id)
+        && isAllowedProfileItem(id, contentMods))
+      .map(([id, override]) => ({
+        stage: "",
+        id,
+        reason: override.reason ?? "explicitly excluded"
+      })),
     emptyStages: [],
     paths: {},
     wikiMissingItems: [],
@@ -1355,6 +1368,7 @@ function observedShopConditionsAllowed(conditions, stage, manifest, context) {
         && (condition.facts ?? []).length === 0) {
       continue;
     }
+    if (isKnownAvailableNeverTrueDrop(condition, context)) continue;
     if (isUnavailableCondition(condition) || isDefaultExcludedVariantCondition(condition)) {
       return false;
     }
@@ -1395,6 +1409,7 @@ function conditionsAllowed(conditions, stage, manifest, report, context) {
       continue;
     }
     if (isAlternativeEarlyContainerCondition(condition, context)) continue;
+    if (isKnownAvailableNeverTrueDrop(condition, context)) continue;
     if (isUnavailableCondition(condition) || isDefaultExcludedVariantCondition(condition)) return false;
     const assignedStageIndex = assignedConditionStageIndex(
       condition,
@@ -1779,6 +1794,11 @@ function isPermanentShimmerUpgrade(item, context) {
 
 function isUnavailableCondition(condition) {
   return condition.type === "Terraria.GameContent.ItemDropRules.Conditions+NeverTrue";
+}
+
+function isKnownAvailableNeverTrueDrop(condition, context) {
+  return isUnavailableCondition(condition)
+    && KNOWN_AVAILABLE_NEVER_TRUE_DROPS.has(`${context?.source}|${context?.item}`);
 }
 
 function isDefaultExcludedVariantCondition(condition) {
@@ -2501,7 +2521,7 @@ function buildManualReview({
       .filter(transform => transform.output === item.id)
       .map(transform => ({ sourceKind: "shimmer", source: transform.input, conditions: [] }));
     const evidence = { drops, shops, recipes, shimmer };
-    if (availabilityEvidenceIsUnavailable(evidence)) {
+    if (availabilityEvidenceIsUnavailable(item.id, evidence)) {
       report.unavailableCombatItems.push({
         item: item.id,
         displayName: item.name,
@@ -2638,7 +2658,7 @@ function isReviewableClassification(item, classification) {
 }
 
 
-function availabilityEvidenceIsUnavailable(evidence) {
+function availabilityEvidenceIsUnavailable(itemId, evidence) {
   const paths = [
     ...(evidence.drops ?? []),
     ...(evidence.shops ?? []),
@@ -2647,7 +2667,9 @@ function availabilityEvidenceIsUnavailable(evidence) {
   ];
   return paths.length > 0 && paths.every(path =>
     (path.conditions ?? []).some(condition =>
-      isUnavailableCondition(condition) || isDefaultExcludedVariantCondition(condition)));
+      (isUnavailableCondition(condition)
+        && !isKnownAvailableNeverTrueDrop(condition, { ...path, item: itemId }))
+      || isDefaultExcludedVariantCondition(condition)));
 }
 
 function availabilityEvidenceIsAbsent(item, evidence) {

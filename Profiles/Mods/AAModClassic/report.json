@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "AAModClassic",
   "profileId": "builtin.aamodclassic",
-  "generatedAtUtc": "2026-07-28T17:11:22.412Z",
+  "generatedAtUtc": "2026-07-28T17:57:47.273Z",
   "snapshot": {
     "version": 7,
     "generatedAtUtc": "2026-07-28T14:48:22.0929402Z",
@@ -1063,7 +1063,7 @@
         }
       ],
       "stageComparison": {
-        "compared": 1720,
+        "compared": 1725,
         "moved": 0
       }
     }
@@ -1077,8 +1077,8 @@
   "audit": {
     "errors": [],
     "warnings": [
-      "61 recommendations precede proven availability and were suppressed",
-      "152 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
+      "64 recommendations precede proven availability and were suppressed",
+      "151 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
       "npcCount": 1007,
@@ -4349,6 +4349,14 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/WindyBalloon",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/Wizard",
           "kinds": [
             "shop"
@@ -5527,14 +5535,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/WindyBalloon",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Wolf",
           "kinds": [
             "drop"
@@ -5613,7 +5613,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.aamodclassic",
-    "generatedAtUtc": "2026-07-28T17:11:15.139Z",
+    "generatedAtUtc": "2026-07-28T17:57:39.721Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -10679,6 +10679,21 @@
     ],
     "ambiguousClasses": [],
     "excludedItems": [
+      {
+        "stage": "",
+        "id": "Terraria/FirstFractal",
+        "reason": "Unobtainable internal vanilla item."
+      },
+      {
+        "stage": "",
+        "id": "Terraria/SkeletonBow",
+        "reason": "Unobtainable internal vanilla item."
+      },
+      {
+        "stage": "",
+        "id": "AAModClassic/Doragonburedo",
+        "reason": "explicitly excluded"
+      },
       {
         "stage": "start",
         "id": "Terraria/SpiffoPlush",
@@ -27883,6 +27898,14 @@
         "stage": "start",
         "via": "npc:Terraria/Tim"
       },
+      "Terraria/PaperAirplaneA": {
+        "stage": "start",
+        "via": "npc:Terraria/WindyBalloon"
+      },
+      "Terraria/PaperAirplaneB": {
+        "stage": "start",
+        "via": "npc:Terraria/WindyBalloon"
+      },
       "Terraria/VampireFrogStaff": {
         "stage": "start",
         "via": "npc:Terraria/ZombieMerman",
@@ -32269,6 +32292,18 @@
         "via": "manifest"
       },
       "Terraria/CelestialEmblem": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "Terraria/Arkhalis": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "Terraria/RedsYoyo": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "Terraria/ValkyrieYoyo": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
@@ -54058,22 +54093,6 @@
     },
     "wikiMissingItems": [
       {
-        "id": "Terraria/Arkhalis",
-        "wikiStage": "pre-boss",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Arkhalis"
-        ]
-      },
-      {
-        "id": "Terraria/Arkhalis",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Arkhalis"
-        ]
-      },
-      {
         "id": "AAModClassic/BulwarkOfChaos",
         "wikiStage": "pre-skeletron",
         "reason": "recommendation has no proven availability",
@@ -54175,14 +54194,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "AAModClassic/Hydra_Pendant"
-        ]
-      },
-      {
-        "id": "Terraria/Arkhalis",
-        "wikiStage": "pre-hardmode",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Arkhalis"
         ]
       },
       {
@@ -58396,6 +58407,13 @@
     ],
     "wikiAvailabilityCorrections": [
       {
+        "id": "Terraria/Arkhalis",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
         "id": "Terraria/Code1",
         "factualStage": "eye-of-cthulhu",
         "recommendedStage": "start",
@@ -58438,6 +58456,13 @@
         "reason": "recommendation precedes proven availability"
       },
       {
+        "id": "Terraria/Arkhalis",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "queen-bee",
+        "wikiStage": "pre-skeletron",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
         "id": "AAModClassic/TheDragonsBreath",
         "factualStage": "wall-of-flesh",
         "recommendedStage": "queen-bee",
@@ -58449,6 +58474,13 @@
         "factualStage": "skeletron",
         "recommendedStage": "queen-bee",
         "wikiStage": "pre-skeletron",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/Arkhalis",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "skeletron",
+        "wikiStage": "pre-hardmode",
         "reason": "recommendation precedes proven availability"
       },
       {
@@ -60240,14 +60272,6 @@
         ]
       },
       {
-        "source": "Terraria/WindyBalloon",
-        "sourceKind": "drop",
-        "items": [
-          "Terraria/PaperAirplaneA",
-          "Terraria/PaperAirplaneB"
-        ]
-      },
-      {
         "source": "Terraria/Zombie",
         "sourceKind": "drop",
         "items": [
@@ -60297,118 +60321,8 @@
         ]
       }
     ],
-    "unavailableCombatItems": [
-      {
-        "item": "Terraria/PaperAirplaneA",
-        "displayName": "Paper Airplane",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "ranged"
-          ]
-        },
-        "evidence": {
-          "drops": [
-            {
-              "sourceKind": "npc",
-              "source": "Terraria/WindyBalloon",
-              "conditions": [
-                {
-                  "type": "Terraria.GameContent.ItemDropRules.Conditions+NeverTrue",
-                  "description": null,
-                  "key": "",
-                  "facts": []
-                }
-              ]
-            }
-          ],
-          "shops": [],
-          "recipes": [],
-          "shimmer": []
-        }
-      },
-      {
-        "item": "Terraria/PaperAirplaneB",
-        "displayName": "White Paper Airplane",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "ranged"
-          ]
-        },
-        "evidence": {
-          "drops": [
-            {
-              "sourceKind": "npc",
-              "source": "Terraria/WindyBalloon",
-              "conditions": [
-                {
-                  "type": "Terraria.GameContent.ItemDropRules.Conditions+NeverTrue",
-                  "description": null,
-                  "key": "",
-                  "facts": []
-                }
-              ]
-            }
-          ],
-          "shops": [],
-          "recipes": [],
-          "shimmer": []
-        }
-      }
-    ],
-    "unresolvedAvailabilityItems": [
-      {
-        "item": "Terraria/RedsYoyo",
-        "displayName": "Red's Throw",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "melee"
-          ]
-        }
-      },
-      {
-        "item": "Terraria/ValkyrieYoyo",
-        "displayName": "Valkyrie Yoyo",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "melee"
-          ]
-        }
-      },
-      {
-        "item": "Terraria/Arkhalis",
-        "displayName": "Arkhalis",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "melee"
-          ]
-        }
-      },
-      {
-        "item": "Terraria/SkeletonBow",
-        "displayName": "",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "ranged"
-          ]
-        }
-      },
-      {
-        "item": "Terraria/FirstFractal",
-        "displayName": "",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "melee"
-          ]
-        }
-      }
-    ],
+    "unavailableCombatItems": [],
+    "unresolvedAvailabilityItems": [],
     "manualAssignmentProblems": [],
     "officialSourceCompatibility": {
       "recommendations": {
@@ -60424,9 +60338,9 @@
         ]
       }
     },
-    "unassignedVanillaNpcSourceCount": 181,
+    "unassignedVanillaNpcSourceCount": 180,
     "manualAvailabilityPriority": {
-      "automaticItems": 4530,
+      "automaticItems": 4532,
       "automaticSources": 299,
       "automaticStations": 515,
       "suppressed": {

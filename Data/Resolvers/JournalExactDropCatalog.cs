@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -137,6 +138,7 @@ public static class JournalExactDropCatalog
     {
         List<EntryBuilder> builders = [];
         AddVanillaTreeFruits(builders);
+        AddVanillaSpecialDrops(builders);
         AddAAModClassic(builders);
         AddCalamity(builders);
         AddThorium(builders);
@@ -225,7 +227,69 @@ public static class JournalExactDropCatalog
                 sourceItemReference: null,
                 targetReference,
                 conditions,
-                showDropRate: false);
+            showDropRate: false);
+        }
+    }
+
+    private static void AddVanillaSpecialDrops(ICollection<EntryBuilder> builders)
+    {
+        const string paperAirplaneProvenance =
+            "Terraria 1.4 Windy Balloon loot; the reported NeverTrue branch hides the real NPC drop";
+        AddNpc(
+            builders,
+            paperAirplaneProvenance,
+            NPCID.WindyBalloon,
+            "Terraria/PaperAirplaneA",
+            1f / 72f,
+            2,
+            5);
+        AddNpc(
+            builders,
+            paperAirplaneProvenance,
+            NPCID.WindyBalloon,
+            "Terraria/PaperAirplaneB",
+            1f / 72f,
+            2,
+            5);
+
+        const string developerItemProvenance =
+            "Terraria 1.4 developer items from Boss Bag opening while the world is in Hardmode";
+        ConditionBuilder[] hardmode =
+        [
+            new("ProgressionJournal.Hardmode", ConditionKind.Hardmode, [])
+        ];
+        string[] developerItems =
+        [
+            "Terraria/Arkhalis",
+            "Terraria/RedsYoyo",
+            "Terraria/ValkyrieYoyo"
+        ];
+        foreach (var sourceItem in ContentSamples.ItemsByType.Values
+                     .Where(static item =>
+                         item.type > ItemID.None
+                         && item.type < ItemID.Sets.BossBag.Length
+                         && ItemID.Sets.BossBag[item.type])
+                     .OrderBy(static item => item.type))
+        {
+            var sourceReference = sourceItem.ModItem is { } modItem
+                ? $"{modItem.Mod.Name}/{modItem.Name}"
+                : $"Terraria/{ItemID.Search.GetName(sourceItem.type)}";
+            foreach (var targetReference in developerItems)
+            {
+                builders.Add(new EntryBuilder(
+                    SourceName: string.Empty,
+                    SourceNpcType: null,
+                    sourceReference,
+                    targetReference,
+                    DropRate: 1f,
+                    StackMin: 1,
+                    StackMax: 1,
+                    ShowDropRate: false,
+                    hardmode,
+                    developerItemProvenance,
+                    IncludeInSnapshot: true,
+                    SourceReference: null));
+            }
         }
     }
 

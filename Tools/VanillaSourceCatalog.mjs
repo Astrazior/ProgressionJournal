@@ -342,8 +342,11 @@ const MILESTONE_FACTS = [
       "Terraria/StarCloak",
       "Terraria/BrokenBatWing",
       "Terraria/CelestialEmblem",
-      "Terraria/CrystalBall"
-      ,"Terraria/GreaterManaPotion"
+      "Terraria/CrystalBall",
+      "Terraria/Arkhalis",
+      "Terraria/RedsYoyo",
+      "Terraria/ValkyrieYoyo",
+      "Terraria/GreaterManaPotion"
       ,"Terraria/AncientBattleArmorMaterial"
       ,"Terraria/EmptyBullet"
       ,"Terraria/ExplosivePowder"
@@ -624,7 +627,8 @@ const START_SOURCES = [
   "Terraria/Skeleton",
   "Terraria/SkeletonMerchant",
   "Terraria/TombCrawlerHead",
-  "Terraria/VoodooDemon"
+  "Terraria/VoodooDemon",
+  "Terraria/WindyBalloon"
 ];
 
 const START_SHOPS = [
@@ -764,6 +768,17 @@ const START_VISIBLE_ITEMS = [
 
 export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {
   const manifest = structuredClone(sourceManifest);
+  manifest.itemOverrides = {
+    ...(manifest.itemOverrides ?? {}),
+    "Terraria/FirstFractal": {
+      exclude: true,
+      reason: "Unobtainable internal vanilla item."
+    },
+    "Terraria/SkeletonBow": {
+      exclude: true,
+      reason: "Unobtainable internal vanilla item."
+    }
+  };
   const conditionBackedGlobalDrops = new Set((snapshot?.drops ?? [])
     .filter(drop => drop.sourceType === "global" && (drop.conditions ?? []).length > 0)
     .map(drop => drop.item)

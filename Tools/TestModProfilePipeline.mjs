@@ -262,6 +262,16 @@ assert(exactDropCatalogSource.includes("AddVanillaTreeFruits(builders)")
   && englishLocalizationSource.includes("Can drop while cutting down trees of this type")
   && russianLocalizationSource.includes("Может выпасть при рубке деревьев этого типа"),
   "Vanilla tree fruits must retain localized cutting sources");
+assert(exactDropCatalogSource.includes("AddVanillaSpecialDrops(builders)")
+  && exactDropCatalogSource.includes("NPCID.WindyBalloon")
+  && exactDropCatalogSource.includes("\"Terraria/PaperAirplaneA\"")
+  && exactDropCatalogSource.includes("\"Terraria/PaperAirplaneB\"")
+  && exactDropCatalogSource.includes("ItemID.Sets.BossBag[item.type]")
+  && exactDropCatalogSource.includes("\"Terraria/Arkhalis\"")
+  && exactDropCatalogSource.includes("\"Terraria/RedsYoyo\"")
+  && exactDropCatalogSource.includes("\"Terraria/ValkyrieYoyo\"")
+  && exactDropCatalogSource.includes("ConditionKind.Hardmode"),
+  "Vanilla special drops must retain their real Windy Balloon and Hardmode Boss Bag sources");
 assert(!itemSourceResolverSource.includes("JournalGeneratedContainerSourceSystem")
   && !itemSourceResolverSource.includes("Main.chest"),
   "Journal UI item sources must not fall back to scanning the current world's chests");
@@ -808,6 +818,45 @@ for (const modName of expected) {
   for (const fruit of ["Dragonfruit", "Starfruit"]) {
     assert.equal(generatedStageOf(`Terraria/${fruit}`), stageForFlag("hardMode")?.id,
       `${modName}: ${fruit} must become visible in Hardmode`);
+  }
+  for (const itemId of ["Terraria/PaperAirplaneA", "Terraria/PaperAirplaneB"]) {
+    assert.equal(generatedStageOf(itemId), "start",
+      `${modName}: ${itemId} must follow its Windy Balloon source`);
+    assert.equal(report.generation?.paths?.[itemId]?.via, "npc:Terraria/WindyBalloon",
+      `${modName}: ${itemId} must retain the Windy Balloon drop path`);
+  }
+  for (const itemId of [
+    "Terraria/Arkhalis",
+    "Terraria/RedsYoyo",
+    "Terraria/ValkyrieYoyo"
+  ]) {
+    assert.equal(generatedStageOf(itemId), stageForFlag("hardMode")?.id,
+      `${modName}: ${itemId} must follow the Hardmode Boss Bag gate`);
+  }
+  assert.equal(generatedStageOf("Terraria/FirstFractal"), undefined,
+    `${modName}: First Fractal is unobtainable and must stay out of the profile`);
+  assert.equal(generatedStageOf("Terraria/SkeletonBow"), undefined,
+    `${modName}: Skeleton Bow is unobtainable and must stay out of the profile`);
+  for (const itemId of ["Terraria/FirstFractal", "Terraria/SkeletonBow"]) {
+    assert(report.generation?.excludedItems?.some(entry =>
+      entry.id === itemId && entry.reason === "Unobtainable internal vanilla item."),
+    `${modName}: ${itemId} must be explicitly reported as unobtainable`);
+  }
+  for (const itemId of [
+    "Terraria/Arkhalis",
+    "Terraria/RedsYoyo",
+    "Terraria/ValkyrieYoyo",
+    "Terraria/FirstFractal",
+    "Terraria/SkeletonBow"
+  ]) {
+    assert(!report.generation?.unresolvedAvailabilityItems?.some(entry =>
+      entry.item === itemId),
+    `${modName}: ${itemId} must not remain unresolved`);
+  }
+  for (const itemId of ["Terraria/PaperAirplaneA", "Terraria/PaperAirplaneB"]) {
+    assert(!report.generation?.unavailableCombatItems?.some(entry =>
+      entry.item === itemId),
+    `${modName}: ${itemId} must not remain unavailable`);
   }
   assert.equal(
     generatedStageOf("Terraria/TaxCollectorsStickOfDoom"),
@@ -1745,6 +1794,19 @@ assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
   .include.includes("Terraria/Dragonfruit"));
 assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
   .include.includes("Terraria/Starfruit"));
+assert(vanillaSources.stages.find(stage => stage.id === "start")
+  .enemies.includes("Terraria/WindyBalloon"));
+for (const itemId of [
+  "Terraria/Arkhalis",
+  "Terraria/RedsYoyo",
+  "Terraria/ValkyrieYoyo"
+]) {
+  assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
+    .include.includes(itemId));
+  assert.equal(vanillaSources.itemStageFloors[itemId], "hardmode");
+}
+assert.equal(vanillaSources.itemOverrides["Terraria/FirstFractal"]?.exclude, true);
+assert.equal(vanillaSources.itemOverrides["Terraria/SkeletonBow"]?.exclude, true);
 assert(vanillaSources.stages[0].enemies?.includes("Terraria/GiantWormHead"));
 assert(vanillaSources.stages[0].shops?.includes("Terraria/TravellingMerchant"));
 assert(!vanillaSources.stages[0].enemies?.includes("Terraria/Skeleton"));

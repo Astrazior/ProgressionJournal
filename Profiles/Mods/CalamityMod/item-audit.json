@@ -3,21 +3,21 @@
   "version": 2,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-28T16:51:55.752Z",
+  "generatedAtUtc": "2026-07-28T17:58:12.284Z",
   "snapshotGeneratedAtUtc": "2026-07-28T14:42:32.1196436Z",
   "summary": {
     "snapshotItems": 8126,
     "contentItems": 2671,
-    "profileEntries": 1912,
+    "profileEntries": 1917,
     "profileBuffEntries": 224,
-    "profileItemReferences": 2196,
-    "equipmentReferences": 1972,
+    "profileItemReferences": 2201,
+    "equipmentReferences": 1977,
     "buffReferences": 224,
-    "excluded": 3825,
+    "excluded": 3828,
     "acquiredNonProfile": 127,
-    "unresolvedAvailability": 5,
-    "unavailableCombat": 2,
-    "noAcquisitionPath": 1971
+    "unresolvedAvailability": 0,
+    "unavailableCombat": 0,
+    "noAcquisitionPath": 1970
   },
   "items": [
     {
@@ -50,7 +50,7 @@
       "status": "excluded",
       "stage": "start",
       "via": "npc:CalamityMod/WulfrumAmplifier",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -770,7 +770,7 @@
       "status": "excluded",
       "stage": "hive-mind-perforators",
       "via": "recipe:Terraria/FishingBobber+CalamityMod/AerialiteBar+Terraria/Feather",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -1320,7 +1320,7 @@
       "status": "excluded",
       "stage": "start",
       "via": "fishing",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -2006,7 +2006,7 @@
       "status": "excluded",
       "stage": "start",
       "via": "npc:CalamityMod/Cuttlefish",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -10037,7 +10037,7 @@
       "status": "excluded",
       "stage": "desert-scourge",
       "via": "recipe:Terraria/WhitePearl+CalamityMod/SeaPrism+CalamityMod/SeaRemains",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -11237,7 +11237,7 @@
       "status": "excluded",
       "stage": "plantera",
       "via": "recipe:Terraria/FishingBobber+CalamityMod/PerennialBar",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -12261,7 +12261,7 @@
       "status": "excluded",
       "stage": "start",
       "via": "npc:Terraria/Ghost",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -12474,7 +12474,7 @@
       "status": "excluded",
       "stage": "start",
       "via": "container:CalamityMod/StarterBag",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -13109,7 +13109,7 @@
       "status": "excluded",
       "stage": "start",
       "via": "container:CalamityMod/StarterBag",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -14957,7 +14957,7 @@
       "status": "excluded",
       "stage": "start",
       "via": "container:CalamityMod/StarterBag",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -15717,7 +15717,7 @@
       "status": "excluded",
       "stage": "destroyer",
       "via": "shop:Terraria/Steampunker",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
@@ -18545,7 +18545,7 @@
       "status": "excluded",
       "stage": "start",
       "via": "container:CalamityMod/StarterBag",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -20148,7 +20148,7 @@
       "status": "excluded",
       "stage": "cryogen",
       "via": "shop:CalamityMod/Archmage",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
@@ -20185,7 +20185,7 @@
       "status": "excluded",
       "stage": "skeletron",
       "via": "recipe:Terraria/HunterPotion+Terraria/SpelunkerPotion+Terraria/TrapsightPotion",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -23127,7 +23127,7 @@
       "status": "excluded",
       "stage": "start",
       "via": "npc:Terraria/Shark",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -26114,7 +26114,7 @@
       "status": "excluded",
       "stage": "desert-scourge",
       "via": "recipe:Terraria/FishingBobber+CalamityMod/PearlShard+CalamityMod/Navystone",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -26180,7 +26180,7 @@
       "status": "excluded",
       "stage": "wall-of-flesh",
       "via": "recipe:Terraria/LavaproofTackleBag+Terraria/MasterBait+CalamityMod/MolluskHusk",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -26851,7 +26851,7 @@
       "status": "excluded",
       "stage": "start",
       "via": "container:Terraria/OasisCrate",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -28953,7 +28953,7 @@
       "status": "excluded",
       "stage": "golem",
       "via": "recipe:Terraria/FishingBobber+CalamityMod/ScoriaBar",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -29402,7 +29402,7 @@
       "status": "excluded",
       "stage": "start",
       "via": "recipe:CalamityMod/WulfrumMetalScrap",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -29974,7 +29974,7 @@
       "status": "excluded",
       "stage": "start",
       "via": "npc:CalamityMod/CrawlerAmber",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -29982,10 +29982,10 @@
       "name": "Xyk's Blessing (Orange)",
       "mod": "CalamityMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "explicitly excluded",
       "evidence": null
     },
     {
@@ -30150,7 +30150,7 @@
       "status": "excluded",
       "stage": "slime-god",
       "via": "recipe:Terraria/BottledWater+CalamityMod/PurifiedGel+Terraria/Daybloom",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -30161,7 +30161,7 @@
       "status": "excluded",
       "stage": "slime-god",
       "via": "recipe:Terraria/BottledWater+CalamityMod/PurifiedGel+Terraria/Fireblossom",
-      "reason": "not combat equipment",
+      "reason": "explicitly excluded; not combat equipment",
       "evidence": null
     },
     {
@@ -32645,10 +32645,10 @@
       "name": "Arkhalis",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
-      "stage": "",
-      "via": "",
-      "reason": "Combat item has no proven acquisition source.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "manifest",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -49549,10 +49549,10 @@
       "name": "",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "Combat item has no proven acquisition source.",
+      "reason": "Unobtainable internal vanilla item.",
       "evidence": null
     },
     {
@@ -71755,10 +71755,10 @@
       "name": "Paper Airplane",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unavailable-combat",
-      "stage": "",
-      "via": "",
-      "reason": "Known acquisition evidence is unavailable under the profile rules.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "npc:Terraria/WindyBalloon",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -71766,10 +71766,10 @@
       "name": "White Paper Airplane",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unavailable-combat",
-      "stage": "",
-      "via": "",
-      "reason": "Known acquisition evidence is unavailable under the profile rules.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "npc:Terraria/WindyBalloon",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -77285,10 +77285,10 @@
       "name": "Red's Throw",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
-      "stage": "",
-      "via": "",
-      "reason": "Combat item has no proven acquisition source.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "manifest",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -81660,10 +81660,10 @@
       "name": "",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "Combat item has no proven acquisition source.",
+      "reason": "Unobtainable internal vanilla item.",
       "evidence": null
     },
     {
@@ -91204,10 +91204,10 @@
       "name": "Valkyrie Yoyo",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
-      "stage": "",
-      "via": "",
-      "reason": "Combat item has no proven acquisition source.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "manifest",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {

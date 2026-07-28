@@ -3,21 +3,21 @@
   "version": 2,
   "targetMod": "AAModClassic",
   "profileId": "builtin.aamodclassic",
-  "generatedAtUtc": "2026-07-28T17:11:22.436Z",
+  "generatedAtUtc": "2026-07-28T17:57:47.294Z",
   "snapshotGeneratedAtUtc": "2026-07-28T14:48:22.0929402Z",
   "summary": {
     "snapshotItems": 7066,
     "contentItems": 1611,
-    "profileEntries": 1487,
+    "profileEntries": 1492,
     "profileBuffEntries": 173,
-    "profileItemReferences": 1720,
-    "equipmentReferences": 1547,
+    "profileItemReferences": 1725,
+    "equipmentReferences": 1552,
     "buffReferences": 173,
-    "excluded": 3356,
+    "excluded": 3359,
     "acquiredNonProfile": 127,
-    "unresolvedAvailability": 5,
-    "unavailableCombat": 2,
-    "noAcquisitionPath": 1856
+    "unresolvedAvailability": 0,
+    "unavailableCombat": 0,
+    "noAcquisitionPath": 1855
   },
   "items": [
     {
@@ -5089,10 +5089,10 @@
       "name": "Doragonburedo",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "explicitly excluded",
       "evidence": null
     },
     {
@@ -20596,10 +20596,10 @@
       "name": "Arkhalis",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
-      "stage": "",
-      "via": "",
-      "reason": "Combat item has no proven acquisition source.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "manifest",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -37519,10 +37519,10 @@
       "name": "",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "Combat item has no proven acquisition source.",
+      "reason": "Unobtainable internal vanilla item.",
       "evidence": null
     },
     {
@@ -59743,10 +59743,10 @@
       "name": "Paper Airplane",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unavailable-combat",
-      "stage": "",
-      "via": "",
-      "reason": "Known acquisition evidence is unavailable under the profile rules.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "npc:Terraria/WindyBalloon",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -59754,10 +59754,10 @@
       "name": "White Paper Airplane",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unavailable-combat",
-      "stage": "",
-      "via": "",
-      "reason": "Known acquisition evidence is unavailable under the profile rules.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "npc:Terraria/WindyBalloon",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -65279,10 +65279,10 @@
       "name": "Red's Throw",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
-      "stage": "",
-      "via": "",
-      "reason": "Combat item has no proven acquisition source.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "manifest",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -69666,10 +69666,10 @@
       "name": "",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "Combat item has no proven acquisition source.",
+      "reason": "Unobtainable internal vanilla item.",
       "evidence": null
     },
     {
@@ -79210,10 +79210,10 @@
       "name": "Valkyrie Yoyo",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
-      "stage": "",
-      "via": "",
-      "reason": "Combat item has no proven acquisition source.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "manifest",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {

@@ -3,21 +3,21 @@
   "version": 2,
   "targetMod": "FargowiltasSouls",
   "profileId": "builtin.fargosouls",
-  "generatedAtUtc": "2026-07-28T16:51:59.124Z",
+  "generatedAtUtc": "2026-07-28T17:58:15.195Z",
   "snapshotGeneratedAtUtc": "2026-07-28T14:35:15.0368821Z",
   "summary": {
     "snapshotItems": 6132,
     "contentItems": 677,
-    "profileEntries": 1097,
+    "profileEntries": 1102,
     "profileBuffEntries": 161,
-    "profileItemReferences": 1318,
-    "equipmentReferences": 1157,
+    "profileItemReferences": 1323,
+    "equipmentReferences": 1162,
     "buffReferences": 161,
-    "excluded": 2967,
+    "excluded": 2970,
     "acquiredNonProfile": 127,
-    "unresolvedAvailability": 5,
-    "unavailableCombat": 2,
-    "noAcquisitionPath": 1713
+    "unresolvedAvailability": 0,
+    "unavailableCombat": 0,
+    "noAcquisitionPath": 1712
   },
   "items": [
     {
@@ -5752,10 +5752,10 @@
       "name": "Nano Core",
       "mod": "FargowiltasSouls",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "abominationn",
+      "via": "recipe:Terraria/Arkhalis+Terraria/FairyQueenRangedItem+Terraria/ChargedBlasterCannon+Terraria/XenoStaff+FargowiltasSouls/Eridanium+FargowiltasSouls/AbomEnergy+Terraria/MartianSaucerTrophy+Terraria/LunarBar+Terraria/Nanites",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -9984,10 +9984,10 @@
       "name": "Arkhalis",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
-      "stage": "",
-      "via": "",
-      "reason": "Combat item has no proven acquisition source.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "manifest",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -26865,10 +26865,10 @@
       "name": "",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "Combat item has no proven acquisition source.",
+      "reason": "Unobtainable internal vanilla item.",
       "evidence": null
     },
     {
@@ -49036,10 +49036,10 @@
       "name": "Paper Airplane",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unavailable-combat",
-      "stage": "",
-      "via": "",
-      "reason": "Known acquisition evidence is unavailable under the profile rules.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "npc:Terraria/WindyBalloon",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -49047,10 +49047,10 @@
       "name": "White Paper Airplane",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unavailable-combat",
-      "stage": "",
-      "via": "",
-      "reason": "Known acquisition evidence is unavailable under the profile rules.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "npc:Terraria/WindyBalloon",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -54570,10 +54570,10 @@
       "name": "Red's Throw",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
-      "stage": "",
-      "via": "",
-      "reason": "Combat item has no proven acquisition source.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "manifest",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -58953,10 +58953,10 @@
       "name": "",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "Combat item has no proven acquisition source.",
+      "reason": "Unobtainable internal vanilla item.",
       "evidence": null
     },
     {
@@ -68530,10 +68530,10 @@
       "name": "Valkyrie Yoyo",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "unresolved-availability",
-      "stage": "",
-      "via": "",
-      "reason": "Combat item has no proven acquisition source.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "manifest",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {

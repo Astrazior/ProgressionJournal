@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-07-28T16:52:14.782Z",
+  "generatedAtUtc": "2026-07-28T17:58:27.587Z",
   "snapshot": {
     "version": 7,
     "generatedAtUtc": "2026-07-28T14:45:37.6456204Z",
@@ -1925,7 +1925,7 @@
         }
       ],
       "stageComparison": {
-        "compared": 2335,
+        "compared": 2340,
         "moved": 0
       }
     }
@@ -1940,7 +1940,7 @@
     "errors": [],
     "warnings": [
       "70 recommendations precede proven availability and were suppressed",
-      "137 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
+      "136 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
       "npcCount": 915,
@@ -5198,6 +5198,14 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/WindyBalloon",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/Wizard",
           "kinds": [
             "shop"
@@ -6398,14 +6406,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/WindyBalloon",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Wolf",
           "kinds": [
             "drop"
@@ -6676,7 +6676,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.thorium",
-    "generatedAtUtc": "2026-07-28T16:52:03.203Z",
+    "generatedAtUtc": "2026-07-28T17:58:19.274Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -10873,6 +10873,16 @@
     ],
     "ambiguousClasses": [],
     "excludedItems": [
+      {
+        "stage": "",
+        "id": "Terraria/FirstFractal",
+        "reason": "Unobtainable internal vanilla item."
+      },
+      {
+        "stage": "",
+        "id": "Terraria/SkeletonBow",
+        "reason": "Unobtainable internal vanilla item."
+      },
       {
         "stage": "start",
         "id": "Terraria/SpiffoPlush",
@@ -30671,6 +30681,14 @@
         "stage": "start",
         "via": "npc:Terraria/Tim"
       },
+      "Terraria/PaperAirplaneA": {
+        "stage": "start",
+        "via": "npc:Terraria/WindyBalloon"
+      },
+      "Terraria/PaperAirplaneB": {
+        "stage": "start",
+        "via": "npc:Terraria/WindyBalloon"
+      },
       "Terraria/VampireFrogStaff": {
         "stage": "start",
         "via": "npc:Terraria/ZombieMerman",
@@ -38065,6 +38083,18 @@
         "via": "manifest"
       },
       "Terraria/CelestialEmblem": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "Terraria/Arkhalis": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "Terraria/RedsYoyo": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "Terraria/ValkyrieYoyo": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
@@ -67882,14 +67912,6 @@
         ]
       },
       {
-        "source": "Terraria/WindyBalloon",
-        "sourceKind": "drop",
-        "items": [
-          "Terraria/PaperAirplaneA",
-          "Terraria/PaperAirplaneB"
-        ]
-      },
-      {
         "source": "Terraria/Zombie",
         "sourceKind": "drop",
         "items": [
@@ -67897,118 +67919,8 @@
         ]
       }
     ],
-    "unavailableCombatItems": [
-      {
-        "item": "Terraria/PaperAirplaneA",
-        "displayName": "Paper Airplane",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "ranged"
-          ]
-        },
-        "evidence": {
-          "drops": [
-            {
-              "sourceKind": "npc",
-              "source": "Terraria/WindyBalloon",
-              "conditions": [
-                {
-                  "type": "Terraria.GameContent.ItemDropRules.Conditions+NeverTrue",
-                  "description": null,
-                  "key": "",
-                  "facts": []
-                }
-              ]
-            }
-          ],
-          "shops": [],
-          "recipes": [],
-          "shimmer": []
-        }
-      },
-      {
-        "item": "Terraria/PaperAirplaneB",
-        "displayName": "White Paper Airplane",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "ranged"
-          ]
-        },
-        "evidence": {
-          "drops": [
-            {
-              "sourceKind": "npc",
-              "source": "Terraria/WindyBalloon",
-              "conditions": [
-                {
-                  "type": "Terraria.GameContent.ItemDropRules.Conditions+NeverTrue",
-                  "description": null,
-                  "key": "",
-                  "facts": []
-                }
-              ]
-            }
-          ],
-          "shops": [],
-          "recipes": [],
-          "shimmer": []
-        }
-      }
-    ],
-    "unresolvedAvailabilityItems": [
-      {
-        "item": "Terraria/RedsYoyo",
-        "displayName": "Red's Throw",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "melee"
-          ]
-        }
-      },
-      {
-        "item": "Terraria/ValkyrieYoyo",
-        "displayName": "Valkyrie Yoyo",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "melee"
-          ]
-        }
-      },
-      {
-        "item": "Terraria/Arkhalis",
-        "displayName": "Arkhalis",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "melee"
-          ]
-        }
-      },
-      {
-        "item": "Terraria/SkeletonBow",
-        "displayName": "",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "ranged"
-          ]
-        }
-      },
-      {
-        "item": "Terraria/FirstFractal",
-        "displayName": "",
-        "classification": {
-          "category": "Weapon",
-          "classes": [
-            "melee"
-          ]
-        }
-      }
-    ],
+    "unavailableCombatItems": [],
+    "unresolvedAvailabilityItems": [],
     "manualAssignmentProblems": [],
     "officialSourceCompatibility": {
       "recommendations": {
@@ -68024,9 +67936,9 @@
         ]
       }
     },
-    "unassignedVanillaNpcSourceCount": 147,
+    "unassignedVanillaNpcSourceCount": 146,
     "manualAvailabilityPriority": {
-      "automaticItems": 5726,
+      "automaticItems": 5728,
       "automaticSources": 317,
       "automaticStations": 509,
       "suppressed": {
