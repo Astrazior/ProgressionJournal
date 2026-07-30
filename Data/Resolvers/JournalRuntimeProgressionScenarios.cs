@@ -15,6 +15,7 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
     private readonly HashSet<string>[][] _stageVariantKeys;
     private readonly Dictionary<string, BooleanFlagAccessor> _accessors;
     private readonly Dictionary<string, NpcKillCountAccessor> _npcKillCounts;
+    private readonly NpcKillCountAccessor[] _modNpcKillCountIsolation;
 
     public JournalRuntimeProgressionScenarios()
     {
@@ -32,6 +33,7 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
             .ToArray();
         _accessors = BuildAccessors(_stages, profile);
         _npcKillCounts = BuildNpcKillCountAccessors(_stages);
+        _modNpcKillCountIsolation = BuildModNpcKillCountIsolation(profile);
         StageLocalizedNames = _stages.Length == 0
             ? [new JournalLocalizedText()]
             : _stages.Select(static stage => stage.Name).ToArray();
@@ -75,6 +77,14 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
         }
 
         foreach (var accessor in _npcKillCounts.Values)
+        {
+            accessor.Set(false);
+        }
+    }
+
+    public void ResetModNpcKillCountIsolation()
+    {
+        foreach (var accessor in _modNpcKillCountIsolation)
         {
             accessor.Set(false);
         }
@@ -154,6 +164,11 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
         }
 
         foreach (var accessor in _npcKillCounts.Values)
+        {
+            accessor.Restore();
+        }
+
+        foreach (var accessor in _modNpcKillCountIsolation)
         {
             accessor.Restore();
         }
@@ -309,6 +324,37 @@ internal sealed class JournalRuntimeProgressionScenarios : IDisposable
             kills.GetKillCount(sample),
             value => Main.BestiaryTracker.Kills.SetKillCountDirectly(creditId, value));
         return true;
+    }
+
+    private static NpcKillCountAccessor[] BuildModNpcKillCountIsolation(JournalProfile? profile)
+    {
+        var relevantMods = profile is not null
+            ? profile.Document.RequiredMods
+                .Select(static requirement => requirement.Name)
+                .ToHashSet(StringComparer.OrdinalIgnoreCase)
+            : [];
+        return ModContent.GetContent<ModNPC>()
+            .Where(modNpc => relevantMods.Count == 0 || relevantMods.Contains(modNpc.Mod.Name))
+            .Select(TryCreateNpcKillCountAccessor)
+            .OfType<NpcKillCountAccessor>()
+            .ToArray();
+    }
+
+    private static NpcKillCountAccessor? TryCreateNpcKillCountAccessor(ModNPC modNpc)
+    {
+        if (!ContentSamples.NpcsByNetId.TryGetValue(modNpc.Type, out var sample)
+            || !ContentSamples.NpcBestiaryCreditIdsByNpcNetIds.TryGetValue(
+                modNpc.Type,
+                out var creditId)
+            || string.IsNullOrWhiteSpace(creditId))
+        {
+            return null;
+        }
+
+        var kills = Main.BestiaryTracker.Kills;
+        return new NpcKillCountAccessor(
+            kills.GetKillCount(sample),
+            value => Main.BestiaryTracker.Kills.SetKillCountDirectly(creditId, value));
     }
 
     private void ApplyDerivedVanillaFlags(string key)

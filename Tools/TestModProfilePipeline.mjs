@@ -128,8 +128,8 @@ assert(townNpcResolverSource.includes("WorldGen.prioritizedTownNPCType"),
   "Town NPC priority state is not isolated and restored");
 assert(townNpcResolverSource.includes("NPCShopDatabase.AllShops"),
   "Town NPC availability is not linked to NPCShopDatabase");
-assert(townNpcResolverSource.includes("shop.FillShop(items, npc)"),
-  "Shop item conditions are not executed through FillShop");
+assert(townNpcResolverSource.includes("activeShop.SetupShop("),
+  "Dynamic shop hooks are not executed through Chest.SetupShop");
 assert(townNpcResolverSource.includes("CreateCompletedBestiaryTracker"),
   "Bestiary-gated town NPC scenarios are missing");
 assert(townNpcResolverSource.indexOf("Main.BestiaryTracker = useMaxBestiary")
@@ -354,14 +354,18 @@ assert(developerWingCatalogSource.includes("ConditionKind.Hardmode")
 "Developer wing sources must expose their Hardmode and localized Shiny Check conditions");
 assert(exactShopCatalogSource.includes('"FazerBag", "ShoxBag", "BegBag"')
   && exactShopCatalogSource.includes('goblinSlayer, "GoblinSlayersHelmet"')
-  && exactShopCatalogSource.includes('goblinSlayer, "OldOneCharm"')
-  && exactShopCatalogSource.includes('goblinSlayer, "EnergyConduit"')
+  && exactShopCatalogSource.includes('"OldOneCharm"')
+  && exactShopCatalogSource.includes('"EnergyConduit"')
+  && exactShopCatalogSource.includes("ConditionKind.CustomCurrency")
+  && exactShopCatalogSource.includes("AAModClassicDefenderMedalShopCondition")
+  && exactShopCatalogSource.includes("AAModClassicMartianCreditShopCondition")
+  && englishLocalizationSource.includes("Old One's Army item purchased with Defender Medals")
+  && englishLocalizationSource.includes("Martian Madness item purchased with Martian Credits")
   && exactShopCatalogSource.includes("GetAllSources()")
   && exactShopCatalogSource.includes('"wall-of-flesh"')
   && exactShopCatalogSource.includes('"plantera"')
   && exactShopCatalogSource.includes('"moon-lord"')
   && !exactShopCatalogSource.includes("Price")
-  && !exactShopCatalogSource.includes("Currency")
   && !exactShopCatalogSource.includes("ShopName")
   && !shopSourceModelSource.includes("Price")
   && !shopSourceModelSource.includes("ShopName")
@@ -589,6 +593,11 @@ assert(progressionScenarioSource.includes("BuildNpcKillCountAccessors")
   && progressionScenarioSource.includes("Main.BestiaryTracker.Kills.SetKillCountDirectly")
   && progressionScenarioSource.includes('case "npc"'),
 "Runtime scenarios must apply NPC defeat progression to the currently active Bestiary");
+assert(progressionScenarioSource.includes("BuildModNpcKillCountIsolation")
+  && progressionScenarioSource.includes("ModContent.GetContent<ModNPC>()")
+  && progressionScenarioSource.includes("ResetModNpcKillCountIsolation")
+  && townNpcResolverSource.includes("progression.ResetModNpcKillCountIsolation();"),
+"Shop probes must clear every relevant mod NPC kill count before testing dynamic shop gates");
 const snapshotExporterSource = fs.readFileSync(
   path.join(root, "Commands", "ExportProgressionSnapshotCommand.cs"),
   "utf8");
@@ -897,18 +906,16 @@ for (const modName of expected) {
   }
   assert.equal(generatedStageOf("Terraria/SanguineStaff"), "wall-of-flesh",
     `${modName}: Dreadnautilus drops must not move with the pre-Hardmode Blood Moon event`);
-  assert(report.generation?.automaticEventPriority?.corrections?.some(entry =>
-    entry.eventCategory === "BloodMoon"
-    && entry.declaredStageId === "eye-of-cthulhu"
-    && entry.automaticStageId === "start"),
-  `${modName}: observed Blood Moon availability must supersede the stale event stage`);
+  assert.equal(
+    support.events?.find(event => event.eventCategory === "BloodMoon")?.stageId,
+    "start",
+    `${modName}: Blood Moon must not carry a stale Eye of Cthulhu floor`);
   assert.equal(generatedStageOf("Terraria/Harpoon"), "start",
     `${modName}: pre-boss Goblin Army drops must not remain tied to Eye of Cthulhu`);
-  assert(report.generation?.automaticEventPriority?.corrections?.some(entry =>
-    entry.eventCategory === "GoblinArmy"
-    && entry.declaredStageId === "eye-of-cthulhu"
-    && entry.automaticStageId === "start"),
-  `${modName}: observed Goblin Army availability must supersede the stale event stage`);
+  assert.equal(
+    support.events?.find(event => event.eventCategory === "GoblinArmy")?.stageId,
+    "start",
+    `${modName}: Goblin Army must not carry a stale Eye of Cthulhu floor`);
   if (modName === "CalamityMod") {
     for (const [itemId, stageId] of Object.entries({
       "Terraria/Uzi": "wall-of-flesh",
@@ -1249,6 +1256,8 @@ const aaEntry = itemName => aaProfile.entries.find(entry =>
   entry.itemGroups.some(group => group.some(item => item.item === itemName)));
 const aaBuff = itemName => aaProfile.combatBuffs.find(entry =>
   entry.itemGroups.some(group => group.some(item => item.item === itemName)));
+const aaItemStage = itemName =>
+  aaEntry(itemName)?.evaluations?.[0]?.stageId ?? aaBuff(itemName)?.stageId;
 const aaArmorSetClasses = itemNames => itemNames
   .map(itemName => new Set(aaEntry(itemName)?.classes ?? []))
   .reduce((classIds, itemClassIds) =>
@@ -1369,6 +1378,46 @@ assert.deepEqual(
     enemies: ["Terraria/DD2DarkMageT1"]
   },
   "AAModClassic must preserve the earliest Old One's Army path for War Table");
+for (const [itemName, stageId] of Object.entries({
+  EnergyConduit: "golem",
+  OldOneCharm: "world-evil",
+  AmberSaber: "skeletron",
+  AmberGreatsword: "skeletron",
+  FossilBoneslinger: "skeletron",
+  Equinox: "sisters-of-discord",
+  LuckyCalmingPotion: "skeletron",
+  LuckyEndurancePotion: "skeletron",
+  LuckyIronskinPotion: "skeletron",
+  LuckyLifeforcePotion: "skeletron",
+  LuckyRagePotion: "skeletron",
+  LuckyRegenerationPotion: "skeletron",
+  LuckySummoningPotion: "skeletron",
+  LuckySwiftnessPotion: "skeletron",
+  LuckyThornsPotion: "skeletron",
+  LuckyWrathPotion: "skeletron",
+  RoninPotion: "grips-of-chaos"
+})) {
+  assert.equal(aaItemStage(itemName), stageId,
+    `${itemName} must follow its verified AAModClassic acquisition gate`);
+}
+assert.equal(aaReport.generation.paths["AAModClassic/DynaskullFossil"]?.stage, "skeletron",
+  "Dynaskull Fossil must floor every dependent recipe at Skeletron");
+for (const itemName of [
+  "HoppingHoodlumHelmet",
+  "HoppingHoodlumChestplate",
+  "HoppingHoodlumLeggings"
+]) {
+  assert.deepEqual(aaEntry(itemName)?.classes, ["melee", "summoner"],
+    `${itemName} must remain visible to the complete melee and summoner set`);
+}
+for (const itemName of [
+  "GlowingMushiumHelmet",
+  "GlowingMushiumChestplate",
+  "GlowingMushiumLeggings"
+]) {
+  assert.deepEqual(aaEntry(itemName)?.classes, ["magic"],
+    `${itemName} must follow the hidden ManaRegenEffect class`);
+}
 const developerWingRule = aaAgentRules.rules.find(rule =>
   rule.id === "aamodclassic-developer-bag-wing-roots");
 const developerWings = [

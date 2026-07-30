@@ -3,8 +3,8 @@
   "version": 2,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-07-30T10:11:23.068Z",
-  "snapshotGeneratedAtUtc": "2026-07-28T14:45:37.6456204Z",
+  "generatedAtUtc": "2026-07-30T21:11:10.525Z",
+  "snapshotGeneratedAtUtc": "2026-07-30T20:47:15.2138986Z",
   "summary": {
     "snapshotItems": 8330,
     "contentItems": 2875,
@@ -14,11 +14,11 @@
     "equipmentReferences": 2114,
     "buffReferences": 226,
     "profileSourceGaps": 28,
-    "excluded": 3810,
+    "excluded": 3811,
     "acquiredNonProfile": 127,
     "unresolvedAvailability": 0,
     "unavailableCombat": 0,
-    "noAcquisitionPath": 2053
+    "noAcquisitionPath": 2052
   },
   "items": [
     {
@@ -1991,7 +1991,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/GigaZapper",
+      "via": "npc:Terraria/BrainScrambler",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -2493,7 +2493,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:Terraria/KingSlimeBossBag",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -9652,7 +9652,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "golem",
-      "via": "npc:Terraria/GigaZapper",
+      "via": "npc:Terraria/BrainScrambler",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -27371,7 +27371,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "npc:Terraria/GoblinThief",
+      "via": "npc:Terraria/GoblinPeon",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -31151,7 +31151,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/GigaZapper",
+      "via": "npc:Terraria/BrainScrambler",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -34948,7 +34948,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/GigaZapper",
+      "via": "npc:Terraria/BrainScrambler",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -35278,7 +35278,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/GigaZapper",
+      "via": "npc:Terraria/MartianOfficer",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -35289,7 +35289,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/GigaZapper",
+      "via": "npc:Terraria/MartianOfficer",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -35300,7 +35300,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/GigaZapper",
+      "via": "npc:Terraria/MartianOfficer",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -43308,11 +43308,28 @@
       "name": "Pin Wheel",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "start",
+      "via": "shop:Terraria/Merchant",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During daytime",
+            "key": "Conditions.TimeDay",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a happy windy day",
+            "key": "Conditions.HappyWindyDay",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "Terraria/PiranhaBanner",
@@ -47233,7 +47250,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:Terraria/KingSlimeBossBag",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -54461,7 +54478,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "npc:Terraria/GoblinThief",
+      "via": "npc:Terraria/GoblinPeon",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -61175,7 +61192,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:Terraria/KingSlimeBossBag",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -71772,7 +71789,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "npc:Terraria/GoblinSorcerer",
       "reason": "Included in the generated profile.",
       "evidence": null
@@ -72059,7 +72076,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCrossbower",
+      "via": "npc:Terraria/PirateDeadeye",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -77535,7 +77552,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "npc:Terraria/GoblinPeon",
       "reason": "Included in the generated profile.",
       "evidence": null
@@ -78074,7 +78091,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "npc:ThoriumMod/PatchWerk",
       "reason": "Included in the generated profile.",
       "evidence": null
@@ -78345,9 +78362,20 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "eye-of-cthulhu",
-      "via": "shimmer:ThoriumMod/GrimPedestal",
+      "via": "shop:ThoriumMod/Tracker",
       "reason": "not combat equipment",
-      "evidence": null
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Mods.ThoriumMod.Conditions.CompletedMonsterContract",
+            "description": "Complete the Damsel of Distress Tracker contract",
+            "key": "",
+            "facts": null
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "ThoriumMod/GrimPointer",
@@ -86548,7 +86576,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "npc:ThoriumMod/PatchWerk",
       "reason": "not combat equipment",
       "evidence": null
@@ -90225,7 +90253,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/GoblinThief",
+      "via": "npc:Terraria/GoblinPeon",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -93763,7 +93791,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "npc:ThoriumMod/PatchWerk",
       "reason": "not combat equipment",
       "evidence": null
@@ -95019,7 +95047,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "eye-of-cthulhu",
+      "stage": "start",
       "via": "npc:ThoriumMod/PatchWerk",
       "reason": "Included in the generated profile.",
       "evidence": null
@@ -99481,7 +99509,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "start",
-      "via": "npc:Terraria/GoblinThief",
+      "via": "npc:Terraria/GoblinPeon",
       "reason": "not combat equipment",
       "evidence": null
     },

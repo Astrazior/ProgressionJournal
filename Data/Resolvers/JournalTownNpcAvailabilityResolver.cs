@@ -806,6 +806,7 @@ internal static class JournalTownNpcAvailabilityResolver
                  variantIndex++)
             {
                 progression.Reset();
+                progression.ResetModNpcKillCountIsolation();
                 progression.Apply(stageIndex, variantIndex);
 
                 foreach (var gameMode in ProbeGameModes)

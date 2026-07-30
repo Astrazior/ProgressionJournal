@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "https://thoriummod.wiki.gg/wiki/Bosses",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-07-28T18:31:16.598Z",
+  "generatedAtUtc": "2026-07-30T21:11:05.148Z",
   "requiredMods": [
     {
       "name": "ThoriumMod",
@@ -7434,7 +7434,7 @@
       ],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
+      "eventCategory": "GoblinArmy",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -13389,7 +13389,7 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
+      "eventCategory": "GoblinArmy",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -13747,7 +13747,7 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
+      "eventCategory": "GoblinArmy",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -18243,7 +18243,7 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
+      "eventCategory": "GoblinArmy",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -21143,7 +21143,7 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": true,
-      "eventCategory": null,
+      "eventCategory": "GoblinArmy",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -34421,7 +34421,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "eye-of-cthulhu",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -41279,7 +41279,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "eye-of-cthulhu",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -58924,7 +58924,7 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
+      "eventCategory": "MartianMadness",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -60001,7 +60001,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "eye-of-cthulhu",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -69464,7 +69464,7 @@
       ],
       "fishingSources": [],
       "isSupportWeapon": true,
-      "eventCategory": null,
+      "eventCategory": "MartianMadness",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -72004,12 +72004,24 @@
       ],
       "evaluations": [
         {
-          "stageId": "eye-of-cthulhu",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
       "wiki": [
+        {
+          "stageId": "start",
+          "classes": [
+            "healer"
+          ],
+          "sourceName": "Official Thorium Mod Wiki",
+          "sourceUrl": "https://thoriummod.wiki.gg/wiki/Guide:Class_setups",
+          "target": {
+            "en-US": "Grand Thunder Bird",
+            "ru-RU": "Великая громовая птица"
+          }
+        },
         {
           "stageId": "eye-of-cthulhu",
           "classes": [

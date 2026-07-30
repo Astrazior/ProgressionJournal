@@ -3,8 +3,8 @@
   "version": 2,
   "targetMod": "FargowiltasSouls",
   "profileId": "builtin.fargosouls",
-  "generatedAtUtc": "2026-07-30T17:47:32.857Z",
-  "snapshotGeneratedAtUtc": "2026-07-30T17:37:07.1193558Z",
+  "generatedAtUtc": "2026-07-30T21:10:58.541Z",
+  "snapshotGeneratedAtUtc": "2026-07-30T20:58:28.7926863Z",
   "summary": {
     "snapshotItems": 6132,
     "contentItems": 677,
@@ -14,11 +14,11 @@
     "equipmentReferences": 1162,
     "buffReferences": 161,
     "profileSourceGaps": 0,
-    "excluded": 2970,
+    "excluded": 2971,
     "acquiredNonProfile": 127,
     "unresolvedAvailability": 0,
     "unavailableCombat": 0,
-    "noAcquisitionPath": 1712
+    "noAcquisitionPath": 1711
   },
   "items": [
     {
@@ -50660,11 +50660,28 @@
       "name": "Pin Wheel",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "start",
+      "via": "shop:Terraria/Merchant",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During daytime",
+            "key": "Conditions.TimeDay",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a happy windy day",
+            "key": "Conditions.HappyWindyDay",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "Terraria/PiranhaBanner",

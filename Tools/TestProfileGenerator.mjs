@@ -77,6 +77,7 @@ const snapshot = {
     item("Test/EventMaterial"),
     item("Test/EventGun", { damageClass: "Melee", damage: 20 }),
     item("Test/ShopBlade", { damageClass: "Melee", damage: 18 }),
+    item("Test/CurrencyShopBlade", { damageClass: "Melee", damage: 19 }),
     item("Test/ObservedTypedShopBlade", { damageClass: "Melee", damage: 20 }),
     item("Test/ObservedManualShopBlade", { damageClass: "Melee", damage: 21 }),
     item("Test/ObservedAmmo", {
@@ -476,6 +477,17 @@ const snapshot = {
       conditions: [{
         type: "ProgressionJournal.AfterProgression",
         description: "Available after: Plantera"
+      }]
+    },
+    {
+      npc: "Test/Merchant",
+      item: "Test/CurrencyShopBlade",
+      observed: false,
+      earliestStageIndex: -1,
+      earliestStageName: null,
+      conditions: [{
+        type: "ProgressionJournal.CustomCurrency",
+        description: "Purchased with custom currency"
       }]
     },
     {
@@ -1024,6 +1036,12 @@ assert(!profile.entries.some(entry => entry.itemGroups[0][0].item === "UnknownSh
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "KeyedEyeBlade"
   && entry.evaluations[0].stageId === "boss"));
+assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "CurrencyShopBlade"
+  && entry.evaluations[0].stageId === "boss"));
+assert(!review.issues.some(issue =>
+  issue.kind === "unresolved-condition"
+  && issue.affected.some(value => value.item === "Test/CurrencyShopBlade")));
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "NeutralRecipeBlade"
   && entry.evaluations[0].stageId === "start"));

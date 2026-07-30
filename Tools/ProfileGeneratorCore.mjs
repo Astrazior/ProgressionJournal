@@ -1795,6 +1795,7 @@ function isProgressionNeutralCondition(condition) {
   return new Set([
     "ProgressionJournal.BelowSurface",
     "ProgressionJournal.Biome",
+    "ProgressionJournal.CustomCurrency",
     "ProgressionJournal.Event",
     "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
     "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",

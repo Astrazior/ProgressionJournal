@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-07-28T18:30:32.362Z",
+  "generatedAtUtc": "2026-07-30T21:10:22.362Z",
   "requiredMods": [
     {
       "name": "AAModClassic",
@@ -16965,7 +16965,7 @@
       ],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
+      "eventCategory": "GoblinArmy",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -19868,7 +19868,7 @@
       ],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
+      "eventCategory": "GoblinArmy",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -19943,37 +19943,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
-      "wiki": [
-        {
-          "stageId": "start",
-          "classes": [
-            "melee"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "First bosses",
-            "ru-RU": "Первые боссы"
-          }
-        },
-        {
-          "stageId": "queen-bee",
-          "classes": [
-            "melee"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "Skeletron",
-            "ru-RU": "Скелетрон"
-          }
-        }
-      ],
+      "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
       "eventCategory": null,
@@ -22026,7 +22001,7 @@
       ],
       "fishingSources": [],
       "isSupportWeapon": true,
-      "eventCategory": null,
+      "eventCategory": "GoblinArmy",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -23983,7 +23958,8 @@
       "key": "new.aamodclassic.hoppinghoodlumchestplate",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -25628,7 +25604,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -26064,7 +26040,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "skeletron",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -31927,7 +31903,8 @@
       "key": "new.aamodclassic.hoppinghoodlumleggings",
       "category": "Armor",
       "classes": [
-        "melee"
+        "melee",
+        "summoner"
       ],
       "itemGroups": [
         [
@@ -47163,10 +47140,7 @@
       "key": "new.aamodclassic.glowingmushiumchestplate",
       "category": "Armor",
       "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
+        "magic"
       ],
       "itemGroups": [
         [
@@ -47857,10 +47831,7 @@
       "key": "new.aamodclassic.glowingmushiumhelmet",
       "category": "Armor",
       "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
+        "magic"
       ],
       "itemGroups": [
         [
@@ -47889,10 +47860,7 @@
       "key": "new.aamodclassic.glowingmushiumleggings",
       "category": "Armor",
       "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
+        "magic"
       ],
       "itemGroups": [
         [
@@ -50612,87 +50580,6 @@
                   "join": [
                     {
                       "key": "Mods.ProgressionJournal.UI.FishingLiquidWater"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "key": "Mods.ProgressionJournal.UI.FishingBiomeCondition",
-              "args": [
-                {
-                  "join": [
-                    {
-                      "key": "Mods.ProgressionJournal.UI.FishingBiomeDefault"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.Ocean"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.Desert"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.Snow"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.Jungle"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.TheCorruption"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.Crimson"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.TheHallow"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.TheDungeon"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.UndergroundMushroom"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.AcropolisBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.HoardBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.LostKeepBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.ParthenanBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.RedMushroomBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.RisingMoonLakeBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.RisingSunPagodaBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.StarsBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.SunkenShipBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.TerrariumBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.UndergroundInfernoBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.UndergroundMireBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.VoidBiome.DisplayName"
-                    },
-                    {
-                      "literal": "AAModClassic/MireWaterStyle"
                     }
                   ]
                 }
@@ -53950,7 +53837,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "golem",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -53958,7 +53845,7 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": "GoblinArmy",
+      "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
     },
@@ -53982,7 +53869,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "equinox-worms",
+          "stageId": "sisters-of-discord",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -54822,87 +54709,6 @@
                   "join": [
                     {
                       "key": "Mods.ProgressionJournal.UI.FishingLiquidWater"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "key": "Mods.ProgressionJournal.UI.FishingBiomeCondition",
-              "args": [
-                {
-                  "join": [
-                    {
-                      "key": "Mods.ProgressionJournal.UI.FishingBiomeDefault"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.Ocean"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.Desert"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.Snow"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.Jungle"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.TheCorruption"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.Crimson"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.TheHallow"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.TheDungeon"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.UndergroundMushroom"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.AcropolisBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.HoardBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.LostKeepBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.ParthenanBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.RedMushroomBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.RisingMoonLakeBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.RisingSunPagodaBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.StarsBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.SunkenShipBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.TerrariumBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.UndergroundInfernoBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.UndergroundMireBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.VoidBiome.DisplayName"
-                    },
-                    {
-                      "literal": "AAModClassic/MireWaterStyle"
                     }
                   ]
                 }
@@ -57948,7 +57754,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "world-evil",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -63416,87 +63222,6 @@
               ]
             },
             {
-              "key": "Mods.ProgressionJournal.UI.FishingBiomeCondition",
-              "args": [
-                {
-                  "join": [
-                    {
-                      "key": "Mods.ProgressionJournal.UI.FishingBiomeDefault"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.Ocean"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.Desert"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.Snow"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.Jungle"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.TheCorruption"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.Crimson"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.TheHallow"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.TheDungeon"
-                    },
-                    {
-                      "key": "Bestiary_Biomes.UndergroundMushroom"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.AcropolisBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.HoardBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.LostKeepBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.ParthenanBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.RedMushroomBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.RisingMoonLakeBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.RisingSunPagodaBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.StarsBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.SunkenShipBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.TerrariumBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.UndergroundInfernoBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.UndergroundMireBiome.DisplayName"
-                    },
-                    {
-                      "key": "Mods.AAModClassic.Biomes.VoidBiome.DisplayName"
-                    },
-                    {
-                      "literal": "AAModClassic/MireWaterStyle"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
               "key": "Mods.ProgressionJournal.UI.FishingDepthCondition",
               "args": [
                 {
@@ -64936,7 +64661,7 @@
       "fishingSources": []
     },
     {
-      "key": "new.aamodclassic.luckycalmingpotion",
+      "key": "new.aamodclassic.luckycracker",
       "category": "Potion",
       "classes": [
         "melee",
@@ -64949,197 +64674,8 @@
         [
           {
             "mod": "AAModClassic",
-            "item": "LuckyCalmingPotion",
-            "displayName": "Lucky Calming Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.aamodclassic.luckyendurancepotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "grips-of-chaos",
-      "itemGroups": [
-        [
-          {
-            "mod": "AAModClassic",
-            "item": "LuckyEndurancePotion",
-            "displayName": "Lucky Endurance Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.aamodclassic.luckyironskinpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "grips-of-chaos",
-      "itemGroups": [
-        [
-          {
-            "mod": "AAModClassic",
-            "item": "LuckyIronskinPotion",
-            "displayName": "Lucky Ironskin Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.aamodclassic.luckylifeforcepotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "grips-of-chaos",
-      "itemGroups": [
-        [
-          {
-            "mod": "AAModClassic",
-            "item": "LuckyLifeforcePotion",
-            "displayName": "Lucky Lifeforce Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.aamodclassic.luckyragepotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "grips-of-chaos",
-      "itemGroups": [
-        [
-          {
-            "mod": "AAModClassic",
-            "item": "LuckyRagePotion",
-            "displayName": "Lucky Rage Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.aamodclassic.luckyregenerationpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "grips-of-chaos",
-      "itemGroups": [
-        [
-          {
-            "mod": "AAModClassic",
-            "item": "LuckyRegenerationPotion",
-            "displayName": "Lucky Regeneration Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.aamodclassic.luckysummoningpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "grips-of-chaos",
-      "itemGroups": [
-        [
-          {
-            "mod": "AAModClassic",
-            "item": "LuckySummoningPotion",
-            "displayName": "Lucky Summoning Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.aamodclassic.luckyswiftnesspotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "grips-of-chaos",
-      "itemGroups": [
-        [
-          {
-            "mod": "AAModClassic",
-            "item": "LuckySwiftnessPotion",
-            "displayName": "Lucky Swiftness Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.aamodclassic.luckythornspotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "grips-of-chaos",
-      "itemGroups": [
-        [
-          {
-            "mod": "AAModClassic",
-            "item": "LuckyThornsPotion",
-            "displayName": "Lucky Thorns Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.aamodclassic.luckywrathpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "grips-of-chaos",
-      "itemGroups": [
-        [
-          {
-            "mod": "AAModClassic",
-            "item": "LuckyWrathPotion",
-            "displayName": "Lucky Wrath Potion"
+            "item": "LuckyCracker",
+            "displayName": "Lucky Cracker"
           }
         ]
       ],
@@ -65161,27 +64697,6 @@
             "mod": "AAModClassic",
             "item": "RoninPotion",
             "displayName": "Ronin Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.aamodclassic.luckycracker",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "grips-of-chaos",
-      "itemGroups": [
-        [
-          {
-            "mod": "AAModClassic",
-            "item": "LuckyCracker",
-            "displayName": "Lucky Cracker"
           }
         ]
       ],
@@ -65325,6 +64840,216 @@
             "mod": "Terraria",
             "item": "Teacup",
             "displayName": "Teacup"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.aamodclassic.luckycalmingpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "skeletron",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckyCalmingPotion",
+            "displayName": "Lucky Calming Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.aamodclassic.luckyendurancepotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "skeletron",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckyEndurancePotion",
+            "displayName": "Lucky Endurance Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.aamodclassic.luckyironskinpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "skeletron",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckyIronskinPotion",
+            "displayName": "Lucky Ironskin Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.aamodclassic.luckylifeforcepotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "skeletron",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckyLifeforcePotion",
+            "displayName": "Lucky Lifeforce Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.aamodclassic.luckyragepotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "skeletron",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckyRagePotion",
+            "displayName": "Lucky Rage Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.aamodclassic.luckyregenerationpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "skeletron",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckyRegenerationPotion",
+            "displayName": "Lucky Regeneration Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.aamodclassic.luckysummoningpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "skeletron",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckySummoningPotion",
+            "displayName": "Lucky Summoning Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.aamodclassic.luckyswiftnesspotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "skeletron",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckySwiftnessPotion",
+            "displayName": "Lucky Swiftness Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.aamodclassic.luckythornspotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "skeletron",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckyThornsPotion",
+            "displayName": "Lucky Thorns Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.aamodclassic.luckywrathpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "skeletron",
+      "itemGroups": [
+        [
+          {
+            "mod": "AAModClassic",
+            "item": "LuckyWrathPotion",
+            "displayName": "Lucky Wrath Potion"
           }
         ]
       ],
@@ -65924,7 +65649,7 @@
         "magic",
         "summoner"
       ],
-      "stageId": "zero",
+      "stageId": "akuma",
       "itemGroups": [
         [
           {
@@ -65945,7 +65670,7 @@
         "magic",
         "summoner"
       ],
-      "stageId": "zero",
+      "stageId": "akuma",
       "itemGroups": [
         [
           {

@@ -53,6 +53,10 @@ public static class JournalExactShopCatalog
                 Language.GetTextValue(
                     "Mods.ProgressionJournal.UI.ThoriumDamselTrackerContractCondition"),
                 string.Empty),
+            ConditionKind.CustomCurrency => new JournalExactShopCondition(
+                "ProgressionJournal.CustomCurrency",
+                Language.GetTextValue((string)condition.Arguments[0]),
+                string.Empty),
             _ => new JournalExactShopCondition(string.Empty, string.Empty, string.Empty)
         };
     }
@@ -70,7 +74,7 @@ public static class JournalExactShopCatalog
 
     private static void AddAAModClassic(ICollection<EntryBuilder> builders)
     {
-        const string provenance = "AAModClassic 1.0.12 installed assembly ModNPC.ModifyActiveShop IL";
+        const string provenance = "AAModClassic 1.0.17 installed assembly ModNPC.ModifyActiveShop IL";
         const string largeLetter = "AAModClassic/LargeLetter";
         AddShop(builders, provenance, largeLetter, "ApawnBag");
         foreach (var item in new[] { "FazerBag", "ShoxBag", "BegBag" })
@@ -144,8 +148,22 @@ public static class JournalExactShopCatalog
         AddShop(builders, provenance, goblinSlayer, "GoblinSlayersHelmet");
         AddShop(builders, provenance, goblinSlayer, "GoblinSlayersChestplate");
         AddShop(builders, provenance, goblinSlayer, "GoblinSlayersLeggings");
-        AddShop(builders, provenance, goblinSlayer, "OldOneCharm");
-        AddShop(builders, provenance, goblinSlayer, "EnergyConduit");
+        AddShop(
+            builders,
+            provenance,
+            goblinSlayer,
+            "OldOneCharm",
+            new ConditionBuilder(
+                ConditionKind.CustomCurrency,
+                ["Mods.ProgressionJournal.UI.AAModClassicDefenderMedalShopCondition"]));
+        AddShop(
+            builders,
+            provenance,
+            goblinSlayer,
+            "EnergyConduit",
+            new ConditionBuilder(
+                ConditionKind.CustomCurrency,
+                ["Mods.ProgressionJournal.UI.AAModClassicMartianCreditShopCondition"]));
     }
 
     private static void AddShop(
@@ -261,7 +279,8 @@ public static class JournalExactShopCatalog
     {
         AfterProgression,
         WorldOption,
-        ThoriumTrackerContract
+        ThoriumTrackerContract,
+        CustomCurrency
     }
 }
 

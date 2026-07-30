@@ -3,10 +3,10 @@
   "version": 1,
   "targetMod": "AAModClassic",
   "profileId": "builtin.aamodclassic",
-  "generatedAtUtc": "2026-07-30T10:10:09.218Z",
+  "generatedAtUtc": "2026-07-30T21:10:28.234Z",
   "snapshot": {
-    "version": 7,
-    "generatedAtUtc": "2026-07-28T14:48:22.0929402Z",
+    "version": 8,
+    "generatedAtUtc": "2026-07-30T20:31:03.3169437Z",
     "targetMod": "AAModClassic",
     "mods": [
       {
@@ -16,13 +16,13 @@
     ],
     "accumulatedProbeEvidence": {
       "compatible": true,
-      "npcAvailability": 10,
-      "shops": 1,
+      "npcAvailability": 0,
+      "shops": 27,
       "fishing": 0
     }
   },
   "agentRules": {
-    "rules": 76,
+    "rules": 82,
     "ignoredItems": 2,
     "ignoredIssues": 0,
     "evidence": [
@@ -134,9 +134,16 @@
       {
         "id": "stripemans-lucky-consumables-stage",
         "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
-        "sourceVersion": "AAModClassic 1.0.12 installed assembly",
-        "checkedAt": "2026-07-13",
-        "reason": "The ten Lucky Potions are emitted by Stripeman's Lucky Chestplate tile logic, and Ronin Potion is added dynamically to Samurai's active shop. Both sources first become available at Grips of Chaos and are outside the snapshot's registered drop and shop tables."
+        "sourceVersion": "AAModClassic 1.0.17 installed assembly",
+        "checkedAt": "2026-07-30",
+        "reason": "The ten Lucky Potions can rarely drop from pots while Stripeman's Lucky Shirt is equipped. The shirt becomes available after Skeletron, and this conditional pot drop is outside the snapshot's registered drop tables."
+      },
+      {
+        "id": "ronin-potion-stage",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 installed assembly",
+        "checkedAt": "2026-07-30",
+        "reason": "Ronin Potion is added dynamically to Samurai's active shop and remains available at Grips of Chaos independently of the Lucky Potion pot-drop mechanic."
       },
       {
         "id": "hardmode-carrot-stage",
@@ -165,6 +172,34 @@
         "sourceVersion": "Ancients Awakened 1.0.3.2 guide; verified against AAModClassic 1.0.10 item namespaces",
         "checkedAt": "2026-07-27",
         "reason": "Ancients Awakened uses Terraria/AncientGoldHelmet together with AAModClassic/AncientGoldChestplate and AAModClassic/AncientGoldLeggings as one complete pre-Hardmode armor set. The vanilla helmet must remain combat armor in this profile so the armor-set overview can assemble all three pieces."
+      },
+      {
+        "id": "hopping-hoodlum-hybrid-armor-classification",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 armor effect code",
+        "checkedAt": "2026-07-30",
+        "reason": "The complete Hopping Hoodlum set grants both melee and summoner bonuses. Every piece must carry both classes so the set is shown intact for melee and summoner, but not for ranged or magic."
+      },
+      {
+        "id": "glowing-mushium-magic-armor-classification",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 ManaRegenEffect armor code",
+        "checkedAt": "2026-07-30",
+        "reason": "The set's hidden ManaRegenEffect is magic-specific, while the exported item fields otherwise look neutral. Restrict all three pieces to magic so the set is not shown to unrelated classes."
+      },
+      {
+        "id": "dynaskull-fossil-skeletron-floor",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 world-generation code",
+        "checkedAt": "2026-07-30",
+        "reason": "Dynaskull Fossil deposits appear only after Skeletron. Flooring the shared material lets every dependent recipe inherit the correct earliest stage."
+      },
+      {
+        "id": "old-one-charm-defender-medal-floor",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 Goblin Slayer shop code",
+        "checkedAt": "2026-07-30",
+        "reason": "Old One Charm is an Old One's Army shop item purchased with Defender Medals. The first Old One's Army tier opens at the world-evil stage in this profile."
       },
       {
         "id": "early-event-and-boss-special-acquisitions",
@@ -230,6 +265,13 @@
         "reason": "These are Martian Madness items, including Energy Conduit from Martian Saucer; the event opens after Golem."
       },
       {
+        "id": "energy-conduit-martian-credit-floor",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 Goblin Slayer shop code",
+        "checkedAt": "2026-07-30",
+        "reason": "Energy Conduit is sold as a Martian Madness item for Martian Credits. Martian Madness becomes available after Golem, so the incomplete conditionless shop record must not move it to Start."
+      },
+      {
         "id": "romulus-greed-chest-item",
         "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Romulus%27_Tazesaber",
         "sourceVersion": "Ancients Awakened 1.0.3.2 guide; verified against AAModClassic 1.0.10",
@@ -281,9 +323,9 @@
       {
         "id": "any-ancient-crafting-station-stage",
         "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Crafting_materials",
-        "sourceVersion": "Ancients Awakened 1.0.3.2 guide; verified against AAModClassic 1.0.10 recipes",
-        "checkedAt": "2026-07-12",
-        "reason": "The guide uses these stations for the post-Equinox material tier. Later recipes remain gated by their later ingredients, including EX Soul."
+        "sourceVersion": "AAModClassic 1.0.17 recipes and station acquisition",
+        "checkedAt": "2026-07-30",
+        "reason": "Equinox materials are available after the Equinox Worms, but Any Ancient Crafting Station itself is not available until Sisters of Discord. Every recipe using the station must inherit that later floor."
       },
       {
         "id": "quantum-fusion-accelerator-stage",
@@ -402,7 +444,7 @@
         "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/The_Mire",
         "sourceVersion": "Ancients Awakened 1.0.3.2 guide; verified against AAModClassic 1.0.10 snapshot recipes",
         "checkedAt": "2026-07-12",
-        "reason": "These are world-generation blocks, fossils, or drops from ordinary pre-Hardmode biome objects and enemies."
+        "reason": "These are world-generation blocks or drops from ordinary pre-Hardmode biome objects and enemies."
       },
       {
         "id": "hardmode-developer-treasure-bag-items",
@@ -1077,21 +1119,21 @@
   "audit": {
     "errors": [],
     "warnings": [
-      "64 recommendations precede proven availability and were suppressed",
-      "14 profile items have no acquisition source data",
-      "151 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
+      "66 recommendations precede proven availability and were suppressed",
+      "12 profile items have no acquisition source data",
+      "142 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
       "npcCount": 1007,
       "availabilityCount": 1007,
       "spawnCount": 960,
-      "observedSpawnCount": 293,
+      "observedSpawnCount": 310,
       "townCount": 47,
       "observedTownCount": 15,
       "fishingCount": 137,
       "shimmerTransformCount": 309,
       "dropSourceCount": 549,
-      "shopSourceCount": 26,
+      "shopSourceCount": 28,
       "globalDropCount": 38,
       "observed": [
         {
@@ -1298,7 +1340,8 @@
         {
           "source": "AAModClassic/Mushman",
           "kinds": [
-            "drop"
+            "drop",
+            "shop"
           ],
           "availabilityKind": "town",
           "earliestStageIndex": 1
@@ -1402,7 +1445,8 @@
         {
           "source": "AAModClassic/Samurai",
           "kinds": [
-            "drop"
+            "drop",
+            "shop"
           ],
           "availabilityKind": "town",
           "earliestStageIndex": 5
@@ -1742,6 +1786,14 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/BrainScrambler",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 28
         },
         {
           "source": "Terraria/Butcher",
@@ -2206,10 +2258,18 @@
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 16
+          "earliestStageIndex": 0
         },
         {
           "source": "Terraria/GoblinPeon",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/GoblinScout",
           "kinds": [
             "drop"
           ],
@@ -2222,10 +2282,26 @@
             "drop"
           ],
           "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/GoblinSummoner",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
           "earliestStageIndex": 16
         },
         {
           "source": "Terraria/GoblinThief",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/GoblinWarrior",
           "kinds": [
             "drop"
           ],
@@ -2247,6 +2323,14 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/GrayGrunt",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 28
         },
         {
           "source": "Terraria/GreekSkeleton",
@@ -2481,6 +2565,38 @@
           "earliestStageIndex": 0
         },
         {
+          "source": "Terraria/MartianDrone",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 28
+        },
+        {
+          "source": "Terraria/MartianEngineer",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 28
+        },
+        {
+          "source": "Terraria/MartianOfficer",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 28
+        },
+        {
+          "source": "Terraria/MartianTurret",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 28
+        },
+        {
           "source": "Terraria/MartianWalker",
           "kinds": [
             "drop"
@@ -2609,7 +2725,31 @@
           "earliestStageIndex": 0
         },
         {
+          "source": "Terraria/PirateCaptain",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 16
+        },
+        {
+          "source": "Terraria/PirateCorsair",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 16
+        },
+        {
           "source": "Terraria/PirateCrossbower",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 16
+        },
+        {
+          "source": "Terraria/PirateDeadeye",
           "kinds": [
             "drop"
           ],
@@ -2647,6 +2787,14 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/RayGunner",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 28
         },
         {
           "source": "Terraria/Reaper",
@@ -2785,6 +2933,22 @@
           "earliestStageIndex": 26
         },
         {
+          "source": "Terraria/Scutlix",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 28
+        },
+        {
+          "source": "Terraria/ScutlixRider",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 28
+        },
+        {
           "source": "Terraria/SeekerHead",
           "kinds": [
             "drop"
@@ -2855,6 +3019,14 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/SnowBalla",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 16
         },
         {
           "source": "Terraria/SnowFlinx",
@@ -3829,14 +4001,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/BrainScrambler",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/CorruptBunny",
           "kinds": [
             "drop"
@@ -3997,14 +4161,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/GoblinSummoner",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/GoblinTinkerer",
           "kinds": [
             "drop",
@@ -4027,14 +4183,6 @@
             "shop"
           ],
           "availabilityKind": "town",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/GrayGrunt",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
           "earliestStageIndex": -1
         },
         {
@@ -4079,14 +4227,6 @@
         },
         {
           "source": "Terraria/LihzahrdCrawler",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/MartianOfficer",
           "kinds": [
             "drop"
           ],
@@ -4214,14 +4354,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/RayGunner",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/RedDevil",
           "kinds": [
             "drop"
@@ -4262,14 +4394,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/ScutlixRider",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/SeaSnail",
           "kinds": [
             "drop"
@@ -4287,14 +4411,6 @@
         },
         {
           "source": "Terraria/SkeletronPrime",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/SnowBalla",
           "kinds": [
             "drop"
           ],
@@ -4890,22 +5006,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/GoblinScout",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/GoblinWarrior",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/GoldBunny",
           "kinds": [
             "drop"
@@ -5018,30 +5118,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/MartianDrone",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/MartianEngineer",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/MartianTurret",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Mechanic",
           "kinds": [
             "drop",
@@ -5130,30 +5206,6 @@
             "shop"
           ],
           "availabilityKind": "town",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/PirateCaptain",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/PirateCorsair",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/PirateDeadeye",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
           "earliestStageIndex": -1
         },
         {
@@ -5343,14 +5395,6 @@
         },
         {
           "source": "Terraria/Scarecrow8",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Scutlix",
           "kinds": [
             "drop"
           ],
@@ -5614,7 +5658,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.aamodclassic",
-    "generatedAtUtc": "2026-07-30T10:09:55.754Z",
+    "generatedAtUtc": "2026-07-30T21:10:19.788Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -5631,6 +5675,50 @@
       {
         "sourceKind": "drop",
         "source": "Terraria/GoblinThief",
+        "item": "AAModClassic/GoblinSoul",
+        "condition": {
+          "type": "AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+GoblinsDefated",
+          "description": "If the Goblin Army has been defeated",
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GoblinWarrior",
+        "item": "AAModClassic/GoblinSoul",
+        "condition": {
+          "type": "AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+GoblinsDefated",
+          "description": "If the Goblin Army has been defeated",
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GoblinSorcerer",
+        "item": "AAModClassic/GoblinSoul",
+        "condition": {
+          "type": "AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+GoblinsDefated",
+          "description": "If the Goblin Army has been defeated",
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GoblinScout",
+        "item": "AAModClassic/GoblinSoul",
+        "condition": {
+          "type": "AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+GoblinsDefated",
+          "description": "If the Goblin Army has been defeated",
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GoblinArcher",
         "item": "AAModClassic/GoblinSoul",
         "condition": {
           "type": "AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+GoblinsDefated",
@@ -8902,28 +8990,6 @@
         "condition": {
           "type": "AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+RevOrMaster",
           "description": "In Master Mode",
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GoblinSorcerer",
-        "item": "AAModClassic/GoblinSoul",
-        "condition": {
-          "type": "AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+GoblinsDefated",
-          "description": "If the Goblin Army has been defeated",
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GoblinArcher",
-        "item": "AAModClassic/GoblinSoul",
-        "condition": {
-          "type": "AAModClassic.Utilities.AbstractsLikeDigitalCircus.Items.AAConditions+GoblinsDefated",
-          "description": "If the Goblin Army has been defeated",
           "key": "",
           "facts": []
         }
@@ -17892,11 +17958,6 @@
       },
       {
         "stage": "start",
-        "id": "AAModClassic/DynaskullFossil",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "AAModClassic/OuroborosWood",
         "reason": "not combat equipment"
       },
@@ -18222,6 +18283,16 @@
       },
       {
         "stage": "mushroom-monarch",
+        "id": "AAModClassic/MyceliumSeeds",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "mushroom-monarch",
+        "id": "Terraria/MushroomGrassSeeds",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "mushroom-monarch",
         "id": "AAModClassic/HallamBag",
         "reason": "not combat equipment"
       },
@@ -18337,6 +18408,11 @@
       },
       {
         "stage": "mushroom-monarch",
+        "id": "Terraria/MusicBoxMushrooms",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "mushroom-monarch",
         "id": "AAModClassic/AncientCoin",
         "reason": "not combat equipment"
       },
@@ -18358,6 +18434,11 @@
       {
         "stage": "mushroom-monarch",
         "id": "AAModClassic/Mushpick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "mushroom-monarch",
+        "id": "Terraria/JungleGrassSeeds",
         "reason": "not combat equipment"
       },
       {
@@ -18692,6 +18773,56 @@
       },
       {
         "stage": "mushroom-monarch",
+        "id": "Terraria/Jungle2Echo",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "mushroom-monarch",
+        "id": "Terraria/Jungle4Echo",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "mushroom-monarch",
+        "id": "Terraria/GreenThread",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "mushroom-monarch",
+        "id": "Terraria/HerosHat",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "mushroom-monarch",
+        "id": "Terraria/HerosShirt",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "mushroom-monarch",
+        "id": "Terraria/HerosPants",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "mushroom-monarch",
+        "id": "Terraria/SuperHeroMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "mushroom-monarch",
+        "id": "Terraria/SuperHeroCostume",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "mushroom-monarch",
+        "id": "Terraria/SuperHeroTights",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "mushroom-monarch",
+        "id": "Terraria/MusicBoxJungle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "mushroom-monarch",
         "id": "AAModClassic/HallamChestplateS",
         "reason": "not combat equipment"
       },
@@ -18728,6 +18859,16 @@
       {
         "stage": "mushroom-monarch",
         "id": "AAModClassic/PlutoHelmetS",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "mushroom-monarch",
+        "id": "Terraria/GreenStucco",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "mushroom-monarch",
+        "id": "Terraria/GreenStuccoWall",
         "reason": "not combat equipment"
       },
       {
@@ -19057,11 +19198,6 @@
       },
       {
         "stage": "eye-of-cthulhu",
-        "id": "Terraria/MushroomGrassSeeds",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
         "id": "Terraria/DryadCoverings",
         "reason": "not combat equipment"
       },
@@ -19123,11 +19259,6 @@
       {
         "stage": "eye-of-cthulhu",
         "id": "Terraria/FlowerPacketTallGrass",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "AAModClassic/MyceliumSeeds",
         "reason": "not combat equipment"
       },
       {
@@ -19237,11 +19368,6 @@
       },
       {
         "stage": "eye-of-cthulhu",
-        "id": "Terraria/MusicBoxMushrooms",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
         "id": "Terraria/MusicBoxCorruption",
         "reason": "not combat equipment"
       },
@@ -19252,72 +19378,7 @@
       },
       {
         "stage": "eye-of-cthulhu",
-        "id": "Terraria/JungleGrassSeeds",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/Jungle2Echo",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/Jungle4Echo",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
         "id": "Terraria/ShadowCandle",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/GreenThread",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/HerosHat",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/HerosShirt",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/HerosPants",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/SuperHeroMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/SuperHeroCostume",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/SuperHeroTights",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/MusicBoxJungle",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/GreenStucco",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
-        "id": "Terraria/GreenStuccoWall",
         "reason": "not combat equipment"
       },
       {
@@ -19352,7 +19413,42 @@
       },
       {
         "stage": "grips-of-chaos",
+        "id": "Terraria/RedDynastyShingles",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "grips-of-chaos",
+        "id": "AAModClassic/ScorchedSeeds",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "grips-of-chaos",
+        "id": "AAModClassic/Sunpowder",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "grips-of-chaos",
+        "id": "Terraria/BlueDynastyShingles",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "grips-of-chaos",
+        "id": "AAModClassic/DankSeeds",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "grips-of-chaos",
+        "id": "AAModClassic/Moonpowder",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "grips-of-chaos",
         "id": "AAModClassic/GripsBox",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "grips-of-chaos",
+        "id": "AAModClassic/AncientBell",
         "reason": "not combat equipment"
       },
       {
@@ -19377,6 +19473,16 @@
       },
       {
         "stage": "grips-of-chaos",
+        "id": "AAModClassic/ScorchedShingles",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "grips-of-chaos",
+        "id": "AAModClassic/HydraChow",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "grips-of-chaos",
         "id": "AAModClassic/AbyssiumBar",
         "reason": "not combat equipment"
       },
@@ -19388,6 +19494,11 @@
       {
         "stage": "grips-of-chaos",
         "id": "AAModClassic/SunkenShipBox",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "grips-of-chaos",
+        "id": "AAModClassic/RottedShingles",
         "reason": "not combat equipment"
       },
       {
@@ -21226,6 +21337,11 @@
         "reason": "not combat equipment"
       },
       {
+        "stage": "skeletron",
+        "id": "AAModClassic/DynaskullFossil",
+        "reason": "not combat equipment"
+      },
+      {
         "stage": "subzero-serpent",
         "id": "AAModClassic/SubzeroSerpentTreasureBag",
         "reason": "not combat equipment"
@@ -21918,6 +22034,21 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/PottedHallowBamboo",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "AAModClassic/OrangeSolution",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "AAModClassic/OrderSolution",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "AAModClassic/IndigoSolution",
         "reason": "not combat equipment"
       },
       {
@@ -25377,6 +25508,21 @@
       },
       {
         "stage": "golem",
+        "id": "Terraria/MartianCostumeMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "golem",
+        "id": "Terraria/MartianCostumeShirt",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "golem",
+        "id": "Terraria/MartianCostumePants",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "golem",
         "id": "Terraria/MartianUniformHelmet",
         "reason": "not combat equipment"
       },
@@ -25388,6 +25534,11 @@
       {
         "stage": "golem",
         "id": "Terraria/MartianUniformPants",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "golem",
+        "id": "Terraria/BrainScrambler",
         "reason": "not combat equipment"
       },
       {
@@ -25488,26 +25639,6 @@
       {
         "stage": "golem",
         "id": "Terraria/MartianSaucerTrophy",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "Terraria/MartianCostumeMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "Terraria/MartianCostumeShirt",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "Terraria/MartianCostumePants",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "Terraria/BrainScrambler",
         "reason": "not combat equipment"
       },
       {
@@ -26802,131 +26933,6 @@
       },
       {
         "stage": "equinox-worms",
-        "id": "AAModClassic/ApocalyptitePlate",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomsdayCircuitPlating",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomsdayPlatingWall",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/VoidPostMLBox",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/VoidUnit",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/BinaryReassembler",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomBathtub",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomBed",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomBookcase",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomCandelabra",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomCandle",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomChair",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomChandelier",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomChest",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomClock",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomCouch",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomDoor",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomDresser",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomLamp",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomLantern",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomPiano",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomPlatform",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomSink",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomTable",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomWorkbench",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
         "id": "AAModClassic/DarkmatterOre",
         "reason": "not combat equipment"
       },
@@ -26993,11 +26999,6 @@
       {
         "stage": "equinox-worms",
         "id": "AAModClassic/Starminer",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "equinox-worms",
-        "id": "AAModClassic/DoomsdayTesseract",
         "reason": "not combat equipment"
       },
       {
@@ -27097,6 +27098,36 @@
       },
       {
         "stage": "sisters-of-discord",
+        "id": "AAModClassic/ApocalyptitePlate",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomsdayCircuitPlating",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomsdayPlatingWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/VoidPostMLBox",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/VoidUnit",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/BinaryReassembler",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
         "id": "AAModClassic/SistersBox",
         "reason": "not combat equipment"
       },
@@ -27138,6 +27169,106 @@
       {
         "stage": "sisters-of-discord",
         "id": "AAModClassic/DreadMoonSigil",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomsdayTesseract",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomBathtub",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomBed",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomBookcase",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomCandelabra",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomCandle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomChair",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomChandelier",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomClock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomCouch",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomDoor",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomDresser",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomLamp",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomLantern",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomPiano",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomPlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomTable",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "sisters-of-discord",
+        "id": "AAModClassic/DoomWorkbench",
         "reason": "not combat equipment"
       },
       {
@@ -28611,30 +28742,6 @@
           "prerequisites": []
         }
       },
-      "AAModClassic/OldOneCharm": {
-        "stage": "start",
-        "via": "shop:AAModClassic/GoblinSlayer",
-        "eventCategory": "GoblinArmy",
-        "customEventName": "",
-        "eventIcon": "",
-        "evidence": {
-          "kind": "shop",
-          "conditions": [],
-          "prerequisites": []
-        }
-      },
-      "AAModClassic/EnergyConduit": {
-        "stage": "start",
-        "via": "shop:AAModClassic/GoblinSlayer",
-        "eventCategory": "GoblinArmy",
-        "customEventName": "",
-        "eventIcon": "",
-        "evidence": {
-          "kind": "shop",
-          "conditions": [],
-          "prerequisites": []
-        }
-      },
       "Terraria/BloodyMachete": {
         "stage": "start",
         "via": "global:Terraria/GlobalNPCDrops"
@@ -29855,14 +29962,6 @@
         "stage": "start",
         "via": "manifest"
       },
-      "AAModClassic/AmberSaber": {
-        "stage": "start",
-        "via": "recipe:Terraria/Amber+AAModClassic/DynaskullFossil"
-      },
-      "AAModClassic/FossilBoneslinger": {
-        "stage": "start",
-        "via": "recipe:AAModClassic/DynaskullFossil"
-      },
       "AAModClassic/RazewoodChestplate": {
         "stage": "start",
         "via": "recipe:AAModClassic/Razewood"
@@ -29902,10 +30001,6 @@
       "AAModClassic/OuroborosLeggings": {
         "stage": "start",
         "via": "recipe:AAModClassic/OuroborosWood"
-      },
-      "AAModClassic/AmberGreatsword": {
-        "stage": "start",
-        "via": "recipe:AAModClassic/AmberSaber+Terraria/LargeAmber"
       },
       "AAModClassic/HeartyTruffle": {
         "stage": "mushroom-monarch",
@@ -30059,9 +30154,35 @@
         "stage": "grips-of-chaos",
         "via": "container:AAModClassic/GripsOfChaosTreasureBag"
       },
+      "AAModClassic/LuckyCracker": {
+        "stage": "grips-of-chaos",
+        "via": "shop:AAModClassic/Samurai",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/RoninPotion": {
+        "stage": "grips-of-chaos",
+        "via": "shop:AAModClassic/Samurai",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
+      },
       "AAModClassic/BulwarkOfChaos": {
         "stage": "grips-of-chaos",
         "via": "recipe:AAModClassic/ClawOfChaos+Terraria/EoCShield"
+      },
+      "AAModClassic/StripemansLuckyHelmet": {
+        "stage": "grips-of-chaos",
+        "via": "recipe:Terraria/MiningHelmet+Terraria/MiningShirt+Terraria/MiningPants+Terraria/BonePickaxe+Terraria/ArchitectGizmoPack+AAModClassic/LuckyCracker"
+      },
+      "AAModClassic/StripemansLuckyLeggings": {
+        "stage": "grips-of-chaos",
+        "via": "recipe:Terraria/AnglerHat+Terraria/AnglerVest+Terraria/AnglerPants+Terraria/AnglerTackleBag+AAModClassic/ShinyCharmFish+AAModClassic/LuckyCracker"
       },
       "AAModClassic/DragonFlamebow": {
         "stage": "grips-of-chaos",
@@ -30119,62 +30240,6 @@
         "stage": "grips-of-chaos",
         "via": "recipe:Terraria/WoodenArrow+AAModClassic/IncineriteBar"
       },
-      "AAModClassic/LuckyCalmingPotion": {
-        "stage": "grips-of-chaos",
-        "via": "manifest"
-      },
-      "AAModClassic/LuckyEndurancePotion": {
-        "stage": "grips-of-chaos",
-        "via": "manifest"
-      },
-      "AAModClassic/LuckyIronskinPotion": {
-        "stage": "grips-of-chaos",
-        "via": "manifest"
-      },
-      "AAModClassic/LuckyLifeforcePotion": {
-        "stage": "grips-of-chaos",
-        "via": "manifest"
-      },
-      "AAModClassic/LuckyRagePotion": {
-        "stage": "grips-of-chaos",
-        "via": "manifest"
-      },
-      "AAModClassic/LuckyRegenerationPotion": {
-        "stage": "grips-of-chaos",
-        "via": "manifest"
-      },
-      "AAModClassic/LuckySummoningPotion": {
-        "stage": "grips-of-chaos",
-        "via": "manifest"
-      },
-      "AAModClassic/LuckySwiftnessPotion": {
-        "stage": "grips-of-chaos",
-        "via": "manifest"
-      },
-      "AAModClassic/LuckyThornsPotion": {
-        "stage": "grips-of-chaos",
-        "via": "manifest"
-      },
-      "AAModClassic/LuckyWrathPotion": {
-        "stage": "grips-of-chaos",
-        "via": "manifest"
-      },
-      "AAModClassic/RoninPotion": {
-        "stage": "grips-of-chaos",
-        "via": "manifest"
-      },
-      "AAModClassic/LuckyCracker": {
-        "stage": "grips-of-chaos",
-        "via": "manifest"
-      },
-      "AAModClassic/StripemansLuckyHelmet": {
-        "stage": "grips-of-chaos",
-        "via": "recipe:Terraria/MiningHelmet+Terraria/MiningShirt+Terraria/MiningPants+Terraria/BonePickaxe+Terraria/ArchitectGizmoPack+AAModClassic/LuckyCracker"
-      },
-      "AAModClassic/StripemansLuckyLeggings": {
-        "stage": "grips-of-chaos",
-        "via": "recipe:Terraria/AnglerHat+Terraria/AnglerVest+Terraria/AnglerPants+Terraria/AnglerTackleBag+AAModClassic/ShinyCharmFish+AAModClassic/LuckyCracker"
-      },
       "AAModClassic/MushrockStaff": {
         "stage": "truffle-toad",
         "via": "npc:AAModClassic/TruffleToad"
@@ -30215,6 +30280,25 @@
       "Terraria/AleThrowingGlove": {
         "stage": "world-evil",
         "via": "npc:Terraria/DD2Bartender"
+      },
+      "AAModClassic/OldOneCharm": {
+        "stage": "world-evil",
+        "via": "shop:AAModClassic/GoblinSlayer",
+        "eventCategory": "GoblinArmy",
+        "customEventName": "",
+        "eventIcon": "",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.CustomCurrency",
+              "description": "Old One's Army item purchased with Defender Medals",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
       },
       "Terraria/DD2FlameburstTowerT1Popper": {
         "stage": "world-evil",
@@ -30843,6 +30927,58 @@
         "stage": "skeletron",
         "via": "manifest"
       },
+      "AAModClassic/LuckyCalmingPotion": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "AAModClassic/LuckyEndurancePotion": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "AAModClassic/LuckyIronskinPotion": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "AAModClassic/LuckyLifeforcePotion": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "AAModClassic/LuckyRagePotion": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "AAModClassic/LuckyRegenerationPotion": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "AAModClassic/LuckySummoningPotion": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "AAModClassic/LuckySwiftnessPotion": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "AAModClassic/LuckyThornsPotion": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "AAModClassic/LuckyWrathPotion": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
+      "AAModClassic/AmberSaber": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Amber+AAModClassic/DynaskullFossil"
+      },
+      "AAModClassic/FossilBoneslinger": {
+        "stage": "skeletron",
+        "via": "recipe:AAModClassic/DynaskullFossil"
+      },
+      "AAModClassic/AmberGreatsword": {
+        "stage": "skeletron",
+        "via": "recipe:AAModClassic/AmberSaber+Terraria/LargeAmber"
+      },
       "AAModClassic/SnowflakeShuriken": {
         "stage": "subzero-serpent",
         "via": "npc:AAModClassic/SubzeroSerpentHead"
@@ -31091,6 +31227,18 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/GreenJellyfish"
       },
+      "Terraria/Arkhalis": {
+        "stage": "wall-of-flesh",
+        "via": "container:AAModClassic/GripsOfChaosTreasureBag"
+      },
+      "Terraria/RedsYoyo": {
+        "stage": "wall-of-flesh",
+        "via": "container:AAModClassic/GripsOfChaosTreasureBag"
+      },
+      "Terraria/ValkyrieYoyo": {
+        "stage": "wall-of-flesh",
+        "via": "container:AAModClassic/GripsOfChaosTreasureBag"
+      },
       "Terraria/FastClock": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/Pixie"
@@ -31204,6 +31352,27 @@
       "Terraria/Cutlass": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/PirateDeckhand"
+      },
+      "Terraria/ShadowFlameBow": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/GoblinSummoner",
+        "eventCategory": "GoblinArmy",
+        "customEventName": "",
+        "eventIcon": ""
+      },
+      "Terraria/ShadowFlameHexDoll": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/GoblinSummoner",
+        "eventCategory": "GoblinArmy",
+        "customEventName": "",
+        "eventIcon": ""
+      },
+      "Terraria/ShadowFlameKnife": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/GoblinSummoner",
+        "eventCategory": "GoblinArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "Terraria/DartRifle": {
         "stage": "wall-of-flesh",
@@ -31336,18 +31505,6 @@
       "Terraria/CrystalVileShard": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/BigMimicHallow"
-      },
-      "Terraria/ShadowFlameBow": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/GoblinSummoner"
-      },
-      "Terraria/ShadowFlameHexDoll": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/GoblinSummoner"
-      },
-      "Terraria/ShadowFlameKnife": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/GoblinSummoner"
       },
       "Terraria/Frostbrand": {
         "stage": "wall-of-flesh",
@@ -31598,7 +31755,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Hardmode",
-              "key": "",
+              "key": "ProgressionJournal.Stage.wall-of-flesh",
               "facts": null
             }
           ],
@@ -32293,18 +32450,6 @@
         "via": "manifest"
       },
       "Terraria/CelestialEmblem": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/Arkhalis": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/RedsYoyo": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/ValkyrieYoyo": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
@@ -33696,7 +33841,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Plantera",
-              "key": "",
+              "key": "ProgressionJournal.Stage.plantera",
               "facts": null
             }
           ],
@@ -33712,7 +33857,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Plantera",
-              "key": "",
+              "key": "ProgressionJournal.Stage.plantera",
               "facts": null
             }
           ],
@@ -34150,7 +34295,7 @@
       },
       "Terraria/ChargedBlasterCannon": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper"
+        "via": "npc:Terraria/BrainScrambler"
       },
       "Terraria/DD2SquireBetsySword": {
         "stage": "golem",
@@ -34229,6 +34374,10 @@
         "via": "npc:Terraria/MartianSaucerCore"
       },
       "AAModClassic/AlienRifle": {
+        "stage": "golem",
+        "via": "npc:Terraria/MartianSaucerCore"
+      },
+      "AAModClassic/EnergyConduit": {
         "stage": "golem",
         "via": "npc:Terraria/MartianSaucerCore"
       },
@@ -34938,7 +35087,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -34954,7 +35103,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -34970,7 +35119,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -34986,7 +35135,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35002,7 +35151,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35018,7 +35167,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35034,7 +35183,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35050,7 +35199,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35066,7 +35215,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35082,7 +35231,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35098,7 +35247,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35114,7 +35263,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35130,7 +35279,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35146,7 +35295,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35162,7 +35311,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35178,7 +35327,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35194,7 +35343,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35210,7 +35359,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35226,7 +35375,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35242,7 +35391,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35258,7 +35407,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35274,7 +35423,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35290,7 +35439,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Moon Lord",
-              "key": "",
+              "key": "ProgressionJournal.Stage.moon-lord",
               "facts": null
             }
           ],
@@ -35461,10 +35610,6 @@
         "stage": "equinox-worms",
         "via": "recipe:Terraria/NebulaArcanum+AAModClassic/RadiantPhoton+AAModClassic/DarkEnergy"
       },
-      "AAModClassic/Equinox": {
-        "stage": "equinox-worms",
-        "via": "recipe:Terraria/CelestialShell+AAModClassic/RadiantStar+AAModClassic/DarkVoid+AAModClassic/RadiantPhoton+AAModClassic/DarkEnergy"
-      },
       "AAModClassic/BreakingDawn": {
         "stage": "equinox-worms",
         "via": "recipe:AAModClassic/RadiantPhoton+AAModClassic/RadiumBar"
@@ -35621,6 +35766,10 @@
         "stage": "sisters-of-discord",
         "via": "container:AAModClassic/MidnightAssassinBag"
       },
+      "AAModClassic/Equinox": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:Terraria/CelestialShell+AAModClassic/RadiantStar+AAModClassic/DarkVoid+AAModClassic/RadiantPhoton+AAModClassic/DarkEnergy"
+      },
       "AAModClassic/ChaosBaton": {
         "stage": "sisters-of-discord",
         "via": "recipe:AAModClassic/ClawBaton+AAModClassic/DaybreakIncineriteBar+AAModClassic/EventideAbyssiumBar"
@@ -35688,6 +35837,24 @@
       "AAModClassic/YearOfTheDragon": {
         "stage": "akuma",
         "via": "npc:AAModClassic/AkumaHead"
+      },
+      "AAModClassic/GrandHealingPotion": {
+        "stage": "akuma",
+        "via": "shop:AAModClassic/Mushman",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/GrandManaPotion": {
+        "stage": "akuma",
+        "via": "shop:AAModClassic/Mushman",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
       },
       "AAModClassic/TaiyangBaolei": {
         "stage": "akuma",
@@ -35869,14 +36036,6 @@
         "stage": "zero",
         "via": "container:AAModClassic/ZeroTreasureBag"
       },
-      "AAModClassic/GrandHealingPotion": {
-        "stage": "zero",
-        "via": "recipe:Terraria/SuperHealingPotion+AAModClassic/UnstableSingularity"
-      },
-      "AAModClassic/GrandManaPotion": {
-        "stage": "zero",
-        "via": "recipe:Terraria/SuperManaPotion+AAModClassic/UnstableSingularity"
-      },
       "AAModClassic/ZeroWings": {
         "stage": "zero",
         "via": "recipe:AAModClassic/ApocalyptitePlate+AAModClassic/UnstableSingularity"
@@ -35992,6 +36151,15 @@
       "AAModClassic/Timesplitter": {
         "stage": "shen-doragon",
         "via": "npc:AAModClassic/ShenDoragon"
+      },
+      "AAModClassic/TheBigOne": {
+        "stage": "shen-doragon",
+        "via": "shop:AAModClassic/Mushman",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
       },
       "AAModClassic/EmperorFishronWings": {
         "stage": "shen-doragon",
@@ -36232,10 +36400,6 @@
       "AAModClassic/UWAM": {
         "stage": "shen-doragon",
         "via": "recipe:Terraria/SDMG+AAModClassic/EXSoul"
-      },
-      "AAModClassic/TheBigOne": {
-        "stage": "shen-doragon",
-        "via": "recipe:AAModClassic/GrandHealingPotion+AAModClassic/GrandManaPotion+AAModClassic/ChaosScale"
       },
       "AAModClassic/Duality": {
         "stage": "shen-doragon",
@@ -43779,10 +43943,6 @@
         "stage": "start",
         "via": "manifest"
       },
-      "AAModClassic/DynaskullFossil": {
-        "stage": "start",
-        "via": "manifest"
-      },
       "AAModClassic/OuroborosWood": {
         "stage": "start",
         "via": "manifest"
@@ -44043,6 +44203,24 @@
         "stage": "mushroom-monarch",
         "via": "npc:AAModClassic/MushroomMonarch"
       },
+      "AAModClassic/MyceliumSeeds": {
+        "stage": "mushroom-monarch",
+        "via": "shop:AAModClassic/Mushman",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
+      },
+      "Terraria/MushroomGrassSeeds": {
+        "stage": "mushroom-monarch",
+        "via": "shop:AAModClassic/Mushman",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
+      },
       "AAModClassic/HallamBag": {
         "stage": "mushroom-monarch",
         "via": "container:AAModClassic/MushroomMonarchTreasureBag"
@@ -44135,6 +44313,10 @@
         "stage": "mushroom-monarch",
         "via": "container:AAModClassic/MushroomMonarchTreasureBag"
       },
+      "Terraria/MusicBoxMushrooms": {
+        "stage": "mushroom-monarch",
+        "via": "recipe:Terraria/MusicBox+Terraria/GlowingMushroom+Terraria/Mushroom+Terraria/MushroomGrassSeeds"
+      },
       "AAModClassic/AncientCoin": {
         "stage": "mushroom-monarch",
         "via": "recipe:AAModClassic/BigEBag"
@@ -44154,6 +44336,10 @@
       "AAModClassic/Mushpick": {
         "stage": "mushroom-monarch",
         "via": "recipe:Terraria/Mushroom+AAModClassic/MushiumBar"
+      },
+      "Terraria/JungleGrassSeeds": {
+        "stage": "mushroom-monarch",
+        "via": "shimmer:Terraria/MushroomGrassSeeds"
       },
       "AAModClassic/HallamHelmet": {
         "stage": "mushroom-monarch",
@@ -44419,6 +44605,46 @@
         "stage": "mushroom-monarch",
         "via": "container:AAModClassic/ShoxBag"
       },
+      "Terraria/Jungle2Echo": {
+        "stage": "mushroom-monarch",
+        "via": "recipe:Terraria/JungleGrassSeeds"
+      },
+      "Terraria/Jungle4Echo": {
+        "stage": "mushroom-monarch",
+        "via": "recipe:Terraria/JungleGrassSeeds"
+      },
+      "Terraria/GreenThread": {
+        "stage": "mushroom-monarch",
+        "via": "recipe:Terraria/JungleGrassSeeds"
+      },
+      "Terraria/HerosHat": {
+        "stage": "mushroom-monarch",
+        "via": "recipe:Terraria/Silk+Terraria/GreenThread"
+      },
+      "Terraria/HerosShirt": {
+        "stage": "mushroom-monarch",
+        "via": "recipe:Terraria/Silk+Terraria/GreenThread"
+      },
+      "Terraria/HerosPants": {
+        "stage": "mushroom-monarch",
+        "via": "recipe:Terraria/Silk+Terraria/GreenThread"
+      },
+      "Terraria/SuperHeroMask": {
+        "stage": "mushroom-monarch",
+        "via": "recipe:Terraria/Silk+Terraria/GreenThread"
+      },
+      "Terraria/SuperHeroCostume": {
+        "stage": "mushroom-monarch",
+        "via": "recipe:Terraria/Silk+Terraria/GreenThread"
+      },
+      "Terraria/SuperHeroTights": {
+        "stage": "mushroom-monarch",
+        "via": "recipe:Terraria/Silk+Terraria/GreenThread"
+      },
+      "Terraria/MusicBoxJungle": {
+        "stage": "mushroom-monarch",
+        "via": "recipe:Terraria/MusicBox+Terraria/MudBlock+Terraria/JungleGrassSeeds+Terraria/RichMahogany"
+      },
       "AAModClassic/HallamChestplateS": {
         "stage": "mushroom-monarch",
         "via": "recipe:AAModClassic/HallamChestplate+AAModClassic/ShinyCharm"
@@ -44450,6 +44676,14 @@
       "AAModClassic/PlutoHelmetS": {
         "stage": "mushroom-monarch",
         "via": "recipe:AAModClassic/PlutoHelmet+AAModClassic/ShinyCharm"
+      },
+      "Terraria/GreenStucco": {
+        "stage": "mushroom-monarch",
+        "via": "recipe:Terraria/SiltBlock+Terraria/StoneBlock+Terraria/GreenThread"
+      },
+      "Terraria/GreenStuccoWall": {
+        "stage": "mushroom-monarch",
+        "via": "recipe:Terraria/GreenStucco"
       },
       "AAModClassic/FeudalFungusTreasureBag": {
         "stage": "feudal-fungus",
@@ -44773,28 +45007,6 @@
           "prerequisites": []
         }
       },
-      "Terraria/MushroomGrassSeeds": {
-        "stage": "eye-of-cthulhu",
-        "via": "shop:Terraria/Dryad",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "Terraria.Condition",
-              "description": "Not in the Underworld",
-              "key": "Conditions.NotInUnderworld",
-              "facts": []
-            },
-            {
-              "type": "Terraria.Condition",
-              "description": "In a Mushroom biome",
-              "key": "Conditions.InGlowshroom",
-              "facts": []
-            }
-          ],
-          "prerequisites": []
-        }
-      },
       "Terraria/DryadCoverings": {
         "stage": "eye-of-cthulhu",
         "via": "shop:Terraria/Dryad",
@@ -44940,22 +45152,6 @@
           "prerequisites": []
         }
       },
-      "AAModClassic/MyceliumSeeds": {
-        "stage": "eye-of-cthulhu",
-        "via": "shop:Terraria/Dryad",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "Terraria.Condition",
-              "description": "In a Mushroom biome",
-              "key": "Conditions.InGlowshroom",
-              "facts": []
-            }
-          ],
-          "prerequisites": []
-        }
-      },
       "Terraria/UnholyWater": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/BottledWater+Terraria/EbonsandBlock+Terraria/CorruptSeeds"
@@ -45040,10 +45236,6 @@
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/MusicBox+Terraria/GrassSeeds+Terraria/DirtBlock+Terraria/Wood"
       },
-      "Terraria/MusicBoxMushrooms": {
-        "stage": "eye-of-cthulhu",
-        "via": "recipe:Terraria/MusicBox+Terraria/GlowingMushroom+Terraria/Mushroom+Terraria/MushroomGrassSeeds"
-      },
       "Terraria/MusicBoxCorruption": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/MusicBox+Terraria/RottenChunk+Terraria/CorruptSeeds"
@@ -45052,61 +45244,9 @@
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/MusicBox+Terraria/Vertebrae+Terraria/CrimsonSeeds"
       },
-      "Terraria/JungleGrassSeeds": {
-        "stage": "eye-of-cthulhu",
-        "via": "shimmer:Terraria/MushroomGrassSeeds"
-      },
-      "Terraria/Jungle2Echo": {
-        "stage": "eye-of-cthulhu",
-        "via": "recipe:Terraria/JungleGrassSeeds"
-      },
-      "Terraria/Jungle4Echo": {
-        "stage": "eye-of-cthulhu",
-        "via": "recipe:Terraria/JungleGrassSeeds"
-      },
       "Terraria/ShadowCandle": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/DemoniteBar+Terraria/Torch"
-      },
-      "Terraria/GreenThread": {
-        "stage": "eye-of-cthulhu",
-        "via": "recipe:Terraria/JungleGrassSeeds"
-      },
-      "Terraria/HerosHat": {
-        "stage": "eye-of-cthulhu",
-        "via": "recipe:Terraria/Silk+Terraria/GreenThread"
-      },
-      "Terraria/HerosShirt": {
-        "stage": "eye-of-cthulhu",
-        "via": "recipe:Terraria/Silk+Terraria/GreenThread"
-      },
-      "Terraria/HerosPants": {
-        "stage": "eye-of-cthulhu",
-        "via": "recipe:Terraria/Silk+Terraria/GreenThread"
-      },
-      "Terraria/SuperHeroMask": {
-        "stage": "eye-of-cthulhu",
-        "via": "recipe:Terraria/Silk+Terraria/GreenThread"
-      },
-      "Terraria/SuperHeroCostume": {
-        "stage": "eye-of-cthulhu",
-        "via": "recipe:Terraria/Silk+Terraria/GreenThread"
-      },
-      "Terraria/SuperHeroTights": {
-        "stage": "eye-of-cthulhu",
-        "via": "recipe:Terraria/Silk+Terraria/GreenThread"
-      },
-      "Terraria/MusicBoxJungle": {
-        "stage": "eye-of-cthulhu",
-        "via": "recipe:Terraria/MusicBox+Terraria/MudBlock+Terraria/JungleGrassSeeds+Terraria/RichMahogany"
-      },
-      "Terraria/GreenStucco": {
-        "stage": "eye-of-cthulhu",
-        "via": "recipe:Terraria/SiltBlock+Terraria/StoneBlock+Terraria/GreenThread"
-      },
-      "Terraria/GreenStuccoWall": {
-        "stage": "eye-of-cthulhu",
-        "via": "recipe:Terraria/GreenStucco"
       },
       "AAModClassic/InfernoGripTrophy": {
         "stage": "grips-of-chaos",
@@ -45132,9 +45272,67 @@
         "stage": "grips-of-chaos",
         "via": "container:AAModClassic/GripsOfChaosTreasureBag"
       },
+      "Terraria/RedDynastyShingles": {
+        "stage": "grips-of-chaos",
+        "via": "shop:AAModClassic/Samurai",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/ScorchedSeeds": {
+        "stage": "grips-of-chaos",
+        "via": "shop:AAModClassic/Samurai",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/Sunpowder": {
+        "stage": "grips-of-chaos",
+        "via": "shop:AAModClassic/Samurai",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
+      },
+      "Terraria/BlueDynastyShingles": {
+        "stage": "grips-of-chaos",
+        "via": "shop:AAModClassic/Samurai",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/DankSeeds": {
+        "stage": "grips-of-chaos",
+        "via": "shop:AAModClassic/Samurai",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/Moonpowder": {
+        "stage": "grips-of-chaos",
+        "via": "shop:AAModClassic/Samurai",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
+      },
       "AAModClassic/GripsBox": {
         "stage": "grips-of-chaos",
         "via": "recipe:Terraria/MusicBox+AAModClassic/IncineriteOre+AAModClassic/AbyssiumOre"
+      },
+      "AAModClassic/AncientBell": {
+        "stage": "grips-of-chaos",
+        "via": "recipe:AAModClassic/DragonScale+AAModClassic/Sunpowder"
       },
       "AAModClassic/IncineriteBar": {
         "stage": "grips-of-chaos",
@@ -45152,6 +45350,14 @@
         "stage": "grips-of-chaos",
         "via": "recipe:AAModClassic/IncineriteBar"
       },
+      "AAModClassic/ScorchedShingles": {
+        "stage": "grips-of-chaos",
+        "via": "recipe:Terraria/RedDynastyShingles"
+      },
+      "AAModClassic/HydraChow": {
+        "stage": "grips-of-chaos",
+        "via": "recipe:AAModClassic/MirePod+AAModClassic/Moonpowder"
+      },
       "AAModClassic/AbyssiumBar": {
         "stage": "grips-of-chaos",
         "via": "recipe:AAModClassic/AbyssiumOre"
@@ -45163,6 +45369,10 @@
       "AAModClassic/SunkenShipBox": {
         "stage": "grips-of-chaos",
         "via": "recipe:Terraria/MusicBox+AAModClassic/AbyssiumBar"
+      },
+      "AAModClassic/RottedShingles": {
+        "stage": "grips-of-chaos",
+        "via": "recipe:Terraria/BlueDynastyShingles"
       },
       "AAModClassic/RitualAltar": {
         "stage": "grips-of-chaos",
@@ -47380,6 +47590,10 @@
         "stage": "skeletron",
         "via": "manifest"
       },
+      "AAModClassic/DynaskullFossil": {
+        "stage": "skeletron",
+        "via": "manifest"
+      },
       "AAModClassic/SubzeroSerpentTreasureBag": {
         "stage": "subzero-serpent",
         "via": "npc:AAModClassic/SubzeroSerpentHead"
@@ -48401,6 +48615,33 @@
           "prerequisites": []
         }
       },
+      "AAModClassic/OrangeSolution": {
+        "stage": "wall-of-flesh",
+        "via": "shop:AAModClassic/Samurai",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/OrderSolution": {
+        "stage": "wall-of-flesh",
+        "via": "shop:AAModClassic/Samurai",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
+      },
+      "AAModClassic/IndigoSolution": {
+        "stage": "wall-of-flesh",
+        "via": "shop:AAModClassic/Samurai",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
+      },
       "Terraria/TikiTotem": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/WitchDoctor",
@@ -48722,14 +48963,7 @@
         "via": "shop:AAModClassic/LargeLetter",
         "evidence": {
           "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "ProgressionJournal.WorldOption",
-              "description": "World option: secret world option #2",
-              "key": "",
-              "facts": null
-            }
-          ],
+          "conditions": [],
           "prerequisites": []
         }
       },
@@ -51649,7 +51883,7 @@
             {
               "type": "ProgressionJournal.AfterProgression",
               "description": "Available after: Plantera",
-              "key": "",
+              "key": "ProgressionJournal.Stage.plantera",
               "facts": null
             }
           ],
@@ -52185,27 +52419,43 @@
       },
       "Terraria/MartianConduitPlating": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper"
+        "via": "npc:Terraria/BrainScrambler"
       },
       "Terraria/LaserDrill": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper"
+        "via": "npc:Terraria/BrainScrambler"
       },
       "Terraria/AntiGravityHook": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper"
+        "via": "npc:Terraria/BrainScrambler"
+      },
+      "Terraria/MartianCostumeMask": {
+        "stage": "golem",
+        "via": "npc:Terraria/BrainScrambler"
+      },
+      "Terraria/MartianCostumeShirt": {
+        "stage": "golem",
+        "via": "npc:Terraria/BrainScrambler"
+      },
+      "Terraria/MartianCostumePants": {
+        "stage": "golem",
+        "via": "npc:Terraria/BrainScrambler"
       },
       "Terraria/MartianUniformHelmet": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper"
+        "via": "npc:Terraria/MartianOfficer"
       },
       "Terraria/MartianUniformTorso": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper"
+        "via": "npc:Terraria/MartianOfficer"
       },
       "Terraria/MartianUniformPants": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper"
+        "via": "npc:Terraria/MartianOfficer"
+      },
+      "Terraria/BrainScrambler": {
+        "stage": "golem",
+        "via": "npc:Terraria/ScutlixRider"
       },
       "Terraria/BossTrophyBetsy": {
         "stage": "golem",
@@ -52313,22 +52563,6 @@
       "Terraria/MartianSaucerTrophy": {
         "stage": "golem",
         "via": "npc:Terraria/MartianSaucerCore"
-      },
-      "Terraria/MartianCostumeMask": {
-        "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
-      },
-      "Terraria/MartianCostumeShirt": {
-        "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
-      },
-      "Terraria/MartianCostumePants": {
-        "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
-      },
-      "Terraria/BrainScrambler": {
-        "stage": "golem",
-        "via": "npc:Terraria/ScutlixRider"
       },
       "Terraria/MartianHairDye": {
         "stage": "golem",
@@ -53551,106 +53785,6 @@
         "stage": "equinox-worms",
         "via": "recipe:Terraria/MusicBox+AAModClassic/DarkEnergy+AAModClassic/RadiantPhoton"
       },
-      "AAModClassic/ApocalyptitePlate": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/ApocalyptiteOre"
-      },
-      "AAModClassic/DoomsdayCircuitPlating": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/ApocalyptitePlate+Terraria/StoneBlock"
-      },
-      "AAModClassic/DoomsdayPlatingWall": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
-      },
-      "AAModClassic/VoidPostMLBox": {
-        "stage": "equinox-worms",
-        "via": "recipe:Terraria/MusicBox+AAModClassic/ApocalyptitePlate"
-      },
-      "AAModClassic/VoidUnit": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/ApocalyptitePlate"
-      },
-      "AAModClassic/BinaryReassembler": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/ApocalyptitePlate"
-      },
-      "AAModClassic/DoomBathtub": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
-      },
-      "AAModClassic/DoomBed": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Silk"
-      },
-      "AAModClassic/DoomBookcase": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Book"
-      },
-      "AAModClassic/DoomCandelabra": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Torch"
-      },
-      "AAModClassic/DoomCandle": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Torch"
-      },
-      "AAModClassic/DoomChair": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
-      },
-      "AAModClassic/DoomChandelier": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Torch+Terraria/Chain"
-      },
-      "AAModClassic/DoomChest": {
-        "stage": "equinox-worms",
-        "via": "recipe:Terraria/IronBar+AAModClassic/DoomsdayCircuitPlating"
-      },
-      "AAModClassic/DoomClock": {
-        "stage": "equinox-worms",
-        "via": "recipe:Terraria/Glass+Terraria/IronBar+AAModClassic/DoomsdayCircuitPlating"
-      },
-      "AAModClassic/DoomCouch": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Silk"
-      },
-      "AAModClassic/DoomDoor": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
-      },
-      "AAModClassic/DoomDresser": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
-      },
-      "AAModClassic/DoomLamp": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Torch"
-      },
-      "AAModClassic/DoomLantern": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Torch"
-      },
-      "AAModClassic/DoomPiano": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Book+Terraria/Bone"
-      },
-      "AAModClassic/DoomPlatform": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
-      },
-      "AAModClassic/DoomSink": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/WaterBucket"
-      },
-      "AAModClassic/DoomTable": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
-      },
-      "AAModClassic/DoomWorkbench": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
-      },
       "AAModClassic/DarkmatterOre": {
         "stage": "equinox-worms",
         "via": "manifest"
@@ -53706,10 +53840,6 @@
       "AAModClassic/Starminer": {
         "stage": "equinox-worms",
         "via": "recipe:AAModClassic/RadiumBar+AAModClassic/RadiantPhoton"
-      },
-      "AAModClassic/DoomsdayTesseract": {
-        "stage": "equinox-worms",
-        "via": "recipe:AAModClassic/ApocalyptitePlate+AAModClassic/DarkmatterBar"
       },
       "AAModClassic/EquinoxBrick": {
         "stage": "equinox-worms",
@@ -53787,6 +53917,30 @@
         "stage": "sisters-of-discord",
         "via": "recipe:Terraria/MusicBox+AAModClassic/EventideAbyssiumBar"
       },
+      "AAModClassic/ApocalyptitePlate": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/ApocalyptiteOre"
+      },
+      "AAModClassic/DoomsdayCircuitPlating": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/ApocalyptitePlate+Terraria/StoneBlock"
+      },
+      "AAModClassic/DoomsdayPlatingWall": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
+      },
+      "AAModClassic/VoidPostMLBox": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:Terraria/MusicBox+AAModClassic/ApocalyptitePlate"
+      },
+      "AAModClassic/VoidUnit": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/ApocalyptitePlate"
+      },
+      "AAModClassic/BinaryReassembler": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/ApocalyptitePlate"
+      },
       "AAModClassic/SistersBox": {
         "stage": "sisters-of-discord",
         "via": "recipe:Terraria/MusicBox+AAModClassic/DaybreakIncineriteBar+AAModClassic/EventideAbyssiumBar"
@@ -53822,6 +53976,86 @@
       "AAModClassic/DreadMoonSigil": {
         "stage": "sisters-of-discord",
         "via": "recipe:AAModClassic/EventideAbyssiumBar+AAModClassic/DarkmatterBar"
+      },
+      "AAModClassic/DoomsdayTesseract": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/ApocalyptitePlate+AAModClassic/DarkmatterBar"
+      },
+      "AAModClassic/DoomBathtub": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
+      },
+      "AAModClassic/DoomBed": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Silk"
+      },
+      "AAModClassic/DoomBookcase": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Book"
+      },
+      "AAModClassic/DoomCandelabra": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Torch"
+      },
+      "AAModClassic/DoomCandle": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Torch"
+      },
+      "AAModClassic/DoomChair": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
+      },
+      "AAModClassic/DoomChandelier": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Torch+Terraria/Chain"
+      },
+      "AAModClassic/DoomChest": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:Terraria/IronBar+AAModClassic/DoomsdayCircuitPlating"
+      },
+      "AAModClassic/DoomClock": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:Terraria/Glass+Terraria/IronBar+AAModClassic/DoomsdayCircuitPlating"
+      },
+      "AAModClassic/DoomCouch": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Silk"
+      },
+      "AAModClassic/DoomDoor": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
+      },
+      "AAModClassic/DoomDresser": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
+      },
+      "AAModClassic/DoomLamp": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Torch"
+      },
+      "AAModClassic/DoomLantern": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Torch"
+      },
+      "AAModClassic/DoomPiano": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Book+Terraria/Bone"
+      },
+      "AAModClassic/DoomPlatform": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
+      },
+      "AAModClassic/DoomSink": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/WaterBucket"
+      },
+      "AAModClassic/DoomTable": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
+      },
+      "AAModClassic/DoomWorkbench": {
+        "stage": "sisters-of-discord",
+        "via": "recipe:AAModClassic/DoomsdayCircuitPlating"
       },
       "AAModClassic/AkumaTrophy": {
         "stage": "akuma",
@@ -53937,7 +54171,10 @@
       },
       "AAModClassic/GoblinTinkererDoll": {
         "stage": "zero",
-        "via": "npc:Terraria/GoblinSummoner"
+        "via": "npc:Terraria/GoblinSummoner",
+        "eventCategory": "GoblinArmy",
+        "customEventName": "",
+        "eventIcon": ""
       },
       "AAModClassic/UnstableSingularity": {
         "stage": "zero",
@@ -58415,6 +58652,13 @@
         "reason": "recommendation precedes proven availability"
       },
       {
+        "id": "AAModClassic/AmberGreatsword",
+        "factualStage": "skeletron",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
         "id": "Terraria/Code1",
         "factualStage": "eye-of-cthulhu",
         "recommendedStage": "start",
@@ -58459,6 +58703,13 @@
       {
         "id": "Terraria/Arkhalis",
         "factualStage": "wall-of-flesh",
+        "recommendedStage": "queen-bee",
+        "wikiStage": "pre-skeletron",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "AAModClassic/AmberGreatsword",
+        "factualStage": "skeletron",
         "recommendedStage": "queen-bee",
         "wikiStage": "pre-skeletron",
         "reason": "recommendation precedes proven availability"
@@ -59148,6 +59399,13 @@
         ]
       },
       {
+        "source": "Terraria/BrainScrambler",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/ChargedBlasterCannon"
+        ]
+      },
+      {
         "source": "Terraria/CaveBat",
         "sourceKind": "drop",
         "items": [
@@ -59466,6 +59724,15 @@
         ]
       },
       {
+        "source": "Terraria/GoblinSummoner",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/ShadowFlameBow",
+          "Terraria/ShadowFlameHexDoll",
+          "Terraria/ShadowFlameKnife"
+        ]
+      },
+      {
         "source": "Terraria/GoblinThief",
         "sourceKind": "drop",
         "items": [
@@ -59493,6 +59760,13 @@
         "sourceKind": "drop",
         "items": [
           "Terraria/Spaghetti"
+        ]
+      },
+      {
+        "source": "Terraria/GrayGrunt",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/ChargedBlasterCannon"
         ]
       },
       {
@@ -59664,6 +59938,13 @@
       },
       {
         "source": "Terraria/MartianEngineer",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/ChargedBlasterCannon"
+        ]
+      },
+      {
+        "source": "Terraria/MartianOfficer",
         "sourceKind": "drop",
         "items": [
           "Terraria/ChargedBlasterCannon"
@@ -59870,6 +60151,13 @@
         ]
       },
       {
+        "source": "Terraria/RayGunner",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/ChargedBlasterCannon"
+        ]
+      },
+      {
         "source": "Terraria/Reaper",
         "sourceKind": "drop",
         "items": [
@@ -60022,6 +60310,13 @@
         "items": [
           "Terraria/Gel",
           "Terraria/SlimeStaff"
+        ]
+      },
+      {
+        "source": "Terraria/ScutlixRider",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/ChargedBlasterCannon"
         ]
       },
       {
@@ -60336,15 +60631,7 @@
       {
         "item": "AAModClassic/LuckyCalmingPotion",
         "displayName": "Lucky Calming Potion",
-        "stageId": "grips-of-chaos",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "AAModClassic/LuckyCracker",
-        "displayName": "Lucky Cracker",
-        "stageId": "grips-of-chaos",
+        "stageId": "skeletron",
         "category": "Potion",
         "entryKind": "combat-buff",
         "assignedVia": "manifest"
@@ -60352,7 +60639,7 @@
       {
         "item": "AAModClassic/LuckyEndurancePotion",
         "displayName": "Lucky Endurance Potion",
-        "stageId": "grips-of-chaos",
+        "stageId": "skeletron",
         "category": "Potion",
         "entryKind": "combat-buff",
         "assignedVia": "manifest"
@@ -60360,7 +60647,7 @@
       {
         "item": "AAModClassic/LuckyIronskinPotion",
         "displayName": "Lucky Ironskin Potion",
-        "stageId": "grips-of-chaos",
+        "stageId": "skeletron",
         "category": "Potion",
         "entryKind": "combat-buff",
         "assignedVia": "manifest"
@@ -60368,7 +60655,7 @@
       {
         "item": "AAModClassic/LuckyLifeforcePotion",
         "displayName": "Lucky Lifeforce Potion",
-        "stageId": "grips-of-chaos",
+        "stageId": "skeletron",
         "category": "Potion",
         "entryKind": "combat-buff",
         "assignedVia": "manifest"
@@ -60376,7 +60663,7 @@
       {
         "item": "AAModClassic/LuckyRagePotion",
         "displayName": "Lucky Rage Potion",
-        "stageId": "grips-of-chaos",
+        "stageId": "skeletron",
         "category": "Potion",
         "entryKind": "combat-buff",
         "assignedVia": "manifest"
@@ -60384,7 +60671,7 @@
       {
         "item": "AAModClassic/LuckyRegenerationPotion",
         "displayName": "Lucky Regeneration Potion",
-        "stageId": "grips-of-chaos",
+        "stageId": "skeletron",
         "category": "Potion",
         "entryKind": "combat-buff",
         "assignedVia": "manifest"
@@ -60392,7 +60679,7 @@
       {
         "item": "AAModClassic/LuckySummoningPotion",
         "displayName": "Lucky Summoning Potion",
-        "stageId": "grips-of-chaos",
+        "stageId": "skeletron",
         "category": "Potion",
         "entryKind": "combat-buff",
         "assignedVia": "manifest"
@@ -60400,7 +60687,7 @@
       {
         "item": "AAModClassic/LuckySwiftnessPotion",
         "displayName": "Lucky Swiftness Potion",
-        "stageId": "grips-of-chaos",
+        "stageId": "skeletron",
         "category": "Potion",
         "entryKind": "combat-buff",
         "assignedVia": "manifest"
@@ -60408,7 +60695,7 @@
       {
         "item": "AAModClassic/LuckyThornsPotion",
         "displayName": "Lucky Thorns Potion",
-        "stageId": "grips-of-chaos",
+        "stageId": "skeletron",
         "category": "Potion",
         "entryKind": "combat-buff",
         "assignedVia": "manifest"
@@ -60416,16 +60703,8 @@
       {
         "item": "AAModClassic/LuckyWrathPotion",
         "displayName": "Lucky Wrath Potion",
-        "stageId": "grips-of-chaos",
+        "stageId": "skeletron",
         "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "AAModClassic/RoninPotion",
-        "displayName": "Ronin Potion",
-        "stageId": "grips-of-chaos",
-        "category": "Basic",
         "entryKind": "combat-buff",
         "assignedVia": "manifest"
       },
@@ -60438,7 +60717,7 @@
         "assignedVia": "manifest"
       }
     ],
-    "profileItemSourceGapCount": 14,
+    "profileItemSourceGapCount": 12,
     "manualAssignmentProblems": [],
     "officialSourceCompatibility": {
       "recommendations": {
@@ -60454,11 +60733,11 @@
         ]
       }
     },
-    "unassignedVanillaNpcSourceCount": 180,
+    "unassignedVanillaNpcSourceCount": 186,
     "manualAvailabilityPriority": {
-      "automaticItems": 4532,
-      "automaticSources": 299,
-      "automaticStations": 515,
+      "automaticItems": 4552,
+      "automaticSources": 316,
+      "automaticStations": 519,
       "suppressed": {
         "itemStages": [
           {
@@ -60486,10 +60765,22 @@
             "via": "npc:AAModClassic/HydraClaw_NPC"
           },
           {
+            "value": "AAModClassic/LuckyCracker",
+            "manualStageId": "grips-of-chaos",
+            "automaticStageId": "grips-of-chaos",
+            "via": "shop:AAModClassic/Samurai"
+          },
+          {
             "value": "AAModClassic/MadnessTruffle",
             "manualStageId": "techno-truffle",
             "automaticStageId": "techno-truffle",
             "via": "recipe:AAModClassic/HeartyTruffle+AAModClassic/GlowingTruffle+AAModClassic/MetallicTruffle+AAModClassic/TruffleLegs"
+          },
+          {
+            "value": "AAModClassic/RoninPotion",
+            "manualStageId": "grips-of-chaos",
+            "automaticStageId": "grips-of-chaos",
+            "via": "shop:AAModClassic/Samurai"
           },
           {
             "value": "AAModClassic/StoneSoldierChestplate",
@@ -60528,7 +60819,7 @@
       },
       "retained": {
         "itemStages": 38,
-        "itemStageFloors": 0,
+        "itemStageFloors": 3,
         "sourceStages": 56,
         "stationStages": 3
       }

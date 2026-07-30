@@ -3,8 +3,8 @@
   "version": 2,
   "targetMod": "AAModClassic",
   "profileId": "builtin.aamodclassic",
-  "generatedAtUtc": "2026-07-30T10:10:09.248Z",
-  "snapshotGeneratedAtUtc": "2026-07-28T14:48:22.0929402Z",
+  "generatedAtUtc": "2026-07-30T21:10:28.265Z",
+  "snapshotGeneratedAtUtc": "2026-07-30T20:31:03.3169437Z",
   "summary": {
     "snapshotItems": 7066,
     "contentItems": 1611,
@@ -13,12 +13,12 @@
     "profileItemReferences": 1725,
     "equipmentReferences": 1552,
     "buffReferences": 173,
-    "profileSourceGaps": 14,
-    "excluded": 3359,
+    "profileSourceGaps": 12,
+    "excluded": 3372,
     "acquiredNonProfile": 127,
     "unresolvedAvailability": 0,
     "unavailableCombat": 0,
-    "noAcquisitionPath": 1855
+    "noAcquisitionPath": 1842
   },
   "items": [
     {
@@ -377,7 +377,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Plantera",
-            "key": "",
+            "key": "ProgressionJournal.Stage.plantera",
             "facts": null
           }
         ],
@@ -401,7 +401,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "equipment",
-      "stage": "start",
+      "stage": "skeletron",
       "via": "recipe:AAModClassic/AmberSaber+Terraria/LargeAmber",
       "reason": "Included in the generated profile.",
       "evidence": null
@@ -412,7 +412,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "equipment",
-      "stage": "start",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Amber+AAModClassic/DynaskullFossil",
       "reason": "Included in the generated profile.",
       "evidence": null
@@ -510,10 +510,10 @@
       "name": "Ancient Bell",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "grips-of-chaos",
+      "via": "recipe:AAModClassic/DragonScale+AAModClassic/Sunpowder",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -841,7 +841,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/ApocalyptiteOre",
       "reason": "not combat equipment",
       "evidence": null
@@ -1402,7 +1402,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/ApocalyptitePlate",
       "reason": "not combat equipment",
       "evidence": null
@@ -1521,7 +1521,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -3073,7 +3073,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -3403,7 +3403,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -3525,11 +3525,15 @@
       "name": "Dank Seeds",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "grips-of-chaos",
+      "via": "shop:AAModClassic/Samurai",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "AAModClassic/DapperAcorn",
@@ -4122,7 +4126,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -4553,7 +4557,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -4564,7 +4568,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Silk",
       "reason": "not combat equipment",
       "evidence": null
@@ -4575,7 +4579,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -4586,7 +4590,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Torch",
       "reason": "not combat equipment",
       "evidence": null
@@ -4597,7 +4601,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Torch",
       "reason": "not combat equipment",
       "evidence": null
@@ -4608,7 +4612,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -4619,7 +4623,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Torch+Terraria/Chain",
       "reason": "not combat equipment",
       "evidence": null
@@ -4630,7 +4634,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:Terraria/IronBar+AAModClassic/DoomsdayCircuitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -4641,7 +4645,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:Terraria/Glass+Terraria/IronBar+AAModClassic/DoomsdayCircuitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -4652,7 +4656,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Silk",
       "reason": "not combat equipment",
       "evidence": null
@@ -4663,7 +4667,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -4674,7 +4678,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -4828,7 +4832,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Torch",
       "reason": "not combat equipment",
       "evidence": null
@@ -4839,7 +4843,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Torch",
       "reason": "not combat equipment",
       "evidence": null
@@ -4850,7 +4854,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/Book+Terraria/Bone",
       "reason": "not combat equipment",
       "evidence": null
@@ -4872,7 +4876,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -4916,7 +4920,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/ApocalyptitePlate+Terraria/StoneBlock",
       "reason": "not combat equipment",
       "evidence": null
@@ -4971,7 +4975,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -4993,7 +4997,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/ApocalyptitePlate+AAModClassic/DarkmatterBar",
       "reason": "not combat equipment",
       "evidence": null
@@ -5004,7 +5008,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating+Terraria/WaterBucket",
       "reason": "not combat equipment",
       "evidence": null
@@ -5070,7 +5074,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -5081,7 +5085,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/DoomsdayCircuitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -5695,7 +5699,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -5763,7 +5767,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "skeletron",
       "via": "manifest",
       "reason": "not combat equipment",
       "evidence": null
@@ -5906,14 +5910,10 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "equipment",
-      "stage": "start",
-      "via": "shop:AAModClassic/GoblinSlayer",
+      "stage": "golem",
+      "via": "npc:Terraria/MartianSaucerCore",
       "reason": "Included in the generated profile.",
-      "evidence": {
-        "kind": "shop",
-        "conditions": [],
-        "prerequisites": []
-      }
+      "evidence": null
     },
     {
       "id": "AAModClassic/Equinox",
@@ -5921,7 +5921,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "equipment",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:Terraria/CelestialShell+AAModClassic/RadiantStar+AAModClassic/DarkVoid+AAModClassic/RadiantPhoton+AAModClassic/DarkEnergy",
       "reason": "Included in the generated profile.",
       "evidence": null
@@ -6029,7 +6029,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -6227,7 +6227,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -6761,7 +6761,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "equipment",
-      "stage": "start",
+      "stage": "skeletron",
       "via": "recipe:AAModClassic/DynaskullFossil",
       "reason": "Included in the generated profile.",
       "evidence": null
@@ -6979,7 +6979,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Plantera",
-            "key": "",
+            "key": "ProgressionJournal.Stage.plantera",
             "facts": null
           }
         ],
@@ -7089,7 +7089,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Plantera",
-            "key": "",
+            "key": "ProgressionJournal.Stage.plantera",
             "facts": null
           }
         ],
@@ -7144,7 +7144,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -7188,7 +7188,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -7565,10 +7565,14 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "buff",
-      "stage": "zero",
-      "via": "recipe:Terraria/SuperHealingPotion+AAModClassic/UnstableSingularity",
+      "stage": "akuma",
+      "via": "shop:AAModClassic/Mushman",
       "reason": "Included in the generated profile.",
-      "evidence": null
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "AAModClassic/GrandManaPotion",
@@ -7576,10 +7580,14 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "buff",
-      "stage": "zero",
-      "via": "recipe:Terraria/SuperManaPotion+AAModClassic/UnstableSingularity",
+      "stage": "akuma",
+      "via": "shop:AAModClassic/Mushman",
       "reason": "Included in the generated profile.",
-      "evidence": null
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "AAModClassic/Grasscutter",
@@ -8433,10 +8441,10 @@
       "name": "Hydra Chow",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "grips-of-chaos",
+      "via": "recipe:AAModClassic/MirePod+AAModClassic/Moonpowder",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -8884,11 +8892,15 @@
       "name": "Indigo Solution",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:AAModClassic/Samurai",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "AAModClassic/InfernalSlimeBanner",
@@ -9780,7 +9792,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "buff",
-      "stage": "grips-of-chaos",
+      "stage": "skeletron",
       "via": "manifest",
       "reason": "Included in the generated profile.",
       "sourceGap": true,
@@ -9793,10 +9805,13 @@
       "contentItem": true,
       "status": "buff",
       "stage": "grips-of-chaos",
-      "via": "manifest",
+      "via": "shop:AAModClassic/Samurai",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
-      "evidence": null
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "AAModClassic/LuckyEndurancePotion",
@@ -9804,7 +9819,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "buff",
-      "stage": "grips-of-chaos",
+      "stage": "skeletron",
       "via": "manifest",
       "reason": "Included in the generated profile.",
       "sourceGap": true,
@@ -9816,7 +9831,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "buff",
-      "stage": "grips-of-chaos",
+      "stage": "skeletron",
       "via": "manifest",
       "reason": "Included in the generated profile.",
       "sourceGap": true,
@@ -9828,7 +9843,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "buff",
-      "stage": "grips-of-chaos",
+      "stage": "skeletron",
       "via": "manifest",
       "reason": "Included in the generated profile.",
       "sourceGap": true,
@@ -9840,7 +9855,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "buff",
-      "stage": "grips-of-chaos",
+      "stage": "skeletron",
       "via": "manifest",
       "reason": "Included in the generated profile.",
       "sourceGap": true,
@@ -9852,7 +9867,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "buff",
-      "stage": "grips-of-chaos",
+      "stage": "skeletron",
       "via": "manifest",
       "reason": "Included in the generated profile.",
       "sourceGap": true,
@@ -9864,7 +9879,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "buff",
-      "stage": "grips-of-chaos",
+      "stage": "skeletron",
       "via": "manifest",
       "reason": "Included in the generated profile.",
       "sourceGap": true,
@@ -9876,7 +9891,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "buff",
-      "stage": "grips-of-chaos",
+      "stage": "skeletron",
       "via": "manifest",
       "reason": "Included in the generated profile.",
       "sourceGap": true,
@@ -9888,7 +9903,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "buff",
-      "stage": "grips-of-chaos",
+      "stage": "skeletron",
       "via": "manifest",
       "reason": "Included in the generated profile.",
       "sourceGap": true,
@@ -9900,7 +9915,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "buff",
-      "stage": "grips-of-chaos",
+      "stage": "skeletron",
       "via": "manifest",
       "reason": "Included in the generated profile.",
       "sourceGap": true,
@@ -10108,7 +10123,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -10559,7 +10574,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -10714,11 +10729,15 @@
       "name": "Moonpowder",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "grips-of-chaos",
+      "via": "shop:AAModClassic/Samurai",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "AAModClassic/MoonStatue",
@@ -11056,19 +11075,12 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
-      "via": "shop:Terraria/Dryad",
+      "stage": "mushroom-monarch",
+      "via": "shop:AAModClassic/Mushman",
       "reason": "not combat equipment",
       "evidence": {
         "kind": "observed-shop",
-        "conditions": [
-          {
-            "type": "Terraria.Condition",
-            "description": "In a Mushroom biome",
-            "key": "Conditions.InGlowshroom",
-            "facts": []
-          }
-        ],
+        "conditions": [],
         "prerequisites": []
       }
     },
@@ -11386,12 +11398,19 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "equipment",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "shop:AAModClassic/GoblinSlayer",
       "reason": "Included in the generated profile.",
       "evidence": {
         "kind": "shop",
-        "conditions": [],
+        "conditions": [
+          {
+            "type": "ProgressionJournal.CustomCurrency",
+            "description": "Old One's Army item purchased with Defender Medals",
+            "key": "",
+            "facts": null
+          }
+        ],
         "prerequisites": []
       }
     },
@@ -11499,11 +11518,15 @@
       "name": "Orange Solution",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:AAModClassic/Samurai",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "AAModClassic/OrderBottle",
@@ -11521,11 +11544,15 @@
       "name": "Order Solution",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:AAModClassic/Samurai",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "AAModClassic/OreCannon",
@@ -12004,7 +12031,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Hardmode",
-            "key": "",
+            "key": "ProgressionJournal.Stage.wall-of-flesh",
             "facts": null
           }
         ],
@@ -12048,7 +12075,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -12077,14 +12104,7 @@
       "reason": "not combat equipment",
       "evidence": {
         "kind": "observed-shop",
-        "conditions": [
-          {
-            "type": "ProgressionJournal.WorldOption",
-            "description": "World option: secret world option #2",
-            "key": "",
-            "facts": null
-          }
-        ],
+        "conditions": [],
         "prerequisites": []
       }
     },
@@ -12180,7 +12200,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -12268,7 +12288,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -13646,10 +13666,13 @@
       "contentItem": true,
       "status": "buff",
       "stage": "grips-of-chaos",
-      "via": "manifest",
+      "via": "shop:AAModClassic/Samurai",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
-      "evidence": null
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "AAModClassic/RottedDynastyWood",
@@ -13667,10 +13690,10 @@
       "name": "Rotted Shingles",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "grips-of-chaos",
+      "via": "recipe:Terraria/BlueDynastyShingles",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -14107,21 +14130,25 @@
       "name": "Scorched Seeds",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "grips-of-chaos",
+      "via": "shop:AAModClassic/Samurai",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "AAModClassic/ScorchedShingles",
       "name": "Scorched Shingles",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "grips-of-chaos",
+      "via": "recipe:Terraria/RedDynastyShingles",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -14183,7 +14210,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -14667,7 +14694,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -14700,7 +14727,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -14887,7 +14914,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -15063,7 +15090,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -15415,7 +15442,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -15669,11 +15696,15 @@
       "name": "Sunpowder",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "grips-of-chaos",
+      "via": "shop:AAModClassic/Samurai",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "AAModClassic/Sunstorm",
@@ -16511,9 +16542,13 @@
       "contentItem": true,
       "status": "buff",
       "stage": "shen-doragon",
-      "via": "recipe:AAModClassic/GrandHealingPotion+AAModClassic/GrandManaPotion+AAModClassic/ChaosScale",
+      "via": "shop:AAModClassic/Mushman",
       "reason": "Included in the generated profile.",
-      "evidence": null
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "AAModClassic/TheBookOfRunes",
@@ -16751,7 +16786,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -16784,7 +16819,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -17312,7 +17347,7 @@
           {
             "type": "ProgressionJournal.AfterProgression",
             "description": "Available after: Moon Lord",
-            "key": "",
+            "key": "ProgressionJournal.Stage.moon-lord",
             "facts": null
           }
         ],
@@ -17655,7 +17690,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:Terraria/MusicBox+AAModClassic/ApocalyptitePlate",
       "reason": "not combat equipment",
       "evidence": null
@@ -17732,7 +17767,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "equinox-worms",
+      "stage": "sisters-of-discord",
       "via": "recipe:AAModClassic/ApocalyptitePlate",
       "reason": "not combat equipment",
       "evidence": null
@@ -20111,7 +20146,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/GigaZapper",
+      "via": "npc:Terraria/BrainScrambler",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -20613,7 +20648,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:AAModClassic/GripsOfChaosTreasureBag",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -23899,11 +23934,15 @@
       "name": "Blue Dynasty Shingles",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "grips-of-chaos",
+      "via": "shop:AAModClassic/Samurai",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "Terraria/BlueDynastyWall",
@@ -27761,7 +27800,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "golem",
-      "via": "npc:Terraria/GigaZapper",
+      "via": "npc:Terraria/BrainScrambler",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -44569,7 +44608,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "mushroom-monarch",
       "via": "recipe:Terraria/SiltBlock+Terraria/StoneBlock+Terraria/GreenThread",
       "reason": "not combat equipment",
       "evidence": null
@@ -44580,7 +44619,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "mushroom-monarch",
       "via": "recipe:Terraria/GreenStucco",
       "reason": "not combat equipment",
       "evidence": null
@@ -44591,7 +44630,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "mushroom-monarch",
       "via": "recipe:Terraria/JungleGrassSeeds",
       "reason": "not combat equipment",
       "evidence": null
@@ -45952,7 +45991,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "mushroom-monarch",
       "via": "recipe:Terraria/Silk+Terraria/GreenThread",
       "reason": "not combat equipment",
       "evidence": null
@@ -45974,7 +46013,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "mushroom-monarch",
       "via": "recipe:Terraria/Silk+Terraria/GreenThread",
       "reason": "not combat equipment",
       "evidence": null
@@ -45985,7 +46024,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "mushroom-monarch",
       "via": "recipe:Terraria/Silk+Terraria/GreenThread",
       "reason": "not combat equipment",
       "evidence": null
@@ -48136,7 +48175,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "mushroom-monarch",
       "via": "recipe:Terraria/JungleGrassSeeds",
       "reason": "not combat equipment",
       "evidence": null
@@ -48158,7 +48197,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "mushroom-monarch",
       "via": "recipe:Terraria/JungleGrassSeeds",
       "reason": "not combat equipment",
       "evidence": null
@@ -48235,7 +48274,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "mushroom-monarch",
       "via": "shimmer:Terraria/MushroomGrassSeeds",
       "reason": "not combat equipment",
       "evidence": null
@@ -49217,7 +49256,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/GigaZapper",
+      "via": "npc:Terraria/BrainScrambler",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -53032,7 +53071,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/GigaZapper",
+      "via": "npc:Terraria/BrainScrambler",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -53362,7 +53401,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/GigaZapper",
+      "via": "npc:Terraria/MartianOfficer",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -53373,7 +53412,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/GigaZapper",
+      "via": "npc:Terraria/MartianOfficer",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -53384,7 +53423,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/GigaZapper",
+      "via": "npc:Terraria/MartianOfficer",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -55488,25 +55527,12 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
-      "via": "shop:Terraria/Dryad",
+      "stage": "mushroom-monarch",
+      "via": "shop:AAModClassic/Mushman",
       "reason": "not combat equipment",
       "evidence": {
         "kind": "observed-shop",
-        "conditions": [
-          {
-            "type": "Terraria.Condition",
-            "description": "Not in the Underworld",
-            "key": "Conditions.NotInUnderworld",
-            "facts": []
-          },
-          {
-            "type": "Terraria.Condition",
-            "description": "In a Mushroom biome",
-            "key": "Conditions.InGlowshroom",
-            "facts": []
-          }
-        ],
+        "conditions": [],
         "prerequisites": []
       }
     },
@@ -55978,7 +56004,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "mushroom-monarch",
       "via": "recipe:Terraria/MusicBox+Terraria/MudBlock+Terraria/JungleGrassSeeds+Terraria/RichMahogany",
       "reason": "not combat equipment",
       "evidence": null
@@ -56033,7 +56059,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "mushroom-monarch",
       "via": "recipe:Terraria/MusicBox+Terraria/GlowingMushroom+Terraria/Mushroom+Terraria/MushroomGrassSeeds",
       "reason": "not combat equipment",
       "evidence": null
@@ -64993,11 +65019,15 @@
       "name": "Red Dynasty Shingles",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "grips-of-chaos",
+      "via": "shop:AAModClassic/Samurai",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "Terraria/RedGardland",
@@ -65296,7 +65326,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:AAModClassic/GripsOfChaosTreasureBag",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -75088,7 +75118,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "mushroom-monarch",
       "via": "recipe:Terraria/Silk+Terraria/GreenThread",
       "reason": "not combat equipment",
       "evidence": null
@@ -75099,7 +75129,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "mushroom-monarch",
       "via": "recipe:Terraria/Silk+Terraria/GreenThread",
       "reason": "not combat equipment",
       "evidence": null
@@ -75110,7 +75140,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "eye-of-cthulhu",
+      "stage": "mushroom-monarch",
       "via": "recipe:Terraria/Silk+Terraria/GreenThread",
       "reason": "not combat equipment",
       "evidence": null
@@ -79227,7 +79257,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "container:AAModClassic/GripsOfChaosTreasureBag",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
