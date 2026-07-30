@@ -872,6 +872,72 @@ public static class JournalExactDropCatalog
     private static void AddAAModClassicReviewSources(ICollection<EntryBuilder> builders)
     {
         const string provenance = "AAModClassic 1.0.17 installed assembly IL";
+        var luckyPotionSourceName = Language.GetTextValue(
+            "Mods.ProgressionJournal.UI.AAModClassicLuckyPotionPotSource");
+        ConditionBuilder[] luckyPotionConditions =
+        [
+            new ConditionBuilder(
+                "Mods.ProgressionJournal.UI.AAModClassicLuckyPotionPotCondition",
+                ConditionKind.LocalizationKey,
+                [])
+        ];
+        foreach (var targetReference in new[]
+                 {
+                     "AAModClassic/LuckyCalmingPotion",
+                     "AAModClassic/LuckyEndurancePotion",
+                     "AAModClassic/LuckyIronskinPotion",
+                     "AAModClassic/LuckyLifeforcePotion",
+                     "AAModClassic/LuckyRagePotion",
+                     "AAModClassic/LuckyRegenerationPotion",
+                     "AAModClassic/LuckySummoningPotion",
+                     "AAModClassic/LuckySwiftnessPotion",
+                     "AAModClassic/LuckyThornsPotion",
+                     "AAModClassic/LuckyWrathPotion"
+                 })
+        {
+            AddWorld(
+                builders,
+                provenance,
+                luckyPotionSourceName,
+                sourceItemReference: null,
+                targetReference,
+                luckyPotionConditions,
+                showDropRate: false,
+                sourceReference: "Terraria/Pots",
+                includeInSnapshot: true);
+        }
+
+        AddWorld(
+            builders,
+            provenance,
+            Language.GetTextValue("Mods.ProgressionJournal.UI.AAModClassicCarrotPlantSource"),
+            sourceItemReference: null,
+            "AAModClassic/Carrot",
+            [
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.AAModClassicCarrotPlantCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ],
+            showDropRate: false,
+            sourceReference: "AAModClassic/Carrot_Tile",
+            includeInSnapshot: true);
+        AddWorld(
+            builders,
+            provenance,
+            Language.GetTextValue("Mods.ProgressionJournal.UI.AAModClassicAnubisBookExchangeSource"),
+            sourceItemReference: null,
+            "AAModClassic/TheLifeAndEpicAdventuresOfAnubisTheWonderDogSpecialEdition",
+            [
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.AAModClassicAnubisBookExchangeCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ],
+            showDropRate: false,
+            sourceReference: "AAModClassic/AnubisBookExchange",
+            includeInSnapshot: true);
+
         AddWorld(
             builders,
             provenance,

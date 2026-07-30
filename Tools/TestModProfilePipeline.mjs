@@ -356,6 +356,12 @@ assert(exactShopCatalogSource.includes('"FazerBag", "ShoxBag", "BegBag"')
   && exactShopCatalogSource.includes('goblinSlayer, "GoblinSlayersHelmet"')
   && exactShopCatalogSource.includes('"OldOneCharm"')
   && exactShopCatalogSource.includes('"EnergyConduit"')
+  && exactShopCatalogSource.includes('"AAModClassic/Samurai"')
+  && exactShopCatalogSource.includes('"RoninPotion"')
+  && exactShopCatalogSource.includes('"LuckyCracker"')
+  && exactShopCatalogSource.includes('"AAModClassic/Mushman"')
+  && exactShopCatalogSource.includes('"GrandHealingPotion", "GrandManaPotion"')
+  && exactShopCatalogSource.includes('"TheBigOne"')
   && exactShopCatalogSource.includes("ConditionKind.CustomCurrency")
   && exactShopCatalogSource.includes("AAModClassicDefenderMedalShopCondition")
   && exactShopCatalogSource.includes("AAModClassicMartianCreditShopCondition")
@@ -373,6 +379,20 @@ assert(exactShopCatalogSource.includes('"FazerBag", "ShoxBag", "BegBag"')
   && !journalUiStateSource.includes("shop.ShopName")
   && itemSourceResolverSource.includes("JournalExactShopCatalog.GetSources(itemId)"),
 "Dynamic ModifyActiveShop items must keep their exact seller and gate without inventing a price or shop label");
+assert(exactDropCatalogSource.includes('"AAModClassic/LuckyCalmingPotion"')
+  && exactDropCatalogSource.includes('"AAModClassic/LuckyWrathPotion"')
+  && exactDropCatalogSource.includes('sourceReference: "Terraria/Pots"')
+  && exactDropCatalogSource.includes("AAModClassicLuckyPotionPotCondition")
+  && englishLocalizationSource.includes("while Stripeman's Lucky Shirt is equipped")
+  && russianLocalizationSource.includes("пока надета Счастливая рубашка Страйпмена"),
+"AAModClassic Lucky Potions must expose their conditional pot-drop source");
+assert(exactDropCatalogSource.includes('"AAModClassic/Carrot"')
+  && exactDropCatalogSource.includes('sourceReference: "AAModClassic/Carrot_Tile"')
+  && exactDropCatalogSource.includes('"AAModClassic/TheLifeAndEpicAdventuresOfAnubisTheWonderDogSpecialEdition"')
+  && exactDropCatalogSource.includes('sourceReference: "AAModClassic/AnubisBookExchange"')
+  && englishLocalizationSource.includes("Grows naturally on surface grass in Hardmode")
+  && russianLocalizationSource.includes("Отдайте ему книгу"),
+"Remaining AAModClassic source gaps must expose their code-driven world interactions");
 assert(journalUiStateSource.includes("if (conditionIndex > 0)")
   && journalUiStateSource.includes("top += 4f;")
   && !journalUiStateSource.includes("JournalConditionDivider")

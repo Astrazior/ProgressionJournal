@@ -164,6 +164,40 @@ public static class JournalExactShopCatalog
             new ConditionBuilder(
                 ConditionKind.CustomCurrency,
                 ["Mods.ProgressionJournal.UI.AAModClassicMartianCreditShopCondition"]));
+        AddShop(
+            builders,
+            provenance,
+            "AAModClassic/Samurai",
+            "RoninPotion");
+        AddShop(
+            builders,
+            provenance,
+            "AAModClassic/Samurai",
+            "LuckyCracker");
+
+        const string mushman = "AAModClassic/Mushman";
+        foreach (var item in new[] { "GrandHealingPotion", "GrandManaPotion" })
+        {
+            AddShop(
+                builders,
+                provenance,
+                mushman,
+                item,
+                new ConditionBuilder(
+                    ConditionKind.AfterProgression,
+                    ["Akuma"],
+                    "akuma"));
+        }
+
+        AddShop(
+            builders,
+            provenance,
+            mushman,
+            "TheBigOne",
+            new ConditionBuilder(
+                ConditionKind.AfterProgression,
+                ["Shen Doragon"],
+                "shen-doragon"));
     }
 
     private static void AddShop(
