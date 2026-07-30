@@ -12,7 +12,7 @@ const root = path.resolve(import.meta.dirname, "..");
 const modsRoot = path.join(root, "Profiles", "Mods");
 const fixture = {
   format: "ProgressionJournalSnapshot",
-  version: 5,
+  version: 8,
   generatedAtUtc: "2026-07-13T00:00:00Z",
   targetMod: "ExampleMod",
   profileId: "builtin.example",
@@ -37,6 +37,7 @@ const fixture = {
   shimmerTransforms: [
     { input: "ExampleMod/Ingredient", output: "ExampleMod/ShimmerResult" }
   ],
+  knownSourceItems: ["ExampleMod/Result"],
   drops: [
     {
       sourceType: "npc",
@@ -129,6 +130,7 @@ assert.equal(
 assert.deepEqual(knowledge.acquisitions.shops, fixture.shops);
 assert.deepEqual(knowledge.acquisitions.fishing, fixture.fishing);
 assert.deepEqual(knowledge.acquisitions.shimmerTransforms, fixture.shimmerTransforms);
+assert.deepEqual(knowledge.acquisitions.knownSourceItems, fixture.knownSourceItems);
 assert.deepEqual(knowledge.availability.npcs, fixture.npcAvailability);
 assert.deepEqual(
   knowledge.classifications.vanillaItems,

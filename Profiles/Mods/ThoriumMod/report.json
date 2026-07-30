@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-07-28T18:31:22.592Z",
+  "generatedAtUtc": "2026-07-30T10:11:23.035Z",
   "snapshot": {
     "version": 7,
     "generatedAtUtc": "2026-07-28T14:45:37.6456204Z",
@@ -1940,6 +1940,7 @@
     "errors": [],
     "warnings": [
       "70 recommendations precede proven availability and were suppressed",
+      "28 profile items have no acquisition source data",
       "136 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
@@ -6676,7 +6677,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.thorium",
-    "generatedAtUtc": "2026-07-28T18:31:13.744Z",
+    "generatedAtUtc": "2026-07-30T10:11:05.412Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -67921,6 +67922,233 @@
     ],
     "unavailableCombatItems": [],
     "unresolvedAvailabilityItems": [],
+    "profileItemSourceGaps": [
+      {
+        "item": "ThoriumMod/AloeLeaf",
+        "displayName": "Aloe Leaf",
+        "stageId": "start",
+        "category": "Accessory",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/Aril",
+        "displayName": "Aril",
+        "stageId": "start",
+        "category": "Food",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/BatRepellent",
+        "displayName": "Bat Repellent",
+        "stageId": "eye-of-cthulhu",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/BeltoftheQuickResponse",
+        "displayName": "Belt of the Quick Response",
+        "stageId": "start",
+        "category": "Accessory",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/ChiLantern",
+        "displayName": "Chi Lantern",
+        "stageId": "world-evil",
+        "category": "Support",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/Cranberry",
+        "displayName": "Cranberry",
+        "stageId": "start",
+        "category": "Food",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/DewCollector",
+        "displayName": "Dew Collector",
+        "stageId": "start",
+        "category": "Accessory",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/EnchantedStaff",
+        "displayName": "Enchanted Staff",
+        "stageId": "start",
+        "category": "Weapon",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/Fig",
+        "displayName": "Fig",
+        "stageId": "start",
+        "category": "Food",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/FishRepellent",
+        "displayName": "Fish Repellent",
+        "stageId": "eye-of-cthulhu",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/InsectRepellent",
+        "displayName": "Insect Repellent",
+        "stageId": "eye-of-cthulhu",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/Kumquat",
+        "displayName": "Kumquat",
+        "stageId": "start",
+        "category": "Food",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/LivingWoodSap",
+        "displayName": "Living Wood Sap",
+        "stageId": "start",
+        "category": "Accessory",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/Lychee",
+        "displayName": "Lychee",
+        "stageId": "start",
+        "category": "Food",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/MagicThorHammer",
+        "displayName": "Thor's Hammer: Magic",
+        "stageId": "start",
+        "category": "Weapon",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/ManaBerry",
+        "displayName": "Mana Berry",
+        "stageId": "start",
+        "category": "Basic",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/Mangosteen",
+        "displayName": "Mangosteen",
+        "stageId": "start",
+        "category": "Food",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/Persimmon",
+        "displayName": "Persimmon",
+        "stageId": "start",
+        "category": "Food",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/RangedThorHammer",
+        "displayName": "Thor's Hammer: Ranged",
+        "stageId": "start",
+        "category": "Weapon",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/Raspberry",
+        "displayName": "Raspberry",
+        "stageId": "start",
+        "category": "Food",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/RingofUnity",
+        "displayName": "Ring of Unity",
+        "stageId": "start",
+        "category": "Accessory",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/SkeletonRepellent",
+        "displayName": "Skeleton Repellent",
+        "stageId": "eye-of-cthulhu",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/Soursop",
+        "displayName": "Soursop",
+        "stageId": "start",
+        "category": "Food",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/SupportSash",
+        "displayName": "Support Sash",
+        "stageId": "wall-of-flesh",
+        "category": "Accessory",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/Tamarind",
+        "displayName": "Tamarind",
+        "stageId": "start",
+        "category": "Food",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/WaterChestnut",
+        "displayName": "Water Chestnut",
+        "stageId": "start",
+        "category": "Basic",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/Webgun",
+        "displayName": "Webgun",
+        "stageId": "start",
+        "category": "Weapon",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "ThoriumMod/ZombieRepellent",
+        "displayName": "Zombie Repellent",
+        "stageId": "eye-of-cthulhu",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      }
+    ],
+    "profileItemSourceGapCount": 28,
     "manualAssignmentProblems": [],
     "officialSourceCompatibility": {
       "recommendations": {

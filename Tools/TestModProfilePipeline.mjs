@@ -621,9 +621,13 @@ assert(itemCollectionIndex >= 0
     && npcDropCollectionIndex >= 0
     && itemCollectionIndex < npcDropCollectionIndex,
 "Item classification probes must run before drop reporting because mod drop rules can observe probe state");
-assert(snapshotExporterSource.includes("public int Version { get; set; } = 7")
+assert(snapshotExporterSource.includes("public int Version { get; set; } = 8")
   && snapshotExporterSource.includes("List<JournalLocalizedText> Conditions"),
   "The snapshot schema must preserve localized fishing condition expressions");
+assert(snapshotExporterSource.includes("KnownSourceItems = CreateKnownSourceItems(itemIds)")
+  && snapshotExporterSource.includes("JournalExactDropCatalog.GetAllSources()")
+  && snapshotExporterSource.includes("JournalContainerLootCatalog.GetAllDrops()"),
+  "Snapshot source-gap coverage must include the runtime acquisition catalogs");
 assert(snapshotExporterSource.includes("localizedDescription?.Key")
   && snapshotExporterSource.includes("Conditions.PlayerCarriesItem")
   && snapshotExporterSource.includes('new SnapshotConditionFact("item-owned", itemReference)'),
@@ -1228,8 +1232,11 @@ const aaReview = readJson(path.join(aaDirectory, "review.json"));
 assert(aaReview.issues.every(issue =>
   issue.kind === "unassigned-combat-item" || issue.kind === "unresolved-condition"),
   "AAModClassic review contains an unexpected source or pipeline error");
-assert.equal(aaReport.ready, aaReport.review.total === 0,
-  "AAModClassic readiness must reflect unresolved source-backed availability review");
+assert.equal(
+  aaReport.ready,
+  aaReport.review.total === 0
+    && (aaReport.generation.profileItemSourceGapCount ?? 0) === 0,
+  "AAModClassic readiness must reflect review and profile source gaps");
 assert.equal(aaReport.audit.sourceCoverage.uncovered
   .filter(entry => entry.source.startsWith("AAModClassic/"))
   .length, 0, "AAModClassic has uncovered mod NPC or shop sources");

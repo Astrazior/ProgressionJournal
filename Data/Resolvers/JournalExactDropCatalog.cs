@@ -18,6 +18,13 @@ public static class JournalExactDropCatalog
             .ToArray();
     }
 
+    public static IReadOnlyList<JournalExactDropSource> GetAllSources()
+    {
+        return Entries.Value
+            .Select(ToSource)
+            .ToArray();
+    }
+
     public static IReadOnlyList<JournalExactDropSource> GetAllNpcDrops()
     {
         return Entries.Value

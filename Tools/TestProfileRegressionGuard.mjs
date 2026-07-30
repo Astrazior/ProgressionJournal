@@ -159,6 +159,20 @@ function writeState(directory, options = {}) {
       ].length
     }
   }, null, 2)}\n`);
+  fs.writeFileSync(path.join(directory, "source-gaps.json"), `${JSON.stringify({
+    format: "ProgressionJournalSourceGapReport",
+    version: 1,
+    targetMod: "TestMod",
+    count: 0,
+    items: []
+  }, null, 2)}\n`);
+  fs.writeFileSync(path.join(directory, "excluded-noncombat-items.json"), `${JSON.stringify({
+    format: "ProgressionJournalExcludedNoncombatReport",
+    version: 1,
+    targetMod: "TestMod",
+    count: 0,
+    items: []
+  }, null, 2)}\n`);
 }
 
 function compareDirectories(beforeDirectory, afterDirectory) {

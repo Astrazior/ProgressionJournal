@@ -246,6 +246,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             Npcs = npcs,
             Recipes = recipes,
             ShimmerTransforms = CreateShimmerTransforms(itemIds),
+            KnownSourceItems = CreateKnownSourceItems(itemIds),
             Drops = drops,
             Shops = JournalSnapshotShopCollector.Collect(
                 itemIds,
@@ -521,6 +522,26 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             item.sentry,
             item.ModItem?.GetType().Namespace ?? string.Empty,
             GetClassEffects(item));
+    }
+
+    private static List<string> CreateKnownSourceItems(HashSet<int> includedItems)
+    {
+        return JournalExactDropCatalog.GetAllSources()
+            .Select(static source => source.TargetItemId)
+            .Concat(JournalExactShopCatalog.GetAllSources()
+                .Select(static source => source.TargetItemId))
+            .Concat(JournalLegacyDirectDropAnalyzer.GetAllNpcDrops()
+                .Select(static source => source.TargetItemId))
+            .Concat(JournalLegacyDirectDropAnalyzer.GetAllItemDrops()
+                .Select(static source => source.TargetItemId))
+            .Where(includedItems.Contains)
+            .Select(GetItemReference)
+            .Concat(JournalContainerLootCatalog.GetAllDrops()
+                .Where(source => includedItems.Contains(source.TargetItemId))
+                .Select(static source => source.TargetItem))
+            .Distinct(StringComparer.Ordinal)
+            .OrderBy(static item => item, StringComparer.Ordinal)
+            .ToList();
     }
 
     private static string GetEnglishItemName(int itemId)
@@ -1004,7 +1025,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
 public sealed class ProgressionSnapshot
 {
     public string Format { get; set; } = "ProgressionJournalSnapshot";
-    public int Version { get; set; } = 7;
+    public int Version { get; set; } = 8;
     public string GeneratedAtUtc { get; set; } = string.Empty;
     public string TargetMod { get; set; } = string.Empty;
     public string ProfileId { get; set; } = string.Empty;
@@ -1015,6 +1036,7 @@ public sealed class ProgressionSnapshot
     public List<SnapshotNpc> Npcs { get; set; } = [];
     public List<SnapshotRecipe> Recipes { get; set; } = [];
     public List<SnapshotShimmerTransform> ShimmerTransforms { get; set; } = [];
+    public List<string> KnownSourceItems { get; set; } = [];
     public List<SnapshotDrop> Drops { get; set; } = [];
     public List<SnapshotShop> Shops { get; set; } = [];
     public List<SnapshotFishingCatch> Fishing { get; set; } = [];

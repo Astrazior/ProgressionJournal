@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "AAModClassic",
   "profileId": "builtin.aamodclassic",
-  "generatedAtUtc": "2026-07-28T18:30:38.066Z",
+  "generatedAtUtc": "2026-07-30T10:10:09.218Z",
   "snapshot": {
     "version": 7,
     "generatedAtUtc": "2026-07-28T14:48:22.0929402Z",
@@ -1078,6 +1078,7 @@
     "errors": [],
     "warnings": [
       "64 recommendations precede proven availability and were suppressed",
+      "14 profile items have no acquisition source data",
       "151 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
@@ -5613,7 +5614,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.aamodclassic",
-    "generatedAtUtc": "2026-07-28T18:30:29.528Z",
+    "generatedAtUtc": "2026-07-30T10:09:55.754Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -60323,6 +60324,121 @@
     ],
     "unavailableCombatItems": [],
     "unresolvedAvailabilityItems": [],
+    "profileItemSourceGaps": [
+      {
+        "item": "AAModClassic/Carrot",
+        "displayName": "Carrot",
+        "stageId": "wall-of-flesh",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "AAModClassic/LuckyCalmingPotion",
+        "displayName": "Lucky Calming Potion",
+        "stageId": "grips-of-chaos",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "AAModClassic/LuckyCracker",
+        "displayName": "Lucky Cracker",
+        "stageId": "grips-of-chaos",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "AAModClassic/LuckyEndurancePotion",
+        "displayName": "Lucky Endurance Potion",
+        "stageId": "grips-of-chaos",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "AAModClassic/LuckyIronskinPotion",
+        "displayName": "Lucky Ironskin Potion",
+        "stageId": "grips-of-chaos",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "AAModClassic/LuckyLifeforcePotion",
+        "displayName": "Lucky Lifeforce Potion",
+        "stageId": "grips-of-chaos",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "AAModClassic/LuckyRagePotion",
+        "displayName": "Lucky Rage Potion",
+        "stageId": "grips-of-chaos",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "AAModClassic/LuckyRegenerationPotion",
+        "displayName": "Lucky Regeneration Potion",
+        "stageId": "grips-of-chaos",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "AAModClassic/LuckySummoningPotion",
+        "displayName": "Lucky Summoning Potion",
+        "stageId": "grips-of-chaos",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "AAModClassic/LuckySwiftnessPotion",
+        "displayName": "Lucky Swiftness Potion",
+        "stageId": "grips-of-chaos",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "AAModClassic/LuckyThornsPotion",
+        "displayName": "Lucky Thorns Potion",
+        "stageId": "grips-of-chaos",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "AAModClassic/LuckyWrathPotion",
+        "displayName": "Lucky Wrath Potion",
+        "stageId": "grips-of-chaos",
+        "category": "Potion",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "AAModClassic/RoninPotion",
+        "displayName": "Ronin Potion",
+        "stageId": "grips-of-chaos",
+        "category": "Basic",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "AAModClassic/TheLifeAndEpicAdventuresOfAnubisTheWonderDogSpecialEdition",
+        "displayName": "The Life And Epic Adventures Of Anubis The Wonder Dog Special Edition",
+        "stageId": "anubis-legendscribe",
+        "category": "Weapon",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      }
+    ],
+    "profileItemSourceGapCount": 14,
     "manualAssignmentProblems": [],
     "officialSourceCompatibility": {
       "recommendations": {

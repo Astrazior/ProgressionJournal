@@ -6,7 +6,9 @@ export const GENERATED_PROFILE_FILES = [
   "knowledge.json",
   "review.json",
   "report.json",
-  "item-audit.json"
+  "item-audit.json",
+  "source-gaps.json",
+  "excluded-noncombat-items.json"
 ];
 
 const SOURCE_RANK = new Map([
@@ -32,6 +34,7 @@ const LOWER_IS_BAD_METRICS = new Set([
 const HIGHER_IS_BAD_METRICS = new Set([
   "unresolvedAvailability",
   "unavailableCombat",
+  "profileSourceGaps",
   "noAcquisitionPath",
   "reviewIssues",
   "auditErrors",
@@ -337,6 +340,7 @@ function collectMetrics(itemAudit, knowledge, review, report) {
     profileItemReferences: auditSummary.profileItemReferences ?? null,
     unresolvedAvailability: auditSummary.unresolvedAvailability ?? null,
     unavailableCombat: auditSummary.unavailableCombat ?? null,
+    profileSourceGaps: auditSummary.profileSourceGaps ?? null,
     noAcquisitionPath: auditSummary.noAcquisitionPath ?? null,
     knowledgeItems: knowledgeSummary.items ?? null,
     recipes: knowledgeSummary.recipes ?? null,
@@ -363,6 +367,10 @@ function collectGenerationRecords(report) {
     })),
     ...(generation.unavailableCombatItems ?? []).map(record => ({
       kind: "unavailable-combat",
+      ...canonicalValue(record)
+    })),
+    ...(generation.profileItemSourceGaps ?? []).map(record => ({
+      kind: "profile-item-source-gap",
       ...canonicalValue(record)
     })),
     ...(generation.excludedItems ?? []).map(record => ({

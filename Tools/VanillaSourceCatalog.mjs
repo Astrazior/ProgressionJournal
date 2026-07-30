@@ -901,6 +901,14 @@ export function applyVanillaSourceCatalog(sourceManifest, snapshot = null) {
   return manifest;
 }
 
+export function getVanillaKnownSourceItems() {
+  return unique([
+    ...START_ITEMS,
+    ...START_VISIBLE_ITEMS,
+    ...MILESTONE_FACTS.flatMap(fact => fact.items ?? [])
+  ]);
+}
+
 function filterLegacyNpcSources(sources, expectedStageId, kind, manifest, snapshot) {
   if (!snapshot) return sources;
   const expectedStageIndex = manifest.stages.findIndex(stage => stage.id === expectedStageId);

@@ -231,6 +231,7 @@ const snapshot = {
     item("Test/ForeignRecipeSword", { damageClass: "Melee", damage: 90 }),
     item("Test/CycleA", { damageClass: "Melee", damage: 1 }),
     item("Test/CycleB"),
+    item("Test/ManualOnlyBlade", { damageClass: "Melee", damage: 2 }),
     item("Test/Forge", { createTile: 1, placedTile: "Test/ForgeTile" }),
     item("Test/ForgeSword", { damageClass: "Melee", damage: 35 }),
     item("Test/SeedSword", { damageClass: "Melee", damage: 99 }),
@@ -1063,6 +1064,7 @@ const manualAssignments = {
   profileId: "test",
   itemStages: {
     "Test/CycleA": "boss",
+    "Test/ManualOnlyBlade": "boss",
     "Test/FlooredBlade": "late",
     "Test/WorldFlooredBlade": "late"
   },
@@ -1108,6 +1110,26 @@ const manualResult = generateProfile(snapshot, manifest, wikiProfile, manualAssi
 assert(manualResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "CycleA"
   && entry.evaluations[0].stageId === "boss"));
+assert(manualResult.report.profileItemSourceGaps.some(entry =>
+  entry.item === "Test/ManualOnlyBlade"
+  && entry.stageId === "boss"
+  && entry.assignedVia === "manifest"));
+assert.equal(
+  manualResult.report.profileItemSourceGapCount,
+  manualResult.report.profileItemSourceGaps.length);
+assert(!manualResult.report.profileItemSourceGaps.some(entry =>
+  entry.item === "Test/CycleA"),
+  "A profile item with a recipe must not be reported as a source gap");
+const knownSourceSnapshot = structuredClone(snapshot);
+knownSourceSnapshot.knownSourceItems = ["Test/ManualOnlyBlade"];
+const knownSourceResult = generateProfile(
+  knownSourceSnapshot,
+  manifest,
+  wikiProfile,
+  manualAssignments);
+assert(!knownSourceResult.report.profileItemSourceGaps.some(entry =>
+  entry.item === "Test/ManualOnlyBlade"),
+  "A profile item covered by the exported runtime catalog must not be reported as a source gap");
 assert(manualResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "FlooredBlade"
   && entry.evaluations[0].stageId === "boss"));

@@ -180,7 +180,9 @@ function collectReport(report) {
     staleRules: generation.staleRules ?? null,
     manualAssignmentProblems: generation.manualAssignmentProblems ?? null,
     unavailableCombatItems: generation.unavailableCombatItems ?? null,
-    unresolvedAvailabilityItems: generation.unresolvedAvailabilityItems ?? null
+    unresolvedAvailabilityItems: generation.unresolvedAvailabilityItems ?? null,
+    profileItemSourceGapCount: generation.profileItemSourceGapCount ?? null,
+    profileItemSourceGaps: generation.profileItemSourceGaps ?? null
   };
 }
 

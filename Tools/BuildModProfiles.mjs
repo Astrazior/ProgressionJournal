@@ -121,10 +121,17 @@ export function buildModProfile(modName, options = {}) {
     },
     review: review.summary,
     audit,
-    ready: audit.errors.length === 0 && review.summary.total === 0,
+    ready: audit.errors.length === 0
+      && review.summary.total === 0
+      && generationReport.profileItemSourceGapCount === 0,
     generation: generationReport
   };
   const itemAudit = createItemAudit(snapshot, profile, generationReport, support);
+  const sourceGaps = createSourceGapReport(snapshot, generationReport, support);
+  const excludedNoncombatItems = createExcludedNoncombatReport(
+    snapshot,
+    generationReport,
+    support);
 
   fs.mkdirSync(outputDirectory, { recursive: true });
   writeJson(path.join(outputDirectory, "profile.json"), profile);
@@ -132,6 +139,10 @@ export function buildModProfile(modName, options = {}) {
   writeJson(path.join(outputDirectory, "review.json"), review);
   writeJson(path.join(outputDirectory, "report.json"), report);
   writeJson(path.join(outputDirectory, "item-audit.json"), itemAudit);
+  writeJson(path.join(outputDirectory, "source-gaps.json"), sourceGaps);
+  writeJson(
+    path.join(outputDirectory, "excluded-noncombat-items.json"),
+    excludedNoncombatItems);
 
   const state = report.ready ? "READY" : "needs review";
   console.log(
@@ -140,6 +151,7 @@ export function buildModProfile(modName, options = {}) {
   console.log(
     `  Items: ${itemAudit.summary.snapshotItems} snapshot, `
     + `${itemAudit.summary.profileItemReferences} profile references; `
+    + `${itemAudit.summary.profileSourceGaps} profile source gaps; `
     + `${itemAudit.summary.unresolvedAvailability} unresolved, `
     + `${itemAudit.summary.unavailableCombat} unavailable, `
     + `${itemAudit.summary.noAcquisitionPath} without acquisition path`);
@@ -198,6 +210,8 @@ export function createItemAudit(snapshot, profile, generationReport, support) {
     (generationReport.unresolvedAvailabilityItems ?? []).map(record => [record.item, record]));
   const unavailable = new Map(
     (generationReport.unavailableCombatItems ?? []).map(record => [record.item, record]));
+  const sourceGapItems = new Set(
+    (generationReport.profileItemSourceGaps ?? []).map(record => record.item));
   const paths = generationReport.paths ?? {};
 
   const items = (snapshot.items ?? [])
@@ -240,6 +254,7 @@ export function createItemAudit(snapshot, profile, generationReport, support) {
         stage,
         via,
         reason,
+        ...(sourceGapItems.has(item.id) ? { sourceGap: true } : {}),
         evidence: pathInfo?.evidence ?? null
       };
     })
@@ -261,12 +276,73 @@ export function createItemAudit(snapshot, profile, generationReport, support) {
       profileItemReferences: countStatus("equipment") + countStatus("buff"),
       equipmentReferences: countStatus("equipment"),
       buffReferences: countStatus("buff"),
+      profileSourceGaps: items.filter(item => item.sourceGap).length,
       excluded: countStatus("excluded"),
       acquiredNonProfile: countStatus("acquired-non-profile"),
       unresolvedAvailability: countStatus("unresolved-availability"),
       unavailableCombat: countStatus("unavailable-combat"),
       noAcquisitionPath: countStatus("no-acquisition-path")
     },
+    items
+  };
+}
+
+export function createSourceGapReport(snapshot, generationReport, support) {
+  const items = structuredClone(generationReport.profileItemSourceGaps ?? []);
+  const runtimeCatalogIncluded = Array.isArray(snapshot.knownSourceItems);
+  return {
+    format: "ProgressionJournalSourceGapReport",
+    version: 1,
+    targetMod: snapshot.targetMod ?? support.targetMod,
+    generatedAtUtc: new Date().toISOString(),
+    snapshotGeneratedAtUtc: snapshot.generatedAtUtc ?? "",
+    runtimeCatalogIncluded,
+    note: runtimeCatalogIncluded
+      ? "All runtime source catalogs exported by snapshot version 8 are included."
+      : "Legacy snapshot: explicit vanilla sources are included, but rerun /pjexport for full runtime catalog coverage.",
+    count: items.length,
+    items
+  };
+}
+
+export function createExcludedNoncombatReport(snapshot, generationReport, support) {
+  const itemById = new Map((snapshot.items ?? []).map(item => [item.id, item]));
+  const contentMods = new Set(
+    snapshot.contentMods ?? support.contentMods ?? [support.targetMod]);
+  const byItem = new Map();
+  for (const record of generationReport.excludedItems ?? []) {
+    if (record.reason !== "not combat equipment") {
+      continue;
+    }
+    const mod = record.id.includes("/") ? record.id.slice(0, record.id.indexOf("/")) : "";
+    if (!contentMods.has(mod)) {
+      continue;
+    }
+    const existing = byItem.get(record.id) ?? {
+      item: record.id,
+      displayName: itemById.get(record.id)?.name ?? record.id,
+      stageIds: new Set()
+    };
+    if (record.stage) {
+      existing.stageIds.add(record.stage);
+    }
+    byItem.set(record.id, existing);
+  }
+  const items = [...byItem.values()]
+    .map(item => ({
+      item: item.item,
+      displayName: item.displayName,
+      stageIds: [...item.stageIds]
+    }))
+    .sort((left, right) => left.item.localeCompare(right.item));
+  return {
+    format: "ProgressionJournalExcludedNoncombatReport",
+    version: 1,
+    targetMod: snapshot.targetMod ?? support.targetMod,
+    generatedAtUtc: new Date().toISOString(),
+    snapshotGeneratedAtUtc: snapshot.generatedAtUtc ?? "",
+    contentMods: [...contentMods].sort(),
+    count: items.length,
     items
   };
 }
@@ -287,7 +363,7 @@ function validateSupport(support, directoryName) {
 
 function validateSnapshot(snapshot, support) {
   assert(snapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot.json format.");
-  assert([4, 5, 6, 7].includes(snapshot.version),
+  assert([4, 5, 6, 7, 8].includes(snapshot.version),
     `Unsupported snapshot.json version '${snapshot.version}'.`);
   const target = snapshot.targetMod ?? support.targetMod;
   assert(target === support.targetMod,
@@ -616,6 +692,10 @@ function auditProfile(
   if ((generationReport.wikiAvailabilityCorrections ?? []).length > 0) {
     warnings.push(
       `${generationReport.wikiAvailabilityCorrections.length} recommendations precede proven availability and were suppressed`);
+  }
+  if ((generationReport.profileItemSourceGaps ?? []).length > 0) {
+    warnings.push(
+      `${generationReport.profileItemSourceGaps.length} profile items have no acquisition source data`);
   }
   const contentMods = new Set(snapshot.contentMods ?? support.contentMods ?? [support.targetMod]);
   for (const item of snapshot.items ?? []) {

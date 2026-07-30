@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-28T18:31:05.932Z",
+  "generatedAtUtc": "2026-07-30T10:10:50.095Z",
   "snapshot": {
     "version": 7,
     "generatedAtUtc": "2026-07-28T14:42:32.1196436Z",
@@ -1788,6 +1788,7 @@
     "errors": [],
     "warnings": [
       "67 recommendations precede proven availability and were suppressed",
+      "10 profile items have no acquisition source data",
       "153 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
@@ -6585,7 +6586,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-07-28T18:30:45.595Z",
+    "generatedAtUtc": "2026-07-30T10:10:19.083Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -72890,6 +72891,89 @@
     ],
     "unavailableCombatItems": [],
     "unresolvedAvailabilityItems": [],
+    "profileItemSourceGaps": [
+      {
+        "item": "CalamityMod/Barberry",
+        "displayName": "Barberry",
+        "stageId": "wall-of-flesh",
+        "category": "Food",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "CalamityMod/CindersOfLament",
+        "displayName": "Cinders of Lament",
+        "stageId": "supreme-calamitas",
+        "category": "Weapon",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "CalamityMod/Cometfruit",
+        "displayName": "Cometfruit",
+        "stageId": "wall-of-flesh",
+        "category": "Food",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "CalamityMod/GruesomeEminence",
+        "displayName": "Gruesome Eminence",
+        "stageId": "supreme-calamitas",
+        "category": "Weapon",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "CalamityMod/LiliesOfFinality",
+        "displayName": "Lilies of Finality",
+        "stageId": "yharon",
+        "category": "Weapon",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "CalamityMod/Lotus",
+        "displayName": "Lotus",
+        "stageId": "wall-of-flesh",
+        "category": "Food",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "CalamityMod/Mangosteen",
+        "displayName": "Mangosteen",
+        "stageId": "wall-of-flesh",
+        "category": "Food",
+        "entryKind": "combat-buff",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "CalamityMod/Metastasis",
+        "displayName": "Metastasis",
+        "stageId": "supreme-calamitas",
+        "category": "Weapon",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "CalamityMod/Rancor",
+        "displayName": "Rancor",
+        "stageId": "supreme-calamitas",
+        "category": "Weapon",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      },
+      {
+        "item": "CalamityMod/ShatteredCommunity",
+        "displayName": "Shattered Community",
+        "stageId": "supreme-calamitas",
+        "category": "Accessory",
+        "entryKind": "equipment",
+        "assignedVia": "manifest"
+      }
+    ],
+    "profileItemSourceGapCount": 10,
     "manualAssignmentProblems": [],
     "officialSourceCompatibility": {
       "recommendations": {

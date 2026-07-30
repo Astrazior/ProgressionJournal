@@ -2,7 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { createSnapshotView } from "./KnowledgeBase.mjs";
-import { applyVanillaSourceCatalog } from "./VanillaSourceCatalog.mjs";
+import {
+  applyVanillaSourceCatalog,
+  getVanillaKnownSourceItems
+} from "./VanillaSourceCatalog.mjs";
 import { resolveSnapshotStageIndex } from "./SnapshotStageResolver.mjs";
 import { isVanillaSupportItem } from "./VanillaSupportItemCatalog.mjs";
 
@@ -172,7 +175,7 @@ function generateProfileCore(
     : source;
   assert(snapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot format.");
   assert(
-    [4, 5, 6, 7].includes(snapshot.version),
+    [4, 5, 6, 7, 8].includes(snapshot.version),
     `Unsupported snapshot version '${snapshot.version}'.`);
 
   manifest = applyVanillaSourceCatalog(manifest, snapshot);
@@ -383,6 +386,8 @@ function generateProfileCore(
     unassignedVanillaNpcSources: [],
     unavailableCombatItems: [],
     unresolvedAvailabilityItems: [],
+    profileItemSourceGaps: [],
+    profileItemSourceGapCount: 0,
     manualAssignmentProblems: manualResult.problems
   };
   Object.defineProperty(manifest, "_stageIndexes", { value: stageIndexes });
@@ -734,6 +739,14 @@ function generateProfileCore(
   mergeEquivalentVariantEntries(profileEntries, entryByItem, itemById, manifest);
   narrowUnclassifiedEquipmentClasses(profileEntries, manifest);
   validateManualRules(manifest, itemById, report);
+  report.profileItemSourceGaps = collectProfileItemSourceGaps({
+    snapshot,
+    profileEntries,
+    profileBuffs,
+    itemById,
+    paths: report.paths
+  });
+  report.profileItemSourceGapCount = report.profileItemSourceGaps.length;
   const review = buildManualReview({
     snapshot,
     manifest,
@@ -775,6 +788,50 @@ function generateProfileCore(
   };
 
   return { profile, report, review };
+}
+
+function collectProfileItemSourceGaps({
+  snapshot,
+  profileEntries,
+  profileBuffs,
+  itemById,
+  paths
+}) {
+  const sourcedItems = new Set([
+    ...getVanillaKnownSourceItems(),
+    ...(snapshot.knownSourceItems ?? []),
+    ...(snapshot.recipes ?? []).map(recipe => recipe.result),
+    ...(snapshot.shimmerTransforms ?? []).map(transform => transform.output),
+    ...(snapshot.drops ?? []).map(drop => drop.item),
+    ...(snapshot.shops ?? []).map(shop => shop.item),
+    ...(snapshot.fishing ?? [])
+      .filter(record => record.targetType === "item")
+      .map(record => record.target)
+  ]);
+  const gaps = new Map();
+  const collect = (entries, entryKind) => {
+    for (const entry of entries) {
+      const stageId = entry.stageId ?? entry.evaluations?.[0]?.stageId ?? "";
+      const hasProfileFishingSource = (entry.fishingSources ?? []).length > 0;
+      for (const item of (entry.itemGroups ?? []).flat()) {
+        const itemId = `${item.mod}/${item.item}`;
+        if (sourcedItems.has(itemId) || hasProfileFishingSource || gaps.has(itemId)) {
+          continue;
+        }
+        gaps.set(itemId, {
+          item: itemId,
+          displayName: itemById.get(itemId)?.name ?? item.displayName ?? item.item,
+          stageId,
+          category: entry.category ?? "",
+          entryKind,
+          assignedVia: paths[itemId]?.via ?? ""
+        });
+      }
+    }
+  };
+  collect(profileEntries, "equipment");
+  collect(profileBuffs, "combat-buff");
+  return [...gaps.values()].sort((left, right) => left.item.localeCompare(right.item));
 }
 
 function hasManualAvailabilityAssignments(manualAssignments) {
