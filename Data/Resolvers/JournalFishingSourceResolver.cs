@@ -45,7 +45,8 @@ internal static class JournalFishingSourceResolver
         bool IsOcean,
         ModBiome? ModBiome,
         ModWaterStyle? WaterStyle,
-        Action<Player> ApplyVanillaBiome);
+        Action<Player> ApplyVanillaBiome,
+        bool IsPlayerFacingBiome = true);
 
     private sealed record ProbeEquipment(int PoleItemId, int BaitItemId, int RandomSeedCount);
 
@@ -620,7 +621,8 @@ internal static class JournalFishingSourceResolver
                 false,
                 null,
                 waterStyle,
-                static _ => { })));
+                static _ => { },
+                false)));
 
         return environments;
     }
@@ -986,11 +988,16 @@ internal static class JournalFishingSourceResolver
     {
         var conditions = new List<JournalLocalizedText>();
         var liquids = contexts.Select(static context => context.Liquid).Distinct().Order().ToArray();
-        var environmentIndexes = contexts
+        var hasWaterStyleOnlyObservation = contexts.Any(context =>
+            !catalog.Environments[context.EnvironmentIndex].IsPlayerFacingBiome);
+        var biomeIndexes = contexts
             .Select(static context => context.EnvironmentIndex)
+            .Where(index => catalog.Environments[index].IsPlayerFacingBiome)
             .Distinct()
             .Order()
             .ToArray();
+        var biomeCount = catalog.Environments.Count(static environment =>
+            environment.IsPlayerFacingBiome);
         var depths = contexts.Select(static context => context.Depth).Distinct().Order().ToArray();
         var worlds = contexts
             .Select(static context => Worlds[context.WorldIndex])
@@ -1010,11 +1017,11 @@ internal static class JournalFishingSourceResolver
                 JournalLocalizedText.Join(liquids.Select(GetLiquidText))));
         }
 
-        if (environmentIndexes.Length < catalog.Environments.Count)
+        if (!hasWaterStyleOnlyObservation && biomeIndexes.Length < biomeCount)
         {
             conditions.Add(JournalLocalizedText.FromKey(
                 "Mods.ProgressionJournal.UI.FishingBiomeCondition",
-                JournalLocalizedText.Join(environmentIndexes
+                JournalLocalizedText.Join(biomeIndexes
                     .Select(index => catalog.Environments[index].DisplayName))));
         }
 

@@ -18,6 +18,9 @@ internal static class JournalTownNpcAvailabilityResolver
     private static readonly FieldInfo? ModBiomeFlagsField = typeof(Player).GetField(
         "modBiomeFlags",
         BindingFlags.Instance | BindingFlags.NonPublic);
+    private static readonly MethodInfo? PlayerLoaderSetupPlayerMethod = typeof(PlayerLoader).GetMethod(
+        "SetupPlayer",
+        BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
     private static readonly PropertyInfo? ModBiomeIndexProperty = typeof(ModBiome).GetProperty(
         "ZeroIndexType",
         BindingFlags.Instance | BindingFlags.NonPublic);
@@ -151,6 +154,21 @@ internal static class JournalTownNpcAvailabilityResolver
         return false;
     }
 
+    internal static JournalObservedShop[] GetObservedShops()
+    {
+        var catalog = GetCatalog();
+        return catalog.ShopStages
+            .Select(pair => new JournalObservedShop(
+                pair.Key.NpcType,
+                pair.Key.ShopName,
+                pair.Key.ItemId,
+                pair.Value,
+                pair.Value >= 0 && pair.Value < catalog.StageNames.Count
+                    ? catalog.StageNames[pair.Value]
+                    : string.Empty))
+            .ToArray();
+    }
+
     private static Catalog GetCatalog()
     {
         lock (SyncRoot)
@@ -180,11 +198,11 @@ internal static class JournalTownNpcAvailabilityResolver
     private static Catalog BuildCatalog()
     {
         var updateTownNpcAvailability = GetTownNpcAvailabilityMethod();
-        var player = GetProbePlayer();
+        var player = CreateProbePlayer();
         using var progression = new JournalRuntimeProgressionScenarios();
         var stageNames = progression.StageNames;
         var emptyCatalog = new Catalog([], [], stageNames);
-        if (updateTownNpcAvailability is null || player is null)
+        if (updateTownNpcAvailability is null)
         {
             return emptyCatalog;
         }
@@ -772,6 +790,13 @@ internal static class JournalTownNpcAvailabilityResolver
     {
         var result = new Dictionary<ShopKey, int>();
         var shops = NPCShopDatabase.AllShops.ToArray();
+        var registeredShopNpcTypes = shops
+            .Select(static shop => shop.NpcType)
+            .ToHashSet();
+        var unregisteredModNpcTypes = observations.Keys
+            .Where(npcType => NPCLoader.GetNPC(npcType) is not null
+                && !registeredShopNpcTypes.Contains(npcType))
+            .ToArray();
         var environmentScenarios = CreateShopEnvironmentScenarios();
 
         for (var stageIndex = 0; stageIndex < progression.Count; stageIndex++)
@@ -792,6 +817,7 @@ internal static class JournalTownNpcAvailabilityResolver
                         environment(player);
                         ObserveShops(
                             shops,
+                            unregisteredModNpcTypes,
                             observations,
                             progression,
                             result,
@@ -806,6 +832,7 @@ internal static class JournalTownNpcAvailabilityResolver
                         ApplyInventoryScenario(player, inventoryScenario);
                         ObserveShops(
                             shops,
+                            unregisteredModNpcTypes,
                             observations,
                             progression,
                             result,
@@ -822,6 +849,7 @@ internal static class JournalTownNpcAvailabilityResolver
 
     private static void ObserveShops(
         IReadOnlyCollection<AbstractNPCShop> shops,
+        IReadOnlyCollection<int> unregisteredModNpcTypes,
         IReadOnlyDictionary<int, List<TownProbeScenario>> observations,
         JournalRuntimeProgressionScenarios progression,
         IDictionary<ShopKey, int> result,
@@ -831,7 +859,9 @@ internal static class JournalTownNpcAvailabilityResolver
     {
         foreach (var shop in shops)
         {
-            if (shop.ActiveEntries.All(entry =>
+            var modNpc = NPCLoader.GetNPC(shop.NpcType);
+            if (modNpc is null
+                && shop.ActiveEntries.All(entry =>
                     entry.Item is null
                     || entry.Item.IsAir
                     || result.ContainsKey(new ShopKey(
@@ -858,16 +888,28 @@ internal static class JournalTownNpcAvailabilityResolver
                 var npc = new NPC();
                 npc.SetDefaults(shop.NpcType);
                 npc.active = true;
-                var items = new List<Item>();
-                shop.FillShop(items, npc);
-                foreach (var item in items.Where(static item => item is not null && !item.IsAir))
+                IEnumerable<Item> observedItems;
+                if (IsPriorOwnershipShop(modNpc))
                 {
-                    var key = new ShopKey(shop.NpcType, shop.Name, item.type);
-                    if (!result.TryGetValue(key, out var existing) || stageIndex < existing)
-                    {
-                        result[key] = stageIndex;
-                    }
+                    var registeredItems = new List<Item>();
+                    shop.FillShop(registeredItems, npc);
+                    observedItems = registeredItems;
                 }
+                else
+                {
+                    var activeShop = new Chest(false);
+                    activeShop.SetupShop(
+                        NPCShopDatabase.GetShopName(shop.NpcType, shop.Name),
+                        npc);
+                    observedItems = activeShop.item;
+                }
+
+                RecordObservedShopItems(
+                    observedItems,
+                    shop.NpcType,
+                    shop.Name,
+                    result,
+                    stageIndex);
             }
             catch (Exception exception)
             {
@@ -875,6 +917,75 @@ internal static class JournalTownNpcAvailabilityResolver
                     "shop",
                     $"Failed to inspect shop '{shop.Name}' for NPC type {shop.NpcType} at stage {stageIndex}.",
                     exception);
+            }
+        }
+
+        foreach (var npcType in unregisteredModNpcTypes)
+        {
+            if (IsPriorOwnershipShop(NPCLoader.GetNPC(npcType)))
+            {
+                continue;
+            }
+
+            if (!HasCompatibleNpcObservation(
+                    observations,
+                    npcType,
+                    progression,
+                    stageIndex,
+                    variantIndex,
+                    gameMode))
+            {
+                continue;
+            }
+
+            try
+            {
+                const string shopName = "Shop";
+                var npc = new NPC();
+                npc.SetDefaults(npcType);
+                npc.active = true;
+                var activeShop = new Chest(false);
+                activeShop.SetupShop(
+                    NPCShopDatabase.GetShopName(npcType, shopName),
+                    npc);
+                RecordObservedShopItems(
+                    activeShop.item,
+                    npcType,
+                    shopName,
+                    result,
+                    stageIndex);
+            }
+            catch (Exception exception)
+            {
+                LogDebugOnce(
+                    "unregistered-shop",
+                    $"Failed to inspect the unregistered shop for NPC type {npcType} at stage {stageIndex}.",
+                    exception);
+            }
+        }
+    }
+
+    private static bool IsPriorOwnershipShop(ModNPC? modNpc)
+    {
+        // Squirrel resells items already owned by active players and captured active town NPCs.
+        // Those offers cannot prove first acquisition and synthetic probes would feed their own inputs back.
+        return modNpc is { Name: "Squirrel" }
+               && string.Equals(modNpc.Mod.Name, "Fargowiltas", StringComparison.Ordinal);
+    }
+
+    private static void RecordObservedShopItems(
+        IEnumerable<Item> items,
+        int npcType,
+        string shopName,
+        IDictionary<ShopKey, int> result,
+        int stageIndex)
+    {
+        foreach (var item in items.Where(static item => item is not null && !item.IsAir))
+        {
+            var key = new ShopKey(npcType, shopName, item.type);
+            if (!result.TryGetValue(key, out var existing) || stageIndex < existing)
+            {
+                result[key] = stageIndex;
             }
         }
     }
@@ -1211,12 +1322,17 @@ internal static class JournalTownNpcAvailabilityResolver
         ModBiomeFlagsField?.SetValue(player, (BitArray)state.ModBiomeFlags.Clone());
     }
 
-    private static Player? GetProbePlayer()
+    private static Player CreateProbePlayer()
     {
-        if (Main.myPlayer < 0 || Main.myPlayer >= Main.player.Length)
-            return Main.player.FirstOrDefault(static player => player is { active: true });
-        var localPlayer = Main.LocalPlayer;
-        return localPlayer is { active: true } ? localPlayer : Main.player.FirstOrDefault(static player => player is { active: true });
+        var player = new Player
+        {
+            whoAmI = Math.Clamp(Main.myPlayer, 0, Main.player.Length - 1),
+            active = true,
+            dead = false
+        };
+        PlayerLoaderSetupPlayerMethod?.Invoke(null, [player]);
+        player.ResetEffects();
+        return player;
     }
 
     private static BitArray GetModBiomeFlags(Player player)
@@ -1243,3 +1359,10 @@ internal static class JournalTownNpcAvailabilityResolver
         ProgressionJournal.Instance?.Logger.Debug($"{message}{Environment.NewLine}{exception}");
     }
 }
+
+internal sealed record JournalObservedShop(
+    int NpcType,
+    string ShopName,
+    int ItemId,
+    int StageIndex,
+    string StageName);

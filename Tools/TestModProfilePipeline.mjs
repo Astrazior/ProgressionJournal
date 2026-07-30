@@ -102,7 +102,9 @@ assert(fishingResolverSource.includes("ModContent.GetContent<ModBiome>()"),
   "ModBiome scenarios are missing from the fishing pipeline");
 assert(fishingResolverSource.includes("ModContent.GetContent<ModWaterStyle>()"),
   "ModWaterStyle scenarios are missing from the fishing pipeline");
-assert(!fishingResolverSource.includes("FishingWaterStyleCondition"),
+assert(!fishingResolverSource.includes("FishingWaterStyleCondition")
+  && fishingResolverSource.includes("IsPlayerFacingBiome")
+  && fishingResolverSource.includes("hasWaterStyleOnlyObservation"),
   "Internal ModWaterStyle identifiers must not be rendered as player-facing conditions");
 assert(fishingResolverSource.includes("CreateLegacyBiomeFlags")
   && fishingResolverSource.includes("JournalLegacyDirectDropAnalyzer.GetReferencedMembers(isBiomeActive)")
@@ -235,6 +237,8 @@ assert(exactDropCatalogSource.includes("\"CalamityMod/DivineSwine\"")
   "Delicious Meat must retain its localized Divine Swine interaction source");
 assert(exactDropCatalogSource.includes("\"CalamityMod/LoreCorruption\"")
   && exactDropCatalogSource.includes("\"CalamityMod/LoreEaterofWorlds\"")
+  && exactDropCatalogSource.includes("\"CalamityMod/LoreCrimson\"")
+  && exactDropCatalogSource.includes("\"CalamityMod/LoreBrainofCthulhu\"")
   && exactDropCatalogSource.includes("ConditionKind.CalamityFirstKill"),
   "Calamity world-evil lore drops hidden from ReportDroprates must retain exact IL-backed sources");
 assert(exactShopCatalogSource.includes("\"ThoriumMod/GrimPedestal\"")

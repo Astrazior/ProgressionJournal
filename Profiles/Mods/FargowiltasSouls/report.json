@@ -3,10 +3,10 @@
   "version": 1,
   "targetMod": "FargowiltasSouls",
   "profileId": "builtin.fargosouls",
-  "generatedAtUtc": "2026-07-30T10:10:59.257Z",
+  "generatedAtUtc": "2026-07-30T17:47:32.825Z",
   "snapshot": {
-    "version": 7,
-    "generatedAtUtc": "2026-07-28T14:35:15.0368821Z",
+    "version": 8,
+    "generatedAtUtc": "2026-07-30T17:37:07.1193558Z",
     "targetMod": "FargowiltasSouls",
     "mods": [
       {
@@ -24,7 +24,7 @@
     ],
     "accumulatedProbeEvidence": {
       "compatible": true,
-      "npcAvailability": 10,
+      "npcAvailability": 0,
       "shops": 0,
       "fishing": 0
     }
@@ -717,13 +717,13 @@
   "audit": {
     "errors": [],
     "warnings": [
-      "128 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
+      "127 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
       "npcCount": 742,
       "availabilityCount": 742,
       "spawnCount": 698,
-      "observedSpawnCount": 230,
+      "observedSpawnCount": 247,
       "townCount": 44,
       "observedTownCount": 10,
       "fishingCount": 124,
@@ -947,6 +947,14 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/BrainScrambler",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 17
         },
         {
           "source": "Terraria/Butcher",
@@ -1413,10 +1421,18 @@
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": 9
+          "earliestStageIndex": 0
         },
         {
           "source": "Terraria/GoblinPeon",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/GoblinScout",
           "kinds": [
             "drop"
           ],
@@ -1429,10 +1445,26 @@
             "drop"
           ],
           "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/GoblinSummoner",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
           "earliestStageIndex": 9
         },
         {
           "source": "Terraria/GoblinThief",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/GoblinWarrior",
           "kinds": [
             "drop"
           ],
@@ -1454,6 +1486,14 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/GrayGrunt",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 17
         },
         {
           "source": "Terraria/GreekSkeleton",
@@ -1696,6 +1736,22 @@
           "earliestStageIndex": 0
         },
         {
+          "source": "Terraria/MartianEngineer",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 17
+        },
+        {
+          "source": "Terraria/MartianOfficer",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 17
+        },
+        {
           "source": "Terraria/MartianWalker",
           "kinds": [
             "drop"
@@ -1833,7 +1889,31 @@
           "earliestStageIndex": 0
         },
         {
+          "source": "Terraria/PirateCaptain",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 9
+        },
+        {
+          "source": "Terraria/PirateCorsair",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 9
+        },
+        {
           "source": "Terraria/PirateCrossbower",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 9
+        },
+        {
+          "source": "Terraria/PirateDeadeye",
           "kinds": [
             "drop"
           ],
@@ -1879,6 +1959,14 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/RayGunner",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 17
         },
         {
           "source": "Terraria/Reaper",
@@ -2017,6 +2105,14 @@
           "earliestStageIndex": 16
         },
         {
+          "source": "Terraria/ScutlixRider",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 17
+        },
+        {
           "source": "Terraria/SeekerHead",
           "kinds": [
             "drop"
@@ -2087,6 +2183,14 @@
           ],
           "availabilityKind": "spawn",
           "earliestStageIndex": 0
+        },
+        {
+          "source": "Terraria/SnowBalla",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": 9
         },
         {
           "source": "Terraria/SnowFlinx",
@@ -2565,14 +2669,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/BrainScrambler",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/CorruptBunny",
           "kinds": [
             "drop"
@@ -2725,27 +2821,11 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/GoblinSummoner",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/GoblinTinkerer",
           "kinds": [
             "shop"
           ],
           "availabilityKind": "town",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/GoblinWarrior",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
           "earliestStageIndex": -1
         },
         {
@@ -2762,14 +2842,6 @@
             "shop"
           ],
           "availabilityKind": "town",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/GrayGrunt",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
           "earliestStageIndex": -1
         },
         {
@@ -2853,22 +2925,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/MartianEngineer",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/MartianOfficer",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/MartianSaucer",
           "kinds": [
             "drop"
@@ -2941,30 +2997,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/PirateCaptain",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/PirateCorsair",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/PirateDeadeye",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/PirateShip",
           "kinds": [
             "drop"
@@ -3029,14 +3061,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/RayGunner",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/RedDevil",
           "kinds": [
             "drop"
@@ -3077,14 +3101,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/ScutlixRider",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/SeaSnail",
           "kinds": [
             "drop"
@@ -3102,14 +3118,6 @@
         },
         {
           "source": "Terraria/SkeletronPrime",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/SnowBalla",
           "kinds": [
             "drop"
           ],
@@ -3693,14 +3701,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/GoblinScout",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/HeadlessHorseman",
           "kinds": [
             "drop"
@@ -4249,7 +4249,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.fargosouls",
-    "generatedAtUtc": "2026-07-30T10:10:57.683Z",
+    "generatedAtUtc": "2026-07-30T17:47:31.587Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -4333,6 +4333,28 @@
         "sourceKind": "drop",
         "source": "Terraria/GoblinThief",
         "item": "Terraria/BattlePotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Tim's Concoction drop rate",
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GoblinWarrior",
+        "item": "Terraria/BattlePotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Tim's Concoction drop rate",
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GoblinSorcerer",
+        "item": "Terraria/ManaRegenerationPotion",
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
           "description": "[i:FargowiltasSouls/TimsConcoction] Tim's Concoction drop rate",
@@ -4498,6 +4520,17 @@
         "sourceKind": "drop",
         "source": "Terraria/Crab",
         "item": "Terraria/CratePotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Tim's Concoction drop rate",
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GoblinArcher",
+        "item": "Terraria/ArcheryPotion",
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
           "description": "[i:FargowiltasSouls/TimsConcoction] Tim's Concoction drop rate",
@@ -7756,7 +7789,7 @@
         "item": "FargowiltasSouls/PiranhaPlantVoodooDoll",
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.PatreonPlantDropCondition",
-          "description": "[i:FargowiltasSouls/RoombaPet] Patreon Drop in Jungle on Blood Moon",
+          "description": "[i:FargowiltasSouls/RoombaPet] Предмет Патреона, в джунглях во время кровавой луны",
           "key": "",
           "facts": []
         }
@@ -7801,17 +7834,6 @@
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeNotMasterDropCondition",
           "description": "This is a Master/Eternity Mode drop rate",
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GoblinWarrior",
-        "item": "Terraria/BattlePotion",
-        "condition": {
-          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
-          "description": "[i:FargowiltasSouls/TimsConcoction] Tim's Concoction drop rate",
           "key": "",
           "facts": []
         }
@@ -8489,17 +8511,6 @@
       },
       {
         "sourceKind": "drop",
-        "source": "Terraria/GoblinSorcerer",
-        "item": "Terraria/ManaRegenerationPotion",
-        "condition": {
-          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
-          "description": "[i:FargowiltasSouls/TimsConcoction] Tim's Concoction drop rate",
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
         "source": "Terraria/Mimic",
         "item": "Terraria/SpelunkerPotion",
         "condition": {
@@ -8524,17 +8535,6 @@
         "sourceKind": "drop",
         "source": "Terraria/Clown",
         "item": "Terraria/LuckPotionGreater",
-        "condition": {
-          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
-          "description": "[i:FargowiltasSouls/TimsConcoction] Tim's Concoction drop rate",
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GoblinArcher",
-        "item": "Terraria/ArcheryPotion",
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
           "description": "[i:FargowiltasSouls/TimsConcoction] Tim's Concoction drop rate",
@@ -8599,8 +8599,30 @@
       },
       {
         "sourceKind": "drop",
+        "source": "Terraria/PirateCaptain",
+        "item": "Terraria/AmmoReservationPotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Tim's Concoction drop rate",
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
         "source": "Terraria/JungleCreeper",
         "item": "Terraria/TrapsightPotion",
+        "condition": {
+          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
+          "description": "[i:FargowiltasSouls/TimsConcoction] Tim's Concoction drop rate",
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GoblinSummoner",
+        "item": "Terraria/SummoningPotion",
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
           "description": "[i:FargowiltasSouls/TimsConcoction] Tim's Concoction drop rate",
@@ -8742,17 +8764,6 @@
       },
       {
         "sourceKind": "drop",
-        "source": "Terraria/GoblinSummoner",
-        "item": "Terraria/SummoningPotion",
-        "condition": {
-          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
-          "description": "[i:FargowiltasSouls/TimsConcoction] Tim's Concoction drop rate",
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
         "source": "Terraria/VampireBat",
         "item": "Terraria/SonarPotion",
         "condition": {
@@ -8791,17 +8802,6 @@
         "condition": {
           "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeNotMasterDropCondition",
           "description": "This is a Master/Eternity Mode drop rate",
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/PirateCaptain",
-        "item": "Terraria/AmmoReservationPotion",
-        "condition": {
-          "type": "FargowiltasSouls.Core.ItemDropRules.Conditions.TimsConcoctionDropCondition",
-          "description": "[i:FargowiltasSouls/TimsConcoction] Tim's Concoction drop rate",
           "key": "",
           "facts": []
         }
@@ -20331,6 +20331,11 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Fargowiltas/GoldenDippingVat",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/TruffleWorm",
         "reason": "not combat equipment"
       },
@@ -20547,11 +20552,6 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/FlyingDutchmanTrophy",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Fargowiltas/GoldenDippingVat",
         "reason": "not combat equipment"
       },
       {
@@ -23516,6 +23516,26 @@
       },
       {
         "stage": "golem",
+        "id": "Terraria/MartianCostumeMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "golem",
+        "id": "Terraria/MartianCostumeShirt",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "golem",
+        "id": "Terraria/MartianCostumePants",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "golem",
+        "id": "Terraria/BrainScrambler",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "golem",
         "id": "Terraria/MartianUniformHelmet",
         "reason": "not combat equipment"
       },
@@ -23567,26 +23587,6 @@
       {
         "stage": "golem",
         "id": "FargowiltasSouls/ComputationOrb",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "Terraria/MartianCostumeMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "Terraria/MartianCostumeShirt",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "Terraria/MartianCostumePants",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "golem",
-        "id": "Terraria/BrainScrambler",
         "reason": "not combat equipment"
       },
       {
@@ -27992,6 +27992,34 @@
         "customEventName": "",
         "eventIcon": ""
       },
+      "Terraria/ShadowFlameBow": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/GoblinSummoner",
+        "eventCategory": "GoblinArmy",
+        "customEventName": "",
+        "eventIcon": ""
+      },
+      "Terraria/ShadowFlameHexDoll": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/GoblinSummoner",
+        "eventCategory": "GoblinArmy",
+        "customEventName": "",
+        "eventIcon": ""
+      },
+      "Terraria/ShadowFlameKnife": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/GoblinSummoner",
+        "eventCategory": "GoblinArmy",
+        "customEventName": "",
+        "eventIcon": ""
+      },
+      "FargowiltasSouls/WretchedPouch": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/GoblinSummoner",
+        "eventCategory": "GoblinArmy",
+        "customEventName": "",
+        "eventIcon": ""
+      },
       "Terraria/DartRifle": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/BigMimicCorruption"
@@ -28131,22 +28159,6 @@
       "Terraria/CrystalVileShard": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/BigMimicHallow"
-      },
-      "Terraria/ShadowFlameBow": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/GoblinSummoner"
-      },
-      "Terraria/ShadowFlameHexDoll": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/GoblinSummoner"
-      },
-      "Terraria/ShadowFlameKnife": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/GoblinSummoner"
-      },
-      "FargowiltasSouls/WretchedPouch": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/GoblinSummoner"
       },
       "Terraria/Frostbrand": {
         "stage": "wall-of-flesh",
@@ -28439,6 +28451,18 @@
       "Terraria/Bladetongue": {
         "stage": "wall-of-flesh",
         "via": "fishing"
+      },
+      "Terraria/Arkhalis": {
+        "stage": "wall-of-flesh",
+        "via": "container:FargowiltasSouls/TrojanSquirrelBag"
+      },
+      "Terraria/RedsYoyo": {
+        "stage": "wall-of-flesh",
+        "via": "container:FargowiltasSouls/TrojanSquirrelBag"
+      },
+      "Terraria/ValkyrieYoyo": {
+        "stage": "wall-of-flesh",
+        "via": "container:FargowiltasSouls/TrojanSquirrelBag"
       },
       "Terraria/DemonHeart": {
         "stage": "wall-of-flesh",
@@ -29053,18 +29077,6 @@
         "via": "manifest"
       },
       "Terraria/CelestialEmblem": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/Arkhalis": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/RedsYoyo": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/ValkyrieYoyo": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
@@ -30785,7 +30797,7 @@
       },
       "Terraria/ChargedBlasterCannon": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper",
+        "via": "npc:Terraria/BrainScrambler",
         "eventCategory": "MartianMadness",
         "customEventName": "",
         "eventIcon": ""
@@ -42818,6 +42830,13 @@
         "customEventName": "",
         "eventIcon": ""
       },
+      "Fargowiltas/GoldenDippingVat": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/PirateCaptain",
+        "eventCategory": "PirateInvasion",
+        "customEventName": "",
+        "eventIcon": ""
+      },
       "Terraria/TruffleWorm": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/ZombieMushroom"
@@ -43005,13 +43024,6 @@
       "Terraria/FlyingDutchmanTrophy": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/PirateShip",
-        "eventCategory": "PirateInvasion",
-        "customEventName": "",
-        "eventIcon": ""
-      },
-      "Fargowiltas/GoldenDippingVat": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/PirateCaptain",
         "eventCategory": "PirateInvasion",
         "customEventName": "",
         "eventIcon": ""
@@ -46942,42 +46954,70 @@
       },
       "Terraria/MartianConduitPlating": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper",
+        "via": "npc:Terraria/BrainScrambler",
         "eventCategory": "MartianMadness",
         "customEventName": "",
         "eventIcon": ""
       },
       "Terraria/LaserDrill": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper",
+        "via": "npc:Terraria/BrainScrambler",
         "eventCategory": "MartianMadness",
         "customEventName": "",
         "eventIcon": ""
       },
       "Terraria/AntiGravityHook": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper",
+        "via": "npc:Terraria/BrainScrambler",
+        "eventCategory": "MartianMadness",
+        "customEventName": "",
+        "eventIcon": ""
+      },
+      "Terraria/MartianCostumeMask": {
+        "stage": "golem",
+        "via": "npc:Terraria/BrainScrambler",
+        "eventCategory": "MartianMadness",
+        "customEventName": "",
+        "eventIcon": ""
+      },
+      "Terraria/MartianCostumeShirt": {
+        "stage": "golem",
+        "via": "npc:Terraria/BrainScrambler",
+        "eventCategory": "MartianMadness",
+        "customEventName": "",
+        "eventIcon": ""
+      },
+      "Terraria/MartianCostumePants": {
+        "stage": "golem",
+        "via": "npc:Terraria/BrainScrambler",
+        "eventCategory": "MartianMadness",
+        "customEventName": "",
+        "eventIcon": ""
+      },
+      "Terraria/BrainScrambler": {
+        "stage": "golem",
+        "via": "npc:Terraria/BrainScrambler",
         "eventCategory": "MartianMadness",
         "customEventName": "",
         "eventIcon": ""
       },
       "Terraria/MartianUniformHelmet": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper",
+        "via": "npc:Terraria/MartianOfficer",
         "eventCategory": "MartianMadness",
         "customEventName": "",
         "eventIcon": ""
       },
       "Terraria/MartianUniformTorso": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper",
+        "via": "npc:Terraria/MartianOfficer",
         "eventCategory": "MartianMadness",
         "customEventName": "",
         "eventIcon": ""
       },
       "Terraria/MartianUniformPants": {
         "stage": "golem",
-        "via": "npc:Terraria/GigaZapper",
+        "via": "npc:Terraria/MartianOfficer",
         "eventCategory": "MartianMadness",
         "customEventName": "",
         "eventIcon": ""
@@ -47013,22 +47053,6 @@
       "FargowiltasSouls/ComputationOrb": {
         "stage": "golem",
         "via": "npc:Terraria/Golem"
-      },
-      "Terraria/MartianCostumeMask": {
-        "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
-      },
-      "Terraria/MartianCostumeShirt": {
-        "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
-      },
-      "Terraria/MartianCostumePants": {
-        "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
-      },
-      "Terraria/BrainScrambler": {
-        "stage": "golem",
-        "via": "npc:Terraria/BrainScrambler"
       },
       "Terraria/CosmicCarKey": {
         "stage": "golem",
@@ -48712,6 +48736,13 @@
         ]
       },
       {
+        "source": "Terraria/BrainScrambler",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/ChargedBlasterCannon"
+        ]
+      },
+      {
         "source": "Terraria/CaveBat",
         "sourceKind": "drop",
         "items": [
@@ -49066,6 +49097,17 @@
         ]
       },
       {
+        "source": "Terraria/GoblinSummoner",
+        "sourceKind": "drop",
+        "items": [
+          "FargowiltasSouls/WretchedPouch",
+          "Terraria/ShadowFlameBow",
+          "Terraria/ShadowFlameHexDoll",
+          "Terraria/ShadowFlameKnife",
+          "Terraria/SummoningPotion"
+        ]
+      },
+      {
         "source": "Terraria/GraniteFlyer",
         "sourceKind": "drop",
         "items": [
@@ -49079,6 +49121,13 @@
         "items": [
           "Terraria/EndurancePotion",
           "Terraria/Spaghetti"
+        ]
+      },
+      {
+        "source": "Terraria/GrayGrunt",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/ChargedBlasterCannon"
         ]
       },
       {
@@ -49327,6 +49376,13 @@
         ]
       },
       {
+        "source": "Terraria/MartianOfficer",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/ChargedBlasterCannon"
+        ]
+      },
+      {
         "source": "Terraria/Medusa",
         "sourceKind": "drop",
         "items": [
@@ -49470,6 +49526,13 @@
         "sourceKind": "drop",
         "items": [
           "Terraria/SpectreStaff"
+        ]
+      },
+      {
+        "source": "Terraria/RayGunner",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/ChargedBlasterCannon"
         ]
       },
       {
@@ -49631,6 +49694,13 @@
         "items": [
           "Terraria/Gel",
           "Terraria/SlimeStaff"
+        ]
+      },
+      {
+        "source": "Terraria/ScutlixRider",
+        "sourceKind": "drop",
+        "items": [
+          "Terraria/ChargedBlasterCannon"
         ]
       },
       {
@@ -49956,10 +50026,10 @@
         "comparisons": []
       }
     },
-    "unassignedVanillaNpcSourceCount": 189,
+    "unassignedVanillaNpcSourceCount": 195,
     "manualAvailabilityPriority": {
-      "automaticItems": 4136,
-      "automaticSources": 230,
+      "automaticItems": 4139,
+      "automaticSources": 247,
       "automaticStations": 400,
       "suppressed": {
         "itemStages": [
@@ -50437,16 +50507,7 @@
           "eventCategory": "GoblinArmy",
           "declaredStageId": "eye-of-cthulhu",
           "automaticStageId": "start",
-          "deferredSources": [
-            {
-              "source": "Terraria/GoblinWarrior",
-              "stageId": "eye-of-cthulhu"
-            },
-            {
-              "source": "Terraria/GoblinSorcerer",
-              "stageId": "wall-of-flesh"
-            }
-          ]
+          "deferredSources": []
         }
       ]
     }

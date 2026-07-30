@@ -41,6 +41,23 @@ internal static class JournalSnapshotShopCollector
             })
             .ToList();
 
+        shops.AddRange(JournalTownNpcAvailabilityResolver.GetObservedShops()
+            .Where(source => includedNpcs.Contains(source.NpcType)
+                && includedItems.Contains(source.ItemId)
+                && !shops.Any(shop =>
+                    shop.Npc == getNpcReference(source.NpcType)
+                    && shop.Shop == source.ShopName
+                    && shop.Item == getItemReference(source.ItemId)))
+            .Select(source => new SnapshotShop(
+                getNpcReference(source.NpcType),
+                source.ShopName,
+                getItemReference(source.ItemId),
+                [],
+                true,
+                source.StageIndex,
+                getStageId(source.StageIndex),
+                source.StageName)));
+
         shops.AddRange(JournalExactShopCatalog.GetAllSources()
             .Where(source => includedNpcs.Contains(source.NpcType)
                 && includedItems.Contains(source.TargetItemId)

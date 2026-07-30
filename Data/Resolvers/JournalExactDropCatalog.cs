@@ -352,6 +352,20 @@ public static class JournalExactDropCatalog
                 "CalamityMod/LoreEaterofWorlds",
                 1f,
                 conditions: firstKill);
+            AddNpc(
+                builders,
+                worldEvilLoreProvenance,
+                npcType,
+                "CalamityMod/LoreCrimson",
+                1f,
+                conditions: firstKill);
+            AddNpc(
+                builders,
+                worldEvilLoreProvenance,
+                npcType,
+                "CalamityMod/LoreBrainofCthulhu",
+                1f,
+                conditions: firstKill);
         }
 
         const string acidwoodFruitProvenance =
