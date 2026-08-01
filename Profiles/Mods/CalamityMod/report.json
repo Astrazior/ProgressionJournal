@@ -3,10 +3,10 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-08-01T19:37:10.449Z",
+  "generatedAtUtc": "2026-08-01T21:22:40.905Z",
   "snapshot": {
     "version": 9,
-    "generatedAtUtc": "2026-08-01T14:12:30.9322704Z",
+    "generatedAtUtc": "2026-08-01T20:55:03.8146404Z",
     "targetMod": "CalamityMod",
     "mods": [
       {
@@ -22,7 +22,7 @@
     }
   },
   "agentRules": {
-    "rules": 108,
+    "rules": 107,
     "ignoredItems": 3,
     "ignoredIssues": 1,
     "evidence": [
@@ -594,13 +594,6 @@
         "reason": "The official sources make these available through pre-boss Sulphurous Sea or Brimstone fishing, Acidwood fruit, the ungated Divine Swine, the Shady Salesman's blender, or an ordinary Forest critter."
       },
       {
-        "id": "astral-biome-fruit-and-fishing",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "These are Astral biome tree fruit or legendary fishing catches; the Astral biome appears when Hardmode begins."
-      },
-      {
         "id": "ursa-sergeant-combat-accessory",
         "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/Fishing/AstralCatches/UrsaSergeant.cs",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
@@ -646,8 +639,8 @@
         "id": "calamitas-exhumed-items",
         "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/UI/CalamitasEnchantments/EnchantmentManager.cs",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Exhumed upgrade table converts their base items through Calamitas's post-boss enchantment service."
+        "checkedAt": "2026-08-01",
+        "reason": "The exact source catalog exports the official Exhumed upgrade table, and this typed condition gates the Brimstone Witch service behind Supreme Calamitas."
       },
       {
         "id": "post-polterghast-colossal-squid-loot",
@@ -1366,7 +1359,6 @@
     "errors": [],
     "warnings": [
       "67 recommendations precede proven availability and were suppressed",
-      "9 profile items have no acquisition source data",
       "141 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
@@ -6164,7 +6156,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-08-01T19:36:51.400Z",
+    "generatedAtUtc": "2026-08-01T21:22:22.891Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -38413,6 +38405,10 @@
         "stage": "start",
         "via": "global:Terraria/GlobalNPCDrops"
       },
+      "Terraria/LifeCrystal": {
+        "stage": "start",
+        "via": "world:Terraria/Heart"
+      },
       "Terraria/Honeyfin": {
         "stage": "start",
         "via": "fishing"
@@ -38532,10 +38528,6 @@
       "Terraria/ManaPotion": {
         "stage": "start",
         "via": "container:Terraria/IronCrate"
-      },
-      "Terraria/LifeCrystal": {
-        "stage": "start",
-        "via": "container:Terraria/GoldenCrate"
       },
       "CalamityMod/EnchantedKnifeStaff": {
         "stage": "start",
@@ -41705,6 +41697,22 @@
         "stage": "wall-of-flesh",
         "via": "global:Terraria/GlobalNPCDrops"
       },
+      "CalamityMod/Barberry": {
+        "stage": "wall-of-flesh",
+        "via": "world:CalamityMod/AstralTreeShaking"
+      },
+      "CalamityMod/Lotus": {
+        "stage": "wall-of-flesh",
+        "via": "world:CalamityMod/AstralTreeShaking"
+      },
+      "CalamityMod/Cometfruit": {
+        "stage": "wall-of-flesh",
+        "via": "world:CalamityMod/AstralSnowTreeShaking"
+      },
+      "CalamityMod/Mangosteen": {
+        "stage": "wall-of-flesh",
+        "via": "world:CalamityMod/AstralSnowTreeShaking"
+      },
       "Terraria/ObsidianSwordfish": {
         "stage": "wall-of-flesh",
         "via": "fishing"
@@ -42190,22 +42198,6 @@
         "via": "manifest"
       },
       "Terraria/FinWings": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "CalamityMod/Barberry": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "CalamityMod/Cometfruit": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "CalamityMod/Lotus": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "CalamityMod/Mangosteen": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
@@ -44518,6 +44510,10 @@
         "stage": "plantera",
         "via": "global:Terraria/GlobalNPCDrops"
       },
+      "Terraria/LifeFruit": {
+        "stage": "plantera",
+        "via": "world:Terraria/LifeFruit"
+      },
       "Terraria/SporeSac": {
         "stage": "plantera",
         "via": "container:Terraria/PlanteraBossBag"
@@ -44633,10 +44629,6 @@
       "Terraria/MasterNinjaGear": {
         "stage": "plantera",
         "via": "recipe:Terraria/TigerClimbingGear+Terraria/Tabi+Terraria/BlackBelt"
-      },
-      "Terraria/LifeFruit": {
-        "stage": "plantera",
-        "via": "recipe:CalamityMod/PlantyMush+CalamityMod/LivingShard"
       },
       "CalamityMod/LivingDew": {
         "stage": "plantera",
@@ -47997,6 +47989,26 @@
         "stage": "supreme-calamitas",
         "via": "npc:CalamityMod/SupremeCalamitas"
       },
+      "CalamityMod/Rancor": {
+        "stage": "supreme-calamitas",
+        "via": "container:CalamityMod/BurningSea"
+      },
+      "CalamityMod/CindersOfLament": {
+        "stage": "supreme-calamitas",
+        "via": "container:CalamityMod/EntropysVigil"
+      },
+      "CalamityMod/ShatteredCommunity": {
+        "stage": "supreme-calamitas",
+        "via": "container:CalamityMod/TheCommunity"
+      },
+      "CalamityMod/GruesomeEminence": {
+        "stage": "supreme-calamitas",
+        "via": "container:CalamityMod/GhastlyVisage"
+      },
+      "CalamityMod/Metastasis": {
+        "stage": "supreme-calamitas",
+        "via": "container:CalamityMod/VoidEaterMarionette"
+      },
       "CalamityMod/Calamity": {
         "stage": "supreme-calamitas",
         "via": "container:CalamityMod/CalamitasCoffer"
@@ -48104,26 +48116,6 @@
       "CalamityMod/DemonshadeGreaves": {
         "stage": "supreme-calamitas",
         "via": "recipe:CalamityMod/ShadowspecBar"
-      },
-      "CalamityMod/CindersOfLament": {
-        "stage": "supreme-calamitas",
-        "via": "manifest"
-      },
-      "CalamityMod/Metastasis": {
-        "stage": "supreme-calamitas",
-        "via": "manifest"
-      },
-      "CalamityMod/GruesomeEminence": {
-        "stage": "supreme-calamitas",
-        "via": "manifest"
-      },
-      "CalamityMod/Rancor": {
-        "stage": "supreme-calamitas",
-        "via": "manifest"
-      },
-      "CalamityMod/ShatteredCommunity": {
-        "stage": "supreme-calamitas",
-        "via": "manifest"
       },
       "CalamityMod/HalibutCannon": {
         "stage": "primordial-wyrm",
@@ -72576,81 +72568,8 @@
     ],
     "unavailableCombatItems": [],
     "unresolvedAvailabilityItems": [],
-    "profileItemSourceGaps": [
-      {
-        "item": "CalamityMod/Barberry",
-        "displayName": "Barberry",
-        "stageId": "wall-of-flesh",
-        "category": "Food",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "CalamityMod/CindersOfLament",
-        "displayName": "Cinders of Lament",
-        "stageId": "supreme-calamitas",
-        "category": "Weapon",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "CalamityMod/Cometfruit",
-        "displayName": "Cometfruit",
-        "stageId": "wall-of-flesh",
-        "category": "Food",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "CalamityMod/GruesomeEminence",
-        "displayName": "Gruesome Eminence",
-        "stageId": "supreme-calamitas",
-        "category": "Weapon",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "CalamityMod/Lotus",
-        "displayName": "Lotus",
-        "stageId": "wall-of-flesh",
-        "category": "Food",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "CalamityMod/Mangosteen",
-        "displayName": "Mangosteen",
-        "stageId": "wall-of-flesh",
-        "category": "Food",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "CalamityMod/Metastasis",
-        "displayName": "Metastasis",
-        "stageId": "supreme-calamitas",
-        "category": "Weapon",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "CalamityMod/Rancor",
-        "displayName": "Rancor",
-        "stageId": "supreme-calamitas",
-        "category": "Weapon",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "CalamityMod/ShatteredCommunity",
-        "displayName": "Shattered Community",
-        "stageId": "supreme-calamitas",
-        "category": "Accessory",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      }
-    ],
-    "profileItemSourceGapCount": 9,
+    "profileItemSourceGaps": [],
+    "profileItemSourceGapCount": 0,
     "manualAssignmentProblems": [],
     "officialSourceCompatibility": {
       "recommendations": {
@@ -72668,8 +72587,8 @@
     },
     "unassignedVanillaNpcSourceCount": 153,
     "manualAvailabilityPriority": {
-      "automaticItems": 5532,
-      "automaticSources": 573,
+      "automaticItems": 5541,
+      "automaticSources": 578,
       "automaticStations": 859,
       "suppressed": {
         "itemStages": [],
@@ -72677,7 +72596,7 @@
         "stationStages": []
       },
       "retained": {
-        "itemStages": 35,
+        "itemStages": 26,
         "itemStageFloors": 10,
         "sourceStages": 51,
         "stationStages": 2

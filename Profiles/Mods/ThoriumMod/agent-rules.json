@@ -82,6 +82,14 @@
         "ThoriumMod/GigaClam",
         "ThoriumMod/ManofWar",
         "ThoriumMod/Octopus",
+        "ThoriumMod/YewTreeShaking",
+        "ThoriumMod/SnowyTreeShaking",
+        "ThoriumMod/DeadTreeShaking",
+        "ThoriumMod/SpookyTreeShaking",
+        "ThoriumMod/SakuraTreeShaking",
+        "ThoriumMod/ScarletChest",
+        "Terraria/WebCoveredChest",
+        "Terraria/UndergroundGoldChest",
         "ThoriumMod/UnderworldPot1",
         "ThoriumMod/UnderworldPot2",
         "ThoriumMod/WindElemental"
@@ -384,24 +392,11 @@
       "kind": "item-stage",
       "items": [
         "ThoriumMod/AloeLeaf",
-        "ThoriumMod/Aril",
-        "ThoriumMod/Cranberry",
-        "ThoriumMod/EnchantedStaff",
         "ThoriumMod/FamilyHeirloom",
-        "ThoriumMod/Fig",
         "ThoriumMod/HeartRateMonitor",
-        "ThoriumMod/Kumquat",
         "ThoriumMod/LivingWoodSap",
-        "ThoriumMod/Lychee",
-        "ThoriumMod/Mangosteen",
-        "ThoriumMod/Persimmon",
-        "ThoriumMod/Raspberry",
-        "ThoriumMod/RingofUnity",
         "ThoriumMod/SeedofHope",
-        "ThoriumMod/Soursop",
-        "ThoriumMod/Tamarind",
-        "ThoriumMod/WaterChestnut",
-        "ThoriumMod/Webgun"
+        "ThoriumMod/WaterChestnut"
       ],
       "stageId": "start",
       "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
@@ -413,7 +408,6 @@
       "id": "custom-world-evil-travel-shop-items",
       "kind": "item-stage",
       "items": [
-        "ThoriumMod/ChiLantern",
         "ThoriumMod/DivineLotus",
         "ThoriumMod/SamsaraLotus"
       ],
@@ -424,40 +418,84 @@
       "reason": "The official SetupTravelShop hook adds these items only after the world-evil boss; the legacy travel-shop hook is not included in the snapshot shop export."
     },
     {
-      "id": "confused-zombie-repellents",
-      "kind": "item-stage",
-      "items": [
-        "ThoriumMod/BatRepellent",
-        "ThoriumMod/FishRepellent",
-        "ThoriumMod/InsectRepellent",
-        "ThoriumMod/SkeletonRepellent",
-        "ThoriumMod/ZombieRepellent"
+      "id": "thorium-worldgen-chest-replacement-condition",
+      "kind": "condition-stage",
+      "sources": [
+        "drop"
       ],
-      "stageId": "eye-of-cthulhu",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Confused_Zombie",
-      "sourceVersion": "Thorium Mod 1.7.2.5",
-      "checkedAt": "2026-06-14",
-      "reason": "The official Confused Zombie shop code sells the five repellents after Patch Werk unlocks the vendor."
-    },
-    {
-      "id": "thor-hammer-conversion-variants",
-      "kind": "item-stage",
-      "items": [
-        "ThoriumMod/MagicThorHammer",
-        "ThoriumMod/RangedThorHammer"
+      "sourceIds": [
+        "Terraria/WebCoveredChest",
+        "Terraria/GoldChest"
+      ],
+      "conditionTypes": [
+        "Mods.ProgressionJournal.UI.ThoriumWorldgenChestReplacementCondition"
       ],
       "stageId": "start",
       "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
-      "sourceVersion": "Thorium Mod 1.7.2.5, Workshop build 2025.8.3.1",
-      "checkedAt": "2026-06-14",
-      "reason": "These are right-click conversion variants of the craftable melee Thor's Hammer and share its pre-Hardmode availability."
+      "sourceVersion": "Thorium Mod 1.7.2.8 installed assembly",
+      "checkedAt": "2026-08-01",
+      "reason": "World-generation chest replacement is a pre-boss acquisition mechanism; the typed source condition is progression-neutral."
+    },
+    {
+      "id": "thor-hammer-conversion-condition",
+      "kind": "condition-stage",
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "ThoriumMod/MeleeThorHammer",
+        "ThoriumMod/RangedThorHammer"
+      ],
+      "conditionTypes": [
+        "Mods.ProgressionJournal.UI.ThoriumHammerConversionCondition"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
+      "sourceVersion": "Thorium Mod 1.7.2.8 installed assembly",
+      "checkedAt": "2026-08-01",
+      "reason": "Right-click conversion has no independent progression gate; availability follows the source hammer."
+    },
+    {
+      "id": "confused-zombie-repellent-service-condition",
+      "kind": "condition-stage",
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "ThoriumMod/ConfusedZombie"
+      ],
+      "conditionTypes": [
+        "Mods.ProgressionJournal.UI.ThoriumRepellentServiceCondition"
+      ],
+      "stageId": "eye-of-cthulhu",
+      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Confused_Zombie",
+      "sourceVersion": "Thorium Mod 1.7.2.8 installed assembly",
+      "checkedAt": "2026-08-01",
+      "reason": "The Confused Zombie becomes available after Patch Werk, then its full-day-and-night service yields one of the five repellents."
+    },
+    {
+      "id": "chi-lantern-config-condition",
+      "kind": "condition-stage",
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "Terraria/TravellingMerchant"
+      ],
+      "conditionTypes": [
+        "Mods.ProgressionJournal.UI.ThoriumChiLanternConfigCondition"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
+      "sourceVersion": "Thorium Mod 1.7.2.8 installed assembly",
+      "checkedAt": "2026-08-01",
+      "reason": "The server configuration toggle is progression-neutral; the separate typed world-evil condition provides the actual stage floor."
     },
     {
       "id": "custom-source-combat-items",
       "kind": "item-stage",
       "items": [
         "ThoriumMod/ArcanePotion",
-        "ThoriumMod/DewCollector",
         "ThoriumMod/PrehistoricArachnid"
       ],
       "stageId": "start",
@@ -842,46 +880,6 @@
       "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
       "checkedAt": "2026-06-16",
       "reason": "The official wiki identifies Mjölnir as obtainable in Expert Mode after defeating The Primordials."
-    },
-    {
-      "id": "healer-accessory-manual-classification",
-      "kind": "item-override",
-      "items": [
-        "ThoriumMod/BeltoftheQuickResponse",
-        "ThoriumMod/SupportSash",
-        "ThoriumMod/DewCollector"
-      ],
-      "override": {
-        "exclude": false,
-        "category": "Accessory",
-        "classes": [
-          "healer"
-        ]
-      },
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Healer_Accessories",
-      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-      "checkedAt": "2026-06-16",
-      "reason": "These are Healer accessories listed by the official wiki and should not be discarded as non-combat or unresolved recommendation entries."
-    },
-    {
-      "id": "belt-of-quick-response-stage",
-      "kind": "item-stage",
-      "item": "ThoriumMod/BeltoftheQuickResponse",
-      "stageId": "start",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Belt_of_the_Quick_Response",
-      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-      "checkedAt": "2026-06-16",
-      "reason": "Belt of the Quick Response is crafted at an Iron or Lead Anvil from early materials, so it is available before boss progression."
-    },
-    {
-      "id": "support-sash-hardmode-stage",
-      "kind": "item-stage",
-      "item": "ThoriumMod/SupportSash",
-      "stageId": "wall-of-flesh",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Support_Sash",
-      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-      "checkedAt": "2026-06-16",
-      "reason": "Support Sash is a Hardmode Healer accessory crafted at a Hardmode Anvil from Belt of the Quick Response and the Apothecary vial accessories."
     },
     {
       "id": "class-buff-furniture-manual-classification",

@@ -35,6 +35,7 @@ public static class JournalContainerLootCatalog
         ["CalamityMod/RustyChest"] = new SourcePresentation("Rusty Chest", ["CalamityMod/RustyChest"]),
         ["CalamityMod/SecurityChest"] = new SourcePresentation("Security Chest (Underworld Bio-center Lab)", ["CalamityMod/SecurityChest"]),
         ["ThoriumMod/AquaticDepthsBiomeChest"] = new SourcePresentation("Aquatic Depths Biome Chest", ["ThoriumMod/AquaticDepthsBiomeChest", "ThoriumMod/DepthChest"]),
+        ["ThoriumMod/ScarletChest"] = new SourcePresentation("Scarlet Chest", ["ThoriumMod/ScarletChest"]),
         ["ThoriumMod/UnderworldBiomeChest"] = new SourcePresentation("Underworld Biome Chest", ["ThoriumMod/UnderworldBiomeChest"]),
         ["AAModClassic/GreedChest"] = new SourcePresentation("Locked Greed Chest", ["AAModClassic/GreedChest"]),
         ["AAModClassic/GreedTreasureBag"] = new SourcePresentation("Treasure Bag (Greed)", ["AAModClassic/GreedTreasureBag"]),
@@ -449,6 +450,14 @@ public static class JournalContainerLootCatalog
 
     private static void AddThorium(ICollection<EntryBuilder> builders)
     {
+        AddDrop(
+            builders,
+            "Thorium Mod 1.7.2.8 installed assembly ScarletChestPlatformPass.ApplyPass assigns RingofUnity to chest slot 1",
+            "ThoriumMod/ScarletChest",
+            "Scarlet Chest",
+            ["ThoriumMod/ScarletChest"],
+            "ThoriumMod/RingofUnity",
+            1f);
         AddDrop(
             builders,
             "thoriummod-wiki.gg/biome-chests",

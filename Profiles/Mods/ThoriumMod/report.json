@@ -3,10 +3,10 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-08-01T19:37:27.604Z",
+  "generatedAtUtc": "2026-08-01T21:22:56.554Z",
   "snapshot": {
     "version": 9,
-    "generatedAtUtc": "2026-08-01T19:18:44.1065366Z",
+    "generatedAtUtc": "2026-08-01T21:17:49.2706547Z",
     "targetMod": "ThoriumMod",
     "mods": [
       {
@@ -22,7 +22,7 @@
     }
   },
   "agentRules": {
-    "rules": 68,
+    "rules": 67,
     "ignoredItems": 5,
     "ignoredIssues": 2,
     "evidence": [
@@ -223,18 +223,32 @@
         "reason": "The official SetupTravelShop hook adds these items only after the world-evil boss; the legacy travel-shop hook is not included in the snapshot shop export."
       },
       {
-        "id": "confused-zombie-repellents",
-        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Confused_Zombie",
-        "sourceVersion": "Thorium Mod 1.7.2.5",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Confused Zombie shop code sells the five repellents after Patch Werk unlocks the vendor."
+        "id": "thorium-worldgen-chest-replacement-condition",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
+        "sourceVersion": "Thorium Mod 1.7.2.8 installed assembly",
+        "checkedAt": "2026-08-01",
+        "reason": "World-generation chest replacement is a pre-boss acquisition mechanism; the typed source condition is progression-neutral."
       },
       {
-        "id": "thor-hammer-conversion-variants",
+        "id": "thor-hammer-conversion-condition",
         "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
-        "sourceVersion": "Thorium Mod 1.7.2.5, Workshop build 2025.8.3.1",
-        "checkedAt": "2026-06-14",
-        "reason": "These are right-click conversion variants of the craftable melee Thor's Hammer and share its pre-Hardmode availability."
+        "sourceVersion": "Thorium Mod 1.7.2.8 installed assembly",
+        "checkedAt": "2026-08-01",
+        "reason": "Right-click conversion has no independent progression gate; availability follows the source hammer."
+      },
+      {
+        "id": "confused-zombie-repellent-service-condition",
+        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Confused_Zombie",
+        "sourceVersion": "Thorium Mod 1.7.2.8 installed assembly",
+        "checkedAt": "2026-08-01",
+        "reason": "The Confused Zombie becomes available after Patch Werk, then its full-day-and-night service yields one of the five repellents."
+      },
+      {
+        "id": "chi-lantern-config-condition",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
+        "sourceVersion": "Thorium Mod 1.7.2.8 installed assembly",
+        "checkedAt": "2026-08-01",
+        "reason": "The server configuration toggle is progression-neutral; the separate typed world-evil condition provides the actual stage floor."
       },
       {
         "id": "custom-source-combat-items",
@@ -391,27 +405,6 @@
         "reason": "The official wiki identifies Mjölnir as obtainable in Expert Mode after defeating The Primordials."
       },
       {
-        "id": "healer-accessory-manual-classification",
-        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Healer_Accessories",
-        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-        "checkedAt": "2026-06-16",
-        "reason": "These are Healer accessories listed by the official wiki and should not be discarded as non-combat or unresolved recommendation entries."
-      },
-      {
-        "id": "belt-of-quick-response-stage",
-        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Belt_of_the_Quick_Response",
-        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-        "checkedAt": "2026-06-16",
-        "reason": "Belt of the Quick Response is crafted at an Iron or Lead Anvil from early materials, so it is available before boss progression."
-      },
-      {
-        "id": "support-sash-hardmode-stage",
-        "sourceUrl": "https://thoriummod.wiki.gg/wiki/Support_Sash",
-        "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-        "checkedAt": "2026-06-16",
-        "reason": "Support Sash is a Hardmode Healer accessory crafted at a Hardmode Anvil from Belt of the Quick Response and the Apothecary vial accessories."
-      },
-      {
         "id": "class-buff-furniture-manual-classification",
         "sourceUrl": "https://thoriummod.wiki.gg/wiki/Furniture",
         "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
@@ -554,7 +547,7 @@
     ],
     "availabilityMigration": {
       "confirmed": 64,
-      "pending": 61,
+      "pending": 69,
       "mismatched": 0,
       "confirmedRules": [
         {
@@ -1136,6 +1129,54 @@
         {
           "id": "pre-hardmode-natural-and-container-sources",
           "kind": "npc-source",
+          "target": "ThoriumMod/YewTreeShaking",
+          "expectedStageId": "start"
+        },
+        {
+          "id": "pre-hardmode-natural-and-container-sources",
+          "kind": "npc-source",
+          "target": "ThoriumMod/SnowyTreeShaking",
+          "expectedStageId": "start"
+        },
+        {
+          "id": "pre-hardmode-natural-and-container-sources",
+          "kind": "npc-source",
+          "target": "ThoriumMod/DeadTreeShaking",
+          "expectedStageId": "start"
+        },
+        {
+          "id": "pre-hardmode-natural-and-container-sources",
+          "kind": "npc-source",
+          "target": "ThoriumMod/SpookyTreeShaking",
+          "expectedStageId": "start"
+        },
+        {
+          "id": "pre-hardmode-natural-and-container-sources",
+          "kind": "npc-source",
+          "target": "ThoriumMod/SakuraTreeShaking",
+          "expectedStageId": "start"
+        },
+        {
+          "id": "pre-hardmode-natural-and-container-sources",
+          "kind": "npc-source",
+          "target": "ThoriumMod/ScarletChest",
+          "expectedStageId": "start"
+        },
+        {
+          "id": "pre-hardmode-natural-and-container-sources",
+          "kind": "npc-source",
+          "target": "Terraria/WebCoveredChest",
+          "expectedStageId": "start"
+        },
+        {
+          "id": "pre-hardmode-natural-and-container-sources",
+          "kind": "npc-source",
+          "target": "Terraria/UndergroundGoldChest",
+          "expectedStageId": "start"
+        },
+        {
+          "id": "pre-hardmode-natural-and-container-sources",
+          "kind": "npc-source",
           "target": "ThoriumMod/UnderworldPot1",
           "expectedStageId": "start"
         },
@@ -1375,7 +1416,7 @@
         }
       ],
       "stageComparison": {
-        "compared": 2340,
+        "compared": 2337,
         "moved": 0
       }
     }
@@ -1390,7 +1431,6 @@
     "errors": [],
     "warnings": [
       "69 recommendations precede proven availability and were suppressed",
-      "24 profile items have no acquisition source data",
       "129 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
@@ -6127,7 +6167,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.thorium",
-    "generatedAtUtc": "2026-08-01T19:37:19.086Z",
+    "generatedAtUtc": "2026-08-01T21:22:47.997Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -10326,6 +10366,261 @@
     "excludedItems": [
       {
         "stage": "",
+        "id": "ThoriumMod/AngryStatue",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/ArcaneSpike",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/ArtificersExtractor",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/BasicPickaxe",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/DestinyWeaver",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/DreamPotion",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/GodMode",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/HealingDummyStatue",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/HoverItemDummy",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/LichRequirement2",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/LichRequirement3",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/LodestoneBuckshot",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/PenguinWand",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/RandomInstrument",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/DarksteelMace",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/Firestormboots",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/IgneousRock",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/ScorchedBone",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/MinotaurSkull",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/MushymenStaff",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/AstralBarrierWand",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/Fertilizer",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/ArcaneDust",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/FalconeerCane",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/SacrificialDagger",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/HiveMind",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/BloodFeasterStaff",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/ApothecarysCyanVial",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/ApothecarysScarletVial",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/BeltoftheQuickResponse",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/DewCollector",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/SupportSash",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/SoulGem",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/StoneBlue",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/StoneGreen",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/StoneOrange",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/StonePurple",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/StoneRed",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/StoneYellow",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/SuppressionBullet",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/TesterEmpowerment",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/TesterGore",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/TesterProjectile",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/TesterPurity",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/TesterStats",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/TesterText",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/TesterTile",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/TheBareGauntlet",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/TheGauntlet",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/TheTruePenguinWand",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
+        "id": "ThoriumMod/ThoriumPartyHat",
+        "reason": "source namespace marks the item as removed"
+      },
+      {
+        "stage": "",
         "id": "Terraria/FirstFractal",
         "reason": "Unobtainable internal vanilla item."
       },
@@ -10607,6 +10902,11 @@
       {
         "stage": "start",
         "id": "Terraria/MeatGrinder",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "ThoriumMod/ScarletChest",
         "reason": "not combat equipment"
       },
       {
@@ -20087,11 +20387,6 @@
       {
         "stage": "world-evil",
         "id": "ThoriumMod/ScarletChandelier",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "world-evil",
-        "id": "ThoriumMod/ScarletChest",
         "reason": "not combat equipment"
       },
       {
@@ -29874,6 +30169,10 @@
         "stage": "start",
         "via": "npc:ThoriumMod/Coldling"
       },
+      "ThoriumMod/RingofUnity": {
+        "stage": "start",
+        "via": "world-container:ThoriumMod/ScarletChest"
+      },
       "Terraria/HellfireArrow": {
         "stage": "start",
         "via": "npc:ThoriumMod/UnderworldPot1"
@@ -30676,6 +30975,54 @@
       "Terraria/LifeCrystal": {
         "stage": "start",
         "via": "world:Terraria/Heart"
+      },
+      "ThoriumMod/Aril": {
+        "stage": "start",
+        "via": "world:ThoriumMod/YewTreeShaking"
+      },
+      "ThoriumMod/Lychee": {
+        "stage": "start",
+        "via": "world:ThoriumMod/YewTreeShaking"
+      },
+      "ThoriumMod/Cranberry": {
+        "stage": "start",
+        "via": "world:ThoriumMod/SnowyTreeShaking"
+      },
+      "ThoriumMod/Raspberry": {
+        "stage": "start",
+        "via": "world:ThoriumMod/SnowyTreeShaking"
+      },
+      "ThoriumMod/Fig": {
+        "stage": "start",
+        "via": "world:ThoriumMod/DeadTreeShaking"
+      },
+      "ThoriumMod/Tamarind": {
+        "stage": "start",
+        "via": "world:ThoriumMod/DeadTreeShaking"
+      },
+      "ThoriumMod/Soursop": {
+        "stage": "start",
+        "via": "world:ThoriumMod/SpookyTreeShaking"
+      },
+      "ThoriumMod/Mangosteen": {
+        "stage": "start",
+        "via": "world:ThoriumMod/SpookyTreeShaking"
+      },
+      "ThoriumMod/Kumquat": {
+        "stage": "start",
+        "via": "world:ThoriumMod/SakuraTreeShaking"
+      },
+      "ThoriumMod/Persimmon": {
+        "stage": "start",
+        "via": "world:ThoriumMod/SakuraTreeShaking"
+      },
+      "ThoriumMod/Webgun": {
+        "stage": "start",
+        "via": "world:Terraria/WebCoveredChest"
+      },
+      "ThoriumMod/EnchantedStaff": {
+        "stage": "start",
+        "via": "world:Terraria/UndergroundGoldChest"
       },
       "Terraria/Honeyfin": {
         "stage": "start",
@@ -32481,55 +32828,7 @@
         "stage": "start",
         "via": "manifest"
       },
-      "ThoriumMod/Aril": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "ThoriumMod/Cranberry": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "ThoriumMod/EnchantedStaff": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "ThoriumMod/Fig": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "ThoriumMod/Kumquat": {
-        "stage": "start",
-        "via": "manifest"
-      },
       "ThoriumMod/LivingWoodSap": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "ThoriumMod/Lychee": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "ThoriumMod/Mangosteen": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "ThoriumMod/Persimmon": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "ThoriumMod/Raspberry": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "ThoriumMod/RingofUnity": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "ThoriumMod/Soursop": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "ThoriumMod/Tamarind": {
         "stage": "start",
         "via": "manifest"
       },
@@ -32537,31 +32836,11 @@
         "stage": "start",
         "via": "manifest"
       },
-      "ThoriumMod/Webgun": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "ThoriumMod/MagicThorHammer": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "ThoriumMod/RangedThorHammer": {
-        "stage": "start",
-        "via": "manifest"
-      },
       "ThoriumMod/ArcanePotion": {
         "stage": "start",
         "via": "manifest"
       },
-      "ThoriumMod/DewCollector": {
-        "stage": "start",
-        "via": "manifest"
-      },
       "ThoriumMod/PrehistoricArachnid": {
-        "stage": "start",
-        "via": "manifest"
-      },
-      "ThoriumMod/BeltoftheQuickResponse": {
         "stage": "start",
         "via": "manifest"
       },
@@ -33819,6 +34098,86 @@
           "prerequisites": []
         }
       },
+      "ThoriumMod/BatRepellent": {
+        "stage": "eye-of-cthulhu",
+        "via": "shop:ThoriumMod/ConfusedZombie",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Mods.ProgressionJournal.UI.ThoriumRepellentServiceCondition",
+              "description": "After the Confused Zombie has observed a full day and night, pay 1 Silver Coin to receive one random repellent out of five.",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "ThoriumMod/FishRepellent": {
+        "stage": "eye-of-cthulhu",
+        "via": "shop:ThoriumMod/ConfusedZombie",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Mods.ProgressionJournal.UI.ThoriumRepellentServiceCondition",
+              "description": "After the Confused Zombie has observed a full day and night, pay 1 Silver Coin to receive one random repellent out of five.",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "ThoriumMod/InsectRepellent": {
+        "stage": "eye-of-cthulhu",
+        "via": "shop:ThoriumMod/ConfusedZombie",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Mods.ProgressionJournal.UI.ThoriumRepellentServiceCondition",
+              "description": "After the Confused Zombie has observed a full day and night, pay 1 Silver Coin to receive one random repellent out of five.",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "ThoriumMod/SkeletonRepellent": {
+        "stage": "eye-of-cthulhu",
+        "via": "shop:ThoriumMod/ConfusedZombie",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Mods.ProgressionJournal.UI.ThoriumRepellentServiceCondition",
+              "description": "After the Confused Zombie has observed a full day and night, pay 1 Silver Coin to receive one random repellent out of five.",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "ThoriumMod/ZombieRepellent": {
+        "stage": "eye-of-cthulhu",
+        "via": "shop:ThoriumMod/ConfusedZombie",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Mods.ProgressionJournal.UI.ThoriumRepellentServiceCondition",
+              "description": "After the Confused Zombie has observed a full day and night, pay 1 Silver Coin to receive one random repellent out of five.",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
+      },
       "Terraria/EoCShield": {
         "stage": "eye-of-cthulhu",
         "via": "container:Terraria/EyeOfCthulhuBossBag"
@@ -33894,26 +34253,6 @@
       "ThoriumMod/DemoniteTomahawk": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/DemoniteBar"
-      },
-      "ThoriumMod/BatRepellent": {
-        "stage": "eye-of-cthulhu",
-        "via": "manifest"
-      },
-      "ThoriumMod/FishRepellent": {
-        "stage": "eye-of-cthulhu",
-        "via": "manifest"
-      },
-      "ThoriumMod/InsectRepellent": {
-        "stage": "eye-of-cthulhu",
-        "via": "manifest"
-      },
-      "ThoriumMod/SkeletonRepellent": {
-        "stage": "eye-of-cthulhu",
-        "via": "manifest"
-      },
-      "ThoriumMod/ZombieRepellent": {
-        "stage": "eye-of-cthulhu",
-        "via": "manifest"
       },
       "ThoriumMod/ClericsCross": {
         "stage": "eye-of-cthulhu",
@@ -34043,6 +34382,28 @@
       "Terraria/AleThrowingGlove": {
         "stage": "world-evil",
         "via": "npc:Terraria/DD2Bartender"
+      },
+      "ThoriumMod/ChiLantern": {
+        "stage": "world-evil",
+        "via": "shop:Terraria/TravellingMerchant",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "ProgressionJournal.AfterProgression",
+              "description": "Available after: the Eater of Worlds or Brain of Cthulhu",
+              "key": "ProgressionJournal.Stage.world-evil",
+              "facts": null
+            },
+            {
+              "type": "Mods.ProgressionJournal.UI.ThoriumChiLanternConfigCondition",
+              "description": "Requires Chi Lantern to be enabled in Thorium's server configuration.",
+              "key": "",
+              "facts": null
+            }
+          ],
+          "prerequisites": []
+        }
       },
       "ThoriumMod/LargePopcorn": {
         "stage": "world-evil",
@@ -34321,10 +34682,6 @@
         "stage": "world-evil",
         "via": "recipe:Terraria/WhiteString+Terraria/CyanDye"
       },
-      "ThoriumMod/ChiLantern": {
-        "stage": "world-evil",
-        "via": "manifest"
-      },
       "ThoriumMod/DivineLotus": {
         "stage": "world-evil",
         "via": "manifest"
@@ -34428,6 +34785,14 @@
       "ThoriumMod/TechniquePaperExplosive": {
         "stage": "world-evil",
         "via": "recipe:ThoriumMod/TechniqueBlankScroll+Terraria/HellstoneBar"
+      },
+      "ThoriumMod/RangedThorHammer": {
+        "stage": "world-evil",
+        "via": "container:ThoriumMod/MeleeThorHammer"
+      },
+      "ThoriumMod/MagicThorHammer": {
+        "stage": "world-evil",
+        "via": "container:ThoriumMod/RangedThorHammer"
       },
       "ThoriumMod/BatWing": {
         "stage": "viscount",
@@ -37685,10 +38050,6 @@
         "via": "manifest"
       },
       "ThoriumMod/LustrousBaton": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "ThoriumMod/SupportSash": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
@@ -43155,6 +43516,10 @@
       "Terraria/MeatGrinder": {
         "stage": "start",
         "via": "npc:ThoriumMod/Coldling"
+      },
+      "ThoriumMod/ScarletChest": {
+        "stage": "start",
+        "via": "tile:ThoriumMod/ScarletChest"
       },
       "Terraria/ArchaeologistsHat": {
         "stage": "start",
@@ -52681,10 +53046,6 @@
       "ThoriumMod/ScarletChandelier": {
         "stage": "world-evil",
         "via": "recipe:ThoriumMod/ScarletBlock+Terraria/Torch+Terraria/Chain"
-      },
-      "ThoriumMod/ScarletChest": {
-        "stage": "world-evil",
-        "via": "recipe:ThoriumMod/ScarletBlock+Terraria/IronBar"
       },
       "ThoriumMod/ScarletClock": {
         "stage": "world-evil",
@@ -67654,201 +68015,8 @@
     ],
     "unavailableCombatItems": [],
     "unresolvedAvailabilityItems": [],
-    "profileItemSourceGaps": [
-      {
-        "item": "ThoriumMod/Aril",
-        "displayName": "Aril",
-        "stageId": "start",
-        "category": "Food",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/BatRepellent",
-        "displayName": "Bat Repellent",
-        "stageId": "eye-of-cthulhu",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/BeltoftheQuickResponse",
-        "displayName": "Belt of the Quick Response",
-        "stageId": "start",
-        "category": "Accessory",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/ChiLantern",
-        "displayName": "Chi Lantern",
-        "stageId": "world-evil",
-        "category": "Support",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/Cranberry",
-        "displayName": "Cranberry",
-        "stageId": "start",
-        "category": "Food",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/DewCollector",
-        "displayName": "Dew Collector",
-        "stageId": "start",
-        "category": "Accessory",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/EnchantedStaff",
-        "displayName": "Enchanted Staff",
-        "stageId": "start",
-        "category": "Weapon",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/Fig",
-        "displayName": "Fig",
-        "stageId": "start",
-        "category": "Food",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/FishRepellent",
-        "displayName": "Fish Repellent",
-        "stageId": "eye-of-cthulhu",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/InsectRepellent",
-        "displayName": "Insect Repellent",
-        "stageId": "eye-of-cthulhu",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/Kumquat",
-        "displayName": "Kumquat",
-        "stageId": "start",
-        "category": "Food",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/Lychee",
-        "displayName": "Lychee",
-        "stageId": "start",
-        "category": "Food",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/MagicThorHammer",
-        "displayName": "Thor's Hammer: Magic",
-        "stageId": "start",
-        "category": "Weapon",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/Mangosteen",
-        "displayName": "Mangosteen",
-        "stageId": "start",
-        "category": "Food",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/Persimmon",
-        "displayName": "Persimmon",
-        "stageId": "start",
-        "category": "Food",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/RangedThorHammer",
-        "displayName": "Thor's Hammer: Ranged",
-        "stageId": "start",
-        "category": "Weapon",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/Raspberry",
-        "displayName": "Raspberry",
-        "stageId": "start",
-        "category": "Food",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/RingofUnity",
-        "displayName": "Ring of Unity",
-        "stageId": "start",
-        "category": "Accessory",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/SkeletonRepellent",
-        "displayName": "Skeleton Repellent",
-        "stageId": "eye-of-cthulhu",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/Soursop",
-        "displayName": "Soursop",
-        "stageId": "start",
-        "category": "Food",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/SupportSash",
-        "displayName": "Support Sash",
-        "stageId": "wall-of-flesh",
-        "category": "Accessory",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/Tamarind",
-        "displayName": "Tamarind",
-        "stageId": "start",
-        "category": "Food",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/Webgun",
-        "displayName": "Webgun",
-        "stageId": "start",
-        "category": "Weapon",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/ZombieRepellent",
-        "displayName": "Zombie Repellent",
-        "stageId": "eye-of-cthulhu",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      }
-    ],
-    "profileItemSourceGapCount": 24,
+    "profileItemSourceGaps": [],
+    "profileItemSourceGapCount": 0,
     "manualAssignmentProblems": [],
     "officialSourceCompatibility": {
       "recommendations": {
@@ -67866,18 +68034,31 @@
     },
     "unassignedVanillaNpcSourceCount": 153,
     "manualAvailabilityPriority": {
-      "automaticItems": 5759,
-      "automaticSources": 551,
+      "automaticItems": 5765,
+      "automaticSources": 553,
       "automaticStations": 512,
       "suppressed": {
         "itemStages": [],
-        "sourceStages": [],
+        "sourceStages": [
+          {
+            "value": "Terraria/UndergroundGoldChest",
+            "manualStageId": "start",
+            "automaticStageId": "start",
+            "via": "runtime"
+          },
+          {
+            "value": "Terraria/WebCoveredChest",
+            "manualStageId": "start",
+            "automaticStageId": "start",
+            "via": "runtime"
+          }
+        ],
         "stationStages": []
       },
       "retained": {
-        "itemStages": 54,
+        "itemStages": 30,
         "itemStageFloors": 0,
-        "sourceStages": 61,
+        "sourceStages": 67,
         "stationStages": 1
       }
     },

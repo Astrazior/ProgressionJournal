@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bosses",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-08-01T19:36:57.590Z",
+  "generatedAtUtc": "2026-08-01T21:22:29.032Z",
   "requiredMods": [
     {
       "name": "CalamityMod",
@@ -817,6 +817,24 @@
     {
       "item": {
         "mod": "CalamityMod",
+        "item": "Barberry",
+        "displayName": "Barberry"
+      },
+      "sourceName": "Астральные деревья и пальмы",
+      "sourceReference": "CalamityMod/AstralTreeShaking",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Hardmode",
+        "Can drop while shaking this tree type: Астральные деревья и пальмы."
+      ]
+    },
+    {
+      "item": {
+        "mod": "CalamityMod",
         "item": "BlackAnurian",
         "displayName": "Black Anurian"
       },
@@ -832,6 +850,24 @@
       "stackMax": 1,
       "showDropRate": true,
       "conditions": []
+    },
+    {
+      "item": {
+        "mod": "CalamityMod",
+        "item": "Cometfruit",
+        "displayName": "Cometfruit"
+      },
+      "sourceName": "Астральные снежные деревья",
+      "sourceReference": "CalamityMod/AstralSnowTreeShaking",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Hardmode",
+        "Can drop while shaking this tree type: Астральные снежные деревья."
+      ]
     },
     {
       "item": {
@@ -949,7 +985,7 @@
         "item": "Jackfruit",
         "displayName": "Jackfruit"
       },
-      "sourceName": "Acidwood Tree",
+      "sourceName": "Кислотное дерево",
       "sourceReference": "CalamityMod/AcidwoodTreeShaking",
       "sourceItem": null,
       "dropRate": 0.032258064,
@@ -993,6 +1029,42 @@
       "stackMax": 1,
       "showDropRate": true,
       "conditions": []
+    },
+    {
+      "item": {
+        "mod": "CalamityMod",
+        "item": "Lotus",
+        "displayName": "Lotus"
+      },
+      "sourceName": "Астральные деревья и пальмы",
+      "sourceReference": "CalamityMod/AstralTreeShaking",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Hardmode",
+        "Can drop while shaking this tree type: Астральные деревья и пальмы."
+      ]
+    },
+    {
+      "item": {
+        "mod": "CalamityMod",
+        "item": "Mangosteen",
+        "displayName": "Mangosteen"
+      },
+      "sourceName": "Астральные снежные деревья",
+      "sourceReference": "CalamityMod/AstralSnowTreeShaking",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Hardmode",
+        "Can drop while shaking this tree type: Астральные снежные деревья."
+      ]
     },
     {
       "item": {
@@ -1055,7 +1127,7 @@
         "item": "Salak",
         "displayName": "Salak"
       },
-      "sourceName": "Acidwood Tree",
+      "sourceName": "Кислотное дерево",
       "sourceReference": "CalamityMod/AcidwoodTreeShaking",
       "sourceItem": null,
       "dropRate": 0.032258064,
@@ -1122,6 +1194,40 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Apple",
+        "displayName": "Apple"
+      },
+      "sourceName": "Лесные деревья",
+      "sourceReference": "Terraria/ForestTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Лесные деревья."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Apricot",
+        "displayName": "Apricot"
+      },
+      "sourceName": "Лесные деревья",
+      "sourceReference": "Terraria/ForestTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Лесные деревья."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "AquaScepter",
         "displayName": "Aqua Scepter"
       },
@@ -1174,14 +1280,33 @@
         "item": "BallOHurt",
         "displayName": "Ball O' Hurt"
       },
-      "sourceName": "Shadow Orb",
+      "sourceName": "Сфера тени",
       "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Corruption"
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Banana",
+        "displayName": "Banana"
+      },
+      "sourceName": "Океанские пальмы",
+      "sourceReference": "Terraria/PalmTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Океанские пальмы."
+      ]
     },
     {
       "item": {
@@ -1219,14 +1344,16 @@
         "item": "BandofStarpower",
         "displayName": "Band of Starpower"
       },
-      "sourceName": "Shadow Orb",
+      "sourceName": "Сфера тени",
       "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Corruption"
+      ]
     },
     {
       "item": {
@@ -1246,6 +1373,23 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "BlackCurrant",
+        "displayName": "Blackcurrant"
+      },
+      "sourceName": "Деревья Искажения",
+      "sourceReference": "Terraria/EbonwoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Деревья Искажения."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "BlizzardinaBottle",
         "displayName": "Blizzard in a Bottle"
       },
@@ -1261,6 +1405,23 @@
       "stackMax": 1,
       "showDropRate": true,
       "conditions": []
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "BloodOrange",
+        "displayName": "Blood Orange"
+      },
+      "sourceName": "Деревья Багрянца",
+      "sourceReference": "Terraria/ShadewoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Деревья Багрянца."
+      ]
     },
     {
       "item": {
@@ -1412,6 +1573,23 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Cherry",
+        "displayName": "Cherry"
+      },
+      "sourceName": "Деревья снежного биома",
+      "sourceReference": "Terraria/BorealTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Деревья снежного биома."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "ClimbingClaws",
         "displayName": "Climbing Claws"
       },
@@ -1472,6 +1650,23 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Coconut",
+        "displayName": "Coconut"
+      },
+      "sourceName": "Океанские пальмы",
+      "sourceReference": "Terraria/PalmTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Океанские пальмы."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "CopperCoin",
         "displayName": "Copper Coin"
       },
@@ -1509,14 +1704,16 @@
         "item": "CrimsonRod",
         "displayName": "Crimson Rod"
       },
-      "sourceName": "Crimson Heart",
+      "sourceName": "Багряное сердце",
       "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Crimson"
+      ]
     },
     {
       "item": {
@@ -1536,6 +1733,40 @@
       "stackMax": 1,
       "showDropRate": true,
       "conditions": []
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Dragonfruit",
+        "displayName": "Dragon Fruit"
+      },
+      "sourceName": "Деревья Освящения",
+      "sourceReference": "Terraria/PearlwoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Деревья Освящения."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Elderberry",
+        "displayName": "Elderberry"
+      },
+      "sourceName": "Деревья Искажения",
+      "sourceReference": "Terraria/EbonwoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Деревья Искажения."
+      ]
     },
     {
       "item": {
@@ -1702,6 +1933,38 @@
       "stackMax": 1,
       "showDropRate": false,
       "conditions": []
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "GoldCoin",
+        "displayName": "Gold Coin"
+      },
+      "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": []
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Grapefruit",
+        "displayName": "Grapefruit"
+      },
+      "sourceName": "Лесные деревья",
+      "sourceReference": "Terraria/ForestTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Лесные деревья."
+      ]
     },
     {
       "item": {
@@ -1928,6 +2191,23 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Lemon",
+        "displayName": "Lemon"
+      },
+      "sourceName": "Лесные деревья",
+      "sourceReference": "Terraria/ForestTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Лесные деревья."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "LesserHealingPotion",
         "displayName": "Lesser Healing Potion"
       },
@@ -1976,14 +2256,34 @@
         "item": "LifeCrystal",
         "displayName": "Life Crystal"
       },
-      "sourceName": "Life Crystal",
+      "sourceName": "Кристалл жизни",
       "sourceReference": "Terraria/Heart",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Below the surface layer"
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "LifeFruit",
+        "displayName": "Life Fruit"
+      },
+      "sourceName": "Растение плода жизни",
+      "sourceReference": "Terraria/LifeFruit",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "After all three mechanical bosses have been defeated",
+        "Grows naturally on Jungle grass in the Underground Jungle"
+      ]
     },
     {
       "item": {
@@ -2082,6 +2382,23 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Mango",
+        "displayName": "Mango"
+      },
+      "sourceName": "Деревья джунглей",
+      "sourceReference": "Terraria/MahoganyTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Деревья джунглей."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "MiningPotion",
         "displayName": "Mining Potion"
       },
@@ -2115,14 +2432,16 @@
         "item": "Musket",
         "displayName": "Musket"
       },
-      "sourceName": "Shadow Orb",
+      "sourceName": "Сфера тени",
       "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Corruption"
+      ]
     },
     {
       "item": {
@@ -2130,14 +2449,16 @@
         "item": "NaturesGift",
         "displayName": "Nature's Gift"
       },
-      "sourceName": "Jungle Plants",
+      "sourceName": "Растение джунглей",
       "sourceReference": "Terraria/JunglePlants",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Rarely grows naturally on Jungle grass below the surface"
+      ]
     },
     {
       "item": {
@@ -2175,14 +2496,50 @@
         "item": "PanicNecklace",
         "displayName": "Panic Necklace"
       },
-      "sourceName": "Crimson Heart",
+      "sourceName": "Багряное сердце",
       "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Crimson"
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Peach",
+        "displayName": "Peach"
+      },
+      "sourceName": "Лесные деревья",
+      "sourceReference": "Terraria/ForestTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Лесные деревья."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Pineapple",
+        "displayName": "Pineapple"
+      },
+      "sourceName": "Деревья джунглей",
+      "sourceReference": "Terraria/MahoganyTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Деревья джунглей."
+      ]
     },
     {
       "item": {
@@ -2202,6 +2559,40 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Plum",
+        "displayName": "Plum"
+      },
+      "sourceName": "Деревья снежного биома",
+      "sourceReference": "Terraria/BorealTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Деревья снежного биома."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Pomegranate",
+        "displayName": "Pomegranate"
+      },
+      "sourceName": "Пепельные деревья Преисподней",
+      "sourceReference": "Terraria/AshTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Пепельные деревья Преисподней."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "RainbowGun",
         "displayName": "Rainbow Gun"
       },
@@ -2213,6 +2604,23 @@
       "stackMax": 1,
       "showDropRate": true,
       "conditions": []
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Rambutan",
+        "displayName": "Rambutan"
+      },
+      "sourceName": "Деревья Багрянца",
+      "sourceReference": "Terraria/ShadewoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Деревья Багрянца."
+      ]
     },
     {
       "item": {
@@ -2364,7 +2772,7 @@
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
-      "stackMax": 87,
+      "stackMax": 71,
       "showDropRate": false,
       "conditions": []
     },
@@ -2420,6 +2828,23 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "SpicyPepper",
+        "displayName": "Spicy Pepper"
+      },
+      "sourceName": "Пепельные деревья Преисподней",
+      "sourceReference": "Terraria/AshTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Пепельные деревья Преисподней."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "StaffofRegrowth",
         "displayName": "Staff of Regrowth"
       },
@@ -2450,6 +2875,23 @@
       "stackMax": 1,
       "showDropRate": true,
       "conditions": []
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Starfruit",
+        "displayName": "Star Fruit"
+      },
+      "sourceName": "Деревья Освящения",
+      "sourceReference": "Terraria/PearlwoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Деревья Освящения."
+      ]
     },
     {
       "item": {
@@ -2540,14 +2982,16 @@
         "item": "TheRottedFork",
         "displayName": "The Rotted Fork"
       },
-      "sourceName": "Crimson Heart",
+      "sourceName": "Багряное сердце",
       "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Crimson"
+      ]
     },
     {
       "item": {
@@ -2555,14 +2999,16 @@
         "item": "TheUndertaker",
         "displayName": "The Undertaker"
       },
-      "sourceName": "Crimson Heart",
+      "sourceName": "Багряное сердце",
       "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Crimson"
+      ]
     },
     {
       "item": {
@@ -2724,14 +3170,16 @@
         "item": "Vilethorn",
         "displayName": "Vilethorn"
       },
-      "sourceName": "Shadow Orb",
+      "sourceName": "Сфера тени",
       "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Corruption"
+      ]
     },
     {
       "item": {
@@ -2754,14 +3202,16 @@
         "item": "WaterBolt",
         "displayName": "Water Bolt"
       },
-      "sourceName": "Books",
+      "sourceName": "Книги данжа",
       "sourceReference": "Terraria/Books",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated as a special blue book on shelves in the Dungeon"
+      ]
     },
     {
       "item": {
@@ -86829,6 +87279,28 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.lifecrystal",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "LifeCrystal",
+            "displayName": "Life Crystal"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.honeyfin",
       "category": "Basic",
       "classes": [
@@ -87276,28 +87748,6 @@
             "mod": "Terraria",
             "item": "ManaPotion",
             "displayName": "Mana Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.lifecrystal",
-      "category": "Eternal",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "LifeCrystal",
-            "displayName": "Life Crystal"
           }
         ]
       ],
@@ -89294,6 +89744,94 @@
       "fishingSources": []
     },
     {
+      "key": "new.calamitymod.barberry",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "Barberry",
+            "displayName": "Barberry"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.calamitymod.lotus",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "Lotus",
+            "displayName": "Lotus"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.calamitymod.cometfruit",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "Cometfruit",
+            "displayName": "Cometfruit"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.calamitymod.mangosteen",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "CalamityMod",
+            "item": "Mangosteen",
+            "displayName": "Mangosteen"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.demonheart",
       "category": "Eternal",
       "classes": [
@@ -89803,94 +90341,6 @@
       "fishingSources": []
     },
     {
-      "key": "new.calamitymod.barberry",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "wall-of-flesh",
-      "itemGroups": [
-        [
-          {
-            "mod": "CalamityMod",
-            "item": "Barberry",
-            "displayName": "Barberry"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.calamitymod.cometfruit",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "wall-of-flesh",
-      "itemGroups": [
-        [
-          {
-            "mod": "CalamityMod",
-            "item": "Cometfruit",
-            "displayName": "Cometfruit"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.calamitymod.lotus",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "wall-of-flesh",
-      "itemGroups": [
-        [
-          {
-            "mod": "CalamityMod",
-            "item": "Lotus",
-            "displayName": "Lotus"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.calamitymod.mangosteen",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "wall-of-flesh",
-      "itemGroups": [
-        [
-          {
-            "mod": "CalamityMod",
-            "item": "Mangosteen",
-            "displayName": "Mangosteen"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
       "key": "new.terraria.prismaticpunch",
       "category": "Food",
       "classes": [
@@ -90065,6 +90515,28 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.lifefruit",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "rogue"
+      ],
+      "stageId": "plantera",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "LifeFruit",
+            "displayName": "Life Fruit"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.flaskofvenom",
       "category": "Flask",
       "classes": [
@@ -90097,28 +90569,6 @@
             "mod": "Terraria",
             "item": "FlaskofNanites",
             "displayName": "Flask of Nanites"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.lifefruit",
-      "category": "Eternal",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "rogue"
-      ],
-      "stageId": "plantera",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "LifeFruit",
-            "displayName": "Life Fruit"
           }
         ]
       ],

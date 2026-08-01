@@ -1245,21 +1245,6 @@
       "reason": "The official sources make these available through pre-boss Sulphurous Sea or Brimstone fishing, Acidwood fruit, the ungated Divine Swine, the Shady Salesman's blender, or an ordinary Forest critter."
     },
     {
-      "id": "astral-biome-fruit-and-fishing",
-      "kind": "item-stage",
-      "items": [
-        "CalamityMod/Barberry",
-        "CalamityMod/Cometfruit",
-        "CalamityMod/Lotus",
-        "CalamityMod/Mangosteen"
-      ],
-      "stageId": "wall-of-flesh",
-      "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs",
-      "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-      "checkedAt": "2026-06-14",
-      "reason": "These are Astral biome tree fruit or legendary fishing catches; the Astral biome appears when Hardmode begins."
-    },
-    {
       "id": "ursa-sergeant-combat-accessory",
       "kind": "item-override",
       "item": "CalamityMod/UrsaSergeant",
@@ -1339,19 +1324,18 @@
     },
     {
       "id": "calamitas-exhumed-items",
-      "kind": "item-stage",
-      "items": [
-        "CalamityMod/CindersOfLament",
-        "CalamityMod/Metastasis",
-        "CalamityMod/GruesomeEminence",
-        "CalamityMod/Rancor",
-        "CalamityMod/ShatteredCommunity"
+      "kind": "condition-stage",
+      "sources": [
+        "drop"
+      ],
+      "conditionTypes": [
+        "Mods.ProgressionJournal.UI.CalamitasExhumingCondition"
       ],
       "stageId": "supreme-calamitas",
       "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/UI/CalamitasEnchantments/EnchantmentManager.cs",
       "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-      "checkedAt": "2026-06-14",
-      "reason": "The official Exhumed upgrade table converts their base items through Calamitas's post-boss enchantment service."
+      "checkedAt": "2026-08-01",
+      "reason": "The exact source catalog exports the official Exhumed upgrade table, and this typed condition gates the Brimstone Witch service behind Supreme Calamitas."
     },
     {
       "id": "post-polterghast-colossal-squid-loot",

@@ -54,7 +54,6 @@ public static class JournalExactDropCatalog
             {
                 IncludeInSnapshot: true,
                 SourceNpcType: null,
-                SourceItemId: null,
                 SourceReference: not null
             })
             .Select(ToSource)
@@ -64,7 +63,12 @@ public static class JournalExactDropCatalog
     public static IReadOnlyList<JournalExactDropSource> GetAllItemDrops()
     {
         return Entries.Value
-            .Where(static entry => entry is { IncludeInSnapshot: true, SourceItemId: not null })
+            .Where(static entry => entry is
+            {
+                IncludeInSnapshot: true,
+                SourceItemId: not null,
+                SourceReference: null
+            })
             .Select(ToSource)
             .ToArray();
     }
@@ -528,6 +532,91 @@ public static class JournalExactDropCatalog
             showDropRate: false,
             sourceReference: "ThoriumMod/LivingLeafBushRubblemaker",
             includeInSnapshot: true);
+
+        const string treeFruitProvenance =
+            "Thorium Mod 1.7.2.8 installed assembly ModTree.Shake methods and TileHelper.ShakeForestTree";
+        AddModTreeFruitGroup(
+            builders,
+            treeFruitProvenance,
+            "Mods.ProgressionJournal.UI.ThoriumYewTreeSource",
+            "ThoriumMod/YewTreeShaking",
+            ["ThoriumMod/Aril", "ThoriumMod/Lychee"]);
+        AddModTreeFruitGroup(
+            builders,
+            treeFruitProvenance,
+            "Mods.ProgressionJournal.UI.ThoriumSnowyTreeSource",
+            "ThoriumMod/SnowyTreeShaking",
+            ["ThoriumMod/Cranberry", "ThoriumMod/Raspberry"]);
+        AddModTreeFruitGroup(
+            builders,
+            treeFruitProvenance,
+            "Mods.ProgressionJournal.UI.ThoriumDeadTreeSource",
+            "ThoriumMod/DeadTreeShaking",
+            ["ThoriumMod/Fig", "ThoriumMod/Tamarind"]);
+        AddModTreeFruitGroup(
+            builders,
+            treeFruitProvenance,
+            "Mods.ProgressionJournal.UI.ThoriumSpookyTreeSource",
+            "ThoriumMod/SpookyTreeShaking",
+            ["ThoriumMod/Soursop", "ThoriumMod/Mangosteen"]);
+        AddModTreeFruitGroup(
+            builders,
+            treeFruitProvenance,
+            "Mods.ProgressionJournal.UI.ThoriumSakuraTreeSource",
+            "ThoriumMod/SakuraTreeShaking",
+            ["ThoriumMod/Kumquat", "ThoriumMod/Persimmon"]);
+
+        const string chestReplacementProvenance =
+            "Thorium Mod 1.7.2.8 installed assembly WorldGenerationSystem.GenerateExtraLoot";
+        ConditionBuilder chestReplacementCondition = new(
+            "Mods.ProgressionJournal.UI.ThoriumWorldgenChestReplacementCondition",
+            ConditionKind.LocalizationKey,
+            []);
+        AddWorld(
+            builders,
+            chestReplacementProvenance,
+            sourceName: string.Empty,
+            "Terraria/WebCoveredChest",
+            "ThoriumMod/Webgun",
+            [chestReplacementCondition],
+            showDropRate: false,
+            sourceReference: "Terraria/WebCoveredChest",
+            includeInSnapshot: true);
+        AddWorld(
+            builders,
+            chestReplacementProvenance,
+            sourceName: string.Empty,
+            "Terraria/GoldChest",
+            "ThoriumMod/EnchantedStaff",
+            [chestReplacementCondition],
+            showDropRate: false,
+            sourceReference: "Terraria/UndergroundGoldChest",
+            includeInSnapshot: true);
+
+        const string hammerConversionProvenance =
+            "Thorium Mod 1.7.2.8 installed assembly ThorHammerBase.RightClick conversion chain";
+        ConditionBuilder hammerConversionCondition = new(
+            "Mods.ProgressionJournal.UI.ThoriumHammerConversionCondition",
+            ConditionKind.LocalizationKey,
+            []);
+        AddWorld(
+            builders,
+            hammerConversionProvenance,
+            sourceName: string.Empty,
+            "ThoriumMod/MeleeThorHammer",
+            "ThoriumMod/RangedThorHammer",
+            [hammerConversionCondition],
+            showDropRate: false,
+            includeInSnapshot: true);
+        AddWorld(
+            builders,
+            hammerConversionProvenance,
+            sourceName: string.Empty,
+            "ThoriumMod/RangedThorHammer",
+            "ThoriumMod/MagicThorHammer",
+            [hammerConversionCondition],
+            showDropRate: false,
+            includeInSnapshot: true);
     }
 
     private static void AddCalamity(ICollection<EntryBuilder> builders)
@@ -657,6 +746,85 @@ public static class JournalExactDropCatalog
             dropRate: 0.005f,
             showDropRate: false,
             includeInSnapshot: true);
+
+        const string astralFruitProvenance =
+            "CalamityMod 2.2.1 AstralTree, AstralPalmTree, and AstralSnowTree Shake methods";
+        ConditionBuilder hardmode = new(
+            "ProgressionJournal.Hardmode",
+            ConditionKind.Hardmode,
+            []);
+        AddModTreeFruitGroup(
+            builders,
+            astralFruitProvenance,
+            "Mods.ProgressionJournal.UI.CalamityAstralTreeSource",
+            "CalamityMod/AstralTreeShaking",
+            ["CalamityMod/Barberry", "CalamityMod/Lotus"],
+            [hardmode]);
+        AddModTreeFruitGroup(
+            builders,
+            astralFruitProvenance,
+            "Mods.ProgressionJournal.UI.CalamityAstralSnowTreeSource",
+            "CalamityMod/AstralSnowTreeShaking",
+            ["CalamityMod/Cometfruit", "CalamityMod/Mangosteen"],
+            [hardmode]);
+
+        const string exhumedItemProvenance =
+            "CalamityMod 2.2.1 EnchantmentManager.ItemUpgradeRelationship and BrimstoneWitch enchantment service";
+        ConditionBuilder exhumedItemCondition = new(
+            "Mods.ProgressionJournal.UI.CalamitasExhumingCondition",
+            ConditionKind.LocalizationKey,
+            []);
+        foreach (var (source, target) in new[]
+                 {
+                     ("CalamityMod/TheCommunity", "CalamityMod/ShatteredCommunity"),
+                     ("CalamityMod/EntropysVigil", "CalamityMod/CindersOfLament"),
+                     ("CalamityMod/VoidEaterMarionette", "CalamityMod/Metastasis"),
+                     ("CalamityMod/GhastlyVisage", "CalamityMod/GruesomeEminence"),
+                     ("CalamityMod/BurningSea", "CalamityMod/Rancor")
+                 })
+        {
+            AddWorld(
+                builders,
+                exhumedItemProvenance,
+                sourceName: string.Empty,
+                source,
+                target,
+                [exhumedItemCondition],
+                showDropRate: false,
+                includeInSnapshot: true);
+        }
+    }
+
+    private static void AddModTreeFruitGroup(
+        ICollection<EntryBuilder> builders,
+        string provenance,
+        string sourceLocalizationKey,
+        string sourceReference,
+        IReadOnlyList<string> targetReferences,
+        IReadOnlyList<ConditionBuilder>? additionalConditions = null)
+    {
+        var sourceName = Language.GetTextValue(sourceLocalizationKey);
+        ConditionBuilder[] conditions =
+        [
+            .. additionalConditions ?? [],
+            new(
+                "Mods.ProgressionJournal.UI.ModdedFruitTreeShakingCondition",
+                ConditionKind.LocalizationKey,
+                [sourceName])
+        ];
+        foreach (var targetReference in targetReferences)
+        {
+            AddWorld(
+                builders,
+                provenance,
+                sourceName,
+                sourceItemReference: null,
+                targetReference,
+                conditions,
+                showDropRate: false,
+                sourceReference: sourceReference,
+                includeInSnapshot: true);
+        }
     }
 
     private static void AddAAModClassic(ICollection<EntryBuilder> builders)

@@ -57,6 +57,10 @@ public static class JournalExactShopCatalog
                 "ProgressionJournal.CustomCurrency",
                 Language.GetTextValue((string)condition.Arguments[0]),
                 string.Empty),
+            ConditionKind.LocalizationKey => new JournalExactShopCondition(
+                (string)condition.Arguments[0],
+                Language.GetTextValue((string)condition.Arguments[0]),
+                string.Empty),
             _ => new JournalExactShopCondition(string.Empty, string.Empty, string.Empty)
         };
     }
@@ -235,6 +239,46 @@ public static class JournalExactShopCatalog
                 conditions,
                 provenance));
         }
+
+        const string repellentProvenance =
+            "Thorium Mod 1.7.2.8 installed assembly ConfusedZombie.OnChatButtonClicked";
+        ConditionBuilder[] repellentConditions =
+        [
+            new(
+                ConditionKind.LocalizationKey,
+                ["Mods.ProgressionJournal.UI.ThoriumRepellentServiceCondition"])
+        ];
+        foreach (var target in new[]
+                 {
+                     "ThoriumMod/BatRepellent",
+                     "ThoriumMod/FishRepellent",
+                     "ThoriumMod/InsectRepellent",
+                     "ThoriumMod/SkeletonRepellent",
+                     "ThoriumMod/ZombieRepellent"
+                 })
+        {
+            builders.Add(new EntryBuilder(
+                "ThoriumMod/ConfusedZombie",
+                target,
+                repellentConditions,
+                repellentProvenance));
+        }
+
+        const string chiLanternProvenance =
+            "Thorium Mod 1.7.2.8 installed assembly ThoriumGlobalNPC.SetupTravelShop";
+        builders.Add(new EntryBuilder(
+            "Terraria/TravellingMerchant",
+            "ThoriumMod/ChiLantern",
+            [
+                new ConditionBuilder(
+                    ConditionKind.AfterProgression,
+                    ["the Eater of Worlds or Brain of Cthulhu"],
+                    "world-evil"),
+                new ConditionBuilder(
+                    ConditionKind.LocalizationKey,
+                    ["Mods.ProgressionJournal.UI.ThoriumChiLanternConfigCondition"])
+            ],
+            chiLanternProvenance));
     }
 
     private static Entry? TryCreateEntry(EntryBuilder builder)
@@ -263,6 +307,11 @@ public static class JournalExactShopCatalog
 
         var modName = reference[..separator];
         var npcName = reference[(separator + 1)..];
+        if (string.Equals(modName, "Terraria", StringComparison.OrdinalIgnoreCase))
+        {
+            return NPCID.Search.TryGetId(npcName, out npcType);
+        }
+
         if (!ModContent.TryFind<ModNPC>($"{modName}/{npcName}", out var modNpc))
         {
             return false;
@@ -314,7 +363,8 @@ public static class JournalExactShopCatalog
         AfterProgression,
         WorldOption,
         ThoriumTrackerContract,
-        CustomCurrency
+        CustomCurrency,
+        LocalizationKey
     }
 }
 

@@ -3,22 +3,22 @@
   "version": 2,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-08-01T19:37:27.630Z",
-  "snapshotGeneratedAtUtc": "2026-08-01T19:18:44.1065366Z",
+  "generatedAtUtc": "2026-08-01T21:22:56.579Z",
+  "snapshotGeneratedAtUtc": "2026-08-01T21:17:49.2706547Z",
   "summary": {
     "snapshotItems": 8359,
     "contentItems": 2904,
-    "profileEntries": 2054,
+    "profileEntries": 2051,
     "profileBuffEntries": 226,
-    "profileItemReferences": 2340,
-    "equipmentReferences": 2114,
+    "profileItemReferences": 2337,
+    "equipmentReferences": 2111,
     "buffReferences": 226,
-    "profileSourceGaps": 24,
-    "excluded": 3834,
+    "profileSourceGaps": 0,
+    "excluded": 3884,
     "acquiredNonProfile": 127,
     "unresolvedAvailability": 0,
     "unavailableCombat": 0,
-    "noAcquisitionPath": 2058
+    "noAcquisitionPath": 2011
   },
   "items": [
     {
@@ -65917,10 +65917,10 @@
       "name": "Angry Statue",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -65972,10 +65972,10 @@
       "name": "Apothecary's Cyan Vial",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -65983,10 +65983,10 @@
       "name": "Apothecary's Scarlet Vial",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -66372,10 +66372,10 @@
       "name": "Arcane Dust",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -66394,10 +66394,10 @@
       "name": "Arcane Spike",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -66440,9 +66440,8 @@
       "contentItem": true,
       "status": "buff",
       "stage": "start",
-      "via": "manifest",
+      "via": "world:ThoriumMod/YewTreeShaking",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
       "evidence": null
     },
     {
@@ -66537,10 +66536,10 @@
       "name": "Artificer's Extractor",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -66658,10 +66657,10 @@
       "name": "Astral Barrier Wand",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -66969,10 +66968,10 @@
       "name": "Basic Pickaxe",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -67015,10 +67014,20 @@
       "contentItem": true,
       "status": "buff",
       "stage": "eye-of-cthulhu",
-      "via": "manifest",
+      "via": "shop:ThoriumMod/ConfusedZombie",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
-      "evidence": null
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Mods.ProgressionJournal.UI.ThoriumRepellentServiceCondition",
+            "description": "After the Confused Zombie has observed a full day and night, pay 1 Silver Coin to receive one random repellent out of five.",
+            "key": "",
+            "facts": null
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "ThoriumMod/BatScythe",
@@ -67135,11 +67144,10 @@
       "name": "Belt of the Quick Response",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "equipment",
-      "stage": "start",
-      "via": "manifest",
-      "reason": "Included in the generated profile.",
-      "sourceGap": true,
+      "status": "excluded",
+      "stage": "",
+      "via": "",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -67627,10 +67635,10 @@
       "name": "Blood Feaster Staff",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -70075,10 +70083,26 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "world-evil",
-      "via": "manifest",
+      "via": "shop:Terraria/TravellingMerchant",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
-      "evidence": null
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "ProgressionJournal.AfterProgression",
+            "description": "Available after: the Eater of Worlds or Brain of Cthulhu",
+            "key": "ProgressionJournal.Stage.world-evil",
+            "facts": null
+          },
+          {
+            "type": "Mods.ProgressionJournal.UI.ThoriumChiLanternConfigCondition",
+            "description": "Requires Chi Lantern to be enabled in Thorium's server configuration.",
+            "key": "",
+            "facts": null
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "ThoriumMod/ChilledSpitterBanner",
@@ -71063,9 +71087,8 @@
       "contentItem": true,
       "status": "buff",
       "stage": "start",
-      "via": "manifest",
+      "via": "world:ThoriumMod/SnowyTreeShaking",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
       "evidence": null
     },
     {
@@ -72283,10 +72306,10 @@
       "name": "Darksteel Mace",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -73180,10 +73203,10 @@
       "name": "Destiny Weaver",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -73268,11 +73291,10 @@
       "name": "Dew Collector",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "equipment",
-      "stage": "start",
-      "via": "manifest",
-      "reason": "Included in the generated profile.",
-      "sourceGap": true,
+      "status": "excluded",
+      "stage": "",
+      "via": "",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -73930,10 +73952,10 @@
       "name": "Dream Potion",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -74764,9 +74786,8 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "start",
-      "via": "manifest",
+      "via": "world:Terraria/UndergroundGoldChest",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
       "evidence": null
     },
     {
@@ -75460,10 +75481,10 @@
       "name": "Falconeer's Cane",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -75742,10 +75763,10 @@
       "name": "Fertilizer",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -75766,9 +75787,8 @@
       "contentItem": true,
       "status": "buff",
       "stage": "start",
-      "via": "manifest",
+      "via": "world:ThoriumMod/DeadTreeShaking",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
       "evidence": null
     },
     {
@@ -75798,10 +75818,10 @@
       "name": "Firestorm Boots",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -75855,10 +75875,20 @@
       "contentItem": true,
       "status": "buff",
       "stage": "eye-of-cthulhu",
-      "via": "manifest",
+      "via": "shop:ThoriumMod/ConfusedZombie",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
-      "evidence": null
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Mods.ProgressionJournal.UI.ThoriumRepellentServiceCondition",
+            "description": "After the Confused Zombie has observed a full day and night, pay 1 Silver Coin to receive one random repellent out of five.",
+            "key": "",
+            "facts": null
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "ThoriumMod/FlamekinCasterBanner",
@@ -77896,10 +77926,10 @@
       "name": "Fragment of Heaven",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -79338,10 +79368,10 @@
       "name": "Healing Dummy Statue",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -79639,10 +79669,10 @@
       "name": "Hive Mind",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -79930,10 +79960,10 @@
       "name": "Hover Item Dummy",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -80266,10 +80296,10 @@
       "name": "Igneous Rock",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -80620,10 +80650,20 @@
       "contentItem": true,
       "status": "buff",
       "stage": "eye-of-cthulhu",
-      "via": "manifest",
+      "via": "shop:ThoriumMod/ConfusedZombie",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
-      "evidence": null
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Mods.ProgressionJournal.UI.ThoriumRepellentServiceCondition",
+            "description": "After the Confused Zombie has observed a full day and night, pay 1 Silver Coin to receive one random repellent out of five.",
+            "key": "",
+            "facts": null
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "ThoriumMod/InspirationCrystalNew",
@@ -81258,9 +81298,8 @@
       "contentItem": true,
       "status": "buff",
       "stage": "start",
-      "via": "manifest",
+      "via": "world:ThoriumMod/SakuraTreeShaking",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
       "evidence": null
     },
     {
@@ -81694,10 +81733,10 @@
       "name": "Lich Requirement",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -81705,10 +81744,10 @@
       "name": "Lich Requirement",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -82689,10 +82728,10 @@
       "name": "Lodestone Buckshot",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -83230,9 +83269,8 @@
       "contentItem": true,
       "status": "buff",
       "stage": "start",
-      "via": "manifest",
+      "via": "world:ThoriumMod/YewTreeShaking",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
       "evidence": null
     },
     {
@@ -83340,10 +83378,9 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "start",
-      "via": "manifest",
+      "stage": "world-evil",
+      "via": "container:ThoriumMod/RangedThorHammer",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
       "evidence": null
     },
     {
@@ -83518,9 +83555,8 @@
       "contentItem": true,
       "status": "buff",
       "stage": "start",
-      "via": "manifest",
+      "via": "world:ThoriumMod/SpookyTreeShaking",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
       "evidence": null
     },
     {
@@ -84571,10 +84607,10 @@
       "name": "Minotaur Skull",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -84956,10 +84992,10 @@
       "name": "Mushymen Staff",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -86885,10 +86921,10 @@
       "name": "Penguin Wand",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -87162,9 +87198,8 @@
       "contentItem": true,
       "status": "buff",
       "stage": "start",
-      "via": "manifest",
+      "via": "world:ThoriumMod/SakuraTreeShaking",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
       "evidence": null
     },
     {
@@ -88815,10 +88850,10 @@
       "name": "Random Instrument",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -88827,10 +88862,9 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "equipment",
-      "stage": "start",
-      "via": "manifest",
+      "stage": "world-evil",
+      "via": "container:ThoriumMod/MeleeThorHammer",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
       "evidence": null
     },
     {
@@ -88870,9 +88904,8 @@
       "contentItem": true,
       "status": "buff",
       "stage": "start",
-      "via": "manifest",
+      "via": "world:ThoriumMod/SnowyTreeShaking",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
       "evidence": null
     },
     {
@@ -89249,9 +89282,8 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "start",
-      "via": "manifest",
+      "via": "world-container:ThoriumMod/ScarletChest",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
       "evidence": null
     },
     {
@@ -89578,10 +89610,10 @@
       "name": "Sacrificial Dagger",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -89919,8 +89951,8 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "world-evil",
-      "via": "recipe:ThoriumMod/ScarletBlock+Terraria/IronBar",
+      "stage": "start",
+      "via": "tile:ThoriumMod/ScarletChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -90142,10 +90174,10 @@
       "name": "Scorched Bone",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -91553,10 +91585,20 @@
       "contentItem": true,
       "status": "buff",
       "stage": "eye-of-cthulhu",
-      "via": "manifest",
+      "via": "shop:ThoriumMod/ConfusedZombie",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
-      "evidence": null
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Mods.ProgressionJournal.UI.ThoriumRepellentServiceCondition",
+            "description": "After the Confused Zombie has observed a full day and night, pay 1 Silver Coin to receive one random repellent out of five.",
+            "key": "",
+            "facts": null
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "ThoriumMod/SkyBloomCocktail",
@@ -92065,10 +92107,10 @@
       "name": "Soul Gem",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -92181,9 +92223,8 @@
       "contentItem": true,
       "status": "buff",
       "stage": "start",
-      "via": "manifest",
+      "via": "world:ThoriumMod/SpookyTreeShaking",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
       "evidence": null
     },
     {
@@ -93502,10 +93543,10 @@
       "name": "Unassuming Blue Stone",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -93535,10 +93576,10 @@
       "name": "Unassuming Green Stone",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -93546,10 +93587,10 @@
       "name": "Unassuming Orange Stone",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -93557,10 +93598,10 @@
       "name": "Unassuming Purple Stone",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -93568,10 +93609,10 @@
       "name": "Unassuming Red Stone",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -93590,10 +93631,10 @@
       "name": "Unassuming Yellow Stone",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -94033,11 +94074,10 @@
       "name": "Support Sash",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "equipment",
-      "stage": "wall-of-flesh",
-      "via": "manifest",
-      "reason": "Included in the generated profile.",
-      "sourceGap": true,
+      "status": "excluded",
+      "stage": "",
+      "via": "",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -94045,10 +94085,10 @@
       "name": "Suppression Bullet",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -94302,9 +94342,8 @@
       "contentItem": true,
       "status": "buff",
       "stage": "start",
-      "via": "manifest",
+      "via": "world:ThoriumMod/DeadTreeShaking",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
       "evidence": null
     },
     {
@@ -94960,10 +94999,10 @@
       "name": "Empowerment Tester",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -94971,10 +95010,10 @@
       "name": "Gore Tester",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -94982,10 +95021,10 @@
       "name": "Projectile Tester",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -94993,10 +95032,10 @@
       "name": "Purity Tester",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -95004,10 +95043,10 @@
       "name": "Stat Tester",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -95015,10 +95054,10 @@
       "name": "Text Tester",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -95026,10 +95065,10 @@
       "name": "Tile Tester",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -95070,10 +95109,10 @@
       "name": "The Gauntlet",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -95312,10 +95351,10 @@
       "name": "The Gauntlet",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -95686,10 +95725,10 @@
       "name": "The True Penguin Wand",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
+      "status": "excluded",
       "stage": "",
       "via": "",
-      "reason": "No acquisition path was resolved.",
+      "reason": "source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -96095,7 +96134,7 @@
       "status": "excluded",
       "stage": "primordials",
       "via": "container:ThoriumMod/ThePrimordialsTreasureBag",
-      "reason": "not combat equipment",
+      "reason": "not combat equipment; source namespace marks the item as removed",
       "evidence": null
     },
     {
@@ -98664,9 +98703,8 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "start",
-      "via": "manifest",
+      "via": "world:Terraria/WebCoveredChest",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
       "evidence": null
     },
     {
@@ -99928,10 +99966,20 @@
       "contentItem": true,
       "status": "buff",
       "stage": "eye-of-cthulhu",
-      "via": "manifest",
+      "via": "shop:ThoriumMod/ConfusedZombie",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
-      "evidence": null
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Mods.ProgressionJournal.UI.ThoriumRepellentServiceCondition",
+            "description": "After the Confused Zombie has observed a full day and night, pay 1 Silver Coin to receive one random repellent out of five.",
+            "key": "",
+            "facts": null
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "ThoriumMod/Zunpet",

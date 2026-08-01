@@ -242,6 +242,11 @@ const snapshot = {
       accessory: true,
       sourceNamespace: "Test.Items.Accessories.Vanity"
     }),
+    item("Test/RemovedBlade", {
+      damageClass: "Melee",
+      damage: 50,
+      sourceNamespace: "Test.Items.ZRemoved"
+    }),
     item("Terraria/WhiteString", { accessory: true }),
     item("Terraria/BrownString", { accessory: true }),
     item("Terraria/BlackString", { accessory: true }),
@@ -833,6 +838,12 @@ const wikiProfile = {
       classes: ["melee"],
       itemGroups: [[{ mod: "Test", item: "WikiOnlyBlade", displayName: "Wiki Only Blade" }]],
       evaluations: [{ stageId: "earlyGuide" }]
+    },
+    {
+      category: "Weapon",
+      classes: ["melee"],
+      itemGroups: [[{ mod: "Test", item: "RemovedBlade", displayName: "Removed Blade" }]],
+      evaluations: [{ stageId: "earlyGuide" }]
     }
   ]
 };
@@ -1171,6 +1182,7 @@ const manualAssignments = {
   }],
   itemOverrides: {
     "Test/MixedAccessory": { classes: ["melee"] },
+    "Test/RemovedBlade": { classes: ["melee"] },
     "Terraria/VanillaOverriddenHelmet": {
       category: "Armor",
       classes: ["melee", "magic", "summoner"]
@@ -1264,6 +1276,16 @@ assert(!manualResult.review.issues.some(issue =>
 assert(!manualResult.review.issues.some(issue =>
   issue.kind === "unassigned-combat-item"
   && issue.item === "Test/CycleA"));
+assert(!manualResult.profile.entries.some(entry =>
+  entry.itemGroups.flat().some(reference => reference.item === "RemovedBlade")),
+  "Items from a ZRemoved namespace must stay excluded even when a manual class override exists");
+assert(manualResult.report.excludedItems.some(entry =>
+  entry.id === "Test/RemovedBlade"
+  && entry.reason === "source namespace marks the item as removed"),
+  "Items from a ZRemoved namespace must be reported as explicit audited exclusions");
+assert(!manualResult.report.wikiMissingItems.some(entry =>
+  entry.id === "Test/RemovedBlade"),
+  "Stale recommendations for ZRemoved items must not be reported as missing available equipment");
 
 const ignoredIssueId = review.issues.find(issue =>
   issue.kind === "unresolved-condition"
@@ -1846,7 +1868,10 @@ const exactStaticEvidenceManifest = {
       name: { "en-US": "Golem", "ru-RU": "Голем" },
       unlock: { type: "vanilla-flag", key: "downedGolemBoss" }
     }
-  ]
+  ],
+  sourceStageFloors: {
+    "Test/OpaqueWorldInteraction": "eye-of-cthulhu"
+  }
 };
 const exactStaticEvidenceResult = generateProfile(
   exactStaticEvidenceSnapshot,
@@ -1867,8 +1892,11 @@ assert.equal(
   exactStaticEvidenceResult.report.paths["Test/WorldHardmodeBlade"]?.via,
   "world:Test/HardmodePlant");
 assert.equal(
-  exactStaticEvidenceResult.report.paths["Test/OpaqueWorldBlade"],
-  undefined);
+  exactStaticEvidenceResult.report.paths["Test/OpaqueWorldBlade"]?.stage,
+  "eye-of-cthulhu");
+assert.equal(
+  exactStaticEvidenceResult.report.paths["Test/OpaqueWorldBlade"]?.via,
+  "world:Test/OpaqueWorldInteraction");
 assert(!exactStaticEvidenceResult.review.issues.some(issue =>
   issue.kind === "unresolved-condition"
   && issue.affected.some(value => value.item === "Test/OpaqueWorldBlade")));

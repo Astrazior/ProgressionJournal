@@ -368,16 +368,25 @@ function generateProfileCore(
     unknownReferences: [],
     unresolvedConditions: [],
     ambiguousClasses: [],
-    excludedItems: Object.entries(manifest.itemOverrides ?? {})
-      .filter(([id, override]) =>
-        override?.exclude
-        && itemById.has(id)
-        && isAllowedProfileItem(id, contentMods))
-      .map(([id, override]) => ({
-        stage: "",
-        id,
-        reason: override.reason ?? "explicitly excluded"
-      })),
+    excludedItems: uniqueBy([
+      ...allowedItems
+        .filter(isRemovedItem)
+        .map(item => ({
+          stage: "",
+          id: item.id,
+          reason: "source namespace marks the item as removed"
+        })),
+      ...Object.entries(manifest.itemOverrides ?? {})
+        .filter(([id, override]) =>
+          override?.exclude
+          && itemById.has(id)
+          && isAllowedProfileItem(id, contentMods))
+        .map(([id, override]) => ({
+          stage: "",
+          id,
+          reason: override.reason ?? "explicitly excluded"
+        }))
+    ], record => record.id),
     emptyStages: [],
     paths: {},
     wikiMissingItems: [],
@@ -582,8 +591,8 @@ function generateProfileCore(
     for (const drop of worldDrops) {
       if (!sourceAllowedAtStage(drop.source, stage.id)) continue;
       const stageConditions = worldDropStageConditions(drop);
-      if (stageConditions === null) continue;
-      if (conditionsAllowed(stageConditions, stage, manifest, report, {
+      if (stageConditions === null && !sourceStageFloors.has(drop.source)) continue;
+      if (conditionsAllowed(stageConditions ?? [], stage, manifest, report, {
         sourceKind: "drop",
         source: drop.source,
         item: drop.item,
@@ -1272,7 +1281,7 @@ function collectSourceStageFloors(manifest, stageIndexes) {
 
 function classifyItem(item, manifest, report, context) {
   const override = manifest.itemOverrides?.[item.id];
-  if (override?.exclude) return null;
+  if (override?.exclude || isRemovedItem(item)) return null;
   if (item.vanity || item.sourceNamespace?.split(".").includes("Vanity")) return null;
   if (override?.buffCategory) {
     return { buffCategory: override.buffCategory, classes: override.classes ?? allClasses(manifest) };
@@ -1944,6 +1953,10 @@ function isProgressionNeutralCondition(condition) {
   ]).has(type);
 }
 
+function isRemovedItem(item) {
+  return item?.sourceNamespace?.split(".").includes("ZRemoved") === true;
+}
+
 function worldDropStageConditions(drop) {
   const conditions = drop.conditions ?? [];
   const stageConditions = conditions.filter(condition =>
@@ -2051,6 +2064,7 @@ function applyWikiRecommendations(
             });
             continue;
           }
+          if (isRemovedItem(item)) continue;
 
           const buff = buffByItem.get(id);
           if (!buff) {
@@ -2071,6 +2085,7 @@ function applyWikiRecommendations(
         }
 
         if (buffItems.has(id)) continue;
+        if (isRemovedItem(itemById.get(id))) continue;
         const entry = entryByItem.get(id);
         if (!entry) {
           report.wikiMissingItems.push({
