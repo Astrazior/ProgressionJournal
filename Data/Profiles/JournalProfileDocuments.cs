@@ -34,6 +34,8 @@ public sealed class JournalWorldGenSourceDocument
 
     public JournalLocalizedText SourceName { get; set; } = string.Empty;
 
+    public string SourceReference { get; set; } = string.Empty;
+
     public JournalItemReferenceDocument? SourceItem { get; set; }
 
     public float DropRate { get; set; } = 1f;

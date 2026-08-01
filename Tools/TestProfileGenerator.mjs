@@ -843,6 +843,7 @@ assert.deepEqual(
   {
     item: { mod: "Test", item: "Potion", displayName: "Test/Potion" },
     sourceName: "Exact Magic Plant",
+    sourceReference: "Test/MagicPlant",
     sourceItem: null,
     dropRate: 1,
     stackMin: 1,

@@ -145,6 +145,7 @@ public static class JournalExactDropCatalog
     {
         List<EntryBuilder> builders = [];
         AddVanillaTreeFruits(builders);
+        AddVanillaWorldTileSources(builders);
         AddVanillaSpecialDrops(builders);
         AddAAModClassic(builders);
         AddCalamity(builders);
@@ -238,6 +239,134 @@ public static class JournalExactDropCatalog
         }
     }
 
+    private static void AddVanillaWorldTileSources(List<EntryBuilder> builders)
+    {
+        AddWorld(
+            builders,
+            "Terraria 1.4 Water Bolt world-generation placement",
+            Language.GetTextValue("Mods.ProgressionJournal.UI.VanillaDungeonBooksSource"),
+            sourceItemReference: null,
+            "Terraria/WaterBolt",
+            [
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.VanillaDungeonBooksCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ],
+            showDropRate: false,
+            sourceReference: "Terraria/Books",
+            includeInSnapshot: true);
+        AddWorld(
+            builders,
+            "Terraria 1.4 Nature's Gift natural Jungle-plant growth",
+            Language.GetTextValue("Mods.ProgressionJournal.UI.VanillaNaturesGiftPlantSource"),
+            sourceItemReference: null,
+            "Terraria/NaturesGift",
+            [
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.VanillaNaturesGiftPlantCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ],
+            showDropRate: false,
+            sourceReference: "Terraria/JunglePlants",
+            includeInSnapshot: true);
+
+        AddWorld(
+            builders,
+            "Terraria 1.4 Life Crystal underground world generation",
+            Lang.GetItemNameValue(ItemID.LifeCrystal),
+            sourceItemReference: null,
+            "Terraria/LifeCrystal",
+            [
+                new ConditionBuilder(
+                    "ProgressionJournal.BelowSurface",
+                    ConditionKind.BelowSurface,
+                    [])
+            ],
+            showDropRate: false,
+            sourceReference: "Terraria/Heart",
+            includeInSnapshot: true);
+
+        AddWorld(
+            builders,
+            "Terraria 1.4 Life Fruit natural growth after all mechanical bosses",
+            Language.GetTextValue("Mods.ProgressionJournal.UI.VanillaLifeFruitPlantSource"),
+            sourceItemReference: null,
+            "Terraria/LifeFruit",
+            [
+                new ConditionBuilder(
+                    "ProgressionJournal.AfterAllMechanicalBosses",
+                    ConditionKind.AfterAllMechanicalBosses,
+                    []),
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.VanillaLifeFruitPlantCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ],
+            showDropRate: false,
+            sourceReference: "Terraria/LifeFruit",
+            includeInSnapshot: true);
+
+        AddVanillaWorldEvilTileSources(builders);
+    }
+
+    private static void AddVanillaWorldEvilTileSources(List<EntryBuilder> builders)
+    {
+        const string provenance = "Terraria 1.4 Shadow Orb and Crimson Heart world generation";
+        foreach (var targetReference in new[]
+                 {
+                     "Terraria/BallOHurt",
+                     "Terraria/BandofStarpower",
+                     "Terraria/Musket",
+                     "Terraria/Vilethorn",
+                     "ThoriumMod/FanLetter2"
+                 })
+        {
+            AddWorld(
+                builders,
+                provenance,
+                Lang.GetItemNameValue(ItemID.ShadowOrb),
+                sourceItemReference: null,
+                targetReference,
+                [
+                    new ConditionBuilder(
+                        "Mods.ProgressionJournal.UI.VanillaShadowOrbLocationCondition",
+                        ConditionKind.LocalizationKey,
+                        [])
+                ],
+                showDropRate: false,
+                sourceReference: "Terraria/ShadowOrbs",
+                includeInSnapshot: true);
+        }
+
+        foreach (var targetReference in new[]
+                 {
+                     "Terraria/CrimsonRod",
+                     "Terraria/PanicNecklace",
+                     "Terraria/TheRottedFork",
+                     "Terraria/TheUndertaker",
+                     "ThoriumMod/FanLetter"
+                 })
+        {
+            AddWorld(
+                builders,
+                provenance,
+                Lang.GetItemNameValue(ItemID.CrimsonHeart),
+                sourceItemReference: null,
+                targetReference,
+                [
+                    new ConditionBuilder(
+                        "Mods.ProgressionJournal.UI.VanillaCrimsonHeartLocationCondition",
+                        ConditionKind.LocalizationKey,
+                        [])
+                ],
+                showDropRate: false,
+                sourceReference: "Terraria/ShadowOrbs",
+                includeInSnapshot: true);
+        }
+    }
+
     private static void AddVanillaSpecialDrops(ICollection<EntryBuilder> builders)
     {
         const string paperAirplaneProvenance =
@@ -315,6 +444,78 @@ public static class JournalExactDropCatalog
                     [])
             ],
             sourceReference: "ThoriumMod/OceanCrystal",
+            includeInSnapshot: true);
+
+        AddWorld(
+            builders,
+            "Thorium Mod 1.7.2.7 ThoriumGlobalTile.Drop PlantDetritus frame check",
+            Language.GetTextValue("Mods.ProgressionJournal.UI.ThoriumAloePlantSource"),
+            sourceItemReference: null,
+            "ThoriumMod/AloeLeaf",
+            [
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.ThoriumAloePlantCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ],
+            dropRate: 0.35f,
+            sourceReference: "Terraria/PlantDetritus",
+            includeInSnapshot: true);
+        AddWorld(
+            builders,
+            "Thorium Mod 1.7.2.7 ThoriumGlobalTile.RandomManaBerry",
+            Language.GetTextValue("Mods.ProgressionJournal.UI.ThoriumManaBerryPlantSource"),
+            sourceItemReference: null,
+            "ThoriumMod/ManaBerry",
+            [
+                new ConditionBuilder("ProgressionJournal.Hardmode", ConditionKind.Hardmode, []),
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.ThoriumManaBerryPlantCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ],
+            showDropRate: false,
+            sourceReference: "ThoriumMod/ManaBerry",
+            includeInSnapshot: true);
+
+        foreach (var sourceReference in new[]
+                 {
+                     "ThoriumMod/MarineGlowGrass1",
+                     "ThoriumMod/MarineGlowGrass2",
+                     "ThoriumMod/MossGlowVine1"
+                 })
+        {
+            AddWorld(
+                builders,
+                "Thorium Mod 1.7.2.7 Aquatic Depths vegetation drops",
+                Language.GetTextValue("Mods.ProgressionJournal.UI.ThoriumWaterChestnutPlantSource"),
+                sourceItemReference: null,
+                "ThoriumMod/WaterChestnut",
+                [
+                    new ConditionBuilder(
+                        "Mods.ProgressionJournal.UI.ThoriumWaterChestnutPlantCondition",
+                        ConditionKind.LocalizationKey,
+                        [])
+                ],
+                showDropRate: false,
+                sourceReference: sourceReference,
+                includeInSnapshot: true);
+        }
+
+        AddWorld(
+            builders,
+            "Thorium Mod 1.7.2.7 ThoriumGlobalTile.RandomLivingLeafBushes",
+            Language.GetTextValue("Mods.ProgressionJournal.UI.ThoriumLivingLeafBushSource"),
+            sourceItemReference: null,
+            "ThoriumMod/LivingWoodSap",
+            [
+                new ConditionBuilder(
+                    "Mods.ProgressionJournal.UI.ThoriumLivingLeafBushCondition",
+                    ConditionKind.LocalizationKey,
+                    [])
+            ],
+            showDropRate: false,
+            sourceReference: "ThoriumMod/LivingLeafBushRubblemaker",
             includeInSnapshot: true);
     }
 

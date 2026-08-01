@@ -805,12 +805,12 @@ function createWorldGenSources(snapshot, profileEntries, profileBuffs, itemById)
   const exactWorldSources = new Set(
     (snapshot.drops ?? [])
       .filter(drop => drop.sourceType === "world")
-      .map(drop => `${drop.source}\n${drop.item}`));
+      .map(drop => `${normalizeWorldGenSourceReference(drop.source)}\n${drop.item}`));
   const sources = (snapshot.drops ?? [])
     .filter(drop => sourceTypes.has(drop.sourceType)
       && profileItems.has(drop.item)
       && (drop.sourceType !== "tile"
-        || !exactWorldSources.has(`${drop.source}\n${drop.item}`)))
+        || !exactWorldSources.has(`${normalizeWorldGenSourceReference(drop.source)}\n${drop.item}`)))
     .map(drop => {
       const item = itemById.get(drop.item);
       if (!item) return null;
@@ -820,6 +820,7 @@ function createWorldGenSources(snapshot, profileEntries, profileBuffs, itemById)
       return {
         item: toItemReference(item),
         sourceName: drop.sourceDisplayName || formatWorldGenSourceName(drop.source),
+        sourceReference: normalizeWorldGenSourceReference(drop.source),
         sourceItem: sourceItem ? toItemReference(sourceItem) : null,
         dropRate: drop.rate ?? 1,
         stackMin: drop.stackMin ?? 1,
@@ -844,6 +845,19 @@ function createWorldGenSources(snapshot, profileEntries, profileBuffs, itemById)
     .sort((left, right) =>
       `${left.item.mod}/${left.item.item}`.localeCompare(`${right.item.mod}/${right.item.item}`)
       || left.sourceName.localeCompare(right.sourceName));
+}
+
+function normalizeWorldGenSourceReference(reference) {
+  switch (reference) {
+    case "ThoriumMod/LifeCrystal":
+      return "Terraria/Heart";
+    case "ThoriumMod/MarineGlowGrass1":
+    case "ThoriumMod/MarineGlowGrass2":
+    case "ThoriumMod/MossGlowVine1":
+      return "ThoriumMod/AquaticDepthsVegetation";
+    default:
+      return reference;
+  }
 }
 
 function formatWorldGenSourceName(reference) {

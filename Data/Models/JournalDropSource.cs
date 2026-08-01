@@ -8,7 +8,8 @@ public sealed class JournalDropSource(
     int stackMin,
     int stackMax,
     IEnumerable<string> conditions,
-    bool showDropRate = true)
+    bool showDropRate = true,
+    string? sourceReference = null)
 {
     public JournalDropSource(
         string sourceName,
@@ -35,6 +36,8 @@ public sealed class JournalDropSource(
     public int? SourceNpcType { get; } = sourceNpcType;
 
     public int? SourceItemId { get; } = sourceItemId;
+
+    public string SourceReference { get; } = sourceReference ?? string.Empty;
 
     public float DropRate { get; } = dropRate;
 

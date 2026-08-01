@@ -317,7 +317,8 @@ public static class JournalProfileStorage
                     source.StackMin,
                     source.StackMax,
                     source.Conditions.Select(static condition => condition.Resolve()),
-                    source.ShowDropRate)
+                    source.ShowDropRate,
+                    source.SourceReference)
             })
             .Where(static value => value.ItemId > ItemID.None)
             .GroupBy(static value => value.ItemId)

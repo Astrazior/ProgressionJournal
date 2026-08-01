@@ -404,6 +404,23 @@ assert(exactDropCatalogSource.includes('"AAModClassic/Carrot"')
   && englishLocalizationSource.includes("Grows naturally on surface grass in Hardmode")
   && russianLocalizationSource.includes("Отдайте ему книгу"),
 "Remaining AAModClassic source gaps must expose their code-driven world interactions");
+assert(exactDropCatalogSource.includes('"Terraria/WaterBolt"')
+  && exactDropCatalogSource.includes('sourceReference: "Terraria/Books"')
+  && exactDropCatalogSource.includes("VanillaDungeonBooksCondition")
+  && exactDropCatalogSource.includes('"ThoriumMod/ManaBerry"')
+  && exactDropCatalogSource.includes("ThoriumManaBerryPlantCondition")
+  && exactDropCatalogSource.includes('"ThoriumMod/WaterChestnut"')
+  && exactDropCatalogSource.includes("ThoriumWaterChestnutPlantCondition")
+  && englishLocalizationSource.includes("Generated as a special blue book")
+  && russianLocalizationSource.includes("особая синяя книга"),
+"World-generation tile sources must retain their exact biome, growth, and progression conditions");
+assert(itemSourceResolverSource.includes("MergeWorldGenSourceGroup")
+  && itemSourceResolverSource.includes("source.SourceItemId.HasValue")
+  && itemSourceResolverSource.includes("SelectMany(static source => source.Conditions)")
+  && itemSourceResolverSource.includes("InferLegacyWorldGenSourceReference")
+  && itemSourceResolverSource.includes("source.SourceReference")
+  && itemSourceResolverSource.includes("NormalizeWorldGenSourceReference"),
+"Profile and runtime world-container records must merge into one condition-rich source card");
 assert(journalUiStateSource.includes("if (conditionIndex > 0)")
   && journalUiStateSource.includes("top += 4f;")
   && !journalUiStateSource.includes("JournalConditionDivider")
@@ -732,6 +749,7 @@ assert(profileGeneratorSource.includes("drop.sourceType === \"global\"")
 "ProfileGeneratorCore does not process global NPC drops independently");
 assert(profileGeneratorSource.includes("createWorldGenSources(")
   && profileGeneratorSource.includes('["tile", "world", "world-container"]')
+  && profileGeneratorSource.includes("sourceReference: normalizeWorldGenSourceReference(drop.source)")
   && journalUiStateSource.indexOf("info.WorldGenSources.Count")
     < journalUiStateSource.indexOf("info.Recipes.Count")
   && journalUiStateSource.includes("(ItemID.WorldGlobe, new Color(104, 184, 132))")

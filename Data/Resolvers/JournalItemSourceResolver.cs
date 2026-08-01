@@ -254,14 +254,8 @@ public static class JournalItemSourceResolver
     private static JournalDropSource[] BuildWorldGenSources(int targetItemId)
     {
         List<JournalDropSource> sources = [];
-        if (JournalProfileRegistry.IsLoaded
-            && JournalProfileRegistry.Active.WorldGenSources.TryGetValue(targetItemId, out var profileSources))
-        {
-            sources.AddRange(profileSources);
-        }
-
         var catalogSources = JournalContainerLootCatalog.GetSources(targetItemId);
-        sources.AddRange(catalogSources.Select(source => new JournalDropSource(
+        var catalogSourceModels = catalogSources.Select(source => new JournalDropSource(
             string.IsNullOrWhiteSpace(source.SourceDisplayName)
                 ? Lang.GetItemNameValue(source.SourceItemId)
                 : source.SourceDisplayName,
@@ -270,10 +264,14 @@ public static class JournalItemSourceResolver
             source.DropRate,
             source.StackMin,
             source.StackMax,
-            source.ConditionLocalizationKeys.Select(static key => Language.GetTextValue(key)))));
+            source.ConditionLocalizationKeys.Select(static key => Language.GetTextValue(key)),
+            sourceReference: NormalizeWorldGenSourceReference(source.SourceReference)))
+            .ToArray();
 
-        sources.AddRange(JournalExactDropCatalog.GetSources(targetItemId)
+        var exactSources = JournalExactDropCatalog.GetSources(targetItemId)
             .Where(static source => source.SourceReference is not null)
+            .ToArray();
+        var exactSourceModels = exactSources
             .Select(source => new JournalDropSource(
                 source.SourceName,
                 sourceNpcType: null,
@@ -282,23 +280,144 @@ public static class JournalItemSourceResolver
                 source.StackMin,
                 source.StackMax,
                 source.Conditions.Select(static condition => condition.Description),
-                source.ShowDropRate)));
+                source.ShowDropRate,
+                NormalizeWorldGenSourceReference(source.SourceReference!)))
+            .ToArray();
+        var referenceCandidates = catalogSources
+            .Select(source => (
+                SourceName: string.IsNullOrWhiteSpace(source.SourceDisplayName)
+                    ? Lang.GetItemNameValue(source.SourceItemId)
+                    : source.SourceDisplayName,
+                source.SourceReference))
+            .Concat(exactSources.Select(static source => (
+                source.SourceName,
+                SourceReference: source.SourceReference!)))
+            .Where(static source => !string.IsNullOrWhiteSpace(source.SourceReference))
+            .Distinct()
+            .ToArray();
+
+        if (JournalProfileRegistry.IsLoaded
+            && JournalProfileRegistry.Active.WorldGenSources.TryGetValue(targetItemId, out var profileSources))
+        {
+            sources.AddRange(profileSources.Select(source =>
+                InferLegacyWorldGenSourceReference(source, referenceCandidates)));
+        }
+
+        sources.AddRange(catalogSourceModels);
+        sources.AddRange(exactSourceModels);
 
         return sources
             .GroupBy(static source => new
             {
-                source.SourceName,
-                source.SourceItemId,
+                SourceIdentity = string.IsNullOrWhiteSpace(source.SourceReference)
+                    ? source.SourceName
+                    : NormalizeWorldGenSourceReference(source.SourceReference),
                 source.StackMin,
                 source.StackMax,
-                source.ShowDropRate,
-                Conditions = string.Join('\n', source.Conditions)
+                source.ShowDropRate
             })
-            .Select(static group => group
-                .OrderByDescending(static source => source.DropRate)
-                .First())
+            .Select(MergeWorldGenSourceGroup)
             .OrderBy(static source => source.SourceName, StringComparer.CurrentCultureIgnoreCase)
             .ToArray();
+    }
+
+    private static JournalDropSource InferLegacyWorldGenSourceReference(
+        JournalDropSource source,
+        (string SourceName, string SourceReference)[] referenceCandidates)
+    {
+        if (!string.IsNullOrWhiteSpace(source.SourceReference))
+        {
+            return source;
+        }
+
+        var reference = referenceCandidates
+            .FirstOrDefault(candidate => IsLegacyWorldGenSourceMatch(source.SourceName, candidate));
+        if (string.IsNullOrWhiteSpace(reference.SourceReference))
+        {
+            return source;
+        }
+
+        return new JournalDropSource(
+            source.SourceName,
+            source.SourceNpcType,
+            source.SourceItemId,
+            source.DropRate,
+            source.StackMin,
+            source.StackMax,
+            source.Conditions,
+            source.ShowDropRate,
+            NormalizeWorldGenSourceReference(reference.SourceReference));
+    }
+
+    private static bool IsLegacyWorldGenSourceMatch(
+        string legacySourceName,
+        (string SourceName, string SourceReference) candidate)
+    {
+        if (string.Equals(legacySourceName, candidate.SourceName, StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+
+        var separator = candidate.SourceReference.IndexOf('/');
+        var internalName = separator >= 0
+            ? candidate.SourceReference[(separator + 1)..]
+            : candidate.SourceReference;
+        if (string.Equals(legacySourceName, SplitInternalName(internalName), StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+
+        return candidate.SourceReference switch
+        {
+            "Terraria/Heart" => string.Equals(
+                legacySourceName,
+                "Life Crystal",
+                StringComparison.OrdinalIgnoreCase),
+            "Terraria/ShadowOrbs" => legacySourceName is "Shadow Orb" or "Crimson Heart",
+            _ => false
+        };
+    }
+
+    private static string NormalizeWorldGenSourceReference(string sourceReference)
+    {
+        return sourceReference switch
+        {
+            "ThoriumMod/LifeCrystal" => "Terraria/Heart",
+            "ThoriumMod/MarineGlowGrass1" or
+                "ThoriumMod/MarineGlowGrass2" or
+                "ThoriumMod/MossGlowVine1" => "ThoriumMod/AquaticDepthsVegetation",
+            _ => sourceReference
+        };
+    }
+
+    private static JournalDropSource MergeWorldGenSourceGroup(IEnumerable<JournalDropSource> group)
+    {
+        var sources = group.ToArray();
+        var primary = sources
+            .OrderByDescending(static source => source.DropRate)
+            .ThenByDescending(static source => source.SourceItemId.HasValue)
+            .ThenByDescending(static source => source.Conditions.Count)
+            .First();
+        var sourceItemId = sources
+            .Select(static source => source.SourceItemId)
+            .FirstOrDefault(static sourceItemId => sourceItemId.HasValue);
+        var sourceReference = sources
+            .Select(static source => source.SourceReference)
+            .FirstOrDefault(static sourceReference => !string.IsNullOrWhiteSpace(sourceReference));
+        var conditions = sources
+            .SelectMany(static source => source.Conditions)
+            .Distinct(StringComparer.Ordinal)
+            .ToArray();
+        return new JournalDropSource(
+            primary.SourceName,
+            primary.SourceNpcType,
+            sourceItemId,
+            primary.DropRate,
+            primary.StackMin,
+            primary.StackMax,
+            conditions,
+            primary.ShowDropRate,
+            sourceReference);
     }
 
     private static void AppendExactDropSources(List<JournalDropSource> drops, int targetItemId)
