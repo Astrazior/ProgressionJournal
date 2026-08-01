@@ -163,6 +163,7 @@ public static class JournalExactDropCatalog
             builders,
             provenance,
             "Mods.ProgressionJournal.UI.VanillaForestFruitTreeSource",
+            "Terraria/ForestTreeCutting",
             "Terraria/Apple",
             "Terraria/Apricot",
             "Terraria/Grapefruit",
@@ -172,42 +173,49 @@ public static class JournalExactDropCatalog
             builders,
             provenance,
             "Mods.ProgressionJournal.UI.VanillaBorealFruitTreeSource",
+            "Terraria/BorealTreeCutting",
             "Terraria/Cherry",
             "Terraria/Plum");
         AddVanillaTreeFruitGroup(
             builders,
             provenance,
             "Mods.ProgressionJournal.UI.VanillaEbonwoodFruitTreeSource",
+            "Terraria/EbonwoodTreeCutting",
             "Terraria/BlackCurrant",
             "Terraria/Elderberry");
         AddVanillaTreeFruitGroup(
             builders,
             provenance,
             "Mods.ProgressionJournal.UI.VanillaShadewoodFruitTreeSource",
+            "Terraria/ShadewoodTreeCutting",
             "Terraria/BloodOrange",
             "Terraria/Rambutan");
         AddVanillaTreeFruitGroup(
             builders,
             provenance,
             "Mods.ProgressionJournal.UI.VanillaMahoganyFruitTreeSource",
+            "Terraria/MahoganyTreeCutting",
             "Terraria/Mango",
             "Terraria/Pineapple");
         AddVanillaTreeFruitGroup(
             builders,
             provenance,
             "Mods.ProgressionJournal.UI.VanillaPalmFruitTreeSource",
+            "Terraria/PalmTreeCutting",
             "Terraria/Banana",
             "Terraria/Coconut");
         AddVanillaTreeFruitGroup(
             builders,
             provenance,
             "Mods.ProgressionJournal.UI.VanillaPearlwoodFruitTreeSource",
+            "Terraria/PearlwoodTreeCutting",
             "Terraria/Dragonfruit",
             "Terraria/Starfruit");
         AddVanillaTreeFruitGroup(
             builders,
             provenance,
             "Mods.ProgressionJournal.UI.VanillaAshFruitTreeSource",
+            "Terraria/AshTreeCutting",
             "Terraria/Pomegranate",
             "Terraria/SpicyPepper");
     }
@@ -216,6 +224,7 @@ public static class JournalExactDropCatalog
         ICollection<EntryBuilder> builders,
         string provenance,
         string sourceLocalizationKey,
+        string sourceReference,
         params string[] targetReferences)
     {
         var sourceName = Language.GetTextValue(sourceLocalizationKey);
@@ -235,7 +244,9 @@ public static class JournalExactDropCatalog
                 sourceItemReference: null,
                 targetReference,
                 conditions,
-            showDropRate: false);
+                showDropRate: false,
+                sourceReference: sourceReference,
+                includeInSnapshot: true);
         }
     }
 

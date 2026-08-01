@@ -268,10 +268,13 @@ assert(exactDropCatalogSource.includes("\"CalamityMod/Jackfruit\"")
 assert(exactDropCatalogSource.includes("AddVanillaTreeFruits(builders)")
   && exactDropCatalogSource.includes("\"Terraria/Apricot\"")
   && exactDropCatalogSource.includes("\"Terraria/Dragonfruit\"")
+  && exactDropCatalogSource.includes("\"Terraria/ForestTreeCutting\"")
+  && exactDropCatalogSource.includes("sourceReference: sourceReference")
+  && exactDropCatalogSource.includes("includeInSnapshot: true")
   && exactDropCatalogSource.includes("VanillaFruitTreeCuttingCondition")
   && englishLocalizationSource.includes("Can drop while cutting down trees of this type")
   && russianLocalizationSource.includes("Может выпасть при рубке деревьев этого типа"),
-  "Vanilla tree fruits must retain localized cutting sources");
+  "Vanilla tree fruits must retain localized world-generation cutting sources");
 assert(exactDropCatalogSource.includes("AddVanillaSpecialDrops(builders)")
   && exactDropCatalogSource.includes("NPCID.WindyBalloon")
   && exactDropCatalogSource.includes("\"Terraria/PaperAirplaneA\"")
