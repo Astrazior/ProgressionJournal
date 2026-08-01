@@ -2,11 +2,11 @@
   "format": "ProgressionJournalManualReview",
   "version": 1,
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-08-01T15:02:07.823Z",
+  "generatedAtUtc": "2026-08-01T19:36:57.590Z",
   "summary": {
-    "total": 13,
+    "total": 12,
     "byKind": {
-      "unresolved-condition": 13
+      "unresolved-condition": 12
     }
   },
   "issues": [
@@ -362,48 +362,6 @@
             "conditionKeys": [],
             "conditionDescriptions": [
               "The Shady Salesman always sells the Gluttony Blender for 10 Gold Coins."
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.cf446b93e4e9",
-      "kind": "unresolved-condition",
-      "sourceKind": "drop",
-      "conditions": [
-        {
-          "type": "Mods.ProgressionJournal.UI.AcidwoodFruitTreeShakingCondition",
-          "description": "Can drop while cutting down Acidwood Trees in the Sulphurous Sea.",
-          "key": "",
-          "facts": null
-        }
-      ],
-      "affectedCount": 2,
-      "affected": [
-        {
-          "item": "CalamityMod/Jackfruit",
-          "source": "CalamityMod/AcidwoodTreeShaking"
-        },
-        {
-          "item": "CalamityMod/Salak",
-          "source": "CalamityMod/AcidwoodTreeShaking"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "drop"
-            ],
-            "sourceIds": [
-              "CalamityMod/AcidwoodTreeShaking"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [],
-            "conditionDescriptions": [
-              "Can drop while cutting down Acidwood Trees in the Sulphurous Sea."
             ]
           }
         ]

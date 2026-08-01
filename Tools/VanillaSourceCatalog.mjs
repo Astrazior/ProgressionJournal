@@ -402,7 +402,9 @@ const MILESTONE_FACTS = [
       "Terraria/AngryNimbus",
       "Terraria/SnowBalla",
       "Terraria/SnowmanGangsta",
-      "Terraria/MisterStabby"
+      "Terraria/MisterStabby",
+      "Terraria/DesertScorpionWalk",
+      "Terraria/DesertScorpionWall"
     ],
     // Purifying the Tortured Soul is a separate unlock that town-NPC probes cannot observe.
     shops: [
@@ -609,7 +611,6 @@ const START_SOURCES = [
   "Terraria/Demon",
   "Terraria/FireImp",
   "Terraria/Ghost",
-  "Terraria/MossHornet",
   "Terraria/Tim",
   "Terraria/Nymph",
   "Terraria/LostGirl",

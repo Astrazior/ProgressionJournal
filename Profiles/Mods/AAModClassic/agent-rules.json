@@ -342,29 +342,6 @@
       "reason": "The Class Setups guide lists these items as obtainable choices at 'endgame', and every identifier resolves to an item in the current AAModClassic snapshot."
     },
     {
-      "id": "stone-soldier-armor-stage",
-      "kind": "item-stage",
-      "items": [
-        "AAModClassic/StoneSoldierChestplate",
-        "AAModClassic/StoneSoldierLeggings"
-      ],
-      "stageId": "greed",
-      "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Armor",
-      "sourceVersion": "AAModClassic 1.0.11 snapshot recipe graph",
-      "checkedAt": "2026-07-12",
-      "reason": "The current recipes combine Mining Shirt or Mining Pants with Stone Shell from Greed; the helmet already resolves through the same material at the Greed stage."
-    },
-    {
-      "id": "greed-charm-stage",
-      "kind": "item-stage",
-      "item": "AAModClassic/CharmOfDesire",
-      "stageId": "greed",
-      "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Charm_of_Desire",
-      "sourceVersion": "AAModClassic 1.0.12 snapshot and current wiki",
-      "checkedAt": "2026-07-13",
-      "reason": "Charm of Desire is guaranteed by Greed's expert treasure bag. That bag currently has no exported container records, so the profile records the verified stage directly."
-    },
-    {
       "id": "stripemans-lucky-armor-stage",
       "kind": "item-stage",
       "availabilityEvidence": false,
@@ -417,16 +394,6 @@
       "sourceVersion": "AAModClassic 1.0.17 installed assembly",
       "checkedAt": "2026-08-01",
       "reason": "This is the source condition corresponding to the established Lucky Potion item-stage rule: the pot drop requires Stripeman's Lucky Shirt, which is available after Skeletron."
-    },
-    {
-      "id": "ronin-potion-stage",
-      "kind": "item-stage",
-      "item": "AAModClassic/RoninPotion",
-      "stageId": "grips-of-chaos",
-      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
-      "sourceVersion": "AAModClassic 1.0.17 installed assembly",
-      "checkedAt": "2026-07-30",
-      "reason": "Ronin Potion is added dynamically to Samurai's active shop and remains available at Grips of Chaos independently of the Lucky Potion pot-drop mechanic."
     },
     {
       "id": "hardmode-carrot-stage",
@@ -584,16 +551,6 @@
       "reason": "These are Eye of Cthulhu, Blood Moon, or first Goblin Army rewards; the profile opens those optional early events at Eye of Cthulhu."
     },
     {
-      "id": "samurai-food-and-tinker-source",
-      "kind": "item-stage",
-      "item": "AAModClassic/LuckyCracker",
-      "stageId": "grips-of-chaos",
-      "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Food_and_Drink_Potions",
-      "sourceVersion": "Ancients Awakened 1.0.3.2 guide; AAModClassic 1.0.10 runtime snapshot",
-      "checkedAt": "2026-07-12",
-      "reason": "Lucky Cracker is bought from Samurai, whose current runtime availability was first observed at the Grips of Chaos stage."
-    },
-    {
       "id": "post-skeletron-dungeon-special-items",
       "kind": "item-stage",
       "availabilityEvidence": false,
@@ -611,8 +568,7 @@
       "id": "hydra-and-removed-pre-hardmode-items",
       "kind": "item-stage",
       "items": [
-        "AAModClassic/AncientHydraTrishot",
-        "AAModClassic/DragonSerpentNecklace"
+        "AAModClassic/AncientHydraTrishot"
       ],
       "stageId": "queen-bee",
       "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Weapons",
@@ -764,16 +720,6 @@
       "reason": "Soul Stone is the final stone tied to the loaded Soul of Cthulhu content; Infinity Gauntlet requires it together with the other six stones."
     },
     {
-      "id": "unreleased-truffle-upgrade",
-      "kind": "item-stage",
-      "item": "AAModClassic/MadnessTruffle",
-      "stageId": "techno-truffle",
-      "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Bosses",
-      "sourceVersion": "AAModClassic 1.0.10 snapshot recipe graph",
-      "checkedAt": "2026-07-12",
-      "reason": "The loaded recipe combines the four expert truffles, with Metallic Truffle from Techno Truffle as its latest ingredient."
-    },
-    {
       "id": "anubis-special-edition-weapon",
       "kind": "item-stage",
       "item": "AAModClassic/TheLifeAndEpicAdventuresOfAnubisTheWonderDogSpecialEdition",
@@ -827,13 +773,11 @@
       "sources": [
         "AAModClassic/FlameBrute",
         "AAModClassic/InfernalSlime",
-        "AAModClassic/MireCrate",
         "AAModClassic/Mosster",
         "AAModClassic/MurkySlime",
         "AAModClassic/Newt",
         "AAModClassic/Singemander",
         "AAModClassic/Skulker",
-        "AAModClassic/VoidCrate",
         "AAModClassic/WyrmlingBody",
         "AAModClassic/WyrmlingHead",
         "AAModClassic/WyrmlingTail1",
@@ -862,7 +806,6 @@
         "AAModClassic/PigronInferno",
         "AAModClassic/PigronMire",
         "AAModClassic/ScavengerBody",
-        "AAModClassic/ScavengerHead",
         "AAModClassic/ScavengerTail",
         "AAModClassic/Seraph",
         "AAModClassic/SeraphA",
@@ -883,9 +826,7 @@
       "kind": "source-stage",
       "sources": [
         "AAModClassic/AncientLungBody",
-        "AAModClassic/AncientLungHead",
-        "AAModClassic/AncientLungTail",
-        "AAModClassic/Soulsucker"
+        "AAModClassic/AncientLungTail"
       ],
       "stageId": "equinox-worms",
       "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Crafting_materials",
@@ -984,19 +925,6 @@
       "reason": "The loaded legacy source is the unreleased variant of Anubis, Legendscribe."
     },
     {
-      "id": "goblin-slayer-source",
-      "kind": "source-stage",
-      "sources": [
-        "AAModClassic/GoblinSlayer",
-        "Terraria/GoblinTinkerer"
-      ],
-      "stageId": "start",
-      "sourceUrl": "https://terraria.wiki.gg/wiki/Goblin_Army",
-      "sourceVersion": "Terraria 1.4.4.9; AAModClassic 1.0.12 installed assembly",
-      "checkedAt": "2026-07-13",
-      "reason": "Goblin Slayer's CanTownNPCSpawn requires NPC.downedGoblins, and the Goblin Tinkerer is rescued after the same pre-boss event."
-    },
-    {
       "id": "vanilla-pirate-source",
       "kind": "source-stage",
       "source": "Terraria/Pirate",
@@ -1048,8 +976,6 @@
       "kind": "item-stage",
       "items": [
         "AAModClassic/Bogwood",
-        "AAModClassic/DragonClaw_Item",
-        "AAModClassic/HydraClaw_Item",
         "AAModClassic/OuroborosWood",
         "AAModClassic/Razewood"
       ],

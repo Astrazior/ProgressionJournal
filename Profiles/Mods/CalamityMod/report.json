@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-08-01T15:02:19.894Z",
+  "generatedAtUtc": "2026-08-01T19:37:10.449Z",
   "snapshot": {
     "version": 9,
     "generatedAtUtc": "2026-08-01T14:12:30.9322704Z",
@@ -22,7 +22,7 @@
     }
   },
   "agentRules": {
-    "rules": 145,
+    "rules": 108,
     "ignoredItems": 3,
     "ignoredIssues": 1,
     "evidence": [
@@ -34,88 +34,11 @@
         "reason": "The official Calamity source places Nightmare Fuel, Endothermic Energy and Darksun Fragment drops in the shared PostDoG conditional drop set."
       },
       {
-        "id": "meld-blob-celestial-pillars",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityGlobalNPCLoot.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Calamity source adds Meld Blob to the loot of enemies from the Celestial Pillars."
-      },
-      {
         "id": "burrower-cavern-source",
         "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Deconstructors/Burrower.cs",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
         "checkedAt": "2026-06-14",
         "reason": "The official source gives Burrower a normal Cavern spawn chance with no progression flag and makes it drop Mysterious Circuitry and Dubious Plating."
-      },
-      {
-        "id": "leviathan-anahita-final-loot",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Leviathan/Leviathan.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official boss source places the treasure bag and normal weapon pool behind LastAnLStanding(), so the shared loot becomes available after the Anahita and Leviathan encounter is completed."
-      },
-      {
-        "id": "astrum-deus-final-worm-loot",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AstrumDeus/AstrumDeusHead.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official boss source places the treasure bag and normal weapon pool in the lastWorm conditional set, so they become available when the Astrum Deus encounter is completed."
-      },
-      {
-        "id": "exo-mechs-photon-ripper",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/DraedonBag.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Draedon Bag loot source places Photon Ripper in the Ares-defeated reward set."
-      },
-      {
-        "id": "exo-mechs-the-jailor",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/DraedonBag.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Draedon Bag loot source places The Jailor in the Ares-defeated reward set."
-      },
-      {
-        "id": "exo-mechs-ares-exoskeleton",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/DraedonBag.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Draedon Bag loot source places Ares Exoskeleton in the Ares-defeated reward set."
-      },
-      {
-        "id": "exo-mechs-spine-of-thanatos",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/DraedonBag.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Draedon Bag loot source places Spine of Thanatos in the Thanatos-defeated reward set."
-      },
-      {
-        "id": "exo-mechs-refraction-rotor",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/DraedonBag.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Draedon Bag loot source places Refraction Rotor in the Thanatos-defeated reward set."
-      },
-      {
-        "id": "exo-mechs-atlas-munitions-beacon",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/DraedonBag.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Draedon Bag loot source places Atlas Munitions Beacon in the Thanatos-defeated reward set."
-      },
-      {
-        "id": "exo-mechs-surge-driver",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/DraedonBag.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Draedon Bag loot source places Surge Driver in the Artemis and Apollo-defeated reward set."
-      },
-      {
-        "id": "exo-mechs-the-atom-splitter",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/Items/TreasureBags/DraedonBag.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Draedon Bag loot source places The Atom Splitter in the Artemis and Apollo-defeated reward set."
       },
       {
         "id": "antlion-source",
@@ -160,25 +83,11 @@
         "reason": "The official Terraria Wiki identifies Dark Casters as Dungeon enemies; normal Dungeon access follows Skeletron."
       },
       {
-        "id": "wyvern-source",
-        "sourceUrl": "https://terraria.wiki.gg/wiki/Wyvern",
-        "sourceVersion": "Terraria 1.4.4.9",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Terraria Wiki identifies Wyverns as Hardmode enemies."
-      },
-      {
         "id": "goblin-summoner-source",
         "sourceUrl": "https://terraria.wiki.gg/wiki/Goblin_Summoner",
         "sourceVersion": "Terraria 1.4.4.9",
         "checkedAt": "2026-06-14",
         "reason": "The official Terraria Wiki identifies Goblin Summoners as Hardmode Goblin Army enemies."
-      },
-      {
-        "id": "sand-elemental-source",
-        "sourceUrl": "https://terraria.wiki.gg/wiki/Sand_Elemental",
-        "sourceVersion": "Terraria 1.4.4.9",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Terraria Wiki identifies Sand Elementals as Hardmode Sandstorm enemies."
       },
       {
         "id": "clinger-source",
@@ -202,27 +111,6 @@
         "reason": "The official Terraria Wiki identifies Corrupt Mimics as Hardmode enemies."
       },
       {
-        "id": "biome-mimic-crimson-source",
-        "sourceUrl": "https://terraria.wiki.gg/wiki/Mimics",
-        "sourceVersion": "Terraria 1.4.4.9",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Terraria Wiki identifies Crimson Mimics as Hardmode enemies."
-      },
-      {
-        "id": "biome-mimic-hallow-source",
-        "sourceUrl": "https://terraria.wiki.gg/wiki/Mimics",
-        "sourceVersion": "Terraria 1.4.4.9",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Terraria Wiki identifies Hallowed Mimics as Hardmode enemies."
-      },
-      {
-        "id": "deadly-sphere-source",
-        "sourceUrl": "https://terraria.wiki.gg/wiki/Deadly_Sphere",
-        "sourceVersion": "Terraria 1.4.4.9",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Terraria Wiki identifies Deadly Spheres as Martian Madness enemies; the event becomes available after Golem."
-      },
-      {
         "id": "calamity-preboss-natural-sources",
         "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
@@ -242,20 +130,6 @@
         "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-07-11",
         "checkedAt": "2026-07-11",
         "reason": "Rusty Chests and Toxicatfish are available in the upper Sulphurous Sea before boss progression."
-      },
-      {
-        "id": "acid-rain-tier-one-sources",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AcidRain",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official Acid Rain sources place these enemies in the first event tier, which this profile opens after Eye of Cthulhu."
-      },
-      {
-        "id": "post-skeletron-abyss-sources",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Abyss",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official sources spawn these enemies in the upper and middle Abyss layers; the profile follows Calamity's intended post-Skeletron Abyss access point."
       },
       {
         "id": "bandit-source",
@@ -314,32 +188,11 @@
         "reason": "The official source gates the Impious Immolator behind Moon Lord."
       },
       {
-        "id": "post-providence-renegade-warlock-source",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Crags/RenegadeWarlock.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official spawn condition requires Providence to be defeated."
-      },
-      {
         "id": "acid-rain-tier-three-sources",
         "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/tree/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AcidRain",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
         "checkedAt": "2026-06-14",
         "reason": "The official Acid Rain progression places these enemies in the post-Polterghast tier."
-      },
-      {
-        "id": "eidolon-wyrm-source",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Abyss/EidolonWyrmHead.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official source uses the post-Polterghast Abyss progression for the Eidolon Wyrm encounter."
-      },
-      {
-        "id": "supreme-calamitas-source",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/SupremeCalamitas/SupremeCalamitas.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "The official source defines Supreme Calamitas boss loot at completion of the Supreme Calamitas encounter."
       },
       {
         "id": "calamity-start-world-and-fishing-materials",
@@ -370,25 +223,11 @@
         "reason": "The Astral Infection and its monolith material become available when Hardmode begins."
       },
       {
-        "id": "unholy-core-brimstone-material",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Crags/InfernalCongealment.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-15",
-        "reason": "Infernal Congealment cannot spawn before Brimstone Elemental is defeated and drops Infernal Suevite, which is required to craft Unholy Core."
-      },
-      {
         "id": "cryonic-materials",
         "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Cryogen/Cryogen.cs#L1411-L1432",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
         "checkedAt": "2026-06-15",
         "reason": "Cryonic Ore is generated on Cryogen's first defeat; Cryonic Bars are crafted from that ore."
-      },
-      {
-        "id": "perennial-materials",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/CalamityGlobalNPCLoot.cs#L2019-L2034",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-15",
-        "reason": "Perennial Ore is generated on Plantera's first defeat; Perennial Bars are crafted from that ore."
       },
       {
         "id": "scoria-materials",
@@ -748,13 +587,6 @@
         "reason": "The official world-generation sources place the Brimstone Crag blocks and laboratory materials during world creation, before boss progression."
       },
       {
-        "id": "calamity-middle-abyss-pyre-mantle",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/World/Abyss.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-14",
-        "reason": "Pyre Mantle is generated in the middle Abyss layers, using the same post-Skeletron access milestone as the other middle-Abyss materials."
-      },
-      {
         "id": "calamity-preboss-fishing-and-natural-food",
         "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/CalPlayer/CalamityPlayerFishing.cs",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
@@ -818,13 +650,6 @@
         "reason": "The official Exhumed upgrade table converts their base items through Calamitas's post-boss enchantment service."
       },
       {
-        "id": "post-polterghast-reaper-shark-loot",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Abyss/ReaperShark.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-15",
-        "reason": "The official Reaper Shark loot table places Reaper Tooth, Deep Sea Dumbbell and Valediction in its post-Polterghast conditional drop set."
-      },
-      {
         "id": "post-polterghast-colossal-squid-loot",
         "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Abyss/ColossalSquid.cs",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
@@ -832,32 +657,11 @@
         "reason": "Calamaris' Lament is emitted from the Colossal Squid's post-Polterghast conditional drop set."
       },
       {
-        "id": "post-providence-scryllar-sources",
-        "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/Crags/Scryllar.cs",
-        "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
-        "checkedAt": "2026-06-15",
-        "reason": "Guidelight of Oblivion is in the Scryllar post-Providence conditional drop set."
-      },
-      {
-        "id": "empyrean-armor-post-moon-lord",
-        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Empyrean_armor",
-        "sourceVersion": "Calamity 2.2 wiki",
-        "checkedAt": "2026-06-15",
-        "reason": "Empyrean armor requires Luminite Bars, so it is available after Moon Lord."
-      },
-      {
         "id": "post-aquatic-scourge-acid-eel-source",
         "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic/blob/31375a5a5e8085d6e234e42cc42e295407b404c6/NPCs/AcidRain/AcidEel.cs",
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
         "checkedAt": "2026-06-15",
         "reason": "The Acid Eel upgrades after Aquatic Scourge and its Slithering Eels drop uses that same progression condition."
-      },
-      {
-        "id": "bloodstone-post-providence-material",
-        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Bloodstone",
-        "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-06-15",
-        "checkedAt": "2026-06-15",
-        "reason": "Bloodstone is dropped by Brimstone Crag enemies only after Providence; this prevents recipes such as Supreme Healing Potion from being placed too early."
       },
       {
         "id": "necroplasm-post-moon-lord-material",
@@ -872,13 +676,6 @@
         "sourceVersion": "2.2.1 commit 31375a5a5e8085d6e234e42cc42e295407b404c6",
         "checkedAt": "2026-06-16",
         "reason": "Bloodstone Core requires Bloodstone, Blood Orb and Necroplasm. Necroplasm is post-Moon Lord, while Bloodstone is already gated after Providence, so Bloodstone Core and simple Bloodstone Core recipes become available after Providence."
-      },
-      {
-        "id": "supreme-healing-potion-post-providence",
-        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Supreme_Healing_Potion",
-        "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-06-15",
-        "checkedAt": "2026-06-15",
-        "reason": "The recipe requires Bloodstone, which is post-Providence, so the potion cannot be available at Lunatic Cultist."
       },
       {
         "id": "classless-weapons-as-shared-weapons",
@@ -914,13 +711,6 @@
         "sourceVersion": "Calamity 2.2.1 / wiki.gg checked 2026-06-15",
         "checkedAt": "2026-06-15",
         "reason": "Bloodfin is a fishing source item; without an explicit fishing-source rule the profile can know the stage but show no source."
-      },
-      {
-        "id": "vanilla-shadow-container-sources",
-        "sourceUrl": "https://terraria.wiki.gg/wiki/Shadow_Key",
-        "sourceVersion": "Terraria 1.4.4.9",
-        "checkedAt": "2026-06-21",
-        "reason": "The Shadow Key opens Shadow Chests and Obsidian Lock Boxes and is found in the Dungeon; this profile models normal Dungeon access after Skeletron."
       },
       {
         "id": "vanilla-common-zombie-sources",
@@ -963,55 +753,6 @@
         "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
         "checkedAt": "2026-06-21",
         "reason": "The official wiki identifies the Plaguebringer miniboss as a Hardmode Jungle enemy that spawns after Golem."
-      },
-      {
-        "id": "calamity-blighted-gel-material",
-        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Blighted_Gel",
-        "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
-        "checkedAt": "2026-06-21",
-        "reason": "The official wiki identifies Blighted Gel as a Pre-Hardmode material dropped by Blight Slimes in the world's evil biome."
-      },
-      {
-        "id": "calamity-purified-gel-material",
-        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Purified_Gel",
-        "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
-        "checkedAt": "2026-06-21",
-        "reason": "The official wiki identifies Purified Gel as a Pre-Hardmode material dropped by The Slime God."
-      },
-      {
-        "id": "calamity-start-sunken-sea-materials",
-        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Sunken_Sea",
-        "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
-        "checkedAt": "2026-06-21",
-        "reason": "The official wiki describes the Sunken Sea as containing Navystone structures and Sea Prism deposits before boss progression."
-      },
-      {
-        "id": "calamity-desert-scourge-pearl-shard",
-        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Pearl_Shard",
-        "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
-        "checkedAt": "2026-06-21",
-        "reason": "The official wiki identifies Pearl Shards as Pre-Hardmode crafting materials dropped by the Desert Scourge."
-      },
-      {
-        "id": "calamity-blood-orb-material",
-        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Blood_Orb",
-        "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
-        "checkedAt": "2026-06-21",
-        "reason": "The official wiki identifies Blood Orbs as materials dropped by Blood Moon enemies; Blood Moon timing is repeatable and not a boss milestone."
-      },
-      {
-        "id": "calamity-post-dog-ascendant-spirit-essence",
-        "sourceUrl": "https://calamitymod.wiki.gg/wiki/Ascendant_Spirit_Essence",
-        "sourceVersion": "Calamity Mod 2.2.x wiki.gg",
-        "checkedAt": "2026-06-21",
-        "reason": "The official wiki identifies Ascendant Spirit Essence as a post-Moon Lord material crafted from Necroplasm, Nightmare Fuel, Endothermic Energy, and Darksun Fragment; this profile gates those shared global materials after the Devourer of Gods."
-      },
-      {
-        "id": "terragrim-enchanted-sword-shrine-worldgen-item",
-        "sourceUrl": "https://terraria.wiki.gg/wiki/Terragrim",
-        "sourceVersion": "Terraria 1.4.4.9",
-        "checkedAt": "2026-06-20",
-        "reason": "Terragrim is obtained from sword-in-stone world generation in Enchanted Sword Shrines or cavern sword shrines before boss progression."
       },
       {
         "id": "horrible-hog-blood-moon-source",
@@ -1072,8 +813,8 @@
     ],
     "availabilityMigration": {
       "confirmed": 32,
-      "pending": 77,
-      "mismatched": 14,
+      "pending": 52,
+      "mismatched": 0,
       "confirmedRules": [
         {
           "id": "fire-imp-source",
@@ -1310,30 +1051,6 @@
           "expectedStageId": "start"
         },
         {
-          "id": "wyvern-source",
-          "kind": "npc-source",
-          "target": "Terraria/WyvernHead",
-          "expectedStageId": "wall-of-flesh"
-        },
-        {
-          "id": "sand-elemental-source",
-          "kind": "npc-source",
-          "target": "Terraria/SandElemental",
-          "expectedStageId": "wall-of-flesh"
-        },
-        {
-          "id": "biome-mimic-crimson-source",
-          "kind": "npc-source",
-          "target": "Terraria/BigMimicCrimson",
-          "expectedStageId": "wall-of-flesh"
-        },
-        {
-          "id": "biome-mimic-hallow-source",
-          "kind": "npc-source",
-          "target": "Terraria/BigMimicHallow",
-          "expectedStageId": "wall-of-flesh"
-        },
-        {
           "id": "calamity-preboss-natural-sources",
           "kind": "npc-source",
           "target": "CalamityMod/Cnidrion",
@@ -1343,12 +1060,6 @@
           "id": "calamity-preboss-natural-sources",
           "kind": "npc-source",
           "target": "CalamityMod/StarterBag",
-          "expectedStageId": "start"
-        },
-        {
-          "id": "calamity-preboss-natural-sources",
-          "kind": "npc-source",
-          "target": "CalamityMod/SulphurousCrate",
           "expectedStageId": "start"
         },
         {
@@ -1374,12 +1085,6 @@
           "kind": "npc-source",
           "target": "CalamityMod/RustyChest",
           "expectedStageId": "start"
-        },
-        {
-          "id": "acid-rain-tier-one-sources",
-          "kind": "npc-source",
-          "target": "CalamityMod/NuclearToad",
-          "expectedStageId": "eye-of-cthulhu"
         },
         {
           "id": "bandit-source",
@@ -1439,12 +1144,6 @@
           "id": "calamity-hardmode-natural-sources",
           "kind": "npc-source",
           "target": "CalamityMod/Hadarian",
-          "expectedStageId": "wall-of-flesh"
-        },
-        {
-          "id": "calamity-hardmode-natural-sources",
-          "kind": "npc-source",
-          "target": "CalamityMod/HydrothermalCrate",
           "expectedStageId": "wall-of-flesh"
         },
         {
@@ -1532,12 +1231,6 @@
           "expectedStageId": "polterghast"
         },
         {
-          "id": "supreme-calamitas-source",
-          "kind": "npc-source",
-          "target": "CalamityMod/SupremeCalamitas",
-          "expectedStageId": "supreme-calamitas"
-        },
-        {
           "id": "ancient-treasure-chest-source",
           "kind": "npc-source",
           "target": "CalamityMod/AbyssTreasureChest",
@@ -1571,24 +1264,6 @@
           "id": "bloodfin-brimstone-crag-fishing-source",
           "kind": "fishing",
           "target": "CalamityMod/Bloodfin"
-        },
-        {
-          "id": "vanilla-shadow-container-sources",
-          "kind": "npc-source",
-          "target": "Terraria/ShadowChest",
-          "expectedStageId": "skeletron"
-        },
-        {
-          "id": "vanilla-shadow-container-sources",
-          "kind": "npc-source",
-          "target": "Terraria/ObsidianLockbox",
-          "expectedStageId": "skeletron"
-        },
-        {
-          "id": "vanilla-common-zombie-sources",
-          "kind": "npc-source",
-          "target": "Terraria/ZombieEskimo",
-          "expectedStageId": "start"
         },
         {
           "id": "vanilla-common-zombie-sources",
@@ -1673,104 +1348,6 @@
           "kind": "npc-source",
           "target": "Terraria/ArmedTorchZombie",
           "expectedStageId": "start"
-        },
-        {
-          "id": "deadly-sphere-source",
-          "kind": "npc-source",
-          "target": "Terraria/DeadlySphere",
-          "expectedStageId": "golem",
-          "actualStageId": "plantera"
-        },
-        {
-          "id": "calamity-preboss-natural-sources",
-          "kind": "npc-source",
-          "target": "CalamityMod/CrawlerCrystal",
-          "expectedStageId": "start",
-          "actualStageId": "wall-of-flesh"
-        },
-        {
-          "id": "post-skeletron-abyss-sources",
-          "kind": "npc-source",
-          "target": "CalamityMod/BoxJellyfish",
-          "expectedStageId": "skeletron",
-          "actualStageId": "start"
-        },
-        {
-          "id": "post-skeletron-abyss-sources",
-          "kind": "npc-source",
-          "target": "CalamityMod/ColossalSquid",
-          "expectedStageId": "skeletron",
-          "actualStageId": "start"
-        },
-        {
-          "id": "post-skeletron-abyss-sources",
-          "kind": "npc-source",
-          "target": "CalamityMod/Cuttlefish",
-          "expectedStageId": "skeletron",
-          "actualStageId": "start"
-        },
-        {
-          "id": "post-skeletron-abyss-sources",
-          "kind": "npc-source",
-          "target": "CalamityMod/GiantSquid",
-          "expectedStageId": "skeletron",
-          "actualStageId": "start"
-        },
-        {
-          "id": "post-skeletron-abyss-sources",
-          "kind": "npc-source",
-          "target": "CalamityMod/MirageJelly",
-          "expectedStageId": "skeletron",
-          "actualStageId": "start"
-        },
-        {
-          "id": "post-skeletron-abyss-sources",
-          "kind": "npc-source",
-          "target": "CalamityMod/Viperfish",
-          "expectedStageId": "skeletron",
-          "actualStageId": "start"
-        },
-        {
-          "id": "post-plantera-natural-sources",
-          "kind": "npc-source",
-          "target": "CalamityMod/MantisShrimp",
-          "expectedStageId": "plantera",
-          "actualStageId": "wall-of-flesh"
-        },
-        {
-          "id": "post-providence-renegade-warlock-source",
-          "kind": "npc-source",
-          "target": "CalamityMod/RenegadeWarlock",
-          "expectedStageId": "providence",
-          "actualStageId": "wall-of-flesh"
-        },
-        {
-          "id": "eidolon-wyrm-source",
-          "kind": "npc-source",
-          "target": "CalamityMod/EidolonWyrmHead",
-          "expectedStageId": "polterghast",
-          "actualStageId": "start"
-        },
-        {
-          "id": "post-polterghast-reaper-shark-loot",
-          "kind": "npc-source",
-          "target": "CalamityMod/ReaperShark",
-          "expectedStageId": "polterghast",
-          "actualStageId": "start"
-        },
-        {
-          "id": "post-providence-scryllar-sources",
-          "kind": "npc-source",
-          "target": "CalamityMod/Scryllar",
-          "expectedStageId": "providence",
-          "actualStageId": "start"
-        },
-        {
-          "id": "post-providence-scryllar-sources",
-          "kind": "npc-source",
-          "target": "CalamityMod/ScryllarRage",
-          "expectedStageId": "providence",
-          "actualStageId": "start"
         }
       ],
       "stageComparison": {
@@ -1780,9 +1357,9 @@
     }
   },
   "review": {
-    "total": 13,
+    "total": 12,
     "byKind": {
-      "unresolved-condition": 13
+      "unresolved-condition": 12
     }
   },
   "audit": {
@@ -1790,7 +1367,7 @@
     "warnings": [
       "67 recommendations precede proven availability and were suppressed",
       "9 profile items have no acquisition source data",
-      "152 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
+      "141 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
       "npcCount": 992,
@@ -4771,6 +4348,15 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/DD2Bartender",
+          "kinds": [
+            "drop",
+            "shop"
+          ],
+          "availabilityKind": "town",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/Deerclops",
           "kinds": [
             "drop"
@@ -4784,6 +4370,22 @@
             "shop"
           ],
           "availabilityKind": "town",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/DesertScorpionWalk",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/DesertScorpionWall",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "spawn",
           "earliestStageIndex": -1
         },
         {
@@ -4824,6 +4426,15 @@
             "drop"
           ],
           "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/DyeTrader",
+          "kinds": [
+            "drop",
+            "shop"
+          ],
+          "availabilityKind": "town",
           "earliestStageIndex": -1
         },
         {
@@ -5027,6 +4638,15 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/Mechanic",
+          "kinds": [
+            "drop",
+            "shop"
+          ],
+          "availabilityKind": "town",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/MoonLordCore",
           "kinds": [
             "drop"
@@ -5064,6 +4684,24 @@
             "drop"
           ],
           "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/Painter",
+          "kinds": [
+            "drop",
+            "shop"
+          ],
+          "availabilityKind": "town",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/PartyGirl",
+          "kinds": [
+            "drop",
+            "shop"
+          ],
+          "availabilityKind": "town",
           "earliestStageIndex": -1
         },
         {
@@ -5112,6 +4750,15 @@
             "drop"
           ],
           "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/Princess",
+          "kinds": [
+            "drop",
+            "shop"
+          ],
+          "availabilityKind": "town",
           "earliestStageIndex": -1
         },
         {
@@ -5219,6 +4866,23 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/Stylist",
+          "kinds": [
+            "drop",
+            "shop"
+          ],
+          "availabilityKind": "town",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/TaxCollector",
+          "kinds": [
+            "drop"
+          ],
+          "availabilityKind": "town",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/TheDestroyer",
           "kinds": [
             "drop"
@@ -5240,6 +4904,15 @@
             "drop"
           ],
           "availabilityKind": "spawn",
+          "earliestStageIndex": -1
+        },
+        {
+          "source": "Terraria/TravellingMerchant",
+          "kinds": [
+            "drop",
+            "shop"
+          ],
+          "availabilityKind": "town",
           "earliestStageIndex": -1
         },
         {
@@ -5717,15 +5390,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/DD2Bartender",
-          "kinds": [
-            "drop",
-            "shop"
-          ],
-          "availabilityKind": "town",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/DemonEyeOwl",
           "kinds": [
             "drop"
@@ -5806,22 +5470,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/DesertScorpionWalk",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/DesertScorpionWall",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/DiabolistRed",
           "kinds": [
             "drop"
@@ -5867,15 +5515,6 @@
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/DyeTrader",
-          "kinds": [
-            "drop",
-            "shop"
-          ],
-          "availabilityKind": "town",
           "earliestStageIndex": -1
         },
         {
@@ -6031,15 +5670,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Mechanic",
-          "kinds": [
-            "drop",
-            "shop"
-          ],
-          "availabilityKind": "town",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Moth",
           "kinds": [
             "drop"
@@ -6088,29 +5718,11 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Painter",
-          "kinds": [
-            "drop",
-            "shop"
-          ],
-          "availabilityKind": "town",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/Paladin",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/PartyGirl",
-          "kinds": [
-            "drop",
-            "shop"
-          ],
-          "availabilityKind": "town",
           "earliestStageIndex": -1
         },
         {
@@ -6127,15 +5739,6 @@
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/Princess",
-          "kinds": [
-            "drop",
-            "shop"
-          ],
-          "availabilityKind": "town",
           "earliestStageIndex": -1
         },
         {
@@ -6475,37 +6078,11 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/Stylist",
-          "kinds": [
-            "drop",
-            "shop"
-          ],
-          "availabilityKind": "town",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/TaxCollector",
-          "kinds": [
-            "drop"
-          ],
-          "availabilityKind": "town",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/ToxicSludge",
           "kinds": [
             "drop"
           ],
           "availabilityKind": "spawn",
-          "earliestStageIndex": -1
-        },
-        {
-          "source": "Terraria/TravellingMerchant",
-          "kinds": [
-            "drop",
-            "shop"
-          ],
-          "availabilityKind": "town",
           "earliestStageIndex": -1
         },
         {
@@ -6587,7 +6164,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-08-01T15:02:01.530Z",
+    "generatedAtUtc": "2026-08-01T19:36:51.400Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -10959,292 +10536,6 @@
       },
       {
         "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/CobaltOre",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/PalladiumOre",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/MythrilOre",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/OrichalcumOre",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/AdamantiteOre",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/TitaniumOre",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/CopperOre",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/TinOre",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/IronOre",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/LeadOre",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/SilverOre",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/TungstenOre",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/GoldOre",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/PlatinumOre",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/CobaltBar",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/PalladiumBar",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/MythrilBar",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/OrichalcumBar",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/AdamantiteBar",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/TitaniumBar",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/IronBar",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/LeadBar",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/SilverBar",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/TungstenBar",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/GoldBar",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "CalamityMod/HydrothermalCrate",
-        "item": "Terraria/PlatinumBar",
-        "condition": {
-          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
-          "description": null,
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
         "source": "Terraria/BloodNautilus",
         "item": "CalamityMod/LoreBloodMoon",
         "condition": {
@@ -15117,6 +14408,292 @@
       },
       {
         "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/CobaltOre",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/PalladiumOre",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/MythrilOre",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/OrichalcumOre",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/AdamantiteOre",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/TitaniumOre",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/CopperOre",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/TinOre",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/IronOre",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/LeadOre",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/SilverOre",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/TungstenOre",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/GoldOre",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/PlatinumOre",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/CobaltBar",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/PalladiumBar",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/MythrilBar",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/OrichalcumBar",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/AdamantiteBar",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/TitaniumBar",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/IronBar",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/LeadBar",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/SilverBar",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/TungstenBar",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/GoldBar",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "CalamityMod/HydrothermalCrate",
+        "item": "Terraria/PlatinumBar",
+        "condition": {
+          "type": "CalamityMod.DropHelper+LambdaDropRuleCondition",
+          "description": null,
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
         "source": "CalamityMod/PrismCrate",
         "item": "Terraria/CobaltOre",
         "condition": {
@@ -18765,42 +18342,17 @@
       },
       {
         "stage": "start",
-        "id": "CalamityMod/SulphurousSand",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/SulphurousSandstone",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/HardenedSulphurousSandstone",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "CalamityMod/BrokenWaterFilter",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/MasterBait",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/JourneymanBait",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "CalamityMod/AbandonedWulfrumHelmet",
         "reason": "not combat equipment"
       },
       {
         "stage": "start",
         "id": "CalamityMod/EnergyCore",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/BrokenWaterFilter",
         "reason": "not combat equipment"
       },
       {
@@ -20835,6 +20387,11 @@
       },
       {
         "stage": "start",
+        "id": "Terraria/JourneymanBait",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Terraria/ApprenticeBait",
         "reason": "not combat equipment"
       },
@@ -20846,6 +20403,11 @@
       {
         "stage": "start",
         "id": "Terraria/TartarSauce",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/MasterBait",
         "reason": "not combat equipment"
       },
       {
@@ -21096,6 +20658,21 @@
       {
         "stage": "start",
         "id": "CalamityMod/CinderBlossomSeeds",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/SulphurousSand",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/SulphurousSandstone",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "CalamityMod/HardenedSulphurousSandstone",
         "reason": "not combat equipment"
       },
       {
@@ -28765,12 +28342,12 @@
       },
       {
         "stage": "skeletron",
-        "id": "Terraria/TreasureMagnet",
+        "id": "Terraria/BoneKey",
         "reason": "not combat equipment"
       },
       {
         "stage": "skeletron",
-        "id": "Terraria/BoneKey",
+        "id": "Terraria/TreasureMagnet",
         "reason": "not combat equipment"
       },
       {
@@ -30340,46 +29917,6 @@
       },
       {
         "stage": "wall-of-flesh",
-        "id": "Terraria/KiteWyvern",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/SoulofFlight",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/AncientBattleArmorMaterial",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/DungeonDesertKey",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/TendonHook",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/CrimsonKey",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/IlluminantHook",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
-        "id": "Terraria/HallowedKey",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "wall-of-flesh",
         "id": "CalamityMod/StarblightSoot",
         "reason": "not combat equipment"
       },
@@ -30401,6 +29938,26 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/FrozenKey",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/AncientBattleArmorMaterial",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/DungeonDesertKey",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/KiteWyvern",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/SoulofFlight",
         "reason": "not combat equipment"
       },
       {
@@ -30431,6 +29988,26 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/GelBalloon",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/TendonHook",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/CrimsonKey",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/IlluminantHook",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/HallowedKey",
         "reason": "not combat equipment"
       },
       {
@@ -37952,63 +37529,15 @@
       },
       "CalamityMod/EffigyOfDecay": {
         "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
+        "via": "world-container:CalamityMod/RustyChest"
       },
       "CalamityMod/RustyBeaconPrototype": {
         "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
+        "via": "world-container:CalamityMod/RustyChest"
       },
       "CalamityMod/ScionsCurio": {
         "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
-      },
-      "Terraria/ObsidianSkinPotion": {
-        "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
-      },
-      "Terraria/SpelunkerPotion": {
-        "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
-      },
-      "Terraria/HunterPotion": {
-        "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
-      },
-      "Terraria/GravitationPotion": {
-        "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
-      },
-      "Terraria/MiningPotion": {
-        "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
-      },
-      "Terraria/HeartreachPotion": {
-        "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
-      },
-      "Terraria/HealingPotion": {
-        "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
-      },
-      "Terraria/ManaPotion": {
-        "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
-      },
-      "Terraria/GoldCoin": {
-        "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
-      },
-      "Terraria/EskimoHood": {
-        "stage": "start",
-        "via": "npc:Terraria/ZombieEskimo"
-      },
-      "Terraria/EskimoCoat": {
-        "stage": "start",
-        "via": "npc:Terraria/ZombieEskimo"
-      },
-      "Terraria/EskimoPants": {
-        "stage": "start",
-        "via": "npc:Terraria/ZombieEskimo"
+        "via": "world-container:CalamityMod/RustyChest"
       },
       "Terraria/RainHat": {
         "stage": "start",
@@ -38018,9 +37547,17 @@
         "stage": "start",
         "via": "npc:Terraria/ZombieRaincoat"
       },
-      "CalamityMod/Needler": {
+      "Terraria/EskimoHood": {
         "stage": "start",
-        "via": "npc:Terraria/MossHornet"
+        "via": "npc:Terraria/ArmedZombieEskimo"
+      },
+      "Terraria/EskimoCoat": {
+        "stage": "start",
+        "via": "npc:Terraria/ArmedZombieEskimo"
+      },
+      "Terraria/EskimoPants": {
+        "stage": "start",
+        "via": "npc:Terraria/ArmedZombieEskimo"
       },
       "Terraria/WizardHat": {
         "stage": "start",
@@ -38916,7 +38453,15 @@
         "stage": "start",
         "via": "container:Terraria/WoodenCrate"
       },
+      "Terraria/GoldCoin": {
+        "stage": "start",
+        "via": "container:Terraria/WoodenCrate"
+      },
       "Terraria/SilverCoin": {
+        "stage": "start",
+        "via": "container:Terraria/WoodenCrate"
+      },
+      "Terraria/ObsidianSkinPotion": {
         "stage": "start",
         "via": "container:Terraria/WoodenCrate"
       },
@@ -38936,7 +38481,19 @@
         "stage": "start",
         "via": "container:Terraria/WoodenCrate"
       },
+      "Terraria/HunterPotion": {
+        "stage": "start",
+        "via": "container:Terraria/WoodenCrate"
+      },
       "Terraria/GillsPotion": {
+        "stage": "start",
+        "via": "container:Terraria/WoodenCrate"
+      },
+      "Terraria/MiningPotion": {
+        "stage": "start",
+        "via": "container:Terraria/WoodenCrate"
+      },
+      "Terraria/HeartreachPotion": {
         "stage": "start",
         "via": "container:Terraria/WoodenCrate"
       },
@@ -38952,11 +38509,27 @@
         "stage": "start",
         "via": "container:Terraria/IronCrate"
       },
+      "Terraria/SpelunkerPotion": {
+        "stage": "start",
+        "via": "container:Terraria/IronCrate"
+      },
+      "Terraria/GravitationPotion": {
+        "stage": "start",
+        "via": "container:Terraria/IronCrate"
+      },
       "Terraria/CalmingPotion": {
         "stage": "start",
         "via": "container:Terraria/IronCrate"
       },
       "Terraria/FlipperPotion": {
+        "stage": "start",
+        "via": "container:Terraria/IronCrate"
+      },
+      "Terraria/HealingPotion": {
+        "stage": "start",
+        "via": "container:Terraria/IronCrate"
+      },
+      "Terraria/ManaPotion": {
         "stage": "start",
         "via": "container:Terraria/IronCrate"
       },
@@ -41157,26 +40730,6 @@
         "stage": "skeletron",
         "via": "world-container:CalamityMod/AbyssTreasureChest"
       },
-      "Terraria/DarkLance": {
-        "stage": "skeletron",
-        "via": "world-container:Terraria/ShadowChest"
-      },
-      "Terraria/Sunfury": {
-        "stage": "skeletron",
-        "via": "world-container:Terraria/ShadowChest"
-      },
-      "Terraria/FlowerofFire": {
-        "stage": "skeletron",
-        "via": "world-container:Terraria/ShadowChest"
-      },
-      "Terraria/Flamelash": {
-        "stage": "skeletron",
-        "via": "world-container:Terraria/ShadowChest"
-      },
-      "Terraria/HellwingBow": {
-        "stage": "skeletron",
-        "via": "world-container:Terraria/ShadowChest"
-      },
       "Terraria/Muramasa": {
         "stage": "skeletron",
         "via": "world-container:Terraria/DungeonGoldChest"
@@ -41204,6 +40757,26 @@
       "Terraria/Handgun": {
         "stage": "skeletron",
         "via": "world-container:Terraria/DungeonGoldChest"
+      },
+      "Terraria/DarkLance": {
+        "stage": "skeletron",
+        "via": "world-container:Terraria/ShadowChest"
+      },
+      "Terraria/Sunfury": {
+        "stage": "skeletron",
+        "via": "world-container:Terraria/ShadowChest"
+      },
+      "Terraria/FlowerofFire": {
+        "stage": "skeletron",
+        "via": "world-container:Terraria/ShadowChest"
+      },
+      "Terraria/Flamelash": {
+        "stage": "skeletron",
+        "via": "world-container:Terraria/ShadowChest"
+      },
+      "Terraria/HellwingBow": {
+        "stage": "skeletron",
+        "via": "world-container:Terraria/ShadowChest"
       },
       "Terraria/CombatWrench": {
         "stage": "skeletron",
@@ -41504,10 +41077,6 @@
         "stage": "wall-of-flesh",
         "via": "npc:CalamityMod/ShadySalesman"
       },
-      "Terraria/Megaphone": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/GreenJellyfish"
-      },
       "CalamityMod/ClamCrusher": {
         "stage": "wall-of-flesh",
         "via": "npc:CalamityMod/GiantClam"
@@ -41529,6 +41098,10 @@
         "via": "npc:Terraria/Clothier"
       },
       "Terraria/FastClock": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Pixie"
+      },
+      "Terraria/Megaphone": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/Pixie"
       },
@@ -41617,6 +41190,10 @@
       "Terraria/Uzi": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/AngryTrapper"
+      },
+      "CalamityMod/Needler": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/MossHornet"
       },
       "Terraria/Grapes": {
         "stage": "wall-of-flesh",
@@ -41789,9 +41366,13 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/WallofFlesh"
       },
-      "CalamityMod/AeroStone": {
+      "CalamityMod/EarthenPike": {
         "stage": "wall-of-flesh",
-        "via": "npc:Terraria/WyvernHead"
+        "via": "npc:CalamityMod/EarthElemental"
+      },
+      "CalamityMod/SlagMagnum": {
+        "stage": "wall-of-flesh",
+        "via": "npc:CalamityMod/EarthElemental"
       },
       "CalamityMod/ElementalinaBottle": {
         "stage": "wall-of-flesh",
@@ -41800,6 +41381,14 @@
       "CalamityMod/OasisElementalinaBottle": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/SandElemental"
+      },
+      "CalamityMod/AeroStone": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/WyvernHead"
+      },
+      "Terraria/GoldenShower": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BigMimicJungle"
       },
       "Terraria/SoulDrain": {
         "stage": "wall-of-flesh",
@@ -41828,18 +41417,6 @@
       "Terraria/CrystalVileShard": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/BigMimicHallow"
-      },
-      "CalamityMod/EarthenPike": {
-        "stage": "wall-of-flesh",
-        "via": "npc:CalamityMod/EarthElemental"
-      },
-      "CalamityMod/SlagMagnum": {
-        "stage": "wall-of-flesh",
-        "via": "npc:CalamityMod/EarthElemental"
-      },
-      "Terraria/GoldenShower": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BigMimicJungle"
       },
       "Terraria/Frostbrand": {
         "stage": "wall-of-flesh",
@@ -49367,30 +48944,6 @@
         "stage": "start",
         "via": "container:CalamityMod/StarterBag"
       },
-      "CalamityMod/SulphurousSand": {
-        "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
-      },
-      "CalamityMod/SulphurousSandstone": {
-        "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
-      },
-      "CalamityMod/HardenedSulphurousSandstone": {
-        "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
-      },
-      "CalamityMod/BrokenWaterFilter": {
-        "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
-      },
-      "Terraria/MasterBait": {
-        "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
-      },
-      "Terraria/JourneymanBait": {
-        "stage": "start",
-        "via": "container:CalamityMod/SulphurousCrate"
-      },
       "CalamityMod/AbandonedWulfrumHelmet": {
         "stage": "start",
         "via": "npc:CalamityMod/WulfrumAmplifier"
@@ -49398,6 +48951,10 @@
       "CalamityMod/EnergyCore": {
         "stage": "start",
         "via": "npc:CalamityMod/WulfrumAmplifier"
+      },
+      "CalamityMod/BrokenWaterFilter": {
+        "stage": "start",
+        "via": "world-container:CalamityMod/RustyChest"
       },
       "Terraria/ArchaeologistsHat": {
         "stage": "start",
@@ -52257,6 +51814,10 @@
         "stage": "start",
         "via": "container:Terraria/WoodenCrate"
       },
+      "Terraria/JourneymanBait": {
+        "stage": "start",
+        "via": "container:Terraria/WoodenCrate"
+      },
       "Terraria/ApprenticeBait": {
         "stage": "start",
         "via": "container:Terraria/WoodenCrate"
@@ -52266,6 +51827,10 @@
         "via": "container:Terraria/IronCrate"
       },
       "Terraria/TartarSauce": {
+        "stage": "start",
+        "via": "container:Terraria/IronCrate"
+      },
+      "Terraria/MasterBait": {
         "stage": "start",
         "via": "container:Terraria/IronCrate"
       },
@@ -52468,6 +52033,18 @@
       "CalamityMod/CinderBlossomSeeds": {
         "stage": "start",
         "via": "container:CalamityMod/StuffedFish"
+      },
+      "CalamityMod/SulphurousSand": {
+        "stage": "start",
+        "via": "container:CalamityMod/SulphurousCrate"
+      },
+      "CalamityMod/SulphurousSandstone": {
+        "stage": "start",
+        "via": "container:CalamityMod/SulphurousCrate"
+      },
+      "CalamityMod/HardenedSulphurousSandstone": {
+        "stage": "start",
+        "via": "container:CalamityMod/SulphurousCrate"
       },
       "CalamityMod/EutrophicSand": {
         "stage": "start",
@@ -58943,13 +58520,13 @@
         "stage": "skeletron",
         "via": "tile:CalamityMod/AbyssTreasureChest"
       },
-      "Terraria/TreasureMagnet": {
-        "stage": "skeletron",
-        "via": "container:Terraria/ObsidianLockbox"
-      },
       "Terraria/BoneKey": {
         "stage": "skeletron",
         "via": "npc:Terraria/DungeonGuardian"
+      },
+      "Terraria/TreasureMagnet": {
+        "stage": "skeletron",
+        "via": "container:Terraria/ObsidianLockbox"
       },
       "Terraria/Safe": {
         "stage": "skeletron",
@@ -60886,38 +60463,6 @@
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/WallofFlesh"
       },
-      "Terraria/KiteWyvern": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/WyvernHead"
-      },
-      "Terraria/SoulofFlight": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/WyvernHead"
-      },
-      "Terraria/AncientBattleArmorMaterial": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/SandElemental"
-      },
-      "Terraria/DungeonDesertKey": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/SandElemental"
-      },
-      "Terraria/TendonHook": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BigMimicCrimson"
-      },
-      "Terraria/CrimsonKey": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BigMimicCrimson"
-      },
-      "Terraria/IlluminantHook": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BigMimicHallow"
-      },
-      "Terraria/HallowedKey": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BigMimicHallow"
-      },
       "CalamityMod/StarblightSoot": {
         "stage": "wall-of-flesh",
         "via": "npc:CalamityMod/Aries"
@@ -60937,6 +60482,22 @@
       "Terraria/FrozenKey": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/IceGolem"
+      },
+      "Terraria/AncientBattleArmorMaterial": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/SandElemental"
+      },
+      "Terraria/DungeonDesertKey": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/SandElemental"
+      },
+      "Terraria/KiteWyvern": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/WyvernHead"
+      },
+      "Terraria/SoulofFlight": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/WyvernHead"
       },
       "Terraria/RuneHat": {
         "stage": "wall-of-flesh",
@@ -60961,6 +60522,22 @@
       "Terraria/GelBalloon": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/BigMimicJungle"
+      },
+      "Terraria/TendonHook": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BigMimicCrimson"
+      },
+      "Terraria/CrimsonKey": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BigMimicCrimson"
+      },
+      "Terraria/IlluminantHook": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BigMimicHallow"
+      },
+      "Terraria/HallowedKey": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/BigMimicHallow"
       },
       "Terraria/BrokenBatWing": {
         "stage": "wall-of-flesh",
@@ -72090,20 +71667,6 @@
         ]
       },
       {
-        "source": "Terraria/DesertScorpionWalk",
-        "sourceKind": "drop",
-        "items": [
-          "Terraria/FriedEgg"
-        ]
-      },
-      {
-        "source": "Terraria/DesertScorpionWall",
-        "sourceKind": "drop",
-        "items": [
-          "Terraria/FriedEgg"
-        ]
-      },
-      {
         "source": "Terraria/DevourerHead",
         "sourceKind": "drop",
         "items": [
@@ -72483,6 +72046,13 @@
         "items": [
           "Terraria/BoneSword",
           "Terraria/MilkCarton"
+        ]
+      },
+      {
+        "source": "Terraria/MossHornet",
+        "sourceKind": "drop",
+        "items": [
+          "CalamityMod/Needler"
         ]
       },
       {
@@ -73096,370 +72666,20 @@
         ]
       }
     },
-    "unassignedVanillaNpcSourceCount": 154,
+    "unassignedVanillaNpcSourceCount": 153,
     "manualAvailabilityPriority": {
       "automaticItems": 5532,
-      "automaticSources": 324,
+      "automaticSources": 573,
       "automaticStations": 859,
       "suppressed": {
-        "itemStages": [
-          {
-            "value": "CalamityMod/AlluringBait",
-            "manualStageId": "start",
-            "automaticStageId": "start",
-            "via": "fishing"
-          },
-          {
-            "value": "CalamityMod/AncientBoneDust",
-            "manualStageId": "start",
-            "automaticStageId": "start",
-            "via": "npc:Terraria/Skeleton"
-          },
-          {
-            "value": "CalamityMod/AresExoskeleton",
-            "manualStageId": "exo-mechs",
-            "automaticStageId": "exo-mechs",
-            "via": "npc:CalamityMod/AresBody"
-          },
-          {
-            "value": "CalamityMod/AscendantSpiritEssence",
-            "manualStageId": "devourer-of-gods",
-            "automaticStageId": "devourer-of-gods",
-            "via": "recipe:CalamityMod/Necroplasm+CalamityMod/NightmareFuel+CalamityMod/EndothermicEnergy+CalamityMod/DarksunFragment"
-          },
-          {
-            "value": "CalamityMod/AstrumDeusBag",
-            "manualStageId": "astrum-deus",
-            "automaticStageId": "astrum-deus",
-            "via": "npc:CalamityMod/AstrumDeusHead"
-          },
-          {
-            "value": "CalamityMod/AtlasMunitionsBeacon",
-            "manualStageId": "exo-mechs",
-            "automaticStageId": "exo-mechs",
-            "via": "npc:CalamityMod/AresBody"
-          },
-          {
-            "value": "CalamityMod/BlightedGel",
-            "manualStageId": "start",
-            "automaticStageId": "start",
-            "via": "npc:CalamityMod/CrimulanBlightSlime"
-          },
-          {
-            "value": "CalamityMod/BloodOrb",
-            "manualStageId": "start",
-            "automaticStageId": "start",
-            "via": "container:CalamityMod/Gorecodile"
-          },
-          {
-            "value": "CalamityMod/Bloodstone",
-            "manualStageId": "providence",
-            "automaticStageId": "ravager",
-            "via": "container:CalamityMod/NecromanticGeode"
-          },
-          {
-            "value": "CalamityMod/CoastalDemonfish",
-            "manualStageId": "start",
-            "automaticStageId": "start",
-            "via": "fishing"
-          },
-          {
-            "value": "CalamityMod/CryonicBar",
-            "manualStageId": "cryogen",
-            "automaticStageId": "cryogen",
-            "via": "recipe:CalamityMod/CryonicOre"
-          },
-          {
-            "value": "CalamityMod/DragoonDrizzlefish",
-            "manualStageId": "start",
-            "automaticStageId": "start",
-            "via": "fishing"
-          },
-          {
-            "value": "CalamityMod/Driftwood",
-            "manualStageId": "start",
-            "automaticStageId": "start",
-            "via": "fishing"
-          },
-          {
-            "value": "CalamityMod/EmpyreanCloak",
-            "manualStageId": "moon-lord",
-            "automaticStageId": "moon-lord",
-            "via": "recipe:CalamityMod/MeldBlob+Terraria/LunarBar"
-          },
-          {
-            "value": "CalamityMod/EmpyreanCuisses",
-            "manualStageId": "moon-lord",
-            "automaticStageId": "moon-lord",
-            "via": "recipe:CalamityMod/MeldBlob+Terraria/LunarBar"
-          },
-          {
-            "value": "CalamityMod/EmpyreanMask",
-            "manualStageId": "moon-lord",
-            "automaticStageId": "moon-lord",
-            "via": "recipe:CalamityMod/MeldBlob+Terraria/LunarBar"
-          },
-          {
-            "value": "CalamityMod/GacruxianMollusk",
-            "manualStageId": "wall-of-flesh",
-            "automaticStageId": "wall-of-flesh",
-            "via": "fishing"
-          },
-          {
-            "value": "CalamityMod/InfernalSuevite",
-            "manualStageId": "brimstone-elemental",
-            "automaticStageId": "brimstone-elemental",
-            "via": "npc:CalamityMod/InfernalCongealment"
-          },
-          {
-            "value": "CalamityMod/LeviathanBag",
-            "manualStageId": "leviathan-anahita",
-            "automaticStageId": "leviathan-anahita",
-            "via": "npc:CalamityMod/Anahita"
-          },
-          {
-            "value": "CalamityMod/MeldBlob",
-            "manualStageId": "lunatic-cultist",
-            "automaticStageId": "lunatic-cultist",
-            "via": "npc:Terraria/StardustSpiderBig"
-          },
-          {
-            "value": "CalamityMod/Navystone",
-            "manualStageId": "start",
-            "automaticStageId": "start",
-            "via": "npc:CalamityMod/Clam"
-          },
-          {
-            "value": "CalamityMod/PearlShard",
-            "manualStageId": "desert-scourge",
-            "automaticStageId": "desert-scourge",
-            "via": "npc:CalamityMod/DesertScourgeHead"
-          },
-          {
-            "value": "CalamityMod/PerennialBar",
-            "manualStageId": "plantera",
-            "automaticStageId": "plantera",
-            "via": "recipe:CalamityMod/PerennialOre"
-          },
-          {
-            "value": "CalamityMod/PerennialOre",
-            "manualStageId": "plantera",
-            "automaticStageId": "plantera",
-            "via": "npc:CalamityMod/PerennialSlime"
-          },
-          {
-            "value": "CalamityMod/PhotonRipper",
-            "manualStageId": "exo-mechs",
-            "automaticStageId": "exo-mechs",
-            "via": "npc:CalamityMod/AresBody"
-          },
-          {
-            "value": "CalamityMod/PlantyMush",
-            "manualStageId": "skeletron",
-            "automaticStageId": "start",
-            "via": "fishing"
-          },
-          {
-            "value": "CalamityMod/PolarisParrotfish",
-            "manualStageId": "wall-of-flesh",
-            "automaticStageId": "wall-of-flesh",
-            "via": "fishing"
-          },
-          {
-            "value": "CalamityMod/PrismShard",
-            "manualStageId": "start",
-            "automaticStageId": "start",
-            "via": "container:CalamityMod/EutrophicCrate"
-          },
-          {
-            "value": "CalamityMod/ProcyonidPrawn",
-            "manualStageId": "wall-of-flesh",
-            "automaticStageId": "wall-of-flesh",
-            "via": "fishing"
-          },
-          {
-            "value": "CalamityMod/PurifiedGel",
-            "manualStageId": "slime-god",
-            "automaticStageId": "slime-god",
-            "via": "npc:CalamityMod/SlimeGodCore"
-          },
-          {
-            "value": "CalamityMod/PyreMantle",
-            "manualStageId": "skeletron",
-            "automaticStageId": "start",
-            "via": "npc:CalamityMod/DevilFish"
-          },
-          {
-            "value": "CalamityMod/RefractionRotor",
-            "manualStageId": "exo-mechs",
-            "automaticStageId": "exo-mechs",
-            "via": "npc:CalamityMod/AresBody"
-          },
-          {
-            "value": "CalamityMod/ScorchedBone",
-            "manualStageId": "start",
-            "automaticStageId": "start",
-            "via": "container:CalamityMod/SlagCrate"
-          },
-          {
-            "value": "CalamityMod/ScoriaBar",
-            "manualStageId": "golem",
-            "automaticStageId": "golem",
-            "via": "recipe:CalamityMod/ScoriaOre"
-          },
-          {
-            "value": "CalamityMod/SeaPrism",
-            "manualStageId": "start",
-            "automaticStageId": "start",
-            "via": "recipe:CalamityMod/PrismShard"
-          },
-          {
-            "value": "CalamityMod/SmoothBrimstoneSlag",
-            "manualStageId": "start",
-            "automaticStageId": "start",
-            "via": "recipe:CalamityMod/BrimstoneSlag"
-          },
-          {
-            "value": "CalamityMod/SpineOfThanatos",
-            "manualStageId": "exo-mechs",
-            "automaticStageId": "exo-mechs",
-            "via": "npc:CalamityMod/AresBody"
-          },
-          {
-            "value": "CalamityMod/SupremeHealingPotion",
-            "manualStageId": "providence",
-            "automaticStageId": "lunatic-cultist",
-            "via": "recipe:Terraria/SuperHealingPotion+CalamityMod/Bloodstone"
-          },
-          {
-            "value": "CalamityMod/SurgeDriver",
-            "manualStageId": "exo-mechs",
-            "automaticStageId": "exo-mechs",
-            "via": "npc:CalamityMod/AresBody"
-          },
-          {
-            "value": "CalamityMod/TheAtomSplitter",
-            "manualStageId": "exo-mechs",
-            "automaticStageId": "exo-mechs",
-            "via": "npc:CalamityMod/AresBody"
-          },
-          {
-            "value": "CalamityMod/TheJailor",
-            "manualStageId": "exo-mechs",
-            "automaticStageId": "exo-mechs",
-            "via": "npc:CalamityMod/AresBody"
-          },
-          {
-            "value": "CalamityMod/UnholyCore",
-            "manualStageId": "brimstone-elemental",
-            "automaticStageId": "brimstone-elemental",
-            "via": "recipe:CalamityMod/InfernalSuevite+Terraria/Hellstone"
-          },
-          {
-            "value": "CalamityMod/UrsaSergeant",
-            "manualStageId": "wall-of-flesh",
-            "automaticStageId": "wall-of-flesh",
-            "via": "fishing"
-          },
-          {
-            "value": "Terraria/Terragrim",
-            "manualStageId": "start",
-            "automaticStageId": "start",
-            "via": "world-container:Terraria/EnchantedSwordShrine"
-          }
-        ],
-        "sourceStages": [
-          {
-            "value": "CalamityMod/BoxJellyfish",
-            "manualStageId": "skeletron",
-            "automaticStageId": "start",
-            "via": "runtime"
-          },
-          {
-            "value": "CalamityMod/ColossalSquid",
-            "manualStageId": "skeletron",
-            "automaticStageId": "start",
-            "via": "runtime"
-          },
-          {
-            "value": "CalamityMod/CrawlerCrystal",
-            "manualStageId": "start",
-            "automaticStageId": "wall-of-flesh",
-            "via": "runtime"
-          },
-          {
-            "value": "CalamityMod/Cuttlefish",
-            "manualStageId": "skeletron",
-            "automaticStageId": "start",
-            "via": "runtime"
-          },
-          {
-            "value": "CalamityMod/EidolonWyrmHead",
-            "manualStageId": "polterghast",
-            "automaticStageId": "start",
-            "via": "runtime"
-          },
-          {
-            "value": "CalamityMod/GiantSquid",
-            "manualStageId": "skeletron",
-            "automaticStageId": "start",
-            "via": "runtime"
-          },
-          {
-            "value": "CalamityMod/MantisShrimp",
-            "manualStageId": "plantera",
-            "automaticStageId": "wall-of-flesh",
-            "via": "runtime"
-          },
-          {
-            "value": "CalamityMod/MirageJelly",
-            "manualStageId": "skeletron",
-            "automaticStageId": "start",
-            "via": "runtime"
-          },
-          {
-            "value": "CalamityMod/ReaperShark",
-            "manualStageId": "polterghast",
-            "automaticStageId": "start",
-            "via": "runtime"
-          },
-          {
-            "value": "CalamityMod/RenegadeWarlock",
-            "manualStageId": "providence",
-            "automaticStageId": "wall-of-flesh",
-            "via": "runtime"
-          },
-          {
-            "value": "CalamityMod/Scryllar",
-            "manualStageId": "providence",
-            "automaticStageId": "start",
-            "via": "runtime"
-          },
-          {
-            "value": "CalamityMod/ScryllarRage",
-            "manualStageId": "providence",
-            "automaticStageId": "start",
-            "via": "runtime"
-          },
-          {
-            "value": "CalamityMod/Viperfish",
-            "manualStageId": "skeletron",
-            "automaticStageId": "start",
-            "via": "runtime"
-          },
-          {
-            "value": "Terraria/DeadlySphere",
-            "manualStageId": "golem",
-            "automaticStageId": "plantera",
-            "via": "runtime"
-          }
-        ],
+        "itemStages": [],
+        "sourceStages": [],
         "stationStages": []
       },
       "retained": {
         "itemStages": 35,
-        "itemStageFloors": 14,
-        "sourceStages": 62,
+        "itemStageFloors": 10,
+        "sourceStages": 51,
         "stationStages": 2
       }
     },

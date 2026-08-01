@@ -765,18 +765,27 @@ export function auditRuntimeSourceCoverage(
   for (const event of manifest.events ?? []) {
     for (const source of [
       ...(event.dropSources ?? []),
-      ...(event.enemies ?? [])
+      ...(event.enemies ?? []),
+      ...(event.shops ?? [])
     ]) {
       declaredDrops.add(source);
+    }
+    for (const shop of event.shops ?? []) {
+      declaredShops.add(shop);
     }
     for (const container of event.containers ?? []) {
       declaredContainers.add(container);
     }
   }
+  for (const source of Object.keys(manifest.sourceStageFloors ?? {})) {
+    declaredDrops.add(source);
+    declaredShops.add(source);
+  }
   for (const source of Object.keys(manualAssignments?.sourceStages ?? {})) {
     declaredDrops.add(source);
     declaredShops.add(source);
   }
+  const declaredNpcSources = new Set([...declaredDrops, ...declaredShops]);
 
   const sourceKinds = new Map();
   const addSource = (source, kind) => {
@@ -832,8 +841,7 @@ export function auditRuntimeSourceCoverage(
   for (const [source, kinds] of sourceKinds) {
     const record = availability.get(source);
     const runtimeCovered = record?.observed === true;
-    const assigned = [...kinds].every(kind =>
-      kind === "shop" ? declaredShops.has(source) : declaredDrops.has(source));
+    const assigned = declaredNpcSources.has(source);
     const result = {
       source,
       kinds: [...kinds].sort(),

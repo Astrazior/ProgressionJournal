@@ -1052,12 +1052,11 @@ for (const modName of expected) {
     }
     assert.equal(generatedStageOf("Terraria/TrifoldMap"), "wall-of-flesh",
       "ThoriumMod: Giant Bat drops must follow observed Hardmode availability");
-    assert(report.generation?.manualAvailabilityPriority?.suppressed?.sourceStages
-      ?.some(entry => entry.value === "Terraria/GiantBat"
-        && entry.automaticStageId === "wall-of-flesh"),
-    "ThoriumMod: observed Giant Bat availability must supersede its stale source rule");
-    assert(!readJson(path.join(directory, "agent-rules.json")).rules
-      .some(rule => rule.id === "pre-hardmode-meteor-ufo-source"),
+    const thoriumRules = readJson(path.join(directory, "agent-rules.json")).rules;
+    assert(!thoriumRules.some(rule =>
+      Object.keys(rule.sourceStages ?? {}).includes("Terraria/GiantBat")),
+    "ThoriumMod: observed Giant Bat availability must not retain a manual source rule");
+    assert(!thoriumRules.some(rule => rule.id === "pre-hardmode-meteor-ufo-source"),
     "ThoriumMod: the U.F.O. stage must not be forced by a manual source rule");
   }
   assert(!review.issues.some(issue =>
@@ -1791,6 +1790,10 @@ const runtimeCoverage = auditRuntimeSourceCoverage(
       sourceType: "npc",
       source: "Test/Enemy",
       item: "Test/Blade"
+    }, {
+      sourceType: "npc",
+      source: "Test/Merchant",
+      item: "Test/Blade"
     }],
     shops: [{
       npc: "Test/Merchant",
@@ -1813,8 +1816,10 @@ const runtimeCoverage = auditRuntimeSourceCoverage(
     ]
   },
   {
-    stages: [{
-      id: "start",
+    stages: [{ id: "start" }],
+    events: [{
+      id: "test-shop-event",
+      stageId: "start",
       shops: ["Test/Merchant"]
     }]
   });

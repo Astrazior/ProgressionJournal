@@ -1149,6 +1149,7 @@ const manualAssignments = {
     "Test/WorldFlooredBlade": "late"
   },
   sourceStages: {
+    "Test/BossBag": "start",
     "Test/ManualLateBoss": "boss",
     "Test/ManualMerchant": "boss"
   },
@@ -1221,6 +1222,10 @@ assert(manualResult.report.manualAvailabilityPriority.suppressed.itemStages.some
   entry.value === "Test/FlooredBlade"
   && entry.manualStageId === "late"
   && entry.automaticStageId === "boss"));
+assert(manualResult.report.manualAvailabilityPriority.suppressed.sourceStages.some(entry =>
+  entry.value === "Test/BossBag"
+  && entry.manualStageId === "start"
+  && entry.automaticStageId === "boss"));
 assert(manualResult.report.manualAvailabilityPriority.suppressed.stationStages.some(entry =>
   entry.value === "Test/ForgeTile"
   && entry.manualStageId === "late"
@@ -1289,6 +1294,8 @@ runtimeSnapshot.items.push(
   item("Test/RuntimeSpawnBlade", { damageClass: "Melee", damage: 32 }),
   item("Test/RuntimeEventBlade", { damageClass: "Melee", damage: 33 }),
   item("Test/DeferredEventBlade", { damageClass: "Melee", damage: 33 }),
+  item("Test/EventShopBlade", { damageClass: "Melee", damage: 33 }),
+  item("Test/EventShopDropBlade", { damageClass: "Melee", damage: 33 }),
   item("Test/RuntimeShopBlade", { damageClass: "Melee", damage: 33 }),
   item("Test/EventFloorBlade", { damageClass: "Melee", damage: 34 }),
   item("Test/ManualFloorBlade", { damageClass: "Melee", damage: 35 }));
@@ -1311,6 +1318,11 @@ runtimeSnapshot.drops.push({
   item: "Test/DeferredEventBlade",
   conditions: []
 }, {
+  source: "Terraria/EventMerchant",
+  sourceType: "npc",
+  item: "Test/EventShopDropBlade",
+  conditions: []
+}, {
   source: "Test/EventEnemy",
   sourceType: "npc",
   item: "Test/EventFloorBlade",
@@ -1329,6 +1341,14 @@ runtimeSnapshot.shops.push({
   observed: true,
   earliestStageIndex: 3,
   earliestStageName: "Late"
+}, {
+  npc: "Terraria/EventMerchant",
+  shop: "Shop",
+  item: "Test/EventShopBlade",
+  conditions: [],
+  observed: false,
+  earliestStageIndex: -1,
+  earliestStageName: ""
 });
 const localizedBiomeCondition = {
   key: "Mods.ProgressionJournal.UI.FishingBiomeCondition",
@@ -1440,6 +1460,7 @@ runtimeManualAssignments.conditionStages.push({
 });
 const runtimeManifest = structuredClone(manifest);
 runtimeManifest.events[0].enemies.push("Test/DeferredEventEnemy");
+runtimeManifest.events[0].shops = ["Terraria/EventMerchant"];
 const runtimeResult = generateProfile(
   runtimeSnapshot,
   runtimeManifest,
@@ -1478,6 +1499,16 @@ assert(runtimeResult.profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "DeferredEventBlade"
   && entry.evaluations[0].stageId === "boss"
   && entry.eventCategory === "GoblinArmy"));
+assert(runtimeResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "EventShopBlade"
+  && entry.evaluations[0].stageId === "boss"
+  && entry.eventCategory === "GoblinArmy"));
+assert(runtimeResult.profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "EventShopDropBlade"
+  && entry.evaluations[0].stageId === "boss"
+  && entry.eventCategory === "GoblinArmy"));
+assert(!runtimeResult.report.unassignedVanillaNpcSources?.some(entry =>
+  entry.source === "Terraria/EventMerchant"));
 assert.equal(VanillaSupportItemIds.size, 25);
 assert(isVanillaSupportItem("Terraria/NimbusRod"));
 assert(isVanillaSupportItem("Terraria/ClingerStaff"));
@@ -1664,20 +1695,45 @@ const exactStaticEvidenceSnapshot = {
     item("Test/TownMerchantBlade", { damageClass: "Melee", damage: 21 }),
     item("Test/UnknownStaticShopBlade", { damageClass: "Melee", damage: 22 }),
     item("Test/FargoHardmodeBlade", { damageClass: "Melee", damage: 23 }),
-    item("Test/MartianShopBlade", { damageClass: "Melee", damage: 24 })
+    item("Test/MartianShopBlade", { damageClass: "Melee", damage: 24 }),
+    item("Test/WorldHardmodeBlade", { damageClass: "Melee", damage: 25 }),
+    item("Test/OpaqueWorldBlade", { damageClass: "Melee", damage: 26 })
   ],
   npcs: [],
   recipes: [],
-  drops: [{
-    source: "Test/HardmodeEnemy",
-    sourceType: "npc",
-    item: "Test/FargoHardmodeBlade",
-    conditions: [{
-      type:
-        "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeEarlyBirdLockDropCondition",
-      description: "Display text must not be used"
-    }]
-  }],
+  drops: [
+    {
+      source: "Test/HardmodeEnemy",
+      sourceType: "npc",
+      item: "Test/FargoHardmodeBlade",
+      conditions: [{
+        type:
+          "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeEarlyBirdLockDropCondition",
+        description: "Display text must not be used"
+      }]
+    },
+    {
+      source: "Test/HardmodePlant",
+      sourceType: "world",
+      item: "Test/WorldHardmodeBlade",
+      conditions: [{
+        type: "ProgressionJournal.Hardmode",
+        description: "Display text must not be used"
+      }, {
+        type: "Mods.ProgressionJournal.UI.TestWorldInteractionCondition",
+        description: "Describes the interaction but does not set its stage"
+      }]
+    },
+    {
+      source: "Test/OpaqueWorldInteraction",
+      sourceType: "world",
+      item: "Test/OpaqueWorldBlade",
+      conditions: [{
+        type: "Mods.ProgressionJournal.UI.OpaqueWorldInteractionCondition",
+        description: "This description is not stage evidence"
+      }]
+    }
+  ],
   shops: [
     {
       npc: "Test/SpawnMerchant",
@@ -1804,6 +1860,18 @@ assert.equal(
 assert.equal(
   exactStaticEvidenceResult.report.paths["Test/FargoHardmodeBlade"]?.stage,
   "wall-of-flesh");
+assert.equal(
+  exactStaticEvidenceResult.report.paths["Test/WorldHardmodeBlade"]?.stage,
+  "wall-of-flesh");
+assert.equal(
+  exactStaticEvidenceResult.report.paths["Test/WorldHardmodeBlade"]?.via,
+  "world:Test/HardmodePlant");
+assert.equal(
+  exactStaticEvidenceResult.report.paths["Test/OpaqueWorldBlade"],
+  undefined);
+assert(!exactStaticEvidenceResult.review.issues.some(issue =>
+  issue.kind === "unresolved-condition"
+  && issue.affected.some(value => value.item === "Test/OpaqueWorldBlade")));
 assert.equal(
   exactStaticEvidenceResult.report.paths["Test/MartianShopBlade"]?.stage,
   "golem");

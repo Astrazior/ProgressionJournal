@@ -233,7 +233,7 @@ function generateProfileCore(
     recipe => recipe.result);
   const dropsBySource = groupBy(
     snapshot.drops.filter(drop =>
-      drop.sourceType !== "global"
+      !["global", "world"].includes(drop.sourceType)
       &&
       (drop.rate ?? 1) > 0
       &&
@@ -244,6 +244,11 @@ function generateProfileCore(
     drop.sourceType === "global"
     && (drop.rate ?? 1) > 0
     && isAllowedProfileItem(drop.item, contentMods));
+  const worldDrops = snapshot.drops.filter(drop =>
+    drop.sourceType === "world"
+    && (drop.rate ?? 1) > 0
+    && isAllowedProfileItem(drop.item, contentMods)
+    && isAllowedProfileItem(drop.source, contentMods));
   const containerDropsBySource = groupBy(
     snapshot.drops.filter(drop =>
       ["container", "world-container"].includes(drop.sourceType)
@@ -478,8 +483,15 @@ function generateProfileCore(
       const eventSources = [
         ...(event.dropSources ?? []),
         ...(event.enemies ?? []),
-        ...(event.containers ?? [])
+        ...(event.containers ?? []),
+        ...(event.shops ?? [])
       ];
+      for (const npc of event.shops ?? []) {
+        if (!sourceAllowedAtStage(npc, stage.id)) continue;
+        availableShops.add(npc);
+        availableDropSources.add(npc);
+        legacyAvailableShops.add(npc);
+      }
       for (const source of eventSources) {
         if (!sourceAllowedAtStage(source, stage.id)) continue;
         availableDropSources.add(source);
@@ -565,6 +577,19 @@ function generateProfileCore(
         available
       })) {
         unlockAtStage(drop.item, stage.id, `global:${drop.source}`);
+      }
+    }
+    for (const drop of worldDrops) {
+      if (!sourceAllowedAtStage(drop.source, stage.id)) continue;
+      const stageConditions = worldDropStageConditions(drop);
+      if (stageConditions === null) continue;
+      if (conditionsAllowed(stageConditions, stage, manifest, report, {
+        sourceKind: "drop",
+        source: drop.source,
+        item: drop.item,
+        available
+      })) {
+        unlockAtStage(drop.item, stage.id, `world:${drop.source}`);
       }
     }
     for (const [itemId, catches] of fishingByItem) {
@@ -944,6 +969,7 @@ function prioritizeAutomaticAvailability(source, manifest, manualAssignments, au
       .map(([item, acquisition]) => [item, acquisition.stage]));
   const stageIndexes = new Map(
     (manifest.stages ?? []).map((stage, index) => [stage.id, index]));
+  const automaticManifest = applyVanillaSourceCatalog(manifest, snapshot);
   const eventsByCategory = groupBy(
     (manifest.events ?? []).filter(event => event.eventCategory),
     event => event.eventCategory);
@@ -963,7 +989,22 @@ function prioritizeAutomaticAvailability(source, manifest, manualAssignments, au
       }
     }
   }
-  const automaticSourceStages = new Map();
+  const automaticSourceStages = new Map(
+    [...collectSourceStageFloors(automaticManifest, stageIndexes)]
+      .map(([sourceId, stageIndex]) => [sourceId, manifest.stages[stageIndex]?.id])
+      .filter(([, stageId]) => stageId));
+  const setAutomaticSourceStage = (sourceId, stageId) => {
+    const stageIndex = stageIndexes.get(stageId);
+    const existingStageIndex = stageIndexes.get(automaticSourceStages.get(sourceId)) ?? -1;
+    if (stageIndex !== undefined && stageIndex > existingStageIndex) {
+      automaticSourceStages.set(sourceId, stageId);
+    }
+  };
+  for (const drop of snapshot.drops ?? []) {
+    if (drop.sourceType !== "container" || automaticSourceStages.has(drop.source)) continue;
+    const stageId = automaticItemStages.get(drop.source);
+    if (stageId) setAutomaticSourceStage(drop.source, stageId);
+  }
   const sourcesWithUnobservedShops = new Set(
     (snapshot.shops ?? [])
       .filter(shop => shop.observed !== true)
@@ -987,7 +1028,7 @@ function prioritizeAutomaticAvailability(source, manifest, manualAssignments, au
       eventFloorBySource.get(record.npc) ?? -1,
       categoryFloorIndex);
     const stageId = manifest.stages[stageIndex]?.id;
-    if (stageId) automaticSourceStages.set(record.npc, stageId);
+    if (stageId) setAutomaticSourceStage(record.npc, stageId);
   }
   const automaticStationStages = new Map();
   for (const item of snapshot.items ?? []) {
@@ -1015,8 +1056,7 @@ function prioritizeAutomaticAvailability(source, manifest, manualAssignments, au
   };
   const automaticItemFloors = Object.fromEntries(
     suppressed.itemStages.map(entry => [entry.value, entry.automaticStageId]));
-  const automaticSourceFloors = Object.fromEntries(
-    suppressed.sourceStages.map(entry => [entry.value, entry.automaticStageId]));
+  const automaticSourceFloors = Object.fromEntries(automaticSourceStages);
   const automaticStationFloors = Object.fromEntries(
     suppressed.stationStages.map(entry => [entry.value, entry.automaticStageId]));
   const prioritizedManifest = {
@@ -1904,6 +1944,20 @@ function isProgressionNeutralCondition(condition) {
   ]).has(type);
 }
 
+function worldDropStageConditions(drop) {
+  const conditions = drop.conditions ?? [];
+  const stageConditions = conditions.filter(condition =>
+    !isWorldDropDescriptionCondition(drop, condition));
+  return conditions.length > 0 && stageConditions.length === 0
+    ? null
+    : stageConditions;
+}
+
+function isWorldDropDescriptionCondition(drop, condition) {
+  return drop.sourceType === "world"
+    && (condition.type ?? "").startsWith("Mods.ProgressionJournal.UI.");
+}
+
 function isOneTimeUseEligibilityCondition(condition) {
   const type = condition.type ?? "";
   return /(?:^|\+)NotUsed[A-Za-z0-9_]*$/u.test(type);
@@ -2565,13 +2619,17 @@ function buildManualReview({
     for (const source of [
       ...(event.dropSources ?? []),
       ...(event.enemies ?? []),
-      ...(event.containers ?? [])
+      ...(event.containers ?? []),
+      ...(event.shops ?? [])
     ]) {
       assignedDropSources.add(source);
     }
   }
   const assignedShops = new Set(
-    manifest.stages.flatMap(stage => stage.shops ?? []));
+    [
+      ...manifest.stages.flatMap(stage => stage.shops ?? []),
+      ...(manifest.events ?? []).flatMap(event => event.shops ?? [])
+    ]);
   for (const shop of assignedShops) assignedDropSources.add(shop);
   const missingVanillaSources = new Map();
   const recordMissingSource = (source, sourceKind, item) => {
@@ -2754,12 +2812,14 @@ function collectUnknownConditionRecords(snapshot, manifest, contentMods) {
   const records = [
     ...snapshot.drops
       .filter(drop => (drop.rate ?? 1) > 0 && isAllowedProfileItem(drop.item, contentMods))
-      .flatMap(drop => (drop.conditions ?? []).map(condition => ({
-        sourceKind: "drop",
-        source: drop.source,
-        item: drop.item,
-        condition
-      }))),
+      .flatMap(drop => (drop.conditions ?? [])
+        .filter(condition => !isWorldDropDescriptionCondition(drop, condition))
+        .map(condition => ({
+          sourceKind: "drop",
+          source: drop.source,
+          item: drop.item,
+          condition
+        }))),
     ...snapshot.shops
       .filter(shop => !shop.observed && isAllowedProfileItem(shop.item, contentMods))
       .flatMap(shop => (shop.conditions ?? []).map(condition => ({

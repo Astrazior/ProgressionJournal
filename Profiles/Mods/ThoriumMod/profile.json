@@ -11,11 +11,11 @@
   "readOnly": true,
   "sourceUrl": "https://thoriummod.wiki.gg/wiki/Bosses",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-08-01T15:02:29.576Z",
+  "generatedAtUtc": "2026-08-01T19:37:22.149Z",
   "requiredMods": [
     {
       "name": "ThoriumMod",
-      "version": "1.7.2.7"
+      "version": "1.7.2.8"
     }
   ],
   "classes": [
@@ -589,6 +589,7 @@
         "displayName": "Aglet"
       },
       "sourceName": "Surface Wooden Chest",
+      "sourceReference": "Terraria/SurfaceWoodenChest",
       "sourceItem": null,
       "dropRate": 0.125,
       "stackMin": 1,
@@ -603,6 +604,7 @@
         "displayName": "Anklet of the Wind"
       },
       "sourceName": "Ivy Chest",
+      "sourceReference": "Terraria/IvyChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "IvyChest",
@@ -617,10 +619,45 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Apple",
+        "displayName": "Apple"
+      },
+      "sourceName": "Forest trees",
+      "sourceReference": "Terraria/ForestTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Forest trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Apricot",
+        "displayName": "Apricot"
+      },
+      "sourceName": "Forest trees",
+      "sourceReference": "Terraria/ForestTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Forest trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "AquaScepter",
         "displayName": "Aqua Scepter"
       },
       "sourceName": "Dungeon Gold Chest",
+      "sourceReference": "Terraria/DungeonGoldChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -635,6 +672,7 @@
         "displayName": "Archery Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -649,6 +687,7 @@
         "displayName": "Finch Staff"
       },
       "sourceName": "Living Wood Chest",
+      "sourceReference": "Terraria/LivingWoodChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "LivingWoodChest",
@@ -667,12 +706,32 @@
         "displayName": "Ball O' Hurt"
       },
       "sourceName": "Shadow Orb",
+      "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Corruption"
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Banana",
+        "displayName": "Banana"
+      },
+      "sourceName": "Ocean palm trees",
+      "sourceReference": "Terraria/PalmTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Ocean palm trees."
+      ]
     },
     {
       "item": {
@@ -681,6 +740,7 @@
         "displayName": "Band of Regeneration"
       },
       "sourceName": "Underground Gold Chest",
+      "sourceReference": "Terraria/UndergroundGoldChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -695,6 +755,7 @@
         "displayName": "Band of Regeneration"
       },
       "sourceName": "Underground Wooden Chest",
+      "sourceReference": "Terraria/UndergroundWoodenChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -709,12 +770,15 @@
         "displayName": "Band of Starpower"
       },
       "sourceName": "Shadow Orb",
+      "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Corruption"
+      ]
     },
     {
       "item": {
@@ -723,6 +787,7 @@
         "displayName": "Battle Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -733,10 +798,28 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "BlackCurrant",
+        "displayName": "Blackcurrant"
+      },
+      "sourceName": "Corruption trees",
+      "sourceReference": "Terraria/EbonwoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Corruption trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "BlizzardinaBottle",
         "displayName": "Blizzard in a Bottle"
       },
       "sourceName": "Ice Chest",
+      "sourceReference": "Terraria/IceChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "IceChest",
@@ -751,10 +834,28 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "BloodOrange",
+        "displayName": "Blood Orange"
+      },
+      "sourceName": "Crimson trees",
+      "sourceReference": "Terraria/ShadewoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Crimson trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "Blowpipe",
         "displayName": "Blowpipe"
       },
       "sourceName": "Surface Wooden Chest",
+      "sourceReference": "Terraria/SurfaceWoodenChest",
       "sourceItem": null,
       "dropRate": 0.125,
       "stackMin": 1,
@@ -769,6 +870,7 @@
         "displayName": "Blue Moon"
       },
       "sourceName": "Dungeon Gold Chest",
+      "sourceReference": "Terraria/DungeonGoldChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -783,6 +885,7 @@
         "displayName": "Boomstick"
       },
       "sourceName": "Ivy Chest",
+      "sourceReference": "Terraria/IvyChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "IvyChest",
@@ -801,6 +904,7 @@
         "displayName": "Breathing Reed"
       },
       "sourceName": "Water Chest",
+      "sourceReference": "Terraria/WaterChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "WaterChest",
@@ -819,6 +923,7 @@
         "displayName": "Builder Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -833,6 +938,7 @@
         "displayName": "Calming Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -847,6 +953,7 @@
         "displayName": "Campfire"
       },
       "sourceName": "Campfire",
+      "sourceReference": "Terraria/Campfire",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -861,6 +968,7 @@
         "displayName": "Bast Statue"
       },
       "sourceName": "Sandstone Chest",
+      "sourceReference": "Terraria/SandstoneChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -875,6 +983,7 @@
         "displayName": "Celestial Magnet"
       },
       "sourceName": "Skyware Chest",
+      "sourceReference": "Terraria/SkywareChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "SkywareChest",
@@ -889,10 +998,28 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Cherry",
+        "displayName": "Cherry"
+      },
+      "sourceName": "Snow biome trees",
+      "sourceReference": "Terraria/BorealTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Snow biome trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "ClimbingClaws",
         "displayName": "Climbing Claws"
       },
       "sourceName": "Surface Wooden Chest",
+      "sourceReference": "Terraria/SurfaceWoodenChest",
       "sourceItem": null,
       "dropRate": 0.125,
       "stackMin": 1,
@@ -907,6 +1034,7 @@
         "displayName": "Cloud in a Bottle"
       },
       "sourceName": "Underground Gold Chest",
+      "sourceReference": "Terraria/UndergroundGoldChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -921,6 +1049,7 @@
         "displayName": "Cloud in a Bottle"
       },
       "sourceName": "Underground Wooden Chest",
+      "sourceReference": "Terraria/UndergroundWoodenChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -935,6 +1064,7 @@
         "displayName": "Cobalt Shield"
       },
       "sourceName": "Dungeon Gold Chest",
+      "sourceReference": "Terraria/DungeonGoldChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -945,10 +1075,28 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Coconut",
+        "displayName": "Coconut"
+      },
+      "sourceName": "Ocean palm trees",
+      "sourceReference": "Terraria/PalmTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Ocean palm trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "CopperCoin",
         "displayName": "Copper Coin"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -963,6 +1111,7 @@
         "displayName": "Fledgling Wings"
       },
       "sourceName": "Skyware Chest",
+      "sourceReference": "Terraria/SkywareChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "SkywareChest",
@@ -981,12 +1130,15 @@
         "displayName": "Crimson Rod"
       },
       "sourceName": "Crimson Heart",
+      "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Crimson"
+      ]
     },
     {
       "item": {
@@ -995,6 +1147,7 @@
         "displayName": "Dark Lance"
       },
       "sourceName": "Shadow Chest",
+      "sourceReference": "Terraria/ShadowChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "ShadowChest",
@@ -1009,10 +1162,45 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Dragonfruit",
+        "displayName": "Dragon Fruit"
+      },
+      "sourceName": "Hallow trees",
+      "sourceReference": "Terraria/PearlwoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Hallow trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Elderberry",
+        "displayName": "Elderberry"
+      },
+      "sourceName": "Corruption trees",
+      "sourceReference": "Terraria/EbonwoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Corruption trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "EnchantedSword",
         "displayName": "Enchanted Sword"
       },
       "sourceName": "Enchanted Sword Shrine",
+      "sourceReference": "Terraria/EnchantedSwordShrine",
       "sourceItem": null,
       "dropRate": 0.98,
       "stackMin": 1,
@@ -1027,6 +1215,7 @@
         "displayName": "Featherfall Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1041,6 +1230,7 @@
         "displayName": "Feral Claws"
       },
       "sourceName": "Ivy Chest",
+      "sourceReference": "Terraria/IvyChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "IvyChest",
@@ -1059,6 +1249,7 @@
         "displayName": "Flamelash"
       },
       "sourceName": "Shadow Chest",
+      "sourceReference": "Terraria/ShadowChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "ShadowChest",
@@ -1077,6 +1268,7 @@
         "displayName": "Flaming Arrow"
       },
       "sourceName": "Bat Pot",
+      "sourceReference": "ThoriumMod/BatPot",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 25,
@@ -1091,6 +1283,7 @@
         "displayName": "Flipper Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1105,6 +1298,7 @@
         "displayName": "Flower of Fire"
       },
       "sourceName": "Shadow Chest",
+      "sourceReference": "Terraria/ShadowChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "ShadowChest",
@@ -1123,6 +1317,7 @@
         "displayName": "Flurry Boots"
       },
       "sourceName": "Ice Chest",
+      "sourceReference": "Terraria/IceChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "IceChest",
@@ -1141,6 +1336,7 @@
         "displayName": "Flying Carpet"
       },
       "sourceName": "Pyramid Chest",
+      "sourceReference": "Terraria/PyramidChest",
       "sourceItem": null,
       "dropRate": 0.5,
       "stackMin": 1,
@@ -1155,6 +1351,7 @@
         "displayName": "Gills Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1169,6 +1366,7 @@
         "displayName": "Gold Coin"
       },
       "sourceName": "Gold Coin",
+      "sourceReference": "Terraria/GoldCoinPile",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1183,6 +1381,7 @@
         "displayName": "Gold Coin"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1193,10 +1392,28 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Grapefruit",
+        "displayName": "Grapefruit"
+      },
+      "sourceName": "Forest trees",
+      "sourceReference": "Terraria/ForestTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Forest trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "GravitationPotion",
         "displayName": "Gravitation Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1211,6 +1428,7 @@
         "displayName": "Handgun"
       },
       "sourceName": "Dungeon Gold Chest",
+      "sourceReference": "Terraria/DungeonGoldChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -1225,6 +1443,7 @@
         "displayName": "Healing Potion"
       },
       "sourceName": "Bat Pot",
+      "sourceReference": "ThoriumMod/BatPot",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 3,
@@ -1239,6 +1458,7 @@
         "displayName": "Healing Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1253,6 +1473,7 @@
         "displayName": "Heartreach Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1267,6 +1488,7 @@
         "displayName": "Hellfire Arrow"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 10,
@@ -1281,6 +1503,7 @@
         "displayName": "Hellwing Bow"
       },
       "sourceName": "Shadow Chest",
+      "sourceReference": "Terraria/ShadowChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "ShadowChest",
@@ -1299,6 +1522,7 @@
         "displayName": "Hermes Boots"
       },
       "sourceName": "Underground Gold Chest",
+      "sourceReference": "Terraria/UndergroundGoldChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -1313,6 +1537,7 @@
         "displayName": "Hermes Boots"
       },
       "sourceName": "Underground Wooden Chest",
+      "sourceReference": "Terraria/UndergroundWoodenChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -1327,6 +1552,7 @@
         "displayName": "Hunter Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1341,6 +1567,7 @@
         "displayName": "Ice Blade"
       },
       "sourceName": "Ice Chest",
+      "sourceReference": "Terraria/IceChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "IceChest",
@@ -1359,6 +1586,7 @@
         "displayName": "Ice Boomerang"
       },
       "sourceName": "Ice Chest",
+      "sourceReference": "Terraria/IceChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "IceChest",
@@ -1377,6 +1605,7 @@
         "displayName": "Invisibility Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1391,6 +1620,7 @@
         "displayName": "Ironskin Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1405,6 +1635,7 @@
         "displayName": "Lava Charm"
       },
       "sourceName": "Underground Gold Chest",
+      "sourceReference": "Terraria/UndergroundGoldChest",
       "sourceItem": null,
       "dropRate": 0.05,
       "stackMin": 1,
@@ -1415,10 +1646,28 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Lemon",
+        "displayName": "Lemon"
+      },
+      "sourceName": "Forest trees",
+      "sourceReference": "Terraria/ForestTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Forest trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "LesserHealingPotion",
         "displayName": "Lesser Healing Potion"
       },
       "sourceName": "Bottles",
+      "sourceReference": "Terraria/Bottles",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1433,6 +1682,7 @@
         "displayName": "Lesser Healing Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1447,6 +1697,7 @@
         "displayName": "Lesser Mana Potion"
       },
       "sourceName": "Bottles",
+      "sourceReference": "Terraria/Bottles",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1461,12 +1712,33 @@
         "displayName": "Life Crystal"
       },
       "sourceName": "Life Crystal",
+      "sourceReference": "Terraria/Heart",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Below the surface layer"
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "LifeFruit",
+        "displayName": "Life Fruit"
+      },
+      "sourceName": "Life Fruit plant",
+      "sourceReference": "Terraria/LifeFruit",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "After all three mechanical bosses have been defeated",
+        "Grows naturally on Jungle grass in the Underground Jungle"
+      ]
     },
     {
       "item": {
@@ -1475,6 +1747,7 @@
         "displayName": "Lucky Horseshoe"
       },
       "sourceName": "Skyware Chest",
+      "sourceReference": "Terraria/SkywareChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "SkywareChest",
@@ -1493,6 +1766,7 @@
         "displayName": "Mace"
       },
       "sourceName": "Underground Gold Chest",
+      "sourceReference": "Terraria/UndergroundGoldChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -1507,6 +1781,7 @@
         "displayName": "Mace"
       },
       "sourceName": "Underground Wooden Chest",
+      "sourceReference": "Terraria/UndergroundWoodenChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -1521,6 +1796,7 @@
         "displayName": "Magic Missile"
       },
       "sourceName": "Dungeon Gold Chest",
+      "sourceReference": "Terraria/DungeonGoldChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -1535,6 +1811,7 @@
         "displayName": "Magic Power Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1549,6 +1826,7 @@
         "displayName": "Mana Potion"
       },
       "sourceName": "Bat Pot",
+      "sourceReference": "ThoriumMod/BatPot",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 3,
@@ -1563,6 +1841,7 @@
         "displayName": "Mana Regeneration Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1573,10 +1852,28 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Mango",
+        "displayName": "Mango"
+      },
+      "sourceName": "Jungle trees",
+      "sourceReference": "Terraria/MahoganyTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Jungle trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "MiningPotion",
         "displayName": "Mining Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1591,6 +1888,7 @@
         "displayName": "Muramasa"
       },
       "sourceName": "Dungeon Gold Chest",
+      "sourceReference": "Terraria/DungeonGoldChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -1605,12 +1903,15 @@
         "displayName": "Musket"
       },
       "sourceName": "Shadow Orb",
+      "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Corruption"
+      ]
     },
     {
       "item": {
@@ -1618,13 +1919,16 @@
         "item": "NaturesGift",
         "displayName": "Nature's Gift"
       },
-      "sourceName": "Jungle Plants",
+      "sourceName": "Jungle plant",
+      "sourceReference": "Terraria/JunglePlants",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Rarely grows naturally on Jungle grass below the surface"
+      ]
     },
     {
       "item": {
@@ -1633,6 +1937,7 @@
         "displayName": "Night Owl Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1647,6 +1952,7 @@
         "displayName": "Obsidian Skin Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1661,12 +1967,49 @@
         "displayName": "Panic Necklace"
       },
       "sourceName": "Crimson Heart",
+      "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Crimson"
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Peach",
+        "displayName": "Peach"
+      },
+      "sourceName": "Forest trees",
+      "sourceReference": "Terraria/ForestTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Forest trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Pineapple",
+        "displayName": "Pineapple"
+      },
+      "sourceName": "Jungle trees",
+      "sourceReference": "Terraria/MahoganyTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Jungle trees."
+      ]
     },
     {
       "item": {
@@ -1675,12 +2018,47 @@
         "displayName": "Piranha Gun"
       },
       "sourceName": "Jungle Biome Chest",
+      "sourceReference": "Terraria/JungleBiomeChest",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": true,
       "conditions": []
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Plum",
+        "displayName": "Plum"
+      },
+      "sourceName": "Snow biome trees",
+      "sourceReference": "Terraria/BorealTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Snow biome trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Pomegranate",
+        "displayName": "Pomegranate"
+      },
+      "sourceName": "Underworld ash trees",
+      "sourceReference": "Terraria/AshTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Underworld ash trees."
+      ]
     },
     {
       "item": {
@@ -1689,6 +2067,7 @@
         "displayName": "Rainbow Gun"
       },
       "sourceName": "Hallowed Biome Chest",
+      "sourceReference": "Terraria/HallowedBiomeChest",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1699,10 +2078,28 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Rambutan",
+        "displayName": "Rambutan"
+      },
+      "sourceName": "Crimson trees",
+      "sourceReference": "Terraria/ShadewoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Crimson trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "RegenerationPotion",
         "displayName": "Regeneration Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1717,6 +2114,7 @@
         "displayName": "Dunerider Boots"
       },
       "sourceName": "Sandstone Chest",
+      "sourceReference": "Terraria/SandstoneChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -1731,6 +2129,7 @@
         "displayName": "Sandstorm in a Bottle"
       },
       "sourceName": "Pyramid Chest",
+      "sourceReference": "Terraria/PyramidChest",
       "sourceItem": null,
       "dropRate": 0.5,
       "stackMin": 1,
@@ -1745,6 +2144,7 @@
         "displayName": "Scourge of the Corruptor"
       },
       "sourceName": "Corruption Biome Chest",
+      "sourceReference": "Terraria/CorruptionBiomeChest",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1759,6 +2159,7 @@
         "displayName": "Shine Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1773,6 +2174,7 @@
         "displayName": "Shiny Red Balloon"
       },
       "sourceName": "Skyware Chest",
+      "sourceReference": "Terraria/SkywareChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "SkywareChest",
@@ -1791,6 +2193,7 @@
         "displayName": "Shoe Spikes"
       },
       "sourceName": "Underground Gold Chest",
+      "sourceReference": "Terraria/UndergroundGoldChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -1805,6 +2208,7 @@
         "displayName": "Shoe Spikes"
       },
       "sourceName": "Underground Wooden Chest",
+      "sourceReference": "Terraria/UndergroundWoodenChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -1819,6 +2223,7 @@
         "displayName": "Shuriken"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 10,
@@ -1833,6 +2238,7 @@
         "displayName": "Silver Bullet"
       },
       "sourceName": "Bat Pot",
+      "sourceReference": "ThoriumMod/BatPot",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 25,
@@ -1847,6 +2253,7 @@
         "displayName": "Silver Coin"
       },
       "sourceName": "Bat Pot",
+      "sourceReference": "ThoriumMod/BatPot",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 2,
@@ -1861,6 +2268,7 @@
         "displayName": "Silver Coin"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1875,6 +2283,7 @@
         "displayName": "Snowball Cannon"
       },
       "sourceName": "Ice Chest",
+      "sourceReference": "Terraria/IceChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "IceChest",
@@ -1893,6 +2302,7 @@
         "displayName": "Spear"
       },
       "sourceName": "Surface Wooden Chest",
+      "sourceReference": "Terraria/SurfaceWoodenChest",
       "sourceItem": null,
       "dropRate": 0.125,
       "stackMin": 1,
@@ -1907,6 +2317,7 @@
         "displayName": "Spelunker Potion"
       },
       "sourceName": "Bat Pot",
+      "sourceReference": "ThoriumMod/BatPot",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1921,6 +2332,7 @@
         "displayName": "Spelunker Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1931,10 +2343,28 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "SpicyPepper",
+        "displayName": "Spicy Pepper"
+      },
+      "sourceName": "Underworld ash trees",
+      "sourceReference": "Terraria/AshTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Underworld ash trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "StaffofRegrowth",
         "displayName": "Staff of Regrowth"
       },
       "sourceName": "Ivy Chest",
+      "sourceReference": "Terraria/IvyChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "IvyChest",
@@ -1953,6 +2383,7 @@
         "displayName": "Staff of the Frost Hydra"
       },
       "sourceName": "Frozen Biome Chest",
+      "sourceReference": "Terraria/FrozenBiomeChest",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1963,10 +2394,28 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Starfruit",
+        "displayName": "Star Fruit"
+      },
+      "sourceName": "Hallow trees",
+      "sourceReference": "Terraria/PearlwoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Hallow trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "Starfury",
         "displayName": "Starfury"
       },
       "sourceName": "Skyware Chest",
+      "sourceReference": "Terraria/SkywareChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "SkywareChest",
@@ -1985,6 +2434,7 @@
         "displayName": "Desert Tiger Staff"
       },
       "sourceName": "Desert Biome Chest",
+      "sourceReference": "Terraria/DesertBiomeChest",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -1999,6 +2449,7 @@
         "displayName": "Sunfury"
       },
       "sourceName": "Shadow Chest",
+      "sourceReference": "Terraria/ShadowChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "ShadowChest",
@@ -2017,6 +2468,7 @@
         "displayName": "Swiftness Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -2031,6 +2483,7 @@
         "displayName": "Terragrim"
       },
       "sourceName": "Enchanted Sword Shrine",
+      "sourceReference": "Terraria/EnchantedSwordShrine",
       "sourceItem": null,
       "dropRate": 0.02,
       "stackMin": 1,
@@ -2045,12 +2498,15 @@
         "displayName": "The Rotted Fork"
       },
       "sourceName": "Crimson Heart",
+      "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Crimson"
+      ]
     },
     {
       "item": {
@@ -2059,12 +2515,15 @@
         "displayName": "The Undertaker"
       },
       "sourceName": "Crimson Heart",
+      "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Crimson"
+      ]
     },
     {
       "item": {
@@ -2073,6 +2532,7 @@
         "displayName": "Thorns Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -2087,6 +2547,7 @@
         "displayName": "Storm Spear"
       },
       "sourceName": "Sandstone Chest",
+      "sourceReference": "Terraria/SandstoneChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -2101,6 +2562,7 @@
         "displayName": "Thunder Zapper"
       },
       "sourceName": "Sandstone Chest",
+      "sourceReference": "Terraria/SandstoneChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -2115,6 +2577,7 @@
         "displayName": "Titan Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -2129,6 +2592,7 @@
         "displayName": "Dangersense Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -2143,6 +2607,7 @@
         "displayName": "Trident"
       },
       "sourceName": "Water Chest",
+      "sourceReference": "Terraria/WaterChest",
       "sourceItem": {
         "mod": "Terraria",
         "item": "WaterChest",
@@ -2161,6 +2626,7 @@
         "displayName": "Tungsten Bullet"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 10,
@@ -2175,6 +2641,7 @@
         "displayName": "Unholy Arrow"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 10,
@@ -2189,6 +2656,7 @@
         "displayName": "Valor"
       },
       "sourceName": "Dungeon Gold Chest",
+      "sourceReference": "Terraria/DungeonGoldChest",
       "sourceItem": null,
       "dropRate": 0.14285715,
       "stackMin": 1,
@@ -2203,6 +2671,7 @@
         "displayName": "Vampire Knives"
       },
       "sourceName": "Crimson Biome Chest",
+      "sourceReference": "Terraria/CrimsonBiomeChest",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -2217,12 +2686,15 @@
         "displayName": "Vilethorn"
       },
       "sourceName": "Shadow Orb",
+      "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Corruption"
+      ]
     },
     {
       "item": {
@@ -2231,6 +2703,7 @@
         "displayName": "Wand of Sparking"
       },
       "sourceName": "Surface Wooden Chest",
+      "sourceReference": "Terraria/SurfaceWoodenChest",
       "sourceItem": null,
       "dropRate": 0.125,
       "stackMin": 1,
@@ -2244,13 +2717,16 @@
         "item": "WaterBolt",
         "displayName": "Water Bolt"
       },
-      "sourceName": "Books",
+      "sourceName": "Dungeon books",
+      "sourceReference": "Terraria/Books",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated as a special blue book on shelves in the Dungeon"
+      ]
     },
     {
       "item": {
@@ -2259,6 +2735,7 @@
         "displayName": "Water Walking Potion"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -2273,6 +2750,7 @@
         "displayName": "Wooden Arrow"
       },
       "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 10,
@@ -2287,6 +2765,7 @@
         "displayName": "Wooden Boomerang"
       },
       "sourceName": "Surface Wooden Chest",
+      "sourceReference": "Terraria/SurfaceWoodenChest",
       "sourceItem": null,
       "dropRate": 0.125,
       "stackMin": 1,
@@ -2297,16 +2776,36 @@
     {
       "item": {
         "mod": "ThoriumMod",
+        "item": "AloeLeaf",
+        "displayName": "Aloe Leaf"
+      },
+      "sourceName": "Aloe jungle plant",
+      "sourceReference": "Terraria/PlantDetritus",
+      "sourceItem": null,
+      "dropRate": 0.35,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": true,
+      "conditions": [
+        "Break the aloe-shaped Plant Detritus found in the Jungle"
+      ]
+    },
+    {
+      "item": {
+        "mod": "ThoriumMod",
         "item": "FanLetter",
         "displayName": "Fan Letter"
       },
       "sourceName": "Crimson Heart",
+      "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Crimson"
+      ]
     },
     {
       "item": {
@@ -2315,12 +2814,15 @@
         "displayName": "Fan Letter"
       },
       "sourceName": "Shadow Orb",
+      "sourceReference": "Terraria/ShadowOrbs",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Corruption"
+      ]
     },
     {
       "item": {
@@ -2329,6 +2831,7 @@
         "displayName": "Fishbone"
       },
       "sourceName": "Aquatic Depths Biome Chest",
+      "sourceReference": "ThoriumMod/AquaticDepthsBiomeChest",
       "sourceItem": {
         "mod": "ThoriumMod",
         "item": "AquaticDepthsBiomeChest",
@@ -2346,13 +2849,16 @@
         "item": "LivingWoodSap",
         "displayName": "Living Wood Sap"
       },
-      "sourceName": "Living Leaf Bush Rubblemaker",
+      "sourceName": "Living Leaf Bush",
+      "sourceReference": "ThoriumMod/LivingLeafBushRubblemaker",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Rarely grows naturally on surface grass away from the edges of the world"
+      ]
     },
     {
       "item": {
@@ -2360,13 +2866,17 @@
         "item": "ManaBerry",
         "displayName": "Mana Berry"
       },
-      "sourceName": "Mana Berry",
+      "sourceName": "Mana Berry plant",
+      "sourceReference": "ThoriumMod/ManaBerry",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Hardmode",
+        "Rarely grows beneath Hallowed Grass"
+      ]
     },
     {
       "item": {
@@ -2375,6 +2885,7 @@
         "displayName": "Pharaoh's Slab"
       },
       "sourceName": "Desert Biome Chest",
+      "sourceReference": "Terraria/DesertBiomeChest",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
@@ -2389,6 +2900,7 @@
         "displayName": "Phoenix Staff"
       },
       "sourceName": "Underworld Biome Chest",
+      "sourceReference": "ThoriumMod/UnderworldBiomeChest",
       "sourceItem": {
         "mod": "ThoriumMod",
         "item": "UnderworldBiomeChest",
@@ -2406,41 +2918,16 @@
         "item": "WaterChestnut",
         "displayName": "Water Chestnut"
       },
-      "sourceName": "Marine Glow Grass1",
+      "sourceName": "Aquatic Depths vegetation",
+      "sourceReference": "ThoriumMod/AquaticDepthsVegetation",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
-    },
-    {
-      "item": {
-        "mod": "ThoriumMod",
-        "item": "WaterChestnut",
-        "displayName": "Water Chestnut"
-      },
-      "sourceName": "Marine Glow Grass2",
-      "sourceItem": null,
-      "dropRate": 1,
-      "stackMin": 1,
-      "stackMax": 1,
-      "showDropRate": false,
-      "conditions": []
-    },
-    {
-      "item": {
-        "mod": "ThoriumMod",
-        "item": "WaterChestnut",
-        "displayName": "Water Chestnut"
-      },
-      "sourceName": "Moss Glow Vine1",
-      "sourceItem": null,
-      "dropRate": 1,
-      "stackMin": 1,
-      "stackMax": 1,
-      "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Break naturally generated glowing vegetation in the Aquatic Depths"
+      ]
     }
   ],
   "entries": [
@@ -6435,7 +6922,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "destroyer",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -14614,7 +15101,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -22129,7 +22616,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -24430,7 +24917,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -29347,7 +29834,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "world-evil",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -35702,7 +36189,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "world-evil",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -43982,7 +44469,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -48128,7 +48615,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -48231,7 +48718,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -49160,7 +49647,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -49393,7 +49880,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -50725,7 +51212,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -63450,7 +63937,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "wall-of-flesh",
+          "stageId": "destroyer",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -65552,7 +66039,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -68745,7 +69232,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -69803,7 +70290,7 @@
       "eventIcon": ""
     },
     {
-      "key": "new.thoriummod.musicplayerdamageresistance",
+      "key": "new.thoriummod.musicplayerdamagereduction",
       "category": "Accessory",
       "classes": [
         "bard"
@@ -69812,7 +70299,7 @@
         [
           {
             "mod": "ThoriumMod",
-            "item": "MusicPlayerDamageResistance",
+            "item": "MusicPlayerDamageReduction",
             "displayName": "Punk Track Player"
           }
         ]
@@ -70404,7 +70891,7 @@
       "eventIcon": ""
     },
     {
-      "key": "new.thoriummod.tuneplayerdamageresistance",
+      "key": "new.thoriummod.tuneplayerdamagereduction",
       "category": "Accessory",
       "classes": [
         "bard"
@@ -70413,7 +70900,7 @@
         [
           {
             "mod": "ThoriumMod",
-            "item": "TunePlayerDamageResistance",
+            "item": "TunePlayerDamageReduction",
             "displayName": "Rock Music Player"
           }
         ]
@@ -70978,7 +71465,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "world-evil",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -72080,7 +72567,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "start",
+          "stageId": "wall-of-flesh",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -73452,7 +73939,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "grand-thunder-bird",
+          "stageId": "world-evil",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -76291,456 +76778,6 @@
       "fishingSources": []
     },
     {
-      "key": "new.terraria.obsidianskinpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "ObsidianSkinPotion",
-            "displayName": "Obsidian Skin Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.spelunkerpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "SpelunkerPotion",
-            "displayName": "Spelunker Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.hunterpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "HunterPotion",
-            "displayName": "Hunter Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.gravitationpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "GravitationPotion",
-            "displayName": "Gravitation Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.miningpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "MiningPotion",
-            "displayName": "Mining Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.heartreachpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "HeartreachPotion",
-            "displayName": "Heartreach Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.calmingpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "CalmingPotion",
-            "displayName": "Calming Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.flipperpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "FlipperPotion",
-            "displayName": "Flipper Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.healingpotion",
-      "category": "Basic",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "HealingPotion",
-            "displayName": "Healing Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.manapotion",
-      "category": "Basic",
-      "classes": [
-        "magic"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "ManaPotion",
-            "displayName": "Mana Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.thoriummod.aquapotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "AquaPotion",
-            "displayName": "Aqua Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.waterwalkingpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "WaterWalkingPotion",
-            "displayName": "Water Walking Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.gillspotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "GillsPotion",
-            "displayName": "Gills Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.thoriummod.springwater",
-      "category": "Basic",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "SpringWater",
-            "displayName": "Spring Water"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.infernopotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "InfernoPotion",
-            "displayName": "Inferno Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.thoriummod.bloodpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "BloodPotion",
-            "displayName": "Blood Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.thoriummod.conflagrationpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "ConflagrationPotion",
-            "displayName": "Conflagration Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.ragepotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "RagePotion",
-            "displayName": "Rage Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.wrathpotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "WrathPotion",
-            "displayName": "Wrath Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
       "key": "new.terraria.catbast",
       "category": "Passive",
       "classes": [
@@ -77047,6 +77084,30 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.lifecrystal",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "LifeCrystal",
+            "displayName": "Life Crystal"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.honeyfin",
       "category": "Basic",
       "classes": [
@@ -77201,6 +77262,30 @@
       ]
     },
     {
+      "key": "new.terraria.obsidianskinpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "ObsidianSkinPotion",
+            "displayName": "Obsidian Skin Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.swiftnesspotion",
       "category": "Potion",
       "classes": [
@@ -77297,6 +77382,102 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.hunterpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "HunterPotion",
+            "displayName": "Hunter Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.gillspotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "GillsPotion",
+            "displayName": "Gills Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.miningpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "MiningPotion",
+            "displayName": "Mining Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.heartreachpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "HeartreachPotion",
+            "displayName": "Heartreach Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.trapsightpotion",
       "category": "Potion",
       "classes": [
@@ -77321,8 +77502,8 @@
       "fishingSources": []
     },
     {
-      "key": "new.terraria.lifecrystal",
-      "category": "Eternal",
+      "key": "new.terraria.spelunkerpotion",
+      "category": "Potion",
       "classes": [
         "melee",
         "ranged",
@@ -77337,8 +77518,122 @@
         [
           {
             "mod": "Terraria",
-            "item": "LifeCrystal",
-            "displayName": "Life Crystal"
+            "item": "SpelunkerPotion",
+            "displayName": "Spelunker Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.gravitationpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "GravitationPotion",
+            "displayName": "Gravitation Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.calmingpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "CalmingPotion",
+            "displayName": "Calming Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.flipperpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "FlipperPotion",
+            "displayName": "Flipper Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.healingpotion",
+      "category": "Basic",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "HealingPotion",
+            "displayName": "Healing Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.manapotion",
+      "category": "Basic",
+      "classes": [
+        "magic"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "ManaPotion",
+            "displayName": "Mana Potion"
           }
         ]
       ],
@@ -77363,6 +77658,78 @@
             "mod": "Terraria",
             "item": "ShuckedOyster",
             "displayName": "Shucked Oyster"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.infernopotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "InfernoPotion",
+            "displayName": "Inferno Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.thoriummod.bloodpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "BloodPotion",
+            "displayName": "Blood Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.thoriummod.conflagrationpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "ConflagrationPotion",
+            "displayName": "Conflagration Potion"
           }
         ]
       ],
@@ -78072,6 +78439,30 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.waterwalkingpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "WaterWalkingPotion",
+            "displayName": "Water Walking Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.archerypotion",
       "category": "Potion",
       "classes": [
@@ -78240,6 +78631,54 @@
             "mod": "Terraria",
             "item": "EndurancePotion",
             "displayName": "Endurance Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.ragepotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "RagePotion",
+            "displayName": "Rage Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.wrathpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "WrathPotion",
+            "displayName": "Wrath Potion"
           }
         ]
       ],
@@ -78780,30 +79219,6 @@
       "fishingSources": []
     },
     {
-      "key": "new.thoriummod.manaberry",
-      "category": "Basic",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "ManaBerry",
-            "displayName": "Mana Berry"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
       "key": "new.thoriummod.mangosteen",
       "category": "Food",
       "classes": [
@@ -78966,7 +79381,25 @@
       "fishingSources": []
     },
     {
-      "key": "new.thoriummod.warmongerpotion",
+      "key": "new.thoriummod.earwormpotion",
+      "category": "Potion",
+      "classes": [
+        "bard"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "EarwormPotion",
+            "displayName": "Earworm Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.thoriummod.aquapotion",
       "category": "Potion",
       "classes": [
         "melee",
@@ -78982,26 +79415,8 @@
         [
           {
             "mod": "ThoriumMod",
-            "item": "WarmongerPotion",
-            "displayName": "Warmonger Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.thoriummod.earwormpotion",
-      "category": "Potion",
-      "classes": [
-        "bard"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "ThoriumMod",
-            "item": "EarwormPotion",
-            "displayName": "Earworm Potion"
+            "item": "AquaPotion",
+            "displayName": "Aqua Potion"
           }
         ]
       ],
@@ -79044,6 +79459,30 @@
             "mod": "ThoriumMod",
             "item": "GlowingPotion",
             "displayName": "Glowing Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.thoriummod.springwater",
+      "category": "Basic",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "SpringWater",
+            "displayName": "Spring Water"
           }
         ]
       ],
@@ -79854,6 +80293,30 @@
       "fishingSources": []
     },
     {
+      "key": "new.thoriummod.warmongerpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "world-evil",
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "WarmongerPotion",
+            "displayName": "Warmonger Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.flaskofpoison",
       "category": "Flask",
       "classes": [
@@ -80391,6 +80854,30 @@
       "fishingSources": []
     },
     {
+      "key": "new.thoriummod.manaberry",
+      "category": "Basic",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "ThoriumMod",
+            "item": "ManaBerry",
+            "displayName": "Mana Berry"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.demonheart",
       "category": "Eternal",
       "classes": [
@@ -80718,6 +81205,30 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.lifefruit",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "bard",
+        "healer",
+        "thrower"
+      ],
+      "stageId": "plantera",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "LifeFruit",
+            "displayName": "Life Fruit"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.flaskofvenom",
       "category": "Flask",
       "classes": [
@@ -80750,30 +81261,6 @@
             "mod": "Terraria",
             "item": "FlaskofNanites",
             "displayName": "Flask of Nanites"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.lifefruit",
-      "category": "Eternal",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "bard",
-        "healer",
-        "thrower"
-      ],
-      "stageId": "plantera",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "LifeFruit",
-            "displayName": "Life Fruit"
           }
         ]
       ],

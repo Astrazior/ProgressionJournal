@@ -14,20 +14,9 @@
       "reason": "The official mod build defines the Arcane Armor Fabricator as a naturally available pre-boss crafting station."
     },
     {
-      "id": "soul-forge-after-mechanical-bosses",
-      "kind": "station-stage",
-      "station": "ThoriumMod/SoulForgeNew",
-      "stageId": "skeletron-prime",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Soul_Forge",
-      "sourceVersion": "Thorium Mod 1.7.2.5",
-      "checkedAt": "2026-06-14",
-      "reason": "Soul Forge recipes require Hallowed Bars and all three mechanical-boss souls, so the station becomes available after all mechanical bosses."
-    },
-    {
       "id": "borean-strider-loot-forms",
       "kind": "source-stage",
       "sources": [
-        "ThoriumMod/BoreanStrider",
         "ThoriumMod/BoreanStriderPopped",
         "ThoriumMod/BoreanStriderTreasureBag"
       ],
@@ -41,7 +30,6 @@
       "id": "forgotten-one-loot-forms",
       "kind": "source-stage",
       "sources": [
-        "ThoriumMod/ForgottenOne",
         "ThoriumMod/ForgottenOneCracked",
         "ThoriumMod/ForgottenOneReleased",
         "ThoriumMod/ForgottenOneTreasureBag"
@@ -59,8 +47,6 @@
         "Terraria/Bunny",
         "Terraria/BunnySlimed",
         "Terraria/BunnyXmas",
-        "Terraria/CorruptBunny",
-        "Terraria/CrimsonBunny",
         "Terraria/PartyBunny",
         "Terraria/GoldBunny",
         "Terraria/GemBunnyAmber",
@@ -70,7 +56,6 @@
         "Terraria/GemBunnyRuby",
         "Terraria/GemBunnySapphire",
         "Terraria/GemBunnyTopaz",
-        "Terraria/GiantBat",
         "Terraria/GiantShelly",
         "Terraria/GiantShelly2",
         "Terraria/Crawdad",
@@ -86,20 +71,8 @@
         "Terraria/Salamander9",
         "Terraria/WallCreeper",
         "Terraria/WallCreeperWall",
-        "Terraria/DesertScorpionWalk",
-        "Terraria/DesertScorpionWall",
         "Terraria/Demon",
         "Terraria/VoodooDemon",
-        "Terraria/IronCrate",
-        "Terraria/JungleFishingCrate",
-        "Terraria/CorruptFishingCrate",
-        "Terraria/CrimsonFishingCrate",
-        "ThoriumMod/AquaticDepthsCrate",
-        "ThoriumMod/ScarletCrate",
-        "ThoriumMod/SinisterCrate",
-        "ThoriumMod/StrangeCrate",
-        "ThoriumMod/WondrousCrate",
-        "ThoriumMod/AbyssalCrate",
         "ThoriumMod/BabySpider",
         "ThoriumMod/BabySpiderWall",
         "ThoriumMod/Blowfish",
@@ -111,8 +84,6 @@
         "ThoriumMod/Octopus",
         "ThoriumMod/UnderworldPot1",
         "ThoriumMod/UnderworldPot2",
-        "ThoriumMod/VampireSquid",
-        "ThoriumMod/VoltEelHead",
         "ThoriumMod/WindElemental"
       ],
       "stageId": "start",
@@ -125,8 +96,6 @@
       "id": "post-skeletron-dungeon-and-lockbox-sources",
       "kind": "source-stage",
       "sources": [
-        "Terraria/LockBox",
-        "Terraria/ObsidianLockbox",
         "ThoriumMod/Illusionist"
       ],
       "stageId": "skeletron",
@@ -178,14 +147,7 @@
       "reason": "These enemies, mimics, and crate variants require Hardmode but no later boss flag.",
       "sources": [
         "Terraria/GoblinSummoner",
-        "Terraria/IceMimic",
         "Terraria/Mimic",
-        "Terraria/RedDevil",
-        "Terraria/VampireBat",
-        "Terraria/IronCrateHard",
-        "Terraria/JungleFishingCrateHard",
-        "Terraria/CorruptFishingCrateHard",
-        "Terraria/CrimsonFishingCrateHard",
         "ThoriumMod/AstroBeetle",
         "ThoriumMod/ChilledSpitter",
         "ThoriumMod/Freezer",
@@ -222,19 +184,8 @@
         "Terraria/SkeletonCommando",
         "Terraria/SkeletonSniper",
         "Terraria/TacticalSkeleton",
-        "ThoriumMod/BoneFlayer",
-        "ThoriumMod/Kraken"
+        "ThoriumMod/BoneFlayer"
       ]
-    },
-    {
-      "id": "thorium-pharaohs-slab-vanilla-desert-biome-chest-source",
-      "kind": "source-stage",
-      "source": "Terraria/DesertBiomeChest",
-      "stageId": "plantera",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/1.7.2.5",
-      "sourceVersion": "Thorium Mod 1.7.2.5",
-      "checkedAt": "2026-06-21",
-      "reason": "Thorium 1.7.2.5 removed the Thorium Desert Chest and Desert Key and moved Pharaoh's Slab to the vanilla Desert Chest alongside Desert Tiger Staff, so the vanilla dungeon Desert biome chest remains the authoritative source path."
     },
     {
       "id": "hardmode-frost-legion-and-blizzard-sources",
@@ -345,10 +296,7 @@
       "id": "vanilla-shop-npc-arrival-stages",
       "kind": "source-stage",
       "sources": [
-        "Terraria/Merchant",
-        "Terraria/SkeletonMerchant",
-        "Terraria/Stylist",
-        "Terraria/PartyGirl"
+        "Terraria/SkeletonMerchant"
       ],
       "stageId": "start",
       "sourceUrl": "https://terraria.wiki.gg/wiki/NPCs",
@@ -357,33 +305,9 @@
       "reason": "These vanilla vendors have no boss requirement."
     },
     {
-      "id": "mechanic-and-clothier-shop-stage",
-      "kind": "source-stage",
-      "sources": [
-        "Terraria/Mechanic",
-        "Terraria/Clothier"
-      ],
-      "stageId": "skeletron",
-      "sourceUrl": "https://terraria.wiki.gg/wiki/NPCs",
-      "sourceVersion": "Terraria 1.4.4.9",
-      "checkedAt": "2026-06-14",
-      "reason": "The Mechanic is rescued in the Dungeon and the Clothier arrives after Skeletron."
-    },
-    {
-      "id": "witch-doctor-shop-stage",
-      "kind": "source-stage",
-      "source": "Terraria/WitchDoctor",
-      "stageId": "queen-bee",
-      "sourceUrl": "https://terraria.wiki.gg/wiki/Witch_Doctor",
-      "sourceVersion": "Terraria 1.4.4.9",
-      "checkedAt": "2026-06-14",
-      "reason": "The Witch Doctor arrives after Queen Bee."
-    },
-    {
       "id": "hardmode-shop-npc-stage",
       "kind": "source-stage",
       "sources": [
-        "Terraria/Wizard",
         "Terraria/Pirate"
       ],
       "stageId": "wall-of-flesh",
@@ -391,16 +315,6 @@
       "sourceVersion": "Terraria 1.4.4.9",
       "checkedAt": "2026-06-14",
       "reason": "These vendors require Hardmode."
-    },
-    {
-      "id": "cyborg-shop-stage",
-      "kind": "source-stage",
-      "source": "Terraria/Cyborg",
-      "stageId": "plantera",
-      "sourceUrl": "https://terraria.wiki.gg/wiki/Cyborg",
-      "sourceVersion": "Terraria 1.4.4.9",
-      "checkedAt": "2026-06-14",
-      "reason": "The Cyborg arrives after Plantera."
     },
     {
       "id": "configuration-gates-do-not-shift-progression",
@@ -427,11 +341,9 @@
         "ThoriumMod/Aquaite",
         "ThoriumMod/AquaiteBar",
         "ThoriumMod/Aquamarine",
-        "ThoriumMod/IcyShard",
         "ThoriumMod/LivingLeaf",
         "ThoriumMod/MarineKelp",
-        "ThoriumMod/Opal",
-        "ThoriumMod/Petal"
+        "ThoriumMod/Opal"
       ],
       "stageId": "start",
       "sourceUrl": "https://thoriummod.wiki.gg/wiki/Materials",
@@ -443,7 +355,6 @@
       "id": "blood-moon-and-early-event-materials",
       "kind": "item-stage",
       "items": [
-        "ThoriumMod/Blood",
         "ThoriumMod/PharaohsBreath",
         "ThoriumMod/PurifiedShards",
         "ThoriumMod/UnholyShards"
@@ -453,18 +364,6 @@
       "sourceVersion": "Thorium Mod 1.7.2.5",
       "checkedAt": "2026-06-14",
       "reason": "The official drop rules obtain these materials during the early Blood Moon or from ordinary early Desert enemies; the profile begins those event drops at Eye of Cthulhu."
-    },
-    {
-      "id": "hardmode-hallowed-materials",
-      "kind": "item-stage",
-      "items": [
-        "ThoriumMod/HallowedCharm"
-      ],
-      "stageId": "wall-of-flesh",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Hallowed_Charms",
-      "sourceVersion": "Thorium Mod 1.7.2.5",
-      "checkedAt": "2026-06-14",
-      "reason": "Hallowed Charms are crafted from Pixie Dust and Souls of Light, making them available at the start of Hardmode."
     },
     {
       "id": "post-plantera-illumite-and-paladin-materials",
@@ -486,13 +385,11 @@
       "items": [
         "ThoriumMod/AloeLeaf",
         "ThoriumMod/Aril",
-        "ThoriumMod/BrainCoral",
         "ThoriumMod/Cranberry",
         "ThoriumMod/EnchantedStaff",
         "ThoriumMod/FamilyHeirloom",
         "ThoriumMod/Fig",
         "ThoriumMod/HeartRateMonitor",
-        "ThoriumMod/Heartstriker",
         "ThoriumMod/Kumquat",
         "ThoriumMod/LivingWoodSap",
         "ThoriumMod/Lychee",
@@ -500,14 +397,9 @@
         "ThoriumMod/Persimmon",
         "ThoriumMod/Raspberry",
         "ThoriumMod/RingofUnity",
-        "ThoriumMod/RivetingTadpole",
-        "ThoriumMod/RottenCod",
         "ThoriumMod/SeedofHope",
         "ThoriumMod/Soursop",
-        "ThoriumMod/SpinyShell",
-        "ThoriumMod/SpittingFish",
         "ThoriumMod/Tamarind",
-        "ThoriumMod/ThoriumBar",
         "ThoriumMod/WaterChestnut",
         "ThoriumMod/Webgun"
       ],
@@ -565,15 +457,8 @@
       "kind": "item-stage",
       "items": [
         "ThoriumMod/ArcanePotion",
-        "ThoriumMod/ArtilleryPotion",
-        "ThoriumMod/BouncingFlamePotion",
         "ThoriumMod/DewCollector",
-        "ThoriumMod/OceanRetaliation",
-        "ThoriumMod/PrehistoricArachnid",
-        "ThoriumMod/SpikedBracer",
-        "ThoriumMod/TalonArrow",
-        "ThoriumMod/Ukulele",
-        "ThoriumMod/WarmongerPotion"
+        "ThoriumMod/PrehistoricArachnid"
       ],
       "stageId": "start",
       "sourceUrl": "https://thoriummod.wiki.gg/wiki/Recipes",
@@ -585,7 +470,6 @@
       "id": "post-skeletron-custom-recipes",
       "kind": "item-stage",
       "items": [
-        "ThoriumMod/Purify",
         "ThoriumMod/SoulGuard",
         "ThoriumMod/TurnUndead"
       ],
@@ -596,27 +480,12 @@
       "reason": "These recipes require Dungeon books, Valor, Grave Goods, Ancient Aegis, or equivalent post-Skeletron ingredients."
     },
     {
-      "id": "queen-bee-imbuing-station-recipes",
-      "kind": "item-stage",
-      "items": [
-        "ThoriumMod/SporeCoatingItem"
-      ],
-      "stageId": "queen-bee",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Spore_Coating",
-      "sourceVersion": "Thorium Mod 1.7.2.5",
-      "checkedAt": "2026-06-14",
-      "reason": "Spore Coating requires the Imbuing Station, which becomes available from the Witch Doctor after Queen Bee."
-    },
-    {
       "id": "early-hardmode-custom-recipes",
       "kind": "item-stage",
       "items": [
         "ThoriumMod/CrystalScorpion",
-        "ThoriumMod/DefenderWand",
         "ThoriumMod/FearMonger",
-        "ThoriumMod/HolyPotion",
-        "ThoriumMod/LustrousBaton",
-        "ThoriumMod/WindChimes"
+        "ThoriumMod/LustrousBaton"
       ],
       "stageId": "wall-of-flesh",
       "sourceUrl": "https://thoriummod.wiki.gg/wiki/Recipes",
@@ -625,60 +494,10 @@
       "reason": "These recipes require a Hardmode anvil, Crystal Shards, Souls, hardmode enemy drops, or equivalent early-Hardmode ingredients."
     },
     {
-      "id": "star-scouter-music-player",
-      "kind": "item-stage",
-      "items": [
-        "ThoriumMod/MusicPlayerMovementSpeed"
-      ],
-      "stageId": "star-scouter",
-      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
-      "sourceVersion": "Thorium Mod 1.7.2.5, Workshop build 2025.8.3.1",
-      "checkedAt": "2026-06-14",
-      "reason": "The official shop code sells the inactive music player after Star Scouter, which is the key ingredient for this variant."
-    },
-    {
-      "id": "all-mechanical-bosses-custom-recipes",
-      "kind": "item-stage",
-      "items": [
-        "ThoriumMod/TunePlayerMovementSpeed"
-      ],
-      "stageId": "skeletron-prime",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Recipes",
-      "sourceVersion": "Thorium Mod 1.7.2.5",
-      "checkedAt": "2026-06-14",
-      "reason": "The recipe requires Hallowed Bars and Cogs, so it is available after all mechanical bosses in this profile order."
-    },
-    {
-      "id": "post-plantera-custom-recipes",
-      "kind": "item-stage",
-      "items": [
-        "ThoriumMod/ShroomachineGun",
-        "ThoriumMod/Spores"
-      ],
-      "stageId": "plantera",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Recipes",
-      "sourceVersion": "Thorium Mod 1.7.2.5",
-      "checkedAt": "2026-06-14",
-      "reason": "Both recipes require Shroomite Bars, which are post-Plantera."
-    },
-    {
-      "id": "moon-lord-terrarium-defender",
-      "kind": "item-stage",
-      "items": [
-        "ThoriumMod/TerrariumDefender"
-      ],
-      "stageId": "moon-lord",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Terrarium_Defender",
-      "sourceVersion": "Thorium Mod 1.7.2.5",
-      "checkedAt": "2026-06-14",
-      "reason": "Terrarium Defender requires Terrarium Cores and the Lunar Crafting Station, placing it after Moon Lord."
-    },
-    {
       "id": "unexported-direct-source-stages",
       "kind": "source-stage",
       "sources": [
-        "Terraria/Nurse",
-        "ThoriumMod/CrownofThorns"
+        "Terraria/Nurse"
       ],
       "stageId": "start",
       "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416",
@@ -981,98 +800,16 @@
       "reason": "Technique Scrolls are Thrower class combat tools used for offensive, defensive, or movement techniques. In the progression profile they should appear as Thrower weapon/technique options rather than being excluded as ordinary non-combat tools."
     },
     {
-      "id": "technique-hidden-blade-king-slime",
-      "kind": "item-stage",
-      "item": "ThoriumMod/TechniqueHiddenBlade",
-      "stageId": "king-slime",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique%3A_Hidden_Blade",
-      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-      "checkedAt": "2026-06-16",
-      "reason": "The official wiki identifies Technique: Hidden Blade as a Technique Scroll dropped by King Slime."
-    },
-    {
       "id": "technique-scrolls-grand-thunder-bird-tier",
       "kind": "item-stage",
       "items": [
-        "ThoriumMod/TechniqueDecoy",
-        "ThoriumMod/TechniqueSprint",
-        "ThoriumMod/TechniqueSmokeBomb",
-        "ThoriumMod/TechniquePaperExplosive"
+        "ThoriumMod/TechniqueDecoy"
       ],
       "stageId": "grand-thunder-bird",
       "sourceUrl": "https://thoriummod.wiki.gg/wiki/Blank_Technique_Scroll",
       "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
       "checkedAt": "2026-06-16",
       "reason": "These Technique Scrolls are craftable from Blank Technique Scrolls and early ingredients. Blank Technique Scroll is sold by the Desert Acolyte, whose arrival is gated behind The Grand Thunder Bird in this profile. Smoke Bomb also has a later world-evil travel-shop source, but the craftable route is earlier."
-    },
-    {
-      "id": "technique-meteor-stomp-world-evil",
-      "kind": "item-stage",
-      "item": "ThoriumMod/TechniqueMeteorStomp",
-      "stageId": "world-evil",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Blank_Technique_Scroll",
-      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-      "checkedAt": "2026-06-16",
-      "reason": "Technique: Meteor Stomp is crafted from Meteorite Bars and a Blank Technique Scroll. Meteorite availability follows the world-evil boss in current vanilla progression, which is later than the Blank Technique Scroll vendor gate."
-    },
-    {
-      "id": "technique-soul-pulse-skeletron",
-      "kind": "item-stage",
-      "item": "ThoriumMod/TechniqueSoulPulse",
-      "stageId": "skeletron",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique%3A_Soul_Pulse",
-      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-      "checkedAt": "2026-06-16",
-      "reason": "Technique: Soul Pulse is crafted from Spirit Droplets and a Blank Technique Scroll. Spirit Droplets drop from Cursed Skulls and related Dungeon sources, placing it after Skeletron."
-    },
-    {
-      "id": "technique-early-hardmode-scrolls",
-      "kind": "item-stage",
-      "items": [
-        "ThoriumMod/TechniqueBlindingDash",
-        "ThoriumMod/TechniqueBloodLotus"
-      ],
-      "stageId": "wall-of-flesh",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique_Scrolls",
-      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-      "checkedAt": "2026-06-16",
-      "reason": "These are Hardmode Technique Scrolls available from early-Hardmode ingredients or Hardmode Blood Moon sources, so they open at the Wall of Flesh stage."
-    },
-    {
-      "id": "technique-coznix-ore-scrolls",
-      "kind": "item-stage",
-      "items": [
-        "ThoriumMod/TechniqueStonePalm",
-        "ThoriumMod/TechniqueGravityWell"
-      ],
-      "stageId": "coznix",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Lodestone_Chunk",
-      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-      "checkedAt": "2026-06-16",
-      "reason": "Technique: Stone Palm and Technique: Gravity Well require Lodestone/Valadium ingots. Lodestone and Valadium chunks generate after Coznix, the Fallen Beholder."
-    },
-    {
-      "id": "technique-post-plantera-dungeon-scrolls",
-      "kind": "item-stage",
-      "items": [
-        "ThoriumMod/TechniqueShadowDance",
-        "ThoriumMod/TechniqueShadowClone"
-      ],
-      "stageId": "plantera",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Dark_Matter",
-      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-      "checkedAt": "2026-06-16",
-      "reason": "Technique: Shadow Dance uses Dark Matter, and Technique: Shadow Clone drops from Bone Lee; both are post-Plantera Dungeon sources."
-    },
-    {
-      "id": "technique-last-stand-celestial-towers",
-      "kind": "item-stage",
-      "item": "ThoriumMod/TechniqueLastStand",
-      "stageId": "lunatic-cultist",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/White_Dwarf_Fragment",
-      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-      "checkedAt": "2026-06-16",
-      "reason": "Technique: Last Stand requires White Dwarf Fragments, which drop from the Celestial Towers after Lunatic Cultist."
     },
     {
       "id": "mjolnir-true-damage-shared-weapon",
@@ -1164,94 +901,6 @@
       "reason": "These placeable furniture items grant direct class combat buffs and should be represented as combat buffs rather than excluded as ordinary furniture."
     },
     {
-      "id": "altar-healer-buff-stage",
-      "kind": "item-stage",
-      "item": "ThoriumMod/Altar",
-      "stageId": "buried-champion",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Altar",
-      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-      "checkedAt": "2026-06-16",
-      "reason": "Altar grants the Spiritual Connection Healer buff and is sold by the Spiritualist; this profile gates the Spiritualist after Buried Champion."
-    },
-    {
-      "id": "wall-of-flesh-class-buff-furniture-stages",
-      "kind": "item-stage",
-      "items": [
-        "ThoriumMod/ConductorsStand",
-        "ThoriumMod/NinjaRack"
-      ],
-      "stageId": "wall-of-flesh",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Conductor%27s_Stand",
-      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-      "checkedAt": "2026-06-16",
-      "reason": "Conductor's Stand is sold after Wall of Flesh and grants a Bard empowerment buff; Ninja Rack is sold after Wall of Flesh and grants Thrower velocity, speed and critical chance bonuses."
-    },
-    {
-      "id": "technique-cobras-bite-all-mechs",
-      "kind": "item-stage",
-      "item": "ThoriumMod/TechniqueCobraBite",
-      "stageId": "skeletron-prime",
-      "sourceUrl": "https://thoriummod.wiki.gg/wiki/Technique%3A_Cobra%27s_Bite",
-      "sourceVersion": "Thorium Mod 1.7.2.6 / wiki checked 2026-06-16",
-      "checkedAt": "2026-06-16",
-      "reason": "Technique: Cobra's Bite is crafted from Chlorophyte Bars and a Blank Technique Scroll. In vanilla progression Chlorophyte gear requires the post-mechanical-boss pickaxe tier, represented here by the final mechanical boss stage."
-    },
-    {
-      "id": "vanilla-start-worldgen-container-sources",
-      "kind": "source-stage",
-      "stageId": "start",
-      "sources": [
-        "Terraria/SurfaceWoodenChest",
-        "Terraria/UndergroundWoodenChest",
-        "Terraria/UndergroundGoldChest",
-        "Terraria/IceChest",
-        "Terraria/IvyChest",
-        "Terraria/WaterChest",
-        "Terraria/SkywareChest",
-        "Terraria/SandstoneChest",
-        "Terraria/LivingWoodChest",
-        "Terraria/WebCoveredChest",
-        "Terraria/PyramidChest",
-        "Terraria/EnchantedSwordShrine"
-      ],
-      "sourceUrl": "https://terraria.wiki.gg/wiki/Chests",
-      "sourceVersion": "Terraria 1.4.4.9",
-      "checkedAt": "2026-06-21",
-      "reason": "These virtual sources represent vanilla world-generated pre-Hardmode chests and shrine loot exported by JournalContainerLootCatalog."
-    },
-    {
-      "id": "vanilla-post-skeletron-container-sources",
-      "kind": "source-stage",
-      "stageId": "skeletron",
-      "sources": [
-        "Terraria/DungeonGoldChest",
-        "Terraria/ShadowChest",
-        "Terraria/LockBox",
-        "Terraria/ObsidianLockbox"
-      ],
-      "sourceUrl": "https://terraria.wiki.gg/wiki/Dungeon",
-      "sourceVersion": "Terraria 1.4.4.9",
-      "checkedAt": "2026-06-21",
-      "reason": "Dungeon locked chests, lock boxes and Shadow Chest access are gated by Skeletron-era progression."
-    },
-    {
-      "id": "vanilla-post-plantera-biome-container-sources",
-      "kind": "source-stage",
-      "stageId": "plantera",
-      "sources": [
-        "Terraria/JungleBiomeChest",
-        "Terraria/CorruptionBiomeChest",
-        "Terraria/CrimsonBiomeChest",
-        "Terraria/HallowedBiomeChest",
-        "Terraria/FrozenBiomeChest",
-        "Terraria/DesertBiomeChest"
-      ],
-      "sourceUrl": "https://terraria.wiki.gg/wiki/Biome_Chests",
-      "sourceVersion": "Terraria 1.4.4.9",
-      "checkedAt": "2026-06-21",
-      "reason": "Biome chests require biome keys and are not openable until after Plantera."
-    },
-    {
       "id": "thorium-aquatic-depths-biome-chest-source",
       "kind": "source-stage",
       "source": "ThoriumMod/AquaticDepthsBiomeChest",
@@ -1278,7 +927,6 @@
       "sources": [
         "Terraria/Zombie",
         "Terraria/BaldZombie",
-        "Terraria/ZombieEskimo",
         "Terraria/PincushionZombie",
         "Terraria/SlimedZombie",
         "Terraria/SwampZombie",
@@ -1351,16 +999,6 @@
       "sourceVersion": "Thorium Mod 1.7.2.5",
       "checkedAt": "2026-06-21",
       "reason": "Scissor Stalker spawns during Solar Eclipse after all three mechanical bosses; this profile represents that gate at Skeletron Prime."
-    },
-    {
-      "id": "thorium-review-true-nights-edge-recipe",
-      "kind": "item-stage",
-      "item": "Terraria/TrueNightsEdge",
-      "stageId": "skeletron-prime",
-      "sourceUrl": "https://terraria.wiki.gg/wiki/True_Night%27s_Edge",
-      "sourceVersion": "Terraria 1.4.4.9",
-      "checkedAt": "2026-06-21",
-      "reason": "The exported Thorium recipe requires Night's Edge, Souls of Fright, Might and Sight, and a Mythril Anvil, placing it after all mechanical bosses in this profile."
     },
     {
       "id": "thorium-crystal-wave-ocean-crystal-source",
