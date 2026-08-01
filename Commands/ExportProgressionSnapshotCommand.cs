@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using ProgressionJournal.Data.Snapshots.Collectors;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
@@ -226,6 +227,11 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             CreateCondition,
             LogDebug));
         drops.AddRange(JournalSnapshotWorldContainerCollector.Collect(itemIds));
+        drops.AddRange(JournalSnapshotTileDropCollector.Collect(
+            itemIds,
+            GetItemReference,
+            GetTileReference,
+            LogDebug));
         var snapshot = new ProgressionSnapshot
         {
             GeneratedAtUtc = DateTime.UtcNow.ToString("O"),
@@ -1025,7 +1031,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
 public sealed class ProgressionSnapshot
 {
     public string Format { get; set; } = "ProgressionJournalSnapshot";
-    public int Version { get; set; } = 8;
+    public int Version { get; set; } = 9;
     public string GeneratedAtUtc { get; set; } = string.Empty;
     public string TargetMod { get; set; } = string.Empty;
     public string ProfileId { get; set; } = string.Empty;
@@ -1120,7 +1126,11 @@ public sealed record SnapshotDrop(
     float Rate,
     int StackMin,
     int StackMax,
-    List<SnapshotCondition> Conditions);
+    List<SnapshotCondition> Conditions,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    string SourceDisplayName = "",
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    bool HideDropRate = false);
 public sealed record SnapshotShop(
     string Npc,
     string Shop,

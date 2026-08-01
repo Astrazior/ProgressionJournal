@@ -43,10 +43,12 @@ public static class JournalProfileStorage
 
             var entries = ResolveEntries(document);
             var combatBuffEntries = ResolveCombatBuffEntries(document);
+            var worldGenSources = ResolveWorldGenSources(document);
             profile = new JournalProfile(
                 document,
                 entries,
                 combatBuffEntries,
+                worldGenSources,
                 HasVersionMismatch(document));
             return true;
         }
@@ -114,7 +116,7 @@ public static class JournalProfileStorage
                 .ToList()
         };
 
-        return new JournalProfile(document, entries, [], hasVersionMismatch: false);
+        return new JournalProfile(document, entries, [], new Dictionary<int, IReadOnlyList<JournalDropSource>>(), hasVersionMismatch: false);
     }
 
     private static bool Validate(
@@ -178,6 +180,19 @@ public static class JournalProfileStorage
 
         var classIds = document.Classes.Select(static value => value.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
         var stageIds = document.Stages.Select(static value => value.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        if (document.WorldGenSources.Any(source =>
+                string.IsNullOrWhiteSpace(source.Item.Mod)
+                || string.IsNullOrWhiteSpace(source.Item.Item)
+                || source.SourceName.IsEmpty
+                || source.StackMin <= 0
+                || source.StackMax < source.StackMin
+                || source.DropRate <= 0f
+                || source.Conditions.Any(static condition => condition.IsEmpty)))
+        {
+            error = "Profile contains invalid world generation source metadata.";
+            return false;
+        }
 
         foreach (var entry in document.Entries)
         {
@@ -281,6 +296,36 @@ public static class JournalProfileStorage
                     new JournalFishingSource(source.Conditions.Select(static condition => condition.Resolve())))));
 
         return result;
+    }
+
+    private static IReadOnlyDictionary<int, IReadOnlyList<JournalDropSource>> ResolveWorldGenSources(
+        JournalProfileDocument document)
+    {
+        return document.WorldGenSources
+            .Select(source => new
+            {
+                ItemId = TryResolveItem(source.Item),
+                Source = new JournalDropSource(
+                    source.SourceName.Resolve(),
+                    sourceNpcType: null,
+                    sourceItemId: source.SourceItem is null
+                        ? null
+                        : TryResolveItem(source.SourceItem) is var sourceItemId && sourceItemId > ItemID.None
+                            ? sourceItemId
+                            : null,
+                    source.DropRate,
+                    source.StackMin,
+                    source.StackMax,
+                    source.Conditions.Select(static condition => condition.Resolve()),
+                    source.ShowDropRate)
+            })
+            .Where(static value => value.ItemId > ItemID.None)
+            .GroupBy(static value => value.ItemId)
+            .ToDictionary(
+                static group => group.Key,
+                static group => (IReadOnlyList<JournalDropSource>)group
+                    .Select(static value => value.Source)
+                    .ToArray());
     }
 
     private static int TryResolveItem(JournalItemReferenceDocument reference)

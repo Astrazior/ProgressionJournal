@@ -249,6 +249,28 @@ try {
     quantityChange.acquisitionChanges[0].kind,
     "acquisition-metadata-changed");
 
+  const emptyDisplayNameDirectory = path.join(temporaryRoot, "empty-display-name");
+  const emptyDisplayNameAcquisitions = structuredClone(quantityBaselineAcquisitions);
+  emptyDisplayNameAcquisitions.drops[0].sourceDisplayName = "Generated source name";
+  writeState(emptyDisplayNameDirectory, { acquisitions: emptyDisplayNameAcquisitions });
+  const emptyDisplayNameChange = compareDirectories(
+    quantityBaselineDirectory,
+    emptyDisplayNameDirectory);
+  assert.equal(emptyDisplayNameChange.acquisitionChanges.length, 0);
+
+  const worldContainerDirectory = path.join(temporaryRoot, "world-container");
+  const legacyContainerAcquisitions = structuredClone(quantityBaselineAcquisitions);
+  legacyContainerAcquisitions.drops[0].sourceType = "container";
+  const worldContainerAcquisitions = structuredClone(legacyContainerAcquisitions);
+  worldContainerAcquisitions.drops[0].sourceType = "world-container";
+  worldContainerAcquisitions.drops[0].sourceDisplayName = "Generated Chest";
+  writeState(quantityBaselineDirectory, { acquisitions: legacyContainerAcquisitions });
+  writeState(worldContainerDirectory, { acquisitions: worldContainerAcquisitions });
+  const worldContainerChange = compareDirectories(
+    quantityBaselineDirectory,
+    worldContainerDirectory);
+  assert.equal(worldContainerChange.acquisitionChanges.length, 0);
+
   const shopMetadataDirectory = path.join(temporaryRoot, "shop-metadata");
   const shopMetadataAcquisitions = structuredClone(defaultAcquisitions());
   shopMetadataAcquisitions.shops[0] = {

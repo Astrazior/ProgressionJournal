@@ -3,8 +3,8 @@
   "version": 2,
   "targetMod": "FargowiltasSouls",
   "profileId": "builtin.fargosouls",
-  "generatedAtUtc": "2026-07-30T21:10:58.541Z",
-  "snapshotGeneratedAtUtc": "2026-07-30T20:58:28.7926863Z",
+  "generatedAtUtc": "2026-08-01T15:02:23.085Z",
+  "snapshotGeneratedAtUtc": "2026-08-01T14:21:10.3942618Z",
   "summary": {
     "snapshotItems": 6132,
     "contentItems": 677,
@@ -14,11 +14,11 @@
     "equipmentReferences": 1162,
     "buffReferences": 161,
     "profileSourceGaps": 0,
-    "excluded": 2971,
+    "excluded": 3001,
     "acquiredNonProfile": 127,
     "unresolvedAvailability": 0,
     "unavailableCombat": 0,
-    "noAcquisitionPath": 1711
+    "noAcquisitionPath": 1681
   },
   "items": [
     {
@@ -125,11 +125,15 @@
       "name": "Ancient Seal",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "start",
+      "via": "shop:Fargowiltas/Mutant",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "Fargowiltas/Anemometer",
@@ -569,11 +573,22 @@
       "name": "Zealot's Possession",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "lunatic-cultist",
+      "via": "shop:Fargowiltas/Mutant",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After the boss has been defeated",
+            "key": "Mods.Fargowiltas.Conditions.DownedTheBoss",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "Fargowiltas/CursedDartBox",
@@ -624,11 +639,22 @@
       "name": "Death Bringer Fairy",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Fargowiltas/Mutant",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After the boss has been defeated",
+            "key": "Mods.Fargowiltas.Conditions.DownedTheBoss",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "Fargowiltas/DeathFruit",
@@ -1768,11 +1794,22 @@
       "name": "Mechanical Amalgam",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skeletron-prime",
+      "via": "shop:Fargowiltas/Mutant",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After the boss has been defeated",
+            "key": "Mods.Fargowiltas.Conditions.DownedTheBoss",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "Fargowiltas/MechEye",
@@ -1880,9 +1917,13 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "start",
-      "via": "recipe:Terraria/IronBar",
+      "via": "shop:Fargowiltas/Mutant",
       "reason": "not combat equipment",
-      "evidence": null
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "Fargowiltas/MothLamp",
@@ -1999,11 +2040,22 @@
       "name": "Mutant Plushie",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "moon-lord",
+      "via": "shop:Fargowiltas/Mutant",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After the boss has been defeated",
+            "key": "Mods.Fargowiltas.Conditions.DownedTheBoss",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "Fargowiltas/MysticSlime",
@@ -2109,10 +2161,10 @@
       "name": "Overstuffed Larva",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Fargowiltas/Abeemination2+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2131,10 +2183,10 @@
       "name": "Brain Storm",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Fargowiltas/GoreySpine+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2142,10 +2194,10 @@
       "name": "Zealot's Madness",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "lunatic-cultist",
+      "via": "recipe:Fargowiltas/CultistSummon+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2164,10 +2216,10 @@
       "name": "Deer Amalgamation",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Fargowiltas/DeerThing2+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2175,10 +2227,10 @@
       "name": "Seismic Actuator",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Fargowiltas/MechWorm+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2197,10 +2249,10 @@
       "name": "Jar of Lacewings",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Fargowiltas/PrismaticPrimrose+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2208,21 +2260,32 @@
       "name": "Overloader",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "start",
+      "via": "shop:Fargowiltas/Mutant",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In Expert mode",
+            "key": "Conditions.InExpertMode",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "Fargowiltas/OverloadEye",
       "name": "Eyemalgamation",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Fargowiltas/SuspiciousEye+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2230,10 +2293,10 @@
       "name": "Can of Truffle Worms",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Fargowiltas/TruffleWorm2+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2241,10 +2304,10 @@
       "name": "Naughty Present Sack",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "recipe:Terraria/NaughtyPresent+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2252,10 +2315,10 @@
       "name": "Goblin War Banner",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/GoblinBattleStandard+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2263,10 +2326,10 @@
       "name": "Runic Power Cell",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "recipe:Fargowiltas/LihzahrdPowerCell2+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2285,10 +2348,10 @@
       "name": "Runic Inscription",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "lunatic-cultist",
+      "via": "recipe:Fargowiltas/CelestialSigil2+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2296,10 +2359,10 @@
       "name": "Pirate's Bounty",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/PirateMap+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2307,10 +2370,10 @@
       "name": "Heart of the Jungle",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron-prime",
+      "via": "recipe:Fargowiltas/PlanterasFruit+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2318,10 +2381,10 @@
       "name": "Primal Control Chip",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Fargowiltas/MechSkull+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2329,10 +2392,10 @@
       "name": "Overloaded Pumpkin Moon Medallion",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "recipe:Terraria/PumpkinMoonMedallion+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2340,10 +2403,10 @@
       "name": "Overloaded Crystal",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Fargowiltas/JellyCrystal+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2351,10 +2414,10 @@
       "name": "Skull Chain Necklace",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "recipe:Fargowiltas/SuspiciousSkull+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2362,10 +2425,10 @@
       "name": "Personal Royal Order",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Fargowiltas/SlimyCrown+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2373,10 +2436,10 @@
       "name": "Omnifocal Lens",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Fargowiltas/MechEye+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2384,10 +2447,10 @@
       "name": "Bundle of Dolls",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Fargowiltas/FleshyDoll+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2395,10 +2458,10 @@
       "name": "Worm Chicken",
       "mod": "Fargowiltas",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Fargowiltas/WormyFood+Fargowiltas/Overloader",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -3013,9 +3076,20 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "skeletron",
-      "via": "recipe:Terraria/ClothierVoodooDoll",
+      "via": "shop:Fargowiltas/Mutant",
       "reason": "not combat equipment",
-      "evidence": null
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After the boss has been defeated",
+            "key": "Mods.Fargowiltas.Conditions.DownedTheBoss",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "Fargowiltas/Tavernkeep",
@@ -4004,11 +4078,22 @@
       "name": "Championy Sigil",
       "mod": "FargowiltasSouls",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "cosmos-champion",
+      "via": "shop:Fargowiltas/Mutant",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After the boss has been defeated",
+            "key": "Mods.Fargowiltas.Conditions.DownedTheBoss",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "FargowiltasSouls/ChibiHat",
@@ -5402,7 +5487,7 @@
       "mod": "FargowiltasSouls",
       "contentItem": true,
       "status": "excluded",
-      "stage": "mutant",
+      "stage": "start",
       "via": "recipe:FargowiltasSouls/Masochist+Terraria/MusicBox",
       "reason": "not combat equipment",
       "evidence": null
@@ -5413,10 +5498,14 @@
       "mod": "FargowiltasSouls",
       "contentItem": true,
       "status": "excluded",
-      "stage": "mutant",
-      "via": "container:FargowiltasSouls/MutantBag",
+      "stage": "start",
+      "via": "shop:Fargowiltas/Mutant",
       "reason": "not combat equipment",
-      "evidence": null
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [],
+        "prerequisites": []
+      }
     },
     {
       "id": "FargowiltasSouls/MasochistSoul",
@@ -5643,11 +5732,22 @@
       "name": "Mutant's Curse",
       "mod": "FargowiltasSouls",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "mutant",
+      "via": "shop:Fargowiltas/Mutant",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After the boss has been defeated",
+            "key": "Mods.Fargowiltas.Conditions.DownedTheBoss",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "FargowiltasSouls/MutantsDiscountCard",
@@ -7897,7 +7997,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SurfaceWoodenChest",
+      "via": "world-container:Terraria/SurfaceWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -8843,7 +8943,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/SandstoneChest",
+      "via": "world-container:Terraria/SandstoneChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -9452,7 +9552,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IvyChest",
+      "via": "world-container:Terraria/IvyChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -9829,7 +9929,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/DungeonGoldChest",
+      "via": "world-container:Terraria/DungeonGoldChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -10602,7 +10702,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/LivingWoodChest",
+      "via": "world-container:Terraria/LivingWoodChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -11277,7 +11377,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/UndergroundWoodenChest",
+      "via": "world-container:Terraria/UndergroundWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -12497,7 +12597,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IceChest",
+      "via": "world-container:Terraria/IceChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -12857,7 +12957,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SurfaceWoodenChest",
+      "via": "world-container:Terraria/SurfaceWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -13555,7 +13655,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/DungeonGoldChest",
+      "via": "world-container:Terraria/DungeonGoldChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -14371,7 +14471,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IvyChest",
+      "via": "world-container:Terraria/IvyChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -15200,7 +15300,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/WaterChest",
+      "via": "world-container:Terraria/WaterChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -16643,7 +16743,7 @@
       "contentItem": false,
       "status": "buff",
       "stage": "start",
-      "via": "container:Terraria/SandstoneChest",
+      "via": "world-container:Terraria/SandstoneChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -16900,7 +17000,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SkywareChest",
+      "via": "world-container:Terraria/SkywareChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -17663,7 +17763,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SurfaceWoodenChest",
+      "via": "world-container:Terraria/SurfaceWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -17806,7 +17906,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/UndergroundWoodenChest",
+      "via": "world-container:Terraria/UndergroundWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -18109,7 +18209,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/DungeonGoldChest",
+      "via": "world-container:Terraria/DungeonGoldChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -19600,7 +19700,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SkywareChest",
+      "via": "world-container:Terraria/SkywareChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -21053,7 +21153,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/ShadowChest",
+      "via": "world-container:Terraria/ShadowChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -24999,7 +25099,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/EnchantedSwordShrine",
+      "via": "world-container:Terraria/EnchantedSwordShrine",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -26548,7 +26648,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IvyChest",
+      "via": "world-container:Terraria/IvyChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -26618,7 +26718,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/IvyChest",
+      "via": "world-container:Terraria/IvyChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -27209,7 +27309,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/ShadowChest",
+      "via": "world-container:Terraria/ShadowChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -27326,7 +27426,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/UndergroundWoodenChest",
+      "via": "world-container:Terraria/UndergroundWoodenChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -27770,7 +27870,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/WaterChest",
+      "via": "world-container:Terraria/WaterChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -27891,7 +27991,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/IvyChest",
+      "via": "world-container:Terraria/IvyChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -27968,7 +28068,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/ShadowChest",
+      "via": "world-container:Terraria/ShadowChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -28162,7 +28262,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IceChest",
+      "via": "world-container:Terraria/IceChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -28184,7 +28284,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/PyramidChest",
+      "via": "world-container:Terraria/PyramidChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -34648,7 +34748,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/DungeonGoldChest",
+      "via": "world-container:Terraria/DungeonGoldChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -35206,7 +35306,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/ShadowChest",
+      "via": "world-container:Terraria/ShadowChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -35278,7 +35378,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/UndergroundWoodenChest",
+      "via": "world-container:Terraria/UndergroundWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -36198,7 +36298,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IceChest",
+      "via": "world-container:Terraria/IceChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -36220,7 +36320,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IceChest",
+      "via": "world-container:Terraria/IceChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -36356,7 +36456,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/IceChest",
+      "via": "world-container:Terraria/IceChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -36426,7 +36526,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/IceChest",
+      "via": "world-container:Terraria/IceChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -39108,7 +39208,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/LivingWoodChest",
+      "via": "world-container:Terraria/LivingWoodChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -40698,7 +40798,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/LivingWoodChest",
+      "via": "world-container:Terraria/LivingWoodChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -41152,7 +41252,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SkywareChest",
+      "via": "world-container:Terraria/SkywareChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -41405,7 +41505,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/UndergroundWoodenChest",
+      "via": "world-container:Terraria/UndergroundWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -41471,7 +41571,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/SandstoneChest",
+      "via": "world-container:Terraria/SandstoneChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -41569,7 +41669,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/UndergroundWoodenChest",
+      "via": "world-container:Terraria/UndergroundWoodenChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -41580,7 +41680,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/DungeonGoldChest",
+      "via": "world-container:Terraria/DungeonGoldChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -44572,7 +44672,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/DungeonGoldChest",
+      "via": "world-container:Terraria/DungeonGoldChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -46029,7 +46129,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/SandstoneChest",
+      "via": "world-container:Terraria/SandstoneChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -50701,7 +50801,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "container:Terraria/JungleBiomeChest",
+      "via": "world-container:Terraria/JungleBiomeChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -53470,7 +53570,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/SurfaceWoodenChest",
+      "via": "world-container:Terraria/SurfaceWoodenChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -53591,7 +53691,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "container:Terraria/HallowedBiomeChest",
+      "via": "world-container:Terraria/HallowedBiomeChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -56155,7 +56255,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SandstoneChest",
+      "via": "world-container:Terraria/SandstoneChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -56601,7 +56701,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/PyramidChest",
+      "via": "world-container:Terraria/PyramidChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -57019,7 +57119,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "container:Terraria/CorruptionBiomeChest",
+      "via": "world-container:Terraria/CorruptionBiomeChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -58163,7 +58263,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SkywareChest",
+      "via": "world-container:Terraria/SkywareChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -58251,7 +58351,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/UndergroundWoodenChest",
+      "via": "world-container:Terraria/UndergroundWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -60142,7 +60242,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IceChest",
+      "via": "world-container:Terraria/IceChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -61087,7 +61187,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SurfaceWoodenChest",
+      "via": "world-container:Terraria/SurfaceWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -62503,7 +62603,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IvyChest",
+      "via": "world-container:Terraria/IvyChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -62514,7 +62614,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "container:Terraria/FrozenBiomeChest",
+      "via": "world-container:Terraria/FrozenBiomeChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -63082,7 +63182,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SkywareChest",
+      "via": "world-container:Terraria/SkywareChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -63928,7 +64028,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "container:Terraria/DesertBiomeChest",
+      "via": "world-container:Terraria/DesertBiomeChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -64302,7 +64402,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/ShadowChest",
+      "via": "world-container:Terraria/ShadowChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -65333,7 +65433,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/EnchantedSwordShrine",
+      "via": "world-container:Terraria/EnchantedSwordShrine",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -65878,7 +65978,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SandstoneChest",
+      "via": "world-container:Terraria/SandstoneChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -65889,7 +65989,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SandstoneChest",
+      "via": "world-container:Terraria/SandstoneChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -67502,7 +67602,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/WaterChest",
+      "via": "world-container:Terraria/WaterChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -68561,7 +68661,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/DungeonGoldChest",
+      "via": "world-container:Terraria/DungeonGoldChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -68594,7 +68694,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "container:Terraria/CrimsonBiomeChest",
+      "via": "world-container:Terraria/CrimsonBiomeChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -69724,7 +69824,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SurfaceWoodenChest",
+      "via": "world-container:Terraria/SurfaceWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -69959,7 +70059,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/WaterChest",
+      "via": "world-container:Terraria/WaterChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -70058,7 +70158,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/WebCoveredChest",
+      "via": "world-container:Terraria/WebCoveredChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -70986,7 +71086,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SurfaceWoodenChest",
+      "via": "world-container:Terraria/SurfaceWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },

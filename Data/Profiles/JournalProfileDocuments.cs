@@ -20,9 +20,31 @@ public sealed class JournalProfileDocument
 
     public List<JournalProfileStageDocument> Stages { get; set; } = [];
 
+    public List<JournalWorldGenSourceDocument> WorldGenSources { get; set; } = [];
+
     public List<JournalProfileEntryDocument> Entries { get; set; } = [];
 
     public List<JournalProfileCombatBuffDocument> CombatBuffs { get; set; } = [];
+}
+
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+public sealed class JournalWorldGenSourceDocument
+{
+    public JournalItemReferenceDocument Item { get; set; } = new();
+
+    public JournalLocalizedText SourceName { get; set; } = string.Empty;
+
+    public JournalItemReferenceDocument? SourceItem { get; set; }
+
+    public float DropRate { get; set; } = 1f;
+
+    public int StackMin { get; set; } = 1;
+
+    public int StackMax { get; set; } = 1;
+
+    public bool ShowDropRate { get; set; }
+
+    public List<JournalLocalizedText> Conditions { get; set; } = [];
 }
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]

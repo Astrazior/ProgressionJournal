@@ -3,10 +3,10 @@
   "version": 1,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-30T21:10:55.358Z",
+  "generatedAtUtc": "2026-08-01T15:02:19.894Z",
   "snapshot": {
-    "version": 8,
-    "generatedAtUtc": "2026-07-30T20:53:07.0498194Z",
+    "version": 9,
+    "generatedAtUtc": "2026-08-01T14:12:30.9322704Z",
     "targetMod": "CalamityMod",
     "mods": [
       {
@@ -17,7 +17,7 @@
     "accumulatedProbeEvidence": {
       "compatible": true,
       "npcAvailability": 0,
-      "shops": 0,
+      "shops": 1,
       "fishing": 0
     }
   },
@@ -1789,7 +1789,7 @@
     "errors": [],
     "warnings": [
       "67 recommendations precede proven availability and were suppressed",
-      "10 profile items have no acquisition source data",
+      "9 profile items have no acquisition source data",
       "152 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
@@ -6587,7 +6587,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.calamity",
-    "generatedAtUtc": "2026-07-30T21:10:36.137Z",
+    "generatedAtUtc": "2026-08-01T15:02:01.530Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -28760,6 +28760,11 @@
       },
       {
         "stage": "skeletron",
+        "id": "CalamityMod/AbyssTreasureChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
         "id": "Terraria/TreasureMagnet",
         "reason": "not combat equipment"
       },
@@ -38056,143 +38061,143 @@
       },
       "Terraria/Spear": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/Blowpipe": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/WoodenBoomerang": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/WandofSparking": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/Aglet": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/ClimbingClaws": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/BandofRegeneration": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/CloudinaBottle": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/HermesBoots": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/ShoeSpikes": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/Mace": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/LavaCharm": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundGoldChest"
+        "via": "world-container:Terraria/UndergroundGoldChest"
       },
       "Terraria/IceBlade": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/IceBoomerang": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/FlurryBoots": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/BlizzardinaBottle": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/SnowballCannon": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/Boomstick": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/FeralClaws": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/AnkletoftheWind": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/StaffofRegrowth": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/Trident": {
         "stage": "start",
-        "via": "container:Terraria/WaterChest"
+        "via": "world-container:Terraria/WaterChest"
       },
       "Terraria/BreathingReed": {
         "stage": "start",
-        "via": "container:Terraria/WaterChest"
+        "via": "world-container:Terraria/WaterChest"
       },
       "Terraria/Starfury": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/ShinyRedBalloon": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/LuckyHorseshoe": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/CelestialMagnet": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/CreativeWings": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/SandBoots": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/CatBast": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/BabyBirdStaff": {
         "stage": "start",
-        "via": "container:Terraria/LivingWoodChest"
+        "via": "world-container:Terraria/LivingWoodChest"
       },
       "Terraria/FlyingCarpet": {
         "stage": "start",
-        "via": "container:Terraria/PyramidChest"
+        "via": "world-container:Terraria/PyramidChest"
       },
       "Terraria/SandstorminaBottle": {
         "stage": "start",
-        "via": "container:Terraria/PyramidChest"
+        "via": "world-container:Terraria/PyramidChest"
       },
       "Terraria/EnchantedSword": {
         "stage": "start",
-        "via": "container:Terraria/EnchantedSwordShrine"
+        "via": "world-container:Terraria/EnchantedSwordShrine"
       },
       "Terraria/Terragrim": {
         "stage": "start",
-        "via": "container:Terraria/EnchantedSwordShrine"
+        "via": "world-container:Terraria/EnchantedSwordShrine"
       },
       "Terraria/RedRyder": {
         "stage": "start",
@@ -41122,83 +41127,83 @@
       },
       "CalamityMod/IronBoots": {
         "stage": "skeletron",
-        "via": "container:CalamityMod/AbyssTreasureChest"
+        "via": "world-container:CalamityMod/AbyssTreasureChest"
       },
       "CalamityMod/DepthCharm": {
         "stage": "skeletron",
-        "via": "container:CalamityMod/AbyssTreasureChest"
+        "via": "world-container:CalamityMod/AbyssTreasureChest"
       },
       "CalamityMod/AnechoicPlating": {
         "stage": "skeletron",
-        "via": "container:CalamityMod/AbyssTreasureChest"
+        "via": "world-container:CalamityMod/AbyssTreasureChest"
       },
       "CalamityMod/Archerfish": {
         "stage": "skeletron",
-        "via": "container:CalamityMod/AbyssTreasureChest"
+        "via": "world-container:CalamityMod/AbyssTreasureChest"
       },
       "CalamityMod/BallOFugu": {
         "stage": "skeletron",
-        "via": "container:CalamityMod/AbyssTreasureChest"
+        "via": "world-container:CalamityMod/AbyssTreasureChest"
       },
       "CalamityMod/HerringStaff": {
         "stage": "skeletron",
-        "via": "container:CalamityMod/AbyssTreasureChest"
+        "via": "world-container:CalamityMod/AbyssTreasureChest"
       },
       "CalamityMod/BlackAnurian": {
         "stage": "skeletron",
-        "via": "container:CalamityMod/AbyssTreasureChest"
+        "via": "world-container:CalamityMod/AbyssTreasureChest"
       },
       "CalamityMod/Lionfish": {
         "stage": "skeletron",
-        "via": "container:CalamityMod/AbyssTreasureChest"
+        "via": "world-container:CalamityMod/AbyssTreasureChest"
       },
       "Terraria/DarkLance": {
         "stage": "skeletron",
-        "via": "container:Terraria/ShadowChest"
+        "via": "world-container:Terraria/ShadowChest"
       },
       "Terraria/Sunfury": {
         "stage": "skeletron",
-        "via": "container:Terraria/ShadowChest"
+        "via": "world-container:Terraria/ShadowChest"
       },
       "Terraria/FlowerofFire": {
         "stage": "skeletron",
-        "via": "container:Terraria/ShadowChest"
+        "via": "world-container:Terraria/ShadowChest"
       },
       "Terraria/Flamelash": {
         "stage": "skeletron",
-        "via": "container:Terraria/ShadowChest"
+        "via": "world-container:Terraria/ShadowChest"
       },
       "Terraria/HellwingBow": {
         "stage": "skeletron",
-        "via": "container:Terraria/ShadowChest"
+        "via": "world-container:Terraria/ShadowChest"
       },
       "Terraria/Muramasa": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/CobaltShield": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/AquaScepter": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/BlueMoon": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/MagicMissile": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/Valor": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/Handgun": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/CombatWrench": {
         "stage": "skeletron",
@@ -44476,27 +44481,27 @@
       },
       "Terraria/PiranhaGun": {
         "stage": "plantera",
-        "via": "container:Terraria/JungleBiomeChest"
+        "via": "world-container:Terraria/JungleBiomeChest"
       },
       "Terraria/ScourgeoftheCorruptor": {
         "stage": "plantera",
-        "via": "container:Terraria/CorruptionBiomeChest"
+        "via": "world-container:Terraria/CorruptionBiomeChest"
       },
       "Terraria/VampireKnives": {
         "stage": "plantera",
-        "via": "container:Terraria/CrimsonBiomeChest"
+        "via": "world-container:Terraria/CrimsonBiomeChest"
       },
       "Terraria/RainbowGun": {
         "stage": "plantera",
-        "via": "container:Terraria/HallowedBiomeChest"
+        "via": "world-container:Terraria/HallowedBiomeChest"
       },
       "Terraria/StaffoftheFrostHydra": {
         "stage": "plantera",
-        "via": "container:Terraria/FrozenBiomeChest"
+        "via": "world-container:Terraria/FrozenBiomeChest"
       },
       "Terraria/StormTigerStaff": {
         "stage": "plantera",
-        "via": "container:Terraria/DesertBiomeChest"
+        "via": "world-container:Terraria/DesertBiomeChest"
       },
       "Terraria/PrincessWeapon": {
         "stage": "plantera",
@@ -45478,7 +45483,7 @@
       },
       "CalamityMod/HeavenfallenStardisk": {
         "stage": "astrum-aureus",
-        "via": "container:CalamityMod/AstralChest"
+        "via": "world-container:CalamityMod/AstralChest"
       },
       "CalamityMod/InterstellarStompers": {
         "stage": "astrum-aureus",
@@ -49442,59 +49447,59 @@
       },
       "Terraria/Radar": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/MagicMirror": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/FlareGun": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/IceSkates": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/IceMirror": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/FiberglassFishingPole": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/FlowerBoots": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/WaterWalkingBoots": {
         "stage": "start",
-        "via": "container:Terraria/WaterChest"
+        "via": "world-container:Terraria/WaterChest"
       },
       "Terraria/MagicConch": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/MysticCoilSnake": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/AncientChisel": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/LivingWoodWand": {
         "stage": "start",
-        "via": "container:Terraria/LivingWoodChest"
+        "via": "world-container:Terraria/LivingWoodChest"
       },
       "Terraria/LeafWand": {
         "stage": "start",
-        "via": "container:Terraria/LivingWoodChest"
+        "via": "world-container:Terraria/LivingWoodChest"
       },
       "Terraria/WebSlinger": {
         "stage": "start",
-        "via": "container:Terraria/WebCoveredChest"
+        "via": "world-container:Terraria/WebCoveredChest"
       },
       "Terraria/SnowGlobe": {
         "stage": "start",
@@ -58928,11 +58933,15 @@
       },
       "CalamityMod/StrangeOrb": {
         "stage": "skeletron",
-        "via": "container:CalamityMod/AbyssTreasureChest"
+        "via": "world-container:CalamityMod/AbyssTreasureChest"
       },
       "CalamityMod/TorrentialTear": {
         "stage": "skeletron",
-        "via": "container:CalamityMod/AbyssTreasureChest"
+        "via": "world-container:CalamityMod/AbyssTreasureChest"
+      },
+      "CalamityMod/AbyssTreasureChest": {
+        "stage": "skeletron",
+        "via": "tile:CalamityMod/AbyssTreasureChest"
       },
       "Terraria/TreasureMagnet": {
         "stage": "skeletron",
@@ -73031,14 +73040,6 @@
         "assignedVia": "manifest"
       },
       {
-        "item": "CalamityMod/LiliesOfFinality",
-        "displayName": "Lilies of Finality",
-        "stageId": "yharon",
-        "category": "Weapon",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      },
-      {
         "item": "CalamityMod/Lotus",
         "displayName": "Lotus",
         "stageId": "wall-of-flesh",
@@ -73079,7 +73080,7 @@
         "assignedVia": "manifest"
       }
     ],
-    "profileItemSourceGapCount": 10,
+    "profileItemSourceGapCount": 9,
     "manualAssignmentProblems": [],
     "officialSourceCompatibility": {
       "recommendations": {
@@ -73364,7 +73365,7 @@
             "value": "Terraria/Terragrim",
             "manualStageId": "start",
             "automaticStageId": "start",
-            "via": "container:Terraria/EnchantedSwordShrine"
+            "via": "world-container:Terraria/EnchantedSwordShrine"
           }
         ],
         "sourceStages": [

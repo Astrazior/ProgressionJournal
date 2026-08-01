@@ -13,7 +13,7 @@ internal static class JournalSnapshotWorldContainerCollector
             .Where(drop => TryResolveItemReference(drop.TargetItem, out var targetItemId)
                 && includedItems.Contains(targetItemId))
             .Select(drop => new SnapshotDrop(
-                "container",
+                "world-container",
                 drop.SourceItem,
                 drop.TargetItem,
                 drop.DropRate,
@@ -21,7 +21,8 @@ internal static class JournalSnapshotWorldContainerCollector
                 drop.StackMax,
                 drop.ConditionLocalizationKeys
                     .Select(static key => new SnapshotCondition(key, Language.GetTextValue(key)))
-                    .ToList()))
+                    .ToList(),
+                drop.SourceDisplayName))
             .ToList();
     }
 

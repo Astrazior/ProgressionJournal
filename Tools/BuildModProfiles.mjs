@@ -298,7 +298,7 @@ export function createSourceGapReport(snapshot, generationReport, support) {
     snapshotGeneratedAtUtc: snapshot.generatedAtUtc ?? "",
     runtimeCatalogIncluded,
     note: runtimeCatalogIncluded
-      ? "All runtime source catalogs exported by snapshot version 8 are included."
+      ? "All runtime source catalogs exported by snapshot version 8 or newer are included."
       : "Legacy snapshot: explicit vanilla sources are included, but rerun /pjexport for full runtime catalog coverage.",
     count: items.length,
     items
@@ -363,7 +363,7 @@ function validateSupport(support, directoryName) {
 
 function validateSnapshot(snapshot, support) {
   assert(snapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot.json format.");
-  assert([4, 5, 6, 7, 8].includes(snapshot.version),
+  assert([4, 5, 6, 7, 8, 9].includes(snapshot.version),
     `Unsupported snapshot.json version '${snapshot.version}'.`);
   const target = snapshot.targetMod ?? support.targetMod;
   assert(target === support.targetMod,
@@ -793,7 +793,7 @@ export function auditRuntimeSourceCoverage(
         errors.push(`drop references unknown NPC '${drop.source}'`);
       }
       addSource(drop.source, "drop");
-    } else if (drop.sourceType === "container"
+    } else if (["container", "world-container"].includes(drop.sourceType)
         && !itemIds.has(drop.source)
         && !declaredContainers.has(drop.source)) {
       errors.push(`container drop references unknown item '${drop.source}'`);

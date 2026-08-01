@@ -3,21 +3,21 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-07-30T21:11:10.499Z",
+  "generatedAtUtc": "2026-08-01T15:02:34.977Z",
   "snapshot": {
-    "version": 8,
-    "generatedAtUtc": "2026-07-30T20:47:15.2138986Z",
+    "version": 9,
+    "generatedAtUtc": "2026-08-01T14:26:16.2278166Z",
     "targetMod": "ThoriumMod",
     "mods": [
       {
         "name": "ThoriumMod",
-        "version": "1.7.2.6"
+        "version": "1.7.2.7"
       }
     ],
     "accumulatedProbeEvidence": {
-      "compatible": true,
+      "compatible": false,
       "npcAvailability": 0,
-      "shops": 1,
+      "shops": 0,
       "fishing": 0
     }
   },
@@ -1942,13 +1942,13 @@
     "errors": [],
     "warnings": [
       "69 recommendations precede proven availability and were suppressed",
-      "28 profile items have no acquisition source data",
+      "25 profile items have no acquisition source data",
       "135 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
-      "npcCount": 915,
-      "availabilityCount": 915,
-      "spawnCount": 865,
+      "npcCount": 916,
+      "availabilityCount": 916,
+      "spawnCount": 866,
       "observedSpawnCount": 336,
       "townCount": 50,
       "observedTownCount": 16,
@@ -6679,7 +6679,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.thorium",
-    "generatedAtUtc": "2026-07-30T21:11:02.444Z",
+    "generatedAtUtc": "2026-08-01T15:02:26.871Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -6712,6 +6712,17 @@
           "type": "Terraria.GameContent.ItemDropRules.SimpleItemDropRuleCondition",
           "description": "Drops: After defeating Eater of Worlds or Brain of Cthulhu",
           "key": "Bestiary_ItemDropConditions.SimpleCondition",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/Merchant",
+        "item": "Terraria/PinWheel",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "During daytime",
+          "key": "Conditions.TimeDay",
           "facts": []
         }
       },
@@ -11888,11 +11899,6 @@
       {
         "stage": "start",
         "id": "Terraria/Furnace",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/PinWheel",
         "reason": "not combat equipment"
       },
       {
@@ -19967,11 +19973,6 @@
       },
       {
         "stage": "eye-of-cthulhu",
-        "id": "ThoriumMod/GrimPedestal",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "eye-of-cthulhu",
         "id": "ThoriumMod/GuidetoOvercomingGrief",
         "reason": "not combat equipment"
       },
@@ -20088,6 +20089,11 @@
       {
         "stage": "eye-of-cthulhu",
         "id": "Terraria/JungleGrassSeeds",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "ThoriumMod/GrimPedestal",
         "reason": "not combat equipment"
       },
       {
@@ -22412,6 +22418,116 @@
       },
       {
         "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistBlock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistBookcase",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistCandelabra",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistCandle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistChair",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistChandelier",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistChest_Trapped",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistClock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistCup",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistDoor",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistDresser",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistLamp",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistLantern",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistPiano",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistPlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistSofa",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistTable",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistToilet",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistWorkbench",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
         "id": "ThoriumMod/BloodstainedBookcase",
         "reason": "not combat equipment"
       },
@@ -22533,6 +22649,16 @@
       {
         "stage": "skeletron",
         "id": "ThoriumMod/GelatinousMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistBathtub",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "ThoriumMod/AlchemistBed",
         "reason": "not combat equipment"
       },
       {
@@ -30542,131 +30668,131 @@
       },
       "Terraria/Spear": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/Blowpipe": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/WoodenBoomerang": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/WandofSparking": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/Aglet": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/ClimbingClaws": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/BandofRegeneration": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/CloudinaBottle": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/HermesBoots": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/ShoeSpikes": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/Mace": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/IceBlade": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/IceBoomerang": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/FlurryBoots": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/BlizzardinaBottle": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/SnowballCannon": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/Trident": {
         "stage": "start",
-        "via": "container:Terraria/WaterChest"
+        "via": "world-container:Terraria/WaterChest"
       },
       "Terraria/BreathingReed": {
         "stage": "start",
-        "via": "container:Terraria/WaterChest"
+        "via": "world-container:Terraria/WaterChest"
       },
       "Terraria/Starfury": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/ShinyRedBalloon": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/LuckyHorseshoe": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/CelestialMagnet": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/CreativeWings": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/ThunderSpear": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/ThunderStaff": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/SandBoots": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/CatBast": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/BabyBirdStaff": {
         "stage": "start",
-        "via": "container:Terraria/LivingWoodChest"
+        "via": "world-container:Terraria/LivingWoodChest"
       },
       "Terraria/FlyingCarpet": {
         "stage": "start",
-        "via": "container:Terraria/PyramidChest"
+        "via": "world-container:Terraria/PyramidChest"
       },
       "Terraria/SandstorminaBottle": {
         "stage": "start",
-        "via": "container:Terraria/PyramidChest"
+        "via": "world-container:Terraria/PyramidChest"
       },
       "Terraria/EnchantedSword": {
         "stage": "start",
-        "via": "container:Terraria/EnchantedSwordShrine"
+        "via": "world-container:Terraria/EnchantedSwordShrine"
       },
       "Terraria/Terragrim": {
         "stage": "start",
-        "via": "container:Terraria/EnchantedSwordShrine"
+        "via": "world-container:Terraria/EnchantedSwordShrine"
       },
       "Terraria/EskimoHood": {
         "stage": "start",
@@ -35672,14 +35798,6 @@
         "stage": "skeletron",
         "via": "recipe:ThoriumMod/SpiritDroplet+Terraria/Candle"
       },
-      "ThoriumMod/Nocturnal": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/CorruptYoyo+Terraria/JungleYoyo+Terraria/Valor+Terraria/Cascade"
-      },
-      "ThoriumMod/Sanguine": {
-        "stage": "skeletron",
-        "via": "recipe:Terraria/CrimsonYoyo+Terraria/JungleYoyo+Terraria/Valor+Terraria/Cascade"
-      },
       "ThoriumMod/PhaseDart": {
         "stage": "skeletron",
         "via": "recipe:ThoriumMod/SpiritDroplet"
@@ -35838,7 +35956,7 @@
         "stage": "star-scouter",
         "via": "recipe:Terraria/RedPaint+ThoriumMod/MusicPlayerNotActivated+Terraria/Wire"
       },
-      "ThoriumMod/MusicPlayerDamageReduction": {
+      "ThoriumMod/MusicPlayerDamageResistance": {
         "stage": "star-scouter",
         "via": "recipe:Terraria/CyanPaint+ThoriumMod/MusicPlayerNotActivated+Terraria/Wire"
       },
@@ -37822,6 +37940,10 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/HellstoneBar+ThoriumMod/SoulofPlight"
       },
+      "ThoriumMod/HeadSpinner": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/WoodYoyo+Terraria/Ichor+Terraria/SoulofNight"
+      },
       "ThoriumMod/LeechingSheath": {
         "stage": "wall-of-flesh",
         "via": "recipe:ThoriumMod/LeatherSheath+ThoriumMod/BloodCell"
@@ -37829,6 +37951,10 @@
       "ThoriumMod/PinkPhasesaber": {
         "stage": "wall-of-flesh",
         "via": "recipe:ThoriumMod/PinkPhaseblade+Terraria/CrystalShard"
+      },
+      "ThoriumMod/Salivation": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/WoodYoyo+Terraria/CursedFlame+Terraria/SoulofNight"
       },
       "ThoriumMod/TitanSlayerSheath": {
         "stage": "wall-of-flesh",
@@ -37842,7 +37968,7 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/HellstoneBar+ThoriumMod/SoulofPlight"
       },
-      "ThoriumMod/CobaltPopper": {
+      "ThoriumMod/CobaltRevolver": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/CobaltBar"
       },
@@ -37854,11 +37980,11 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/MythrilBar"
       },
-      "ThoriumMod/OrichalcumPelter": {
+      "ThoriumMod/OrichalcumPopper": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/OrichalcumBar"
       },
-      "ThoriumMod/PalladiumSubmachineGun": {
+      "ThoriumMod/PalladiumSMG": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/PalladiumBar"
       },
@@ -39252,9 +39378,9 @@
         "stage": "skeletron-prime",
         "via": "recipe:ThoriumMod/MusicPlayerDamage+Terraria/HallowedBar+Terraria/Cog"
       },
-      "ThoriumMod/TunePlayerDamageReduction": {
+      "ThoriumMod/TunePlayerDamageResistance": {
         "stage": "skeletron-prime",
-        "via": "recipe:ThoriumMod/MusicPlayerDamageReduction+Terraria/HallowedBar+Terraria/Cog"
+        "via": "recipe:ThoriumMod/MusicPlayerDamageResistance+Terraria/HallowedBar+Terraria/Cog"
       },
       "ThoriumMod/TunePlayerLifeRegen": {
         "stage": "skeletron-prime",
@@ -39817,11 +39943,11 @@
         "stage": "coznix",
         "via": "recipe:ThoriumMod/LodeStoneIngot"
       },
-      "ThoriumMod/LodeStoneQuickDraw": {
+      "ThoriumMod/LodeStoneShinGuards": {
         "stage": "coznix",
         "via": "recipe:ThoriumMod/LodeStoneIngot"
       },
-      "ThoriumMod/LodeStoneShinGuards": {
+      "ThoriumMod/LodestoneSlugger": {
         "stage": "coznix",
         "via": "recipe:ThoriumMod/LodeStoneIngot"
       },
@@ -39857,15 +39983,15 @@
         "stage": "coznix",
         "via": "recipe:ThoriumMod/ValadiumIngot"
       },
+      "ThoriumMod/ValadiumBlaster": {
+        "stage": "coznix",
+        "via": "recipe:ThoriumMod/ValadiumIngot"
+      },
       "ThoriumMod/ValadiumBow": {
         "stage": "coznix",
         "via": "recipe:ThoriumMod/ValadiumIngot"
       },
       "ThoriumMod/ValadiumBreastPlate": {
-        "stage": "coznix",
-        "via": "recipe:ThoriumMod/ValadiumIngot"
-      },
-      "ThoriumMod/ValadiumFoeBlaster": {
         "stage": "coznix",
         "via": "recipe:ThoriumMod/ValadiumIngot"
       },
@@ -40072,39 +40198,39 @@
       },
       "Terraria/StormTigerStaff": {
         "stage": "plantera",
-        "via": "container:Terraria/DesertBiomeChest"
+        "via": "world-container:Terraria/DesertBiomeChest"
       },
       "ThoriumMod/PharaohsSlab": {
         "stage": "plantera",
-        "via": "container:Terraria/DesertBiomeChest"
+        "via": "world-container:Terraria/DesertBiomeChest"
       },
       "Terraria/PiranhaGun": {
         "stage": "plantera",
-        "via": "container:Terraria/JungleBiomeChest"
+        "via": "world-container:Terraria/JungleBiomeChest"
       },
       "Terraria/ScourgeoftheCorruptor": {
         "stage": "plantera",
-        "via": "container:Terraria/CorruptionBiomeChest"
+        "via": "world-container:Terraria/CorruptionBiomeChest"
       },
       "Terraria/VampireKnives": {
         "stage": "plantera",
-        "via": "container:Terraria/CrimsonBiomeChest"
+        "via": "world-container:Terraria/CrimsonBiomeChest"
       },
       "Terraria/RainbowGun": {
         "stage": "plantera",
-        "via": "container:Terraria/HallowedBiomeChest"
+        "via": "world-container:Terraria/HallowedBiomeChest"
       },
       "Terraria/StaffoftheFrostHydra": {
         "stage": "plantera",
-        "via": "container:Terraria/FrozenBiomeChest"
+        "via": "world-container:Terraria/FrozenBiomeChest"
       },
       "ThoriumMod/Fishbone": {
         "stage": "plantera",
-        "via": "container:ThoriumMod/AquaticDepthsBiomeChest"
+        "via": "world-container:ThoriumMod/AquaticDepthsBiomeChest"
       },
       "ThoriumMod/PhoenixStaff": {
         "stage": "plantera",
-        "via": "container:ThoriumMod/UnderworldBiomeChest"
+        "via": "world-container:ThoriumMod/UnderworldBiomeChest"
       },
       "Terraria/ShadowJoustingLance": {
         "stage": "plantera",
@@ -41128,7 +41254,7 @@
         "stage": "plantera",
         "via": "recipe:ThoriumMod/SolarPebble"
       },
-      "ThoriumMod/MyceliumGattlingGun": {
+      "ThoriumMod/ShroomachineGun": {
         "stage": "plantera",
         "via": "recipe:Terraria/ShroomiteBar"
       },
@@ -43692,55 +43818,55 @@
       },
       "Terraria/Radar": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/MagicMirror": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/FlareGun": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/IceSkates": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/IceMirror": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/Flipper": {
         "stage": "start",
-        "via": "container:Terraria/WaterChest"
+        "via": "world-container:Terraria/WaterChest"
       },
       "Terraria/WaterWalkingBoots": {
         "stage": "start",
-        "via": "container:Terraria/WaterChest"
+        "via": "world-container:Terraria/WaterChest"
       },
       "Terraria/MagicConch": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/MysticCoilSnake": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/AncientChisel": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/LivingWoodWand": {
         "stage": "start",
-        "via": "container:Terraria/LivingWoodChest"
+        "via": "world-container:Terraria/LivingWoodChest"
       },
       "Terraria/LeafWand": {
         "stage": "start",
-        "via": "container:Terraria/LivingWoodChest"
+        "via": "world-container:Terraria/LivingWoodChest"
       },
       "Terraria/WebSlinger": {
         "stage": "start",
-        "via": "container:Terraria/WebCoveredChest"
+        "via": "world-container:Terraria/WebCoveredChest"
       },
       "ThoriumMod/BioMatter": {
         "stage": "start",
@@ -44222,28 +44348,6 @@
               "type": "Terraria.Condition",
               "description": "In a Jungle biome",
               "key": "Conditions.InJungle",
-              "facts": []
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "Terraria/PinWheel": {
-        "stage": "start",
-        "via": "shop:Terraria/Merchant",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "Terraria.Condition",
-              "description": "During daytime",
-              "key": "Conditions.TimeDay",
-              "facts": []
-            },
-            {
-              "type": "Terraria.Condition",
-              "description": "During a happy windy day",
-              "key": "Conditions.HappyWindyDay",
               "facts": []
             }
           ],
@@ -52390,22 +52494,6 @@
           "prerequisites": []
         }
       },
-      "ThoriumMod/GrimPedestal": {
-        "stage": "eye-of-cthulhu",
-        "via": "shop:ThoriumMod/Tracker",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "Mods.ThoriumMod.Conditions.CompletedMonsterContract",
-              "description": "Complete the Damsel of Distress Tracker contract",
-              "key": "",
-              "facts": null
-            }
-          ],
-          "prerequisites": []
-        }
-      },
       "ThoriumMod/GuidetoOvercomingGrief": {
         "stage": "eye-of-cthulhu",
         "via": "shop:ThoriumMod/ConfusedZombie",
@@ -52511,6 +52599,10 @@
       "Terraria/JungleGrassSeeds": {
         "stage": "eye-of-cthulhu",
         "via": "shimmer:Terraria/MushroomGrassSeeds"
+      },
+      "ThoriumMod/GrimPedestal": {
+        "stage": "eye-of-cthulhu",
+        "via": "shimmer:ThoriumMod/GrimPedestalCrimson"
       },
       "Terraria/Jungle2Echo": {
         "stage": "eye-of-cthulhu",
@@ -55799,6 +55891,94 @@
         "stage": "skeletron",
         "via": "recipe:ThoriumMod/BlankPainting+ThoriumMod/ElephantGun"
       },
+      "ThoriumMod/AlchemistBlock": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Wood+Terraria/Bottle"
+      },
+      "ThoriumMod/AlchemistBookcase": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock+Terraria/Book"
+      },
+      "ThoriumMod/AlchemistCandelabra": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock+Terraria/Torch"
+      },
+      "ThoriumMod/AlchemistCandle": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock+Terraria/Torch"
+      },
+      "ThoriumMod/AlchemistChair": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock"
+      },
+      "ThoriumMod/AlchemistChandelier": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock+Terraria/Torch+Terraria/Chain"
+      },
+      "ThoriumMod/AlchemistChest": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock+Terraria/IronBar"
+      },
+      "ThoriumMod/AlchemistChest_Trapped": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistChest+Terraria/Wire"
+      },
+      "ThoriumMod/AlchemistClock": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/IronBar+Terraria/Glass+ThoriumMod/AlchemistBlock"
+      },
+      "ThoriumMod/AlchemistCup": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock"
+      },
+      "ThoriumMod/AlchemistDoor": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock"
+      },
+      "ThoriumMod/AlchemistDresser": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock"
+      },
+      "ThoriumMod/AlchemistLamp": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock+Terraria/Torch"
+      },
+      "ThoriumMod/AlchemistLantern": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock+Terraria/Torch"
+      },
+      "ThoriumMod/AlchemistPiano": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Bone+ThoriumMod/AlchemistBlock+Terraria/Book"
+      },
+      "ThoriumMod/AlchemistPlatform": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock"
+      },
+      "ThoriumMod/AlchemistSink": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock+Terraria/WaterBucket"
+      },
+      "ThoriumMod/AlchemistSofa": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock+Terraria/Silk"
+      },
+      "ThoriumMod/AlchemistTable": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock"
+      },
+      "ThoriumMod/AlchemistToilet": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock"
+      },
+      "ThoriumMod/AlchemistWall": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock"
+      },
+      "ThoriumMod/AlchemistWorkbench": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock"
+      },
       "ThoriumMod/BloodstainedBookcase": {
         "stage": "skeletron",
         "via": "recipe:ThoriumMod/BloodstainedBlock+Terraria/Book"
@@ -55898,6 +56078,14 @@
       "ThoriumMod/GelatinousMask": {
         "stage": "skeletron",
         "via": "recipe:ThoriumMod/Jelly+Terraria/Bone"
+      },
+      "ThoriumMod/AlchemistBathtub": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock"
+      },
+      "ThoriumMod/AlchemistBed": {
+        "stage": "skeletron",
+        "via": "recipe:ThoriumMod/AlchemistBlock+Terraria/Silk"
       },
       "Terraria/CowboyHat": {
         "stage": "skeletron",
@@ -65730,14 +65918,6 @@
         "method": "normalized-internal-name"
       },
       {
-        "from": "ThoriumMod/LodestoneQuickDraw",
-        "displayName": "Lodestone Quick Draw",
-        "to": [
-          "ThoriumMod/LodeStoneQuickDraw"
-        ],
-        "method": "normalized-internal-name"
-      },
-      {
         "from": "ThoriumMod/Valadiumarmor",
         "displayName": "Valadium armor",
         "to": [
@@ -65912,7 +66092,7 @@
         "displayName": "Music Player",
         "to": [
           "ThoriumMod/TunePlayerDamage",
-          "ThoriumMod/TunePlayerDamageReduction",
+          "ThoriumMod/TunePlayerDamageResistance",
           "ThoriumMod/TunePlayerLifeRegen",
           "ThoriumMod/TunePlayerMovementSpeed"
         ],
@@ -65949,14 +66129,6 @@
           "ThoriumMod/DemonBloodGreaves"
         ],
         "method": "armor-set"
-      },
-      {
-        "from": "ThoriumMod/MyceliumGatlingGun",
-        "displayName": "Mycelium Gatling Gun",
-        "to": [
-          "ThoriumMod/MyceliumGattlingGun"
-        ],
-        "method": "display-name"
       },
       {
         "from": "ThoriumMod/IllumiteBarrager",
@@ -66476,14 +66648,14 @@
         "reason": "recommendation precedes proven availability"
       },
       {
-        "id": "ThoriumMod/LodeStoneQuickDraw",
+        "id": "ThoriumMod/LodestoneSlugger",
         "factualStage": "coznix",
         "recommendedStage": "borean-strider",
         "wikiStage": "pre-mechs",
         "reason": "recommendation precedes proven availability"
       },
       {
-        "id": "ThoriumMod/ValadiumFoeBlaster",
+        "id": "ThoriumMod/ValadiumBlaster",
         "factualStage": "coznix",
         "recommendedStage": "borean-strider",
         "wikiStage": "pre-mechs",
@@ -68132,14 +68304,6 @@
         "assignedVia": "manifest"
       },
       {
-        "item": "ThoriumMod/LivingWoodSap",
-        "displayName": "Living Wood Sap",
-        "stageId": "start",
-        "category": "Accessory",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      },
-      {
         "item": "ThoriumMod/Lychee",
         "displayName": "Lychee",
         "stageId": "start",
@@ -68153,14 +68317,6 @@
         "stageId": "start",
         "category": "Weapon",
         "entryKind": "equipment",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "ThoriumMod/ManaBerry",
-        "displayName": "Mana Berry",
-        "stageId": "start",
-        "category": "Basic",
-        "entryKind": "combat-buff",
         "assignedVia": "manifest"
       },
       {
@@ -68236,14 +68392,6 @@
         "assignedVia": "manifest"
       },
       {
-        "item": "ThoriumMod/WaterChestnut",
-        "displayName": "Water Chestnut",
-        "stageId": "start",
-        "category": "Basic",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
         "item": "ThoriumMod/Webgun",
         "displayName": "Webgun",
         "stageId": "start",
@@ -68260,7 +68408,7 @@
         "assignedVia": "manifest"
       }
     ],
-    "profileItemSourceGapCount": 28,
+    "profileItemSourceGapCount": 25,
     "manualAssignmentProblems": [],
     "officialSourceCompatibility": {
       "recommendations": {
@@ -68270,7 +68418,7 @@
           {
             "mod": "ThoriumMod",
             "sourceVersion": "1.7.2",
-            "snapshotVersion": "1.7.2.6",
+            "snapshotVersion": "1.7.2.7",
             "compatible": true
           }
         ]
@@ -68278,9 +68426,9 @@
     },
     "unassignedVanillaNpcSourceCount": 153,
     "manualAvailabilityPriority": {
-      "automaticItems": 5733,
+      "automaticItems": 5755,
       "automaticSources": 336,
-      "automaticStations": 510,
+      "automaticStations": 512,
       "suppressed": {
         "itemStages": [
           {
@@ -68362,22 +68510,10 @@
             "via": "recipe:Terraria/GreenPaint+ThoriumMod/MusicPlayerNotActivated+Terraria/Wire"
           },
           {
-            "value": "ThoriumMod/MyceliumGattlingGun",
-            "manualStageId": "plantera",
-            "automaticStageId": "plantera",
-            "via": "recipe:Terraria/ShroomiteBar"
-          },
-          {
             "value": "ThoriumMod/NinjaRack",
             "manualStageId": "wall-of-flesh",
             "automaticStageId": "wall-of-flesh",
             "via": "shop:ThoriumMod/DesertAcolyte"
-          },
-          {
-            "value": "ThoriumMod/Nocturnal",
-            "manualStageId": "skeletron",
-            "automaticStageId": "skeletron",
-            "via": "recipe:Terraria/CorruptYoyo+Terraria/JungleYoyo+Terraria/Valor+Terraria/Cascade"
           },
           {
             "value": "ThoriumMod/Petal",
@@ -68404,10 +68540,10 @@
             "via": "fishing"
           },
           {
-            "value": "ThoriumMod/Sanguine",
-            "manualStageId": "skeletron",
-            "automaticStageId": "skeletron",
-            "via": "recipe:Terraria/CrimsonYoyo+Terraria/JungleYoyo+Terraria/Valor+Terraria/Cascade"
+            "value": "ThoriumMod/ShroomachineGun",
+            "manualStageId": "plantera",
+            "automaticStageId": "plantera",
+            "via": "recipe:Terraria/ShroomiteBar"
           },
           {
             "value": "ThoriumMod/SpikedBracer",

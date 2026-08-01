@@ -449,6 +449,14 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             return;
         }
 
+        if (info.WorldGenSources.Count > 0)
+        {
+            builtEntries.Add(CreateSourceSectionHeader("Mods.ProgressionJournal.UI.SelectedItemWorldGeneration"));
+            builtEntries.AddRange(info.WorldGenSources
+                .OrderBy(static source => source.SourceName, StringComparer.CurrentCultureIgnoreCase)
+                .Select(CreateWorldGenSourceCard));
+        }
+
         if (info.Recipes.Count > 0)
         {
             builtEntries.Add(CreateSourceSectionHeader("Mods.ProgressionJournal.UI.SelectedItemCrafts"));
@@ -497,6 +505,7 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
     {
         var (iconItemId, accent) = localizationKey switch
         {
+            "Mods.ProgressionJournal.UI.SelectedItemWorldGeneration" => (ItemID.WorldGlobe, new Color(104, 184, 132)),
             "Mods.ProgressionJournal.UI.SelectedItemCrafts" => (ItemID.WorkBench, new Color(220, 174, 92)),
             "Mods.ProgressionJournal.UI.SelectedItemShimmer" => (ItemID.ShimmerBlock, new Color(166, 126, 224)),
             "Mods.ProgressionJournal.UI.SelectedItemDrops" => (ItemID.Gel, new Color(205, 116, 118)),
@@ -566,9 +575,12 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         return panel;
     }
 
-    private JournalSourceCard CreateDropSourceCard(JournalDropSource drop)
+    private JournalSourceCard CreateWorldGenSourceCard(JournalDropSource source) =>
+        CreateDropSourceCard(source, new Color(104, 184, 132));
+
+    private JournalSourceCard CreateDropSourceCard(JournalDropSource drop, Color? accent = null)
     {
-        var panel = CreateSourceCard(new Color(205, 116, 118));
+        var panel = CreateSourceCard(accent ?? new Color(205, 116, 118));
         panel.Width.Set(0f, 1f);
 
         var top = JournalUiMetrics.BlockVerticalPadding;
@@ -1374,11 +1386,9 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
             _buildPickerPanel.Append(_buildPickerFilterMenuPanel);
         }
 
-        if (_buildPickerSortMenuOpen)
-        {
-            RebuildBuildPickerSortMenu();
-            _buildPickerPanel.Append(_buildPickerSortMenuPanel);
-        }
+        if (!_buildPickerSortMenuOpen) return;
+        RebuildBuildPickerSortMenu();
+        _buildPickerPanel.Append(_buildPickerSortMenuPanel);
     }
 
     private void RebuildBuildPickerFilterMenu(string profileId, string classId, string slotKey)

@@ -108,7 +108,7 @@ export function accumulatePositiveProbeEvidence(snapshot, previousKnowledge, sta
 
 export function buildKnowledgeBase(snapshot) {
   assert(snapshot?.format === "ProgressionJournalSnapshot", "Invalid snapshot format.");
-  assert([4, 5, 6, 7, 8].includes(snapshot.version), `Unsupported snapshot version '${snapshot.version}'.`);
+  assert([4, 5, 6, 7, 8, 9].includes(snapshot.version), `Unsupported snapshot version '${snapshot.version}'.`);
 
   const acquisitions = {
     recipes: structuredClone(snapshot.recipes ?? []),
@@ -228,8 +228,8 @@ function hasCompatibleProbeIdentity(snapshot, knowledge) {
   return knowledge?.format === "ProgressionJournalKnowledge"
     && knowledge.version === 1
     && source?.snapshotFormat === snapshot.format
-    && [4, 5, 6, 7, 8].includes(source.snapshotVersion)
-    && [4, 5, 6, 7, 8].includes(snapshot.version)
+    && [4, 5, 6, 7, 8, 9].includes(source.snapshotVersion)
+    && [4, 5, 6, 7, 8, 9].includes(snapshot.version)
     && source.targetMod === (snapshot.targetMod ?? "")
     && source.profileId === (snapshot.profileId ?? "")
     && sameStringSet(source.contentMods ?? [], snapshot.contentMods ?? [])

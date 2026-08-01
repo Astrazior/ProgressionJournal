@@ -6,6 +6,7 @@ public sealed class JournalProfile(
     JournalProfileDocument document,
     IReadOnlyList<JournalEntry> entries,
     IReadOnlyList<JournalCombatBuffEntry> combatBuffEntries,
+    IReadOnlyDictionary<int, IReadOnlyList<JournalDropSource>> worldGenSources,
     bool hasVersionMismatch)
 {
     private readonly Dictionary<string, JournalProfileClassDocument> _classes =
@@ -37,6 +38,8 @@ public sealed class JournalProfile(
     public IReadOnlyList<JournalEntry> Entries { get; } = entries;
 
     public IReadOnlyList<JournalCombatBuffEntry> CombatBuffEntries { get; } = combatBuffEntries;
+
+    public IReadOnlyDictionary<int, IReadOnlyList<JournalDropSource>> WorldGenSources { get; } = worldGenSources;
 
     public JournalProfileClassDocument GetClass(string classId)
     {

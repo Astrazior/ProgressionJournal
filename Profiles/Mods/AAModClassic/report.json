@@ -3,10 +3,10 @@
   "version": 1,
   "targetMod": "AAModClassic",
   "profileId": "builtin.aamodclassic",
-  "generatedAtUtc": "2026-07-30T21:10:28.234Z",
+  "generatedAtUtc": "2026-08-01T15:01:54.065Z",
   "snapshot": {
-    "version": 8,
-    "generatedAtUtc": "2026-07-30T20:31:03.3169437Z",
+    "version": 9,
+    "generatedAtUtc": "2026-08-01T14:23:21.8902967Z",
     "targetMod": "AAModClassic",
     "mods": [
       {
@@ -17,12 +17,12 @@
     "accumulatedProbeEvidence": {
       "compatible": true,
       "npcAvailability": 0,
-      "shops": 27,
+      "shops": 28,
       "fishing": 0
     }
   },
   "agentRules": {
-    "rules": 82,
+    "rules": 85,
     "ignoredItems": 2,
     "ignoredIssues": 0,
     "evidence": [
@@ -139,6 +139,13 @@
         "reason": "The ten Lucky Potions can rarely drop from pots while Stripeman's Lucky Shirt is equipped. The shirt becomes available after Skeletron, and this conditional pot drop is outside the snapshot's registered drop tables."
       },
       {
+        "id": "stripemans-lucky-pot-drop-condition",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 installed assembly",
+        "checkedAt": "2026-08-01",
+        "reason": "This is the source condition corresponding to the established Lucky Potion item-stage rule: the pot drop requires Stripeman's Lucky Shirt, which is available after Skeletron."
+      },
+      {
         "id": "ronin-potion-stage",
         "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
         "sourceVersion": "AAModClassic 1.0.17 installed assembly",
@@ -151,6 +158,13 @@
         "sourceVersion": "AAModClassic 1.0.12 installed assembly",
         "checkedAt": "2026-07-13",
         "reason": "The mod's global tile update creates Carrot tiles only while Main.hardMode is active, and the tile registers Carrot as its item drop. This acquisition path is not represented in the snapshot's registered drop table."
+      },
+      {
+        "id": "hardmode-carrot-plant-condition",
+        "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+        "sourceVersion": "AAModClassic 1.0.17 installed assembly",
+        "checkedAt": "2026-08-01",
+        "reason": "The Carrot plant is created only during Hardmode random updates, so its world-generation source begins after Wall of Flesh."
       },
       {
         "id": "grips-treasure-bag-source",
@@ -319,6 +333,13 @@
         "sourceVersion": "Ancients Awakened 1.0.3.2 guide; verified against AAModClassic 1.0.10 Anubis namespace",
         "checkedAt": "2026-07-12",
         "reason": "This Hardmode special-edition Anubis weapon belongs to the Anubis content tier."
+      },
+      {
+        "id": "anubis-special-edition-exchange-condition",
+        "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Weapons",
+        "sourceVersion": "AAModClassic 1.0.17 installed assembly",
+        "checkedAt": "2026-08-01",
+        "reason": "The exchange requires defeating Anubis and giving him the ordinary book, so the source begins at the Anubis stage."
       },
       {
         "id": "any-ancient-crafting-station-stage",
@@ -1120,7 +1141,6 @@
     "errors": [],
     "warnings": [
       "66 recommendations precede proven availability and were suppressed",
-      "12 profile items have no acquisition source data",
       "142 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
@@ -5658,7 +5678,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.aamodclassic",
-    "generatedAtUtc": "2026-07-30T21:10:19.788Z",
+    "generatedAtUtc": "2026-08-01T15:01:46.630Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -28054,151 +28074,151 @@
       },
       "Terraria/Spear": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/Blowpipe": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/WoodenBoomerang": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/WandofSparking": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/Aglet": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/ClimbingClaws": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/BandofRegeneration": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/CloudinaBottle": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/HermesBoots": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/ShoeSpikes": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/Mace": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/LavaCharm": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundGoldChest"
+        "via": "world-container:Terraria/UndergroundGoldChest"
       },
       "Terraria/IceBlade": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/IceBoomerang": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/FlurryBoots": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/BlizzardinaBottle": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/SnowballCannon": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/Boomstick": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/FeralClaws": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/AnkletoftheWind": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/StaffofRegrowth": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/Trident": {
         "stage": "start",
-        "via": "container:Terraria/WaterChest"
+        "via": "world-container:Terraria/WaterChest"
       },
       "Terraria/BreathingReed": {
         "stage": "start",
-        "via": "container:Terraria/WaterChest"
+        "via": "world-container:Terraria/WaterChest"
       },
       "Terraria/Starfury": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/ShinyRedBalloon": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/LuckyHorseshoe": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/CelestialMagnet": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/CreativeWings": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/ThunderSpear": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/ThunderStaff": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/SandBoots": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/CatBast": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/BabyBirdStaff": {
         "stage": "start",
-        "via": "container:Terraria/LivingWoodChest"
+        "via": "world-container:Terraria/LivingWoodChest"
       },
       "Terraria/FlyingCarpet": {
         "stage": "start",
-        "via": "container:Terraria/PyramidChest"
+        "via": "world-container:Terraria/PyramidChest"
       },
       "Terraria/SandstorminaBottle": {
         "stage": "start",
-        "via": "container:Terraria/PyramidChest"
+        "via": "world-container:Terraria/PyramidChest"
       },
       "Terraria/EnchantedSword": {
         "stage": "start",
-        "via": "container:Terraria/EnchantedSwordShrine"
+        "via": "world-container:Terraria/EnchantedSwordShrine"
       },
       "Terraria/Terragrim": {
         "stage": "start",
-        "via": "container:Terraria/EnchantedSwordShrine"
+        "via": "world-container:Terraria/EnchantedSwordShrine"
       },
       "Terraria/RedRyder": {
         "stage": "start",
@@ -30659,51 +30679,51 @@
       },
       "Terraria/Muramasa": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/CobaltShield": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/AquaScepter": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/BlueMoon": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/MagicMissile": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/Valor": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/Handgun": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/DarkLance": {
         "stage": "skeletron",
-        "via": "container:Terraria/ShadowChest"
+        "via": "world-container:Terraria/ShadowChest"
       },
       "Terraria/Sunfury": {
         "stage": "skeletron",
-        "via": "container:Terraria/ShadowChest"
+        "via": "world-container:Terraria/ShadowChest"
       },
       "Terraria/FlowerofFire": {
         "stage": "skeletron",
-        "via": "container:Terraria/ShadowChest"
+        "via": "world-container:Terraria/ShadowChest"
       },
       "Terraria/Flamelash": {
         "stage": "skeletron",
-        "via": "container:Terraria/ShadowChest"
+        "via": "world-container:Terraria/ShadowChest"
       },
       "Terraria/HellwingBow": {
         "stage": "skeletron",
-        "via": "container:Terraria/ShadowChest"
+        "via": "world-container:Terraria/ShadowChest"
       },
       "Terraria/CombatWrench": {
         "stage": "skeletron",
@@ -31464,15 +31484,15 @@
       },
       "AAModClassic/SingularityCannon": {
         "stage": "wall-of-flesh",
-        "via": "container:AAModClassic/DoomsdayChest"
+        "via": "world-container:AAModClassic/DoomsdayChest"
       },
       "AAModClassic/DragonsPike": {
         "stage": "wall-of-flesh",
-        "via": "container:AAModClassic/InfernoChest"
+        "via": "world-container:AAModClassic/InfernoChest"
       },
       "AAModClassic/BogBomb": {
         "stage": "wall-of-flesh",
-        "via": "container:AAModClassic/MireChest"
+        "via": "world-container:AAModClassic/MireChest"
       },
       "Terraria/GoldenShower": {
         "stage": "wall-of-flesh",
@@ -33582,11 +33602,11 @@
       },
       "AAModClassic/RomulusTazesaber": {
         "stage": "plantera",
-        "via": "container:AAModClassic/GreedChest"
+        "via": "world-container:AAModClassic/GreedChest"
       },
       "AAModClassic/OdinsBlade": {
         "stage": "plantera",
-        "via": "container:AAModClassic/GreedChest"
+        "via": "world-container:AAModClassic/GreedChest"
       },
       "Terraria/ShadowJoustingLance": {
         "stage": "plantera",
@@ -33594,27 +33614,27 @@
       },
       "Terraria/PiranhaGun": {
         "stage": "plantera",
-        "via": "container:Terraria/JungleBiomeChest"
+        "via": "world-container:Terraria/JungleBiomeChest"
       },
       "Terraria/ScourgeoftheCorruptor": {
         "stage": "plantera",
-        "via": "container:Terraria/CorruptionBiomeChest"
+        "via": "world-container:Terraria/CorruptionBiomeChest"
       },
       "Terraria/VampireKnives": {
         "stage": "plantera",
-        "via": "container:Terraria/CrimsonBiomeChest"
+        "via": "world-container:Terraria/CrimsonBiomeChest"
       },
       "Terraria/RainbowGun": {
         "stage": "plantera",
-        "via": "container:Terraria/HallowedBiomeChest"
+        "via": "world-container:Terraria/HallowedBiomeChest"
       },
       "Terraria/StaffoftheFrostHydra": {
         "stage": "plantera",
-        "via": "container:Terraria/FrozenBiomeChest"
+        "via": "world-container:Terraria/FrozenBiomeChest"
       },
       "Terraria/StormTigerStaff": {
         "stage": "plantera",
-        "via": "container:Terraria/DesertBiomeChest"
+        "via": "world-container:Terraria/DesertBiomeChest"
       },
       "Terraria/PrincessWeapon": {
         "stage": "plantera",
@@ -37252,63 +37272,63 @@
       },
       "Terraria/Radar": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/MagicMirror": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/FlareGun": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/IceSkates": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/IceMirror": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/FiberglassFishingPole": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/FlowerBoots": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/Flipper": {
         "stage": "start",
-        "via": "container:Terraria/WaterChest"
+        "via": "world-container:Terraria/WaterChest"
       },
       "Terraria/WaterWalkingBoots": {
         "stage": "start",
-        "via": "container:Terraria/WaterChest"
+        "via": "world-container:Terraria/WaterChest"
       },
       "Terraria/MagicConch": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/MysticCoilSnake": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/AncientChisel": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/LivingWoodWand": {
         "stage": "start",
-        "via": "container:Terraria/LivingWoodChest"
+        "via": "world-container:Terraria/LivingWoodChest"
       },
       "Terraria/LeafWand": {
         "stage": "start",
-        "via": "container:Terraria/LivingWoodChest"
+        "via": "world-container:Terraria/LivingWoodChest"
       },
       "Terraria/WebSlinger": {
         "stage": "start",
-        "via": "container:Terraria/WebCoveredChest"
+        "via": "world-container:Terraria/WebCoveredChest"
       },
       "Terraria/SnowGlobe": {
         "stage": "start",
@@ -60619,105 +60639,8 @@
     ],
     "unavailableCombatItems": [],
     "unresolvedAvailabilityItems": [],
-    "profileItemSourceGaps": [
-      {
-        "item": "AAModClassic/Carrot",
-        "displayName": "Carrot",
-        "stageId": "wall-of-flesh",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "AAModClassic/LuckyCalmingPotion",
-        "displayName": "Lucky Calming Potion",
-        "stageId": "skeletron",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "AAModClassic/LuckyEndurancePotion",
-        "displayName": "Lucky Endurance Potion",
-        "stageId": "skeletron",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "AAModClassic/LuckyIronskinPotion",
-        "displayName": "Lucky Ironskin Potion",
-        "stageId": "skeletron",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "AAModClassic/LuckyLifeforcePotion",
-        "displayName": "Lucky Lifeforce Potion",
-        "stageId": "skeletron",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "AAModClassic/LuckyRagePotion",
-        "displayName": "Lucky Rage Potion",
-        "stageId": "skeletron",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "AAModClassic/LuckyRegenerationPotion",
-        "displayName": "Lucky Regeneration Potion",
-        "stageId": "skeletron",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "AAModClassic/LuckySummoningPotion",
-        "displayName": "Lucky Summoning Potion",
-        "stageId": "skeletron",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "AAModClassic/LuckySwiftnessPotion",
-        "displayName": "Lucky Swiftness Potion",
-        "stageId": "skeletron",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "AAModClassic/LuckyThornsPotion",
-        "displayName": "Lucky Thorns Potion",
-        "stageId": "skeletron",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "AAModClassic/LuckyWrathPotion",
-        "displayName": "Lucky Wrath Potion",
-        "stageId": "skeletron",
-        "category": "Potion",
-        "entryKind": "combat-buff",
-        "assignedVia": "manifest"
-      },
-      {
-        "item": "AAModClassic/TheLifeAndEpicAdventuresOfAnubisTheWonderDogSpecialEdition",
-        "displayName": "The Life And Epic Adventures Of Anubis The Wonder Dog Special Edition",
-        "stageId": "anubis-legendscribe",
-        "category": "Weapon",
-        "entryKind": "equipment",
-        "assignedVia": "manifest"
-      }
-    ],
-    "profileItemSourceGapCount": 12,
+    "profileItemSourceGaps": [],
+    "profileItemSourceGapCount": 0,
     "manualAssignmentProblems": [],
     "officialSourceCompatibility": {
       "recommendations": {

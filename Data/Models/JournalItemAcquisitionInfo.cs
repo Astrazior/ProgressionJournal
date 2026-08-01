@@ -2,6 +2,7 @@ namespace ProgressionJournal.Data.Models;
 
 public sealed class JournalItemAcquisitionInfo(
     int itemId,
+    IEnumerable<JournalDropSource> worldGenSources,
     IEnumerable<JournalRecipeSource> recipes,
     IEnumerable<JournalShimmerSource> shimmerSources,
     IEnumerable<JournalDropSource> drops,
@@ -9,6 +10,8 @@ public sealed class JournalItemAcquisitionInfo(
     IEnumerable<JournalFishingSource> fishingSources)
 {
     public int ItemId { get; } = itemId;
+
+    public IReadOnlyList<JournalDropSource> WorldGenSources { get; } = worldGenSources.ToArray();
 
     public IReadOnlyList<JournalRecipeSource> Recipes { get; } = recipes.ToArray();
 
@@ -21,6 +24,7 @@ public sealed class JournalItemAcquisitionInfo(
     public IReadOnlyList<JournalFishingSource> FishingSources { get; } = fishingSources.ToArray();
 
     public bool HasAnySources =>
+        WorldGenSources.Count > 0 ||
         Recipes.Count > 0 ||
         ShimmerSources.Count > 0 ||
         Drops.Count > 0 ||

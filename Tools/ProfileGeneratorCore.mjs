@@ -175,7 +175,7 @@ function generateProfileCore(
     : source;
   assert(snapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot format.");
   assert(
-    [4, 5, 6, 7, 8].includes(snapshot.version),
+    [4, 5, 6, 7, 8, 9].includes(snapshot.version),
     `Unsupported snapshot version '${snapshot.version}'.`);
 
   manifest = applyVanillaSourceCatalog(manifest, snapshot);
@@ -246,7 +246,7 @@ function generateProfileCore(
     && isAllowedProfileItem(drop.item, contentMods));
   const containerDropsBySource = groupBy(
     snapshot.drops.filter(drop =>
-      drop.sourceType === "container"
+      ["container", "world-container"].includes(drop.sourceType)
       && (drop.rate ?? 1) > 0
       && isAllowedProfileItem(drop.item, contentMods)
       && isAllowedProfileItem(drop.source, contentMods)),
@@ -783,11 +783,73 @@ function generateProfileCore(
       accessorySlots: stage.accessorySlots ?? 5,
       unlock: stage.unlock ?? { type: "always" }
     })),
+    worldGenSources: createWorldGenSources(
+      snapshot,
+      profileEntries,
+      profileBuffs,
+      itemById),
     entries: sortEntries(profileEntries, itemById),
     combatBuffs: profileBuffs
   };
 
   return { profile, report, review };
+}
+
+function createWorldGenSources(snapshot, profileEntries, profileBuffs, itemById) {
+  const profileItems = new Set(
+    [...profileEntries, ...profileBuffs]
+      .flatMap(entry => entry.itemGroups ?? [])
+      .flat()
+      .map(reference => `${reference.mod}/${reference.item}`));
+  const sourceTypes = new Set(["tile", "world", "world-container"]);
+  const exactWorldSources = new Set(
+    (snapshot.drops ?? [])
+      .filter(drop => drop.sourceType === "world")
+      .map(drop => `${drop.source}\n${drop.item}`));
+  const sources = (snapshot.drops ?? [])
+    .filter(drop => sourceTypes.has(drop.sourceType)
+      && profileItems.has(drop.item)
+      && (drop.sourceType !== "tile"
+        || !exactWorldSources.has(`${drop.source}\n${drop.item}`)))
+    .map(drop => {
+      const item = itemById.get(drop.item);
+      if (!item) return null;
+      const sourceItem = drop.sourceType === "world-container"
+        ? itemById.get(drop.source)
+        : null;
+      return {
+        item: toItemReference(item),
+        sourceName: drop.sourceDisplayName || formatWorldGenSourceName(drop.source),
+        sourceItem: sourceItem ? toItemReference(sourceItem) : null,
+        dropRate: drop.rate ?? 1,
+        stackMin: drop.stackMin ?? 1,
+        stackMax: drop.stackMax ?? 1,
+        showDropRate: drop.hideDropRate !== true && drop.sourceType !== "tile",
+        conditions: uniqueBy(
+          (drop.conditions ?? [])
+            .map(condition => typeof condition === "string"
+              ? condition
+              : condition?.description ?? "")
+            .filter(Boolean),
+          condition => condition)
+      };
+    })
+    .filter(Boolean);
+
+  return uniqueBy(
+    sources,
+    source => `${source.item.mod}/${source.item.item}\n${source.sourceName}\n`
+      + `${source.sourceItem?.mod ?? ""}/${source.sourceItem?.item ?? ""}\n`
+      + `${source.conditions.join("\n")}`)
+    .sort((left, right) =>
+      `${left.item.mod}/${left.item.item}`.localeCompare(`${right.item.mod}/${right.item.item}`)
+      || left.sourceName.localeCompare(right.sourceName));
+}
+
+function formatWorldGenSourceName(reference) {
+  const separator = reference.indexOf("/");
+  const internalName = separator >= 0 ? reference.slice(separator + 1) : reference;
+  return internalName.replace(/([a-z])([A-Z])/gu, "$1 $2");
 }
 
 function collectProfileItemSourceGaps({
@@ -1006,7 +1068,7 @@ function suppressAutomaticAssignments(
 }
 
 function isAutomaticAcquisition(via) {
-  return /^(?:container|fishing|global|npc|recipe|shop):?/u.test(via ?? "");
+  return /^(?:container|fishing|global|npc|recipe|shop|tile|world|world-container):?/u.test(via ?? "");
 }
 
 function applyManualAssignments(sourceManifest, manualAssignments) {

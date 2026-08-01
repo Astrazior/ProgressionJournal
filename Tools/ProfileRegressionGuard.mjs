@@ -224,13 +224,26 @@ function collectSourceCoverage(report) {
 }
 
 function acquisitionEntry(kind, target, identity, description, details) {
+  const normalizedDetails = { ...details };
+  delete normalizedDetails.sourceDisplayName;
+  if ("sourceType" in normalizedDetails) {
+    normalizedDetails.sourceType = normalizeAcquisitionSourceType(
+      normalizedDetails.sourceType);
+  }
+
   return {
     key: `${kind}|${target}|${identity}`,
     kind,
     target,
     description,
-    details: canonicalValue(details)
+    details: canonicalValue(normalizedDetails)
   };
+}
+
+function normalizeAcquisitionSourceType(sourceType) {
+  return ["container", "world-container"].includes(sourceType)
+    ? "world-container"
+    : sourceType;
 }
 
 function collectAcquisitionEvidence(knowledge) {
@@ -266,7 +279,7 @@ function collectAcquisitionEvidence(knowledge) {
     add(acquisitionEntry(
       "drop",
       drop.item ?? "",
-      `${drop.sourceType ?? ""}|${drop.source ?? ""}`,
+      `${normalizeAcquisitionSourceType(drop.sourceType ?? "")}|${drop.source ?? ""}`,
       `${drop.sourceType || "source"} ${drop.source || "<unknown>"} -> ${drop.item || "<unknown>"}`,
       drop));
   }

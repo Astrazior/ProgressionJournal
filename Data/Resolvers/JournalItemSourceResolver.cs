@@ -93,6 +93,7 @@ public static class JournalItemSourceResolver
 
         info = new JournalItemAcquisitionInfo(
             itemId,
+            BuildWorldGenSources(itemId),
             BuildRecipes(itemId),
             BuildShimmerSources(itemId),
             BuildDrops(itemId),
@@ -200,8 +201,7 @@ public static class JournalItemSourceResolver
 
         AppendLegacyDirectNpcSources(drops, itemId);
         AppendLegacyDirectItemSources(drops, itemId);
-        AppendExactSources(drops, itemId);
-        AppendContainerCatalogSources(drops, itemId);
+        AppendExactDropSources(drops, itemId);
         return drops
             .GroupBy(static drop => new
             {
@@ -251,10 +251,17 @@ public static class JournalItemSourceResolver
                 [])));
     }
 
-    private static void AppendContainerCatalogSources(List<JournalDropSource> drops, int targetItemId)
+    private static JournalDropSource[] BuildWorldGenSources(int targetItemId)
     {
+        List<JournalDropSource> sources = [];
+        if (JournalProfileRegistry.IsLoaded
+            && JournalProfileRegistry.Active.WorldGenSources.TryGetValue(targetItemId, out var profileSources))
+        {
+            sources.AddRange(profileSources);
+        }
+
         var catalogSources = JournalContainerLootCatalog.GetSources(targetItemId);
-        drops.AddRange(catalogSources.Select(source => new JournalDropSource(
+        sources.AddRange(catalogSources.Select(source => new JournalDropSource(
             string.IsNullOrWhiteSpace(source.SourceDisplayName)
                 ? Lang.GetItemNameValue(source.SourceItemId)
                 : source.SourceDisplayName,
@@ -264,11 +271,40 @@ public static class JournalItemSourceResolver
             source.StackMin,
             source.StackMax,
             source.ConditionLocalizationKeys.Select(static key => Language.GetTextValue(key)))));
+
+        sources.AddRange(JournalExactDropCatalog.GetSources(targetItemId)
+            .Where(static source => source.SourceReference is not null)
+            .Select(source => new JournalDropSource(
+                source.SourceName,
+                sourceNpcType: null,
+                source.SourceItemId,
+                source.DropRate,
+                source.StackMin,
+                source.StackMax,
+                source.Conditions.Select(static condition => condition.Description),
+                source.ShowDropRate)));
+
+        return sources
+            .GroupBy(static source => new
+            {
+                source.SourceName,
+                source.SourceItemId,
+                source.StackMin,
+                source.StackMax,
+                source.ShowDropRate,
+                Conditions = string.Join('\n', source.Conditions)
+            })
+            .Select(static group => group
+                .OrderByDescending(static source => source.DropRate)
+                .First())
+            .OrderBy(static source => source.SourceName, StringComparer.CurrentCultureIgnoreCase)
+            .ToArray();
     }
 
-    private static void AppendExactSources(List<JournalDropSource> drops, int targetItemId)
+    private static void AppendExactDropSources(List<JournalDropSource> drops, int targetItemId)
     {
         drops.AddRange(JournalExactDropCatalog.GetSources(targetItemId)
+            .Where(static source => source.SourceReference is null)
             .Select(source => new JournalDropSource(
                 source.SourceName,
                 source.SourceNpcType,

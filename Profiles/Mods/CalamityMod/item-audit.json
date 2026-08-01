@@ -3,8 +3,8 @@
   "version": 2,
   "targetMod": "CalamityMod",
   "profileId": "builtin.calamity",
-  "generatedAtUtc": "2026-07-30T21:10:55.396Z",
-  "snapshotGeneratedAtUtc": "2026-07-30T20:53:07.0498194Z",
+  "generatedAtUtc": "2026-08-01T15:02:19.921Z",
+  "snapshotGeneratedAtUtc": "2026-08-01T14:12:30.9322704Z",
   "summary": {
     "snapshotItems": 8126,
     "contentItems": 2671,
@@ -13,12 +13,12 @@
     "profileItemReferences": 2201,
     "equipmentReferences": 1977,
     "buffReferences": 224,
-    "profileSourceGaps": 10,
-    "excluded": 3829,
+    "profileSourceGaps": 9,
+    "excluded": 3830,
     "acquiredNonProfile": 127,
     "unresolvedAvailability": 0,
     "unavailableCombat": 0,
-    "noAcquisitionPath": 1969
+    "noAcquisitionPath": 1968
   },
   "items": [
     {
@@ -427,10 +427,10 @@
       "name": "Ancient Treasure Chest",
       "mod": "CalamityMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "tile:CalamityMod/AbyssTreasureChest",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2017,7 +2017,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:CalamityMod/AbyssTreasureChest",
+      "via": "world-container:CalamityMod/AbyssTreasureChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -2622,7 +2622,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:CalamityMod/AbyssTreasureChest",
+      "via": "world-container:CalamityMod/AbyssTreasureChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -4447,7 +4447,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:CalamityMod/AbyssTreasureChest",
+      "via": "world-container:CalamityMod/AbyssTreasureChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -4650,7 +4650,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:CalamityMod/AbyssTreasureChest",
+      "via": "world-container:CalamityMod/AbyssTreasureChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -8628,7 +8628,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:CalamityMod/AbyssTreasureChest",
+      "via": "world-container:CalamityMod/AbyssTreasureChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -13322,7 +13322,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "astrum-aureus",
-      "via": "container:CalamityMod/AstralChest",
+      "via": "world-container:CalamityMod/AstralChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -13465,7 +13465,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:CalamityMod/AbyssTreasureChest",
+      "via": "world-container:CalamityMod/AbyssTreasureChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -14214,7 +14214,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:CalamityMod/AbyssTreasureChest",
+      "via": "world-container:CalamityMod/AbyssTreasureChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -14886,7 +14886,6 @@
       "stage": "yharon",
       "via": "manifest",
       "reason": "Included in the generated profile.",
-      "sourceGap": true,
       "evidence": null
     },
     {
@@ -14929,7 +14928,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:CalamityMod/AbyssTreasureChest",
+      "via": "world-container:CalamityMod/AbyssTreasureChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -25489,7 +25488,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "skeletron",
-      "via": "container:CalamityMod/AbyssTreasureChest",
+      "via": "world-container:CalamityMod/AbyssTreasureChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -27536,7 +27535,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "skeletron",
-      "via": "container:CalamityMod/AbyssTreasureChest",
+      "via": "world-container:CalamityMod/AbyssTreasureChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -30557,7 +30556,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SurfaceWoodenChest",
+      "via": "world-container:Terraria/SurfaceWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -31503,7 +31502,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/SandstoneChest",
+      "via": "world-container:Terraria/SandstoneChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -32123,7 +32122,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IvyChest",
+      "via": "world-container:Terraria/IvyChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -32500,7 +32499,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/DungeonGoldChest",
+      "via": "world-container:Terraria/DungeonGoldChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -33273,7 +33272,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/LivingWoodChest",
+      "via": "world-container:Terraria/LivingWoodChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -33948,7 +33947,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/UndergroundWoodenChest",
+      "via": "world-container:Terraria/UndergroundWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -35168,7 +35167,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IceChest",
+      "via": "world-container:Terraria/IceChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -35528,7 +35527,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SurfaceWoodenChest",
+      "via": "world-container:Terraria/SurfaceWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -36222,7 +36221,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/DungeonGoldChest",
+      "via": "world-container:Terraria/DungeonGoldChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -37049,7 +37048,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IvyChest",
+      "via": "world-container:Terraria/IvyChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -37878,7 +37877,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/WaterChest",
+      "via": "world-container:Terraria/WaterChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -39321,7 +39320,7 @@
       "contentItem": false,
       "status": "buff",
       "stage": "start",
-      "via": "container:Terraria/SandstoneChest",
+      "via": "world-container:Terraria/SandstoneChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -39578,7 +39577,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SkywareChest",
+      "via": "world-container:Terraria/SkywareChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -40341,7 +40340,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SurfaceWoodenChest",
+      "via": "world-container:Terraria/SurfaceWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -40484,7 +40483,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/UndergroundWoodenChest",
+      "via": "world-container:Terraria/UndergroundWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -40787,7 +40786,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/DungeonGoldChest",
+      "via": "world-container:Terraria/DungeonGoldChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -42278,7 +42277,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SkywareChest",
+      "via": "world-container:Terraria/SkywareChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -43731,7 +43730,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/ShadowChest",
+      "via": "world-container:Terraria/ShadowChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -47681,7 +47680,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/EnchantedSwordShrine",
+      "via": "world-container:Terraria/EnchantedSwordShrine",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -49242,7 +49241,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IvyChest",
+      "via": "world-container:Terraria/IvyChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -49312,7 +49311,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/IvyChest",
+      "via": "world-container:Terraria/IvyChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -49903,7 +49902,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/ShadowChest",
+      "via": "world-container:Terraria/ShadowChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -50020,7 +50019,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/UndergroundWoodenChest",
+      "via": "world-container:Terraria/UndergroundWoodenChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -50585,7 +50584,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/IvyChest",
+      "via": "world-container:Terraria/IvyChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -50662,7 +50661,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/ShadowChest",
+      "via": "world-container:Terraria/ShadowChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -50856,7 +50855,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IceChest",
+      "via": "world-container:Terraria/IceChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -50878,7 +50877,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/PyramidChest",
+      "via": "world-container:Terraria/PyramidChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -57316,7 +57315,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/DungeonGoldChest",
+      "via": "world-container:Terraria/DungeonGoldChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -57874,7 +57873,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/ShadowChest",
+      "via": "world-container:Terraria/ShadowChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -57946,7 +57945,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/UndergroundWoodenChest",
+      "via": "world-container:Terraria/UndergroundWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -58877,7 +58876,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IceChest",
+      "via": "world-container:Terraria/IceChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -58899,7 +58898,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IceChest",
+      "via": "world-container:Terraria/IceChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -59046,7 +59045,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/IceChest",
+      "via": "world-container:Terraria/IceChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -59116,7 +59115,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/IceChest",
+      "via": "world-container:Terraria/IceChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -61368,7 +61367,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/UndergroundGoldChest",
+      "via": "world-container:Terraria/UndergroundGoldChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -61798,7 +61797,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/LivingWoodChest",
+      "via": "world-container:Terraria/LivingWoodChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -63406,7 +63405,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/LivingWoodChest",
+      "via": "world-container:Terraria/LivingWoodChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -63860,7 +63859,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SkywareChest",
+      "via": "world-container:Terraria/SkywareChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -64113,7 +64112,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/UndergroundWoodenChest",
+      "via": "world-container:Terraria/UndergroundWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -64179,7 +64178,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/SandstoneChest",
+      "via": "world-container:Terraria/SandstoneChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -64277,7 +64276,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/UndergroundWoodenChest",
+      "via": "world-container:Terraria/UndergroundWoodenChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -64288,7 +64287,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/DungeonGoldChest",
+      "via": "world-container:Terraria/DungeonGoldChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -67280,7 +67279,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/DungeonGoldChest",
+      "via": "world-container:Terraria/DungeonGoldChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -68758,7 +68757,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/SandstoneChest",
+      "via": "world-container:Terraria/SandstoneChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -73426,7 +73425,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "container:Terraria/JungleBiomeChest",
+      "via": "world-container:Terraria/JungleBiomeChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -76195,7 +76194,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/SurfaceWoodenChest",
+      "via": "world-container:Terraria/SurfaceWoodenChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -76316,7 +76315,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "container:Terraria/HallowedBiomeChest",
+      "via": "world-container:Terraria/HallowedBiomeChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -78872,7 +78871,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SandstoneChest",
+      "via": "world-container:Terraria/SandstoneChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -79318,7 +79317,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/PyramidChest",
+      "via": "world-container:Terraria/PyramidChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -79736,7 +79735,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "container:Terraria/CorruptionBiomeChest",
+      "via": "world-container:Terraria/CorruptionBiomeChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -80880,7 +80879,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SkywareChest",
+      "via": "world-container:Terraria/SkywareChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -80968,7 +80967,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/UndergroundWoodenChest",
+      "via": "world-container:Terraria/UndergroundWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -82859,7 +82858,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IceChest",
+      "via": "world-container:Terraria/IceChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -83804,7 +83803,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SurfaceWoodenChest",
+      "via": "world-container:Terraria/SurfaceWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -85220,7 +85219,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/IvyChest",
+      "via": "world-container:Terraria/IvyChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -85231,7 +85230,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "container:Terraria/FrozenBiomeChest",
+      "via": "world-container:Terraria/FrozenBiomeChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -85799,7 +85798,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SkywareChest",
+      "via": "world-container:Terraria/SkywareChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -86645,7 +86644,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "container:Terraria/DesertBiomeChest",
+      "via": "world-container:Terraria/DesertBiomeChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -86975,7 +86974,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/ShadowChest",
+      "via": "world-container:Terraria/ShadowChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -88006,7 +88005,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/EnchantedSwordShrine",
+      "via": "world-container:Terraria/EnchantedSwordShrine",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -90175,7 +90174,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/WaterChest",
+      "via": "world-container:Terraria/WaterChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -91245,7 +91244,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "container:Terraria/DungeonGoldChest",
+      "via": "world-container:Terraria/DungeonGoldChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -91278,7 +91277,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "container:Terraria/CrimsonBiomeChest",
+      "via": "world-container:Terraria/CrimsonBiomeChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -92408,7 +92407,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SurfaceWoodenChest",
+      "via": "world-container:Terraria/SurfaceWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -92643,7 +92642,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/WaterChest",
+      "via": "world-container:Terraria/WaterChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -92742,7 +92741,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "container:Terraria/WebCoveredChest",
+      "via": "world-container:Terraria/WebCoveredChest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -93674,7 +93673,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "start",
-      "via": "container:Terraria/SurfaceWoodenChest",
+      "via": "world-container:Terraria/SurfaceWoodenChest",
       "reason": "Included in the generated profile.",
       "evidence": null
     },

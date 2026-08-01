@@ -163,6 +163,12 @@ const containerLootCatalogSource = fs.readFileSync(
 const worldContainerCollectorSource = fs.readFileSync(
   path.join(root, "Data", "Snapshots", "Collectors", "JournalSnapshotWorldContainerCollector.cs"),
   "utf8");
+const tileDropCollectorSource = fs.readFileSync(
+  path.join(root, "Data", "Snapshots", "Collectors", "JournalSnapshotTileDropCollector.cs"),
+  "utf8");
+const tileDropCaptureHooksSource = fs.readFileSync(
+  path.join(root, "Data", "Snapshots", "Collectors", "JournalTileDropCaptureHooks.cs"),
+  "utf8");
 const legacyDirectDropAnalyzerSource = fs.readFileSync(
   path.join(root, "Data", "Resolvers", "JournalLegacyDirectDropAnalyzer.cs"),
   "utf8");
@@ -292,8 +298,13 @@ assert(legacyDirectDropAnalyzerSource.includes('"OnKill"')
 "Legacy direct drops must recover exact NPC, bag, chat-reward, and zero-stack probabilities");
 assert(itemSourceResolverSource.includes("AppendLegacyDirectNpcSources")
   && itemSourceResolverSource.includes("AppendLegacyDirectItemSources")
-  && itemSourceResolverSource.includes("AppendExactSources"),
+  && itemSourceResolverSource.includes("AppendExactDropSources")
+  && itemSourceResolverSource.includes("BuildWorldGenSources"),
 "Journal UI must combine registered, legacy-direct, and audited exact sources");
+assert(itemSourceResolverSource.includes("JournalProfileRegistry.Active.WorldGenSources")
+  && itemSourceResolverSource.includes("source.SourceReference is not null")
+  && worldContainerCollectorSource.includes('"world-container"'),
+"Tile, tree, world interaction, and audited chest sources must share the world-generation presentation path");
 assert(itemSourceResolverSource.includes("descriptionValue is LocalizedText localizedText")
   && itemSourceResolverSource.includes("ResolveConditionDescription(localizedText)")
   && itemSourceResolverSource.includes("Mods.ProgressionJournal.ExternalConditions.")
@@ -659,13 +670,29 @@ assert(itemCollectionIndex >= 0
     && npcDropCollectionIndex >= 0
     && itemCollectionIndex < npcDropCollectionIndex,
 "Item classification probes must run before drop reporting because mod drop rules can observe probe state");
-assert(snapshotExporterSource.includes("public int Version { get; set; } = 8")
+assert(snapshotExporterSource.includes("public int Version { get; set; } = 9")
   && snapshotExporterSource.includes("List<JournalLocalizedText> Conditions"),
   "The snapshot schema must preserve localized fishing condition expressions");
 assert(snapshotExporterSource.includes("KnownSourceItems = CreateKnownSourceItems(itemIds)")
   && snapshotExporterSource.includes("JournalExactDropCatalog.GetAllSources()")
   && snapshotExporterSource.includes("JournalContainerLootCatalog.GetAllDrops()"),
   "Snapshot source-gap coverage must include the runtime acquisition catalogs");
+assert(snapshotExporterSource.includes("JournalSnapshotTileDropCollector.Collect(")
+  && tileDropCollectorSource.includes('"KillTile_GetItemDrops"')
+  && tileDropCollectorSource.includes("modTile.GetItemDrops")
+  && tileDropCollectorSource.includes("CollectWorldSamples()")
+  && tileDropCollectorSource.includes("CopyFrom(originalTile)"),
+"Explicit snapshot export must discover native vanilla and modded tile drops without leaving probe tiles behind");
+assert(tileDropCollectorSource.includes("WorldGen.CheckOrb")
+  && tileDropCollectorSource.includes('"SpawnThingsFromPot"')
+  && tileDropCollectorSource.includes("TileID.Heart")
+  && tileDropCollectorSource.includes("TileID.ShadowOrbs")
+  && tileDropCollectorSource.includes("TileID.Pots")
+  && !tileDropCollectorSource.includes("Main.netMode = NetmodeID.Server")
+  && tileDropCaptureHooksSource.includes("item.active = false")
+  && tileDropCaptureHooksSource.includes("npc.active = false")
+  && tileDropCaptureHooksSource.includes("projectile.active = false"),
+"Special vanilla world objects must be probed without leaving spawned entities in the export world");
 assert(snapshotExporterSource.includes("localizedDescription?.Key")
   && snapshotExporterSource.includes("Conditions.PlayerCarriesItem")
   && snapshotExporterSource.includes('new SnapshotConditionFact("item-owned", itemReference)'),
@@ -703,6 +730,14 @@ assert(profileGeneratorSource.includes("snapshot.npcAvailability")
 assert(profileGeneratorSource.includes("drop.sourceType === \"global\"")
   && profileGeneratorSource.includes("globalDrops"),
 "ProfileGeneratorCore does not process global NPC drops independently");
+assert(profileGeneratorSource.includes("createWorldGenSources(")
+  && profileGeneratorSource.includes('["tile", "world", "world-container"]')
+  && journalUiStateSource.indexOf("info.WorldGenSources.Count")
+    < journalUiStateSource.indexOf("info.Recipes.Count")
+  && journalUiStateSource.includes("(ItemID.WorldGlobe, new Color(104, 184, 132))")
+  && englishLocalizationSource.includes("SelectedItemWorldGeneration: World Generation")
+  && russianLocalizationSource.includes("SelectedItemWorldGeneration: Генерация мира"),
+"World-generation sources must be embedded in profiles and rendered before fallback acquisition methods");
 assert(profileGeneratorSource.includes("snapshot.vanillaItemClassifications")
   && profileGeneratorSource.includes("context.vanillaItems?.get(item.id)"),
 "ProfileGeneratorCore does not reuse the curated vanilla combat classification");

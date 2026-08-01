@@ -384,7 +384,46 @@ const snapshot = {
     { source: "Test/Boss", sourceType: "npc", item: "Test/ClassTool", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/ZeroDamageSummonStaff", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/BossBag", conditions: [] },
-    { source: "Test/BossBag", sourceType: "container", item: "Test/BagBlade", conditions: [] },
+    {
+      source: "Test/BossBag",
+      sourceType: "world-container",
+      sourceDisplayName: "Generated Chest",
+      item: "Test/BagBlade",
+      conditions: []
+    },
+    {
+      source: "Test/MagicPlant",
+      sourceType: "tile",
+      sourceDisplayName: "Magic Plant",
+      item: "Test/Potion",
+      rate: 1,
+      stackMin: 1,
+      stackMax: 1,
+      hideDropRate: true,
+      conditions: [{ description: "Mature plant" }]
+    },
+    {
+      source: "Test/MagicPlant",
+      sourceType: "world",
+      sourceDisplayName: "Exact Magic Plant",
+      item: "Test/Potion",
+      rate: 1,
+      stackMin: 1,
+      stackMax: 1,
+      hideDropRate: true,
+      conditions: [{ description: "Grows after entering Hardmode" }]
+    },
+    {
+      source: "Test/ToolRock",
+      sourceType: "tile",
+      sourceDisplayName: "Tool Rock",
+      item: "Test/SupportTool",
+      rate: 1,
+      stackMin: 1,
+      stackMax: 1,
+      hideDropRate: true,
+      conditions: []
+    },
     {
       source: "Terraria/Present",
       sourceType: "container",
@@ -799,6 +838,25 @@ const wikiProfile = {
 };
 const { profile, report, review } = generateProfile(snapshot, manifest, wikiProfile);
 assert.equal(profile.version, 1);
+assert.deepEqual(
+  profile.worldGenSources.find(source => source.item.item === "Potion"),
+  {
+    item: { mod: "Test", item: "Potion", displayName: "Test/Potion" },
+    sourceName: "Exact Magic Plant",
+    sourceItem: null,
+    dropRate: 1,
+    stackMin: 1,
+    stackMax: 1,
+    showDropRate: false,
+    conditions: ["Grows after entering Hardmode"]
+  });
+assert.equal(
+  profile.worldGenSources.find(source => source.item.item === "SupportTool")?.sourceName,
+  "Tool Rock");
+assert(!profile.worldGenSources.some(source => source.sourceName === "Magic Plant"));
+assert.equal(
+  profile.worldGenSources.find(source => source.item.item === "BagBlade")?.sourceName,
+  "Generated Chest");
 assert(profile.entries.some(entry => entry.itemGroups[0][0].item === "Sword"));
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "ForgeSword"

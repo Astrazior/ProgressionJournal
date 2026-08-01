@@ -96,7 +96,9 @@ internal static class JournalSnapshotNpcDropCollector
                     .Select(static condition => new SnapshotCondition(
                         condition.Type,
                         condition.Description))
-                    .ToList())));
+                    .ToList(),
+                drop.SourceName,
+                HideDropRate: !drop.ShowDropRate)));
         return result;
     }
 

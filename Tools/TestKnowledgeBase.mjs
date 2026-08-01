@@ -12,7 +12,7 @@ const root = path.resolve(import.meta.dirname, "..");
 const modsRoot = path.join(root, "Profiles", "Mods");
 const fixture = {
   format: "ProgressionJournalSnapshot",
-  version: 8,
+  version: 9,
   generatedAtUtc: "2026-07-13T00:00:00Z",
   targetMod: "ExampleMod",
   profileId: "builtin.example",

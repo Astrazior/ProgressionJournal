@@ -3,10 +3,10 @@
   "version": 1,
   "targetMod": "FargowiltasSouls",
   "profileId": "builtin.fargosouls",
-  "generatedAtUtc": "2026-07-30T21:10:58.455Z",
+  "generatedAtUtc": "2026-08-01T15:02:23.063Z",
   "snapshot": {
-    "version": 8,
-    "generatedAtUtc": "2026-07-30T20:58:28.7926863Z",
+    "version": 9,
+    "generatedAtUtc": "2026-08-01T14:21:10.3942618Z",
     "targetMod": "FargowiltasSouls",
     "mods": [
       {
@@ -25,7 +25,7 @@
     "accumulatedProbeEvidence": {
       "compatible": true,
       "npcAvailability": 0,
-      "shops": 0,
+      "shops": 1,
       "fishing": 0
     }
   },
@@ -717,7 +717,7 @@
   "audit": {
     "errors": [],
     "warnings": [
-      "127 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
+      "126 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
       "npcCount": 742,
@@ -725,13 +725,21 @@
       "spawnCount": 698,
       "observedSpawnCount": 247,
       "townCount": 44,
-      "observedTownCount": 10,
+      "observedTownCount": 11,
       "fishingCount": 124,
       "shimmerTransformCount": 266,
       "dropSourceCount": 425,
       "shopSourceCount": 29,
       "globalDropCount": 22,
       "observed": [
+        {
+          "source": "Fargowiltas/Mutant",
+          "kinds": [
+            "shop"
+          ],
+          "availabilityKind": "town",
+          "earliestStageIndex": 0
+        },
         {
           "source": "Fargowiltas/Squirrel",
           "kinds": [
@@ -3242,14 +3250,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Fargowiltas/Mutant",
-          "kinds": [
-            "shop"
-          ],
-          "availabilityKind": "town",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "FargowiltasSouls/TimberChampionHead",
           "kinds": [
             "drop"
@@ -4249,7 +4249,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.fargosouls",
-    "generatedAtUtc": "2026-07-30T21:10:57.597Z",
+    "generatedAtUtc": "2026-08-01T15:02:22.276Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -10955,6 +10955,26 @@
       },
       {
         "stage": "start",
+        "id": "Fargowiltas/Overloader",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Fargowiltas/ModeToggle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "FargowiltasSouls/Masochist",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Fargowiltas/AncientSeal",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Fargowiltas/BoomShuriken",
         "reason": "not combat equipment"
       },
@@ -16270,11 +16290,6 @@
       },
       {
         "stage": "start",
-        "id": "Fargowiltas/ModeToggle",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "Fargowiltas/SuperDummy",
         "reason": "not combat equipment"
       },
@@ -16296,6 +16311,11 @@
       {
         "stage": "start",
         "id": "Fargowiltas/FleshyDoll",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Fargowiltas/OverloadWall",
         "reason": "not combat equipment"
       },
       {
@@ -16356,6 +16376,11 @@
       {
         "stage": "start",
         "id": "FargowiltasSouls/GalacticReformer",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "FargowiltasSouls/MainMenuMusicBox",
         "reason": "not combat equipment"
       },
       {
@@ -17255,6 +17280,31 @@
       },
       {
         "stage": "start",
+        "id": "Fargowiltas/OverloadBee",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Fargowiltas/OverloadBrain",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Fargowiltas/OverloadEye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Fargowiltas/OverloadSlimeCrown",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Fargowiltas/OverloadWorm",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "Fargowiltas/PurityTotem",
         "reason": "not combat equipment"
       },
@@ -18074,6 +18124,11 @@
         "reason": "not combat equipment"
       },
       {
+        "stage": "eye-of-cthulhu",
+        "id": "Fargowiltas/OverloadDeer",
+        "reason": "not combat equipment"
+      },
+      {
         "stage": "cursed-coffin",
         "id": "FargowiltasSouls/CursedCoffinTrophy",
         "reason": "not combat equipment"
@@ -18786,6 +18841,11 @@
       {
         "stage": "skeletron",
         "id": "Terraria/Safe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Fargowiltas/SuspiciousSkull",
         "reason": "not combat equipment"
       },
       {
@@ -19830,7 +19890,7 @@
       },
       {
         "stage": "skeletron",
-        "id": "Fargowiltas/SuspiciousSkull",
+        "id": "Fargowiltas/OverloadSkele",
         "reason": "not combat equipment"
       },
       {
@@ -20561,6 +20621,11 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/EmptyBullet",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Fargowiltas/DeathBringerFairy",
         "reason": "not combat equipment"
       },
       {
@@ -21695,6 +21760,26 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Fargowiltas/OverloadEmpress",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Fargowiltas/OverloadGoblins",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Fargowiltas/OverloadPirates",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Fargowiltas/OverloadQueenSlime",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Fargowiltas/MechEye",
         "reason": "not combat equipment"
       },
@@ -21876,6 +21961,26 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/QueenSlimeCrystal",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Fargowiltas/OverloadDestroyer",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Fargowiltas/OverloadFish",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Fargowiltas/OverloadPrime",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Fargowiltas/OverloadTwins",
         "reason": "not combat equipment"
       },
       {
@@ -22555,6 +22660,11 @@
       },
       {
         "stage": "skeletron-prime",
+        "id": "Fargowiltas/MechanicalAmalgam",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron-prime",
         "id": "Terraria/RainbowHairDye",
         "reason": "not combat equipment"
       },
@@ -22796,6 +22906,11 @@
       {
         "stage": "skeletron-prime",
         "id": "Fargowiltas/PlanterasFruit",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron-prime",
+        "id": "Fargowiltas/OverloadPlant",
         "reason": "not combat equipment"
       },
       {
@@ -23445,6 +23560,11 @@
       },
       {
         "stage": "plantera",
+        "id": "Fargowiltas/OverloadGolem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
         "id": "Terraria/Ectoplasm",
         "reason": "not combat equipment"
       },
@@ -23491,6 +23611,16 @@
       {
         "stage": "plantera",
         "id": "Terraria/NaughtyPresent",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Fargowiltas/OverloadFrostMoon",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "plantera",
+        "id": "Fargowiltas/OverloadPumpkinMoon",
         "reason": "not combat equipment"
       },
       {
@@ -23966,6 +24096,11 @@
       {
         "stage": "lunatic-cultist",
         "id": "Terraria/FragmentStardust",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "lunatic-cultist",
+        "id": "Fargowiltas/CultistSummon",
         "reason": "not combat equipment"
       },
       {
@@ -24500,6 +24635,11 @@
       },
       {
         "stage": "lunatic-cultist",
+        "id": "Fargowiltas/OverloadCultist",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "lunatic-cultist",
         "id": "Fargowiltas/CelestialSigil2",
         "reason": "not combat equipment"
       },
@@ -24521,6 +24661,11 @@
       {
         "stage": "lunatic-cultist",
         "id": "Terraria/StardustPlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "lunatic-cultist",
+        "id": "Fargowiltas/OverloadMoon",
         "reason": "not combat equipment"
       },
       {
@@ -24571,6 +24716,11 @@
       {
         "stage": "moon-lord",
         "id": "Terraria/MoonLordLegs",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "moon-lord",
+        "id": "Fargowiltas/MutantVoodoo",
         "reason": "not combat equipment"
       },
       {
@@ -24904,6 +25054,11 @@
         "reason": "not combat equipment"
       },
       {
+        "stage": "cosmos-champion",
+        "id": "FargowiltasSouls/ChampionySigil",
+        "reason": "not combat equipment"
+      },
+      {
         "stage": "abominationn",
         "id": "FargowiltasSouls/AbomEnergy",
         "reason": "not combat equipment"
@@ -24960,17 +25115,12 @@
       },
       {
         "stage": "mutant",
-        "id": "FargowiltasSouls/Masochist",
+        "id": "FargowiltasSouls/MutantsCurse",
         "reason": "not combat equipment"
       },
       {
         "stage": "mutant",
         "id": "FargowiltasSouls/MutantsFury",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "mutant",
-        "id": "FargowiltasSouls/MainMenuMusicBox",
         "reason": "not combat equipment"
       }
     ],
@@ -25374,147 +25524,147 @@
       },
       "Terraria/Spear": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/Blowpipe": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/WoodenBoomerang": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/WandofSparking": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/Aglet": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/ClimbingClaws": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/BandofRegeneration": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/CloudinaBottle": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/HermesBoots": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/ShoeSpikes": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/Mace": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/IceBlade": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/IceBoomerang": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/FlurryBoots": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/BlizzardinaBottle": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/SnowballCannon": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/Boomstick": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/FeralClaws": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/AnkletoftheWind": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/StaffofRegrowth": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/Trident": {
         "stage": "start",
-        "via": "container:Terraria/WaterChest"
+        "via": "world-container:Terraria/WaterChest"
       },
       "Terraria/BreathingReed": {
         "stage": "start",
-        "via": "container:Terraria/WaterChest"
+        "via": "world-container:Terraria/WaterChest"
       },
       "Terraria/Starfury": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/ShinyRedBalloon": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/LuckyHorseshoe": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/CelestialMagnet": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/CreativeWings": {
         "stage": "start",
-        "via": "container:Terraria/SkywareChest"
+        "via": "world-container:Terraria/SkywareChest"
       },
       "Terraria/ThunderSpear": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/ThunderStaff": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/SandBoots": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/CatBast": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/BabyBirdStaff": {
         "stage": "start",
-        "via": "container:Terraria/LivingWoodChest"
+        "via": "world-container:Terraria/LivingWoodChest"
       },
       "Terraria/FlyingCarpet": {
         "stage": "start",
-        "via": "container:Terraria/PyramidChest"
+        "via": "world-container:Terraria/PyramidChest"
       },
       "Terraria/SandstorminaBottle": {
         "stage": "start",
-        "via": "container:Terraria/PyramidChest"
+        "via": "world-container:Terraria/PyramidChest"
       },
       "Terraria/EnchantedSword": {
         "stage": "start",
-        "via": "container:Terraria/EnchantedSwordShrine"
+        "via": "world-container:Terraria/EnchantedSwordShrine"
       },
       "Terraria/Terragrim": {
         "stage": "start",
-        "via": "container:Terraria/EnchantedSwordShrine"
+        "via": "world-container:Terraria/EnchantedSwordShrine"
       },
       "Terraria/RedRyder": {
         "stage": "start",
@@ -27695,51 +27845,51 @@
       },
       "Terraria/Muramasa": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/CobaltShield": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/AquaScepter": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/BlueMoon": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/MagicMissile": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/Valor": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/Handgun": {
         "stage": "skeletron",
-        "via": "container:Terraria/DungeonGoldChest"
+        "via": "world-container:Terraria/DungeonGoldChest"
       },
       "Terraria/DarkLance": {
         "stage": "skeletron",
-        "via": "container:Terraria/ShadowChest"
+        "via": "world-container:Terraria/ShadowChest"
       },
       "Terraria/Sunfury": {
         "stage": "skeletron",
-        "via": "container:Terraria/ShadowChest"
+        "via": "world-container:Terraria/ShadowChest"
       },
       "Terraria/FlowerofFire": {
         "stage": "skeletron",
-        "via": "container:Terraria/ShadowChest"
+        "via": "world-container:Terraria/ShadowChest"
       },
       "Terraria/Flamelash": {
         "stage": "skeletron",
-        "via": "container:Terraria/ShadowChest"
+        "via": "world-container:Terraria/ShadowChest"
       },
       "Terraria/HellwingBow": {
         "stage": "skeletron",
-        "via": "container:Terraria/ShadowChest"
+        "via": "world-container:Terraria/ShadowChest"
       },
       "Terraria/CombatWrench": {
         "stage": "skeletron",
@@ -30218,27 +30368,27 @@
       },
       "Terraria/PiranhaGun": {
         "stage": "plantera",
-        "via": "container:Terraria/JungleBiomeChest"
+        "via": "world-container:Terraria/JungleBiomeChest"
       },
       "Terraria/ScourgeoftheCorruptor": {
         "stage": "plantera",
-        "via": "container:Terraria/CorruptionBiomeChest"
+        "via": "world-container:Terraria/CorruptionBiomeChest"
       },
       "Terraria/VampireKnives": {
         "stage": "plantera",
-        "via": "container:Terraria/CrimsonBiomeChest"
+        "via": "world-container:Terraria/CrimsonBiomeChest"
       },
       "Terraria/RainbowGun": {
         "stage": "plantera",
-        "via": "container:Terraria/HallowedBiomeChest"
+        "via": "world-container:Terraria/HallowedBiomeChest"
       },
       "Terraria/StaffoftheFrostHydra": {
         "stage": "plantera",
-        "via": "container:Terraria/FrozenBiomeChest"
+        "via": "world-container:Terraria/FrozenBiomeChest"
       },
       "Terraria/StormTigerStaff": {
         "stage": "plantera",
-        "via": "container:Terraria/DesertBiomeChest"
+        "via": "world-container:Terraria/DesertBiomeChest"
       },
       "Terraria/PrincessWeapon": {
         "stage": "plantera",
@@ -32729,63 +32879,63 @@
       },
       "Terraria/Radar": {
         "stage": "start",
-        "via": "container:Terraria/SurfaceWoodenChest"
+        "via": "world-container:Terraria/SurfaceWoodenChest"
       },
       "Terraria/MagicMirror": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/FlareGun": {
         "stage": "start",
-        "via": "container:Terraria/UndergroundWoodenChest"
+        "via": "world-container:Terraria/UndergroundWoodenChest"
       },
       "Terraria/IceSkates": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/IceMirror": {
         "stage": "start",
-        "via": "container:Terraria/IceChest"
+        "via": "world-container:Terraria/IceChest"
       },
       "Terraria/FiberglassFishingPole": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/FlowerBoots": {
         "stage": "start",
-        "via": "container:Terraria/IvyChest"
+        "via": "world-container:Terraria/IvyChest"
       },
       "Terraria/Flipper": {
         "stage": "start",
-        "via": "container:Terraria/WaterChest"
+        "via": "world-container:Terraria/WaterChest"
       },
       "Terraria/WaterWalkingBoots": {
         "stage": "start",
-        "via": "container:Terraria/WaterChest"
+        "via": "world-container:Terraria/WaterChest"
       },
       "Terraria/MagicConch": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/MysticCoilSnake": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/AncientChisel": {
         "stage": "start",
-        "via": "container:Terraria/SandstoneChest"
+        "via": "world-container:Terraria/SandstoneChest"
       },
       "Terraria/LivingWoodWand": {
         "stage": "start",
-        "via": "container:Terraria/LivingWoodChest"
+        "via": "world-container:Terraria/LivingWoodChest"
       },
       "Terraria/LeafWand": {
         "stage": "start",
-        "via": "container:Terraria/LivingWoodChest"
+        "via": "world-container:Terraria/LivingWoodChest"
       },
       "Terraria/WebSlinger": {
         "stage": "start",
-        "via": "container:Terraria/WebCoveredChest"
+        "via": "world-container:Terraria/WebCoveredChest"
       },
       "Terraria/SnowGlobe": {
         "stage": "start",
@@ -33290,6 +33440,49 @@
               "facts": []
             }
           ],
+          "prerequisites": []
+        }
+      },
+      "Fargowiltas/Overloader": {
+        "stage": "start",
+        "via": "shop:Fargowiltas/Mutant",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "In Expert mode",
+              "key": "Conditions.InExpertMode",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "Fargowiltas/ModeToggle": {
+        "stage": "start",
+        "via": "shop:Fargowiltas/Mutant",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
+      },
+      "FargowiltasSouls/Masochist": {
+        "stage": "start",
+        "via": "shop:Fargowiltas/Mutant",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
+          "prerequisites": []
+        }
+      },
+      "Fargowiltas/AncientSeal": {
+        "stage": "start",
+        "via": "shop:Fargowiltas/Mutant",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [],
           "prerequisites": []
         }
       },
@@ -38571,10 +38764,6 @@
         "stage": "start",
         "via": "recipe:Terraria/Dynamite+Terraria/WoodPlatform+Terraria/FallenStar"
       },
-      "Fargowiltas/ModeToggle": {
-        "stage": "start",
-        "via": "recipe:Terraria/IronBar"
-      },
       "Fargowiltas/SuperDummy": {
         "stage": "start",
         "via": "recipe:Terraria/TargetDummy+Terraria/FallenStar"
@@ -38594,6 +38783,10 @@
       "Fargowiltas/FleshyDoll": {
         "stage": "start",
         "via": "recipe:Terraria/GuideVoodooDoll"
+      },
+      "Fargowiltas/OverloadWall": {
+        "stage": "start",
+        "via": "recipe:Fargowiltas/FleshyDoll+Fargowiltas/Overloader"
       },
       "Fargowiltas/Abeemination2": {
         "stage": "start",
@@ -38642,6 +38835,10 @@
       "FargowiltasSouls/GalacticReformer": {
         "stage": "start",
         "via": "recipe:Terraria/Dynamite"
+      },
+      "FargowiltasSouls/MainMenuMusicBox": {
+        "stage": "start",
+        "via": "recipe:FargowiltasSouls/Masochist+Terraria/MusicBox"
       },
       "FargowiltasSouls/DevisCurse": {
         "stage": "start",
@@ -39358,6 +39555,26 @@
       "Fargowiltas/PortableSundial": {
         "stage": "start",
         "via": "recipe:Terraria/Sundial+Terraria/Moondial"
+      },
+      "Fargowiltas/OverloadBee": {
+        "stage": "start",
+        "via": "recipe:Fargowiltas/Abeemination2+Fargowiltas/Overloader"
+      },
+      "Fargowiltas/OverloadBrain": {
+        "stage": "start",
+        "via": "recipe:Fargowiltas/GoreySpine+Fargowiltas/Overloader"
+      },
+      "Fargowiltas/OverloadEye": {
+        "stage": "start",
+        "via": "recipe:Fargowiltas/SuspiciousEye+Fargowiltas/Overloader"
+      },
+      "Fargowiltas/OverloadSlimeCrown": {
+        "stage": "start",
+        "via": "recipe:Fargowiltas/SlimyCrown+Fargowiltas/Overloader"
+      },
+      "Fargowiltas/OverloadWorm": {
+        "stage": "start",
+        "via": "recipe:Fargowiltas/WormyFood+Fargowiltas/Overloader"
       },
       "Fargowiltas/PurityTotem": {
         "stage": "start",
@@ -40165,6 +40382,10 @@
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/DemoniteBar+Terraria/Torch"
       },
+      "Fargowiltas/OverloadDeer": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Fargowiltas/DeerThing2+Fargowiltas/Overloader"
+      },
       "FargowiltasSouls/CursedCoffinTrophy": {
         "stage": "cursed-coffin",
         "via": "npc:FargowiltasSouls/CursedCoffin"
@@ -40906,6 +41127,22 @@
               "type": "Terraria.Condition",
               "description": "After defeating Skeletron",
               "key": "Conditions.DownedSkeletron",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "Fargowiltas/SuspiciousSkull": {
+        "stage": "skeletron",
+        "via": "shop:Fargowiltas/Mutant",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "After the boss has been defeated",
+              "key": "Mods.Fargowiltas.Conditions.DownedTheBoss",
               "facts": []
             }
           ],
@@ -42360,9 +42597,9 @@
         "stage": "skeletron",
         "via": "recipe:Terraria/DungeonFishingCrate+Terraria/GoldenKey"
       },
-      "Fargowiltas/SuspiciousSkull": {
+      "Fargowiltas/OverloadSkele": {
         "stage": "skeletron",
-        "via": "recipe:Terraria/ClothierVoodooDoll"
+        "via": "recipe:Fargowiltas/SuspiciousSkull+Fargowiltas/Overloader"
       },
       "Fargowiltas/AbominationnPants": {
         "stage": "skeletron",
@@ -43086,6 +43323,22 @@
               "type": "Terraria.Condition",
               "description": "In hardmode",
               "key": "Conditions.InHardmode",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "Fargowiltas/DeathBringerFairy": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Fargowiltas/Mutant",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "After the boss has been defeated",
+              "key": "Mods.Fargowiltas.Conditions.DownedTheBoss",
               "facts": []
             }
           ],
@@ -44733,6 +44986,22 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/EmpressButterfly"
       },
+      "Fargowiltas/OverloadEmpress": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Fargowiltas/PrismaticPrimrose+Fargowiltas/Overloader"
+      },
+      "Fargowiltas/OverloadGoblins": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/GoblinBattleStandard+Fargowiltas/Overloader"
+      },
+      "Fargowiltas/OverloadPirates": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/PirateMap+Fargowiltas/Overloader"
+      },
+      "Fargowiltas/OverloadQueenSlime": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Fargowiltas/JellyCrystal+Fargowiltas/Overloader"
+      },
       "Fargowiltas/MechEye": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/MechanicalEye"
@@ -44880,6 +45149,22 @@
       "Terraria/QueenSlimeCrystal": {
         "stage": "wall-of-flesh",
         "via": "recipe:Fargowiltas/JellyCrystal"
+      },
+      "Fargowiltas/OverloadDestroyer": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Fargowiltas/MechWorm+Fargowiltas/Overloader"
+      },
+      "Fargowiltas/OverloadFish": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Fargowiltas/TruffleWorm2+Fargowiltas/Overloader"
+      },
+      "Fargowiltas/OverloadPrime": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Fargowiltas/MechSkull+Fargowiltas/Overloader"
+      },
+      "Fargowiltas/OverloadTwins": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Fargowiltas/MechEye+Fargowiltas/Overloader"
       },
       "Terraria/AdamantiteForge": {
         "stage": "wall-of-flesh",
@@ -45788,6 +46073,22 @@
         "stage": "skeletron-prime",
         "via": "npc:Terraria/SkeletronPrime"
       },
+      "Fargowiltas/MechanicalAmalgam": {
+        "stage": "skeletron-prime",
+        "via": "shop:Fargowiltas/Mutant",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "After the boss has been defeated",
+              "key": "Mods.Fargowiltas.Conditions.DownedTheBoss",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
       "Terraria/RainbowHairDye": {
         "stage": "skeletron-prime",
         "via": "shop:Terraria/Stylist",
@@ -46025,6 +46326,10 @@
       "Fargowiltas/PlanterasFruit": {
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/ChlorophyteBar+Terraria/Moonglow+Terraria/Blinkroot"
+      },
+      "Fargowiltas/OverloadPlant": {
+        "stage": "skeletron-prime",
+        "via": "recipe:Fargowiltas/PlanterasFruit+Fargowiltas/Overloader"
       },
       "FargowiltasSouls/LifelightTrophy": {
         "stage": "lifelight",
@@ -46928,6 +47233,10 @@
         "stage": "plantera",
         "via": "recipe:Terraria/SpookyChest+Terraria/Wire"
       },
+      "Fargowiltas/OverloadGolem": {
+        "stage": "plantera",
+        "via": "recipe:Fargowiltas/LihzahrdPowerCell2+Fargowiltas/Overloader"
+      },
       "Terraria/Ectoplasm": {
         "stage": "plantera",
         "via": "manifest"
@@ -46967,6 +47276,14 @@
       "Terraria/NaughtyPresent": {
         "stage": "plantera",
         "via": "recipe:Terraria/Silk+Terraria/Ectoplasm+Terraria/SoulofFright"
+      },
+      "Fargowiltas/OverloadFrostMoon": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/NaughtyPresent+Fargowiltas/Overloader"
+      },
+      "Fargowiltas/OverloadPumpkinMoon": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/PumpkinMoonMedallion+Fargowiltas/Overloader"
       },
       "Terraria/MartianConduitPlating": {
         "stage": "golem",
@@ -47477,6 +47794,22 @@
         "customEventName": "Celestial Pillars",
         "eventIcon": "Terraria/LunarTowerSolar"
       },
+      "Fargowiltas/CultistSummon": {
+        "stage": "lunatic-cultist",
+        "via": "shop:Fargowiltas/Mutant",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "After the boss has been defeated",
+              "key": "Mods.Fargowiltas.Conditions.DownedTheBoss",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
       "Terraria/WhiteLunaticHood": {
         "stage": "lunatic-cultist",
         "via": "shop:Terraria/Clothier",
@@ -47973,6 +48306,10 @@
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/FragmentSolar+Terraria/FragmentVortex+Terraria/FragmentNebula+Terraria/FragmentStardust"
       },
+      "Fargowiltas/OverloadCultist": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:Fargowiltas/CultistSummon+Fargowiltas/Overloader"
+      },
       "Fargowiltas/CelestialSigil2": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/CelestialSigil"
@@ -47992,6 +48329,10 @@
       "Terraria/StardustPlatform": {
         "stage": "lunatic-cultist",
         "via": "recipe:Terraria/StardustBrick"
+      },
+      "Fargowiltas/OverloadMoon": {
+        "stage": "lunatic-cultist",
+        "via": "recipe:Fargowiltas/CelestialSigil2+Fargowiltas/Overloader"
       },
       "Fargowiltas/AbominationnScythe": {
         "stage": "lunatic-cultist",
@@ -48032,6 +48373,22 @@
       "Terraria/MoonLordLegs": {
         "stage": "moon-lord",
         "via": "npc:Terraria/MoonLordCore"
+      },
+      "Fargowiltas/MutantVoodoo": {
+        "stage": "moon-lord",
+        "via": "shop:Fargowiltas/Mutant",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "After the boss has been defeated",
+              "key": "Mods.Fargowiltas.Conditions.DownedTheBoss",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
       },
       "Terraria/SandSolution": {
         "stage": "moon-lord",
@@ -48351,6 +48708,22 @@
         "stage": "cosmos-champion",
         "via": "npc:FargowiltasSouls/CosmosChampion"
       },
+      "FargowiltasSouls/ChampionySigil": {
+        "stage": "cosmos-champion",
+        "via": "shop:Fargowiltas/Mutant",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "After the boss has been defeated",
+              "key": "Mods.Fargowiltas.Conditions.DownedTheBoss",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
       "FargowiltasSouls/AbomEnergy": {
         "stage": "abominationn",
         "via": "npc:FargowiltasSouls/AbomBoss"
@@ -48395,17 +48768,25 @@
         "stage": "mutant",
         "via": "npc:FargowiltasSouls/MutantBoss"
       },
-      "FargowiltasSouls/Masochist": {
+      "FargowiltasSouls/MutantsCurse": {
         "stage": "mutant",
-        "via": "container:FargowiltasSouls/MutantBag"
+        "via": "shop:Fargowiltas/Mutant",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "After the boss has been defeated",
+              "key": "Mods.Fargowiltas.Conditions.DownedTheBoss",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
       },
       "FargowiltasSouls/MutantsFury": {
         "stage": "mutant",
         "via": "container:FargowiltasSouls/MutantBag"
-      },
-      "FargowiltasSouls/MainMenuMusicBox": {
-        "stage": "mutant",
-        "via": "recipe:FargowiltasSouls/Masochist+Terraria/MusicBox"
       }
     },
     "wikiMissingItems": [],
@@ -50044,7 +50425,7 @@
     },
     "unassignedVanillaNpcSourceCount": 195,
     "manualAvailabilityPriority": {
-      "automaticItems": 4140,
+      "automaticItems": 4170,
       "automaticSources": 247,
       "automaticStations": 401,
       "suppressed": {
