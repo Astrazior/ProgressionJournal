@@ -419,6 +419,11 @@ assert(vanillaArmorRepositorySource.includes(
   && vanillaArmorRepositorySource.includes(
     'Set("frostArmorHardmodeEntry", JournalItemCategory.Armor, CombatClass.Melee'),
 "Frost armor must remain a melee/ranged hybrid set");
+assert(vanillaArmorRepositorySource.includes(
+    'EventSet("dd2ArmorPostOneMechBoss", JournalItemCategory.Armor, CombatClass.Summoner')
+  && vanillaArmorRepositorySource.includes(
+    'EventSet("dd2ArmorPostGolem", JournalItemCategory.Armor, CombatClass.Summoner'),
+"Grouped Old One's Army armor variants must remain detectable as complete armor sets");
 assert(profileStorageSource.includes(
     "source.Conditions.Select(static condition => condition.Resolve())")
   && journalUiStateSource.includes("fishingSource.Conditions")

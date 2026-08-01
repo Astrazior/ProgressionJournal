@@ -238,14 +238,11 @@ public static partial class JournalRepository
                             ItemID.SpiderMask, ItemID.SpiderBreastplate, ItemID.SpiderGreaves,
                             Eval(ProgressionStageId.HardmodeEntry, RecommendationTier.Additional)),
 
-            new JournalEntry("dd2ArmorPostOneMechBoss", JournalItemCategory.Armor, CombatClass.Summoner,
-                            [
-                                Group(ItemID.ApprenticeHat, ItemID.MonkBrows, ItemID.HuntressWig, ItemID.SquireGreatHelm),
-                                Group(ItemID.ApprenticeRobe, ItemID.MonkShirt, ItemID.HuntressJerkin, ItemID.SquirePlating),
-                                Group(ItemID.ApprenticeTrousers, ItemID.MonkPants, ItemID.HuntressPants, ItemID.SquireGreaves)
-                            ],
-                            [Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Additional)],
-                            JournalEventCategory.OldOnesArmy),
+            EventSet("dd2ArmorPostOneMechBoss", JournalItemCategory.Armor, CombatClass.Summoner, JournalEventCategory.OldOnesArmy,
+                            Group(ItemID.ApprenticeHat, ItemID.MonkBrows, ItemID.HuntressWig, ItemID.SquireGreatHelm),
+                            Group(ItemID.ApprenticeRobe, ItemID.MonkShirt, ItemID.HuntressJerkin, ItemID.SquirePlating),
+                            Group(ItemID.ApprenticeTrousers, ItemID.MonkPants, ItemID.HuntressPants, ItemID.SquireGreaves),
+                            Eval(ProgressionStageId.PostOneMechBoss, RecommendationTier.Additional)),
 
             Set("hallowedArmorSummonerPostOneMechBoss", JournalItemCategory.Armor, CombatClass.Summoner,
                             ItemID.HallowedHood, ItemID.HallowedPlateMail, ItemID.HallowedGreaves,
@@ -259,14 +256,11 @@ public static partial class JournalRepository
                             ItemID.SpookyHelmet, ItemID.SpookyBreastplate, ItemID.SpookyLeggings,
                             Eval(ProgressionStageId.PostPlantera, RecommendationTier.Recommended)),
 
-            new JournalEntry("dd2ArmorPostGolem", JournalItemCategory.Armor, CombatClass.Summoner,
-                            [
-                                Group(ItemID.ApprenticeAltHead, ItemID.MonkAltHead, ItemID.HuntressAltHead, ItemID.SquireAltHead),
-                                Group(ItemID.ApprenticeAltShirt, ItemID.MonkAltShirt, ItemID.HuntressAltShirt, ItemID.SquireAltShirt),
-                                Group(ItemID.ApprenticeAltPants, ItemID.MonkAltPants, ItemID.HuntressAltPants, ItemID.SquireAltPants)
-                            ],
-                            [Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)],
-                            JournalEventCategory.OldOnesArmy),
+            EventSet("dd2ArmorPostGolem", JournalItemCategory.Armor, CombatClass.Summoner, JournalEventCategory.OldOnesArmy,
+                            Group(ItemID.ApprenticeAltHead, ItemID.MonkAltHead, ItemID.HuntressAltHead, ItemID.SquireAltHead),
+                            Group(ItemID.ApprenticeAltShirt, ItemID.MonkAltShirt, ItemID.HuntressAltShirt, ItemID.SquireAltShirt),
+                            Group(ItemID.ApprenticeAltPants, ItemID.MonkAltPants, ItemID.HuntressAltPants, ItemID.SquireAltPants),
+                            Eval(ProgressionStageId.PostGolem, RecommendationTier.Recommended)),
 
             Set("stardustArmorPostMoonLord", JournalItemCategory.Armor, CombatClass.Summoner,
                             ItemID.StardustHelmet, ItemID.StardustBreastplate, ItemID.StardustLeggings,
