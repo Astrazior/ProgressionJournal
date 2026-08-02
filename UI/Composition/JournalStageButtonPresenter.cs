@@ -60,6 +60,12 @@ public static class JournalStageButtonPresenter
         if (!string.Equals(profile.Id, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase)
             || !JournalStageIds.TryToLegacy(stage.Id, out var legacyStageId))
         {
+            if (JournalStageIconCatalog.TryResolveItem(stage, out var itemType))
+            {
+                button.SetItemDisplay(itemType);
+                return;
+            }
+
             if (JournalStageIconCatalog.TryResolve(profile, stage, out var npcType))
             {
                 if (npcType == NPCID.Guide)

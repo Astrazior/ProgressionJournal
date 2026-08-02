@@ -1,0 +1,67 @@
+{
+  "format": "ProgressionJournalAgentRules",
+  "version": 1,
+  "profileId": "mod.calamityfables",
+  "rules": [
+    {
+      "id": "bramble-staff-angry-tumbler-source",
+      "kind": "source-stage",
+      "source": "Terraria/Tumbleweed",
+      "stageId": "start",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Angry_Tumbler",
+      "sourceVersion": "Terraria 1.4.4.9; verified against Calamity Fables 0.1.23 bundled source",
+      "checkedAt": "2026-08-02",
+      "reason": "The official Terraria Wiki identifies Angry Tumblers as pre-Hardmode Desert enemies, and the bundled Calamity Fables BrambleStaff source adds its 1/10 drop to NPCID.Tumbleweed."
+    },
+    {
+      "id": "early-electrical-materials",
+      "kind": "item-stage",
+      "items": [
+        "CalamityFables/Electrocells",
+        "CalamityFables/EnergyCore"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3449156562",
+      "sourceVersion": "Calamity Fables 0.1.23 bundled source for tModLoader 2026.3",
+      "checkedAt": "2026-08-02",
+      "reason": "The bundled source makes Electrocells a guaranteed Stormlion drop with stack size selected by its charged state. Energy Cores drop unconditionally from the pre-boss Wulfrum Nexus and conditionally from supercharged Wulfrum enemies; the snapshot observes Stormlion and ordinary Wulfrum enemies at start."
+    },
+    {
+      "id": "blizzard-sprite-form-drop-condition",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": [
+        "drop"
+      ],
+      "sourceIds": [
+        "CalamityFables/BlizzardSprite"
+      ],
+      "conditionTypes": [
+        "CalamityFables.Content.NPCs.Snow.BlizzardSprite+NotHeatHazeSpriteCondition"
+      ],
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3449156562",
+      "sourceVersion": "Calamity Fables 0.1.23 bundled source for tModLoader 2026.3",
+      "checkedAt": "2026-08-02",
+      "reason": "The bundled BlizzardSprite source shows that this condition only selects the ordinary cold form instead of the Heat Haze form; it is not a progression gate."
+    }
+  ],
+  "ignoredItems": [
+    {
+      "id": "unobtainable-coraleti-spear",
+      "item": "CalamityFables/CoraletiSpear",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3449156562",
+      "sourceVersion": "Calamity Fables 0.1.23 bundled source for tModLoader 2026.3",
+      "checkedAt": "2026-08-02",
+      "reason": "The bundled source defines Coraleti Spear's item behavior but contains no recipe, drop, shop, world interaction, or other item-granting reference; the complete exported acquisition snapshot likewise contains no source for it."
+    },
+    {
+      "id": "wulfrum-armor-set-held-item",
+      "item": "CalamityFables/WulfrumFusionCannon",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3449156562",
+      "sourceVersion": "Calamity Fables 0.1.23 bundled source for tModLoader 2026.3",
+      "checkedAt": "2026-08-02",
+      "reason": "The bundled source derives the Fusion Array from HeldOnlyItem and creates it only as the temporary held item for the Wulfrum armor-set power mode, so it is not independent obtainable equipment."
+    }
+  ],
+  "ignoredIssues": []
+}

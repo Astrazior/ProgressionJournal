@@ -86,6 +86,8 @@ public sealed class JournalProfileStageDocument
 
     public string IconMod { get; set; } = string.Empty;
 
+    public string IconItem { get; set; } = string.Empty;
+
     public string IconNpc { get; set; } = string.Empty;
 
     public int AccessorySlots { get; set; } = 5;

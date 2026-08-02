@@ -30,6 +30,8 @@ const PROGRESSION_NEUTRAL_CONDITION_KEYS = new Set([
   "Conditions.MoonPhasesNearNew",
   "Conditions.MoonPhasesOdd",
   "Conditions.MoonPhasesOddQuarters",
+  "Conditions.MoonPhasesQuarter0",
+  "Conditions.MoonPhasesQuarter3",
   "Conditions.NearHoney",
   "Conditions.NearLava",
   "Conditions.NearWater",
@@ -40,6 +42,7 @@ const PROGRESSION_NEUTRAL_CONDITION_KEYS = new Set([
   "Conditions.Quarter0Moon",
   "Conditions.Quarter3Moon",
   "Conditions.ThirdQuarterMoon",
+  "Conditions.NightOrEclipse",
   "Conditions.TimeNight",
   "Conditions.WaningGibbousMoon",
   "Conditions.NoAteLoaf",
@@ -813,6 +816,7 @@ function generateProfileCore(
       id: stage.id,
       name: stage.name,
       iconMod: stage.iconMod ?? "",
+      iconItem: stage.iconItem ?? "",
       iconNpc: stage.iconNpc ?? "",
       accessorySlots: stage.accessorySlots ?? 5,
       unlock: stage.unlock ?? { type: "always" }
@@ -1696,12 +1700,20 @@ function configuredConditionStageIndex(
 
 function fishingCatchStageIndex(catchRecord, manifest, stageIndexes) {
   const conditionStageIndexes = (catchRecord.conditions ?? [])
-    .map(condition => configuredConditionStageIndex(
-      typeof condition === "string" ? { description: condition } : condition,
-      "fishing",
-      catchRecord.target,
-      manifest,
-      stageIndexes))
+    .map(condition => {
+      const normalizedCondition = typeof condition === "string"
+        ? { description: condition }
+        : condition;
+      return Math.max(
+        configuredConditionStageIndex(
+          normalizedCondition,
+          "fishing",
+          catchRecord.target,
+          manifest,
+          stageIndexes),
+        ...collectLocalizationLeafKeys(normalizedCondition)
+          .map(key => conditionKeyStageIndex(key, manifest, stageIndexes)));
+    })
     .filter(index => index >= 0);
   return Math.max(catchRecord.earliestStageIndex ?? -1, ...conditionStageIndexes);
 }
@@ -1765,6 +1777,7 @@ function conditionKeyStageIndex(key, manifest, stageIndexes) {
       key.slice(exactStagePrefix.length));
   }
   switch (key) {
+    case "Mods.ProgressionJournal.UI.FishingWorldHardmode":
     case "Conditions.InHardmode":
       return stageIndexByFlagOrId(manifest, stageIndexes, "hardMode", "wall-of-flesh");
     case "Conditions.DownedEyeOfCthulhu":
@@ -1817,6 +1830,13 @@ function conditionKeyStageIndex(key, manifest, stageIndexes) {
           stageIndexById(manifest, stageIndexes, "start")),
         stageIndexByFlagOrId(manifest, stageIndexes, "hardMode", "wall-of-flesh")
       ]);
+    case "Conditions.NightAfterEvilOrHardmode":
+      return earliestStageIndex([
+        stageIndexByFlagOrId(manifest, stageIndexes, "downedBoss2", "world-evil"),
+        stageIndexByFlagOrId(manifest, stageIndexes, "hardMode", "wall-of-flesh")
+      ]);
+    case "Conditions.SolarEclipse":
+      return stageIndexByEventCategory(manifest, stageIndexes, "SolarEclipse");
     case "Conditions.SmashedShadowOrb":
       return stageIndexById(manifest, stageIndexes, "start");
     default:

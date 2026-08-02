@@ -727,7 +727,12 @@ const manifest = {
     }
   ],
   stages: [
-    { id: "start", name: { "en-US": "Start", "ru-RU": "Начало" } },
+    {
+      id: "start",
+      name: { "en-US": "Start", "ru-RU": "Начало" },
+      iconMod: "Test",
+      iconItem: "BossMask"
+    },
     {
       id: "boss",
       name: { "en-US": "Boss", "ru-RU": "Босс" },
@@ -848,6 +853,8 @@ const wikiProfile = {
   ]
 };
 const { profile, report, review } = generateProfile(snapshot, manifest, wikiProfile);
+assert.equal(profile.stages[0].iconMod, "Test");
+assert.equal(profile.stages[0].iconItem, "BossMask");
 assert.equal(profile.version, 1);
 assert.deepEqual(
   profile.worldGenSources.find(source => source.item.item === "Potion"),
@@ -1715,6 +1722,9 @@ const exactStaticEvidenceSnapshot = {
   items: [
     item("Test/SpawnMerchantBlade", { damageClass: "Melee", damage: 20 }),
     item("Test/TownMerchantBlade", { damageClass: "Melee", damage: 21 }),
+    item("Test/WorldEvilShopBlade", { damageClass: "Melee", damage: 22 }),
+    item("Test/SolarEclipseShopBlade", { damageClass: "Melee", damage: 23 }),
+    item("Test/HardmodeCrateBlade", { damageClass: "Melee", damage: 24 }),
     item("Test/UnknownStaticShopBlade", { damageClass: "Melee", damage: 22 }),
     item("Test/FargoHardmodeBlade", { damageClass: "Melee", damage: 23 }),
     item("Test/MartianShopBlade", { damageClass: "Melee", damage: 24 }),
@@ -1772,9 +1782,43 @@ const exactStaticEvidenceSnapshot = {
         {
           type: "Terraria.Condition",
           description: "Display text must not be used",
+          key: "Conditions.MoonPhasesQuarter0"
+        },
+        {
+          type: "Terraria.Condition",
+          description: "Display text must not be used",
+          key: "Conditions.NightOrEclipse"
+        },
+        {
+          type: "Terraria.Condition",
+          description: "Display text must not be used",
           key: "Conditions.NoAteLoaf"
         }
       ]
+    },
+    {
+      npc: "Test/SpawnMerchant",
+      shop: "Shop",
+      item: "Test/WorldEvilShopBlade",
+      observed: false,
+      earliestStageIndex: -1,
+      conditions: [{
+        type: "Terraria.Condition",
+        description: "Display text must not be used",
+        key: "Conditions.NightAfterEvilOrHardmode"
+      }]
+    },
+    {
+      npc: "Test/SpawnMerchant",
+      shop: "Shop",
+      item: "Test/SolarEclipseShopBlade",
+      observed: false,
+      earliestStageIndex: -1,
+      conditions: [{
+        type: "Terraria.Condition",
+        description: "Display text must not be used",
+        key: "Conditions.SolarEclipse"
+      }]
     },
     {
       npc: "Test/TownMerchant",
@@ -1819,7 +1863,21 @@ const exactStaticEvidenceSnapshot = {
       ]
     }
   ],
-  fishing: [],
+  fishing: [{
+    targetType: "item",
+    target: "Test/HardmodeCrateBlade",
+    earliestStageIndex: -1,
+    earliestStageId: "",
+    earliestStageName: "",
+    conditions: [{
+      key: "Mods.ProgressionJournal.UI.FishingWorldCondition",
+      args: [{
+        join: [{
+          key: "Mods.ProgressionJournal.UI.FishingWorldHardmode"
+        }]
+      }]
+    }]
+  }],
   npcAvailability: [
     {
       npc: "Test/SpawnMerchant",
@@ -1858,10 +1916,20 @@ const exactStaticEvidenceManifest = {
       unlock: { type: "vanilla-flag", key: "downedBoss1" }
     },
     {
+      id: "world-evil",
+      name: { "en-US": "World Evil", "ru-RU": "Зло мира" },
+      unlock: { type: "vanilla-flag", key: "downedBoss2" }
+    },
+    {
       id: "wall-of-flesh",
       name: { "en-US": "Wall of Flesh", "ru-RU": "Стена плоти" },
       dropSources: ["Test/HardmodeEnemy"],
       unlock: { type: "vanilla-flag", key: "hardMode" }
+    },
+    {
+      id: "destroyer",
+      name: { "en-US": "The Destroyer", "ru-RU": "Уничтожитель" },
+      unlock: { type: "vanilla-flag", key: "downedMechBoss1" }
     },
     {
       id: "golem",
@@ -1869,6 +1937,11 @@ const exactStaticEvidenceManifest = {
       unlock: { type: "vanilla-flag", key: "downedGolemBoss" }
     }
   ],
+  events: [{
+    id: "solar-eclipse",
+    stageId: "destroyer",
+    eventCategory: "SolarEclipse"
+  }],
   sourceStageFloors: {
     "Test/OpaqueWorldInteraction": "eye-of-cthulhu"
   }
@@ -1882,6 +1955,15 @@ assert.equal(
 assert.equal(
   exactStaticEvidenceResult.report.paths["Test/TownMerchantBlade"]?.stage,
   "eye-of-cthulhu");
+assert.equal(
+  exactStaticEvidenceResult.report.paths["Test/WorldEvilShopBlade"]?.stage,
+  "world-evil");
+assert.equal(
+  exactStaticEvidenceResult.report.paths["Test/SolarEclipseShopBlade"]?.stage,
+  "destroyer");
+assert.equal(
+  exactStaticEvidenceResult.report.paths["Test/HardmodeCrateBlade"]?.stage,
+  "wall-of-flesh");
 assert.equal(
   exactStaticEvidenceResult.report.paths["Test/FargoHardmodeBlade"]?.stage,
   "wall-of-flesh");

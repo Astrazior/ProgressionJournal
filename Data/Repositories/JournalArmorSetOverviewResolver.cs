@@ -13,7 +13,7 @@ internal static class JournalArmorSetOverviewResolver
         .Where(static globalItem => OverridesArmorSetHook(globalItem.GetType()))
         .ToArray());
     private static readonly Lazy<JournalArmorSetFamily[]> VanillaArmorSets = new(CreateVanillaArmorSets);
-    private static readonly Dictionary<ArmorSetKey, bool> ModArmorSetCache = [];
+    private static readonly Dictionary<ArmorSetKey, string[]> ModArmorSetClaimCache = [];
     private static readonly HashSet<string> LoggedHookFailures = new(StringComparer.Ordinal);
 
     public static IReadOnlyList<JournalStageEntry> Resolve(
@@ -35,8 +35,10 @@ internal static class JournalArmorSetOverviewResolver
                      .GroupBy(static value => CreateGroupKey(value.Entry)))
         {
             var groupEntries = candidateGroup.ToArray();
+            var modMatches = FindModArmorSets(groupEntries).ToArray();
             matches.AddRange(FindKnownArmorSets(groupEntries, VanillaArmorSets.Value));
-            matches.AddRange(FindModArmorSets(groupEntries));
+            var canonicalModMatches = RemoveShimmerCompatibilityPermutations(modMatches);
+            matches.AddRange(GroupModArmorSetFamilies(canonicalModMatches));
         }
 
         return matches.Count == 0
@@ -46,7 +48,7 @@ internal static class JournalArmorSetOverviewResolver
 
     public static void ClearCaches()
     {
-        ModArmorSetCache.Clear();
+        ModArmorSetClaimCache.Clear();
         LoggedHookFailures.Clear();
     }
 
@@ -186,7 +188,7 @@ internal static class JournalArmorSetOverviewResolver
             var anchor = components.MinBy(static value => value.Index)!;
             availableVariants[0].PrimeBonus();
 
-            yield return new ArmorSetMatch(availableFamily, anchor, components, classIds);
+            yield return new ArmorSetMatch(availableFamily, anchor, components, classIds, []);
         }
     }
 
@@ -212,8 +214,9 @@ internal static class JournalArmorSetOverviewResolver
                 continue;
             }
 
-            foreach (var definition in ResolveModArmorSetDefinitions(head, body, leg))
+            foreach (var resolved in ResolveModArmorSetDefinitions(head, body, leg))
             {
+                var definition = resolved.Definition;
                 if (!emittedDefinitionKeys.Add(definition.Key))
                 {
                     continue;
@@ -236,9 +239,239 @@ internal static class JournalArmorSetOverviewResolver
                     family,
                     anchor,
                     components,
-                    classIds);
+                    classIds,
+                    resolved.ClaimKeys);
             }
         }
+    }
+
+    private static ArmorSetMatch[] GroupModArmorSetFamilies(ArmorSetMatch[] matches)
+    {
+        var remainingMatches = matches.ToList();
+        var result = new List<ArmorSetMatch>(matches.Length);
+
+        while (remainingMatches.Count > 0)
+        {
+            var component = TakeCompatibleFamilyComponent(remainingMatches);
+            if (component.Length == 1)
+            {
+                result.Add(component[0]);
+                continue;
+            }
+
+            var components = component
+                .SelectMany(static match => match.Components)
+                .DistinctBy(static value => value.Index)
+                .ToArray();
+            result.Add(new ArmorSetMatch(
+                new JournalArmorSetFamily(component.SelectMany(static match => match.Family.Variants)),
+                components.MinBy(static value => value.Index)!,
+                components,
+                component.SelectMany(static match => match.ClassIds)
+                    .ToHashSet(StringComparer.OrdinalIgnoreCase),
+                component.SelectMany(static match => match.ClaimKeys)
+                    .ToHashSet(StringComparer.Ordinal)));
+        }
+
+        return result.ToArray();
+    }
+
+    private static ArmorSetMatch[] TakeCompatibleFamilyComponent(List<ArmorSetMatch> remainingMatches)
+    {
+        var component = new List<ArmorSetMatch> { remainingMatches[0] };
+        remainingMatches.RemoveAt(0);
+
+        for (var index = 0; index < remainingMatches.Count; index++)
+        {
+            var candidate = remainingMatches[index];
+            if (!component.Any(match => CanCombineModArmorSetMatches(match, candidate)))
+            {
+                continue;
+            }
+
+            component.Add(candidate);
+            remainingMatches.RemoveAt(index);
+            index = -1;
+        }
+
+        return component.ToArray();
+    }
+
+    private static bool CanCombineModArmorSetMatches(ArmorSetMatch left, ArmorSetMatch right) =>
+        left.ClaimKeys.Overlaps(right.ClaimKeys)
+        && left.Family.ItemIds.Any(right.Family.ItemIds.Contains)
+        && HaveMatchingArmorSetBonus(
+            left.Family.Variants[0],
+            right.Family.Variants[0]);
+
+    private static bool HaveMatchingArmorSetBonus(
+        JournalArmorSetDefinition left,
+        JournalArmorSetDefinition right)
+    {
+        var leftBonus = JournalArmorSetBonusResolver.Resolve(left);
+        var rightBonus = JournalArmorSetBonusResolver.Resolve(right);
+        return !leftBonus.Failed
+               && !rightBonus.Failed
+               && leftBonus.DefenseBonus == rightBonus.DefenseBonus
+               && string.Equals(leftBonus.Text, rightBonus.Text, StringComparison.Ordinal);
+    }
+
+    private static ArmorSetMatch[] RemoveShimmerCompatibilityPermutations(ArmorSetMatch[] matches)
+    {
+        var remainingCompleteMatches = matches
+            .Where(static match => match.Family.Variants.Count == 1
+                                   && match.Family.Variants[0].ItemIds.Count == 3)
+            .ToList();
+        if (remainingCompleteMatches.Count < 2)
+        {
+            return matches;
+        }
+
+        var suppressedKeys = new HashSet<string>(StringComparer.Ordinal);
+        while (remainingCompleteMatches.Count > 0)
+        {
+            var component = TakeOverlappingComponent(remainingCompleteMatches);
+            if (!TryResolveCartesianShimmerVariants(component, out var canonicalKeys))
+            {
+                continue;
+            }
+
+            suppressedKeys.UnionWith(component
+                .Select(static match => match.Family.Variants[0].Key)
+                .Where(key => !canonicalKeys.Contains(key)));
+        }
+
+        return matches
+            .Where(match => match.Family.Variants.Count != 1
+                            || !suppressedKeys.Contains(match.Family.Variants[0].Key))
+            .ToArray();
+    }
+
+    private static ArmorSetMatch[] TakeOverlappingComponent(List<ArmorSetMatch> remainingMatches)
+    {
+        var component = new List<ArmorSetMatch> { remainingMatches[^1] };
+        remainingMatches.RemoveAt(remainingMatches.Count - 1);
+        var componentItemIds = component[0].Family.ItemIds.ToHashSet();
+
+        for (var index = remainingMatches.Count - 1; index >= 0; index--)
+        {
+            var candidate = remainingMatches[index];
+            if (!candidate.Family.ItemIds.Any(componentItemIds.Contains))
+            {
+                continue;
+            }
+
+            component.Add(candidate);
+            componentItemIds.UnionWith(candidate.Family.ItemIds);
+            remainingMatches.RemoveAt(index);
+            index = remainingMatches.Count;
+        }
+
+        return component.ToArray();
+    }
+
+    private static bool TryResolveCartesianShimmerVariants(
+        ArmorSetMatch[] component,
+        out HashSet<string> canonicalKeys)
+    {
+        canonicalKeys = [];
+        var definitions = component
+            .Select(static match => match.Family.Variants[0])
+            .DistinctBy(static definition => definition.Key)
+            .ToArray();
+        var headItemIds = OrderShimmerVariants(definitions
+            .Select(static definition => definition.HeadItemId)
+            .Distinct()
+            .ToArray());
+        var bodyItemIds = OrderShimmerVariants(definitions
+            .Select(static definition => definition.BodyItemId)
+            .Distinct()
+            .ToArray());
+        var legItemIds = OrderShimmerVariants(definitions
+            .Select(static definition => definition.LegItemId)
+            .Distinct()
+            .ToArray());
+        var variantCount = Math.Max(headItemIds.Length, Math.Max(bodyItemIds.Length, legItemIds.Length));
+        if (variantCount < 2
+            || !HasCompatibleVariantCount(headItemIds, variantCount)
+            || !HasCompatibleVariantCount(bodyItemIds, variantCount)
+            || !HasCompatibleVariantCount(legItemIds, variantCount)
+            || definitions.Length != headItemIds.Length * bodyItemIds.Length * legItemIds.Length
+            || !AreShimmerVariants(headItemIds)
+            || !AreShimmerVariants(bodyItemIds)
+            || !AreShimmerVariants(legItemIds))
+        {
+            return false;
+        }
+
+        var definitionKeys = definitions
+            .Select(static definition => definition.Key)
+            .ToHashSet(StringComparer.Ordinal);
+        for (var variantIndex = 0; variantIndex < variantCount; variantIndex++)
+        {
+            var definition = new JournalArmorSetDefinition(
+                GetVariantItemId(headItemIds, variantIndex),
+                GetVariantItemId(bodyItemIds, variantIndex),
+                GetVariantItemId(legItemIds, variantIndex));
+            if (!definitionKeys.Contains(definition.Key))
+            {
+                canonicalKeys.Clear();
+                return false;
+            }
+
+            canonicalKeys.Add(definition.Key);
+        }
+
+        return canonicalKeys.Count < definitions.Length;
+    }
+
+    private static bool HasCompatibleVariantCount(int[] itemIds, int variantCount) =>
+        itemIds.Length == 1 || itemIds.Length == variantCount;
+
+    private static int GetVariantItemId(int[] itemIds, int variantIndex) =>
+        itemIds.Length == 1 ? itemIds[0] : itemIds[variantIndex];
+
+    private static int[] OrderShimmerVariants(int[] itemIds)
+    {
+        return itemIds
+            .OrderBy(itemId => IsShimmerTargetOnly(itemId, itemIds) ? 1 : 0)
+            .ThenBy(static itemId => itemId)
+            .ToArray();
+    }
+
+    private static bool IsShimmerTargetOnly(int itemId, int[] variants)
+    {
+        var hasIncomingTransform = variants.Any(variant => GetShimmerTransform(variant) == itemId);
+        var hasOutgoingTransform = variants.Contains(GetShimmerTransform(itemId));
+        return hasIncomingTransform && !hasOutgoingTransform;
+    }
+
+    private static bool AreShimmerVariants(int[] itemIds)
+    {
+        if (itemIds.Length <= 1)
+        {
+            return true;
+        }
+
+        var reached = new HashSet<int> { itemIds[0] };
+        var remaining = itemIds.Skip(1).ToHashSet();
+        while (remaining.RemoveWhere(candidate => reached.Any(itemId => AreShimmerLinked(itemId, candidate))) > 0)
+        {
+            reached.UnionWith(itemIds.Where(itemId => !remaining.Contains(itemId)));
+        }
+
+        return remaining.Count == 0;
+    }
+
+    private static bool AreShimmerLinked(int leftItemId, int rightItemId) =>
+        GetShimmerTransform(leftItemId) == rightItemId
+        || GetShimmerTransform(rightItemId) == leftItemId;
+
+    private static int GetShimmerTransform(int itemId)
+    {
+        return itemId >= ItemID.None && itemId < ItemID.Sets.ShimmerTransformToItem.Length
+            ? ItemID.Sets.ShimmerTransformToItem[itemId]
+            : ItemID.None;
     }
 
     private static HashSet<string> ResolveArmorSetClassIds(
@@ -279,12 +512,13 @@ internal static class JournalArmorSetOverviewResolver
         return entry.WikiRecommendation?.ClassIds ?? entry.Entry.ClassIds;
     }
 
-    private static IEnumerable<JournalArmorSetDefinition> ResolveModArmorSetDefinitions(
+    private static IEnumerable<ModArmorSetDefinition> ResolveModArmorSetDefinitions(
         Item head,
         Item body,
         Item legs)
     {
-        if (!IsModArmorSet(head, body, legs))
+        var claimKeys = ResolveModArmorSetClaims(head, body, legs);
+        if (claimKeys.Count == 0)
         {
             yield break;
         }
@@ -292,7 +526,7 @@ internal static class JournalArmorSetOverviewResolver
         var definition = new JournalArmorSetDefinition(head.type, body.type, legs.type);
         if (definition.ItemIds.Count == 2)
         {
-            yield return definition;
+            yield return new ModArmorSetDefinition(definition, claimKeys);
             yield break;
         }
 
@@ -303,23 +537,29 @@ internal static class JournalArmorSetOverviewResolver
                 (Head: head, Body: air, Legs: legs),
                 (Head: head, Body: body, Legs: air)
             }
-            .Where(candidate => IsModArmorSet(candidate.Head, candidate.Body, candidate.Legs))
-            .Select(static candidate => new JournalArmorSetDefinition(
-                candidate.Head.type,
-                candidate.Body.type,
-                candidate.Legs.type))
-            .DistinctBy(static definition => definition.Key)
+            .Select(candidate => new
+            {
+                Definition = new JournalArmorSetDefinition(
+                    candidate.Head.type,
+                    candidate.Body.type,
+                    candidate.Legs.type),
+                ClaimKeys = ResolveModArmorSetClaims(candidate.Head, candidate.Body, candidate.Legs)
+            })
+            .Where(static candidate => candidate.ClaimKeys.Count > 0)
+            .DistinctBy(static candidate => candidate.Definition.Key)
             .ToArray();
 
         if (twoPieceDefinitions.Length == 0)
         {
-            yield return definition;
+            yield return new ModArmorSetDefinition(definition, claimKeys);
             yield break;
         }
 
         foreach (var twoPieceDefinition in twoPieceDefinitions)
         {
-            yield return twoPieceDefinition;
+            yield return new ModArmorSetDefinition(
+                twoPieceDefinition.Definition,
+                twoPieceDefinition.ClaimKeys);
         }
     }
 
@@ -373,20 +613,26 @@ internal static class JournalArmorSetOverviewResolver
         return false;
     }
 
-    private static bool IsModArmorSet(Item head, Item body, Item legs)
+    private static HashSet<string> ResolveModArmorSetClaims(Item head, Item body, Item legs)
     {
         var key = new ArmorSetKey(head.type, body.type, legs.type);
-        if (ModArmorSetCache.TryGetValue(key, out var cached))
+        if (ModArmorSetClaimCache.TryGetValue(key, out var cached))
         {
-            return cached;
+            return cached.ToHashSet(StringComparer.Ordinal);
         }
 
-        var result = IsModItemArmorSet(head, body, legs) || IsGlobalItemArmorSet(head, body, legs);
-        ModArmorSetCache[key] = result;
+        var result = new HashSet<string>(StringComparer.Ordinal);
+        AppendModItemArmorSetClaims(result, head, body, legs);
+        AppendGlobalItemArmorSetClaims(result, head, body, legs);
+        ModArmorSetClaimCache[key] = result.ToArray();
         return result;
     }
 
-    private static bool IsModItemArmorSet(Item head, Item body, Item legs)
+    private static void AppendModItemArmorSetClaims(
+        HashSet<string> result,
+        Item head,
+        Item body,
+        Item legs)
     {
         var modItems = new[] { head.ModItem, body.ModItem, legs.ModItem }
             .Where(static modItem => modItem is not null)
@@ -399,7 +645,7 @@ internal static class JournalArmorSetOverviewResolver
             {
                 if (modItem.IsArmorSet(head, body, legs))
                 {
-                    return true;
+                    result.Add($"item:{modItem.GetType().AssemblyQualifiedName}");
                 }
             }
             catch (Exception exception)
@@ -407,19 +653,22 @@ internal static class JournalArmorSetOverviewResolver
                 LogHookFailure(modItem.GetType(), head, body, legs, exception);
             }
         }
-
-        return false;
     }
 
-    private static bool IsGlobalItemArmorSet(Item head, Item body, Item legs)
+    private static void AppendGlobalItemArmorSetClaims(
+        HashSet<string> result,
+        Item head,
+        Item body,
+        Item legs)
     {
         foreach (var globalItem in GlobalArmorSetHooks.Value)
         {
             try
             {
-                if (!string.IsNullOrEmpty(globalItem.IsArmorSet(head, body, legs)))
+                var setName = globalItem.IsArmorSet(head, body, legs);
+                if (!string.IsNullOrEmpty(setName))
                 {
-                    return true;
+                    result.Add($"global:{globalItem.GetType().AssemblyQualifiedName}:{setName}");
                 }
             }
             catch (Exception exception)
@@ -427,8 +676,6 @@ internal static class JournalArmorSetOverviewResolver
                 LogHookFailure(globalItem.GetType(), head, body, legs, exception);
             }
         }
-
-        return false;
     }
 
     private static bool OverridesArmorSetHook(Type type)
@@ -490,7 +737,10 @@ internal static class JournalArmorSetOverviewResolver
                 var classIds = group
                     .SelectMany(static match => match.ClassIds)
                     .ToHashSet(StringComparer.OrdinalIgnoreCase);
-                return new ArmorSetMatch(family, anchor, components, classIds);
+                var claimKeys = group
+                    .SelectMany(static match => match.ClaimKeys)
+                    .ToHashSet(StringComparer.Ordinal);
+                return new ArmorSetMatch(family, anchor, components, classIds, claimKeys);
             })
             .ToArray();
         var matchesByAnchor = uniqueMatches
@@ -613,9 +863,14 @@ internal static class JournalArmorSetOverviewResolver
 
     private sealed record IndexedEntry(JournalStageEntry Entry, int Index);
 
+    private sealed record ModArmorSetDefinition(
+        JournalArmorSetDefinition Definition,
+        HashSet<string> ClaimKeys);
+
     private sealed record ArmorSetMatch(
         JournalArmorSetFamily Family,
         IndexedEntry Anchor,
         IReadOnlyList<IndexedEntry> Components,
-        HashSet<string> ClassIds);
+        HashSet<string> ClassIds,
+        HashSet<string> ClaimKeys);
 }

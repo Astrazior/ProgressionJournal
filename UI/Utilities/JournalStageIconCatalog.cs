@@ -27,7 +27,7 @@ public static class JournalStageIconCatalog
             ["pre-provi"] = NPCID.MoonLordHead
         };
 
-    private static IReadOnlyList<JournalStageIconCandidate> GetCandidates(string search)
+    private static JournalStageIconCandidate[] GetCandidates(string search)
     {
         _cachedCandidates ??= Enumerable.Range(1, NPCLoader.NPCCount - 1)
             .Select(CreateCandidate)
@@ -103,6 +103,29 @@ public static class JournalStageIconCatalog
         return headSlot;
     }
 
+    public static bool TryResolveItem(JournalProfileStageDocument stage, out int itemType)
+    {
+        itemType = ItemID.None;
+        if (string.IsNullOrWhiteSpace(stage.IconItem))
+        {
+            return false;
+        }
+
+        var modName = stage.IconMod;
+        if (string.Equals(modName, "Terraria", StringComparison.OrdinalIgnoreCase)
+            && (int.TryParse(stage.IconItem, out itemType)
+                || ItemID.Search.TryGetId(stage.IconItem, out itemType)))
+        {
+            return true;
+        }
+
+        if (string.IsNullOrWhiteSpace(modName)
+            || !ModContent.TryFind(modName, stage.IconItem, out ModItem modItem)) return false;
+        itemType = modItem.Type;
+        return true;
+
+    }
+
     private static JournalStageIconCandidate? CreateCandidate(int npcType)
     {
         var headSlot = GetBossHeadSlot(npcType);
@@ -133,15 +156,12 @@ public static class JournalStageIconCatalog
             return true;
         }
 
-        if (!string.IsNullOrWhiteSpace(modName)
-            && !string.IsNullOrWhiteSpace(npcName)
-            && ModContent.TryFind(modName, npcName, out ModNPC modNpc))
-        {
-            npcType = modNpc.Type;
-            return true;
-        }
+        if (string.IsNullOrWhiteSpace(modName)
+            || string.IsNullOrWhiteSpace(npcName)
+            || !ModContent.TryFind(modName, npcName, out ModNPC modNpc)) return false;
+        npcType = modNpc.Type;
+        return true;
 
-        return false;
     }
 
     private static int ScoreCandidate(string target, JournalStageIconCandidate candidate)
@@ -177,11 +197,9 @@ public static class JournalStageIconCatalog
         var normalized = Normalize(value);
         foreach (var prefix in new[] { "pre", "post" })
         {
-            if (normalized.StartsWith(prefix, StringComparison.Ordinal))
-            {
-                normalized = normalized[prefix.Length..];
-                break;
-            }
+            if (!normalized.StartsWith(prefix, StringComparison.Ordinal)) continue;
+            normalized = normalized[prefix.Length..];
+            break;
         }
 
         return normalized

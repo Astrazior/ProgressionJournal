@@ -67,6 +67,16 @@ assert.equal(resolveSnapshotStageIndex({
   earliestStageId: "wall-of-flesh",
   earliestStageName: "Old localized name"
 }, shiftedStages), 2);
+assert.equal(resolveSnapshotStageIndex({
+  earliestStageIndex: 0,
+  earliestStageId: "PreBoss",
+  earliestStageName: "Mods.ProgressionJournal.Stages.PreBoss"
+}, shiftedStages), 0);
+assert.equal(resolveSnapshotStageIndex({
+  earliestStageIndex: 1,
+  earliestStageId: "PostDeerclops",
+  earliestStageName: "Mods.ProgressionJournal.Stages.PostDeerclops"
+}, shiftedStages), 1);
 assert.throws(() => resolveSnapshotStageIndex({
   earliestStageIndex: 1,
   earliestStageName: "Missing stage"
@@ -463,6 +473,79 @@ assert(journalUiStateSource.includes("GetEntriesForArmorSetOverview(profile.Id, 
   && armorSetOverviewResolverSource.includes(".Where(match => match.ClassIds.Contains(classId))")
   && armorSetOverviewResolverSource.includes("if (!AppliesToClass(indexedEntry.Entry, classId))"),
 "Armor sets must be detected before class filtering and shown by the intersection of their piece classes");
+assert(armorSetOverviewResolverSource.includes("RemoveShimmerCompatibilityPermutations(modMatches)")
+  && armorSetOverviewResolverSource.includes("TryResolveCartesianShimmerVariants")
+  && armorSetOverviewResolverSource.includes("AreShimmerVariants")
+  && armorSetOverviewResolverSource.includes("ItemID.Sets.ShimmerTransformToItem"),
+"Cartesian armor compatibility permutations must collapse through machine-readable shimmer variants");
+const baseArmorSet = [100, 200, 300];
+const shimmerArmorSet = [101, 201, 301];
+const compatibleArmorSets = [0, 1].flatMap(headIndex =>
+  [0, 1].flatMap(bodyIndex =>
+    [0, 1].map(legIndex => [
+      [baseArmorSet[0], shimmerArmorSet[0]][headIndex],
+      [baseArmorSet[1], shimmerArmorSet[1]][bodyIndex],
+      [baseArmorSet[2], shimmerArmorSet[2]][legIndex]
+    ])));
+const displayedArmorSets = [0, 1].map(variantIndex => [
+  [baseArmorSet[0], shimmerArmorSet[0]].sort((left, right) => left - right)[variantIndex],
+  [baseArmorSet[1], shimmerArmorSet[1]].sort((left, right) => left - right)[variantIndex],
+  [baseArmorSet[2], shimmerArmorSet[2]].sort((left, right) => left - right)[variantIndex]
+]);
+assert.equal(compatibleArmorSets.length, 8,
+  "The fixture must represent every combination accepted by a compatibility hook");
+assert.deepEqual(displayedArmorSets, [baseArmorSet, shimmerArmorSet],
+  "Two complete shimmer-linked armor sets must render as two cards, not eight mixed permutations");
+assert(armorSetOverviewResolverSource.includes("GroupModArmorSetFamilies(canonicalModMatches)")
+  && armorSetOverviewResolverSource.includes("ResolveModArmorSetClaims")
+  && armorSetOverviewResolverSource.includes("left.ClaimKeys.Overlaps(right.ClaimKeys)")
+  && armorSetOverviewResolverSource.includes("left.Family.ItemIds.Any(right.Family.ItemIds.Contains)")
+  && armorSetOverviewResolverSource.includes("HaveMatchingArmorSetBonus"),
+"Alternatives accepted by the same armor hook must form one family only when they share a piece");
+const groupClaimedArmorSets = matches => {
+  const remaining = [...matches];
+  const families = [];
+  while (remaining.length > 0) {
+    const family = [remaining.pop()];
+    for (let index = remaining.length - 1; index >= 0; index--) {
+      const candidate = remaining[index];
+      if (!family.some(match =>
+        match.claims.some(claim => candidate.claims.includes(claim))
+        && match.items.some(item => candidate.items.includes(item))
+        && match.bonus === candidate.bonus)) {
+        continue;
+      }
+
+      family.push(candidate);
+      remaining.splice(index, 1);
+      index = remaining.length;
+    }
+    families.push(family);
+  }
+  return families;
+};
+const iceHat = 400;
+const wizardRobes = [500, 501, 502, 503, 504, 505, 506, 507];
+const blizzardArmorSets = wizardRobes.map(robe => ({
+  items: [iceHat, robe],
+  claims: ["item:CalamityFables.IceHat"],
+  bonus: "IceHat"
+}));
+const blizzardFamilies = groupClaimedArmorSets(blizzardArmorSets);
+assert.equal(blizzardFamilies.length, 1,
+  "One mod hat accepting eight robes must render as one armor family");
+assert.equal(blizzardFamilies[0].length, 8,
+  "The Blizzard armor family must retain every accepted robe variant");
+assert.equal(groupClaimedArmorSets([
+  { items: baseArmorSet, claims: ["global:compatibility"], bonus: "compatibility" },
+  { items: shimmerArmorSet, claims: ["global:compatibility"], bonus: "compatibility" }
+]).length, 2,
+"Separate complete sets must not merge merely because one global hook accepts both");
+assert.equal(groupClaimedArmorSets([
+  { items: [iceHat, 600], claims: ["item:shared"], bonus: "first" },
+  { items: [iceHat, 601], claims: ["item:shared"], bonus: "second" }
+]).length, 2,
+"One hook must keep shared-piece configurations separate when their set bonuses differ");
 assert(vanillaArmorRepositorySource.includes(
     'Set("frostArmorRangedHardmodeEntry", JournalItemCategory.Armor, CombatClass.Ranged')
   && vanillaArmorRepositorySource.includes(

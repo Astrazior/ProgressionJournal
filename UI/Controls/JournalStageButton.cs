@@ -24,7 +24,8 @@ public sealed class JournalStageButton : JournalHoverPanel
     private enum HeadTextureKind
     {
         Boss,
-        Town
+        Town,
+        Item
     }
 
     public JournalStageButton(Action onClick)
@@ -66,6 +67,13 @@ public sealed class JournalStageButton : JournalHoverPanel
         _showLockedMarker = false;
         _headSlots.Clear();
         _headSlots.Add((HeadTextureKind.Town, npcHeadSlot));
+    }
+
+    public void SetItemDisplay(int itemType)
+    {
+        _showLockedMarker = false;
+        _headSlots.Clear();
+        _headSlots.Add((HeadTextureKind.Item, itemType));
     }
 
     public void SetLockedDisplay()
@@ -157,6 +165,10 @@ public sealed class JournalStageButton : JournalHoverPanel
 
             case HeadTextureKind.Town when head.Slot >= 0 && head.Slot < TextureAssets.NpcHead.Length:
                 texture = TextureAssets.NpcHead[head.Slot].Value;
+                return true;
+
+            case HeadTextureKind.Item when head.Slot > 0 && head.Slot < TextureAssets.Item.Length:
+                texture = TextureAssets.Item[head.Slot].Value;
                 return true;
 
             default:

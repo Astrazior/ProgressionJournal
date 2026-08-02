@@ -1,9 +1,35 @@
+const LEGACY_VANILLA_STAGE_ID_ALIASES = new Map([
+  ["PreBoss", "start"],
+  ["PostKingSlime", "king-slime"],
+  ["PostEyeOfCthulhu", "eye-of-cthulhu"],
+  ["PostWorldEvil", "world-evil"],
+  ["PostQueenBee", "queen-bee"],
+  ["PostSkeletron", "skeletron"],
+  ["PostDeerclops", "deerclops"],
+  ["HardmodeEntry", "wall-of-flesh"],
+  ["PostQueenSlime", "queen-slime"],
+  ["PostOneMechBoss", "destroyer"],
+  ["PostThreeMechBosses", "skeletron-prime"],
+  ["PostPlantera", "plantera"],
+  ["PostDukeFishron", "duke-fishron"],
+  ["PostEmpressOfLight", "empress-of-light"],
+  ["PostGolem", "golem"],
+  ["PostCelestialPillars", "lunatic-cultist"],
+  ["PostMoonLord", "moon-lord"]
+]);
+
 export function resolveSnapshotStageIndex(record, stages, label = "snapshot record") {
   const originalIndex = record.earliestStageIndex ?? -1;
   if (originalIndex < 0) return originalIndex;
 
   if (record.earliestStageId) {
-    const stageIdIndex = stages.findIndex(stage => stage.id === record.earliestStageId);
+    let stageIdIndex = stages.findIndex(stage => stage.id === record.earliestStageId);
+    if (stageIdIndex < 0) {
+      const alias = LEGACY_VANILLA_STAGE_ID_ALIASES.get(record.earliestStageId);
+      stageIdIndex = alias
+        ? stages.findIndex(stage => stage.id === alias)
+        : -1;
+    }
     if (stageIdIndex < 0) {
       throw new Error(
         `${label} references missing stage id '${record.earliestStageId}'. Re-export the snapshot.`);
