@@ -13,7 +13,8 @@ public static class JournalItemSourceResolver
     private static readonly FieldInfo? GlobalNpcDropRulesField = typeof(ItemDropDatabase).GetField(
         "_globalEntries",
         BindingFlags.Instance | BindingFlags.NonPublic);
-    private static readonly Dictionary<(string ProfileId, int ItemId), JournalItemAcquisitionInfo> Cache = new();
+    private static readonly Dictionary<(string ProfileId, string CultureName, int ItemId), JournalItemAcquisitionInfo>
+        Cache = new();
     private static readonly Dictionary<int, Item?> StationItemCache = new();
     private static readonly Dictionary<int, bool> RevengeanceExclusiveCache = new();
     private static readonly Dictionary<Type, MemberInfo?> LocalizedTextMemberCache = new();
@@ -85,7 +86,7 @@ public static class JournalItemSourceResolver
     public static JournalItemAcquisitionInfo GetInfo(int itemId)
     {
         var profileId = JournalProfileRegistry.IsLoaded ? JournalProfileRegistry.Active.Id : string.Empty;
-        var cacheKey = (profileId, itemId);
+        var cacheKey = (profileId, Language.ActiveCulture.Name, itemId);
         if (Cache.TryGetValue(cacheKey, out var info))
         {
             return info;
@@ -300,7 +301,7 @@ public static class JournalItemSourceResolver
             && JournalProfileRegistry.Active.WorldGenSources.TryGetValue(targetItemId, out var profileSources))
         {
             sources.AddRange(profileSources.Select(source =>
-                InferLegacyWorldGenSourceReference(source, referenceCandidates)));
+                NormalizeProfileWorldGenSource(source, referenceCandidates)));
         }
 
         sources.AddRange(catalogSourceModels);
@@ -321,24 +322,24 @@ public static class JournalItemSourceResolver
             .ToArray();
     }
 
-    private static JournalDropSource InferLegacyWorldGenSourceReference(
+    private static JournalDropSource NormalizeProfileWorldGenSource(
         JournalDropSource source,
         (string SourceName, string SourceReference)[] referenceCandidates)
     {
-        if (!string.IsNullOrWhiteSpace(source.SourceReference))
-        {
-            return source;
-        }
-
-        var reference = referenceCandidates
-            .FirstOrDefault(candidate => IsLegacyWorldGenSourceMatch(source.SourceName, candidate));
+        var reference = string.IsNullOrWhiteSpace(source.SourceReference)
+            ? referenceCandidates
+                .FirstOrDefault(candidate => IsLegacyWorldGenSourceMatch(source.SourceName, candidate))
+            : referenceCandidates.FirstOrDefault(candidate => string.Equals(
+                NormalizeWorldGenSourceReference(candidate.SourceReference),
+                NormalizeWorldGenSourceReference(source.SourceReference),
+                StringComparison.OrdinalIgnoreCase));
         if (string.IsNullOrWhiteSpace(reference.SourceReference))
         {
             return source;
         }
 
         return new JournalDropSource(
-            source.SourceName,
+            reference.SourceName,
             source.SourceNpcType,
             source.SourceItemId,
             source.DropRate,

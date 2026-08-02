@@ -275,6 +275,18 @@ assert(exactDropCatalogSource.includes("\"CalamityMod/Jackfruit\"")
   && englishLocalizationSource.includes("food buff duration in minutes × 0.5%")
   && russianLocalizationSource.includes("длительность пищевого бафа в минутах × 0,5%"),
   "Start-stage Calamity foods must retain their localized non-standard acquisition sources");
+assert(exactDropCatalogSource.includes("private static Entry[] GetEntries()")
+  && exactDropCatalogSource.includes("Language.ActiveCulture.Name")
+  && exactDropCatalogSource.includes("_entriesCultureName")
+  && !exactDropCatalogSource.includes("Lazy<Entry[]> Entries"),
+  "Localized exact-source names must be rebuilt after the active language changes");
+assert(itemSourceResolverSource.includes("NormalizeProfileWorldGenSource")
+  && itemSourceResolverSource.includes("NormalizeWorldGenSourceReference(source.SourceReference)")
+  && itemSourceResolverSource.includes("reference.SourceName"),
+  "Profile world-source names must yield to the current localized exact source for the same reference");
+assert(itemSourceResolverSource.includes("string CultureName, int ItemId")
+  && itemSourceResolverSource.includes("(profileId, Language.ActiveCulture.Name, itemId)"),
+  "Acquisition cards must not reuse localized source data cached under another language");
 assert(exactDropCatalogSource.includes("AddVanillaTreeFruits(builders)")
   && exactDropCatalogSource.includes("\"Terraria/Apricot\"")
   && exactDropCatalogSource.includes("\"Terraria/Dragonfruit\"")
@@ -448,7 +460,7 @@ assert(exactDropCatalogSource.includes('"Terraria/WaterBolt"')
 assert(itemSourceResolverSource.includes("MergeWorldGenSourceGroup")
   && itemSourceResolverSource.includes("source.SourceItemId.HasValue")
   && itemSourceResolverSource.includes("SelectMany(static source => source.Conditions)")
-  && itemSourceResolverSource.includes("InferLegacyWorldGenSourceReference")
+  && itemSourceResolverSource.includes("NormalizeProfileWorldGenSource")
   && itemSourceResolverSource.includes("source.SourceReference")
   && itemSourceResolverSource.includes("NormalizeWorldGenSourceReference"),
 "Profile and runtime world-container records must merge into one condition-rich source card");

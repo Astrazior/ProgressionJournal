@@ -8,11 +8,13 @@ namespace ProgressionJournal.Data.Resolvers;
 
 public static class JournalExactDropCatalog
 {
-    private static readonly Lazy<Entry[]> Entries = new(CreateEntries);
+    private static readonly object EntriesLock = new();
+    private static Entry[]? _entries;
+    private static string _entriesCultureName = string.Empty;
 
     public static IReadOnlyList<JournalExactDropSource> GetSources(int targetItemId)
     {
-        return Entries.Value
+        return GetEntries()
             .Where(entry => entry.TargetItemId == targetItemId)
             .Select(ToSource)
             .ToArray();
@@ -20,14 +22,14 @@ public static class JournalExactDropCatalog
 
     public static IReadOnlyList<JournalExactDropSource> GetAllSources()
     {
-        return Entries.Value
+        return GetEntries()
             .Select(ToSource)
             .ToArray();
     }
 
     public static IReadOnlyList<JournalExactDropSource> GetAllNpcDrops()
     {
-        return Entries.Value
+        return GetEntries()
             .Where(static entry => entry.SourceNpcType.HasValue)
             .Select(ToSource)
             .ToArray();
@@ -35,7 +37,7 @@ public static class JournalExactDropCatalog
 
     public static IReadOnlyList<JournalExactDropSource> GetAllGlobalDrops()
     {
-        return Entries.Value
+        return GetEntries()
             .Where(static entry => entry is
             {
                 IncludeInSnapshot: true,
@@ -49,7 +51,7 @@ public static class JournalExactDropCatalog
 
     public static IReadOnlyList<JournalExactDropSource> GetAllWorldDrops()
     {
-        return Entries.Value
+        return GetEntries()
             .Where(static entry => entry is
             {
                 IncludeInSnapshot: true,
@@ -62,7 +64,7 @@ public static class JournalExactDropCatalog
 
     public static IReadOnlyList<JournalExactDropSource> GetAllItemDrops()
     {
-        return Entries.Value
+        return GetEntries()
             .Where(static entry => entry is
             {
                 IncludeInSnapshot: true,
@@ -71,6 +73,23 @@ public static class JournalExactDropCatalog
             })
             .Select(ToSource)
             .ToArray();
+    }
+
+    private static Entry[] GetEntries()
+    {
+        var cultureName = Language.ActiveCulture.Name;
+        lock (EntriesLock)
+        {
+            if (_entries is not null
+                && string.Equals(_entriesCultureName, cultureName, StringComparison.Ordinal))
+            {
+                return _entries;
+            }
+
+            _entries = CreateEntries();
+            _entriesCultureName = cultureName;
+            return _entries;
+        }
     }
 
     private static JournalExactDropSource ToSource(Entry entry)
