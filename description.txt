@@ -5,24 +5,22 @@
 The mod adds an in-game journal with equipment recommendations for every supported class and progression stage. It provides a quick reference during gameplay without requiring you to constantly check a wiki.
 
 [h2]Features[/h2]
+
 [list]
 [*]Equipment recommendations for every supported class at each progression stage
-[*]Support for modded classes defined by profiles, such as Rogue
-[*]Separate rating tiers: strong, usable, weak, and very weak
-[*]Separate ratings for buffs
+[*]Separate rating tiers for equipment and buffs
 [*]Item acquisition details, including drops, shops, recipes, crafting stations, and required conditions
 [*]Visual icons for events, moon phases, and other progression requirements
 [*]A dedicated in-game journal interface
-[*]Custom build creation, saving, importing, and exporting
-[*]Build sharing through JSON or the in-game chat
-[*]Support for items from other mods in custom builds
+[*]Custom build creation, saving, importing, exporting, and sharing
+[*]Support for items from other mods in custom-builds
 [*]Search and filtering tools for build setup
-[*]Support for content mods through separate profiles
+[*]Support for modded classes and content mods through separate profiles
 [/list]
 
 [h2]Build System[/h2]
 
-Starting with version [b]2.0.0[/b], the mod allows you to create custom builds for different classes and playstyles.
+Starting with version [b]2.0.0[/b], the mod allows you to create custom-builds for different classes and playstyles.
 
 [img]https://i.imgur.com/so4358y.gif[/img]
 
@@ -34,7 +32,7 @@ Each build is linked to the active progression profile, class, and stage.
 
 Starting with version [b]2.1.0[/b], the mod supports separate profiles for content mods. Profiles can be copied and edited directly in-game.
 
-Instead of manually rating thousands of modded items, profiles use two main sections:
+Profiles use two main sections:
 
 [list]
 [*][b]Recommendations[/b] — official recommendations from the mod's sources, such as its wiki
@@ -43,24 +41,36 @@ Instead of manually rating thousands of modded items, profiles use two main sect
 
 [img]https://i.imgur.com/ewlc0nu.gif[/img]
 
-The system analyzes bosses, loot, materials, recipes, and other progression connections. A simple progression chain looks like this:
+The system analyzes bosses, loot, materials, recipes, and other progression connections:
 
 [b]boss → new material → new armor or weapon[/b]
 
-More complex chains may not always be detected correctly:
+More complex chains may not always be detected correctly. As a result, automatically generated data may contain inaccuracies or become outdated after content mod updates.
 
-[b]boss → new enemy or new drop → material → equipment[/b]
+[b]Supported mod profiles:[/b] Calamity, Calamity Fables, Thorium, Fargo's Souls, and Ancients Awakened: Classic.
 
-As a result, automatically generated data may contain inaccuracies or become outdated after content mod updates.
+[h2]Community Translations[/h2]
+
+Progression Journal is available in other languages thanks to community translators:
+
+[list]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3772766267][b]Spanish Translation — Proyecto Nexo[/b][/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3752195086][b]Simplified Chinese Translation[/b][/url]
+[/list]
+
+These translations are created and maintained by members of the community. Please support the translators by subscribing to and positively rating their Workshop items. Report translation issues on the respective translation pages.
 
 [h2]Important[/h2]
+
 [list]
 [*]This is a [b]client-side[/b] mod, so the server does not need to install it
 [*]The mod does not change progression or game balance and only works as a reference tool
 [*]Wiki-based and automatically generated profiles may be incomplete or inaccurate
 [/list]
 
-[b]Supported mod profiles:[/b] Calamity, Thorium, Fargo's Souls, and Ancients Awakened: Classic.
+[h2]Links[/h2]
 
-[h1]Links[/h1]
 [url=https://github.com/Astrazior/ProgressionJournal]GitHub[/url]
+
+[quote=tModLoader ProgressionJournal]
+Developed By Astrazior[/quote]
