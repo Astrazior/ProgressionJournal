@@ -307,8 +307,8 @@ public sealed class JournalSystem : ModSystem
 
         SelectedClassId = JournalProfileRegistry.Active.Classes[0].Id;
         SelectedStageId = GetCurrentStageId();
-        HasSelectedClass = true;
-        SelectingClass = false;
+        HasSelectedClass = false;
+        SelectingClass = true;
         ShowingPresets = false;
         ShowingBuildBuilder = false;
         ShowingProfileManager = false;
