@@ -2,93 +2,10 @@
   "format": "ProgressionJournalManualReview",
   "version": 1,
   "profileId": "builtin.fargosouls",
-  "generatedAtUtc": "2026-08-01T21:22:44.070Z",
+  "generatedAtUtc": "2026-08-12T12:07:31.860Z",
   "summary": {
-    "total": 2,
-    "byKind": {
-      "unresolved-condition": 2
-    }
+    "total": 0,
+    "byKind": {}
   },
-  "issues": [
-    {
-      "id": "unresolved-condition.0315be6ad41f",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a full or waning gibbous moon",
-          "key": "Conditions.MoonPhasesQuarter0",
-          "facts": []
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/PirateStaff",
-          "source": "Terraria/Princess"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/Princess"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [
-              "Conditions.MoonPhasesQuarter0"
-            ],
-            "conditionDescriptions": [
-              "During a full or waning gibbous moon"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.2c015e3aa646",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a first quarter or waxing gibbous moon",
-          "key": "Conditions.MoonPhasesQuarter3",
-          "facts": []
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/CoinGun",
-          "source": "Terraria/Princess"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/Princess"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [
-              "Conditions.MoonPhasesQuarter3"
-            ],
-            "conditionDescriptions": [
-              "During a first quarter or waxing gibbous moon"
-            ]
-          }
-        ]
-      }
-    }
-  ]
+  "issues": []
 }

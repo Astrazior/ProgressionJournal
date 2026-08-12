@@ -3,7 +3,7 @@
   "version": 2,
   "targetMod": "AAModClassic",
   "profileId": "builtin.aamodclassic",
-  "generatedAtUtc": "2026-08-01T21:22:15.522Z",
+  "generatedAtUtc": "2026-08-12T11:30:33.839Z",
   "snapshotGeneratedAtUtc": "2026-08-01T14:23:21.8902967Z",
   "summary": {
     "snapshotItems": 7066,
@@ -14,11 +14,11 @@
     "equipmentReferences": 1552,
     "buffReferences": 173,
     "profileSourceGaps": 0,
-    "excluded": 3372,
+    "excluded": 3376,
     "acquiredNonProfile": 127,
     "unresolvedAvailability": 0,
     "unavailableCombat": 0,
-    "noAcquisitionPath": 1842
+    "noAcquisitionPath": 1838
   },
   "items": [
     {
@@ -26436,11 +26436,22 @@
       "name": "Bunny Ears",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "start",
+      "via": "shop:Terraria/BestiaryGirl",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During a first quarter or waxing gibbous moon",
+            "key": "Conditions.MoonPhasesQuarter3",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "Terraria/Bunnyfish",
@@ -26502,11 +26513,22 @@
       "name": "Bunny Tail",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "start",
+      "via": "shop:Terraria/BestiaryGirl",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During a first quarter or waxing gibbous moon",
+            "key": "Conditions.MoonPhasesQuarter3",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "Terraria/Burger",
@@ -33732,22 +33754,44 @@
       "name": "Dog Ears",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "start",
+      "via": "shop:Terraria/BestiaryGirl",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During a full or waning gibbous moon",
+            "key": "Conditions.MoonPhasesQuarter0",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "Terraria/DogTail",
       "name": "Dog Tail",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "start",
+      "via": "shop:Terraria/BestiaryGirl",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During a full or waning gibbous moon",
+            "key": "Conditions.MoonPhasesQuarter0",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "Terraria/DogWhistle",

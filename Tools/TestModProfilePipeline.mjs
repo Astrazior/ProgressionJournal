@@ -21,6 +21,9 @@ const combatBuffRepositorySource = fs.readFileSync(
 const journalContentBuilderSource = fs.readFileSync(
   path.join(root, "UI", "Composition", "JournalContentBuilder.cs"),
   "utf8");
+const localizedTextSource = fs.readFileSync(
+  path.join(root, "Data", "Profiles", "JournalLocalizedText.cs"),
+  "utf8");
 assert(buildPlannerSource.includes(".Take(profile.GetStageIndex(stageId) + 1)")
   && buildPlannerSource.includes(
     ".SelectMany(stage => GetCombatBuffEntries(profile.Id, stage.Id, classId))"),
@@ -42,6 +45,10 @@ assert(journalContentBuilderSource.includes(
     "armorSet.Variants.Max(static variant => variant.TotalDefense)")
   && journalContentBuilderSource.includes("_ => 0"),
 "Only New equipment must sort armor and weapons by descending strength");
+assert(localizedTextSource.includes("Language.Exists(Key)")
+  && localizedTextSource.includes("ReadLocaleValues(root, result)")
+  && localizedTextSource.includes("WriteLocaleValues(writer, value)"),
+"External localization keys must retain built-in locale fallbacks");
 const expected = ["CalamityMod", "FargowiltasSouls", "ThoriumMod"];
 const requiredFiles = [
   "support.json",
@@ -1143,6 +1150,16 @@ for (const modName of expected) {
       "CalamityMod: exclusive Celestial Pillar biome evidence must floor NPC drops");
   }
   if (modName === "ThoriumMod") {
+    const modStages = support.stages.filter(stage => stage.iconMod === modName);
+    assert(modStages.every(stage =>
+      !stage.name.key
+      && typeof stage.name["en-US"] === "string"
+      && typeof stage.name["ru-RU"] === "string"),
+    "Thorium stages without built-in Russian localization must retain manual Project tRU fallbacks");
+    assert.equal(modStages.find(stage => stage.id === "borean-strider")?.name["ru-RU"],
+      "Борейский шагатель");
+    assert.equal(modStages.find(stage => stage.id === "coznix")?.name["ru-RU"],
+      "Падший Созерцатель");
     const ufoAvailability = snapshot.npcAvailability.find(record =>
       record.npc === "ThoriumMod/UFO");
     assert.equal(ufoAvailability?.earliestStageId, "world-evil",
@@ -1207,6 +1224,20 @@ for (const modName of expected) {
       `${modName}: ${itemId} has an incorrect class assignment`);
   }
   if (modName === "CalamityMod") {
+    const modStages = support.stages.filter(stage => stage.iconMod === modName);
+    assert(modStages.every(stage =>
+      !stage.name.key
+      && typeof stage.name["en-US"] === "string"
+      && typeof stage.name["ru-RU"] === "string"),
+    "Calamity stages without built-in Russian localization must retain manual Project tRU fallbacks");
+    assert.equal(modStages.find(stage => stage.id === "aquatic-scourge")?.name["ru-RU"],
+      "Акватический бич");
+    assert.equal(modStages.find(stage => stage.id === "plaguebringer-goliath")?.name["ru-RU"],
+      "Предвестница чумы, Голиаф");
+    assert.equal(modStages.find(stage => stage.id === "dragonfolly")?.name["ru-RU"],
+      "Псевдодракон");
+    assert.equal(modStages.find(stage => stage.id === "supreme-calamitas")?.name["ru-RU"],
+      "Высшая ведьма, Каламитас");
     const agentRules = readJson(path.join(directory, "agent-rules.json"));
     const report = readJson(path.join(directory, "report.json"));
     const migration = report.agentRules?.availabilityMigration;
@@ -1445,6 +1476,12 @@ assert.equal(aaReport.audit.sourceCoverage.uncovered
   .filter(entry => entry.source.startsWith("AAModClassic/"))
   .length, 0, "AAModClassic has uncovered mod NPC or shop sources");
 const aaStage = id => aaSupport.stages.find(stage => stage.id === id);
+const aaModStages = aaSupport.stages.filter(stage => stage.iconMod === "AAModClassic");
+assert(aaModStages.every(stage =>
+  stage.name.key?.startsWith("Mods.AAModClassic.")
+  && stage.name["en-US"]
+  && stage.name["ru-RU"]),
+"Every AAModClassic stage must use the mod's live localization with built-in fallbacks");
 const aaEntry = itemName => aaProfile.entries.find(entry =>
   entry.itemGroups.some(group => group.some(item => item.item === itemName)));
 const aaBuff = itemName => aaProfile.combatBuffs.find(entry =>
@@ -1553,6 +1590,17 @@ for (const [itemName, prerequisite] of Object.entries({
 assert.equal(aaStage("grips-of-chaos")?.unlock?.key, "downedGrips");
 assert.equal(aaStage("equinox-worms")?.unlock?.key, "downedEquinox");
 assert.equal(aaStage("sisters-of-discord")?.unlock?.key, "downedSisters");
+assert.deepEqual(aaStage("feudal-fungus")?.name, {
+  key: "Mods.AAModClassic.NPCs.FeudalFungus.DisplayName",
+  "en-US": "Feudal Fungus",
+  "ru-RU": "Грибной феодал"
+});
+assert.equal(aaStage("grips-of-chaos")?.name?.key,
+  "Mods.AAModClassic.BossChecklist.GripsOfChaos.Name");
+assert.equal(aaStage("equinox-worms")?.name?.key,
+  "Mods.AAModClassic.BossChecklist.EquinoxWorms.Name");
+assert.equal(aaStage("sisters-of-discord")?.name?.key,
+  "Mods.AAModClassic.BossChecklist.SistersOfDiscord.Name");
 assert(aaStage("akuma")?.dropSources?.includes("AAModClassic/AkumaAHead"));
 assert(aaStage("yamata")?.dropSources?.includes("AAModClassic/YamataABody"));
 assert(aaStage("zero")?.dropSources?.includes("AAModClassic/ZeroA"));
@@ -1782,6 +1830,34 @@ for (const [itemName, stageId] of Object.entries({
 const fargoSupport = readJson(path.join(modsRoot, "FargowiltasSouls", "support.json"));
 assert(fargoSupport.requiredMods.some(mod => mod.name === "FargowiltasSouls"));
 assert(fargoSupport.requiredMods.some(mod => mod.name === "Fargowiltas"));
+const fargoModStages = fargoSupport.stages.filter(stage => stage.iconMod === "FargowiltasSouls");
+assert.equal(fargoModStages.length, 16);
+assert(fargoModStages.every(stage =>
+  stage.name.key === `Mods.FargowiltasSouls.NPCs.${stage.iconNpc}.DisplayName`
+  && typeof stage.name["en-US"] === "string"
+  && typeof stage.name["ru-RU"] === "string"),
+"Fargo's Souls stages must use live mod localization keys with built-in fallbacks");
+assert.deepEqual(
+  fargoModStages.find(stage => stage.id === "cursed-coffin")?.name,
+  {
+    key: "Mods.FargowiltasSouls.NPCs.CursedCoffin.DisplayName",
+    "en-US": "Cursed Coffin",
+    "ru-RU": "Скверный Саркофаг"
+  });
+assert.deepEqual(
+  fargoModStages.find(stage => stage.id === "shadow-champion")?.name,
+  {
+    key: "Mods.FargowiltasSouls.NPCs.ShadowChampion.DisplayName",
+    "en-US": "Champion of Death",
+    "ru-RU": "Чемпион Смерти"
+  });
+assert.deepEqual(
+  fargoModStages.find(stage => stage.id === "cosmos-champion")?.name,
+  {
+    key: "Mods.FargowiltasSouls.NPCs.CosmosChampion.DisplayName",
+    "en-US": "Eridanus, Champion of Cosmos",
+    "ru-RU": "Эриданус, чемпион Космоса"
+  });
 
 const testSupport = {
   id: "test",

@@ -19,7 +19,7 @@ public sealed class JournalLocalizedText
 
     public string Resolve()
     {
-        if (!string.IsNullOrWhiteSpace(Key))
+        if (!string.IsNullOrWhiteSpace(Key) && Language.Exists(Key))
         {
             return Language.GetTextValue(
                 Key,
@@ -129,15 +129,18 @@ public sealed class JournalLocalizedTextConverter : JsonConverter<JournalLocaliz
         if (root.TryGetProperty("key", out var keyElement))
         {
             result.Key = keyElement.GetString() ?? string.Empty;
-            if (!root.TryGetProperty("args", out var argumentsElement)
-                || argumentsElement.ValueKind != JsonValueKind.Array) return result;
-            foreach (var deserialized in argumentsElement.EnumerateArray().Select(argument => JsonSerializer.Deserialize<JournalLocalizedText>(
-                         argument.GetRawText(),
-                         options)).OfType<JournalLocalizedText>())
+            if (root.TryGetProperty("args", out var argumentsElement)
+                && argumentsElement.ValueKind == JsonValueKind.Array)
             {
-                result.Arguments.Add(deserialized);
+                foreach (var deserialized in argumentsElement.EnumerateArray().Select(argument => JsonSerializer.Deserialize<JournalLocalizedText>(
+                             argument.GetRawText(),
+                             options)).OfType<JournalLocalizedText>())
+                {
+                    result.Arguments.Add(deserialized);
+                }
             }
 
+            ReadLocaleValues(root, result);
             return result;
         }
 
@@ -160,14 +163,25 @@ public sealed class JournalLocalizedTextConverter : JsonConverter<JournalLocaliz
             return result;
         }
 
+        ReadLocaleValues(root, result);
+
+        return result;
+    }
+
+    private static void ReadLocaleValues(JsonElement root, JournalLocalizedText result)
+    {
+        // ReSharper disable once LoopCanBePartlyConvertedToQuery
         foreach (var property in root.EnumerateObject())
         {
+            if (property.Name is "key" or "args")
+            {
+                continue;
+            }
+
             result.Values[property.Name] = property.Value.ValueKind == JsonValueKind.String
                 ? property.Value.GetString() ?? string.Empty
                 : string.Empty;
         }
-
-        return result;
     }
 
     public override void Write(Utf8JsonWriter writer, JournalLocalizedText value, JsonSerializerOptions options)
@@ -181,6 +195,8 @@ public sealed class JournalLocalizedTextConverter : JsonConverter<JournalLocaliz
                 writer.WritePropertyName("args");
                 JsonSerializer.Serialize(writer, value.Arguments, options);
             }
+
+            WriteLocaleValues(writer, value);
 
             writer.WriteEndObject();
             return;
@@ -204,11 +220,15 @@ public sealed class JournalLocalizedTextConverter : JsonConverter<JournalLocaliz
         }
 
         writer.WriteStartObject();
+        WriteLocaleValues(writer, value);
+        writer.WriteEndObject();
+    }
+
+    private static void WriteLocaleValues(Utf8JsonWriter writer, JournalLocalizedText value)
+    {
         foreach (var pair in value.Values.OrderBy(static pair => pair.Key, StringComparer.OrdinalIgnoreCase))
         {
             writer.WriteString(pair.Key, pair.Value);
         }
-
-        writer.WriteEndObject();
     }
 }

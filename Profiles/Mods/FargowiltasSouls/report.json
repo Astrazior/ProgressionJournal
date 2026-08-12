@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "FargowiltasSouls",
   "profileId": "builtin.fargosouls",
-  "generatedAtUtc": "2026-08-01T21:22:44.097Z",
+  "generatedAtUtc": "2026-08-12T12:07:31.887Z",
   "snapshot": {
     "version": 9,
     "generatedAtUtc": "2026-08-01T14:21:10.3942618Z",
@@ -310,10 +310,8 @@
     }
   },
   "review": {
-    "total": 2,
-    "byKind": {
-      "unresolved-condition": 2
-    }
+    "total": 0,
+    "byKind": {}
   },
   "audit": {
     "errors": [],
@@ -3847,10 +3845,10 @@
       "errors": []
     }
   },
-  "ready": false,
+  "ready": true,
   "generation": {
     "profileId": "builtin.fargosouls",
-    "generatedAtUtc": "2026-08-01T21:22:43.299Z",
+    "generatedAtUtc": "2026-08-12T12:07:31.093Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -6991,28 +6989,6 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/BestiaryGirl",
-        "item": "Terraria/DogEars",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a full or waning gibbous moon",
-          "key": "Conditions.MoonPhasesQuarter0",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/BestiaryGirl",
-        "item": "Terraria/DogTail",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a full or waning gibbous moon",
-          "key": "Conditions.MoonPhasesQuarter0",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/BestiaryGirl",
         "item": "Terraria/FoxEars",
         "condition": {
           "type": "Terraria.Condition",
@@ -7051,28 +7027,6 @@
           "type": "Terraria.Condition",
           "description": "During a new or waxing crescent moon",
           "key": "Conditions.MoonPhasesQuarter2",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/BestiaryGirl",
-        "item": "Terraria/BunnyEars",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a first quarter or waxing gibbous moon",
-          "key": "Conditions.MoonPhasesQuarter3",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/BestiaryGirl",
-        "item": "Terraria/BunnyTail",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a first quarter or waxing gibbous moon",
-          "key": "Conditions.MoonPhasesQuarter3",
           "facts": []
         }
       },
@@ -11103,6 +11057,26 @@
       {
         "stage": "start",
         "id": "Terraria/BallOfFuseWire",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/DogEars",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/DogTail",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BunnyEars",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BunnyTail",
         "reason": "not combat equipment"
       },
       {
@@ -34305,6 +34279,70 @@
           "prerequisites": []
         }
       },
+      "Terraria/DogEars": {
+        "stage": "start",
+        "via": "shop:Terraria/BestiaryGirl",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "During a full or waning gibbous moon",
+              "key": "Conditions.MoonPhasesQuarter0",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "Terraria/DogTail": {
+        "stage": "start",
+        "via": "shop:Terraria/BestiaryGirl",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "During a full or waning gibbous moon",
+              "key": "Conditions.MoonPhasesQuarter0",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "Terraria/BunnyEars": {
+        "stage": "start",
+        "via": "shop:Terraria/BestiaryGirl",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "During a first quarter or waxing gibbous moon",
+              "key": "Conditions.MoonPhasesQuarter3",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "Terraria/BunnyTail": {
+        "stage": "start",
+        "via": "shop:Terraria/BestiaryGirl",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "During a first quarter or waxing gibbous moon",
+              "key": "Conditions.MoonPhasesQuarter3",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
       "Terraria/AngelHalo": {
         "stage": "start",
         "via": "shop:Terraria/TravellingMerchant",
@@ -50048,7 +50086,7 @@
     },
     "unassignedVanillaNpcSourceCount": 194,
     "manualAvailabilityPriority": {
-      "automaticItems": 4172,
+      "automaticItems": 4176,
       "automaticSources": 451,
       "automaticStations": 402,
       "suppressed": {

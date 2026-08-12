@@ -2,54 +2,14 @@
   "format": "ProgressionJournalManualReview",
   "version": 1,
   "profileId": "builtin.aamodclassic",
-  "generatedAtUtc": "2026-08-01T21:22:10.493Z",
+  "generatedAtUtc": "2026-08-12T11:30:28.698Z",
   "summary": {
-    "total": 8,
+    "total": 6,
     "byKind": {
-      "unresolved-condition": 8
+      "unresolved-condition": 6
     }
   },
   "issues": [
-    {
-      "id": "unresolved-condition.0315be6ad41f",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a full or waning gibbous moon",
-          "key": "Conditions.MoonPhasesQuarter0",
-          "facts": []
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/PirateStaff",
-          "source": "Terraria/Princess"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/Princess"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [
-              "Conditions.MoonPhasesQuarter0"
-            ],
-            "conditionDescriptions": [
-              "During a full or waning gibbous moon"
-            ]
-          }
-        ]
-      }
-    },
     {
       "id": "unresolved-condition.2949300f1e4e",
       "kind": "unresolved-condition",
@@ -83,46 +43,6 @@
             "conditionKeys": [],
             "conditionDescriptions": [
               "Drop the Goblin Tinkerer Doll into lava while a living Goblin Tinkerer is nearby. The NPC is killed and the Soul Stone appears."
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "unresolved-condition.2c015e3aa646",
-      "kind": "unresolved-condition",
-      "sourceKind": "shop",
-      "conditions": [
-        {
-          "type": "Terraria.Condition",
-          "description": "During a first quarter or waxing gibbous moon",
-          "key": "Conditions.MoonPhasesQuarter3",
-          "facts": []
-        }
-      ],
-      "affectedCount": 1,
-      "affected": [
-        {
-          "item": "Terraria/CoinGun",
-          "source": "Terraria/Princess"
-        }
-      ],
-      "resolution": {
-        "conditionStages": [
-          {
-            "stageId": "<stage-id>",
-            "sources": [
-              "shop"
-            ],
-            "sourceIds": [
-              "Terraria/Princess"
-            ],
-            "conditionTypes": [],
-            "conditionKeys": [
-              "Conditions.MoonPhasesQuarter3"
-            ],
-            "conditionDescriptions": [
-              "During a first quarter or waxing gibbous moon"
             ]
           }
         ]

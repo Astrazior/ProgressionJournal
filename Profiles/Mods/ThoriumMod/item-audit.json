@@ -3,7 +3,7 @@
   "version": 2,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-08-01T21:22:56.579Z",
+  "generatedAtUtc": "2026-08-12T12:16:43.684Z",
   "snapshotGeneratedAtUtc": "2026-08-01T21:17:49.2706547Z",
   "summary": {
     "snapshotItems": 8359,
@@ -14,11 +14,11 @@
     "equipmentReferences": 2111,
     "buffReferences": 226,
     "profileSourceGaps": 0,
-    "excluded": 3884,
+    "excluded": 3891,
     "acquiredNonProfile": 127,
     "unresolvedAvailability": 0,
     "unavailableCombat": 0,
-    "noAcquisitionPath": 2011
+    "noAcquisitionPath": 2004
   },
   "items": [
     {
@@ -8300,11 +8300,22 @@
       "name": "Bunny Ears",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "start",
+      "via": "shop:Terraria/BestiaryGirl",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During a first quarter or waxing gibbous moon",
+            "key": "Conditions.MoonPhasesQuarter3",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "Terraria/Bunnyfish",
@@ -8366,11 +8377,22 @@
       "name": "Bunny Tail",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "start",
+      "via": "shop:Terraria/BestiaryGirl",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During a first quarter or waxing gibbous moon",
+            "key": "Conditions.MoonPhasesQuarter3",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "Terraria/Burger",
@@ -15624,22 +15646,44 @@
       "name": "Dog Ears",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "start",
+      "via": "shop:Terraria/BestiaryGirl",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During a full or waning gibbous moon",
+            "key": "Conditions.MoonPhasesQuarter0",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "Terraria/DogTail",
       "name": "Dog Tail",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "start",
+      "via": "shop:Terraria/BestiaryGirl",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During a full or waning gibbous moon",
+            "key": "Conditions.MoonPhasesQuarter0",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "Terraria/DogWhistle",
@@ -76689,7 +76733,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "king-slime",
+      "stage": "destroyer",
       "via": "shop:ThoriumMod/Cook",
       "reason": "not combat equipment",
       "evidence": {
@@ -87241,7 +87285,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
@@ -87269,7 +87313,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
@@ -87297,7 +87341,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "skeletron",
+      "stage": "destroyer",
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
@@ -88491,7 +88535,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "buried-champion",
+      "stage": "destroyer",
       "via": "shop:ThoriumMod/Spiritualist",
       "reason": "not combat equipment",
       "evidence": {
@@ -88519,7 +88563,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "buried-champion",
+      "stage": "destroyer",
       "via": "shop:ThoriumMod/Spiritualist",
       "reason": "not combat equipment",
       "evidence": {
@@ -88547,7 +88591,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "buried-champion",
+      "stage": "destroyer",
       "via": "shop:ThoriumMod/Spiritualist",
       "reason": "not combat equipment",
       "evidence": {
@@ -88575,7 +88619,7 @@
       "mod": "ThoriumMod",
       "contentItem": true,
       "status": "excluded",
-      "stage": "buried-champion",
+      "stage": "destroyer",
       "via": "shop:ThoriumMod/Spiritualist",
       "reason": "not combat equipment",
       "evidence": {
@@ -98081,33 +98125,84 @@
       "name": "Vampire Hunter Bandanna",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "shop:ThoriumMod/ConfusedZombie",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "Enabled in the Thorium Mod Configuration",
+            "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a Solar Eclipse",
+            "key": "Conditions.SolarEclipse",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "ThoriumMod/VampireHunterBoots",
       "name": "Vampire Hunter Boots",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "shop:ThoriumMod/ConfusedZombie",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "Enabled in the Thorium Mod Configuration",
+            "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a Solar Eclipse",
+            "key": "Conditions.SolarEclipse",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "ThoriumMod/VampireHunterVest",
       "name": "Vampire Hunter Vest",
       "mod": "ThoriumMod",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "shop:ThoriumMod/ConfusedZombie",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "Enabled in the Thorium Mod Configuration",
+            "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a Solar Eclipse",
+            "key": "Conditions.SolarEclipse",
+            "facts": []
+          }
+        ],
+        "prerequisites": []
+      }
     },
     {
       "id": "ThoriumMod/VampirePickaxe",

@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "ThoriumMod",
   "profileId": "builtin.thorium",
-  "generatedAtUtc": "2026-08-01T21:22:56.554Z",
+  "generatedAtUtc": "2026-08-12T12:16:43.661Z",
   "snapshot": {
     "version": 9,
     "generatedAtUtc": "2026-08-01T21:17:49.2706547Z",
@@ -1422,9 +1422,9 @@
     }
   },
   "review": {
-    "total": 3,
+    "total": 1,
     "byKind": {
-      "unresolved-condition": 3
+      "unresolved-condition": 1
     }
   },
   "audit": {
@@ -6167,7 +6167,7 @@
   "ready": false,
   "generation": {
     "profileId": "builtin.thorium",
-    "generatedAtUtc": "2026-08-01T21:22:47.997Z",
+    "generatedAtUtc": "2026-08-12T12:16:35.041Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -7724,28 +7724,6 @@
       {
         "sourceKind": "shop",
         "source": "Terraria/BestiaryGirl",
-        "item": "Terraria/DogEars",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a full or waning gibbous moon",
-          "key": "Conditions.MoonPhasesQuarter0",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/BestiaryGirl",
-        "item": "Terraria/DogTail",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a full or waning gibbous moon",
-          "key": "Conditions.MoonPhasesQuarter0",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/BestiaryGirl",
         "item": "Terraria/FoxEars",
         "condition": {
           "type": "Terraria.Condition",
@@ -7784,28 +7762,6 @@
           "type": "Terraria.Condition",
           "description": "During a new or waxing crescent moon",
           "key": "Conditions.MoonPhasesQuarter2",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/BestiaryGirl",
-        "item": "Terraria/BunnyEars",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a first quarter or waxing gibbous moon",
-          "key": "Conditions.MoonPhasesQuarter3",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "Terraria/BestiaryGirl",
-        "item": "Terraria/BunnyTail",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a first quarter or waxing gibbous moon",
-          "key": "Conditions.MoonPhasesQuarter3",
           "facts": []
         }
       },
@@ -8741,39 +8697,6 @@
           "type": "Terraria.Condition",
           "description": "Illusionist has been defeated",
           "key": "Mods.ThoriumMod.Conditions.DownedIllusionist",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "ThoriumMod/ConfusedZombie",
-        "item": "ThoriumMod/VampireHunterBandanna",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a Solar Eclipse",
-          "key": "Conditions.SolarEclipse",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "ThoriumMod/ConfusedZombie",
-        "item": "ThoriumMod/VampireHunterVest",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a Solar Eclipse",
-          "key": "Conditions.SolarEclipse",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "shop",
-        "source": "ThoriumMod/ConfusedZombie",
-        "item": "ThoriumMod/VampireHunterBoots",
-        "condition": {
-          "type": "Terraria.Condition",
-          "description": "During a Solar Eclipse",
-          "key": "Conditions.SolarEclipse",
           "facts": []
         }
       },
@@ -12107,6 +12030,26 @@
       {
         "stage": "start",
         "id": "Terraria/BallOfFuseWire",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/DogEars",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/DogTail",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BunnyEars",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/BunnyTail",
         "reason": "not combat equipment"
       },
       {
@@ -19076,11 +19019,6 @@
       },
       {
         "stage": "king-slime",
-        "id": "ThoriumMod/FreshPickle",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "king-slime",
         "id": "ThoriumMod/AromaticBiscuit",
         "reason": "not combat equipment"
       },
@@ -21246,21 +21184,6 @@
       },
       {
         "stage": "skeletron",
-        "id": "ThoriumMod/PhantomFaceMask",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "ThoriumMod/PhantomFaceRobe",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
-        "id": "ThoriumMod/PhantomFacePants",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "skeletron",
         "id": "ThoriumMod/HokeMask",
         "reason": "not combat equipment"
       },
@@ -22322,26 +22245,6 @@
       {
         "stage": "buried-champion",
         "id": "ThoriumMod/SpiritualistRobe",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "buried-champion",
-        "id": "ThoriumMod/PurifiersCap",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "buried-champion",
-        "id": "ThoriumMod/PurifiersUniform",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "buried-champion",
-        "id": "ThoriumMod/PurifiersCleats",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "buried-champion",
-        "id": "ThoriumMod/PurifiersRing",
         "reason": "not combat equipment"
       },
       {
@@ -25116,7 +25019,62 @@
       },
       {
         "stage": "destroyer",
+        "id": "ThoriumMod/FreshPickle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "ThoriumMod/VampireHunterBandanna",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "ThoriumMod/VampireHunterVest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "ThoriumMod/VampireHunterBoots",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "ThoriumMod/PhantomFaceMask",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "ThoriumMod/PhantomFaceRobe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "ThoriumMod/PhantomFacePants",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
         "id": "ThoriumMod/AscensionStatuette",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "ThoriumMod/PurifiersCap",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "ThoriumMod/PurifiersUniform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "ThoriumMod/PurifiersCleats",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "ThoriumMod/PurifiersRing",
         "reason": "not combat equipment"
       },
       {
@@ -45460,6 +45418,70 @@
           "prerequisites": []
         }
       },
+      "Terraria/DogEars": {
+        "stage": "start",
+        "via": "shop:Terraria/BestiaryGirl",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "During a full or waning gibbous moon",
+              "key": "Conditions.MoonPhasesQuarter0",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "Terraria/DogTail": {
+        "stage": "start",
+        "via": "shop:Terraria/BestiaryGirl",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "During a full or waning gibbous moon",
+              "key": "Conditions.MoonPhasesQuarter0",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "Terraria/BunnyEars": {
+        "stage": "start",
+        "via": "shop:Terraria/BestiaryGirl",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "During a first quarter or waxing gibbous moon",
+              "key": "Conditions.MoonPhasesQuarter3",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "Terraria/BunnyTail": {
+        "stage": "start",
+        "via": "shop:Terraria/BestiaryGirl",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "During a first quarter or waxing gibbous moon",
+              "key": "Conditions.MoonPhasesQuarter3",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
       "Terraria/AngelHalo": {
         "stage": "start",
         "via": "shop:Terraria/TravellingMerchant",
@@ -51307,28 +51329,6 @@
         "stage": "king-slime",
         "via": "npc:Terraria/KingSlime"
       },
-      "ThoriumMod/FreshPickle": {
-        "stage": "king-slime",
-        "via": "shop:ThoriumMod/Cook",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "Terraria.Condition",
-              "description": "Enabled in the Thorium Mod Configuration",
-              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
-              "facts": []
-            },
-            {
-              "type": "Terraria.Condition",
-              "description": "During a Solar Eclipse",
-              "key": "Conditions.SolarEclipse",
-              "facts": []
-            }
-          ],
-          "prerequisites": []
-        }
-      },
       "ThoriumMod/AromaticBiscuit": {
         "stage": "king-slime",
         "via": "shop:ThoriumMod/Cook",
@@ -54728,72 +54728,6 @@
           "prerequisites": []
         }
       },
-      "ThoriumMod/PhantomFaceMask": {
-        "stage": "skeletron",
-        "via": "shop:Terraria/Clothier",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "Terraria.Condition",
-              "description": "Enabled in the Thorium Mod Configuration",
-              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
-              "facts": []
-            },
-            {
-              "type": "Terraria.Condition",
-              "description": "During a Solar Eclipse",
-              "key": "Conditions.SolarEclipse",
-              "facts": []
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "ThoriumMod/PhantomFaceRobe": {
-        "stage": "skeletron",
-        "via": "shop:Terraria/Clothier",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "Terraria.Condition",
-              "description": "Enabled in the Thorium Mod Configuration",
-              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
-              "facts": []
-            },
-            {
-              "type": "Terraria.Condition",
-              "description": "During a Solar Eclipse",
-              "key": "Conditions.SolarEclipse",
-              "facts": []
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "ThoriumMod/PhantomFacePants": {
-        "stage": "skeletron",
-        "via": "shop:Terraria/Clothier",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "Terraria.Condition",
-              "description": "Enabled in the Thorium Mod Configuration",
-              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
-              "facts": []
-            },
-            {
-              "type": "Terraria.Condition",
-              "description": "During a Solar Eclipse",
-              "key": "Conditions.SolarEclipse",
-              "facts": []
-            }
-          ],
-          "prerequisites": []
-        }
-      },
       "ThoriumMod/HokeMask": {
         "stage": "skeletron",
         "via": "shop:Terraria/Clothier",
@@ -55861,94 +55795,6 @@
         "evidence": {
           "kind": "observed-shop",
           "conditions": [],
-          "prerequisites": []
-        }
-      },
-      "ThoriumMod/PurifiersCap": {
-        "stage": "buried-champion",
-        "via": "shop:ThoriumMod/Spiritualist",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "Terraria.Condition",
-              "description": "Enabled in the Thorium Mod Configuration",
-              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
-              "facts": []
-            },
-            {
-              "type": "Terraria.Condition",
-              "description": "During a Solar Eclipse",
-              "key": "Conditions.SolarEclipse",
-              "facts": []
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "ThoriumMod/PurifiersUniform": {
-        "stage": "buried-champion",
-        "via": "shop:ThoriumMod/Spiritualist",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "Terraria.Condition",
-              "description": "Enabled in the Thorium Mod Configuration",
-              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
-              "facts": []
-            },
-            {
-              "type": "Terraria.Condition",
-              "description": "During a Solar Eclipse",
-              "key": "Conditions.SolarEclipse",
-              "facts": []
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "ThoriumMod/PurifiersCleats": {
-        "stage": "buried-champion",
-        "via": "shop:ThoriumMod/Spiritualist",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "Terraria.Condition",
-              "description": "Enabled in the Thorium Mod Configuration",
-              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
-              "facts": []
-            },
-            {
-              "type": "Terraria.Condition",
-              "description": "During a Solar Eclipse",
-              "key": "Conditions.SolarEclipse",
-              "facts": []
-            }
-          ],
-          "prerequisites": []
-        }
-      },
-      "ThoriumMod/PurifiersRing": {
-        "stage": "buried-champion",
-        "via": "shop:ThoriumMod/Spiritualist",
-        "evidence": {
-          "kind": "observed-shop",
-          "conditions": [
-            {
-              "type": "Terraria.Condition",
-              "description": "Enabled in the Thorium Mod Configuration",
-              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
-              "facts": []
-            },
-            {
-              "type": "Terraria.Condition",
-              "description": "During a Solar Eclipse",
-              "key": "Conditions.SolarEclipse",
-              "facts": []
-            }
-          ],
           "prerequisites": []
         }
       },
@@ -59390,6 +59236,160 @@
           "prerequisites": []
         }
       },
+      "ThoriumMod/FreshPickle": {
+        "stage": "destroyer",
+        "via": "shop:ThoriumMod/Cook",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "Enabled in the Thorium Mod Configuration",
+              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
+              "facts": []
+            },
+            {
+              "type": "Terraria.Condition",
+              "description": "During a Solar Eclipse",
+              "key": "Conditions.SolarEclipse",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "ThoriumMod/VampireHunterBandanna": {
+        "stage": "destroyer",
+        "via": "shop:ThoriumMod/ConfusedZombie",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "Enabled in the Thorium Mod Configuration",
+              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
+              "facts": []
+            },
+            {
+              "type": "Terraria.Condition",
+              "description": "During a Solar Eclipse",
+              "key": "Conditions.SolarEclipse",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "ThoriumMod/VampireHunterVest": {
+        "stage": "destroyer",
+        "via": "shop:ThoriumMod/ConfusedZombie",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "Enabled in the Thorium Mod Configuration",
+              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
+              "facts": []
+            },
+            {
+              "type": "Terraria.Condition",
+              "description": "During a Solar Eclipse",
+              "key": "Conditions.SolarEclipse",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "ThoriumMod/VampireHunterBoots": {
+        "stage": "destroyer",
+        "via": "shop:ThoriumMod/ConfusedZombie",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "Enabled in the Thorium Mod Configuration",
+              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
+              "facts": []
+            },
+            {
+              "type": "Terraria.Condition",
+              "description": "During a Solar Eclipse",
+              "key": "Conditions.SolarEclipse",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "ThoriumMod/PhantomFaceMask": {
+        "stage": "destroyer",
+        "via": "shop:Terraria/Clothier",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "Enabled in the Thorium Mod Configuration",
+              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
+              "facts": []
+            },
+            {
+              "type": "Terraria.Condition",
+              "description": "During a Solar Eclipse",
+              "key": "Conditions.SolarEclipse",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "ThoriumMod/PhantomFaceRobe": {
+        "stage": "destroyer",
+        "via": "shop:Terraria/Clothier",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "Enabled in the Thorium Mod Configuration",
+              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
+              "facts": []
+            },
+            {
+              "type": "Terraria.Condition",
+              "description": "During a Solar Eclipse",
+              "key": "Conditions.SolarEclipse",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "ThoriumMod/PhantomFacePants": {
+        "stage": "destroyer",
+        "via": "shop:Terraria/Clothier",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "Enabled in the Thorium Mod Configuration",
+              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
+              "facts": []
+            },
+            {
+              "type": "Terraria.Condition",
+              "description": "During a Solar Eclipse",
+              "key": "Conditions.SolarEclipse",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
       "ThoriumMod/AscensionStatuette": {
         "stage": "destroyer",
         "via": "shop:ThoriumMod/Spiritualist",
@@ -59400,6 +59400,94 @@
               "type": "Terraria.Condition",
               "description": "After defeating any mechanical boss",
               "key": "Conditions.DownedMechBossAny",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "ThoriumMod/PurifiersCap": {
+        "stage": "destroyer",
+        "via": "shop:ThoriumMod/Spiritualist",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "Enabled in the Thorium Mod Configuration",
+              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
+              "facts": []
+            },
+            {
+              "type": "Terraria.Condition",
+              "description": "During a Solar Eclipse",
+              "key": "Conditions.SolarEclipse",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "ThoriumMod/PurifiersUniform": {
+        "stage": "destroyer",
+        "via": "shop:ThoriumMod/Spiritualist",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "Enabled in the Thorium Mod Configuration",
+              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
+              "facts": []
+            },
+            {
+              "type": "Terraria.Condition",
+              "description": "During a Solar Eclipse",
+              "key": "Conditions.SolarEclipse",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "ThoriumMod/PurifiersCleats": {
+        "stage": "destroyer",
+        "via": "shop:ThoriumMod/Spiritualist",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "Enabled in the Thorium Mod Configuration",
+              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
+              "facts": []
+            },
+            {
+              "type": "Terraria.Condition",
+              "description": "During a Solar Eclipse",
+              "key": "Conditions.SolarEclipse",
+              "facts": []
+            }
+          ],
+          "prerequisites": []
+        }
+      },
+      "ThoriumMod/PurifiersRing": {
+        "stage": "destroyer",
+        "via": "shop:ThoriumMod/Spiritualist",
+        "evidence": {
+          "kind": "observed-shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "Enabled in the Thorium Mod Configuration",
+              "key": "Mods.ThoriumMod.Conditions.DonatorItemToggled",
+              "facts": []
+            },
+            {
+              "type": "Terraria.Condition",
+              "description": "During a Solar Eclipse",
+              "key": "Conditions.SolarEclipse",
               "facts": []
             }
           ],
@@ -68034,7 +68122,7 @@
     },
     "unassignedVanillaNpcSourceCount": 153,
     "manualAvailabilityPriority": {
-      "automaticItems": 5765,
+      "automaticItems": 5769,
       "automaticSources": 553,
       "automaticStations": 512,
       "suppressed": {
