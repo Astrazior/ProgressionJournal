@@ -230,7 +230,8 @@ const MILESTONE_FACTS = [
       "Terraria/Hellstone",
       "Terraria/HellstoneBar",
       "Terraria/Meteorite",
-      "Terraria/MeteoriteBar"
+      "Terraria/MeteoriteBar",
+      "Terraria/DefenderMedal"
     ],
     shops: ["Terraria/DD2Bartender"]
   },

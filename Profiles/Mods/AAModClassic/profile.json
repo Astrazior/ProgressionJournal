@@ -11,11 +11,11 @@
   "readOnly": true,
   "sourceUrl": "",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-08-12T11:30:28.698Z",
+  "generatedAtUtc": "2026-08-12T16:51:46.486Z",
   "requiredMods": [
     {
       "name": "AAModClassic",
-      "version": "1.0.17"
+      "version": "1.0.19"
     }
   ],
   "classes": [
@@ -1250,6 +1250,40 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Apple",
+        "displayName": "Apple"
+      },
+      "sourceName": "Forest trees",
+      "sourceReference": "Terraria/ForestTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Forest trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Apricot",
+        "displayName": "Apricot"
+      },
+      "sourceName": "Forest trees",
+      "sourceReference": "Terraria/ForestTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Forest trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "AquaScepter",
         "displayName": "Aqua Scepter"
       },
@@ -1309,7 +1343,26 @@
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Corruption"
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Banana",
+        "displayName": "Banana"
+      },
+      "sourceName": "Ocean palm trees",
+      "sourceReference": "Terraria/PalmTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Ocean palm trees."
+      ]
     },
     {
       "item": {
@@ -1354,7 +1407,9 @@
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Corruption"
+      ]
     },
     {
       "item": {
@@ -1374,6 +1429,23 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "BlackCurrant",
+        "displayName": "Blackcurrant"
+      },
+      "sourceName": "Corruption trees",
+      "sourceReference": "Terraria/EbonwoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Corruption trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "BlizzardinaBottle",
         "displayName": "Blizzard in a Bottle"
       },
@@ -1389,6 +1461,23 @@
       "stackMax": 1,
       "showDropRate": true,
       "conditions": []
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "BloodOrange",
+        "displayName": "Blood Orange"
+      },
+      "sourceName": "Crimson trees",
+      "sourceReference": "Terraria/ShadewoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Crimson trees."
+      ]
     },
     {
       "item": {
@@ -1540,6 +1629,23 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Cherry",
+        "displayName": "Cherry"
+      },
+      "sourceName": "Snow biome trees",
+      "sourceReference": "Terraria/BorealTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Snow biome trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "ClimbingClaws",
         "displayName": "Climbing Claws"
       },
@@ -1600,6 +1706,23 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Coconut",
+        "displayName": "Coconut"
+      },
+      "sourceName": "Ocean palm trees",
+      "sourceReference": "Terraria/PalmTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Ocean palm trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "CopperCoin",
         "displayName": "Copper Coin"
       },
@@ -1644,7 +1767,9 @@
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Crimson"
+      ]
     },
     {
       "item": {
@@ -1664,6 +1789,40 @@
       "stackMax": 1,
       "showDropRate": true,
       "conditions": []
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Dragonfruit",
+        "displayName": "Dragon Fruit"
+      },
+      "sourceName": "Hallow trees",
+      "sourceReference": "Terraria/PearlwoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Hallow trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Elderberry",
+        "displayName": "Elderberry"
+      },
+      "sourceName": "Corruption trees",
+      "sourceReference": "Terraria/EbonwoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Corruption trees."
+      ]
     },
     {
       "item": {
@@ -1845,6 +2004,23 @@
       "stackMax": 1,
       "showDropRate": false,
       "conditions": []
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Grapefruit",
+        "displayName": "Grapefruit"
+      },
+      "sourceName": "Forest trees",
+      "sourceReference": "Terraria/ForestTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Forest trees."
+      ]
     },
     {
       "item": {
@@ -2071,6 +2247,23 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Lemon",
+        "displayName": "Lemon"
+      },
+      "sourceName": "Forest trees",
+      "sourceReference": "Terraria/ForestTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Forest trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "LesserHealingPotion",
         "displayName": "Lesser Healing Potion"
       },
@@ -2126,7 +2319,27 @@
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Below the surface layer"
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "LifeFruit",
+        "displayName": "Life Fruit"
+      },
+      "sourceName": "Life Fruit plant",
+      "sourceReference": "Terraria/LifeFruit",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "After all three mechanical bosses have been defeated",
+        "Grows naturally on Jungle grass in the Underground Jungle"
+      ]
     },
     {
       "item": {
@@ -2225,6 +2438,23 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Mango",
+        "displayName": "Mango"
+      },
+      "sourceName": "Jungle trees",
+      "sourceReference": "Terraria/MahoganyTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Jungle trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "MiningPotion",
         "displayName": "Mining Potion"
       },
@@ -2265,7 +2495,9 @@
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Corruption"
+      ]
     },
     {
       "item": {
@@ -2273,14 +2505,16 @@
         "item": "NaturesGift",
         "displayName": "Nature's Gift"
       },
-      "sourceName": "Jungle Plants",
+      "sourceName": "Jungle plant",
       "sourceReference": "Terraria/JunglePlants",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Rarely grows naturally on Jungle grass below the surface"
+      ]
     },
     {
       "item": {
@@ -2325,7 +2559,43 @@
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Crimson"
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Peach",
+        "displayName": "Peach"
+      },
+      "sourceName": "Forest trees",
+      "sourceReference": "Terraria/ForestTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Forest trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Pineapple",
+        "displayName": "Pineapple"
+      },
+      "sourceName": "Jungle trees",
+      "sourceReference": "Terraria/MahoganyTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Jungle trees."
+      ]
     },
     {
       "item": {
@@ -2345,6 +2615,40 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "Plum",
+        "displayName": "Plum"
+      },
+      "sourceName": "Snow biome trees",
+      "sourceReference": "Terraria/BorealTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Snow biome trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Pomegranate",
+        "displayName": "Pomegranate"
+      },
+      "sourceName": "Underworld ash trees",
+      "sourceReference": "Terraria/AshTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Underworld ash trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "RainbowGun",
         "displayName": "Rainbow Gun"
       },
@@ -2356,6 +2660,23 @@
       "stackMax": 1,
       "showDropRate": true,
       "conditions": []
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Rambutan",
+        "displayName": "Rambutan"
+      },
+      "sourceName": "Crimson trees",
+      "sourceReference": "Terraria/ShadewoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Crimson trees."
+      ]
     },
     {
       "item": {
@@ -2563,6 +2884,23 @@
     {
       "item": {
         "mod": "Terraria",
+        "item": "SpicyPepper",
+        "displayName": "Spicy Pepper"
+      },
+      "sourceName": "Underworld ash trees",
+      "sourceReference": "Terraria/AshTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Underworld ash trees."
+      ]
+    },
+    {
+      "item": {
+        "mod": "Terraria",
         "item": "StaffofRegrowth",
         "displayName": "Staff of Regrowth"
       },
@@ -2593,6 +2931,23 @@
       "stackMax": 1,
       "showDropRate": true,
       "conditions": []
+    },
+    {
+      "item": {
+        "mod": "Terraria",
+        "item": "Starfruit",
+        "displayName": "Star Fruit"
+      },
+      "sourceName": "Hallow trees",
+      "sourceReference": "Terraria/PearlwoodTreeCutting",
+      "sourceItem": null,
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "Can drop while cutting down trees of this type: Hallow trees."
+      ]
     },
     {
       "item": {
@@ -2690,7 +3045,9 @@
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Crimson"
+      ]
     },
     {
       "item": {
@@ -2705,7 +3062,9 @@
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Crimson"
+      ]
     },
     {
       "item": {
@@ -2874,7 +3233,9 @@
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated in the underground chasms of the Corruption"
+      ]
     },
     {
       "item": {
@@ -2897,14 +3258,16 @@
         "item": "WaterBolt",
         "displayName": "Water Bolt"
       },
-      "sourceName": "Books",
+      "sourceName": "Dungeon books",
       "sourceReference": "Terraria/Books",
       "sourceItem": null,
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
       "showDropRate": false,
-      "conditions": []
+      "conditions": [
+        "Generated as a special blue book on shelves in the Dungeon"
+      ]
     },
     {
       "item": {
@@ -12754,24 +13117,12 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
       ],
       "wiki": [
-        {
-          "stageId": "skeletron-prime",
-          "classes": [
-            "melee"
-          ],
-          "sourceName": "Official Terraria Mods Wiki",
-          "sourceUrl": "https://terrariamods.fandom.com/wiki/Ancients_Awakened/Class_Setups",
-          "target": {
-            "en-US": "Plantera",
-            "ru-RU": "Плантера"
-          }
-        },
         {
           "stageId": "plantera",
           "classes": [
@@ -16305,7 +16656,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "skeletron-prime",
+          "stageId": "destroyer",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -16326,7 +16677,7 @@
       ],
       "fishingSources": [],
       "isSupportWeapon": false,
-      "eventCategory": null,
+      "eventCategory": "GoblinArmy",
       "customEventName": "",
       "eventIcon": ""
     },
@@ -65174,6 +65525,27 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.lifecrystal",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "LifeCrystal",
+            "displayName": "Life Crystal"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.honeyfin",
       "category": "Basic",
       "classes": [
@@ -65604,27 +65976,6 @@
             "mod": "Terraria",
             "item": "ManaPotion",
             "displayName": "Mana Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.lifecrystal",
-      "category": "Eternal",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "LifeCrystal",
-            "displayName": "Life Crystal"
           }
         ]
       ],
@@ -67729,6 +68080,27 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.lifefruit",
+      "category": "Eternal",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner"
+      ],
+      "stageId": "plantera",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "LifeFruit",
+            "displayName": "Life Fruit"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.flaskofvenom",
       "category": "Flask",
       "classes": [
@@ -67761,27 +68133,6 @@
             "mod": "Terraria",
             "item": "FlaskofNanites",
             "displayName": "Flask of Nanites"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.lifefruit",
-      "category": "Eternal",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner"
-      ],
-      "stageId": "plantera",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "LifeFruit",
-            "displayName": "Life Fruit"
           }
         ]
       ],

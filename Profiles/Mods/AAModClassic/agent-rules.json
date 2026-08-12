@@ -1349,6 +1349,85 @@
       "sourceVersion": "AAModClassic 1.0.17 recipe snapshot and world-generation options",
       "checkedAt": "2026-07-27",
       "reason": "The exact recipe condition selects the mod's Unofficial world variant; it is an availability badge, not a progression milestone. The ingredients and Tinkerer's Workshop still determine practical acquisition, while the profile stage remains Start because this profile has no separate Goblin Army milestone."
+    },
+    {
+      "id": "aamodclassic-pirate-shop-currency-floor",
+      "kind": "item-floor",
+      "item": "AAModClassic/PirateBooty",
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.19 Pirate Invasion global-drop and GoblinSlayer.PirateShop IL",
+      "checkedAt": "2026-08-12",
+      "reason": "Pirate's Booty is accepted by PirateShop and drops only from Pirate Invasion enemies; the invasion first becomes available in Hardmode."
+    },
+    {
+      "id": "aamodclassic-goblin-warlock-shop-condition",
+      "kind": "condition-stage",
+      "stageId": "wall-of-flesh",
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "AAModClassic/GoblinSlayer"
+      ],
+      "conditionKeys": [
+        "If the Goblin Warlock has been defeated"
+      ],
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.19 GoblinSlayer.GoblinShop IL",
+      "checkedAt": "2026-08-12",
+      "reason": "The Goblin Warlock is the Hardmode Goblin Summoner; its defeated-state shop condition cannot be satisfied before Hardmode."
+    },
+    {
+      "id": "aamodclassic-mothron-shop-condition",
+      "kind": "condition-stage",
+      "stageId": "plantera",
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "AAModClassic/GoblinSlayer"
+      ],
+      "conditionKeys": [
+        "If Mothron has been defeated"
+      ],
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.19 GoblinSlayer.EclipseShop IL",
+      "checkedAt": "2026-08-12",
+      "reason": "Mothron appears only in the post-Plantera Solar Eclipse, so this defeated-state shop condition cannot be satisfied earlier."
+    },
+    {
+      "id": "aamodclassic-solar-eclipse-shop-currency-floor",
+      "kind": "item-floor",
+      "item": "AAModClassic/MonsterSoul",
+      "stageId": "destroyer",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.19 Solar Eclipse global-drop and GoblinSlayer.EclipseShop IL",
+      "checkedAt": "2026-08-12",
+      "reason": "Monster Soul is accepted by EclipseShop and drops only during a Solar Eclipse, which first occurs after a mechanical boss."
+    },
+    {
+      "id": "aamodclassic-moon-shop-currency-floors",
+      "kind": "item-floor",
+      "items": [
+        "AAModClassic/HalloweenTreat",
+        "AAModClassic/ChristmasCheer"
+      ],
+      "stageId": "plantera",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.19 Pumpkin/Frost Moon global-drop and GoblinSlayer shop IL",
+      "checkedAt": "2026-08-12",
+      "reason": "These currencies are accepted by the Pumpkin Moon and Frost Moon shops and drop only during their respective post-Plantera events."
+    },
+    {
+      "id": "aamodclassic-martian-shop-currency-floor",
+      "kind": "item-floor",
+      "item": "AAModClassic/MartianCredit",
+      "stageId": "golem",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3760821691",
+      "sourceVersion": "AAModClassic 1.0.19 Martian Madness global-drop and GoblinSlayer.MartianShop IL",
+      "checkedAt": "2026-08-12",
+      "reason": "Martian Credit is accepted by MartianShop and drops only from Martian Madness enemies after Golem."
     }
   ],
   "ignoredItems": [

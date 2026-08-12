@@ -3,22 +3,22 @@
   "version": 2,
   "targetMod": "AAModClassic",
   "profileId": "builtin.aamodclassic",
-  "generatedAtUtc": "2026-08-12T11:30:33.839Z",
-  "snapshotGeneratedAtUtc": "2026-08-01T14:23:21.8902967Z",
+  "generatedAtUtc": "2026-08-12T16:51:51.563Z",
+  "snapshotGeneratedAtUtc": "2026-08-12T16:41:22.9635521Z",
   "summary": {
-    "snapshotItems": 7066,
-    "contentItems": 1611,
+    "snapshotItems": 7079,
+    "contentItems": 1624,
     "profileEntries": 1492,
     "profileBuffEntries": 173,
     "profileItemReferences": 1725,
     "equipmentReferences": 1552,
     "buffReferences": 173,
     "profileSourceGaps": 0,
-    "excluded": 3376,
+    "excluded": 3395,
     "acquiredNonProfile": 127,
     "unresolvedAvailability": 0,
     "unavailableCombat": 0,
-    "noAcquisitionPath": 1838
+    "noAcquisitionPath": 1832
   },
   "items": [
     {
@@ -375,13 +375,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Plantera",
-            "key": "ProgressionJournal.Stage.plantera",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Plantera",
+            "key": "Conditions.DownedPlantera",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -1519,13 +1522,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -2037,6 +2043,17 @@
     {
       "id": "AAModClassic/BogwoodTable",
       "name": "Bogwood Table",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/Bogwood",
+      "reason": "not combat equipment",
+      "evidence": null
+    },
+    {
+      "id": "AAModClassic/BogwoodToilet",
+      "name": "Bogwood Toilet",
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
@@ -2964,7 +2981,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "plantera",
       "via": "global:AAModClassic/GlobalNPCDrops",
       "reason": "not combat equipment",
       "evidence": null
@@ -3070,13 +3087,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -3400,13 +3420,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -3530,8 +3553,16 @@
       "reason": "not combat equipment",
       "evidence": {
         "kind": "observed-shop",
-        "conditions": [],
-        "prerequisites": []
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "At night",
+            "key": "Conditions.TimeNight",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -4063,7 +4094,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -4123,13 +4155,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -5079,6 +5114,17 @@
       "evidence": null
     },
     {
+      "id": "AAModClassic/DoomToilet",
+      "name": "Doom Toilet",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "sisters-of-discord",
+      "via": "recipe:AAModClassic/DoomsdayCircuitPlating",
+      "reason": "not combat equipment",
+      "evidence": null
+    },
+    {
       "id": "AAModClassic/DoomWorkbench",
       "name": "Doom Workbench",
       "mod": "AAModClassic",
@@ -5696,13 +5742,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -6026,13 +6075,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -6224,13 +6276,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -6355,7 +6410,10 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -6976,13 +7034,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Plantera",
-            "key": "ProgressionJournal.Stage.plantera",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Plantera",
+            "key": "Conditions.DownedPlantera",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -7086,13 +7147,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Plantera",
-            "key": "ProgressionJournal.Stage.plantera",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Plantera",
+            "key": "Conditions.DownedPlantera",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -7141,13 +7205,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -7185,13 +7252,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -7415,7 +7485,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -7430,7 +7501,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -7445,7 +7517,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -7533,7 +7606,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -7569,8 +7643,16 @@
       "reason": "Included in the generated profile.",
       "evidence": {
         "kind": "observed-shop",
-        "conditions": [],
-        "prerequisites": []
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "",
+            "key": "",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -7584,8 +7666,16 @@
       "reason": "Included in the generated profile.",
       "evidence": {
         "kind": "observed-shop",
-        "conditions": [],
-        "prerequisites": []
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "",
+            "key": "",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -8122,7 +8212,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "plantera",
       "via": "global:AAModClassic/GlobalNPCDrops",
       "reason": "not combat equipment",
       "evidence": null
@@ -8897,8 +8987,22 @@
       "reason": "not combat equipment",
       "evidence": {
         "kind": "observed-shop",
-        "conditions": [],
-        "prerequisites": []
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "At night",
+            "key": "Conditions.TimeNight",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -9485,6 +9589,17 @@
       "evidence": null
     },
     {
+      "id": "AAModClassic/KeepToilet",
+      "name": "Keep Toilet",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "world-evil",
+      "via": "recipe:AAModClassic/TerraShard",
+      "reason": "not combat equipment",
+      "evidence": null
+    },
+    {
       "id": "AAModClassic/KeepWorkbench",
       "name": "Keep Workbench",
       "mod": "AAModClassic",
@@ -9672,7 +9787,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -9702,10 +9818,10 @@
       "name": "Living Bogleaf Wand",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "container:AAModClassic/MireCrate",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -9724,10 +9840,10 @@
       "name": "Living Bogwood Wand",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "container:AAModClassic/MireCrate",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -9746,10 +9862,10 @@
       "name": "Living Razeleaf Wand",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "container:AAModClassic/InfernoCrate",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -9757,10 +9873,10 @@
       "name": "Living Razewood Wand",
       "mod": "AAModClassic",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "container:AAModClassic/InfernoCrate",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -9808,7 +9924,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -9962,7 +10079,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -10110,13 +10228,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -10180,7 +10301,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "golem",
       "via": "global:AAModClassic/GlobalNPCDrops",
       "reason": "not combat equipment",
       "evidence": null
@@ -10561,13 +10682,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -10609,7 +10733,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "destroyer",
       "via": "global:AAModClassic/GlobalNPCDrops",
       "reason": "not combat equipment",
       "evidence": null
@@ -10724,8 +10848,16 @@
       "reason": "not combat equipment",
       "evidence": {
         "kind": "observed-shop",
-        "conditions": [],
-        "prerequisites": []
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "At night",
+            "key": "Conditions.TimeNight",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -11070,7 +11202,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -11400,7 +11533,8 @@
             "facts": null
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -11513,8 +11647,22 @@
       "reason": "not combat equipment",
       "evidence": {
         "kind": "observed-shop",
-        "conditions": [],
-        "prerequisites": []
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During daytime",
+            "key": "Conditions.TimeDay",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -11539,8 +11687,16 @@
       "reason": "not combat equipment",
       "evidence": {
         "kind": "observed-shop",
-        "conditions": [],
-        "prerequisites": []
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -11709,6 +11865,17 @@
       "evidence": null
     },
     {
+      "id": "AAModClassic/OuroborosWoodCandelabra",
+      "name": "Ouroboros Wood Candelabra",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/OuroborosWood+Terraria/Torch",
+      "reason": "not combat equipment",
+      "evidence": null
+    },
+    {
       "id": "AAModClassic/OuroborosWoodCandle",
       "name": "Ouroboros Wood Candle",
       "mod": "AAModClassic",
@@ -11727,6 +11894,17 @@
       "status": "excluded",
       "stage": "start",
       "via": "recipe:AAModClassic/OuroborosWood",
+      "reason": "not combat equipment",
+      "evidence": null
+    },
+    {
+      "id": "AAModClassic/OuroborosWoodChandelier",
+      "name": "Ouroboros Wood Chandelier",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/OuroborosWood+Terraria/Torch+Terraria/Chain",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -11753,8 +11931,30 @@
       "evidence": null
     },
     {
+      "id": "AAModClassic/OuroborosWoodCouch",
+      "name": "Ouroboros Wood Couch",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/OuroborosWood+Terraria/Silk",
+      "reason": "not combat equipment",
+      "evidence": null
+    },
+    {
       "id": "AAModClassic/OuroborosWoodDoor",
       "name": "Ouroboros Wood Door",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/OuroborosWood",
+      "reason": "not combat equipment",
+      "evidence": null
+    },
+    {
+      "id": "AAModClassic/OuroborosWoodDresser",
+      "name": "Ouroboros Wood Dresser",
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
@@ -11786,8 +11986,52 @@
       "evidence": null
     },
     {
+      "id": "AAModClassic/OuroborosWoodPiano",
+      "name": "Ouroboros Wood Piano",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "recipe:AAModClassic/OuroborosWood+Terraria/Book+Terraria/Bone",
+      "reason": "not combat equipment",
+      "evidence": null
+    },
+    {
       "id": "AAModClassic/OuroborosWoodPlatform",
       "name": "Ouroboros Wood Platform",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/OuroborosWood",
+      "reason": "not combat equipment",
+      "evidence": null
+    },
+    {
+      "id": "AAModClassic/OuroborosWoodSink",
+      "name": "Ouroboros Wood Sink",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/OuroborosWood+Terraria/WaterBucket",
+      "reason": "not combat equipment",
+      "evidence": null
+    },
+    {
+      "id": "AAModClassic/OuroborosWoodTable",
+      "name": "Ouroboros Wood Table",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:AAModClassic/OuroborosWood",
+      "reason": "not combat equipment",
+      "evidence": null
+    },
+    {
+      "id": "AAModClassic/OuroborosWoodToilet",
+      "name": "Ouroboros Wood Toilet",
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
@@ -12018,13 +12262,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Hardmode",
-            "key": "ProgressionJournal.Stage.wall-of-flesh",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -12044,7 +12291,7 @@
       "mod": "AAModClassic",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "global:AAModClassic/GlobalNPCDrops",
       "reason": "not combat equipment",
       "evidence": null
@@ -12062,13 +12309,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -12093,8 +12343,18 @@
       "reason": "not combat equipment",
       "evidence": {
         "kind": "observed-shop",
-        "conditions": [],
-        "prerequisites": []
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In Unoffifical worlds",
+            "key": "In Unoffifical worlds",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -12187,13 +12447,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -12275,13 +12538,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -13121,6 +13387,17 @@
       "evidence": null
     },
     {
+      "id": "AAModClassic/RazewoodToilet",
+      "name": "Razewood Toilet",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved.",
+      "evidence": null
+    },
+    {
       "id": "AAModClassic/RazewoodTub",
       "name": "Razewood Bathtub",
       "mod": "AAModClassic",
@@ -13660,7 +13937,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -14125,8 +14403,16 @@
       "reason": "not combat equipment",
       "evidence": {
         "kind": "observed-shop",
-        "conditions": [],
-        "prerequisites": []
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During daytime",
+            "key": "Conditions.TimeDay",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -14197,13 +14483,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -14681,13 +14970,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -14714,13 +15006,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -14901,13 +15196,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -15077,13 +15375,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -15429,13 +15730,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -15691,8 +15995,16 @@
       "reason": "not combat equipment",
       "evidence": {
         "kind": "observed-shop",
-        "conditions": [],
-        "prerequisites": []
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During daytime",
+            "key": "Conditions.TimeDay",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -15740,7 +16052,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -16426,6 +16739,17 @@
       "evidence": null
     },
     {
+      "id": "AAModClassic/TerraToilet",
+      "name": "Terra Toilet",
+      "mod": "AAModClassic",
+      "contentItem": true,
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:AAModClassic/TerraShard+Terraria/HallowedBar",
+      "reason": "not combat equipment",
+      "evidence": null
+    },
+    {
       "id": "AAModClassic/Terratool",
       "name": "Terratool",
       "mod": "AAModClassic",
@@ -16535,8 +16859,16 @@
       "reason": "Included in the generated profile.",
       "evidence": {
         "kind": "observed-shop",
-        "conditions": [],
-        "prerequisites": []
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "",
+            "key": "",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -16772,13 +17104,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -16805,13 +17140,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -17333,13 +17671,16 @@
         "kind": "observed-shop",
         "conditions": [
           {
-            "type": "ProgressionJournal.AfterProgression",
-            "description": "Available after: Moon Lord",
-            "key": "ProgressionJournal.Stage.moon-lord",
-            "facts": null
+            "type": "Terraria.Condition",
+            "description": "After defeating Moon Lord",
+            "key": "Conditions.DownedMoonLord",
+            "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/AncientCoin"
+        ]
       }
     },
     {
@@ -17816,7 +18157,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -18029,7 +18371,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -18253,7 +18596,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -18290,7 +18634,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -18316,7 +18661,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -19350,7 +19696,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -19937,7 +20284,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -20157,7 +20505,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -20284,7 +20633,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -20312,7 +20664,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -20340,7 +20695,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -20379,7 +20737,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -20407,7 +20768,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -20457,7 +20821,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -20527,7 +20894,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -20762,7 +21130,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -20790,7 +21159,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -21208,7 +21578,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -21318,7 +21689,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -21784,7 +22156,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -22118,7 +22491,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -22151,7 +22525,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -22177,7 +22552,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -22478,7 +22854,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -22515,7 +22892,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -22570,7 +22948,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -22669,7 +23048,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -22728,7 +23108,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -22787,7 +23168,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -22879,7 +23261,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -22971,7 +23354,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -23026,7 +23410,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -23048,7 +23433,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -23114,7 +23500,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -23180,7 +23567,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -23393,7 +23781,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -23415,7 +23804,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -23496,7 +23886,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -23661,7 +24052,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -23928,8 +24320,16 @@
       "reason": "not combat equipment",
       "evidence": {
         "kind": "observed-shop",
-        "conditions": [],
-        "prerequisites": []
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "At night",
+            "key": "Conditions.TimeNight",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -23955,7 +24355,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -24028,7 +24429,8 @@
         ],
         "prerequisites": [
           "Terraria/FlareGun"
-        ]
+        ],
+        "currencyItems": null
       }
     },
     {
@@ -24144,7 +24546,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -24172,7 +24575,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -24231,7 +24635,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -24279,7 +24684,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -24301,7 +24707,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -24357,7 +24764,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -24449,7 +24857,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -24515,7 +24924,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -24933,7 +25343,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -25047,7 +25458,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -25630,7 +26042,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -25876,7 +26289,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -26111,7 +26525,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -26137,7 +26552,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -26152,7 +26568,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -26185,7 +26602,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -26240,7 +26658,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -26255,7 +26674,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -26270,7 +26690,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -26351,7 +26772,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -26450,7 +26872,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -26527,7 +26950,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -27139,7 +27563,8 @@
         ],
         "prerequisites": [
           "Terraria/CandyCornRifle"
-        ]
+        ],
+        "currencyItems": null
       }
     },
     {
@@ -27165,7 +27590,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -27180,7 +27606,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -27433,7 +27860,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -27536,7 +27964,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -27837,7 +28266,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -28343,7 +28773,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -28431,7 +28862,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -28453,7 +28885,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -28596,7 +29029,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -28624,7 +29058,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -28899,7 +29334,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -28921,7 +29357,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -28965,7 +29402,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -29068,7 +29506,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -29149,7 +29588,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -29197,7 +29637,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -29212,7 +29653,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -29282,7 +29724,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -29429,7 +29872,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -29444,7 +29888,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -29846,7 +30291,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -29989,7 +30435,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -30070,7 +30517,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -30175,7 +30623,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -30203,7 +30652,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -30482,7 +30932,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -30636,7 +31087,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -30728,7 +31180,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -30860,7 +31313,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -30996,7 +31450,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -31590,7 +32045,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -31612,7 +32068,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -31634,7 +32091,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -31700,7 +32158,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -31744,7 +32203,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -31825,7 +32285,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -31902,7 +32363,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -31950,7 +32412,10 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -31978,7 +32443,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -32006,7 +32474,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -32054,7 +32525,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -32069,7 +32541,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -32095,7 +32568,10 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -32123,7 +32599,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -32151,7 +32630,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -32166,7 +32648,10 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -32194,7 +32679,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -32222,7 +32710,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -32292,7 +32783,10 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -32320,7 +32814,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -32348,7 +32845,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -32544,10 +33044,17 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "skeletron-prime",
-      "via": "npc:Terraria/Reaper",
+      "stage": "destroyer",
+      "via": "shop:AAModClassic/GoblinSlayer",
       "reason": "Included in the generated profile.",
-      "evidence": null
+      "evidence": {
+        "kind": "shop",
+        "conditions": [],
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/MonsterSoul"
+        ]
+      }
     },
     {
       "id": "Terraria/Deathweed",
@@ -32775,8 +33282,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
-      "via": "container:Terraria/BossBagBetsy",
+      "stage": "world-evil",
+      "via": "manifest",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -32792,7 +33299,10 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -32873,7 +33383,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -32987,7 +33498,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -33145,7 +33657,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -33248,7 +33761,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -33395,7 +33909,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -33461,7 +33976,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -33564,7 +34080,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -33592,7 +34109,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -33636,7 +34154,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -33768,7 +34287,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -33790,7 +34310,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -33834,7 +34355,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -33871,7 +34393,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -33897,7 +34420,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -33945,7 +34469,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -34099,7 +34624,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -34121,7 +34647,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -34143,7 +34670,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -34176,7 +34704,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -34209,7 +34738,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -34323,7 +34853,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -34547,7 +35078,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -34562,7 +35094,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -35299,7 +35832,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -35327,7 +35861,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -35679,7 +36214,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -35694,7 +36230,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -35797,7 +36334,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -35929,7 +36467,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -35955,7 +36494,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -36006,7 +36546,8 @@
         ],
         "prerequisites": [
           "Terraria/JackOLanternLauncher"
-        ]
+        ],
+        "currencyItems": null
       }
     },
     {
@@ -36028,7 +36569,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -36054,7 +36596,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -36767,7 +37310,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "skeletron",
       "via": "recipe:Terraria/MartianChest+Terraria/Wire",
       "reason": "not combat equipment",
       "evidence": null
@@ -37077,7 +37620,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -37099,7 +37643,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -37114,7 +37659,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -37129,7 +37675,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -37144,7 +37691,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -37159,7 +37707,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -37174,7 +37723,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -37277,7 +37827,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -37347,7 +37898,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -37424,7 +37976,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -37549,7 +38102,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -37564,7 +38118,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -37586,7 +38141,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -38044,7 +38600,8 @@
         ],
         "prerequisites": [
           "Terraria/FlareGun"
-        ]
+        ],
+        "currencyItems": null
       }
     },
     {
@@ -38308,7 +38865,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -38466,7 +39024,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -38653,7 +39212,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -38675,7 +39235,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -38697,7 +39258,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -38734,7 +39296,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -38749,7 +39312,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -38764,7 +39328,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -38779,7 +39344,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -38794,7 +39360,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -38809,7 +39376,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -38824,7 +39392,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -38839,7 +39408,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -38854,7 +39424,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -38880,7 +39451,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -39012,7 +39584,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -39034,7 +39607,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -39139,7 +39713,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -39904,7 +40479,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -39926,7 +40502,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -39948,7 +40525,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -39970,7 +40548,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -40014,7 +40593,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -40062,7 +40642,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -40150,7 +40731,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -40601,7 +41183,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -40649,7 +41232,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -40668,11 +41252,18 @@
       "name": "Giant Bow",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "shop:AAModClassic/GoblinSlayer",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [],
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/ChristmasCheer"
+        ]
+      }
     },
     {
       "id": "Terraria/GiantCursedSkullBanner",
@@ -41027,7 +41618,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -41170,7 +41762,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -41372,7 +41965,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -41614,7 +42208,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42333,7 +42928,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42524,7 +43120,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42638,7 +43235,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42664,7 +43262,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42701,7 +43300,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42716,7 +43316,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42731,7 +43332,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42746,7 +43348,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42761,7 +43364,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42776,7 +43380,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42791,7 +43396,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42806,7 +43412,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42821,7 +43428,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42880,7 +43488,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42895,7 +43504,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42910,7 +43520,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42958,7 +43569,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -42973,7 +43585,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -43078,7 +43691,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -43106,7 +43720,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -43134,7 +43749,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -43162,7 +43778,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -43190,7 +43807,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -43218,7 +43836,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -43246,7 +43865,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -43602,7 +44222,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -43657,7 +44278,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -43679,7 +44301,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -43745,7 +44368,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -43837,7 +44461,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -43852,7 +44477,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -44105,7 +44731,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -44472,7 +45099,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -44520,7 +45148,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -44542,7 +45171,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -44609,7 +45239,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -44712,7 +45343,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -44910,7 +45542,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -44925,7 +45558,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -44958,7 +45592,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -44973,7 +45608,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -45105,7 +45741,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -45226,7 +45863,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -45252,7 +45890,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -45362,7 +46001,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -45498,7 +46138,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -45645,7 +46286,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -46003,7 +46645,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -46124,7 +46767,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -46410,7 +47054,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -46733,7 +47378,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -46772,7 +47418,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -46800,7 +47449,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -46828,7 +47480,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -46867,7 +47522,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -46895,7 +47553,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -46923,7 +47584,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -47070,7 +47734,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -47103,7 +47768,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -47162,7 +47828,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -47331,7 +47998,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -47390,7 +48058,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -47603,7 +48272,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -47897,11 +48567,18 @@
       "name": "Jack 'O Lantern Mask",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "shop:AAModClassic/GoblinSlayer",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [],
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/HalloweenTreat"
+        ]
+      }
     },
     {
       "id": "Terraria/Javelin",
@@ -48005,7 +48682,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -48060,7 +48738,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -48082,7 +48761,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -48165,7 +48845,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -48429,7 +49110,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -48444,7 +49126,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -48543,7 +49226,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -48580,7 +49264,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -48789,7 +49474,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -48870,7 +49556,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -49168,7 +49855,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -49326,7 +50014,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -49550,7 +50239,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -49653,7 +50343,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -49668,7 +50359,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -49906,7 +50598,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -50020,7 +50713,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -50284,7 +50978,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -50321,7 +51016,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -50336,7 +51032,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -50362,7 +51059,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -50384,7 +51082,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -50399,7 +51098,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -50421,7 +51121,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -50442,7 +51143,7 @@
       "contentItem": false,
       "status": "buff",
       "stage": "start",
-      "via": "container:Terraria/GoldenCrate",
+      "via": "world:Terraria/Heart",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -50480,7 +51181,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -50490,7 +51192,7 @@
       "contentItem": false,
       "status": "buff",
       "stage": "plantera",
-      "via": "manifest",
+      "via": "world:Terraria/LifeFruit",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -50612,7 +51314,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -51034,7 +51737,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -51060,7 +51764,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -51199,7 +51904,8 @@
         ],
         "prerequisites": [
           "Terraria/LivingWoodWand"
-        ]
+        ],
+        "currencyItems": null
       }
     },
     {
@@ -51566,7 +52272,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -51581,7 +52288,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -51596,7 +52304,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -51611,7 +52320,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -51626,7 +52336,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -51641,7 +52352,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -51656,7 +52368,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -51671,7 +52384,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -51686,7 +52400,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -52233,11 +52948,18 @@
       "name": "Magical Pumpkin Seed",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "shop:AAModClassic/GoblinSlayer",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [],
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/HalloweenTreat"
+        ]
+      }
     },
     {
       "id": "Terraria/MagicConch",
@@ -52284,7 +53006,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -52323,7 +53046,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -52554,7 +53278,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -53005,7 +53730,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -53036,7 +53762,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/MartianConduitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -53047,7 +53773,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -53058,7 +53784,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating+Terraria/Silk",
       "reason": "not combat equipment",
       "evidence": null
@@ -53080,7 +53806,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating+Terraria/Torch+Terraria/Chain",
       "reason": "not combat equipment",
       "evidence": null
@@ -53091,7 +53817,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating+Terraria/IronBar",
       "reason": "not combat equipment",
       "evidence": null
@@ -53102,10 +53828,15 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
-      "via": "npc:Terraria/BrainScrambler",
+      "stage": "start",
+      "via": "shop:AAModClassic/GoblinSlayer",
       "reason": "not combat equipment",
-      "evidence": null
+      "evidence": {
+        "kind": "shop",
+        "conditions": [],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/MartianConduitWall",
@@ -53113,7 +53844,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -53157,7 +53888,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -53168,7 +53899,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -53236,7 +53967,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -53245,7 +53977,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "skeletron",
       "via": "recipe:Terraria/MartianConduitPlating+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -53256,7 +53988,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating+Terraria/Torch",
       "reason": "not combat equipment",
       "evidence": null
@@ -53267,7 +53999,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -53278,7 +54010,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/Torch+Terraria/MartianConduitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -53289,7 +54021,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating+Terraria/Torch",
       "reason": "not combat equipment",
       "evidence": null
@@ -53322,7 +54054,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/MartianConduitPlating+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -53333,7 +54065,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -53377,7 +54109,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating+Terraria/WaterBucket",
       "reason": "not combat equipment",
       "evidence": null
@@ -53388,7 +54120,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating+Terraria/Silk",
       "reason": "not combat equipment",
       "evidence": null
@@ -53399,7 +54131,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -53410,7 +54142,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating+Terraria/Torch",
       "reason": "not combat equipment",
       "evidence": null
@@ -53476,7 +54208,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -53559,7 +54291,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -54186,7 +54919,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -54322,7 +55056,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -54377,7 +55112,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -54570,7 +55306,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -54598,7 +55337,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -54626,7 +55368,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -54665,7 +55410,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -54693,7 +55441,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -54721,7 +55472,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -54809,7 +55563,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -54842,7 +55597,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -55194,7 +55950,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -55473,7 +56230,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -55565,7 +56323,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -55675,7 +56434,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -55882,7 +56642,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "eye-of-cthulhu",
       "via": "recipe:Terraria/MusicBoxOverworldDay+Terraria/MartianConduitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -55893,7 +56653,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "world-evil",
       "via": "recipe:Terraria/MusicBox+Terraria/DefenderMedal",
       "reason": "not combat equipment",
       "evidence": null
@@ -56069,7 +56829,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MusicBox+Terraria/MartianConduitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -56735,7 +57495,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -56783,7 +57544,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -56798,7 +57560,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -57036,7 +57799,8 @@
         ],
         "prerequisites": [
           "Terraria/NailGun"
-        ]
+        ],
+        "currencyItems": null
       }
     },
     {
@@ -57080,7 +57844,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -57674,7 +58439,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -57696,7 +58462,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -57751,7 +58518,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -57894,7 +58662,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -57927,7 +58696,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -57949,7 +58719,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -58019,7 +58790,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -58661,7 +59433,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -58698,7 +59471,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -58999,7 +59773,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -59014,7 +59789,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -59029,7 +59805,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -59051,7 +59828,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -59132,7 +59910,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -59224,7 +60003,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -59239,7 +60019,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -59254,7 +60035,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -59797,7 +60579,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -59929,7 +60712,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -59962,7 +60746,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -60010,7 +60795,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -60025,7 +60811,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -60040,7 +60827,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -60660,7 +61448,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -60763,7 +61552,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -61372,7 +62162,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -61435,28 +62226,11 @@
       "name": "Pin Wheel",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "excluded",
-      "stage": "start",
-      "via": "shop:Terraria/Merchant",
-      "reason": "not combat equipment",
-      "evidence": {
-        "kind": "observed-shop",
-        "conditions": [
-          {
-            "type": "Terraria.Condition",
-            "description": "During daytime",
-            "key": "Conditions.TimeDay",
-            "facts": []
-          },
-          {
-            "type": "Terraria.Condition",
-            "description": "During a happy windy day",
-            "key": "Conditions.HappyWindyDay",
-            "facts": []
-          }
-        ],
-        "prerequisites": []
-      }
+      "status": "no-acquisition-path",
+      "stage": "",
+      "via": "",
+      "reason": "No acquisition path was resolved.",
+      "evidence": null
     },
     {
       "id": "Terraria/PiranhaBanner",
@@ -61558,7 +62332,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -61568,9 +62343,21 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "global:Terraria/GlobalNPCDrops",
+      "via": "shop:AAModClassic/GoblinSlayer",
       "reason": "not combat equipment",
-      "evidence": null
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/PirateMinecart",
@@ -61595,7 +62382,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -61621,7 +62409,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -61647,7 +62436,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -61772,7 +62562,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -61886,7 +62677,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62139,7 +62931,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62161,7 +62954,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62187,7 +62981,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62290,7 +63085,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62503,7 +63299,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62518,7 +63315,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62533,7 +63331,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62548,7 +63347,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62576,7 +63376,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62604,7 +63405,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62632,7 +63434,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62660,7 +63463,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62688,7 +63492,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62716,7 +63521,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62744,7 +63550,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62772,7 +63579,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62800,7 +63608,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62828,7 +63637,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62856,7 +63666,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -62884,7 +63695,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -63042,7 +63854,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -63057,7 +63870,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -63072,7 +63886,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -63087,7 +63902,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -63115,7 +63931,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -63163,7 +63980,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -63189,7 +64007,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -63226,7 +64045,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -63248,7 +64068,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -63304,7 +64125,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -63704,7 +64526,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -63781,7 +64604,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -63873,7 +64697,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -63910,7 +64735,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -63955,7 +64781,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -64032,7 +64859,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -64071,7 +64899,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -64247,7 +65076,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -64419,7 +65249,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -64511,7 +65342,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -64775,7 +65607,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -64977,7 +65810,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -64999,7 +65833,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -65057,8 +65892,16 @@
       "reason": "not combat equipment",
       "evidence": {
         "kind": "observed-shop",
-        "conditions": [],
-        "prerequisites": []
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During daytime",
+            "key": "Conditions.TimeDay",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -65194,7 +66037,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -65216,7 +66060,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -65499,11 +66344,25 @@
       "name": "Reindeer Bells",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "shop:AAModClassic/GoblinSlayer",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After defeating Ice Queen",
+            "key": "Conditions.DownedIceQueen",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/ChristmasCheer"
+        ]
+      }
     },
     {
       "id": "Terraria/ReinforcedFishingPole",
@@ -65546,7 +66405,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -66122,7 +66982,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -66137,7 +66998,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -66159,7 +67021,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -66181,7 +67044,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -66203,7 +67067,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -66383,7 +67248,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -66431,7 +67297,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -66446,7 +67313,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -66483,7 +67351,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -66498,7 +67367,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -66542,7 +67412,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -66689,7 +67560,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -66766,7 +67638,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -66825,7 +67698,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -66884,7 +67758,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -67066,7 +67941,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -68408,7 +69284,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -68529,7 +69406,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -68650,7 +69528,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -69002,7 +69881,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -69046,7 +69926,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -69226,7 +70107,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -69329,7 +70211,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -69555,7 +70438,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -69603,7 +70487,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -69702,7 +70587,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -70047,7 +70933,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -70339,7 +71226,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -70735,7 +71623,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -70750,7 +71639,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -71086,7 +71976,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -71827,7 +72718,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -71937,7 +72829,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -72086,7 +72979,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -72101,7 +72995,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -72136,7 +73031,8 @@
         ],
         "prerequisites": [
           "Terraria/FlareGun"
-        ]
+        ],
+        "currencyItems": null
       }
     },
     {
@@ -72158,7 +73054,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -73011,7 +73908,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -73039,7 +73939,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -73067,7 +73970,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -73095,7 +74001,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -73123,7 +74032,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -73151,7 +74063,10 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": [
+          "Terraria/DefenderMedal"
+        ]
       }
     },
     {
@@ -73221,7 +74136,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -73316,7 +74232,8 @@
         ],
         "prerequisites": [
           "Terraria/StakeLauncher"
-        ]
+        ],
+        "currencyItems": null
       }
     },
     {
@@ -73870,7 +74787,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -73896,7 +74814,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -73911,7 +74830,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -74054,7 +74974,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -74121,7 +75042,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -74213,7 +75135,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -74257,7 +75180,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -74279,7 +75203,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -74323,7 +75248,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -74345,7 +75271,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -74389,7 +75316,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -74444,7 +75372,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -74521,7 +75450,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -74690,7 +75620,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -74723,7 +75654,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -74749,7 +75681,8 @@
       "evidence": {
         "kind": "observed-shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -74855,7 +75788,8 @@
         ],
         "prerequisites": [
           "Terraria/Stynger"
-        ]
+        ],
+        "currencyItems": null
       }
     },
     {
@@ -74932,7 +75866,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -75233,7 +76168,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -75292,7 +76228,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -75441,7 +76378,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -75529,7 +76467,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -75551,7 +76490,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -75584,7 +76524,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -75665,7 +76606,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -75779,7 +76721,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -75959,7 +76902,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -76023,8 +76967,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "skeletron-prime",
-      "via": "recipe:AAModClassic/TrueFleshrendClaymore+Terraria/TrueExcalibur",
+      "stage": "plantera",
+      "via": "recipe:Terraria/TrueNightsEdge+Terraria/TrueExcalibur+Terraria/BrokenHeroSword",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -76040,7 +76984,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -76159,10 +77104,17 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "world-evil",
-      "via": "npc:Terraria/TheBride",
+      "stage": "start",
+      "via": "shop:AAModClassic/GoblinSlayer",
       "reason": "not combat equipment",
-      "evidence": null
+      "evidence": {
+        "kind": "shop",
+        "conditions": [],
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/BloodRune"
+        ]
+      }
     },
     {
       "id": "Terraria/TheBrideHat",
@@ -76170,10 +77122,17 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "world-evil",
-      "via": "npc:Terraria/TheBride",
+      "stage": "start",
+      "via": "shop:AAModClassic/GoblinSlayer",
       "reason": "not combat equipment",
-      "evidence": null
+      "evidence": {
+        "kind": "shop",
+        "conditions": [],
+        "prerequisites": [],
+        "currencyItems": [
+          "AAModClassic/BloodRune"
+        ]
+      }
     },
     {
       "id": "Terraria/TheCreationoftheGuide",
@@ -76227,7 +77186,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -76249,7 +77209,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -76486,7 +77447,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -76646,7 +77608,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -76690,7 +77653,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -76712,7 +77676,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -76734,7 +77699,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -76773,7 +77739,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -76843,7 +77810,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -76858,7 +77826,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -76873,7 +77842,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -76888,7 +77858,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -76903,7 +77874,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -77050,7 +78022,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -77576,7 +78549,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "golem",
+      "stage": "start",
       "via": "recipe:Terraria/MartianConduitPlating",
       "reason": "not combat equipment",
       "evidence": null
@@ -77758,7 +78731,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -78044,7 +79018,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -78154,7 +79129,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -78341,7 +79317,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -78512,7 +79489,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -78798,7 +79776,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -78912,7 +79891,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -78967,7 +79947,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -79066,7 +80047,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -79088,7 +80070,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -79180,7 +80163,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -79389,7 +80373,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -79411,7 +80396,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -79510,7 +80496,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -79554,7 +80541,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -79576,7 +80564,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -79767,7 +80756,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -80310,7 +81300,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -80622,7 +81613,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -80655,7 +81647,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -81035,7 +82028,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -81063,7 +82057,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -81078,7 +82073,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -81161,7 +82157,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -81189,7 +82186,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -81222,7 +82220,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -81336,7 +82335,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -81439,7 +82439,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -81454,7 +82455,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -81469,7 +82471,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -81484,7 +82487,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -81510,7 +82514,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -81983,7 +82988,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -82130,7 +83136,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -82332,7 +83339,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -82424,7 +83432,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -82472,7 +83481,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -82494,7 +83504,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -82575,7 +83586,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -82674,7 +83686,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -82707,7 +83720,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -82729,7 +83743,8 @@
             "facts": []
           }
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {
@@ -82744,7 +83759,8 @@
       "evidence": {
         "kind": "shop",
         "conditions": [],
-        "prerequisites": []
+        "prerequisites": [],
+        "currencyItems": null
       }
     },
     {

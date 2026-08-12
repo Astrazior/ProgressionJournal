@@ -78,6 +78,8 @@ const snapshot = {
     item("Test/EventGun", { damageClass: "Melee", damage: 20 }),
     item("Test/ShopBlade", { damageClass: "Melee", damage: 18 }),
     item("Test/CurrencyShopBlade", { damageClass: "Melee", damage: 19 }),
+    item("Test/ShopCurrency"),
+    item("Test/CurrencyGatedShopBlade", { damageClass: "Melee", damage: 20 }),
     item("Test/ObservedTypedShopBlade", { damageClass: "Melee", damage: 20 }),
     item("Test/ObservedManualShopBlade", { damageClass: "Melee", damage: 21 }),
     item("Test/ObservedAmmo", {
@@ -454,6 +456,16 @@ const snapshot = {
     { source: "Test/Boss", sourceType: "npc", item: "Test/FlooredBlade", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/WorldFlooredBlade", conditions: [] },
     { source: "Test/LateBoss", sourceType: "npc", item: "Test/LateDrop", conditions: [] },
+    { source: "Test/Boss", sourceType: "npc", item: "Test/ShopCurrency", conditions: [] },
+    {
+      source: "Terraria/GlobalNPCDrops",
+      sourceType: "global",
+      item: "Test/ShopCurrency",
+      conditions: [{
+        type: "ProgressionJournal.AfterProgression",
+        description: "Available after: Late"
+      }]
+    },
     { source: "Test/ManualLateBoss", sourceType: "npc", item: "Test/ManualLateDrop", conditions: [] },
     { source: "Test/CollisionSource", sourceType: "npc", item: "Test/CollisionBlade", conditions: [] },
     { source: "Test/Boss", sourceType: "npc", item: "Test/MeleeAccessory", conditions: [] },
@@ -533,6 +545,15 @@ const snapshot = {
         type: "ProgressionJournal.CustomCurrency",
         description: "Purchased with custom currency"
       }]
+    },
+    {
+      npc: "Test/Merchant",
+      item: "Test/CurrencyGatedShopBlade",
+      observed: false,
+      earliestStageIndex: -1,
+      earliestStageName: null,
+      conditions: [],
+      currencyItems: ["Test/ShopCurrency"]
     },
     {
       npc: "Test/Merchant",
@@ -1116,6 +1137,13 @@ assert(profile.entries.some(entry =>
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "CurrencyShopBlade"
   && entry.evaluations[0].stageId === "boss"));
+assert(profile.entries.some(entry =>
+  entry.itemGroups[0][0].item === "CurrencyGatedShopBlade"
+  && entry.evaluations[0].stageId === "late"));
+assert.equal(report.paths["Test/ShopCurrency"]?.via, "global:Terraria/GlobalNPCDrops");
+assert.deepEqual(
+  report.paths["Test/CurrencyGatedShopBlade"]?.evidence?.currencyItems,
+  ["Test/ShopCurrency"]);
 assert(!review.issues.some(issue =>
   issue.kind === "unresolved-condition"
   && issue.affected.some(value => value.item === "Test/CurrencyShopBlade")));
@@ -1751,6 +1779,9 @@ const exactStaticEvidenceSnapshot = {
     item("Test/UnknownStaticShopBlade", { damageClass: "Melee", damage: 22 }),
     item("Test/FargoHardmodeBlade", { damageClass: "Melee", damage: 23 }),
     item("Test/MartianShopBlade", { damageClass: "Melee", damage: 24 }),
+    item("Test/OldOnesArmyT2ShopBlade", { damageClass: "Melee", damage: 25 }),
+    item("Test/OldOnesArmyT3ShopBlade", { damageClass: "Melee", damage: 26 }),
+    item("Test/PumpkingShopBlade", { damageClass: "Melee", damage: 27 }),
     item("Test/WorldHardmodeBlade", { damageClass: "Melee", damage: 25 }),
     item("Test/OpaqueWorldBlade", { damageClass: "Melee", damage: 26 })
   ],
@@ -1884,6 +1915,42 @@ const exactStaticEvidenceSnapshot = {
           key: "Conditions.BloodOrSun"
         }
       ]
+    },
+    {
+      npc: "Test/TownMerchant",
+      shop: "Shop",
+      item: "Test/OldOnesArmyT2ShopBlade",
+      observed: false,
+      earliestStageIndex: -1,
+      conditions: [{
+        type: "Terraria.Condition",
+        description: "Display text must not be used",
+        key: "Conditions.DownedOldOnesArmyT2"
+      }]
+    },
+    {
+      npc: "Test/TownMerchant",
+      shop: "Shop",
+      item: "Test/OldOnesArmyT3ShopBlade",
+      observed: false,
+      earliestStageIndex: -1,
+      conditions: [{
+        type: "Terraria.Condition",
+        description: "Display text must not be used",
+        key: "Conditions.DownedOldOnesArmyT3"
+      }]
+    },
+    {
+      npc: "Test/TownMerchant",
+      shop: "Shop",
+      item: "Test/PumpkingShopBlade",
+      observed: false,
+      earliestStageIndex: -1,
+      conditions: [{
+        type: "Terraria.Condition",
+        description: "Display text must not be used",
+        key: "Conditions.DownedPumpking"
+      }]
     }
   ],
   fishing: [{
@@ -1955,6 +2022,11 @@ const exactStaticEvidenceManifest = {
       unlock: { type: "vanilla-flag", key: "downedMechBoss1" }
     },
     {
+      id: "plantera",
+      name: { "en-US": "Plantera", "ru-RU": "Плантера" },
+      unlock: { type: "vanilla-flag", key: "downedPlantBoss" }
+    },
+    {
       id: "golem",
       name: { "en-US": "Golem", "ru-RU": "Голем" },
       unlock: { type: "vanilla-flag", key: "downedGolemBoss" }
@@ -2008,6 +2080,15 @@ assert(!exactStaticEvidenceResult.review.issues.some(issue =>
 assert.equal(
   exactStaticEvidenceResult.report.paths["Test/MartianShopBlade"]?.stage,
   "golem");
+assert.equal(
+  exactStaticEvidenceResult.report.paths["Test/OldOnesArmyT2ShopBlade"]?.stage,
+  "destroyer");
+assert.equal(
+  exactStaticEvidenceResult.report.paths["Test/OldOnesArmyT3ShopBlade"]?.stage,
+  "golem");
+assert.equal(
+  exactStaticEvidenceResult.report.paths["Test/PumpkingShopBlade"]?.stage,
+  "plantera");
 assert.equal(
   exactStaticEvidenceResult.report.paths["Test/UnknownStaticShopBlade"],
   undefined);

@@ -810,9 +810,12 @@ assert(itemCollectionIndex >= 0
     && npcDropCollectionIndex >= 0
     && itemCollectionIndex < npcDropCollectionIndex,
 "Item classification probes must run before drop reporting because mod drop rules can observe probe state");
-assert(snapshotExporterSource.includes("public int Version { get; set; } = 9")
-  && snapshotExporterSource.includes("List<JournalLocalizedText> Conditions"),
-  "The snapshot schema must preserve localized fishing condition expressions");
+assert(snapshotExporterSource.includes("public int Version { get; set; } = 10")
+  && snapshotExporterSource.includes("List<JournalLocalizedText> Conditions")
+  && snapshotExporterSource.includes("List<string>? CurrencyItems = null")
+  && snapshotShopCollectorSource.includes("CustomCurrencyManager.TryGetCurrencySystem")
+  && snapshotShopCollectorSource.includes("currencySystem.Accepts("),
+"The snapshot schema must preserve fishing conditions and custom shop currencies");
 assert(snapshotExporterSource.includes("KnownSourceItems = CreateKnownSourceItems(itemIds)")
   && snapshotExporterSource.includes("JournalExactDropCatalog.GetAllSources()")
   && snapshotExporterSource.includes("JournalContainerLootCatalog.GetAllDrops()"),

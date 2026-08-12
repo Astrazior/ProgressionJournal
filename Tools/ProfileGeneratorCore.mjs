@@ -178,7 +178,7 @@ function generateProfileCore(
     : source;
   assert(snapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot format.");
   assert(
-    [4, 5, 6, 7, 8, 9].includes(snapshot.version),
+    [4, 5, 6, 7, 8, 9, 10].includes(snapshot.version),
     `Unsupported snapshot version '${snapshot.version}'.`);
 
   manifest = applyVanillaSourceCatalog(manifest, snapshot);
@@ -226,6 +226,17 @@ function generateProfileCore(
     snapshotShops,
     snapshot.items,
     itemById);
+  const shopCurrencyItems = new Set(
+    snapshotShops.flatMap(shop => shop.currencyItems ?? []));
+  const currenciesWithConditionedGlobalDrops = new Set(snapshot.drops
+    .filter(drop =>
+      drop.sourceType === "global"
+      && (drop.rate ?? 1) > 0
+      && shopCurrencyItems.has(drop.item)
+      && (drop.conditions ?? []).length > 0
+      && drop.conditions.every(condition =>
+        conditionHasAssignment(condition, "drop", drop.source, manifest)))
+    .map(drop => drop.item));
   const recipesByResult = groupBy(
     snapshot.recipes.filter(recipe =>
       isAllowedProfileItem(recipe.result, contentMods)
@@ -237,6 +248,9 @@ function generateProfileCore(
   const dropsBySource = groupBy(
     snapshot.drops.filter(drop =>
       !["global", "world"].includes(drop.sourceType)
+      && !(drop.sourceType === "npc"
+        && currenciesWithConditionedGlobalDrops.has(drop.item)
+        && (drop.conditions ?? []).length === 0)
       &&
       (drop.rate ?? 1) > 0
       &&
@@ -546,7 +560,8 @@ function generateProfileCore(
             source: npc,
             item: shop.item,
             available,
-            prerequisites: shopPrerequisites.get(shop) ?? []
+            prerequisites: shopPrerequisites.get(shop) ?? [],
+            currencyItems: shop.currencyItems
           };
           const shopAllowed = shop.observed
             ? observedShopConditionsAllowed(
@@ -569,7 +584,8 @@ function generateProfileCore(
               evidence: {
                 kind: shop.observed ? "observed-shop" : "shop",
                 conditions: shop.conditions ?? [],
-                prerequisites: conditionContext.prerequisites
+                prerequisites: conditionContext.prerequisites,
+                currencyItems: conditionContext.currencyItems ?? null
               }
             })) {
             changed = true;
@@ -1609,8 +1625,7 @@ function observedShopConditionsAllowed(conditions, stage, manifest, context) {
     // runtime types, explicit configuration, and machine-readable item
     // prerequisites may still move the lower bound.
   }
-  return (context.prerequisites ?? [])
-    .every(itemId => context.available.has(itemId));
+  return shopRequirementsAllowed(context);
 }
 
 function conditionsAllowed(conditions, stage, manifest, report, context) {
@@ -1657,8 +1672,14 @@ function conditionsAllowed(conditions, stage, manifest, report, context) {
     }
     return false;
   }
-  return (context.prerequisites ?? [])
-    .every(itemId => context.available.has(itemId));
+  return shopRequirementsAllowed(context);
+}
+
+function shopRequirementsAllowed(context) {
+  if (!(context.prerequisites ?? [])
+    .every(itemId => context.available.has(itemId))) return false;
+  if (context.currencyItems === undefined || context.currencyItems === null) return true;
+  return context.currencyItems.some(itemId => context.available.has(itemId));
 }
 
 function isAlternativeEarlyContainerCondition(condition, context) {
@@ -1768,7 +1789,7 @@ function conditionHasAssignment(condition, sourceKind, source, manifest) {
 function hasMachineReadableShopConditions(shop, manifest) {
   const conditions = shop.conditions ?? [];
   return !shop.observed
-    && conditions.length > 0
+    && (conditions.length > 0 || (shop.currencyItems?.length ?? 0) > 0)
     && conditions.every(condition =>
       conditionHasAssignment(condition, "shop", shop.npc, manifest));
 }
@@ -1829,7 +1850,17 @@ function conditionKeyStageIndex(key, manifest, stageIndexes) {
         stageIndexes,
         "downedMechBoss3",
         "skeletron-prime");
+    case "Conditions.DownedOldOnesArmyT2":
+      return stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer");
+    case "Conditions.DownedOldOnesArmyT3":
+      return stageIndexByFlagOrId(manifest, stageIndexes, "downedGolemBoss", "golem");
     case "Conditions.DownedPlantera":
+      return stageIndexByFlagOrId(manifest, stageIndexes, "downedPlantBoss", "plantera");
+    case "Conditions.DownedEverscream":
+    case "Conditions.DownedSantaNK1":
+    case "Conditions.DownedIceQueen":
+    case "Conditions.DownedMourningWood":
+    case "Conditions.DownedPumpking":
       return stageIndexByFlagOrId(manifest, stageIndexes, "downedPlantBoss", "plantera");
     case "Conditions.DownedGolem":
       return stageIndexByFlagOrId(manifest, stageIndexes, "downedGolemBoss", "golem");

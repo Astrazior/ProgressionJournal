@@ -1031,7 +1031,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
 public sealed class ProgressionSnapshot
 {
     public string Format { get; set; } = "ProgressionJournalSnapshot";
-    public int Version { get; set; } = 9;
+    public int Version { get; set; } = 10;
     public string GeneratedAtUtc { get; set; } = string.Empty;
     public string TargetMod { get; set; } = string.Empty;
     public string ProfileId { get; set; } = string.Empty;
@@ -1139,7 +1139,9 @@ public sealed record SnapshotShop(
     bool Observed,
     int EarliestStageIndex,
     string EarliestStageId,
-    string EarliestStageName);
+    string EarliestStageName,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    List<string>? CurrencyItems = null);
 public sealed record SnapshotFishingCatch(
     string TargetType,
     string Target,

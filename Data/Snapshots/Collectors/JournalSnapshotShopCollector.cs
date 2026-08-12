@@ -15,6 +15,8 @@ internal static class JournalSnapshotShopCollector
         Func<int, string> getStageName,
         Func<string, int> getStageIndex)
     {
+        Dictionary<int, List<string>> currencyItemsById = [];
+
         var shops = NPCShopDatabase.AllShops
             .SelectMany(static shop => shop.ActiveEntries.Select(entry => new { shop, entry }))
             .Where(pair => pair.entry.Item is not null
@@ -37,7 +39,12 @@ internal static class JournalSnapshotShopCollector
                     observed,
                     stageIndex,
                     getStageId(stageIndex),
-                    stageName);
+                    stageName,
+                    ResolveCurrencyItems(
+                        pair.entry.Item,
+                        includedItems,
+                        getItemReference,
+                        currencyItemsById));
             })
             .ToList();
 
@@ -94,6 +101,41 @@ internal static class JournalSnapshotShopCollector
             }));
 
         return shops;
+    }
+
+    private static List<string>? ResolveCurrencyItems(
+        global::Terraria.Item shopItem,
+        HashSet<int> includedItems,
+        Func<int, string> getItemReference,
+        Dictionary<int, List<string>> currencyItemsById)
+    {
+        var currencyId = shopItem.shopSpecialCurrency;
+        if (currencyId < 0)
+        {
+            return null;
+        }
+
+        if (currencyItemsById.TryGetValue(currencyId, out var cachedItems))
+        {
+            return cachedItems;
+        }
+
+        if (!global::Terraria.GameContent.UI.CustomCurrencyManager.TryGetCurrencySystem(
+                currencyId,
+                out var currencySystem))
+        {
+            currencyItemsById[currencyId] = [];
+            return currencyItemsById[currencyId];
+        }
+
+        var currencyItems = includedItems
+            .Where(itemId => currencySystem.Accepts(
+                global::Terraria.ID.ContentSamples.ItemsByType[itemId]))
+            .Select(getItemReference)
+            .Order(StringComparer.Ordinal)
+            .ToList();
+        currencyItemsById[currencyId] = currencyItems;
+        return currencyItems;
     }
 
     private static IEnumerable<object?> EnumerateObjects<T>(IEnumerable<T>? values)
