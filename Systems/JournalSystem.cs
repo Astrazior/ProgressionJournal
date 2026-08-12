@@ -307,10 +307,11 @@ public sealed class JournalSystem : ModSystem
 
         SelectedClassId = JournalProfileRegistry.Active.Classes[0].Id;
         SelectedStageId = GetCurrentStageId();
-        HasSelectedClass = false;
-        SelectingClass = true;
+        HasSelectedClass = true;
+        SelectingClass = false;
         ShowingPresets = false;
         ShowingBuildBuilder = false;
+        ShowingProfileManager = false;
         ActiveBuildSlotKey = null;
         ActiveArmorSet = null;
         _editingBuild = null;
