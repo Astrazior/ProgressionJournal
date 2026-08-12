@@ -1918,6 +1918,18 @@ const validRule = {
       sourceVersion: "revision-1",
       checkedAt: "2026-06-15",
       reason: "The item is returned by the custom fishing hook in this biome."
+    },
+    {
+      id: "verified-world-source",
+      kind: "world-source",
+      item: "Test/WorldBlade",
+      stageId: "boss",
+      sourceName: "Buried Test Chest",
+      sourceReference: "Test/BuriedTestChest",
+      sourceUrl: "https://example.invalid/source/WorldGeneration",
+      sourceVersion: "revision-1",
+      checkedAt: "2026-08-12",
+      reason: "The item is placed in the named chest during world generation."
     }
   ],
   ignoredItems: [],
@@ -1933,6 +1945,18 @@ assert.deepEqual(normalized.assignments.itemOverrides["Test/HelmetA"], { classes
 assert.deepEqual(normalized.assignments.itemOverrides["Test/HelmetB"], { classes: ["melee"] });
 assert.deepEqual(normalized.assignments.fishingSources["Test/Amulet"], [{
   conditions: [{ "en-US": "In test water", "ru-RU": "В тестовой воде" }]
+}]);
+assert.equal(normalized.assignments.itemStages["Test/WorldBlade"], "boss");
+assert.deepEqual(normalized.assignments.worldGenSources, [{
+  item: "Test/WorldBlade",
+  sourceName: "Buried Test Chest",
+  sourceReference: "Test/BuriedTestChest",
+  sourceItem: "",
+  dropRate: 1,
+  stackMin: 1,
+  stackMax: 1,
+  showDropRate: false,
+  conditions: []
 }]);
 const migration = applyConfirmedAvailabilityChecks(
   {

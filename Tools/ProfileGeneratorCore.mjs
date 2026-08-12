@@ -778,6 +778,7 @@ function generateProfileCore(
   validateManualRules(manifest, itemById, report);
   report.profileItemSourceGaps = collectProfileItemSourceGaps({
     snapshot,
+    worldGenSources: manifest.worldGenSources,
     profileEntries,
     profileBuffs,
     itemById,
@@ -825,7 +826,8 @@ function generateProfileCore(
       snapshot,
       profileEntries,
       profileBuffs,
-      itemById),
+      itemById,
+      manifest.worldGenSources),
     entries: sortEntries(profileEntries, itemById),
     combatBuffs: profileBuffs
   };
@@ -833,7 +835,7 @@ function generateProfileCore(
   return { profile, report, review };
 }
 
-function createWorldGenSources(snapshot, profileEntries, profileBuffs, itemById) {
+function createWorldGenSources(snapshot, profileEntries, profileBuffs, itemById, manualSources = []) {
   const profileItems = new Set(
     [...profileEntries, ...profileBuffs]
       .flatMap(entry => entry.itemGroups ?? [])
@@ -874,6 +876,27 @@ function createWorldGenSources(snapshot, profileEntries, profileBuffs, itemById)
       };
     })
     .filter(Boolean);
+  sources.push(...manualSources
+    .filter(source => profileItems.has(source.item))
+    .map(source => {
+      const item = itemById.get(source.item);
+      if (!item) return null;
+      const sourceItem = source.sourceItem
+        ? itemById.get(source.sourceItem)
+        : null;
+      return {
+        item: toItemReference(item),
+        sourceName: source.sourceName || formatWorldGenSourceName(source.sourceReference),
+        sourceReference: normalizeWorldGenSourceReference(source.sourceReference),
+        sourceItem: sourceItem ? toItemReference(sourceItem) : null,
+        dropRate: source.dropRate ?? 1,
+        stackMin: source.stackMin ?? 1,
+        stackMax: source.stackMax ?? 1,
+        showDropRate: source.showDropRate === true,
+        conditions: uniqueBy(source.conditions ?? [], condition => condition)
+      };
+    })
+    .filter(Boolean));
 
   return uniqueBy(
     sources,
@@ -906,6 +929,7 @@ function formatWorldGenSourceName(reference) {
 
 function collectProfileItemSourceGaps({
   snapshot,
+  worldGenSources = [],
   profileEntries,
   profileBuffs,
   itemById,
@@ -920,7 +944,8 @@ function collectProfileItemSourceGaps({
     ...(snapshot.shops ?? []).map(shop => shop.item),
     ...(snapshot.fishing ?? [])
       .filter(record => record.targetType === "item")
-      .map(record => record.target)
+      .map(record => record.target),
+    ...worldGenSources.map(source => source.item)
   ]);
   const gaps = new Map();
   const collect = (entries, entryKind) => {
@@ -1190,6 +1215,10 @@ function applyManualAssignments(sourceManifest, manualAssignments) {
     ...(manifest.fishingSources ?? {}),
     ...(manualAssignments.fishingSources ?? {})
   };
+  manifest.worldGenSources = [
+    ...(manifest.worldGenSources ?? []),
+    ...(manualAssignments.worldGenSources ?? [])
+  ];
 
   manifest.conditionUnlocks = [...(manifest.conditionUnlocks ?? [])];
   for (const assignment of manualAssignments.conditionStages ?? []) {

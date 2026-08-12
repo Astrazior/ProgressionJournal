@@ -403,6 +403,7 @@ export function normalizeAgentRules(document, support) {
     conditionStages: [],
     itemOverrides: {},
     fishingSources: {},
+    worldGenSources: [],
     ignoredItems: [],
     ignoredIssues: []
   };
@@ -503,6 +504,29 @@ export function normalizeAgentRules(document, support) {
                 target: item
               });
             }
+          }
+        }
+        break;
+      case "world-source":
+        {
+          const items = rule.items ?? (rule.item ? [rule.item] : []);
+          if (items.length === 0) problems.push(`${label}: item or items is required`);
+          requireText(rule.sourceReference, `${label}: sourceReference`, problems);
+          for (const item of items) {
+            requireText(item, `${label}: item`, problems);
+            if (!item || !rule.sourceReference) continue;
+            if (rule.stageId) assignments.itemStages[item] = rule.stageId;
+            assignments.worldGenSources.push({
+              item,
+              sourceName: rule.sourceName ?? "",
+              sourceReference: rule.sourceReference,
+              sourceItem: rule.sourceItem ?? "",
+              dropRate: rule.dropRate ?? 1,
+              stackMin: rule.stackMin ?? 1,
+              stackMax: rule.stackMax ?? 1,
+              showDropRate: rule.showDropRate ?? false,
+              conditions: rule.conditions ?? []
+            });
           }
         }
         break;

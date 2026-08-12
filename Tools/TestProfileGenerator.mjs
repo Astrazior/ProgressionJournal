@@ -1217,6 +1217,29 @@ assert.equal(
 assert(!manualResult.report.profileItemSourceGaps.some(entry =>
   entry.item === "Test/CycleA"),
   "A profile item with a recipe must not be reported as a source gap");
+const manualWorldSourceAssignments = structuredClone(manualAssignments);
+manualWorldSourceAssignments.worldGenSources = [{
+  item: "Test/ManualOnlyBlade",
+  sourceName: "Buried Test Chest",
+  sourceReference: "Test/BuriedTestChest",
+  sourceItem: "",
+  dropRate: 1,
+  stackMin: 1,
+  stackMax: 1,
+  showDropRate: false,
+  conditions: []
+}];
+const manualWorldSourceResult = generateProfile(
+  snapshot,
+  manifest,
+  wikiProfile,
+  manualWorldSourceAssignments);
+assert(!manualWorldSourceResult.report.profileItemSourceGaps.some(entry =>
+  entry.item === "Test/ManualOnlyBlade"));
+assert(manualWorldSourceResult.profile.worldGenSources.some(source =>
+  source.item.mod === "Test"
+  && source.item.item === "ManualOnlyBlade"
+  && source.sourceReference === "Test/BuriedTestChest"));
 const knownSourceSnapshot = structuredClone(snapshot);
 knownSourceSnapshot.knownSourceItems = ["Test/ManualOnlyBlade"];
 const knownSourceResult = generateProfile(

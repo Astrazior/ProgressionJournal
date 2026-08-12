@@ -1,0 +1,530 @@
+{
+  "format": "ProgressionJournalAgentRules",
+  "version": 1,
+  "profileId": "mod.vitalitymod",
+  "rules": [
+    {
+      "id": "world-evil-drop-condition",
+      "kind": "condition-stage",
+      "stageId": "world-evil",
+      "sources": [
+        "drop"
+      ],
+      "conditionTypes": [
+        "VitalityMod.Common.ItemDropRules.DropConditions.DownedEvilBossCondition"
+      ],
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "The installed condition implementation checks NPC.downedBoss2 before allowing the drop."
+    },
+    {
+      "id": "hardmode-essence-drop-conditions",
+      "kind": "condition-stage",
+      "stageId": "wall-of-flesh",
+      "sources": [
+        "drop"
+      ],
+      "conditionTypes": [
+        "VitalityMod.Common.ItemDropRules.DropConditions.WaterEssenceCondition",
+        "VitalityMod.Common.ItemDropRules.DropConditions.WaterEssenceExpertCondition",
+        "VitalityMod.Common.ItemDropRules.DropConditions.FireEssenceCondition",
+        "VitalityMod.Common.ItemDropRules.DropConditions.FireEssenceExpertCondition",
+        "VitalityMod.Common.ItemDropRules.DropConditions.FrostEssenceCondition",
+        "VitalityMod.Common.ItemDropRules.DropConditions.FrostEssenceExpertCondition",
+        "VitalityMod.Common.ItemDropRules.DropConditions.NatureEssenceCondition",
+        "VitalityMod.Common.ItemDropRules.DropConditions.NatureEssenceExpertCondition"
+      ],
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "The installed normal and Expert essence conditions require Main.hardMode; the biome checks add no later progression gate."
+    },
+    {
+      "id": "pre-boss-blizzard-drop-condition",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": [
+        "drop"
+      ],
+      "conditionTypes": [
+        "VitalityMod.Common.ItemDropRules.DropConditions.GlacialChunkCondition"
+      ],
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "The installed condition requires an ordinary hostile enemy and a surface Snow biome during rain, with no defeated-boss or Hardmode check."
+    },
+    {
+      "id": "plantera-drop-condition",
+      "kind": "condition-stage",
+      "stageId": "plantera",
+      "sources": [
+        "drop"
+      ],
+      "conditionTypes": [
+        "VitalityMod.Common.ItemDropRules.DropConditions.DownedPlanteraCondition"
+      ],
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "The installed condition checks NPC.downedPlantBoss before allowing the drop."
+    },
+    {
+      "id": "gemstone-elemental-enraged-drop-condition",
+      "kind": "condition-stage",
+      "stageId": "gemstone-elemental",
+      "sources": [
+        "drop"
+      ],
+      "conditionTypes": [
+        "VitalityMod.Common.ItemDropRules.DropConditions.GemstoneElementalEnragedCondition"
+      ],
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "The condition only checks the boss's enraged state; the Gemstone Elemental source already supplies the boss progression gate."
+    },
+    {
+      "id": "near-shimmer-recipe-condition",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": [
+        "recipe"
+      ],
+      "conditionKeys": [
+        "Conditions.NearShimmer"
+      ],
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Shimmer",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-12",
+      "reason": "Natural Shimmer exists at world creation; recipe ingredients retain their own later progression requirements."
+    },
+    {
+      "id": "pre-boss-custom-npc-sources",
+      "kind": "source-stage",
+      "sources": [
+        "VitalityMod/ForestSpirit",
+        "VitalityMod/Gladiator",
+        "VitalityMod/UmbrellaZombie",
+        "VitalityMod/HeliumMossMoth",
+        "VitalityMod/HeliumMossSkeleton",
+        "VitalityMod/BlackChicken",
+        "VitalityMod/BrownChicken",
+        "VitalityMod/Chicken"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "The installed spawn implementations use only ordinary biome, weather, depth, or time checks and contain no boss or Hardmode gate."
+    },
+    {
+      "id": "master-chef-source",
+      "kind": "source-stage",
+      "sources": [
+        "VitalityMod/MasterChef"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "The installed town-NPC spawn check requires only that an active player carries a Mushroom (Terraria item 5)."
+    },
+    {
+      "id": "hardmode-magma-shark-source",
+      "kind": "source-stage",
+      "sources": [
+        "VitalityMod/MagmaShark"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "The installed spawn implementation explicitly requires Main.hardMode in the Underworld."
+    },
+    {
+      "id": "vanilla-enemy-source-stages",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/ChaosElemental",
+        "Terraria/Wolf"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Hardmode",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-12",
+      "reason": "Chaos Elementals and Wolves are ordinary Hardmode enemies."
+    },
+    {
+      "id": "post-plantera-paladin-source",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/Paladin"
+      ],
+      "stageId": "plantera",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Paladin",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-12",
+      "reason": "Paladins spawn in the post-Plantera Dungeon."
+    },
+    {
+      "id": "food-plant-sources",
+      "kind": "source-stage",
+      "sources": [
+        "VitalityMod/LettucePlant",
+        "VitalityMod/StrawberryPlant",
+        "VitalityMod/SugarBeetPlant",
+        "VitalityMod/TomatoPlant"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "Lettuce stems are sold by the pre-boss Master Chef; the other seeds are dropped from ordinary pre-boss surface plants, and each mature crop returns its seed."
+    },
+    {
+      "id": "shimmer-fishing-crate-sources",
+      "kind": "source-stage",
+      "sources": [
+        "VitalityMod/ShimmerCrate"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "The installed CatchFish implementation selects the Shimmer Crate while fishing in Shimmer before Hardmode."
+    },
+    {
+      "id": "aether-fishing-crate-source",
+      "kind": "source-stage",
+      "sources": [
+        "VitalityMod/AetherCrate"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "The installed CatchFish implementation selects the Aether Crate while fishing in Shimmer only in Hardmode."
+    },
+    {
+      "id": "geranium-ore-world-generation",
+      "kind": "item-stage",
+      "items": [
+        "VitalityMod/GeraniumOre"
+      ],
+      "stageId": "skeletron",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "VitalityOreGeneration creates Geranium Ore after NPC.downedBoss3; tile drops alone do not encode this world-generation gate."
+    },
+    {
+      "id": "arctic-ore-world-generation",
+      "kind": "item-stage",
+      "items": [
+        "VitalityMod/ArcticOre"
+      ],
+      "stageId": "twins",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "VitalityOreGeneration creates Arctic Ore after NPC.downedMechBossAny; Twins is the first mechanical-boss stage in this profile."
+    },
+    {
+      "id": "blood-vial-projectile-sources",
+      "kind": "item-stage",
+      "items": [
+        "VitalityMod/BloodVial",
+        "VitalityMod/SanguineVial"
+      ],
+      "stageId": "eye-of-cthulhu",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "Empty Vial projectiles fired by the Vial Rifle create Blood Vials on a valid kill and Sanguine Vials during a Blood Moon; the earliest Vial Rifle recipe is gated by Eye of Cthulhu materials."
+    },
+    {
+      "id": "blood-candy-ritual-syringe-source",
+      "kind": "item-stage",
+      "items": [
+        "VitalityMod/BloodCandy"
+      ],
+      "stageId": "lunatic-cultist",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "Using Ritual Syringe spends Bloodlust and directly creates Blood Candy; the syringe drops from the Lunatic Cultist."
+    },
+    {
+      "id": "glowing-moss-chest-weapon",
+      "kind": "world-source",
+      "item": "VitalityMod/GlowingMothShiv",
+      "stageId": "start",
+      "sourceName": "Glowing Moss Chest",
+      "sourceReference": "VitalityMod/GlowingMossChest",
+      "showDropRate": false,
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "VitalityWorld places the Glowing Moth Shiv in a Glowing Moss Chest during world generation with no progression condition."
+    },
+    {
+      "id": "pre-boss-unexported-recipe-roots",
+      "kind": "item-stage",
+      "items": [
+        "VitalityMod/BloomBouquet",
+        "VitalityMod/Bread",
+        "VitalityMod/CherryCola",
+        "VitalityMod/ChocolateMilk",
+        "VitalityMod/Goldflower",
+        "VitalityMod/Pricklewand",
+        "VitalityMod/SkyBlossom",
+        "VitalityMod/StrawberryPie"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "Their exported recipes use only pre-boss ingredients and stations. The missing recipe roots are ordinary flowers, pre-Hardmode fishing or tree-shake food, and Vitality seeds or Cocoa Beans dropped by pre-boss surface plants and trees."
+    },
+    {
+      "id": "eye-scope-recipe-stage",
+      "kind": "item-stage",
+      "items": [
+        "VitalityMod/EyeScope"
+      ],
+      "stageId": "plantera",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Sniper_Scope",
+      "sourceVersion": "Terraria 1.4.4.9; Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "The exported recipe combines a Sniper Scope with Giant Lens; both ingredients are available in the post-Plantera Dungeon portion of the profile."
+    },
+    {
+      "id": "remaining-pre-boss-vanilla-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/Antlion",
+        "Terraria/ArmedTorchZombie",
+        "Terraria/ArmedZombie",
+        "Terraria/ArmedZombieCenx",
+        "Terraria/ArmedZombieEskimo",
+        "Terraria/ArmedZombiePincussion",
+        "Terraria/ArmedZombieSlimed",
+        "Terraria/ArmedZombieSwamp",
+        "Terraria/ArmedZombieTwiggy",
+        "Terraria/BoneThrowingSkeleton",
+        "Terraria/BoneThrowingSkeleton2",
+        "Terraria/BoneThrowingSkeleton3",
+        "Terraria/BoneThrowingSkeleton4",
+        "Terraria/Dandelion",
+        "Terraria/DemonEyeOwl",
+        "Terraria/DemonEyeSpaceship",
+        "Terraria/FlyingAntlion",
+        "Terraria/GiantFlyingAntlion",
+        "Terraria/GiantWalkingAntlion",
+        "Terraria/LarvaeAntlion",
+        "Terraria/SandSlime",
+        "Terraria/SantaClaus",
+        "Terraria/SkeletonAlien",
+        "Terraria/SkeletonAstonaut",
+        "Terraria/SkeletonTopHat",
+        "Terraria/SlimeMasked",
+        "Terraria/SlimeRibbonGreen",
+        "Terraria/SlimeRibbonRed",
+        "Terraria/SlimeRibbonWhite",
+        "Terraria/SlimeRibbonYellow",
+        "Terraria/Tumbleweed",
+        "Terraria/WalkingAntlion",
+        "Terraria/WallCreeperWall",
+        "Terraria/ZombieDoctor",
+        "Terraria/ZombieElfBeard",
+        "Terraria/ZombiePixie",
+        "Terraria/ZombieRaincoat",
+        "Terraria/ZombieSuperman",
+        "Terraria/ZombieSweater",
+        "Terraria/ZombieXmas"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/NPCs",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-12",
+      "reason": "These are ordinary pre-Hardmode biome, weather, seasonal, surface, cavern, or Frost Legion sources; none requires a defeated boss in this profile."
+    },
+    {
+      "id": "world-evil-vanilla-segment-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/Creeper",
+        "Terraria/EaterofWorldsBody",
+        "Terraria/EaterofWorldsTail",
+        "Terraria/SeekerBody",
+        "Terraria/SeekerTail"
+      ],
+      "stageId": "world-evil",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Eater_of_Worlds",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-12",
+      "reason": "These sources are body segments or minions of the world-evil bosses."
+    },
+    {
+      "id": "king-slime-minion-source",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/SlimeSpiked"
+      ],
+      "stageId": "king-slime",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Spiked_Slime",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-12",
+      "reason": "Spiked Slimes are spawned by King Slime."
+    },
+    {
+      "id": "remaining-hardmode-vanilla-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/BloodMummy",
+        "Terraria/DarkMummy",
+        "Terraria/DesertBeast",
+        "Terraria/DesertDjinn",
+        "Terraria/DesertGhoul",
+        "Terraria/DesertGhoulCorruption",
+        "Terraria/DesertGhoulCrimson",
+        "Terraria/DesertGhoulHallow",
+        "Terraria/DesertLamiaDark",
+        "Terraria/DesertLamiaLight",
+        "Terraria/DiggerBody",
+        "Terraria/DiggerHead",
+        "Terraria/DiggerTail",
+        "Terraria/EnchantedSword",
+        "Terraria/Gastropod",
+        "Terraria/GiantFlyingFox",
+        "Terraria/Lavabat",
+        "Terraria/LightMummy",
+        "Terraria/Moth",
+        "Terraria/Pirate",
+        "Terraria/SandShark",
+        "Terraria/SandsharkCorrupt",
+        "Terraria/SandsharkCrimson",
+        "Terraria/SandsharkHallow",
+        "Terraria/ToxicSludge"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Hardmode",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-12",
+      "reason": "These enemies or the Pirate town NPC are available from early Hardmode; biome and invasion checks add no later boss requirement."
+    },
+    {
+      "id": "queen-slime-minion-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/QueenSlimeMinionBlue",
+        "Terraria/QueenSlimeMinionPink",
+        "Terraria/QueenSlimeMinionPurple"
+      ],
+      "stageId": "queen-slime",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Queen_Slime",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-12",
+      "reason": "These are Queen Slime minions."
+    },
+    {
+      "id": "post-plantera-dungeon-and-pumpkin-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/DiabolistRed",
+        "Terraria/DiabolistWhite",
+        "Terraria/DungeonSpirit",
+        "Terraria/HeadlessHorseman",
+        "Terraria/HellArmoredBones",
+        "Terraria/HellArmoredBonesMace",
+        "Terraria/HellArmoredBonesSpikeShield",
+        "Terraria/HellArmoredBonesSword",
+        "Terraria/Necromancer",
+        "Terraria/NecromancerArmored",
+        "Terraria/RaggedCaster",
+        "Terraria/RaggedCasterOpenCoat",
+        "Terraria/RustyArmoredBonesSwordNoArmor",
+        "Terraria/Scarecrow1",
+        "Terraria/Scarecrow10",
+        "Terraria/Scarecrow3",
+        "Terraria/Scarecrow4",
+        "Terraria/Scarecrow5",
+        "Terraria/Scarecrow7",
+        "Terraria/Scarecrow8",
+        "Terraria/SkeletonSniper",
+        "Terraria/Splinterling"
+      ],
+      "stageId": "plantera",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Plantera",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-12",
+      "reason": "These are post-Plantera Dungeon enemies or Pumpkin Moon enemies whose summon requires post-Plantera Ectoplasm."
+    },
+    {
+      "id": "post-golem-martian-source",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/MartianProbe"
+      ],
+      "stageId": "golem",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Martian_Probe",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-12",
+      "reason": "Martian Probes begin spawning after Golem is defeated."
+    },
+    {
+      "id": "remaining-pre-boss-vitality-sources",
+      "kind": "source-stage",
+      "sources": [
+        "VitalityMod/ArgonMossSkeleton",
+        "VitalityMod/KryptonMossSkeleton",
+        "VitalityMod/LavaMossSkeleton",
+        "VitalityMod/NeonMossSkeleton",
+        "VitalityMod/OganessonMossMoth",
+        "VitalityMod/OganessonMossSkeleton",
+        "VitalityMod/RadonMossMoth",
+        "VitalityMod/RadonMossSkeleton",
+        "VitalityMod/RottenAntlion",
+        "VitalityMod/SheddedAntlion",
+        "VitalityMod/XenonMossSkeleton"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "The installed spawn implementations use only natural moss, evil-biome, cavern, or desert conditions and contain no Hardmode or boss gate."
+    },
+    {
+      "id": "remaining-hardmode-vitality-sources",
+      "kind": "source-stage",
+      "sources": [
+        "VitalityMod/BoneDemon",
+        "VitalityMod/CrystalBasilisk",
+        "VitalityMod/Gastropod2",
+        "VitalityMod/TaintedBasilisk",
+        "VitalityMod/VileBasilisk"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "Each installed SpawnChance implementation explicitly requires Main.hardMode."
+    },
+    {
+      "id": "strange-saucer-source",
+      "kind": "source-stage",
+      "sources": [
+        "VitalityMod/StrangeSaucer"
+      ],
+      "stageId": "golem",
+      "sourceUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2568847048",
+      "sourceVersion": "Vitality Mod 1.3.5.4 installed assembly",
+      "checkedAt": "2026-08-12",
+      "reason": "The installed SpawnChance implementation requires Main.hardMode and NPC.downedGolemBoss."
+    }
+  ],
+  "ignoredItems": [],
+  "ignoredIssues": []
+}
