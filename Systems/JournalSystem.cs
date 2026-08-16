@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -111,14 +112,47 @@ public sealed class JournalSystem : ModSystem
 
     public override void UpdateUI(GameTime gameTime)
     {
-        if (Visible)
+        var shouldUpdateJournal = Visible && _journalInterface is not null;
+        var shouldUpdateButton = ShouldDrawJournalButton && _buttonInterface is not null;
+        if (!shouldUpdateJournal && !shouldUpdateButton)
         {
-            _journalInterface?.Update(gameTime);
+            return;
         }
 
-        if (ShouldDrawJournalButton)
+        // Some custom mod UIs consume Terraria's shared mouse flags while still reading raw input.
+        // Recover physically pressed buttons only for this UI update, then restore the shared state.
+        var physicalMouseState = Mouse.GetState();
+        var savedMouseLeft = Main.mouseLeft;
+        var savedMouseRight = Main.mouseRight;
+        var savedMouseMiddle = Main.mouseMiddle;
+        var savedMouseXButton1 = Main.mouseXButton1;
+        var savedMouseXButton2 = Main.mouseXButton2;
+
+        try
         {
-            _buttonInterface?.Update(gameTime);
+            Main.mouseLeft |= physicalMouseState.LeftButton == ButtonState.Pressed;
+            Main.mouseRight |= physicalMouseState.RightButton == ButtonState.Pressed;
+            Main.mouseMiddle |= physicalMouseState.MiddleButton == ButtonState.Pressed;
+            Main.mouseXButton1 |= physicalMouseState.XButton1 == ButtonState.Pressed;
+            Main.mouseXButton2 |= physicalMouseState.XButton2 == ButtonState.Pressed;
+
+            if (shouldUpdateJournal)
+            {
+                _journalInterface!.Update(gameTime);
+            }
+
+            if (shouldUpdateButton)
+            {
+                _buttonInterface!.Update(gameTime);
+            }
+        }
+        finally
+        {
+            Main.mouseLeft = savedMouseLeft;
+            Main.mouseRight = savedMouseRight;
+            Main.mouseMiddle = savedMouseMiddle;
+            Main.mouseXButton1 = savedMouseXButton1;
+            Main.mouseXButton2 = savedMouseXButton2;
         }
     }
 
