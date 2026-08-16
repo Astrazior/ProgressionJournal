@@ -286,16 +286,32 @@ public sealed class JournalSystem : ModSystem
 
     public void ToggleProgressionMode()
     {
+        var previousStageId = SelectedStageId;
         ProgressionModeEnabled = !ProgressionModeEnabled;
         CoerceSelectedStage();
-        ShowingBuildSaveDialog = false;
-        ShowingBuildExportDialog = false;
-        ActiveBuildSlotKey = null;
-        ActiveArmorSet = null;
-        _editingBuild = null;
-        _exportingBuild = null;
-        CoerceBuildSelections();
-        RefreshView();
+
+        if (!string.Equals(previousStageId, SelectedStageId, StringComparison.OrdinalIgnoreCase))
+        {
+            ShowingBuildSaveDialog = false;
+            ShowingBuildExportDialog = false;
+            ActiveBuildSlotKey = null;
+            ActiveArmorSet = null;
+            _editingBuild = null;
+            _exportingBuild = null;
+            CoerceBuildSelections();
+            RefreshView();
+            return;
+        }
+
+        if (!Visible)
+        {
+            return;
+        }
+
+        _journalState?.RefreshProgressionControls(
+            JournalProfileRegistry.Active,
+            SelectedStageId,
+            ProgressionModeEnabled);
     }
 
     public void SelectProfile(string profileId)
@@ -977,7 +993,13 @@ public sealed class JournalSystem : ModSystem
 
     private bool IsStageAvailable(JournalProfileStageDocument stage)
     {
-        return !ProgressionModeEnabled || JournalProfileUnlockRegistry.IsUnlocked(stage, out _);
+        if (!ProgressionModeEnabled)
+        {
+            return true;
+        }
+
+        var unlocked = JournalProfileUnlockRegistry.IsUnlocked(stage, out var conditionResolved);
+        return unlocked || !conditionResolved;
     }
 
     private static string GetCurrentStageId()

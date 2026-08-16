@@ -304,6 +304,19 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
         Recalculate();
     }
 
+    internal void RefreshProgressionControls(
+        JournalProfile profile,
+        string selectedStageId,
+        bool progressionModeEnabled)
+    {
+        _progressionModeToggleButton.SetEnabled(progressionModeEnabled);
+        JournalStageButtonPresenter.Refresh(
+            profile,
+            _stageButtons,
+            selectedStageId,
+            progressionModeEnabled);
+    }
+
     public void ResetLayout()
     {
         _layoutInitialized = false;

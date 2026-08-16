@@ -27,8 +27,13 @@ public static class JournalStageButtonPresenter
         foreach (var stage in profile.Stages)
         {
             var button = buttons[stage.Id];
-            var unlocked = JournalProfileUnlockRegistry.IsUnlocked(stage, out var conditionResolved);
-            var isAvailable = !progressionModeEnabled || unlocked || !conditionResolved;
+            var conditionResolved = true;
+            var isAvailable = true;
+            if (progressionModeEnabled)
+            {
+                var unlocked = JournalProfileUnlockRegistry.IsUnlocked(stage, out conditionResolved);
+                isAvailable = unlocked || !conditionResolved;
+            }
 
             if (isAvailable)
             {
