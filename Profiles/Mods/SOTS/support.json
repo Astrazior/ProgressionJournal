@@ -1,0 +1,692 @@
+{
+  "format": "ProgressionJournalModSupport",
+  "version": 1,
+  "targetMod": "SOTS",
+  "id": "mod.sots",
+  "name": {
+    "en-US": "[c/c694e8:Secrets Of The Shadows] progression",
+    "ru-RU": "Прогрессия [c/c694e8:Secrets Of The Shadows]"
+  },
+  "profileVersion": "0.25.1.9",
+  "requiredMods": [
+    {
+      "name": "SOTS",
+      "version": "0.25.1.9"
+    }
+  ],
+  "contentMods": [
+    "SOTS"
+  ],
+  "classes": [
+    {
+      "id": "melee",
+      "name": {
+        "en-US": "Melee",
+        "ru-RU": "Воин"
+      },
+      "damageClassNames": [
+        "Melee"
+      ]
+    },
+    {
+      "id": "ranged",
+      "name": {
+        "en-US": "Ranged",
+        "ru-RU": "Стрелок"
+      },
+      "damageClassNames": [
+        "Ranged"
+      ]
+    },
+    {
+      "id": "magic",
+      "name": {
+        "en-US": "Magic",
+        "ru-RU": "Маг"
+      },
+      "damageClassNames": [
+        "Magic"
+      ]
+    },
+    {
+      "id": "summoner",
+      "name": {
+        "en-US": "Summoner",
+        "ru-RU": "Призыватель"
+      },
+      "damageClassNames": [
+        "Summon"
+      ]
+    },
+    {
+      "id": "void",
+      "name": {
+        "en-US": "Void",
+        "ru-RU": "Пустота"
+      },
+      "damageClassNames": [
+        "Void"
+      ],
+      "accentColor": "#C694E8",
+      "previewArmor": [
+        {
+          "mod": "SOTS",
+          "item": "VoidspaceMask"
+        },
+        {
+          "mod": "SOTS",
+          "item": "VoidspaceBreastplate"
+        },
+        {
+          "mod": "SOTS",
+          "item": "VoidspaceLeggings"
+        }
+      ]
+    }
+  ],
+  "initialStations": [
+    "Terraria/WorkBenches",
+    "Terraria/Furnaces",
+    "Terraria/Anvils",
+    "Terraria/Bottles"
+  ],
+  "events": [
+    {
+      "id": "blood-moon",
+      "stageId": "start",
+      "eventCategory": "BloodMoon",
+      "enemies": [
+        "Terraria/BloodZombie",
+        "Terraria/Drippler",
+        "Terraria/BloodNautilus"
+      ]
+    },
+    {
+      "id": "goblin-army",
+      "stageId": "start",
+      "eventCategory": "GoblinArmy",
+      "enemies": [
+        "Terraria/GoblinPeon",
+        "Terraria/GoblinThief",
+        "Terraria/GoblinWarrior",
+        "Terraria/GoblinSorcerer"
+      ]
+    },
+    {
+      "id": "old-ones-army-1",
+      "stageId": "world-evil",
+      "eventCategory": "OldOnesArmy",
+      "enemies": [
+        "Terraria/DD2DarkMageT1"
+      ]
+    },
+    {
+      "id": "pirate-invasion",
+      "stageId": "wall-of-flesh",
+      "eventCategory": "PirateInvasion",
+      "enemies": [
+        "Terraria/PirateShip",
+        "Terraria/PirateCaptain",
+        "Terraria/PirateCorsair",
+        "Terraria/PirateDeadeye",
+        "Terraria/PirateDeckhand",
+        "Terraria/PirateCrossbower"
+      ]
+    },
+    {
+      "id": "old-ones-army-2",
+      "stageId": "twins",
+      "eventCategory": "OldOnesArmy",
+      "enemies": [
+        "Terraria/DD2OgreT2"
+      ]
+    },
+    {
+      "id": "solar-eclipse",
+      "stageId": "twins",
+      "eventCategory": "SolarEclipse",
+      "enemies": [
+        "Terraria/Frankenstein",
+        "Terraria/SwampThing",
+        "Terraria/CreatureFromTheDeep"
+      ]
+    },
+    {
+      "id": "solar-eclipse-all-mechs",
+      "stageId": "skeletron-prime",
+      "eventCategory": "SolarEclipse",
+      "enemies": [
+        "Terraria/Reaper"
+      ]
+    },
+    {
+      "id": "solar-eclipse-post-plantera",
+      "stageId": "plantera",
+      "eventCategory": "SolarEclipse",
+      "enemies": [
+        "Terraria/Mothron"
+      ]
+    },
+    {
+      "id": "pumpkin-moon",
+      "stageId": "plantera",
+      "eventCategory": "PumpkinMoon",
+      "enemies": [
+        "Terraria/MourningWood",
+        "Terraria/Pumpking"
+      ]
+    },
+    {
+      "id": "frost-moon",
+      "stageId": "plantera",
+      "eventCategory": "FrostMoon",
+      "enemies": [
+        "Terraria/Everscream",
+        "Terraria/SantaNK1",
+        "Terraria/IceQueen"
+      ]
+    },
+    {
+      "id": "martian-madness",
+      "stageId": "golem",
+      "eventCategory": "MartianMadness",
+      "enemies": [
+        "Terraria/MartianSaucerCore",
+        "Terraria/MartianWalker",
+        "Terraria/MartianEngineer"
+      ]
+    },
+    {
+      "id": "celestial-pillars",
+      "stageId": "lunatic-cultist",
+      "customEventName": "Celestial Pillars",
+      "eventIcon": "Terraria/LunarTowerSolar",
+      "enemies": [
+        "Terraria/LunarTowerSolar",
+        "Terraria/LunarTowerVortex",
+        "Terraria/LunarTowerNebula",
+        "Terraria/LunarTowerStardust"
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "id": "start",
+      "name": {
+        "en-US": "Start",
+        "ru-RU": "Начало"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Guide",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "always"
+      }
+    },
+    {
+      "id": "king-slime",
+      "name": {
+        "en-US": "King Slime",
+        "ru-RU": "Король слизней"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "KingSlime",
+      "dropSources": [
+        "Terraria/KingSlime"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedSlimeKing"
+      }
+    },
+    {
+      "id": "eye-of-cthulhu",
+      "name": {
+        "en-US": "Eye of Cthulhu",
+        "ru-RU": "Глаз Ктулху"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "EyeofCthulhu",
+      "dropSources": [
+        "Terraria/EyeofCthulhu"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedBoss1"
+      }
+    },
+    {
+      "id": "glowmoth",
+      "name": {
+        "en-US": "Glowmoth",
+        "ru-RU": "Светылёк"
+      },
+      "iconMod": "SOTS",
+      "iconNpc": "Glowmoth",
+      "dropSources": [
+        "SOTS/Glowmoth"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "SOTS",
+        "key": "downedGlowmoth"
+      }
+    },
+    {
+      "id": "world-evil",
+      "name": {
+        "en-US": "Eater of Worlds / Brain of Cthulhu",
+        "ru-RU": "Пожиратель миров / Мозг Ктулху"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "EaterofWorldsHead",
+      "dropSources": [
+        "Terraria/EaterofWorldsHead",
+        "Terraria/BrainofCthulhu"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedBoss2"
+      }
+    },
+    {
+      "id": "queen-bee",
+      "name": {
+        "en-US": "Queen Bee",
+        "ru-RU": "Королева пчёл"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "QueenBee",
+      "dropSources": [
+        "Terraria/QueenBee"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedQueenBee"
+      }
+    },
+    {
+      "id": "putrid-pinky",
+      "name": {
+        "en-US": "Putrid Pinky",
+        "ru-RU": "Гнилостный пинки"
+      },
+      "iconMod": "SOTS",
+      "iconNpc": "PutridPinkyPhase2",
+      "dropSources": [
+        "SOTS/PutridPinkyPhase2"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "SOTS",
+        "key": "downedPinky"
+      }
+    },
+    {
+      "id": "pharaohs-curse",
+      "name": {
+        "en-US": "Pharaoh's Curse",
+        "ru-RU": "Проклятие Фараона"
+      },
+      "iconMod": "SOTS",
+      "iconNpc": "PharaohsCurse",
+      "dropSources": [
+        "SOTS/PharaohsCurse"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "SOTS",
+        "key": "downedCurse"
+      }
+    },
+    {
+      "id": "skeletron",
+      "name": {
+        "en-US": "Skeletron",
+        "ru-RU": "Скелетрон"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "SkeletronHead",
+      "dropSources": [
+        "Terraria/SkeletronHead"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedBoss3"
+      }
+    },
+    {
+      "id": "deerclops",
+      "name": {
+        "en-US": "Deerclops",
+        "ru-RU": "Циклоп-олень"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Deerclops",
+      "dropSources": [
+        "Terraria/Deerclops"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedDeerclops"
+      }
+    },
+    {
+      "id": "excavator",
+      "name": {
+        "en-US": "The Excavator",
+        "ru-RU": "Экскаватор"
+      },
+      "iconMod": "SOTS",
+      "iconNpc": "Excavator",
+      "dropSources": [
+        "SOTS/Excavator"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "SOTS",
+        "key": "downedExcavator"
+      }
+    },
+    {
+      "id": "advisor",
+      "name": {
+        "en-US": "The Advisor",
+        "ru-RU": "Аналитик"
+      },
+      "iconMod": "SOTS",
+      "iconNpc": "TheAdvisorHead",
+      "dropSources": [
+        "SOTS/TheAdvisorHead"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "SOTS",
+        "key": "downedAdvisor"
+      }
+    },
+    {
+      "id": "wall-of-flesh",
+      "name": {
+        "en-US": "Wall of Flesh",
+        "ru-RU": "Стена плоти"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "WallofFlesh",
+      "dropSources": [
+        "Terraria/WallofFlesh"
+      ],
+      "stations": [
+        "Terraria/MythrilAnvil",
+        "Terraria/AdamantiteForge"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "hardMode"
+      }
+    },
+    {
+      "id": "queen-slime",
+      "name": {
+        "en-US": "Queen Slime",
+        "ru-RU": "Королева слизней"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "QueenSlimeBoss",
+      "dropSources": [
+        "Terraria/QueenSlimeBoss"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedQueenSlime"
+      }
+    },
+    {
+      "id": "twins",
+      "name": {
+        "en-US": "The Twins",
+        "ru-RU": "Близнецы"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Retinazer",
+      "dropSources": [
+        "Terraria/Retinazer",
+        "Terraria/Spazmatism"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedMechBoss2"
+      }
+    },
+    {
+      "id": "destroyer",
+      "name": {
+        "en-US": "The Destroyer",
+        "ru-RU": "Уничтожитель"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "TheDestroyer",
+      "dropSources": [
+        "Terraria/TheDestroyer"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedMechBoss1"
+      }
+    },
+    {
+      "id": "skeletron-prime",
+      "name": {
+        "en-US": "Skeletron Prime",
+        "ru-RU": "Скелетрон Прайм"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "SkeletronPrime",
+      "dropSources": [
+        "Terraria/SkeletronPrime"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedMechBoss3"
+      }
+    },
+    {
+      "id": "polaris",
+      "name": {
+        "en-US": "Polaris",
+        "ru-RU": "Полярис"
+      },
+      "iconMod": "SOTS",
+      "iconNpc": "NewPolaris",
+      "dropSources": [
+        "SOTS/NewPolaris",
+        "SOTS/Polaris"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "SOTS",
+        "key": "downedAmalgamation"
+      }
+    },
+    {
+      "id": "plantera",
+      "name": {
+        "en-US": "Plantera",
+        "ru-RU": "Плантера"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Plantera",
+      "dropSources": [
+        "Terraria/Plantera"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedPlantBoss"
+      }
+    },
+    {
+      "id": "golem",
+      "name": {
+        "en-US": "Golem",
+        "ru-RU": "Голем"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "GolemHead",
+      "dropSources": [
+        "Terraria/Golem"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedGolemBoss"
+      }
+    },
+    {
+      "id": "duke-fishron",
+      "name": {
+        "en-US": "Duke Fishron",
+        "ru-RU": "Герцог Рыброн"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "DukeFishron",
+      "dropSources": [
+        "Terraria/DukeFishron"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedFishron"
+      }
+    },
+    {
+      "id": "empress-of-light",
+      "name": {
+        "en-US": "Empress of Light",
+        "ru-RU": "Императрица света"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "HallowBoss",
+      "dropSources": [
+        "Terraria/HallowBoss"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedEmpressOfLight"
+      }
+    },
+    {
+      "id": "betsy",
+      "name": {
+        "en-US": "Betsy",
+        "ru-RU": "Бетси"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "DD2Betsy",
+      "dropSources": [
+        "Terraria/DD2Betsy"
+      ],
+      "enemies": [
+        "Terraria/DD2DarkMageT3",
+        "Terraria/DD2OgreT3",
+        "Terraria/DD2Betsy"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "DD2Event.DownedInvasionT3"
+      }
+    },
+    {
+      "id": "lux",
+      "name": {
+        "en-US": "Lux",
+        "ru-RU": "Люкс"
+      },
+      "iconMod": "SOTS",
+      "iconNpc": "Lux",
+      "dropSources": [
+        "SOTS/Lux"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "SOTS",
+        "key": "downedLux"
+      }
+    },
+    {
+      "id": "lunatic-cultist",
+      "name": {
+        "en-US": "Lunatic Cultist",
+        "ru-RU": "Лунатик-культист"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "CultistBoss",
+      "dropSources": [
+        "Terraria/CultistBoss"
+      ],
+      "stations": [
+        "Terraria/LunarCraftingStation"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedAncientCultist"
+      }
+    },
+    {
+      "id": "subspace-serpent",
+      "name": {
+        "en-US": "Subspace Serpent",
+        "ru-RU": "Субпространственный змей"
+      },
+      "iconMod": "SOTS",
+      "iconNpc": "SubspaceSerpentHead",
+      "dropSources": [
+        "SOTS/SubspaceSerpentHead"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "SOTS",
+        "key": "downedSubspace"
+      }
+    },
+    {
+      "id": "moon-lord",
+      "name": {
+        "en-US": "Moon Lord",
+        "ru-RU": "Лунный лорд"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "MoonLordHead",
+      "dropSources": [
+        "Terraria/MoonLordCore"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedMoonlord"
+      }
+    }
+  ]
+}

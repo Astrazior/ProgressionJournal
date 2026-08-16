@@ -1838,7 +1838,7 @@ function conditionKeyStageIndex(key, manifest, stageIndexes) {
     case "Conditions.DownedSkeletron":
       return stageIndexByFlagOrId(manifest, stageIndexes, "downedBoss3", "skeletron");
     case "Conditions.DownedMechBossAny":
-      return stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer");
+      return anyMechanicalBossStageIndex(manifest, stageIndexes);
     case "Conditions.DownedDestroyer":
       return stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer");
     case "Conditions.DownedTwins":
@@ -1851,7 +1851,7 @@ function conditionKeyStageIndex(key, manifest, stageIndexes) {
         "downedMechBoss3",
         "skeletron-prime");
     case "Conditions.DownedOldOnesArmyT2":
-      return stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer");
+      return anyMechanicalBossStageIndex(manifest, stageIndexes);
     case "Conditions.DownedOldOnesArmyT3":
       return stageIndexByFlagOrId(manifest, stageIndexes, "downedGolemBoss", "golem");
     case "Conditions.DownedPlantera":
@@ -1913,6 +1913,14 @@ function earliestStageIndex(indexes) {
   return availableIndexes.length === 0 ? -1 : Math.min(...availableIndexes);
 }
 
+function anyMechanicalBossStageIndex(manifest, stageIndexes) {
+  return earliestStageIndex([
+    stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer"),
+    stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss2", "twins"),
+    stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss3", "skeletron-prime")
+  ]);
+}
+
 function inferConditionTypeStageIndex(type, manifest, stageIndexes) {
   if (!type) return -1;
   if (type
@@ -1954,7 +1962,7 @@ function inferConditionTypeStageIndex(type, manifest, stageIndexes) {
   if (type.endsWith("+OneMechDefated")
       || type.endsWith("+BeatAnyMechBoss")
       || type.endsWith("+YoyosYelets")) {
-    return stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer");
+    return anyMechanicalBossStageIndex(manifest, stageIndexes);
   }
   if (type.endsWith("+SkeletronDefated") || type.endsWith("+YoyoCascade")) {
     return stageIndexByFlagOrId(manifest, stageIndexes, "downedBoss3", "skeletron");

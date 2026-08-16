@@ -1,0 +1,980 @@
+{
+  "format": "ProgressionJournalAgentRules",
+  "version": 1,
+  "profileId": "mod.sots",
+  "rules": [
+    {
+      "id": "pre-eye-drop-conditions-are-not-floors",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": [
+        "drop"
+      ],
+      "conditionTypes": [
+        "SOTS.Common.ItemDropConditions.PreBoss1DropCondition",
+        "SOTS.Common.ItemDropConditions.PreBoss1DropConditionEoW"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "Both predicates require NPC.downedBoss1 to be false. They select an alternate pre-Eye drop rate and do not establish a later progression floor."
+    },
+    {
+      "id": "post-eye-drop-conditions",
+      "kind": "condition-stage",
+      "stageId": "eye-of-cthulhu",
+      "sources": [
+        "drop"
+      ],
+      "conditionTypes": [
+        "SOTS.Common.ItemDropConditions.PostBoss1DropCondition",
+        "SOTS.Common.ItemDropConditions.PostBoss1DropConditionEoW"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "Both predicates require NPC.downedBoss1 and therefore become available after the Eye of Cthulhu."
+    },
+    {
+      "id": "npc-form-drop-conditions",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": [
+        "drop"
+      ],
+      "conditionTypes": [
+        "SOTS.Common.ItemDropConditions.IsSansWisp",
+        "SOTS.Common.ItemDropConditions.NotSansWisp",
+        "SOTS.Common.ItemDropConditions.IsCore",
+        "SOTS.Common.ItemDropConditions.IsNotCore"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "These predicates only select Lesser Wisp and Phantaray Core variants. The source NPC stage remains the controlling progression evidence."
+    },
+    {
+      "id": "biome-and-form-drop-conditions",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": [
+        "drop"
+      ],
+      "conditionTypes": [
+        "SOTS.Common.ItemDropConditions.BeachDropCondition",
+        "SOTS.Common.ItemDropConditions.DontDropOnFriendlyCondition",
+        "SOTS.Common.ItemDropConditions.EarthFragmentDropCondition",
+        "SOTS.Common.ItemDropConditions.EvilFragmentDropCondition",
+        "SOTS.Common.ItemDropConditions.InfernoFragmentDropCondition",
+        "SOTS.Common.ItemDropConditions.NatureFragmentDropCondition",
+        "SOTS.Common.ItemDropConditions.OtherworldFragmentDropCondition",
+        "SOTS.Common.ItemDropConditions.OtherworldSpiritAlternateCondition",
+        "SOTS.Common.ItemDropConditions.PermafrostFragmentDropCondition",
+        "SOTS.Common.ItemDropConditions.PlanetariumDropCondition",
+        "SOTS.Common.ItemDropConditions.PreCurseDropCondition",
+        "SOTS.Common.ItemDropConditions.TideFragmentDropCondition"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "These predicates select a biome, NPC form, friendliness state, or pre-Curse branch. They add no boss-progression floor; the source NPC stage remains controlling."
+    },
+    {
+      "id": "hardmode-chaos-fragment-condition",
+      "kind": "condition-stage",
+      "stageId": "wall-of-flesh",
+      "sources": [
+        "drop"
+      ],
+      "conditionTypes": [
+        "SOTS.Common.ItemDropConditions.ChaosFragmentDropCondition"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The predicate requires the natural Hallow, whose earliest normal-world availability is Hardmode after Wall of Flesh."
+    },
+    {
+      "id": "void-anomaly-conversion-condition",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": [
+        "recipe"
+      ],
+      "conditionKeys": [
+        "Mods.SOTS.Common.VoidAnomalyCrafting"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The condition checks whether the player is using a Void Anomaly or VM incubator. It is a conversion mechanism, so the input item stage remains controlling."
+    },
+    {
+      "id": "pharaoh-curse-drop-condition",
+      "kind": "condition-stage",
+      "stageId": "pharaohs-curse",
+      "sources": [
+        "drop"
+      ],
+      "conditionTypes": [
+        "SOTS.Common.ItemDropConditions.DownedCurseDropCondition"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The predicate reads SOTSWorld.downedCurse, the exact Pharaoh's Curse progression flag."
+    },
+    {
+      "id": "advisor-drop-condition",
+      "kind": "condition-stage",
+      "stageId": "advisor",
+      "sources": [
+        "drop"
+      ],
+      "conditionTypes": [
+        "SOTS.Common.ItemDropConditions.DownedAdvisorDropCondition"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The predicate reads SOTSWorld.downedAdvisor, the exact Advisor progression flag."
+    },
+    {
+      "id": "subspace-drop-condition",
+      "kind": "condition-stage",
+      "stageId": "subspace-serpent",
+      "sources": [
+        "drop"
+      ],
+      "conditionTypes": [
+        "SOTS.Common.ItemDropConditions.DownedSubspaceDropCondition"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The predicate reads SOTSWorld.downedSubspace, the exact Subspace Serpent progression flag."
+    },
+    {
+      "id": "lesser-wisp-source",
+      "kind": "source-stage",
+      "source": "SOTS/LesserWisp",
+      "stageId": "start",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The bundled source gives Lesser Wisp no boss-progression gate; its Sans state only changes the drop branch."
+    },
+    {
+      "id": "phantaray-core-source",
+      "kind": "source-stage",
+      "source": "SOTS/PhantarayCore",
+      "stageId": "start",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The bundled source gives the pre-Hardmode Phantaray encounter no boss-progression gate; core state only selects the drop branch."
+    },
+    {
+      "id": "pre-boss-natural-npc-sources",
+      "kind": "source-stage",
+      "sources": [
+        "SOTS/NatureSlime",
+        "SOTS/NatureConstruct",
+        "SOTS/Throe",
+        "SOTS/Fistfull",
+        "SOTS/Pupa",
+        "SOTS/BallOGuts",
+        "SOTS/BallOWorms",
+        "SOTS/RotWalker",
+        "SOTS/TidalConstruct",
+        "SOTS/TwilightScouter"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The bundled spawn-pool source gates these NPCs only by ordinary biome, depth, world-variant, player-health, or time conditions and contains no boss or Hardmode requirement."
+    },
+    {
+      "id": "hardmode-natural-npc-sources",
+      "kind": "source-stage",
+      "sources": [
+        "SOTS/Chimera",
+        "SOTS/EvilConstruct",
+        "SOTS/Bridgeburner",
+        "SOTS/InfernoConstruct"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The bundled spawn-pool source explicitly requires Main.hardMode for these NPCs and adds no later boss requirement."
+    },
+    {
+      "id": "pre-boss-planetarium-npc-sources",
+      "kind": "source-stage",
+      "sources": [
+        "SOTS/HoloBlade",
+        "SOTS/OtherworldlyConstructHead"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The Planetarium is generated with the world, and the bundled spawn pool adds Holo Blade and the first Otherworldly Construct without a boss or Hardmode gate."
+    },
+    {
+      "id": "advisor-construct-source",
+      "kind": "source-stage",
+      "sources": [
+        "SOTS/OtherworldlyConstructHead2"
+      ],
+      "stageId": "advisor",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The second construct head is created as part of the dormant Advisor gateway encounter and has no independent natural spawn pool."
+    },
+    {
+      "id": "pre-boss-spirit-sources",
+      "kind": "source-stage",
+      "sources": [
+        "SOTS/NatureSpirit",
+        "SOTS/PermafrostSpirit",
+        "SOTS/EarthenSpirit",
+        "SOTS/OtherworldlySpirit",
+        "SOTS/TidalSpirit"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "Each spirit is created by killing its naturally available construct. Those constructs have only biome or reachable player-health checks and no boss or Hardmode gate; each spirit then guarantees its matching Dissolving material."
+    },
+    {
+      "id": "hardmode-spirit-sources",
+      "kind": "source-stage",
+      "sources": [
+        "SOTS/EvilSpirit",
+        "SOTS/InfernoSpirit"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "Their source constructs explicitly require Main.hardMode, add no later boss gate, and each spirit guarantees its matching Dissolving material."
+    },
+    {
+      "id": "pre-boss-worldgen-material-sources",
+      "kind": "source-stage",
+      "sources": [
+        "SOTS/AVAmbientTile1x2",
+        "SOTS/CharredWoodTile",
+        "SOTS/EvostoneTile",
+        "SOTS/PeanutOreTile",
+        "SOTS/FrigidIceTile",
+        "SOTS/FrigidIceTileSafe"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "These tiles are generated with Abandoned Village, Sanctuary, and Frost Ruins structures and can provide Charred Wood, Evostone, or Frigid Ice without a boss or Hardmode flag."
+    },
+    {
+      "id": "planetarium-twilight-devil-source",
+      "kind": "source-stage",
+      "source": "SOTS/TwilightDevil",
+      "stageId": "start",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "Twilight Devil naturally spawns in the world-generated Planetarium with no progression gate and drops Twilight Beads."
+    },
+    {
+      "id": "post-plantera-dissolving-brilliance-source",
+      "kind": "item-stage",
+      "items": [
+        "SOTS/DissolvingBrilliance"
+      ],
+      "stageId": "plantera",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "PostWorldGen guarantees Dissolving Brilliance in the locked Hallow biome chest. Vanilla biome chests become unlockable after Plantera; Lux is only a later repeat source."
+    },
+    {
+      "id": "post-pharaohs-curse-cursed-matter-source",
+      "kind": "item-floor",
+      "items": [
+        "SOTS/CursedMatter"
+      ],
+      "stageId": "pharaohs-curse",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "Jar of Souls can roll Cursed Matter only after SOTSWorld.downedCurse; the exported container record cannot retain that item-specific RightClick predicate. Pharaoh's Curse and post-Curse Pyramid enemies are the other sources."
+    },
+    {
+      "id": "official-guide-pre-boss-items",
+      "kind": "item-stage",
+      "items": [
+        "SOTS/AncientSteelHalberd",
+        "SOTS/AncientSteelLongbow",
+        "SOTS/BerryBombs",
+        "SOTS/CloverCharm",
+        "SOTS/CrushingAmplifier",
+        "SOTS/CryoCannon",
+        "SOTS/EchoDisk",
+        "SOTS/FrigidCrown",
+        "SOTS/FrigidGreaves",
+        "SOTS/FrigidJavelin",
+        "SOTS/FrigidRobe",
+        "SOTS/Geostorm",
+        "SOTS/MinersSword",
+        "SOTS/NatureSpell",
+        "SOTS/NatureSpiritStaff",
+        "SOTS/PermafrostSpiritStaff",
+        "SOTS/PricklyPearShield",
+        "SOTS/PrismarineNecklace",
+        "SOTS/RecursiveBow",
+        "SOTS/Scatterseed",
+        "SOTS/ShardStaff",
+        "SOTS/ShatterBlade",
+        "SOTS/ShatterHeartShield",
+        "SOTS/Shattershine",
+        "SOTS/SpikedClub",
+        "SOTS/SporeBombs",
+        "SOTS/StormSpell",
+        "SOTS/VesperaBreastplate",
+        "SOTS/VesperaLeggings",
+        "SOTS/VesperaLongbow",
+        "SOTS/VesperaMask",
+        "SOTS/VesperaNanDao",
+        "SOTS/VibrantArrow",
+        "SOTS/VibrantBlade",
+        "SOTS/VibrantBullet",
+        "SOTS/VibrantCannon",
+        "SOTS/VibrantChestplate",
+        "SOTS/VibrantHelmet",
+        "SOTS/VibrantLeggings",
+        "SOTS/VibrantPistol",
+        "SOTS/VibrantStaff",
+        "SOTS/WingedKnife"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://terrariamods.wiki.gg/wiki/Secrets_Of_The_Shadows/Class_progression",
+      "sourceVersion": "Official SOTS Class progression page, last edited 2025-07-02; checked against the SOTS 0.25.1.9 snapshot",
+      "checkedAt": "2026-08-16",
+      "reason": "The official guide places these items or armor families in Pre-Boss, or marks them as technically obtainable in the previous stage from Pre-Evil Bosses. The installed snapshot has no later ingredient contradiction."
+    },
+    {
+      "id": "pre-boss-recipe-corrections",
+      "kind": "item-stage",
+      "items": [
+        "SOTS/CrestofDasuver",
+        "SOTS/OlympianAegis"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source and exported recipe snapshot",
+      "checkedAt": "2026-08-16",
+      "reason": "Their current recipes use only pre-boss shields and the Tinkerer's Workshop; this is earlier than the broad sections where the guide lists them."
+    },
+    {
+      "id": "official-guide-pre-pharaoh-items",
+      "kind": "item-stage",
+      "items": [
+        "SOTS/BiomassBlast",
+        "SOTS/BlazingClub",
+        "SOTS/PeanutRepeater"
+      ],
+      "stageId": "putrid-pinky",
+      "sourceUrl": "https://terrariamods.wiki.gg/wiki/Secrets_Of_The_Shadows/Class_progression",
+      "sourceVersion": "Official SOTS Class progression page, last edited 2025-07-02; checked against the SOTS 0.25.1.9 snapshot",
+      "checkedAt": "2026-08-16",
+      "reason": "The official guide first lists these after the preceding section's Putrid Pinky threat and before Pharaoh's Curse; the installed snapshot has no later ingredient contradiction."
+    },
+    {
+      "id": "post-world-evil-earthen-spirit-staff",
+      "kind": "item-stage",
+      "items": [
+        "SOTS/EarthenSpiritStaff"
+      ],
+      "stageId": "world-evil",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source and exported recipe snapshot",
+      "checkedAt": "2026-08-16",
+      "reason": "Dissolving Earth has a pre-boss Earthen Spirit seed, while the staff recipe's remaining progression floor is Meteorite Bar after the world evil boss."
+    },
+    {
+      "id": "post-skeletron-recipe-correction",
+      "kind": "item-stage",
+      "items": [
+        "SOTS/CircuitBoard"
+      ],
+      "stageId": "skeletron",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source and exported recipe snapshot",
+      "checkedAt": "2026-08-16",
+      "reason": "The current recipe requires the Crushing Transformer sold by the Mechanic, making Skeletron the controlling floor rather than the guide's broader Pre-Advisor section."
+    },
+    {
+      "id": "official-guide-pre-advisor-items",
+      "kind": "item-stage",
+      "items": [
+        "SOTS/CurseballTome",
+        "SOTS/CursedBlade",
+        "SOTS/CursedHood",
+        "SOTS/CursedImpale",
+        "SOTS/CursedRobe",
+        "SOTS/VoidenBracelet"
+      ],
+      "stageId": "excavator",
+      "sourceUrl": "https://terrariamods.wiki.gg/wiki/Secrets_Of_The_Shadows/Class_progression",
+      "sourceVersion": "Official SOTS Class progression page, last edited 2025-07-02; checked against the SOTS 0.25.1.9 snapshot",
+      "checkedAt": "2026-08-16",
+      "reason": "The official guide places these in Pre-Advisor, and their installed acquisition data is available after the preceding Excavator milestone without requiring the Advisor flag."
+    },
+    {
+      "id": "official-guide-post-advisor-items",
+      "kind": "item-stage",
+      "items": [
+        "SOTS/ArclightOrbs",
+        "SOTS/ChainedPlasma",
+        "SOTS/DigitalDaito",
+        "SOTS/HardlightGlaive",
+        "SOTS/OtherworldlySpiritStaff",
+        "SOTS/PlatformGenerator",
+        "SOTS/Starbelt",
+        "SOTS/StarcoreAssaultRifle",
+        "SOTS/TerminatorAcorns",
+        "SOTS/TwilightAssassinsChestplate",
+        "SOTS/TwilightAssassinsCirclet",
+        "SOTS/TwilightAssassinsLeggings",
+        "SOTS/VibrancyModule",
+        "SOTS/WorldlyPolarizer"
+      ],
+      "stageId": "advisor",
+      "sourceUrl": "https://terrariamods.wiki.gg/wiki/Secrets_Of_The_Shadows/Class_progression",
+      "sourceVersion": "Official SOTS Class progression page, last edited 2025-07-02; checked against the SOTS 0.25.1.9 snapshot",
+      "checkedAt": "2026-08-16",
+      "reason": "The official guide places these in Pre-Wall of Flesh after the Advisor section, and the installed snapshot has no later ingredient contradiction."
+    },
+    {
+      "id": "official-guide-pre-mech-items",
+      "kind": "item-stage",
+      "items": [
+        "SOTS/AbyssalFury",
+        "SOTS/BiomassBarrage",
+        "SOTS/Colossus",
+        "SOTS/GhoulBlaster",
+        "SOTS/JeweledGauntlet",
+        "SOTS/PurpleJellyfishStaff",
+        "SOTS/SoulCharm",
+        "SOTS/SpiderCrusher",
+        "SOTS/SupernovaEmblem",
+        "SOTS/WispInAJar"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://terrariamods.wiki.gg/wiki/Secrets_Of_The_Shadows/Class_progression",
+      "sourceVersion": "Official SOTS Class progression page, last edited 2025-07-02; checked against the SOTS 0.25.1.9 snapshot",
+      "checkedAt": "2026-08-16",
+      "reason": "The official guide places these in Pre-Mech, and the installed snapshot has no post-Plantera ingredient contradiction."
+    },
+    {
+      "id": "official-guide-pre-polaris-items",
+      "kind": "item-stage",
+      "items": [
+        "SOTS/BlazingQuiver",
+        "SOTS/BrachialLance",
+        "SOTS/InfernoSpiritStaff",
+        "SOTS/MidnightPrism",
+        "SOTS/TomeOfTheReaper",
+        "SOTS/WitchHeart"
+      ],
+      "stageId": "skeletron-prime",
+      "sourceUrl": "https://terrariamods.wiki.gg/wiki/Secrets_Of_The_Shadows/Class_progression",
+      "sourceVersion": "Official SOTS Class progression page, last edited 2025-07-02; checked against the SOTS 0.25.1.9 snapshot",
+      "checkedAt": "2026-08-16",
+      "reason": "The official guide places these after the mechanical bosses and before Polaris; the profile uses Skeletron Prime as the final mechanical-boss milestone."
+    },
+    {
+      "id": "post-destroyer-tidal-spirit-staff",
+      "kind": "item-stage",
+      "items": [
+        "SOTS/TidalSpiritStaff"
+      ],
+      "stageId": "destroyer",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source and exported recipe snapshot",
+      "checkedAt": "2026-08-16",
+      "reason": "Dissolving Deluge has a pre-boss Tidal Spirit seed, and the current staff recipe's controlling progression ingredient is Soul of Might from the Destroyer."
+    },
+    {
+      "id": "official-guide-pre-plantera-items",
+      "kind": "item-stage",
+      "items": [
+        "SOTS/BorealisIcosahedron",
+        "SOTS/CursedIcosahedron",
+        "SOTS/FocusCrystal",
+        "SOTS/HypericeClusterCannon",
+        "SOTS/NorthStar",
+        "SOTS/ShardGuard",
+        "SOTS/ShardstormSpell"
+      ],
+      "stageId": "polaris",
+      "sourceUrl": "https://terrariamods.wiki.gg/wiki/Secrets_Of_The_Shadows/Class_progression",
+      "sourceVersion": "Official SOTS Class progression page, last edited 2025-07-02; checked against the SOTS 0.25.1.9 snapshot",
+      "checkedAt": "2026-08-16",
+      "reason": "The official guide places these after Polaris and before Plantera, and the installed snapshot has no later ingredient contradiction."
+    },
+    {
+      "id": "post-plantera-recipe-corrections",
+      "kind": "item-stage",
+      "items": [
+        "SOTS/EvilSpiritStaff",
+        "SOTS/PlasmaAccelerator",
+        "SOTS/TheBlaspha"
+      ],
+      "stageId": "plantera",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source and exported recipe snapshot",
+      "checkedAt": "2026-08-16",
+      "reason": "Their current recipes require Ectoplasm, Spectre Bars, the Sniper Rifle, or the Tactical Shotgun, so Plantera is the controlling floor despite the broader guide sections."
+    },
+    {
+      "id": "big-crystal-colossus-exchange",
+      "kind": "world-source",
+      "item": "SOTS/Colossus",
+      "stageId": "wall-of-flesh",
+      "sourceName": "Big Crystal",
+      "sourceReference": "SOTS/BigCrystalTile",
+      "showDropRate": false,
+      "conditions": [
+        "Exchange a Breaker Blade at the Big Crystal"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "Right-clicking the Big Crystal while consuming the Wall of Flesh's Breaker Blade starts the animation that creates Colossus."
+    },
+    {
+      "id": "gold-chest-crushing-amplifier",
+      "kind": "world-source",
+      "item": "SOTS/CrushingAmplifier",
+      "stageId": "start",
+      "sourceName": "Underground Gold Chest",
+      "sourceReference": "Terraria/UndergroundGoldChest",
+      "dropRate": 0.0625,
+      "showDropRate": true,
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "PostWorldGen adds Crushing Amplifier to eligible ordinary Underground Gold Chests with a 1-in-16 roll."
+    },
+    {
+      "id": "golden-treasure-slime-miners-sword",
+      "kind": "world-source",
+      "item": "SOTS/MinersSword",
+      "stageId": "start",
+      "sourceName": "Golden Treasure Slime",
+      "sourceReference": "SOTS/GoldenTreasureSlime",
+      "showDropRate": false,
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "Miner's Sword belongs to the Golden Treasure Slime custom bonus pool, while the slime naturally spawns underground without a boss or Hardmode gate."
+    },
+    {
+      "id": "traveling-merchant-recursive-bow",
+      "kind": "world-source",
+      "item": "SOTS/RecursiveBow",
+      "stageId": "start",
+      "sourceName": "Traveling Merchant",
+      "sourceReference": "Terraria/TravellingMerchant",
+      "dropRate": 0.1,
+      "showDropRate": true,
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The Traveling Merchant independently rolls Recursive Bow into his stock with a 1-in-10 chance and no progression flag."
+    },
+    {
+      "id": "qualifying-chest-spiked-club",
+      "kind": "world-source",
+      "item": "SOTS/SpikedClub",
+      "stageId": "start",
+      "sourceName": "Underground Gold Chest",
+      "sourceReference": "Terraria/UndergroundGoldChest",
+      "dropRate": 0.2,
+      "showDropRate": true,
+      "conditions": [
+        "1-in-5 roll when the chest's primary item is Shoe Spikes"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "PostWorldGen adds Spiked Club to a chest whose primary item is Climbing Claws or Shoe Spikes with a 1-in-5 roll."
+    },
+    {
+      "id": "hermes-chest-winged-knife",
+      "kind": "world-source",
+      "item": "SOTS/WingedKnife",
+      "stageId": "start",
+      "sourceName": "Underground Gold Chest",
+      "sourceReference": "Terraria/UndergroundGoldChest",
+      "dropRate": 0.14285714285714285,
+      "showDropRate": true,
+      "conditions": [
+        "1-in-7 roll when the chest's primary item is Hermes Boots"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "PostWorldGen adds Winged Knife to an Underground Chest whose primary item is Hermes Boots with a 1-in-7 roll."
+    },
+    {
+      "id": "pyramid-fishing-zephyrous-zeppelin-stage",
+      "kind": "item-stage",
+      "item": "SOTS/ZephyrousZeppelin",
+      "stageId": "start",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The catch hook requires ordinary water in the world-generated Pyramid biome and has no boss, Hardmode, or Putrid Pinky flag."
+    },
+    {
+      "id": "pyramid-fishing-zephyrous-zeppelin-source",
+      "kind": "fishing-source",
+      "item": "SOTS/ZephyrousZeppelin",
+      "conditions": [
+        {
+          "en-US": "Caught in water in the Pyramid; chance scales from 1-in-300 at 0 fishing power to 1-in-200 at 100 and 1-in-100 at 200",
+          "ru-RU": "Ловится в воде в Пирамиде; шанс растёт от 1 к 300 при нулевой силе рыбалки до 1 к 200 при 100 и 1 к 100 при 200"
+        }
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "SOTSPlayer fishing code scales the Pyramid-water catch chance with fishing power and applies no progression flag."
+    },
+    {
+      "id": "abandoned-village-ruined-chest-items",
+      "kind": "world-source",
+      "items": [
+        "SOTS/FizzleStar",
+        "SOTS/MrBurns"
+      ],
+      "stageId": "start",
+      "sourceName": "Locked Ruined Chest",
+      "sourceReference": "SOTS/RuinedChestTile",
+      "showDropRate": false,
+      "conditions": [
+        "One item from the Ruined Chest loot rotation; opened with an Old Key"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "Abandoned Village world generation distributes these items through its locked Ruined Chests. Old Keys have pre-boss enemy, pot, shop, and Extractinator sources."
+    },
+    {
+      "id": "abandoned-village-earthen-storage-items",
+      "kind": "world-source",
+      "items": [
+        "SOTS/AncientSteelLantern",
+        "SOTS/AutoClicker",
+        "SOTS/BrassWhip",
+        "SOTS/EarthenHelmet",
+        "SOTS/HandCannon",
+        "SOTS/Lockpick",
+        "SOTS/MineralSpewer"
+      ],
+      "stageId": "start",
+      "sourceName": "Locked Earthen Plating Storage",
+      "sourceReference": "SOTS/EarthenPlatingStorageTile",
+      "showDropRate": false,
+      "conditions": [
+        "One item from the storage loot rotation; opened with an Old Key"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "Abandoned Village world generation distributes these items through locked Earthen Plating Storages. Old Keys have pre-boss sources."
+    },
+    {
+      "id": "abandoned-village-gula-vault-items",
+      "kind": "world-source",
+      "items": [
+        "SOTS/Blongus",
+        "SOTS/EarthenChestplate",
+        "SOTS/EarthenLeggings",
+        "SOTS/Icebreaker",
+        "SOTS/JarOfPineapple",
+        "SOTS/PixelBlaster",
+        "SOTS/PlagueSpitter",
+        "SOTS/SandstormPouch",
+        "SOTS/StarshardSaber"
+      ],
+      "stageId": "start",
+      "sourceName": "Locked Gula Vault",
+      "sourceReference": "SOTS/GulaVaultTile",
+      "showDropRate": false,
+      "conditions": [
+        "One item from the matching Gula Vault loot rotation; opened with an Old Key"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "Abandoned Village world generation distributes these items among ordinary and special Gula Vault variants. Old Keys have pre-boss sources."
+    },
+    {
+      "id": "sanctuary-invidia-chest-items",
+      "kind": "world-source",
+      "items": [
+        "SOTS/Dreamcatcher",
+        "SOTS/GobletOfEntrails",
+        "SOTS/Sunbulb"
+      ],
+      "stageId": "start",
+      "sourceName": "Sanctuary Invidia Chest",
+      "sourceReference": "SOTS/InvidiaChestTile",
+      "showDropRate": false,
+      "conditions": [
+        "Guaranteed in its matching Sanctuary quarter chest"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "Sanctuary world generation guarantees each item in a specific Invidia Chest and applies no boss-progression gate."
+    },
+    {
+      "id": "post-plantera-desert-biome-chest-dune-splicer",
+      "kind": "world-source",
+      "item": "SOTS/DuneSplicer",
+      "stageId": "plantera",
+      "sourceName": "Desert Biome Chest",
+      "sourceReference": "Terraria/DesertBiomeChest",
+      "showDropRate": false,
+      "conditions": [
+        "Guaranteed in the locked Desert Biome Chest; requires the Desert Key after Plantera"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "PostWorldGen guarantees Dune Splicer in the vanilla Desert Biome Chest."
+    },
+    {
+      "id": "post-plantera-corruption-biome-chest-pathogen-regurgitator",
+      "kind": "world-source",
+      "item": "SOTS/PathogenRegurgitator",
+      "stageId": "plantera",
+      "sourceName": "Corruption Biome Chest",
+      "sourceReference": "Terraria/CorruptionBiomeChest",
+      "showDropRate": false,
+      "conditions": [
+        "Guaranteed in the locked Corruption Biome Chest; requires the Corruption Key after Plantera"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "PostWorldGen guarantees Pathogen Regurgitator in the vanilla Corruption Biome Chest."
+    },
+    {
+      "id": "post-plantera-crimson-biome-chest-rebar-rifle",
+      "kind": "world-source",
+      "item": "SOTS/RebarRifle",
+      "stageId": "plantera",
+      "sourceName": "Crimson Biome Chest",
+      "sourceReference": "Terraria/CrimsonBiomeChest",
+      "showDropRate": false,
+      "conditions": [
+        "Guaranteed in the locked Crimson Biome Chest; requires the Crimson Key after Plantera"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "PostWorldGen guarantees Rebar Rifle in the vanilla Crimson Biome Chest."
+    },
+    {
+      "id": "post-plantera-frozen-biome-chest-sawflake",
+      "kind": "world-source",
+      "item": "SOTS/Sawflake",
+      "stageId": "plantera",
+      "sourceName": "Frozen Biome Chest",
+      "sourceReference": "Terraria/FrozenBiomeChest",
+      "showDropRate": false,
+      "conditions": [
+        "Guaranteed in the locked Frozen Biome Chest; requires the Frozen Key after Plantera"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "PostWorldGen guarantees Sawflake in the vanilla Frozen Biome Chest."
+    },
+    {
+      "id": "post-plantera-hallowed-biome-chest-starcaller-staff",
+      "kind": "world-source",
+      "item": "SOTS/StarcallerStaff",
+      "stageId": "plantera",
+      "sourceName": "Hallowed Biome Chest",
+      "sourceReference": "Terraria/HallowedBiomeChest",
+      "showDropRate": false,
+      "conditions": [
+        "Guaranteed in the locked Hallowed Biome Chest; requires the Hallowed Key after Plantera"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "PostWorldGen guarantees Starcaller Staff in the vanilla Hallowed Biome Chest."
+    },
+    {
+      "id": "post-plantera-jungle-biome-chest-tangle-staff",
+      "kind": "world-source",
+      "item": "SOTS/TangleStaff",
+      "stageId": "plantera",
+      "sourceName": "Jungle Biome Chest",
+      "sourceReference": "Terraria/JungleBiomeChest",
+      "showDropRate": false,
+      "conditions": [
+        "Guaranteed in the locked Jungle Biome Chest; requires the Jungle Key after Plantera"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "PostWorldGen guarantees Tangle Staff in the vanilla Jungle Biome Chest."
+    },
+    {
+      "id": "traveling-merchant-post-plantera-traingun",
+      "kind": "world-source",
+      "item": "SOTS/Traingun",
+      "stageId": "plantera",
+      "sourceName": "Traveling Merchant",
+      "sourceReference": "Terraria/TravellingMerchant",
+      "dropRate": 0.1,
+      "showDropRate": true,
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The Traveling Merchant rolls Train Gun into his stock with a 1-in-10 chance only after Plantera."
+    },
+    {
+      "id": "traveling-merchant-suprem-sticker",
+      "kind": "world-source",
+      "item": "SOTS/SupremSticker",
+      "stageId": "start",
+      "sourceName": "Traveling Merchant",
+      "sourceReference": "Terraria/TravellingMerchant",
+      "dropRate": 0.002,
+      "showDropRate": true,
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The Traveling Merchant independently rolls the developer accessory into his stock with a 1-in-500 chance and no progression flag."
+    },
+    {
+      "id": "rare-pot-swallowed-penny",
+      "kind": "world-source",
+      "item": "SOTS/SwallowedPenny",
+      "stageId": "start",
+      "sourceName": "Pots",
+      "sourceReference": "Terraria/Pots",
+      "showDropRate": false,
+      "conditions": [
+        "Rare drop from ordinary, Pyramid, Sky, or Abandoned Village pots"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The global tile hook creates Swallowed Penny from several world-generated pot types with no boss or Hardmode gate."
+    },
+    {
+      "id": "void-anomaly-wonder-egg-puzzle",
+      "kind": "world-source",
+      "item": "SOTS/WonderEgg",
+      "stageId": "start",
+      "sourceName": "Void Anomaly gemstone puzzle",
+      "sourceReference": "SOTS/VoidAnomaly",
+      "showDropRate": false,
+      "conditions": [
+        "Created after all seven world-generated gemstone keys are slotted"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The Void Anomaly creates Wonder Eggs after all seven gemstone keys are slotted; Shimmer then transforms a Wonder Egg into Jumbo Surprise Egg."
+    },
+    {
+      "id": "registered-unobtainable-weapons",
+      "kind": "item-override",
+      "items": [
+        "SOTS/ContinuumCollapse",
+        "SOTS/TesseractSword"
+      ],
+      "override": {
+        "exclude": true
+      },
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled assembly registration and full reference audit",
+      "checkedAt": "2026-08-16",
+      "reason": "Both items are registered and functional but have no recipe, loot, shop, fishing, world-generation, transformation, bag-content, or runtime creation reference in the bundled assembly."
+    },
+    {
+      "id": "archaeologist-source",
+      "kind": "source-stage",
+      "source": "SOTS/Archaeologist",
+      "stageId": "start",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "SOTSWorld creates the Archaeologist without a boss condition and teleports him among generated landmarks."
+    },
+    {
+      "id": "archaeologist-location-condition",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": [
+        "shop"
+      ],
+      "sourceIds": [
+        "SOTS/Archaeologist"
+      ],
+      "conditionKeys": [
+        "Mods.SOTS.Common.ArchaeologistShopCondition"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "The shared localization key represents many location lambdas. The condition itself is stage-neutral; the five combat entries with boss predicates receive explicit floors below."
+    },
+    {
+      "id": "archaeologist-post-eye-combat-stock",
+      "kind": "item-floor",
+      "items": [
+        "SOTS/GlazeBow",
+        "SOTS/CoconutGun",
+        "SOTS/PerfectStar"
+      ],
+      "stageId": "eye-of-cthulhu",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "Each Archaeologist shop lambda explicitly requires NPC.downedBoss1 in addition to its landmark condition."
+    },
+    {
+      "id": "archaeologist-post-skeletron-combat-stock",
+      "kind": "item-floor",
+      "items": [
+        "SOTS/BoneClapper",
+        "SOTS/Baguette"
+      ],
+      "stageId": "skeletron",
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-16",
+      "reason": "Both Archaeologist shop lambdas explicitly require NPC.downedBoss3 in addition to the Damocles-chain landmark condition."
+    }
+  ],
+  "ignoredItems": [],
+  "ignoredIssues": []
+}

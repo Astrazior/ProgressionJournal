@@ -2093,4 +2093,112 @@ assert.equal(
   exactStaticEvidenceResult.report.paths["Test/UnknownStaticShopBlade"],
   undefined);
 
+const mechanicalBossConditionCases = [
+  {
+    itemId: "Test/AnyMechKeyBlade",
+    expectedStageId: "twins",
+    condition: {
+      type: "Terraria.Condition",
+      description: "Display text must not be used",
+      key: "Conditions.DownedMechBossAny"
+    }
+  },
+  {
+    itemId: "Test/AnyMechTypeBlade",
+    expectedStageId: "twins",
+    condition: {
+      type: "Terraria.GameContent.ItemDropRules.Conditions+BeatAnyMechBoss",
+      description: "Display text must not be used"
+    }
+  },
+  {
+    itemId: "Test/OldOnesArmyT2KeyBlade",
+    expectedStageId: "twins",
+    condition: {
+      type: "Terraria.Condition",
+      description: "Display text must not be used",
+      key: "Conditions.DownedOldOnesArmyT2"
+    }
+  },
+  {
+    itemId: "Test/DestroyerKeyBlade",
+    expectedStageId: "destroyer",
+    condition: {
+      type: "Terraria.Condition",
+      description: "Display text must not be used",
+      key: "Conditions.DownedDestroyer"
+    }
+  },
+  {
+    itemId: "Test/TwinsKeyBlade",
+    expectedStageId: "twins",
+    condition: {
+      type: "Terraria.Condition",
+      description: "Display text must not be used",
+      key: "Conditions.DownedTwins"
+    }
+  },
+  {
+    itemId: "Test/SkeletronPrimeKeyBlade",
+    expectedStageId: "skeletron-prime",
+    condition: {
+      type: "Terraria.Condition",
+      description: "Display text must not be used",
+      key: "Conditions.DownedSkeletronPrime"
+    }
+  }
+];
+const mechanicalBossConditionSnapshot = {
+  format: "ProgressionJournalSnapshot",
+  version: 7,
+  mods: [{ name: "Test", version: "1.2.3" }],
+  items: mechanicalBossConditionCases.map(({ itemId }) =>
+    item(itemId, { damageClass: "Melee", damage: 20 })),
+  npcs: [],
+  recipes: [],
+  drops: mechanicalBossConditionCases.map(({ itemId, condition }) => ({
+    source: "Terraria/GlobalNPCDrops",
+    sourceType: "global",
+    item: itemId,
+    conditions: [condition]
+  })),
+  shops: []
+};
+const mechanicalBossConditionManifest = {
+  id: "test.mechanical-boss-conditions",
+  name: { "en-US": "Test", "ru-RU": "Тест" },
+  requiredMods: [{ name: "Test", version: "" }],
+  classes: [{
+    id: "melee",
+    name: { "en-US": "Melee", "ru-RU": "Воин" },
+    damageClassNames: ["Melee"]
+  }],
+  stages: [
+    { id: "start", name: { "en-US": "Start", "ru-RU": "Начало" } },
+    {
+      id: "twins",
+      name: { "en-US": "The Twins", "ru-RU": "Близнецы" },
+      unlock: { type: "vanilla-flag", key: "downedMechBoss2" }
+    },
+    {
+      id: "destroyer",
+      name: { "en-US": "The Destroyer", "ru-RU": "Уничтожитель" },
+      unlock: { type: "vanilla-flag", key: "downedMechBoss1" }
+    },
+    {
+      id: "skeletron-prime",
+      name: { "en-US": "Skeletron Prime", "ru-RU": "Скелетрон Прайм" },
+      unlock: { type: "vanilla-flag", key: "downedMechBoss3" }
+    }
+  ]
+};
+const mechanicalBossConditionResult = generateProfile(
+  mechanicalBossConditionSnapshot,
+  mechanicalBossConditionManifest);
+for (const { itemId, expectedStageId } of mechanicalBossConditionCases) {
+  assert.equal(
+    mechanicalBossConditionResult.report.paths[itemId]?.stage,
+    expectedStageId);
+}
+
 console.log("Profile generator tests: OK");
