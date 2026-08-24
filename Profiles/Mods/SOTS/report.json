@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "SOTS",
   "profileId": "mod.sots",
-  "generatedAtUtc": "2026-08-16T13:10:05.108Z",
+  "generatedAtUtc": "2026-08-24T12:42:16.648Z",
   "snapshot": {
     "version": 10,
     "generatedAtUtc": "2026-08-16T12:13:03.2752837Z",
@@ -22,7 +22,7 @@
     }
   },
   "agentRules": {
-    "rules": 60,
+    "rules": 67,
     "ignoredItems": 0,
     "ignoredIssues": 0,
     "evidence": [
@@ -286,6 +286,20 @@
         "reason": "The Traveling Merchant independently rolls Recursive Bow into his stock with a 1-in-10 chance and no progression flag."
       },
       {
+        "id": "traveling-merchant-safety-switch",
+        "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+        "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+        "checkedAt": "2026-08-24",
+        "reason": "SOTSNPCShop.SetupTravelShop independently rolls Safety Switch into stock with a 1-in-5 chance and no progression flag."
+      },
+      {
+        "id": "traveling-merchant-crushing-capacitor",
+        "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+        "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+        "checkedAt": "2026-08-24",
+        "reason": "SOTSNPCShop.SetupTravelShop independently rolls Crushing Capacitor into stock with a 1-in-4 chance and no progression flag."
+      },
+      {
         "id": "qualifying-chest-spiked-club",
         "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
         "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
@@ -340,6 +354,20 @@
         "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
         "checkedAt": "2026-08-16",
         "reason": "Sanctuary world generation guarantees each item in a specific Invidia Chest and applies no boss-progression gate."
+      },
+      {
+        "id": "pyramid-royal-ruby-shards",
+        "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+        "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+        "checkedAt": "2026-08-24",
+        "reason": "The Pyramid generates breakable Royal Ruby Shard tiles. Their shards feed the Tainted Keystone and Void Anomaly conversion chain."
+      },
+      {
+        "id": "abandoned-village-vibrant-ore",
+        "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+        "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+        "checkedAt": "2026-08-24",
+        "reason": "Abandoned Village world generation places Vibrant Ore with no boss-progression gate; its bar recipe unlocks Harvester's Scythe."
       },
       {
         "id": "post-plantera-desert-biome-chest-dune-splicer",
@@ -410,6 +438,27 @@
         "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
         "checkedAt": "2026-08-16",
         "reason": "The Void Anomaly creates Wonder Eggs after all seven gemstone keys are slotted; Shimmer then transforms a Wonder Egg into Jumbo Surprise Egg."
+      },
+      {
+        "id": "custom-effect-shared-accessories",
+        "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+        "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+        "checkedAt": "2026-08-24",
+        "reason": "These accessories implement shared combat, survival, movement, or critical-hit effects through custom SOTS ModPlayer fields that the generic DamageClass probe cannot observe."
+      },
+      {
+        "id": "backup-bow-ranged-accessory",
+        "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+        "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+        "checkedAt": "2026-08-24",
+        "reason": "Backup Bow enables SOTS' custom backup-bow attack and is ranged equipment; the effect is stored only in SOTSPlayer fields."
+      },
+      {
+        "id": "custom-effect-void-accessories",
+        "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+        "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+        "checkedAt": "2026-08-24",
+        "reason": "These accessories alter Void resource, crusher, or Void ability fields directly, so the generic DamageClass probe cannot infer their Void classification."
       },
       {
         "id": "registered-unobtainable-weapons",
@@ -666,14 +715,16 @@
         }
       ],
       "stageComparison": {
-        "compared": 1385,
+        "compared": 1394,
         "moved": 0
       }
     }
   },
   "review": {
-    "total": 0,
-    "byKind": {}
+    "total": 5,
+    "byKind": {
+      "unassigned-combat-item": 5
+    }
   },
   "audit": {
     "errors": [],
@@ -4503,10 +4554,10 @@
       "errors": []
     }
   },
-  "ready": true,
+  "ready": false,
   "generation": {
     "profileId": "mod.sots",
-    "generatedAtUtc": "2026-08-16T13:10:03.688Z",
+    "generatedAtUtc": "2026-08-24T12:42:14.938Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -15478,12 +15529,47 @@
       },
       {
         "stage": "start",
+        "id": "SOTS/EmptyNecklace",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "SOTS/RoyalRubyShard",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "SOTS/VibrantOre",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "SOTS/WonderEgg",
         "reason": "not combat equipment"
       },
       {
         "stage": "start",
+        "id": "SOTS/TaintedKeystoneShard",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
         "id": "SOTS/AnomalyInterceptor",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "SOTS/TaintedPrismDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "SOTS/VibrantBar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "SOTS/VibrantBrick",
         "reason": "not combat equipment"
       },
       {
@@ -17914,6 +18000,11 @@
       {
         "stage": "advisor",
         "id": "SOTS/TransmutationAltar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "advisor",
+        "id": "SOTS/TaintedKeystone",
         "reason": "not combat equipment"
       },
       {
@@ -25586,6 +25677,14 @@
         "stage": "start",
         "via": "manifest"
       },
+      "SOTS/SafetySwitch": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "SOTS/CrushingCapacitor": {
+        "stage": "start",
+        "via": "manifest"
+      },
       "SOTS/ZephyrousZeppelin": {
         "stage": "start",
         "via": "manifest"
@@ -25595,6 +25694,10 @@
         "via": "manifest"
       },
       "SOTS/AutoClicker": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "SOTS/BackupBow": {
         "stage": "start",
         "via": "manifest"
       },
@@ -25615,6 +25718,10 @@
         "via": "manifest"
       },
       "SOTS/MineralSpewer": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "SOTS/AcidicInjection": {
         "stage": "start",
         "via": "manifest"
       },
@@ -25654,6 +25761,10 @@
         "stage": "start",
         "via": "manifest"
       },
+      "SOTS/VisionAmulet": {
+        "stage": "start",
+        "via": "manifest"
+      },
       "SOTS/Dreamcatcher": {
         "stage": "start",
         "via": "manifest"
@@ -25674,9 +25785,17 @@
         "stage": "start",
         "via": "manifest"
       },
+      "SOTS/WorldlyPolarizer": {
+        "stage": "start",
+        "via": "recipe:SOTS/DissolvingNature+SOTS/DissolvingEarth+SOTS/DissolvingDeluge+SOTS/AncientSteelBar+SOTS/VibrantBar"
+      },
       "SOTS/MrEepy": {
         "stage": "start",
         "via": "recipe:SOTS/MrBurns+SOTS/Dreamcatcher"
+      },
+      "SOTS/MrMcMillen": {
+        "stage": "start",
+        "via": "recipe:SOTS/MrBurns+SOTS/EmptyNecklace"
       },
       "SOTS/SoulOfTheKeeper": {
         "stage": "start",
@@ -25685,6 +25804,10 @@
       "SOTS/JumboSurpriseEgg": {
         "stage": "start",
         "via": "shimmer:SOTS/WonderEgg"
+      },
+      "SOTS/HarvestersScythe": {
+        "stage": "start",
+        "via": "recipe:SOTS/VibrantBar"
       },
       "SOTS/Earthshaker": {
         "stage": "king-slime",
@@ -26234,9 +26357,29 @@
         "stage": "putrid-pinky",
         "via": "recipe:SOTS/DissolvingNature+SOTS/CorrosiveGel+SOTS/Wormwood+SOTS/Peanut"
       },
+      "SOTS/CurseballTome": {
+        "stage": "pharaohs-curse",
+        "via": "recipe:SOTS/CursedMatter+SOTS/RoyalRubyShard"
+      },
+      "SOTS/CursedBlade": {
+        "stage": "pharaohs-curse",
+        "via": "recipe:SOTS/CursedMatter+SOTS/RoyalRubyShard"
+      },
+      "SOTS/CursedHood": {
+        "stage": "pharaohs-curse",
+        "via": "recipe:SOTS/CursedMatter+SOTS/RoyalRubyShard"
+      },
+      "SOTS/CursedImpale": {
+        "stage": "pharaohs-curse",
+        "via": "recipe:SOTS/CursedMatter+SOTS/RoyalRubyShard"
+      },
       "SOTS/SpiritTracer": {
         "stage": "pharaohs-curse",
         "via": "recipe:SOTS/CursedMatter+Terraria/Amethyst"
+      },
+      "SOTS/VoidenBracelet": {
+        "stage": "pharaohs-curse",
+        "via": "recipe:SOTS/CursedMatter+SOTS/RoyalRubyShard"
       },
       "Terraria/Bone": {
         "stage": "skeletron",
@@ -26438,6 +26581,10 @@
         "stage": "skeletron",
         "via": "recipe:Terraria/CobaltShield+Terraria/ObsidianSkull"
       },
+      "SOTS/CircuitBoard": {
+        "stage": "skeletron",
+        "via": "recipe:SOTS/CrushingAmplifier+SOTS/CrushingCapacitor+SOTS/CrushingResistor+SOTS/CrushingTransformer"
+      },
       "SOTS/Sharanga": {
         "stage": "skeletron",
         "via": "recipe:Terraria/HellwingBow+Terraria/MoltenFury+SOTS/FragmentOfInferno"
@@ -26451,10 +26598,6 @@
         "via": "recipe:Terraria/BottledWater"
       },
       "Terraria/WaterBolt": {
-        "stage": "skeletron",
-        "via": "manifest"
-      },
-      "SOTS/CircuitBoard": {
         "stage": "skeletron",
         "via": "manifest"
       },
@@ -26506,27 +26649,7 @@
         "stage": "excavator",
         "via": "npc:SOTS/Excavator"
       },
-      "SOTS/CurseballTome": {
-        "stage": "excavator",
-        "via": "manifest"
-      },
-      "SOTS/CursedBlade": {
-        "stage": "excavator",
-        "via": "manifest"
-      },
-      "SOTS/CursedHood": {
-        "stage": "excavator",
-        "via": "manifest"
-      },
-      "SOTS/CursedImpale": {
-        "stage": "excavator",
-        "via": "manifest"
-      },
       "SOTS/CursedRobe": {
-        "stage": "excavator",
-        "via": "manifest"
-      },
-      "SOTS/VoidenBracelet": {
         "stage": "excavator",
         "via": "manifest"
       },
@@ -26618,6 +26741,10 @@
         "stage": "advisor",
         "via": "recipe:SOTS/OtherworldlyAlloy+SOTS/HardlightAlloy+SOTS/DissolvingAether"
       },
+      "SOTS/VibrancyModule": {
+        "stage": "advisor",
+        "via": "recipe:SOTS/VibrantBar+SOTS/OtherworldlyAlloy"
+      },
       "SOTS/OtherworldlySpiritStaff": {
         "stage": "advisor",
         "via": "recipe:SOTS/DissolvingAether+SOTS/FragmentOfOtherworld+SOTS/HardlightAlloy"
@@ -26646,21 +26773,17 @@
           "currencyItems": null
         }
       },
+      "SOTS/VoidAnomaly": {
+        "stage": "advisor",
+        "via": "recipe:SOTS/TaintedKeystone"
+      },
       "SOTS/DigitalDaito": {
         "stage": "advisor",
-        "via": "manifest"
+        "via": "recipe:Terraria/Terragrim+SOTS/HardlightAlloy+SOTS/PrecariousCluster+SOTS/TaintedKeystone"
       },
       "SOTS/StarcoreAssaultRifle": {
         "stage": "advisor",
-        "via": "manifest"
-      },
-      "SOTS/VibrancyModule": {
-        "stage": "advisor",
-        "via": "manifest"
-      },
-      "SOTS/WorldlyPolarizer": {
-        "stage": "advisor",
-        "via": "manifest"
+        "via": "recipe:SOTS/VibrantPistol+SOTS/VibrancyModule+SOTS/StarlightAlloy"
       },
       "Terraria/FastClock": {
         "stage": "wall-of-flesh",
@@ -27760,6 +27883,10 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/BottledWater+SOTS/InvidiaPetal+Terraria/Shiverthorn+Terraria/Daybloom"
       },
+      "SOTS/JeweledGauntlet": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:SOTS/SandstoneWarhammer+SOTS/SpiritGlove+SOTS/CursedMatter+SOTS/RoyalRubyShard+Terraria/SoulofNight"
+      },
       "SOTS/BoreBullet": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/EmptyBullet+SOTS/JuryRiggedDrill"
@@ -27817,10 +27944,6 @@
         "via": "manifest"
       },
       "SOTS/GhoulBlaster": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "SOTS/JeweledGauntlet": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
@@ -27951,7 +28074,8 @@
           ],
           "prerequisites": [],
           "currencyItems": null
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/SquireGreatHelm": {
         "stage": "twins",
@@ -27976,7 +28100,8 @@
           "currencyItems": [
             "Terraria/DefenderMedal"
           ]
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/SquirePlating": {
         "stage": "twins",
@@ -28001,7 +28126,8 @@
           "currencyItems": [
             "Terraria/DefenderMedal"
           ]
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/SquireGreaves": {
         "stage": "twins",
@@ -28026,7 +28152,8 @@
           "currencyItems": [
             "Terraria/DefenderMedal"
           ]
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/ApprenticeHat": {
         "stage": "twins",
@@ -28051,7 +28178,8 @@
           "currencyItems": [
             "Terraria/DefenderMedal"
           ]
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/ApprenticeRobe": {
         "stage": "twins",
@@ -28076,7 +28204,8 @@
           "currencyItems": [
             "Terraria/DefenderMedal"
           ]
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/ApprenticeTrousers": {
         "stage": "twins",
@@ -28101,7 +28230,8 @@
           "currencyItems": [
             "Terraria/DefenderMedal"
           ]
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/HuntressWig": {
         "stage": "twins",
@@ -28126,7 +28256,8 @@
           "currencyItems": [
             "Terraria/DefenderMedal"
           ]
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/HuntressJerkin": {
         "stage": "twins",
@@ -28151,7 +28282,8 @@
           "currencyItems": [
             "Terraria/DefenderMedal"
           ]
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/HuntressPants": {
         "stage": "twins",
@@ -28176,7 +28308,8 @@
           "currencyItems": [
             "Terraria/DefenderMedal"
           ]
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/MonkBrows": {
         "stage": "twins",
@@ -28201,7 +28334,8 @@
           "currencyItems": [
             "Terraria/DefenderMedal"
           ]
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/MonkShirt": {
         "stage": "twins",
@@ -28226,7 +28360,8 @@
           "currencyItems": [
             "Terraria/DefenderMedal"
           ]
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/MonkPants": {
         "stage": "twins",
@@ -28251,7 +28386,8 @@
           "currencyItems": [
             "Terraria/DefenderMedal"
           ]
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/MushroomSpear": {
         "stage": "twins",
@@ -28268,11 +28404,13 @@
           ],
           "prerequisites": [],
           "currencyItems": null
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/Yelets": {
         "stage": "twins",
-        "via": "global:Terraria/GlobalNPCDrops"
+        "via": "global:Terraria/GlobalNPCDrops",
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/MagicalHarp": {
         "stage": "twins",
@@ -28284,7 +28422,8 @@
       },
       "Terraria/BeeWings": {
         "stage": "twins",
-        "via": "recipe:Terraria/SoulofFlight+Terraria/TatteredBeeWing"
+        "via": "recipe:Terraria/SoulofFlight+Terraria/TatteredBeeWing",
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/MoonShell": {
         "stage": "twins",
@@ -28321,7 +28460,8 @@
           "currencyItems": [
             "Terraria/DefenderMedal"
           ]
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/DD2BallistraTowerT2Popper": {
         "stage": "destroyer",
@@ -28346,7 +28486,8 @@
           "currencyItems": [
             "Terraria/DefenderMedal"
           ]
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/DD2ExplosiveTrapT2Popper": {
         "stage": "destroyer",
@@ -28371,7 +28512,8 @@
           "currencyItems": [
             "Terraria/DefenderMedal"
           ]
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/DD2LightningAuraT2Popper": {
         "stage": "destroyer",
@@ -28396,7 +28538,8 @@
           "currencyItems": [
             "Terraria/DefenderMedal"
           ]
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/Jetpack": {
         "stage": "destroyer",
@@ -29516,6 +29659,10 @@
       "Terraria/HeroShield": {
         "stage": "plantera",
         "via": "recipe:Terraria/PaladinsShield+Terraria/FleshKnuckles"
+      },
+      "SOTS/VoidmageIncubator": {
+        "stage": "plantera",
+        "via": "recipe:SOTS/VoidAnomaly+SOTS/DissolvingBrilliance+SOTS/SkipShard"
       },
       "SOTS/AccretionDisc": {
         "stage": "plantera",
@@ -39241,13 +39388,41 @@
         "stage": "start",
         "via": "recipe:SOTS/TidePlating+Terraria/WaterBucket"
       },
+      "SOTS/EmptyNecklace": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "SOTS/RoyalRubyShard": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "SOTS/VibrantOre": {
+        "stage": "start",
+        "via": "manifest"
+      },
       "SOTS/WonderEgg": {
         "stage": "start",
         "via": "manifest"
       },
+      "SOTS/TaintedKeystoneShard": {
+        "stage": "start",
+        "via": "recipe:SOTS/RoyalRubyShard"
+      },
       "SOTS/AnomalyInterceptor": {
         "stage": "start",
         "via": "recipe:SOTS/AnomalyLocator+SOTS/WonderEgg"
+      },
+      "SOTS/TaintedPrismDye": {
+        "stage": "start",
+        "via": "recipe:SOTS/TaintedKeystoneShard+Terraria/BottledWater"
+      },
+      "SOTS/VibrantBar": {
+        "stage": "start",
+        "via": "recipe:SOTS/VibrantOre+Terraria/GlowingMushroom+Terraria/IronBar+SOTS/FragmentOfEarth"
+      },
+      "SOTS/VibrantBrick": {
+        "stage": "start",
+        "via": "recipe:SOTS/VibrantOre+Terraria/StoneBlock"
       },
       "Terraria/KingSlimeTrophy": {
         "stage": "king-slime",
@@ -42226,6 +42401,10 @@
         "stage": "advisor",
         "via": "recipe:SOTS/PrecariousCluster+SOTS/TwilightShard+SOTS/OtherworldlyAlloy+SOTS/HardlightAlloy+SOTS/StarlightAlloy"
       },
+      "SOTS/TaintedKeystone": {
+        "stage": "advisor",
+        "via": "recipe:SOTS/TaintedKeystoneShard"
+      },
       "SOTS/SoulHeart": {
         "stage": "advisor",
         "via": "recipe:Terraria/LifeCrystal+SOTS/SkipSoul"
@@ -44699,7 +44878,8 @@
       },
       "Terraria/TatteredBeeWing": {
         "stage": "twins",
-        "via": "npc:Terraria/MossHornet"
+        "via": "npc:Terraria/MossHornet",
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/Buddies": {
         "stage": "twins",
@@ -44813,7 +44993,8 @@
           ],
           "prerequisites": [],
           "currencyItems": null
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/Hammush": {
         "stage": "twins",
@@ -44830,7 +45011,8 @@
           ],
           "prerequisites": [],
           "currencyItems": null
-        }
+        },
+        "isAnyMechanicalBossUnlock": true
       },
       "Terraria/MechanicalWheelPiece": {
         "stage": "twins",
@@ -49652,7 +49834,7 @@
         "stationStages": []
       },
       "retained": {
-        "itemStages": 133,
+        "itemStages": 141,
         "itemStageFloors": 6,
         "sourceStages": 33,
         "stationStages": 0

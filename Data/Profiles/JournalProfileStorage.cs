@@ -270,7 +270,7 @@ public static class JournalProfileStorage
                 .Select(static @group => new JournalItemGroup(@group))
                 .ToArray()
             where groups.Length != 0
-            select new JournalEntry(entryDocument.Key, entryDocument.Category, entryDocument.Classes, groups, entryDocument.Evaluations.Select(static value => new StageEvaluation(value.StageId, value.Tier, scope: value.Scope)), entryDocument.EventCategory, entryDocument.IsSupportWeapon, entryDocument.CustomEventName, entryDocument.EventIcon, entryDocument.Wiki.Select(static value => new JournalWikiRecommendation(value.StageId, value.Classes.ToHashSet(StringComparer.OrdinalIgnoreCase), value.SourceName, value.SourceUrl, value.Target)), entryDocument.FishingSources.Select(static source => new JournalFishingSource(source.Conditions.Select(static condition => condition.Resolve())))));
+            select new JournalEntry(entryDocument.Key, entryDocument.Category, entryDocument.Classes, groups, entryDocument.Evaluations.Select(static value => new StageEvaluation(value.StageId, value.Tier, scope: value.Scope)), entryDocument.EventCategory, entryDocument.IsSupportWeapon, entryDocument.CustomEventName, entryDocument.EventIcon, entryDocument.Wiki.Select(static value => new JournalWikiRecommendation(value.StageId, value.Classes.ToHashSet(StringComparer.OrdinalIgnoreCase), value.SourceName, value.SourceUrl, value.Target)), entryDocument.FishingSources.Select(static source => new JournalFishingSource(source.Conditions.Select(static condition => condition.Resolve()))), entryDocument.IsAnyMechanicalBossUnlock));
 
         return result;
     }

@@ -3,22 +3,22 @@
   "version": 2,
   "targetMod": "SOTS",
   "profileId": "mod.sots",
-  "generatedAtUtc": "2026-08-16T13:10:05.128Z",
+  "generatedAtUtc": "2026-08-24T12:42:16.671Z",
   "snapshotGeneratedAtUtc": "2026-08-16T12:13:03.2752837Z",
   "summary": {
     "snapshotItems": 6469,
     "contentItems": 1014,
-    "profileEntries": 1145,
+    "profileEntries": 1154,
     "profileBuffEntries": 180,
-    "profileItemReferences": 1385,
-    "equipmentReferences": 1205,
+    "profileItemReferences": 1394,
+    "equipmentReferences": 1214,
     "buffReferences": 180,
     "profileSourceGaps": 0,
-    "excluded": 3108,
+    "excluded": 3116,
     "acquiredNonProfile": 127,
     "unresolvedAvailability": 0,
     "unavailableCombat": 0,
-    "noAcquisitionPath": 1849
+    "noAcquisitionPath": 1832
   },
   "items": [
     {
@@ -103,10 +103,10 @@
       "name": "Overkill Injection",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -830,10 +830,10 @@
       "name": "Backup Bow",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -1834,7 +1834,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "manifest",
+      "via": "recipe:SOTS/CrushingAmplifier+SOTS/CrushingCapacitor+SOTS/CrushingResistor+SOTS/CrushingTransformer",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -2113,10 +2113,10 @@
       "name": "Crushing Capacitor",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2185,8 +2185,8 @@
       "mod": "SOTS",
       "contentItem": true,
       "status": "equipment",
-      "stage": "excavator",
-      "via": "manifest",
+      "stage": "pharaohs-curse",
+      "via": "recipe:SOTS/CursedMatter+SOTS/RoyalRubyShard",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -2219,8 +2219,8 @@
       "mod": "SOTS",
       "contentItem": true,
       "status": "equipment",
-      "stage": "excavator",
-      "via": "manifest",
+      "stage": "pharaohs-curse",
+      "via": "recipe:SOTS/CursedMatter+SOTS/RoyalRubyShard",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -2252,8 +2252,8 @@
       "mod": "SOTS",
       "contentItem": true,
       "status": "equipment",
-      "stage": "excavator",
-      "via": "manifest",
+      "stage": "pharaohs-curse",
+      "via": "recipe:SOTS/CursedMatter+SOTS/RoyalRubyShard",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -2274,8 +2274,8 @@
       "mod": "SOTS",
       "contentItem": true,
       "status": "equipment",
-      "stage": "excavator",
-      "via": "manifest",
+      "stage": "pharaohs-curse",
+      "via": "recipe:SOTS/CursedMatter+SOTS/RoyalRubyShard",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -2452,7 +2452,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "advisor",
-      "via": "manifest",
+      "via": "recipe:Terraria/Terragrim+SOTS/HardlightAlloy+SOTS/PrecariousCluster+SOTS/TaintedKeystone",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -3300,10 +3300,10 @@
       "name": "Amulet of Emptiness",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -5012,10 +5012,10 @@
       "name": "Harvester's Scythe",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "recipe:SOTS/VibrantBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -5730,7 +5730,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:SOTS/SandstoneWarhammer+SOTS/SpiritGlove+SOTS/CursedMatter+SOTS/RoyalRubyShard+Terraria/SoulofNight",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -6454,10 +6454,10 @@
       "name": "Mr. McMillen",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "recipe:SOTS/MrBurns+SOTS/EmptyNecklace",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8709,10 +8709,10 @@
       "name": "Keystone Shard",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -8820,10 +8820,10 @@
       "name": "Safety Switch",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -9781,7 +9781,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "advisor",
-      "via": "manifest",
+      "via": "recipe:SOTS/VibrantPistol+SOTS/VibrancyModule+SOTS/StarlightAlloy",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -10166,10 +10166,10 @@
       "name": "Tainted Keystone",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "advisor",
+      "via": "recipe:SOTS/TaintedKeystoneShard",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -10177,10 +10177,10 @@
       "name": "Tainted Keystone Shard",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:SOTS/RoyalRubyShard",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -10188,10 +10188,10 @@
       "name": "Tainted Prism Dye",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:SOTS/TaintedKeystoneShard+Terraria/BottledWater",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -11127,7 +11127,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "advisor",
-      "via": "manifest",
+      "via": "recipe:SOTS/VibrantBar+SOTS/OtherworldlyAlloy",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -11147,10 +11147,10 @@
       "name": "Vibrant Alloy",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:SOTS/VibrantOre+Terraria/GlowingMushroom+Terraria/IronBar+SOTS/FragmentOfEarth",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -11169,10 +11169,10 @@
       "name": "Vibrant Brick",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:SOTS/VibrantOre+Terraria/StoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -11235,10 +11235,10 @@
       "name": "Vibrant Shard",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -11301,10 +11301,10 @@
       "name": "Elemental Amulet",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -11312,10 +11312,10 @@
       "name": "Void Anomaly",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "advisor",
+      "via": "recipe:SOTS/TaintedKeystone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -11346,8 +11346,8 @@
       "mod": "SOTS",
       "contentItem": true,
       "status": "equipment",
-      "stage": "excavator",
-      "via": "manifest",
+      "stage": "pharaohs-curse",
+      "via": "recipe:SOTS/CursedMatter+SOTS/RoyalRubyShard",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -11356,10 +11356,10 @@
       "name": "Voidmage Incubator",
       "mod": "SOTS",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:SOTS/VoidAnomaly+SOTS/DissolvingBrilliance+SOTS/SkipShard",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -11612,8 +11612,8 @@
       "mod": "SOTS",
       "contentItem": true,
       "status": "equipment",
-      "stage": "advisor",
-      "via": "manifest",
+      "stage": "start",
+      "via": "recipe:SOTS/DissolvingNature+SOTS/DissolvingEarth+SOTS/DissolvingDeluge+SOTS/AncientSteelBar+SOTS/VibrantBar",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -25599,7 +25599,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "destroyer",
+      "stage": "twins",
       "via": "shop:Terraria/DD2Bartender",
       "reason": "Included in the generated profile.",
       "evidence": {
@@ -25755,7 +25755,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "destroyer",
+      "stage": "twins",
       "via": "shop:Terraria/DD2Bartender",
       "reason": "Included in the generated profile.",
       "evidence": {
@@ -25835,7 +25835,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "destroyer",
+      "stage": "twins",
       "via": "shop:Terraria/DD2Bartender",
       "reason": "Included in the generated profile.",
       "evidence": {
@@ -25970,7 +25970,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "destroyer",
+      "stage": "twins",
       "via": "shop:Terraria/DD2Bartender",
       "reason": "Included in the generated profile.",
       "evidence": {

@@ -2199,6 +2199,22 @@ for (const { itemId, expectedStageId } of mechanicalBossConditionCases) {
   assert.equal(
     mechanicalBossConditionResult.report.paths[itemId]?.stage,
     expectedStageId);
+
+  const entry = mechanicalBossConditionResult.profile.entries.find(candidate =>
+    candidate.itemGroups.flat().some(reference =>
+      `${reference.mod}/${reference.item}` === itemId));
+  assert(entry, `${itemId} must be generated`);
+  const isAnyMechanicalBossUnlock = [
+    "Test/AnyMechKeyBlade",
+    "Test/AnyMechTypeBlade",
+    "Test/OldOnesArmyT2KeyBlade"
+  ].includes(itemId);
+  assert.equal(entry.isAnyMechanicalBossUnlock === true, isAnyMechanicalBossUnlock);
+  assert.deepEqual(
+    entry.evaluations.map(evaluation => evaluation.stageId),
+    isAnyMechanicalBossUnlock
+      ? ["twins", "destroyer", "skeletron-prime"]
+      : [expectedStageId]);
 }
 
 console.log("Profile generator tests: OK");

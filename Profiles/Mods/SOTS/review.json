@@ -2,10 +2,251 @@
   "format": "ProgressionJournalManualReview",
   "version": 1,
   "profileId": "mod.sots",
-  "generatedAtUtc": "2026-08-16T13:10:04.119Z",
+  "generatedAtUtc": "2026-08-24T12:42:15.511Z",
   "summary": {
-    "total": 0,
-    "byKind": {}
+    "total": 5,
+    "byKind": {
+      "unassigned-combat-item": 5
+    }
   },
-  "issues": []
+  "issues": [
+    {
+      "id": "unassigned-combat-item.946dba366d6f",
+      "kind": "unassigned-combat-item",
+      "item": "SOTS/EarthDrive",
+      "displayName": "Earthdrive",
+      "classification": {
+        "category": "Accessory",
+        "classes": [
+          "melee",
+          "ranged",
+          "magic",
+          "summoner",
+          "void"
+        ]
+      },
+      "evidence": {
+        "drops": [
+          {
+            "sourceKind": "npc",
+            "source": "SOTS/EarthenGizmo",
+            "conditions": []
+          }
+        ],
+        "shops": [],
+        "recipes": [],
+        "shimmer": []
+      },
+      "resolution": {
+        "itemStages": {
+          "SOTS/EarthDrive": "<stage-id>"
+        },
+        "sourceStages": {
+          "SOTS/EarthenGizmo": "<stage-id>"
+        }
+      }
+    },
+    {
+      "id": "unassigned-combat-item.e3fa9f9fbadd",
+      "kind": "unassigned-combat-item",
+      "item": "SOTS/EndothermicAfterburner",
+      "displayName": "Endothermic Afterburner",
+      "classification": {
+        "category": "Accessory",
+        "classes": [
+          "melee",
+          "ranged",
+          "magic",
+          "summoner",
+          "void"
+        ]
+      },
+      "evidence": {
+        "drops": [
+          {
+            "sourceKind": "npc",
+            "source": "SOTS/PermafrostConstruct",
+            "conditions": [
+              {
+                "type": "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
+                "description": "This is an Expert Mode drop rate",
+                "key": "",
+                "facts": []
+              }
+            ]
+          },
+          {
+            "sourceKind": "npc",
+            "source": "SOTS/PermafrostConstruct",
+            "conditions": [
+              {
+                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
+                "description": "",
+                "key": "",
+                "facts": []
+              }
+            ]
+          },
+          {
+            "sourceKind": "npc",
+            "source": "SOTS/PermafrostConstruct",
+            "conditions": [
+              {
+                "type": "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
+                "description": "This is a Master Mode drop rate",
+                "key": "",
+                "facts": []
+              }
+            ]
+          }
+        ],
+        "shops": [],
+        "recipes": [],
+        "shimmer": []
+      },
+      "resolution": {
+        "itemStages": {
+          "SOTS/EndothermicAfterburner": "<stage-id>"
+        },
+        "sourceStages": {
+          "SOTS/PermafrostConstruct": "<stage-id>"
+        }
+      }
+    },
+    {
+      "id": "unassigned-combat-item.f040bd2733f4",
+      "kind": "unassigned-combat-item",
+      "item": "SOTS/ParticleRelocator",
+      "displayName": "Particle Relocator",
+      "classification": {
+        "category": "Accessory",
+        "classes": [
+          "melee",
+          "ranged",
+          "magic",
+          "summoner",
+          "void"
+        ]
+      },
+      "evidence": {
+        "drops": [
+          {
+            "sourceKind": "npc",
+            "source": "SOTS/ChaosConstruct",
+            "conditions": [
+              {
+                "type": "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
+                "description": "This is an Expert Mode drop rate",
+                "key": "",
+                "facts": []
+              }
+            ]
+          },
+          {
+            "sourceKind": "npc",
+            "source": "SOTS/ChaosConstruct",
+            "conditions": [
+              {
+                "type": "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
+                "description": "",
+                "key": "",
+                "facts": []
+              }
+            ]
+          },
+          {
+            "sourceKind": "npc",
+            "source": "SOTS/ChaosConstruct",
+            "conditions": [
+              {
+                "type": "Terraria.GameContent.ItemDropRules.Conditions+IsExpert",
+                "description": "This is a Master Mode drop rate",
+                "key": "",
+                "facts": []
+              }
+            ]
+          }
+        ],
+        "shops": [],
+        "recipes": [],
+        "shimmer": []
+      },
+      "resolution": {
+        "itemStages": {
+          "SOTS/ParticleRelocator": "<stage-id>"
+        },
+        "sourceStages": {
+          "SOTS/ChaosConstruct": "<stage-id>"
+        }
+      }
+    },
+    {
+      "id": "unassigned-combat-item.03a427cf975e",
+      "kind": "unassigned-combat-item",
+      "item": "SOTS/RotHeart",
+      "displayName": "Rot Heart",
+      "classification": {
+        "category": "Accessory",
+        "classes": [
+          "melee",
+          "ranged",
+          "magic",
+          "summoner",
+          "void"
+        ]
+      },
+      "evidence": {
+        "drops": [
+          {
+            "sourceKind": "npc",
+            "source": "SOTS/Famished",
+            "conditions": []
+          }
+        ],
+        "shops": [],
+        "recipes": [],
+        "shimmer": []
+      },
+      "resolution": {
+        "itemStages": {
+          "SOTS/RotHeart": "<stage-id>"
+        },
+        "sourceStages": {
+          "SOTS/Famished": "<stage-id>"
+        }
+      }
+    },
+    {
+      "id": "unassigned-combat-item.d25272f9da48",
+      "kind": "unassigned-combat-item",
+      "item": "SOTS/TheDarkEye",
+      "displayName": "The Dark Eye",
+      "classification": {
+        "category": "Accessory",
+        "classes": [
+          "void"
+        ]
+      },
+      "evidence": {
+        "drops": [
+          {
+            "sourceKind": "npc",
+            "source": "SOTS/WallMimic",
+            "conditions": []
+          }
+        ],
+        "shops": [],
+        "recipes": [],
+        "shimmer": []
+      },
+      "resolution": {
+        "itemStages": {
+          "SOTS/TheDarkEye": "<stage-id>"
+        },
+        "sourceStages": {
+          "SOTS/WallMimic": "<stage-id>"
+        }
+      }
+    }
+  ]
 }

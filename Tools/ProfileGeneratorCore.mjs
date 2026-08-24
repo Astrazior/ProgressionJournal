@@ -188,6 +188,8 @@ function generateProfileCore(
     manifest.contentMods
     ?? (manifest.requiredMods ?? []).map(requiredMod => requiredMod.name));
   const stageIndexes = new Map(manifest.stages.map((stage, index) => [stage.id, index]));
+  const mechanicalBossStageIds = getMechanicalBossStageIds(manifest, stageIndexes);
+  const mechanicalBossStages = new Set(mechanicalBossStageIds);
   const snapshotStageCorrections = new Map();
   const normalizeObservedStage = (record, label) => {
     const earliestStageIndex = resolveObservedStageIndex(
@@ -379,6 +381,10 @@ function generateProfileCore(
     }
     return unlock(id, stage, via, available, acquiredBy, metadata);
   };
+  const anyMechanicalBossUnlockMetadata = (conditions, stageId) =>
+    mechanicalBossStages.has(stageId) && hasAnyMechanicalBossUnlockCondition(conditions)
+      ? { isAnyMechanicalBossUnlock: true }
+      : {};
   const report = {
     profileId: manifest.id,
     generatedAtUtc: new Date().toISOString(),
@@ -501,7 +507,10 @@ function generateProfileCore(
             drop.item,
             stage.id,
             `${drop.sourceType}:${source}`,
-            eventMetadataForSource(source, stageIndex));
+            {
+              ...eventMetadataForSource(source, stageIndex),
+              ...anyMechanicalBossUnlockMetadata(drop.conditions, stage.id)
+            });
         }
       }
     }
@@ -535,7 +544,8 @@ function generateProfileCore(
               {
                 eventCategory: event.eventCategory ?? null,
                 customEventName: event.customEventName ?? "",
-                eventIcon: event.eventIcon ?? ""
+                eventIcon: event.eventIcon ?? "",
+                ...anyMechanicalBossUnlockMetadata(drop.conditions, stage.id)
               });
           }
         }
@@ -586,7 +596,8 @@ function generateProfileCore(
                 conditions: shop.conditions ?? [],
                 prerequisites: conditionContext.prerequisites,
                 currencyItems: conditionContext.currencyItems ?? null
-              }
+              },
+              ...anyMechanicalBossUnlockMetadata(shop.conditions, stage.id)
             })) {
             changed = true;
           }
@@ -604,7 +615,11 @@ function generateProfileCore(
         item: drop.item,
         available
       })) {
-        unlockAtStage(drop.item, stage.id, `global:${drop.source}`);
+        unlockAtStage(
+          drop.item,
+          stage.id,
+          `global:${drop.source}`,
+          anyMechanicalBossUnlockMetadata(drop.conditions, stage.id));
       }
     }
     for (const drop of worldDrops) {
@@ -617,7 +632,11 @@ function generateProfileCore(
         item: drop.item,
         available
       })) {
-        unlockAtStage(drop.item, stage.id, `world:${drop.source}`);
+        unlockAtStage(
+          drop.item,
+          stage.id,
+          `world:${drop.source}`,
+          anyMechanicalBossUnlockMetadata(stageConditions ?? [], stage.id));
       }
     }
     for (const [itemId, catches] of fishingByItem) {
@@ -666,7 +685,10 @@ function generateProfileCore(
                 drop.item,
                 stage.id,
                 `container:${container}`,
-                inheritedContainerEventMetadata(container, stage.id, acquiredBy))) {
+                {
+                  ...inheritedContainerEventMetadata(container, stage.id, acquiredBy),
+                  ...anyMechanicalBossUnlockMetadata(drop.conditions, stage.id)
+                })) {
                 changed = true;
               }
             }
@@ -685,10 +707,23 @@ function generateProfileCore(
             }));
           if (!openRecipe) continue;
 
+          const newlyAvailableIngredients = openRecipe.ingredients
+            .map(ingredient => acquiredBy.get(ingredient.item))
+            .filter(acquisition => acquisition?.stage === stage.id);
+          const inheritsAnyMechanicalBossUnlock = mechanicalBossStages.has(stage.id)
+            && newlyAvailableIngredients.length > 0
+            && newlyAvailableIngredients.every(
+              acquisition => acquisition.isAnyMechanicalBossUnlock === true);
           if (!unlockAtStage(
             result,
             stage.id,
-            `recipe:${openRecipe.ingredients.map(value => value.item).join("+")}`)) {
+            `recipe:${openRecipe.ingredients.map(value => value.item).join("+")}`,
+            {
+              ...anyMechanicalBossUnlockMetadata(openRecipe.conditions, stage.id),
+              ...(inheritsAnyMechanicalBossUnlock
+                ? { isAnyMechanicalBossUnlock: true }
+                : {})
+            })) {
             continue;
           }
           const item = itemById.get(result);
@@ -748,18 +783,26 @@ function generateProfileCore(
         });
         buffItems.add(id);
       } else {
+        const isAnyMechanicalBossUnlock = acquiredBy.get(id)?.isAnyMechanicalBossUnlock === true;
         const entry = {
           key: `new.${slug(id)}`,
           category: classification.category,
           classes,
           itemGroups: [[itemReference]],
-          evaluations: [{ stageId: stage.id, tier: "FromGuide", scope: "StageOnly" }],
+          evaluations: isAnyMechanicalBossUnlock
+            ? mechanicalBossStageIds.map(stageId => ({
+              stageId,
+              tier: "FromGuide",
+              scope: "StageOnly"
+            }))
+            : [{ stageId: stage.id, tier: "FromGuide", scope: "StageOnly" }],
           wiki: [],
           fishingSources: [
             ...toFishingSources(fishingByItem.get(id) ?? []),
             ...(manifest.fishingSources?.[id] ?? [])
           ],
           isSupportWeapon: isVanillaSupportItem(id),
+          ...(isAnyMechanicalBossUnlock ? { isAnyMechanicalBossUnlock: true } : {}),
           eventCategory: acquiredBy.get(id)?.eventCategory ?? null,
           customEventName: acquiredBy.get(id)?.customEventName ?? "",
           eventIcon: acquiredBy.get(id)?.eventIcon ?? ""
@@ -1914,11 +1957,32 @@ function earliestStageIndex(indexes) {
 }
 
 function anyMechanicalBossStageIndex(manifest, stageIndexes) {
-  return earliestStageIndex([
+  return earliestStageIndex(getMechanicalBossStageIndexes(manifest, stageIndexes));
+}
+
+function getMechanicalBossStageIds(manifest, stageIndexes) {
+  return [...new Set(getMechanicalBossStageIndexes(manifest, stageIndexes))]
+    .map(index => manifest.stages[index]?.id)
+    .filter(Boolean);
+}
+
+function getMechanicalBossStageIndexes(manifest, stageIndexes) {
+  return [
     stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss1", "destroyer"),
     stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss2", "twins"),
     stageIndexByFlagOrId(manifest, stageIndexes, "downedMechBoss3", "skeletron-prime")
-  ]);
+  ]
+    .filter(index => index >= 0)
+    .sort((left, right) => left - right);
+}
+
+function hasAnyMechanicalBossUnlockCondition(conditions) {
+  return (conditions ?? []).some(condition =>
+    condition.key === "Conditions.DownedMechBossAny"
+    || condition.key === "Conditions.DownedOldOnesArmyT2"
+    || (condition.type ?? "").endsWith("+OneMechDefated")
+    || (condition.type ?? "").endsWith("+BeatAnyMechBoss")
+    || (condition.type ?? "").endsWith("+YoyosYelets"));
 }
 
 function inferConditionTypeStageIndex(type, manifest, stageIndexes) {

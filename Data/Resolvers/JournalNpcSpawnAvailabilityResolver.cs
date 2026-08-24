@@ -61,9 +61,6 @@ internal static class JournalNpcSpawnAvailabilityResolver
     private static readonly MethodInfo? SpawnHelperDoChecksMethod = typeof(NPCLoader).Assembly
         .GetType("Terraria.ModLoader.Utilities.NPCSpawnHelper")
         ?.GetMethod("DoChecks", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-    private static readonly FieldInfo? EditSpawnPoolHookField = typeof(NPCLoader).GetField(
-        "HookEditSpawnPool",
-        BindingFlags.Static | BindingFlags.NonPublic);
     private static readonly FieldInfo? EditSpawnRateHookField = typeof(NPCLoader).GetField(
         "HookEditSpawnRate",
         BindingFlags.Static | BindingFlags.NonPublic);
@@ -222,6 +219,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
         LegacyBiomeFlagCatalog LegacyBiomeFlags,
         SpawnEvent[] Events,
         StaticBooleanFlag[] CustomEventFlags,
+        GlobalNPC[] EditSpawnPoolGlobals,
         HashSet<string> Failures,
         ProbeCounters Counters);
 
@@ -444,6 +442,9 @@ internal static class JournalNpcSpawnAvailabilityResolver
         var legacyBiomeFlags = CreateLegacyBiomeFlags(player, environments);
         var customEventFlags = CreateCustomEventFlags();
         var events = CreateEvents(customEventFlags);
+        var editSpawnPoolGlobals = ModContent.GetContent<GlobalNPC>()
+            .Where(static globalNpc => OverridesGlobalNpcMethod(globalNpc, nameof(GlobalNPC.EditSpawnPool)))
+            .ToArray();
         using var progression = new JournalRuntimeProgressionScenarios();
         var catalog = new Catalog(
             [],
@@ -456,6 +457,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
             legacyBiomeFlags,
             events,
             customEventFlags,
+            editSpawnPoolGlobals,
             [],
             new ProbeCounters
             {
@@ -1084,7 +1086,7 @@ internal static class JournalNpcSpawnAvailabilityResolver
                 }
             }
 
-            foreach (var globalNpc in GetEditSpawnPoolGlobals())
+            foreach (var globalNpc in catalog.EditSpawnPoolGlobals)
             {
                 globalNpc.EditSpawnPool(pool, spawnInfo);
             }
@@ -1101,11 +1103,6 @@ internal static class JournalNpcSpawnAvailabilityResolver
         {
             RecordFailure(catalog, "exact spawn pool", exception);
         }
-    }
-
-    private static IEnumerable<GlobalNPC> GetEditSpawnPoolGlobals()
-    {
-        return GetHookGlobals(EditSpawnPoolHookField);
     }
 
     private static IReadOnlyList<string> TraceSpawnRateHooks(Player player)
@@ -1163,6 +1160,13 @@ internal static class JournalNpcSpawnAvailabilityResolver
         return hookList?.GetType().GetField(
             "hookGlobals",
             BindingFlags.Instance | BindingFlags.NonPublic);
+    }
+
+    private static bool OverridesGlobalNpcMethod(GlobalNPC globalNpc, string methodName)
+    {
+        return globalNpc.GetType().GetMethod(methodName, BindingFlags.Instance | BindingFlags.Public)?.DeclaringType
+               is { } declaringType
+               && declaringType != typeof(GlobalNPC);
     }
 
     private static void ObserveChosenSpawn(
@@ -1769,6 +1773,9 @@ internal static class JournalNpcSpawnAvailabilityResolver
         };
         PlayerLoaderSetupPlayerMethod?.Invoke(null, [player]);
         player.ResetEffects();
+        player.statLifeMax = 500;
+        player.statLifeMax2 = 500;
+        player.statLife = 500;
 
         return player;
     }

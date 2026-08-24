@@ -45,6 +45,10 @@ assert(journalContentBuilderSource.includes(
     "armorSet.Variants.Max(static variant => variant.TotalDefense)")
   && journalContentBuilderSource.includes("_ => 0"),
 "Only New equipment must sort armor and weapons by descending strength");
+assert(journalContentBuilderSource.includes("AnyMechanicalBossEquipmentBlock")
+  && journalContentBuilderSource.includes("entry.Entry.IsAnyMechanicalBossUnlock")
+  && journalContentBuilderSource.includes("AnyMechanicalBossEquipmentTooltip"),
+"Any-mechanical-boss equipment must render in its own explained block");
 assert(localizedTextSource.includes("Language.Exists(Key)")
   && localizedTextSource.includes("ReadLocaleValues(root, result)")
   && localizedTextSource.includes("WriteLocaleValues(writer, value)"),
@@ -637,6 +641,10 @@ assert(npcSpawnResolverSource.includes("ModContent.GetContent<ModNPC>()"),
   "Enemy availability must enumerate ModNPC through the public content API");
 assert(npcSpawnResolverSource.includes("globalNpc.EditSpawnPool(pool, spawnInfo)"),
   "Enemy availability does not execute GlobalNPC.EditSpawnPool");
+assert(npcSpawnResolverSource.includes("ModContent.GetContent<GlobalNPC>()")
+  && npcSpawnResolverSource.includes("OverridesGlobalNpcMethod")
+  && !npcSpawnResolverSource.includes("EditSpawnPoolHookField"),
+"Enemy availability must enumerate EditSpawnPool globals through the public content API");
 assert(npcSpawnResolverSource.includes("globalNpc.EditSpawnRate(player, ref spawnRate, ref maxSpawns)"),
   "Enemy availability diagnostics do not inspect GlobalNPC.EditSpawnRate");
 assert(npcSpawnResolverSource.includes("NPCLoader.ChooseSpawn(spawnInfo)"),
@@ -733,7 +741,8 @@ assert(npcSpawnResolverSource.includes("JournalRuntimeProgressionScenarios"),
   "Enemy availability does not use the shared progression scenarios");
 assert(npcSpawnResolverSource.includes("var player = CreateProbePlayer()")
   && npcSpawnResolverSource.includes("PlayerLoaderSetupPlayerMethod?.Invoke")
-  && npcSpawnResolverSource.includes("player.ResetEffects()"),
+  && npcSpawnResolverSource.includes("player.ResetEffects()")
+  && npcSpawnResolverSource.includes("player.statLifeMax2 = 500;"),
 "Enemy availability must isolate spawn-rate hooks from the live player's ModPlayer effects");
 assert(npcSpawnResolverSource.includes("CreateLegacyBiomeFlags")
   && npcSpawnResolverSource.includes("LegacyBiomeFlags.ByEnvironment.TryGetValue")

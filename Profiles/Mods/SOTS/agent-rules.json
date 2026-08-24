@@ -601,6 +601,34 @@
       "reason": "The Traveling Merchant independently rolls Recursive Bow into his stock with a 1-in-10 chance and no progression flag."
     },
     {
+      "id": "traveling-merchant-safety-switch",
+      "kind": "world-source",
+      "item": "SOTS/SafetySwitch",
+      "stageId": "start",
+      "sourceName": "Traveling Merchant",
+      "sourceReference": "Terraria/TravellingMerchant",
+      "dropRate": 0.2,
+      "showDropRate": true,
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-24",
+      "reason": "SOTSNPCShop.SetupTravelShop independently rolls Safety Switch into stock with a 1-in-5 chance and no progression flag."
+    },
+    {
+      "id": "traveling-merchant-crushing-capacitor",
+      "kind": "world-source",
+      "item": "SOTS/CrushingCapacitor",
+      "stageId": "start",
+      "sourceName": "Traveling Merchant",
+      "sourceReference": "Terraria/TravellingMerchant",
+      "dropRate": 0.25,
+      "showDropRate": true,
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-24",
+      "reason": "SOTSNPCShop.SetupTravelShop independently rolls Crushing Capacitor into stock with a 1-in-4 chance and no progression flag."
+    },
+    {
       "id": "qualifying-chest-spiked-club",
       "kind": "world-source",
       "item": "SOTS/SpikedClub",
@@ -669,6 +697,7 @@
       "stageId": "start",
       "sourceName": "Locked Ruined Chest",
       "sourceReference": "SOTS/RuinedChestTile",
+      "sourceItem": "SOTS/RuinedChest",
       "showDropRate": false,
       "conditions": [
         "One item from the Ruined Chest loot rotation; opened with an Old Key"
@@ -684,6 +713,7 @@
       "items": [
         "SOTS/AncientSteelLantern",
         "SOTS/AutoClicker",
+        "SOTS/BackupBow",
         "SOTS/BrassWhip",
         "SOTS/EarthenHelmet",
         "SOTS/HandCannon",
@@ -693,6 +723,7 @@
       "stageId": "start",
       "sourceName": "Locked Earthen Plating Storage",
       "sourceReference": "SOTS/EarthenPlatingStorageTile",
+      "sourceItem": "SOTS/EarthenPlatingStorage",
       "showDropRate": false,
       "conditions": [
         "One item from the storage loot rotation; opened with an Old Key"
@@ -706,6 +737,7 @@
       "id": "abandoned-village-gula-vault-items",
       "kind": "world-source",
       "items": [
+        "SOTS/AcidicInjection",
         "SOTS/Blongus",
         "SOTS/EarthenChestplate",
         "SOTS/EarthenLeggings",
@@ -714,11 +746,13 @@
         "SOTS/PixelBlaster",
         "SOTS/PlagueSpitter",
         "SOTS/SandstormPouch",
-        "SOTS/StarshardSaber"
+        "SOTS/StarshardSaber",
+        "SOTS/VisionAmulet"
       ],
       "stageId": "start",
       "sourceName": "Locked Gula Vault",
       "sourceReference": "SOTS/GulaVaultTile",
+      "sourceItem": "SOTS/GulaVault",
       "showDropRate": false,
       "conditions": [
         "One item from the matching Gula Vault loot rotation; opened with an Old Key"
@@ -733,12 +767,14 @@
       "kind": "world-source",
       "items": [
         "SOTS/Dreamcatcher",
+        "SOTS/EmptyNecklace",
         "SOTS/GobletOfEntrails",
         "SOTS/Sunbulb"
       ],
       "stageId": "start",
       "sourceName": "Sanctuary Invidia Chest",
       "sourceReference": "SOTS/InvidiaChestTile",
+      "sourceItem": "SOTS/InvidiaChest",
       "showDropRate": false,
       "conditions": [
         "Guaranteed in its matching Sanctuary quarter chest"
@@ -747,6 +783,38 @@
       "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
       "checkedAt": "2026-08-16",
       "reason": "Sanctuary world generation guarantees each item in a specific Invidia Chest and applies no boss-progression gate."
+    },
+    {
+      "id": "pyramid-royal-ruby-shards",
+      "kind": "world-source",
+      "item": "SOTS/RoyalRubyShard",
+      "stageId": "start",
+      "sourceName": "Pyramid Keystone Shards",
+      "sourceReference": "SOTS/RoyalRubyShardTile",
+      "showDropRate": false,
+      "conditions": [
+        "Mined from world-generated Pyramid shard tiles"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-24",
+      "reason": "The Pyramid generates breakable Royal Ruby Shard tiles. Their shards feed the Tainted Keystone and Void Anomaly conversion chain."
+    },
+    {
+      "id": "abandoned-village-vibrant-ore",
+      "kind": "world-source",
+      "item": "SOTS/VibrantOre",
+      "stageId": "start",
+      "sourceName": "Vibrant Ore",
+      "sourceReference": "SOTS/VibrantOreTile",
+      "showDropRate": false,
+      "conditions": [
+        "Mined from world-generated Vibrant Ore in the Abandoned Village"
+      ],
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-24",
+      "reason": "Abandoned Village world generation places Vibrant Ore with no boss-progression gate; its bar recipe unlocks Harvester's Scythe."
     },
     {
       "id": "post-plantera-desert-biome-chest-dune-splicer",
@@ -903,6 +971,70 @@
       "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
       "checkedAt": "2026-08-16",
       "reason": "The Void Anomaly creates Wonder Eggs after all seven gemstone keys are slotted; Shimmer then transforms a Wonder Egg into Jumbo Surprise Egg."
+    },
+    {
+      "id": "custom-effect-shared-accessories",
+      "kind": "item-override",
+      "items": [
+        "SOTS/AcidicInjection",
+        "SOTS/EarthDrive",
+        "SOTS/EndothermicAfterburner",
+        "SOTS/HarvestersScythe",
+        "SOTS/ParticleRelocator",
+        "SOTS/RotHeart",
+        "SOTS/VisionAmulet"
+      ],
+      "override": {
+        "category": "Accessory",
+        "classes": [
+          "melee",
+          "ranged",
+          "magic",
+          "summoner",
+          "void"
+        ]
+      },
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-24",
+      "reason": "These accessories implement shared combat, survival, movement, or critical-hit effects through custom SOTS ModPlayer fields that the generic DamageClass probe cannot observe."
+    },
+    {
+      "id": "backup-bow-ranged-accessory",
+      "kind": "item-override",
+      "item": "SOTS/BackupBow",
+      "override": {
+        "category": "Accessory",
+        "classes": [
+          "ranged"
+        ]
+      },
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-24",
+      "reason": "Backup Bow enables SOTS' custom backup-bow attack and is ranged equipment; the effect is stored only in SOTSPlayer fields."
+    },
+    {
+      "id": "custom-effect-void-accessories",
+      "kind": "item-override",
+      "items": [
+        "SOTS/CrushingCapacitor",
+        "SOTS/MrMcMillen",
+        "SOTS/SafetySwitch",
+        "SOTS/TheDarkEye",
+        "SOTS/VoidAnomaly",
+        "SOTS/VoidmageIncubator"
+      ],
+      "override": {
+        "category": "Accessory",
+        "classes": [
+          "void"
+        ]
+      },
+      "sourceUrl": "https://github.com/VortexOfRainbows/SOTS",
+      "sourceVersion": "SOTS 0.25.1.9 bundled source for tModLoader 2026.5",
+      "checkedAt": "2026-08-24",
+      "reason": "These accessories alter Void resource, crusher, or Void ability fields directly, so the generic DamageClass probe cannot infer their Void classification."
     },
     {
       "id": "registered-unobtainable-weapons",

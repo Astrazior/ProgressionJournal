@@ -48,7 +48,8 @@ public sealed class JournalEntry
 			null,
 			null,
 			null,
-			null)
+			null,
+			false)
 	{
 	}
 
@@ -93,7 +94,8 @@ public sealed class JournalEntry
 			null,
 			null,
 			null,
-			null)
+			null,
+			false)
 	{
 	}
 
@@ -108,7 +110,8 @@ public sealed class JournalEntry
 		string? customEventName = null,
 		string? eventIcon = null,
 		IEnumerable<JournalWikiRecommendation>? wikiRecommendations = null,
-		IEnumerable<JournalFishingSource>? fishingSources = null)
+		IEnumerable<JournalFishingSource>? fishingSources = null,
+		bool isAnyMechanicalBossUnlock = false)
 		: this(
 			key,
 			category,
@@ -121,7 +124,8 @@ public sealed class JournalEntry
 			customEventName,
 			eventIcon,
 			wikiRecommendations,
-			fishingSources)
+			fishingSources,
+			isAnyMechanicalBossUnlock)
 	{
 	}
 
@@ -137,7 +141,8 @@ public sealed class JournalEntry
 		string? customEventName,
 		string? eventIcon,
 		IEnumerable<JournalWikiRecommendation>? wikiRecommendations,
-		IEnumerable<JournalFishingSource>? fishingSources)
+		IEnumerable<JournalFishingSource>? fishingSources,
+		bool isAnyMechanicalBossUnlock)
 	{
 		Key = key;
 		Category = category;
@@ -147,6 +152,7 @@ public sealed class JournalEntry
 		CustomEventName = customEventName?.Trim() ?? string.Empty;
 		EventIcon = eventIcon?.Trim() ?? string.Empty;
 		IsSupportWeapon = isSupportWeapon;
+		IsAnyMechanicalBossUnlock = isAnyMechanicalBossUnlock;
 		IsArmorSet = isArmorSet;
 		ItemGroups = itemGroups.ToArray();
 
@@ -177,6 +183,8 @@ public sealed class JournalEntry
 	public string EventIcon { get; }
 
 	public bool IsSupportWeapon { get; }
+
+	public bool IsAnyMechanicalBossUnlock { get; }
 
 	internal bool IsArmorSet { get; }
 

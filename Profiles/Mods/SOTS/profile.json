@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-08-16T13:10:04.119Z",
+  "generatedAtUtc": "2026-08-24T12:42:15.511Z",
   "requiredMods": [
     {
       "name": "SOTS",
@@ -503,12 +503,37 @@
     {
       "item": {
         "mod": "SOTS",
+        "item": "AcidicInjection",
+        "displayName": "Overkill Injection"
+      },
+      "sourceName": "Locked Gula Vault",
+      "sourceReference": "SOTS/GulaVaultTile",
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "GulaVault",
+        "displayName": "Gula Vault"
+      },
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "One item from the matching Gula Vault loot rotation; opened with an Old Key"
+      ]
+    },
+    {
+      "item": {
+        "mod": "SOTS",
         "item": "AncientSteelLantern",
         "displayName": "Ancient Steel Lantern"
       },
       "sourceName": "Locked Earthen Plating Storage",
       "sourceReference": "SOTS/EarthenPlatingStorageTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "EarthenPlatingStorage",
+        "displayName": "Earthen Plating Storage"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -525,7 +550,32 @@
       },
       "sourceName": "Locked Earthen Plating Storage",
       "sourceReference": "SOTS/EarthenPlatingStorageTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "EarthenPlatingStorage",
+        "displayName": "Earthen Plating Storage"
+      },
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "One item from the storage loot rotation; opened with an Old Key"
+      ]
+    },
+    {
+      "item": {
+        "mod": "SOTS",
+        "item": "BackupBow",
+        "displayName": "Backup Bow"
+      },
+      "sourceName": "Locked Earthen Plating Storage",
+      "sourceReference": "SOTS/EarthenPlatingStorageTile",
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "EarthenPlatingStorage",
+        "displayName": "Earthen Plating Storage"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -542,7 +592,11 @@
       },
       "sourceName": "Locked Gula Vault",
       "sourceReference": "SOTS/GulaVaultTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "GulaVault",
+        "displayName": "Gula Vault"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -559,7 +613,11 @@
       },
       "sourceName": "Locked Earthen Plating Storage",
       "sourceReference": "SOTS/EarthenPlatingStorageTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "EarthenPlatingStorage",
+        "displayName": "Earthen Plating Storage"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -603,12 +661,31 @@
     {
       "item": {
         "mod": "SOTS",
+        "item": "CrushingCapacitor",
+        "displayName": "Crushing Capacitor"
+      },
+      "sourceName": "Traveling Merchant",
+      "sourceReference": "Terraria/TravellingMerchant",
+      "sourceItem": null,
+      "dropRate": 0.25,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": true,
+      "conditions": []
+    },
+    {
+      "item": {
+        "mod": "SOTS",
         "item": "Dreamcatcher",
         "displayName": "Dreamcatcher"
       },
       "sourceName": "Sanctuary Invidia Chest",
       "sourceReference": "SOTS/InvidiaChestTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "InvidiaChest",
+        "displayName": "Invidia Chest"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -642,7 +719,11 @@
       },
       "sourceName": "Locked Gula Vault",
       "sourceReference": "SOTS/GulaVaultTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "GulaVault",
+        "displayName": "Gula Vault"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -659,7 +740,11 @@
       },
       "sourceName": "Locked Earthen Plating Storage",
       "sourceReference": "SOTS/EarthenPlatingStorageTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "EarthenPlatingStorage",
+        "displayName": "Earthen Plating Storage"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -676,7 +761,11 @@
       },
       "sourceName": "Locked Gula Vault",
       "sourceReference": "SOTS/GulaVaultTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "GulaVault",
+        "displayName": "Gula Vault"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -693,7 +782,11 @@
       },
       "sourceName": "Locked Ruined Chest",
       "sourceReference": "SOTS/RuinedChestTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "RuinedChest",
+        "displayName": "Ruined Chest"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -710,7 +803,11 @@
       },
       "sourceName": "Sanctuary Invidia Chest",
       "sourceReference": "SOTS/InvidiaChestTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "InvidiaChest",
+        "displayName": "Invidia Chest"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -727,7 +824,11 @@
       },
       "sourceName": "Locked Earthen Plating Storage",
       "sourceReference": "SOTS/EarthenPlatingStorageTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "EarthenPlatingStorage",
+        "displayName": "Earthen Plating Storage"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -744,7 +845,11 @@
       },
       "sourceName": "Locked Gula Vault",
       "sourceReference": "SOTS/GulaVaultTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "GulaVault",
+        "displayName": "Gula Vault"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -761,7 +866,11 @@
       },
       "sourceName": "Locked Gula Vault",
       "sourceReference": "SOTS/GulaVaultTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "GulaVault",
+        "displayName": "Gula Vault"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -778,7 +887,11 @@
       },
       "sourceName": "Locked Earthen Plating Storage",
       "sourceReference": "SOTS/EarthenPlatingStorageTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "EarthenPlatingStorage",
+        "displayName": "Earthen Plating Storage"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -795,7 +908,11 @@
       },
       "sourceName": "Locked Earthen Plating Storage",
       "sourceReference": "SOTS/EarthenPlatingStorageTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "EarthenPlatingStorage",
+        "displayName": "Earthen Plating Storage"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -859,7 +976,11 @@
       },
       "sourceName": "Locked Gula Vault",
       "sourceReference": "SOTS/GulaVaultTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "GulaVault",
+        "displayName": "Gula Vault"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -876,7 +997,11 @@
       },
       "sourceName": "Locked Gula Vault",
       "sourceReference": "SOTS/GulaVaultTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "GulaVault",
+        "displayName": "Gula Vault"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -935,12 +1060,31 @@
     {
       "item": {
         "mod": "SOTS",
+        "item": "SafetySwitch",
+        "displayName": "Safety Switch"
+      },
+      "sourceName": "Traveling Merchant",
+      "sourceReference": "Terraria/TravellingMerchant",
+      "sourceItem": null,
+      "dropRate": 0.2,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": true,
+      "conditions": []
+    },
+    {
+      "item": {
+        "mod": "SOTS",
         "item": "SandstormPouch",
         "displayName": "Sandstorm Pouch"
       },
       "sourceName": "Locked Gula Vault",
       "sourceReference": "SOTS/GulaVaultTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "GulaVault",
+        "displayName": "Gula Vault"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -1008,7 +1152,11 @@
       },
       "sourceName": "Locked Gula Vault",
       "sourceReference": "SOTS/GulaVaultTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "GulaVault",
+        "displayName": "Gula Vault"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -1025,7 +1173,11 @@
       },
       "sourceName": "Sanctuary Invidia Chest",
       "sourceReference": "SOTS/InvidiaChestTile",
-      "sourceItem": null,
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "InvidiaChest",
+        "displayName": "Invidia Chest"
+      },
       "dropRate": 1,
       "stackMin": 1,
       "stackMax": 1,
@@ -1097,6 +1249,27 @@
       "stackMax": 1,
       "showDropRate": true,
       "conditions": []
+    },
+    {
+      "item": {
+        "mod": "SOTS",
+        "item": "VisionAmulet",
+        "displayName": "Elemental Amulet"
+      },
+      "sourceName": "Locked Gula Vault",
+      "sourceReference": "SOTS/GulaVaultTile",
+      "sourceItem": {
+        "mod": "SOTS",
+        "item": "GulaVault",
+        "displayName": "Gula Vault"
+      },
+      "dropRate": 1,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": [
+        "One item from the matching Gula Vault loot rotation; opened with an Old Key"
+      ]
     },
     {
       "item": {
@@ -5450,7 +5623,17 @@
       ],
       "evaluations": [
         {
+          "stageId": "twins",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
           "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -5458,6 +5641,7 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": true,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -6759,11 +6943,22 @@
           "stageId": "twins",
           "tier": "FromGuide",
           "scope": "StageOnly"
+        },
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
         }
       ],
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -6933,11 +7128,22 @@
           "stageId": "twins",
           "tier": "FromGuide",
           "scope": "StageOnly"
+        },
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
         }
       ],
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -6988,7 +7194,17 @@
       ],
       "evaluations": [
         {
+          "stageId": "twins",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
           "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -6996,6 +7212,7 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": true,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -7479,11 +7696,22 @@
           "stageId": "twins",
           "tier": "FromGuide",
           "scope": "StageOnly"
+        },
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
         }
       ],
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -10152,7 +10380,17 @@
       ],
       "evaluations": [
         {
+          "stageId": "twins",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
           "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -10160,6 +10398,7 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": true,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -12982,7 +13221,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "excavator",
+          "stageId": "pharaohs-curse",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -14011,11 +14250,22 @@
           "stageId": "twins",
           "tier": "FromGuide",
           "scope": "StageOnly"
+        },
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
         }
       ],
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -16060,11 +16310,22 @@
           "stageId": "twins",
           "tier": "FromGuide",
           "scope": "StageOnly"
+        },
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
         }
       ],
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -16856,7 +17117,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "excavator",
+          "stageId": "pharaohs-curse",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -17561,7 +17822,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "excavator",
+          "stageId": "pharaohs-curse",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -18417,11 +18678,22 @@
           "stageId": "twins",
           "tier": "FromGuide",
           "scope": "StageOnly"
+        },
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
         }
       ],
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -18769,11 +19041,22 @@
           "stageId": "twins",
           "tier": "FromGuide",
           "scope": "StageOnly"
+        },
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
         }
       ],
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -19592,11 +19875,22 @@
           "stageId": "twins",
           "tier": "FromGuide",
           "scope": "StageOnly"
+        },
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
         }
       ],
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -19975,11 +20269,22 @@
           "stageId": "twins",
           "tier": "FromGuide",
           "scope": "StageOnly"
+        },
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
         }
       ],
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -21988,11 +22293,22 @@
           "stageId": "twins",
           "tier": "FromGuide",
           "scope": "StageOnly"
+        },
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
         }
       ],
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -22382,11 +22698,22 @@
           "stageId": "twins",
           "tier": "FromGuide",
           "scope": "StageOnly"
+        },
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
         }
       ],
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -23071,7 +23398,17 @@
       ],
       "evaluations": [
         {
+          "stageId": "twins",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
           "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -23079,6 +23416,7 @@
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": true,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -23430,11 +23768,22 @@
           "stageId": "twins",
           "tier": "FromGuide",
           "scope": "StageOnly"
+        },
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
         }
       ],
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -25451,11 +25800,22 @@
           "stageId": "twins",
           "tier": "FromGuide",
           "scope": "StageOnly"
+        },
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
         }
       ],
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -25838,11 +26198,22 @@
           "stageId": "twins",
           "tier": "FromGuide",
           "scope": "StageOnly"
+        },
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
         }
       ],
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -26111,11 +26482,22 @@
           "stageId": "twins",
           "tier": "FromGuide",
           "scope": "StageOnly"
+        },
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
         }
       ],
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -28140,7 +28522,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "excavator",
+          "stageId": "pharaohs-curse",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -31367,6 +31749,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.sots.backupbow",
+      "category": "Accessory",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "SOTS",
+            "item": "BackupBow",
+            "displayName": "Backup Bow"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.sots.bagofcharms",
       "category": "Accessory",
       "classes": [
@@ -31634,11 +32045,22 @@
           "stageId": "twins",
           "tier": "FromGuide",
           "scope": "StageOnly"
+        },
+        {
+          "stageId": "destroyer",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        },
+        {
+          "stageId": "skeletron-prime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
         }
       ],
       "wiki": [],
       "fishingSources": [],
       "isSupportWeapon": false,
+      "isAnyMechanicalBossUnlock": true,
       "eventCategory": null,
       "customEventName": "",
       "eventIcon": ""
@@ -32686,6 +33108,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.sots.crushingcapacitor",
+      "category": "Accessory",
+      "classes": [
+        "void"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "SOTS",
+            "item": "CrushingCapacitor",
+            "displayName": "Crushing Capacitor"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.sots.crushingtransformer",
       "category": "Accessory",
       "classes": [
@@ -32858,6 +33309,39 @@
             "mod": "Terraria",
             "item": "SandBoots",
             "displayName": "Dunerider Boots"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.sots.visionamulet",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "void"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "SOTS",
+            "item": "VisionAmulet",
+            "displayName": "Elemental Amulet"
           }
         ]
       ],
@@ -34109,6 +34593,39 @@
       "eventIcon": ""
     },
     {
+      "key": "new.sots.harvestersscythe",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "void"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "SOTS",
+            "item": "HarvestersScythe",
+            "displayName": "Harvester's Scythe"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.sots.hellfireicosahedron",
       "category": "Accessory",
       "classes": [
@@ -35331,6 +35848,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.sots.mrmcmillen",
+      "category": "Accessory",
+      "classes": [
+        "void"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "SOTS",
+            "item": "MrMcMillen",
+            "displayName": "Mr. McMillen"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.naturesgift",
       "category": "Accessory",
       "classes": [
@@ -35598,6 +36144,39 @@
             "mod": "SOTS",
             "item": "OlympianAegis",
             "displayName": "Olympian Aegis"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.sots.acidicinjection",
+      "category": "Accessory",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "void"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "SOTS",
+            "item": "AcidicInjection",
+            "displayName": "Overkill Injection"
           }
         ]
       ],
@@ -36215,6 +36794,35 @@
       "evaluations": [
         {
           "stageId": "king-slime",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.sots.safetyswitch",
+      "category": "Accessory",
+      "classes": [
+        "void"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "SOTS",
+            "item": "SafetySwitch",
+            "displayName": "Safety Switch"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -37727,6 +38335,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.sots.voidanomaly",
+      "category": "Accessory",
+      "classes": [
+        "void"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "SOTS",
+            "item": "VoidAnomaly",
+            "displayName": "Void Anomaly"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "advisor",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.sots.voidcharm",
       "category": "Accessory",
       "classes": [
@@ -37810,7 +38447,36 @@
       ],
       "evaluations": [
         {
-          "stageId": "excavator",
+          "stageId": "pharaohs-curse",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.sots.voidmageincubator",
+      "category": "Accessory",
+      "classes": [
+        "void"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "SOTS",
+            "item": "VoidmageIncubator",
+            "displayName": "Voidmage Incubator"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "plantera",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -38126,7 +38792,7 @@
       ],
       "evaluations": [
         {
-          "stageId": "advisor",
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }

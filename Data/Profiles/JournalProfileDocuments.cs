@@ -131,6 +131,8 @@ public sealed class JournalProfileEntryDocument
 
     public bool IsSupportWeapon { get; set; }
 
+    public bool IsAnyMechanicalBossUnlock { get; set; }
+
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public JournalEventCategory? EventCategory { get; set; }
 

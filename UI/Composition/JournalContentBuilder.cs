@@ -55,6 +55,12 @@ public static class JournalContentBuilder
     {
         var wikiEntries = entries.Where(static entry => entry.IsWikiRecommendation).ToArray();
         var newEntries = entries.Where(static entry => !entry.IsWikiRecommendation).ToArray();
+        var anyMechanicalBossEntries = newEntries
+            .Where(static entry => entry.Entry.IsAnyMechanicalBossUnlock)
+            .ToArray();
+        var regularEntries = newEntries
+            .Where(static entry => !entry.Entry.IsAnyMechanicalBossUnlock)
+            .ToArray();
 
         foreach (var group in wikiEntries.GroupBy(
                      static entry => entry.WikiRecommendation!.SourceName,
@@ -81,9 +87,20 @@ public static class JournalContentBuilder
             return;
         }
 
+        if (anyMechanicalBossEntries.Length > 0)
+        {
+            entryList.Add(CreateRecommendationBlock(
+                Language.GetTextValue("Mods.ProgressionJournal.UI.AnyMechanicalBossEquipmentBlock"),
+                anyMechanicalBossEntries,
+                JournalUiTheme.GetRecommendationBlockStyle(RecommendationTier.FromGuide),
+                onItemSelected,
+                onArmorSetSelected,
+                Language.GetTextValue("Mods.ProgressionJournal.UI.AnyMechanicalBossEquipmentTooltip")));
+        }
+
         foreach (var tier in TierOrder)
         {
-            var tierEntries = GetEntriesForTier(newEntries, tier);
+            var tierEntries = GetEntriesForTier(regularEntries, tier);
             if (tierEntries.Length == 0)
             {
                 continue;
