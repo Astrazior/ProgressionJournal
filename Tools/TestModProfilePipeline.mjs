@@ -21,6 +21,9 @@ const combatBuffRepositorySource = fs.readFileSync(
 const journalContentBuilderSource = fs.readFileSync(
   path.join(root, "UI", "Composition", "JournalContentBuilder.cs"),
   "utf8");
+const mechanicalBossDividerSource = fs.readFileSync(
+  path.join(root, "UI", "Visuals", "Elements", "JournalMechanicalBossDivider.cs"),
+  "utf8");
 const localizedTextSource = fs.readFileSync(
   path.join(root, "Data", "Profiles", "JournalLocalizedText.cs"),
   "utf8");
@@ -45,10 +48,20 @@ assert(journalContentBuilderSource.includes(
     "armorSet.Variants.Max(static variant => variant.TotalDefense)")
   && journalContentBuilderSource.includes("_ => 0"),
 "Only New equipment must sort armor and weapons by descending strength");
-assert(journalContentBuilderSource.includes("AnyMechanicalBossEquipmentBlock")
+assert(journalContentBuilderSource.includes("AppendEntryRows")
+  && journalContentBuilderSource.includes("AnyMechanicalBossEntryGap")
+  && journalContentBuilderSource.includes("JournalMechanicalBossDivider")
+  && journalContentBuilderSource.includes("JournalMechanicalBossHelpMarker")
+  && journalContentBuilderSource.includes("GetRowWidth(rowEntries)")
+  && journalContentBuilderSource.includes("AnyMechanicalBossEquipmentTooltip")
   && journalContentBuilderSource.includes("entry.Entry.IsAnyMechanicalBossUnlock")
-  && journalContentBuilderSource.includes("AnyMechanicalBossEquipmentTooltip"),
-"Any-mechanical-boss equipment must render in its own explained block");
+  && journalContentBuilderSource.includes("palette.Border"),
+"Any-mechanical-boss equipment must render last with a help marker after its final slot");
+assert(mechanicalBossDividerSource.includes("JournalTooltipRenderer.DrawRule")
+  && mechanicalBossDividerSource.includes("JournalMechanicalBossHelpMarker")
+  && !mechanicalBossDividerSource.includes("TextureAssets.MagicPixel")
+  && !mechanicalBossDividerSource.includes("JournalItemSlotRenderer.DrawBackground"),
+"The mechanical-boss help marker must use the existing divider texture without an item-slot frame");
 assert(localizedTextSource.includes("Language.Exists(Key)")
   && localizedTextSource.includes("ReadLocaleValues(root, result)")
   && localizedTextSource.includes("WriteLocaleValues(writer, value)"),

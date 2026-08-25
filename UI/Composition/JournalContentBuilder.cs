@@ -55,12 +55,6 @@ public static class JournalContentBuilder
     {
         var wikiEntries = entries.Where(static entry => entry.IsWikiRecommendation).ToArray();
         var newEntries = entries.Where(static entry => !entry.IsWikiRecommendation).ToArray();
-        var anyMechanicalBossEntries = newEntries
-            .Where(static entry => entry.Entry.IsAnyMechanicalBossUnlock)
-            .ToArray();
-        var regularEntries = newEntries
-            .Where(static entry => !entry.Entry.IsAnyMechanicalBossUnlock)
-            .ToArray();
 
         foreach (var group in wikiEntries.GroupBy(
                      static entry => entry.WikiRecommendation!.SourceName,
@@ -87,35 +81,31 @@ public static class JournalContentBuilder
             return;
         }
 
-        if (anyMechanicalBossEntries.Length > 0)
-        {
-            entryList.Add(CreateRecommendationBlock(
-                Language.GetTextValue("Mods.ProgressionJournal.UI.AnyMechanicalBossEquipmentBlock"),
-                anyMechanicalBossEntries,
-                JournalUiTheme.GetRecommendationBlockStyle(RecommendationTier.FromGuide),
-                onItemSelected,
-                onArmorSetSelected,
-                Language.GetTextValue("Mods.ProgressionJournal.UI.AnyMechanicalBossEquipmentTooltip")));
-        }
-
         foreach (var tier in TierOrder)
         {
-            var tierEntries = GetEntriesForTier(regularEntries, tier);
+            var tierEntries = GetEntriesForTier(newEntries, tier);
             if (tierEntries.Length == 0)
             {
                 continue;
             }
 
+            var regularTierEntries = tierEntries
+                .Where(static entry => !entry.Entry.IsAnyMechanicalBossUnlock)
+                .ToArray();
+            var anyMechanicalBossEntries = tierEntries
+                .Where(static entry => entry.Entry.IsAnyMechanicalBossUnlock)
+                .ToArray();
             var palette = JournalUiTheme.GetRecommendationBlockStyle(tier);
             var title = tier == RecommendationTier.FromGuide
                 ? Language.GetTextValue("Mods.ProgressionJournal.UI.NewEquipmentBlock")
                 : GetTierTitle(tier);
             entryList.Add(CreateRecommendationBlock(
                 title,
-                tierEntries,
+                regularTierEntries,
                 palette,
                 onItemSelected,
-                onArmorSetSelected));
+                onArmorSetSelected,
+                anyMechanicalBossEntries: anyMechanicalBossEntries));
         }
     }
 
@@ -876,7 +866,8 @@ public static class JournalContentBuilder
         JournalPanelStyle palette,
         Action<int>? onItemSelected,
         Action<JournalArmorSetFamily>? onArmorSetSelected,
-        string? headerHoverText = null)
+        string? headerHoverText = null,
+        IReadOnlyList<JournalStageEntry>? anyMechanicalBossEntries = null)
     {
         var block = JournalUiElementFactory.CreatePanel(preservePalette: true);
         block.Width.Set(0f, 1f);
@@ -892,6 +883,89 @@ public static class JournalContentBuilder
         block.Append(header);
         top += JournalUiMetrics.RecommendationHeaderHeight + JournalUiMetrics.RecommendationHeaderBottomSpacing;
 
+        var hasAnyCategory = AppendEntryCategories(
+            block,
+            entries,
+            ref top,
+            palette.Border,
+            onItemSelected,
+            onArmorSetSelected);
+
+        if (anyMechanicalBossEntries is { Count: > 0 })
+        {
+            if (hasAnyCategory)
+            {
+                top += JournalUiMetrics.AnyMechanicalBossEntryGap;
+            }
+
+            var divider = new JournalMechanicalBossDivider();
+            divider.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
+            divider.Top.Set(top, 0f);
+            divider.Width.Set(-(JournalUiMetrics.BlockHorizontalPadding * 2f), 1f);
+            divider.Height.Set(JournalUiMetrics.AnyMechanicalBossDividerHeight, 0f);
+            block.Append(divider);
+            top += JournalUiMetrics.AnyMechanicalBossDividerHeight
+                   + JournalUiMetrics.AnyMechanicalBossEntryGap;
+
+            AppendEntryRows(
+                block,
+                anyMechanicalBossEntries,
+                ref top,
+                palette.Border,
+                onItemSelected,
+                onArmorSetSelected,
+                Language.GetTextValue("Mods.ProgressionJournal.UI.AnyMechanicalBossEquipmentTooltip"));
+        }
+
+        block.Height.Set(top + 4f, 0f);
+        return block;
+    }
+
+    private static void AppendEntryRows(
+        UIElement parent,
+        IReadOnlyList<JournalStageEntry> entries,
+        ref float top,
+        Color blockAccent,
+        Action<int>? onItemSelected,
+        Action<JournalArmorSetFamily>? onArmorSetSelected,
+        string helpText)
+    {
+        var rows = ChunkEntries(entries, JournalUiMetrics.EntrySlotsPerRow).ToArray();
+        for (var rowIndex = 0; rowIndex < rows.Length; rowIndex++)
+        {
+            var rowEntries = rows[rowIndex];
+            var row = CreateSlotRow(rowEntries, onItemSelected, blockAccent, onArmorSetSelected);
+            if (rowIndex == rows.Length - 1)
+            {
+                var markerLeft = GetRowWidth(rowEntries) + JournalUiMetrics.AnyMechanicalBossHelpMarkerSpacing;
+                var marker = new JournalMechanicalBossHelpMarker(helpText);
+                marker.Left.Set(markerLeft, 0f);
+                marker.Top.Set(
+                    (JournalUiMetrics.RowHeight - JournalUiMetrics.AnyMechanicalBossHelpMarkerSize) * 0.5f,
+                    0f);
+                marker.Width.Set(JournalUiMetrics.AnyMechanicalBossHelpMarkerSize, 0f);
+                marker.Height.Set(JournalUiMetrics.AnyMechanicalBossHelpMarkerSize, 0f);
+                row.Append(marker);
+                row.Width.Set(markerLeft + JournalUiMetrics.AnyMechanicalBossHelpMarkerSize, 0f);
+            }
+
+            row.Left.Set(JournalUiMetrics.BlockHorizontalPadding + JournalUiMetrics.CategoryContentIndent, 0f);
+            row.Top.Set(top, 0f);
+            parent.Append(row);
+            top += JournalUiMetrics.RowHeight + JournalUiMetrics.RowSpacing;
+        }
+
+        top -= JournalUiMetrics.RowSpacing;
+    }
+
+    private static bool AppendEntryCategories(
+        UIElement parent,
+        IReadOnlyList<JournalStageEntry> entries,
+        ref float top,
+        Color blockAccent,
+        Action<int>? onItemSelected,
+        Action<JournalArmorSetFamily>? onArmorSetSelected)
+    {
         var hasAnyCategory = false;
         foreach (var category in JournalOrdering.EntryCategories)
         {
@@ -909,7 +983,7 @@ public static class JournalContentBuilder
             var categoryHeader = CreateCategoryHeader(category);
             categoryHeader.Left.Set(JournalUiMetrics.BlockHorizontalPadding, 0f);
             categoryHeader.Top.Set(top, 0f);
-            block.Append(categoryHeader);
+            parent.Append(categoryHeader);
             top += GetCategoryHeaderHeight() + GetCategoryHeaderBottomSpacing();
 
             foreach (var rowEntries in ChunkEntries(categoryEntries, JournalUiMetrics.EntrySlotsPerRow))
@@ -917,11 +991,11 @@ public static class JournalContentBuilder
                 var row = CreateSlotRow(
                     rowEntries,
                     onItemSelected,
-                    palette.Border,
+                    blockAccent,
                     onArmorSetSelected);
                 row.Left.Set(JournalUiMetrics.BlockHorizontalPadding + JournalUiMetrics.CategoryContentIndent, 0f);
                 row.Top.Set(top, 0f);
-                block.Append(row);
+                parent.Append(row);
                 top += JournalUiMetrics.RowHeight + JournalUiMetrics.RowSpacing;
             }
 
@@ -933,8 +1007,7 @@ public static class JournalContentBuilder
             top -= JournalUiMetrics.RowSpacing;
         }
 
-        block.Height.Set(top + 4f, 0f);
-        return block;
+        return hasAnyCategory;
     }
 
     private static IEnumerable<JournalStageEntry[]> ChunkEntries(IReadOnlyList<JournalStageEntry> entries, int maxSlotsPerRow)

@@ -85,6 +85,10 @@ public static class JournalUiMetrics
     public const float CategoryContentIndent = 2f;
     public const float RecommendationHeaderHeight = 36f;
     public const float RecommendationHeaderBottomSpacing = 8f;
+    public const float AnyMechanicalBossEntryGap = 6f;
+    public const float AnyMechanicalBossDividerHeight = 20f;
+    public const float AnyMechanicalBossHelpMarkerSize = 20f;
+    public const float AnyMechanicalBossHelpMarkerSpacing = 8f;
     public const float ClassSelectionButtonWidth = 0.5f;
     public const float ClassSelectionButtonHeight = 176f;
     public const float ClassSelectionButtonGap = 12f;
