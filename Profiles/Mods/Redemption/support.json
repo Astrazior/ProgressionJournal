@@ -1,0 +1,932 @@
+{
+  "format": "ProgressionJournalModSupport",
+  "version": 1,
+  "targetMod": "Redemption",
+  "id": "mod.redemption",
+  "name": {
+    "en-US": "Mod of Redemption [BETA] progression",
+    "ru-RU": "Прогрессия Mod of Redemption [BETA]"
+  },
+  "profileVersion": "0.8.0.4501",
+  "requiredMods": [
+    {
+      "name": "Redemption",
+      "version": "0.8.0.4501"
+    },
+    {
+      "name": "BetterDialogue",
+      "version": "1.1.7"
+    },
+    {
+      "name": "CollisionLib",
+      "version": "3.7"
+    },
+    {
+      "name": "ParticleLibrary",
+      "version": "3.2.0.0"
+    },
+    {
+      "name": "StructureHelper",
+      "version": "3.1.1"
+    },
+    {
+      "name": "SubworldLibrary",
+      "version": "2.3.0.1"
+    }
+  ],
+  "contentMods": [
+    "BetterDialogue",
+    "CollisionLib",
+    "ParticleLibrary",
+    "Redemption",
+    "StructureHelper",
+    "SubworldLibrary"
+  ],
+  "classes": [
+    {
+      "id": "melee",
+      "name": {
+        "en-US": "Melee",
+        "ru-RU": "Воин"
+      },
+      "damageClassNames": [
+        "Melee"
+      ]
+    },
+    {
+      "id": "ranged",
+      "name": {
+        "en-US": "Ranged",
+        "ru-RU": "Стрелок"
+      },
+      "damageClassNames": [
+        "Ranged"
+      ]
+    },
+    {
+      "id": "magic",
+      "name": {
+        "en-US": "Magic",
+        "ru-RU": "Маг"
+      },
+      "damageClassNames": [
+        "Magic"
+      ]
+    },
+    {
+      "id": "summoner",
+      "name": {
+        "en-US": "Summoner",
+        "ru-RU": "Призыватель"
+      },
+      "damageClassNames": [
+        "Summon"
+      ]
+    },
+    {
+      "id": "ritualist",
+      "name": {
+        "en-US": "Ritualist",
+        "ru-RU": "Ритуалист"
+      },
+      "previewArmor": [
+        {
+          "mod": "Redemption",
+          "item": "ShadeHead"
+        },
+        {
+          "mod": "Redemption",
+          "item": "ShadeBody"
+        },
+        {
+          "mod": "Redemption",
+          "item": "ShadeLeggings"
+        }
+      ],
+      "previewMount": {
+        "mod": "Redemption",
+        "item": "JyrinaMount"
+      },
+      "damageClassNames": [
+        "Ritualist"
+      ]
+    }
+  ],
+  "initialStations": [
+    "Terraria/WorkBenches",
+    "Terraria/Furnaces",
+    "Terraria/Anvils",
+    "Terraria/Bottles"
+  ],
+  "stages": [
+    {
+      "id": "start",
+      "name": {
+        "en-US": "Start",
+        "ru-RU": "Начало"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Guide",
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "always"
+      }
+    },
+    {
+      "id": "fowl-emperor",
+      "name": {
+        "key": "Mods.Redemption.NPCs.FowlEmperor.DisplayName",
+        "en-US": "Fowl Emperor",
+        "ru-RU": "Кудашный император"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "FowlEmperor",
+      "dropSources": [
+        "Redemption/FowlEmperor"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedFowlEmperor"
+      }
+    },
+    {
+      "id": "fowl-morning",
+      "name": {
+        "key": "Mods.Redemption.BossChecklistIntegration.FowlMorning.EntryName",
+        "en-US": "Fowl Morning",
+        "ru-RU": "Кудашное утро"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "Cockatrice",
+      "dropSources": [
+        "Redemption/Cockatrice",
+        "Redemption/Basan"
+      ],
+      "enemies": [
+        "Redemption/ChickenScratcher",
+        "Redemption/ChickenBomber",
+        "Redemption/RoosterBooster",
+        "Redemption/Haymaker",
+        "Redemption/HeadlessChicken",
+        "Redemption/Cockatrice",
+        "Redemption/Basan"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedFowlMorning"
+      }
+    },
+    {
+      "id": "king-slime",
+      "name": {
+        "en-US": "King Slime",
+        "ru-RU": "Король слизней"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "KingSlime",
+      "dropSources": [
+        "Terraria/KingSlime"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedSlimeKing"
+      }
+    },
+    {
+      "id": "thorn",
+      "name": {
+        "key": "Mods.Redemption.NPCs.Thorn.DisplayName",
+        "en-US": "Thorn, Bane of the Forest",
+        "ru-RU": "Тёрн, Погибель леса"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "Thorn",
+      "dropSources": [
+        "Redemption/Thorn"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedThorn"
+      }
+    },
+    {
+      "id": "erhan",
+      "name": {
+        "key": "Mods.Redemption.NPCs.Erhan.DisplayName",
+        "en-US": "Erhan, Anglonic High Priest",
+        "ru-RU": "Эрхан, Верховный жрец Ангулона"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "Erhan",
+      "dropSources": [
+        "Redemption/Erhan"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedErhan"
+      }
+    },
+    {
+      "id": "eye-of-cthulhu",
+      "name": {
+        "en-US": "Eye of Cthulhu",
+        "ru-RU": "Глаз Ктулху"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "EyeofCthulhu",
+      "dropSources": [
+        "Terraria/EyeofCthulhu"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedBoss1"
+      }
+    },
+    {
+      "id": "keeper",
+      "name": {
+        "key": "Mods.Redemption.NPCs.Keeper.DisplayName",
+        "en-US": "The Keeper",
+        "ru-RU": "Хранительница"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "Keeper",
+      "dropSources": [
+        "Redemption/Keeper",
+        "Redemption/KeeperSpirit"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedKeeper"
+      }
+    },
+    {
+      "id": "skull-digger",
+      "name": {
+        "key": "Mods.Redemption.NPCs.SkullDigger.DisplayName",
+        "en-US": "Skull Digger",
+        "ru-RU": "Череполицый землекоп"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "SkullDigger",
+      "dropSources": [
+        "Redemption/SkullDigger"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedSkullDigger"
+      }
+    },
+    {
+      "id": "world-evil",
+      "name": {
+        "en-US": "Eater of Worlds / Brain of Cthulhu",
+        "ru-RU": "Пожиратель миров / Мозг Ктулху"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "EaterofWorldsHead",
+      "dropSources": [
+        "Terraria/EaterofWorldsHead",
+        "Terraria/BrainofCthulhu"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedBoss2"
+      }
+    },
+    {
+      "id": "eaglecrest-golem",
+      "name": {
+        "key": "Mods.Redemption.NPCs.EaglecrestGolem.DisplayName",
+        "en-US": "Eaglecrest Golem",
+        "ru-RU": "Голем Клювогорья"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "EaglecrestGolem",
+      "dropSources": [
+        "Redemption/EaglecrestGolem"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedEaglecrestGolem"
+      }
+    },
+    {
+      "id": "seed-of-infection",
+      "name": {
+        "key": "Mods.Redemption.NPCs.SoI.DisplayName",
+        "en-US": "Seed of Infection",
+        "ru-RU": "Семя инфекции"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "SoI",
+      "dropSources": [
+        "Redemption/SoI"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedSeed"
+      }
+    },
+    {
+      "id": "queen-bee",
+      "name": {
+        "en-US": "Queen Bee",
+        "ru-RU": "Королева пчёл"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "QueenBee",
+      "dropSources": [
+        "Terraria/QueenBee"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedQueenBee"
+      }
+    },
+    {
+      "id": "skeletron",
+      "name": {
+        "en-US": "Skeletron",
+        "ru-RU": "Скелетрон"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "SkeletronHead",
+      "dropSources": [
+        "Terraria/SkeletronHead"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedBoss3"
+      }
+    },
+    {
+      "id": "calavia",
+      "name": {
+        "key": "Mods.Redemption.NPCs.Calavia.DisplayName",
+        "en-US": "Calavia",
+        "ru-RU": "Калавия"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "Calavia",
+      "dropSources": [
+        "Redemption/Calavia"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedCalavia"
+      }
+    },
+    {
+      "id": "deerclops",
+      "name": {
+        "en-US": "Deerclops",
+        "ru-RU": "Циклоп-олень"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Deerclops",
+      "dropSources": [
+        "Terraria/Deerclops"
+      ],
+      "accessorySlots": 5,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedDeerclops"
+      }
+    },
+    {
+      "id": "wall-of-flesh",
+      "name": {
+        "en-US": "Wall of Flesh",
+        "ru-RU": "Стена плоти"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "WallofFlesh",
+      "dropSources": [
+        "Terraria/WallofFlesh"
+      ],
+      "stations": [
+        "Terraria/MythrilAnvil",
+        "Terraria/AdamantiteForge"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "hardMode"
+      }
+    },
+    {
+      "id": "queen-slime",
+      "name": {
+        "en-US": "Queen Slime",
+        "ru-RU": "Королева слизней"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "QueenSlimeBoss",
+      "dropSources": [
+        "Terraria/QueenSlimeBoss"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedQueenSlime"
+      }
+    },
+    {
+      "id": "twins",
+      "name": {
+        "en-US": "The Twins",
+        "ru-RU": "Близнецы"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Retinazer",
+      "dropSources": [
+        "Terraria/Retinazer",
+        "Terraria/Spazmatism"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedMechBoss2"
+      }
+    },
+    {
+      "id": "destroyer",
+      "name": {
+        "en-US": "The Destroyer",
+        "ru-RU": "Уничтожитель"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "TheDestroyer",
+      "dropSources": [
+        "Terraria/TheDestroyer"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedMechBoss1"
+      }
+    },
+    {
+      "id": "skeletron-prime",
+      "name": {
+        "en-US": "Skeletron Prime",
+        "ru-RU": "Скелетрон Прайм"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "SkeletronPrime",
+      "dropSources": [
+        "Terraria/SkeletronPrime"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedMechBoss3"
+      }
+    },
+    {
+      "id": "abandoned-laboratory",
+      "name": {
+        "key": "Mods.Redemption.BossChecklistIntegration.AbandonedLaboratory.EntryName",
+        "en-US": "Abandoned Laboratory",
+        "ru-RU": "Заброшенная лаборатория"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "Blisterface",
+      "dropSources": [
+        "Redemption/JanitorBot",
+        "Redemption/IrradiatedBehemoth",
+        "Redemption/Blisterface"
+      ],
+      "enemies": [
+        "Redemption/OozeBlob",
+        "Redemption/BlisteredScientist",
+        "Redemption/OozingScientist",
+        "Redemption/BloatedScientist",
+        "Redemption/JanitorBot",
+        "Redemption/IrradiatedBehemoth",
+        "Redemption/Blisterface"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedBlisterface"
+      }
+    },
+    {
+      "id": "king-slayer-iii",
+      "name": {
+        "key": "Mods.Redemption.NPCs.KS3.DisplayName",
+        "en-US": "King Slayer III",
+        "ru-RU": "Король-охотник III"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "KS3",
+      "dropSources": [
+        "Redemption/KS3"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedSlayer"
+      }
+    },
+    {
+      "id": "plantera",
+      "name": {
+        "en-US": "Plantera",
+        "ru-RU": "Плантера"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "Plantera",
+      "dropSources": [
+        "Terraria/Plantera"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedPlantBoss"
+      }
+    },
+    {
+      "id": "omega-cleaver",
+      "name": {
+        "key": "Mods.Redemption.NPCs.OmegaCleaver.DisplayName",
+        "en-US": "Omega Cleaver",
+        "ru-RU": "Омега-Двуручник"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "OmegaCleaver",
+      "dropSources": [
+        "Redemption/OmegaCleaver"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedOmega1"
+      }
+    },
+    {
+      "id": "golem",
+      "name": {
+        "en-US": "Golem",
+        "ru-RU": "Голем"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "GolemHead",
+      "dropSources": [
+        "Terraria/Golem"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedGolemBoss"
+      }
+    },
+    {
+      "id": "omega-gigapora",
+      "name": {
+        "key": "Mods.Redemption.NPCs.Gigapora.DisplayName",
+        "en-US": "Omega Gigapora",
+        "ru-RU": "Омега-Гигасверло"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "Gigapora",
+      "dropSources": [
+        "Redemption/Gigapora"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedOmega2"
+      }
+    },
+    {
+      "id": "duke-fishron",
+      "name": {
+        "en-US": "Duke Fishron",
+        "ru-RU": "Герцог Рыброн"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "DukeFishron",
+      "dropSources": [
+        "Terraria/DukeFishron"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedFishron"
+      }
+    },
+    {
+      "id": "empress-of-light",
+      "name": {
+        "en-US": "Empress of Light",
+        "ru-RU": "Императрица света"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "HallowBoss",
+      "dropSources": [
+        "Terraria/HallowBoss"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedEmpressOfLight"
+      }
+    },
+    {
+      "id": "betsy",
+      "name": {
+        "en-US": "Betsy",
+        "ru-RU": "Бетси"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "DD2Betsy",
+      "dropSources": [
+        "Terraria/DD2Betsy"
+      ],
+      "enemies": [
+        "Terraria/DD2DarkMageT3",
+        "Terraria/DD2OgreT3",
+        "Terraria/DD2Betsy"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "DD2Event.DownedInvasionT3"
+      }
+    },
+    {
+      "id": "lunatic-cultist",
+      "name": {
+        "en-US": "Lunatic Cultist",
+        "ru-RU": "Лунатик-культист"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "CultistBoss",
+      "dropSources": [
+        "Terraria/CultistBoss"
+      ],
+      "stations": [
+        "Terraria/LunarCraftingStation"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedAncientCultist"
+      }
+    },
+    {
+      "id": "moon-lord",
+      "name": {
+        "en-US": "Moon Lord",
+        "ru-RU": "Лунный лорд"
+      },
+      "iconMod": "Terraria",
+      "iconNpc": "MoonLordHead",
+      "dropSources": [
+        "Terraria/MoonLordCore"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "vanilla-flag",
+        "key": "downedMoonlord"
+      }
+    },
+    {
+      "id": "abandoned-laboratory-revisit",
+      "name": {
+        "key": "Mods.Redemption.BossChecklistIntegration.AbandonedLaboratory2.EntryName",
+        "en-US": "Abandoned Laboratory Revisit",
+        "ru-RU": "Возвращение в заброшенную лабораторию"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "MACEProject",
+      "dropSources": [
+        "Redemption/ProtectorVolt",
+        "Redemption/MACEProject"
+      ],
+      "enemies": [
+        "Redemption/ProtectorVolt",
+        "Redemption/MACEProject"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedMACE"
+      }
+    },
+    {
+      "id": "omega-obliterator",
+      "name": {
+        "key": "Mods.Redemption.NPCs.OO.DisplayName",
+        "en-US": "Omega Obliterator",
+        "ru-RU": "Омега-Облитератор"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "OO",
+      "dropSources": [
+        "Redemption/OO"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedOmega3"
+      }
+    },
+    {
+      "id": "patient-zero",
+      "name": {
+        "key": "Mods.Redemption.NPCs.PZ.DisplayName",
+        "en-US": "Patient Zero",
+        "ru-RU": "Нулевой пациент"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "PZ",
+      "dropSources": [
+        "Redemption/PZ"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedPZ"
+      }
+    },
+    {
+      "id": "ancient-deity-duo",
+      "name": {
+        "key": "Mods.Redemption.NPCs.Ukko.BossChecklistIntegration.EntryName",
+        "en-US": "Ancient Deity Duo",
+        "ru-RU": "Древний божественный дуэт"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "Ukko",
+      "dropSources": [
+        "Redemption/EaglecrestGolem2",
+        "Redemption/Ukko",
+        "Redemption/Akka"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedADD"
+      }
+    },
+    {
+      "id": "nebuleus",
+      "name": {
+        "key": "Mods.Redemption.NPCs.Nebuleus.DisplayName",
+        "en-US": "Nebuleus, Angel of the Cosmos",
+        "ru-RU": "Небулеус, Ангел космоса"
+      },
+      "iconMod": "Redemption",
+      "iconNpc": "Nebuleus",
+      "dropSources": [
+        "Redemption/Nebuleus",
+        "Redemption/Nebuleus2"
+      ],
+      "accessorySlots": 6,
+      "unlock": {
+        "type": "mod-flag",
+        "mod": "Redemption",
+        "key": "downedNebuleus"
+      }
+    }
+  ],
+  "recommendationSource": {
+    "name": "Official Mod of Redemption Wiki (archived)",
+    "url": "https://modofredemption.wiki.gg/wiki/Guide:Class_setups"
+  },
+  "recommendationStageMap": {
+    "pre-boss": {
+      "stageId": "start",
+      "target": {
+        "en-US": "First bosses",
+        "ru-RU": "Первые боссы"
+      }
+    },
+    "pre-world-evil": {
+      "stageId": "eye-of-cthulhu",
+      "target": {
+        "en-US": "World Evil",
+        "ru-RU": "Зло мира"
+      }
+    },
+    "pre-skeletron": {
+      "stageId": "queen-bee",
+      "target": {
+        "en-US": "Skeletron",
+        "ru-RU": "Скелетрон"
+      }
+    },
+    "pre-wall-of-flesh": {
+      "stageId": "skeletron",
+      "target": {
+        "en-US": "Wall of Flesh",
+        "ru-RU": "Стена плоти"
+      }
+    },
+    "pre-mechanical-bosses": {
+      "stageId": "wall-of-flesh",
+      "target": {
+        "en-US": "Mechanical bosses",
+        "ru-RU": "Механические боссы"
+      }
+    },
+    "pre-plantera": {
+      "stageId": "king-slayer-iii",
+      "target": {
+        "en-US": "Plantera",
+        "ru-RU": "Плантера"
+      }
+    },
+    "pre-golem": {
+      "stageId": "plantera",
+      "target": {
+        "en-US": "Golem",
+        "ru-RU": "Голем"
+      }
+    },
+    "pre-lunatic-cultist": {
+      "stageId": "omega-gigapora",
+      "target": {
+        "en-US": "Lunatic Cultist",
+        "ru-RU": "Лунатик-культист"
+      }
+    },
+    "pre-moon-lord": {
+      "stageId": "lunatic-cultist",
+      "target": {
+        "en-US": "Moon Lord",
+        "ru-RU": "Лунный лорд"
+      }
+    },
+    "pre-omega-obliterator": {
+      "stageId": "abandoned-laboratory-revisit",
+      "target": {
+        "en-US": "Omega Obliterator",
+        "ru-RU": "Омега-облитератор"
+      }
+    },
+    "pre-patient-zero": {
+      "stageId": "omega-obliterator",
+      "target": {
+        "en-US": "Patient Zero",
+        "ru-RU": "Нулевой пациент"
+      }
+    },
+    "pre-ancient-deity-duo": {
+      "stageId": "patient-zero",
+      "target": {
+        "en-US": "Ancient Deity Duo",
+        "ru-RU": "Дуэт древних божеств"
+      }
+    },
+    "pre-nebuleus": {
+      "stageId": "ancient-deity-duo",
+      "target": {
+        "en-US": "Nebuleus",
+        "ru-RU": "Небулеус"
+      }
+    },
+    "endgame": {
+      "stageId": "nebuleus",
+      "target": {
+        "en-US": "Endgame",
+        "ru-RU": "Конец игры"
+      }
+    }
+  }
+}

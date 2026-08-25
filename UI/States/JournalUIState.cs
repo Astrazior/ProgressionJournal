@@ -394,14 +394,16 @@ public sealed class JournalUiState(JournalSystem journalSystem) : UIState
 
         var className = JournalProfileText.GetClassName(profile, classId);
         var stageName = JournalProfileText.GetStageName(profile, stageId);
+        var armorEntries = GetEntriesForArmorSetOverview(profile.Id, stageId, out var currentArmorEntryCount);
         SetContentHeader($"{className} • {stageName}");
         JournalContentBuilder.PopulateEntries(
             _entryList,
             profile.Id,
             stageId,
             JournalArmorSetOverviewResolver.Resolve(
-                GetEntriesForArmorSetOverview(profile.Id, stageId),
-                classId),
+                armorEntries,
+                classId,
+                currentArmorEntryCount),
             JournalSystem.SelectItem,
             JournalSystem.OpenArmorSet);
         JournalContentBuilder.PopulateCombatBuffs(

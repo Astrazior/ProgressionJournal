@@ -18,7 +18,8 @@ internal static class JournalArmorSetOverviewResolver
 
     public static IReadOnlyList<JournalStageEntry> Resolve(
         IReadOnlyList<JournalStageEntry> entries,
-        string classId)
+        string classId,
+        int currentEntryCount)
     {
         if (entries.Count == 0)
         {
@@ -42,8 +43,8 @@ internal static class JournalArmorSetOverviewResolver
         }
 
         return matches.Count == 0
-            ? entries.Where(entry => AppliesToClass(entry, classId)).ToArray()
-            : ComposeOverview(indexedEntries, matches, classId);
+            ? entries.Take(currentEntryCount).Where(entry => AppliesToClass(entry, classId)).ToArray()
+            : ComposeOverview(indexedEntries, matches, classId, currentEntryCount);
     }
 
     public static void ClearCaches()
@@ -710,7 +711,8 @@ internal static class JournalArmorSetOverviewResolver
     private static JournalStageEntry[] ComposeOverview(
         IndexedEntry[] entries,
         IReadOnlyList<ArmorSetMatch> matches,
-        string classId)
+        string classId,
+        int currentEntryCount)
     {
         var uniqueMatches = matches
             .GroupBy(static match => new MatchKey(
@@ -733,7 +735,8 @@ internal static class JournalArmorSetOverviewResolver
                     .ToArray();
                 var anchor = components.MinBy(static component => component.Index)!;
                 var family = new JournalArmorSetFamily(group
-                    .SelectMany(static match => match.Family.Variants));
+                    .SelectMany(static match => match.Family.Variants)
+                    .DistinctBy(static variant => variant.Key));
                 var classIds = group
                     .SelectMany(static match => match.ClassIds)
                     .ToHashSet(StringComparer.OrdinalIgnoreCase);
@@ -743,13 +746,16 @@ internal static class JournalArmorSetOverviewResolver
                 return new ArmorSetMatch(family, anchor, components, classIds, claimKeys);
             })
             .ToArray();
-        var matchesByAnchor = uniqueMatches
+        var visibleMatches = uniqueMatches
+            .Where(match => match.Anchor.Index < currentEntryCount)
+            .ToArray();
+        var matchesByAnchor = visibleMatches
             .Where(match => match.ClassIds.Contains(classId))
             .GroupBy(static match => match.Anchor.Index)
             .ToDictionary(static group => group.Key, static group => group.ToArray());
         var coveredItems = new Dictionary<int, HashSet<int>>();
 
-        foreach (var match in uniqueMatches)
+        foreach (var match in visibleMatches)
         {
             foreach (var component in match.Components)
             {
@@ -763,8 +769,8 @@ internal static class JournalArmorSetOverviewResolver
             }
         }
 
-        var result = new List<JournalStageEntry>(entries.Length);
-        foreach (var indexedEntry in entries)
+        var result = new List<JournalStageEntry>(currentEntryCount);
+        foreach (var indexedEntry in entries.Take(currentEntryCount))
         {
             if (matchesByAnchor.TryGetValue(indexedEntry.Index, out var anchoredMatches))
             {

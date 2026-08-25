@@ -1,0 +1,1037 @@
+{
+  "format": "ProgressionJournalAgentRules",
+  "version": 1,
+  "profileId": "mod.redemption",
+  "rules": [
+    {
+      "id": "non-progression-location-time-and-form-conditions",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": [
+        "drop",
+        "recipe",
+        "shop"
+      ],
+      "conditionTypes": [
+        "Redemption.Globals.OnFireCondition",
+        "Redemption.Globals.DecapitationCondition"
+      ],
+      "conditionKeys": [
+        "Conditions.InBeach",
+        "Conditions.InBelowSurface",
+        "Conditions.SolarEclipse",
+        "Mods.Redemption.Conditions.InMoonlight",
+        "Mods.Redemption.Conditions.IsFinlandDay",
+        "Mods.Redemption.Conditions.IsNotFinlandDay",
+        "Mods.Redemption.Conditions.ElementBookQuest"
+      ],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "These predicates select a location, time, NPC death form, calendar date, or optional quest state. They add no fixed boss floor; the recipe inputs or source NPC remain controlling."
+    },
+    {
+      "id": "fallen-services",
+      "kind": "condition-stage",
+      "stageId": "keeper",
+      "sources": [
+        "recipe",
+        "shop"
+      ],
+      "conditionKeys": [
+        "Mods.Redemption.Conditions.RepairedByFallen",
+        "Mods.Redemption.Conditions.HasSpiritWalker"
+      ],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "Fallen.cs requires downedKeeper before the Fallen can move in; both repair recipes and the Spirit Extractor shop belong to that NPC's service path."
+    },
+    {
+      "id": "calavia-forging-service",
+      "kind": "condition-stage",
+      "stageId": "calavia",
+      "sources": [
+        "recipe"
+      ],
+      "conditionKeys": [
+        "Mods.Redemption.Conditions.ForgedByCalavia"
+      ],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "The condition identifies Calavia's forging service, so her Boss Checklist stage is the exact floor."
+    },
+    {
+      "id": "moon-lord-shop-condition",
+      "kind": "condition-stage",
+      "stageId": "moon-lord",
+      "sources": [
+        "shop"
+      ],
+      "conditionKeys": [
+        "Conditions.DownedMoonLord"
+      ],
+      "sourceUrl": "https://github.com/tModLoader/tModLoader",
+      "sourceVersion": "tModLoader 2026.6.3.6",
+      "checkedAt": "2026-08-25",
+      "reason": "The vanilla condition directly requires Moon Lord to be defeated."
+    },
+    {
+      "id": "one-mechanical-boss-conditions",
+      "kind": "condition-stage",
+      "stageId": "twins",
+      "sources": [
+        "drop",
+        "shop"
+      ],
+      "conditionTypes": [
+        "Redemption.Globals.YoyosTidalWake"
+      ],
+      "conditionKeys": [
+        "Mods.Redemption.Conditions.NukeDroppedOrDownedMechBossAll"
+      ],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "Both source predicates explicitly permit the content after any mechanical boss; twins is the profile's first mechanical-boss checkpoint."
+    },
+    {
+      "id": "pre-boss-natural-and-world-npc-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Redemption/Chicken",
+        "Redemption/ChickenGold",
+        "Redemption/CoastScarab",
+        "Redemption/CorruptChicken",
+        "Redemption/DancingSkeleton",
+        "Redemption/DevilsTongue",
+        "Redemption/EpidotrianSkeleton",
+        "Redemption/ForestNymph",
+        "Redemption/ForestNymph_Friendly",
+        "Redemption/Kabucra",
+        "Redemption/LivingBloom",
+        "Redemption/LongChicken",
+        "Redemption/LostSoulNPC",
+        "Redemption/MoonflareBat",
+        "Redemption/MoonflareSkeleton",
+        "Redemption/Newb",
+        "Redemption/RaveyardSkeleton",
+        "Redemption/SkeletonAssassin",
+        "Redemption/SkeletonDuelist",
+        "Redemption/SkeletonFlagbearer",
+        "Redemption/SkeletonNoble",
+        "Redemption/SkeletonWanderer",
+        "Redemption/SkeletonWarden",
+        "Redemption/TreebarkDryad",
+        "Redemption/TreeBug",
+        "Redemption/VagrantSpirit",
+        "Redemption/ViciousChicken"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "Their SpawnChance, world encounter, or critter source uses ordinary biome, depth, time, world variant, player ability, or world-generated placement and contains no boss or Hardmode requirement."
+    },
+    {
+      "id": "fowl-morning-enemy-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Redemption/Chickadier",
+        "Redemption/Chickenvoy",
+        "Redemption/CoopCrate"
+      ],
+      "stageId": "fowl-morning",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/CrossMod/WeakReferences.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "These NPCs are members of the Fowl Morning encounter registered with Boss Checklist."
+    },
+    {
+      "id": "erhan-rematch-source",
+      "kind": "source-stage",
+      "source": "Redemption/ErhanSpirit",
+      "stageId": "erhan",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/CrossMod/WeakReferences.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "ErhanSpirit is the later form of the same Erhan encounter and shares its downed progression."
+    },
+    {
+      "id": "keeper-town-source",
+      "kind": "source-stage",
+      "source": "Redemption/Fallen",
+      "stageId": "keeper",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/NPCs/Friendly/TownNPCs/Fallen.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "CanTownNPCSpawn returns RedeBossDowned.downedKeeper."
+    },
+    {
+      "id": "hardmode-natural-and-wayfarer-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Redemption/Android",
+        "Redemption/Daerel",
+        "Redemption/Zephos"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "Android requires Main.hardMode; Daerel and Zephos can move in once Main.hardMode is true even if their optional pre-Hardmode quest path was not completed."
+    },
+    {
+      "id": "wasteland-sources-after-first-mech",
+      "kind": "source-stage",
+      "sources": [
+        "Redemption/BloatedClinger",
+        "Redemption/BloatedFaceMonster",
+        "Redemption/BloatedGhoul",
+        "Redemption/BloatedSwarmer",
+        "Redemption/MutatedLivingBloom",
+        "Redemption/RadioactiveJelly",
+        "Redemption/SicklyPenguin",
+        "Redemption/SicklyWolf",
+        "Redemption/SneezyFlinx"
+      ],
+      "stageId": "twins",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "These NPCs belong to the Wasteland biomes; Redemption exposes the Wasteland/Lab content path once any mechanical boss has been defeated."
+    },
+    {
+      "id": "seed-town-source",
+      "kind": "source-stage",
+      "source": "Redemption/TBot",
+      "stageId": "seed-of-infection",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/NPCs/Friendly/TownNPCs/TBot.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "CanTownNPCSpawn directly requires RedeBossDowned.downedSeed."
+    },
+    {
+      "id": "laboratory-shop-source",
+      "kind": "source-stage",
+      "source": "Redemption/JanitorBot_NPC",
+      "stageId": "abandoned-laboratory",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "The friendly Janitor Bot is reached through the first Abandoned Laboratory progression."
+    },
+    {
+      "id": "king-slayer-and-slayer-rating-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Redemption/KS3_Clone",
+        "Redemption/KS3Sitting",
+        "Redemption/PrototypeSilver",
+        "Redemption/SpacePaladin"
+      ],
+      "stageId": "king-slayer-iii",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "These sources are the King Slayer rematch, ship NPC, or enemies gated by Slayer star rating gained through that progression."
+    },
+    {
+      "id": "omega-cleaver-add-source",
+      "kind": "source-stage",
+      "source": "Redemption/Wielder",
+      "stageId": "omega-cleaver",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "Wielder is part of the Omega Cleaver encounter."
+    },
+    {
+      "id": "omega-gigapora-segment-source",
+      "kind": "source-stage",
+      "source": "Redemption/Gigapora_BodySegment",
+      "stageId": "omega-gigapora",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "The body segment is part of the Omega Gigapora boss encounter."
+    },
+    {
+      "id": "patient-zero-postgame-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Redemption/BabbyDragonBody",
+        "Redemption/BabbyDragonHead",
+        "Redemption/BabbyDragonLeg",
+        "Redemption/BabbyDragonTail1",
+        "Redemption/BabbyDragonTail2",
+        "Redemption/ShadesoulNPC"
+      ],
+      "stageId": "patient-zero",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "BabbyDragonHead.SpawnChance directly requires downedPZ; the related body segments and post-Laboratory shadesoul content share that postgame path."
+    },
+    {
+      "id": "nebuleus-mirage-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Redemption/Nebuleus_Clone",
+        "Redemption/Nebuleus2_Clone"
+      ],
+      "stageId": "nebuleus",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "Both mirages are forms of the Nebuleus encounter and set the same downed flag."
+    },
+    {
+      "id": "vanilla-cyborg-source",
+      "kind": "source-stage",
+      "source": "Terraria/Cyborg",
+      "stageId": "plantera",
+      "sourceUrl": "https://github.com/tModLoader/tModLoader",
+      "sourceVersion": "tModLoader 2026.6.3.6",
+      "checkedAt": "2026-08-25",
+      "reason": "The Cyborg becomes available after Plantera."
+    },
+    {
+      "id": "beach-shop-condition",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["shop"],
+      "conditionKeys": ["Conditions.InBeach"],
+      "sourceUrl": "https://github.com/tModLoader/tModLoader",
+      "sourceVersion": "tModLoader 2026.6.3.6",
+      "checkedAt": "2026-08-25",
+      "reason": "The beach requirement is a biome selector and adds no progression floor."
+    },
+    {
+      "id": "below-surface-shop-condition",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["shop"],
+      "conditionKeys": ["Conditions.InBelowSurface"],
+      "sourceUrl": "https://github.com/tModLoader/tModLoader",
+      "sourceVersion": "tModLoader 2026.6.3.6",
+      "checkedAt": "2026-08-25",
+      "reason": "Depth is a location selector and adds no progression floor."
+    },
+    {
+      "id": "solar-eclipse-shop-condition",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["shop"],
+      "conditionKeys": ["Conditions.SolarEclipse"],
+      "sourceUrl": "https://github.com/tModLoader/tModLoader",
+      "sourceVersion": "tModLoader 2026.6.3.6",
+      "checkedAt": "2026-08-25",
+      "reason": "The condition selects an active event; the Cyborg source stage remains controlling."
+    },
+    {
+      "id": "moonlight-recipe-condition",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["recipe"],
+      "conditionKeys": ["Mods.Redemption.Conditions.InMoonlight"],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/Globals/RedeCondition.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "Moonlight is a time and sky-access condition; recipe inputs remain controlling."
+    },
+    {
+      "id": "finland-day-shop-condition",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["shop"],
+      "conditionKeys": ["Mods.Redemption.Conditions.IsFinlandDay"],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/Globals/RedeCondition.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "The calendar date changes a vanity shop variant and adds no progression floor."
+    },
+    {
+      "id": "not-finland-day-shop-condition",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["shop"],
+      "conditionKeys": ["Mods.Redemption.Conditions.IsNotFinlandDay"],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/Globals/RedeCondition.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "The calendar date changes a vanity shop variant and adds no progression floor."
+    },
+    {
+      "id": "element-book-shop-condition",
+      "kind": "condition-stage",
+      "stageId": "start",
+      "sources": ["shop"],
+      "conditionKeys": ["Mods.Redemption.Conditions.ElementBookQuest"],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/Globals/RedeCondition.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "The optional Book of Bonuses quest has no fixed boss flag; the Daerel or Zephos source stage remains controlling."
+    },
+    {
+      "id": "fallen-repair-condition",
+      "kind": "condition-stage",
+      "stageId": "keeper",
+      "sources": ["recipe"],
+      "conditionKeys": ["Mods.Redemption.Conditions.RepairedByFallen"],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/NPCs/Friendly/TownNPCs/Fallen.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "Fallen's town spawn directly requires downedKeeper."
+    },
+    {
+      "id": "spirit-walker-shop-condition",
+      "kind": "condition-stage",
+      "stageId": "keeper",
+      "sources": ["shop"],
+      "conditionKeys": ["Mods.Redemption.Conditions.HasSpiritWalker"],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/NPCs/Friendly/TownNPCs/Fallen.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "The item is sold by the Fallen, whose town spawn directly requires downedKeeper."
+    },
+    {
+      "id": "spirit-walker-summon-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Redemption/Asher_SS",
+        "Redemption/EpidotrianSkeleton_SS",
+        "Redemption/SkeletonAssassin_SS",
+        "Redemption/SkeletonDuelist_SS",
+        "Redemption/SkeletonFlagbearer_SS",
+        "Redemption/SkeletonNoble_SS",
+        "Redemption/SkeletonWanderer_SS",
+        "Redemption/SkeletonWarden_SS"
+      ],
+      "stageId": "keeper",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/tree/main/NPCs/Friendly/SpiritSummons",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "These are player-bound spirit summons rather than natural NPCs. Their Crux Card path belongs to the Spirit Walker system unlocked through Keeper progression."
+    },
+    {
+      "id": "vanilla-preboss-sources-used-by-redemption-global-drops",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/Antlion",
+        "Terraria/ArmedTorchZombie",
+        "Terraria/ArmedZombie",
+        "Terraria/ArmedZombieCenx",
+        "Terraria/ArmedZombieEskimo",
+        "Terraria/ArmedZombiePincussion",
+        "Terraria/ArmedZombieSlimed",
+        "Terraria/ArmedZombieSwamp",
+        "Terraria/ArmedZombieTwiggy",
+        "Terraria/BoneThrowingSkeleton",
+        "Terraria/BoneThrowingSkeleton2",
+        "Terraria/BoneThrowingSkeleton3",
+        "Terraria/BoneThrowingSkeleton4",
+        "Terraria/Dandelion",
+        "Terraria/DemonEyeOwl",
+        "Terraria/DemonEyeSpaceship",
+        "Terraria/EyeballFlyingFish",
+        "Terraria/FlyingAntlion",
+        "Terraria/GiantFlyingAntlion",
+        "Terraria/GiantWalkingAntlion",
+        "Terraria/GoblinTinkerer",
+        "Terraria/LarvaeAntlion",
+        "Terraria/SandSlime",
+        "Terraria/SantaClaus",
+        "Terraria/SkeletonAlien",
+        "Terraria/SkeletonAstonaut",
+        "Terraria/SkeletonTopHat",
+        "Terraria/SleepyEye",
+        "Terraria/SlimeMasked",
+        "Terraria/SlimeRibbonGreen",
+        "Terraria/SlimeRibbonRed",
+        "Terraria/SlimeRibbonWhite",
+        "Terraria/SlimeRibbonYellow",
+        "Terraria/TheBride",
+        "Terraria/Tumbleweed",
+        "Terraria/WalkingAntlion",
+        "Terraria/WallCreeperWall",
+        "Terraria/ZombieDoctor",
+        "Terraria/ZombieMerman",
+        "Terraria/ZombiePixie",
+        "Terraria/ZombieRaincoat",
+        "Terraria/ZombieSuperman",
+        "Terraria/ZombieSweater",
+        "Terraria/ZombieXmas"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Enemies",
+      "sourceVersion": "Terraria 1.4.4.9 / tModLoader 2026.6.3.6",
+      "checkedAt": "2026-08-25",
+      "reason": "These ordinary biome, weather, seasonal, Blood Moon, rescued-town-NPC, or critter sources can be reached without defeating a boss."
+    },
+    {
+      "id": "vanilla-king-slime-add-source",
+      "kind": "source-stage",
+      "source": "Terraria/SlimeSpiked",
+      "stageId": "king-slime",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Spiked_Slime",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-25",
+      "reason": "This source is the Spiked Slime summoned by King Slime in Expert Mode."
+    },
+    {
+      "id": "vanilla-world-evil-sources-used-by-redemption-global-drops",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/Creeper",
+        "Terraria/DD2DarkMageT1",
+        "Terraria/DD2SkeletonT1",
+        "Terraria/EaterofWorldsBody",
+        "Terraria/EaterofWorldsTail",
+        "Terraria/MeteorHead",
+        "Terraria/SeekerBody",
+        "Terraria/SeekerHead",
+        "Terraria/SeekerTail"
+      ],
+      "stageId": "world-evil",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Pre-Hardmode",
+      "sourceVersion": "Terraria 1.4.4.9 / tModLoader 2026.6.3.6",
+      "checkedAt": "2026-08-25",
+      "reason": "These are Eater of Worlds or Brain of Cthulhu parts, post-orb meteor enemies, or tier-one Old One's Army sources unlocked by the world-evil progression."
+    },
+    {
+      "id": "vanilla-dungeon-sources-used-by-redemption-global-drops",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/AngryBones",
+        "Terraria/AngryBonesBig",
+        "Terraria/AngryBonesBigHelmet",
+        "Terraria/AngryBonesBigMuscle",
+        "Terraria/CursedSkull",
+        "Terraria/DarkCaster"
+      ],
+      "stageId": "skeletron",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Dungeon",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-25",
+      "reason": "Normal access to these Dungeon enemies begins after Skeletron."
+    },
+    {
+      "id": "vanilla-hardmode-sources-used-by-redemption-global-drops",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/AnglerFish",
+        "Terraria/ArmoredSkeleton",
+        "Terraria/ArmoredViking",
+        "Terraria/BloodFeeder",
+        "Terraria/BloodJelly",
+        "Terraria/BloodMummy",
+        "Terraria/ChaosElemental",
+        "Terraria/Clinger",
+        "Terraria/Corruptor",
+        "Terraria/CorruptSlime",
+        "Terraria/Crimslime",
+        "Terraria/CrimsonAxe",
+        "Terraria/CursedHammer",
+        "Terraria/CyanBeetle",
+        "Terraria/DarkMummy",
+        "Terraria/Derpling",
+        "Terraria/DesertBeast",
+        "Terraria/DesertDjinn",
+        "Terraria/DesertGhoul",
+        "Terraria/DesertGhoulCorruption",
+        "Terraria/DesertGhoulCrimson",
+        "Terraria/DesertGhoulHallow",
+        "Terraria/DesertLamiaDark",
+        "Terraria/DesertLamiaLight",
+        "Terraria/DiggerBody",
+        "Terraria/DiggerHead",
+        "Terraria/DiggerTail",
+        "Terraria/EnchantedSword",
+        "Terraria/FloatyGross",
+        "Terraria/Gastropod",
+        "Terraria/GiantBat",
+        "Terraria/GiantFlyingFox",
+        "Terraria/GiantTortoise",
+        "Terraria/Herpling",
+        "Terraria/HoppinJack",
+        "Terraria/IceTortoise",
+        "Terraria/IchorSticker",
+        "Terraria/IlluminantBat",
+        "Terraria/IlluminantSlime",
+        "Terraria/Lavabat",
+        "Terraria/LightMummy",
+        "Terraria/Mimic",
+        "Terraria/Moth",
+        "Terraria/Mummy",
+        "Terraria/Pirate",
+        "Terraria/PirateCaptain",
+        "Terraria/PirateCorsair",
+        "Terraria/PirateCrossbower",
+        "Terraria/PirateDeadeye",
+        "Terraria/PirateDeckhand",
+        "Terraria/PirateGhost",
+        "Terraria/PirateShip",
+        "Terraria/Pixie",
+        "Terraria/PossessedArmor",
+        "Terraria/RockGolem",
+        "Terraria/SandShark",
+        "Terraria/SandsharkCorrupt",
+        "Terraria/SandsharkCrimson",
+        "Terraria/SandsharkHallow",
+        "Terraria/ShadowFlameApparition",
+        "Terraria/Slimer",
+        "Terraria/Unicorn",
+        "Terraria/WanderingEye",
+        "Terraria/Werewolf",
+        "Terraria/Wolf",
+        "Terraria/Wraith"
+      ],
+      "stageId": "wall-of-flesh",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Hardmode",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-25",
+      "reason": "These biome, Pirate Invasion, Halloween, Mimic, or ordinary enemy sources require Hardmode but no later fixed boss."
+    },
+    {
+      "id": "vanilla-queen-slime-add-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/QueenSlimeMinionBlue",
+        "Terraria/QueenSlimeMinionPink",
+        "Terraria/QueenSlimeMinionPurple"
+      ],
+      "stageId": "queen-slime",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Queen_Slime",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-25",
+      "reason": "These Crystal Slime variants are summoned by Queen Slime during her encounter."
+    },
+    {
+      "id": "vanilla-first-mech-event-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/CreatureFromTheDeep",
+        "Terraria/DD2OgreT2",
+        "Terraria/Frankenstein",
+        "Terraria/Fritz",
+        "Terraria/SwampThing",
+        "Terraria/ThePossessed"
+      ],
+      "stageId": "twins",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Solar_Eclipse",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-25",
+      "reason": "These pre-Plantera Solar Eclipse or tier-two Old One's Army sources unlock after any mechanical boss; twins is this profile's first mechanical checkpoint."
+    },
+    {
+      "id": "vanilla-post-plantera-sources-used-by-redemption-global-drops",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/BlueArmoredBonesMace",
+        "Terraria/BlueArmoredBonesNoPants",
+        "Terraria/BlueArmoredBonesSword",
+        "Terraria/BoneLee",
+        "Terraria/Butcher",
+        "Terraria/DiabolistRed",
+        "Terraria/DiabolistWhite",
+        "Terraria/DungeonSpirit",
+        "Terraria/Everscream",
+        "Terraria/Eyezor",
+        "Terraria/HeadlessHorseman",
+        "Terraria/HellArmoredBones",
+        "Terraria/HellArmoredBonesMace",
+        "Terraria/HellArmoredBonesSpikeShield",
+        "Terraria/HellArmoredBonesSword",
+        "Terraria/Hellhound",
+        "Terraria/IceQueen",
+        "Terraria/Krampus",
+        "Terraria/MourningWood",
+        "Terraria/Necromancer",
+        "Terraria/NecromancerArmored",
+        "Terraria/Paladin",
+        "Terraria/PresentMimic",
+        "Terraria/Pumpking",
+        "Terraria/RaggedCaster",
+        "Terraria/RaggedCasterOpenCoat",
+        "Terraria/RustyArmoredBonesSwordNoArmor",
+        "Terraria/SantaNK1",
+        "Terraria/Scarecrow1",
+        "Terraria/Scarecrow10",
+        "Terraria/Scarecrow2",
+        "Terraria/Scarecrow3",
+        "Terraria/Scarecrow4",
+        "Terraria/Scarecrow5",
+        "Terraria/Scarecrow6",
+        "Terraria/Scarecrow7",
+        "Terraria/Scarecrow8",
+        "Terraria/Scarecrow9",
+        "Terraria/SkeletonCommando",
+        "Terraria/SkeletonSniper",
+        "Terraria/Splinterling",
+        "Terraria/TacticalSkeleton",
+        "Terraria/ZombieElf",
+        "Terraria/ZombieElfBeard",
+        "Terraria/ZombieElfGirl"
+      ],
+      "stageId": "plantera",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Plantera",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-25",
+      "reason": "These post-Plantera Dungeon, later Solar Eclipse, Pumpkin Moon, or Frost Moon sources require Plantera."
+    },
+    {
+      "id": "vanilla-post-golem-event-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/DD2SkeletonT3",
+        "Terraria/MartianEngineer",
+        "Terraria/MartianSaucerCore",
+        "Terraria/MartianWalker"
+      ],
+      "stageId": "golem",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Golem",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-25",
+      "reason": "Martian Madness and tier-three Old One's Army become available after Golem."
+    },
+    {
+      "id": "vanilla-lunar-pillar-sources",
+      "kind": "source-stage",
+      "sources": [
+        "Terraria/LunarTowerNebula",
+        "Terraria/LunarTowerSolar",
+        "Terraria/LunarTowerStardust",
+        "Terraria/LunarTowerVortex"
+      ],
+      "stageId": "lunatic-cultist",
+      "sourceUrl": "https://terraria.wiki.gg/wiki/Lunar_Events",
+      "sourceVersion": "Terraria 1.4.4.9",
+      "checkedAt": "2026-08-25",
+      "reason": "The Lunar Pillars begin after Lunatic Cultist."
+    },
+    {
+      "id": "preboss-code-driven-catches-and-world-loot",
+      "kind": "item-stage",
+      "items": [
+        "Redemption/ChickenItem",
+        "Redemption/ForretItem",
+        "Redemption/GoldChickenEgg",
+        "Redemption/GrandLarvaBait",
+        "Redemption/SpiderBoots",
+        "Redemption/SpiderSwarmerItem"
+      ],
+      "stageId": "start",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "RedeGen places Budding Boline and Spider Boots in world-generated chests; Chicken, Forret, Grand Larva, and Spider Swarmer assign their catch items directly; Gold Chicken creates its egg through custom AI. None of these paths checks a boss flag."
+    },
+    {
+      "id": "preboss-devils-tongue-custom-drop",
+      "kind": "item-stage",
+      "item": "Redemption/DevilishResin",
+      "stageId": "start",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/NPCs/PreHM/DevilsTongue.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "DevilsTongue.CheckDead creates Devilish Resin directly with Item.NewItem; its natural spawn has no boss gate."
+    },
+    {
+      "id": "post-skeletron-alignment-ores",
+      "kind": "item-stage",
+      "items": [
+        "Redemption/DragonLeadOre",
+        "Redemption/GathicCryoCrystal"
+      ],
+      "stageId": "skeletron",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/WorldGeneration/RedeGen.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "RedeGen activates exactly one alignment material when NPC.downedBoss3 becomes true: Cryo Crystals for non-negative alignment or Dragon-Lead Ore for negative alignment."
+    },
+    {
+      "id": "keeper-custom-reward",
+      "kind": "item-stage",
+      "item": "Redemption/KeepersCirclet",
+      "stageId": "keeper",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/NPCs/Bosses/Keeper/Keeper.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "Keeper creates Keeper's Circlet directly in its scripted death sequence, outside the ordinary NPCLoot table observed by the export."
+    },
+    {
+      "id": "spirit-walker-crux-cards",
+      "kind": "item-stage",
+      "items": [
+        "Redemption/CruxCardAnglonSkeletons",
+        "Redemption/CruxCardForestNymph",
+        "Redemption/CruxCardGathicSkeletons",
+        "Redemption/CruxCardGladestone",
+        "Redemption/CruxCardMossyGoliath",
+        "Redemption/CruxCardSkeleton",
+        "Redemption/CruxCardSkeletonAssassin",
+        "Redemption/CruxCardTied"
+      ],
+      "stageId": "keeper",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/tree/main/NPCs/Friendly",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "These cards are issued by RequestCrux or Spirit Walker dialogue interactions rather than a recipe/drop. The required Spirit Walker progression is established through Keeper."
+    },
+    {
+      "id": "calavia-crux-card",
+      "kind": "item-stage",
+      "item": "Redemption/CruxCardCalavia",
+      "stageId": "calavia",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/NPCs/Minibosses/Calavia/Calavia_NPC.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "Calavia issues this card through RequestCrux only at her completed quest state."
+    },
+    {
+      "id": "skull-digger-crux-card",
+      "kind": "item-stage",
+      "item": "Redemption/CruxCardSkullDigger",
+      "stageId": "skull-digger",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/NPCs/Friendly/SkullDiggerFriendly.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "The friendly post-encounter Skull Digger issues this card through RequestCrux."
+    },
+    {
+      "id": "abandoned-laboratory-container-loot",
+      "kind": "item-stage",
+      "items": [
+        "Redemption/DepletedCrossbow",
+        "Redemption/EmptyMutagen",
+        "Redemption/GravityHammer",
+        "Redemption/Hacksaw",
+        "Redemption/Holoshield",
+        "Redemption/LightningRod",
+        "Redemption/Plutonium",
+        "Redemption/PrototypeAtomRifle",
+        "Redemption/TeslaCoil",
+        "Redemption/TeslaGenerator",
+        "Redemption/Uranium"
+      ],
+      "stageId": "abandoned-laboratory",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/WorldGeneration/LabGen.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "LabGen inserts these items directly into locked laboratory chests and lockers, a world-generation source that is not represented by the exported recipe/drop/shop tables."
+    },
+    {
+      "id": "post-moon-lord-xenium-refinery",
+      "kind": "station-stage",
+      "station": "Redemption/XeniumRefineryTile",
+      "stageId": "moon-lord",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/Items/Materials/PostML/RawXenium.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "Raw Xenium requires Luminite at the Xenium Refinery, so every recipe using this otherwise-unresolved station has Moon Lord as a proven floor."
+    },
+    {
+      "id": "post-moon-lord-xenium-smelter",
+      "kind": "station-stage",
+      "station": "Redemption/XeniumSmelterTile",
+      "stageId": "moon-lord",
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/Items/Materials/PostML/MoltenScrap.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "Molten Scrap is the post-Moon-Lord processing step at the laboratory Xenium Smelter."
+    },
+    {
+      "id": "web-chest-spider-boots",
+      "kind": "world-source",
+      "item": "Redemption/SpiderBoots",
+      "stageId": "start",
+      "sourceName": "Web Covered Chest",
+      "sourceReference": "Terraria/WebCoveredChest",
+      "sourceItem": "Terraria/Chest",
+      "showDropRate": false,
+      "conditions": [
+        "Guaranteed in the first eligible Web Covered Chest; later eligible chests roll independently"
+      ],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/WorldGeneration/RedeGen.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "RedeGen.PostWorldGen inserts Spider Boots into vanilla Web Covered Chests."
+    },
+    {
+      "id": "spirit-walker-crux-card-sources",
+      "kind": "world-source",
+      "items": [
+        "Redemption/CruxCardAnglonSkeletons",
+        "Redemption/CruxCardForestNymph",
+        "Redemption/CruxCardGathicSkeletons",
+        "Redemption/CruxCardGladestone",
+        "Redemption/CruxCardMossyGoliath",
+        "Redemption/CruxCardSkeleton",
+        "Redemption/CruxCardSkeletonAssassin",
+        "Redemption/CruxCardTied"
+      ],
+      "stageId": "keeper",
+      "sourceName": "Spirit Walker Crux interaction",
+      "sourceReference": "Redemption/RequestCrux",
+      "sourceItem": "Redemption/EmptyCruxCard",
+      "showDropRate": false,
+      "conditions": [
+        "Bring an Empty Crux Card and the spirit's requested offering"
+      ],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/tree/main/NPCs/Friendly",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "These cards are granted directly by RequestCrux dialogue interactions, which the runtime export cannot represent as a recipe, drop, or shop."
+    },
+    {
+      "id": "calavia-crux-card-source",
+      "kind": "world-source",
+      "item": "Redemption/CruxCardCalavia",
+      "stageId": "calavia",
+      "sourceName": "Calavia Crux interaction",
+      "sourceReference": "Redemption/Calavia_NPC",
+      "sourceItem": "Redemption/EmptyCruxCard",
+      "showDropRate": false,
+      "conditions": [
+        "Complete Calavia's encounter and request her Crux Card"
+      ],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/NPCs/Minibosses/Calavia/Calavia_NPC.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "Calavia grants this card through RequestCrux at her completed quest state."
+    },
+    {
+      "id": "skull-digger-crux-card-source",
+      "kind": "world-source",
+      "item": "Redemption/CruxCardSkullDigger",
+      "stageId": "skull-digger",
+      "sourceName": "Skull Digger Crux interaction",
+      "sourceReference": "Redemption/SkullDiggerFriendly",
+      "sourceItem": "Redemption/EmptyCruxCard",
+      "showDropRate": false,
+      "conditions": [
+        "Request the card from the friendly Skull Digger after the encounter"
+      ],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/NPCs/Friendly/SkullDiggerFriendly.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "The friendly post-encounter Skull Digger grants this card through RequestCrux."
+    },
+    {
+      "id": "devils-tongue-resin-source",
+      "kind": "world-source",
+      "item": "Redemption/DevilishResin",
+      "stageId": "start",
+      "sourceName": "Devil's Tongue",
+      "sourceReference": "Redemption/DevilsTongue",
+      "sourceItem": "Redemption/DevilishResin",
+      "showDropRate": false,
+      "conditions": [
+        "Created by the NPC's scripted death handler"
+      ],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/NPCs/PreHM/DevilsTongue.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "DevilsTongue.CheckDead creates Devilish Resin directly with Item.NewItem, bypassing the ordinary loot table export."
+    },
+    {
+      "id": "gold-chicken-egg-source",
+      "kind": "world-source",
+      "item": "Redemption/GoldChickenEgg",
+      "stageId": "start",
+      "sourceName": "Gold Chicken",
+      "sourceReference": "Redemption/ChickenGold",
+      "sourceItem": "Redemption/ChickenGoldItem",
+      "showDropRate": false,
+      "conditions": [
+        "Laid periodically by a Gold Chicken"
+      ],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/NPCs/Critters/Chicken.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "Chicken AI creates Gold Chicken Egg directly when the NPC is the Gold Chicken variant."
+    },
+    {
+      "id": "keeper-circlet-source",
+      "kind": "world-source",
+      "item": "Redemption/KeepersCirclet",
+      "stageId": "keeper",
+      "sourceName": "Keeper",
+      "sourceReference": "Redemption/Keeper",
+      "sourceItem": "Redemption/KeepersCirclet",
+      "showDropRate": false,
+      "conditions": [
+        "Created during Keeper's scripted death sequence"
+      ],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/NPCs/Bosses/Keeper/Keeper.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "Keeper creates the circlet directly with Item.NewItem rather than through the ordinary NPCLoot table."
+    },
+    {
+      "id": "lab-locker-holoshield-source",
+      "kind": "world-source",
+      "item": "Redemption/Holoshield",
+      "stageId": "abandoned-laboratory",
+      "sourceName": "Standard Lab Locker",
+      "sourceReference": "Redemption/StandardLabLockerTile",
+      "sourceItem": "Redemption/StandardLabLocker",
+      "showDropRate": false,
+      "conditions": [
+        "One item from the laboratory locker main-loot rotation"
+      ],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha/blob/main/WorldGeneration/LabGen.cs",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "LabGen places Holoshield in the main-loot rotation of world-generated Standard Lab Lockers."
+    }
+  ],
+  "ignoredItems": [
+    {
+      "id": "unobtainable-or-disabled-redemption-combat-items",
+      "items": [
+        "Redemption/AngelCake",
+        "Redemption/Avocado",
+        "Redemption/BlazingBalisong",
+        "Redemption/BlightedBoline",
+        "Redemption/BlightedRoot",
+        "Redemption/BloodLetter",
+        "Redemption/BuddingBoline",
+        "Redemption/EnchantedPear",
+        "Redemption/FirstAidKit",
+        "Redemption/GraveSteelSecespita",
+        "Redemption/HardlightCasque",
+        "Redemption/HikariteBreastplate",
+        "Redemption/HikariteGreaves",
+        "Redemption/HikariteHelmet",
+        "Redemption/IceCreamFloat",
+        "Redemption/Incisor",
+        "Redemption/KeepersKnife",
+        "Redemption/Lament",
+        "Redemption/MutagenRitualist",
+        "Redemption/ObsidianTecpatl",
+        "Redemption/Olives",
+        "Redemption/RitualistEmblem",
+        "Redemption/Shadeshake",
+        "Redemption/ShinkiteChestplate",
+        "Redemption/ShinkiteHelmet",
+        "Redemption/ShinkiteLeggings",
+        "Redemption/SoulSkewer",
+        "Redemption/SussyEgg",
+        "Redemption/VortiHat",
+        "Redemption/VortiPants",
+        "Redemption/VortiRobes",
+        "Redemption/WineBottle",
+        "Redemption/WornDagger",
+        "Redemption/XeniumGrenadeCannon"
+      ],
+      "sourceUrl": "https://github.com/Hallam9K/RedemptionAlpha",
+      "sourceVersion": "Redemption 0.8.0.4501 source, commit 5edb3c6475cc2528d168f01fa99fd363ab71cd63",
+      "checkedAt": "2026-08-25",
+      "reason": "The current source has no active recipe, drop, shop, catch, world-generation placement, or scripted grant for these items. Several Ritualist recipes and Blackhole Fragment are explicitly commented out; Xenium Grenade Cannon derives from TemporaryItem and is created only as an armor UI/held-item surrogate."
+    }
+  ],
+  "ignoredIssues": []
+}

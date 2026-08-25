@@ -88,18 +88,21 @@
       "previewArmor": [
         {
           "mod": "VitalityMod",
-          "item": "BloodkeeperHelmet"
+          "item": "DarkbloodHelmet"
         },
         {
           "mod": "VitalityMod",
-          "item": "BloodkeeperChestplate"
+          "item": "DarkbloodBreastplate"
         },
         {
           "mod": "VitalityMod",
-          "item": "BloodkeeperLeggings"
+          "item": "DarkbloodLeggings"
         }
       ],
-      "previewMount": null,
+      "previewMount": {
+        "mod": "VitalityMod",
+        "item": "GrandAntlionMountItem"
+      },
       "iconMod": "VitalityMod",
       "iconItem": "BloodHunterEmblem",
       "damageClassNames": [
@@ -728,5 +731,53 @@
         "key": "downedMoonlord"
       }
     }
-  ]
+  ],
+  "recommendationSource": {
+    "name": "Official Terraria Mods Wiki",
+    "url": "https://terrariamods.wiki.gg/wiki/Vitality_Mod/Class_Setups"
+  },
+  "recommendationStageMap": {
+    "pre-boss": {
+      "stageId": "start",
+      "target": {
+        "en-US": "First bosses",
+        "ru-RU": "Первые боссы"
+      }
+    },
+    "pre-hardmode": {
+      "stageId": "moonlight-dragonfly",
+      "target": {
+        "en-US": "Wall of Flesh",
+        "ru-RU": "Стена плоти"
+      }
+    },
+    "pre-mechanical-bosses": {
+      "stageId": "wall-of-flesh",
+      "target": {
+        "en-US": "Mechanical bosses",
+        "ru-RU": "Механические боссы"
+      }
+    },
+    "pre-plantera": {
+      "stageId": "skeletron-prime",
+      "target": {
+        "en-US": "Plantera",
+        "ru-RU": "Плантера"
+      }
+    },
+    "pre-golem": {
+      "stageId": "plantera",
+      "target": {
+        "en-US": "Golem",
+        "ru-RU": "Голем"
+      }
+    },
+    "pre-moon-lord": {
+      "stageId": "lunatic-cultist",
+      "target": {
+        "en-US": "Moon Lord",
+        "ru-RU": "Лунный лорд"
+      }
+    }
+  }
 }

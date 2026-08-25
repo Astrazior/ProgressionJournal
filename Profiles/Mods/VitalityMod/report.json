@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "VitalityMod",
   "profileId": "mod.vitalitymod",
-  "generatedAtUtc": "2026-08-24T12:20:02.589Z",
+  "generatedAtUtc": "2026-08-25T23:29:11.434Z",
   "snapshot": {
     "version": 9,
     "generatedAtUtc": "2026-08-12T13:40:54.9952885Z",
@@ -1057,7 +1057,9 @@
   },
   "audit": {
     "errors": [],
-    "warnings": [],
+    "warnings": [
+      "19 recommendations precede proven availability and were suppressed"
+    ],
     "sourceCoverage": {
       "npcCount": 771,
       "availabilityCount": 771,
@@ -4707,7 +4709,7 @@
   "ready": true,
   "generation": {
     "profileId": "mod.vitalitymod",
-    "generatedAtUtc": "2026-08-24T12:20:02.094Z",
+    "generatedAtUtc": "2026-08-25T23:29:10.777Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -48021,10 +48023,325 @@
       }
     },
     "wikiMissingItems": [],
-    "wikiResolvedItems": [],
+    "wikiResolvedItems": [
+      {
+        "from": "VitalityMod/Metalsmith armor",
+        "displayName": "Metalsmith armor",
+        "to": [
+          "VitalityMod/MetalsmithHelmet",
+          "VitalityMod/MetalsmithChestplate",
+          "VitalityMod/MetalsmithLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Herb armor",
+        "displayName": "Herb armor",
+        "to": [
+          "VitalityMod/HerbHelmet",
+          "VitalityMod/HerbShirt",
+          "VitalityMod/HerbGreaves"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Glacial armor",
+        "displayName": "Glacial armor",
+        "to": [
+          "VitalityMod/GlacialHelmet",
+          "VitalityMod/GlacialPlateMail",
+          "VitalityMod/GlacialGreaves"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Living Wood armor",
+        "displayName": "Living Wood armor",
+        "to": [
+          "VitalityMod/LivingWoodHood",
+          "VitalityMod/LivingWoodBreastplate",
+          "VitalityMod/LivingWoodLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Trailhunter armor",
+        "displayName": "Trailhunter armor",
+        "to": [
+          "VitalityMod/TrailhunterHat",
+          "VitalityMod/TrailhunterCoat",
+          "VitalityMod/TrailhunterLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Robin's armor",
+        "displayName": "Robin's armor",
+        "to": [
+          "VitalityMod/RobinsHood",
+          "VitalityMod/RobinsShirt",
+          "VitalityMod/RobinsPants"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Geranium armor",
+        "displayName": "Geranium armor",
+        "to": [
+          "VitalityMod/GeraniumHelmet",
+          "VitalityMod/GeraniumBreastplate",
+          "VitalityMod/GeraniumLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Moon Moth armor",
+        "displayName": "Moon Moth armor",
+        "to": [
+          "VitalityMod/MoonMothAntennae",
+          "VitalityMod/MoonMothShirt",
+          "VitalityMod/MoonMothPants"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Arcane Gold armor",
+        "displayName": "Arcane Gold armor",
+        "to": [
+          "VitalityMod/ArcaneGoldHeadpiece",
+          "VitalityMod/ArcaneGoldChainmail",
+          "VitalityMod/ArcaneGoldLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Glowshroom armor",
+        "displayName": "Glowshroom armor",
+        "to": [
+          "VitalityMod/GlowshroomHat",
+          "VitalityMod/GlowshroomChestplate",
+          "VitalityMod/GlowshroomLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Anarchy armor",
+        "displayName": "Anarchy armor",
+        "to": [
+          "VitalityMod/AnarchyHeadgear",
+          "VitalityMod/AnarchyChainmail",
+          "VitalityMod/AnarchyLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Arctic armor",
+        "displayName": "Arctic armor",
+        "to": [
+          "VitalityMod/ArcticHat",
+          "VitalityMod/ArcticGuard",
+          "VitalityMod/ArcticPants"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Chaos armor",
+        "displayName": "Chaos armor",
+        "to": [
+          "VitalityMod/ChaosHood",
+          "VitalityMod/ChaosChainmail",
+          "VitalityMod/ChaosGreaves"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Temple armor",
+        "displayName": "Temple armor",
+        "to": [
+          "VitalityMod/TempleHelmet",
+          "VitalityMod/TempleBreastplate",
+          "VitalityMod/TempleLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Paladin armor",
+        "displayName": "Paladin armor",
+        "to": [
+          "VitalityMod/PaladinHelm",
+          "VitalityMod/PaladinBodyArmor",
+          "VitalityMod/PaladinLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Spirit Knight armor",
+        "displayName": "Spirit Knight armor",
+        "to": [
+          "VitalityMod/SpiritKnightHelmet",
+          "VitalityMod/SpiritKnightBodyArmor",
+          "VitalityMod/SpiritKnightLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Bloodkeeper armor",
+        "displayName": "Bloodkeeper armor",
+        "to": [
+          "VitalityMod/BloodkeeperHelmet",
+          "VitalityMod/BloodkeeperChestplate",
+          "VitalityMod/BloodkeeperLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "VitalityMod/Shiver armor",
+        "displayName": "Shiver armor",
+        "to": [
+          "VitalityMod/IceHelmet",
+          "VitalityMod/IceBreastplate",
+          "VitalityMod/IceLeggings"
+        ],
+        "method": "armor-set"
+      }
+    ],
     "wikiAmbiguousItems": [],
     "wikiUnresolvedItems": [],
-    "wikiAvailabilityCorrections": [],
+    "wikiAvailabilityCorrections": [
+      {
+        "id": "VitalityMod/SporeBlade",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/SanguineScroll",
+        "factualStage": "eye-of-cthulhu",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/BloodMagnet",
+        "factualStage": "eye-of-cthulhu",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/PalladiumShield",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "moonlight-dragonfly",
+        "wikiStage": "pre-hardmode",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/UnholyStar",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "moonlight-dragonfly",
+        "wikiStage": "pre-hardmode",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/Deathslinger",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "moonlight-dragonfly",
+        "wikiStage": "pre-hardmode",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/NightsPeak",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "moonlight-dragonfly",
+        "wikiStage": "pre-hardmode",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/Nightshade",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "moonlight-dragonfly",
+        "wikiStage": "pre-hardmode",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/Downpour",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "moonlight-dragonfly",
+        "wikiStage": "pre-hardmode",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/TurtleAegis",
+        "factualStage": "plantera",
+        "recommendedStage": "skeletron-prime",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/TurtleAegis",
+        "factualStage": "plantera",
+        "recommendedStage": "skeletron-prime",
+        "wikiStage": "pre-plantera",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/SpectralThrow",
+        "factualStage": "paladin-spirit",
+        "recommendedStage": "plantera",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/SpectralShield",
+        "factualStage": "paladin-spirit",
+        "recommendedStage": "plantera",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/SpiritKnightHelmet",
+        "factualStage": "paladin-spirit",
+        "recommendedStage": "plantera",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/SpiritKnightBodyArmor",
+        "factualStage": "paladin-spirit",
+        "recommendedStage": "plantera",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/SpiritKnightLeggings",
+        "factualStage": "paladin-spirit",
+        "recommendedStage": "plantera",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/ManaIncense",
+        "factualStage": "paladin-spirit",
+        "recommendedStage": "plantera",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/SpectralCuffs",
+        "factualStage": "paladin-spirit",
+        "recommendedStage": "plantera",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "VitalityMod/SpectralShield",
+        "factualStage": "paladin-spirit",
+        "recommendedStage": "plantera",
+        "wikiStage": "pre-golem",
+        "reason": "recommendation precedes proven availability"
+      }
+    ],
     "snapshotStageCorrections": [],
     "sourceAvailabilityCorrections": [
       {
@@ -48953,9 +49270,16 @@
     "manualAssignmentProblems": [],
     "officialSourceCompatibility": {
       "recommendations": {
-        "present": false,
-        "compatible": false,
-        "comparisons": []
+        "present": true,
+        "compatible": true,
+        "comparisons": [
+          {
+            "mod": "VitalityMod",
+            "sourceVersion": "1.3.5.4",
+            "snapshotVersion": "1.3.5.4",
+            "compatible": true
+          }
+        ]
       }
     },
     "unassignedVanillaNpcSourceCount": 108,

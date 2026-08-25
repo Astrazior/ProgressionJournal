@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "SOTS",
   "profileId": "mod.sots",
-  "generatedAtUtc": "2026-08-24T12:42:16.648Z",
+  "generatedAtUtc": "2026-08-25T23:29:15.143Z",
   "snapshot": {
     "version": 10,
     "generatedAtUtc": "2026-08-16T12:13:03.2752837Z",
@@ -729,6 +729,7 @@
   "audit": {
     "errors": [],
     "warnings": [
+      "2 recommendations precede proven availability and were suppressed",
       "127 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
@@ -4557,7 +4558,7 @@
   "ready": false,
   "generation": {
     "profileId": "mod.sots",
-    "generatedAtUtc": "2026-08-24T12:42:14.938Z",
+    "generatedAtUtc": "2026-08-25T23:29:13.546Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -48439,11 +48440,66 @@
         "via": "recipe:Terraria/BottledWater+Terraria/LunarBar"
       }
     },
-    "wikiMissingItems": [],
-    "wikiResolvedItems": [],
+    "wikiMissingItems": [
+      {
+        "id": "SOTS/OlympianAxe",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation has no proven availability",
+        "sourceReference": [
+          "SOTS/OlympianAxe"
+        ]
+      }
+    ],
+    "wikiResolvedItems": [
+      {
+        "from": "SOTS/Vibrant armor",
+        "displayName": "Vibrant armor",
+        "to": [
+          "SOTS/VibrantHelmet",
+          "SOTS/VibrantChestplate",
+          "SOTS/VibrantLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "SOTS/Vespera armor",
+        "displayName": "Vespera armor",
+        "to": [
+          "SOTS/VesperaMask",
+          "SOTS/VesperaBreastplate",
+          "SOTS/VesperaLeggings"
+        ],
+        "method": "armor-set"
+      },
+      {
+        "from": "SOTS/Frigid armor",
+        "displayName": "Frigid armor",
+        "to": [
+          "SOTS/FrigidCrown",
+          "SOTS/FrigidRobe",
+          "SOTS/FrigidGreaves"
+        ],
+        "method": "armor-set"
+      }
+    ],
     "wikiAmbiguousItems": [],
     "wikiUnresolvedItems": [],
-    "wikiAvailabilityCorrections": [],
+    "wikiAvailabilityCorrections": [
+      {
+        "id": "SOTS/CoconutGun",
+        "factualStage": "eye-of-cthulhu",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "SOTS/GlazeBow",
+        "factualStage": "eye-of-cthulhu",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      }
+    ],
     "snapshotStageCorrections": [],
     "sourceAvailabilityCorrections": [
       {
@@ -49805,9 +49861,16 @@
     "manualAssignmentProblems": [],
     "officialSourceCompatibility": {
       "recommendations": {
-        "present": false,
-        "compatible": false,
-        "comparisons": []
+        "present": true,
+        "compatible": true,
+        "comparisons": [
+          {
+            "mod": "SOTS",
+            "sourceVersion": "0.25.1.9",
+            "snapshotVersion": "0.25.1.9",
+            "compatible": true
+          }
+        ]
       }
     },
     "unassignedVanillaNpcSourceCount": 166,

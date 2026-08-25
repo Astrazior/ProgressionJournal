@@ -77,6 +77,31 @@ const requiredFiles = [
   "report.json",
   "profile.json"
 ];
+const vanillaClassIds = new Set(["melee", "ranged", "magic", "summoner"]);
+for (const modDirectory of fs.readdirSync(modsRoot, { withFileTypes: true })) {
+  if (!modDirectory.isDirectory()) continue;
+  const directory = path.join(modsRoot, modDirectory.name);
+  if (!fs.existsSync(path.join(directory, "support.json"))
+      || !fs.existsSync(path.join(directory, "snapshot.json"))) continue;
+  const support = readJson(path.join(directory, "support.json"));
+  const snapshot = readJson(path.join(directory, "snapshot.json"));
+  for (const profileClass of support.classes.filter(entry => !vanillaClassIds.has(entry.id))) {
+    assert.equal(profileClass.previewArmor?.length, 3,
+      `${support.targetMod}: custom class '${profileClass.id}' must have three cover armor pieces`);
+    for (const [slot, armorReference] of profileClass.previewArmor.entries()) {
+      const item = snapshot.items.find(entry =>
+        entry.id === `${armorReference.mod}/${armorReference.item}`);
+      const slotProperty = ["headSlot", "bodySlot", "legSlot"][slot];
+      assert(item?.[slotProperty] >= 0,
+        `${support.targetMod}: '${armorReference.item}' is not valid ${slotProperty} cover armor`);
+    }
+    const mountReference = profileClass.previewMount;
+    const mount = snapshot.items.find(entry =>
+      entry.id === `${mountReference?.mod}/${mountReference?.item}`);
+    assert(mount?.mountType >= 0,
+      `${support.targetMod}: custom class '${profileClass.id}' must have a valid mount cover`);
+  }
+}
 const shiftedStages = [
   { id: "start", name: { "en-US": "Start", "ru-RU": "Начало" } },
   { id: "deerclops", name: { "en-US": "Deerclops", "ru-RU": "Циклоп-олень" } },
@@ -502,13 +527,20 @@ assert(acquisitionVisualsSource.includes("return new JournalConditionVisuals([],
   && !acquisitionVisualsSource.includes("TryCreateConditionTokens")
   && !journalUiStateSource.includes("visuals.Tokens"),
 "All framed acquisition conditions must remain text instead of being replaced by token subcards");
-assert(journalUiStateSource.includes("GetEntriesForArmorSetOverview(profile.Id, stageId)")
+assert(journalUiStateSource.includes("GetEntriesForArmorSetOverview(profile.Id, stageId, out var currentArmorEntryCount)")
   && journalRepositorySource.includes("CreateAllClassStageEntries")
   && armorSetOverviewResolverSource.includes("ResolveArmorSetClassIds")
   && armorSetOverviewResolverSource.includes("variantClassIds.IntersectWith(itemClassIds)")
   && armorSetOverviewResolverSource.includes(".Where(match => match.ClassIds.Contains(classId))")
   && armorSetOverviewResolverSource.includes("if (!AppliesToClass(indexedEntry.Entry, classId))"),
 "Armor sets must be detected before class filtering and shown by the intersection of their piece classes");
+assert(armorSetOverviewResolverSource.includes(".DistinctBy(static variant => variant.Key)")
+  && armorSetOverviewResolverSource.includes("match.Anchor.Index < currentEntryCount"),
+"Identical armor definitions from known and runtime detectors must collapse to one displayed variant");
+assert(journalRepositorySource.includes("earlierArmorEntries")
+  && journalRepositorySource.includes("profile.GetStageIndex(evaluation.StageId) < currentStageIndex")
+  && armorSetOverviewResolverSource.includes("entries.Take(currentEntryCount)"),
+"Armor sets may use earlier factual pieces for grouping without leaking old equipment into the current stage");
 assert(armorSetOverviewResolverSource.includes("RemoveShimmerCompatibilityPermutations(modMatches)")
   && armorSetOverviewResolverSource.includes("TryResolveCartesianShimmerVariants")
   && armorSetOverviewResolverSource.includes("AreShimmerVariants")
@@ -2545,6 +2577,8 @@ assert(englishLocalizationSource.includes("Keybinds:")
 assert(exporter.includes('Path.Combine(directory, "snapshot.json")'));
 assert(exporter.includes("ResolveTransitiveDependencies(targetMod)"));
 assert(exporter.includes('!mod.Name.Equals("ModLoader"'));
+assert(exporter.includes(".Prepend(targetMod)"),
+  "Development support scaffolds must list the target mod before its dependencies");
 assert(builder.includes("rule.sources ?? (rule.source ? [rule.source] : [])"));
 assert(builder.includes("rule.items ?? (rule.item ? [rule.item] : [])"));
 assert(exporter.includes("File.Move(temporaryPath, path, overwrite: true)"));

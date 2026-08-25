@@ -474,9 +474,12 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                 ["ru-RU"] = $"Прогрессия {targetMod.DisplayName}"
             },
             profileVersion = targetMod.Version.ToString(),
-            requiredMods = dependencyMods.Select(static mod => new SnapshotMod(
-                mod.Name,
-                mod.Version.ToString())),
+            requiredMods = dependencyMods
+                .Where(mod => !mod.Name.Equals(targetMod.Name, StringComparison.OrdinalIgnoreCase))
+                .Prepend(targetMod)
+                .Select(static mod => new SnapshotMod(
+                    mod.Name,
+                    mod.Version.ToString())),
             contentMods = dependencyMods.Select(static mod => mod.Name).ToArray(),
             classes = progressionTemplate.Document.Classes,
             initialStations = new[]

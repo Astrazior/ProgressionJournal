@@ -62,14 +62,15 @@ public static partial class JournalRepository
 
     internal static IReadOnlyList<JournalStageEntry> GetEntriesForArmorSetOverview(
         string profileId,
-        string stageId)
+        string stageId,
+        out int currentEntryCount)
     {
         if (!JournalProfileRegistry.TryGet(profileId, out var profile))
         {
             if (!JournalProfileRegistry.IsLoaded
                 && string.Equals(profileId, JournalProfileIds.Vanilla, StringComparison.OrdinalIgnoreCase))
             {
-                return Entries.Value
+                var vanillaEntries = Entries.Value
                     .Where(entry => entry.TryGetEvaluation(profileId, stageId, out _))
                     .Select(entry => new JournalStageEntry(entry, entry.GetEvaluation(profileId, stageId)))
                     .OrderBy(entry => JournalOrdering.GetTierOrder(entry.Evaluation.Tier))
@@ -77,12 +78,14 @@ public static partial class JournalRepository
                     .ThenBy(entry => GetDisplayOrderOverride(profileId, stageId, entry.Entry.Key))
                     .ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
                     .ToArray();
+                currentEntryCount = vanillaEntries.Length;
+                return vanillaEntries;
             }
 
             profile = JournalProfileRegistry.Active;
         }
 
-        return profile.Entries
+        var currentEntries = profile.Entries
             .SelectMany(entry => CreateAllClassStageEntries(profile.Id, stageId, entry))
             .OrderByDescending(static entry => entry.IsWikiRecommendation)
             .ThenBy(entry => JournalOrdering.GetTierOrder(entry.Evaluation.Tier))
@@ -90,6 +93,25 @@ public static partial class JournalRepository
             .ThenBy(entry => GetDisplayOrderOverride(profile.Id, stageId, entry.Entry.Key))
             .ThenBy(entry => entry.Entry.GetDisplayName(), StringComparer.CurrentCultureIgnoreCase)
             .ToArray();
+        currentEntryCount = currentEntries.Length;
+
+        var currentKeys = currentEntries
+            .Select(static entry => entry.Entry.Key)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var currentStageIndex = profile.GetStageIndex(stageId);
+        var earlierArmorEntries = profile.Entries
+            .Where(entry => entry.Category == JournalItemCategory.Armor && !currentKeys.Contains(entry.Key))
+            .Select(entry => new
+            {
+                Entry = entry,
+                Evaluation = entry.Evaluations
+                    .Where(evaluation => profile.GetStageIndex(evaluation.StageId) < currentStageIndex)
+                    .MaxBy(evaluation => profile.GetStageIndex(evaluation.StageId))
+            })
+            .Where(static value => value.Evaluation is not null)
+            .Select(static value => new JournalStageEntry(value.Entry, value.Evaluation!));
+
+        return currentEntries.Concat(earlierArmorEntries).ToArray();
     }
 
     private static IEnumerable<JournalStageEntry> CreateStageEntries(
