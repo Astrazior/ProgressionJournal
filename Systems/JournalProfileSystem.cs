@@ -13,6 +13,7 @@ public sealed class JournalProfileSystem : ModSystem
         }
 
         JournalProfileRegistry.Load(JournalRepository.GetAllVanillaEntries());
+        JournalArmorSetOverviewResolver.Prepare();
     }
 
     public override void Unload()

@@ -14,16 +14,48 @@ internal static class JournalArmorSetOverviewResolver
         .ToArray());
     private static readonly Lazy<JournalArmorSetFamily[]> VanillaArmorSets = new(CreateVanillaArmorSets);
     private static readonly Dictionary<ArmorSetKey, string[]> ModArmorSetClaimCache = [];
+    private static readonly Dictionary<OverviewKey, IReadOnlyList<JournalStageEntry>> PreparedOverviews = [];
     private static readonly HashSet<string> LoggedHookFailures = new(StringComparer.Ordinal);
 
-    public static IReadOnlyList<JournalStageEntry> Resolve(
+    public static void Prepare()
+    {
+        PreparedOverviews.Clear();
+
+        foreach (var profile in JournalProfileRegistry.All)
+        {
+            foreach (var stage in profile.Stages)
+            {
+                var entries = JournalRepository.GetEntriesForArmorSetOverview(
+                    profile.Id,
+                    stage.Id,
+                    out var currentEntryCount);
+                PrepareStage(profile, stage.Id, entries, currentEntryCount);
+            }
+        }
+    }
+
+    public static IReadOnlyList<JournalStageEntry> GetPrepared(
+        string profileId,
+        string stageId,
+        string classId) =>
+        PreparedOverviews.TryGetValue(new OverviewKey(profileId, stageId, classId), out var entries)
+            ? entries
+            : [];
+
+    private static void PrepareStage(
+        JournalProfile profile,
+        string stageId,
         IReadOnlyList<JournalStageEntry> entries,
-        string classId,
         int currentEntryCount)
     {
         if (entries.Count == 0)
         {
-            return entries;
+            foreach (var profileClass in profile.Classes)
+            {
+                PreparedOverviews[new OverviewKey(profile.Id, stageId, profileClass.Id)] = [];
+            }
+
+            return;
         }
 
         var indexedEntries = entries
@@ -36,20 +68,28 @@ internal static class JournalArmorSetOverviewResolver
                      .GroupBy(static value => CreateGroupKey(value.Entry)))
         {
             var groupEntries = candidateGroup.ToArray();
-            var modMatches = FindModArmorSets(groupEntries).ToArray();
-            matches.AddRange(FindKnownArmorSets(groupEntries, VanillaArmorSets.Value));
+            var knownMatches = FindKnownArmorSets(groupEntries, VanillaArmorSets.Value).ToArray();
+            var modMatches = FindModArmorSets(groupEntries, currentEntryCount).ToArray();
+            matches.AddRange(knownMatches);
             var canonicalModMatches = RemoveShimmerCompatibilityPermutations(modMatches);
-            matches.AddRange(GroupModArmorSetFamilies(canonicalModMatches));
+            matches.AddRange(GroupModArmorSetFamilies(canonicalModMatches)
+                .Where(match => !DuplicatesKnownVanillaSet(match, knownMatches)));
         }
 
-        return matches.Count == 0
-            ? entries.Take(currentEntryCount).Where(entry => AppliesToClass(entry, classId)).ToArray()
-            : ComposeOverview(indexedEntries, matches, classId, currentEntryCount);
+        foreach (var profileClass in profile.Classes)
+        {
+            PreparedOverviews[new OverviewKey(profile.Id, stageId, profileClass.Id)] = matches.Count == 0
+                ? entries.Take(currentEntryCount)
+                    .Where(entry => AppliesToClass(entry, profileClass.Id))
+                    .ToArray()
+                : ComposeOverview(indexedEntries, matches, profileClass.Id, currentEntryCount);
+        }
     }
 
     public static void ClearCaches()
     {
         ModArmorSetClaimCache.Clear();
+        PreparedOverviews.Clear();
         LoggedHookFailures.Clear();
     }
 
@@ -193,9 +233,15 @@ internal static class JournalArmorSetOverviewResolver
         }
     }
 
-    private static IEnumerable<ArmorSetMatch> FindModArmorSets(IndexedEntry[] entries)
+    private static IEnumerable<ArmorSetMatch> FindModArmorSets(
+        IndexedEntry[] entries,
+        int currentEntryCount)
     {
         var itemEntries = CreateItemEntryLookup(entries);
+        var currentItemIds = itemEntries
+            .Where(pair => pair.Value.Any(entry => entry.Index < currentEntryCount))
+            .Select(static pair => pair.Key)
+            .ToHashSet();
         var items = itemEntries.Keys
             .Select(itemId => TryGetArmorItem(itemId, out var item) ? item : null)
             .OfType<Item>()
@@ -211,6 +257,13 @@ internal static class JournalArmorSetOverviewResolver
         foreach (var leg in legs)
         {
             if (CountPresentItems(head, body, leg) < 2)
+            {
+                continue;
+            }
+
+            if (!currentItemIds.Contains(head.type)
+                && !currentItemIds.Contains(body.type)
+                && !currentItemIds.Contains(leg.type))
             {
                 continue;
             }
@@ -275,6 +328,20 @@ internal static class JournalArmorSetOverviewResolver
         }
 
         return result.ToArray();
+    }
+
+    private static bool DuplicatesKnownVanillaSet(
+        ArmorSetMatch candidate,
+        IReadOnlyList<ArmorSetMatch> knownMatches)
+    {
+        if (candidate.Family.ItemIds.Any(static itemId => itemId >= ItemID.Count))
+        {
+            return false;
+        }
+
+        return knownMatches.Any(known =>
+            known.ClassIds.Overlaps(candidate.ClassIds)
+            && candidate.Family.ItemIds.Count(known.Family.ItemIds.Contains) >= 2);
     }
 
     private static ArmorSetMatch[] TakeCompatibleFamilyComponent(List<ArmorSetMatch> remainingMatches)
@@ -866,6 +933,8 @@ internal static class JournalArmorSetOverviewResolver
         string ComponentKey,
         string FamilyKey,
         ArmorSetGroupKey GroupKey);
+
+    private readonly record struct OverviewKey(string ProfileId, string StageId, string ClassId);
 
     private sealed record IndexedEntry(JournalStageEntry Entry, int Index);
 

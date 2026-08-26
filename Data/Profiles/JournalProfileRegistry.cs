@@ -45,9 +45,13 @@ public static class JournalProfileRegistry
         var profile = JournalProfileStorage.CreateVanillaProfile(entries);
         Profiles[profile.Id] = profile;
 
-        if (!wasActive) return;
-        _active = profile;
-        JournalItemSourceResolver.ClearCache();
+        if (wasActive)
+        {
+            _active = profile;
+            JournalItemSourceResolver.ClearCache();
+        }
+
+        JournalArmorSetOverviewResolver.Prepare();
     }
 
     public static bool TryGet(string profileId, out JournalProfile profile)

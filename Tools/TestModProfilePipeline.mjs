@@ -261,6 +261,9 @@ const journalRepositorySource = fs.readFileSync(
 const armorSetOverviewResolverSource = fs.readFileSync(
   path.join(root, "Data", "Repositories", "JournalArmorSetOverviewResolver.cs"),
   "utf8");
+const journalProfileSystemSource = fs.readFileSync(
+  path.join(root, "Systems", "JournalProfileSystem.cs"),
+  "utf8");
 const vanillaArmorRepositorySource = fs.readFileSync(
   path.join(root, "Data", "Repositories", "JournalRepository.Armor.cs"),
   "utf8");
@@ -527,19 +530,26 @@ assert(acquisitionVisualsSource.includes("return new JournalConditionVisuals([],
   && !acquisitionVisualsSource.includes("TryCreateConditionTokens")
   && !journalUiStateSource.includes("visuals.Tokens"),
 "All framed acquisition conditions must remain text instead of being replaced by token subcards");
-assert(journalUiStateSource.includes("GetEntriesForArmorSetOverview(profile.Id, stageId, out var currentArmorEntryCount)")
+assert(journalUiStateSource.includes("JournalArmorSetOverviewResolver.GetPrepared(profile.Id, stageId, classId)")
+  && !journalUiStateSource.includes("GetEntriesForArmorSetOverview(")
+  && !journalUiStateSource.includes("JournalArmorSetOverviewResolver.Resolve(")
+  && journalProfileSystemSource.includes("JournalArmorSetOverviewResolver.Prepare()")
   && journalRepositorySource.includes("CreateAllClassStageEntries")
   && armorSetOverviewResolverSource.includes("ResolveArmorSetClassIds")
   && armorSetOverviewResolverSource.includes("variantClassIds.IntersectWith(itemClassIds)")
   && armorSetOverviewResolverSource.includes(".Where(match => match.ClassIds.Contains(classId))")
   && armorSetOverviewResolverSource.includes("if (!AppliesToClass(indexedEntry.Entry, classId))"),
-"Armor sets must be detected before class filtering and shown by the intersection of their piece classes");
+"Armor sets must be prepared before gameplay, then read by the UI after class intersection");
 assert(armorSetOverviewResolverSource.includes(".DistinctBy(static variant => variant.Key)")
-  && armorSetOverviewResolverSource.includes("match.Anchor.Index < currentEntryCount"),
+  && armorSetOverviewResolverSource.includes("match.Anchor.Index < currentEntryCount")
+  && armorSetOverviewResolverSource.includes("DuplicatesKnownVanillaSet")
+  && armorSetOverviewResolverSource.includes("itemId >= ItemID.Count"),
 "Identical armor definitions from known and runtime detectors must collapse to one displayed variant");
 assert(journalRepositorySource.includes("earlierArmorEntries")
   && journalRepositorySource.includes("profile.GetStageIndex(evaluation.StageId) < currentStageIndex")
-  && armorSetOverviewResolverSource.includes("entries.Take(currentEntryCount)"),
+  && armorSetOverviewResolverSource.includes("entries.Take(currentEntryCount)")
+  && armorSetOverviewResolverSource.includes("currentItemIds")
+  && armorSetOverviewResolverSource.includes("!currentItemIds.Contains(head.type)"),
 "Armor sets may use earlier factual pieces for grouping without leaking old equipment into the current stage");
 assert(armorSetOverviewResolverSource.includes("RemoveShimmerCompatibilityPermutations(modMatches)")
   && armorSetOverviewResolverSource.includes("TryResolveCartesianShimmerVariants")
