@@ -1926,6 +1926,18 @@ assert.deepEqual(
     "ru-RU": "Эриданус, чемпион Космоса"
   });
 
+const redemptionSupport = readJson(path.join(modsRoot, "Redemption", "support.json"));
+const redemptionModStages = redemptionSupport.stages.filter(stage => stage.iconMod === "Redemption");
+assert(redemptionModStages.every(stage =>
+  !stage.name.key
+  && typeof stage.name["en-US"] === "string"
+  && typeof stage.name["ru-RU"] === "string"),
+"Redemption stages without built-in Russian localization must use the copied Project tRU names");
+assert.equal(redemptionModStages.find(stage => stage.id === "fowl-emperor")?.name["ru-RU"],
+  "Кудашный император");
+assert.equal(redemptionModStages.find(stage => stage.id === "nebuleus")?.name["ru-RU"],
+  "Небулеус, Ангел космоса");
+
 const testSupport = {
   id: "test",
   stages: [{ id: "start" }, { id: "boss" }]
