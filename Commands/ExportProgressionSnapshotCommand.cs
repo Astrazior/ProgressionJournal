@@ -543,6 +543,8 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
                 .Select(static source => source.TargetItemId))
             .Concat(JournalLegacyDirectDropAnalyzer.GetAllItemDrops()
                 .Select(static source => source.TargetItemId))
+            .Concat(JournalLegacyDirectDropAnalyzer.GetAllTileDrops()
+                .Select(static source => source.TargetItemId))
             .Where(includedItems.Contains)
             .Select(GetItemReference)
             .Concat(JournalContainerLootCatalog.GetAllDrops()
@@ -607,7 +609,10 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
     {
         if (sourceItem is { accessory: false, headSlot: < 0, bodySlot: < 0, legSlot: < 0 })
         {
-            return [];
+            return sourceItem is { damage: > 0, ModItem: not null }
+                   && IsDefaultDamageClass(sourceItem.DamageType)
+                ? GetDefaultDamageWeaponClassEffects(sourceItem.ModItem)
+                : [];
         }
 
         try
@@ -638,6 +643,99 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         {
             LogDebug($"Failed to inspect class effects for item {sourceItem.type}.", exception);
             return [];
+        }
+    }
+
+    private static List<SnapshotClassEffect> GetDefaultDamageWeaponClassEffects(ModItem modItem)
+    {
+        var hooks = new Dictionary<string, (bool Damage, bool Crit, bool Knockback)>(StringComparer.Ordinal)
+        {
+            [nameof(ModItem.ModifyWeaponDamage)] = (true, false, false),
+            [nameof(ModItem.ModifyWeaponCrit)] = (false, true, false),
+            [nameof(ModItem.ModifyWeaponKnockback)] = (false, false, true)
+        };
+        var effects = new Dictionary<string, SnapshotClassEffect>(StringComparer.Ordinal);
+        foreach (var method in modItem.GetType().GetMethods(
+                     BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+        {
+            if (!hooks.TryGetValue(method.Name, out var hook))
+            {
+                continue;
+            }
+
+            foreach (var damageClassReference in JournalLegacyDirectDropAnalyzer.GetReferencedMembers(method)
+                         .OfType<MethodInfo>()
+                         .Select(TryResolveReferencedDamageClassReference)
+                         .OfType<string>()
+                         .Distinct(StringComparer.Ordinal))
+            {
+                effects.TryGetValue(damageClassReference, out var existing);
+                effects[damageClassReference] = new SnapshotClassEffect(
+                    damageClassReference,
+                    hook.Damage || existing?.Damage == true,
+                    hook.Crit || existing?.Crit == true,
+                    AttackSpeed: false,
+                    ArmorPenetration: false,
+                    hook.Knockback || existing?.Knockback == true);
+            }
+        }
+
+        return effects.Values.ToList();
+    }
+
+    private static bool IsDefaultDamageClass(DamageClass damageClass)
+    {
+        return string.Equals(damageClass.FullName, DamageClass.Default.FullName, StringComparison.Ordinal)
+            || string.Equals(
+                damageClass.GetType().FullName,
+                DamageClass.Default.GetType().FullName,
+                StringComparison.Ordinal);
+    }
+
+    private static string? TryResolveReferencedDamageClassReference(MethodInfo method)
+    {
+        try
+        {
+            if (string.Equals(
+                    method.DeclaringType?.FullName,
+                    typeof(DamageClass).FullName,
+                    StringComparison.Ordinal)
+                && method.IsSpecialName
+                && method.Name.StartsWith("get_", StringComparison.Ordinal)
+                && method.GetParameters().Length == 0)
+            {
+                var property = typeof(DamageClass).GetProperty(
+                    method.Name["get_".Length..],
+                    BindingFlags.Public | BindingFlags.Static);
+                return property?.GetValue(null) is DamageClass damageClass
+                    ? damageClass.FullName
+                    : null;
+            }
+
+            if (!string.Equals(
+                    method.DeclaringType?.FullName,
+                    typeof(ModContent).FullName,
+                    StringComparison.Ordinal)
+                || !method.IsGenericMethod
+                || !string.Equals(method.Name, nameof(ModContent.GetInstance), StringComparison.Ordinal)
+                || method.GetParameters().Length != 0
+                || method.GetGenericArguments() is not [var damageClassType]
+                || !typeof(DamageClass).IsAssignableFrom(damageClassType))
+            {
+                return null;
+            }
+
+            return EnumerateDamageClasses()
+                .FirstOrDefault(damageClass => string.Equals(
+                    damageClass.GetType().FullName,
+                    damageClassType.FullName,
+                    StringComparison.Ordinal))
+                ?.FullName;
+        }
+        catch (Exception exception)
+        {
+            LogDebug($"Failed to resolve referenced damage class from {method}.", exception);
+            return null;
         }
     }
 

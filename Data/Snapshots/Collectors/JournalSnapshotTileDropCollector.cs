@@ -4,6 +4,7 @@ using ProgressionJournal.Commands;
 using ProgressionJournal.Data.Resolvers;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
@@ -45,6 +46,7 @@ internal static class JournalSnapshotTileDropCollector
         }
 
         Dictionary<(int TileType, int ItemType, string SourceName), SnapshotDrop> result = [];
+        List<SnapshotDrop> legacyWorldPlacementDrops = [];
         using var worldIsolation = new JournalWorldStateIsolation();
         var originalRandom = Main.rand;
         var originalWorldRandom = WorldGen.genRand;
@@ -78,6 +80,14 @@ internal static class JournalSnapshotTileDropCollector
                 getTileReference,
                 result,
                 logDebug);
+            AppendLegacyRandomUpdateDrops(
+                includedItems,
+                getItemReference,
+                getTileReference,
+                result);
+            legacyWorldPlacementDrops = CreateLegacyWorldTilePlacementDrops(
+                getTileReference,
+                result);
         }
         finally
         {
@@ -90,9 +100,130 @@ internal static class JournalSnapshotTileDropCollector
         }
 
         return result.Values
+            .Concat(legacyWorldPlacementDrops)
             .OrderBy(static drop => drop.Source, StringComparer.Ordinal)
             .ThenBy(static drop => drop.Item, StringComparer.Ordinal)
             .ToList();
+    }
+
+    private static List<SnapshotDrop> CreateLegacyWorldTilePlacementDrops(
+        Func<int, string> getTileReference,
+        IReadOnlyDictionary<(int TileType, int ItemType, string SourceName), SnapshotDrop> tileDrops)
+    {
+        var profile = JournalRuntimeProgressionScenarios.CurrentProfile;
+        if (profile is null)
+        {
+            return [];
+        }
+
+        List<SnapshotDrop> result = [];
+        foreach (var placement in JournalLegacyDirectDropAnalyzer.GetAllTilePlacements()
+                     .Where(static placement => placement.RequiredProgressionFlags.Length > 0))
+        {
+            var conditions = CreateProgressionConditions(profile, placement.RequiredProgressionFlags);
+            if (conditions is null)
+            {
+                continue;
+            }
+
+            var source = getTileReference(placement.TargetTileType);
+            result.AddRange(tileDrops.Values
+                .Where(drop => drop.SourceType == "tile"
+                    && drop.Source.Equals(source, StringComparison.Ordinal))
+                .Select(drop => new SnapshotDrop(
+                    "world",
+                    source,
+                    drop.Item,
+                    1f,
+                    drop.StackMin,
+                    drop.StackMax,
+                    conditions,
+                    drop.SourceDisplayName,
+                    HideDropRate: true)));
+        }
+
+        return result
+            .DistinctBy(static drop => new
+            {
+                drop.Source,
+                drop.Item,
+                Conditions = string.Join(',', drop.Conditions.Select(static condition => condition.Key))
+            })
+            .ToList();
+    }
+
+    private static List<SnapshotCondition>? CreateProgressionConditions(
+        JournalProfile profile,
+        JournalLegacyProgressionFlag[] flags)
+    {
+        List<SnapshotCondition> result = [];
+        foreach (var flag in flags)
+        {
+            var stage = profile.Stages.FirstOrDefault(stage =>
+                UnlockContainsFlag(stage.Unlock, flag));
+            if (stage is null)
+            {
+                return null;
+            }
+
+            var stageName = stage.Name.Resolve();
+            result.Add(new SnapshotCondition(
+                "ProgressionJournal.AfterProgression",
+                Language.GetTextValue(
+                    "Mods.ProgressionJournal.UI.FishingProgressionCondition",
+                    stageName),
+                $"ProgressionJournal.Stage.{stage.Id}"));
+        }
+
+        return result
+            .DistinctBy(static condition => condition.Key)
+            .ToList();
+    }
+
+    private static bool UnlockContainsFlag(
+        JournalUnlockConditionDocument condition,
+        JournalLegacyProgressionFlag flag)
+    {
+        var type = condition.Type.Trim();
+        var matches = flag.Mod == "Terraria"
+            ? type.Equals("vanilla-flag", StringComparison.OrdinalIgnoreCase)
+                && condition.Key.Equals(flag.Key, StringComparison.OrdinalIgnoreCase)
+            : type.Equals("mod-flag", StringComparison.OrdinalIgnoreCase)
+                && condition.Mod.Equals(flag.Mod, StringComparison.OrdinalIgnoreCase)
+                && condition.Key.Split(
+                        ',',
+                        StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                    .Contains(flag.Key, StringComparer.OrdinalIgnoreCase);
+        return matches || condition.Conditions.Any(nested => UnlockContainsFlag(nested, flag));
+    }
+
+    private static void AppendLegacyRandomUpdateDrops(
+        HashSet<int> includedItems,
+        Func<int, string> getItemReference,
+        Func<int, string> getTileReference,
+        IDictionary<(int TileType, int ItemType, string SourceName), SnapshotDrop> result)
+    {
+        foreach (var drop in JournalLegacyDirectDropAnalyzer.GetAllTileDrops()
+                     .Where(drop => includedItems.Contains(drop.TargetItemId)))
+        {
+            var sourceName = ResolveTileName(drop.SourceTileType);
+            var key = (drop.SourceTileType, drop.TargetItemId, sourceName);
+            if (result.ContainsKey(key))
+            {
+                continue;
+            }
+
+            result[key] = new SnapshotDrop(
+                "tile",
+                getTileReference(drop.SourceTileType),
+                getItemReference(drop.TargetItemId),
+                drop.DropRate,
+                drop.StackMin,
+                drop.StackMax,
+                [],
+                sourceName,
+                HideDropRate: true);
+        }
     }
 
     private static TileProbeSample[] CollectWorldSamples()
@@ -438,7 +569,7 @@ internal static class JournalSnapshotTileDropCollector
             throw new MissingMethodException(typeof(WorldGen).FullName, "SpawnThingsFromPot");
         }
 
-        var sourceName = ResolveTileName(TileID.Pots, ItemID.None);
+        var sourceName = ResolveTileName(TileID.Pots);
         int[] depths =
         [
             Math.Clamp((int)Main.worldSurface - 50, 10, Main.maxTilesY - 10),
@@ -554,7 +685,7 @@ internal static class JournalSnapshotTileDropCollector
         IDictionary<(int TileType, int ItemType, string SourceName), SnapshotDrop> result,
         string? sourceName = null)
     {
-        sourceName ??= ResolveTileName(tileType, itemType);
+        sourceName ??= ResolveTileName(tileType);
         var key = (tileType, itemType, sourceName);
         var stackSize = Math.Max(1, stack);
         if (result.TryGetValue(key, out var existing))
@@ -579,15 +710,15 @@ internal static class JournalSnapshotTileDropCollector
             HideDropRate: true);
     }
 
-    private static string ResolveTileName(int tileType, int itemType)
+    private static string ResolveTileName(int tileType)
     {
-        var placedItemName = ContentSamples.ItemsByType.Values
-            .Where(item => item.createTile == tileType && item.type == itemType)
-            .Select(static item => item.Name)
-            .FirstOrDefault(static name => !string.IsNullOrWhiteSpace(name));
-        if (!string.IsNullOrWhiteSpace(placedItemName))
+        var placedItemType = ContentSamples.ItemsByType.Values
+            .Where(item => item.createTile == tileType)
+            .Select(static item => item.type)
+            .FirstOrDefault(static type => type > ItemID.None);
+        if (placedItemType > ItemID.None)
         {
-            return Lang.GetItemNameValue(itemType);
+            return Lang.GetItemNameValue(placedItemType);
         }
 
         var internalName = TileLoader.GetTile(tileType)?.Name ?? TileID.Search.GetName(tileType);

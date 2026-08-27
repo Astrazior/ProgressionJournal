@@ -34,7 +34,9 @@ internal static class JournalSnapshotItemContainerCollector
                 drop.DropRate,
                 drop.StackMin,
                 drop.StackMax,
-                [])));
+                JournalSnapshotLegacyDirectDropConditionFactory.Create(
+                    drop.RequiredItemIds,
+                    getItemReference))));
         result.AddRange(JournalExactDropCatalog.GetAllItemDrops()
             .Where(drop => drop.SourceItemId is { } sourceItemId
                 && includedItems.Contains(sourceItemId)

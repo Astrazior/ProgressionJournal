@@ -73,6 +73,8 @@ const snapshot = {
     item("Test/Bar"),
     item("Test/Sword", { damageClass: "Melee", damage: 30 }),
     item("Test/Potion", { buffType: 1, consumable: true }),
+    item("Test/WorldHerb"),
+    item("Test/WorldHerbPotion", { buffType: 1, consumable: true }),
     item("Test/OrphanPotion", { buffType: 1, consumable: true }),
     item("Test/EventMaterial"),
     item("Test/EventGun", { damageClass: "Melee", damage: 20 }),
@@ -97,6 +99,15 @@ const snapshot = {
       shoot: 7002
     }),
     item("Test/ObservedAmmoMaterial"),
+    item("Test/ScriptedReward", { damageClass: "Magic", damage: 30 }),
+    item("Test/HybridDefaultWeapon", {
+      damageClass: "Terraria/DefaultDamageClass",
+      damage: 30,
+      classEffects: [
+        { damageClass: "Terraria/MeleeDamageClass", damage: true },
+        { damageClass: "Terraria/MagicDamageClass", damage: true }
+      ]
+    }),
     item("Test/ManualShopBlade", { damageClass: "Melee", damage: 17 }),
     item("Test/UnknownShopBlade", { damageClass: "Melee", damage: 19 }),
     item("Test/KeyedEyeBlade", { damageClass: "Melee", damage: 22 }),
@@ -285,6 +296,12 @@ const snapshot = {
     { result: "Test/Bar", ingredients: [{ item: "Test/Ore", stack: 1 }], stations: [], conditions: [] },
     { result: "Test/Sword", ingredients: [{ item: "Test/Bar", stack: 1 }], stations: [], conditions: [] },
     {
+      result: "Test/WorldHerbPotion",
+      ingredients: [{ item: "Test/WorldHerb", stack: 1 }],
+      stations: [],
+      conditions: []
+    },
+    {
       result: "Test/ObservedAmmoWeapon",
       ingredients: [{ item: "Test/ObservedAmmoMaterial", stack: 1 }],
       stations: [],
@@ -421,6 +438,21 @@ const snapshot = {
       conditions: [{ description: "Grows after entering Hardmode" }]
     },
     {
+      source: "Test/WorldHerbTile",
+      sourceType: "world",
+      sourceDisplayName: "World Herb",
+      item: "Test/WorldHerb",
+      rate: 1,
+      stackMin: 1,
+      stackMax: 1,
+      hideDropRate: true,
+      conditions: [{
+        type: "ProgressionJournal.AfterProgression",
+        description: "Available after: Boss",
+        key: "ProgressionJournal.Stage.boss"
+      }]
+    },
+    {
       source: "Test/ToolRock",
       sourceType: "tile",
       sourceDisplayName: "Tool Rock",
@@ -521,7 +553,18 @@ const snapshot = {
         description: "This text is not used for progression"
       }]
     },
-    { source: "Test/EventEnemy", sourceType: "npc", item: "Test/EventMaterial", conditions: [] }
+    { source: "Test/EventEnemy", sourceType: "npc", item: "Test/EventMaterial", conditions: [] },
+    {
+      source: "Test/Boss",
+      sourceType: "npc",
+      item: "Test/ScriptedReward",
+      conditions: [{
+        type: "ProgressionJournal.ScriptedItemGrant",
+        description: "Granted after consuming an item",
+        facts: [{ kind: "item-owned", item: "Test/ObservedAmmoWeapon" }]
+      }]
+    },
+    { source: "Test/Boss", sourceType: "npc", item: "Test/HybridDefaultWeapon", conditions: [] }
   ],
   shops: [
     {
@@ -1003,6 +1046,12 @@ assert(profile.entries.some(entry =>
   && entry.evaluations[0].stageId === "boss"));
 assert.equal(report.paths["Test/ObservedAmmoWeapon"]?.stage, "late");
 assert.equal(report.paths["Test/ObservedAmmo"]?.stage, "late");
+assert.equal(report.paths["Test/ScriptedReward"]?.stage, "late");
+assert.equal(report.paths["Test/WorldHerb"]?.stage, "boss");
+assert.equal(report.paths["Test/WorldHerbPotion"]?.stage, "boss");
+assert.deepEqual(
+  profile.entries.find(entry => entry.itemGroups[0][0].item === "HybridDefaultWeapon")?.classes,
+  ["melee", "magic"]);
 assert.equal(report.paths["Test/ObservedAmmo"]?.evidence?.kind, "observed-shop");
 assert.deepEqual(
   report.paths["Test/ObservedAmmo"]?.evidence?.conditions[0]?.facts,
@@ -1180,6 +1229,34 @@ assert(report.unassignedVanillaNpcSources.some(record =>
 assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "CollisionBlade"
   && entry.evaluations[0].stageId === "boss"));
+
+const placedTileSourceSnapshot = structuredClone(snapshot);
+placedTileSourceSnapshot.items.push(
+  item("Test/PlacedDropSource", { createTile: 8001, placedTile: "Test/PlacedDropTile" }),
+  item("Test/PlacedDropWeapon", { damageClass: "Ranged", damage: 12, shoot: 8002 }));
+placedTileSourceSnapshot.recipes.push({
+  result: "Test/PlacedDropSource",
+  ingredients: [{ item: "Test/CollisionSource", stack: 1 }],
+  stations: [],
+  conditions: []
+});
+placedTileSourceSnapshot.drops.push({
+  source: "Test/PlacedDropTile",
+  sourceType: "tile",
+  item: "Test/PlacedDropWeapon",
+  conditions: []
+});
+const placedTileSourceResult = generateProfile(
+  placedTileSourceSnapshot,
+  manifest,
+  wikiProfile);
+assert.equal(
+  placedTileSourceResult.report.paths["Test/PlacedDropWeapon"]?.stage,
+  "start",
+  "A placed item must make its tile available as an automatic drop source");
+assert.equal(
+  placedTileSourceResult.report.paths["Test/PlacedDropWeapon"]?.via,
+  "tile:Test/PlacedDropTile");
 
 const manualAssignments = {
   format: "ProgressionJournalManualAssignments",

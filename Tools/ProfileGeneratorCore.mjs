@@ -379,7 +379,12 @@ function generateProfileCore(
     if (floorIndex !== undefined && (stageIndexes.get(stage) ?? -1) < floorIndex) {
       return false;
     }
-    return unlock(id, stage, via, available, acquiredBy, metadata);
+    const changed = unlock(id, stage, via, available, acquiredBy, metadata);
+    const placedTile = itemById.get(id)?.placedTile;
+    if (changed && placedTile && sourceAllowedAtStage(placedTile, stage)) {
+      availableDropSources.add(placedTile);
+    }
+    return changed;
   };
   const anyMechanicalBossUnlockMetadata = (conditions, stageId) =>
     mechanicalBossStages.has(stageId) && hasAnyMechanicalBossUnlockCondition(conditions)
@@ -461,6 +466,12 @@ function generateProfileCore(
     itemById,
     availableStations,
     station => stationAllowedAtStage(station, "start"));
+  for (const id of available) {
+    const placedTile = itemById.get(id)?.placedTile;
+    if (placedTile && sourceAllowedAtStage(placedTile, "start")) {
+      availableDropSources.add(placedTile);
+    }
+  }
 
   for (const stage of manifest.stages) {
     const stageIndex = stageIndexes.get(stage.id);
@@ -494,26 +505,6 @@ function generateProfileCore(
       legacyAvailableShops.add(npc);
     }
 
-    for (const source of availableDropSources) {
-      if (!sourceAllowedAtStage(source, stage.id)) continue;
-      for (const drop of dropsBySource.get(source) ?? []) {
-        if (conditionsAllowed(drop.conditions, stage, manifest, report, {
-          sourceKind: "drop",
-          source,
-          item: drop.item,
-          available
-        })) {
-          unlockAtStage(
-            drop.item,
-            stage.id,
-            `${drop.sourceType}:${source}`,
-            {
-              ...eventMetadataForSource(source, stageIndex),
-              ...anyMechanicalBossUnlockMetadata(drop.conditions, stage.id)
-            });
-        }
-      }
-    }
     for (const event of (manifest.events ?? []).filter(event => event.stageId === stage.id)) {
       const eventSources = [
         ...(event.dropSources ?? []),
@@ -530,27 +521,73 @@ function generateProfileCore(
       for (const source of eventSources) {
         if (!sourceAllowedAtStage(source, stage.id)) continue;
         availableDropSources.add(source);
+      }
+    }
+    const unlockAvailableDrops = () => {
+      let changed = false;
+      for (const source of availableDropSources) {
+        if (!sourceAllowedAtStage(source, stage.id)) continue;
         for (const drop of dropsBySource.get(source) ?? []) {
-          if (conditionsAllowed(drop.conditions, stage, manifest, report, {
+          if (!conditionsAllowed(drop.conditions, stage, manifest, report, {
             sourceKind: "drop",
             source,
             item: drop.item,
             available
           })) {
-            unlockAtStage(
-              drop.item,
-              stage.id,
-              `${drop.sourceType}:${source}`,
-              {
-                eventCategory: event.eventCategory ?? null,
-                customEventName: event.customEventName ?? "",
-                eventIcon: event.eventIcon ?? "",
-                ...anyMechanicalBossUnlockMetadata(drop.conditions, stage.id)
-              });
+            continue;
+          }
+          if (unlockAtStage(
+            drop.item,
+            stage.id,
+            `${drop.sourceType}:${source}`,
+            {
+              ...eventMetadataForSource(source, stageIndex),
+              ...anyMechanicalBossUnlockMetadata(drop.conditions, stage.id)
+            })) {
+            changed = true;
           }
         }
       }
-    }
+      for (const drop of globalDrops) {
+        if (!sourceAllowedAtStage(drop.source, stage.id)
+            || !conditionsAllowed(drop.conditions, stage, manifest, report, {
+              sourceKind: "drop",
+              source: drop.source,
+              item: drop.item,
+              available
+            })) {
+          continue;
+        }
+        if (unlockAtStage(
+          drop.item,
+          stage.id,
+          `global:${drop.source}`,
+          anyMechanicalBossUnlockMetadata(drop.conditions, stage.id))) {
+          changed = true;
+        }
+      }
+      for (const drop of worldDrops) {
+        if (!sourceAllowedAtStage(drop.source, stage.id)) continue;
+        const stageConditions = worldDropStageConditions(drop);
+        if ((stageConditions === null && !sourceStageFloors.has(drop.source))
+            || !conditionsAllowed(stageConditions ?? [], stage, manifest, report, {
+              sourceKind: "drop",
+              source: drop.source,
+              item: drop.item,
+              available
+            })) {
+          continue;
+        }
+        if (unlockAtStage(
+          drop.item,
+          stage.id,
+          `world:${drop.source}`,
+          anyMechanicalBossUnlockMetadata(stageConditions ?? [], stage.id))) {
+          changed = true;
+        }
+      }
+      return changed;
+    };
     const unlockAvailableShopItems = () => {
       let changed = false;
       for (const npc of availableShops) {
@@ -606,39 +643,8 @@ function generateProfileCore(
       return changed;
     };
 
+    unlockAvailableDrops();
     unlockAvailableShopItems();
-    for (const drop of globalDrops) {
-      if (!sourceAllowedAtStage(drop.source, stage.id)) continue;
-      if (conditionsAllowed(drop.conditions, stage, manifest, report, {
-        sourceKind: "drop",
-        source: drop.source,
-        item: drop.item,
-        available
-      })) {
-        unlockAtStage(
-          drop.item,
-          stage.id,
-          `global:${drop.source}`,
-          anyMechanicalBossUnlockMetadata(drop.conditions, stage.id));
-      }
-    }
-    for (const drop of worldDrops) {
-      if (!sourceAllowedAtStage(drop.source, stage.id)) continue;
-      const stageConditions = worldDropStageConditions(drop);
-      if (stageConditions === null && !sourceStageFloors.has(drop.source)) continue;
-      if (conditionsAllowed(stageConditions ?? [], stage, manifest, report, {
-        sourceKind: "drop",
-        source: drop.source,
-        item: drop.item,
-        available
-      })) {
-        unlockAtStage(
-          drop.item,
-          stage.id,
-          `world:${drop.source}`,
-          anyMechanicalBossUnlockMetadata(stageConditions ?? [], stage.id));
-      }
-    }
     for (const [itemId, catches] of fishingByItem) {
       const observedCatch = catches.find(catchRecord => {
         const catchStageIndex = fishingCatchStageIndex(catchRecord, manifest, stageIndexes);
@@ -667,6 +673,9 @@ function generateProfileCore(
           changed = true;
         }
         if (unlockAvailableShopItems()) {
+          changed = true;
+        }
+        if (unlockAvailableDrops()) {
           changed = true;
         }
         for (const container of [...available]) {
@@ -1628,8 +1637,15 @@ function conditionItemPrerequisites(condition) {
 }
 
 function conditionHasSupportedFacts(condition) {
-  return (condition.facts ?? []).length > 0
-    && conditionItemPrerequisites(condition).length === condition.facts.length;
+  const facts = condition.facts ?? [];
+  return facts.length > 0
+    && conditionItemPrerequisites(condition).length === facts.length;
+}
+
+function conditionFactsAllowed(condition, context) {
+  if (!conditionHasSupportedFacts(condition)) return null;
+  const facts = condition.facts;
+  return facts.every(fact => context.available.has(fact.item));
 }
 
 function observedShopConditionsAllowed(conditions, stage, manifest, context) {
@@ -1657,8 +1673,10 @@ function observedShopConditionsAllowed(conditions, stage, manifest, context) {
       if (currentStageIndex < assignedStageIndex) return false;
       continue;
     }
+    const factsAllowed = conditionFactsAllowed(condition, context);
+    if (factsAllowed === false) return false;
     if (isProgressionNeutralCondition(condition)
-        || conditionHasSupportedFacts(condition)) {
+        || factsAllowed === true) {
       continue;
     }
     const rule = manifest.conditionRules?.[condition.type];
@@ -1695,8 +1713,10 @@ function conditionsAllowed(conditions, stage, manifest, report, context) {
       if (currentStageIndex < assignedStageIndex) return false;
       continue;
     }
+    const factsAllowed = conditionFactsAllowed(condition, context);
+    if (factsAllowed === false) return false;
     if (isProgressionNeutralCondition(condition)
-        || conditionHasSupportedFacts(condition)) continue;
+        || factsAllowed === true) continue;
     if (isSafeOpaqueDropCondition(condition, context)) continue;
     const rule = manifest.conditionRules?.[condition.type];
     if (rule === "allow") continue;

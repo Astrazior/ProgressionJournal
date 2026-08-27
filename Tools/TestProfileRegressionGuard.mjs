@@ -192,6 +192,33 @@ try {
   assert.equal(identical.blocked, false);
   assert.equal(identical.itemChanges.length, 0);
 
+  const legacyFishingStageDirectory = path.join(temporaryRoot, "legacy-fishing-stage");
+  const currentFishingStageDirectory = path.join(temporaryRoot, "current-fishing-stage");
+  const legacyFishingAcquisitions = structuredClone(defaultAcquisitions());
+  legacyFishingAcquisitions.fishing = [{
+    targetType: "item",
+    target: "TestMod/GuardedItem",
+    earliestStageIndex: 0,
+    earliestStageId: "PreBoss",
+    earliestStageName: "Legacy pre-boss stage",
+    conditions: []
+  }];
+  const currentFishingAcquisitions = structuredClone(legacyFishingAcquisitions);
+  currentFishingAcquisitions.fishing[0].earliestStageId = "start";
+  currentFishingAcquisitions.fishing[0].earliestStageName = "Start";
+  writeState(legacyFishingStageDirectory, { acquisitions: legacyFishingAcquisitions });
+  writeState(currentFishingStageDirectory, { acquisitions: currentFishingAcquisitions });
+  const fishingStageLabelChange = compareDirectories(
+    legacyFishingStageDirectory,
+    currentFishingStageDirectory);
+  assert.equal(
+    fishingStageLabelChange.blocked,
+    false,
+    "Equivalent fishing stage labels must not block a protected profile rebuild");
+  assert.equal(
+    fishingStageLabelChange.acquisitionChanges[0].kind,
+    "acquisition-metadata-changed");
+
   const legacyEvidenceDirectory = path.join(temporaryRoot, "legacy-evidence");
   const enrichedEvidenceDirectory = path.join(temporaryRoot, "enriched-evidence");
   const legacyEvidence = structuredClone(defaultAcquisitions());

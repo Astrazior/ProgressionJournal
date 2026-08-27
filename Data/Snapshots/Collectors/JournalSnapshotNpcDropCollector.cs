@@ -50,7 +50,9 @@ internal static class JournalSnapshotNpcDropCollector
                 drop.DropRate,
                 drop.StackMin,
                 drop.StackMax,
-                [])));
+                JournalSnapshotLegacyDirectDropConditionFactory.Create(
+                    drop.RequiredItemIds,
+                    getItemReference))));
         var exactNpcDrops = JournalExactDropCatalog.GetAllNpcDrops()
             .Where(drop => drop.SourceNpcType is { } sourceNpcType
                 && includedNpcs.Contains(sourceNpcType)

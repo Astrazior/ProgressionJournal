@@ -52,6 +52,11 @@ public static class JournalLegacyDirectDropAnalyzer
 
     public static IReadOnlyList<JournalLegacyItemDrop> GetAllItemDrops() => Entries.Value.ItemDrops;
 
+    public static IReadOnlyList<JournalLegacyTileDrop> GetAllTileDrops() => Entries.Value.TileDrops;
+
+    public static IReadOnlyList<JournalLegacyTilePlacement> GetAllTilePlacements() =>
+        Entries.Value.TilePlacements;
+
     internal static MemberInfo[] GetReferencedMembers(MethodInfo method)
     {
         try
@@ -76,10 +81,23 @@ public static class JournalLegacyDirectDropAnalyzer
         var itemTypes = ModContent.GetContent<ModItem>()
             .GroupBy(static item => item.GetType())
             .ToDictionary(static group => group.Key, static group => group.First().Type);
+        var tileTypes = ModContent.GetContent<ModTile>()
+            .GroupBy(static tile => tile.GetType())
+            .ToDictionary(static group => group.Key, static group => (int)group.First().Type);
+        var modNamesByAssembly = ModLoader.Mods
+            .Where(static mod => mod.Code is not null)
+            .GroupBy(static mod => mod.Code!)
+            .ToDictionary(static group => group.Key, static group => group.First().Name);
+        var npcs = ModContent.GetContent<ModNPC>().ToArray();
+        var npcTypes = npcs
+            .GroupBy(static npc => npc.GetType())
+            .ToDictionary(static group => group.Key, static group => group.First().Type);
         List<JournalLegacyNpcDrop> npcDrops = [];
         List<JournalLegacyItemDrop> itemDrops = [];
+        List<JournalLegacyTileDrop> tileDrops = [];
+        List<JournalLegacyTilePlacement> tilePlacements = [];
 
-        foreach (var npc in ModContent.GetContent<ModNPC>())
+        foreach (var npc in npcs)
         {
             AnalyzeSourceMethods(
                 npc.GetType(),
@@ -91,8 +109,11 @@ public static class JournalLegacyDirectDropAnalyzer
                     drop.DropRate,
                     drop.StackMin,
                     drop.StackMax,
-                    drop.SourceMethod)));
+                    drop.SourceMethod,
+                    drop.RequiredItemIds)));
         }
+
+        AnalyzeInteractionCallbacks(npcs, npcTypes, itemTypes, npcDrops);
 
         foreach (var item in ModContent.GetContent<ModItem>())
         {
@@ -106,12 +127,118 @@ public static class JournalLegacyDirectDropAnalyzer
                     drop.DropRate,
                     drop.StackMin,
                     drop.StackMax,
+                    drop.SourceMethod,
+                    drop.RequiredItemIds)));
+        }
+
+        foreach (var tile in ModContent.GetContent<ModTile>())
+        {
+            AnalyzeSourceMethods(
+                tile.GetType(),
+                [nameof(ModTile.RandomUpdate)],
+                itemTypes,
+                drop => tileDrops.Add(new JournalLegacyTileDrop(
+                    tile.Type,
+                    drop.TargetItemId,
+                    drop.DropRate,
+                    drop.StackMin,
+                    drop.StackMax,
                     drop.SourceMethod)));
+        }
+
+        foreach (var globalTile in ModContent.GetContent<GlobalTile>())
+        {
+            AnalyzeTilePlacementMethods(
+                globalTile.GetType(),
+                tileTypes,
+                modNamesByAssembly,
+                tilePlacements.Add);
         }
 
         return new Catalog(
             DeduplicateNpcDrops(npcDrops),
-            DeduplicateItemDrops(itemDrops));
+            DeduplicateItemDrops(itemDrops),
+            DeduplicateTileDrops(tileDrops),
+            DeduplicateTilePlacements(tilePlacements));
+    }
+
+    private static void AnalyzeInteractionCallbacks(
+        ModNPC[] npcs,
+        Dictionary<Type, int> npcTypes,
+        Dictionary<Type, int> itemTypes,
+        List<JournalLegacyNpcDrop> npcDrops)
+    {
+        foreach (var assembly in npcs
+                     .Select(static npc => npc.GetType().Assembly)
+                     .Distinct())
+        {
+            foreach (var callbackType in GetLoadableTypes(assembly))
+            {
+                if (typeof(ModNPC).IsAssignableFrom(callbackType))
+                {
+                    continue;
+                }
+
+                foreach (var method in callbackType.GetMethods(
+                             BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+                {
+                    var parameters = method.GetParameters();
+                    if (!string.Equals(method.Name, "OnClick", StringComparison.Ordinal)
+                        || !parameters.Any(static parameter => parameter.ParameterType == typeof(NPC))
+                        || !parameters.Any(static parameter => parameter.ParameterType == typeof(Player)))
+                    {
+                        continue;
+                    }
+
+                    var referencedNpcTypes = GetReferencedMembers(method)
+                        .OfType<Type>()
+                        .Where(npcTypes.ContainsKey)
+                        .Distinct()
+                        .ToArray();
+                    if (referencedNpcTypes is not [var referencedNpcType])
+                    {
+                        continue;
+                    }
+
+                    try
+                    {
+                        var sourceNpcType = npcTypes[referencedNpcType];
+                        AnalyzeMethod(
+                            method,
+                            itemTypes,
+                            drop => npcDrops.Add(new JournalLegacyNpcDrop(
+                                sourceNpcType,
+                                drop.TargetItemId,
+                                drop.DropRate,
+                                drop.StackMin,
+                                drop.StackMax,
+                                drop.SourceMethod,
+                                drop.RequiredItemIds)));
+                    }
+                    catch (Exception exception)
+                    {
+                        ProgressionJournal.Instance?.Logger.Debug(
+                            $"Failed to inspect scripted interaction drops in '{callbackType.FullName}.{method.Name}'."
+                            + $"{Environment.NewLine}{exception}");
+                    }
+                }
+            }
+        }
+    }
+
+    private static Type[] GetLoadableTypes(Assembly assembly)
+    {
+        try
+        {
+            return assembly.GetTypes();
+        }
+        catch (ReflectionTypeLoadException exception)
+        {
+            ProgressionJournal.Instance?.Logger.Debug(
+                $"Some types could not be loaded while inspecting scripted interaction drops in '{assembly.FullName}'."
+                + $"{Environment.NewLine}{exception}");
+            return exception.Types.OfType<Type>().ToArray();
+        }
     }
 
     private static JournalLegacyNpcDrop[] DeduplicateNpcDrops(List<JournalLegacyNpcDrop> drops)
@@ -122,7 +249,8 @@ public static class JournalLegacyDirectDropAnalyzer
                 drop.SourceNpcType,
                 drop.TargetItemId,
                 drop.StackMin,
-                drop.StackMax
+                drop.StackMax,
+                RequiredItems = string.Join(',', drop.RequiredItemIds)
             })
             .Select(static group => group
                 .OrderByDescending(static drop => drop.DropRate)
@@ -139,11 +267,176 @@ public static class JournalLegacyDirectDropAnalyzer
                 drop.SourceItemId,
                 drop.TargetItemId,
                 drop.StackMin,
+                drop.StackMax,
+                RequiredItems = string.Join(',', drop.RequiredItemIds)
+            })
+            .Select(static group => group
+                .OrderByDescending(static drop => drop.DropRate)
+                .First())
+            .ToArray();
+    }
+
+    private static JournalLegacyTileDrop[] DeduplicateTileDrops(List<JournalLegacyTileDrop> drops)
+    {
+        return drops
+            .GroupBy(static drop => new
+            {
+                drop.SourceTileType,
+                drop.TargetItemId,
+                drop.StackMin,
                 drop.StackMax
             })
             .Select(static group => group
                 .OrderByDescending(static drop => drop.DropRate)
                 .First())
+            .ToArray();
+    }
+
+    private static JournalLegacyTilePlacement[] DeduplicateTilePlacements(
+        List<JournalLegacyTilePlacement> placements)
+    {
+        return placements
+            .GroupBy(static placement => new
+            {
+                placement.TargetTileType,
+                Flags = string.Join(',', placement.RequiredProgressionFlags
+                    .Select(static flag => $"{flag.Mod}/{flag.Key}"))
+            })
+            .Select(static group => group.First())
+            .ToArray();
+    }
+
+    private static void AnalyzeTilePlacementMethods(
+        Type sourceType,
+        Dictionary<Type, int> tileTypes,
+        Dictionary<Assembly, string> modNamesByAssembly,
+        Action<JournalLegacyTilePlacement> append)
+    {
+        foreach (var method in sourceType.GetMethods(
+                     BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+        {
+            if (!string.Equals(method.Name, nameof(GlobalTile.RandomUpdate), StringComparison.Ordinal))
+            {
+                continue;
+            }
+
+            try
+            {
+                AnalyzeTilePlacementMethod(method, tileTypes, modNamesByAssembly, append);
+            }
+            catch (Exception exception)
+            {
+                ProgressionJournal.Instance?.Logger.Debug(
+                    $"Failed to inspect random-update tile placements in '{sourceType.FullName}.{method.Name}'."
+                    + $"{Environment.NewLine}{exception}");
+            }
+        }
+    }
+
+    private static void AnalyzeTilePlacementMethod(
+        MethodInfo method,
+        Dictionary<Type, int> tileTypes,
+        Dictionary<Assembly, string> modNamesByAssembly,
+        Action<JournalLegacyTilePlacement> append)
+    {
+        var instructions = ReadInstructions(method);
+        for (var placementIndex = 0; placementIndex < instructions.Length; placementIndex++)
+        {
+            if (!IsTilePlacementCall(instructions[placementIndex].Operand as MethodBase))
+            {
+                continue;
+            }
+
+            foreach (var targetTile in FindTargetTileTypeInstructions(
+                         instructions,
+                         placementIndex,
+                         tileTypes))
+            {
+                var requiredFlags = FindRequiredProgressionFlags(
+                    instructions,
+                    targetTile.TileTypeIndex,
+                    placementIndex,
+                    modNamesByAssembly);
+                append(new JournalLegacyTilePlacement(
+                    targetTile.TargetTileType,
+                    $"{method.DeclaringType?.FullName}.{method.Name}",
+                    requiredFlags));
+            }
+        }
+    }
+
+    private static TargetTile[] FindTargetTileTypeInstructions(
+        IlInstruction[] instructions,
+        int placementIndex,
+        Dictionary<Type, int> tileTypes)
+    {
+        var startIndex = Math.Max(0, placementIndex - 96);
+        for (var index = placementIndex - 1; index >= startIndex; index--)
+        {
+            if (!TryGetModTileType(instructions[index].Operand as MethodBase, out var tileType)
+                || !tileTypes.TryGetValue(tileType, out var targetTileType))
+            {
+                continue;
+            }
+
+            return [new TargetTile(index, targetTileType)];
+        }
+
+        return [];
+    }
+
+    private static JournalLegacyProgressionFlag[] FindRequiredProgressionFlags(
+        IlInstruction[] instructions,
+        int tileTypeIndex,
+        int placementIndex,
+        Dictionary<Assembly, string> modNamesByAssembly)
+    {
+        var placementOffset = instructions[placementIndex].Offset;
+        List<JournalLegacyProgressionFlag> result = [];
+        for (var branchIndex = Math.Max(1, tileTypeIndex - 128);
+             branchIndex < tileTypeIndex;
+             branchIndex++)
+        {
+            if (!IsConditionalBranch(instructions[branchIndex].OpCode)
+                || instructions[branchIndex].Operand is not int targetOffset
+                || targetOffset <= placementOffset)
+            {
+                continue;
+            }
+
+            for (var fieldIndex = branchIndex - 1;
+                 fieldIndex >= Math.Max(0, branchIndex - 3);
+                 fieldIndex--)
+            {
+                if (instructions[fieldIndex].Operand is not FieldInfo
+                    {
+                        IsStatic: true,
+                        FieldType: var fieldType
+                    } field
+                    || fieldType != typeof(bool)
+                    || !IsProgressionFlagName(field.Name)
+                    || field.DeclaringType is null)
+                {
+                    continue;
+                }
+
+                var assembly = field.DeclaringType.Assembly;
+                var modName = assembly == typeof(Main).Assembly
+                    ? "Terraria"
+                    : modNamesByAssembly.GetValueOrDefault(assembly, string.Empty);
+                if (!string.IsNullOrEmpty(modName))
+                {
+                    result.Add(new JournalLegacyProgressionFlag(modName, field.Name));
+                }
+
+                break;
+            }
+        }
+
+        return result
+            .Distinct()
+            .OrderBy(static flag => flag.Mod, StringComparer.Ordinal)
+            .ThenBy(static flag => flag.Key, StringComparer.Ordinal)
             .ToArray();
     }
 
@@ -186,54 +479,202 @@ public static class JournalLegacyDirectDropAnalyzer
                 continue;
             }
 
-            var itemTypeIndex = FindTargetItemTypeInstruction(instructions, spawnIndex, itemTypes, out var targetItemId);
-            if (itemTypeIndex < 0)
+            var targetItems = FindTargetItemTypeInstructions(instructions, spawnIndex, itemTypes);
+            if (targetItems.Length == 0)
             {
                 continue;
             }
 
-            var stack = ResolveStack(instructions, itemTypeIndex, spawnIndex);
-            var guard = ResolveGuard(instructions, itemTypeIndex, spawnIndex);
-            if (!guard.Known || stack.PositiveProbability <= 0f)
+            foreach (var targetItem in targetItems)
             {
-                continue;
-            }
+                var requiredItemIds = FindRequiredItemIds(
+                    instructions,
+                    targetItem.ItemTypeIndex,
+                    spawnIndex,
+                    itemTypes);
+                var stack = targetItem.PassedViaLocal
+                    ? new StackRange(1, 1, 1f)
+                    : ResolveStack(instructions, targetItem.ItemTypeIndex, spawnIndex);
+                var guard = ResolveGuard(instructions, targetItem.ItemTypeIndex, spawnIndex);
+                if ((!guard.Known && requiredItemIds.Length == 0)
+                    || stack.PositiveProbability <= 0f)
+                {
+                    continue;
+                }
 
-            var dropRate = guard.Rate;
-            if (stack.PositiveProbability < 1f && dropRate >= 0f)
-            {
-                dropRate *= stack.PositiveProbability;
-            }
+                var dropRate = guard.Rate;
+                if (stack.PositiveProbability < 1f && dropRate >= 0f)
+                {
+                    dropRate *= stack.PositiveProbability;
+                }
 
-            append(new AnalyzedDrop(
-                targetItemId,
-                dropRate,
-                stack.Min,
-                stack.Max,
-                $"{method.DeclaringType?.FullName}.{method.Name}"));
+                append(new AnalyzedDrop(
+                    targetItem.TargetItemId,
+                    dropRate,
+                    stack.Min,
+                    stack.Max,
+                    $"{method.DeclaringType?.FullName}.{method.Name}",
+                    requiredItemIds));
+            }
         }
     }
 
-    private static int FindTargetItemTypeInstruction(
+    private static TargetItem[] FindTargetItemTypeInstructions(
         IlInstruction[] instructions,
         int spawnIndex,
-        Dictionary<Type, int> itemTypes,
-        out int targetItemId)
+        Dictionary<Type, int> itemTypes)
     {
-        targetItemId = 0;
         var startIndex = Math.Max(0, spawnIndex - 96);
-        for (var index = spawnIndex - 1; index >= startIndex; index--)
+        for (var index = spawnIndex - 1; index >= Math.Max(startIndex, spawnIndex - 16); index--)
         {
-            if (!TryGetModItemType(instructions[index].Operand as MethodBase, out var itemType)
-                || !itemTypes.TryGetValue(itemType, out targetItemId))
+            if (!TryGetLoadedLocalIndex(instructions[index], out var localIndex))
             {
                 continue;
             }
 
-            return index;
+            var localTargets = new List<TargetItem>();
+            for (var candidateIndex = startIndex; candidateIndex < index; candidateIndex++)
+            {
+                if (!TryGetModItemType(instructions[candidateIndex].Operand as MethodBase, out var itemType)
+                    || !itemTypes.TryGetValue(itemType, out var targetItemId)
+                    || candidateIndex + 1 >= instructions.Length
+                    || !TryGetStoredLocalIndex(instructions[candidateIndex + 1], out var storedLocalIndex)
+                    || storedLocalIndex != localIndex)
+                {
+                    continue;
+                }
+
+                localTargets.Add(new TargetItem(candidateIndex, targetItemId, PassedViaLocal: true));
+            }
+
+            if (localTargets.Count > 0)
+            {
+                return localTargets
+                    .DistinctBy(static target => target.TargetItemId)
+                    .ToArray();
+            }
         }
 
-        return -1;
+        for (var index = spawnIndex - 1; index >= startIndex; index--)
+        {
+            if (!TryGetModItemType(instructions[index].Operand as MethodBase, out var itemType)
+                || !itemTypes.TryGetValue(itemType, out var targetItemId))
+            {
+                continue;
+            }
+
+            return [new TargetItem(index, targetItemId, PassedViaLocal: false)];
+        }
+
+        return [];
+    }
+
+    private static int[] FindRequiredItemIds(
+        IlInstruction[] instructions,
+        int itemTypeIndex,
+        int spawnIndex,
+        Dictionary<Type, int> itemTypes)
+    {
+        var spawnOffset = instructions[spawnIndex].Offset;
+        List<int> result = [];
+        for (var branchIndex = Math.Max(1, itemTypeIndex - 128); branchIndex < itemTypeIndex; branchIndex++)
+        {
+            if (!IsConditionalBranch(instructions[branchIndex].OpCode)
+                || instructions[branchIndex].Operand is not int targetOffset
+                || targetOffset <= spawnOffset
+                || instructions[branchIndex - 1].Operand is not MethodInfo method
+                || method.DeclaringType != typeof(Player)
+                || !string.Equals(method.Name, nameof(Player.ConsumeItem), StringComparison.Ordinal)
+                || !TryResolveConsumedItemId(
+                    instructions,
+                    branchIndex - 1,
+                    method,
+                    itemTypes,
+                    out var requiredItemId))
+            {
+                continue;
+            }
+
+            result.Add(requiredItemId);
+        }
+
+        return result.Distinct().Order().ToArray();
+    }
+
+    private static bool TryResolveConsumedItemId(
+        IlInstruction[] instructions,
+        int callIndex,
+        MethodInfo method,
+        Dictionary<Type, int> itemTypes,
+        out int itemId)
+    {
+        for (var index = callIndex - 1; index >= Math.Max(0, callIndex - 12); index--)
+        {
+            if (TryGetModItemType(instructions[index].Operand as MethodBase, out var itemType)
+                && itemTypes.TryGetValue(itemType, out itemId))
+            {
+                return true;
+            }
+        }
+
+        var parameters = method.GetParameters();
+        var itemParameterIndex = Array.FindIndex(
+            parameters,
+            static parameter => parameter.ParameterType == typeof(int)
+                && string.Equals(parameter.Name, "type", StringComparison.OrdinalIgnoreCase));
+        var ordinalFromEnd = itemParameterIndex < 0
+            ? parameters.Length
+            : parameters.Length - itemParameterIndex;
+        return TryGetPreviousIntConstant(instructions, callIndex, ordinalFromEnd, out itemId)
+            && itemId > 0
+            && itemId < ItemLoader.ItemCount;
+    }
+
+    private static bool TryGetLoadedLocalIndex(IlInstruction instruction, out int localIndex) =>
+        TryGetLocalIndex(
+            instruction,
+            OpCodes.Ldloc_0,
+            OpCodes.Ldloc_1,
+            OpCodes.Ldloc_2,
+            OpCodes.Ldloc_3,
+            OpCodes.Ldloc,
+            OpCodes.Ldloc_S,
+            out localIndex);
+
+    private static bool TryGetStoredLocalIndex(IlInstruction instruction, out int localIndex) =>
+        TryGetLocalIndex(
+            instruction,
+            OpCodes.Stloc_0,
+            OpCodes.Stloc_1,
+            OpCodes.Stloc_2,
+            OpCodes.Stloc_3,
+            OpCodes.Stloc,
+            OpCodes.Stloc_S,
+            out localIndex);
+
+    private static bool TryGetLocalIndex(
+        IlInstruction instruction,
+        OpCode local0,
+        OpCode local1,
+        OpCode local2,
+        OpCode local3,
+        OpCode general,
+        OpCode shortForm,
+        out int localIndex)
+    {
+        if (instruction.OpCode == local0) localIndex = 0;
+        else if (instruction.OpCode == local1) localIndex = 1;
+        else if (instruction.OpCode == local2) localIndex = 2;
+        else if (instruction.OpCode == local3) localIndex = 3;
+        else if ((instruction.OpCode == general || instruction.OpCode == shortForm)
+                 && instruction.Operand is int operand) localIndex = operand;
+        else
+        {
+            localIndex = -1;
+            return false;
+        }
+
+        return true;
     }
 
     private static StackRange ResolveStack(IlInstruction[] instructions, int itemTypeIndex, int spawnIndex)
@@ -311,9 +752,7 @@ public static class JournalLegacyDirectDropAnalyzer
                 : 1f - predicateProbability;
         }
 
-        return dynamicCondition
-            ? new GuardRate(false, 0f)
-            : new GuardRate(true, Math.Clamp(rate, 0f, 1f));
+        return new GuardRate(!dynamicCondition, Math.Clamp(rate, 0f, 1f));
     }
 
     private static bool TryResolveNextBoolProbability(
@@ -497,6 +936,41 @@ public static class JournalLegacyDirectDropAnalyzer
         return true;
     }
 
+    private static bool TryGetModTileType(MethodBase? method, out Type tileType)
+    {
+        tileType = null!;
+        if (method is not MethodInfo { IsGenericMethod: true } methodInfo
+            || !string.Equals(methodInfo.Name, nameof(ModContent.TileType), StringComparison.Ordinal)
+            || methodInfo.DeclaringType != typeof(ModContent))
+        {
+            return false;
+        }
+
+        var genericArguments = methodInfo.GetGenericArguments();
+        if (genericArguments.Length != 1
+            || !typeof(ModTile).IsAssignableFrom(genericArguments[0]))
+        {
+            return false;
+        }
+
+        tileType = genericArguments[0];
+        return true;
+    }
+
+    private static bool IsProgressionFlagName(string name)
+    {
+        var normalized = name.Trim('<', '>', '_').ToLowerInvariant();
+        return normalized == "hardmode"
+            || normalized.Contains("downed", StringComparison.Ordinal)
+            || normalized.Contains("defeated", StringComparison.Ordinal)
+            || normalized.Contains("killed", StringComparison.Ordinal)
+            || normalized.Contains("unlocked", StringComparison.Ordinal)
+            || normalized.Contains("saved", StringComparison.Ordinal)
+            || normalized.Contains("rescued", StringComparison.Ordinal)
+            || normalized.Contains("completed", StringComparison.Ordinal)
+            || normalized.Contains("bossrush", StringComparison.Ordinal);
+    }
+
     private static bool IsItemSpawnCall(MethodBase? method)
     {
         return method is not null
@@ -505,6 +979,12 @@ public static class JournalLegacyDirectDropAnalyzer
                 || (method.DeclaringType == typeof(Player)
                     && method.Name.StartsWith("QuickSpawnItem", StringComparison.Ordinal))
                 || IsLegacyDropHelper(method));
+    }
+
+    private static bool IsTilePlacementCall(MethodBase? method)
+    {
+        return method?.DeclaringType == typeof(WorldGen)
+            && method.Name is nameof(WorldGen.PlaceTile) or nameof(WorldGen.PlaceObject);
     }
 
     private static bool IsLegacyDropHelper(MethodBase method)
@@ -667,7 +1147,9 @@ public static class JournalLegacyDirectDropAnalyzer
 
     private sealed record Catalog(
         JournalLegacyNpcDrop[] NpcDrops,
-        JournalLegacyItemDrop[] ItemDrops);
+        JournalLegacyItemDrop[] ItemDrops,
+        JournalLegacyTileDrop[] TileDrops,
+        JournalLegacyTilePlacement[] TilePlacements);
 
     private sealed record IlInstruction(int Offset, OpCode OpCode, object? Operand);
     private sealed record AnalyzedDrop(
@@ -675,7 +1157,10 @@ public static class JournalLegacyDirectDropAnalyzer
         float DropRate,
         int StackMin,
         int StackMax,
-        string SourceMethod);
+        string SourceMethod,
+        int[] RequiredItemIds);
+    private sealed record TargetItem(int ItemTypeIndex, int TargetItemId, bool PassedViaLocal);
+    private sealed record TargetTile(int TileTypeIndex, int TargetTileType);
     private sealed record StackRange(int Min, int Max, float PositiveProbability);
     private sealed record GuardRate(bool Known, float Rate);
 }
@@ -686,7 +1171,8 @@ public sealed record JournalLegacyNpcDrop(
     float DropRate,
     int StackMin,
     int StackMax,
-    string SourceMethod);
+    string SourceMethod,
+    int[] RequiredItemIds);
 
 public sealed record JournalLegacyItemDrop(
     int SourceItemId,
@@ -694,4 +1180,20 @@ public sealed record JournalLegacyItemDrop(
     float DropRate,
     int StackMin,
     int StackMax,
+    string SourceMethod,
+    int[] RequiredItemIds);
+
+public sealed record JournalLegacyTileDrop(
+    int SourceTileType,
+    int TargetItemId,
+    float DropRate,
+    int StackMin,
+    int StackMax,
     string SourceMethod);
+
+public sealed record JournalLegacyTilePlacement(
+    int TargetTileType,
+    string SourceMethod,
+    JournalLegacyProgressionFlag[] RequiredProgressionFlags);
+
+public sealed record JournalLegacyProgressionFlag(string Mod, string Key);

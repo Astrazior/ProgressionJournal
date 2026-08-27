@@ -11,7 +11,7 @@
   "readOnly": true,
   "sourceUrl": "",
   "sourceRevision": "",
-  "generatedAtUtc": "2026-08-26T13:14:40.421Z",
+  "generatedAtUtc": "2026-08-27T11:02:28.425Z",
   "requiredMods": [
     {
       "name": "Redemption",
@@ -27,7 +27,7 @@
     },
     {
       "name": "ParticleLibrary",
-      "version": "3.2.0.0"
+      "version": "3.2.1.0"
     },
     {
       "name": "StructureHelper",
@@ -686,6 +686,21 @@
     {
       "item": {
         "mod": "Redemption",
+        "item": "ChickenEgg",
+        "displayName": "Chicken Egg"
+      },
+      "sourceName": "Chicken Coop",
+      "sourceReference": "Redemption/ChickenCoopTile",
+      "sourceItem": null,
+      "dropRate": 0.125,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": []
+    },
+    {
+      "item": {
+        "mod": "Redemption",
         "item": "CruxCardAnglonSkeletons",
         "displayName": "Crux Card: Common Guard"
       },
@@ -920,6 +935,21 @@
         "item": "GoldChickenEgg",
         "displayName": "Gold Chicken Egg"
       },
+      "sourceName": "Chicken Coop",
+      "sourceReference": "Redemption/ChickenCoopTile",
+      "sourceItem": null,
+      "dropRate": 0.125,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": []
+    },
+    {
+      "item": {
+        "mod": "Redemption",
+        "item": "GoldChickenEgg",
+        "displayName": "Gold Chicken Egg"
+      },
       "sourceName": "Gold Chicken",
       "sourceReference": "Redemption/ChickenGold",
       "sourceItem": {
@@ -997,6 +1027,21 @@
       "conditions": [
         "Guaranteed in the first eligible Web Covered Chest; later eligible chests roll independently"
       ]
+    },
+    {
+      "item": {
+        "mod": "Redemption",
+        "item": "SussyEgg",
+        "displayName": "Suspicious Egg"
+      },
+      "sourceName": "Chicken Coop",
+      "sourceReference": "Redemption/ChickenCoopTile",
+      "sourceItem": null,
+      "dropRate": 0.125,
+      "stackMin": 1,
+      "stackMax": 1,
+      "showDropRate": false,
+      "conditions": []
     },
     {
       "item": {
@@ -2052,7 +2097,7 @@
         "item": "LesserHealingPotion",
         "displayName": "Lesser Healing Potion"
       },
-      "sourceName": "Bottles",
+      "sourceName": "Bottle",
       "sourceReference": "Terraria/Bottles",
       "sourceItem": null,
       "dropRate": 1,
@@ -2082,7 +2127,7 @@
         "item": "LesserManaPotion",
         "displayName": "Lesser Mana Potion"
       },
-      "sourceName": "Bottles",
+      "sourceName": "Bottle",
       "sourceReference": "Terraria/Bottles",
       "sourceItem": null,
       "dropRate": 1,
@@ -2114,7 +2159,7 @@
         "item": "LifeFruit",
         "displayName": "Life Fruit"
       },
-      "sourceName": "Biocontainer Tile",
+      "sourceName": "Bio-Container",
       "sourceReference": "Redemption/BiocontainerTile",
       "sourceItem": null,
       "dropRate": 1,
@@ -7597,14 +7642,11 @@
               ]
             },
             {
-              "key": "Mods.ProgressionJournal.UI.FishingWorldCondition",
+              "key": "Mods.ProgressionJournal.UI.FishingProgressionCondition",
               "args": [
                 {
-                  "join": [
-                    {
-                      "key": "Mods.ProgressionJournal.UI.FishingWorldHardmode"
-                    }
-                  ]
+                  "en-US": "Wall of Flesh",
+                  "ru-RU": "Стена плоти"
                 }
               ]
             }
@@ -9421,14 +9463,11 @@
               ]
             },
             {
-              "key": "Mods.ProgressionJournal.UI.FishingWorldCondition",
+              "key": "Mods.ProgressionJournal.UI.FishingProgressionCondition",
               "args": [
                 {
-                  "join": [
-                    {
-                      "key": "Mods.ProgressionJournal.UI.FishingWorldHardmode"
-                    }
-                  ]
+                  "en-US": "Wall of Flesh",
+                  "ru-RU": "Стена плоти"
                 }
               ]
             }
@@ -11919,14 +11958,11 @@
               ]
             },
             {
-              "key": "Mods.ProgressionJournal.UI.FishingWorldCondition",
+              "key": "Mods.ProgressionJournal.UI.FishingProgressionCondition",
               "args": [
                 {
-                  "join": [
-                    {
-                      "key": "Mods.ProgressionJournal.UI.FishingWorldHardmode"
-                    }
-                  ]
+                  "en-US": "Wall of Flesh",
+                  "ru-RU": "Стена плоти"
                 }
               ]
             }
@@ -12399,14 +12435,11 @@
               ]
             },
             {
-              "key": "Mods.ProgressionJournal.UI.FishingWorldCondition",
+              "key": "Mods.ProgressionJournal.UI.FishingProgressionCondition",
               "args": [
                 {
-                  "join": [
-                    {
-                      "key": "Mods.ProgressionJournal.UI.FishingWorldHardmode"
-                    }
-                  ]
+                  "en-US": "Wall of Flesh",
+                  "ru-RU": "Стена плоти"
                 }
               ]
             }
@@ -15969,6 +16002,36 @@
       "evaluations": [
         {
           "stageId": "skeletron",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
+      "key": "new.redemption.forestnymphssickle",
+      "category": "Weapon",
+      "classes": [
+        "melee",
+        "magic"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Redemption",
+            "item": "ForestNymphsSickle",
+            "displayName": "Forest Nymph's Sickle"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
           "tier": "FromGuide",
           "scope": "StageOnly"
         }
@@ -33123,6 +33186,35 @@
       "eventIcon": ""
     },
     {
+      "key": "new.redemption.sussyegg",
+      "category": "Weapon",
+      "classes": [
+        "ranged"
+      ],
+      "itemGroups": [
+        [
+          {
+            "mod": "Redemption",
+            "item": "SussyEgg",
+            "displayName": "Suspicious Egg"
+          }
+        ]
+      ],
+      "evaluations": [
+        {
+          "stageId": "start",
+          "tier": "FromGuide",
+          "scope": "StageOnly"
+        }
+      ],
+      "wiki": [],
+      "fishingSources": [],
+      "isSupportWeapon": false,
+      "eventCategory": null,
+      "customEventName": "",
+      "eventIcon": ""
+    },
+    {
       "key": "new.terraria.copperchainmail",
       "category": "Armor",
       "classes": [
@@ -43940,6 +44032,46 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.lesserhealingpotion",
+      "category": "Basic",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "ritualist"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "LesserHealingPotion",
+            "displayName": "Lesser Healing Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.lessermanapotion",
+      "category": "Basic",
+      "classes": [
+        "magic"
+      ],
+      "stageId": "start",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "LesserManaPotion",
+            "displayName": "Lesser Mana Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.burger",
       "category": "Food",
       "classes": [
@@ -44446,8 +44578,8 @@
       "fishingSources": []
     },
     {
-      "key": "new.terraria.lesserhealingpotion",
-      "category": "Basic",
+      "key": "new.terraria.lifecrystal",
+      "category": "Eternal",
       "classes": [
         "melee",
         "ranged",
@@ -44460,26 +44592,8 @@
         [
           {
             "mod": "Terraria",
-            "item": "LesserHealingPotion",
-            "displayName": "Lesser Healing Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.lessermanapotion",
-      "category": "Basic",
-      "classes": [
-        "magic"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "LesserManaPotion",
-            "displayName": "Lesser Mana Potion"
+            "item": "LifeCrystal",
+            "displayName": "Life Crystal"
           }
         ]
       ],
@@ -44608,28 +44722,6 @@
             "mod": "Terraria",
             "item": "Sake",
             "displayName": "Sake"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.lifecrystal",
-      "category": "Eternal",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "ritualist"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "LifeCrystal",
-            "displayName": "Life Crystal"
           }
         ]
       ],
@@ -46237,28 +46329,6 @@
       "fishingSources": []
     },
     {
-      "key": "new.redemption.charismapotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "ritualist"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Redemption",
-            "item": "CharismaPotion",
-            "displayName": "Charisma Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
       "key": "new.redemption.friedchickenegg",
       "category": "Food",
       "classes": [
@@ -46319,28 +46389,6 @@
             "mod": "Redemption",
             "item": "SkirmishPotion",
             "displayName": "Skirmish Potion"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.redemption.vendettapotion",
-      "category": "Potion",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "ritualist"
-      ],
-      "stageId": "start",
-      "itemGroups": [
-        [
-          {
-            "mod": "Redemption",
-            "item": "VendettaPotion",
-            "displayName": "Vendetta Potion"
           }
         ]
       ],
@@ -46567,6 +46615,72 @@
       "fishingSources": []
     },
     {
+      "key": "new.redemption.charismapotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "ritualist"
+      ],
+      "stageId": "thorn",
+      "itemGroups": [
+        [
+          {
+            "mod": "Redemption",
+            "item": "CharismaPotion",
+            "displayName": "Charisma Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.redemption.vendettapotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "ritualist"
+      ],
+      "stageId": "thorn",
+      "itemGroups": [
+        [
+          {
+            "mod": "Redemption",
+            "item": "VendettaPotion",
+            "displayName": "Vendetta Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.biomesightpotion",
+      "category": "Potion",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "ritualist"
+      ],
+      "stageId": "eye-of-cthulhu",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "BiomeSightPotion",
+            "displayName": "Biome Sight Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.redemption.eviljelly",
       "category": "Potion",
       "classes": [
@@ -46715,6 +46829,28 @@
       "fishingSources": []
     },
     {
+      "key": "new.terraria.bewitchingtable",
+      "category": "Station",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "ritualist"
+      ],
+      "stageId": "skeletron",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "BewitchingTable",
+            "displayName": "Bewitching Table"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
       "key": "new.terraria.titanpotion",
       "category": "Potion",
       "classes": [
@@ -46759,50 +46895,6 @@
       "fishingSources": []
     },
     {
-      "key": "new.terraria.bewitchingtable",
-      "category": "Station",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "ritualist"
-      ],
-      "stageId": "skeletron",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "BewitchingTable",
-            "displayName": "Bewitching Table"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.redemption.p0t4t0",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "ritualist"
-      ],
-      "stageId": "wall-of-flesh",
-      "itemGroups": [
-        [
-          {
-            "mod": "Redemption",
-            "item": "P0T4T0",
-            "displayName": "P0T4T0"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
       "key": "new.terraria.applepie",
       "category": "Food",
       "classes": [
@@ -46825,50 +46917,6 @@
       "fishingSources": []
     },
     {
-      "key": "new.terraria.grapes",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "ritualist"
-      ],
-      "stageId": "wall-of-flesh",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "Grapes",
-            "displayName": "Grapes"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
-      "key": "new.terraria.chocolatechipcookie",
-      "category": "Food",
-      "classes": [
-        "melee",
-        "ranged",
-        "magic",
-        "summoner",
-        "ritualist"
-      ],
-      "stageId": "wall-of-flesh",
-      "itemGroups": [
-        [
-          {
-            "mod": "Terraria",
-            "item": "ChocolateChipCookie",
-            "displayName": "Chocolate Chip Cookie"
-          }
-        ]
-      ],
-      "fishingSources": []
-    },
-    {
       "key": "new.terraria.milkshake",
       "category": "Food",
       "classes": [
@@ -46885,6 +46933,28 @@
             "mod": "Terraria",
             "item": "Milkshake",
             "displayName": "Milkshake"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.grapes",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "ritualist"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "Grapes",
+            "displayName": "Grapes"
           }
         ]
       ],
@@ -46925,6 +46995,50 @@
             "mod": "Terraria",
             "item": "GreaterManaPotion",
             "displayName": "Greater Mana Potion"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.redemption.p0t4t0",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "ritualist"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Redemption",
+            "item": "P0T4T0",
+            "displayName": "P0T4T0"
+          }
+        ]
+      ],
+      "fishingSources": []
+    },
+    {
+      "key": "new.terraria.chocolatechipcookie",
+      "category": "Food",
+      "classes": [
+        "melee",
+        "ranged",
+        "magic",
+        "summoner",
+        "ritualist"
+      ],
+      "stageId": "wall-of-flesh",
+      "itemGroups": [
+        [
+          {
+            "mod": "Terraria",
+            "item": "ChocolateChipCookie",
+            "displayName": "Chocolate Chip Cookie"
           }
         ]
       ],

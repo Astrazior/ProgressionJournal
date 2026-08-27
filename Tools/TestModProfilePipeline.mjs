@@ -389,8 +389,14 @@ assert(legacyDirectDropAnalyzerSource.includes('"OnKill"')
   && legacyDirectDropAnalyzerSource.includes('string.Equals(method.Name, "DropLoot"')
   && legacyDirectDropAnalyzerSource.includes("PositiveProbability")
   && legacyDirectDropAnalyzerSource.includes(
-    'parameter.ParameterType.FullName != "Terraria.Utilities.UnifiedRandom"'),
-"Legacy direct drops must recover exact NPC, bag, chat-reward, and zero-stack probabilities");
+    'parameter.ParameterType.FullName != "Terraria.Utilities.UnifiedRandom"')
+  && legacyDirectDropAnalyzerSource.includes("nameof(ModTile.RandomUpdate)")
+  && legacyDirectDropAnalyzerSource.includes("FindRequiredItemIds")
+  && legacyDirectDropAnalyzerSource.includes("AnalyzeInteractionCallbacks")
+  && legacyDirectDropAnalyzerSource.includes('string.Equals(method.Name, "OnClick"')
+  && legacyDirectDropAnalyzerSource.includes("parameter.ParameterType == typeof(NPC)")
+  && legacyDirectDropAnalyzerSource.includes("PassedViaLocal"),
+"Legacy direct drops must recover exact NPC, bag, scripted-interaction, chat-reward, and zero-stack probabilities");
 assert(itemSourceResolverSource.includes("AppendLegacyDirectNpcSources")
   && itemSourceResolverSource.includes("AppendLegacyDirectItemSources")
   && itemSourceResolverSource.includes("AppendExactDropSources")
@@ -890,6 +896,17 @@ assert(snapshotExporterSource.includes("JournalSnapshotTileDropCollector.Collect
   && tileDropCollectorSource.includes("CollectWorldSamples()")
   && tileDropCollectorSource.includes("CopyFrom(originalTile)"),
 "Explicit snapshot export must discover native vanilla and modded tile drops without leaving probe tiles behind");
+assert(tileDropCollectorSource.includes("GetAllTileDrops()")
+  && tileDropCollectorSource.includes("AppendLegacyRandomUpdateDrops")
+  && tileDropCollectorSource.includes("Lang.GetItemNameValue(placedItemType)"),
+"Snapshot export must retain scripted ModTile.RandomUpdate item spawns");
+assert(tileDropCollectorSource.includes("GetAllTilePlacements()")
+  && tileDropCollectorSource.includes("CreateLegacyWorldTilePlacementDrops")
+  && tileDropCollectorSource.includes("ProgressionJournal.Stage.")
+  && legacyDirectDropAnalyzerSource.includes("ModContent.GetContent<GlobalTile>()")
+  && legacyDirectDropAnalyzerSource.includes("IsTilePlacementCall")
+  && legacyDirectDropAnalyzerSource.includes("FindRequiredProgressionFlags"),
+"Snapshot export must retain progression-gated GlobalTile.RandomUpdate placements as world sources");
 assert(tileDropCollectorSource.includes("WorldGen.CheckOrb")
   && tileDropCollectorSource.includes('"SpawnThingsFromPot"')
   && tileDropCollectorSource.includes("TileID.Heart")
@@ -921,6 +938,12 @@ assert(snapshotExporterSource.includes("player.armor[GetProbeEquipmentSlot(item)
 "Item class-effect probing must execute the real equipment update path");
 assert(snapshotExporterSource.includes("DamageClassLoader.DamageClassCount"),
   "Modded damage classes are not fully enumerated for combat classification");
+assert(snapshotExporterSource.includes("GetDefaultDamageWeaponClassEffects")
+  && snapshotExporterSource.includes("nameof(ModItem.ModifyWeaponDamage)")
+  && snapshotExporterSource.includes("TryResolveReferencedDamageClassReference")
+  && snapshotExporterSource.includes("IsDefaultDamageClass")
+  && snapshotExporterSource.includes("EnumerateDamageClasses()"),
+"Default-damage hybrid weapons must retain class evidence from standard ModItem hooks");
 assert(snapshotExporterSource.includes("VanillaItemClassifications = CreateVanillaItemClassifications()"),
   "Vanilla combat item classifications are not exported for profile filtering");
 assert(snapshotExporterSource.includes("ShimmerTransforms = CreateShimmerTransforms(itemIds)")

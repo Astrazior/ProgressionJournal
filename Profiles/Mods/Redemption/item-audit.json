@@ -3,22 +3,22 @@
   "version": 2,
   "targetMod": "Redemption",
   "profileId": "mod.redemption",
-  "generatedAtUtc": "2026-08-25T23:29:08.794Z",
-  "snapshotGeneratedAtUtc": "2026-08-25T19:36:12.8733202Z",
+  "generatedAtUtc": "2026-08-27T11:02:31.982Z",
+  "snapshotGeneratedAtUtc": "2026-08-27T11:01:21.6107465Z",
   "summary": {
     "snapshotItems": 6617,
     "contentItems": 1162,
-    "profileEntries": 1073,
-    "profileBuffEntries": 175,
-    "profileItemReferences": 1310,
-    "equipmentReferences": 1135,
-    "buffReferences": 175,
+    "profileEntries": 1075,
+    "profileBuffEntries": 176,
+    "profileItemReferences": 1313,
+    "equipmentReferences": 1137,
+    "buffReferences": 176,
     "profileSourceGaps": 0,
-    "excluded": 3149,
+    "excluded": 3287,
     "acquiredNonProfile": 127,
     "unresolvedAvailability": 0,
     "unavailableCombat": 0,
-    "noAcquisitionPath": 2031
+    "noAcquisitionPath": 1890
   },
   "items": [
     {
@@ -127,10 +127,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -149,8 +149,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "ancient-deity-duo",
-      "via": "npc:Redemption/Akka",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -216,10 +216,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -275,7 +275,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -313,7 +313,7 @@
       "via": "shop:Redemption/Fallen",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": [
@@ -581,10 +581,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -783,8 +783,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "fowl-morning",
-      "via": "npc:Redemption/Basan",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -817,10 +817,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -1413,7 +1413,7 @@
       "via": "shop:Redemption/Fallen",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": [
@@ -1438,8 +1438,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "calavia",
-      "via": "npc:Redemption/Calavia",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -1466,10 +1466,10 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -1504,10 +1504,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -1530,7 +1530,7 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "buff",
-      "stage": "start",
+      "stage": "thorn",
       "via": "recipe:Terraria/GoldenCarp+Redemption/Nightshade+Terraria/Blinkroot+Terraria/BottledWater",
       "reason": "Included in the generated profile.",
       "evidence": null
@@ -1739,8 +1739,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "omega-cleaver",
-      "via": "npc:Redemption/OmegaCleaver",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -1805,8 +1805,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "fowl-morning",
-      "via": "npc:Redemption/Cockatrice",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -2158,7 +2158,7 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "Included in the generated profile.",
       "evidence": {
         "kind": "shop",
@@ -2184,7 +2184,7 @@
       "via": "shop:Redemption/TBot",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -3210,10 +3210,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -3291,11 +3291,23 @@
       "name": "Eaglecrest Golem Plushie",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After Eaglecrest Golem is defeated",
+            "key": "Mods.Redemption.Conditions.DownedEaglecrestGolem",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Redemption/EaglecrestGolemRelic",
@@ -3303,8 +3315,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "eaglecrest-golem",
-      "via": "npc:Redemption/EaglecrestGolem",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -3359,10 +3371,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -3505,7 +3517,7 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Redemption/ElderWood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -3706,7 +3718,7 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Redemption/ElderWood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -3866,10 +3878,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "plantera",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -4013,10 +4025,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -4112,8 +4124,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "erhan",
-      "via": "npc:Redemption/Erhan",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -4138,7 +4150,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -4217,10 +4229,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -4451,10 +4463,10 @@
       "name": "Forest Nymph's Sickle",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "npc:Redemption/ForestNymph_Friendly",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4539,11 +4551,23 @@
       "name": "The Legendary-er Being",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Redemption/Zephos",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After Fowl Emperor is defeated",
+            "key": "Mods.Redemption.Conditions.DownedFowlEmperor",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Redemption/FowlEmperorRelic",
@@ -4874,7 +4898,7 @@
       "via": "shop:Redemption/TBot",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -4937,8 +4961,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "omega-gigapora",
-      "via": "npc:Redemption/Gigapora",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -4971,10 +4995,10 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -5471,7 +5495,7 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "start",
-      "via": "recipe:Terraria/PotSuspended+Redemption/Nightshade",
+      "via": "tile:Redemption/HangingPlantsTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -6117,7 +6141,7 @@
       "via": "shop:Redemption/TBot",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -6581,8 +6605,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "keeper",
-      "via": "npc:Redemption/Keeper",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -6670,10 +6694,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -6707,8 +6731,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "king-slayer-iii",
-      "via": "npc:Redemption/KS3",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -6739,11 +6763,23 @@
       "name": "King Slayer King Slaying",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "king-slayer-iii",
+      "via": "shop:Redemption/Zephos",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After King Slayer is defeated",
+            "key": "Mods.Redemption.Conditions.DownedSlayer",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Redemption/KSStatue",
@@ -6913,10 +6949,10 @@
       "name": "Laboratory Crate",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron-prime",
+      "via": "fishing",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -6924,10 +6960,10 @@
       "name": "Reinforced Laboratory Crate",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "moon-lord",
+      "via": "fishing",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -7071,10 +7107,10 @@
       "name": "Lab Wall (Unsafe)",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "abandoned-laboratory",
+      "via": "shimmer:Redemption/MossyLabPlatingWallUnsafe",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -7342,7 +7378,7 @@
       "via": "shop:Redemption/Zephos",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -7490,10 +7526,10 @@
       "name": "Beezard Outfit",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "queen-bee",
+      "via": "recipe:Terraria/BeeShirt+Terraria/ShadowScale+Terraria/GreenThread",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -7512,10 +7548,10 @@
       "name": "Beezard Hood",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "queen-bee",
+      "via": "recipe:Terraria/BeeHat+Terraria/ShadowScale+Terraria/GreenThread",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -7523,10 +7559,10 @@
       "name": "Beezard Pants",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "queen-bee",
+      "via": "recipe:Terraria/BeePants+Terraria/ShadowScale+Terraria/GreenThread",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -7534,10 +7570,10 @@
       "name": "Beezard Abdomen",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "world-evil",
+      "via": "recipe:Terraria/Stinger+Terraria/ShadowScale+Terraria/GreenThread",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -7638,7 +7674,7 @@
       "via": "shop:Redemption/TBot",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -7665,7 +7701,7 @@
       "via": "shop:Redemption/TBot",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -7681,7 +7717,7 @@
       "via": "shop:Redemption/TBot",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -7703,10 +7739,10 @@
       "name": "Mercenary's Chestplate",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/IronBar+Terraria/Leather+Terraria/GreenThread",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -7714,10 +7750,10 @@
       "name": "Mercenary's Helmet",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/IronBar+Terraria/GreenThread",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -7725,10 +7761,10 @@
       "name": "Mercenary's Leggings",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/IronBar+Terraria/Leather+Terraria/GreenThread",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -7774,7 +7810,7 @@
       "via": "shop:Redemption/TBot",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -7794,9 +7830,23 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "keeper",
-      "via": "shimmer:Redemption/Earthbind",
+      "via": "shop:Redemption/Fallen",
       "reason": "not combat equipment",
-      "evidence": null
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In a Snow biome",
+            "key": "Conditions.InSnow",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": [
+          "Redemption/AncientGoldCoin"
+        ]
+      }
     },
     {
       "id": "Redemption/MoltenScrap",
@@ -7902,10 +7952,10 @@
       "name": "Mossy Laboratory Tube",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "abandoned-laboratory",
+      "via": "recipe:Redemption/LabPlating+Terraria/Glass+Terraria/GrassSeeds",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -7924,10 +7974,10 @@
       "name": "Unsafe Mossy Laboratory Panel Wall",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "abandoned-laboratory",
+      "via": "recipe:Redemption/OvergrownLabPlating2",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -7935,10 +7985,10 @@
       "name": "Mossy Laboratory Table",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "abandoned-laboratory",
+      "via": "recipe:Redemption/LabPlating+Redemption/Plating+Terraria/GrassSeeds",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -7959,10 +8009,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -8062,7 +8112,7 @@
       "via": "shop:Redemption/Zephos",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -8169,8 +8219,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "nebuleus",
-      "via": "npc:Redemption/Nebuleus",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -8323,8 +8373,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "start",
-      "via": "npc:Redemption/LivingBloom",
+      "stage": "thorn",
+      "via": "world:Redemption/NightshadeTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -8333,10 +8383,10 @@
       "name": "Nightshade Seeds",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "thorn",
+      "via": "world:Redemption/NightshadeTile",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -8547,7 +8597,7 @@
       "via": "shop:Redemption/TBot",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -8609,11 +8659,25 @@
       "name": "Old Tophat",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "keeper",
+      "via": "shop:Redemption/Fallen",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "While the hanging skeleton is gone",
+            "key": "Mods.Redemption.Conditions.OldTophat",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": [
+          "Redemption/AncientGoldCoin"
+        ]
+      }
     },
     {
       "id": "Redemption/Olives",
@@ -8797,8 +8861,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "omega-obliterator",
-      "via": "npc:Redemption/OO",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -8853,10 +8917,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "golem",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -8937,10 +9001,10 @@
       "name": "Overgrown Laboratory Panel",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "abandoned-laboratory",
+      "via": "recipe:Redemption/LabPlatingUnsafe2+Terraria/GrassSeeds",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -9037,7 +9101,7 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Redemption/PetrifiedWood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -9191,7 +9255,7 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Redemption/PetrifiedWood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -9445,10 +9509,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -9731,8 +9795,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "patient-zero",
-      "via": "npc:Redemption/PZ",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -9757,7 +9821,7 @@
       "via": "shop:Redemption/TBot",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -10170,7 +10234,7 @@
       "via": "shop:Redemption/Fallen",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": [
@@ -10927,10 +10991,10 @@
       "contentItem": true,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -10983,10 +11047,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -11136,11 +11200,25 @@
       "name": "Tragic Protector",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skull-digger",
+      "via": "shop:Redemption/Fallen",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After Skull Digger is defeated",
+            "key": "Mods.Redemption.Conditions.DownedSkullDigger",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": [
+          "Redemption/AncientGoldCoin"
+        ]
+      }
     },
     {
       "id": "Redemption/SkullDiggerRelic",
@@ -11148,8 +11226,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "skull-digger",
-      "via": "npc:Redemption/SkullDigger",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -11399,7 +11477,7 @@
       "via": "shop:Redemption/Fallen",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": [
@@ -11512,8 +11590,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "seed-of-infection",
-      "via": "npc:Redemption/SoI",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -11917,10 +11995,10 @@
       "name": "Suspicious Egg",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "tile:Redemption/ChickenCoopTile",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -11966,7 +12044,7 @@
       "via": "shop:Redemption/Zephos",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -12016,7 +12094,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -12120,7 +12198,7 @@
       "via": "shop:Redemption/TBot",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -12171,10 +12249,10 @@
       "name": "Terraforma Bomba",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "moon-lord",
+      "via": "recipe:Redemption/TerraBombaTail+Redemption/TerraBombaCore+Redemption/TerraBombaNose+Terraria/MushroomGrassSeeds",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -12198,7 +12276,7 @@
       "via": "shop:Redemption/TBot",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -12216,10 +12294,10 @@
       "name": "Terraforma Bomba",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "moon-lord",
+      "via": "recipe:Redemption/TerraBombaTail+Redemption/TerraBombaCore+Redemption/TerraBombaNose+Terraria/GrassSeeds",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -12254,7 +12332,7 @@
       "via": "shop:Redemption/TBot",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -12365,11 +12443,23 @@
       "name": "Thorn Plushie",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After Thorn is defeated",
+            "key": "Mods.Redemption.Conditions.DownedThorn",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Redemption/ThornRelic",
@@ -12377,8 +12467,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "thorn",
-      "via": "npc:Redemption/Thorn",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -12636,10 +12726,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "plantera",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -12658,8 +12748,8 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "excluded",
-      "stage": "ancient-deity-duo",
-      "via": "npc:Redemption/Ukko",
+      "stage": "fowl-emperor",
+      "via": "tile:Redemption/RelicTile",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -12856,7 +12946,7 @@
       "mod": "Redemption",
       "contentItem": true,
       "status": "buff",
-      "stage": "start",
+      "stage": "thorn",
       "via": "recipe:Redemption/Nightshade+Terraria/Stinger+Terraria/WormTooth+Terraria/Cactus+Terraria/BottledWater",
       "reason": "Included in the generated profile.",
       "evidence": null
@@ -12937,7 +13027,7 @@
       "via": "shop:Redemption/Fallen",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": [
@@ -13018,10 +13108,10 @@
       "contentItem": true,
       "status": "excluded",
       "stage": "moon-lord",
-      "via": "shop:Redemption/Daerel",
+      "via": "shop:Redemption/Zephos",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -13468,11 +13558,23 @@
       "name": "Lab Access Panel - Sigma",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "abandoned-laboratory",
+      "via": "shop:Redemption/TBot",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "",
+            "key": "",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Redemption/ZoneAccessPanel4",
@@ -13490,22 +13592,46 @@
       "name": "Lab Access Panel - 0",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "abandoned-laboratory-revisit",
+      "via": "shop:Redemption/TBot",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "",
+            "key": "",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Redemption/ZoneAccessPanel6",
       "name": "Lab Access Panel - Master",
       "mod": "Redemption",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "patient-zero",
+      "via": "shop:Redemption/TBot",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "",
+            "key": "",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Redemption/Zweihander",
@@ -14052,7 +14178,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "skeletron",
-      "via": "manifest",
+      "via": "fishing",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -14814,7 +14940,7 @@
       "via": "shop:Terraria/ArmsDealer",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -15609,7 +15735,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/MartianEngineer",
+      "via": "npc:Terraria/BrainScrambler",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -15720,7 +15846,7 @@
       "contentItem": false,
       "status": "buff",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/ChaosElemental",
+      "via": "npc:Terraria/IlluminantBat",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -16363,7 +16489,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/AshWood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -16550,7 +16676,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/AshWood+Terraria/Bone+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -16648,10 +16774,10 @@
       "name": "Asphalt Block",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/StoneBlock+Terraria/Gel",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -16708,7 +16834,7 @@
       "via": "shop:Terraria/Truffle",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -17157,7 +17283,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/BambooBlock+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -17305,7 +17431,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/BambooBlock+Terraria/Bone+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -17614,7 +17740,7 @@
       "contentItem": false,
       "status": "buff",
       "stage": "plantera",
-      "via": "npc:Terraria/Paladin",
+      "via": "npc:Terraria/TacticalSkeleton",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -17650,11 +17776,23 @@
       "name": "Beanie",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In a Snow biome",
+            "key": "Conditions.InSnow",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/Bed",
@@ -18063,9 +18201,21 @@
       "contentItem": false,
       "status": "buff",
       "stage": "skeletron",
-      "via": "manifest",
+      "via": "shop:Terraria/WitchDoctor",
       "reason": "Included in the generated profile.",
-      "evidence": null
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "When the Wizard is present",
+            "key": "Conditions.NpcIsPresent",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/Bezoar",
@@ -18172,10 +18322,10 @@
       "name": "Biome Sight Potion",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "buff",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/BottledWater+Terraria/Fireblossom+Terraria/Blinkroot+Terraria/Moonglow+Terraria/GrassSeeds",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -18255,7 +18405,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/SilverDye+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -18326,7 +18476,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/BlackInk",
       "reason": "not combat equipment",
       "evidence": null
@@ -18348,7 +18498,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "npc:Terraria/Squid",
       "reason": "not combat equipment",
       "evidence": null
@@ -18467,7 +18617,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -18534,11 +18684,23 @@
       "name": "Blend-O-Matic",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "shop:Terraria/Steampunker",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In Hardmode when in a For the Worthy world, otherwise anytime",
+            "key": "Conditions.HardmodeFTW",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/BlessedApple",
@@ -18569,7 +18731,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/BloodMummy",
+      "via": "npc:Terraria/CorruptSlime",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -18594,7 +18756,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -18613,7 +18775,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "container:Terraria/HerbBag",
       "reason": "not combat equipment",
       "evidence": null
@@ -18882,7 +19044,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -18987,7 +19149,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -19273,10 +19435,10 @@
       "name": "Blue Dungeon Candle",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "tile:Terraria/Candles",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -19637,22 +19799,58 @@
       "name": "Lunar Cultist Hood",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "lunatic-cultist",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "At night",
+            "key": "Conditions.TimeNight",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "After defeating the Lunatic Cultist",
+            "key": "Conditions.DownedLunaticCultist",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/BlueLunaticRobe",
       "name": "Lunar Cultist Robe",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "lunatic-cultist",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "At night",
+            "key": "Conditions.TimeNight",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "After defeating the Lunatic Cultist",
+            "key": "Conditions.DownedLunaticCultist",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/BlueMacaw",
@@ -19818,11 +20016,35 @@
       "name": "Blue Solution",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "shop:Terraria/Steampunker",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "Not in a Remix world",
+            "key": "Conditions.WorldNotRemix",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "Not during a Blood Moon or Solar Eclipse",
+            "key": "Conditions.NotBloodOrSun",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "In a Hallow biome",
+            "key": "Conditions.InHallow",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/BlueStainedGlass",
@@ -20145,7 +20367,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "plantera",
-      "via": "npc:Terraria/BlueArmoredBonesMace",
+      "via": "npc:Terraria/RustyArmoredBonesAxe",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -20390,7 +20612,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -20442,15 +20664,10 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
-      "via": "shop:Terraria/Wizard",
+      "stage": "skeletron",
+      "via": "container:Terraria/DungeonFishingCrate",
       "reason": "not combat equipment",
-      "evidence": {
-        "kind": "shop",
-        "conditions": [],
-        "prerequisites": [],
-        "currencyItems": null
-      }
+      "evidence": null
     },
     {
       "id": "Terraria/Bookcase",
@@ -20458,7 +20675,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Wood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -20584,7 +20801,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/BorealWood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -20771,7 +20988,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/BorealWood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -21563,7 +21780,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/BrownDye+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -21760,7 +21977,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -21771,7 +21988,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -21782,7 +21999,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -22173,7 +22390,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Cactus+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -22327,7 +22544,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/Cactus+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -22905,11 +23122,23 @@
       "name": "Cauldron",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "queen-bee",
+      "via": "shop:Terraria/WitchDoctor",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During Halloween",
+            "key": "Conditions.Halloween",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/Cave1Echo",
@@ -23009,7 +23238,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -23286,7 +23515,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "golem",
-      "via": "npc:Terraria/MartianEngineer",
+      "via": "npc:Terraria/BrainScrambler",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -23816,7 +24045,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -23900,22 +24129,46 @@
       "name": "Clothier's Jacket",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During Halloween",
+            "key": "Conditions.Halloween",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/ClothierPants",
       "name": "Clothier's Pants",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During Halloween",
+            "key": "Conditions.Halloween",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/ClothierVoodooDoll",
@@ -24421,7 +24674,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -24452,7 +24705,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCaptain",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -24663,7 +24916,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -24679,7 +24932,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -25003,7 +25256,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/ReefBlock+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -25135,7 +25388,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/ReefBlock+Terraria/Bone+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -25299,11 +25552,29 @@
       "name": "Corrupt Grass Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "shop:Terraria/Dryad",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During a Blood Moon",
+            "key": "Conditions.BloodMoon",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "In a world with The Corruption",
+            "key": "Conditions.WorldCorrupt",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/CorruptHardenedSand",
@@ -25431,11 +25702,23 @@
       "name": "Deathweed Planter Box",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "world-evil",
+      "via": "shop:Terraria/Dryad",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After defeating Eater of Worlds",
+            "key": "Conditions.DownedEaterOfWorlds",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/CorruptSandstone",
@@ -25513,7 +25796,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -25601,22 +25884,58 @@
       "name": "Cowboy Jacket",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a first quarter moon",
+            "key": "Conditions.FirstQuarterMoon",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/CowboyPants",
       "name": "Cowboy Pants",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a first quarter moon",
+            "key": "Conditions.FirstQuarterMoon",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/CrabBanner",
@@ -26035,11 +26354,23 @@
       "name": "Deathweed Planter Box",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "world-evil",
+      "via": "shop:Terraria/Dryad",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After defeating Brain of Cthulhu",
+            "key": "Conditions.DownedBrainOfCthulhu",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/CrimsonRod",
@@ -26128,7 +26459,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -26884,7 +27215,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCaptain",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -26894,7 +27225,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/CyanDye+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -26949,7 +27280,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "world-evil",
       "via": "npc:Terraria/CyanBeetle",
       "reason": "not combat equipment",
       "evidence": null
@@ -26981,33 +27312,69 @@
       "name": "Cyborg Helmet",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "shop:Terraria/Cyborg",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During Halloween",
+            "key": "Conditions.Halloween",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/CyborgPants",
       "name": "Cyborg Pants",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "shop:Terraria/Cyborg",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During Halloween",
+            "key": "Conditions.Halloween",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/CyborgShirt",
       "name": "Cyborg Shirt",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "plantera",
+      "via": "shop:Terraria/Cyborg",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During Halloween",
+            "key": "Conditions.Halloween",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/DaedalusStormbow",
@@ -27063,7 +27430,7 @@
       "via": "shop:Terraria/Truffle",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -27263,11 +27630,23 @@
       "name": "Daybloom Planter Box",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "shop:Terraria/Dryad",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After defeating King Slime",
+            "key": "Conditions.DownedKingSlime",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/DaybloomSeeds",
@@ -27275,7 +27654,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "container:Terraria/HerbBag",
       "reason": "not combat equipment",
       "evidence": null
@@ -27912,10 +28291,10 @@
       "name": "Dead Man's Chest",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "tile:Terraria/Containers2",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -27968,7 +28347,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "container:Terraria/HerbBag",
       "reason": "not combat equipment",
       "evidence": null
@@ -28366,7 +28745,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "recipe:Terraria/Torch+Terraria/Obsidian",
+      "via": "tile:Terraria/Torches",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -28550,7 +28929,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -28973,7 +29352,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -28989,7 +29368,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -29040,7 +29419,7 @@
       "via": "shop:Terraria/Merchant",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -29060,7 +29439,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCaptain",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -29313,7 +29692,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -29505,22 +29884,46 @@
       "name": "Drum Set",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "world-evil",
+      "via": "shop:Terraria/Merchant",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After defeating Eater of Worlds, Brain of Cthulhu, Skeletron, or Wall of Flesh",
+            "key": "Conditions.DownedB2B3HM",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/DrumStick",
       "name": "Drumstick",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "world-evil",
+      "via": "shop:Terraria/Merchant",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After defeating Eater of Worlds, Brain of Cthulhu, Skeletron, or Wall of Flesh",
+            "key": "Conditions.DownedB2B3HM",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/DryadCoverings",
@@ -29576,7 +29979,7 @@
       "via": "shop:Terraria/Cyborg",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -29798,8 +30201,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
-      "via": "shimmer:Terraria/DungeonDesertKey",
+      "stage": "start",
+      "via": "tile:Terraria/Containers2",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -29831,8 +30234,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
-      "via": "shimmer:Terraria/DungeonFishingCrateHard",
+      "stage": "skeletron",
+      "via": "fishing",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -29984,7 +30387,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/DynastyWood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -30127,7 +30530,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/DynastyWood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -30391,7 +30794,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Ebonwood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -30578,7 +30981,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/Ebonwood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -30670,7 +31073,7 @@
       "via": "shop:Terraria/Cyborg",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -31052,7 +31455,7 @@
       "via": "shop:Terraria/ArmsDealer",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -31564,7 +31967,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -31574,7 +31977,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "plantera",
+      "stage": "twins",
       "via": "npc:Terraria/Eyezor",
       "reason": "not combat equipment",
       "evidence": null
@@ -31596,7 +31999,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "plantera",
+      "stage": "twins",
       "via": "npc:Terraria/Eyezor",
       "reason": "not combat equipment",
       "evidence": null
@@ -31937,7 +32340,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/DungeonDesertChest+Terraria/Wire",
       "reason": "not combat equipment",
       "evidence": null
@@ -32002,10 +32405,10 @@
       "name": "Trapped Gold Chest",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "recipe:Terraria/GoldChest+Terraria/Wire",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -32079,10 +32482,10 @@
       "name": "Trapped Frozen Chest",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceChest+Terraria/Wire",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -32090,10 +32493,10 @@
       "name": "Trapped Ivy Chest",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "recipe:Terraria/IvyChest+Terraria/Wire",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -32299,10 +32702,10 @@
       "name": "Trapped Shadow Chest",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "recipe:Terraria/ShadowChest+Terraria/Wire",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -32398,10 +32801,10 @@
       "name": "Trapped Water Chest",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "recipe:Terraria/WaterChest+Terraria/Wire",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -32458,7 +32861,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -32481,7 +32884,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -32504,7 +32907,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -32520,7 +32923,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -32536,7 +32939,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -32625,7 +33028,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/Mummy",
+      "via": "npc:Terraria/Pixie",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -32814,7 +33217,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -32833,7 +33236,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "container:Terraria/HerbBag",
       "reason": "not combat equipment",
       "evidence": null
@@ -33698,11 +34101,23 @@
       "name": "Flesh Cloning Vat",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "shop:Terraria/Steampunker",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In a world with The Crimson",
+            "key": "Conditions.WorldCrimson",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/FleshDoor",
@@ -33934,10 +34349,10 @@
       "name": "Azure Crate",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "fishing",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -34033,33 +34448,69 @@
       "name": "Silly Sunflower Petals",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During an NPC birthday party",
+            "key": "Conditions.BirthdayParty",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/FlowerBoyPants",
       "name": "Silly Sunflower Bottoms",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During an NPC birthday party",
+            "key": "Conditions.BirthdayParty",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/FlowerBoyShirt",
       "name": "Silly Sunflower Tops",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During an NPC birthday party",
+            "key": "Conditions.BirthdayParty",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/FlowerofFire",
@@ -34093,7 +34544,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -34109,7 +34560,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -34125,7 +34576,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -34141,7 +34592,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -34157,7 +34608,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -34173,7 +34624,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -34189,7 +34640,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -34205,7 +34656,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -34221,7 +34672,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -34248,7 +34699,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -34917,10 +35368,10 @@
       "name": "Frozen Bathtub",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -34928,10 +35379,10 @@
       "name": "Frozen Bed",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceBlock+Terraria/Silk",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -34939,10 +35390,10 @@
       "name": "Frozen Bookcase",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceBlock+Terraria/Book",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -34961,10 +35412,10 @@
       "name": "Frozen Candelabra",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceBlock+Terraria/IceTorch",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -34972,10 +35423,10 @@
       "name": "Frozen Candle",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceBlock+Terraria/IceTorch",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -34983,10 +35434,10 @@
       "name": "Frozen Chair",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -34994,10 +35445,10 @@
       "name": "Frozen Chandelier",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceBlock+Terraria/IceTorch+Terraria/Chain",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -35016,10 +35467,10 @@
       "name": "Frozen Clock",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/IceBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -35049,10 +35500,10 @@
       "name": "Frozen Door",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -35060,10 +35511,10 @@
       "name": "Frozen Dresser",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -35093,10 +35544,10 @@
       "name": "Frozen Lamp",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceTorch+Terraria/IceBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -35104,10 +35555,10 @@
       "name": "Frozen Lantern",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceBlock+Terraria/IceTorch",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -35115,10 +35566,10 @@
       "name": "Frozen Piano",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/Bone+Terraria/IceBlock+Terraria/Book",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -35148,10 +35599,10 @@
       "name": "Frozen Sink",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceBlock+Terraria/WaterBucket",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -35170,10 +35621,10 @@
       "name": "Frozen Sofa",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceBlock+Terraria/Silk",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -35181,10 +35632,10 @@
       "name": "Frozen Table",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -35214,10 +35665,10 @@
       "name": "Frozen Work Bench",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -35292,7 +35743,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -35315,7 +35766,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -35338,7 +35789,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -36228,7 +36679,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Glass+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -36371,7 +36822,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/Glass+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -36931,10 +37382,10 @@
       "name": "Gold Chest",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "tile:Terraria/Containers",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -36991,7 +37442,7 @@
       "via": "shop:Terraria/Merchant",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -37011,7 +37462,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37022,7 +37473,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37033,7 +37484,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37066,7 +37517,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37077,7 +37528,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37099,7 +37550,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37110,7 +37561,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37121,7 +37572,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37132,7 +37583,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37176,7 +37627,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37187,7 +37638,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37220,7 +37671,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37231,7 +37682,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37242,7 +37693,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37253,7 +37704,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37275,7 +37726,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37286,7 +37737,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37297,7 +37748,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37308,7 +37759,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37319,7 +37770,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37528,7 +37979,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCaptain",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -37730,7 +38181,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/GolfBall+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -38492,66 +38943,174 @@
       "name": "Black Graduation Cap",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a waxing gibbous moon",
+            "key": "Conditions.WaxingGibbousMoon",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/GraduationCapBlue",
       "name": "Blue Graduation Cap",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a waning crescent moon",
+            "key": "Conditions.WaningCrescentMoon",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/GraduationCapMaroon",
       "name": "Maroon Graduation Cap",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a waxing crescent moon",
+            "key": "Conditions.WaxingCrescentMoon",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/GraduationGownBlack",
       "name": "Black Graduation Gown",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a waxing gibbous moon",
+            "key": "Conditions.WaxingGibbousMoon",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/GraduationGownBlue",
       "name": "Blue Graduation Gown",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a waning crescent moon",
+            "key": "Conditions.WaningCrescentMoon",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/GraduationGownMaroon",
       "name": "Maroon Graduation Gown",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a waxing crescent moon",
+            "key": "Conditions.WaxingCrescentMoon",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/GrandfatherClock",
@@ -38625,7 +39184,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/GraniteBlock+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -38790,7 +39349,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/GraniteBlock+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -38802,7 +39361,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "recipe:Terraria/GraniteBlock",
+      "via": "tile:Terraria/Platforms",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -38948,22 +39507,46 @@
       "name": "Grass Seeds",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "shop:Terraria/Dryad",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "Not during a Blood Moon",
+            "key": "Conditions.NotBloodMoon",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/GrassWall",
       "name": "Grass Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "shop:Terraria/Dryad",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "Not during a Blood Moon",
+            "key": "Conditions.NotBloodMoon",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/Grate",
@@ -39246,7 +39829,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/GreenDye+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -39690,10 +40273,10 @@
       "name": "Green Jellyfish",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "fishing",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -39712,10 +40295,10 @@
       "name": "Green Jellyfish Jar",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/GreenJellyfish+Terraria/BottledWater",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -39903,11 +40486,35 @@
       "name": "Green Solution",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "shop:Terraria/Steampunker",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "Not in a Remix world",
+            "key": "Conditions.WorldNotRemix",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "Not during a Blood Moon or Solar Eclipse",
+            "key": "Conditions.NotBloodOrSun",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "Not in The Hallow biome",
+            "key": "Conditions.NotInHallow",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/GreenStainedGlass",
@@ -39936,10 +40543,10 @@
       "name": "Green Stucco",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/SiltBlock+Terraria/StoneBlock+Terraria/GreenThread",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -39947,10 +40554,10 @@
       "name": "Green Stucco Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/GreenStucco",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -39958,10 +40565,10 @@
       "name": "Green Thread",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/JungleGrassSeeds",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -39993,7 +40600,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "recipe:Terraria/Torch+Terraria/Emerald",
+      "via": "tile:Terraria/Torches",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -40194,11 +40801,23 @@
       "name": "Guy Fawkes Mask",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During Halloween",
+            "key": "Conditions.Halloween",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/GypsyRobe",
@@ -40386,7 +41005,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -40508,7 +41127,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -40542,7 +41161,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -40646,7 +41265,7 @@
       "via": "shop:Terraria/Truffle",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -41284,7 +41903,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -41319,10 +41938,10 @@
       "name": "Hero's Hat",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/Silk+Terraria/GreenThread",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -41341,10 +41960,10 @@
       "name": "Hero's Pants",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/Silk+Terraria/GreenThread",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -41352,10 +41971,10 @@
       "name": "Hero's Shirt",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/Silk+Terraria/GreenThread",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -41699,7 +42318,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -42326,10 +42945,10 @@
       "name": "Frozen Chest",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceBlock+Terraria/IronBar",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -42408,11 +43027,23 @@
       "name": "Ice Machine",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "shop:Terraria/Steampunker",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In a Snow biome",
+            "key": "Conditions.InSnow",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/IceMirror",
@@ -42481,7 +43112,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/ArmoredViking",
+      "via": "npc:Terraria/IceTortoise",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -42536,7 +43167,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/DesertGhoulCrimson",
+      "via": "npc:Terraria/IchorSticker",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -42638,7 +43269,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -42698,7 +43329,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -43132,10 +43763,10 @@
       "name": "Ivy Chest",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "tile:Terraria/Containers",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43302,7 +43933,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -43364,7 +43995,7 @@
       "via": "shop:Terraria/Cyborg",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -43387,7 +44018,7 @@
       "via": "shop:Terraria/Cyborg",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -43511,10 +44142,10 @@
       "name": "Lichen Stone Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/GrassSeeds",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43522,10 +44153,10 @@
       "name": "Leafy Jungle Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/JungleGrassSeeds",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43533,10 +44164,10 @@
       "name": "Ivy Stone Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/GrassSeeds",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43544,10 +44175,10 @@
       "name": "Jungle Vine Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/JungleGrassSeeds",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43621,10 +44252,10 @@
       "name": "Jungle Grass Seeds",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "shimmer:Terraria/MushroomGrassSeeds",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43736,7 +44367,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -43759,7 +44390,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -43792,10 +44423,10 @@
       "name": "Junonia Shell",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "tile:Terraria/BeachPiles",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43883,7 +44514,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "npc:Terraria/BlueArmoredBonesMace",
+      "via": "npc:Terraria/RustyArmoredBonesAxe",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -44223,7 +44854,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "world-evil",
+      "stage": "wall-of-flesh",
       "via": "npc:Terraria/SeekerHead",
       "reason": "not combat equipment",
       "evidence": null
@@ -44623,7 +45254,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/MartianEngineer",
+      "via": "npc:Terraria/BrainScrambler",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -45623,11 +46254,23 @@
       "name": "Decay Chamber",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "shop:Terraria/Steampunker",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In a world with The Corruption",
+            "key": "Conditions.WorldCorrupt",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/LesionTable",
@@ -45658,14 +46301,9 @@
       "contentItem": false,
       "status": "buff",
       "stage": "start",
-      "via": "shop:Terraria/Merchant",
+      "via": "tile:Terraria/Bottles",
       "reason": "Included in the generated profile.",
-      "evidence": {
-        "kind": "observed-shop",
-        "conditions": [],
-        "prerequisites": [],
-        "currencyItems": null
-      }
+      "evidence": null
     },
     {
       "id": "Terraria/LesserManaPotion",
@@ -45674,14 +46312,9 @@
       "contentItem": false,
       "status": "buff",
       "stage": "start",
-      "via": "shop:Terraria/Merchant",
+      "via": "tile:Terraria/Bottles",
       "reason": "Included in the generated profile.",
-      "evidence": {
-        "kind": "observed-shop",
-        "conditions": [],
-        "prerequisites": [],
-        "currencyItems": null
-      }
+      "evidence": null
     },
     {
       "id": "Terraria/LesserRestorationPotion",
@@ -45970,10 +46603,10 @@
       "name": "Lightning Whelk Shell",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "tile:Terraria/BeachPiles",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -46245,10 +46878,10 @@
       "name": "Lihzahrd Pressure Plate",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "tile:Terraria/PressurePlates",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -46619,7 +47252,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Wood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -46740,7 +47373,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/Wood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -46883,8 +47516,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
-      "via": "container:Terraria/DungeonFishingCrateHard",
+      "stage": "skeletron",
+      "via": "container:Terraria/DungeonFishingCrate",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -46898,7 +47531,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -46914,7 +47547,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -46930,7 +47563,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -46946,7 +47579,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -46962,7 +47595,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -46978,7 +47611,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -46994,7 +47627,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -47010,7 +47643,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -47026,7 +47659,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -47259,7 +47892,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCaptain",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -47534,7 +48167,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "npc:Terraria/BlueArmoredBonesMace",
+      "via": "npc:Terraria/RustyArmoredBonesAxe",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -47810,7 +48443,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "npc:Terraria/BlueArmoredBonesMace",
+      "via": "npc:Terraria/RustyArmoredBonesAxe",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -48107,7 +48740,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/MarbleBlock+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -48239,7 +48872,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/MarbleBlock+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -48251,7 +48884,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "recipe:Terraria/MarbleBlock",
+      "via": "tile:Terraria/Platforms",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -48450,7 +49083,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/MartianEngineer",
+      "via": "npc:Terraria/BrainScrambler",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -48781,7 +49414,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/MartianEngineer",
+      "via": "npc:Terraria/MartianOfficer",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -48792,7 +49425,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/MartianEngineer",
+      "via": "npc:Terraria/MartianOfficer",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -48803,7 +49436,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "golem",
-      "via": "npc:Terraria/MartianEngineer",
+      "via": "npc:Terraria/MartianOfficer",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -48857,8 +49490,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "world-evil",
-      "via": "npc:Terraria/SeekerHead",
+      "stage": "wall-of-flesh",
+      "via": "npc:Terraria/CorruptSlime",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -49225,7 +49858,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/MeteoriteBrick+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -49368,7 +50001,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/MeteoriteBrick+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -49526,7 +50159,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -50199,11 +50832,23 @@
       "name": "Moonglow Planter Box",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "queen-bee",
+      "via": "shop:Terraria/Dryad",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "After defeating Queen Bee",
+            "key": "Conditions.DownedQueenBee",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/MoonglowSeeds",
@@ -50211,7 +50856,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "container:Terraria/HerbBag",
       "reason": "not combat equipment",
       "evidence": null
@@ -50685,7 +51330,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/BloodMummy",
+      "via": "npc:Terraria/Mummy",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -50696,7 +51341,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/BloodMummy",
+      "via": "npc:Terraria/Mummy",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -50707,7 +51352,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/BloodMummy",
+      "via": "npc:Terraria/Mummy",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -50794,7 +51439,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/GlowingMushroom+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -50842,7 +51487,7 @@
       "via": "shop:Terraria/Truffle",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -50930,11 +51575,29 @@
       "name": "Mushroom Grass Seeds",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "shop:Terraria/Dryad",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "Not in the Underworld",
+            "key": "Conditions.NotInUnderworld",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "In a Mushroom biome",
+            "key": "Conditions.InGlowshroom",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/MushroomHat",
@@ -50986,7 +51649,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/GlowingMushroom+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -51034,7 +51697,7 @@
       "via": "shop:Terraria/Truffle",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -52174,7 +52837,7 @@
       "via": "shop:Terraria/Truffle",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -52467,7 +53130,7 @@
       "via": "shop:Terraria/Cyborg",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -53420,7 +54083,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -53530,10 +54193,10 @@
       "name": "Obsidian Candle",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "tile:Terraria/Candles",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -53596,10 +54259,10 @@
       "name": "Obsidian Dresser",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "tile:Terraria/Dressers",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -53686,7 +54349,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "start",
-      "via": "recipe:Terraria/ObsidianBrick",
+      "via": "tile:Terraria/Platforms",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -53883,7 +54546,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "plantera",
+      "stage": "twins",
       "via": "npc:Terraria/Eyezor",
       "reason": "not combat equipment",
       "evidence": null
@@ -54930,7 +55593,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/PalmWood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -55117,7 +55780,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/PalmWood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -55342,11 +56005,23 @@
       "name": "Balloon Animal",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During an NPC birthday party",
+            "key": "Conditions.BirthdayParty",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/PartyBullet",
@@ -55364,11 +56039,23 @@
       "name": "Bundled Party Balloons",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During an NPC birthday party",
+            "key": "Conditions.BirthdayParty",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/PartyBundleOfBalloonTile",
@@ -56089,7 +56776,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/Wood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -56325,7 +57012,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/PinkDye+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -56780,7 +57467,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -57028,7 +57715,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCaptain",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -57168,7 +57855,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -57180,7 +57867,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/Silk+Terraria/Vertebrae+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -57191,7 +57878,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/Silk+Terraria/Vertebrae+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -57530,7 +58217,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -57553,7 +58240,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -57969,7 +58656,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -57998,7 +58685,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -58022,22 +58709,58 @@
       "name": "Potted Forest Palm",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Dryad",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a new or waxing crescent moon",
+            "key": "Conditions.MoonPhasesQuarter2",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/PottedForestTree",
       "name": "Potted Forest Tree",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Dryad",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a third quarter or waning crescent moon",
+            "key": "Conditions.MoonPhasesQuarter1",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/PottedHallowBamboo",
@@ -58049,7 +58772,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -58078,7 +58801,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -58102,22 +58825,58 @@
       "name": "Potted Hallow Palm",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Dryad",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a new or waxing crescent moon",
+            "key": "Conditions.MoonPhasesQuarter2",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/PottedHallowTree",
       "name": "Potted Hallow Tree",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Dryad",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a third quarter or waning crescent moon",
+            "key": "Conditions.MoonPhasesQuarter1",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/PottedJungleBamboo",
@@ -58129,7 +58888,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -58158,7 +58917,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -58182,22 +58941,58 @@
       "name": "Potted Jungle Palm",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Dryad",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a new or waxing crescent moon",
+            "key": "Conditions.MoonPhasesQuarter2",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/PottedJungleTree",
       "name": "Potted Jungle Tree",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Dryad",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a third quarter or waning crescent moon",
+            "key": "Conditions.MoonPhasesQuarter1",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/PottedLavaPlantBramble",
@@ -58315,8 +59110,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "skeletron",
-      "via": "recipe:Terraria/MinecartTrack+Terraria/GrayPressurePlate",
+      "stage": "start",
+      "via": "tile:Terraria/MinecartTrack",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -58411,11 +59206,29 @@
       "name": "Princess Dress",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a new moon",
+            "key": "Conditions.NewMoon",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/PrincessDressNew",
@@ -58541,7 +59354,7 @@
       "via": "shop:Terraria/Cyborg",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -58650,7 +59463,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Pumpkin+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -58870,7 +59683,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/Pumpkin+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -59006,7 +59819,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -59040,7 +59853,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/PurpleDye+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -59242,11 +60055,35 @@
       "name": "Purple Solution",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "shop:Terraria/Steampunker",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "Not in a Remix world",
+            "key": "Conditions.WorldNotRemix",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a Blood Moon or Solar Eclipse",
+            "key": "Conditions.BloodOrSun",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "In a world with The Corruption",
+            "key": "Conditions.WorldCorrupt",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/PurpleStainedGlass",
@@ -59313,7 +60150,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -59347,7 +60184,7 @@
       "via": "shop:Terraria/ArmsDealer",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -60135,7 +60972,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/RedDye+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -61105,7 +61942,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/RichMahogany+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -61292,7 +62129,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/RichMahogany+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -61488,7 +62325,7 @@
       "via": "shop:Terraria/Cyborg",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -61504,7 +62341,7 @@
       "via": "shop:Terraria/Cyborg",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -61527,7 +62364,7 @@
       "via": "shop:Terraria/Cyborg",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -61550,7 +62387,7 @@
       "via": "shop:Terraria/Cyborg",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -62121,7 +62958,7 @@
       "via": "shop:Terraria/Merchant",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -62212,7 +63049,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -62223,7 +63060,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -62234,7 +63071,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/PirateCorsair",
+      "via": "npc:Terraria/PirateDeckhand",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -62418,7 +63255,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -62476,7 +63313,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -62619,7 +63456,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/SmoothSandstone+Terraria/Bone+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -63075,7 +63912,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "plantera",
-      "via": "npc:Terraria/Scarecrow1",
+      "via": "npc:Terraria/Scarecrow2",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -63086,7 +63923,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "plantera",
-      "via": "npc:Terraria/Scarecrow1",
+      "via": "npc:Terraria/Scarecrow2",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -63097,7 +63934,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "plantera",
-      "via": "npc:Terraria/Scarecrow1",
+      "via": "npc:Terraria/Scarecrow2",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -63470,7 +64307,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Shadewood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -63657,7 +64494,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/Shadewood+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -63766,10 +64603,10 @@
       "name": "Shadow Chest",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "tile:Terraria/Containers",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -63879,7 +64716,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "skeletron",
-      "via": "manifest",
+      "via": "container:Terraria/LockBox",
       "reason": "not combat equipment",
       "evidence": null
     },
@@ -64026,7 +64863,7 @@
       "via": "shop:Terraria/Merchant",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -64379,7 +65216,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -64398,7 +65235,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "container:Terraria/HerbBag",
       "reason": "not combat equipment",
       "evidence": null
@@ -64424,7 +65261,7 @@
       "via": "shop:Terraria/ArmsDealer",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -64849,7 +65686,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/SilverDye+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -65516,7 +66353,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/SunplateBlock+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -65648,7 +66485,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/SunplateBlock+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -65820,7 +66657,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/SlimeBlock+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -65985,7 +66822,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "wall-of-flesh",
+      "stage": "skeletron",
       "via": "recipe:Terraria/Bone+Terraria/SlimeBlock+Terraria/Book",
       "reason": "not combat equipment",
       "evidence": null
@@ -66468,7 +67305,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -67327,7 +68164,7 @@
       "via": "shop:Terraria/Cyborg",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -69487,7 +70324,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -69543,7 +70380,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -69688,22 +70525,46 @@
       "name": "Steampunk Goggles",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "shop:Terraria/Steampunker",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During Halloween",
+            "key": "Conditions.Halloween",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/SteampunkHat",
       "name": "Steampunk Hat",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "shop:Terraria/Steampunker",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "Anytime before hardmode, or during a full, waning gibbous, third quarter or waning crescent moon",
+            "key": "Conditions.MoonPhasesHalf0OrPreHardmode",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/SteampunkLamp",
@@ -69737,7 +70598,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -69755,11 +70616,23 @@
       "name": "Steampunk Pants",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "shop:Terraria/Steampunker",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "Anytime before hardmode, or during a full, waning gibbous, third quarter or waning crescent moon",
+            "key": "Conditions.MoonPhasesHalf0OrPreHardmode",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/SteampunkPiano",
@@ -69788,11 +70661,23 @@
       "name": "Steampunk Shirt",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "shop:Terraria/Steampunker",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "Anytime before hardmode, or during a full, waning gibbous, third quarter or waning crescent moon",
+            "key": "Conditions.MoonPhasesHalf0OrPreHardmode",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/SteampunkSink",
@@ -69837,7 +70722,7 @@
       "via": "shop:Terraria/Steampunker",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -70153,7 +71038,7 @@
       "via": "shop:Terraria/Truffle",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [],
         "prerequisites": [],
         "currencyItems": null
@@ -70326,11 +71211,23 @@
       "name": "Summer Hat",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During daytime",
+            "key": "Conditions.TimeDay",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/SummonerEmblem",
@@ -70546,10 +71443,10 @@
       "name": "Superhero Costume",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/Silk+Terraria/GreenThread",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -70557,10 +71454,10 @@
       "name": "Superhero Mask",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/Silk+Terraria/GreenThread",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -70568,10 +71465,10 @@
       "name": "Superhero Tights",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/Silk+Terraria/GreenThread",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -70825,7 +71722,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -70915,22 +71812,46 @@
       "name": "Tax Collector's Hat",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "When the Tax Collector is present",
+            "key": "Conditions.NpcIsPresent",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/TaxCollectorPants",
       "name": "Tax Collector's Pants",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "When the Tax Collector is present",
+            "key": "Conditions.NpcIsPresent",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/TaxCollectorsStickOfDoom",
@@ -70948,11 +71869,23 @@
       "name": "Tax Collector's Suit",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "When the Tax Collector is present",
+            "key": "Conditions.NpcIsPresent",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/Teacup",
@@ -71530,7 +72463,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "npc:Terraria/TheBride",
       "reason": "not combat equipment",
       "evidence": null
@@ -71541,7 +72474,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "npc:Terraria/TheBride",
       "reason": "not combat equipment",
       "evidence": null
@@ -71589,7 +72522,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -71612,7 +72545,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -72000,11 +72933,29 @@
       "name": "Tiara",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "During a new moon",
+            "key": "Conditions.NewMoon",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/TigerClimbingGear",
@@ -72038,7 +72989,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -72061,7 +73012,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -72084,7 +73035,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -72118,7 +73069,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -72165,7 +73116,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/Silk+Terraria/RottenChunk+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -72187,7 +73138,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/Silk+Terraria/RottenChunk+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -72854,10 +73805,10 @@
       "name": "Frozen Toilet",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IceBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -73403,7 +74354,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "Included in the generated profile.",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -73741,10 +74692,10 @@
       "name": "Tulip Shell",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "tile:Terraria/BeachPiles",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -74420,7 +75371,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -74443,7 +75394,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -74869,7 +75820,7 @@
       "via": "shop:Terraria/WitchDoctor",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -74914,7 +75865,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -74937,7 +75888,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -75044,7 +75995,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/VioletDye+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -75936,7 +76887,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron",
-      "via": "manifest",
+      "via": "tile:Terraria/Books",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -75967,10 +76918,10 @@
       "name": "Water Chest",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "tile:Terraria/Containers",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -76032,7 +76983,7 @@
       "via": "shop:Terraria/Dryad",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -76051,7 +77002,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "wall-of-flesh",
       "via": "container:Terraria/HerbBag",
       "reason": "not combat equipment",
       "evidence": null
@@ -76432,22 +77383,58 @@
       "name": "Solar Cultist Hood",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "lunatic-cultist",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During daytime",
+            "key": "Conditions.TimeDay",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "After defeating the Lunatic Cultist",
+            "key": "Conditions.DownedLunaticCultist",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/WhiteLunaticRobe",
       "name": "Solar Cultist Robe",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "lunatic-cultist",
+      "via": "shop:Terraria/Clothier",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "observed-shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "During daytime",
+            "key": "Conditions.TimeDay",
+            "facts": []
+          },
+          {
+            "type": "Terraria.Condition",
+            "description": "After defeating the Lunatic Cultist",
+            "key": "Conditions.DownedLunaticCultist",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/WhitePaint",
@@ -76530,7 +77517,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -76559,7 +77546,7 @@
       "via": "shop:Terraria/Clothier",
       "reason": "not combat equipment",
       "evidence": {
-        "kind": "shop",
+        "kind": "observed-shop",
         "conditions": [
           {
             "type": "Terraria.Condition",
@@ -76924,7 +77911,7 @@
       "contentItem": false,
       "status": "excluded",
       "stage": "plantera",
-      "via": "npc:Terraria/BlueArmoredBonesMace",
+      "via": "npc:Terraria/RustyArmoredBonesAxe",
       "reason": "not combat equipment",
       "evidence": null
     },

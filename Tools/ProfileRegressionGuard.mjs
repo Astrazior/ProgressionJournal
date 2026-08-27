@@ -97,6 +97,10 @@ function acquisitionCoreValue(value) {
     excluded.add("earliestStageId");
     excluded.add("earliestStageName");
   }
+  if (Number.isInteger(value.earliestStageIndex)) {
+    excluded.add("earliestStageId");
+    excluded.add("earliestStageName");
+  }
   return Object.fromEntries(
     Object.keys(value)
       .filter(key => !excluded.has(key))
