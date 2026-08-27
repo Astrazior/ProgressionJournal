@@ -1,0 +1,467 @@
+{
+  "format": "ProgressionJournalModSupport",
+  "version": 1,
+  "targetMod": "ElementsAwoken",
+  "id": "mod.elementsawoken",
+  "name": { "en-US": "Elements Awoken progression", "ru-RU": "Прогрессия Elements Awoken" },
+  "profileVersion": "1.3.13.18",
+  "requiredMods": [
+    { "name": "ElementsAwoken", "version": "1.3.13.18" },
+    { "name": "Luminance", "version": "1.0.14" }
+  ],
+  "contentMods": [
+    "ElementsAwoken",
+    "Luminance"
+  ],
+  "classes": [
+    {
+      "id": "melee",
+      "name": { "en-US": "Melee", "ru-RU": "Воин" },
+      "damageClassNames": [ "Melee" ]
+    },
+    {
+      "id": "ranged",
+      "name": { "en-US": "Ranged", "ru-RU": "Стрелок" },
+      "damageClassNames": [ "Ranged" ]
+    },
+    {
+      "id": "magic",
+      "name": { "en-US": "Magic", "ru-RU": "Маг" },
+      "damageClassNames": [ "Magic" ]
+    },
+    {
+      "id": "summoner",
+      "name": { "en-US": "Summoner", "ru-RU": "Призыватель" },
+      "damageClassNames": [ "Summon" ]
+    },
+    {
+      "id": "thrower",
+      "name": { "en-US": "Thrower", "ru-RU": "Метатель" },
+      "damageClassNames": [ "Thrower", "Throwing" ],
+      "accentColor": "#D89A5B",
+      "previewArmor": [
+        { "mod": "ElementsAwoken", "item": "EmpyreanVisage" },
+        { "mod": "ElementsAwoken", "item": "EmpyreanPlate" },
+        { "mod": "ElementsAwoken", "item": "EmpyreanLeggings" }
+      ],
+      "previewMount": { "mod": "ElementsAwoken", "item": "SacredCrystal" }
+    }
+  ],
+  "initialStations": [
+    "Terraria/WorkBenches",
+    "Terraria/Furnaces",
+    "Terraria/Anvils",
+    "Terraria/Bottles"
+  ],
+  "stages": [
+    {
+      "id": "start",
+      "name": { "en-US": "Start", "ru-RU": "Начало" },
+      "iconMod": "Terraria",
+      "iconNpc": "Guide",
+      "accessorySlots": 5,
+      "unlock": { "type": "always" }
+    },
+    {
+      "id": "king-slime",
+      "name": { "en-US": "King Slime", "ru-RU": "Король слизней" },
+      "iconMod": "Terraria",
+      "iconNpc": "KingSlime",
+      "dropSources": [ "Terraria/KingSlime" ],
+      "accessorySlots": 5,
+      "unlock": { "type": "vanilla-flag", "key": "downedSlimeKing" }
+    },
+    {
+      "id": "eye-of-cthulhu",
+      "name": { "en-US": "Eye of Cthulhu", "ru-RU": "Глаз Ктулху" },
+      "iconMod": "Terraria",
+      "iconNpc": "EyeofCthulhu",
+      "dropSources": [ "Terraria/EyeofCthulhu" ],
+      "accessorySlots": 5,
+      "unlock": { "type": "vanilla-flag", "key": "downedBoss1" }
+    },
+    {
+      "id": "wasteland",
+      "name": { "en-US": "Wasteland", "ru-RU": "Пустошь" },
+      "iconMod": "ElementsAwoken",
+      "iconNpc": "Wasteland",
+      "dropSources": [ "ElementsAwoken/Wasteland" ],
+      "accessorySlots": 5,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedWasteland" }
+    },
+    {
+      "id": "world-evil",
+      "name": { "en-US": "Eater of Worlds / Brain of Cthulhu", "ru-RU": "Пожиратель миров / Мозг Ктулху" },
+      "iconMod": "Terraria",
+      "iconNpc": "EaterofWorldsHead",
+      "dropSources": [ "Terraria/EaterofWorldsHead", "Terraria/BrainofCthulhu" ],
+      "accessorySlots": 5,
+      "unlock": { "type": "vanilla-flag", "key": "downedBoss2" }
+    },
+    {
+      "id": "queen-bee",
+      "name": { "en-US": "Queen Bee", "ru-RU": "Королева пчёл" },
+      "iconMod": "Terraria",
+      "iconNpc": "QueenBee",
+      "dropSources": [ "Terraria/QueenBee" ],
+      "accessorySlots": 5,
+      "unlock": { "type": "vanilla-flag", "key": "downedQueenBee" }
+    },
+    {
+      "id": "skeletron",
+      "name": { "en-US": "Skeletron", "ru-RU": "Скелетрон" },
+      "iconMod": "Terraria",
+      "iconNpc": "SkeletronHead",
+      "dropSources": [ "Terraria/SkeletronHead" ],
+      "accessorySlots": 5,
+      "unlock": { "type": "vanilla-flag", "key": "downedBoss3" }
+    },
+    {
+      "id": "deerclops",
+      "name": { "en-US": "Deerclops", "ru-RU": "Циклоп-олень" },
+      "iconMod": "Terraria",
+      "iconNpc": "Deerclops",
+      "dropSources": [ "Terraria/Deerclops" ],
+      "accessorySlots": 5,
+      "unlock": { "type": "vanilla-flag", "key": "downedDeerclops" }
+    },
+    {
+      "id": "infernace",
+      "name": { "en-US": "Infernace", "ru-RU": "Инфернейс" },
+      "iconMod": "ElementsAwoken",
+      "iconNpc": "Infernace",
+      "dropSources": [ "ElementsAwoken/Infernace" ],
+      "accessorySlots": 5,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedInfernace" }
+    },
+    {
+      "id": "wall-of-flesh",
+      "name": { "en-US": "Wall of Flesh", "ru-RU": "Стена плоти" },
+      "iconMod": "Terraria",
+      "iconNpc": "WallofFlesh",
+      "dropSources": [ "Terraria/WallofFlesh" ],
+      "stations": [ "Terraria/MythrilAnvil", "Terraria/AdamantiteForge" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "hardMode" }
+    },
+    {
+      "id": "queen-slime",
+      "name": { "en-US": "Queen Slime", "ru-RU": "Королева слизней" },
+      "iconMod": "Terraria",
+      "iconNpc": "QueenSlimeBoss",
+      "dropSources": [ "Terraria/QueenSlimeBoss" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedQueenSlime" }
+    },
+    {
+      "id": "cosmic-observer",
+      "name": { "en-US": "Cosmic Observer", "ru-RU": "Космоблюдатель" },
+      "iconMod": "ElementsAwoken",
+      "iconNpc": "CosmicObserver",
+      "dropSources": [ "ElementsAwoken/CosmicObserver" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedCosmicObserver" }
+    },
+    {
+      "id": "twins",
+      "name": { "en-US": "The Twins", "ru-RU": "Близнецы" },
+      "iconMod": "Terraria",
+      "iconNpc": "Retinazer",
+      "dropSources": [ "Terraria/Retinazer", "Terraria/Spazmatism" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedMechBoss2" }
+    },
+    {
+      "id": "destroyer",
+      "name": { "en-US": "The Destroyer", "ru-RU": "Уничтожитель" },
+      "iconMod": "Terraria",
+      "iconNpc": "TheDestroyer",
+      "dropSources": [ "Terraria/TheDestroyer" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedMechBoss1" }
+    },
+    {
+      "id": "scourge-fighter",
+      "name": { "en-US": "Scourge Fighter", "ru-RU": "Бичеборец" },
+      "iconMod": "ElementsAwoken",
+      "iconNpc": "ScourgeFighter",
+      "dropSources": [ "ElementsAwoken/ScourgeFighter" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedScourgeFighter" }
+    },
+    {
+      "id": "skeletron-prime",
+      "name": { "en-US": "Skeletron Prime", "ru-RU": "Скелетрон Прайм" },
+      "iconMod": "Terraria",
+      "iconNpc": "SkeletronPrime",
+      "dropSources": [ "Terraria/SkeletronPrime" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedMechBoss3" }
+    },
+    {
+      "id": "regaroth",
+      "name": { "en-US": "Regaroth", "ru-RU": "Регарот" },
+      "iconMod": "ElementsAwoken",
+      "iconNpc": "RegarothHead",
+      "dropSources": [ "ElementsAwoken/RegarothHead" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedRegaroth" }
+    },
+    {
+      "id": "plantera",
+      "name": { "en-US": "Plantera", "ru-RU": "Плантера" },
+      "iconMod": "Terraria",
+      "iconNpc": "Plantera",
+      "dropSources": [ "Terraria/Plantera" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedPlantBoss" }
+    },
+    {
+      "id": "permafrost",
+      "name": { "en-US": "Permafrost", "ru-RU": "Пермафрост" },
+      "iconMod": "ElementsAwoken",
+      "iconNpc": "Permafrost",
+      "dropSources": [ "ElementsAwoken/Permafrost" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedPermafrost" }
+    },
+    {
+      "id": "obsidious",
+      "name": { "en-US": "Obsidious", "ru-RU": "Обсидиус" },
+      "iconMod": "ElementsAwoken",
+      "iconNpc": "Obsidious",
+      "dropSources": [ "ElementsAwoken/Obsidious" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedObsidious" }
+    },
+    {
+      "id": "golem",
+      "name": { "en-US": "Golem", "ru-RU": "Голем" },
+      "iconMod": "Terraria",
+      "iconNpc": "GolemHead",
+      "dropSources": [ "Terraria/Golem", "Terraria/GolemHead" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedGolemBoss" }
+    },
+    {
+      "id": "aqueous",
+      "name": { "en-US": "Aqueous", "ru-RU": "Аквеус" },
+      "iconMod": "ElementsAwoken",
+      "iconNpc": "Aqueous",
+      "dropSources": [ "ElementsAwoken/Aqueous" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedAqueous" }
+    },
+    {
+      "id": "duke-fishron",
+      "name": { "en-US": "Duke Fishron", "ru-RU": "Герцог Рыброн" },
+      "iconMod": "Terraria",
+      "iconNpc": "DukeFishron",
+      "dropSources": [ "Terraria/DukeFishron" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedFishron" }
+    },
+    {
+      "id": "empress-of-light",
+      "name": { "en-US": "Empress of Light", "ru-RU": "Императрица света" },
+      "iconMod": "Terraria",
+      "iconNpc": "HallowBoss",
+      "dropSources": [ "Terraria/HallowBoss" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedEmpressOfLight" }
+    },
+    {
+      "id": "betsy",
+      "name": { "en-US": "Betsy", "ru-RU": "Бетси" },
+      "iconMod": "Terraria",
+      "iconNpc": "DD2Betsy",
+      "dropSources": [ "Terraria/DD2Betsy" ],
+      "enemies": [ "Terraria/DD2DarkMageT3", "Terraria/DD2OgreT3", "Terraria/DD2Betsy" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "DD2Event.DownedInvasionT3" }
+    },
+    {
+      "id": "lunatic-cultist",
+      "name": { "en-US": "Lunatic Cultist", "ru-RU": "Лунатик-культист" },
+      "iconMod": "Terraria",
+      "iconNpc": "CultistBoss",
+      "dropSources": [ "Terraria/CultistBoss" ],
+      "stations": [ "Terraria/LunarCraftingStation" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedAncientCultist" }
+    },
+    {
+      "id": "moon-lord",
+      "name": { "en-US": "Moon Lord", "ru-RU": "Лунный лорд" },
+      "iconMod": "Terraria",
+      "iconNpc": "MoonLordHead",
+      "dropSources": [ "Terraria/MoonLordCore" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "vanilla-flag", "key": "downedMoonlord" }
+    },
+    {
+      "id": "temple-keepers",
+      "name": { "en-US": "The Temple Keepers", "ru-RU": "Хранители Храма" },
+      "iconMod": "ElementsAwoken",
+      "iconNpc": "TheEye",
+      "dropSources": [ "ElementsAwoken/TheEye", "ElementsAwoken/AncientWyrmHead" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedAncientWyrm,downedEye" }
+    },
+    {
+      "id": "guardian",
+      "name": { "en-US": "The Guardian", "ru-RU": "Стражник" },
+      "iconMod": "ElementsAwoken",
+      "iconNpc": "TheGuardian",
+      "dropSources": [ "ElementsAwoken/TheGuardian", "ElementsAwoken/TheGuardianFly" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedGuardian" }
+    },
+    {
+      "id": "dawn-of-the-void",
+      "name": { "en-US": "Dawn of the Void", "ru-RU": "Рассвет Пустоты" },
+      "iconMod": "ElementsAwoken",
+      "iconItem": "VoidEventSummon",
+      "enemies": [
+        "ElementsAwoken/Immolator",
+        "ElementsAwoken/ReaverSlime",
+        "ElementsAwoken/VoidKnight",
+        "ElementsAwoken/VoidElemental",
+        "ElementsAwoken/AbyssSkull",
+        "ElementsAwoken/AbyssSkullette",
+        "ElementsAwoken/VoidFly",
+        "ElementsAwoken/AccursedFlier",
+        "ElementsAwoken/DimensionalHive",
+        "ElementsAwoken/ZergCaster",
+        "ElementsAwoken/EtherealHunter",
+        "ElementsAwoken/VoidCrawler",
+        "ElementsAwoken/VoidGolem"
+      ],
+      "accessorySlots": 6,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedVoidEvent" }
+    },
+    {
+      "id": "shade-wyrm",
+      "name": { "en-US": "Shade Wyrm", "ru-RU": "Тенезмей" },
+      "iconMod": "ElementsAwoken",
+      "iconNpc": "ShadeWyrmHead",
+      "dropSources": [ "ElementsAwoken/ShadeWyrmHead" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedShadeWyrm" }
+    },
+    {
+      "id": "volcanox",
+      "name": { "en-US": "Volcanox", "ru-RU": "Волканокс" },
+      "iconMod": "ElementsAwoken",
+      "iconNpc": "Volcanox",
+      "dropSources": [ "ElementsAwoken/Volcanox" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedVolcanox" }
+    },
+    {
+      "id": "void-leviathan",
+      "name": { "en-US": "Void Leviathan", "ru-RU": "Левиафан Пустоты" },
+      "iconMod": "ElementsAwoken",
+      "iconNpc": "VoidLeviathanHead",
+      "dropSources": [ "ElementsAwoken/VoidLeviathanHead" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedVoidLeviathan" }
+    },
+    {
+      "id": "azana",
+      "name": { "en-US": "Azana", "ru-RU": "Азана" },
+      "iconMod": "ElementsAwoken",
+      "iconNpc": "Azana",
+      "dropSources": [ "ElementsAwoken/Azana" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedAzana" }
+    },
+    {
+      "id": "radiant-rain",
+      "name": { "en-US": "Radiant Rain", "ru-RU": "Лучезарный Дождь" },
+      "iconMod": "ElementsAwoken",
+      "iconItem": "RadiantRainSummon",
+      "dropSources": [ "ElementsAwoken/RadiantMaster" ],
+      "enemies": [
+        "ElementsAwoken/SparklingSlime",
+        "ElementsAwoken/RadiantWarrior",
+        "ElementsAwoken/StellarStarfish",
+        "ElementsAwoken/AllKnowerHead",
+        "ElementsAwoken/StarlightGlobule"
+      ],
+      "accessorySlots": 6,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedRadiantMaster" }
+    },
+    {
+      "id": "ancient-amalgamate",
+      "name": { "en-US": "The Ancient Amalgamate", "ru-RU": "Древний Амальгамет" },
+      "iconMod": "ElementsAwoken",
+      "iconNpc": "AncientAmalgam",
+      "dropSources": [ "ElementsAwoken/AncientAmalgam" ],
+      "accessorySlots": 6,
+      "unlock": { "type": "mod-flag", "mod": "ElementsAwoken", "key": "downedAncients" }
+    }
+  ],
+  "recommendationSource": {
+    "name": "Official Elements Awoken Mod Wiki",
+    "url": "https://elementsawoken.fandom.com/wiki/Guide:Class_Setups"
+  },
+  "recommendationStageMap": {
+    "pre-boss": {
+      "stageId": "start",
+      "target": { "en-US": "First bosses", "ru-RU": "Первые боссы" }
+    },
+    "pre-world-evil": {
+      "stageId": "wasteland",
+      "target": { "en-US": "World Evil", "ru-RU": "Зло мира" }
+    },
+    "pre-skeletron": {
+      "stageId": "world-evil",
+      "target": { "en-US": "Skeletron", "ru-RU": "Скелетрон" }
+    },
+    "pre-wall-of-flesh": {
+      "stageId": "infernace",
+      "target": { "en-US": "Wall of Flesh", "ru-RU": "Стена плоти" }
+    },
+    "pre-mechanical-bosses": {
+      "stageId": "cosmic-observer",
+      "target": { "en-US": "Mechanical Bosses", "ru-RU": "Механические боссы" }
+    },
+    "pre-plantera": {
+      "stageId": "regaroth",
+      "target": { "en-US": "Plantera", "ru-RU": "Плантера" }
+    },
+    "pre-obsidious": {
+      "stageId": "permafrost",
+      "target": { "en-US": "Obsidious", "ru-RU": "Обсидиус" }
+    },
+    "pre-lunar-events": {
+      "stageId": "aqueous",
+      "target": { "en-US": "Lunar Events", "ru-RU": "Лунные события" }
+    },
+    "pre-moon-lord": {
+      "stageId": "cultist",
+      "target": { "en-US": "Moon Lord", "ru-RU": "Лунный лорд" }
+    },
+    "pre-volcanox": {
+      "stageId": "dawn-of-the-void",
+      "target": { "en-US": "Volcanox", "ru-RU": "Волканокс" }
+    },
+    "pre-void-leviathan": {
+      "stageId": "volcanox",
+      "target": { "en-US": "Void Leviathan", "ru-RU": "Левиафан Пустоты" }
+    },
+    "pre-azana": {
+      "stageId": "void-leviathan",
+      "target": { "en-US": "Azana", "ru-RU": "Азана" }
+    },
+    "pre-ancients": {
+      "stageId": "radiant-rain",
+      "target": { "en-US": "The Ancients", "ru-RU": "Древние" }
+    },
+    "endgame": {
+      "stageId": "ancient-amalgamate",
+      "target": { "en-US": "Endgame", "ru-RU": "Конец игры" }
+    }
+  }
+}

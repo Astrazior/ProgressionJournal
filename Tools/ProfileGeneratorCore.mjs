@@ -49,6 +49,17 @@ const PROGRESSION_NEUTRAL_CONDITION_KEYS = new Set([
   "Conditions.WorldGenSilver",
   "Conditions.WorldNotRemix"
 ]);
+const PROGRESSION_NEUTRAL_DROP_CONDITION_NAMES = new Set([
+  "AwakenedModeActive",
+  "DropAncientWyrmHeadDeath",
+  "DropArmor",
+  "DropAwakened",
+  "DropExpert",
+  "DropNormal",
+  "DropRobe",
+  "DropTheEyeDeath",
+  "NPCSpawnedFromStatue"
+]);
 
 export function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -2086,6 +2097,7 @@ function unlockContainsVanillaFlag(unlock, key) {
 function isProgressionNeutralCondition(condition) {
   const type = condition.type ?? "";
   if (isOneTimeUseEligibilityCondition(condition)
+      || isProgressionNeutralDropCondition(condition)
       || PROGRESSION_NEUTRAL_CONDITION_KEYS.has(condition.key ?? "")) {
     return true;
   }
@@ -2123,6 +2135,16 @@ function isProgressionNeutralCondition(condition) {
     "Terraria.GameContent.ItemDropRules.Conditions+NoPortalGun",
     "FargowiltasSouls.Core.ItemDropRules.Conditions.EModeDropCondition"
   ]).has(type);
+}
+
+function isProgressionNeutralDropCondition(condition) {
+  const type = condition.type ?? "";
+  const typeName = type.slice(type.lastIndexOf("+") + 1);
+  if (PROGRESSION_NEUTRAL_DROP_CONDITION_NAMES.has(typeName)) return true;
+  const description = normalizeConditionText(condition.description);
+  if (/^mods\.[^.]+\.biomename\.[a-z0-9_.-]+$/iu.test(description)) return true;
+  return /^(?:drop chance|шанс выпадения)\s+\d+(?:\/\d+|(?:[.,]\d+)?%?)$/iu.test(
+    description);
 }
 
 function isRemovedItem(item) {

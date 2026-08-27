@@ -1230,6 +1230,73 @@ assert(profile.entries.some(entry =>
   entry.itemGroups[0][0].item === "CollisionBlade"
   && entry.evaluations[0].stageId === "boss"));
 
+const neutralBossDropConditionSnapshot = structuredClone(snapshot);
+neutralBossDropConditionSnapshot.items.push(
+  item("Test/ModeBossBag"),
+  item("Test/ModeBagBlade", { damageClass: "Melee", damage: 31 }),
+  item("Test/RandomChanceBlade", { damageClass: "Melee", damage: 32 }),
+  item("Test/EncounterPhaseBlade", { damageClass: "Magic", damage: 33 }),
+  item("Test/NoStatueBlade", { damageClass: "Melee", damage: 34 }),
+  item("Test/BiomeDropBlade", { damageClass: "Magic", damage: 35 }));
+neutralBossDropConditionSnapshot.drops.push(
+  {
+    source: "Test/Boss",
+    sourceType: "npc",
+    item: "Test/ModeBossBag",
+    conditions: [{ type: "Example.DropRules+DropExpert", description: null }]
+  },
+  {
+    source: "Test/ModeBossBag",
+    sourceType: "container",
+    item: "Test/ModeBagBlade",
+    conditions: []
+  },
+  {
+    source: "Test/Boss",
+    sourceType: "npc",
+    item: "Test/RandomChanceBlade",
+    conditions: [{ type: "Example.DropRules+RandomReward", description: "Drop chance 1/3" }]
+  },
+  {
+    source: "Test/Boss",
+    sourceType: "npc",
+    item: "Test/EncounterPhaseBlade",
+    conditions: [{ type: "Example.DropRules+DropTheEyeDeath", description: "if The Eye was defeated first" }]
+  },
+  {
+    source: "Test/Boss",
+    sourceType: "npc",
+    item: "Test/NoStatueBlade",
+    conditions: [{ type: "Example.DropRules+NPCSpawnedFromStatue", description: null }]
+  },
+  {
+    source: "Test/Boss",
+    sourceType: "npc",
+    item: "Test/BiomeDropBlade",
+    conditions: [{
+      type: "Example.DropRules+MultipleConditions",
+      description: "Mods.Example.BiomeName.InVoid"
+    }]
+  });
+const neutralBossDropConditionResult = generateProfile(
+  neutralBossDropConditionSnapshot,
+  manifest);
+for (const itemId of [
+  "ModeBagBlade",
+  "RandomChanceBlade",
+  "EncounterPhaseBlade",
+  "NoStatueBlade",
+  "BiomeDropBlade"
+]) {
+  assert(neutralBossDropConditionResult.profile.entries.some(entry =>
+    entry.itemGroups[0][0].item === itemId
+    && entry.evaluations[0].stageId === "boss"),
+  `${itemId} must inherit the boss stage through a progression-neutral drop condition`);
+  assert(!neutralBossDropConditionResult.review.issues.some(issue =>
+    issue.kind === "unresolved-condition"
+    && issue.affected.some(value => value.item === `Test/${itemId}`)));
+}
+
 const placedTileSourceSnapshot = structuredClone(snapshot);
 placedTileSourceSnapshot.items.push(
   item("Test/PlacedDropSource", { createTile: 8001, placedTile: "Test/PlacedDropTile" }),
