@@ -3,7 +3,7 @@
   "version": 1,
   "targetMod": "ElementsAwoken",
   "profileId": "mod.elementsawoken",
-  "generatedAtUtc": "2026-08-27T17:04:14.231Z",
+  "generatedAtUtc": "2026-08-28T11:19:06.467Z",
   "snapshot": {
     "version": 10,
     "generatedAtUtc": "2026-08-27T11:42:48.4466806Z",
@@ -26,7 +26,7 @@
     }
   },
   "agentRules": {
-    "rules": 1,
+    "rules": 9,
     "ignoredItems": 0,
     "ignoredIssues": 0,
     "evidence": [
@@ -36,28 +36,91 @@
         "sourceVersion": "Installed Elements Awoken 1.3.13.18; readable source commit 72d202d5157d91059cae1c117d25d142c8de9231 and installed assembly checked 2026-08-27",
         "checkedAt": "2026-08-27",
         "reason": "These boss-drop accessories provide offensive, defensive, debuff-immunity, summon, or combat-mobility effects through custom UpdateAccessory logic and MyPlayer flags. The snapshot exports their acquisition paths but cannot represent those arbitrary or conditional effects in classEffects, so explicit all-class combat classification is required."
+      },
+      {
+        "id": "starting-mystic-gemstone",
+        "sourceUrl": "https://github.com/Sernk/Elements-Awoken-1.4/blob/72d202d5157d91059cae1c117d25d142c8de9231/EASystem/EAPlayer/MyPlayer.cs#L2207-L2216",
+        "sourceVersion": "Installed Elements Awoken 1.3.13.18; readable source commit 72d202d5157d91059cae1c117d25d142c8de9231 checked 2026-08-28",
+        "checkedAt": "2026-08-28",
+        "reason": "Every new non-mediumcore character receives Mystic Gemstone from ModPlayer.AddStartingItems. Starting-item hooks are not represented by the current snapshot, so the gemstone must seed the otherwise circular legendary weapon recipe chains."
+      },
+      {
+        "id": "elemental-boots-all-classes",
+        "sourceUrl": "https://github.com/Sernk/Elements-Awoken-1.4/tree/72d202d5157d91059cae1c117d25d142c8de9231/Content/Items",
+        "sourceVersion": "Installed Elements Awoken 1.3.13.18; readable source commit 72d202d5157d91059cae1c117d25d142c8de9231 checked 2026-08-28",
+        "checkedAt": "2026-08-28",
+        "reason": "The seven-step elemental boot line provides universal movement, flight, immunity, dash, and defensive effects through custom UpdateAccessory and wing hooks. Those arbitrary effects are not represented in snapshot classEffects, so explicit all-class accessory classification is required."
+      },
+      {
+        "id": "voidite-world-generation-after-void-leviathan",
+        "sourceUrl": "https://github.com/Sernk/Elements-Awoken-1.4/blob/72d202d5157d91059cae1c117d25d142c8de9231/EASystem/MyWorld.cs#L903-L921",
+        "sourceVersion": "Installed Elements Awoken 1.3.13.18; readable source commit 72d202d5157d91059cae1c117d25d142c8de9231 checked 2026-08-28",
+        "checkedAt": "2026-08-28",
+        "reason": "Void Leviathan sets genVoidite on death, and MyWorld.GenVoidite creates underground Voidite ore veins. The snapshot records the tile drop but cannot represent this code-driven post-boss world-generation gate."
+      },
+      {
+        "id": "elemental-arcanum-base-materials",
+        "sourceUrl": "https://github.com/Sernk/Elements-Awoken-1.4/blob/72d202d5157d91059cae1c117d25d142c8de9231/EASystem/Global/NpcDrops.cs#L109-L179",
+        "sourceVersion": "Installed Elements Awoken 1.3.13.18; readable source commit 72d202d5157d91059cae1c117d25d142c8de9231 checked 2026-08-28",
+        "checkedAt": "2026-08-28",
+        "reason": "These base materials drop from ordinary pre-Hardmode enemies through InMultipleConditionByMode wrappers containing only difficulty, biome, and non-statue checks. The snapshot preserves only the outer custom condition and loses its nested conditions, so their automatic paths remain unresolved even though their NPC sources are available from the start."
+      },
+      {
+        "id": "elemental-forge-foundation-resources",
+        "sourceUrl": "https://github.com/Sernk/Elements-Awoken-1.4/blob/72d202d5157d91059cae1c117d25d142c8de9231/Content/Tiles/Crafting/ElementalForge.cs",
+        "sourceVersion": "Installed Elements Awoken 1.3.13.18; readable source commit 72d202d5157d91059cae1c117d25d142c8de9231 and snapshot checked 2026-08-28",
+        "checkedAt": "2026-08-28",
+        "reason": "Elements Awoken offers alternative Elemental Forge recipes using ordinary corruption or crimson stone. The snapshot contains both recipes but has no world-resource source for either vanilla block, leaving the forge and all of its recipe chains unreachable."
+      },
+      {
+        "id": "goblin-tinkerer-shop-after-first-boss",
+        "sourceUrl": "https://terraria.wiki.gg/wiki/Goblin_Tinkerer",
+        "sourceVersion": "Terraria 1.4.4; Elements Awoken snapshot checked 2026-08-28",
+        "checkedAt": "2026-08-28",
+        "reason": "The profile has no separate Goblin Army stage, while the boot chain requires Rocket Boots sold by the Goblin Tinkerer. Eye of Cthulhu is the nearest conservative stage after the event's ordinary health and Shadow Orb or Crimson Heart prerequisites can be met."
+      },
+      {
+        "id": "tinkerers-workbench-after-first-boss",
+        "sourceUrl": "https://terraria.wiki.gg/wiki/Tinkerer%27s_Workshop",
+        "sourceVersion": "Terraria 1.4.4; Elements Awoken snapshot checked 2026-08-28",
+        "checkedAt": "2026-08-28",
+        "reason": "The profile has no separate Goblin Army stage. The Goblin Tinkerer sells the Tinkerer's Workshop, which is required by the vanilla Frostspark Boots chain feeding Desert Trailers."
+      },
+      {
+        "id": "rainbow-dye-hardmode-reward",
+        "sourceUrl": "https://terraria.wiki.gg/wiki/Rainbow_Dye",
+        "sourceVersion": "Terraria 1.4.4; Elements Awoken snapshot checked 2026-08-28",
+        "checkedAt": "2026-08-28",
+        "reason": "Rainbow Dye is obtainable in Hardmode through the Dye Trader's Strange Plant reward chain. That exchange is absent from the snapshot, but the dye is a required ingredient for the final Boots of Nyan recipe."
       }
     ],
     "availabilityMigration": {
       "confirmed": 0,
-      "pending": 0,
+      "pending": 1,
       "mismatched": 0,
       "confirmedRules": [],
-      "pendingRules": []
+      "pendingRules": [
+        {
+          "id": "goblin-tinkerer-shop-after-first-boss",
+          "kind": "npc-source",
+          "target": "Terraria/GoblinTinkerer",
+          "expectedStageId": "eye-of-cthulhu"
+        }
+      ]
     }
   },
   "review": {
-    "total": 275,
+    "total": 112,
     "byKind": {
-      "unassigned-combat-item": 263,
+      "unassigned-combat-item": 100,
       "unresolved-condition": 12
     }
   },
   "audit": {
     "errors": [],
     "warnings": [
-      "66 recommendations precede proven availability and were suppressed",
-      "140 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
+      "87 recommendations precede proven availability and were suppressed",
+      "139 NPC drop or shop sources have neither a runtime observation nor an assigned stage"
     ],
     "sourceCoverage": {
       "npcCount": 823,
@@ -2439,6 +2502,14 @@
           "earliestStageIndex": -1
         },
         {
+          "source": "Terraria/GoblinTinkerer",
+          "kinds": [
+            "shop"
+          ],
+          "availabilityKind": "town",
+          "earliestStageIndex": -1
+        },
+        {
           "source": "Terraria/Golem",
           "kinds": [
             "drop"
@@ -3247,14 +3318,6 @@
           "earliestStageIndex": -1
         },
         {
-          "source": "Terraria/GoblinTinkerer",
-          "kinds": [
-            "shop"
-          ],
-          "availabilityKind": "town",
-          "earliestStageIndex": -1
-        },
-        {
           "source": "Terraria/HeadlessHorseman",
           "kinds": [
             "drop"
@@ -3901,7 +3964,7 @@
   "ready": false,
   "generation": {
     "profileId": "mod.elementsawoken",
-    "generatedAtUtc": "2026-08-27T17:04:12.353Z",
+    "generatedAtUtc": "2026-08-28T11:19:04.677Z",
     "unknownReferences": [],
     "unresolvedConditions": [
       {
@@ -4302,28 +4365,6 @@
       },
       {
         "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "ElementsAwoken/WaterEssence",
-        "condition": {
-          "type": "ElementsAwoken.EASystem.Loot.InMultipleConditionByMode",
-          "description": "Drops after Duke Fishron has been defeated",
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/GreenJellyfish",
-        "item": "ElementsAwoken/OddWater",
-        "condition": {
-          "type": "ElementsAwoken.EASystem.Loot.InMultipleConditionByMode",
-          "description": "Unknown condition",
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
         "source": "Terraria/Tim",
         "item": "ElementsAwoken/IllusiveCharm",
         "condition": {
@@ -4348,28 +4389,6 @@
         "sourceKind": "drop",
         "source": "Terraria/CorruptPenguin",
         "item": "ElementsAwoken/GlowingSlush",
-        "condition": {
-          "type": "ElementsAwoken.EASystem.Loot.InMultipleConditionByMode",
-          "description": "Unknown condition",
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/Squid",
-        "item": "ElementsAwoken/WaterEssence",
-        "condition": {
-          "type": "ElementsAwoken.EASystem.Loot.InMultipleConditionByMode",
-          "description": "Drops after Duke Fishron has been defeated",
-          "key": "",
-          "facts": []
-        }
-      },
-      {
-        "sourceKind": "drop",
-        "source": "Terraria/Squid",
-        "item": "ElementsAwoken/OddWater",
         "condition": {
           "type": "ElementsAwoken.EASystem.Loot.InMultipleConditionByMode",
           "description": "Unknown condition",
@@ -6259,6 +6278,116 @@
         }
       },
       {
+        "sourceKind": "shop",
+        "source": "Terraria/GoblinTinkerer",
+        "item": "Terraria/TeleportationPylonPurity",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "When the vendor is happy enough to sell pylons",
+          "key": "Conditions.HappyEnoughForPylons",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/GoblinTinkerer",
+        "item": "Terraria/TeleportationPylonSnow",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "When the vendor is happy enough to sell pylons",
+          "key": "Conditions.HappyEnoughForPylons",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/GoblinTinkerer",
+        "item": "Terraria/TeleportationPylonDesert",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "When the vendor is happy enough to sell pylons",
+          "key": "Conditions.HappyEnoughForPylons",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/GoblinTinkerer",
+        "item": "Terraria/TeleportationPylonUnderground",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "When the vendor is happy enough to sell pylons",
+          "key": "Conditions.HappyEnoughForPylons",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/GoblinTinkerer",
+        "item": "Terraria/TeleportationPylonOcean",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "When the vendor is happy enough to sell pylons",
+          "key": "Conditions.HappyEnoughForPylons",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/GoblinTinkerer",
+        "item": "Terraria/TeleportationPylonJungle",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "When the vendor is happy enough to sell pylons",
+          "key": "Conditions.HappyEnoughForPylons",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/GoblinTinkerer",
+        "item": "Terraria/TeleportationPylonHallow",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "When the vendor is happy enough to sell pylons",
+          "key": "Conditions.HappyEnoughForPylons",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "shop",
+        "source": "Terraria/GoblinTinkerer",
+        "item": "Terraria/TeleportationPylonMushroom",
+        "condition": {
+          "type": "Terraria.Condition",
+          "description": "When the vendor is happy enough to sell pylons",
+          "key": "Conditions.HappyEnoughForPylons",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Squid",
+        "item": "ElementsAwoken/WaterEssence",
+        "condition": {
+          "type": "ElementsAwoken.EASystem.Loot.InMultipleConditionByMode",
+          "description": "Drops after Duke Fishron has been defeated",
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/Squid",
+        "item": "ElementsAwoken/OddWater",
+        "condition": {
+          "type": "ElementsAwoken.EASystem.Loot.InMultipleConditionByMode",
+          "description": "Unknown condition",
+          "key": "",
+          "facts": []
+        }
+      },
+      {
         "sourceKind": "drop",
         "source": "Terraria/EaterofWorldsHead",
         "item": "ElementsAwoken/Awakener",
@@ -6680,6 +6809,28 @@
         "sourceKind": "drop",
         "source": "Terraria/Mummy",
         "item": "ElementsAwoken/DiscordantAmber",
+        "condition": {
+          "type": "ElementsAwoken.EASystem.Loot.InMultipleConditionByMode",
+          "description": "Unknown condition",
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "ElementsAwoken/WaterEssence",
+        "condition": {
+          "type": "ElementsAwoken.EASystem.Loot.InMultipleConditionByMode",
+          "description": "Drops after Duke Fishron has been defeated",
+          "key": "",
+          "facts": []
+        }
+      },
+      {
+        "sourceKind": "drop",
+        "source": "Terraria/GreenJellyfish",
+        "item": "ElementsAwoken/OddWater",
         "condition": {
           "type": "ElementsAwoken.EASystem.Loot.InMultipleConditionByMode",
           "description": "Unknown condition",
@@ -7986,11 +8137,6 @@
       {
         "stage": "start",
         "id": "ElementsAwoken/PenguinFeather",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/BlackInk",
         "reason": "not combat equipment"
       },
       {
@@ -13345,31 +13491,6 @@
       },
       {
         "stage": "start",
-        "id": "Terraria/BlackDye",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/RedandBlackDye",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/PurpleandBlackDye",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/VioletandBlackDye",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/BrownAndBlackDye",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "Terraria/BrightRedDye",
         "reason": "not combat equipment"
       },
@@ -13406,16 +13527,6 @@
       {
         "stage": "start",
         "id": "Terraria/BrownAndSilverDye",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/SilverAndBlackDye",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/BlackAndWhiteDye",
         "reason": "not combat equipment"
       },
       {
@@ -14000,37 +14111,12 @@
       },
       {
         "stage": "start",
-        "id": "Terraria/PlaguebringerChestplate",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/PlaguebringerGreaves",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/TimelessTravelerRobe",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/TimelessTravelerBottom",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
         "id": "Terraria/TVHeadSuit",
         "reason": "not combat equipment"
       },
       {
         "stage": "start",
         "id": "Terraria/TVHeadPants",
-        "reason": "not combat equipment"
-      },
-      {
-        "stage": "start",
-        "id": "Terraria/GolfBallDyedBlack",
         "reason": "not combat equipment"
       },
       {
@@ -14404,6 +14490,141 @@
         "reason": "not combat equipment"
       },
       {
+        "stage": "start",
+        "id": "ElementsAwoken/MysticGemstone",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "ElementsAwoken/DiscordantAmber",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "ElementsAwoken/FieryJar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "ElementsAwoken/GlowingSlush",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "ElementsAwoken/OddWater",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "ElementsAwoken/StrangeTotem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/EbonstoneBlock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CrimstoneBlock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CorruptTorch",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CrimsonTorch",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CorruptCampfire",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CrimsonCampfire",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/EbonstoneBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/EbonstoneBrickWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/EbonstoneEcho",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Corruption1Echo",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Corruption2Echo",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Corruption3Echo",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Corruption4Echo",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CrimstoneBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CrimstoneBrickWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/CrimstoneEcho",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Crimson1Echo",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Crimson2Echo",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Crimson3Echo",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "Terraria/Crimson4Echo",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "start",
+        "id": "ElementsAwoken/ElementalForge",
+        "reason": "not combat equipment"
+      },
+      {
         "stage": "king-slime",
         "id": "Terraria/KingSlimeTrophy",
         "reason": "not combat equipment"
@@ -14760,6 +14981,16 @@
       },
       {
         "stage": "eye-of-cthulhu",
+        "id": "Terraria/TinkerersWorkshop",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/Toolbelt",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
         "id": "ElementsAwoken/GreatLens",
         "reason": "not combat equipment"
       },
@@ -14791,6 +15022,21 @@
       {
         "stage": "eye-of-cthulhu",
         "id": "Terraria/DontHurtComboBook",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/DemoniteBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/CrimtaneBrick",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/CrimtaneBrickWall",
         "reason": "not combat equipment"
       },
       {
@@ -14860,7 +15106,92 @@
       },
       {
         "stage": "eye-of-cthulhu",
+        "id": "Terraria/DivingGear",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/JellyfishDivingGear",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/GPS",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/GoblinTech",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/UltrabrightHelmet",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/ObsidianHorseshoe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/CloudinaBalloon",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/BlizzardinaBalloon",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/SandstorminaBalloon",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/FartInABalloon",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/LavaSkull",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/ObsidianWaterWalkingBoots",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/LavaWaders",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/HellfireTreads",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/ArchitectGizmoPack",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/FishingBobberGlowingStar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
         "id": "ElementsAwoken/VoidbloodHeart",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "ElementsAwoken/SandstormStone",
         "reason": "not combat equipment"
       },
       {
@@ -14891,6 +15222,11 @@
       {
         "stage": "eye-of-cthulhu",
         "id": "Terraria/ShadowCandle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "eye-of-cthulhu",
+        "id": "Terraria/DemoniteBrickWall",
         "reason": "not combat equipment"
       },
       {
@@ -14986,6 +15322,11 @@
       {
         "stage": "world-evil",
         "id": "Terraria/CyanHusk",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/BlackInk",
         "reason": "not combat equipment"
       },
       {
@@ -15300,7 +15641,32 @@
       },
       {
         "stage": "world-evil",
+        "id": "Terraria/BlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/RedandBlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
         "id": "Terraria/CyanandBlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/PurpleandBlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/VioletandBlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/BrownAndBlackDye",
         "reason": "not combat equipment"
       },
       {
@@ -15315,7 +15681,42 @@
       },
       {
         "stage": "world-evil",
+        "id": "Terraria/SilverAndBlackDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/BlackAndWhiteDye",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
         "id": "Terraria/MeteoritePlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/PlaguebringerChestplate",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/PlaguebringerGreaves",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/TimelessTravelerRobe",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/TimelessTravelerBottom",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "world-evil",
+        "id": "Terraria/GolfBallDyedBlack",
         "reason": "not combat equipment"
       },
       {
@@ -16225,6 +16626,26 @@
       },
       {
         "stage": "skeletron",
+        "id": "Terraria/REK",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/HandOfCreation",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/MulticolorWrench",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/WireKite",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
         "id": "Terraria/ActuationRod",
         "reason": "not combat equipment"
       },
@@ -16251,6 +16672,26 @@
       {
         "stage": "skeletron",
         "id": "Terraria/OutletPump",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/WeightedPressurePlateCyan",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/WeightedPressurePlateOrange",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/WeightedPressurePlatePink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "skeletron",
+        "id": "Terraria/WeightedPressurePlatePurple",
         "reason": "not combat equipment"
       },
       {
@@ -17015,6 +17456,11 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/RubblemakerSmall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/TikiTotem",
         "reason": "not combat equipment"
       },
@@ -17361,6 +17807,16 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/SpiderBlock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/FleshBlock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/LesionBlock",
         "reason": "not combat equipment"
       },
       {
@@ -17880,6 +18336,11 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/LesionBlockWall",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/SandstoneBookcase",
         "reason": "not combat equipment"
       },
@@ -17971,6 +18432,11 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/PumpkinPiano",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/FleshBlockWall",
         "reason": "not combat equipment"
       },
       {
@@ -18106,6 +18572,16 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/GreenJellyfishJar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/CoinRing",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/GreedyRing",
         "reason": "not combat equipment"
       },
       {
@@ -18250,6 +18726,16 @@
       },
       {
         "stage": "wall-of-flesh",
+        "id": "Terraria/FleshPlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/LesionPlatform",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
         "id": "Terraria/AncientMythrilBrickWall",
         "reason": "not combat equipment"
       },
@@ -18316,6 +18802,11 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/AncientCloth",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/RainbowDye",
         "reason": "not combat equipment"
       },
       {
@@ -18451,6 +18942,11 @@
       {
         "stage": "wall-of-flesh",
         "id": "Terraria/AncientArmorPants",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "wall-of-flesh",
+        "id": "Terraria/IntenseRainbowDye",
         "reason": "not combat equipment"
       },
       {
@@ -18870,6 +19366,106 @@
       },
       {
         "stage": "destroyer",
+        "id": "Terraria/LesionWorkbench",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionDoor",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionChair",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionTable",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionLantern",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionCandle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionLamp",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionCandelabra",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionBed",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionDresser",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionBookcase",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionClock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionSofa",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionPiano",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionBathtub",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/LesionChandelier",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/ToiletLesion",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/Fake_LesionChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
         "id": "Terraria/LivingWoodClock",
         "reason": "not combat equipment"
       },
@@ -19160,6 +19756,101 @@
       },
       {
         "stage": "destroyer",
+        "id": "Terraria/FleshClock",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshDoor",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshDresser",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshChair",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshWorkBench",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshSink",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshTable",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshPiano",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshBookcase",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshBed",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshBathtub",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshLantern",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshCandle",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshChandelier",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshLamp",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshCandelabra",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/FleshSofa",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/ToiletFlesh",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
         "id": "Terraria/BoneBlockWall",
         "reason": "not combat equipment"
       },
@@ -19311,6 +20002,11 @@
       {
         "stage": "destroyer",
         "id": "Terraria/Fake_BoneChest",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "destroyer",
+        "id": "Terraria/Fake_FleshChest",
         "reason": "not combat equipment"
       },
       {
@@ -19641,6 +20337,21 @@
       {
         "stage": "regaroth",
         "id": "ElementsAwoken/RegarothSummon",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "regaroth",
+        "id": "ElementsAwoken/SkylineWings",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "regaroth",
+        "id": "ElementsAwoken/SkyShield",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "regaroth",
+        "id": "ElementsAwoken/TimeToken",
         "reason": "not combat equipment"
       },
       {
@@ -20511,6 +21222,16 @@
       {
         "stage": "aqueous",
         "id": "ElementsAwoken/AqueousSummon",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "aqueous",
+        "id": "ElementsAwoken/BubblePack",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "aqueous",
+        "id": "ElementsAwoken/RainSigil",
         "reason": "not combat equipment"
       },
       {
@@ -21560,6 +22281,16 @@
       },
       {
         "stage": "dawn-of-the-void",
+        "id": "ElementsAwoken/HealingIcon",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "dawn-of-the-void",
+        "id": "ElementsAwoken/ElementalEssence",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "dawn-of-the-void",
         "id": "ElementsAwoken/VoidBrick",
         "reason": "not combat equipment"
       },
@@ -21759,6 +22490,26 @@
         "reason": "not combat equipment"
       },
       {
+        "stage": "void-leviathan",
+        "id": "ElementsAwoken/VoiditeOre",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "void-leviathan",
+        "id": "ElementsAwoken/VoiditeBar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "void-leviathan",
+        "id": "ElementsAwoken/Transformer",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "void-leviathan",
+        "id": "ElementsAwoken/SolarGeneratorIV",
+        "reason": "not combat equipment"
+      },
+      {
         "stage": "azana",
         "id": "ElementsAwoken/AzanaRelicItem",
         "reason": "not combat equipment"
@@ -21789,6 +22540,36 @@
         "reason": "not combat equipment"
       },
       {
+        "stage": "azana",
+        "id": "ElementsAwoken/ChaoticCrucible",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "azana",
+        "id": "ElementsAwoken/DiscordantBar",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "azana",
+        "id": "ElementsAwoken/ChaosHeart",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "azana",
+        "id": "ElementsAwoken/ChaoticEnergyCapacitor",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "azana",
+        "id": "ElementsAwoken/LRM",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "azana",
+        "id": "ElementsAwoken/MatterManipulator",
+        "reason": "not combat equipment"
+      },
+      {
         "stage": "radiant-rain",
         "id": "ElementsAwoken/Radia",
         "reason": "not combat equipment"
@@ -21796,6 +22577,16 @@
       {
         "stage": "radiant-rain",
         "id": "ElementsAwoken/RadiantMasterRelicItem",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "radiant-rain",
+        "id": "ElementsAwoken/RadiantRainSummon",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "radiant-rain",
+        "id": "ElementsAwoken/RadiantMortar",
         "reason": "not combat equipment"
       },
       {
@@ -21816,6 +22607,11 @@
       {
         "stage": "ancient-amalgamate",
         "id": "ElementsAwoken/AncientShard",
+        "reason": "not combat equipment"
+      },
+      {
+        "stage": "ancient-amalgamate",
+        "id": "ElementsAwoken/AncientsSummon",
         "reason": "not combat equipment"
       }
     ],
@@ -23920,9 +24716,17 @@
         "stage": "start",
         "via": "recipe:Terraria/WhiteString+Terraria/VioletDye"
       },
-      "Terraria/BlackString": {
+      "ElementsAwoken/IllusiveCharm": {
         "stage": "start",
-        "via": "recipe:Terraria/WhiteString+Terraria/BlackDye"
+        "via": "manifest"
+      },
+      "ElementsAwoken/ChaosFlameFlask": {
+        "stage": "start",
+        "via": "recipe:ElementsAwoken/FieryJar+ElementsAwoken/HellbatWing+Terraria/MagmaStone+Terraria/ObsidianSkull"
+      },
+      "ElementsAwoken/GreatThunderTotem": {
+        "stage": "start",
+        "via": "recipe:ElementsAwoken/StrangeTotem+ElementsAwoken/LightningCloud+Terraria/SharkToothNecklace+Terraria/AnkletoftheWind+Terraria/Aglet"
       },
       "Terraria/NinjaHood": {
         "stage": "king-slime",
@@ -24050,6 +24854,26 @@
           "currencyItems": null
         }
       },
+      "Terraria/RocketBoots": {
+        "stage": "eye-of-cthulhu",
+        "via": "shop:Terraria/GoblinTinkerer",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [],
+          "prerequisites": [],
+          "currencyItems": null
+        }
+      },
+      "Terraria/Ruler": {
+        "stage": "eye-of-cthulhu",
+        "via": "shop:Terraria/GoblinTinkerer",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [],
+          "prerequisites": [],
+          "currencyItems": null
+        }
+      },
       "Terraria/EoCShield": {
         "stage": "eye-of-cthulhu",
         "via": "container:Terraria/EyeOfCthulhuBossBag"
@@ -24086,6 +24910,94 @@
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/CrimtaneBar"
       },
+      "Terraria/AmphibianBoots": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/SailfishBoots+Terraria/FrogLeg"
+      },
+      "Terraria/FartinaJar": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/CloudinaBottle+Terraria/WhoopieCushion"
+      },
+      "Terraria/SharkronBalloon": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/TsunamiInABottle+Terraria/BalloonPufferfish"
+      },
+      "Terraria/BlueHorseshoeBalloon": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/CloudinaBalloon+Terraria/LuckyHorseshoe"
+      },
+      "Terraria/WhiteHorseshoeBalloon": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/BlizzardinaBalloon+Terraria/LuckyHorseshoe"
+      },
+      "Terraria/YellowHorseshoeBalloon": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/SandstorminaBalloon+Terraria/LuckyHorseshoe"
+      },
+      "Terraria/BalloonHorseshoeFart": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/FartInABalloon+Terraria/LuckyHorseshoe"
+      },
+      "Terraria/BalloonHorseshoeSharkron": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/SharkronBalloon+Terraria/LuckyHorseshoe"
+      },
+      "Terraria/BundleofBalloons": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/CloudinaBalloon+Terraria/BlizzardinaBalloon+Terraria/SandstorminaBalloon"
+      },
+      "Terraria/SpectreBoots": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/HermesBoots+Terraria/RocketBoots"
+      },
+      "Terraria/LightningBoots": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/SpectreBoots+Terraria/AnkletoftheWind+Terraria/Aglet"
+      },
+      "Terraria/FrostsparkBoots": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/LightningBoots+Terraria/IceSkates"
+      },
+      "Terraria/ObsidianSkullRose": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/ObsidianSkull+Terraria/ObsidianRose"
+      },
+      "Terraria/MoltenSkullRose": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/ObsidianSkullRose+Terraria/LavaCharm"
+      },
+      "Terraria/MoltenCharm": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/LavaCharm+Terraria/ObsidianSkull"
+      },
+      "Terraria/ManaFlower": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/NaturesGift+Terraria/ManaPotion"
+      },
+      "Terraria/ManaRegenerationBand": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/BandofStarpower+Terraria/BandofRegeneration"
+      },
+      "Terraria/MagicCuffs": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/ManaRegenerationBand+Terraria/Shackle"
+      },
+      "Terraria/CelestialCuffs": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/CelestialMagnet+Terraria/MagicCuffs"
+      },
+      "Terraria/TigerClimbingGear": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/ClimbingClaws+Terraria/ShoeSpikes"
+      },
+      "Terraria/MedicatedBandage": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/Bezoar+Terraria/AdhesiveBandage"
+      },
+      "ElementsAwoken/SharktoothShackle": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/SharkToothNecklace+Terraria/Shackle"
+      },
       "ElementsAwoken/DemonPhilter": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/BottledWater+Terraria/DemoniteOre+Terraria/Deathweed"
@@ -24093,6 +25005,86 @@
       "ElementsAwoken/SanityRegenerationPotion": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/BottledWater+Terraria/DemoniteOre+Terraria/SpecularFish"
+      },
+      "ElementsAwoken/AridBreastplate": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
+      },
+      "ElementsAwoken/AridFalconHelm": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
+      },
+      "ElementsAwoken/AridHat": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
+      },
+      "ElementsAwoken/AridHeadgear": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
+      },
+      "ElementsAwoken/AridHood": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
+      },
+      "ElementsAwoken/AridLeggings": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
+      },
+      "ElementsAwoken/AridWarriorMask": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
+      },
+      "ElementsAwoken/DesertGun": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone+Terraria/FlintlockPistol"
+      },
+      "ElementsAwoken/DesertNeck": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
+      },
+      "ElementsAwoken/DesertShield": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
+      },
+      "ElementsAwoken/DesertTrailers": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone+Terraria/FrostsparkBoots"
+      },
+      "ElementsAwoken/Sandball": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
+      },
+      "ElementsAwoken/Sandshot": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
+      },
+      "ElementsAwoken/SandSprayer": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
+      },
+      "ElementsAwoken/SandstormTome": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone+Terraria/FallenStar"
+      },
+      "ElementsAwoken/SandySpear": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
+      },
+      "ElementsAwoken/SolitaryStorm": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
+      },
+      "ElementsAwoken/StaffOfTheSandstorm": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
+      },
+      "ElementsAwoken/TheGrit": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
+      },
+      "ElementsAwoken/TheVulture": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
       },
       "ElementsAwoken/AmberPistol": {
         "stage": "eye-of-cthulhu",
@@ -24149,6 +25141,18 @@
       "ElementsAwoken/ShadowsGrasp": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/DemoniteBar"
+      },
+      "Terraria/MagnetFlower": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/ManaFlower+Terraria/CelestialMagnet"
+      },
+      "Terraria/FrogWebbing": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/FrogLeg+Terraria/TigerClimbingGear"
+      },
+      "Terraria/FairyBoots": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/SpectreBoots+Terraria/FlowerBoots"
       },
       "ElementsAwoken/BioReactor": {
         "stage": "eye-of-cthulhu",
@@ -24348,6 +25352,10 @@
         "stage": "world-evil",
         "via": "recipe:Terraria/WhiteString+Terraria/CyanDye"
       },
+      "Terraria/BlackString": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/WhiteString+Terraria/BlackDye"
+      },
       "Terraria/DD2FlameburstTowerT1Popper": {
         "stage": "world-evil",
         "via": "shop:Terraria/DD2Bartender",
@@ -24522,6 +25530,18 @@
         "stage": "queen-bee",
         "via": "recipe:Terraria/BeeWax"
       },
+      "Terraria/StingerNecklace": {
+        "stage": "queen-bee",
+        "via": "recipe:Terraria/SharkToothNecklace+Terraria/HoneyComb"
+      },
+      "Terraria/HoneyBalloon": {
+        "stage": "queen-bee",
+        "via": "recipe:Terraria/ShinyRedBalloon+Terraria/HoneyComb"
+      },
+      "Terraria/SweetheartNecklace": {
+        "stage": "queen-bee",
+        "via": "recipe:Terraria/HoneyComb+Terraria/PanicNecklace"
+      },
       "ElementsAwoken/BlossomBoomer": {
         "stage": "queen-bee",
         "via": "recipe:ElementsAwoken/Petal"
@@ -24546,9 +25566,9 @@
         "stage": "queen-bee",
         "via": "recipe:ElementsAwoken/Petal"
       },
-      "Terraria/SweetheartNecklace": {
+      "Terraria/BalloonHorseshoeHoney": {
         "stage": "queen-bee",
-        "via": "manifest"
+        "via": "recipe:Terraria/HoneyBalloon+Terraria/LuckyHorseshoe"
       },
       "Terraria/Bone": {
         "stage": "skeletron",
@@ -24740,6 +25760,10 @@
         "stage": "skeletron",
         "via": "recipe:Terraria/LightsBane+Terraria/Muramasa+Terraria/BladeofGrass+Terraria/FieryGreatsword"
       },
+      "Terraria/ObsidianShield": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/CobaltShield+Terraria/ObsidianSkull"
+      },
       "ElementsAwoken/BalletShoes": {
         "stage": "skeletron",
         "via": "recipe:Terraria/PinkThread+Terraria/IronBar"
@@ -24751,6 +25775,26 @@
       "ElementsAwoken/SpikeBoots": {
         "stage": "skeletron",
         "via": "recipe:Terraria/Bone+Terraria/Silk"
+      },
+      "ElementsAwoken/DisarrayI": {
+        "stage": "skeletron",
+        "via": "recipe:ElementsAwoken/MysticGemstone+Terraria/Bone+Terraria/GoldBar"
+      },
+      "ElementsAwoken/DesolationI": {
+        "stage": "skeletron",
+        "via": "recipe:ElementsAwoken/MysticGemstone+Terraria/Bone+Terraria/GoldBar"
+      },
+      "ElementsAwoken/AtaxiaI": {
+        "stage": "skeletron",
+        "via": "recipe:ElementsAwoken/MysticGemstone+Terraria/Bone+Terraria/GoldBar"
+      },
+      "ElementsAwoken/LamentI": {
+        "stage": "skeletron",
+        "via": "recipe:ElementsAwoken/MysticGemstone+Terraria/Bone+Terraria/GoldBar"
+      },
+      "ElementsAwoken/DiscordantSkull": {
+        "stage": "skeletron",
+        "via": "recipe:ElementsAwoken/DiscordantAmber+Terraria/SiltBlock+Terraria/CobaltShield"
       },
       "ElementsAwoken/ToyBlade": {
         "stage": "skeletron",
@@ -24868,6 +25912,62 @@
         "stage": "infernace",
         "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar"
       },
+      "ElementsAwoken/BlazeFury": {
+        "stage": "infernace",
+        "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar"
+      },
+      "ElementsAwoken/BonfirePummel": {
+        "stage": "infernace",
+        "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar"
+      },
+      "ElementsAwoken/DragonsBreath": {
+        "stage": "infernace",
+        "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar"
+      },
+      "ElementsAwoken/FireKnives": {
+        "stage": "infernace",
+        "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar"
+      },
+      "ElementsAwoken/Firelash": {
+        "stage": "infernace",
+        "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar"
+      },
+      "ElementsAwoken/FireNeck": {
+        "stage": "infernace",
+        "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar"
+      },
+      "ElementsAwoken/FireScythe": {
+        "stage": "infernace",
+        "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar"
+      },
+      "ElementsAwoken/FireShield": {
+        "stage": "infernace",
+        "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar+Terraria/ObsidianShield"
+      },
+      "ElementsAwoken/FireStorm": {
+        "stage": "infernace",
+        "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar"
+      },
+      "ElementsAwoken/FireTreads": {
+        "stage": "infernace",
+        "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar+Terraria/TerrasparkBoots"
+      },
+      "ElementsAwoken/FireTrisword": {
+        "stage": "infernace",
+        "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar"
+      },
+      "ElementsAwoken/Incinerator": {
+        "stage": "infernace",
+        "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar"
+      },
+      "ElementsAwoken/InfernoLance": {
+        "stage": "infernace",
+        "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar"
+      },
+      "ElementsAwoken/InfurnicesesMinionStaff": {
+        "stage": "infernace",
+        "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar"
+      },
       "ElementsAwoken/ForgedBreastplate": {
         "stage": "infernace",
         "via": "recipe:ElementsAwoken/ForgedIronBar"
@@ -24876,11 +25976,11 @@
         "stage": "infernace",
         "via": "recipe:ElementsAwoken/ForgedIronBar"
       },
-      "Terraria/Megaphone": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/GreenJellyfish"
-      },
       "Terraria/FastClock": {
+        "stage": "wall-of-flesh",
+        "via": "npc:Terraria/Pixie"
+      },
+      "Terraria/Megaphone": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/Pixie"
       },
@@ -25063,10 +26163,6 @@
       "ElementsAwoken/ThrowerEmblem": {
         "stage": "wall-of-flesh",
         "via": "npc:Terraria/WallofFlesh"
-      },
-      "Terraria/FartinaJar": {
-        "stage": "wall-of-flesh",
-        "via": "npc:Terraria/BigMimicJungle"
       },
       "Terraria/GoldenShower": {
         "stage": "wall-of-flesh",
@@ -25520,6 +26616,10 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/WoodYoyo+Terraria/CrystalShard+Terraria/SoulofLight"
       },
+      "Terraria/YoyoBag": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/WhiteString+Terraria/YoYoGlove+Terraria/BlackCounterweight"
+      },
       "Terraria/BluePhasesaber": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/BluePhaseblade+Terraria/CrystalShard"
@@ -25816,6 +26916,58 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/MeteoriteBar+Terraria/PixieDust+Terraria/SoulofLight"
       },
+      "Terraria/ManaCloak": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/ManaFlower+Terraria/StarCloak"
+      },
+      "Terraria/StalkersQuiver": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/MagicQuiver+Terraria/PutridScent"
+      },
+      "Terraria/ArcaneFlower": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/ManaFlower+Terraria/PutridScent"
+      },
+      "Terraria/MoltenQuiver": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/MagicQuiver+Terraria/MagmaStone"
+      },
+      "Terraria/PowerGlove": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/TitanGlove+Terraria/FeralClaws"
+      },
+      "Terraria/CharmofMyths": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/BandofRegeneration+Terraria/PhilosophersStone"
+      },
+      "Terraria/StarVeil": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/StarCloak+Terraria/CrossNecklace"
+      },
+      "Terraria/BeeCloak": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/HoneyComb+Terraria/StarCloak"
+      },
+      "Terraria/ArmorBracing": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/ArmorPolish+Terraria/Vitamins"
+      },
+      "Terraria/ThePlan": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/FastClock+Terraria/TrifoldMap"
+      },
+      "Terraria/CountercurseMantra": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/Megaphone+Terraria/Nazar"
+      },
+      "Terraria/ReflectiveShades": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/Blindfold+Terraria/PocketMirror"
+      },
+      "Terraria/AnkhCharm": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/ArmorBracing+Terraria/MedicatedBandage+Terraria/ThePlan+Terraria/CountercurseMantra+Terraria/ReflectiveShades"
+      },
       "Terraria/CrystalStorm": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/SpellTome+Terraria/CrystalShard+Terraria/SoulofLight"
@@ -25823,6 +26975,14 @@
       "Terraria/CursedFlames": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/SpellTome+Terraria/CursedFlame+Terraria/SoulofNight"
+      },
+      "ElementsAwoken/ManaShield": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/CelestialCuffs+Terraria/ManaFlower"
+      },
+      "ElementsAwoken/EtherealShell": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:ElementsAwoken/ManaShield+ElementsAwoken/OddWater+ElementsAwoken/IllusiveCharm+Terraria/SorcererEmblem+Terraria/JellyfishDivingGear"
       },
       "ElementsAwoken/TheSpeedyStar": {
         "stage": "wall-of-flesh",
@@ -25916,6 +27076,18 @@
         "stage": "wall-of-flesh",
         "via": "shimmer:Terraria/SpellTome"
       },
+      "Terraria/BerserkerGlove": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/PowerGlove+Terraria/FleshKnuckles"
+      },
+      "Terraria/AnkhShield": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/ObsidianShield+Terraria/AnkhCharm"
+      },
+      "ElementsAwoken/EnergyGeode": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:ElementsAwoken/IllusiveCharm+Terraria/CrystalShard+Terraria/AnkhShield"
+      },
       "ElementsAwoken/MagesFocus": {
         "stage": "wall-of-flesh",
         "via": "recipe:ElementsAwoken/Manashard"
@@ -25941,18 +27113,6 @@
         "via": "manifest"
       },
       "Terraria/SpiritFlame": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/CharmofMyths": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/StarVeil": {
-        "stage": "wall-of-flesh",
-        "via": "manifest"
-      },
-      "Terraria/BeeCloak": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
@@ -25987,6 +27147,10 @@
       "Terraria/PearlwoodBow": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Pearlwood"
+      },
+      "Terraria/RainbowString": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/WhiteString+Terraria/RainbowDye"
       },
       "Terraria/DaoofPow": {
         "stage": "wall-of-flesh",
@@ -26483,6 +27647,10 @@
         "via": "recipe:Terraria/SoulofFlight+Terraria/TatteredBeeWing",
         "isAnyMechanicalBossUnlock": true
       },
+      "Terraria/MoonShell": {
+        "stage": "twins",
+        "via": "recipe:Terraria/MoonCharm+Terraria/NeptunesShell"
+      },
       "ElementsAwoken/TheDestroyer": {
         "stage": "destroyer",
         "via": "npc:Terraria/TheDestroyer"
@@ -26889,13 +28057,41 @@
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/MechanicalWheelPiece+Terraria/MechanicalWagonPiece+Terraria/MechanicalBatteryPiece"
       },
+      "Terraria/AvengerEmblem": {
+        "stage": "skeletron-prime",
+        "via": "recipe:Terraria/WarriorEmblem+Terraria/SoulofMight+Terraria/SoulofSight+Terraria/SoulofFright"
+      },
+      "ElementsAwoken/DisarrayII": {
+        "stage": "skeletron-prime",
+        "via": "recipe:ElementsAwoken/DisarrayI+Terraria/SoulofSight+Terraria/SoulofMight+Terraria/SoulofFright+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/DesolationII": {
+        "stage": "skeletron-prime",
+        "via": "recipe:ElementsAwoken/DesolationI+Terraria/SoulofSight+Terraria/SoulofMight+Terraria/SoulofFright+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/AtaxiaII": {
+        "stage": "skeletron-prime",
+        "via": "recipe:ElementsAwoken/AtaxiaI+Terraria/SoulofSight+Terraria/SoulofMight+Terraria/SoulofFright+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/LamentII": {
+        "stage": "skeletron-prime",
+        "via": "recipe:ElementsAwoken/LamentI+Terraria/SoulofSight+Terraria/SoulofMight+Terraria/SoulofFright+Terraria/HallowedBar"
+      },
       "ElementsAwoken/SolusKatana": {
         "stage": "skeletron-prime",
         "via": "recipe:Terraria/SoulofFright+Terraria/Katana+Terraria/LivingFireBlock"
       },
       "Terraria/MechanicalGlove": {
         "stage": "skeletron-prime",
-        "via": "manifest"
+        "via": "recipe:Terraria/PowerGlove+Terraria/AvengerEmblem"
+      },
+      "Terraria/FireGauntlet": {
+        "stage": "skeletron-prime",
+        "via": "recipe:Terraria/MagmaStone+Terraria/MechanicalGlove"
+      },
+      "ElementsAwoken/FrozenGauntlet": {
+        "stage": "skeletron-prime",
+        "via": "recipe:ElementsAwoken/GlowingSlush+Terraria/FireGauntlet+Terraria/StarVeil"
       },
       "Terraria/ChlorophyteArrow": {
         "stage": "skeletron-prime",
@@ -26992,6 +28188,82 @@
       "ElementsAwoken/StoneOfHope": {
         "stage": "regaroth",
         "via": "container:ElementsAwoken/RegarothBag"
+      },
+      "ElementsAwoken/Aurora": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/EmpyreanHat": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/EmpyreanHeadgear": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/EmpyreanHelmet": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/EmpyreanLeggings": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/EmpyreanMask": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/EmpyreanPlate": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/EmpyreanVisage": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/FeatherFall": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/HappyLittleCloud": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/SkyFury": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/SkylineWhirlwind": {
+        "stage": "regaroth",
+        "via": "recipe:Terraria/DemonWings+Terraria/LuckyHorseshoe+ElementsAwoken/FireTreads+ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/SkyNeck": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/SkyScraper": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/Starlight": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/Stormsky": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/TheLauncher": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/ThorsHammer": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
+      },
+      "ElementsAwoken/Windfall": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
       },
       "Terraria/MoonStone": {
         "stage": "plantera",
@@ -27449,6 +28721,70 @@
         "stage": "plantera",
         "via": "recipe:Terraria/SoulofFlight+Terraria/ShroomiteBar"
       },
+      "Terraria/MasterNinjaGear": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/TigerClimbingGear+Terraria/Tabi+Terraria/BlackBelt"
+      },
+      "ElementsAwoken/FloeBreaker": {
+        "stage": "plantera",
+        "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/FrostBattleaxe": {
+        "stage": "plantera",
+        "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/FrostBlade": {
+        "stage": "plantera",
+        "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/FrostNeck": {
+        "stage": "plantera",
+        "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/FrostPulse": {
+        "stage": "plantera",
+        "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/FrostShield": {
+        "stage": "plantera",
+        "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar+Terraria/LifeCrystal"
+      },
+      "ElementsAwoken/FrostWalkers": {
+        "stage": "plantera",
+        "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar+Terraria/IceSkates+ElementsAwoken/SkylineWhirlwind"
+      },
+      "ElementsAwoken/GlacialBlitz": {
+        "stage": "plantera",
+        "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/GlacierBreaker": {
+        "stage": "plantera",
+        "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/Hailgun": {
+        "stage": "plantera",
+        "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar+Terraria/SnowballCannon"
+      },
+      "ElementsAwoken/Icicle": {
+        "stage": "plantera",
+        "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/Snower": {
+        "stage": "plantera",
+        "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/SnowflakeStaff": {
+        "stage": "plantera",
+        "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar+Terraria/MagicMissile"
+      },
+      "ElementsAwoken/Snowstorm": {
+        "stage": "plantera",
+        "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/TheThaw": {
+        "stage": "plantera",
+        "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar"
+      },
       "ElementsAwoken/DragonBreathStaff": {
         "stage": "plantera",
         "via": "recipe:ElementsAwoken/RefinedDrakonite"
@@ -27496,6 +28832,10 @@
       "ElementsAwoken/Saturn": {
         "stage": "plantera",
         "via": "recipe:ElementsAwoken/Neptune+ElementsAwoken/MysticLeaf+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/Kamikaze": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/ChlorophyteShotbow+Terraria/RocketLauncher"
       },
       "ElementsAwoken/MegaRocket": {
         "stage": "plantera",
@@ -27545,10 +28885,6 @@
         "stage": "plantera",
         "via": "manifest"
       },
-      "Terraria/MasterNinjaGear": {
-        "stage": "plantera",
-        "via": "manifest"
-      },
       "Terraria/InfernoFork": {
         "stage": "plantera",
         "via": "manifest"
@@ -27576,6 +28912,10 @@
       "Terraria/GhostWings": {
         "stage": "plantera",
         "via": "recipe:Terraria/SoulofFlight+Terraria/SpectreBar"
+      },
+      "Terraria/HeroShield": {
+        "stage": "plantera",
+        "via": "recipe:Terraria/PaladinsShield+Terraria/FleshKnuckles"
       },
       "ElementsAwoken/ChaosPotion": {
         "stage": "plantera",
@@ -28195,9 +29535,25 @@
         "stage": "golem",
         "via": "recipe:Terraria/BeetleHusk+Terraria/TurtleLeggings"
       },
+      "Terraria/CelestialStone": {
+        "stage": "golem",
+        "via": "recipe:Terraria/SunStone+Terraria/MoonStone"
+      },
+      "Terraria/CelestialShell": {
+        "stage": "golem",
+        "via": "recipe:Terraria/CelestialStone+Terraria/MoonShell"
+      },
+      "Terraria/DestroyerEmblem": {
+        "stage": "golem",
+        "via": "recipe:Terraria/AvengerEmblem+Terraria/EyeoftheGolem"
+      },
       "ElementsAwoken/AncientIchorFlagon": {
         "stage": "golem",
         "via": "recipe:ElementsAwoken/SunFragment+Terraria/Ichor+Terraria/Bottle"
+      },
+      "ElementsAwoken/FreezeRay": {
+        "stage": "golem",
+        "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar+Terraria/HeatRay"
       },
       "ElementsAwoken/AmberBlaster": {
         "stage": "golem",
@@ -28259,6 +29615,62 @@
         "stage": "aqueous",
         "via": "container:ElementsAwoken/AqueousBag"
       },
+      "ElementsAwoken/BubbleStaff": {
+        "stage": "aqueous",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/ChakramOfTheDuke": {
+        "stage": "aqueous",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/OceanicLeggings": {
+        "stage": "aqueous",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/OceanicPlateMail": {
+        "stage": "aqueous",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/OceanicVisage": {
+        "stage": "aqueous",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/SeaViper": {
+        "stage": "aqueous",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/TheUrchin": {
+        "stage": "aqueous",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/TrueWaterBolt": {
+        "stage": "aqueous",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar+Terraria/WaterBolt"
+      },
+      "ElementsAwoken/WaterNeck": {
+        "stage": "aqueous",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/WaterShield": {
+        "stage": "aqueous",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/Watershot": {
+        "stage": "aqueous",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/WaterSword": {
+        "stage": "aqueous",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/WaterYoyo": {
+        "stage": "aqueous",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/Wavelash": {
+        "stage": "aqueous",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar"
+      },
       "Terraria/FishronWings": {
         "stage": "duke-fishron",
         "via": "npc:Terraria/DukeFishron"
@@ -28299,6 +29711,14 @@
           "prerequisites": [],
           "currencyItems": null
         }
+      },
+      "ElementsAwoken/AqueousWaders": {
+        "stage": "duke-fishron",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar+ElementsAwoken/FrostWalkers+Terraria/FishronWings+Terraria/WaterWalkingBoots"
+      },
+      "ElementsAwoken/BubbleFlood": {
+        "stage": "duke-fishron",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar+Terraria/BubbleGun"
       },
       "ElementsAwoken/DubstepGun": {
         "stage": "duke-fishron",
@@ -28576,6 +29996,22 @@
         "stage": "moon-lord",
         "via": "recipe:ElementsAwoken/Pyroplasm+Terraria/LifeCrystal+Terraria/LifeFruit"
       },
+      "ElementsAwoken/DisarrayIII": {
+        "stage": "moon-lord",
+        "via": "recipe:ElementsAwoken/DisarrayII+Terraria/FragmentNebula+Terraria/FragmentSolar+Terraria/FragmentStardust+Terraria/FragmentVortex+Terraria/LunarBar"
+      },
+      "ElementsAwoken/DesolationIII": {
+        "stage": "moon-lord",
+        "via": "recipe:ElementsAwoken/DesolationII+Terraria/FragmentNebula+Terraria/FragmentSolar+Terraria/FragmentStardust+Terraria/FragmentVortex+Terraria/LunarBar"
+      },
+      "ElementsAwoken/AtaxiaIII": {
+        "stage": "moon-lord",
+        "via": "recipe:ElementsAwoken/AtaxiaII+Terraria/FragmentNebula+Terraria/FragmentSolar+Terraria/FragmentStardust+Terraria/FragmentVortex+Terraria/LunarBar"
+      },
+      "ElementsAwoken/LamentIII": {
+        "stage": "moon-lord",
+        "via": "recipe:ElementsAwoken/LamentII+Terraria/FragmentNebula+Terraria/FragmentSolar+Terraria/FragmentStardust+Terraria/FragmentVortex+Terraria/LunarBar"
+      },
       "ElementsAwoken/CalamityPotion": {
         "stage": "moon-lord",
         "via": "recipe:ElementsAwoken/ChaosPotion+Terraria/LunarOre+ElementsAwoken/NeutronFragment"
@@ -28728,6 +30164,78 @@
         "stage": "dawn-of-the-void",
         "via": "npc:ElementsAwoken/ZergCaster"
       },
+      "ElementsAwoken/Nanocore": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/SoulOfPlight+Terraria/CelestialShell+Terraria/CharmofMyths+Terraria/AvengerEmblem"
+      },
+      "ElementsAwoken/Cataclysm": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar"
+      },
+      "ElementsAwoken/CrimsonSky": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar"
+      },
+      "ElementsAwoken/EACalamity": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar"
+      },
+      "ElementsAwoken/Eradication": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar"
+      },
+      "ElementsAwoken/EyeofAnnihilation": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar"
+      },
+      "ElementsAwoken/InfinityTome": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar+Terraria/SpellTome"
+      },
+      "ElementsAwoken/Scourge": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar"
+      },
+      "ElementsAwoken/VoidBlaster": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar"
+      },
+      "ElementsAwoken/VoidBoots": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar+ElementsAwoken/AqueousWaders+Terraria/WingsSolar+Terraria/MasterNinjaGear"
+      },
+      "ElementsAwoken/VoidBreastplate": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar"
+      },
+      "ElementsAwoken/VoidGreaves": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar"
+      },
+      "ElementsAwoken/VoidHelmet": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar"
+      },
+      "ElementsAwoken/VoidNeck": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar"
+      },
+      "ElementsAwoken/VoidShield": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar+Terraria/LifeCrystal+Terraria/LifeFruit"
+      },
+      "ElementsAwoken/VoidSpiritStaff": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar"
+      },
+      "ElementsAwoken/VoidSword": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar+Terraria/TerraBlade"
+      },
+      "ElementsAwoken/ElementalArcanum": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/DiscordantSkull+ElementsAwoken/ChaosFlameFlask+ElementsAwoken/GreatThunderTotem+ElementsAwoken/FrozenGauntlet+ElementsAwoken/EtherealShell+ElementsAwoken/Nanocore+Terraria/LunarBar+ElementsAwoken/Pyroplasm"
+      },
       "ElementsAwoken/CrimsonShade": {
         "stage": "shade-wyrm",
         "via": "recipe:ElementsAwoken/ShadeScale"
@@ -28836,6 +30344,134 @@
         "stage": "void-leviathan",
         "via": "container:ElementsAwoken/VoidLeviathanBag"
       },
+      "ElementsAwoken/NyanBoots": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/VoiditeBar+ElementsAwoken/Pyroplasm+ElementsAwoken/ElementalEssence+Terraria/RainbowDye+Terraria/RainbowBrick+ElementsAwoken/VoidBoots"
+      },
+      "ElementsAwoken/Unity": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/Pyroplasm+ElementsAwoken/LunarShell+ElementsAwoken/EnergyGeode+ElementsAwoken/VoiditeBar"
+      },
+      "ElementsAwoken/VoidWalkersBreastplate": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/VoidWalkersGreatmask": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/VoidWalkersHelm": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/VoidWalkersHood": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/VoidWalkersLeggings": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/VoidWalkersVisage": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/FlaskOfExtinction": {
+        "stage": "void-leviathan",
+        "via": "recipe:Terraria/BottledWater+ElementsAwoken/VoiditeBar"
+      },
+      "ElementsAwoken/BladeOfThePrince": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/Pyroplasm+ElementsAwoken/Armageddon+Terraria/GoldBar+Terraria/BrokenHeroSword+Terraria/LunarBar+ElementsAwoken/VoiditeBar"
+      },
+      "ElementsAwoken/DiscordantStaff": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/Pyroplasm+ElementsAwoken/NeutronFragment+ElementsAwoken/VoiditeBar+Terraria/LunarBar+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/PurpleTearstoneRing": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/Pyroplasm+ElementsAwoken/NeutronFragment+ElementsAwoken/VoiditeBar+Terraria/LunarBar+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/TimeGun": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/Pyroplasm+ElementsAwoken/NeutronFragment+ElementsAwoken/VoiditeBar+Terraria/VortexBeater+Terraria/LunarBar"
+      },
+      "ElementsAwoken/ViridiumGreatsword": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/Pyroplasm+ElementsAwoken/NeutronFragment+ElementsAwoken/VoiditeBar+ElementsAwoken/NinjaKatana+Terraria/LunarBar"
+      },
+      "ElementsAwoken/SWRL": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ChaoticFlare+ElementsAwoken/VoiditeBar+Terraria/SDMG+Terraria/RocketLauncher"
+      },
+      "ElementsAwoken/Andromeda": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/Asterox": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/Cerulean": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+ElementsAwoken/Unity+Terraria/LunarBar"
+      },
+      "ElementsAwoken/Cosmicus": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/Dusksong": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/EAZenith": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/MagnetSphere+Terraria/LunarBar"
+      },
+      "ElementsAwoken/ElementalBreastplate": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/ElementalBurst": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/ElementalLeggings": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/ElementalMask": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/Equinox": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/Fusion": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/PhantomBane": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/Singularity": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar"
+      },
+      "ElementsAwoken/TheValkyrie": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/SolarEruption+Terraria/LunarBar"
+      },
+      "ElementsAwoken/Voxus": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/StarCannon+Terraria/LunarBar"
+      },
+      "ElementsAwoken/Neovirtuo": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/Pyroplasm+ElementsAwoken/NeutronFragment+ElementsAwoken/VoiditeBar+ElementsAwoken/Unity+ElementsAwoken/Asterox+Terraria/LunarBar"
+      },
       "ElementsAwoken/Anarchy": {
         "stage": "azana",
         "via": "npc:ElementsAwoken/Azana"
@@ -28868,6 +30504,30 @@
         "stage": "azana",
         "via": "container:ElementsAwoken/AzanaBag"
       },
+      "ElementsAwoken/SufferWithMe": {
+        "stage": "azana",
+        "via": "recipe:ElementsAwoken/SharktoothShackle+ElementsAwoken/EntropicCoating+ElementsAwoken/DiscordantBar+ElementsAwoken/ElementalEssence"
+      },
+      "ElementsAwoken/Deathwarp": {
+        "stage": "azana",
+        "via": "recipe:ElementsAwoken/DiscordantBar"
+      },
+      "ElementsAwoken/DyingAzure": {
+        "stage": "azana",
+        "via": "recipe:ElementsAwoken/DiscordantBar+ElementsAwoken/ChaoticFlare+ElementsAwoken/KindleCrusher"
+      },
+      "ElementsAwoken/Sol": {
+        "stage": "azana",
+        "via": "recipe:ElementsAwoken/Jupiter+ElementsAwoken/DiscordantBar"
+      },
+      "ElementsAwoken/DiscordantArrow": {
+        "stage": "azana",
+        "via": "recipe:Terraria/WoodenArrow+ElementsAwoken/DiscordantBar"
+      },
+      "ElementsAwoken/DiscordantBullet": {
+        "stage": "azana",
+        "via": "recipe:Terraria/MusketBall+ElementsAwoken/DiscordantBar"
+      },
       "ElementsAwoken/Majesty": {
         "stage": "radiant-rain",
         "via": "npc:ElementsAwoken/RadiantMaster"
@@ -28896,6 +30556,22 @@
         "stage": "radiant-rain",
         "via": "npc:ElementsAwoken/StarlightGlobule"
       },
+      "ElementsAwoken/GlobuleStaff": {
+        "stage": "radiant-rain",
+        "via": "recipe:ElementsAwoken/Radia"
+      },
+      "ElementsAwoken/LightMine": {
+        "stage": "radiant-rain",
+        "via": "recipe:ElementsAwoken/FrostMine+ElementsAwoken/Radia"
+      },
+      "ElementsAwoken/RadiantConcentrator": {
+        "stage": "radiant-rain",
+        "via": "recipe:ElementsAwoken/Radia"
+      },
+      "ElementsAwoken/RadiantGlove": {
+        "stage": "radiant-rain",
+        "via": "recipe:ElementsAwoken/Radia"
+      },
       "ElementsAwoken/Chromacast": {
         "stage": "ancient-amalgamate",
         "via": "npc:ElementsAwoken/AncientAmalgam"
@@ -28915,6 +30591,22 @@
       "ElementsAwoken/GiftOfTheArchaic": {
         "stage": "ancient-amalgamate",
         "via": "container:ElementsAwoken/AncientsBag"
+      },
+      "ElementsAwoken/DisarrayIV": {
+        "stage": "ancient-amalgamate",
+        "via": "recipe:ElementsAwoken/DisarrayIII+ElementsAwoken/AncientShard+ElementsAwoken/VoiditeBar+ElementsAwoken/DiscordantBar"
+      },
+      "ElementsAwoken/DesolationIV": {
+        "stage": "ancient-amalgamate",
+        "via": "recipe:ElementsAwoken/DesolationIII+ElementsAwoken/AncientShard+ElementsAwoken/VoiditeBar+ElementsAwoken/DiscordantBar"
+      },
+      "ElementsAwoken/AtaxiaIV": {
+        "stage": "ancient-amalgamate",
+        "via": "recipe:ElementsAwoken/AtaxiaIII+ElementsAwoken/AncientShard+ElementsAwoken/VoiditeBar+ElementsAwoken/DiscordantBar"
+      },
+      "ElementsAwoken/LamentIV": {
+        "stage": "ancient-amalgamate",
+        "via": "recipe:ElementsAwoken/LamentIII+ElementsAwoken/AncientShard+ElementsAwoken/VoiditeBar+ElementsAwoken/DiscordantBar"
       },
       "Terraria/Wood": {
         "stage": "start",
@@ -29635,10 +31327,6 @@
       "ElementsAwoken/PenguinFeather": {
         "stage": "start",
         "via": "npc:Terraria/CorruptPenguin"
-      },
-      "Terraria/BlackInk": {
-        "stage": "start",
-        "via": "npc:Terraria/Squid"
       },
       "Terraria/PurpleMucos": {
         "stage": "start",
@@ -35255,26 +36943,6 @@
         "stage": "start",
         "via": "recipe:Terraria/VioletHusk"
       },
-      "Terraria/BlackDye": {
-        "stage": "start",
-        "via": "recipe:Terraria/BlackInk"
-      },
-      "Terraria/RedandBlackDye": {
-        "stage": "start",
-        "via": "recipe:Terraria/RedDye+Terraria/BlackDye"
-      },
-      "Terraria/PurpleandBlackDye": {
-        "stage": "start",
-        "via": "recipe:Terraria/PurpleDye+Terraria/BlackDye"
-      },
-      "Terraria/VioletandBlackDye": {
-        "stage": "start",
-        "via": "recipe:Terraria/VioletDye+Terraria/BlackDye"
-      },
-      "Terraria/BrownAndBlackDye": {
-        "stage": "start",
-        "via": "recipe:Terraria/BrownDye+Terraria/BlackDye"
-      },
       "Terraria/BrightRedDye": {
         "stage": "start",
         "via": "recipe:Terraria/RedDye+Terraria/SilverDye"
@@ -35306,14 +36974,6 @@
       "Terraria/BrownAndSilverDye": {
         "stage": "start",
         "via": "recipe:Terraria/BrownDye+Terraria/SilverDye"
-      },
-      "Terraria/SilverAndBlackDye": {
-        "stage": "start",
-        "via": "recipe:Terraria/SilverDye+Terraria/BlackDye"
-      },
-      "Terraria/BlackAndWhiteDye": {
-        "stage": "start",
-        "via": "recipe:Terraria/SilverDye+Terraria/BlackDye"
       },
       "Terraria/BrightSilverDye": {
         "stage": "start",
@@ -35779,22 +37439,6 @@
         "stage": "start",
         "via": "recipe:Terraria/Glass"
       },
-      "Terraria/PlaguebringerChestplate": {
-        "stage": "start",
-        "via": "recipe:Terraria/Silk+Terraria/Vertebrae+Terraria/BlackDye"
-      },
-      "Terraria/PlaguebringerGreaves": {
-        "stage": "start",
-        "via": "recipe:Terraria/Silk+Terraria/Vertebrae+Terraria/BlackDye"
-      },
-      "Terraria/TimelessTravelerRobe": {
-        "stage": "start",
-        "via": "recipe:Terraria/Silk+Terraria/RottenChunk+Terraria/BlackDye"
-      },
-      "Terraria/TimelessTravelerBottom": {
-        "stage": "start",
-        "via": "recipe:Terraria/Silk+Terraria/RottenChunk+Terraria/BlackDye"
-      },
       "Terraria/TVHeadSuit": {
         "stage": "start",
         "via": "recipe:Terraria/Silk+Terraria/PurpleDye"
@@ -35802,10 +37446,6 @@
       "Terraria/TVHeadPants": {
         "stage": "start",
         "via": "recipe:Terraria/Silk+Terraria/PurpleDye"
-      },
-      "Terraria/GolfBallDyedBlack": {
-        "stage": "start",
-        "via": "recipe:Terraria/GolfBall+Terraria/BlackDye"
       },
       "Terraria/GolfBallDyedPurple": {
         "stage": "start",
@@ -36102,6 +37742,114 @@
       "Terraria/MetalSink": {
         "stage": "start",
         "via": "recipe:Terraria/IronBar+Terraria/WaterBucket"
+      },
+      "ElementsAwoken/MysticGemstone": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "ElementsAwoken/DiscordantAmber": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "ElementsAwoken/FieryJar": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "ElementsAwoken/GlowingSlush": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "ElementsAwoken/OddWater": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "ElementsAwoken/StrangeTotem": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "Terraria/EbonstoneBlock": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "Terraria/CrimstoneBlock": {
+        "stage": "start",
+        "via": "manifest"
+      },
+      "Terraria/CorruptTorch": {
+        "stage": "start",
+        "via": "recipe:Terraria/Torch+Terraria/EbonstoneBlock"
+      },
+      "Terraria/CrimsonTorch": {
+        "stage": "start",
+        "via": "recipe:Terraria/Torch+Terraria/CrimstoneBlock"
+      },
+      "Terraria/CorruptCampfire": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood+Terraria/CorruptTorch"
+      },
+      "Terraria/CrimsonCampfire": {
+        "stage": "start",
+        "via": "recipe:Terraria/Wood+Terraria/CrimsonTorch"
+      },
+      "Terraria/EbonstoneBrick": {
+        "stage": "start",
+        "via": "recipe:Terraria/EbonstoneBlock"
+      },
+      "Terraria/EbonstoneBrickWall": {
+        "stage": "start",
+        "via": "recipe:Terraria/EbonstoneBrick"
+      },
+      "Terraria/EbonstoneEcho": {
+        "stage": "start",
+        "via": "recipe:Terraria/EbonstoneBlock"
+      },
+      "Terraria/Corruption1Echo": {
+        "stage": "start",
+        "via": "recipe:Terraria/EbonstoneBlock"
+      },
+      "Terraria/Corruption2Echo": {
+        "stage": "start",
+        "via": "recipe:Terraria/EbonstoneBlock"
+      },
+      "Terraria/Corruption3Echo": {
+        "stage": "start",
+        "via": "recipe:Terraria/EbonstoneBlock"
+      },
+      "Terraria/Corruption4Echo": {
+        "stage": "start",
+        "via": "recipe:Terraria/EbonstoneBlock"
+      },
+      "Terraria/CrimstoneBrick": {
+        "stage": "start",
+        "via": "recipe:Terraria/CrimstoneBlock"
+      },
+      "Terraria/CrimstoneBrickWall": {
+        "stage": "start",
+        "via": "recipe:Terraria/CrimstoneBrick"
+      },
+      "Terraria/CrimstoneEcho": {
+        "stage": "start",
+        "via": "recipe:Terraria/CrimstoneBlock"
+      },
+      "Terraria/Crimson1Echo": {
+        "stage": "start",
+        "via": "recipe:Terraria/CrimstoneBlock"
+      },
+      "Terraria/Crimson2Echo": {
+        "stage": "start",
+        "via": "recipe:Terraria/CrimstoneBlock"
+      },
+      "Terraria/Crimson3Echo": {
+        "stage": "start",
+        "via": "recipe:Terraria/CrimstoneBlock"
+      },
+      "Terraria/Crimson4Echo": {
+        "stage": "start",
+        "via": "recipe:Terraria/CrimstoneBlock"
+      },
+      "ElementsAwoken/ElementalForge": {
+        "stage": "start",
+        "via": "recipe:Terraria/Furnace+Terraria/SandBlock+Terraria/Torch+Terraria/Cloud+Terraria/IceBlock+Terraria/WaterBucket+Terraria/EbonstoneBlock"
       },
       "Terraria/KingSlimeTrophy": {
         "stage": "king-slime",
@@ -36581,6 +38329,26 @@
           "currencyItems": null
         }
       },
+      "Terraria/TinkerersWorkshop": {
+        "stage": "eye-of-cthulhu",
+        "via": "shop:Terraria/GoblinTinkerer",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [],
+          "prerequisites": [],
+          "currencyItems": null
+        }
+      },
+      "Terraria/Toolbelt": {
+        "stage": "eye-of-cthulhu",
+        "via": "shop:Terraria/GoblinTinkerer",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [],
+          "prerequisites": [],
+          "currencyItems": null
+        }
+      },
       "ElementsAwoken/GreatLens": {
         "stage": "eye-of-cthulhu",
         "via": "container:Terraria/EyeOfCthulhuBossBag"
@@ -36608,6 +38376,18 @@
       "Terraria/DontHurtComboBook": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/DontHurtCrittersBook+Terraria/DontHurtNatureBook"
+      },
+      "Terraria/DemoniteBrick": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/DemoniteOre+Terraria/EbonstoneBlock"
+      },
+      "Terraria/CrimtaneBrick": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/CrimtaneOre+Terraria/CrimstoneBlock"
+      },
+      "Terraria/CrimtaneBrickWall": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/CrimtaneBrick"
       },
       "Terraria/GemTreeAmethystSeed": {
         "stage": "eye-of-cthulhu",
@@ -36661,9 +38441,77 @@
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/CrimtaneBar"
       },
+      "Terraria/DivingGear": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/Flipper+Terraria/DivingHelmet"
+      },
+      "Terraria/JellyfishDivingGear": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/DivingGear+Terraria/JellyfishNecklace"
+      },
+      "Terraria/GPS": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/GoldWatch+Terraria/DepthMeter+Terraria/Compass"
+      },
+      "Terraria/GoblinTech": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/MetalDetector+Terraria/Stopwatch+Terraria/DPSMeter"
+      },
+      "Terraria/UltrabrightHelmet": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/MiningHelmet+Terraria/NightVisionHelmet"
+      },
+      "Terraria/ObsidianHorseshoe": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/LuckyHorseshoe+Terraria/ObsidianSkull"
+      },
+      "Terraria/CloudinaBalloon": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/CloudinaBottle+Terraria/ShinyRedBalloon"
+      },
+      "Terraria/BlizzardinaBalloon": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/BlizzardinaBottle+Terraria/ShinyRedBalloon"
+      },
+      "Terraria/SandstorminaBalloon": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/SandstorminaBottle+Terraria/ShinyRedBalloon"
+      },
+      "Terraria/FartInABalloon": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/FartinaJar+Terraria/ShinyRedBalloon"
+      },
+      "Terraria/LavaSkull": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/ObsidianSkull+Terraria/LavaCharm"
+      },
+      "Terraria/ObsidianWaterWalkingBoots": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/WaterWalkingBoots+Terraria/ObsidianSkull"
+      },
+      "Terraria/LavaWaders": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/ObsidianWaterWalkingBoots+Terraria/LavaCharm+Terraria/ObsidianRose"
+      },
+      "Terraria/HellfireTreads": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/FlameWakerBoots+Terraria/SpectreBoots"
+      },
+      "Terraria/ArchitectGizmoPack": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/BrickLayer+Terraria/ExtendoGrip+Terraria/PaintSprayer+Terraria/PortableCementMixer"
+      },
+      "Terraria/FishingBobberGlowingStar": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/FishingBobber+Terraria/FallenStar"
+      },
       "ElementsAwoken/VoidbloodHeart": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/CrimsonSeeds+ElementsAwoken/Stardust"
+      },
+      "ElementsAwoken/SandstormStone": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone"
       },
       "ElementsAwoken/Antibiotics": {
         "stage": "eye-of-cthulhu",
@@ -36688,6 +38536,10 @@
       "Terraria/ShadowCandle": {
         "stage": "eye-of-cthulhu",
         "via": "recipe:Terraria/DemoniteBar+Terraria/Torch"
+      },
+      "Terraria/DemoniteBrickWall": {
+        "stage": "eye-of-cthulhu",
+        "via": "recipe:Terraria/DemoniteBrick"
       },
       "Terraria/GreenThread": {
         "stage": "eye-of-cthulhu",
@@ -36777,6 +38629,10 @@
       "Terraria/CyanHusk": {
         "stage": "world-evil",
         "via": "npc:Terraria/CyanBeetle"
+      },
+      "Terraria/BlackInk": {
+        "stage": "world-evil",
+        "via": "npc:Terraria/Squid"
       },
       "Terraria/TheBrideHat": {
         "stage": "world-evil",
@@ -37181,9 +39037,29 @@
         "stage": "world-evil",
         "via": "recipe:Terraria/CyanHusk"
       },
+      "Terraria/BlackDye": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/BlackInk"
+      },
+      "Terraria/RedandBlackDye": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/RedDye+Terraria/BlackDye"
+      },
       "Terraria/CyanandBlackDye": {
         "stage": "world-evil",
         "via": "recipe:Terraria/CyanDye+Terraria/BlackDye"
+      },
+      "Terraria/PurpleandBlackDye": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/PurpleDye+Terraria/BlackDye"
+      },
+      "Terraria/VioletandBlackDye": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/VioletDye+Terraria/BlackDye"
+      },
+      "Terraria/BrownAndBlackDye": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/BrownDye+Terraria/BlackDye"
       },
       "Terraria/BrightCyanDye": {
         "stage": "world-evil",
@@ -37193,9 +39069,37 @@
         "stage": "world-evil",
         "via": "recipe:Terraria/CyanDye+Terraria/SilverDye"
       },
+      "Terraria/SilverAndBlackDye": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/SilverDye+Terraria/BlackDye"
+      },
+      "Terraria/BlackAndWhiteDye": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/SilverDye+Terraria/BlackDye"
+      },
       "Terraria/MeteoritePlatform": {
         "stage": "world-evil",
         "via": "recipe:Terraria/MeteoriteBrick"
+      },
+      "Terraria/PlaguebringerChestplate": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Silk+Terraria/Vertebrae+Terraria/BlackDye"
+      },
+      "Terraria/PlaguebringerGreaves": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Silk+Terraria/Vertebrae+Terraria/BlackDye"
+      },
+      "Terraria/TimelessTravelerRobe": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Silk+Terraria/RottenChunk+Terraria/BlackDye"
+      },
+      "Terraria/TimelessTravelerBottom": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/Silk+Terraria/RottenChunk+Terraria/BlackDye"
+      },
+      "Terraria/GolfBallDyedBlack": {
+        "stage": "world-evil",
+        "via": "recipe:Terraria/GolfBall+Terraria/BlackDye"
       },
       "Terraria/GolfBallDyedCyan": {
         "stage": "world-evil",
@@ -38678,6 +40582,22 @@
         "stage": "skeletron",
         "via": "recipe:Terraria/Chain+Terraria/Bone"
       },
+      "Terraria/REK": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/TallyCounter+Terraria/LifeformAnalyzer+Terraria/Radar"
+      },
+      "Terraria/HandOfCreation": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/ArchitectGizmoPack+Terraria/AncientChisel+Terraria/TreasureMagnet+Terraria/PortableStool"
+      },
+      "Terraria/MulticolorWrench": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/Wrench+Terraria/GreenWrench+Terraria/BlueWrench+Terraria/YellowWrench+Terraria/WireCutter"
+      },
+      "Terraria/WireKite": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/MulticolorWrench+Terraria/MechanicalLens+Terraria/LaserRuler+Terraria/Wire"
+      },
       "Terraria/ActuationRod": {
         "stage": "skeletron",
         "via": "recipe:Terraria/Actuator+Terraria/IronBar+Terraria/Wire"
@@ -38701,6 +40621,22 @@
       "Terraria/OutletPump": {
         "stage": "skeletron",
         "via": "recipe:Terraria/IronBar+Terraria/Wire"
+      },
+      "Terraria/WeightedPressurePlateCyan": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/GrayPressurePlate+Terraria/IronBar+Terraria/Wire"
+      },
+      "Terraria/WeightedPressurePlateOrange": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/GrayPressurePlate+Terraria/IronBar+Terraria/Wire"
+      },
+      "Terraria/WeightedPressurePlatePink": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/GrayPressurePlate+Terraria/IronBar+Terraria/Wire"
+      },
+      "Terraria/WeightedPressurePlatePurple": {
+        "stage": "skeletron",
+        "via": "recipe:Terraria/GrayPressurePlate+Terraria/IronBar+Terraria/Wire"
       },
       "Terraria/Explosives": {
         "stage": "skeletron",
@@ -39804,6 +41740,23 @@
           "currencyItems": null
         }
       },
+      "Terraria/RubblemakerSmall": {
+        "stage": "wall-of-flesh",
+        "via": "shop:Terraria/GoblinTinkerer",
+        "evidence": {
+          "kind": "shop",
+          "conditions": [
+            {
+              "type": "Terraria.Condition",
+              "description": "In hardmode",
+              "key": "Conditions.InHardmode",
+              "facts": []
+            }
+          ],
+          "prerequisites": [],
+          "currencyItems": null
+        }
+      },
       "Terraria/TikiTotem": {
         "stage": "wall-of-flesh",
         "via": "shop:Terraria/WitchDoctor",
@@ -40379,6 +42332,14 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Cobweb+Terraria/SpiderFang"
       },
+      "Terraria/FleshBlock": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/CrimstoneBlock"
+      },
+      "Terraria/LesionBlock": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/EbonstoneBlock"
+      },
       "Terraria/SoulBottleLight": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Bottle+Terraria/SoulofLight"
@@ -40791,6 +42752,10 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/SpiderBlock"
       },
+      "Terraria/LesionBlockWall": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/LesionBlock"
+      },
       "Terraria/SandstoneBookcase": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/SmoothSandstone+Terraria/Book"
@@ -40866,6 +42831,10 @@
       "Terraria/PumpkinPiano": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Bone+Terraria/Pumpkin+Terraria/Book"
+      },
+      "Terraria/FleshBlockWall": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/FleshBlock"
       },
       "Terraria/CobaltDrill": {
         "stage": "wall-of-flesh",
@@ -40974,6 +42943,14 @@
       "Terraria/GreenJellyfishJar": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/GreenJellyfish+Terraria/BottledWater"
+      },
+      "Terraria/CoinRing": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/GoldRing+Terraria/LuckyCoin"
+      },
+      "Terraria/GreedyRing": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/CoinRing+Terraria/DiscountCard"
       },
       "Terraria/LogicSensor_Sun": {
         "stage": "wall-of-flesh",
@@ -41087,6 +43064,14 @@
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/SpiderBlock"
       },
+      "Terraria/FleshPlatform": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/FleshBlock"
+      },
+      "Terraria/LesionPlatform": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/LesionBlock"
+      },
       "Terraria/AncientMythrilBrickWall": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/AncientMythrilBrick"
@@ -41140,6 +43125,10 @@
         "via": "manifest"
       },
       "Terraria/AncientCloth": {
+        "stage": "wall-of-flesh",
+        "via": "manifest"
+      },
+      "Terraria/RainbowDye": {
         "stage": "wall-of-flesh",
         "via": "manifest"
       },
@@ -41250,6 +43239,10 @@
       "Terraria/AncientArmorPants": {
         "stage": "wall-of-flesh",
         "via": "recipe:Terraria/Silk+Terraria/AncientCloth"
+      },
+      "Terraria/IntenseRainbowDye": {
+        "stage": "wall-of-flesh",
+        "via": "recipe:Terraria/RainbowDye"
       },
       "Terraria/QueenSlimeTrophy": {
         "stage": "queen-slime",
@@ -41985,6 +43978,86 @@
         "stage": "destroyer",
         "via": "recipe:Terraria/Wood"
       },
+      "Terraria/LesionWorkbench": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock"
+      },
+      "Terraria/LesionDoor": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock"
+      },
+      "Terraria/LesionChair": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock"
+      },
+      "Terraria/LesionChest": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock+Terraria/IronBar"
+      },
+      "Terraria/LesionTable": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock"
+      },
+      "Terraria/LesionSink": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock+Terraria/WaterBucket"
+      },
+      "Terraria/LesionLantern": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock+Terraria/Torch"
+      },
+      "Terraria/LesionCandle": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock+Terraria/Torch"
+      },
+      "Terraria/LesionLamp": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock+Terraria/Torch"
+      },
+      "Terraria/LesionCandelabra": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock+Terraria/Torch"
+      },
+      "Terraria/LesionBed": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock+Terraria/Silk"
+      },
+      "Terraria/LesionDresser": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock"
+      },
+      "Terraria/LesionBookcase": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock+Terraria/Book"
+      },
+      "Terraria/LesionClock": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/LesionBlock"
+      },
+      "Terraria/LesionSofa": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock+Terraria/Silk"
+      },
+      "Terraria/LesionPiano": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/Bone+Terraria/LesionBlock+Terraria/Book"
+      },
+      "Terraria/LesionBathtub": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock"
+      },
+      "Terraria/LesionChandelier": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock+Terraria/Torch+Terraria/Chain"
+      },
+      "Terraria/ToiletLesion": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionBlock"
+      },
+      "Terraria/Fake_LesionChest": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/LesionChest+Terraria/Wire"
+      },
       "Terraria/LivingWoodClock": {
         "stage": "destroyer",
         "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/Wood"
@@ -42217,6 +44290,82 @@
         "stage": "destroyer",
         "via": "recipe:Terraria/IceBlock"
       },
+      "Terraria/FleshClock": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/FleshBlock"
+      },
+      "Terraria/FleshDoor": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshBlock"
+      },
+      "Terraria/FleshDresser": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshBlock"
+      },
+      "Terraria/FleshChair": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshBlock"
+      },
+      "Terraria/FleshChest": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshBlock+Terraria/IronBar"
+      },
+      "Terraria/FleshWorkBench": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshBlock"
+      },
+      "Terraria/FleshSink": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshBlock+Terraria/WaterBucket"
+      },
+      "Terraria/FleshTable": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshBlock"
+      },
+      "Terraria/FleshPiano": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/Bone+Terraria/FleshBlock+Terraria/Book"
+      },
+      "Terraria/FleshBookcase": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshBlock+Terraria/Book"
+      },
+      "Terraria/FleshBed": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshBlock+Terraria/Silk"
+      },
+      "Terraria/FleshBathtub": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshBlock"
+      },
+      "Terraria/FleshLantern": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshBlock+Terraria/Torch"
+      },
+      "Terraria/FleshCandle": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshBlock+Terraria/Torch"
+      },
+      "Terraria/FleshChandelier": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshBlock+Terraria/Torch+Terraria/Chain"
+      },
+      "Terraria/FleshLamp": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/Torch+Terraria/FleshBlock"
+      },
+      "Terraria/FleshCandelabra": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshBlock+Terraria/Torch"
+      },
+      "Terraria/FleshSofa": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshBlock+Terraria/Silk"
+      },
+      "Terraria/ToiletFlesh": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshBlock"
+      },
       "Terraria/BoneBlockWall": {
         "stage": "destroyer",
         "via": "recipe:Terraria/Bone"
@@ -42340,6 +44489,10 @@
       "Terraria/Fake_BoneChest": {
         "stage": "destroyer",
         "via": "recipe:Terraria/BoneChest+Terraria/Wire"
+      },
+      "Terraria/Fake_FleshChest": {
+        "stage": "destroyer",
+        "via": "recipe:Terraria/FleshChest+Terraria/Wire"
       },
       "ElementsAwoken/ItemMagnetTile": {
         "stage": "destroyer",
@@ -42674,6 +44827,18 @@
       "ElementsAwoken/RegarothSummon": {
         "stage": "regaroth",
         "via": "recipe:ElementsAwoken/SkyEssence+Terraria/HallowedBar+Terraria/SoulofMight+Terraria/SoulofNight+Terraria/SoulofLight"
+      },
+      "ElementsAwoken/SkylineWings": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/SoulofFlight+Terraria/Feather"
+      },
+      "ElementsAwoken/SkyShield": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar+Terraria/CloudinaBottle"
+      },
+      "ElementsAwoken/TimeToken": {
+        "stage": "regaroth",
+        "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar"
       },
       "Terraria/LizardEgg": {
         "stage": "plantera",
@@ -43787,6 +45952,14 @@
         "stage": "aqueous",
         "via": "recipe:ElementsAwoken/WaterEssence+Terraria/Ectoplasm+Terraria/Seashell+Terraria/SoulofLight"
       },
+      "ElementsAwoken/BubblePack": {
+        "stage": "aqueous",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar"
+      },
+      "ElementsAwoken/RainSigil": {
+        "stage": "aqueous",
+        "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar"
+      },
       "Terraria/DukeFishronTrophy": {
         "stage": "duke-fishron",
         "via": "npc:Terraria/DukeFishron"
@@ -44782,6 +46955,14 @@
         "stage": "dawn-of-the-void",
         "via": "recipe:ElementsAwoken/NeutronFragment+ElementsAwoken/VoidEssence+ElementsAwoken/Pyroplasm+Terraria/LunarBar+Terraria/Ectoplasm+Terraria/SoulofMight+Terraria/SoulofNight"
       },
+      "ElementsAwoken/HealingIcon": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar+Terraria/RegenerationPotion+Terraria/LesserHealingPotion+Terraria/HealingPotion+Terraria/GreaterHealingPotion+Terraria/SuperHealingPotion+ElementsAwoken/EpicHealingPotion"
+      },
+      "ElementsAwoken/ElementalEssence": {
+        "stage": "dawn-of-the-void",
+        "via": "recipe:ElementsAwoken/DesertEssence+ElementsAwoken/FireEssence+ElementsAwoken/SkyEssence+ElementsAwoken/FrostEssence+ElementsAwoken/WaterEssence+ElementsAwoken/VoidEssence"
+      },
       "ElementsAwoken/VoidBrick": {
         "stage": "dawn-of-the-void",
         "via": "recipe:ElementsAwoken/VoidStone"
@@ -44968,6 +47149,22 @@
         "stage": "void-leviathan",
         "via": "recipe:ElementsAwoken/VoidAshes+ElementsAwoken/VoidStone+ElementsAwoken/VoidEssence"
       },
+      "ElementsAwoken/VoiditeOre": {
+        "stage": "void-leviathan",
+        "via": "manifest"
+      },
+      "ElementsAwoken/VoiditeBar": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/VoiditeOre+ElementsAwoken/VoidAshes"
+      },
+      "ElementsAwoken/Transformer": {
+        "stage": "void-leviathan",
+        "via": "recipe:Terraria/LunarBar+ElementsAwoken/VoiditeBar+ElementsAwoken/GoldWire+ElementsAwoken/CopperWire"
+      },
+      "ElementsAwoken/SolarGeneratorIV": {
+        "stage": "void-leviathan",
+        "via": "recipe:ElementsAwoken/SolarGeneratorIII+Terraria/LunarBar+ElementsAwoken/VoiditeBar+ElementsAwoken/Microcontroller+ElementsAwoken/Transformer"
+      },
       "ElementsAwoken/AzanaRelicItem": {
         "stage": "azana",
         "via": "npc:ElementsAwoken/Azana"
@@ -45005,6 +47202,30 @@
         "stage": "azana",
         "via": "container:ElementsAwoken/AzanaBag"
       },
+      "ElementsAwoken/ChaoticCrucible": {
+        "stage": "azana",
+        "via": "recipe:ElementsAwoken/ElementalForge+ElementsAwoken/DiscordantOre+ElementsAwoken/ChaoticFlare"
+      },
+      "ElementsAwoken/DiscordantBar": {
+        "stage": "azana",
+        "via": "recipe:ElementsAwoken/DiscordantOre+ElementsAwoken/ChaoticFlare"
+      },
+      "ElementsAwoken/ChaosHeart": {
+        "stage": "azana",
+        "via": "recipe:ElementsAwoken/DiscordantBar+ElementsAwoken/VoidAshes+ElementsAwoken/VoidEssence"
+      },
+      "ElementsAwoken/ChaoticEnergyCapacitor": {
+        "stage": "azana",
+        "via": "recipe:ElementsAwoken/LunarEnergyHarnesser+ElementsAwoken/DiscordantBar+ElementsAwoken/ChaoticFlare"
+      },
+      "ElementsAwoken/LRM": {
+        "stage": "azana",
+        "via": "recipe:Terraria/Glass+ElementsAwoken/DiscordantBar+ElementsAwoken/GoldWire"
+      },
+      "ElementsAwoken/MatterManipulator": {
+        "stage": "azana",
+        "via": "recipe:ElementsAwoken/DiscordantBar+ElementsAwoken/ChaoticFlare+Terraria/LaserDrill"
+      },
       "ElementsAwoken/Radia": {
         "stage": "radiant-rain",
         "via": "npc:ElementsAwoken/RadiantMaster"
@@ -45012,6 +47233,14 @@
       "ElementsAwoken/RadiantMasterRelicItem": {
         "stage": "radiant-rain",
         "via": "npc:ElementsAwoken/RadiantMaster"
+      },
+      "ElementsAwoken/RadiantRainSummon": {
+        "stage": "radiant-rain",
+        "via": "recipe:ElementsAwoken/Radia+ElementsAwoken/DiscordantBar"
+      },
+      "ElementsAwoken/RadiantMortar": {
+        "stage": "radiant-rain",
+        "via": "recipe:ElementsAwoken/Radia"
       },
       "ElementsAwoken/AncientsRelicItem": {
         "stage": "ancient-amalgamate",
@@ -45028,6 +47257,10 @@
       "ElementsAwoken/AncientShard": {
         "stage": "ancient-amalgamate",
         "via": "npc:ElementsAwoken/AncientAmalgam"
+      },
+      "ElementsAwoken/AncientsSummon": {
+        "stage": "ancient-amalgamate",
+        "via": "recipe:ElementsAwoken/ChaoticFlare+ElementsAwoken/CrystalAmalgamate+ElementsAwoken/DiscordantBar"
       }
     },
     "wikiMissingItems": [
@@ -45088,38 +47321,6 @@
         ]
       },
       {
-        "id": "ElementsAwoken/IllusiveCharm",
-        "wikiStage": "pre-boss",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Illusive Charm"
-        ]
-      },
-      {
-        "id": "Terraria/MagicCuffs",
-        "wikiStage": "pre-boss",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Magic Cuffs"
-        ]
-      },
-      {
-        "id": "Terraria/CelestialCuffs",
-        "wikiStage": "pre-boss",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Celestial Cuffs"
-        ]
-      },
-      {
-        "id": "Terraria/ManaFlower",
-        "wikiStage": "pre-boss",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Mana Flower"
-        ]
-      },
-      {
         "id": "Terraria/Grenade",
         "wikiStage": "pre-boss",
         "reason": "recommendation has no proven availability",
@@ -45133,78 +47334,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ElementsAwoken/Blood Diamond"
-        ]
-      },
-      {
-        "id": "Terraria/BundleofBalloons",
-        "wikiStage": "pre-boss",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bundle of Balloons"
-        ]
-      },
-      {
-        "id": "Terraria/BlueHorseshoeBalloon",
-        "wikiStage": "pre-boss",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Blue Horseshoe Balloon"
-        ]
-      },
-      {
-        "id": "Terraria/FrostsparkBoots",
-        "wikiStage": "pre-boss",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Frostspark Boots"
-        ]
-      },
-      {
-        "id": "Terraria/LightningBoots",
-        "wikiStage": "pre-boss",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Lightning Boots"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/SharktoothShackle",
-        "wikiStage": "pre-boss",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Sharktooth Shackle"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/SolitaryStorm",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Solitary Storm"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DesertNeck",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Badge of the Desert"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DesertGun",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Desert Eagle"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/TheVulture",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/The Vulture"
         ]
       },
       {
@@ -45224,46 +47353,6 @@
         ]
       },
       {
-        "id": "ElementsAwoken/SandstormTome",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Sandstorm Tome"
-        ]
-      },
-      {
-        "id": "Terraria/CelestialCuffs",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Celestial Cuffs"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/IllusiveCharm",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Illusive Charm"
-        ]
-      },
-      {
-        "id": "Terraria/ManaFlower",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Mana Flower"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/StaffOfTheSandstorm",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Staff of the Sandstorm"
-        ]
-      },
-      {
         "id": "Terraria/Grenade",
         "wikiStage": "pre-world-evil",
         "reason": "recommendation has no proven availability",
@@ -45272,107 +47361,11 @@
         ]
       },
       {
-        "id": "ElementsAwoken/Sandball",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Sandball"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/AridFalconHelm",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Arid armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/AridHat",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Arid armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/AridHeadgear",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Arid armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/AridHood",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Arid armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/AridWarriorMask",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Arid armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/AridBreastplate",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Arid armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/AridLeggings",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Arid armor"
-        ]
-      },
-      {
         "id": "ElementsAwoken/BloodDiamond",
         "wikiStage": "pre-world-evil",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ElementsAwoken/Blood Diamond"
-        ]
-      },
-      {
-        "id": "Terraria/BundleofBalloons",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bundle of Balloons"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DesertTrailers",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Desert Trailers"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/SharktoothShackle",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Sharktooth Shackle"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DesertShield",
-        "wikiStage": "pre-world-evil",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Shield of the Desert"
         ]
       },
       {
@@ -45384,30 +47377,6 @@
         ]
       },
       {
-        "id": "ElementsAwoken/SolitaryStorm",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Solitary Storm"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DesertNeck",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Badge of the Desert"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/TheVulture",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/The Vulture"
-        ]
-      },
-      {
         "id": "Terraria/JestersArrow",
         "wikiStage": "pre-skeletron",
         "reason": "recommendation has no proven availability",
@@ -45424,14 +47393,6 @@
         ]
       },
       {
-        "id": "ElementsAwoken/SandstormTome",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Sandstorm Tome"
-        ]
-      },
-      {
         "id": "ElementsAwoken/StrangeStaff",
         "wikiStage": "pre-skeletron",
         "reason": "recommendation has no proven availability",
@@ -45440,131 +47401,11 @@
         ]
       },
       {
-        "id": "Terraria/CelestialCuffs",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Celestial Cuffs"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/IllusiveCharm",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Illusive Charm"
-        ]
-      },
-      {
-        "id": "Terraria/ManaFlower",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Mana Flower"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/StaffOfTheSandstorm",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Staff of the Sandstorm"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/AridFalconHelm",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Arid armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/AridHat",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Arid armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/AridHeadgear",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Arid armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/AridHood",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Arid armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/AridWarriorMask",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Arid armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/AridBreastplate",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Arid armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/AridLeggings",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Arid armor"
-        ]
-      },
-      {
         "id": "ElementsAwoken/BloodDiamond",
         "wikiStage": "pre-skeletron",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ElementsAwoken/Blood Diamond"
-        ]
-      },
-      {
-        "id": "Terraria/BundleofBalloons",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bundle of Balloons"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DesertTrailers",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Desert Trailers"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/SharktoothShackle",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Sharktooth Shackle"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DesertShield",
-        "wikiStage": "pre-skeletron",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Shield of the Desert"
         ]
       },
       {
@@ -45584,62 +47425,6 @@
         ]
       },
       {
-        "id": "ElementsAwoken/AtaxiaI",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Ataxia I"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/FireTrisword",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Blazing Trisword"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DesertNeck",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Badge of the Desert"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/BlazeFury",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Blaze Fury"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DesolationI",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Desolation I"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/FireStorm",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Fire Storm"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Incinerator",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Incinerator"
-        ]
-      },
-      {
         "id": "Terraria/JestersArrow",
         "wikiStage": "pre-wall-of-flesh",
         "reason": "recommendation has no proven availability",
@@ -45656,107 +47441,11 @@
         ]
       },
       {
-        "id": "ElementsAwoken/BonfirePummel",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Bonfire Pummel"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/LamentI",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Lament I"
-        ]
-      },
-      {
         "id": "ElementsAwoken/StrangeStaff",
         "wikiStage": "pre-wall-of-flesh",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ElementsAwoken/Strange Staff"
-        ]
-      },
-      {
-        "id": "Terraria/CelestialCuffs",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Celestial Cuffs"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/IllusiveCharm",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Illusive Charm"
-        ]
-      },
-      {
-        "id": "Terraria/ManaFlower",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Mana Flower"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DisarrayI",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Disarray I"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/InfurnicesesMinionStaff",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Fire Spirit Scepter"
-        ]
-      },
-      {
-        "id": "Terraria/BundleofBalloons",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Bundle of Balloons"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ChaosFlameFlask",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Chaos Flame Flask"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/FireTreads",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Fire Treads"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/SharktoothShackle",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Sharktooth Shackle"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DesertShield",
-        "wikiStage": "pre-wall-of-flesh",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Shield of the Desert"
         ]
       },
       {
@@ -45773,22 +47462,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ElementsAwoken/Hell Fury"
-        ]
-      },
-      {
-        "id": "Terraria/PowerGlove",
-        "wikiStage": "pre-mechanical-bosses",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Power Glove"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-mechanical-bosses",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo Bag"
         ]
       },
       {
@@ -45824,59 +47497,11 @@
         ]
       },
       {
-        "id": "Terraria/CelestialCuffs",
-        "wikiStage": "pre-mechanical-bosses",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Celestial Cuffs"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/EtherealShell",
-        "wikiStage": "pre-mechanical-bosses",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Ethereal Shell"
-        ]
-      },
-      {
-        "id": "Terraria/ManaFlower",
-        "wikiStage": "pre-mechanical-bosses",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Mana Flower"
-        ]
-      },
-      {
         "id": "Terraria/SummonerEmblem",
         "wikiStage": "pre-mechanical-bosses",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Summoner Emblem"
-        ]
-      },
-      {
-        "id": "Terraria/AnkhShield",
-        "wikiStage": "pre-mechanical-bosses",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ankh Shield"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/EnergyGeode",
-        "wikiStage": "pre-mechanical-bosses",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Energy Geode"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/FireTreads",
-        "wikiStage": "pre-mechanical-bosses",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Fire Treads"
         ]
       },
       {
@@ -45893,54 +47518,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ElementsAwoken/Hell Fury"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/AtaxiaII",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Ataxia II"
-        ]
-      },
-      {
-        "id": "Terraria/FireGauntlet",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Fire Gauntlet"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/FrozenGauntlet",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Frozen Gauntlet"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo Bag"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DesolationII",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Desolation II"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/FeatherFall",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Feather Fall"
         ]
       },
       {
@@ -45984,91 +47561,11 @@
         ]
       },
       {
-        "id": "ElementsAwoken/LamentII",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Lament II"
-        ]
-      },
-      {
-        "id": "Terraria/CelestialCuffs",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Celestial Cuffs"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/EnergyGeode",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Energy Geode"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/EtherealShell",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Ethereal Shell"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ManaShield",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Shield of Magic"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DisarrayII",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Disarray II"
-        ]
-      },
-      {
         "id": "Terraria/SummonerEmblem",
         "wikiStage": "pre-plantera",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Summoner Emblem"
-        ]
-      },
-      {
-        "id": "Terraria/AnkhShield",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ankh Shield"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/EnergyGeode",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Energy Geode"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/SkyNeck",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Badge of the Sky"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/SkylineWhirlwind",
-        "wikiStage": "pre-plantera",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Skyline Whirlwind"
         ]
       },
       {
@@ -46101,38 +47598,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Influx Waver"
-        ]
-      },
-      {
-        "id": "Terraria/FireGauntlet",
-        "wikiStage": "pre-obsidious",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Fire Gauntlet"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/FrozenGauntlet",
-        "wikiStage": "pre-obsidious",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Frozen Gauntlet"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/FrostNeck",
-        "wikiStage": "pre-obsidious",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Pendant of Frost"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-obsidious",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo Bag"
         ]
       },
       {
@@ -46232,38 +47697,6 @@
         ]
       },
       {
-        "id": "Terraria/CelestialCuffs",
-        "wikiStage": "pre-obsidious",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Celestial Cuffs"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/EnergyGeode",
-        "wikiStage": "pre-obsidious",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Energy Geode"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/EtherealShell",
-        "wikiStage": "pre-obsidious",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Ethereal Shell"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ManaShield",
-        "wikiStage": "pre-obsidious",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Shield of Magic"
-        ]
-      },
-      {
         "id": "Terraria/RavenStaff",
         "wikiStage": "pre-obsidious",
         "reason": "recommendation has no proven availability",
@@ -46344,54 +47777,6 @@
         ]
       },
       {
-        "id": "Terraria/AnkhShield",
-        "wikiStage": "pre-obsidious",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ankh Shield"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/EnergyGeode",
-        "wikiStage": "pre-obsidious",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Energy Geode"
-        ]
-      },
-      {
-        "id": "Terraria/CelestialShell",
-        "wikiStage": "pre-obsidious",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Celestial Shell"
-        ]
-      },
-      {
-        "id": "Terraria/DestroyerEmblem",
-        "wikiStage": "pre-obsidious",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Destroyer Emblem"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/FrostShield",
-        "wikiStage": "pre-obsidious",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Frost Buckler"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/FrostWalkers",
-        "wikiStage": "pre-obsidious",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Frost Walkers"
-        ]
-      },
-      {
         "id": "ElementsAwoken/Bandage",
         "wikiStage": "pre-obsidious",
         "reason": "recommendation has no proven availability",
@@ -46424,59 +47809,11 @@
         ]
       },
       {
-        "id": "ElementsAwoken/WaterNeck",
-        "wikiStage": "pre-lunar-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Emblem of the Ocean"
-        ]
-      },
-      {
-        "id": "Terraria/FireGauntlet",
-        "wikiStage": "pre-lunar-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Fire Gauntlet"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/FrozenGauntlet",
-        "wikiStage": "pre-lunar-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Frozen Gauntlet"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/FrostNeck",
-        "wikiStage": "pre-lunar-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Pendant of Frost"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-lunar-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo Bag"
-        ]
-      },
-      {
         "id": "ElementsAwoken/TheEqualizer",
         "wikiStage": "pre-lunar-events",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ElementsAwoken/The Equalizer"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Wavelash",
-        "wikiStage": "pre-lunar-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Wavelash"
         ]
       },
       {
@@ -46525,30 +47862,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Ichor Bullet"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/EnergyGeode",
-        "wikiStage": "pre-lunar-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Energy Geode"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/EtherealShell",
-        "wikiStage": "pre-lunar-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Ethereal Shell"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/BubbleStaff",
-        "wikiStage": "pre-lunar-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Bubble Staff"
         ]
       },
       {
@@ -46624,62 +47937,6 @@
         ]
       },
       {
-        "id": "ElementsAwoken/OceanicVisage",
-        "wikiStage": "pre-lunar-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Oceanic armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/OceanicPlateMail",
-        "wikiStage": "pre-lunar-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Oceanic armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/OceanicLeggings",
-        "wikiStage": "pre-lunar-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Oceanic armor"
-        ]
-      },
-      {
-        "id": "Terraria/AnkhShield",
-        "wikiStage": "pre-lunar-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ankh Shield"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/EnergyGeode",
-        "wikiStage": "pre-lunar-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Energy Geode"
-        ]
-      },
-      {
-        "id": "Terraria/CelestialShell",
-        "wikiStage": "pre-lunar-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Celestial Shell"
-        ]
-      },
-      {
-        "id": "Terraria/DestroyerEmblem",
-        "wikiStage": "pre-lunar-events",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Destroyer Emblem"
-        ]
-      },
-      {
         "id": "ElementsAwoken/Bandage",
         "wikiStage": "pre-lunar-events",
         "reason": "recommendation has no proven availability",
@@ -46709,38 +47966,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Influx Waver"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/WaterNeck",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Emblem of the Ocean"
-        ]
-      },
-      {
-        "id": "Terraria/FireGauntlet",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Fire Gauntlet"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/FrozenGauntlet",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Frozen Gauntlet"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo Bag"
         ]
       },
       {
@@ -46797,30 +48022,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "Terraria/Ichor Bullet"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/EnergyGeode",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Energy Geode"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/EtherealShell",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Ethereal Shell"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/BubbleStaff",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Bubble Staff"
         ]
       },
       {
@@ -46888,38 +48089,6 @@
         ]
       },
       {
-        "id": "Terraria/AnkhShield",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Ankh Shield"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/EnergyGeode",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Energy Geode"
-        ]
-      },
-      {
-        "id": "Terraria/CelestialShell",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Celestial Shell"
-        ]
-      },
-      {
-        "id": "Terraria/DestroyerEmblem",
-        "wikiStage": "pre-moon-lord",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Destroyer Emblem"
-        ]
-      },
-      {
         "id": "ElementsAwoken/Bandage",
         "wikiStage": "pre-moon-lord",
         "reason": "recommendation has no proven availability",
@@ -46944,38 +48113,6 @@
         ]
       },
       {
-        "id": "ElementsAwoken/AtaxiaIII",
-        "wikiStage": "pre-volcanox",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Ataxia III"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidSword",
-        "wikiStage": "pre-volcanox",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Blade of the Depths"
-        ]
-      },
-      {
-        "id": "Terraria/FireGauntlet",
-        "wikiStage": "pre-volcanox",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Fire Gauntlet"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-volcanox",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo Bag"
-        ]
-      },
-      {
         "id": "ElementsAwoken/AegidaTempestas",
         "wikiStage": "pre-volcanox",
         "reason": "recommendation has no proven availability",
@@ -46989,14 +48126,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ElementsAwoken/Blighted Buster"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DesolationIII",
-        "wikiStage": "pre-volcanox",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Desolation III"
         ]
       },
       {
@@ -47080,27 +48209,11 @@
         ]
       },
       {
-        "id": "ElementsAwoken/LamentIII",
-        "wikiStage": "pre-volcanox",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Lament III"
-        ]
-      },
-      {
         "id": "ElementsAwoken/Nightfall",
         "wikiStage": "pre-volcanox",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ElementsAwoken/Nightfall"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidSpiritStaff",
-        "wikiStage": "pre-volcanox",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Abyss Cultist Staff"
         ]
       },
       {
@@ -47117,78 +48230,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ElementsAwoken/Deathwish"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DisarrayIII",
-        "wikiStage": "pre-volcanox",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Disarray III"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidHelmet",
-        "wikiStage": "pre-volcanox",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Gloomhandler armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidBreastplate",
-        "wikiStage": "pre-volcanox",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Gloomhandler armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidGreaves",
-        "wikiStage": "pre-volcanox",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Gloomhandler armor"
-        ]
-      },
-      {
-        "id": "Terraria/DestroyerEmblem",
-        "wikiStage": "pre-volcanox",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Destroyer Emblem"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ElementalArcanum",
-        "wikiStage": "pre-volcanox",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Elemental Arcanum"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidBoots",
-        "wikiStage": "pre-volcanox",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Boots of the Void"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidNeck",
-        "wikiStage": "pre-volcanox",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Idol of Darkness"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidShield",
-        "wikiStage": "pre-volcanox",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Somber Bulwark"
         ]
       },
       {
@@ -47216,14 +48257,6 @@
         ]
       },
       {
-        "id": "ElementsAwoken/AtaxiaIII",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Ataxia III"
-        ]
-      },
-      {
         "id": "ElementsAwoken/CosmoStriker",
         "wikiStage": "pre-void-leviathan",
         "reason": "recommendation has no proven availability",
@@ -47240,30 +48273,6 @@
         ]
       },
       {
-        "id": "ElementsAwoken/EyeofAnnihilation",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Eye of Annihilation"
-        ]
-      },
-      {
-        "id": "Terraria/FireGauntlet",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Fire Gauntlet"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo Bag"
-        ]
-      },
-      {
         "id": "ElementsAwoken/AstralBarrage",
         "wikiStage": "pre-void-leviathan",
         "reason": "recommendation has no proven availability",
@@ -47277,30 +48286,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ElementsAwoken/Blighted Buster"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/CrimsonSky",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Crimson Sky"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DesolationIII",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Desolation III"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Eradication",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Eradication"
         ]
       },
       {
@@ -47368,22 +48353,6 @@
         ]
       },
       {
-        "id": "ElementsAwoken/LamentIII",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Lament III"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidSpiritStaff",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Abyss Cultist Staff"
-        ]
-      },
-      {
         "id": "ElementsAwoken/CorroderStaff",
         "wikiStage": "pre-void-leviathan",
         "reason": "recommendation has no proven availability",
@@ -47392,83 +48361,11 @@
         ]
       },
       {
-        "id": "ElementsAwoken/DisarrayIII",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Disarray III"
-        ]
-      },
-      {
         "id": "ElementsAwoken/Deathwish",
         "wikiStage": "pre-void-leviathan",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ElementsAwoken/Deathwish"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidHelmet",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Gloomhandler armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidBreastplate",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Gloomhandler armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidGreaves",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Gloomhandler armor"
-        ]
-      },
-      {
-        "id": "Terraria/DestroyerEmblem",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Destroyer Emblem"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ElementalArcanum",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Elemental Arcanum"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidBoots",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Boots of the Void"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidNeck",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Idol of Darkness"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidShield",
-        "wikiStage": "pre-void-leviathan",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Somber Bulwark"
         ]
       },
       {
@@ -47496,67 +48393,11 @@
         ]
       },
       {
-        "id": "ElementsAwoken/Fusion",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Fusion"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ViridiumGreatsword",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Viridium Greatsword"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo Bag"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/FlaskOfExtinction",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Flask of Extinction"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Equinox",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Equinox"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/TimeGun",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/The Gun That Shot Time"
-        ]
-      },
-      {
         "id": "ElementsAwoken/Katagina",
         "wikiStage": "pre-azana",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ElementsAwoken/Katagina"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ElementalBurst",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Elemental Burst"
         ]
       },
       {
@@ -47616,14 +48457,6 @@
         ]
       },
       {
-        "id": "ElementsAwoken/EAZenith",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Zenith"
-        ]
-      },
-      {
         "id": "ElementsAwoken/InfinityGauntlet",
         "wikiStage": "pre-azana",
         "reason": "recommendation has no proven availability",
@@ -47632,147 +48465,11 @@
         ]
       },
       {
-        "id": "ElementsAwoken/Cerulean",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Cerulean"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Neovirtuo",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Neovirtuo"
-        ]
-      },
-      {
         "id": "ElementsAwoken/SupremeAwakener",
         "wikiStage": "pre-azana",
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ElementsAwoken/Supreme Awakener"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/PhantomBane",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Phantom Bane"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ElementalMask",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Elemental armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ElementalBreastplate",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Elemental armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ElementalLeggings",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Elemental armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersGreatmask",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersHelm",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersHood",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersVisage",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersBreastplate",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersLeggings",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/NyanBoots",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Boots of Nyan"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Cerulean",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Cerulean"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Neovirtuo",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Neovirtuo"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ElementalArcanum",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Elemental Arcanum"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/PurpleTearstoneRing",
-        "wikiStage": "pre-azana",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Purple Tearstone Ring"
         ]
       },
       {
@@ -47800,54 +48497,6 @@
         ]
       },
       {
-        "id": "ElementsAwoken/BladeOfThePrince",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Blade of the Raven Prince"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DyingAzure",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Dying Azure"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Sol",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Sol"
-        ]
-      },
-      {
-        "id": "Terraria/YoyoBag",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "Terraria/Yoyo Bag"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/FlaskOfExtinction",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Flask of Extinction"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Dusksong",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Dusksong"
-        ]
-      },
-      {
         "id": "ElementsAwoken/AeroflakGun",
         "wikiStage": "pre-ancients",
         "reason": "recommendation has no proven availability",
@@ -47861,14 +48510,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ElementsAwoken/Outbreak"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/RadiantConcentrator",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Radiant Concentrator"
         ]
       },
       {
@@ -47896,166 +48537,6 @@
         ]
       },
       {
-        "id": "ElementsAwoken/DiscordantStaff",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Discordant Staff"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/LightMine",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Cerise Curtains"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Cerulean",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Cerulean"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Neovirtuo",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Neovirtuo"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/GlobuleStaff",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Starlight Crook"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ElementalMask",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Elemental armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ElementalBreastplate",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Elemental armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ElementalLeggings",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Elemental armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersGreatmask",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersHelm",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersHood",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersVisage",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersBreastplate",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersLeggings",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/NyanBoots",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Boots of Nyan"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Cerulean",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Cerulean"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Neovirtuo",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Neovirtuo"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ElementalArcanum",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Elemental Arcanum"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/PurpleTearstoneRing",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Purple Tearstone Ring"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/SufferWithMe",
-        "wikiStage": "pre-ancients",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Suffer With Me"
-        ]
-      },
-      {
         "id": "ElementsAwoken/Bandage",
         "wikiStage": "pre-ancients",
         "reason": "recommendation has no proven availability",
@@ -48080,30 +48561,6 @@
         ]
       },
       {
-        "id": "ElementsAwoken/AtaxiaIV",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Ataxia IV"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/FlaskOfExtinction",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Flask of Extinction"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DesolationIV",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Desolation IV"
-        ]
-      },
-      {
         "id": "ElementsAwoken/DiscordantArrow",
         "wikiStage": "endgame",
         "reason": "recommendation has no proven availability",
@@ -48117,158 +48574,6 @@
         "reason": "recommendation has no proven availability",
         "sourceReference": [
           "ElementsAwoken/Chaotron Bullet"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/LamentIV",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Lament IV"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Cerulean",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Cerulean"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Neovirtuo",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Neovirtuo"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/DisarrayIV",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Disarray IV"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ElementalMask",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Elemental armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ElementalBreastplate",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Elemental armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ElementalLeggings",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Elemental armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersGreatmask",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersHelm",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersHood",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersVisage",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersBreastplate",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/VoidWalkersLeggings",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Void Walker's armor"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/NyanBoots",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Boots of Nyan"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Cerulean",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Cerulean"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/Neovirtuo",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Neovirtuo"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/ElementalArcanum",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Elemental Arcanum"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/PurpleTearstoneRing",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Purple Tearstone Ring"
-        ]
-      },
-      {
-        "id": "ElementsAwoken/SufferWithMe",
-        "wikiStage": "endgame",
-        "reason": "recommendation has no proven availability",
-        "sourceReference": [
-          "ElementsAwoken/Suffer With Me"
         ]
       },
       {
@@ -51018,8 +51323,64 @@
         "reason": "recommendation precedes proven availability"
       },
       {
+        "id": "Terraria/MagicCuffs",
+        "factualStage": "eye-of-cthulhu",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/CelestialCuffs",
+        "factualStage": "eye-of-cthulhu",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/ManaFlower",
+        "factualStage": "eye-of-cthulhu",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
         "id": "ElementsAwoken/MeteoricPendant",
         "factualStage": "world-evil",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/BundleofBalloons",
+        "factualStage": "eye-of-cthulhu",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/BlueHorseshoeBalloon",
+        "factualStage": "eye-of-cthulhu",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/FrostsparkBoots",
+        "factualStage": "eye-of-cthulhu",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/LightningBoots",
+        "factualStage": "eye-of-cthulhu",
+        "recommendedStage": "start",
+        "wikiStage": "pre-boss",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "ElementsAwoken/SharktoothShackle",
+        "factualStage": "eye-of-cthulhu",
         "recommendedStage": "start",
         "wikiStage": "pre-boss",
         "reason": "recommendation precedes proven availability"
@@ -51130,6 +51491,20 @@
         "reason": "recommendation precedes proven availability"
       },
       {
+        "id": "Terraria/CelestialShell",
+        "factualStage": "golem",
+        "recommendedStage": "permafrost",
+        "wikiStage": "pre-obsidious",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/DestroyerEmblem",
+        "factualStage": "golem",
+        "recommendedStage": "permafrost",
+        "wikiStage": "pre-obsidious",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
         "id": "Terraria/Tsunami",
         "factualStage": "duke-fishron",
         "recommendedStage": "aqueous",
@@ -51195,6 +51570,34 @@
       {
         "id": "Terraria/BeetleLeggings",
         "factualStage": "golem",
+        "recommendedStage": "cultist",
+        "wikiStage": "pre-moon-lord",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "ElementsAwoken/WaterNeck",
+        "factualStage": "aqueous",
+        "recommendedStage": "cultist",
+        "wikiStage": "pre-moon-lord",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/FireGauntlet",
+        "factualStage": "skeletron-prime",
+        "recommendedStage": "cultist",
+        "wikiStage": "pre-moon-lord",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "ElementsAwoken/FrozenGauntlet",
+        "factualStage": "skeletron-prime",
+        "recommendedStage": "cultist",
+        "wikiStage": "pre-moon-lord",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/YoyoBag",
+        "factualStage": "wall-of-flesh",
         "recommendedStage": "cultist",
         "wikiStage": "pre-moon-lord",
         "reason": "recommendation precedes proven availability"
@@ -51368,8 +51771,29 @@
         "reason": "recommendation precedes proven availability"
       },
       {
+        "id": "ElementsAwoken/EnergyGeode",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "cultist",
+        "wikiStage": "pre-moon-lord",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "ElementsAwoken/EtherealShell",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "cultist",
+        "wikiStage": "pre-moon-lord",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
         "id": "ElementsAwoken/NebulaEmblem",
         "factualStage": "lunatic-cultist",
+        "recommendedStage": "cultist",
+        "wikiStage": "pre-moon-lord",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "ElementsAwoken/BubbleStaff",
+        "factualStage": "aqueous",
         "recommendedStage": "cultist",
         "wikiStage": "pre-moon-lord",
         "reason": "recommendation precedes proven availability"
@@ -51405,6 +51829,34 @@
       {
         "id": "ElementsAwoken/StardustEmblem",
         "factualStage": "lunatic-cultist",
+        "recommendedStage": "cultist",
+        "wikiStage": "pre-moon-lord",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/AnkhShield",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "cultist",
+        "wikiStage": "pre-moon-lord",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "ElementsAwoken/EnergyGeode",
+        "factualStage": "wall-of-flesh",
+        "recommendedStage": "cultist",
+        "wikiStage": "pre-moon-lord",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/CelestialShell",
+        "factualStage": "golem",
+        "recommendedStage": "cultist",
+        "wikiStage": "pre-moon-lord",
+        "reason": "recommendation precedes proven availability"
+      },
+      {
+        "id": "Terraria/DestroyerEmblem",
+        "factualStage": "golem",
         "recommendedStage": "cultist",
         "wikiStage": "pre-moon-lord",
         "reason": "recommendation precedes proven availability"
@@ -52983,14 +53435,6 @@
         "items": [
           "Terraria/ZombieArm"
         ]
-      },
-      {
-        "source": "Terraria/GoblinTinkerer",
-        "sourceKind": "shop",
-        "items": [
-          "Terraria/Ruler",
-          "Terraria/SpikyBall"
-        ]
       }
     ],
     "unavailableCombatItems": [],
@@ -53012,7 +53456,23 @@
         ]
       }
     },
-    "unassignedVanillaNpcSourceCount": 190,
+    "unassignedVanillaNpcSourceCount": 189,
+    "manualAvailabilityPriority": {
+      "automaticItems": 4024,
+      "automaticSources": 479,
+      "automaticStations": 419,
+      "suppressed": {
+        "itemStages": [],
+        "sourceStages": [],
+        "stationStages": []
+      },
+      "retained": {
+        "itemStages": 11,
+        "itemStageFloors": 0,
+        "sourceStages": 1,
+        "stationStages": 1
+      }
+    },
     "automaticEventPriority": {
       "corrections": []
     }

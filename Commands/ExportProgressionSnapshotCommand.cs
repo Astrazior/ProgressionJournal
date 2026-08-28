@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -13,6 +14,22 @@ namespace ProgressionJournal.Commands;
 
 public sealed class ExportProgressionSnapshotCommand : ModCommand
 {
+    private static readonly HashSet<string> ProgressionNeutralEnvironmentValues = new(
+        [
+            "Beach",
+            "BloodMoon",
+            "Desert",
+            "Dungeon",
+            "Frost",
+            "NebulaTower",
+            "Sky",
+            "Snow",
+            "SolarTower",
+            "StardustTower",
+            "Underworld",
+            "VortexTower"
+        ],
+        StringComparer.OrdinalIgnoreCase);
     private static readonly MethodInfo? PlayerLoaderSetupPlayerMethod = typeof(PlayerLoader).GetMethod(
         "SetupPlayer",
         BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
@@ -213,6 +230,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         var items = itemIds.Select(CreateItem).ToList();
         var npcs = npcIds.Select(CreateNpc).ToList();
         var recipes = CreateRecipes(itemIds, includedMods);
+        var startingItems = CreateStartingItems(itemIds);
         List<SnapshotDrop> drops = [];
         drops.AddRange(JournalSnapshotNpcDropCollector.Collect(
             itemIds,
@@ -252,6 +270,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             Npcs = npcs,
             Recipes = recipes,
             ShimmerTransforms = CreateShimmerTransforms(itemIds),
+            StartingItems = startingItems,
             KnownSourceItems = CreateKnownSourceItems(itemIds),
             Drops = drops,
             Shops = JournalSnapshotShopCollector.Collect(
@@ -984,7 +1003,25 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             .ToList();
     }
 
+    private static List<string> CreateStartingItems(HashSet<int> includedItems)
+    {
+        var player = CreateEffectProbePlayer();
+        return PlayerLoader.GetStartingItems(player, [])
+            .Where(item => item is not null && !item.IsAir && includedItems.Contains(item.type))
+            .Select(static item => GetItemReference(item.type))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(static item => item, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+    }
+
     private static SnapshotCondition CreateCondition(object? condition)
+    {
+        return CreateCondition(condition, new HashSet<object>(ReferenceEqualityComparer.Instance));
+    }
+
+    private static SnapshotCondition CreateCondition(
+        object? condition,
+        HashSet<object> ancestors)
     {
         if (condition is null)
         {
@@ -997,11 +1034,122 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
         var description = condition is IProvideItemConditionDescription provider
             ? provider.GetConditionDescription()
             : localizedDescription?.Value ?? GetReflectedConditionDescription(condition);
+        var nestedConditions = ancestors.Add(condition)
+            ? GetNestedDropConditions(condition)
+                .Select(nestedCondition => CreateCondition(nestedCondition, ancestors))
+                .ToList()
+            : [];
+        ancestors.Remove(condition);
         return new SnapshotCondition(
             condition.GetType().FullName ?? condition.GetType().Name,
             description,
             localizedDescription?.Key ?? string.Empty,
-            CreateConditionFacts(localizedDescription));
+            CreateConditionFacts(condition, localizedDescription),
+            GetConditionCombination(condition, nestedConditions.Count),
+            nestedConditions.Count > 0 ? nestedConditions : null);
+    }
+
+    private static IEnumerable<object> GetNestedDropConditions(object condition)
+    {
+        var type = condition.GetType();
+        var values = type
+            .GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(static field => !field.IsStatic)
+            .Select(field => TryReadMemberValue(
+                () => field.GetValue(condition),
+                $"field {type.FullName}.{field.Name}"))
+            .Concat(type
+                .GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                .Where(static property => property.GetIndexParameters().Length == 0
+                    && property.GetMethod is not null
+                    && !property.GetMethod.IsStatic)
+                .Select(property => TryReadMemberValue(
+                    () => property.GetValue(condition),
+                    $"property {type.FullName}.{property.Name}")));
+
+        return values
+            .SelectMany(EnumerateDropConditions)
+            .Where(value => !ReferenceEquals(value, condition))
+            .Distinct(ReferenceEqualityComparer.Instance);
+    }
+
+    private static object? TryReadMemberValue(Func<object?> read, string memberName)
+    {
+        try
+        {
+            return read();
+        }
+        catch (Exception exception)
+        {
+            LogDebug($"Failed to inspect nested drop-condition {memberName}.", exception);
+            return null;
+        }
+    }
+
+    private static IEnumerable<object> EnumerateDropConditions(object? value)
+    {
+        if (value is IItemDropRuleCondition condition)
+        {
+            yield return condition;
+            yield break;
+        }
+
+        if (value is not IEnumerable values || value is string)
+        {
+            yield break;
+        }
+
+        foreach (var child in values)
+        {
+            if (child is IItemDropRuleCondition childCondition)
+            {
+                yield return childCondition;
+            }
+        }
+    }
+
+    private static string GetConditionCombination(object condition, int nestedConditionCount)
+    {
+        if (nestedConditionCount == 0)
+        {
+            return string.Empty;
+        }
+
+        var type = condition.GetType();
+        var memberNames = new[] { "Mode", "Operator", "Combination" };
+        foreach (var memberName in memberNames)
+        {
+            var field = type.GetField(
+                memberName,
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance
+                | BindingFlags.IgnoreCase);
+            var property = type.GetProperty(
+                memberName,
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance
+                | BindingFlags.IgnoreCase);
+            var value = field is not null
+                ? TryReadMemberValue(
+                    () => field.GetValue(condition),
+                    $"field {type.FullName}.{field.Name}")
+                : property is { GetMethod: not null } && property.GetIndexParameters().Length == 0
+                    ? TryReadMemberValue(
+                        () => property.GetValue(condition),
+                        $"property {type.FullName}.{property.Name}")
+                    : null;
+            var text = value?.ToString() ?? string.Empty;
+            if (text.Contains("All", StringComparison.OrdinalIgnoreCase))
+            {
+                return "all";
+            }
+
+            if (text.Contains("Any", StringComparison.OrdinalIgnoreCase)
+                || text.Contains("One", StringComparison.OrdinalIgnoreCase))
+            {
+                return "any";
+            }
+        }
+
+        return string.Empty;
     }
 
     private static LocalizedText? GetReflectedLocalizedText(object condition)
@@ -1011,26 +1159,75 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
             ?.GetValue(condition) as LocalizedText;
     }
 
-    private static List<SnapshotConditionFact> CreateConditionFacts(LocalizedText? description)
+    private static List<SnapshotConditionFact> CreateConditionFacts(
+        object condition,
+        LocalizedText? description)
     {
-        if (description?.Key != "Conditions.PlayerCarriesItem")
+        List<SnapshotConditionFact> facts = [];
+        if (description?.Key == "Conditions.PlayerCarriesItem")
         {
-            return [];
-        }
-
-        foreach (var argument in description.BoundArgs)
-        {
-            switch (argument)
+            foreach (var argument in description.BoundArgs)
             {
-                case LocalizedText itemName
-                    when ItemReferencesByLocalizationKey.TryGetValue(itemName.Key, out var itemReference):
-                    return [new SnapshotConditionFact("item-owned", itemReference)];
-                case int itemId and > ItemID.None when itemId < ItemLoader.ItemCount:
-                    return [new SnapshotConditionFact("item-owned", GetItemReference(itemId))];
+                switch (argument)
+                {
+                    case LocalizedText itemName
+                        when ItemReferencesByLocalizationKey.TryGetValue(itemName.Key, out var itemReference):
+                        facts.Add(new SnapshotConditionFact("item-owned", itemReference));
+                        break;
+                    case int itemId and > ItemID.None when itemId < ItemLoader.ItemCount:
+                        facts.Add(new SnapshotConditionFact("item-owned", GetItemReference(itemId)));
+                        break;
+                }
             }
         }
 
-        return [];
+        facts.AddRange(condition.GetType()
+            .GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(static field => !field.IsStatic && field.FieldType.IsEnum)
+            .Select(field => new
+            {
+                Field = field,
+                Value = TryReadMemberValue(
+                    () => field.GetValue(condition),
+                    $"field {condition.GetType().FullName}.{field.Name}")
+            })
+            .Where(static value => IsEnvironmentMember(value.Field))
+            .Select(static value => NormalizeEnvironmentValue(value.Value?.ToString() ?? string.Empty))
+            .Where(ProgressionNeutralEnvironmentValues.Contains)
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .Select(static value => new SnapshotConditionFact("environment", value)));
+        return facts;
+    }
+
+    private static bool IsEnvironmentMember(FieldInfo field)
+    {
+        return field.Name.Contains("biome", StringComparison.OrdinalIgnoreCase)
+            || field.Name.Contains("environment", StringComparison.OrdinalIgnoreCase)
+            || field.Name.Contains("zone", StringComparison.OrdinalIgnoreCase)
+            || field.FieldType.Name.Contains("biome", StringComparison.OrdinalIgnoreCase)
+            || field.FieldType.Name.Contains("environment", StringComparison.OrdinalIgnoreCase)
+            || field.FieldType.Name.Contains("zone", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static string NormalizeEnvironmentValue(string value)
+    {
+        var normalized = value;
+        if (normalized.StartsWith("In", StringComparison.OrdinalIgnoreCase))
+        {
+            normalized = normalized[2..];
+        }
+
+        if (normalized.EndsWith("Zone", StringComparison.OrdinalIgnoreCase))
+        {
+            normalized = normalized[..^4];
+        }
+
+        if (normalized.EndsWith("Height", StringComparison.OrdinalIgnoreCase))
+        {
+            normalized = normalized[..^6];
+        }
+
+        return normalized;
     }
 
     private static Dictionary<string, string> BuildItemReferencesByLocalizationKey(
@@ -1132,7 +1329,7 @@ public sealed class ExportProgressionSnapshotCommand : ModCommand
 public sealed class ProgressionSnapshot
 {
     public string Format { get; set; } = "ProgressionJournalSnapshot";
-    public int Version { get; set; } = 10;
+    public int Version { get; set; } = 12;
     public string GeneratedAtUtc { get; set; } = string.Empty;
     public string TargetMod { get; set; } = string.Empty;
     public string ProfileId { get; set; } = string.Empty;
@@ -1143,6 +1340,7 @@ public sealed class ProgressionSnapshot
     public List<SnapshotNpc> Npcs { get; set; } = [];
     public List<SnapshotRecipe> Recipes { get; set; } = [];
     public List<SnapshotShimmerTransform> ShimmerTransforms { get; set; } = [];
+    public List<string> StartingItems { get; set; } = [];
     public List<string> KnownSourceItems { get; set; } = [];
     public List<SnapshotDrop> Drops { get; set; } = [];
     public List<SnapshotShop> Shops { get; set; } = [];
@@ -1211,7 +1409,11 @@ public sealed record SnapshotCondition(
     string Type,
     string Description,
     string Key = "",
-    List<SnapshotConditionFact>? Facts = null);
+    List<SnapshotConditionFact>? Facts = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    string Combination = "",
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    List<SnapshotCondition>? Conditions = null);
 public sealed record SnapshotConditionFact(string Kind, string Item);
 public sealed record SnapshotRecipe(
     string Result,

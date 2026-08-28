@@ -100,6 +100,7 @@ const snapshot = {
     }),
     item("Test/ObservedAmmoMaterial"),
     item("Test/ScriptedReward", { damageClass: "Magic", damage: 30 }),
+    item("Test/StartingBlade", { damageClass: "Melee", damage: 31 }),
     item("Test/HybridDefaultWeapon", {
       damageClass: "Terraria/DefaultDamageClass",
       damage: 30,
@@ -126,6 +127,10 @@ const snapshot = {
     item("Test/LateDrop", { damageClass: "Melee", damage: 40 }),
     item("Test/GlobalBlade", { damageClass: "Melee", damage: 37 }),
     item("Test/StructuredProgressionBlade", { damageClass: "Melee", damage: 38 }),
+    item("Test/CompositeAllBlade", { damageClass: "Melee", damage: 38 }),
+    item("Test/CompositeAnyBlade", { damageClass: "Melee", damage: 38 }),
+    item("Test/CompositeSingleBlade", { damageClass: "Melee", damage: 38 }),
+    item("Test/EnvironmentalBlade", { damageClass: "Melee", damage: 38 }),
     item("Test/BloodMoonBlade", { damageClass: "Melee", damage: 36 }),
     item("Test/ManualLateDrop", { damageClass: "Melee", damage: 39 }),
     item("Test/CollisionSource"),
@@ -291,6 +296,7 @@ const snapshot = {
       sourceNamespace: "Test.Items.TreasureBags"
     })
   ],
+  startingItems: ["Test/StartingBlade"],
   npcs: [],
   recipes: [
     { result: "Test/Bar", ingredients: [{ item: "Test/Ore", stack: 1 }], stations: [], conditions: [] },
@@ -519,6 +525,70 @@ const snapshot = {
       sourceType: "npc",
       item: "Test/SeedSword",
       conditions: [{ type: "Test.SpecialSeed", description: "Special seed only" }]
+    },
+    {
+      source: "Test/Boss",
+      sourceType: "npc",
+      item: "Test/CompositeAllBlade",
+      conditions: [{
+        type: "Test.CompositeCondition",
+        description: "All conditions",
+        combination: "all",
+        conditions: [
+          {
+            type: "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
+            description: ""
+          },
+          {
+            type: "ProgressionJournal.AfterProgression",
+            description: "Available after: Late"
+          }
+        ]
+      }]
+    },
+    {
+      source: "Test/Boss",
+      sourceType: "npc",
+      item: "Test/CompositeAnyBlade",
+      conditions: [{
+        type: "Test.CompositeCondition",
+        description: "Any condition",
+        combination: "any",
+        conditions: [
+          {
+            type: "Terraria.GameContent.ItemDropRules.Conditions+NeverTrue",
+            description: ""
+          },
+          {
+            type: "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
+            description: ""
+          }
+        ]
+      }]
+    },
+    {
+      source: "Test/Boss",
+      sourceType: "npc",
+      item: "Test/CompositeSingleBlade",
+      conditions: [{
+        type: "Test.CompositeCondition",
+        description: "Unknown operator",
+        combination: "",
+        conditions: [{
+          type: "Terraria.GameContent.ItemDropRules.Conditions+NotExpert",
+          description: ""
+        }]
+      }]
+    },
+    {
+      source: "Test/Boss",
+      sourceType: "npc",
+      item: "Test/EnvironmentalBlade",
+      conditions: [{
+        type: "Test.EnvironmentCondition",
+        description: "",
+        facts: [{ kind: "environment", item: "Desert" }]
+      }]
     },
     {
       source: "Test/Boss",
@@ -1083,6 +1153,18 @@ assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "LateDrop")?.evaluations,
   [{ stageId: "late", tier: "FromGuide", scope: "StageOnly" }]);
 assert.deepEqual(
+  profile.entries.find(entry => entry.itemGroups[0][0].item === "CompositeAllBlade")?.evaluations,
+  [{ stageId: "late", tier: "FromGuide", scope: "StageOnly" }]);
+assert.deepEqual(
+  profile.entries.find(entry => entry.itemGroups[0][0].item === "CompositeAnyBlade")?.evaluations,
+  [{ stageId: "boss", tier: "FromGuide", scope: "StageOnly" }]);
+assert.deepEqual(
+  profile.entries.find(entry => entry.itemGroups[0][0].item === "CompositeSingleBlade")?.evaluations,
+  [{ stageId: "boss", tier: "FromGuide", scope: "StageOnly" }]);
+assert.deepEqual(
+  profile.entries.find(entry => entry.itemGroups[0][0].item === "EnvironmentalBlade")?.evaluations,
+  [{ stageId: "boss", tier: "FromGuide", scope: "StageOnly" }]);
+assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "LateDrop")?.wiki
     .map(value => value.stageId),
   []);
@@ -1101,8 +1183,13 @@ assert.deepEqual(
 assert.deepEqual(
   profile.entries.find(entry => entry.itemGroups[0][0].item === "GenericMeleeAccessory")?.classes,
   ["melee", "magic", "summoner"]);
-assert(!profile.entries.some(entry =>
-  entry.itemGroups[0][0].item === "UtilityAccessory"));
+assert.deepEqual(
+  profile.entries.find(entry => entry.itemGroups[0][0].item === "UtilityAccessory")?.classes,
+  ["melee", "magic", "summoner"]);
+assert.deepEqual(
+  profile.entries.find(entry => entry.itemGroups[0][0].item === "StartingBlade")?.evaluations,
+  [{ stageId: "start", tier: "FromGuide", scope: "StageOnly" }]);
+assert.equal(report.paths["Test/StartingBlade"].via, "starting-item");
 assert.deepEqual(
   profile.entries.find(entry =>
     entry.itemGroups[0][0].item === "VanillaSummonerAccessory")?.classes,

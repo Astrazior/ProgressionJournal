@@ -50,6 +50,8 @@ const START_ITEMS = [
   "Terraria/Shadewood",
   "Terraria/AshWood",
   "Terraria/StoneBlock",
+  "Terraria/EbonstoneBlock",
+  "Terraria/CrimstoneBlock",
   "Terraria/DirtBlock",
   "Terraria/MudBlock",
   "Terraria/ClayBlock",
@@ -246,7 +248,8 @@ const MILESTONE_FACTS = [
   },
   {
     eventCategory: "GoblinArmy",
-    findStage: manifest => findEventStage(manifest, "GoblinArmy"),
+    findStage: manifest => findEventStage(manifest, "GoblinArmy")
+      ?? (manifest.stages[0]?.id ?? null),
     items: ["Terraria/TinkerersWorkshop"],
     stations: ["Terraria/TinkerersWorkbench"],
     shops: ["Terraria/GoblinTinkerer"]
@@ -312,6 +315,7 @@ const MILESTONE_FACTS = [
       "Terraria/CursedFlame",
       "Terraria/Ichor",
       "Terraria/RainbowBrick",
+      "Terraria/RainbowDye",
       "Terraria/SoulofLight",
       "Terraria/SoulofNight",
       "Terraria/SoulofFlight",

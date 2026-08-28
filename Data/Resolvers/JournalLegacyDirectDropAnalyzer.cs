@@ -7,7 +7,8 @@ namespace ProgressionJournal.Data.Resolvers;
 
 public static class JournalLegacyDirectDropAnalyzer
 {
-    private static readonly Lazy<Catalog> Entries = new(CreateCatalog);
+    private static readonly Lazy<Catalog> ExportEntries = new(CreateExportCatalog);
+    private static Catalog _runtimeEntries = Catalog.Empty;
     private static readonly OpCode[] OneByteOpCodes = new OpCode[0x100];
     private static readonly OpCode[] TwoByteOpCodes = new OpCode[0x100];
 
@@ -36,26 +37,31 @@ public static class JournalLegacyDirectDropAnalyzer
 
     public static IReadOnlyList<JournalLegacyNpcDrop> GetNpcDrops(int targetItemId)
     {
-        return Entries.Value.NpcDrops
+        return _runtimeEntries.NpcDrops
             .Where(entry => entry.TargetItemId == targetItemId)
             .ToArray();
     }
 
-    public static IReadOnlyList<JournalLegacyNpcDrop> GetAllNpcDrops() => Entries.Value.NpcDrops;
+    public static IReadOnlyList<JournalLegacyNpcDrop> GetAllNpcDrops() => _runtimeEntries.NpcDrops;
 
     public static IReadOnlyList<JournalLegacyItemDrop> GetItemDrops(int targetItemId)
     {
-        return Entries.Value.ItemDrops
+        return _runtimeEntries.ItemDrops
             .Where(entry => entry.TargetItemId == targetItemId)
             .ToArray();
     }
 
-    public static IReadOnlyList<JournalLegacyItemDrop> GetAllItemDrops() => Entries.Value.ItemDrops;
+    public static IReadOnlyList<JournalLegacyItemDrop> GetAllItemDrops() => _runtimeEntries.ItemDrops;
 
-    public static IReadOnlyList<JournalLegacyTileDrop> GetAllTileDrops() => Entries.Value.TileDrops;
+    public static IReadOnlyList<JournalLegacyTileDrop> GetAllTileDrops() => ExportEntries.Value.TileDrops;
 
     public static IReadOnlyList<JournalLegacyTilePlacement> GetAllTilePlacements() =>
-        Entries.Value.TilePlacements;
+        ExportEntries.Value.TilePlacements;
+
+    public static void PrepareRuntimeCatalog()
+    {
+        _runtimeEntries = CreateRuntimeCatalog();
+    }
 
     internal static MemberInfo[] GetReferencedMembers(MethodInfo method)
     {
@@ -76,26 +82,17 @@ public static class JournalLegacyDirectDropAnalyzer
         }
     }
 
-    private static Catalog CreateCatalog()
+    private static Catalog CreateRuntimeCatalog()
     {
         var itemTypes = ModContent.GetContent<ModItem>()
             .GroupBy(static item => item.GetType())
             .ToDictionary(static group => group.Key, static group => group.First().Type);
-        var tileTypes = ModContent.GetContent<ModTile>()
-            .GroupBy(static tile => tile.GetType())
-            .ToDictionary(static group => group.Key, static group => (int)group.First().Type);
-        var modNamesByAssembly = ModLoader.Mods
-            .Where(static mod => mod.Code is not null)
-            .GroupBy(static mod => mod.Code!)
-            .ToDictionary(static group => group.Key, static group => group.First().Name);
         var npcs = ModContent.GetContent<ModNPC>().ToArray();
         var npcTypes = npcs
             .GroupBy(static npc => npc.GetType())
             .ToDictionary(static group => group.Key, static group => group.First().Type);
         List<JournalLegacyNpcDrop> npcDrops = [];
         List<JournalLegacyItemDrop> itemDrops = [];
-        List<JournalLegacyTileDrop> tileDrops = [];
-        List<JournalLegacyTilePlacement> tilePlacements = [];
 
         foreach (var npc in npcs)
         {
@@ -131,6 +128,28 @@ public static class JournalLegacyDirectDropAnalyzer
                     drop.RequiredItemIds)));
         }
 
+        return new Catalog(
+            DeduplicateNpcDrops(npcDrops),
+            DeduplicateItemDrops(itemDrops),
+            [],
+            []);
+    }
+
+    private static Catalog CreateExportCatalog()
+    {
+        var itemTypes = ModContent.GetContent<ModItem>()
+            .GroupBy(static item => item.GetType())
+            .ToDictionary(static group => group.Key, static group => group.First().Type);
+        var tileTypes = ModContent.GetContent<ModTile>()
+            .GroupBy(static tile => tile.GetType())
+            .ToDictionary(static group => group.Key, static group => (int)group.First().Type);
+        var modNamesByAssembly = ModLoader.Mods
+            .Where(static mod => mod.Code is not null)
+            .GroupBy(static mod => mod.Code!)
+            .ToDictionary(static group => group.Key, static group => group.First().Name);
+        List<JournalLegacyTileDrop> tileDrops = [];
+        List<JournalLegacyTilePlacement> tilePlacements = [];
+
         foreach (var tile in ModContent.GetContent<ModTile>())
         {
             AnalyzeSourceMethods(
@@ -155,9 +174,18 @@ public static class JournalLegacyDirectDropAnalyzer
                 tilePlacements.Add);
         }
 
+        foreach (var assembly in modNamesByAssembly.Keys)
+        {
+            AnalyzeDeferredWorldGeneration(
+                assembly,
+                tileTypes,
+                modNamesByAssembly,
+                tilePlacements.Add);
+        }
+
         return new Catalog(
-            DeduplicateNpcDrops(npcDrops),
-            DeduplicateItemDrops(itemDrops),
+            _runtimeEntries.NpcDrops,
+            _runtimeEntries.ItemDrops,
             DeduplicateTileDrops(tileDrops),
             DeduplicateTilePlacements(tilePlacements));
     }
@@ -172,20 +200,21 @@ public static class JournalLegacyDirectDropAnalyzer
                      .Select(static npc => npc.GetType().Assembly)
                      .Distinct())
         {
-            foreach (var callbackType in GetLoadableTypes(assembly))
+            foreach (var callbackType in GetLoadableTypes(
+                         assembly,
+                         "scripted interaction drops"))
             {
-                if (typeof(ModNPC).IsAssignableFrom(callbackType))
+                if (!CanInspectInteractionCallbackType(callbackType))
                 {
                     continue;
                 }
 
-                foreach (var method in callbackType.GetMethods(
-                             BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+                foreach (var method in GetLoadableMethods(
+                             callbackType,
+                             "scripted interaction drops"))
                 {
-                    var parameters = method.GetParameters();
                     if (!string.Equals(method.Name, "OnClick", StringComparison.Ordinal)
-                        || !parameters.Any(static parameter => parameter.ParameterType == typeof(NPC))
-                        || !parameters.Any(static parameter => parameter.ParameterType == typeof(Player)))
+                        || !HasInteractionParameters(method, "scripted interaction drops"))
                     {
                         continue;
                     }
@@ -226,7 +255,43 @@ public static class JournalLegacyDirectDropAnalyzer
         }
     }
 
-    private static Type[] GetLoadableTypes(Assembly assembly)
+    private static bool CanInspectInteractionCallbackType(Type callbackType)
+    {
+        try
+        {
+            return !typeof(ModNPC).IsAssignableFrom(callbackType);
+        }
+        catch (Exception exception)
+        {
+            ProgressionJournal.Instance?.Logger.Debug(
+                $"Failed to inspect interaction callback type '{callbackType.FullName}'."
+                + $"{Environment.NewLine}{exception}");
+            return false;
+        }
+    }
+
+    private static bool HasInteractionParameters(MethodInfo method, string operation)
+    {
+        if (!TryGetParameters(method, operation, out var parameters))
+        {
+            return false;
+        }
+
+        try
+        {
+            return parameters.Any(static parameter => parameter.ParameterType == typeof(NPC))
+                && parameters.Any(static parameter => parameter.ParameterType == typeof(Player));
+        }
+        catch (Exception exception)
+        {
+            ProgressionJournal.Instance?.Logger.Debug(
+                $"Failed to inspect parameter types from '{method.DeclaringType?.FullName}.{method.Name}'"
+                + $" while inspecting {operation}.{Environment.NewLine}{exception}");
+            return false;
+        }
+    }
+
+    private static Type[] GetLoadableTypes(Assembly assembly, string operation)
     {
         try
         {
@@ -235,9 +300,53 @@ public static class JournalLegacyDirectDropAnalyzer
         catch (ReflectionTypeLoadException exception)
         {
             ProgressionJournal.Instance?.Logger.Debug(
-                $"Some types could not be loaded while inspecting scripted interaction drops in '{assembly.FullName}'."
+                $"Some types could not be loaded while inspecting {operation} in '{assembly.FullName}'."
                 + $"{Environment.NewLine}{exception}");
             return exception.Types.OfType<Type>().ToArray();
+        }
+        catch (Exception exception)
+        {
+            ProgressionJournal.Instance?.Logger.Debug(
+                $"Failed to load types while inspecting {operation} in '{assembly.FullName}'."
+                + $"{Environment.NewLine}{exception}");
+            return [];
+        }
+    }
+
+    private static MethodInfo[] GetLoadableMethods(Type type, string operation)
+    {
+        try
+        {
+            return type.GetMethods(
+                BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public
+                | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
+        }
+        catch (Exception exception)
+        {
+            ProgressionJournal.Instance?.Logger.Debug(
+                $"Failed to load methods from '{type.FullName}' while inspecting {operation}."
+                + $"{Environment.NewLine}{exception}");
+            return [];
+        }
+    }
+
+    private static bool TryGetParameters(
+        MethodInfo method,
+        string operation,
+        out ParameterInfo[] parameters)
+    {
+        try
+        {
+            parameters = method.GetParameters();
+            return true;
+        }
+        catch (Exception exception)
+        {
+            ProgressionJournal.Instance?.Logger.Debug(
+                $"Failed to load parameters from '{method.DeclaringType?.FullName}.{method.Name}'"
+                + $" while inspecting {operation}.{Environment.NewLine}{exception}");
+            parameters = [];
+            return false;
         }
     }
 
@@ -312,8 +421,9 @@ public static class JournalLegacyDirectDropAnalyzer
         Dictionary<Assembly, string> modNamesByAssembly,
         Action<JournalLegacyTilePlacement> append)
     {
-        foreach (var method in sourceType.GetMethods(
-                     BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+        foreach (var method in GetLoadableMethods(
+                     sourceType,
+                     "random-update tile placements"))
         {
             if (!string.Equals(method.Name, nameof(GlobalTile.RandomUpdate), StringComparison.Ordinal))
             {
@@ -331,6 +441,221 @@ public static class JournalLegacyDirectDropAnalyzer
                     + $"{Environment.NewLine}{exception}");
             }
         }
+    }
+
+    private static void AnalyzeDeferredWorldGeneration(
+        Assembly assembly,
+        Dictionary<Type, int> tileTypes,
+        Dictionary<Assembly, string> modNamesByAssembly,
+        Action<JournalLegacyTilePlacement> append)
+    {
+        var methods = GetLoadableTypes(assembly, "deferred world generation")
+            .SelectMany(type => GetLoadableMethods(type, "deferred world generation"))
+            .Where(static method => !method.IsAbstract && !method.ContainsGenericParameters)
+            .ToArray();
+        var instructionsByMethod = new Dictionary<MethodInfo, IlInstruction[]>();
+        foreach (var method in methods)
+        {
+            try
+            {
+                instructionsByMethod[method] = ReadInstructions(method);
+            }
+            catch (Exception exception)
+            {
+                ProgressionJournal.Instance?.Logger.Debug(
+                    $"Failed to inspect deferred world generation in '{method.DeclaringType?.FullName}.{method.Name}'."
+                    + $"{Environment.NewLine}{exception}");
+            }
+        }
+
+        foreach (var (generationMethod, instructions) in instructionsByMethod)
+        {
+            for (var generationIndex = 0; generationIndex < instructions.Length; generationIndex++)
+            {
+                if (!IsWorldGenerationCall(instructions[generationIndex].Operand as MethodBase))
+                {
+                    continue;
+                }
+
+                foreach (var targetTile in FindTargetTileTypeInstructions(
+                             instructions,
+                             generationIndex,
+                             tileTypes))
+                {
+                    var flags = FindRequiredProgressionFlags(
+                            instructions,
+                            targetTile.TileTypeIndex,
+                            generationIndex,
+                            modNamesByAssembly)
+                        .ToList();
+                    AppendCallerProgressionFlags(
+                        generationMethod,
+                        instructionsByMethod,
+                        modNamesByAssembly,
+                        flags);
+                    if (flags.Count == 0)
+                    {
+                        continue;
+                    }
+
+                    append(new JournalLegacyTilePlacement(
+                        targetTile.TargetTileType,
+                        $"{generationMethod.DeclaringType?.FullName}.{generationMethod.Name}",
+                        flags
+                            .Distinct()
+                            .OrderBy(static flag => flag.Mod, StringComparer.Ordinal)
+                            .ThenBy(static flag => flag.Key, StringComparer.Ordinal)
+                            .ToArray()));
+                }
+            }
+        }
+    }
+
+    private static void AppendCallerProgressionFlags(
+        MethodInfo generationMethod,
+        Dictionary<MethodInfo, IlInstruction[]> instructionsByMethod,
+        Dictionary<Assembly, string> modNamesByAssembly,
+        ICollection<JournalLegacyProgressionFlag> flags)
+    {
+        foreach (var (caller, instructions) in instructionsByMethod)
+        {
+            for (var callIndex = 0; callIndex < instructions.Length; callIndex++)
+            {
+                if (instructions[callIndex].Operand is not MethodBase calledMethod
+                    || !SameMethod(calledMethod, generationMethod))
+                {
+                    continue;
+                }
+
+                foreach (var flag in FindRequiredProgressionFlags(
+                             instructions,
+                             callIndex,
+                             callIndex,
+                             modNamesByAssembly))
+                {
+                    flags.Add(flag);
+                }
+
+                foreach (var triggerField in FindGuardBooleanFields(instructions, callIndex))
+                {
+                    foreach (var flag in FindProgressionFlagsSetAlongside(
+                                 triggerField,
+                                 instructionsByMethod,
+                                 modNamesByAssembly))
+                    {
+                        flags.Add(flag);
+                    }
+                }
+            }
+        }
+    }
+
+    private static FieldInfo[] FindGuardBooleanFields(
+        IlInstruction[] instructions,
+        int guardedInstructionIndex)
+    {
+        var guardedOffset = instructions[guardedInstructionIndex].Offset;
+        List<FieldInfo> result = [];
+        for (var branchIndex = Math.Max(1, guardedInstructionIndex - 128);
+             branchIndex < guardedInstructionIndex;
+             branchIndex++)
+        {
+            if (!IsConditionalBranch(instructions[branchIndex].OpCode)
+                || instructions[branchIndex].Operand is not int targetOffset
+                || targetOffset <= guardedOffset)
+            {
+                continue;
+            }
+
+            for (var fieldIndex = branchIndex - 1;
+                 fieldIndex >= Math.Max(0, branchIndex - 3);
+                 fieldIndex--)
+            {
+                if (instructions[fieldIndex].Operand is FieldInfo
+                    {
+                        IsStatic: true,
+                        FieldType: var fieldType
+                    } field
+                    && fieldType == typeof(bool))
+                {
+                    result.Add(field);
+                    break;
+                }
+            }
+        }
+
+        return result.Distinct().ToArray();
+    }
+
+    private static JournalLegacyProgressionFlag[] FindProgressionFlagsSetAlongside(
+        FieldInfo triggerField,
+        Dictionary<MethodInfo, IlInstruction[]> instructionsByMethod,
+        Dictionary<Assembly, string> modNamesByAssembly)
+    {
+        List<JournalLegacyProgressionFlag> result = [];
+        foreach (var instructions in instructionsByMethod.Values)
+        {
+            var setsTrigger = instructions
+                .Select((instruction, index) => (instruction, index))
+                .Any(value => value.instruction.OpCode == OpCodes.Stsfld
+                    && value.instruction.Operand is FieldInfo field
+                    && field == triggerField
+                    && value.index > 0
+                    && TryGetIntConstant(instructions[value.index - 1], out var assignedValue)
+                    && assignedValue != 0);
+            if (!setsTrigger)
+            {
+                continue;
+            }
+
+            for (var index = 1; index < instructions.Length; index++)
+            {
+                if (instructions[index].OpCode != OpCodes.Stsfld
+                    || instructions[index].Operand is not FieldInfo
+                    {
+                        IsStatic: true,
+                        FieldType: var fieldType
+                    } field
+                    || fieldType != typeof(bool)
+                    || !IsProgressionFlagName(field.Name)
+                    || !TryGetIntConstant(instructions[index - 1], out var assignedValue)
+                    || assignedValue == 0
+                    || !TryCreateProgressionFlag(field, modNamesByAssembly, out var flag))
+                {
+                    continue;
+                }
+
+                result.Add(flag);
+            }
+        }
+
+        return result.Distinct().ToArray();
+    }
+
+    private static bool TryCreateProgressionFlag(
+        FieldInfo field,
+        Dictionary<Assembly, string> modNamesByAssembly,
+        out JournalLegacyProgressionFlag flag)
+    {
+        var assembly = field.DeclaringType?.Assembly;
+        var modName = assembly == typeof(Main).Assembly
+            ? "Terraria"
+            : assembly is null
+                ? string.Empty
+                : modNamesByAssembly.GetValueOrDefault(assembly, string.Empty);
+        if (string.IsNullOrEmpty(modName))
+        {
+            flag = null!;
+            return false;
+        }
+
+        flag = new JournalLegacyProgressionFlag(modName, field.Name);
+        return true;
+    }
+
+    private static bool SameMethod(MethodBase left, MethodBase right)
+    {
+        return left.Module == right.Module && left.MetadataToken == right.MetadataToken;
     }
 
     private static void AnalyzeTilePlacementMethod(
@@ -446,8 +771,7 @@ public static class JournalLegacyDirectDropAnalyzer
         Dictionary<Type, int> itemTypes,
         Action<AnalyzedDrop> append)
     {
-        foreach (var method in sourceType.GetMethods(
-                     BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+        foreach (var method in GetLoadableMethods(sourceType, "legacy direct drops"))
         {
             if (!methodNames.Contains(method.Name, StringComparer.Ordinal))
             {
@@ -987,6 +1311,12 @@ public static class JournalLegacyDirectDropAnalyzer
             && method.Name is nameof(WorldGen.PlaceTile) or nameof(WorldGen.PlaceObject);
     }
 
+    private static bool IsWorldGenerationCall(MethodBase? method)
+    {
+        return method?.DeclaringType == typeof(WorldGen)
+            && string.Equals(method.Name, nameof(WorldGen.OreRunner), StringComparison.Ordinal);
+    }
+
     private static bool IsLegacyDropHelper(MethodBase method)
     {
         if (!string.Equals(method.Name, "DropLoot", StringComparison.Ordinal)
@@ -1149,7 +1479,10 @@ public static class JournalLegacyDirectDropAnalyzer
         JournalLegacyNpcDrop[] NpcDrops,
         JournalLegacyItemDrop[] ItemDrops,
         JournalLegacyTileDrop[] TileDrops,
-        JournalLegacyTilePlacement[] TilePlacements);
+        JournalLegacyTilePlacement[] TilePlacements)
+    {
+        public static Catalog Empty { get; } = new([], [], [], []);
+    }
 
     private sealed record IlInstruction(int Offset, OpCode OpCode, object? Operand);
     private sealed record AnalyzedDrop(

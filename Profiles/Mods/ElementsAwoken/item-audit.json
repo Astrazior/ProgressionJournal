@@ -3,22 +3,22 @@
   "version": 2,
   "targetMod": "ElementsAwoken",
   "profileId": "mod.elementsawoken",
-  "generatedAtUtc": "2026-08-27T17:04:14.252Z",
+  "generatedAtUtc": "2026-08-28T11:19:06.487Z",
   "snapshotGeneratedAtUtc": "2026-08-27T11:42:48.4466806Z",
   "summary": {
     "snapshotItems": 6462,
     "contentItems": 1007,
-    "profileEntries": 1097,
-    "profileBuffEntries": 166,
-    "profileItemReferences": 1323,
-    "equipmentReferences": 1157,
-    "buffReferences": 166,
+    "profileEntries": 1316,
+    "profileBuffEntries": 167,
+    "profileItemReferences": 1544,
+    "equipmentReferences": 1377,
+    "buffReferences": 167,
     "profileSourceGaps": 0,
-    "excluded": 2821,
+    "excluded": 2950,
     "acquiredNonProfile": 127,
     "unresolvedAvailability": 0,
     "unavailableCombat": 0,
-    "noAcquisitionPath": 2191
+    "noAcquisitionPath": 1841
   },
   "items": [
     {
@@ -302,10 +302,10 @@
       "name": "Resurrection Sigil",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "ancient-amalgamate",
+      "via": "recipe:ElementsAwoken/ChaoticFlare+ElementsAwoken/CrystalAmalgamate+ElementsAwoken/DiscordantBar",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -324,10 +324,10 @@
       "name": "Andromeda",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -435,10 +435,10 @@
       "name": "Aqueous Waders",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "duke-fishron",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar+ElementsAwoken/FrostWalkers+Terraria/FishronWings+Terraria/WaterWalkingBoots",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -468,10 +468,10 @@
       "name": "Arid Breastplate",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -479,10 +479,10 @@
       "name": "Arid Falcon Helm",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -490,10 +490,10 @@
       "name": "Arid Hat",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -501,10 +501,10 @@
       "name": "Arid Headgear",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -512,10 +512,10 @@
       "name": "Arid Hood",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -523,10 +523,10 @@
       "name": "Arid Leggings",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -545,10 +545,10 @@
       "name": "Arid Warrior Mask",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -578,10 +578,10 @@
       "name": "Asterox",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -611,10 +611,10 @@
       "name": "Ataxia I",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "skeletron",
+      "via": "recipe:ElementsAwoken/MysticGemstone+Terraria/Bone+Terraria/GoldBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -622,10 +622,10 @@
       "name": "Ataxia II",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "skeletron-prime",
+      "via": "recipe:ElementsAwoken/AtaxiaI+Terraria/SoulofSight+Terraria/SoulofMight+Terraria/SoulofFright+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -633,10 +633,10 @@
       "name": "Ataxia III",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "moon-lord",
+      "via": "recipe:ElementsAwoken/AtaxiaII+Terraria/FragmentNebula+Terraria/FragmentSolar+Terraria/FragmentStardust+Terraria/FragmentVortex+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -644,10 +644,10 @@
       "name": "Ataxia IV",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "ancient-amalgamate",
+      "via": "recipe:ElementsAwoken/AtaxiaIII+ElementsAwoken/AncientShard+ElementsAwoken/VoiditeBar+ElementsAwoken/DiscordantBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -655,10 +655,10 @@
       "name": "Aurora",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -997,10 +997,10 @@
       "name": "Blade of the Raven Prince",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/Pyroplasm+ElementsAwoken/Armageddon+Terraria/GoldBar+Terraria/BrokenHeroSword+Terraria/LunarBar+ElementsAwoken/VoiditeBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -1008,10 +1008,10 @@
       "name": "Blaze Fury",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "infernace",
+      "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -1151,10 +1151,10 @@
       "name": "Bonfire Pummel",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "infernace",
+      "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -1228,10 +1228,10 @@
       "name": "Typhos",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "duke-fishron",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar+Terraria/BubbleGun",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -1239,10 +1239,10 @@
       "name": "Bubble Pack",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "aqueous",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -1261,10 +1261,10 @@
       "name": "Bubble Staff",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "aqueous",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -1448,10 +1448,10 @@
       "name": "Cataclysm",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -1536,10 +1536,10 @@
       "name": "Cerulean",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+ElementsAwoken/Unity+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -1547,10 +1547,10 @@
       "name": "Chakram of the Duke",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "aqueous",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -1569,10 +1569,10 @@
       "name": "Chaos Flame Flask",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "recipe:ElementsAwoken/FieryJar+ElementsAwoken/HellbatWing+Terraria/MagmaStone+Terraria/ObsidianSkull",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -1580,10 +1580,10 @@
       "name": "Chaosporidic Heart",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "azana",
+      "via": "recipe:ElementsAwoken/DiscordantBar+ElementsAwoken/VoidAshes+ElementsAwoken/VoidEssence",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -1602,10 +1602,10 @@
       "name": "Chaotic Crucible",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "azana",
+      "via": "recipe:ElementsAwoken/ElementalForge+ElementsAwoken/DiscordantOre+ElementsAwoken/ChaoticFlare",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -1613,10 +1613,10 @@
       "name": "Chaotic Energy Capacitors",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "azana",
+      "via": "recipe:ElementsAwoken/LunarEnergyHarnesser+ElementsAwoken/DiscordantBar+ElementsAwoken/ChaoticFlare",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -1981,10 +1981,10 @@
       "name": "Cosmicus",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2058,10 +2058,10 @@
       "name": "Crimson Sky",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2410,10 +2410,10 @@
       "name": "Deathwarp",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "azana",
+      "via": "recipe:ElementsAwoken/DiscordantBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2575,10 +2575,10 @@
       "name": "Desert Eagle",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone+Terraria/FlintlockPistol",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2586,10 +2586,10 @@
       "name": "Badge of the Desert",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2597,10 +2597,10 @@
       "name": "Shield of The Desert",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2608,10 +2608,10 @@
       "name": "Desert Trailers",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone+Terraria/FrostsparkBoots",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2635,10 +2635,10 @@
       "name": "Desolation I",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "skeletron",
+      "via": "recipe:ElementsAwoken/MysticGemstone+Terraria/Bone+Terraria/GoldBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2646,10 +2646,10 @@
       "name": "Desolation II",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "skeletron-prime",
+      "via": "recipe:ElementsAwoken/DesolationI+Terraria/SoulofSight+Terraria/SoulofMight+Terraria/SoulofFright+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2657,10 +2657,10 @@
       "name": "Desolation III",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "moon-lord",
+      "via": "recipe:ElementsAwoken/DesolationII+Terraria/FragmentNebula+Terraria/FragmentSolar+Terraria/FragmentStardust+Terraria/FragmentVortex+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2668,10 +2668,10 @@
       "name": "Desolation IV",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "ancient-amalgamate",
+      "via": "recipe:ElementsAwoken/DesolationIII+ElementsAwoken/AncientShard+ElementsAwoken/VoiditeBar+ElementsAwoken/DiscordantBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2756,10 +2756,10 @@
       "name": "Disarray I",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "skeletron",
+      "via": "recipe:ElementsAwoken/MysticGemstone+Terraria/Bone+Terraria/GoldBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2767,10 +2767,10 @@
       "name": "Disarray II",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "skeletron-prime",
+      "via": "recipe:ElementsAwoken/DisarrayI+Terraria/SoulofSight+Terraria/SoulofMight+Terraria/SoulofFright+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2778,10 +2778,10 @@
       "name": "Disarray III",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "moon-lord",
+      "via": "recipe:ElementsAwoken/DisarrayII+Terraria/FragmentNebula+Terraria/FragmentSolar+Terraria/FragmentStardust+Terraria/FragmentVortex+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2789,10 +2789,10 @@
       "name": "Disarray IV",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "ancient-amalgamate",
+      "via": "recipe:ElementsAwoken/DisarrayIII+ElementsAwoken/AncientShard+ElementsAwoken/VoiditeBar+ElementsAwoken/DiscordantBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2800,10 +2800,10 @@
       "name": "Unstable Amber",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2811,10 +2811,10 @@
       "name": "Chaotron Arrow",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "azana",
+      "via": "recipe:Terraria/WoodenArrow+ElementsAwoken/DiscordantBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2822,10 +2822,10 @@
       "name": "Chaotron Alloy",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "azana",
+      "via": "recipe:ElementsAwoken/DiscordantOre+ElementsAwoken/ChaoticFlare",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -2833,10 +2833,10 @@
       "name": "Chaotron Bullet",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "azana",
+      "via": "recipe:Terraria/MusketBall+ElementsAwoken/DiscordantBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2866,10 +2866,10 @@
       "name": "Skull of the Old One",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "skeletron",
+      "via": "recipe:ElementsAwoken/DiscordantAmber+Terraria/SiltBlock+Terraria/CobaltShield",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -2877,10 +2877,10 @@
       "name": "Discordant Staff",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/Pyroplasm+ElementsAwoken/NeutronFragment+ElementsAwoken/VoiditeBar+Terraria/LunarBar+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3031,10 +3031,10 @@
       "name": "Dragon's Breath",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "infernace",
+      "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3197,10 +3197,10 @@
       "name": "Dusksong",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3208,10 +3208,10 @@
       "name": "Dying Azure",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "azana",
+      "via": "recipe:ElementsAwoken/DiscordantBar+ElementsAwoken/ChaoticFlare+ElementsAwoken/KindleCrusher",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3230,10 +3230,10 @@
       "name": "Calamity",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3263,10 +3263,10 @@
       "name": "Zenith",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/MagnetSphere+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3307,10 +3307,10 @@
       "name": "Elemental Arcanum",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/DiscordantSkull+ElementsAwoken/ChaosFlameFlask+ElementsAwoken/GreatThunderTotem+ElementsAwoken/FrozenGauntlet+ElementsAwoken/EtherealShell+ElementsAwoken/Nanocore+Terraria/LunarBar+ElementsAwoken/Pyroplasm",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3318,10 +3318,10 @@
       "name": "Elemental Breastplate",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3329,10 +3329,10 @@
       "name": "Elemental Burst",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3351,10 +3351,10 @@
       "name": "Essence of the Elements",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/DesertEssence+ElementsAwoken/FireEssence+ElementsAwoken/SkyEssence+ElementsAwoken/FrostEssence+ElementsAwoken/WaterEssence+ElementsAwoken/VoidEssence",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -3362,10 +3362,10 @@
       "name": "Elemental Forge",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/Furnace+Terraria/SandBlock+Terraria/Torch+Terraria/Cloud+Terraria/IceBlock+Terraria/WaterBucket+Terraria/EbonstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -3373,10 +3373,10 @@
       "name": "Elemental Leggings",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3384,10 +3384,10 @@
       "name": "Elemental Mask",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3473,10 +3473,10 @@
       "name": "Empyrean Hat",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3484,10 +3484,10 @@
       "name": "Empyrean Headgear",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3495,10 +3495,10 @@
       "name": "Empyrean Helmet",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3506,10 +3506,10 @@
       "name": "Empyrean Leggings",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3517,10 +3517,10 @@
       "name": "Empyrean Mask",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3528,10 +3528,10 @@
       "name": "Empyrean Breastplate",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3539,10 +3539,10 @@
       "name": "Empyrean Visage",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3583,10 +3583,10 @@
       "name": "Energy Geode",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:ElementsAwoken/IllusiveCharm+Terraria/CrystalShard+Terraria/AnkhShield",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3748,10 +3748,10 @@
       "name": "Equinox",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3759,10 +3759,10 @@
       "name": "Eradication",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3792,10 +3792,10 @@
       "name": "Ethereal Shell",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:ElementsAwoken/ManaShield+ElementsAwoken/OddWater+ElementsAwoken/IllusiveCharm+Terraria/SorcererEmblem+Terraria/JellyfishDivingGear",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3847,10 +3847,10 @@
       "name": "The Eye of Annihilation",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3929,10 +3929,10 @@
       "name": "Feather Fall",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -3962,10 +3962,10 @@
       "name": "Fiery Ashes",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -4116,10 +4116,10 @@
       "name": "Fire Knives",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "infernace",
+      "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4127,10 +4127,10 @@
       "name": "Hellstorm",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "infernace",
+      "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4138,10 +4138,10 @@
       "name": "Band of Inferno",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "infernace",
+      "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4149,10 +4149,10 @@
       "name": "Scythe of Eternal Flame",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "infernace",
+      "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4160,10 +4160,10 @@
       "name": "Inferno Bulwark",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "infernace",
+      "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar+Terraria/ObsidianShield",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4182,10 +4182,10 @@
       "name": "Fire Storm",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "infernace",
+      "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4193,10 +4193,10 @@
       "name": "Fire Treads",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "infernace",
+      "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar+Terraria/TerrasparkBoots",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4204,10 +4204,10 @@
       "name": "Blazing Trisword",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "infernace",
+      "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4281,10 +4281,10 @@
       "name": "Flask Of Extinction",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "buff",
+      "stage": "void-leviathan",
+      "via": "recipe:Terraria/BottledWater+ElementsAwoken/VoiditeBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4303,10 +4303,10 @@
       "name": "Hoarfrost Crusher",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4436,10 +4436,10 @@
       "name": "Freeze Ray",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "golem",
+      "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar+Terraria/HeatRay",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4469,10 +4469,10 @@
       "name": "Floe Breaker",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4480,10 +4480,10 @@
       "name": "Frost Blade",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4535,10 +4535,10 @@
       "name": "Pendant of Frost",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4546,10 +4546,10 @@
       "name": "Frost Pulse Rifle",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4557,10 +4557,10 @@
       "name": "Frost Buckler",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar+Terraria/LifeCrystal",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4568,10 +4568,10 @@
       "name": "Frost Walkers",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar+Terraria/IceSkates+ElementsAwoken/SkylineWhirlwind",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4579,10 +4579,10 @@
       "name": "Frozen Gauntlet",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "skeletron-prime",
+      "via": "recipe:ElementsAwoken/GlowingSlush+Terraria/FireGauntlet+Terraria/StarVeil",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4590,10 +4590,10 @@
       "name": "Fusion",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4766,10 +4766,10 @@
       "name": "Glacial Blitz",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4777,10 +4777,10 @@
       "name": "Glacier Breaker",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4844,10 +4844,10 @@
       "name": "Starlight Crook",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "radiant-rain",
+      "via": "recipe:ElementsAwoken/Radia",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -4855,10 +4855,10 @@
       "name": "Glowing Slush",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -4965,10 +4965,10 @@
       "name": "Great Thunder Idol",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "recipe:ElementsAwoken/StrangeTotem+ElementsAwoken/LightningCloud+Terraria/SharkToothNecklace+Terraria/AnkletoftheWind+Terraria/Aglet",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -5054,10 +5054,10 @@
       "name": "Hailgun",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar+Terraria/SnowballCannon",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -5098,10 +5098,10 @@
       "name": "Happy Little Cloud Staff",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -5131,10 +5131,10 @@
       "name": "Icon of Healing",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar+Terraria/RegenerationPotion+Terraria/LesserHealingPotion+Terraria/HealingPotion+Terraria/GreaterHealingPotion+Terraria/SuperHealingPotion+ElementsAwoken/EpicHealingPotion",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -5395,10 +5395,10 @@
       "name": "Icicle",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -5417,10 +5417,10 @@
       "name": "Illusive Charm",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -5483,10 +5483,10 @@
       "name": "Incinerator",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "infernace",
+      "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -5605,10 +5605,10 @@
       "name": "Inferno Lance",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "infernace",
+      "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -5671,10 +5671,10 @@
       "name": "Tome of Infinity",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar+Terraria/SpellTome",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -5682,10 +5682,10 @@
       "name": "Fire Spirit Scepter",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "infernace",
+      "via": "recipe:ElementsAwoken/FireEssence+Terraria/HellstoneBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -5715,10 +5715,10 @@
       "name": "Kamikaze",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:Terraria/ChlorophyteShotbow+Terraria/RocketLauncher",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -5819,10 +5819,10 @@
       "name": "Lament I",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "skeletron",
+      "via": "recipe:ElementsAwoken/MysticGemstone+Terraria/Bone+Terraria/GoldBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -5830,10 +5830,10 @@
       "name": "Lament II",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "skeletron-prime",
+      "via": "recipe:ElementsAwoken/LamentI+Terraria/SoulofSight+Terraria/SoulofMight+Terraria/SoulofFright+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -5841,10 +5841,10 @@
       "name": "Lament III",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "moon-lord",
+      "via": "recipe:ElementsAwoken/LamentII+Terraria/FragmentNebula+Terraria/FragmentSolar+Terraria/FragmentStardust+Terraria/FragmentVortex+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -5852,10 +5852,10 @@
       "name": "Lament IV",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "ancient-amalgamate",
+      "via": "recipe:ElementsAwoken/LamentIII+ElementsAwoken/AncientShard+ElementsAwoken/VoiditeBar+ElementsAwoken/DiscordantBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -5929,10 +5929,10 @@
       "name": "Cerise Curtains",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "radiant-rain",
+      "via": "recipe:ElementsAwoken/FrostMine+ElementsAwoken/Radia",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -6017,10 +6017,10 @@
       "name": "Laser Refraction Matrix",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "azana",
+      "via": "recipe:Terraria/Glass+ElementsAwoken/DiscordantBar+ElementsAwoken/GoldWire",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -6237,10 +6237,10 @@
       "name": "Shield of Magic",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/CelestialCuffs+Terraria/ManaFlower",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -6282,10 +6282,10 @@
       "name": "Matter Manipulator",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "azana",
+      "via": "recipe:ElementsAwoken/DiscordantBar+ElementsAwoken/ChaoticFlare+Terraria/LaserDrill",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -6459,10 +6459,10 @@
       "name": "Mystic Gemstone",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -6492,10 +6492,10 @@
       "name": "Nanocore",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/SoulOfPlight+Terraria/CelestialShell+Terraria/CharmofMyths+Terraria/AvengerEmblem",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -6547,10 +6547,10 @@
       "name": "Neovirtuo",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/Pyroplasm+ElementsAwoken/NeutronFragment+ElementsAwoken/VoiditeBar+ElementsAwoken/Unity+ElementsAwoken/Asterox+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -6647,10 +6647,10 @@
       "name": "Boots of Nyan",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/VoiditeBar+ElementsAwoken/Pyroplasm+ElementsAwoken/ElementalEssence+Terraria/RainbowDye+Terraria/RainbowBrick+ElementsAwoken/VoidBoots",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -6769,10 +6769,10 @@
       "name": "Oceanic Leggings",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "aqueous",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -6780,10 +6780,10 @@
       "name": "Oceanic Plate Mail",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "aqueous",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -6791,10 +6791,10 @@
       "name": "Oceanic Visage",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "aqueous",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -6813,10 +6813,10 @@
       "name": "Odd Water",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -7160,10 +7160,10 @@
       "name": "Phantom Bane",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -7436,10 +7436,10 @@
       "name": "Purple Tearstone Ring",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/Pyroplasm+ElementsAwoken/NeutronFragment+ElementsAwoken/VoiditeBar+Terraria/LunarBar+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -7590,10 +7590,10 @@
       "name": "Radiant Concentrator",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "radiant-rain",
+      "via": "recipe:ElementsAwoken/Radia",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -7612,10 +7612,10 @@
       "name": "Amaranth Hand",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "radiant-rain",
+      "via": "recipe:ElementsAwoken/Radia",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -7645,10 +7645,10 @@
       "name": "Radiant Mortar",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "radiant-rain",
+      "via": "recipe:ElementsAwoken/Radia",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -7656,10 +7656,10 @@
       "name": "Radiant Starholder",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "radiant-rain",
+      "via": "recipe:ElementsAwoken/Radia+ElementsAwoken/DiscordantBar",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -7712,10 +7712,10 @@
       "name": "Rain Sigil",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "aqueous",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -8010,10 +8010,10 @@
       "name": "Sandball",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8021,10 +8021,10 @@
       "name": "Sandshot",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8032,10 +8032,10 @@
       "name": "Sand Sprayer",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8043,10 +8043,10 @@
       "name": "Sandstorm Stone",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -8054,10 +8054,10 @@
       "name": "Sandstorm Tome",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone+Terraria/FallenStar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8065,10 +8065,10 @@
       "name": "Sandy Spear",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8231,10 +8231,10 @@
       "name": "Scourge",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8387,10 +8387,10 @@
       "name": "Sea Viper",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "aqueous",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8453,10 +8453,10 @@
       "name": "Sharktooth Shackle",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/SharkToothNecklace+Terraria/Shackle",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8563,10 +8563,10 @@
       "name": "Singularity",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8640,10 +8640,10 @@
       "name": "Sky Fury",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8651,10 +8651,10 @@
       "name": "Skyline Whirlwind",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:Terraria/DemonWings+Terraria/LuckyHorseshoe+ElementsAwoken/FireTreads+ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8662,10 +8662,10 @@
       "name": "Skyline Wings",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/SoulofFlight+Terraria/Feather",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -8673,10 +8673,10 @@
       "name": "Badge of the Sky",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8684,10 +8684,10 @@
       "name": "Sky Scraper",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8695,10 +8695,10 @@
       "name": "Sky Shield",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar+Terraria/CloudinaBottle",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -8739,10 +8739,10 @@
       "name": "Snower",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8750,10 +8750,10 @@
       "name": "Snowflake Staff",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar+Terraria/MagicMissile",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8761,10 +8761,10 @@
       "name": "Snowstorm",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8772,10 +8772,10 @@
       "name": "Sol",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "azana",
+      "via": "recipe:ElementsAwoken/Jupiter+ElementsAwoken/DiscordantBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8827,10 +8827,10 @@
       "name": "Solar Generator MKIV",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/SolarGeneratorIII+Terraria/LunarBar+ElementsAwoken/VoiditeBar+ElementsAwoken/Microcontroller+ElementsAwoken/Transformer",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -8838,10 +8838,10 @@
       "name": "Solitary Storm",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -8998,10 +8998,10 @@
       "name": "Staff of the Sandstorm",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -9042,10 +9042,10 @@
       "name": "Starlight",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -9251,10 +9251,10 @@
       "name": "Stormsky",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -9284,10 +9284,10 @@
       "name": "Strange Idol",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -9350,10 +9350,10 @@
       "name": "Suffer With Me",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "azana",
+      "via": "recipe:ElementsAwoken/SharktoothShackle+ElementsAwoken/EntropicCoating+ElementsAwoken/DiscordantBar+ElementsAwoken/ElementalEssence",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -9394,10 +9394,10 @@
       "name": "S.W.R.L",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ChaoticFlare+ElementsAwoken/VoiditeBar+Terraria/SDMG+Terraria/RocketLauncher",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -9680,10 +9680,10 @@
       "name": "The Grit",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -9735,10 +9735,10 @@
       "name": "The Launcher",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -9790,10 +9790,10 @@
       "name": "The Thaw",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:ElementsAwoken/FrostEssence+Terraria/IceBlock+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -9812,10 +9812,10 @@
       "name": "The Urchin",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "aqueous",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -9823,10 +9823,10 @@
       "name": "The Valkyrie",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/SolarEruption+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -9845,10 +9845,10 @@
       "name": "The Vulture",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:ElementsAwoken/DesertEssence+Terraria/SandBlock+Terraria/Sandstone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -9867,10 +9867,10 @@
       "name": "Storm Hammer",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -9923,10 +9923,10 @@
       "name": "The Gun That Shot Time",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/Pyroplasm+ElementsAwoken/NeutronFragment+ElementsAwoken/VoiditeBar+Terraria/VortexBeater+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -9934,10 +9934,10 @@
       "name": "Hourglass of Eternity",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -10154,10 +10154,10 @@
       "name": "Transformer",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "void-leviathan",
+      "via": "recipe:Terraria/LunarBar+ElementsAwoken/VoiditeBar+ElementsAwoken/GoldWire+ElementsAwoken/CopperWire",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -10198,10 +10198,10 @@
       "name": "Wavebolt",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "aqueous",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar+Terraria/WaterBolt",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -10242,10 +10242,10 @@
       "name": "Unity",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/Pyroplasm+ElementsAwoken/LunarShell+ElementsAwoken/EnergyGeode+ElementsAwoken/VoiditeBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -10330,10 +10330,10 @@
       "name": "Viridium Greatsword",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/Pyroplasm+ElementsAwoken/NeutronFragment+ElementsAwoken/VoiditeBar+ElementsAwoken/NinjaKatana+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -10363,10 +10363,10 @@
       "name": "Void Blaster",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -10396,10 +10396,10 @@
       "name": "Boots of the Void",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar+ElementsAwoken/AqueousWaders+Terraria/WingsSolar+Terraria/MasterNinjaGear",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -10407,10 +10407,10 @@
       "name": "Gloomhandler Breastplate",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -10627,10 +10627,10 @@
       "name": "Gloomhandler Greaves",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -10638,10 +10638,10 @@
       "name": "Gloomhandler Helmet",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -10660,10 +10660,10 @@
       "name": "Voidite Bar",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/VoiditeOre+ElementsAwoken/VoidAshes",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -10671,10 +10671,10 @@
       "name": "Voidite Ore",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "void-leviathan",
+      "via": "manifest",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -10837,10 +10837,10 @@
       "name": "Idol of Darkness",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -10870,10 +10870,10 @@
       "name": "Somber Bulwark",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar+Terraria/LifeCrystal+Terraria/LifeFruit",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -10903,10 +10903,10 @@
       "name": "Abyss Cultist Staff",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -10925,10 +10925,10 @@
       "name": "Blade of the Depths",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "dawn-of-the-void",
+      "via": "recipe:ElementsAwoken/VoidEssence+Terraria/LunarBar+Terraria/TerraBlade",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -10947,10 +10947,10 @@
       "name": "Void Walker's Breastplate",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -10958,10 +10958,10 @@
       "name": "Void Walker's  Greatmask",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -10969,10 +10969,10 @@
       "name": "Void Walker's Helm",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -10980,10 +10980,10 @@
       "name": "Void Walker's Hood",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -10991,10 +10991,10 @@
       "name": "Void Walker's Leggings",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -11002,10 +11002,10 @@
       "name": "Void Walker's Visage",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/VoiditeBar+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -11124,10 +11124,10 @@
       "name": "Voxus",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "void-leviathan",
+      "via": "recipe:ElementsAwoken/ElementalEssence+ElementsAwoken/VoiditeBar+Terraria/StarCannon+Terraria/LunarBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -11257,10 +11257,10 @@
       "name": "Emblem of the Ocean",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "aqueous",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -11268,10 +11268,10 @@
       "name": "Great Barrier Reef",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "aqueous",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -11279,10 +11279,10 @@
       "name": "Water Shot",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "aqueous",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -11290,10 +11290,10 @@
       "name": "Forever Tide",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "aqueous",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -11301,10 +11301,10 @@
       "name": "Aqua Marine",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "aqueous",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -11312,10 +11312,10 @@
       "name": "Wavebreaker",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "aqueous",
+      "via": "recipe:ElementsAwoken/WaterEssence+Terraria/ChlorophyteBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -11323,10 +11323,10 @@
       "name": "Windfall",
       "mod": "ElementsAwoken",
       "contentItem": true,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "regaroth",
+      "via": "recipe:ElementsAwoken/SkyEssence+Terraria/Cloud+Terraria/HallowedBar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -12649,10 +12649,10 @@
       "name": "Amphibian Boots",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/SailfishBoots+Terraria/FrogLeg",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -13358,10 +13358,10 @@
       "name": "Ankh Charm",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/ArmorBracing+Terraria/MedicatedBandage+Terraria/ThePlan+Terraria/CountercurseMantra+Terraria/ReflectiveShades",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -13369,10 +13369,10 @@
       "name": "Ankh Shield",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/ObsidianShield+Terraria/AnkhCharm",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -13809,10 +13809,10 @@
       "name": "Arcane Flower",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/ManaFlower+Terraria/PutridScent",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -13880,10 +13880,10 @@
       "name": "Architect Gizmo Pack",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/BrickLayer+Terraria/ExtendoGrip+Terraria/PaintSprayer+Terraria/PortableCementMixer",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -13990,10 +13990,10 @@
       "name": "Armor Bracing",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/ArmorPolish+Terraria/Vitamins",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -14520,10 +14520,10 @@
       "name": "Avenger Emblem",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "skeletron-prime",
+      "via": "recipe:Terraria/WarriorEmblem+Terraria/SoulofMight+Terraria/SoulofSight+Terraria/SoulofFright",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -14763,10 +14763,10 @@
       "name": "Green Horseshoe Balloon",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/FartInABalloon+Terraria/LuckyHorseshoe",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -14774,10 +14774,10 @@
       "name": "Amber Horseshoe Balloon",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "queen-bee",
+      "via": "recipe:Terraria/HoneyBalloon+Terraria/LuckyHorseshoe",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -14785,10 +14785,10 @@
       "name": "Pink Horseshoe Balloon",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/SharkronBalloon+Terraria/LuckyHorseshoe",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -15507,7 +15507,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/HoneyComb+Terraria/StarCloak",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -15834,10 +15834,10 @@
       "name": "Berserker's Glove",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/PowerGlove+Terraria/FleshKnuckles",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -16073,7 +16073,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/SilverDye+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -16144,7 +16144,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/BlackInk",
       "reason": "not combat equipment",
       "evidence": null
@@ -16166,7 +16166,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "npc:Terraria/Squid",
       "reason": "not combat equipment",
       "evidence": null
@@ -16465,10 +16465,10 @@
       "name": "Blizzard in a Balloon",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/BlizzardinaBottle+Terraria/ShinyRedBalloon",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -17382,10 +17382,10 @@
       "name": "Blue Horseshoe Balloon",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/CloudinaBalloon+Terraria/LuckyHorseshoe",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -19435,7 +19435,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/BrownDye+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -19729,10 +19729,10 @@
       "name": "Bundle of Balloons",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/CloudinaBalloon+Terraria/BlizzardinaBalloon+Terraria/SandstorminaBalloon",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -20903,10 +20903,10 @@
       "name": "Celestial Cuffs",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/CelestialMagnet+Terraria/MagicCuffs",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -20936,10 +20936,10 @@
       "name": "Celestial Shell",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "golem",
+      "via": "recipe:Terraria/CelestialStone+Terraria/MoonShell",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -20958,10 +20958,10 @@
       "name": "Celestial Stone",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "golem",
+      "via": "recipe:Terraria/SunStone+Terraria/MoonStone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -21147,7 +21147,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/BandofRegeneration+Terraria/PhilosophersStone",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -21824,10 +21824,10 @@
       "name": "Cloud in a Balloon",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/CloudinaBottle+Terraria/ShinyRedBalloon",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -22330,10 +22330,10 @@
       "name": "Coin Ring",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/GoldRing+Terraria/LuckyCoin",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -23124,10 +23124,10 @@
       "name": "Corrupt Campfire",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/Wood+Terraria/CorruptTorch",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -23219,10 +23219,10 @@
       "name": "Corrupt Growth Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/EbonstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -23230,10 +23230,10 @@
       "name": "Corrupt Mass Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/EbonstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -23241,10 +23241,10 @@
       "name": "Corrupt Pustule Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/EbonstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -23252,10 +23252,10 @@
       "name": "Corrupt Tendril Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/EbonstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -23396,10 +23396,10 @@
       "name": "Corrupt Torch",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/Torch+Terraria/EbonstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -23478,10 +23478,10 @@
       "name": "Countercurse Mantra",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/Megaphone+Terraria/Nazar",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -23734,10 +23734,10 @@
       "name": "Crimson Crust Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/CrimstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -23745,10 +23745,10 @@
       "name": "Crimson Scab Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/CrimstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -23756,10 +23756,10 @@
       "name": "Crimson Teeth Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/CrimstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -23767,10 +23767,10 @@
       "name": "Crimson Blister Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/CrimstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -23800,10 +23800,10 @@
       "name": "Crimson Campfire",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/Wood+Terraria/CrimsonTorch",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -24059,10 +24059,10 @@
       "name": "Crimson Torch",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/Torch+Terraria/CrimstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -24097,10 +24097,10 @@
       "name": "Crimstone Block",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -24108,10 +24108,10 @@
       "name": "Crimstone Brick",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/CrimstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -24119,10 +24119,10 @@
       "name": "Crimstone Brick Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/CrimstoneBrick",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -24130,10 +24130,10 @@
       "name": "Crimstone Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/CrimstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -24152,10 +24152,10 @@
       "name": "Crimtane Brick",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/CrimtaneOre+Terraria/CrimstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -24163,10 +24163,10 @@
       "name": "Crimtane Brick Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/CrimtaneBrick",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -26328,10 +26328,10 @@
       "name": "Demonite Brick",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/DemoniteOre+Terraria/EbonstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -26339,10 +26339,10 @@
       "name": "Demonite Brick Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/DemoniteBrick",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -26591,10 +26591,10 @@
       "name": "Destroyer Emblem",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "golem",
+      "via": "recipe:Terraria/AvengerEmblem+Terraria/EyeoftheGolem",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -27121,10 +27121,10 @@
       "name": "Diving Gear",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/Flipper+Terraria/DivingHelmet",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -28380,10 +28380,10 @@
       "name": "Ebonstone Block",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "manifest",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -28391,10 +28391,10 @@
       "name": "Ebonstone Brick",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/EbonstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -28402,10 +28402,10 @@
       "name": "Ebonstone Brick Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/EbonstoneBrick",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -28413,10 +28413,10 @@
       "name": "Ebonstone Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "start",
+      "via": "recipe:Terraria/EbonstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -29687,10 +29687,10 @@
       "name": "Fairy Boots",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/SpectreBoots+Terraria/FlowerBoots",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -30017,10 +30017,10 @@
       "name": "Trapped Flesh Chest",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshChest+Terraria/Wire",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -30160,10 +30160,10 @@
       "name": "Trapped Lesion Chest",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionChest+Terraria/Wire",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -30638,10 +30638,10 @@
       "name": "Fart in a Balloon",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/FartinaJar+Terraria/ShinyRedBalloon",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -30650,8 +30650,8 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "equipment",
-      "stage": "wall-of-flesh",
-      "via": "npc:Terraria/BigMimicJungle",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/CloudinaBottle+Terraria/WhoopieCushion",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -30947,10 +30947,10 @@
       "name": "Fire Gauntlet",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "skeletron-prime",
+      "via": "recipe:Terraria/MagmaStone+Terraria/MechanicalGlove",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -31233,10 +31233,10 @@
       "name": "Glowing Fishing Bobber",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/FishingBobber+Terraria/FallenStar",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31626,10 +31626,10 @@
       "name": "Flesh Bathtub",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31637,10 +31637,10 @@
       "name": "Flesh Bed",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshBlock+Terraria/Silk",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31648,10 +31648,10 @@
       "name": "Flesh Block",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/CrimstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31659,10 +31659,10 @@
       "name": "Flesh Block Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/FleshBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31670,10 +31670,10 @@
       "name": "Flesh Bookcase",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshBlock+Terraria/Book",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31681,10 +31681,10 @@
       "name": "Flesh Candelabra",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshBlock+Terraria/Torch",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31692,10 +31692,10 @@
       "name": "Flesh Candle",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshBlock+Terraria/Torch",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31714,10 +31714,10 @@
       "name": "Flesh Chair",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31725,10 +31725,10 @@
       "name": "Flesh Chandelier",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshBlock+Terraria/Torch+Terraria/Chain",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31736,10 +31736,10 @@
       "name": "Flesh Chest",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshBlock+Terraria/IronBar",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31747,10 +31747,10 @@
       "name": "Flesh Clock",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/FleshBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31781,10 +31781,10 @@
       "name": "Flesh Door",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31792,10 +31792,10 @@
       "name": "Flesh Dresser",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31825,10 +31825,10 @@
       "name": "Flesh Lamp",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/Torch+Terraria/FleshBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31836,10 +31836,10 @@
       "name": "Flesh Lantern",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshBlock+Terraria/Torch",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31858,10 +31858,10 @@
       "name": "Flesh Piano",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/Bone+Terraria/FleshBlock+Terraria/Book",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31869,10 +31869,10 @@
       "name": "Flesh Platform",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/FleshBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31880,10 +31880,10 @@
       "name": "Flesh Sink",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshBlock+Terraria/WaterBucket",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31891,10 +31891,10 @@
       "name": "Flesh Sofa",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshBlock+Terraria/Silk",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31902,10 +31902,10 @@
       "name": "Flesh Table",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -31913,10 +31913,10 @@
       "name": "Flesh Work Bench",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -32904,10 +32904,10 @@
       "name": "Frog Webbing",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/FrogLeg+Terraria/TigerClimbingGear",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -33003,10 +33003,10 @@
       "name": "Frostspark Boots",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/LightningBoots+Terraria/IceSkates",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -34825,10 +34825,10 @@
       "name": "Goblin Tech",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/MetalDetector+Terraria/Stopwatch+Terraria/DPSMeter",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -35838,7 +35838,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/GolfBall+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -36560,10 +36560,10 @@
       "name": "GPS",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/GoldWatch+Terraria/DepthMeter+Terraria/Compass",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -37458,10 +37458,10 @@
       "name": "Greedy Ring",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/CoinRing+Terraria/DiscountCard",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -38927,10 +38927,10 @@
       "name": "Hand Of Creation",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "recipe:Terraria/ArchitectGizmoPack+Terraria/AncientChisel+Terraria/TreasureMagnet+Terraria/PortableStool",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -39366,10 +39366,10 @@
       "name": "Hellfire Treads",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/FlameWakerBoots+Terraria/SpectreBoots",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -39571,10 +39571,10 @@
       "name": "Hero Shield",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "plantera",
+      "via": "recipe:Terraria/PaladinsShield+Terraria/FleshKnuckles",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -39770,10 +39770,10 @@
       "name": "Honey Balloon",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "queen-bee",
+      "via": "recipe:Terraria/ShinyRedBalloon+Terraria/HoneyComb",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -41116,10 +41116,10 @@
       "name": "Intense Rainbow Dye",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/RainbowDye",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -41506,10 +41506,10 @@
       "name": "Jellyfish Diving Gear",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/DivingGear+Terraria/JellyfishNecklace",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43191,10 +43191,10 @@
       "name": "Magma Skull",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/ObsidianSkull+Terraria/LavaCharm",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43213,10 +43213,10 @@
       "name": "Lava Waders",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/ObsidianWaterWalkingBoots+Terraria/LavaCharm+Terraria/ObsidianRose",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43643,10 +43643,10 @@
       "name": "Lesion Bathtub",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43654,10 +43654,10 @@
       "name": "Lesion Bed",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock+Terraria/Silk",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43665,10 +43665,10 @@
       "name": "Lesion Block",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/EbonstoneBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43676,10 +43676,10 @@
       "name": "Lesion Block Wall",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/LesionBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43687,10 +43687,10 @@
       "name": "Lesion Bookcase",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock+Terraria/Book",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43698,10 +43698,10 @@
       "name": "Lesion Candelabra",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock+Terraria/Torch",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43709,10 +43709,10 @@
       "name": "Lesion Candle",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock+Terraria/Torch",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43720,10 +43720,10 @@
       "name": "Lesion Chair",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43731,10 +43731,10 @@
       "name": "Lesion Chandelier",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock+Terraria/Torch+Terraria/Chain",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43742,10 +43742,10 @@
       "name": "Lesion Chest",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock+Terraria/IronBar",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43753,10 +43753,10 @@
       "name": "Lesion Clock",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/IronBar+Terraria/Glass+Terraria/LesionBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43764,10 +43764,10 @@
       "name": "Lesion Door",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43775,10 +43775,10 @@
       "name": "Lesion Dresser",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43786,10 +43786,10 @@
       "name": "Lesion Lamp",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock+Terraria/Torch",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43797,10 +43797,10 @@
       "name": "Lesion Lantern",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock+Terraria/Torch",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43808,10 +43808,10 @@
       "name": "Lesion Piano",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/Bone+Terraria/LesionBlock+Terraria/Book",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43819,10 +43819,10 @@
       "name": "Lesion Platform",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/LesionBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43830,10 +43830,10 @@
       "name": "Lesion Sink",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock+Terraria/WaterBucket",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43841,10 +43841,10 @@
       "name": "Lesion Sofa",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock+Terraria/Silk",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43875,10 +43875,10 @@
       "name": "Lesion Table",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -43886,10 +43886,10 @@
       "name": "Lesion Work Bench",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -44145,10 +44145,10 @@
       "name": "Lightning Boots",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/SpectreBoots+Terraria/AnkletoftheWind+Terraria/Aglet",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -45848,10 +45848,10 @@
       "name": "Magic Cuffs",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/ManaRegenerationBand+Terraria/Shackle",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -46047,10 +46047,10 @@
       "name": "Magnet Flower",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/ManaFlower+Terraria/CelestialMagnet",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -46180,10 +46180,10 @@
       "name": "Mana Cloak",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/ManaFlower+Terraria/StarCloak",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -46213,10 +46213,10 @@
       "name": "Mana Flower",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/NaturesGift+Terraria/ManaPotion",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -46246,10 +46246,10 @@
       "name": "Mana Regeneration Band",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/BandofStarpower+Terraria/BandofRegeneration",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -47097,7 +47097,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "plantera",
-      "via": "manifest",
+      "via": "recipe:Terraria/TigerClimbingGear+Terraria/Tabi+Terraria/BlackBelt",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -47141,7 +47141,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "skeletron-prime",
-      "via": "manifest",
+      "via": "recipe:Terraria/PowerGlove+Terraria/AvengerEmblem",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -47232,10 +47232,10 @@
       "name": "Medicated Bandage",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/Bezoar+Terraria/AdhesiveBandage",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -47278,7 +47278,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "npc:Terraria/GreenJellyfish",
+      "via": "npc:Terraria/Pixie",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -48009,10 +48009,10 @@
       "name": "Molten Charm",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/LavaCharm+Terraria/ObsidianSkull",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -48086,10 +48086,10 @@
       "name": "Molten Quiver",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/MagicQuiver+Terraria/MagmaStone",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -48097,10 +48097,10 @@
       "name": "Molten Skull Rose",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/ObsidianSkullRose+Terraria/LavaCharm",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -48616,10 +48616,10 @@
       "name": "Moon Shell",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "twins",
+      "via": "recipe:Terraria/MoonCharm+Terraria/NeptunesShell",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -48925,10 +48925,10 @@
       "name": "Multicolor Wrench",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "recipe:Terraria/Wrench+Terraria/GreenWrench+Terraria/BlueWrench+Terraria/YellowWrench+Terraria/WireCutter",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -51882,10 +51882,10 @@
       "name": "Obsidian Horseshoe",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/LuckyHorseshoe+Terraria/ObsidianSkull",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -51970,10 +51970,10 @@
       "name": "Obsidian Shield",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "skeletron",
+      "via": "recipe:Terraria/CobaltShield+Terraria/ObsidianSkull",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -52025,10 +52025,10 @@
       "name": "Obsidian Skull Rose",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/ObsidianSkull+Terraria/ObsidianRose",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -52091,10 +52091,10 @@
       "name": "Obsidian Water Walking Boots",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/WaterWalkingBoots+Terraria/ObsidianSkull",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -55441,7 +55441,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/Silk+Terraria/Vertebrae+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -55452,7 +55452,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/Silk+Terraria/Vertebrae+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -56639,10 +56639,10 @@
       "name": "Power Glove",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/TitanGlove+Terraria/FeralClaws",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -57427,7 +57427,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/PurpleDye+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -58053,10 +58053,10 @@
       "name": "Rainbow Dye",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "manifest",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -58182,10 +58182,10 @@
       "name": "Rainbow String",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "start",
+      "via": "recipe:Terraria/WhiteString+Terraria/RainbowDye",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -58541,7 +58541,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/RedDye+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -59157,10 +59157,10 @@
       "name": "Reflective Shades",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/Blindfold+Terraria/PocketMirror",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -59223,10 +59223,10 @@
       "name": "R.E.K. 3000",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "recipe:Terraria/TallyCounter+Terraria/LifeformAnalyzer+Terraria/Radar",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -59818,11 +59818,16 @@
       "name": "Rocket Boots",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "shop:Terraria/GoblinTinkerer",
+      "reason": "Included in the generated profile.",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/RocketI",
@@ -60231,11 +60236,23 @@
       "name": "Rubblemaker (Small)",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "wall-of-flesh",
+      "via": "shop:Terraria/GoblinTinkerer",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [
+          {
+            "type": "Terraria.Condition",
+            "description": "In hardmode",
+            "key": "Conditions.InHardmode",
+            "facts": []
+          }
+        ],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/Ruby",
@@ -60374,11 +60391,16 @@
       "name": "Ruler",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "shop:Terraria/GoblinTinkerer",
+      "reason": "Included in the generated profile.",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/RuneHat",
@@ -61047,10 +61069,10 @@
       "name": "Sandstorm in a Balloon",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/SandstorminaBottle+Terraria/ShinyRedBalloon",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -62281,10 +62303,10 @@
       "name": "Sharkron Balloon",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/TsunamiInABottle+Terraria/BalloonPufferfish",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -63165,7 +63187,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/SilverDye+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -65627,10 +65649,10 @@
       "name": "Spectre Boots",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/HermesBoots+Terraria/RocketBoots",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -67056,10 +67078,10 @@
       "name": "Stalker's Quiver",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/MagicQuiver+Terraria/PutridScent",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -67744,7 +67766,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "wall-of-flesh",
-      "via": "manifest",
+      "via": "recipe:Terraria/StarCloak+Terraria/CrossNecklace",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -68274,10 +68296,10 @@
       "name": "Stinger Necklace",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "queen-bee",
+      "via": "recipe:Terraria/SharkToothNecklace+Terraria/HoneyComb",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -69005,7 +69027,7 @@
       "contentItem": false,
       "status": "equipment",
       "stage": "queen-bee",
-      "via": "manifest",
+      "via": "recipe:Terraria/HoneyComb+Terraria/PanicNecklace",
       "reason": "Included in the generated profile.",
       "evidence": null
     },
@@ -70140,10 +70162,10 @@
       "name": "The Plan",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/FastClock+Terraria/TrifoldMap",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -70407,10 +70429,10 @@
       "name": "Tiger Climbing Gear",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/ClimbingClaws+Terraria/ShoeSpikes",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -70561,7 +70583,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/Silk+Terraria/RottenChunk+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -70583,7 +70605,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/Silk+Terraria/RottenChunk+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -70805,11 +70827,16 @@
       "name": "Tinkerer's Workshop",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "shop:Terraria/GoblinTinkerer",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/TinOre",
@@ -71234,10 +71261,10 @@
       "name": "Flesh Toilet",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/FleshBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -71289,10 +71316,10 @@
       "name": "Lesion Toilet",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "destroyer",
+      "via": "recipe:Terraria/LesionBlock",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -71509,11 +71536,16 @@
       "name": "Toolbelt",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
-      "evidence": null
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "shop:Terraria/GoblinTinkerer",
+      "reason": "not combat equipment",
+      "evidence": {
+        "kind": "shop",
+        "conditions": [],
+        "prerequisites": [],
+        "currencyItems": null
+      }
     },
     {
       "id": "Terraria/Toolbox",
@@ -72641,10 +72673,10 @@
       "name": "Ultrabright Helmet",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/MiningHelmet+Terraria/NightVisionHelmet",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -73430,7 +73462,7 @@
       "mod": "Terraria",
       "contentItem": false,
       "status": "excluded",
-      "stage": "start",
+      "stage": "world-evil",
       "via": "recipe:Terraria/VioletDye+Terraria/BlackDye",
       "reason": "not combat equipment",
       "evidence": null
@@ -74579,10 +74611,10 @@
       "name": "Cyan Weighted Pressure Plate",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "recipe:Terraria/GrayPressurePlate+Terraria/IronBar+Terraria/Wire",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -74590,10 +74622,10 @@
       "name": "Orange Weighted Pressure Plate",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "recipe:Terraria/GrayPressurePlate+Terraria/IronBar+Terraria/Wire",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -74601,10 +74633,10 @@
       "name": "Pink Weighted Pressure Plate",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "recipe:Terraria/GrayPressurePlate+Terraria/IronBar+Terraria/Wire",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -74612,10 +74644,10 @@
       "name": "Purple Weighted Pressure Plate",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "recipe:Terraria/GrayPressurePlate+Terraria/IronBar+Terraria/Wire",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -74777,10 +74809,10 @@
       "name": "White Horseshoe Balloon",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/BlizzardinaBalloon+Terraria/LuckyHorseshoe",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -75276,10 +75308,10 @@
       "name": "The Grand Design",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "excluded",
+      "stage": "skeletron",
+      "via": "recipe:Terraria/MulticolorWrench+Terraria/MechanicalLens+Terraria/LaserRuler+Terraria/Wire",
+      "reason": "not combat equipment",
       "evidence": null
     },
     {
@@ -76172,10 +76204,10 @@
       "name": "Yellow Horseshoe Balloon",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "eye-of-cthulhu",
+      "via": "recipe:Terraria/SandstorminaBalloon+Terraria/LuckyHorseshoe",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {
@@ -76441,10 +76473,10 @@
       "name": "Yoyo Bag",
       "mod": "Terraria",
       "contentItem": false,
-      "status": "no-acquisition-path",
-      "stage": "",
-      "via": "",
-      "reason": "No acquisition path was resolved.",
+      "status": "equipment",
+      "stage": "wall-of-flesh",
+      "via": "recipe:Terraria/WhiteString+Terraria/YoYoGlove+Terraria/BlackCounterweight",
+      "reason": "Included in the generated profile.",
       "evidence": null
     },
     {

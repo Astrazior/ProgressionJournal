@@ -108,7 +108,7 @@ export function accumulatePositiveProbeEvidence(snapshot, previousKnowledge, sta
 
 export function buildKnowledgeBase(snapshot) {
   assert(snapshot?.format === "ProgressionJournalSnapshot", "Invalid snapshot format.");
-  assert([4, 5, 6, 7, 8, 9, 10].includes(snapshot.version), `Unsupported snapshot version '${snapshot.version}'.`);
+  assert([4, 5, 6, 7, 8, 9, 10, 11, 12].includes(snapshot.version), `Unsupported snapshot version '${snapshot.version}'.`);
 
   const acquisitions = {
     recipes: structuredClone(snapshot.recipes ?? []),
@@ -118,6 +118,9 @@ export function buildKnowledgeBase(snapshot) {
   };
   if (snapshot.shimmerTransforms !== undefined) {
     acquisitions.shimmerTransforms = structuredClone(snapshot.shimmerTransforms);
+  }
+  if (snapshot.startingItems !== undefined) {
+    acquisitions.startingItems = structuredClone(snapshot.startingItems);
   }
   if (snapshot.knownSourceItems !== undefined) {
     acquisitions.knownSourceItems = structuredClone(snapshot.knownSourceItems);
@@ -202,6 +205,9 @@ export function createSnapshotView(knowledge) {
   if (knowledge.acquisitions.shimmerTransforms !== undefined) {
     snapshot.shimmerTransforms = knowledge.acquisitions.shimmerTransforms;
   }
+  if (knowledge.acquisitions.startingItems !== undefined) {
+    snapshot.startingItems = knowledge.acquisitions.startingItems;
+  }
   if (knowledge.acquisitions.knownSourceItems !== undefined) {
     snapshot.knownSourceItems = knowledge.acquisitions.knownSourceItems;
   }
@@ -228,8 +234,8 @@ function hasCompatibleProbeIdentity(snapshot, knowledge) {
   return knowledge?.format === "ProgressionJournalKnowledge"
     && knowledge.version === 1
     && source?.snapshotFormat === snapshot.format
-    && [4, 5, 6, 7, 8, 9, 10].includes(source.snapshotVersion)
-    && [4, 5, 6, 7, 8, 9, 10].includes(snapshot.version)
+    && [4, 5, 6, 7, 8, 9, 10, 11, 12].includes(source.snapshotVersion)
+    && [4, 5, 6, 7, 8, 9, 10, 11, 12].includes(snapshot.version)
     && source.targetMod === (snapshot.targetMod ?? "")
     && source.profileId === (snapshot.profileId ?? "")
     && sameStringSet(source.contentMods ?? [], snapshot.contentMods ?? [])

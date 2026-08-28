@@ -13,6 +13,7 @@ public sealed class JournalProfileSystem : ModSystem
         }
 
         JournalProfileRegistry.Load(JournalRepository.GetAllVanillaEntries());
+        global::ProgressionJournal.Data.Resolvers.JournalLegacyDirectDropAnalyzer.PrepareRuntimeCatalog();
         JournalArmorSetOverviewResolver.Prepare();
     }
 

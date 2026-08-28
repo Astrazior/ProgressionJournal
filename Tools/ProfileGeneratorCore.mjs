@@ -184,13 +184,14 @@ function generateProfileCore(
   manifest,
   wikiProfile = null,
   manualAssignments = null) {
-  const snapshot = source?.format === "ProgressionJournalKnowledge"
+  const rawSnapshot = source?.format === "ProgressionJournalKnowledge"
     ? createSnapshotView(source)
     : source;
-  assert(snapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot format.");
+  assert(rawSnapshot.format === "ProgressionJournalSnapshot", "Invalid snapshot format.");
   assert(
-    [4, 5, 6, 7, 8, 9, 10].includes(snapshot.version),
-    `Unsupported snapshot version '${snapshot.version}'.`);
+    [4, 5, 6, 7, 8, 9, 10, 11, 12].includes(rawSnapshot.version),
+    `Unsupported snapshot version '${rawSnapshot.version}'.`);
+  const snapshot = expandCompositeConditions(rawSnapshot);
 
   manifest = applyVanillaSourceCatalog(manifest, snapshot);
   const manualResult = applyManualAssignments(manifest, manualAssignments);
@@ -297,7 +298,12 @@ function generateProfileCore(
       && isAllowedProfileItem(record.target, contentMods)),
     record => record.target);
   const acquiredBy = new Map();
-  const available = new Set(manifest.initialItems ?? []);
+  const startingItems = new Set((snapshot.startingItems ?? [])
+    .filter(itemId => isAllowedProfileItem(itemId, contentMods)));
+  const available = new Set([
+    ...(manifest.initialItems ?? []),
+    ...startingItems
+  ]);
   const availableStations = new Set(manifest.initialStations ?? []);
   const availableDropSources = new Set();
   const availableShops = new Set();
@@ -467,7 +473,12 @@ function generateProfileCore(
     recommendations: wikiCompatibility
   };
 
-  for (const id of available) acquiredBy.set(id, { stage: "start", via: "initial" });
+  for (const id of available) {
+    acquiredBy.set(id, {
+      stage: "start",
+      via: startingItems.has(id) ? "starting-item" : "initial"
+    });
+  }
   const profileEntries = [];
   const profileBuffs = [];
   const entryByItem = new Map();
@@ -489,6 +500,7 @@ function generateProfileCore(
     const before = new Set(available);
     if (stageIndex === 0) {
       for (const id of manifest.initialVisibleItems ?? []) before.delete(id);
+      for (const id of startingItems) before.delete(id);
     }
     for (const availability of observedNpcAvailability) {
       if (availability.earliestStageIndex !== stageIndex) continue;
@@ -912,6 +924,40 @@ function generateProfileCore(
   };
 
   return { profile, report, review };
+}
+
+function expandCompositeConditions(snapshot) {
+  const expandRecords = records => (records ?? []).flatMap(record =>
+    expandConditionAlternatives(record.conditions ?? [])
+      .map(conditions => ({ ...record, conditions })));
+  return {
+    ...snapshot,
+    recipes: expandRecords(snapshot.recipes),
+    drops: expandRecords(snapshot.drops),
+    shops: expandRecords(snapshot.shops)
+  };
+}
+
+function expandConditionAlternatives(conditions) {
+  let alternatives = [[]];
+  for (const condition of conditions ?? []) {
+    const conditionAlternatives = expandCondition(condition);
+    alternatives = alternatives.flatMap(existing =>
+      conditionAlternatives.map(alternative => [...existing, ...alternative]));
+  }
+  return alternatives;
+}
+
+function expandCondition(condition) {
+  const nestedConditions = condition.conditions ?? [];
+  if (nestedConditions.length === 0) return [[condition]];
+  if (nestedConditions.length === 1) return expandCondition(nestedConditions[0]);
+  const combination = (condition.combination ?? "").toLocaleLowerCase();
+  if (combination === "all") return expandConditionAlternatives(nestedConditions);
+  if (combination === "any") {
+    return nestedConditions.flatMap(nestedCondition => expandCondition(nestedCondition));
+  }
+  return [[condition]];
 }
 
 function createWorldGenSources(snapshot, profileEntries, profileBuffs, itemById, manualSources = []) {
@@ -1489,8 +1535,7 @@ function classifyItem(item, manifest, report, context) {
     if (item.accessory
         && !item.vanity
         && item.createTile < 0
-        && !item.id.startsWith("Terraria/")
-        && item.sourceNamespace?.split(".").includes("Accessories")) {
+        && !item.id.startsWith("Terraria/")) {
       return { category: "Accessory", classes: allClasses(manifest) };
     }
     return null;
@@ -1636,27 +1681,31 @@ function collectShopPrerequisites(shops, items, itemById) {
 }
 
 function conditionItemPrerequisites(condition) {
-  const facts = condition.facts ?? [];
-  if (facts.length === 0
-      || facts.some(fact =>
-        fact?.kind !== "item-owned"
-        || typeof fact.item !== "string"
-        || !fact.item)) {
-    return [];
-  }
-  return facts.map(fact => fact.item);
+  return (condition.facts ?? [])
+    .filter(fact => fact?.kind === "item-owned"
+      && typeof fact.item === "string"
+      && fact.item)
+    .map(fact => fact.item);
 }
 
 function conditionHasSupportedFacts(condition) {
   const facts = condition.facts ?? [];
   return facts.length > 0
-    && conditionItemPrerequisites(condition).length === facts.length;
+    && facts.every(fact => isSupportedConditionFact(fact));
 }
 
 function conditionFactsAllowed(condition, context) {
   if (!conditionHasSupportedFacts(condition)) return null;
   const facts = condition.facts;
-  return facts.every(fact => context.available.has(fact.item));
+  return facts.every(fact => fact.kind === "environment"
+    || context.available.has(fact.item));
+}
+
+function isSupportedConditionFact(fact) {
+  return fact?.kind === "environment"
+    || (fact?.kind === "item-owned"
+      && typeof fact.item === "string"
+      && fact.item);
 }
 
 function observedShopConditionsAllowed(conditions, stage, manifest, context) {

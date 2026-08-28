@@ -397,6 +397,19 @@ assert(legacyDirectDropAnalyzerSource.includes('"OnKill"')
   && legacyDirectDropAnalyzerSource.includes("parameter.ParameterType == typeof(NPC)")
   && legacyDirectDropAnalyzerSource.includes("PassedViaLocal"),
 "Legacy direct drops must recover exact NPC, bag, scripted-interaction, chat-reward, and zero-stack probabilities");
+assert(journalProfileSystemSource.includes("JournalLegacyDirectDropAnalyzer.PrepareRuntimeCatalog()")
+  && legacyDirectDropAnalyzerSource.includes("private static Catalog _runtimeEntries = Catalog.Empty")
+  && legacyDirectDropAnalyzerSource.includes("return _runtimeEntries.NpcDrops")
+  && legacyDirectDropAnalyzerSource.includes("return _runtimeEntries.ItemDrops")
+  && legacyDirectDropAnalyzerSource.includes("ExportEntries.Value.TileDrops")
+  && !legacyDirectDropAnalyzerSource.includes("Entries.Value.NpcDrops")
+  && !legacyDirectDropAnalyzerSource.includes("Entries.Value.ItemDrops"),
+"Journal UI must read a legacy source catalog prepared during mod loading instead of starting discovery on click");
+assert(legacyDirectDropAnalyzerSource.includes("GetLoadableMethods(")
+  && legacyDirectDropAnalyzerSource.includes("TryGetParameters(")
+  && legacyDirectDropAnalyzerSource.includes(
+    'Failed to load parameters from'),
+"Legacy source discovery must skip methods whose optional assembly signatures cannot be loaded");
 assert(itemSourceResolverSource.includes("AppendLegacyDirectNpcSources")
   && itemSourceResolverSource.includes("AppendLegacyDirectItemSources")
   && itemSourceResolverSource.includes("AppendExactDropSources")
@@ -880,7 +893,7 @@ assert(itemCollectionIndex >= 0
     && npcDropCollectionIndex >= 0
     && itemCollectionIndex < npcDropCollectionIndex,
 "Item classification probes must run before drop reporting because mod drop rules can observe probe state");
-assert(snapshotExporterSource.includes("public int Version { get; set; } = 10")
+assert(snapshotExporterSource.includes("public int Version { get; set; } = 12")
   && snapshotExporterSource.includes("List<JournalLocalizedText> Conditions")
   && snapshotExporterSource.includes("List<string>? CurrencyItems = null")
   && snapshotShopCollectorSource.includes("CustomCurrencyManager.TryGetCurrencySystem")
@@ -890,6 +903,17 @@ assert(snapshotExporterSource.includes("KnownSourceItems = CreateKnownSourceItem
   && snapshotExporterSource.includes("JournalExactDropCatalog.GetAllSources()")
   && snapshotExporterSource.includes("JournalContainerLootCatalog.GetAllDrops()"),
   "Snapshot source-gap coverage must include the runtime acquisition catalogs");
+assert(snapshotExporterSource.includes("StartingItems = startingItems")
+  && snapshotExporterSource.includes("PlayerLoader.GetStartingItems(player, [])"),
+"Snapshot export and profile generation must preserve mod-provided starting items");
+assert(snapshotExporterSource.includes("GetNestedDropConditions(condition)")
+  && snapshotExporterSource.includes("GetConditionCombination(condition, nestedConditions.Count)")
+  && snapshotExporterSource.includes("List<SnapshotCondition>? Conditions = null"),
+"Snapshot export must preserve nested all/any drop conditions");
+assert(snapshotExporterSource.includes("ProgressionNeutralEnvironmentValues")
+  && snapshotExporterSource.includes("IsEnvironmentMember(value.Field)")
+  && snapshotExporterSource.includes('new SnapshotConditionFact("environment", value)'),
+"Snapshot conditions must preserve direct enum evidence for standard environment selectors");
 assert(snapshotExporterSource.includes("JournalSnapshotTileDropCollector.Collect(")
   && tileDropCollectorSource.includes('"KillTile_GetItemDrops"')
   && tileDropCollectorSource.includes("modTile.GetItemDrops")
@@ -907,6 +931,11 @@ assert(tileDropCollectorSource.includes("GetAllTilePlacements()")
   && legacyDirectDropAnalyzerSource.includes("IsTilePlacementCall")
   && legacyDirectDropAnalyzerSource.includes("FindRequiredProgressionFlags"),
 "Snapshot export must retain progression-gated GlobalTile.RandomUpdate placements as world sources");
+assert(legacyDirectDropAnalyzerSource.includes("AnalyzeDeferredWorldGeneration(")
+  && legacyDirectDropAnalyzerSource.includes("IsWorldGenerationCall(")
+  && legacyDirectDropAnalyzerSource.includes("FindProgressionFlagsSetAlongside(")
+  && legacyDirectDropAnalyzerSource.includes("nameof(WorldGen.OreRunner)"),
+"Snapshot export must retain progression-gated deferred ore generation as world sources");
 assert(tileDropCollectorSource.includes("WorldGen.CheckOrb")
   && tileDropCollectorSource.includes('"SpawnThingsFromPot"')
   && tileDropCollectorSource.includes("TileID.Heart")
@@ -954,6 +983,17 @@ assert(!vanillaClassificationMethod.includes("entry.Evaluations"),
 const profileGeneratorSource = fs.readFileSync(
   path.join(root, "Tools", "ProfileGeneratorCore.mjs"),
   "utf8");
+assert(profileGeneratorSource.includes("snapshot.startingItems ?? []")
+  && profileGeneratorSource.includes('via: startingItems.has(id) ? "starting-item" : "initial"')
+  && profileGeneratorSource.includes("for (const id of startingItems) before.delete(id)"),
+"Profile generation must expose mod-provided starting items at the first stage");
+assert(profileGeneratorSource.includes("expandCompositeConditions(rawSnapshot)")
+  && profileGeneratorSource.includes("if (nestedConditions.length === 1)")
+  && profileGeneratorSource.includes('if (combination === "all")')
+  && profileGeneratorSource.includes('if (combination === "any")'),
+"Profile generation must evaluate nested all/any conditions without mod-specific rules");
+assert(profileGeneratorSource.includes('fact.kind === "environment"'),
+"Profile generation must treat exported environment facts as progression-neutral evidence");
 assert(profileGeneratorSource.includes("snapshot.npcAvailability")
   && profileGeneratorSource.includes("snapshot.fishing"),
 "ProfileGeneratorCore does not consume runtime availability observations");
@@ -2209,6 +2249,14 @@ const vanillaSources = applyVanillaSourceCatalog(vanillaSourceSupport, {
   })),
   shops: []
 });
+const vanillaSourcesWithoutEventStages = applyVanillaSourceCatalog({
+  ...vanillaSourceSupport,
+  events: []
+});
+assert(vanillaSourcesWithoutEventStages.stages[0]
+  .include.includes("Terraria/TinkerersWorkshop"));
+assert(vanillaSourcesWithoutEventStages.stages[0]
+  .shops.includes("Terraria/GoblinTinkerer"));
 assert(vanillaSources.initialStations.includes("Terraria/DemonAltar"));
 assert(vanillaSources.initialStations.includes("Terraria/Hellforge"));
 assert(vanillaSources.initialStations.includes("Terraria/Tombstones"));
@@ -2219,6 +2267,8 @@ assert(vanillaSources.initialItems.includes("Terraria/Seed"));
 assert(vanillaSources.initialItems.includes("Terraria/JungleRose"));
 assert(vanillaSources.initialItems.includes("Terraria/GlowingMushroom"));
 assert(vanillaSources.initialItems.includes("Terraria/Shroomerang"));
+assert(vanillaSources.initialItems.includes("Terraria/EbonstoneBlock"));
+assert(vanillaSources.initialItems.includes("Terraria/CrimstoneBlock"));
 assert(!vanillaSources.initialItems.includes("Terraria/Grapes"),
   "Hardmode enemy drops must not be treated as initially available");
 assert(vanillaSources.initialVisibleItems.includes("Terraria/Shroomerang"));
@@ -2293,6 +2343,8 @@ assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
   .include.includes("Terraria/AdamantiteForge"));
 assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
   .include.includes("Terraria/FinWings"));
+assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
+  .include.includes("Terraria/RainbowDye"));
 assert.equal(vanillaSources.sourceStageFloors["Terraria/BloodNautilus"], "hardmode");
 assert(vanillaSources.stages.find(stage => stage.id === "hardmode")
   .enemies.includes("Terraria/BloodNautilus"));
